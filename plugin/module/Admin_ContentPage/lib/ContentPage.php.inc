@@ -1,0 +1,1751 @@
+<?php
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0b
+ * Object Version	: 1.0
+ * Object Type      : Plugin / Module Lib
+ * Creation Date   	: Sep 2005
+ * Last Modif Date  : Dec 2014
+ *
+ * ContentPage object
+ *
+ * workflow state
+ * - edition
+ * - validation
+ * - validated
+ * - inline
+ * - archived
+ * an object can only have one object in edition/validation/validated status
+ * and only one in inline status
+ * all others must be in archived status
+ */
+
+
+class ContentPage {
+  /* object vars */
+  /* camyks mode */
+  var $mode;
+  /* page id */
+  var $id;
+  /* name */
+  var $name;
+  /* parent id */
+  var $parent_id;
+  /* tree position */
+  var $position;
+  /* object type */
+  var $type;
+  /* is active */
+  var $active;
+  /* is https required for this page */
+  var $secured;
+  /* workflow values */
+  var $wf_version;
+  var $wf_status;
+  var $wf_cdate;
+  var $wf_mdate;
+  /* owner */
+  var $wf_owner;
+  /* editor group */
+  var $wf_editor;
+  /* validator group */
+  var $wf_validator;
+  /* template used to display the object */
+  var $template;
+  /* theme used to display the object */
+  var $theme;
+  /* is homepage boolean */
+  var $homepage;
+  /* modules included in the page */
+  var $modules;
+  /* specific metas */
+  var $metas;
+  var $metas_;
+
+  /* execution vars */
+  /* children */
+  var $children;
+  /* params */
+  var $params;
+  var $params_;
+  /* generic library vars */
+  var $_libIsInstalled;
+  /* object type */
+  var $object_type;
+
+  /*
+   * constructor
+   * @param integer $mode
+   * @param integer $id
+   * @param array $params
+   * @access public
+   */
+  function ContentPage ( $mode=CAMYKS_MODE_SITE, $id=0, $params=array() ) {
+    global $camyks;
+    if ( (int)$id >= 0 ) {
+      $this->id = (int)$id;
+    } else {
+      $this->id = 0;
+    }
+    $this->name = '';
+    $this->sitelink = '';
+    $this->mode = $mode;
+    $this->params_ = $params;
+
+    $this->modules = array();
+    $this->children = array();
+    $this->metas = array();
+
+    $this->maxmodules = $camyks->site_conf['page_maxmodules'];
+    $this->object_type = 'Module Library';
+    $this->_libParent = &$camyks->modules['Admin_ContentPage'];
+  }
+
+  /* methods */
+
+  /*
+   * get object case of CaMykS mode
+   * @param mixed $page the page to get
+   * @return boolean success
+   * @access public
+   */
+  function get( $page=null) {
+    if ( $this->mode == CAMYKS_MODE_SITE ) {
+      return $this->site_get($page);
+    } else if ( $this->mode == CAMYKS_MODE_ADMIN ) {
+      if ( $this->id == 0 ) {
+	    return $this->initialise();
+      } else {
+	    return $this->admin_get();
+      }
+    }
+  }
+
+  /*
+   * save object
+   * @return boolean success
+   * @access public
+   */
+  function save() {
+    if ( $this->check_data() ) {
+      if ( $this->id > 0 )
+	return $this->update_toDatabase();
+      return $this->create_toDatabase();
+    }
+  }
+
+  /*
+   * get object in site mode
+   * @param mixed $page the page to get
+   * @return boolean success
+   * @access public
+   */
+  function site_get($page) {    
+    return $this->get_fromDatabase($page);
+  }
+  
+  /*
+   * get object as displayed front page
+   * @param mixed $page
+   * @return boolean success
+   * @access public
+   */
+  function load_asFrontPage($page) {
+    global $camyks;
+    
+    /* check page : prevent from url injection  */
+    if (preg_match('/[^a-zA-Z0-9_]/', $page))
+       $page=0;
+        
+    /* try to load page */
+    if ($page == '' and $this->get_homeFromDatabase())
+      return true;
+    if ($this->get_fromDatabase($page))
+      return true;
+    
+    /* check for 404 header sending */
+    if ($this->get_configValue('page_404SendHeader') == 1) 
+      header('HTTP/1.1 404 Not Found');
+    
+    /* load failed, use fallbacks */
+    switch ($this->get_configValue('page_404FallBack')) {
+      case 'home_display': 
+          $this->get_homeFromDatabase(); 
+          return false;
+      case 'home_redirect': 
+          header('Location:'.$camyks->get_siteHomepageLink());
+          die();
+      case 'page_display': 
+        if ($page != $this->get_configValue('page_404ErrorPage')) {
+          $this->site_get($this->get_configValue('page_404ErrorPage'));
+          return false;
+        }
+        break;
+      case 'page_redirect':
+        if ($page != $this->get_configValue('page_404ErrorPage')) {
+          header('Location:'.$camyks->get_siteLink($this->get_configValue('page_404ErrorPage')));
+          die();
+        }
+        break;
+      case 'error404_display':
+        if (file_exists($this->get_configValue('page_404ErrorFile'))) {
+          @readfile($this->get_configValue('page_404ErrorFile'));
+          die();
+        } 
+        break;
+      case 'error404_redirect':
+        if (file_exists($this->get_configValue('page_404ErrorFile'))) {
+          header('Location:'.$camyks->get_confValue('url').'/'.$this->get_configValue('page_404ErrorFile'));
+          die();
+        }
+        break;
+    }
+      
+    /* error on fallback page, alternate fallback, redirect to home page */
+    header('Location:'.$camyks->get_siteHomepageLink());
+    return false;
+  }
+
+  /*
+   * get object in admin mode
+   * @return boolean success
+   * @access public
+   */
+  function admin_get() {
+    return $this->get_allVersionsFromDatabase();
+  }
+
+
+
+  /*
+   * check admin user right on this page
+   * @return boolean result
+   * @access public
+   */
+  function check_rights() {
+    global $camyks;
+    /* check workflow and status */
+    if ( $camyks->site_conf['workflow'] == 1
+	 and $this->wf_status != 'edition' ) {
+      return false;
+    }
+    /* check webmaster */
+    if ( $camyks->adminUser->webmaster == 1 ) {
+      return true;
+    }
+    /* check owner value */
+    if ( $camyks->adminUser->login == $this->wf_owner ) {
+      return true;
+    }
+    /* check editor group value */
+    if ( $camyks->check_sharedData( 'cp_groups' ) ) {
+      $camyks->set_sharedData( 'cp_groups', array() );
+    }
+
+    $groups = $camyks->modules['Admin_Group']->get_groups();
+    if ( isset( $groups[$this->wf_editor] ) )
+      return ( $groups[$this->wf_editor]->is_userInGroup( $camyks->adminUser->login ) );
+    return false;
+  }
+
+  /*
+   * check page data
+   * @return boolean result
+   * @access private
+   */
+  function check_data() {
+    global $camyks;
+    /* check name */
+    $this->name = trim($this->name);
+    /* parse invalid chars */
+    $this->name = preg_replace( '/([^_a-zA-Z0-9])/', '', $this->name );
+
+    /* check empty name */
+    if ( $this->name == '' ) {
+      if ( $this->id > 0 ) {
+	$this->name = $this->type.$this->id;
+      } else {
+	$sql = 'select max(id) as m from admin_contentpage';
+	if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
+	  if ( $data = $camyks->db_conn->get_queryDataLine())
+	    $this->name = $this->type.($data['m']+1);
+	  else
+	    $this->name = $this->type;
+	else
+	  $this->name = $this->type;
+      }
+    } else if ( !preg_match ( '([_a-zA-Z])', $this->name ) ) {
+      /* check if name contain at least one alphabetic char */
+      $this->name = $this->type.$this->name;
+    }
+
+    /* check if name exists */
+    $pages = array();
+    $sql = 'select id, name';
+    $sql .= ' from admin_contentpage';
+    $sql .= ' where name like "'.$this->name.'%"';
+    $sql .= ' group by id, name';
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
+      while( $data = $camyks->db_conn->get_queryDataLine() )
+	$pages[$data['name']] = $data['id'];
+
+    if ( ( isset ( $pages[$this->name] ) and $pages[$this->name] != $this->id ) ) {
+      $cnt = 1;
+      while ( isset($pages[$this->name.$cnt]) and $pages[$this->name.$cnt] != $this->id ) {
+	$cnt++;
+      }
+      $this->name .= $cnt;
+    } 
+
+    /* trim localized data */
+    foreach ( $this->locales as $l => $trad ) 
+      foreach ( $trad as $item => $value ) 
+	$this->locales[$l][$item] = trim( $value );
+
+    /* trim global metas */
+    foreach ( $this->metas as $m => $meta )
+      foreach ( $meta as $item => $value )
+	$this->metas[$m][$item] = trim ( $value );
+
+    /* create encoded version of metas */
+    $this->encode_metas();
+
+    /* add user name if needed */
+    $this->wf_owner = isset($camyks->adminUser->login)?$camyks->adminUser->login:'admin';
+
+    return true;
+  } 
+
+  /*
+   * initialise object
+   * @return boolean result
+   * @access private
+   */
+  function initialise ( ) {
+    global $camyks;
+
+    /* get header values */
+    $this->parent_id = isset( $_REQUEST['parent_id'] )? $_REQUEST['parent_id'] : 0;
+    $this->type = isset( $_REQUEST['type'])? $_REQUEST['type'] : 'page';
+    /* get parent relative values */
+    $this->get_parentRights();
+    $this->get_newPosition();
+
+    $this->name = '';
+    $this->active = 0;
+    $this->secured = 0;
+    $this->wf_version = 1;
+    $this->wf_state = ( $camyks->site_conf['workflow'] == 0 ? 'inline' : 'edition' );
+    $this->wf_owner = $camyks->adminUser->login;
+    $this->wf_cdate = time();
+    $this->wf_mdate = time();
+    $this->theme = '';
+    $this->template = '';
+    $this->homepage = 0;
+
+    foreach ( $camyks->site_conf['editing_languages'] as $l ) {
+      $this->locales[$l] =  array('title'=>'', 'shorttitle'=>'', 'description'=>'', 'keywords'=>'');
+    }
+
+    return true;
+  }
+
+  /*********************** DATABASE DATA I/O ************************/  
+ 
+  /*
+   * get object data from database
+   * @param mixed $page the page to get
+   * @return boolean success
+   * @access public
+   */
+  function get_fromDatabase( $page=null ) {
+    if ( isset ( $page ) ) {
+      if ( is_numeric( $page ) )
+	    return $this->get_objectFromDatabase(' and admin_contentpage.id='.$page );
+      else if ( is_string ( $page ) )
+	    return $this->get_objectFromDatabase(' and admin_contentpage.name="'.$page.'"' );
+    }
+    return $this->get_objectFromDatabase(' and admin_contentpage.id='.$this->id );
+  }
+    
+  /*
+   * get homepage object data from database
+   * @return boolean success
+   * @access private
+   */
+  function get_homeFromDatabase( ) {
+    return $this->get_objectFromDatabase(' and admin_contentpage.homepage=1');
+  }
+
+  /*
+   * get first object available from database
+   * @return boolean success
+   * @access private
+   */
+  function get_firstFromDatabase() {
+    return $this->get_objectFromDatabase('');
+  }
+
+  /*
+   * get object data from database generic method 
+   * @param string $query some query modification
+   * @return boolean success
+   * @access private
+   */
+  function get_objectFromDatabase ($query='' ) {
+    global $camyks;
+    $sql = 'select *';
+    $sql .= ' from admin_contentpage, admin_contentpagelocale';
+    $sql .= ' where admin_contentpage.type="page"';
+    $sql .= ' and admin_contentpage.wf_status="inline"';
+    if ( isset($_REQUEST['preview']) and $_REQUEST['preview']=='forced'
+	 and $camyks->modules['Admin_ContentPage']->check_right(0)) {
+      /* page preview */
+    } else {
+      $sql .= ' and admin_contentpage.active=1';
+    }
+    $sql .= ' '.$query;
+    $sql .= ' and admin_contentpage.id=admin_contentpagelocale.id';
+    $sql .= ' and admin_contentpage.wf_version=admin_contentpagelocale.wf_version';
+    $sql .= ' and admin_contentpagelocale.language="'.$camyks->current_language.'"';
+    $sql .= ' limit 1';
+    /* execute query */
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+      /* gather object data */
+      if ( $data = $camyks->db_conn->get_queryDataLine() ) {
+	    $this->get_fromArray( $data );
+	    $this->get_localeFromArray( $data );
+	    return true;
+      }
+    }
+    return false;
+  }
+
+
+  /*
+   * get all object version from database, set the latest version to the object
+   * @return boolean success
+   * @access private
+   */
+  function get_allVersionsFromDatabase() {
+    global $camyks;
+    $isFirst = true;
+    $sql = 'select * from admin_contentpage where id='.$this->id.' order by wf_version desc';
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+      /* execute sql query */
+      while ( $data = $camyks->db_conn->get_queryDataLine() ) {
+	if ( $isFirst ) {
+	  $this->get_fromArray( $data );
+	  $this->get_localesFromDatabase();
+	  $this->versions = array();
+	  $isFirst = false;
+	} else {
+	  $p = new ContentPage( CAMYKS_MODE_ADMIN, $this->id );
+	  $p->get_fromArray();
+	  $this->versions[] = $p;
+	}
+	return true;
+      }
+    }
+    return false;
+  }
+
+  /*
+   * get object locales from database
+   * @return success
+   * @access private
+   */
+  function get_localesFromDatabase() {
+    global $camyks;
+    $this->locales = array();
+    $sql = 'select * from admin_contentpagelocale where id='.$this->id.' and wf_version='.$this->wf_version;
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+      while ( $data = $camyks->db_conn->get_queryDataLine() ){
+	$this->locales[ $data['language'] ] = $this->get_localesFromArray($data);
+      }
+    }
+    
+    foreach ($camyks->get_confValue('editing_languages') as $l) {
+      if (!isset( $this->locales[$l]))
+        $this->locales[$l] = $this->get_localesFromArray(array('title'=>'', 'shorttitle'=>'', 'keywords'=>'', 'description'=>''));
+    }
+    return true;
+  }
+
+  /*
+   * create new object to the database
+   * @return boolean success
+   * @access private
+   */
+  function create_toDatabase( ) {
+    global $camyks;
+    $sql = 'INSERT INTO `admin_contentpage` (';
+    $sql .= ' `parent_id`';
+    $sql .= ', `position`';
+    $sql .= ', `type`';
+    $sql .= ', `name`';
+    $sql .= ', `active`';
+    $sql .= ', `secured`';
+    $sql .= ', `wf_version`';
+    $sql .= ', `wf_status`';
+    $sql .= ', `wf_cdate`';
+    $sql .= ', `wf_mdate`';
+    $sql .= ', `wf_owner`';
+    $sql .= ', `wf_editor`';
+    $sql .= ', `wf_validator`';
+    $sql .= ', `template`';
+    $sql .= ', `theme`';
+    $sql .= ', `homepage`';
+    $sql .= ', `metas`';
+    for ( $i=0; $i< $this->maxmodules; $i++ ) {
+      $sql .= ', `m'.$i.'_name`';
+      $sql .= ', `m'.$i.'_content`';
+      $sql .= ', `m'.$i.'_theme`';
+    }
+    $sql .= ' ) VALUES ( ';
+    $sql .= ''.$this->parent_id.'';
+    $sql .= ', '.$this->position.'';
+    $sql .= ', "'.$this->type.'"';
+    $sql .= ', "'.$this->name.'"';
+    $sql .= ', '.$this->active.'';
+    $sql .= ', '.$this->secured.'';
+    $sql .= ', '.$this->wf_version.'';
+    $sql .= ', "'.( $camyks->site_conf['workflow'] == 0 ? 'inline' : 'edition' ).'"';
+    $sql .= ', '.time().'';
+    $sql .= ', '.time().'';
+    $sql .= ', "'.$this->wf_owner.'"';
+    $sql .= ', "'.$this->wf_editor.'"';
+    $sql .= ', "'.$this->wf_validator.'"';
+    $sql .= ', "'.$this->template.'"';
+    $sql .= ', "'.$this->theme.'"';
+    $sql .= ', '.$this->homepage.'';
+    $sql .= ', "'.addslashes($this->metas_).'"';
+    for ( $i=0; $i<$this->maxmodules; $i++ ) {
+      if ( isset ( $this->modules[$i] ) ) {
+	$sql .= ', "'.$this->modules[$i]['name'].'"';
+	$sql .= ', "'.$this->modules[$i]['content'].'"';
+	$sql .= ', "'.$this->modules[$i]['theme'].'"';
+      } else {
+	$sql .= ', ""';
+	$sql .= ', ""';
+	$sql .= ', ""';
+      }
+    }
+    $sql .= ' )';
+
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+      $this->id = $camyks->db_conn->get_queryGeneratedId();
+      return $this->update_languages ();
+    }
+    return false;
+  }
+
+  /*
+   * update object to database
+   * @return boolean success
+   * @access private
+   */
+  function update_toDatabase ( ) {
+    global $camyks;
+    $sql = 'update admin_contentpage';
+    $sql .= ' set ';
+    if ( $this->allow_content_edition and $this->allow_rights_edition ) {
+      $sql .= $this->update_contentQuery();
+      $sql .= ', ' .$this->update_rightsQuery();
+    } else if ( $this->allow_content_edition ) {
+      $sql .= $this->update_contentQuery();
+    } else if ( $this->allow_rights_edition ) {
+      $sql .= $this->update_rightsQuery();
+    } else {
+      return false;
+    }
+
+    $sql .= ', `wf_mdate`='.time();
+    $sql .= ' where id='.$this->id;
+    $sql .= ' and wf_version='.$this->wf_version;
+    if (  $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+      if ( $this->allow_content_edition ) 
+	return $this->update_languages ();
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  /*
+   * build content part for the updating query
+   * @return string the sql query part
+   * @access private
+   */
+  function update_contentQuery() {
+    $sql = ' `name`="'.$this->name.'"';
+    $sql .= ', `active`='.$this->active;
+    $sql .= ', `secured`='.$this->secured;
+    $sql .= ', `template`="'.$this->template.'"';
+    $sql .= ', `theme`="'.$this->theme.'"';
+    $sql .= ', `homepage`='.$this->homepage;
+    $sql .= ', `metas`="'.addslashes($this->metas_).'"';
+    for ( $i=0; $i< $this->maxmodules; $i++) {
+      $sql .= ', `m'.$i.'_name`="'.$this->modules[$i]['name'].'"';
+      $sql .= ', `m'.$i.'_content`="'.$this->modules[$i]['content'].'"';
+      $sql .= ', `m'.$i.'_theme`="'.$this->modules[$i]['theme'].'"';
+    }
+    return $sql;
+  }
+  
+  /*
+   * build right part for the updating query
+   * @return string the sql query part
+   * @access private
+   */
+  function update_rightsQuery() {
+    global $camyks;
+    $sql = ' `wf_editor`="'.$this->wf_editor.'"';
+    if ( $camyks->site_conf['workflow'] == 1 ) {
+      $sql = ' `wf_validator`="'.$this->wf_validator.'"';
+    }
+    return $sql;
+  }
+  
+  /*
+   * update object languages
+   * @return boolean success
+   * @access private
+   */
+  function update_languages () {
+    global $camyks;
+    /* delete locales lines */
+    $this->delete_localesFromDatabase();
+
+    /* insert new locale values */
+    $sql = 'INSERT INTO `admin_contentpagelocale` (';
+    $sql .= ' `id`';
+    $sql .= ', `wf_version`';
+    $sql .= ', `language`';
+    $sql .= ', `title`';
+    $sql .= ', `shorttitle`';
+    $sql .= ', `keywords`';
+    $sql .= ', `description`';
+    $sql .= ') values ';
+
+    foreach ( $this->locales as $lang => $l ) {
+      $sql .= '( '.$this->id.', '.$this->wf_version.', "'.$lang.'"';
+      $sql .= ', "'.$camyks->encode_value($l['title']).'"';
+      $sql .= ', "'.$camyks->encode_value($l['shorttitle']).'"';
+      $sql .= ', "'.$camyks->encode_value($l['keywords']).'"';
+      $sql .= ', "'.$camyks->encode_value($l['description']).'"';
+      $sql .= '), ';
+    }
+
+    $sql = substr( $sql, 0, strlen($sql)-2);
+    return  $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ );
+  }
+
+  /*
+   * delete object from database
+   * @return boolean success
+   * @access public
+   */
+  function delete_fromDatabase( ) {
+    global $camyks;
+    $sql = 'delete from admin_contentpage';
+    $sql .= ' where id='.$this->id;
+    $sql .= ' and wf_version='.$this->wf_version; 
+    return  $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ );
+  }
+
+  /*
+   * delete object languages from database
+   * @return boolean success
+   * @access public
+   */
+  function delete_localesFromDatabase() {
+    global $camyks;
+    $sql = 'delete from admin_contentpagelocale';
+    $sql .= ' where id='.$this->id;
+    $sql .= ' and wf_version='.$this->wf_version;
+
+    return  $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ );
+  }
+
+  /*
+   * install object table into database, add first page
+   * @return boolean success
+   * @access public
+   */
+  function install ( ) {
+    global $camyks;
+    /*  create main table */
+    $sql = 'CREATE  TABLE `admin_contentpage`(';
+    $sql .= ' `id` BIGINT UNSIGNED NOT  NULL  AUTO_INCREMENT ,';
+    $sql .= ' `parent_id` BIGINT UNSIGNED NOT  NULL ,';
+    $sql .= ' `position` INT UNSIGNED NOT  NULL ,';
+    $sql .= ' `type` VARCHAR(16) NOT NULL,';
+    $sql .= ' `name` VARCHAR(128) NOT  NULL ,';
+    $sql .= ' `active` TINYINT(4) default 1,';
+    $sql .= ' `secured` TINYINT(4) default 0,';
+    $sql .= ' `wf_version` INT default 1,';
+    $sql .= ' `wf_status` VARCHAR(16) NOT NULL,';
+    $sql .= ' `wf_cdate` BIGINT UNSIGNED default 0 ,';
+    $sql .= ' `wf_mdate` BIGINT UNSIGNED default 0 ,';
+    $sql .= ' `wf_owner` VARCHAR(32) NOT NULL,';
+    $sql .= ' `wf_editor` VARCHAR(32) NOT NULL,';
+    $sql .= ' `wf_validator` VARCHAR(32) NOT NULL,';
+    $sql .= ' `template` VARCHAR( 255 )  NOT  NULL ,';
+    $sql .= ' `theme` VARCHAR( 255 )  NOT  NULL ,';
+    $sql .= ' `homepage` TINYINT default 0 ,';
+    $sql .= ' `metas` TEXT default "" ,';
+    for ( $i=0; $i< $this->maxmodules; $i++ ) {
+      $sql .= '`m'.$i.'_name` VARCHAR( 255 )  NOT  NULL ,';
+      $sql .= '`m'.$i.'_content` VARCHAR( 255 )  NOT  NULL ,';
+      $sql .= '`m'.$i.'_theme` VARCHAR( 255 )  NOT  NULL ,';
+    }
+    $sql .= 'PRIMARY  KEY ( `id`, `wf_version` ) ';
+    $sql .= ') CHARACTER  SET '.$camyks->get_mysqlencodingvalue();
+
+    if  ( !($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__) ) ) {
+      return false;
+    }
+	  
+    /* create locale table */
+    $sql = 'create table `admin_contentpagelocale` (';
+    $sql .= ' `id` bigint unsigned not null,';
+    $sql .= ' `wf_version` int unsigned default 1,';
+    $sql .= ' `language` varchar(3) not null,';
+    $sql .= ' `title` varchar(255) default "",';
+    $sql .= ' `shorttitle` varchar(255) default "",';
+    $sql .= ' `keywords` text default "",';
+    $sql .= ' `description` text default "",';
+    $sql .= ' primary key ( id, wf_version, language)';
+    $sql .= ') character set '.$camyks->get_mysqlencodingvalue().';';
+      
+    if  ( !($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__) ) ) {
+      return false;
+    }
+
+    /* add root folder */
+    $this->id = 0;
+    $this->parent_id = 0;
+    $this->position = 0;
+    $this->type = 'page';
+    $this->name = 'homepage';
+    $this->active = 1;
+    $this->secured = 0;
+
+    $this->wf_version = 1;
+    $this->wf_status = 'inline';
+    $this->wf_owner = 'admin';
+    $this->wf_editor = 'all';
+    $this->wf_validator = 'all';
+
+    $this->theme = '';
+    $this->template = '';
+    $this->homepage = 1;
+    $this->metas_ = '';
+
+    /* add dummy module as single displayed module
+    $this->modules[0] = array('name'=>'Dummy',
+			      'content'=>'',
+			      'theme'=>''); */
+    $this->locales = array();
+    foreach ( $camyks->site_conf['editing_languages'] as $l ) {
+      $this->locales[$l] = array('title'=>'', 'shorttitle'=>'', 'keywords'=>'', 'description'=>'');
+    }
+    return $this->create_toDatabase();
+  }
+  
+  /*
+   * check if object is installed in database
+   * @return boolean result
+   * @access public
+   */
+  function is_installed( ) {
+    global $camyks;
+    
+    if (!isset($this->_libIsInstalled)) {
+    
+      /* check with plugin manager */
+      if (isset($camyks->modules['Admin_PluginManager'])) {
+        $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('admin_contentpage');
+      } else {
+     
+        /* build sql query */
+        $sql = "show tables like 'admin_contentpage'";
+      
+        /* execute sql query */
+        $camyks->db_conn->execute_query($sql);
+      
+        /* get data from database */
+        $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
+      }
+    }
+    return $this->_libIsInstalled;
+  }
+
+  /*
+   * get parent page rights
+   * @return void
+   * @access private
+   */
+  function get_parentRights() {
+    global $camyks;
+    if ( $this->parent_id > 0 ){
+      $sql = 'select wf_editor, wf_validator from admin_contentpage where id='.$this->parent_id.' order by wf_version desc';
+      if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+	/* execute sql query */
+	if ( $data = $camyks->db_conn->get_queryDataLine() ) {
+	  $this->wf_editor = $data['wf_editor'];
+	  $this->wf_validator = $data['wf_validator'];
+	  return;
+	}
+      }
+    }
+    if ( $camyks->site_conf['workflow'] == 0 ) {
+      $this->wf_editor = 'all';
+      $this->wf_validator = 'all';
+    } else {
+      $this->wf_editor = 'none';
+      $this->wf_validator = 'none';
+    }
+  }
+
+  /*
+   * get page position into page tree
+   * @return void
+   * @access private
+   */
+  function get_newPosition() {
+    global $camyks;
+    $sql = 'select max(position) as cnt from admin_contentpage where type="page" and parent_id='.$this->parent_id.'';
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+      /* execute sql query */
+      if ( $data = $camyks->db_conn->get_queryDataLine() ) {
+	$this->position = $data['cnt']+1;
+	return;
+      }
+    }
+    $this->position = 0;
+  }
+
+  /*********************** HEADER DATA I/O ************************/
+  
+  /*
+   * get object data from header
+   * @return void
+   * @access public
+   */
+  function get_fromHeader( ) {
+    global $camyks;
+
+    if ( $this->allow_content_edition ) {      
+      /* get content values  */
+      $this->parent_id = $_REQUEST['parent_id'];
+      $this->name = $_REQUEST['name'];
+      $this->type = isset($_REQUEST['type'] )? $_REQUEST['type'] : 'page';
+      $this->active = isset ( $_REQUEST['active'] ) ? $_REQUEST['active'] : 0;
+      $this->secured = isset ( $_REQUEST['secured'] ) ? $_REQUEST['secured'] : 0;
+      
+      $this->template = $_REQUEST['template'];
+      $this->theme = $_REQUEST['theme'];
+      $this->homepage = isset ( $_REQUEST['homepage'] ) ?  $_REQUEST['homepage'] : 0;
+      
+      /* get metas lines */
+      $this->metas = array();
+      $meta_count = isset($_REQUEST['meta_count'])?$_REQUEST['meta_count']:0;
+      for ($i=0; $i<$meta_count; $i++ ) {
+	if ( isset( $_REQUEST['meta_name'.$i] ) and $_REQUEST['meta_name'.$i]!= '' ) {
+	  $this->metas[] = array($_REQUEST['meta_name'.$i],
+				 isset($_REQUEST['meta_content'.$i])?$_REQUEST['meta_content'.$i]:'',
+				 isset($_REQUEST['meta_language'.$i])?$_REQUEST['meta_language'.$i]:'',
+				 isset($_REQUEST['meta_method'.$i])?$_REQUEST['meta_method'.$i]:'');
+	}
+      }
+      
+      /* get modules */      
+      for ( $i=0; $i< $this->maxmodules; $i++ ) {
+	$m = array();
+	$m['name'] = $_REQUEST['m'.$i.'_name'];
+	$m['content'] = $_REQUEST['m'.$i.'_content'];
+	$m['theme'] = isset($_REQUEST['m'.$i.'_theme'])?$_REQUEST['m'.$i.'_theme']:'';
+	$this->modules[$i] = $m;
+      }
+
+      /* get translations */
+      $this->locales = array();
+      foreach ( $camyks->site_conf['editing_languages'] as $l ) {
+	$this->locales[$l] = array();
+	$this->locales[$l]['title'] = $_REQUEST['title_'.$l];
+	$this->locales[$l]['shorttitle'] = $_REQUEST['shorttitle_'.$l];
+	$this->locales[$l]['description'] = $_REQUEST['description_'.$l];
+	$this->locales[$l]['keywords'] = $_REQUEST['keywords_'.$l];
+      }
+    }      
+    
+    /* get rights values */
+    if ( $this->allow_rights_edition ) {
+      $this->wf_editor = $_REQUEST['wf_editor'];
+      if ( $camyks->site_conf['workflow'] == 1 ) {
+	$this->wf_validator = $_REQUEST['wf_validator'];
+      }
+    }
+  }
+
+  /*
+   * update page location
+   * @param integer $newParentId
+   * @return boolean success
+   * @access public
+   */
+  function update_move($newParentId) {
+    global $camyks;
+    
+    $this->parent_id = $newParentId;
+    $this->get_newPosition();
+
+    /* build update sql query */
+    $sql = 'update admin_contentpage';
+    $sql .= ' set position='.$this->position;
+    $sql .= ', parent_id='.$this->parent_id;
+    $sql .= ' where id='.$this->id;
+    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ));
+  }
+  
+  /*
+   * update page position to upper
+   * @return boolean success
+   * @access public
+   */
+  function update_moveUp() {
+    return $this->update_movePosition(-1);
+  }
+
+  /*
+   * update page position to lower
+   * @return boolean success
+   * @access public
+   */
+  function update_moveDown() {
+    return $this->update_movePosition(1);
+  }
+
+  /*
+   * update page position
+   * @param integer $pos
+   * @return boolean success
+   * @access public
+   */
+  function update_movePosition($pos) {
+    global $camyks;
+
+    /* get all parent pages */
+    $sql = 'select id, position';
+    $sql .= ' from admin_contentpage';
+    $sql .= ' where parent_id='.$this->parent_id; 
+    $sql .= ' and type="page"';
+    $sql .= ' order by position';
+    if ( !( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )))
+      return false;
+
+    $pages = array();
+    $position = -1;
+    while ($data = $camyks->db_conn->get_queryDataLine()) {
+      if ( $data['id'] == $this->id )
+	$position = count($pages);
+      $pages[] = $data;
+    }
+
+    /* check new position value */
+    if ( $position == -1 or ($position+$pos<0) or $position+$pos>=count($pages))
+      return false;
+
+    /* update position */
+    $temp = $pages[$position];
+    $pages[$position] = $pages[$position+$pos];
+    $pages[$position+$pos] = $temp;
+
+    /* update all pages which the position is not correct */
+    foreach ($pages as $index => $page ) {
+      if ( $index != $page['position'] ) {
+	$sql = 'update admin_contentpage';
+	$sql .= ' set position='.$index;
+	$sql .= ' where id='.$page['id'];
+	if ( !( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )))
+	  return false;
+      }
+    }
+    return true;
+  }
+  
+  
+  /*********************** OTHER DATA I/O ************************/
+  
+  /*
+   * get object data from array
+   * @param array $data
+   * @return void
+   * @access private
+   */
+  function get_fromArray( $data ) {
+    /* engine values */
+    $this->id = $data['id'];
+    $this->parent_id = $data['parent_id'];
+    $this->position = $data['position'];
+    $this->type = $data['type'];
+    $this->name = $data['name'];
+    $this->active = $data['active'];
+    $this->secured = $data['secured'];
+    /* workflow values */
+    $this->wf_version = $data['wf_version'];
+    $this->wf_status = $data['wf_status'];
+    $this->wf_cdate = $data['wf_cdate'];
+    $this->wf_mdate = $data['wf_mdate'];
+    $this->wf_owner = $data['wf_owner'];
+    $this->wf_editor = $data['wf_editor'];
+    $this->wf_validator = $data['wf_validator'];
+    /* content values */
+    $this->template = $data['template'];
+    $this->theme = $data['theme'];
+    $this->homepage = $data['homepage'];
+    $this->metas_ = stripslashes($data['metas']);
+    $this->decode_metas();
+    for ( $i=0; $i<$this->maxmodules; $i++ ) {
+      $m = array();
+      $m['name'] = $data['m'.$i.'_name'];
+      $m['content'] = $data['m'.$i.'_content'];
+      $m['theme'] = $data['m'.$i.'_theme'];
+      $this->modules[$i] = $m;
+    }
+  }
+
+  /*
+   * get object locale data from an aray
+   * @param array $data
+   * @return void
+   * @access private
+   */
+  function get_localeFromArray( $data ) {
+    global $camyks;
+    $this->title = $camyks->decode_value($data['title']);
+    $this->shorttitle = $camyks->decode_value($data['shorttitle']);
+    $this->keywords = $camyks->decode_value($data['keywords']);
+    $this->description = $camyks->decode_value($data['description']);
+  }
+
+  /*
+   * return object locales from an array
+   * @param array $data
+   * @return array
+   * @access private
+   */
+  function get_localesFromArray( $data ) {
+    global $camyks;
+    $a = array();
+    $a['title'] = $camyks->decode_value($data['title']);
+    $a['shorttitle'] = $camyks->decode_value($data['shorttitle']);
+    $a['keywords'] = $camyks->decode_value($data['keywords']);
+    $a['description'] = $camyks->decode_value($data['description']);
+    return $a;
+  }
+
+  /*
+   * encode metas values
+   * @return void
+   * @access private
+   */
+  function encode_metas() {
+    $list = array();
+    foreach ( $this->metas as $m ) {
+      $list[]=implode('::', $m);
+    }
+    $this->metas_ = implode('"', $list);
+  }
+  
+  /*
+   * decode meta values
+   * @return void
+   * @access private
+   */
+  function decode_metas() {
+    if ( $this->metas_ != '' ) {
+      $metas = explode( '"', $this->metas_ );
+      foreach ( $metas as  $meta ) {
+	$meta = explode( '::', $meta );
+	if ( count( $meta ) == 4 )
+	  $this->metas[$meta[0]] = array('name'=> $meta[0],
+					 'content'=> $meta[1],
+					 'language'=> $meta[2],
+					 'method' => $meta[3]);
+      }
+    } else {
+      $this->metas = array();
+    }
+  }
+
+  /*
+   * set default admin data
+   * @param string $m the module to be administrate
+   * @return void
+   * @access private
+   */
+  function set_adminData ( $m ) {
+    global $camyks;
+    $this->template = $camyks->templates['AdminPage'];
+    $this->modules = array();
+    $this->modules[0] = array('name' => $m );
+    $this->modules[1] = array('name' => 'Tool_InfoBar');
+  }
+
+  /********************** INIT ************************************/
+
+  /*
+   * initialise object in site mode
+   * @return void
+   * @access private
+   */
+  function init_site () {
+    global $camyks;
+    /* parse params */
+    if ( strpos( $this->params_, '-' )==0 ) {
+      $this->params_ = substr( $this->params_, 1 );
+    }
+    $this->params = data_decode_properties($this->params_, '-' );
+
+    /* add metas */
+    foreach ( $this->metas as $meta ) {
+      if ( $meta['method'] != 'hidden' and ( $meta['language'] == '' or $meta['language'] == $camyks->current_language ) )
+	    $camyks->HTMLPage->add_meta( $meta['name'], $meta['content'], $meta['method']);
+    }
+    
+    if ($this->get_configValue('site_ogmeta') == 1) {
+      $camyks->HTMLPage->add_meta('og:locale', $camyks->current_language, 'property');
+      $camyks->HTMLPage->add_meta('og:site_name', $camyks->get_confValue('site_title'), 'property');
+      $camyks->HTMLPage->add_meta('og:type', 'website', 'property');
+      $camyks->HTMLPage->add_meta('og:title', $this->get_longTitleDisplay('html'), 'property');
+      $camyks->HTMLPage->add_meta('og:url', $camyks->get_confValue('url').'/'.$camyks->get_siteCurrentLink(), 'property');
+      $camyks->HTMLPage->add_meta('og:description', string_text2HTML($this->description), 'property');
+      $camyks->HTMLPage->add_meta('og:image', '', 'property');
+    }
+
+    /* init template */
+    if ( $this->template == '' ) {
+      $this->template = $camyks->site_conf['site_default_template'];
+    } else if ( !isset($camyks->templates[$this->template]) ) {
+      $camyks->log_event('Page Error',
+			 $this,
+			 'Template not found :'.$this->template);
+      $this->template = $camyks->site_conf['site_default_template'];
+    }
+    $this->template = &$camyks->templates[$this->template];
+    $this->template->initialise();
+
+    /* init theme - check for default theme */
+    if ( $this->theme == '' ){
+      $this->theme = $camyks->site_conf['site_default_theme'];
+    } else if ( ! isset ( $camyks->themes[$this->theme]) ) {
+      $camyks->log_event('Page Error',
+			 $this,
+			 'Theme not found :'.$this->theme);
+      
+      $this->theme = $camyks->site_conf['site_default_theme'];
+    }
+    $this->theme = &$camyks->themes[$this->theme];
+    $this->theme->initialise();
+
+    /* init modules */
+    $m = array();
+    $i = 0;
+    for ( $i=0; $i< $this->template->modules; $i++ ) {
+      $mod_name = $this->modules[$i]['name'];
+      /* module & content */
+      if ( $mod_name == '' ) {
+	/* no active module */
+	$m[$i] = new Module ('Empty', 'camyks' );
+      } else if ( isset( $camyks->modules[$mod_name] ) ) {
+	/* active module */
+	$m[$i] = $camyks->modules[$mod_name];
+      } else if ( isset ( $camyks->modules['Dummy'] ) ) {
+	/* log : module not found */
+	$camyks->log_event('Page Error',
+			   'Module: Admin_ContentPage Lib: ContentPage',
+			   'Module not found :'.$mod_name);
+	/* set dummy module instead */
+	$m[$i] = $camyks->modules['Dummy'];
+      } else {
+	/* log : module not found */
+	$camyks->log_event('Page Error',
+			   'Module: Admin_ContentPage Lib: ContentPage',
+			   'Module not found :'.$mod_name);
+	/* TO DO : !!!!! */
+      }
+      /* theme */
+      if ( $this->modules[$i]['theme'] != ''  ) {
+	$m[$i]->set_theme( $this->modules[$i]['theme'] );
+      } else {
+	$m[$i]->set_theme( $this->theme->name );
+      }
+      
+      /* init module object */
+      if ($camyks->benchMode!==false) $camyks->benchMode->start('Initialise module '.$i);
+      $m[$i]->init_site($this->modules[$i]['content'], $this->params, $i );
+    }
+    $this->modules = $m;
+  }
+
+  /* 
+   * initialise object in admin mode
+   * @return void
+   * @access private
+   */
+  function init_admin () {
+    global $camyks;
+    $this->mode = CAMYKS_MODE_ADMIN;
+    $this->template->initialise();
+    foreach ( $this->modules as $i=>$m ) {
+      $mod_name = $m['name']; 
+      if ( isset( $camyks->modules[$mod_name] ) ) {
+	$this->modules[$i] = &$camyks->modules[$mod_name];
+      } else if ( isset( $camyks->modules['Dummy'] ) ) {
+	$this->modules[$i] = &$camyks->modules['Dummy'];
+	} else {
+	$this->modules[$i] = new Module( 'Empty', 'camyks' );
+      }
+    }
+    foreach ( $this->modules as $i=>$m ) {
+      $this->modules[$i]->set_theme($camyks->site_conf['admin_default_theme']);
+      $this->modules[$i]->init_admin();
+    }
+  }
+
+  /********************** TOOL METHODS ****************************/
+
+  /*
+   * check if page object has children
+   * @return boolean result
+   * @access public
+   */
+  function has_children() {
+    global $camyks;
+    
+    /* build sql query */
+    $sql = 'select id';
+    $sql .= ' from admin_contentpage';
+    $sql .= ' where parent_id='.$this->id;
+    /* execute query */
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ))
+      return  $camyks->db_conn->get_queryDataLine();
+    return false;
+  }
+
+  /*
+   * return page object site link
+   * @param array $params
+   * @param string $lg
+   * @return string
+   * @access public
+   */
+  function get_siteLink( $params=array(), $lg='' ){
+    global $camyks;
+
+    /* add name */
+    $link = $this->name;
+
+    /* add params */
+    if ( count( $params ) > 0 ) {
+      $link .= '-'.data_encode_properties( $params, '-' );
+    }
+
+    /* encode params */
+    $link = urlencode($link);
+
+    /* add language  */
+    if ( $lg != '' ) {
+      if ( in_array( $lg, $camyks->site_conf['site_languages'] ) ) {
+	$link .= '.'.$lg;
+      } else {
+	$link .= '.'.$camyks->current_language;
+      }
+    } else if ( count($camyks->site_conf['site_languages'])>1) {
+      $link .= '.'.$camyks->current_language;
+    }
+    
+    /* add extension */
+    switch ( $this->type ) {
+    case 'page':
+      $link .= '.htm';
+      break;
+    }
+
+    return $camyks->get_rootBaseURL().$link;
+  }
+
+  /********************** DISPLAY *********************************/
+
+  /*
+   * display object in site mode
+   * @return void
+   * @access private
+   */ 
+  function display () {
+    $this->template->display();
+  }
+  
+  /*
+   * display module
+   * @param int $index
+   * @return void
+   * @access private
+   */
+  function display_module ( $index ) {
+    global $camyks;
+    
+    switch ( $this->mode ) {
+    case CAMYKS_MODE_ADMIN :
+      $this->modules[$index]->display_admin();
+      break;
+    case CAMYKS_MODE_SITE :
+      if ($camyks->benchMode!==false) $camyks->benchMode->start('Display module '.$index);
+      $this->modules[$index]->display_site( $index );
+      break;
+    }
+  }
+
+  /******************** ELEMENTS REQUEST METHODS **********/
+
+  /*
+   * build admin page tree
+   * @return array the tree
+   * @access private
+   */
+  function get_adminPagesTree ( ) {
+    global $camyks;
+    
+    /* init values */
+    $pages = array();
+    /* build sql query */
+    $sql = 'select id, active, type, parent_id, position, name, homepage, wf_owner, wf_editor';
+    $sql .= ' from admin_contentpage';
+    $sql .= ' where type="page"';
+    $sql .= ' order by parent_id, position';
+    /* execute query */
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )){
+
+      $page = new ContentPage( 0, 0 );
+      $page->name = '';
+      $page->sitelink = '';
+      $pages[0] = $page;
+
+      /* get data from database */
+      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+	$page = new ContentPage( 0, $data['id'] );
+	$page->name = $data['name'];
+	$page->active = $data['active'];
+	$page->type = $data['type'];
+	$page->parent_id = $data['parent_id'];
+	$page->homepage = $data['homepage'];
+	$page->position = $data['position'];
+	$page->wf_owner = $data['wf_owner'];
+	$page->wf_editor = $data['wf_editor'];
+	$page->wf_status = 'edition';
+	$pages[$data['id']] = $page;
+      }
+      
+      foreach ( $pages as $p) {
+	$pages[$p->parent_id]->children[] = $p->id;
+      }
+
+      /* return values */
+      return $pages;
+    }
+    return array();
+  }
+
+  /*
+   * build complete page tree
+   * @param string $lg the language to gather
+   * @param string $where some SQL where query
+   * @return array the tree
+   * @access public
+   */
+  function get_pagesList( $lg=null, $where='' ) {
+    global $camyks;
+
+    if (!isset( $lg ) ){
+      $lg = $camyks->current_language;
+    }
+
+    /* init values */
+    $pages = array();
+    /* build sql query */
+    $sql = 'select *';
+    $sql .= ' from admin_contentpage, admin_contentpagelocale';
+    $sql .= ' where admin_contentpage.type="page"';
+    $sql .= ' and admin_contentpagelocale.id=admin_contentpage.id';
+    $sql .= ' and admin_contentpagelocale.wf_version=admin_contentpage.wf_version';
+    $sql .= ' and admin_contentpagelocale.language="'.$lg.'"';
+    if ( $where != '' ) {
+      $sql .= ' and '.$where;
+    }
+    $sql .= ' order by parent_id, position;';
+    
+    /* execute query */
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )){
+
+      $page = new ContentPage( 0, 0 );
+      $page->name = '';
+      $page->sitelink = '';
+      $pages[0] = $page;
+
+      /* get data from database */
+      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+	    $page = new ContentPage( 0, $data['id'] );
+	    $page->get_fromArray( $data );
+	    $page->get_localeFromArray( $data );
+	    $pages[$data['id']] = $page;
+      }
+      
+      foreach ( $pages as $p) {
+	    if ( isset($pages[$p->parent_id]) ) {
+	      $pages[$p->parent_id]->children[] = $p->id;
+	    }
+	    $pages[$p->name] = &$pages[$p->id];
+	    
+	    /* check if home page */
+	    if ($p->homepage == 1)
+	      $this->_libParent->set_siteHomePage($p->id);
+      }
+      /* return values */
+      return $pages;
+    }
+    return array();
+  }
+
+  /*
+   * return models list
+   * @param $where
+   * @return array
+   * @access private
+   */
+  function get_modelsList( $where='' ) {
+    global $camyks;
+
+    /* init values */
+    $models = array();
+    /* build sql query */
+    $sql = 'select *';
+    $sql .= ' from admin_contentpage';
+    $sql .= ' WHERE admin_contentpage.type="model"';
+    if ( $where != '' ) {
+      $sql .= ' AND '.$where;
+    }
+    $sql .= ' order by id;';
+    /* execute query */
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )){
+      /* get data from database */
+      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+	$page = new ContentPage( 0, $data['id'] );
+	$page->get_fromArray( $data );
+	$models[$data['id']] = $page;
+      }
+      /* return values */
+      return $models;
+    }
+  }
+
+  /*
+   * return current page long title display
+   * @param string $encoding
+   * @return string
+   * @access public
+   */
+  function get_longTitleDisplay($encoding='') {
+    $t = ($this->title != '' ? $this->title : ($this->shorttitle != '' ? $this->shorttitle : $this->name));
+    switch ($encoding) {
+    case 'html':
+      return string_text2html($t);
+    }
+    return $t;    
+  }
+
+  /*
+   * return current page short title display
+   * @param string $encoding
+   * @return string
+   * @access public
+   */
+  function get_shortTitleDisplay($encoding='') {
+    $t = ($this->shorttitle != '' ? $this->shorttitle : ($this->title != '' ? $this->title : $this->name));
+    switch ($encoding) {
+    case 'html':
+      return string_text2html($t);
+    }
+    return $t;
+  }
+
+  /*
+   * return current page default title display
+   * @param string $encoding
+   * @return string
+   * @access public
+   */
+  function get_titleDisplay($encoding='') {
+    return $this->get_longTitleDisplay($encoding);
+  }
+  
+  /*
+   * return parent configuration object value
+   * @param string $param
+   * @param mixed $default
+   * @return mixed
+   * @access private
+   */
+  function get_configValue($param='', $default=false) {
+    global $camyks;
+    return $camyks->modules['Admin_ContentPage']->get_configValue($param, $default);
+  }
+  
+  /******************** STATIC METHODS ********************/
+
+  /*
+   * update a single module content id for a page
+   * @param int $pid the page id
+   * @param int $idx the module index
+   * @param int $cid the module content id
+   * @return boolean success
+   * @access private
+   */
+  function static_update_singleModuleContent ( $pid, $idx, $cid ) {
+    global $camyks;
+    
+    $sql = 'update `admin_contentpage`';
+    $sql .= ' set `m'.$idx.'_content`='.$cid;
+    $sql .= ' where id='.$pid;
+    return $camyks->db_conn->execute_query($sql);
+  }
+  
+  /*
+   * DEPRECATED
+   * get all pages from database
+   * @return array
+   */
+  function static_get_sitePages ( ) {
+    global $camyks;
+    
+    /* init values */
+    $pages = array();
+    /* build sql query */
+    $sql = 'select id, parent_id, position, name, homepage, wf_owner, wf_editor';
+    $sql .= ' from admin_contentpage';
+    $sql .= ' order by parent_id, position';
+    /* execute query */
+    $camyks->db_conn->execute_query($sql);
+    /* get data from database */
+    while ( $data = $camyks->db_conn->get_queryDataLine()) {
+      $page = new ContentPage( 0, $data['id'] );
+      $page->name = $data['name'];
+      $page->parent_id = $data['parent_id'];
+      $page->homepage = $data['homepage'];
+      $page->position = $data['position'];
+      $page->wf_owner = $data['wf_owner'];
+      $page->wf_editor = $data['wf_editor'];
+      $page->wf_status = 'edition';
+      $pages[$data['id']] = $page;
+    }
+    /* return values */
+    return $pages;
+  }
+
+  /*
+   * DEPRECATED
+   * get all children pages from a given page
+   * @param int $page the page id
+   * @param int $level the level
+   * @return array
+   * @access private 
+   */
+  function static_get_childrenPages( $page=0, $level=1 ) {
+    global $camyks;
+    /* init values */
+    $pages = array();
+    /* build sql query */
+    $sql = 'SELECT admin_contentpage.id';
+    $sql .= ', admin_contentpage.name';
+    $sql .= ', admin_contentpage.parent_id';
+    $sql .= ', admin_contentpagelocale.title as title';
+    $sql .= ' FROM admin_contentpage, admin_contentpagelocale';
+    $sql .= ' WHERE admin_contentpage.parent_id = '.$page;
+    $sql .= ' AND admin_contentpagelocale.id=admin_contentpage.id';
+    $sql .= ' AND admin_contentpagelocale.wf_version=admin_contentpage.wf_version';
+    $sql .= ' AND admin_contentpagelocale.language="'.$camyks->current_language.'";';    
+    /* execute query */
+    $camyks->db_conn->execute_query($sql);
+    /* get data from database */
+    while ( $data = $camyks->db_conn->get_queryDataLine()) {
+      $page = new ContentPage( 0, $data['id'] );
+      $page->name = $data['name'];
+      $page->title = $camyks->decode_value($data['title']);
+      $pages[] = $page;
+    }
+    /* return value */
+    return $pages;
+  }
+  
+  /*
+   * DEPRECATED
+   * get children pages from current page
+   * @param int $level
+   * @return array
+   * @access private
+   */
+  function static_get_relativeChildrenPages ( $level ) {
+    global $camyks;
+    return ContentPage::static_get_childrenPages ( $camyks->content_page->id,
+						    $level );
+  }
+
+  /*
+   * DEPRECATED
+   * get pages from a given list
+   * @param array list
+   * @return void
+   * @access private
+   */
+  function static_get_listedPages ( $list, $lg='' ) {
+    global $camyks;
+    /* check if list has at least one item */
+    if ( $list == '' )
+      return array();
+    /* check language */
+    if( $lg == '')
+      $lg = $camyks->current_language;
+
+    /* init values */
+    $pages = array();
+    /* build sql query */
+    $sql = 'SELECT admin_contentpage.id';
+    $sql .= ', admin_contentpage.name';
+    $sql .= ', admin_contentpagelocale.title as title';
+    $sql .= ', admin_contentpagelocale.shorttitle as shorttitle';
+    $sql .= ' FROM admin_contentpage, admin_contentpagelocale';
+    $sql .= ' WHERE admin_contentpage.id IN ('.$list.')';
+    $sql .= ' AND admin_contentpagelocale.id=admin_contentpage.id';
+    $sql .= ' AND admin_contentpagelocale.wf_version=admin_contentpage.wf_version';
+    $sql .= ' AND admin_contentpagelocale.language="'.$lg.'";';
+    /* execute query */
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ ) ) {
+      /* get data from database */
+      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+	$page = new ContentPage( 0, $data['id'] );
+	$page->name = $data['name'];
+	$page->title = $camyks->decode_value($data['title']);
+	$page->shorttitle = $camyks->decode_value($data['shorttitle']);
+	$pages[$page->id] = $page;
+      }
+    }
+    /* return values */
+    return $pages;
+  }
+
+  /*
+   * DEPRECATED
+   * get page basic info ( id, title( current_language )  ) from name
+   * @param string $name
+   * @return ContentPage Object
+   * @access private
+   */
+  function static_get_pageBasicInfoByName ( $name='' ) {
+    global $camyks;
+    /* build sql query */
+    $sql = 'SELECT admin_contentpage.id';
+    $sql .= ', admin_contentpage.name';
+    $sql .= ', admin_contentpagelocale.title as title';
+    $sql .= ' FROM admin_contentpage, admin_contentpagelocale';
+    $sql .= ' WHERE admin_contentpage.name="'.$name.'"';
+    $sql .= ' AND admin_contentpagelocale.id=admin_contentpage.id';
+    $sql .= ' AND admin_contentpagelocale.wf_version=admin_contentpage.wf_version';
+    $sql .= ' AND admin_contentpagelocale.language="'.$camyks->current_language.'";';
+    /* execute sql query */
+    if ( $req = $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ ) ) {
+      /* get pages from database */
+      if ( $data = $camyks->db_conn->get_queryDataLine()) {
+	$page = new ContentPage( 0, $data['id'] );
+	$page->name = $data['name'];
+	$page->title = $camyks->decode_value($data['title']);
+	return $page;
+      } 
+    }
+    return new ContentPage ( 0, 0 );
+  }
+
+
+  /*
+   * DEPRECATED
+   * get pages basic info ( id, title( current_language )  ) from names
+   * @param array $names
+   * @return array
+   * @access private
+   */
+  function static_get_pagesBasicInfoByNames ( $names=array() ) {
+    global $camyks;
+    $pages = array();
+
+    if ( count ( $names ) == 0 ) {
+      return array();
+    }
+
+    /* build sql query */
+    $sql = 'SELECT admin_contentpage.id';
+    $sql .= ', admin_contentpage.name';
+    $sql .= ', admin_contentpagelocale.title as title';
+    $sql .= ' FROM admin_contentpage, admin_contentpagelocale';
+    $sql .= ' WHERE admin_contentpage.name in ("'.implode('","', $names).'")';
+    $sql .= ' AND admin_contentpagelocale.id=admin_contentpage.id';
+    $sql .= ' AND admin_contentpagelocale.wf_version=admin_contentpage.wf_version';
+    $sql .= ' AND admin_contentpagelocale.language="'.$camyks->current_language.'";';
+    /* execute sql query */
+    if ( $req = $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ ) ) {
+      /* get pages from database */
+      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+	if ( ! isset ($pages[$data['name']]) ) {
+	  $page = new ContentPage( 0, $data['id'] );
+	  $page->name = $data['name'];
+	  $page->title = $camyks->decode_value($data['title']);
+	  $pages[$data['name']] = $page;
+	}
+      } 
+    }
+    return $pages;
+  }
+
+  /*
+   * get homepage basic info ( id, title( current_language) and name )
+   * @return ContentPage Object
+   * @access private
+   */
+  function static_get_homepageBasicInfo  ( ) {
+    global $camyks;
+    $pages = array();
+    /* build sql query */
+    $sql = 'SELECT admin_contentpage.id';
+    $sql .= ', admin_contentpage.name';
+    $sql .= ', admin_contentpagelocale.title as title';
+    $sql .= ' FROM admin_contentpage, admin_contentpagelocale';
+    $sql .= ' WHERE admin_contentpage.isHomepage=1';
+    $sql .= ' AND admin_contentpagelocale.id=admin_contentpage.id';
+    $sql .= ' AND admin_contentpagelocale.wf_version=admin_contentpage.wf_version';
+    $sql .= ' AND admin_contentpagelocale.language="'.$camyks->current_language.'")';
+    $sql .= ' ORDER by admin_contentpage.id;';
+    /* execute sql query */
+    if ( $req = $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ ) ) {
+      /* get pages from database */
+      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+	$page = new ContentPage( 0, $data['id'] );
+	$page->name = $data['name'];
+	$page->title = $camyks->decode_value($data['title']);
+	return $page; 
+      } 
+    } 
+  }
+}
+?>

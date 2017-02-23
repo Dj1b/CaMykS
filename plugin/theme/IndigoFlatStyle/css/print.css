@@ -1,0 +1,31 @@
+/*
+ * CaMykS Engine
+ * Developed by		: Ideogram Design
+ * Author			: JB Lebrun
+ * CaMykS Version	: 1.0b
+ * Object Version	: 1.0
+ * Object Type      : Plugin / Theme Main CSS Styles
+ * Create Date		: Jul 2014
+ * Last Modif Date  : Jul 2014
+ *
+ * ISL Aromatherapie Theme Print CSS styles
+ *
+ */
+ 
+body {background:white;}
+#pageHeader{background:none; height:120px;}
+#pageContent{background:none;}
+#pageContentLeft {display:none;}
+#pageContentMain {margin:0 auto; padding:0; width:800px;}
+#pageFooter{background:none;}
+.header{display:none;}
+.header_print{display:block; padding:0 26px 0 0; border-bottom:solid 1px #535453;}
+.header_print .logo{float:left;}
+.header_print .address{text-align:right; padding:55px 0 10px; font-weight:bold;}
+.footer .socialNetworks{display:none;}
+.footer .outOfBox .left {color:#535453;}
+.controlBar {display:none;}
+.productViewer .leftButton {display:none;}
+.productViewer .rightButton {display:none;}
+.productViewer .productThumb a.readMoreButton {display:none;}
+.headPicture {display:none;}

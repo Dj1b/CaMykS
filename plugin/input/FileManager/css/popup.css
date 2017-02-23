@@ -1,0 +1,16 @@
+/*                                                                                                                 
+ * CaMykS Engine
+ * Developed by	    : camyks.net
+ * Author	       	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0b
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input CSS Styles
+ * Creation Date	: Nov 2014
+ * Last Modif Date	: Nov 2014
+ *                                                                                                                 
+ * FileManager input CSS style file                                                                           
+*/
+
+body {background: white !important}
+#adminengine_main {background:none !important;}
+#fm_browser {width:100% !important; height:450px;}

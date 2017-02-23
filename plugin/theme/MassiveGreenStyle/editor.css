@@ -1,0 +1,119 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Editor CSS Styles
+ * Create Date		: Jan 2009
+ * Last Modif Date      : Jan 2009
+ *
+ * Massive Green theme CSS styles
+*/
+
+/* generic styles */
+.eTitle1 {
+  font-size:16px;
+  font-weight:bold;
+  color:#297b2e;
+  padding:8px 0 0;
+}
+
+.eTitle2 {
+  font-size:13px;
+  font-weight:bold;
+  color:#62bb68;
+  background:url(img/title2.gif) 0% 8px no-repeat;
+  letter-spacing:1px;
+  padding:8px 6px 4px;
+}
+
+.eTitle3 {
+  font-size:13px;
+  font-style:italic;
+  font-weight:bold;
+  color:#297b2e;
+  padding: 4px 0px;
+}
+
+.eTitle4 { 
+  display:block;
+  font-style:italic;
+  color:#62bb68;
+  background:url(img/title4.gif) 4px 0 no-repeat;
+  padding:0 7px;
+}
+
+.eContent1 {
+  text-align: justify;
+}
+
+.eContent2 {
+  text-align: justify;
+  font-weight: bold;
+  color:#297b2e;
+}
+
+.eContent3 {
+  text-align: justify;
+  font-style: italic;
+}
+
+.eContent4 { 
+  font-size:9px;
+  text-align: justify;
+  font-style: italic;
+  color:#df6900;
+}
+
+p.eContent1, p.eContent2, p.eContent3, p.eContent4 {
+  padding: 4px;
+}
+
+p.eContent4 {
+  border-bottom:solid 2px #244b23;
+  border-right:solid 2px #244b23;
+  border-top:solid 2px #4fa64d;
+  border-left:solid 2px #4fa64d;
+  margin:4px 0;
+  background:#297b2e;
+  color:white;
+  padding:8px;
+}
+
+
+a.eLink1 {
+  color:#297b2e;
+}
+
+a.eLink2 {
+  color:#297b2e;
+  font-weight:bold;
+}
+
+a.eLink1:hover, a.eLink2:hover {border-bottom:dotted 1px #297b2e;}
+
+table.eTable{ 
+  border-collapse:collapse;
+  border-bottom:solid 1px #244b23;
+  border-right:solid 1px #244b23;
+  border-top:solid 1px #4fa64d;
+  border-left:solid 1px #4fa64d;
+}
+
+th.eTableHeader, td.eTableHeader {
+  background:#297b2e;
+  padding:4px;
+  font-weight:bold;
+  color: white;
+}
+
+.eTableLine0 {
+  background:#FFFFFF;
+  padding:3px 4px;
+}
+
+.eTableLine1 {
+  background:#cfe2d0;
+  padding:3px 4px;
+}

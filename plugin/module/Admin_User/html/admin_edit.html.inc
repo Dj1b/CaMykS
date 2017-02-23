@@ -1,0 +1,207 @@
+<?php
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a2
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Module Layout
+ * Create Date		: Jun 2005
+ * Last Modif Date	: Mar 2009
+ * 
+ * Admin_User Module Admin Layout : edit adminuser object
+*/
+global $camyks;
+?>
+<?=$camyks->theme->get_boxHeader('width:600px;margin:0 auto;');?>
+<?=$camyks->theme->get_boxTitleBar($this->get_translation('user').' : '.$this->user->login );?>
+<?=$camyks->theme->get_boxTabsBar($this->tabs,
+				  $this->tabObject.'.mouseclick',
+				  $this->tabObject.'.mouseover',
+				  $this->tabObject.'.mouseout',
+				  'general');?>
+<?=$camyks->theme->get_boxContent2Header()?>
+<?=$this->form->display_header(); ?>
+<?=$this->form->display_hiddens(); ?>
+<div id="itemgeneral" style="display:block;" class="adminContentPanel">
+  <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+    <?php if ( $this->user->_libError != '' ) : ?>
+    <tr>
+      <td class="error" colspan="2">
+	<?= $this->get_translation( $this->user->_libError ); ?>
+      </td>
+    </tr>
+    <?php endif; ?>
+    
+    <?php $alt=0 ?>
+    <?php if ( $this->user->is_new == 1 ) : ?>
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+	<?=$camyks->get_translation('formitem_login')?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+	<input type="text" name="adminuser_login" value="" maxlength="32" class="inputs" />
+	<input type="hidden" name="adminuser_change_pwd" value="1" />
+      </td>
+    </tr>
+    <?php else : ?>
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+	<?=$camyks->get_translation('formitem_login')?>
+      </td>      
+      <td class="eTableLine<?=$alt?> eContent1">
+	<input type="hidden" name="adminuser_login" value="<?=$this->user->login?>" />
+	<?=$this->user->login ?>
+      </td>
+    </tr>
+    <tr>
+      <?php $alt = abs( $alt-1 ); ?>
+      <td class="eTableLine<?=$alt?> eContent2">
+	<?= $this->get_translation('pwd_change'); ?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+      <?=$this->form->display_booleanSelectInput(array('name'=>'adminuser_change_pwd', 'default'=>0, 'onchange'=>'adminuser_pwdObject.selectChange(this);'));?>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="font-size:0px;height:1px;">
+	<div id="changepwd_page0" style="display:none;">
+	</div>
+	<div id="changepwd_page1" style="display:none;">
+	  <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+	    <?php endif; ?>
+	    <?php $alt = abs( $alt-1 ); ?>
+	    <tr>
+	      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+		<?=$camyks->get_translation('formitem_pwd')?>
+	      </td>
+	      <td class="eTableLine<?=$alt?> eContent1">
+		<input type="password" name="adminuser_pwd" value="" maxlength="16" class="inputs" />
+	      </td>
+	    </tr>
+	    <?php $alt = abs( $alt-1 ); ?>
+	    <tr>
+	      <td class="eTableLine<?=$alt?> eContent2">
+		<?=$camyks->get_translation('formitem_confirm')?>
+	      </td>
+	      <td class="eTableLine<?=$alt?> eContent1">
+		<input type="password" name="adminuser_pwd_conf" value="" maxlength="16" class="inputs"/>
+	      </td>
+	    </tr>
+	    <?php if ( $this->user->is_new == 0 ) : ?>
+	  </table>
+	</div>
+      </td>
+    </tr>
+    <?php endif; ?>
+    
+    <?php $alt = abs( $alt-1 ); ?>
+    
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2">
+        <?= $camyks->get_translation('formitem_status') ?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+    <?=$this->form->display_selectInput(array('name'=>'adminuser_active', 'default'=>$this->user->active?1:0, 'values'=>$this->get_userStatusList()));?>
+      </td>
+    </tr>
+    
+    <?php $alt = abs( $alt-1 ); ?>
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2">
+	<?=$camyks->get_translation('formitem_firstname')?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+	<input type="text" name="adminuser_firstname" value="<?=$this->user->firstname?>" maxlength="32" class="inputs" />
+      </td>
+    </tr>
+
+    <?php $alt = abs( $alt-1 ); ?>    
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2">
+	<?= $camyks->get_translation('formitem_lastname')?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+	<input type="text" name="adminuser_lastname" value="<?=$this->user->lastname?>" maxlength="32" class="inputs" />
+      </td>
+    </tr>
+    
+    <?php $alt = abs( $alt-1 ); ?>
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2">
+	<?=$camyks->get_translation('formitem_email')?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+	<input type="text" name="adminuser_email" value="<?=$this->user->email?>" maxlength="255" class="inputs"/>
+      </td>
+    </tr>
+    
+    <?php $alt = abs( $alt-1 ); ?>
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2" style="vertical-align:top;">
+	<?=$camyks->get_translation('formitem_address')?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1">
+	<textarea cols="40" rows="6" name="adminuser_address" class="inputs"><?=$this->user->address?></textarea>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="itemrights" style="display:none;" class="adminContentPanel">
+  <table cellspacing="0" cellpadding="0" border="0">
+    <?php $alt=0 ?>
+    <?php foreach ( $camyks->modules as $m ) : ?>
+    <?php if ( $m->type == 'admin' ) : ?>
+    <?php $m->get_rights() ?>
+    <tr>
+      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+	<?= $m->title; ?>
+      </td>
+      <?php $rightcount = 0; ?>
+      <?php $linecount = 0; ?>
+      <?php foreach ( $m->rights as $ridx => $right ) : ?>
+      <td class="eTableLine<?=$alt?>" style="width:12px;">
+      <?php if ( $camyks->adminUser->get_right( $m->name, $ridx ) == 0 or $camyks->adminUser->login == $this->user->login ) : ?>
+      <input type="checkbox" name="__" value="1" <?= $this->user->get_right( $m->name, $ridx) ? ' checked="checked"':''; ?> disabled="disabled"  />
+      <input type="hidden" name="adminuser_<?=$m->name?>_<?=$ridx?>" value="<?= $this->user->get_right( $m->name, $ridx ) ? 1 : 0; ?>"/>
+      <?php else : ?>
+      <input type="checkbox" name="adminuser_<?=$m->name?>_<?=$ridx?>" value="1" id="adminuser_<?=$m->name?>_<?=$ridx?>" <?= $this->user->get_right( $m->name, $ridx) ? ' checked="checked"':''; ?> />
+      <?php endif; ?>
+      </td>
+      <td class="eTableLine<?=$alt?> eContent1" style="width:<?=$this->layout_cellwidth?>;">
+      <label for="adminuser_<?=$m->name?>_<?=$ridx?>">
+      <?= $right['title'] ?>
+      </label>
+      </td>
+      <?php $rightcount++; ?>
+      <?php if ( ++$linecount == $this->layout_itemsByLine ) : ?>
+      </tr>
+      <?php $linecount = 0; ?>
+      <?php if($rightcount < count($m->rights)) : ?>
+      <tr>
+      <td class="eTableLine0">
+      &nbsp;
+</td>
+<?php endif;?>
+<?php endif; ?>
+<?php endforeach; ?>
+
+<?php if ( $linecount != 0 ) : ?>
+	  <?php for ( $i= $linecount; $i < $this->layout_itemsByLine; $i++ ) : ?>
+	  <td class="eTableLine<?=$alt?>" colspan="2">
+	    &nbsp;
+	  </td>
+	  <?php endfor; ?>
+  </tr>
+  <?php endif; ?>
+<?php $alt = abs ( $alt-1 );?>
+<?php endif; ?>
+<?php endforeach; ?>
+</table>
+
+</div>
+<?=$this->form->display_footer(); ?>
+<?=$camyks->theme->get_boxContent2Footer();?>
+<?=$camyks->theme->get_boxButtonsBar( $this->buttons );?>
+<?=$camyks->theme->get_boxFooter( );?>

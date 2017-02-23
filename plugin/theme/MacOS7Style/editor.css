@@ -1,0 +1,108 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Editor CSS Styles
+ * Create Date		: Jun 2007
+ * Last Modif Date      : Jun 2007
+ *
+ * Editor CSS styles for Grey Style Theme
+*/
+
+/* generic styles */
+.eTitle1 {
+  font-size:14px;
+  font-weight:bold;
+  color:#444444;
+  white-space: nowrap;
+  padding: 4px 0px;
+  text-shadow: #888888 2px 2px 2px;
+}
+
+.eTitle2 {
+  font-size:13px;
+  font-weight:bold;
+  color:#666666;
+  white-space: nowrap;
+  padding-top:8px;
+}
+
+.eTitle3 {
+  font-size:12px;
+  font-weight:bold;
+  color:#333333;
+}
+
+.eTitle4 { 
+  font-style:italic;
+  color:#444444;
+  white-space:nowrap;
+}
+
+.eContent1 {
+  text-align: justify;
+  padding: 2px;
+}
+
+.eContent2 {
+  text-align: justify;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.eContent3 {
+  text-align: justify;
+  font-style: italic;
+  padding: 2px;
+}
+
+.eContent4 { 
+  font-size: 10px;
+  text-align: justify;
+  font-style: italic;
+  padding: 2px;
+}
+
+a.eLink1 {
+  color:black;
+}
+
+a.eLink1:hover{
+  text-decoration:underline;
+}
+
+a.eLink2 {
+  color:black;
+  font-weight:bold;  
+}
+
+a.eLink2:hover{
+  text-decoration:underline;
+}
+
+table.eTable{ }
+
+th.eTableHeader, td.eTableHeader { 
+  background:#888888;
+  padding:4px;
+  font-weight:bold;
+  color: white;
+  border-top:solid 1px #666666;
+  border-bottom:solid 1px #AAAAAA ;
+}
+
+td.eTableLine0 {
+  background:white;
+  padding:3px 4px;
+  height:18px;
+}
+
+td.eTableLine1 {
+  background:#DDDDDD;
+  padding:3px 4px;
+  height: 18px;
+}
+
+/* specific styles */

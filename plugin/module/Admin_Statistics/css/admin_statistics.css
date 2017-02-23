@@ -1,0 +1,68 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type	        : Plugin / Module CSS Styles
+ * Create Date	       	: May 2007
+ * Last Modif Date	: May 2007
+ *
+ * Admin_Statistics Module CSS Styles
+ */
+
+td.adminStatisticsByDateTitle {
+  padding-top:4px;
+  border-top:solid 1px #888888;
+  font-size:12px;
+  font-weight:bold;
+}
+
+td.adminStatisticsByDateContent{
+  padding-bottom: 8px;
+}
+
+td.adminStatisticsByDatePreBox {
+  background:url(../img/scale.gif) 0% 100% repeat-x;
+  width:8px;
+  border-right:solid 1px #C8C8C8;
+}
+
+td.adminStatisticsByDatePostBox {
+  background:url(../img/scale.gif) 0% 100% repeat-x;
+  width:8px;
+}
+
+td.adminStatisticsByDateBox {
+  background:url(../img/scale.gif) 0% 100% repeat-x;
+  width:32px;
+  vertical-align:bottom;
+  text-align:center;
+  padding:0px 1px;
+  font-size:11px;
+  color:#444444;
+}
+
+div.adminStatisticsByDateBox{
+  border:solid 1px black;
+  opacity:1;
+}
+
+div.adminStatisticsByDateBox:hover {
+  border:solid 1px black;
+  cursor:pointer;
+  opacity:0.7;
+}
+
+
+div.adminStatisticsByDateBox2{
+  border:solid 1px black;
+}
+
+td.adminStatisticsByDateTxt { 
+  text-align:center;
+  padding:0px 1px;
+  font-size:11px;
+  color:#444444;
+}
+

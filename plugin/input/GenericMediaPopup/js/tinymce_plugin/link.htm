@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>	
+    <title>{#mediapopup.title}</title>
+    <script language="javascript" type="text/javascript" src="../../../TinyMCEv3/js/tiny_mce/tiny_mce_popup.js"></script>
+	<script language="javascript" type="text/javascript" src="../../../TinyMCEv3/js/tiny_mce/utils/form_utils.js"></script>
+    <script type="text/javascript" src="js/plugin.js"></script>
+    <base target="_self" />
+  </head>	
+  <body id="mediaPopup" style="display:none">
+    <form onsubmit="insertAction();return false;" action="#">
+      <div id="panel" class="panel current">
+	<fieldset>
+	  <legend>{#mediapopup.selectyourfile}</legend>
+	  <table border="0" cellpadding="4" cellspacing="0">
+	   <tr>
+    		  <td nowrap="nowrap"><label id="hreflabel" for="href">{#mediapopup.media}</label></td>
+			  <td><table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td><input id="media" name="media" type="text" class="mceFocus" value="" style="width:218px;" /></td>
+						<td id="filebrowsercontainer">&nbsp;</td>
+					</tr>
+				  </table>
+				</td>
+		   </tr>
+		   <tr>
+    		  <td nowrap="nowrap"><label id="titlelabel" for="title">{#mediapopup.alttitle}</label></td>
+			  <td><input id="title" name="title" type="text" class="mceFocus" value="" style="width:240px;" /></td>
+		   </tr>
+		   <tr>
+		      <td nowrap="nowrap"><label id="widthlabel" for="width">{#mediapopup.width}</label></td>
+			  <td><table border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+			  <td><input id="width" name="width" type="text" class="mceFocus" value="" style="width:80px;" /></td>		   
+    		  <td nowrap="nowrap" style="padding:0 8px 0 30px;"><label id="heightlabel" for="height">{#mediapopup.height}</label></td>
+			  <td><input id="height" name="height" type="text" class="mceFocus" value="" style="width:80px;" /></td>
+		   </tr>
+		   </table>
+		   </td>
+		   </tr>
+	      
+	    <tr>
+	      <td><label id="classlabel" for="classlist">{#class_name}</label></td>
+	      <td>
+		<select id="classlist" name="classlist" onchange="changeClass();" style="width:240px;">
+		  <option value="" selected>{#not_set}</option>
+		</select>
+	      </td>
+	    </tr>
+	  </table>
+	</fieldset>
+      </div>
+      
+      <div class="mceActionPanel">
+	<div style="float: left">
+	  <input type="submit" id="insert" name="insert" value="{#insert}" />
+	</div>
+	
+	<div style="float: right">
+	  <input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+      </div>
+    </form>
+  </body>
+</html>

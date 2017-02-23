@@ -1,0 +1,278 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Part CSS Styles
+ * Create Date		: Jul 2008
+ * Last Modif Date      : Jul 2008
+ *
+ * Parts CSS styles for Sunny Blocks Style Theme
+*/
+
+/* box part */
+div.sunnyblocksBox { 
+  border:solid 1px #ff9600;
+  background:#fde669;
+
+}
+
+div.sunnyblocksBoxTitleOuterBar {
+  border:solid 1px #ff9600;
+  margin:2px;
+}
+
+div.sunnyblocksBoxTitleInnerBar{
+  text-align:center;
+  border-top:solid 1px #fde669;
+  border-right:solid 1px #df6900;
+  border-bottom:solid 1px #df6900;
+  border-left:solid 1px #fde669; 
+  background:#ff9600;
+  padding:3px 18px;
+}
+
+div.sunnyblocksBoxTitleBarText{
+  display:inline;
+  font-size:12px;
+  font-weight:bold;
+  color:white;
+  margin:0 4px;
+}
+
+div.sunnyblocksBoxTitleBarLeft{
+  display:inline;
+  padding:0 8px;
+  background:url('img/boxTitleLeft.gif') 100% 0 no-repeat;
+  font-size:12px;
+}
+
+div.sunnyblocksBoxTitleBarRight{
+  display:inline;
+  padding:0 8px;
+  background:url('img/boxTitleRight.gif') 0 0 no-repeat;
+  font-size:12px;
+}
+
+div.sunnyblocksBoxContent1{
+  background:#fef8cd;
+  border:solid 1px #ff9600;
+  padding:4px;
+  margin:2px;
+}
+
+div.sunnyblocksBoxContent2 {
+  background:#fff9f1;
+  border:solid 1px #f58e32;
+  padding:4px;
+  margin:2px;
+}
+
+/* box buttons bar */
+
+div.sunnyblocksBoxButtonOuterBar {
+  margin:2px;
+  border:solid 1px #ff9600;
+  clear:both;
+}
+
+div.sunnyblocksBoxButtonInnerBar{
+  padding:3px;
+  border-top:solid 1px #fde669;
+  border-right:solid 1px #df6900;
+  border-bottom:solid 1px #df6900;
+  border-left:solid 1px #fde669; 
+  background:#ff9600;
+  text-align:center;
+}
+
+div.sunnyblocksBoxButtonSpace {
+  display:inline;
+  position:relative;
+  width:6px;
+}
+
+div.sunnyblocksBoxButton {
+  display:inline;
+  margin:0;
+  padding: 4px 16px;
+  color:#fde669;
+  font-size:11px;
+  height:12px;
+  font-weight:bold;
+  background:url(img/boxButton.gif) 0% 50% no-repeat;
+}
+
+a.sunnyblocksBoxButton {
+  display:inline;
+  margin:0;
+  padding: 4px 16px;
+  font-weight:bold;
+  font-size:11px;
+  height:12px;
+  color:white;
+  background:url(img/boxButton.gif) 0% 50% no-repeat;
+}
+
+a.sunnyblocksBoxButton:hover {
+  color:#fde669;
+}
+
+/* box tabs bar */
+
+div.sunnyblocksBoxTabsOuterBar {
+  margin:4px;
+  height:22px;
+}
+
+div.sunnyblocksBoxTabsInnerBar {
+  position: relative;
+  top: 5px;
+  height: 22px;
+}
+
+div.sunnyblocksBoxTabSpace{
+  float:left;
+  width:20px;
+  border-right:solid 1px #FF9600;
+  border-bottom:solid 1px #FF9600;
+  height:21px;
+}
+
+.sunnyblocksBoxTab, .sunnyblocksBoxTabS, .sunnyblocksBoxTabO {
+  height:15px;
+  padding:4px 8px 1px;
+  font-weight:bold;
+  border-right:solid 1px #FF9600;
+  border-top:solid 1px #FF9600;
+}
+
+
+div.sunnyblocksBoxTab, div.sunnyblocksBoxTabS, div.sunnyblocksBoxTabO {
+  float:left;
+}
+
+.sunnyblocksBoxTab {
+  border-bottom:solid 1px #FF9600;
+  background:#FF9600;
+  color:white;
+}
+
+.sunnyblocksBoxTabS {
+  background:white;
+  border-bottom:solid 1px white;
+  color:#FF9600;
+}
+
+.sunnyblocksBoxTabO {
+  border-bottom:solid 1px #FF9600;
+  background:white;
+  cursor:pointer;
+  color:#e06501;
+}
+
+/* button part */
+a.sunnyblocksButton {
+  color:white;
+  margin:4px 0;
+  float:left;
+  display:block;
+  border:solid 1px #fde669;
+  background:#FF9600;
+  padding:2px 8px;
+  font-weight:bold;
+}
+
+a.sunnyblocksButton:hover {
+  border:solid 1px #e06501;
+  color:#fde669;
+}
+
+/* bar parts */
+div.sunnyblocksBarOuter {
+  border:solid 1px #ff9600;
+  margin:2px;
+}
+
+div.sunnyblocksBarInner{
+  text-align:center;
+  border-top:solid 1px #fde669;
+  border-right:solid 1px #df6900;
+  border-bottom:solid 1px #df6900;
+  border-left:solid 1px #fde669; 
+  background:#ff9600;
+  padding:3px 18px;
+}
+
+div.sunnyblocksBarItem {
+  display:inline;
+  margin:0;
+  padding: 4px 8px;
+  color:#fde669;
+  font-size:11px;
+  height:12px;
+  font-weight:bold;
+  background:url(img/boxButton.gif) 0% 50% no-repeat;
+}
+
+a.sunnyblocksBarButton {
+  display:inline;
+  margin:0;
+  padding: 4px 8px;
+  font-weight:bold;
+  font-size:11px;
+  height:12px;
+  color:white;
+  background:url(img/boxButton.gif) 0% 50% no-repeat;
+}
+
+a.sunnyblocksBarButton:hover {
+  color:#fde669;
+}
+
+/* layered menu part */
+div.sunnyblocksLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: hidden;
+  display:none;
+  padding:0;
+  border:solid 1px #ff9600;
+  background:#fffcf4;
+}
+
+div.sunnyblocksLayeredMenuSeparator{
+  height:4px;
+  font-size:1px;
+}
+
+div.sunnyblocksLayeredMenuIcon{
+  float:left;
+  margin-right:4px;
+}
+
+a.sunnyblocksLayeredMenuItem {
+  display:block;
+  clear:both;
+  color:#ff9600;
+  font-weight:bold;
+  text-align:left;
+  padding:2px 20px 2px 4px;
+  background:none;
+}
+
+a.sunnyblocksLayeredMenuItem:hover{
+  background: #ff9600;
+  color:white;
+}
+
+div.sunnyblocksLayeredMenuItem{ 
+  padding:3px 20px 3px 4px;
+  clear:both;
+  color:#df6900;
+  font-weight:bold;
+  text-align:left;
+}

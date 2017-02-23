@@ -1,0 +1,302 @@
+<?php
+/*
+ * CaMykS Engine
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0b
+ * Object Version   : 1.0
+ * Creation Date    : Sep 2014
+ * Last Modif Date  : Sep 2014
+ *
+ * CaMykS Generic Database connection object
+ * to be extended by specific database connection objects
+ */
+
+class CDBConnection {
+
+  /*
+   * Class constructor
+   * @return void
+   * @access private
+   */
+  function CDBConnection() {
+    $this->active = false;
+    $this->connection = null;
+    $this->queryRes = array();
+    $this->dbName = null;
+  }
+
+  /* database related methods */
+  
+  /*
+   * connect to server
+   * @param string $host
+   * @param string $login
+   * @param string $pwd
+   * @return boolean success
+   * @access private
+   */
+  function connect_server($host='localhost', $login='', $pwd='', $driver='') {
+    $this->active = 1;
+    return $this->active;
+  }
+  
+  /*
+   * close server connection
+   * @return boolean success
+   * @access private
+   */
+  function disconnect_server() {
+    return true;
+  }
+  
+  /*
+   * check if connection is active
+   * @return boolean success
+   * @access private
+   */
+  function is_connectionActive() {
+    return $this->active;
+  }
+  
+  /* database related methods */
+  
+  /*
+   * select table
+   * @param string $name the database name
+   * @return boolean
+   * @access public
+   */
+  function select_database($name) {
+    return true;
+  }
+  
+  /* 
+   * create a database
+   * @param string $name
+   * @param string $charset
+   * @return boolean
+   * @access public
+   */
+  function create_database($name, $charset='utf8') {
+    return true;
+  }
+
+  /*
+   * check if a base exits
+   * @param string $name
+   * @return boolean
+   * @access public
+   */
+  function database_exists($name) {
+    $this->dbName = $name;
+    return false;
+  }
+
+  /*
+   * dump database
+   * @param mixed $file
+   * @return mixed
+   * @access public
+   */
+  function dump_database($file=false) {
+    if (!isset($this->dbName)) {
+      return false;
+    }
+    
+    $content = '';
+    
+    /* write header comments */
+    $content = "-- ************************\n";
+    $content .= "-- Database \"".$this->dbName."\" dump\n";
+    $content .= "-- ".date('r')."\n";
+    $content .= "-- ************************\n\n";
+    
+    /* get list of all table */
+    if ($this->execute_query('show tables', 'tableList')) {
+    
+      /* write tables to content */
+      while ($table = $this->get_queryNumDataLine('tableList')) {
+      
+        /* write table */
+        if ($this->execute_query('show create table '.$table[0], 'createTable')) {
+          if ($createTable = $this->get_queryNumDataLine('createTable')) {
+    
+            /* write table comments */
+            $content .= "-- ************************\n";
+            $content .= "-- Table \"".$table[0]."\"\n";
+            $content .= "-- ************************\n";
+     
+            /* write table creation */
+            $content .= $createTable[1].";\n\n";
+    
+            /* write table content */
+            if ($this->execute_query('select * from '.$table[0], 'tableItemList')) {
+              while ($insertData = $this->get_queryNumDataLine('tableItemList')) {
+                $content .= "insert into ".$table[0]." values(";
+                for ($i=0; $i < $this->get_queryFieldCount('tableItemList'); $i++) {
+                  if ($i != 0)
+                    $content .=  ", ";
+                  if ($this->get_queryFieldType($i, 'tableItemList') == "string" || $this->get_queryFieldType($i, 'tableItemList') == "blob")
+                    $content .=  "'" . addslashes($insertData[$i]) . "'";
+                  else
+                    $content .= addslashes($insertData[$i]);
+                }
+                $content .=  ");\n"; 
+              }
+            }
+          }
+          $content .= "\n\n";
+        }
+      }
+    }
+    
+    
+    /* write content to file and return file writting result or return content */
+    if ( $file !== false ) {
+      return file_write ( $file, $content );
+    } else {
+      return $content;
+    }
+  }
+
+  /*
+   * return database size
+   * @return integer
+   * @access public
+   */
+  function get_databaseSize() {
+    /* init size */
+    $size = 0;
+    
+    /* get infos from database */
+    if ($this->execute_query('show table status')) {      
+      /* set size with infos */
+      while ($data = $this->get_queryDataLine()) {
+        $size += $data["Data_length"] + $data["Index_length"];
+      }
+      return $size;
+    }
+    return 0;
+  }
+  
+  /* query related methods */
+    
+  /*
+   * execute query
+   * @param string $sql
+   * @param string $resName
+   * @return boolean success
+   * @access public
+   */
+  function execute_query($sql='', $resName='defaultRes') {
+    return $resName;
+  }
+
+  /*
+   * return id generated by last query
+   * @param string $resName
+   * @return integer
+   * @access public
+   */
+  function get_queryGeneratedId($resName='defaultRes') {
+    return 0;
+  }
+
+  /*
+   * return next query data line
+   * @param string $resName
+   * @return array
+   * @access public
+   */
+  function get_queryDataLine($resName='defaultRes') {
+    return array();
+  }
+  
+  /*
+   * return next query data line with numeric indexes
+   * @param string $resName
+   * @return array
+   * @access public
+   */
+  function get_queryNumDataLine($resName='defaultRes') {
+    return array();
+  }
+
+  /*
+   * return latest query error
+   * @param string $resName
+   * @return string
+   * @access public
+   */
+  function get_queryError($resName='defaultRes') {
+    return '';
+  }
+
+  /*
+   * return latest query affected rows
+   * @param string $resName
+   * @return integer
+   * @access public
+   */
+  function get_queryAffectedRows($resName='defaultRes') {
+    return 0;
+  }
+  
+  /*
+   * return latest query field count
+   * @param string $resName
+   * @return integer 
+   * @access public
+   */
+  function get_queryFieldCount($resName='defaultRes') {
+    return 0;
+  }
+  
+  /*
+   * return latest query field type
+   * @param integer $fIndex
+   * @param string $resName
+   * @return string
+   * @access public
+   */
+  function get_queryFieldType($fIndex=0, $resName='defaultRes') {
+    return '';
+  }
+  
+  /*
+   * close ressource
+   * @param string $resName
+   * @return boolean result
+   * @access public
+   */
+  function close_ressource($resName='defaultRes') {
+    return true;
+  }
+  
+  /* data related methods */
+  
+  /*
+   * return escaped string
+   * @param string $string
+   * @return string
+   * @access public
+   */
+  function escape_string($string) {
+    return addslashes($string);
+  }
+  
+  /* internal methods */
+  
+  /*
+   * return automatic ressource name
+   * @return string
+   * @access private
+   */
+  function get_resName() {
+    $c = count($this->queryRes)+1;
+    while (isset($this->queryRes['res'.$c]))
+      $c++;
+    return 'res'.$c;
+  }
+}

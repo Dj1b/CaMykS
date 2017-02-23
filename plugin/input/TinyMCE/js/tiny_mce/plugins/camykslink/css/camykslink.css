@@ -1,0 +1,24 @@
+/* CSS file for advimage plugin popup */
+
+.mceActionPanel { margin-top: 7px; }
+
+#href, #classlist, #title, #anchor, #targetlist {width: 230px;}
+#href, #title, #anchor {padding:1px 4px;}
+
+#popupurl, #popupname {
+                        width: 200px;
+                        }
+
+#popupwidth, #popupheight, #popupleft, #popuptop {
+                                                   width: 30px;
+                                                   vertical-align: middle;
+                                                   text-align: center;
+                                                   }
+
+#id, #style, #classes, #target, #dir, #hreflang, #lang, #charset, #type, #rel, #rev, #tabindex, #accesskey {
+	width: 200px;
+                                                                                                             }
+
+#events_panel input {
+                      width: 200px;
+                      }

@@ -1,0 +1,126 @@
+/*
+ * CaMykS Engine
+ * Developed by     : Ideogram Design
+ * Author           : JB Lebrun
+ * CaMykS Version   : 1.0b
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Theme Main CSS Styles
+ * Creation Date    : Oct 2014
+ * Last Modif Date  : Oct 2014
+ *
+ * Indigo Flat Theme Main CSS styles
+ */
+
+/* global */
+* { padding:0; margin:0;}
+body {background: #eeeeee;}
+p {padding: 4px 0;}
+a { color:#5b8dcd; text-decoration:none;}
+a:hover { color:#777f77; text-decoration:underline;}
+ul { margin:0px 0px 0px 28px; padding:0; list-style:url(../img/bullet.gif); }
+ul ul { margin:0px 0px 0px 18px; padding:0; list-style:url(../img/bullet2.gif); }
+ul ul ul{ margin:0px 0px 0px 14px; padding:0; list-style:url(../img/bullet3.gif); }
+ol { margin:0px 0px 0px 28px; padding:0;}
+li { margin:4px 4px; }
+label {font-family:inherit; font-size:inherit; font-weight:inherit; font-style:inherit; color:inherit; text-transform:inherit;}
+img {border:0;}
+table { border-spacing: 0; border-collapse: collapse;}
+blockquote { margin:8px 20px; }
+input, textarea, select, div.inputs, div.linputs, div.sinputs, div.vsinputs, div.vlinputs { padding:0; background: white; color:#808080; font-weight:bold; font-size:11px; border:solid 1px #e2e2e2; border-radius: 3px;}
+/* select { background: transparent; -webkit-appearance: none; height: 20px; border:0; line-height: 1px; color:#808080; font-weight:bold; } */
+input, textarea, option { padding:2px 4px; font-weight:bold; color:#808080; font-size:11px; transition:box-shadow 0.5s;}
+input:focus, textarea:focus, select:focus {box-shadow: 0 0 4px 2px rgba(91, 141, 205, 0.5);}
+textarea{resize: none;}
+option.separator {color:#ababab; padding:0 4px; font-size:1px; height:4px; border-bottom:dotted 1px #ababab; margin-bottom:4px;}
+.inputs{width:200px;} select.inputs{width:210px;} div.inputs{display:inline-block; width:210px; width:208px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden; }
+.linputs {width:400px;} select.linputs{width:410px;} div.linputs{display:inline-block; width:410px; width:408px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden;}
+.sinputs{width:100px;} select.sinputs{width:110px;} div.sinputs{display:inline-block; width:110px; width:100px; background:url(../img/form/selectArrowMedium.gif) 100% 0 no-repeat white; overflow:hidden;}
+.vsinputs{width:75px;} select.vsinputs{width:85px;} div.vsinputs{display:inline-block; width:85px; width:83px; background:url(../img/form/selectArrow.gif) 100% 0 no-repeat white; overflow:hidden;}
+.vlinputs {width:98%;} div.vlinputs{display:inline-block;}
+form {margin:0;}
+label {margin:0 20px 0 8px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; cursor:default;}
+input[type=radio]:checked + label {color:#6a798b;}
+.inputHeight {height:20px;}
+.img{font-size:0}
+
+strong {font-weight:bold; font-size:inherit; color:inherit; font-style:inherit;}
+em {font-style:italic; font-size:inherit; color:inherit; font-weight:inherit;}
+sup, sub{font-size:9px; color:inherit;}
+
+/* icon image for layered menu */
+img.icon{ float:left; margin-right:4px; max-width:80px; }
+
+.unselectable {
+  -webkit-user-select: none; /* Chrome/Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  -o-user-select: none;
+  user-select: none;
+  cursor:default;
+}
+
+/* error */
+.error { 
+  font-size:12px;
+  font-weight:bold;
+  color:#CC3333;
+  padding:4px;
+}
+
+.clearer {
+  height:0;
+  font-size:0;
+  clear:both;
+}
+
+/* admin */
+#adminengine_main {background:url(../img/admin/bkgd.gif) 0 0 repeat-x;}
+#adminengine_main #pageHeader {width:800px;}
+#adminengine_main #pageFooter .indigoFlatStyleBar{display:none;}
+.adminControlPanel {width:800px !important; margin: 0 auto;}
+.adminControlPanelGroup{background:white}
+.adminControlPanelItem {padding:4px;}
+.adminControlPanelItem .pluginTitle {margin-left:36px; padding:4px 4px 0;}
+.adminControlPanelItem .pluginDesc {margin-left:36px; padding:0 4px;}
+.adminEditorModule {width:800px !important; margin:0 auto;}
+.adminPopupFrame {background:#eeeeee; padding:8px 16px; width:100%;}
+a.eTitle3 {text-decoration:none;}
+.eTableIconCell { width:12px; padding-left:3px !important; padding-right:3px !important; }
+.eTableHeader a {color:white; font-weight:bold;}
+.eTableHeader a:hover {color:#DEDEDE;}
+
+/* admin : help */
+.adminhelplist {
+  background : #eeeeee;
+  padding: 0px;
+  width:150px;
+  height:100%;
+  vertical-align:top;
+}
+
+.adminhelplist .indigoFlatStyleBoxTab{border-right: none; color: #808080;}
+.adminhelplist .indigoFlatStyleBoxTabO{border-right: none; }
+.adminhelplist .indigoFlatStyleBoxTabS{border-right: none; background:#808080; color:white;}
+.adminhelptext {vertical-align:top; padding:0px;}
+
+/* part complements */
+a.smallButton { padding:3px 4px 2px !important; font-size:9px important; }
+
+/* form file input */
+.fileInputButton {vertical-align:-2px;}
+
+/* */
+.adminLoginBox {width:560px !important; padding:40px;}
+.adminLoginBox .eTitle1 {text-align:center;}
+.adminLoginBox .error {text-align:center; font-size:14px;}
+.adminLoginBox .inputs {font-size:16px; text-align:center; text-align-last: center; font-weight:normal; width:400px; background:white;}
+.adminLoginBox input.inputs[name=login] { margin: 16px 0 8px; padding:8px 16px;}
+.adminLoginBox input.inputs[name=pwd] { margin: 8px 0; padding:8px 16px;}
+.adminLoginBox select.inputs[name=_clg_] { margin: 8px 0; width:432px; -webkit-appearance: none; -moz-appearance: none; height:32px; padding:0;}
+.adminLoginBox select.inputs[name=_clg_] option {font-size:16px; font-weight:normal; padding: 8px 16px; text-align:center; }
+.adminLoginBox .buttons {margin: 8px 0; text-align:center;}
+.adminLoginBox .buttons .indigoFlatStyleButton {font-size:14px; padding: 12px 32px;}
+
+@media screen and (-webkit-min-device-pixel-ratio:0)  {
+  .adminLoginBox select.inputs[name=_clg_] {text-indent:16px;}
+}

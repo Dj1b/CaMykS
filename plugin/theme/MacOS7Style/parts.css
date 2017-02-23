@@ -1,0 +1,255 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Part CSS Styles
+ * Create Date		: Dec 2008
+ * Last Modif Date      : Jan 2009
+ *
+ * MacOS7Style parts css styles
+*/
+
+/* bar parts */
+.macos7styleBarOuterBox{
+  border:solid 1px black;
+  height:21px;
+  background:#EEEEEE;
+}
+
+.macos7styleBarInnerBox{
+  border:solid 1px #ccccff;
+  border-bottom:solid 1px #a3a3d7;
+  padding:0 50px;
+  height:19px;
+}
+
+div.macos7styleBarButton {
+  display:block;
+  position:relative;
+  background:#FFFFFF;
+  padding:4px 8px 0;
+  height:15px;
+  border-left:solid 1px #CCCCCC;
+  border-right:solid 1px #CCCCCC;
+}
+
+div.macos7styleBarButtonOver{
+  display:block;
+  position:relative;
+  background:#444444;
+  padding:4px 8px 0;
+  height:15px;
+  border-left:solid 1px #000000;
+  border-right:solid 1px #000000;
+}
+
+div.macos7styleBarButton img, div.macos7styleBarButtonOver img{
+  position:relative;
+  top:2px;
+}
+
+div.macos7styleBarButtonOver a{
+  color:#FFFFFF;
+}
+
+div.macos7styleBarItem {
+  display:block;
+  position:relative;
+  background:#EEEEEE;
+  padding:4px 8px 0;
+  height:15px;
+  font-weight:bold;
+}
+
+a.macos7styleBarButton {
+  font-weight:bold;
+  color:#222222;
+}
+
+/* box part */
+div.macos7styleBox {
+  border:solid 1px #000000;
+  background-color: #FFFFFF;
+}
+
+div.macos7styleBoxTitleOuterBar {
+  border-bottom:solid 1px #000000;
+}
+
+.macos7styleBoxTitleInnerBar {
+  width:100%;
+  background:url(img/boxtitlebg.gif) repeat-x;
+  border:solid 1px #ccccff;
+  border-bottom:solid 1px #a3a3d7;
+  height:17px;
+}
+
+.macos7styleBoxTitleBarLeft {
+  width:20px;
+  background:url(img/boxtitleleft.gif) 100% 0 no-repeat;
+}
+
+td.macos7styleBoxTitleBarText {
+  text-align:center;
+}
+
+td.macos7styleBoxTitleBarText span {
+  font-family: Krungthep, Silom, Arial;
+  letter-spacing: 1px;
+  background:#eeeeee; 
+  padding:0 6px;
+}
+
+.macos7styleBoxTitleBarRight {
+  width:20px;
+  background:url(img/boxtitleright.gif) 0 0 no-repeat;
+}
+
+
+div.macos7styleBoxTabsBar {
+  background:url(img/black.gif) 0 100% repeat-x #EEEEEE;
+}
+
+table.macos7styleBoxTabsBar {
+
+}
+
+.macos7styleBoxTab {
+  padding: 4px 8px 2px;
+  border-right: solid 1px #000000;
+  border-bottom: solid 1px #000000;
+  background: #EEEEEE;
+  color: #000000;
+}
+
+.macos7styleBoxTabS {
+  padding: 4px 8px 2px;
+  border-right: solid 1px #000000;
+  border-bottom: solid 1px #FFFFFF;
+  background:white;
+  color: #444444;
+}
+
+.macos7styleBoxTabO {
+  padding: 4px 8px 2px;
+  border-right: solid 1px #000000;
+  border-bottom: solid 1px #000000;
+  background: white;
+  cursor:pointer;
+}
+
+div.macos7styleBoxButtonsBarLine { 
+}
+
+div.macos7styleBoxItem, a.macos7styleBoxButton {
+  float:left;
+  display:block;
+  padding:2px 6px 0;
+  height:14px;
+  overflow:hidden;
+  margin-left:18px;
+  border-left:solid 1px #000000;
+  border-right:solid 1px #000000;
+  background:#FFFFFF;
+}
+
+div.macos7styleBoxItem {
+  color:#333333;
+}
+
+a.macos7styleBoxButton {
+  color:#000000;
+}
+
+a.macos7styleBoxButton:hover {
+  background:#000000;
+  color:#FFFFFF;
+}
+
+div.macos7styleBoxContent1{
+  background-color:#FFFFFF;
+  border-bottom:solid 1px #000000;
+  padding:8px;
+}
+
+div.macos7styleBoxContent2{
+  background-color:#EEEEEE;
+  border-bottom:solid 1px #000000;
+  padding:8px;
+}
+
+div.macos7styleBoxFooter{
+  background:url(img/boxfooter.gif) 100% 0 no-repeat #EEEEEE;
+  height:16px;
+}
+
+/* button part */
+td.macos7styleButtonOuterBox{
+  border:solid 1px #9E9E9E;
+  background-color: #EFEFEF; 
+  padding:2px;
+}
+
+div.macos7styleButtonInnerBox{
+  background: #5D5D5D;
+  padding:2px 4px;
+  color:white;
+  font-weight:bold;
+  text-align:center;
+}
+
+a.macos7styleButton {
+  color:white;
+  font-weight:bold;
+}
+
+/* layered menu part */
+div.macos7styleLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: none;
+  display:none;
+  background:#FFFFFF;
+  border-top:solid 1px #000000;
+  border-left:solid 1px #000000;
+  border-right:solid 2px #000000;
+  border-bottom:solid 2px #000000;
+}
+
+div.macos7styleLayeredMenuSeparator{
+  height:1px;
+  font-size:1px;
+  border-bottom:dotted 1px #888888;
+}
+
+div.macos7styleLayeredMenuIcon{
+  float:left;
+  margin-right:4px;
+}
+
+a.macos7styleLayeredMenuItem {
+  display:block;
+  clear:both;
+  color:#000000;
+  font-weight:bold;
+  padding:2px 20px 2px 4px;
+  background:#FFFFFF;
+}
+
+a.macos7styleLayeredMenuItem:hover {
+  color:#FFFFFF;
+  background:#000000;
+  padding:2px 20px 2px 4px;
+}
+
+div.macos7styleLayeredMenuItem{ 
+  background: #CCCCCC;
+  padding:2px 20px 2px 4px;
+  clear:both;
+  color:white;
+  font-weight:bold;
+}

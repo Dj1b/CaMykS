@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>	
+    <title>{$lang_camyksemaillink_windowtitle}</title>
+    <script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script language="javascript" type="text/javascript" src="../../utils/form_utils.js"></script>
+    <script language="javascript" type="text/javascript" src="jscripts/functions.js"></script>
+    <link href="css/camykslink.css" rel="stylesheet" type="text/css" />
+    <base target="_self" />
+  </head>	
+  <body id="camykslink" onload="tinyMCEPopup.executeOnLoad('init();');" style="display: none">
+    <form onsubmit="insertAction();return false;" action="#">
+      <div id="panel" class="panel current">
+	<fieldset>
+	  <legend>{$lang_camyksemaillink_email}</legend>
+	  <table border="0" cellpadding="4" cellspacing="0">
+	    <tr>
+	      <td nowrap="nowrap">
+		<label id="hreflabel" for="href">
+		  {$lang_camyksemaillink_email}
+		</label>
+	      </td>
+	      <td>
+		<input id="href" name="href" type="text" value="" />
+	      </td>      
+	    </tr> 
+	    <tr>
+	      <td><label id="classlabel" for="classlist">{$lang_class_name}</label></td>
+	      <td>
+		<select id="classlist" name="classlist" onchange="changeClass();">
+		  <option value="" selected>{$lang_not_set}</option>
+		</select>
+	      </td>
+	    </tr>
+	  </table>
+	</fieldset>
+      </div>
+      
+      <div class="mceActionPanel">
+	<div style="float: left">
+	  <input type="button" id="insert" name="insert" value="{$lang_insert}" onclick="insertAction();" />
+	</div>
+	
+	<div style="float: right">
+	  <input type="button" id="cancel" name="cancel" value="{$lang_cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+      </div>
+    </form>
+  </body>
+</html>

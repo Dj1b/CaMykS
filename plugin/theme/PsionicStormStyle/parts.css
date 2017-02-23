@@ -1,0 +1,256 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Part CSS Styles
+ * Create Date		: Jun 2008
+ * Last Modif Date      : Jun 2008
+ *
+ * Parts CSS styles for Psionic Storm Style Theme
+*/
+
+/* box part */
+div.psionicstormBox { 
+  border:solid 1px #1126a3;
+  background:url(img/boxHeader.gif) 0% 0% repeat-x black;
+}
+
+div.psionicstormBoxTitleOuterBar {
+  margin:0 0 4px;
+}
+
+div.psionicstormBoxTitleInnerBar {
+  width:84%;
+  margin:0 auto;
+  background:url(img/boxTitle.gif) 0% 0% repeat-x #050c2f;
+  border: solid 1px #1126a3;
+  border-top:none;
+}
+
+div.psionicstormBoxTitleText {
+  color:white;
+  font-size:14px;
+  font-weight:bold;
+  padding:4px 16px 4px;
+}
+
+div.psionicstormBoxContent1{
+  padding:4px;
+}
+
+div.psionicstormBoxContent2Box {
+  padding:4px;
+}
+
+div.psionicstormBoxContent2 {
+  border:solid 1px #1126a3;
+  background: #050c2f;
+  padding:4px;
+}
+
+/* box button bar */
+
+div.psionicstormBoxButtonOuterBar {
+  background:url(img/boxButtonBar.gif) 0% 100% repeat-x;
+  padding:0;
+}
+
+div.psionicstormBoxButtonInnerBar {
+  width:84%;
+  margin:0 auto 0;
+  height:21px;
+  padding:0;
+}
+
+div.psionicstormBoxButtonItem {
+  float:left;
+  margin:0 20px 0 0;
+  position:relative;
+  top:1px;
+  height:18px;
+  border:solid 1px #1126a3;
+  border-bottom:none;
+}
+
+a.psionicstormBoxButton {
+  display:block;  
+  font-weight:bold;
+  font-size:11px;
+  color:#6479d5;
+  padding: 4px 8px;
+  background:black;
+}
+
+a.psionicstormBoxButton:hover{
+  background:url(img/boxButtonOver.gif) 0 -1px repeat-x black;
+  color:white;
+}
+
+div.psionicstormBoxButton {
+  display:block;  
+  font-weight:bold;
+  font-size:11px;
+  color:#1126a3;
+  padding: 4px 8px;
+  background:black;
+}
+
+/* box tabs bar */
+
+div.psionicstormBoxTabsBar {
+  margin:4px 4px 2px;
+  height:22px;
+  border:solid 1px #1126a3;
+  background:#050c2f;
+  overflow:display;
+}
+
+div.psionicstormBoxTabSpace{
+  float:left;
+  padding:4px 8px;
+  border-right:solid 1px #1126a3;
+}
+
+.psionicstormBoxTab, .psionicstormBoxTabS, .psionicstormBoxTabO {
+  border-right:solid 1px #1126a3;
+  font-weight:bold;
+  padding:4px 8px;
+}
+
+div.psionicstormBoxTab, div.psionicstormBoxTabS, div.psionicstormBoxTabO {
+  float:left;
+}
+
+.psionicstormBoxTab {
+  border-bottom:solid 1px #1126a3;
+  background:#050c2f;
+  color:#6479d5;
+  
+}
+
+.psionicstormBoxTabS {
+  background:black;
+  border-bottom:solid 1px black;
+  color:white;
+  margin:0;
+}
+
+.psionicstormBoxTabO {
+  border-bottom:solid 1px #1126a3;
+  background:black;
+  cursor:pointer;
+  color:#6479d5;
+}
+
+.psionicstormLightBox{}
+
+/* button part */
+
+a.psionicstormButton {
+  color:#6479d5;
+  margin:4px 0;
+  float:left;
+  display:block;
+  border:solid 1px #1126a3;
+  background:black;
+  padding:4px 8px;
+  font-weight:bold;
+}
+
+a.psionicstormButton:hover {
+  background:url(img/buttonOver.gif) 0 0 repeat-x;
+  color:white;
+}
+
+/* bar parts */
+div.psionicstormBar {
+  background:url(img/bar.gif) repeat-x;
+  height:23px;
+  overflow:hidden;
+  margin:0 auto;
+  border-left:solid 1px #1126a3;
+  border-right:solid 1px #1126a3;
+}
+
+div.psionicstormBarItem {
+  float:left;
+  margin:0 10px;
+  border:solid 1px #1126a3;
+  border-top:none;
+  border-bottom:none;
+  background:black;
+  padding: 4px 8px;
+  color:#6479d5;
+  font-size:11px;
+  font-weight:bold;
+  height:15px;
+  background:url(img/barItem.gif) repeat-x;
+  text-shadow: 0 0 2px #6bb8ff, 0 0 2px #6bb8ff;
+}
+
+a.psionicstormBarButton {
+  display:block;
+  float:left;
+  margin:0 10px;
+  border:solid 1px #1126a3;
+  border-top:none;
+  border-bottom:none;
+  background:black;
+  padding: 4px 8px;
+  font-weight:bold;
+  font-size:11px;
+  height:15px;
+  color:#6479d5;
+}
+
+a.psionicstormBarButton:hover {
+  background:url(img/barItem.gif) repeat-x;
+  color:white;
+}
+
+/* layered menu part */
+div.psionicstormLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: auto;
+  display:none;
+  padding:2px;
+  background:#050c2f;
+  border:solid 1px #1126a3;
+}
+
+div.psionicstormLayeredMenuSeparator{
+  height:4px;
+  font-size:1px;
+}
+
+div.psionicstormLayeredMenuIcon{
+  float:left;
+  margin-right:4px;
+}
+
+a.psionicstormLayeredMenuItem {
+  display:block;
+  clear:both;
+  color:white;
+  font-weight:bold;
+  text-align:left;
+  padding:2px 20px 2px 4px;
+  background:none;
+}
+
+a.psionicstormLayeredMenuItem:hover{
+  background: url(img/menuLink.gif) repeat-x;
+}
+
+div.psionicstormLayeredMenuItem{ 
+  padding:3px 20px 3px 4px;
+  clear:both;
+  color:#6479d5;
+  font-weight:bold;
+  text-align:left;
+}

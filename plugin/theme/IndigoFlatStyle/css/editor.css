@@ -1,0 +1,65 @@
+/*
+ * CaMykS Engine
+ * Developed by		: Ideogram Design
+ * Author			: JB Lebrun
+ * CaMykS Version	: 1.0b
+ * Object Version	: 1.0
+ * Object Type      : Plugin / Theme Editor CSS Styles
+ * Creation Date	: Oct 2014
+ * Last Modif Date  : Oct 2014
+ *
+ * Indigo Flat Theme Editor CSS style
+*/
+
+* {font-family: Arial; font-size: 11px; font-weight:normal; 
+    font-style:normal; color:#5C5C5C;}
+
+/* generic styles */
+.eTitle1 {
+  font-size:28px;
+  color: #5B8DCD;
+  padding:0;
+  margin:16px 0 4px;
+}
+
+.eTitle2 {
+  font-size:20px;
+  color:#808080;
+  text-transform:uppercase;
+  font-weight:300;
+  padding:12px 0 2px;
+}
+
+.eTitle3 {
+  font-size:16px;
+  color:#3b79ba;
+  padding:4px 0 0px;
+}
+
+.eTitle4 {
+  color:#808080;
+  font-style:italic;
+}
+
+.eContent1 {}
+.eContent2 {font-weight: bold; color:#6a798b;}
+.eContent3 {font-style: italic;}
+.eContent4 {font-weight: bold; color:#5B8DCD;}
+.eContent5 {background: #5B8DCD; color:white; padding:8px;}
+
+p.eContent1, p.eContent2, p.eContent3, p.eContent4, p.eContent5 {text-align: justify;}
+
+a.eLink1 {color:#6a798b;}
+a.eLink2 {color:#6a798b; font-weight:bold;}
+a.eLink3 {color:#808080;}
+a.eLink4 {color:#808080; font-weight:bold;}
+a.eLink1:hover, a.eLink2:hover, a.eLink3:hover, a.eLink4:hover {text-decoration:underline;}
+
+table.eTable{border-collapse:collapse; border:solid 1px #5A5A5A;}
+table.eTable td{}
+.eTableHeader {background:#6a798b; padding:6px 8px; font-size:11px; text-transform:uppercase; color: white; box-sizing: border-box;}
+.eTableSubHeader {background:#5b8dcd; padding:4px 8px; font-weight:bold; font-style:italic; color:white; border-bottom:solid 1px white; box-sizing: border-box;}
+.eTableSubHeader a {color:white !important;}
+.eTableLine {padding:4px 8px; border-bottom: solid 1px #DDDDDD; vertical-align:top; box-sizing: border-box;}
+.eTableLine0 {padding:4px 8px; box-sizing: border-box;}
+.eTableLine1 {background:#eeeeee; padding:4px 8px; box-sizing: border-box;}

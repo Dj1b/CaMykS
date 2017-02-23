@@ -1,0 +1,225 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Main CSS Styles
+ * Create Date		: Jun 2005
+ * Last Modif Date      : May 2008
+ *
+ * Main CSS styles for Grey Style Theme
+ */
+
+/* global */
+
+body {
+  background:white;
+}
+
+body, p, td, span, div, a, h1, h2, h3, h4 {
+  font-family: Arial, Verdana, Helvetica;
+  font-size: 11px;
+  font-weight:normal;
+  font-style:normal;
+  color:black;
+  padding:0;
+  margin:0;
+}
+
+a { text-decoration:none; }
+ul { margin:0px 10px; padding:0 4px; }
+li { margin:2px 4px; }
+blockquote { margin:20px; }
+img {border:0;}
+
+/* icon image for layered menu */
+img.icon{ float:left; margin-right:4px; }
+
+/* form */
+form{margin:0;}
+
+/* inputs */
+textarea {resize: none;}
+.inputs {width:200px;} 
+.linputs {width:400px;}
+.vlinputs {width:100%;}
+.sinputs {width:100px;}
+.vsinputs {width:50px;}
+option.separator {color:#ababab; padding:0 4px; font-size:1px; height:4px; border-bottom:dotted 1px #ababab; margin-bottom:4px;}
+div.inputs, div.linputs, div.vlinputs, div.sinputs, div.vsinputs{display:inline-block}
+
+/* error */
+.error { 
+  font-size:12px;
+  font-weight:bold;
+  color:#CC3333;
+  text-align:center;
+  padding:4px;
+}
+
+/* Global styles */
+
+.title1 {
+  font-size:16px;
+  font-weight:bold;
+  color:#444444;
+  white-space: nowrap;
+  padding: 4px 0px;
+  text-shadow: #888888 2px 2px 2px;
+}
+
+.title2 {
+  font-size:14px;
+  font-weight:bold;
+  color:#666666;
+  white-space: nowrap;
+  padding:4px 0px;
+}
+
+.title3 {
+  font-size:12px;
+  font-weight:bold;
+  color:#333333;
+  padding:2px 0px;
+}
+
+.title4 { 
+  font-style:italic;
+  color:#444444;
+  padding:2px 0px;
+}
+
+.content1 {
+  text-align: justify;
+  padding: 2px;
+}
+
+.content2 {
+  text-align: justify;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.content3 {
+  text-align: justify;
+  font-style:italic;
+  padding: 2px;
+
+}
+
+.simple1 { 
+  font-weight:bold;
+  color:#888888;
+  padding:2px;
+}
+
+.simple2 {
+
+}
+
+.simple3 {
+
+}
+/* link */
+
+.link1 { 
+  font-weight:bold;
+  color:#444444;
+}
+
+.link2 { 
+  
+}
+
+td.button1 {
+  background:#888888;
+  text-align:center;
+  padding:1px;
+}
+
+a.button1 {
+  color:white;
+  font-weight:bold;
+}
+
+a.button1:hover {
+  letter-spacing:2px;
+}
+
+td.button2 { 
+
+}
+
+a.button2 { 
+
+}
+
+/* list css */
+.listheader { 
+  background:#888888;
+  padding:4px;
+  font-weight:bold;
+  color: white;
+  border-top:solid 1px #666666;
+  border-bottom:solid 1px #AAAAAA ;
+}
+
+a.listheader { 
+  color:white;
+  font-weight:bold;
+}
+
+a.listheader:hover { 
+  letter-spacing:2px;
+}
+
+.listline0 {
+  background:#DDDDDD;
+  padding:3px 4px;
+}
+
+.listline1 {
+  background:white;
+  padding:3px 4px;
+}
+
+/* some admin styles */
+.adminMain { 
+  padding:0px 0px 4px 0px;
+  vertical-align:top;
+  height:100%;
+}
+
+.adminhelplist {
+  background : #DDDDDD;
+  border-right: solid 1px #888888;
+  padding: 0px;
+  width:150px;
+  height:100%;
+  vertical-align:top;
+}
+
+/* editor styles complement */
+.eTableHeader a {color:white; font-weight:bold;}
+.eTableHeader a:hover {color:#DEDEDE; text-decoration:none;}
+
+.eTableSubHeader a {color:white; font-weight:bold;}
+.eTableSubHeader a:hover {color:#EDEDED; text-decoration:none;}
+
+/* admin styles */
+.adminhelptext {vertical-align:top; padding:0px;}
+.adminControlPanel {margin: 0 auto;}
+.adminControlPanelGroup{background:#E4E4E4;}
+.adminControlPanelItem {}
+.adminControlPanelItem .pluginTitle {margin-left:36px; padding:4px 4px;}
+.adminControlPanelItem .pluginDesc {margin-left:36px; padding:0 4px;}
+.adminEditorModule {margin:0 auto;}
+.adminPopupFrame {}
+.eTableIconCell { width:12px; padding-left:3px !important; padding-right:3px !important; }
+
+.adminLoginBox {width:560px !important; padding:40px;}
+.adminLoginBox .eTitle1 {text-align:center;}
+.adminLoginBox .buttons>table {margin:0 auto;}
+
+

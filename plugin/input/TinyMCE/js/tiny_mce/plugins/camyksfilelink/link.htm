@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>	
+    <title>{$lang_camykslink_windowtitle}</title>
+    <script language="javascript" type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script language="javascript" type="text/javascript" src="../../utils/form_utils.js"></script>
+    <script language="javascript" type="text/javascript" src="jscripts/functions.js"></script>
+    <link href="css/camyksfilelink.css" rel="stylesheet" type="text/css" />
+    <base target="_self" />
+  </head>	
+  <body id="camykslink" onload="tinyMCEPopup.executeOnLoad('init();');" style="display: none">
+    <form onsubmit="insertAction();return false;" action="#">
+      <div id="panel" class="panel current">
+	<fieldset>
+	  <legend>{$lang_camykslink_properties}</legend>
+	  <table border="0" cellpadding="4" cellspacing="0">
+	    <tr>
+	      <td colspan="2">
+		{$lang_camyksfilelink_fulldesc}
+	      </td>
+	    </tr>
+	    <tr>
+	      <td nowrap="nowrap">
+		<label id="hreflabel" for="href">
+		  {$lang_insert_link_url}
+		</label>
+	      </td>
+	      <td>
+		<table border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		    <td>
+		      <input id="href" name="href" type="text" value="" />
+		    </td>
+		    <td id="hrefbrowsercontainer">&nbsp;</td>
+		  </tr> 
+		</table>
+	     </td>
+	    </tr>
+	    <tr>
+	      <td nowrap="nowrap">
+		<label id="titlelabel" for="title">
+		  {$lang_theme_insert_link_titlefield}
+		</label>
+	      </td>
+	      <td>
+		<input id="title" name="title" type="text" value="" />
+	      </td>
+	    </tr>
+	    <tr>
+	      <td>
+		<label id="targetlistlabel" for="targetlist">
+		  {$lang_insert_link_target}
+		</label>
+	      </td>
+	      <td id="targetlistcontainer">&nbsp;</td>
+	    </tr>
+	    <tr>
+	      <td><label id="classlabel" for="classlist">{$lang_class_name}</label></td>
+	      <td>
+		<select id="classlist" name="classlist" onchange="changeClass();">
+		  <option value="" selected>{$lang_not_set}</option>
+		</select>
+	      </td>
+	    </tr>
+	  </table>
+	</fieldset>
+      </div>
+      
+      <div class="mceActionPanel">
+	<div style="float: left">
+	  <input type="button" id="insert" name="insert" value="{$lang_insert}" onclick="insertAction();" />
+	</div>
+	
+	<div style="float: right">
+	  <input type="button" id="cancel" name="cancel" value="{$lang_cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+      </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+/*
+ * CaMykS Engine
+ * Developed by	    : camyks.net
+ * Author	       	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0b
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Engine
+ * Creation Date	: Oct 2011
+ * Last Modif Date	: Oct 2011
+ *
+ * GenericMediaPopup CSS style file
+ *
+ */
+
+/* background */
+.mediaPopupBkgd {position:fixed; left:0; top:0; background:#444444; opacity:0.85; filter:alpha(opacity=75); width:100%; z-index:10000;}
+
+/* media popup */
+.mediaPopup { z-index:10001; padding:8px; background:white; position:fixed; top:0; left:0;} 
+.mediaPopup .closeButton {width:0; height:0; overflow:display; float:right; position:relative; top:-20px; left:-3px; cursor:pointer; font-size:0;}
+.mediaPopup .mediaTitle {margin:4px 0 0; padding:2px 8px; text-align:center; color:#444444; font-weight:bold; background:white;}

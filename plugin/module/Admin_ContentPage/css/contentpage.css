@@ -1,0 +1,184 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Module CSS Styles
+ * Create Date		: Jun 2005
+ * Last Modif Date      : Sep 2009
+ *
+ * Admin_ContentPage CSS Styles
+ */
+
+div.contentpagemain { 
+  width:100%;
+  min-height:400px;                     
+  overflow:auto;
+}
+
+td.contentpagemain {
+  border:solid 1px #888888;
+  vertical-align:top;
+}
+
+div.contentpagecol {
+  width:100%;
+  display:block;
+  vertical-align:top;
+}
+
+table.contentpagecol {
+  width:100%;
+}
+
+td.contentpagefcol { 
+  width:120px;
+  vertical-align:top;
+}
+
+td.contentpageacol { 
+  width:128px;
+  vertical-align:top;
+  border-right:solid 1px #EEEEEE;
+}
+
+td.contentpagetcol { 
+  width:128px;
+  height:20px;
+  border-right:solid 1px #EEEEEE;
+  background:#808080;
+  color:white;
+  font-weight:bold;
+  text-transform:uppercase;
+  padding:4px 8px;
+}
+
+td.contentpageitem { 
+  padding:4px;
+  background-color:#EEEEEE;
+  border-top:solid 1px white;
+  border-left:solid 1px white;
+  border-right:solid 1px white;
+  cursor:pointer;
+}
+
+
+td.contentpageitemsel {
+  padding:4px;
+  background-color:#B0D1F7;
+  border-top:solid 1px white;
+  border-left:solid 1px white;
+  border-right:solid 1px white;
+  color:white;
+  cursor:pointer;
+}
+
+td.contentpageitemroll { 
+  padding:4px;
+  background-color:#D6E4F3;
+  border-top:solid 1px white;
+  border-left:solid 1px white;
+  border-right:solid 1px white;
+  cursor:pointer;
+}
+
+td.contentpageadd { 
+  padding: 4px;
+  border-top:solid 1px white;
+  border-left:solid 1px white;
+  border-right:solid 1px white;
+}
+
+td.contentpageaddroll { 
+  padding: 4px;
+  background-color:#D0E6FF;
+  border-top:solid 1px white;
+  border-left:solid 1px white;
+  border-right:solid 1px white;
+  cursor:pointer;
+}
+
+
+
+td.contentpagecoltxt { 
+  font-family:arial;
+  font-size:11px;
+  padding:0px 2px;
+  height:14px;
+}
+
+td.contentpagecoltxtdis { 
+  font-family:arial;
+  font-size:11px;
+  padding:0px 2px;
+  height:14px;
+  color:#888888;
+  font-style:italic;
+}
+
+
+td.contentpagecolhp { 
+  width:14px;
+  font-size:0px;
+}
+
+td.contentpagecolimg { 
+  width:14px;
+  font-size:0px;
+}
+
+td.contentpagecolp {
+  background-color:#E6FEFF;
+}
+
+td.contentpagecoli { 
+  background-color:white;
+}
+
+div.contentpagemenu { 
+  position:absolute;
+  left: 200px; 
+  top: 200px;
+  z-index:100;
+  overflow: auto;
+  visibility: hidden;
+}
+
+table.contentpagemenu { 
+  border : solid 1px #2D77CC;
+}
+
+td.contentpagemenu {
+  padding:1px 24px 1px 4px;
+  border-right : solid 1px #0F3D73;
+  border-bottom : solid 1px #0F3D73;
+  border-top : solid 1px #90C1FA;
+  border-left : solid 1px #90C1FA;
+  background-color: #2D77CC;
+  color: white;
+  font-weight:bold;
+}
+
+td.contentpagemenuon {
+  padding:1px 24px 1px 4px;
+  border-top : solid 1px #0F3D73;
+  border-left : solid 1px #0F3D73;
+  border-bottom : solid 1px #90C1FA;
+  border-right : solid 1px #90C1FA;
+  background-color: #408DE4;
+  color: white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+td.contentpagemenusep {
+  height:4px;
+  font-size:1px;
+  background-color:#2D77CC;
+}
+
+td.contentpagecontentcol { 
+width:50%;
+vertical-align:top;
+}                           

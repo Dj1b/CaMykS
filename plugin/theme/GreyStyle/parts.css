@@ -1,0 +1,266 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Part CSS Styles
+ * Create Date		: Jun 2005
+ * Last Modif Date      : Mar 2007
+ *
+ * Parts CSS styles for Grey Style Theme
+*/
+
+/* bar parts */
+td.greystyleBarLeft {
+  background:url(./img/bar_left.gif) no-repeat;
+  width:50px;
+  height:23px;
+}
+
+td.greystyleBarCenter {
+  background:url(./img/bar_center.gif) repeat-x;
+  text-align:center;
+  white-space:nowrap;
+  height:23px;
+  vertical-align:top;
+}
+
+td.greystyleBarRight {
+  background:url(./img/bar_right.gif) no-repeat;
+  width:50px;
+  height:23px;
+}
+
+div.greystyleBarButton {
+  display:block;
+  position:relative;
+  border-left:solid 1px #8C8C8C;
+  border-right:solid 1px #BBBBBB;
+  padding:5px 6px 4px;
+  font-weight:bold;
+  color:#222222;
+  height:14px;
+}
+
+div.greystyleBarButtonOver{
+  display:block;
+  position:relative;
+  border-left:solid 1px #8C8C8C;
+  border-right:solid 1px #BBBBBB;
+  background:url(./img/bar_over.gif) repeat-x;
+  padding:5px 6px 4px;
+  font-weight:bold;
+  color:#222222;
+  height:14px;
+}
+
+a.greystyleBarButton {
+  font-weight:bold;
+  color:#222222;
+}
+
+/* box part */
+table.greystyleBox { 
+  border:solid 1px #9E9E9E;
+  background-color: #EFEFEF;
+  text-align:left;
+}
+
+td.greystyleBoxTitleBarLine {
+  padding:4px 4px 0px 4px;
+  height:18px;
+}
+
+table.greystyleBoxTitleBar {
+  width:100%;
+}
+
+td.greystyleBoxTitleBar { 
+  font-size:13px;
+  font-weight:bold;
+  background:#666666;
+  color:white;
+  padding:2px 8px;
+  text-align:left;
+}
+
+td.greystyleBoxTabsBarLine {
+  padding:4px;
+  padding-bottom:0px;
+  height:18px;
+}
+
+table.greystyleBoxTabsBarLine {
+  width:100%;
+}
+
+td.greystyleBoxTabsBar { 
+  background:url(./img/9E9E9E.gif) 0% 100% repeat-x;
+}
+
+table.greystyleBoxTabsBar {
+
+}
+
+td.greystyleBoxTab {
+  padding : 4px 8px;
+  border : solid 1px #9E9E9E;
+  background : #DDDDDD;
+  font-weight:bold;
+  color: #444444;
+}
+
+td.greystyleBoxTabS { 
+  padding : 4px 8px;
+  border : solid 1px #9E9E9E;
+  border-bottom : solid 1px white;
+  background:white;
+  font-weight:bold;
+  color: #444444;
+}
+
+td.greystyleBoxTabO { 
+  padding : 4px 8px;
+  border : solid 1px #9E9E9E;
+  background : white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+td.greystyleBoxButtonsBarLine { 
+  padding:4px;
+  height:18px;
+}
+
+table.greystyleBoxButtonsBar{
+  background:#666666;
+  width:100%;
+}
+
+td.greystyleBoxButton {
+  padding:2px;
+  color:#9E9E9E;
+  font-weight:bold;
+}
+
+a.greystyleBoxButton {
+  color:white;
+  font-weight:bold;
+}
+
+a.greystyleBoxButton:hover {
+  color:white;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+td.greystyleBoxOpenContentLine{
+  padding:0px 4px;
+}
+
+table.greystyleBoxOpenContent{
+  background-color:white;
+  border:solid 1px #9E9E9E;
+  border-top:none;
+  width:100%;
+  height:100%;
+}
+
+td.greystyleBoxOpenContent{
+  padding:4px;
+  vertical-align:top;
+}
+
+td.greystyleBoxContent1{
+  padding:4px;
+  vertical-align:top;
+}
+
+td.greystyleBoxContent2Line{
+  padding:4px;
+}
+
+table.greystyleBoxContent2{
+  background-color:white;
+  border:solid 1px #9E9E9E;
+  width:100%;
+  height:100%;
+}
+
+td.greystyleBoxContent2{
+  padding:2px;
+}
+
+/* button part */
+td.greystyleButtonOuterBox{
+  border:solid 1px #9E9E9E;
+  background-color: #EFEFEF; 
+  padding:2px;
+}
+
+div.greystyleButtonInnerBox{
+  background: #5D5D5D;
+  padding:2px 4px;
+  color:white;
+  font-weight:bold;
+  text-align:center;
+}
+
+a.greystyleButton {
+  color:white;
+  font-weight:bold;
+}
+
+/* layered menu part */
+div.greystyleLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: auto;
+  display:none;
+  padding:2px;
+  background:#8C8C8C;
+}
+
+div.greystyleLayeredMenuSeparator{
+  height:4px;
+  font-size:1px;
+}
+
+div.greystyleLayeredMenuIcon{
+  float:left;
+  margin-right:4px;
+}
+
+a.greystyleLayeredMenuItem {
+  display:block;
+  clear:both;
+  color:white;
+  font-weight:bold;
+  text-align:left;
+  padding:2px 20px 2px 4px;
+  border-right : solid 1px #333333;
+  border-bottom : solid 1px #333333;
+  border-top : solid 1px #C8C8C8;
+  border-left : solid 1px #C8C8C8;
+  background-color: #5D5D5D;
+}
+
+a.greystyleLayeredMenuItem:hover{
+  border-right : solid 1px #C8C8C8;
+  border-bottom : solid 1px #C8C8C8;
+  border-top : solid 1px #333333;
+  border-left : solid 1px #333333;
+  background-color: #6A6A6A;
+}
+
+div.greystyleLayeredMenuItem{ 
+  background-color: #8C8C8C;
+  padding:3px 20px 3px 4px;
+  clear:both;
+  color:white;
+  font-weight:bold;
+  text-align:left;
+}

@@ -1,0 +1,243 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Part CSS Styles
+ * Create Date		: Jan 2009
+ * Last Modif Date      : Jan 2009
+ *
+ * Massive Green theme CSS parts
+*/
+
+/* box part */
+div.massivegreenBoxShadow{
+  border-bottom:solid 2px #244b23;
+  border-right:solid 2px #244b23;
+  border-top:solid 2px #4fa64d;
+  border-left:solid 2px #4fa64d;
+}
+
+div.massivegreenBox { 
+  border:solid 4px #297b2e;
+  background:#297b2e;
+}
+
+div.massivegreenBoxTitleBar {
+  background:url(img/boxTitle.gif) 2px 5px no-repeat #297b2e;
+  padding:2px 18px 4px;
+  color:white;
+  font-weight:bold;
+  font-size:14px;
+}
+
+div.massivegreenBoxContent1{
+  border-top:solid 2px #244b23;
+  border-left:solid 2px #244b23;
+  border-bottom:solid 2px #4fa64d;
+  border-right:solid 2px #4fa64d;
+  background:#FFFFFF;
+  padding:8px;
+}
+
+div.massivegreenBoxContent2 {
+  border-top:solid 2px #244b23;
+  border-left:solid 2px #244b23;
+  border-bottom:solid 2px #4fa64d;
+  border-right:solid 2px #4fa64d;
+  background:#eeffef;
+  padding:8px;
+}
+
+/* box buttons bar */
+div.massivegreenBoxButtonBar {
+  border-left:solid 2px #297b2e;
+  background:#297b2e;
+  height:19px;
+}
+
+div.massivegreenBoxButton {
+  float:left;
+  padding: 3px 16px;
+  color:#297b2e;
+  font-weight:bold;
+  background:#62bb68;
+  border-right:solid 1px #4fa64d;
+  border-bottom:solid 1px #4fa64d;
+  border-left:solid 1px #4fa64d;
+}
+
+a.massivegreenBoxButton {
+  display:block;
+  float:left;
+  padding: 3px 16px;
+  font-weight:bold;
+  color:white;
+}
+
+a.massivegreenBoxButton:hover {
+  color:#297b2e;
+  background:white;
+}
+
+/* box tabs bar */
+div.massivegreenBoxTabsBar {
+  border-left:solid 2px #297b2e;
+  border-right:solid 2px #297b2e;
+  background:#297b2e;
+  height:20px;
+  padding-left:12px;
+}
+
+.massivegreenBoxTab, .massivegreenBoxTabS, .massivegreenBoxTabO {
+  border-right:solid 1px #244b23;
+  border-top:solid 1px #244b23;
+  border-left:solid 1px #244b23;
+  padding:3px 8px 0;
+  height:16px;
+  font-weight:bold;
+}
+
+
+div.massivegreenBoxTab, div.massivegreenBoxTabS, div.massivegreenBoxTabO {
+  float:left;
+}
+
+.massivegreenBoxTab {
+  background:#4fa64d;
+  color:#eeffef;
+}
+
+.massivegreenBoxTabS {
+  padding:3px 8px 2px;
+  background:white;
+  color:#297b2e;
+}
+
+.massivegreenBoxTabO {
+  padding:3px 8px 0;
+  background:c0baff;
+  cursor:pointer;
+  color:#FFFFFF;
+}
+
+/* button part */
+a.massivegreenButton {
+  color:#FFFFFF;
+  margin:4px 0;
+  float:left;
+  display:block;
+  border-bottom:solid 2px #244b23;
+  border-right:solid 2px #244b23;
+  border-top:solid 2px #4fa64d;
+  border-left:solid 2px #4fa64d;
+  background:#297b2e;
+  padding:2px 8px;
+  font-weight:bold;
+}
+
+a.massivegreenButton:hover {
+  background:#FFFFFF;
+  color:#297b2e;
+}
+
+/* light box parts */
+
+div.massivegreenLightBox{
+  border:solid 1px #297b2e;
+  background:#eeffef;
+}
+
+/* bar parts */
+div.massivegreenBar {
+  border-bottom:solid 2px #244b23;
+  border-right:solid 2px #244b23;
+  border-top:solid 2px #4fa64d;
+  border-left:solid 2px #4fa64d;
+  background:#297b2e;
+  height:20px;
+}
+
+.massivegreenBarItem {
+  display:block;
+  float:left;
+  padding: 3px 16px;
+  color:#cfe2d0;
+  font-weight:bold;
+}
+
+.massivegreenBarButton {
+  display:block;
+  float:left;
+  padding: 3px 16px;
+  font-weight:bold;
+  color:white;
+}
+
+.massivegreenBarButton img{
+  margin:1px 0;
+}
+
+.massivegreenBarButton:hover {
+  color:#297b2e;
+  background:#cfe2d0;
+}
+
+
+/* layered menu part */
+div.massivegreenLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: hidden;
+  display:none;
+  padding:0;
+  border-bottom:solid 1px #244b23;
+  border-right:solid 1px #244b23;
+  border-top:solid 1px #4fa64d;
+  border-left:solid 1px #4fa64d;
+  background:#297b2e;
+}
+
+div.massivegreenLayeredMenuSeparator1{
+  height:2px;
+  font-size:1px;
+  border-bottom: solid 1px #244b23;
+}
+
+div.massivegreenLayeredMenuSeparator2{
+  height:2px;
+  font-size:1px;
+  border-top:solid 1px #4fa64d;
+}
+
+div.massivegreenLayeredMenuIcon{
+  float:left;
+  margin-right:4px;
+}
+
+a.massivegreenLayeredMenuItem {
+  display:block;
+  clear:both;
+  color:#FFFFFF;
+  font-weight:bold;
+  text-align:left;
+  padding:2px 20px 2px 4px;
+  background:none;
+}
+
+a.massivegreenLayeredMenuItem:hover{
+  background:#eeffef;
+  color:#297b2e;
+  border:none;
+}
+
+div.massivegreenLayeredMenuItem{ 
+  padding:3px 20px 3px 4px;
+  clear:both;
+  color:#cfe2d0;
+  font-weight:bold;
+  text-align:left;
+}

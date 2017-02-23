@@ -1,0 +1,24 @@
+/*
+ * CaMykS Engine
+ * Developed by		  : camyks.net
+ * Author			      : CaMykS Team
+ * CaMykS Version	  : 1.0b
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input CSS Styles
+ * Create Date		  : Jan 2010
+ * Last Modif Date  : Jan 2010
+ *
+ * GenericPageController CSS style file
+ *
+ */
+
+.genericPageEmptyController { border-bottom:solid 1px #888888; font-size:4px; height: 4px; }
+.genericPageController { border-top:solid 1px #888888; border-bottom:solid 1px #888888; padding:2px 4px; }
+.genericPageController .gpcBox {margin:0 auto;}
+.genericPageController .gpcButton {width:11px; padding:0px 4px;}
+.genericPageController .gpcSelected {font-weight:bold; color:#888888;}
+.genericPageController .gpcLink {font-weight:bold; color:#333333;}
+.genericPageController .gpcSpacer{padding:0px 4px; color:#333333;}
+.genericPageController .gpcLPage{padding:0px 4px; color:#333333;}
+.genericPageController .gpcRPage{padding:0px 4px; color:#333333;}
+.genericPageController .gpcPage{padding:0px 4px; color:#333333;}

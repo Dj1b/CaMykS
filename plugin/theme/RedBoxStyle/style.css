@@ -1,0 +1,68 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Main CSS Styles
+ * Create Date		: Jan 2009
+ * Last Modif Date      : Jan 2009
+ *
+ * Red Box theme CSS styles
+ */
+
+/* global */
+
+body {
+  background:#ff9ba4;
+}
+
+body, p, td, span, div, a, h1, h2, h3, h4 {
+  font-family: Verdana, Arial, Helvetica;
+  font-size: 10px;
+  font-weight:normal;
+  font-style:normal;
+  color:#010b48;
+  padding:0px;
+  margin:0px;
+}
+
+a { text-decoration:none; color:#CC3333; }
+ul { margin:0px 16px; padding:0 4px; list-style:url(img/bullet.gif); }
+li { margin:2px 4px;}
+blockquote { margin:20x; }
+input, textarea, select { border:solid 1px #ab0000; background: #fff0f0; }
+.inputs{ width:200px;}
+form {margin:0;}
+
+/* icon image for layered menu */
+img.icon{ float:left; margin-right:4px; }
+
+/* error */
+.error { 
+  font-size:12px;
+  font-weight:bold;
+  color:#CC3333;
+  text-align:center;
+  padding:4px;
+}
+
+/* admin */
+td.adminhelplist {
+  background:#ff9ba4;
+  padding:0;
+  height:100%;
+  width:150px;
+  vertical-align:top;
+}
+
+td.adminhelptext {
+  vertical-align:top;
+  padding:0px;
+}
+
+.adminControlPanelGroup{ background:#FFFFFF;}
+.adminControlPanelItem{}
+
+/* overwrite parts CSS for language button */
+#_language_{border-right:none;}

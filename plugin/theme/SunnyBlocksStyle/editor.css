@@ -1,0 +1,112 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Editor CSS Styles
+ * Create Date		: Jul 2008
+ * Last Modif Date      : Jul 2008
+ *
+ * Editor CSS styles for Sunny Blocks Style Theme
+*/
+
+/* generic styles */
+.eTitle1 {
+  font-size:16px;
+  font-weight:bold;
+  color:#ff9600;
+  padding:8px 0 0;
+}
+
+.eTitle2 {
+  font-size:13px;
+  font-weight:bold;
+  color:#ff9600;
+  background:url(img/title2.gif) 0% 13px no-repeat;
+  padding:8px 10px 4px;
+}
+
+.eTitle3 {
+  font-size:13px;
+  font-style:italic;
+  font-weight:bold;
+  color:#df6900;
+  padding: 4px 0px;
+}
+
+.eTitle4 { 
+  display:block;
+  font-style:italic;
+  color:#df6900;
+  background:url(img/title4.gif) 0% 3px no-repeat;
+  padding:0 10px;
+}
+
+.eContent1 {
+  font-size:11px;
+  text-align: justify;
+}
+
+p.eContent1, p.eContent2, p.eContent3, p.eContent4 {
+  padding: 4px;
+}
+
+.eContent2 {
+  font-size:11px;
+  text-align: justify;
+  font-weight: bold;
+}
+
+.eContent3 {
+  font-size:11px;
+  text-align: justify;
+  font-style: italic;
+}
+
+.eContent4 { 
+  font-size: 10px;
+  text-align: justify;
+  font-style: italic;
+  color:#df6900;
+}
+
+a.eLink1 {
+  color:#df6900;
+}
+
+a.eLink1:hover{
+  text-decoration:underline;
+}
+
+a.eLink2 {
+  color:#df6900;
+  font-weight:bold;  
+}
+
+a.eLink2:hover{
+  text-decoration:underline;
+}
+
+table.eTable{ }
+
+th.eTableHeader, td.eTableHeader { 
+  background:#ff9600;
+  padding:4px;
+  font-weight:bold;
+  color: white;
+}
+
+td.eTableLine0 {
+  background:#FFFFFF;
+  padding:3px 4px;
+  border-bottom:solid 1px #ff9600;
+}
+
+td.eTableLine1 {
+  background:#fde669;
+  padding:3px 4px;
+  border-bottom:solid 1px #ff9600;
+}
+
+/* specific styles */

@@ -1,0 +1,168 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Main CSS Styles
+ * Create Date		: Jun 2005
+ * Last Modif Date      : May 2008
+ *
+ * Main CSS styles for Psionic Storm Style Theme
+ */
+
+/* global */
+
+body {
+  background:black;
+}
+
+body, p, td, span, div, a, h1, h2, h3, h4 {
+  font-family: Arial, Verdana, Helvetica;
+  font-size: 12px;
+  font-weight:normal;
+  font-style:normal;
+  color:white;
+  padding:0px;
+  margin:0px;
+}
+
+a { text-decoration:none; }
+ul { margin:0px 10px; padding:0 4px; list-style:url(img/bullet.gif); }
+li { margin:2px 4px; }
+blockquote { margin:20x; }
+input, textarea { border:solid 2px #6479d5; background: #d5daf9; }
+.inputs{ width:200px;}
+form {margin:0;}
+
+/* icon image for layared menu */
+img.icon{ float:left; margin-right:4px; }
+
+/* error */
+.error { 
+  font-size:12px;
+  font-weight:bold;
+  color:#CC3333;
+  text-align:center;
+  padding:4px;
+}
+
+/* Global styles */
+
+.title1 {
+  font-size:16px;
+  font-weight:bold;
+  color:#b0befb;
+  padding: 8px 0 0;
+}
+
+.title2 {
+  font-size:13px;
+  font-weight:bold;
+  color:#6479d5;
+  padding:8px 0 4px;
+}
+
+.title3 {
+  font-size:13px;
+  font-style:italic;
+  color:#b0befb;
+  padding:4px 0;
+}
+
+.title4 { 
+  font-style:italic;
+  font-weight:bold;
+  color:#6479d5;
+  background:url(img/title4.gif) 0% 5px no-repeat;
+  padding: 2px 12px;
+}
+
+.content1 {
+  text-align: justify;
+  padding: 2px;
+}
+
+.content2 {
+  text-align: justify;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.content3 {
+  text-align: justify;
+  font-style:italic;
+  padding: 2px;
+
+}
+
+.content4 { 
+  font-size: 11px;
+  text-align: justify;
+  font-style: italic;
+  color:#98a8ed;
+  padding: 2px;
+}
+
+/* link */
+.link1 { 
+  color:#98a8ed;
+}
+
+.link2 {
+  color:#6479d5;
+  font-weight:bold;  
+}
+
+.link1:hover, .link2:hover {
+  color:#98a8ed;
+  border-bottom:dotted 1px #98a8ed;
+}
+
+/* list css */
+.listheader { 
+  background:url(img/menuLink.gif) 0 100% repeat-x #1126a3;
+  padding:4px;
+  font-weight:bold;
+  color: white;
+}
+
+a.listheader { 
+  color:white;
+  font-weight:bold;
+}
+
+a.listheader:hover { 
+  color:#6479d5;
+}
+
+.listline0 {
+  background:#050c2f;
+  padding:3px 4px;
+  border-top:solid 1px #6479d5;
+}
+
+.listline1 {
+  background:#000000;
+  padding:3px 4px;
+  border-top:solid 1px #6479d5;
+}
+
+/* admin */
+td.adminhelplist {
+  background: #050c2f;
+  border-right: solid 1px #1126a3;
+  padding: 0px;
+  width:150px;
+  height:100%;
+  vertical-align:top;
+}
+
+td.adminhelptext {
+  vertical-align:top;
+  padding:0px;
+}
+
+.adminControlPanelGroup{ border:solid 1px #1126a3; background:#050c2f;}
+
+.adminControlPanelItem{}

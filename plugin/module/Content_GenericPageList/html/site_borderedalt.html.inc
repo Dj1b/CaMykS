@@ -1,0 +1,36 @@
+<?php
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type	        : Plugin / Module Layout
+ * Create Date	       	: Nov 2007
+ * Last Modif Date	: Nov 2007
+ *
+ * Content_GenericPageList Module site layout : bordered
+*/
+global $camyks;
+$alt=0;
+?>
+<?=$this->theme->get_boxHeader('width:100%;');?>
+<?php if ( $this->plitem->vars['title'] != '' ) : ?>
+<?=$this->theme->get_boxTitleBar( $this->plitem->vars['title'] ); ?>
+<?php endif; ?>
+<?=$this->theme->get_boxContent1Header('padding:12px;'); ?>
+<table cellspacing="0" style="width:100%">
+<?php foreach ( $this->plitem->vars['pages'] as $p ) : ?>
+<?php $page = $this->pages[$p]; ?>
+<tr>
+<td class="listline<?=$alt?>" style="padding:4px">
+<a class="link1" href="<?=$page->get_siteLink()?>">
+<?=$page->title?>
+</a>
+</td>
+</tr>
+<?php $alt=abs( $alt-1 ); ?>
+<?php endforeach; ?>
+</table>
+<?=$this->theme->get_boxContent1Footer();?>
+<?=$this->theme->get_boxFooter();?>

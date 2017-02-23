@@ -1,0 +1,8 @@
+.mceLinkList, .mceAnchorList, #targetlist {width:280px;}
+.mceActionPanel {margin-top:7px;}
+#classlist, #title, #href, #anchor {width:280px;}
+#popupurl, #popupname {width:200px;}
+#popupwidth, #popupheight, #popupleft, #popuptop {width:30px;vertical-align:middle;text-align:center;}
+#classes, #target {width:200px;}
+a.pagelink span{background:url(../img/pagelink.gif) 50% no-repeat;}
+a.filelink span{background:url(../img/filelink.gif) 50% no-repeat;}

@@ -1,0 +1,23 @@
+/*
+ * Camyks Engine
+ * Company                 : camyks.net
+ * Author                  : CaMykS Team <camyks.contact@gmail.com> 
+ * Camyks Version          : 1.0a
+ * Object Version          : 1.0
+ * Object Type             : Plugin / Template style
+ * Creation Date           : Nov 2007
+ * Last Modif Date         : Nov 2007 
+ * History :
+ * * 07-12-04 : Initial file
+ *      
+ * WebPage Template main layout applied styles
+ */
+
+#pageMain { width:800px;margin:20px auto; }
+#pageObject {  }
+#pageHeader {  }
+#pageLeft{ width:150px; float:left; }
+#pageRight{ width:150px; float:right; }
+#pageContent{ width:500px; float:left; }
+#pageCaMykSBox{ margin:2px; text-align:center; clear:both; }
+#pageCaMykSLink{ font-weight:normal; font-family:arial, verdana; font-style:italic; color:#666666; }

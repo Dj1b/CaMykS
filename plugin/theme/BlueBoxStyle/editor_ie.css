@@ -1,0 +1,16 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Main CSS Styles
+ * Create Date		: Dec 2008
+ * Last Modif Date      : Jan 2009
+ *
+ * Blue Box theme CSS styles complement for IE
+ */
+
+p.eContent3, p.eContent4 {
+  width:98%;
+}

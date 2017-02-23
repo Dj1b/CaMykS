@@ -1,0 +1,33 @@
+# Enable Sym Links for CMS folders
+Options +FollowSymlinks
+
+<IfModule mod_headers.c>
+  # Framed page protection
+  Header set X-Frame-Options SAMEORIGIN
+  # Cookie protection
+  Header edit Set-Cookie ^(.*)$ $1;HttpOnly
+  #XSS protection
+  Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Set up default expire	value
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresDefault "access plus 4 weeks"
+  ExpiresDefault "access plus 30 days"
+</IfModule>
+
+# Rewrite engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # disable .inc view
+  RewriteRule ^(.*)?\.inc$ / [L]
+
+  # admin, request (.php files)
+  RewriteRule ^([^\.]*).php$ $1.php?%{QUERY_STRING} [L]
+
+  # site page ( .htm, .html, .xhtml, no extension )
+  RewriteCond %{REQUEST_FILENAME} !-s
+  RewriteRule ^([_0-9a-zA-Z/]*/)?([_0-9a-zA-Z]*)([-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$4&&ext=$5&%{QUERY_STRING} [L,NS]
+</IfModule>

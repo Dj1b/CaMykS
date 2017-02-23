@@ -1,0 +1,26 @@
+/*
+ * CaMykS Engine
+ * Developed by	       	: camyks.net
+ * Author	       	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   	: 1.0a
+ * Object Version       : 1.0
+ * Object Type          : Plugin / Input CSS Styles
+ * Create Date		: Jul 2007
+ * Last Modif Date	: Jul 2007
+*/
+
+div.sg_root { }
+div.sg_main { padding:20px; }
+div.sg_title { width:100%; text-align:center; padding:0px 0px 10px 0px; font-weight:bold; }
+div.sg_desc { width:100%; text-align:center; padding:0px 0px 10px 0px; height:30px; overflow:hidden; }
+div.sg_panel { }
+div.sg_nav { position:relative; background:black; }
+div.sg_navarrow { float:left; width:50px; font-size:0px; }
+img.sg_arrow { cursor:pointer; }
+div.sg_sel { padding: 0px; position:relative; overflow:hidden; float:left; }
+
+img.sg_pagerselected { font-size:0px; padding:5px 5px; }
+img.sg_pagerfree { cursor:pointer; font-size:0px; padding:5px 5px; }
+
+div.sg_thumb { position: absolute; top:0px;}
+img.sg_thumb { cursor:pointer; font-size:0px; padding:5px 10px; }

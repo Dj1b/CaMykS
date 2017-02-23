@@ -1,0 +1,104 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Main CSS styles
+ * Create Date		: Sep 2005
+ * Last Modif Date      : Jan 2008
+ *
+ * Main CSS styles for Basic Theme
+*/
+
+/* global */
+body {
+  margin:0em;
+  background:white;
+}
+
+body, p, td, span, div, a, h1, h2, h3, h4 {
+  font-family: Arial, Verdana, Helvetica;
+  font-size: 11px;
+  font-weight:normal;
+  font-style:normal;
+  color:black;
+}
+
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+form {
+ margin:0em;
+ height:100%;
+}
+
+img.icon {float:left; margin-right:4px;}
+
+/* predefined styles */
+.title1 {
+  font-size:15px;
+  font-weight:bold;
+  color:#444444;
+  white-space: nowrap;
+  text-shadow: #888888 2px 2px 2px;
+}
+
+.title2 {
+  font-size:14px;
+  font-weight:bold;
+  color:#9B9F84;
+  white-space: nowrap;
+}
+
+.title3 {
+  font-size:12px;
+  font-weight:bold;
+  font-style:italic;
+  color:#9B9F84;
+}
+
+.title4 { 
+  font-size:12px;
+  font-style:italic;
+  color:#444444;
+}
+
+.content1 {
+  text-align: justify;
+  padding: 2px;
+}
+
+.content2 {
+  text-align: justify;
+  font-weight: bold;
+  padding: 2px;
+}
+
+.content3 {
+  text-align: justify;
+  font-style: italic;
+  padding: 2px;
+}
+
+.link1 { color:#9B9F84; text-decoration:underline; }
+
+.link2 { font-weight:bold; color:#9B9F84; text-decoration:underline; }
+
+.error { 
+  font-size:12px;
+  font-weight:bold;
+  color:#CC3333;
+}
+
+/* list css */
+
+.list0 {
+  background:white;
+  padding:4px;
+}
+
+.list1 {
+  background:#CCCCCC;
+  padding:4px;
+}

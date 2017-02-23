@@ -1,0 +1,92 @@
+/*
+ * CaMykS Engine
+ * Developed		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Parts CSS styles
+ * Create Date		: Sep 2005
+ * Last Modif Date      : Jan 2008
+ *
+ * Parts CSS styles for Basic Theme
+*/
+
+/* bar */
+div.basicBar { 
+  border:solid 1px #9B9F84;
+  background-color:#EAECE2;
+}
+
+/* box */
+div.basicBox { 
+  border:solid 1px #9B9F84;
+}
+
+div.basicTitleBar {
+  background-color:#EAECE2;
+  font-weight:bold;
+  font-size: 14px;
+  padding:2px 4px;
+  height:18px;
+}
+
+div.basicBoxContent1 { 
+  padding:4px;
+}
+
+/* button */
+
+td.basicButton { padding:4px; border:solid 1px #9B9F84; background:#EAECE2; }
+td.basicButtonOn { padding:4px; border:solid 1px #9B9F84; background:#D5D8C5; }
+a.basicButton { font-weight:old; }
+
+/* layered menu */
+div.basicLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: hidden;
+  display:none;
+  background:white;
+  width:175px;
+}
+
+div.basicLayeredMenuSeparator{
+  margin:1px 0px;
+  height:4px;
+  font-size:1px;
+  background-color: #EAECE2;
+}
+
+div.basicLayeredMenuItem{
+  clear:both;
+  height:18px;
+  background-color: #EAECE2;
+  margin:2px 0px;
+  padding-right:4px;
+  line-height:16px;
+}
+
+a.basicLayeredMenuItem{
+  display:block;
+  clear:both;
+  height:18px;
+  background-color: #EAECE2;
+  margin:2px 0px;
+  padding-right:4px;
+  font-weight:bold;
+  line-height:16px;
+}
+
+a.basicLayeredMenuItem:hover{
+  background-color: #D5D8C5;
+}
+
+div.basicLayeredMenuItemIcon{
+  background:#9B9F84;
+  float:left;
+  padding:2px 4px;
+  margin-right:4px;
+  height:14px;
+}

@@ -1,0 +1,68 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Main CSS Styles
+ * Create Date		: Dec 2008
+ * Last Modif Date      : Jan 2009
+ *
+ * MacOS7Style Main Style
+ */
+
+/* global */
+
+body {
+  background:url(img/background.gif);
+}
+
+body, p, td, span, div, a, h1, h2, h3, h4 {
+  font-family: Arial, Verdana;
+  font-size: 11px;
+  font-weight:normal;
+  font-style:normal;
+  color:black;
+  padding:0;
+  margin:0;
+}
+
+a { text-decoration:none; }
+ul { margin:0px 10px; padding:0 4px; }
+li { margin:2px 4px; }
+blockquote { margin:20x; }
+
+/* icon image for layered menu */
+img.icon{ float:left; margin-right:4px; }
+
+/* inputs */
+.inputs {width:200px;}
+
+/* error */
+.error { 
+  font-size:12px;
+  font-weight:bold;
+  color:#CC3333;
+  text-align:center;
+  padding:4px;
+}
+
+/* some admin styles */
+.adminMain { 
+  padding:0px 0px 4px 0px;
+  vertical-align:top;
+  height:100%;
+}
+
+.adminhelplist {
+  background : #DDDDDD;
+  border-right: solid 1px #888888;
+  padding: 0px;
+  width:150px;
+  height:100%;
+  vertical-align:top;
+}
+.adminhelptext {vertical-align:top; padding:0px;}
+.adminControlPanelGroup{background:#E4E4E4;}
+.adminControlPanelItem{}
+#_language_{padding:2px 8px 0; height:17px;}

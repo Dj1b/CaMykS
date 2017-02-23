@@ -1,0 +1,109 @@
+/*
+ * CaMykS Engine
+ * Developed by		: camyks.net
+ * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0a
+ * Object Version	: 1.0
+ * Object Type          : Plugin / Theme Editor CSS Styles
+ * Create Date		: Jan 2009
+ * Last Modif Date      : Jan 2009
+ *
+ * Red Box theme CSS styles
+*/
+
+/* generic styles */
+.eTitle1 {
+  font-size:16px;
+  font-weight:bold;
+  color:#ab0000;
+  padding:8px 0 0;
+}
+
+.eTitle2 {
+  font-size:13px;
+  font-weight:bold;
+  color:#CC3333;
+  background:url(img/title2.gif) 0% 15px no-repeat;
+  padding:8px 10px 4px;
+}
+
+.eTitle3 {
+  font-size:13px;
+  font-style:italic;
+  font-weight:bold;
+  color:#ab0000;
+  padding: 4px 0px;
+}
+
+.eTitle4 { 
+  display:block;
+  font-style:italic;
+  color:#CC3333;
+  background:url(img/title4.gif) 3px 4px no-repeat;
+  padding:0 15px;
+}
+
+.eContent1 {
+  text-align: justify;
+}
+
+.eContent2 {
+  text-align: justify;
+  font-weight: bold;
+  color:#ab0000;
+}
+
+.eContent3 {
+  text-align: justify;
+  font-style: italic;
+}
+
+.eContent4 { 
+  font-size:9px;
+  text-align: justify;
+  font-style: italic;
+  color:#df6900;
+}
+
+p.eContent1, p.eContent2, p.eContent3, p.eContent4 {
+  padding: 4px;
+}
+
+p.eContent4 {
+  margin:4px 0;
+  background:#CC3333;
+  color:white;
+}
+
+
+a.eLink1 {
+  color:#CC3333;
+}
+
+a.eLink1:hover{
+  text-decoration:underline;
+}
+
+a.eLink2 {
+  color:#ab0000;
+  font-weight:bold;  
+}
+
+a.eLink2:hover{
+  text-decoration:underline;
+}
+
+table.eTable{ border-collapse:collapse; }
+
+th.eTableHeader, td.eTableHeader {
+  border:solid 1px #ab0000;
+  background:#CC3333;
+  padding:4px;
+  font-weight:bold;
+  color: white;
+}
+.eTableLine0 { background:#FFFFFF; padding:3px 4px; }
+.eTableLine1 { background:#fff0f0; padding:3px 4px; }
+
+table.eTable .eTableLine0 { border:solid 1px #ab0000; } 
+table.eTable .eTableLine1 { border:solid 1px #ab0000; } 

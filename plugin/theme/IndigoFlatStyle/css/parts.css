@@ -1,0 +1,179 @@
+/*
+ * CaMykS Engine
+ * Developed by		: Ideogram Design
+ * Author			: JB Lebrun
+ * CaMykS Version	: 1.0b
+ * Object Version	: 1.0
+ * Object Type      : Plugin / Theme Part CSS Styles
+ * Creation Date	: Oct 2014
+ * Last Modif Date  : Oct 2014
+ *
+ * Indigo Flat Theme Parts CSS styles
+*/
+
+/* button parts */
+a.indigoFlatStyleButton {
+  display:inline-block;
+  padding:6px 8px 5px;
+  background:#5b8dcd;
+  color:white;
+  margin-right:8px;
+  text-transform:uppercase;
+  text-decoration:none;
+  font-size:10px;
+  cursor:pointer;
+  transition:opacity 0.3s;
+}
+
+a.indigoFlatStyleButton:hover {
+ opacity:0.8;
+ filter:alpha(opacity=80);
+} 
+
+
+/* bar parts */
+div.indigoFlatStyleBar {
+  background:#808080;
+  max-height:35px;
+  overflow:hidden;
+}
+
+div.indigoFlatStyleBarItem {
+  display:block;
+  position:relative;
+  padding:10px 8px;
+  color:#d7d2cb;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+a.indigoFlatStyleBarButton{
+  display:block;
+  position:relative;
+  padding:10px 8px;
+  color:white;
+  font-size:13px;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background 0.3s;
+}
+
+a.indigoFlatStyleBarButton:hover{
+  background:#5b8dcd;
+}
+
+
+/* box part */
+div.indigoFlatStyleBox { 
+}
+
+div.indigoFlatStyleBoxContent {
+  background:white;
+  padding:8px;
+}
+
+div.indigoFlatStyleBoxButtonBar {
+  padding:8px 0;
+}
+
+a.indigoFlatStyleBoxButton {
+  display:inline-block;
+  padding:8px 16px;
+  background:#5b8dcd;
+  color:white;
+  margin-right:8px;
+  font-size:12px;
+  text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  transition:opacity 0.3s;
+}
+
+a.indigoFlatStyleBoxButton:hover {
+ opacity:0.8;
+ filter:alpha(opacity=80);
+} 
+
+div.indigoFlatStyleBoxTabsBarLine {
+ background:#808080;
+}
+
+.indigoFlatStyleBoxTab {
+  font-size:12px;
+  color:white;
+  padding:8px;
+  border-right:solid 1px #a6a6a6;
+  letter-spacing:1px;
+}
+
+.indigoFlatStyleBoxTabS {
+  background:white;
+  font-size:12px;
+  color:#808080;
+  padding:8px;
+  border-right:solid 1px white;
+  letter-spacing:1px;
+}
+
+.indigoFlatStyleBoxTabO {
+  background:#5b8dcd;
+  font-size:12px;
+  color:white;
+  padding:8px;
+  border-right:solid 1px #a6a6a6;
+  cursor:pointer;
+  letter-spacing:1px;
+}
+
+/* layered menu part */
+div.indigoFlatStyleLayeredMenuHeader{
+  position:absolute;
+  left: 200px;
+  top: 200px;
+  z-index:100;
+  overflow: auto;
+  display:none;
+  padding:0;
+  background:white;
+  border:solid 1px #EEEEEE;
+  min-width:150px;
+}
+
+div.indigoFlatStyleLayeredMenuSeparator{
+  height:4px;
+  font-size:1px;
+  margin-bottom:4px;
+  border-bottom:solid 1px #EEEEEE;
+}
+
+div.indigoFlatStyleLayeredMenuIcon{
+  float:left;
+  margin-right:4px;
+}
+
+a.indigoFlatStyleLayeredMenuItem {
+  display:block;
+  clear:both;
+  color:#5C5C5C;
+  text-align:left;
+  padding:6px 20px 6px 6px;
+  background-color: white;
+  text-decoration:none;
+  font-size:13px;
+  cursor:pointer;
+}
+
+a.indigoFlatStyleLayeredMenuItem:hover{
+  background-color: #DEE8F5;
+}
+
+div.indigoFlatStyleLayeredMenuItem{ 
+  background-color: white;
+  padding:6px 20px 6px 6px;
+  clear:both;
+  color:#9C9C9C;
+  font-style:italic;
+  text-align:left;
+  text-decoration:none;
+  font-size:13px;
+}
