@@ -1338,7 +1338,7 @@ class HTMLForm_hidden {
    * @access public
    */
   function display ( ) {
-    return '<input type="hidden" name="'.$this->name.'" value="'.$this->value.'" />';
+    return '<input type="hidden" name="'.$this->name.'" value="'.htmlentities($this->value, ENT_COMPAT, 'UTF-8').'" />';
   }
 }
 ?>

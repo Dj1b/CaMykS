@@ -93,7 +93,7 @@ class ContentPage {
     $this->sitelink = '';
     $this->mode = $mode;
     $this->params_ = $params;
-
+    
     $this->modules = array();
     $this->children = array();
     $this->metas = array();
@@ -156,7 +156,7 @@ class ContentPage {
     global $camyks;
     
     /* check page : prevent from url injection  */
-    if (preg_match('/[^a-zA-Z0-9_]/', $page))
+    if (preg_match('/[^a-zA-Z0-9_\-]/', $page))
        $page=0;
         
     /* try to load page */
@@ -259,24 +259,28 @@ class ContentPage {
     global $camyks;
     /* check name */
     $this->name = trim($this->name);
+    
     /* parse invalid chars */
-    $this->name = preg_replace( '/([^_a-zA-Z0-9])/', '', $this->name );
+    if ($camyks->get_confValue('friendlyurls') == 'modern')
+      $this->name = preg_replace(array('/^([^a-zA-Z0-9]+)/', '/([^_a-zA-Z0-9\-]+)/', '/([^a-zA-Z0-9]+)$/'), array('', '-', ''), $this->name);
+    else
+      $this->name = preg_replace(array('/^([^a-zA-Z0-9]+)/', '/([^_a-zA-Z0-9]+)/', '/([^a-zA-Z0-9]+)$/'), array('', '_', ''), $this->name);
 
     /* check empty name */
     if ( $this->name == '' ) {
       if ( $this->id > 0 ) {
-	$this->name = $this->type.$this->id;
+	    $this->name = $this->type.$this->id;
       } else {
-	$sql = 'select max(id) as m from admin_contentpage';
-	if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
-	  if ( $data = $camyks->db_conn->get_queryDataLine())
-	    $this->name = $this->type.($data['m']+1);
-	  else
-	    $this->name = $this->type;
-	else
-	  $this->name = $this->type;
+	    $sql = 'select max(id) as m from admin_contentpage';
+	    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
+	      if ( $data = $camyks->db_conn->get_queryDataLine())
+	        $this->name = $this->type.($data['m']+1);
+	      else
+	        $this->name = $this->type;
+	    else
+	      $this->name = $this->type;
       }
-    } else if ( !preg_match ( '([_a-zA-Z])', $this->name ) ) {
+    } else if (!preg_match ('([_a-zA-Z\-])', $this->name)) {
       /* check if name contain at least one alphabetic char */
       $this->name = $this->type.$this->name;
     }
@@ -289,12 +293,12 @@ class ContentPage {
     $sql .= ' group by id, name';
     if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
       while( $data = $camyks->db_conn->get_queryDataLine() )
-	$pages[$data['name']] = $data['id'];
+	    $pages[$data['name']] = $data['id'];
 
     if ( ( isset ( $pages[$this->name] ) and $pages[$this->name] != $this->id ) ) {
       $cnt = 1;
       while ( isset($pages[$this->name.$cnt]) and $pages[$this->name.$cnt] != $this->id ) {
-	$cnt++;
+	    $cnt++;
       }
       $this->name .= $cnt;
     } 
@@ -1104,10 +1108,11 @@ class ContentPage {
    * @return void
    * @access private
    */
-  function init_site () {
+  function init_site() {
     global $camyks;
+    
     /* parse params */
-    if ( strpos( $this->params_, '-' )==0 ) {
+    if (strpos($this->params_, '-')==0 or strpos($this->params_, '/')==0) {
       $this->params_ = substr( $this->params_, 1 );
     }
     $this->params = data_decode_properties($this->params_, '-' );
@@ -1253,11 +1258,15 @@ class ContentPage {
 
     /* add params */
     if ( count( $params ) > 0 ) {
-      $link .= '-'.data_encode_properties( $params, '-' );
+      if ($camyks->get_confValue('friendlyurls') == 'modern')
+        $link .= '/'.urlencode(data_encode_properties( $params, '-' ));
+      else {
+        $link .= '-'.data_encode_properties( $params, '-' );
+        
+        /* encode params */
+        $link = urlencode($link);
+      }
     }
-
-    /* encode params */
-    $link = urlencode($link);
 
     /* add language  */
     if ( $lg != '' ) {

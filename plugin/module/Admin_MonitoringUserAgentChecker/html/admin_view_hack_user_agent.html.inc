@@ -18,7 +18,7 @@ $file = $this->theme->get_pictURL('file', 12, 'std');
 $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 
 ?>
-<?=$this->theme->get_boxHeader('width:800px; margin:0 auto;');?>
+<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs,
 				$this->tabBuilder->jsParams);?>
@@ -40,8 +40,8 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 </td>
 <td class="">
   <div style="width:620px; overflow:auto; padding:8px;">
-<?=$this->recordItem->vars['user_agent']; ?>
-</div>
+    <?=$this->recordItem->vars['user_agent']; ?>
+  </div>
 </td>
 </tr>
 
@@ -59,83 +59,19 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 
 <tr>
 <td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_platform_company')?>
+<?=$camyks->get_translation('formitem_type')?>
 </td>
 <td class="eTableLine0 eContent1">
-<?= array_key_exists('platform_company', $this->uaInfos) ? $this->uaInfos['platform_company'] : '';?>
+<?=$this->get_translation('platform_type_hack'); ?>
 </td>
 </tr>
 
 <tr>
 <td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_platform_model')?>
+<?=$this->get_translation('formitem_info')?>
 </td>
 <td class="eTableLine1 eContent1">
-<?= array_key_exists('platform_model', $this->uaInfos) ? $this->uaInfos['platform_model'] : '';?>
-</td>
-</tr>
-
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_platform_type')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?php
-$new_platform_type = $this->uaInfos['platform_type'];
-if($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
-	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']) . ' (' . 
-		$this->get_translation('platform_type_' . $new_platform_type) . '*)';
-else
-	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']);
-
- ?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_platform_format')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= (array_key_exists('platform_format', $this->uaInfos) and isset($this->recordPlatformFormats[$this->uaInfos['platform_format']])) ? $this->recordPlatformFormats[$this->uaInfos['platform_format']] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_system_title')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('system_title', $this->uaInfos) ? $this->uaInfos['system_title'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_system_version')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('system_version', $this->uaInfos) ? $this->uaInfos['system_version'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_browser_title')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('browser_title', $this->uaInfos) ? $this->uaInfos['browser_title'] : ''; ?>
-</td>
-</tr>
-
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_browser_version')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('browser_version', $this->uaInfos) ? $this->uaInfos['browser_version'] : '';?>
+<?= array_key_exists('hack_info', $this->uaInfos) ? $this->uaInfos['hack_info'] : '';?>
 </td>
 </tr>
 

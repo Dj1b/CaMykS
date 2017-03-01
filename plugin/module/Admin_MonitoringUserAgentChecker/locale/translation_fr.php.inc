@@ -25,6 +25,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tablet'] = 'Tab
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_computer'] = 'Ordinateur';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_bot'] = 'Robot';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tool'] = 'Outil';
+$this->trads['mod_admin_monitoringuseragentchecker_platform_type_hack'] = 'Hack';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_other'] = 'Autre';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_undefined'] = 'Autre';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_all'] = 'Tous';
@@ -54,7 +55,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_platform_type'] = 'Type';
 $this->trads['mod_admin_monitoringuseragentchecker_nvisits'] = 'Visites';
 $this->trads['mod_admin_monitoringuseragentchecker_lvisits'] = 'Dern. Visite';
 
-/* view record*/
+/* view record */
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_user_agent'] = 'Agent utilisateur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_platform_type'] = 'Type : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_nvisits'] = 'Nb. Visites : ';
@@ -79,6 +80,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_formitem_tool_title'] = 'Nom 
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_url'] = 'URL : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_engine_title'] = 'Nom du moteur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_engine_url'] = 'URL :';
+$this->trads['mod_admin_monitoringuseragentchecker_formitem_info'] = 'Informations :';
 
 /* list buttons */
 $this->trads['mod_admin_monitoringuseragentchecker_viewrecord'] = 'Voir cet agent utilisateur';

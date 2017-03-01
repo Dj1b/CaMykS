@@ -997,10 +997,16 @@ class Camyks {
       return;
     } else {
       $ua = client_getUAInfos();
+      
+      /* check for hacks */
+      if ($ua['platform_type'] == 'hack')
+        die();
+      
+      /* define define/format */
       $device = $ua['platform_format'];
       $deviceStatus = 'auto';
     }
-   
+        
     /* check device value */
     if ($device == 'mobile')
       $device = 'handheld';
@@ -1325,10 +1331,10 @@ class Camyks {
   		$mode = $this->get_confValue('file_path');
   		
   	/* check for boolean mode value */
-  	if($mode === false)
-  		$mode = 'relative';
-  	elseif($mode === true)
-  		$mode ='absolute';
+  	if ($mode === false)
+  	  $mode = 'relative';
+  	elseif ($mode === true)
+  	  $mode ='absolute';
   
   	/* return base url from mode */
   	switch ($mode) {

@@ -56,6 +56,10 @@ function client_getUAInfos($ua=false) {
 
   /* init result value */
   $infos = array();
+  
+  /*** check hacks */
+  if ( ($c = client_getHackInfosFromUserAgent($ua)) !== false)
+    return $c;
     
   /*** check tool */
   if ( ($c = client_getToolInfosFromUserAgent($ua)) !== false)
@@ -63,6 +67,10 @@ function client_getUAInfos($ua=false) {
   
   /*** check bot */
   if ( ($c = client_getBotInfosFromUserAgent($ua)) !== false)
+    return $c;
+    
+  /*** check generic bot/tool */
+  if ( ($c = client_getGenericInfosFromUserAgent($ua)) !== false)
     return $c;
 
   /*** check plateform ***/
@@ -221,6 +229,7 @@ function client_getUAInfos($ua=false) {
         'L160L' => array('platform_model' => 'Optimus LTE2', ),
         'D855'  => array('platform_model' => 'G3', ),
         'D722'  => array('platform_model' => 'G3 S', ),
+        'H815'  => array('platform_model' => 'G4', ),
     );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'LG', 
@@ -329,6 +338,7 @@ function client_getUAInfos($ua=false) {
         'SM-A300FU'=>array('platform_model' => 'Galaxy A3', ),
         'SM-A310F'=>array('platform_model' => 'Galaxy A3', ),
         'SM-A500FU'=>array('platform_model' => 'Galaxy A5', ),
+        'SM-A510F'=>array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A700L'=>array('platform_model' => 'Galaxy A7', ),
         'SM-J100H'=>array('platform_model' => 'Galaxy J1', ),
         'SM-J320FN'=>array('platform_model' => 'Galaxy J3', ),
@@ -362,7 +372,9 @@ function client_getUAInfos($ua=false) {
         'SM-N9005'=>array('platform_model' => 'Galaxy Note 3 (4G)', ),
         'SM-N7505'=>array('platform_model' => 'Galaxy Note 3 Neo', ),
         'SM-N910F'=>array('platform_model' => 'Galaxy Note 4', ),
+        'SM-N920V'=>array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'=>array('platform_model' => 'Galaxy Note 7', ),
+        'SM-N950'=>array('platform_model' => 'Galaxy Note 8', ),
         'SGH-I527'=>array('platform_model' => 'Galaxy Mega', ),
         'SM-G850W'=>array('platform_model' => 'Galaxy Alpha', ),
         'GT-S5830'=>array('platform_model' => 'Galaxy Ace', ),
@@ -449,6 +461,7 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/Huawei([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
         'EVA-L09'   => array('platform_model' => 'P9'),
+        'VIE-L29'   => array('platform_model' => 'P9 Plus'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
         'Y520-U22'  => array('platform_model' => 'Ascend'),
         'ALE-L21'   => array('platform_model' => 'P8 Lite'),
@@ -585,7 +598,7 @@ function client_getUAInfos($ua=false) {
       'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G/', $ua, $matches))
+  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE/', $ua, $matches))
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
       'platform_model'=>ucfirst(strtolower($matches[0])),
@@ -825,7 +838,7 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
   	
     /* check determined linux os */
-  	elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch Linux)/', $ua, $matches)) {
+  	elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux)/', $ua, $matches)) {
       $w = array('CrOS'=>'Chrome OS');
       $infos = array_merge(array(
         'platform_company'=>'PC', 
@@ -885,8 +898,8 @@ function client_getUAInfos($ua=false) {
       	'browser_version'=>isset($matches[2])?$matches[2]:''));
     }
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAN\/FBIOS;FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAN/FBIOS;FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App');
 	  $infos = array_merge($infos, array(
 	    'browser_title'=>isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       	'browser_version'=>isset($matches[2])?$matches[2]:''));
@@ -1185,6 +1198,15 @@ function client_getKnownBots() {
     'bot_url'=>'http://www.bing.com/bingbot.htm',
     'engine_title'=>'bing',
     'engine_url'=>'http://www.bing.com/');
+    
+  /*  MS Search 6.0 Robot  */
+  $knownTools['ms search 6.0 robot'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Microsoft Sharepoint Crawler',
+    'tool_url'=>'',
+    'engine_title'=>'Microsoft',
+    'engine_url'=>'http://www.microsoft.com');
 	
   /* Facebook bot : facebot */
   $knownBots['facebot'] = array(
@@ -1269,6 +1291,15 @@ function client_getKnownBots() {
     
   /* Gigablast bot : Gigabot */
   $knownBots['gigablast.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'GigaBot',
+    'bot_url'=>'http://www.gigablast.com/spider.html',
+    'engine_title'=>'Gigablast',
+    'engine_url'=>'http://www.gigablast.com');
+  
+  /* Gigablast bot : Gigabot */
+  $knownBots['gigabot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'GigaBot',
@@ -3057,70 +3088,239 @@ function client_getKnownBots() {
     'bot_url'=>'eng@linqia.com',
     'engine_title'=>'Linqia',
     'engine_url'=>'http://www.linqia.com');
-    
-  /* ** Keep at the end : Generic bots ** */
-       
-  /* NING */
-  $knownBots['ning'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'NING',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Nutch */
-  $knownBots['nutch'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Nutch',
-    'bot_url'=>'http://nutch.apache.org',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Voltron */
-  $knownBots['voltron'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Voltron',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Scrapy */
-  $knownBots['scrapy'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Scrapy',
-    'bot_url'=>'',
-    'engine_title'=>'Scrapy.org',
-    'engine_url'=>'http://scrapy.org');
-  
-  /* WWW-Mechanize */
-  $knownBots['www-mechanize'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'WWW-Mechanize',
-    'bot_url'=>'',
-    'engine_title'=>'CPAN',
-    'engine_url'=>'http://search.cpan.org/~ether/');
 
-  /* Fetcher */
-  $knownBots['compatible; fetcher/'] = array(
+  /* ZoomBot */
+  $knownBots['zoombot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Fetcher',
+    'bot_title'=>'ZoomBot',
     'bot_url'=>'',
-    'engine_title'=>'Apple',
-    'engine_url'=>'http://www.apple.com');
+    'engine_title'=>'seozoom',
+    'engine_url'=>'https://www.seozoom.it');
 
-  /* obot */
-  $knownBots[' obot'] = array(
+  /* BUbiNG */
+  $knownBots['bubing'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'oBot',
-    'bot_url'=>'http://filterdb.iss.net/crawler/',
-    'engine_title'=>'IBM Germany Research & Development GmbH',
+    'bot_title'=>'BUbiNG',
+    'bot_url'=>'http://law.di.unimi.it/BUbiNG.html',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* CATExplorador */
+  $knownBots['catexplorador'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'CATExplorador',
+    'bot_url'=>'http://domini.cat/catexplorador.html',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* aisou */
+  $knownBots['aisou'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'aisou',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* IDBot */
+  $knownBots['idbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'IDBot',
+    'bot_url'=>'http://www.id-search.xyz/bot.html',
+    'engine_title'=>'ID-Search<sup>xyz</sup>',
+    'engine_url'=>'http://www.id-search.xyz');
+
+  /* DomainCrawler */
+  $knownBots['domaincrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'DomainCrawler',
+    'bot_url'=>'info@domaincrawler.com',
+    'engine_title'=>'DomainCrawler',
+    'engine_url'=>'http://www.domaincrawler.com');
+
+  /* parsijoo-bot */
+  $knownBots['parsijoo-bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'parsijoo-bot',
+    'bot_url'=>'ehsanmousa@parsijoo.ir',
+    'engine_title'=>'Parsijoo',
+    'engine_url'=>'http://www.parsijoo.ir/');
+
+  /* bnf.fr_bot */
+  $knownBots['bnf.fr_bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'bnf.fr_bot',
+    'bot_url'=>'http://www.bnf.fr/fr/outils/a.dl_web_capture_robot.html',
+    'engine_title'=>'Biblioth&egrave;que Nationale de France',
+    'engine_url'=>'http://www.bnf.fr');
+
+  /* sSearch Crawler */
+  $knownBots['ssearch_bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'sSearch Crawler',
+    'bot_url'=>'',
+    'engine_title'=>'sSearch',
+    'engine_url'=>'http://www.semantissimo.de');
+
+  /* wonderbot/JS */
+  $knownBots['wonderbot/js'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'wonderbot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* SecurityResearch.bot */
+  $knownBots['securityresearch.bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'SecurityResearch.bot',
+    'bot_url'=>'http://besome1.info/securityresearchbot.html',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* deeris */
+  $knownBots['deeris'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Deeris',
+    'bot_url'=>'http://www.deeris.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* Searchie */
+  $knownBots['searchie'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Searchie',
+    'bot_url'=>'https://www.searchie.org',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* AugDiscovery-Bot */
+  $knownBots['augdiscovery-bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'AugDiscovery-Bot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Toweyabot */
+  $knownBots['toweyabot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Toweyabot',
+    'bot_url'=>'',
+    'engine_title'=>'Toweya',
+    'engine_url'=>'toweya.com');
+  
+  /* RSSingBot */
+  $knownBots['rssingbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'RSSingBot',
+    'bot_url'=>'',
+    'engine_title'=>'RSSing',
+    'engine_url'=>'http://www.rssing.com');
+  
+  /* exif-search */
+  $knownBots['www.exif-search.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Heritrix',
+    'bot_url'=>'',
+    'engine_title'=>'Exif Search',
+    'engine_url'=>'https://www.exif-search.com');
+  
+  /* Digincore bot */
+  $knownBots['digincore bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Digincore bot',
+    'bot_url'=>'https://www.digincore.com/crawler.html',
+    'engine_title'=>'Digincore',
+    'engine_url'=>'https://www.digincore.com');
+  
+  /* Wopabot */
+  $knownBots['wopabot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Wopabot',
+    'bot_url'=>'',
+    'engine_title'=>'Wopa',
+    'engine_url'=>'https://www.wopa.fr/');
+  
+  /* linkapediabot */
+  $knownBots['linkapediabot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'linkapediabot',
+    'bot_url'=>'',
+    'engine_title'=>'Linkapedia',
+    'engine_url'=>'http://www.linkapedia.com');
+  
+  /* WBSearchBot */
+  $knownBots['wbsearchbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'WBSearchBot',
+    'bot_url'=>'http://www.warebay.com/bot.html',
+    'engine_title'=>'Warebay',
+    'engine_url'=>'http://www.warebay.com');
+  
+  /* BacklinkCrawler */
+  $knownBots['backlinkcrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'BacklinkCrawler',
+    'bot_url'=>'http://www.backlinktest.com/crawler.html',
+    'engine_title'=>'backlink test',
+    'engine_url'=>'http://www.backlinktest.com');
+  
+  /* ParsijooBot */
+  $knownBots['parsijoobot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ParsijooBot',
+    'bot_url'=>'crawler@parsijoo.ir',
+    'engine_title'=>'Parsijoo',
+    'engine_url'=>'http://www.parsijoo.ir');
+  
+  /* Stratagems Kumo */
+  $knownBots['stratagems kumo'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Stratagems Kumo',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* ExactSeekCrawler */
+  $knownBots['exactseekcrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ExactSeekCrawler',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Jaunt */
+  $knownBots['jaunt'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Jaunt',
+    'bot_url'=>'',
+    'engine_title'=>'',
     'engine_url'=>'');
 
     
@@ -3622,168 +3822,84 @@ function client_getKnownTools() {
     'engine_title'=>'',
     'engine_url'=>'');
   
-  
-  /**** ****/
-  
-  /* Pcore-HTTP  */
-  $knownTools['pcore-http'] = array(
+  /* MetaInspector */
+  $knownTools['metainspector'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'Pcore-HTTP',
-    'tool_url'=>'http://search.cpan.org/dist/Pcore/lib/Pcore/HTTP.pm',
+    'tool_title'=>'MetaInspector',
+    'tool_url'=>'https://github.com/jaimeiniesta/metainspector',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* Mechanize (before Ruby) */
-  $knownTools['mechanize'] = array(
+  /* PerfectMail */
+  $knownTools['perfectmail'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'Mechanize',
-    'tool_url'=>'http://github.com/sparklemotion/mechanize/',
-    'engine_title'=>'',
-    'engine_url'=>'');
-
-  /* Wget linux library */
-  $knownTools['wget'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'WGet',
-    'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
+    'tool_title'=>'PerfectMail WebProbe',
+    'tool_url'=>'http://perfectmail.com/kb/web_probe',
+    'engine_title'=>'PerfectMail',
+    'engine_url'=>'http://perfectmail.com');
   
-  /* gettor */
-  $knownTools['gettor'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'gettor',
-    'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Python library */
-  $knownTools['python-urllib'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'Python Library',
-    'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Python Request library */
-  $knownTools['python-requests'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'Python Request Library',
-    'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Apache-HttpClient library (before Java) */
-  $knownTools['apache-httpclient'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'Apache-HttpClient',
-    'tool_url'=>'',
-    'engine_title'=>'Apache Software Foundation',
-    'engine_url'=>'https://hc.apache.org');
-  
-  /* Apache synapse library (before Synapse) */
-  $knownTools['synapse-httpcomponent'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'Apache Synapse',
-    'tool_url'=>'',
-    'engine_title'=>'Apache Software Foundation',
-    'engine_url'=>'https://hc.apache.org');
-  
-  /* Ararat Synapse */
-  $knownTools['synapse'] = array(
+  /* SiteTruth.com */
+  $knownTools['sitetruth.com'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
     'tool_title'=>'',
     'tool_url'=>'',
-    'engine_title'=>'Ararat Synapse',
-    'engine_url'=>'http://synapse.ararat.cz/doku.php');
+    'engine_title'=>'SiteTruth.com',
+    'engine_url'=>'http://SiteTruth.com');
   
-  /* java library */
-  $knownTools['java/'] = array(
+  /* SalesIntelligent */
+  $knownTools['salesintelligent'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'Java Library',
+    'tool_title'=>'',
     'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
+    'engine_title'=>'SalesIntelligent',
+    'engine_url'=>'http://SalesIntelligent.com');
   
-  /* Perl library */
-  $knownTools['libwww-perl'] = array(
+  /* SSL Labs */
+  $knownTools['ssl labs'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'PERL Library',
+    'tool_title'=>'SSL Labs',
+    'tool_url'=>'https://www.ssllabs.com/ssltest',
+    'engine_title'=>'Qualys',
+    'engine_url'=>'https://www.ssllabs.com/index.html');
+  
+  /* woobot */
+  $knownTools['woobot'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'woobot',
     'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
+    'engine_title'=>'Woorank',
+    'engine_url'=>'https://www.woorank.com');
   
-  /* WinHttpRequest */
-  $knownTools['winhttprequest'] = array(
+  /* internetVista monitor */
+  $knownTools['internetvista monitor'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'WinHttpRequest',
+    'tool_title'=>'internetVista monitor',
     'tool_url'=>'',
-    'engine_title'=>'Microsoft',
-    'engine_url'=>'');
+    'engine_title'=>'internetVista',
+    'engine_url'=>'http://www.internetvista.com');
   
-  /* Ruby */
-  $knownTools['ruby'] = array(
+  /* Contacts Crawler - is maybe a bot */
+  $knownTools['contacts crawler'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'Ruby Library',
+    'tool_title'=>'Contacts Crawler',
     'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
+    'engine_title'=>'Scrapinghub',
+    'engine_url'=>'http://scrapinghub.com');
   
-  /* GuzzleHttp (before curl) */
-  $knownTools['guzzle'] = array(
+  /* Seoterritory.com - is maybe a bot */
+  $knownTools['seoterritory.com'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'tool_title'=>'GuzzleHttp Library',
-    'tool_url'=>'http://docs.guzzlephp.org/en/latest/',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* cURL */
-  $knownTools['libcurl'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'cURL Library',
-    'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* cURL */
-  $knownTools['curl/'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'cURL Library',
-    'tool_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* PHP */
-  $knownTools['php/5'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'PHP Library',
-    'tool_url'=>'http://www.php.net',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* Go-http-client */
-  $knownTools['go-http-client'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'Go Language Library',
-    'tool_url'=>'https://golang.org/pkg/net/http/',
+    'tool_title'=>'Seoterritory.com',
+    'tool_url'=>'http://www.seoterritory.com',
     'engine_title'=>'',
     'engine_url'=>'');
     
@@ -3791,6 +3907,419 @@ function client_getKnownTools() {
   return $knownTools;
 }
 
+/*** generic tool/boot specific methods */
+
+/*
+ * return generic index if generic
+ * @param string $ua
+ * @return mixed
+ * @access public
+ */
+function client_checkIsGeneric($ua='') {
+  $knownGenerics = client_getKnownGenerics();
+  
+  /* build detection pattern */
+  $detectionPattern = implode('|', array_keys($knownGenerics));
+  $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+  $detectionPattern = '/'.$detectionPattern.'/i';
+
+  /* start detection and return result */
+  if ( preg_match ( $detectionPattern, strtolower($ua), $result ))
+    return $result[0];
+  return false;
+}
+
+/*
+ * return bot info if generic
+ * @param string $generic
+ * @return mixed
+ * @access public
+ */
+function client_getGenericInfos($generic='') {
+  $knownGenerics = client_getKnownGenerics();
+    
+  if (isset($knownGenerics[$generic]))
+    return $knownGenerics[$generic];
+  return array();
+}
+
+/*
+ * return bot info from user agent
+ * @param string $ua
+ * @return mixed
+ * @access public
+ */
+function client_getGenericInfosFromUserAgent($ua='') {
+  $knownGenerics = client_getKnownGenerics();
+  
+  /* build detection pattern */
+  $detectionPattern = implode('|', array_keys($knownGenerics));
+  $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+  $detectionPattern = '/'.$detectionPattern.'/i';
+
+  /* start detection and return result */
+  if ( preg_match ( $detectionPattern, strtolower($ua), $result ) )
+    return $knownGenerics[$result[0]];
+  return false;
+}
+
+/*
+ * return given known web generic or generic list
+ * @return array
+ * @access public
+ */
+function client_getKnownGenerics() {
+  $knownGenerics = array();
+         
+  /* NING */
+  $knownGenerics['ning'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'NING',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* heritrix */
+  $knownGenerics['heritrix'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'heritrix',
+    'bot_url'=>'https://webarchive.jira.com/wiki/display/Heritrix',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Nutch */
+  $knownGenerics['nutch'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Nutch',
+    'bot_url'=>'http://nutch.apache.org',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Voltron */
+  $knownGenerics['voltron'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Voltron',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Scrapy */
+  $knownGenerics['scrapy'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Scrapy',
+    'bot_url'=>'',
+    'engine_title'=>'Scrapy.org',
+    'engine_url'=>'http://scrapy.org');
+  
+  /* WWW-Mechanize */
+  $knownBots['www-mechanize'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'WWW-Mechanize',
+    'bot_url'=>'',
+    'engine_title'=>'CPAN',
+    'engine_url'=>'http://search.cpan.org/~ether/');
+
+  /* Fetcher */
+  $knownBots['compatible; fetcher/'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Fetcher',
+    'bot_url'=>'',
+    'engine_title'=>'Apple',
+    'engine_url'=>'http://www.apple.com');
+    
+  /* Pcore-HTTP  */
+  $knownGenerics['pcore-http'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Pcore-HTTP',
+    'generic_url'=>'http://search.cpan.org/dist/Pcore/lib/Pcore/HTTP.pm',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Mechanize (before Ruby) */
+  $knownGenerics['mechanize'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Mechanize',
+    'generic_url'=>'http://github.com/sparklemotion/mechanize/',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* Wget linux library */
+  $knownGenerics['wget'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'WGet',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* gettor */
+  $knownGenerics['gettor'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'gettor',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Python library */
+  $knownGenerics['python-urllib'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Python Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Python Request library */
+  $knownGenerics['python-requests'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Python Request Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Apache-HttpClient library (before Java) */
+  $knownGenerics['apache-httpclient'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Apache-HttpClient',
+    'generic_url'=>'',
+    'engine_title'=>'Apache Software Foundation',
+    'engine_url'=>'https://hc.apache.org');
+  
+  /* Apache synapse library (before Synapse) */
+  $knownGenerics['synapse-httpcomponent'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Apache Synapse',
+    'generic_url'=>'',
+    'engine_title'=>'Apache Software Foundation',
+    'engine_url'=>'https://hc.apache.org');
+  
+  /* Ararat Synapse */
+  $knownGenerics['synapse'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'',
+    'generic_url'=>'',
+    'engine_title'=>'Ararat Synapse',
+    'engine_url'=>'http://synapse.ararat.cz/doku.php');
+  
+  /* java library */
+  $knownGenerics['java/'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Java Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Perl library */
+  $knownGenerics['libwww-perl'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'PERL Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* WinHttpRequest */
+  $knownGenerics['winhttprequest'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'WinHttpRequest',
+    'generic_url'=>'',
+    'engine_title'=>'Microsoft',
+    'engine_url'=>'');
+  
+  /* Ruby */
+  $knownGenerics['ruby'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Ruby Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* GuzzleHttp (before curl) */
+  $knownGenerics['guzzle'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'GuzzleHttp Library',
+    'generic_url'=>'http://docs.guzzlephp.org/en/latest/',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* cURL */
+  $knownGenerics['libcurl'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'cURL Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* cURL */
+  $knownGenerics['curl/'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'cURL Library',
+    'generic_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* PHP */
+  $knownGenerics['php/5'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'PHP Library',
+    'generic_url'=>'http://www.php.net',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Go-http-client */
+  $knownGenerics['go-http-client'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'generic_title'=>'Go Language Library',
+    'generic_url'=>'https://golang.org/pkg/net/http/',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* obot */
+  $knownGenerics[' obot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'oBot',
+    'bot_url'=>'http://filterdb.iss.net/crawler/',
+    'engine_title'=>'IBM Germany Research & Development GmbH',
+    'engine_url'=>'');
+    
+  /* return list */
+  return $knownGenerics;
+}
+
+/*** hack type specific methods ***/
+
+/*
+ * return hack index if hack
+ * @param string $ua
+ * @return mixed
+ * @access public
+ */
+function client_checkIsHack($ua='') {
+  $knownHacks = client_getKnownHacks();
+  
+  /* build detection pattern */
+  $detectionPattern = implode('|', array_keys($knownHacks));
+  $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+  $detectionPattern = '/'.$detectionPattern.'/i';
+
+  /* start detection and return result */
+  if ( preg_match ( $detectionPattern, strtolower($ua), $result ))
+    return $result[0];
+  return false;
+}
+
+/*
+ * return bot info if hack
+ * @param string $hack
+ * @return mixed
+ * @access public
+ */
+function client_getHackInfos($hack='') {
+  $knownHacks = client_getKnownHacks();
+    
+  if (isset($knownHacks[$hack]))
+    return $knownHacks[$hack];
+  return array();
+}
+
+/*
+ * return bot info from user agent
+ * @param string $ua
+ * @return mixed
+ * @access public
+ */
+function client_getHackInfosFromUserAgent($ua='') {
+  $knownHacks = client_getKnownHacks();
+  
+  /* build detection pattern */
+  $detectionPattern = implode('|', array_keys($knownHacks));
+  $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+  $detectionPattern = '/'.$detectionPattern.'/i';
+
+  /* start detection and return result */
+  if ( preg_match ( $detectionPattern, strtolower($ua), $result ) )
+    return $knownHacks[$result[0]];
+  return false;
+}
+
+/*
+ * return given known web hack or hack list
+ * @return array
+ * @access public
+ */
+function client_getKnownHacks() {
+  $knownHacks = array();
+
+  /* Joomla Exploit */
+  $knownHacks['jdatabasedrivermysqli'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Joomla Exploit',
+  );
+  
+  /* Joomla Exploit */
+  $knownHacks['bot/0.1 (bot for jce)'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Joomla JCE Exploit',
+  );
+  
+  /* Bash Exploit */
+  $knownHacks['() { foo;};echo; /bin/bash'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Bash Exploit',
+  );
+  
+  /* Bash Exploit */
+  $knownHacks['() { :; }; echo'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Bash Exploit',
+  );
+  
+  /* Bash Exploit */
+  $knownHacks['() { :;};'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Bash Exploit',
+  );
+  
+  /* Unknown/Old Windows version */
+  $knownHacks['mozilla/0.91 beta (windows)'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Unknown/Old Windows version',
+  );
+  
+  /* Drupal Fckeditor exploit */
+  $knownHacks['webfuck v2.1 t0phackteam www.t0p.xyz'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Drupal Fckeditor exploit',
+  );
+  
+  /* return list */
+  return $knownHacks;
+}
+
+/*** private methods ***/
 
 /*                  
  * return merged informations                     

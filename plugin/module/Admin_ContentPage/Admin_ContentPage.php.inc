@@ -17,6 +17,7 @@
  * * 08-06-17 : Update HTML layouts, add id to finder menu items
  * * 09-08-31 : Sort module lists in content tab
  * * 14-12-05 : Add configuration panel
+ * * 17-02-28 : Support for "modern" URLs
  * 
  * Admin_ContentPage Module object ( Mandatory module )
  * Manage site pages

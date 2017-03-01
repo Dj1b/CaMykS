@@ -29,5 +29,11 @@ Options +FollowSymlinks
 
   # site page ( .htm, .html, .xhtml, no extension )
   RewriteCond %{REQUEST_FILENAME} !-s
-  RewriteRule ^([_0-9a-zA-Z/]*/)?([_0-9a-zA-Z]*)([-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$4&&ext=$5&%{QUERY_STRING} [L,NS]
+  
+  # Legacy url rewriting
+  RewriteRule ^([_0-9a-zA-Z/]*/)?([_0-9a-zA-Z]*)([-_0-9a-zA-Z+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$4&&ext=$5&%{QUERY_STRING} [L,NS]
+
+  # Modern url rewriting
+  #RewriteRule ^([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$1&params=$2&_clg_=$3&ext=$4&%{QUERY_STRING} [L,NS]
+  
 </IfModule>

@@ -243,10 +243,10 @@ class Admin_MonitoringUserAgentChecker extends Module {
   	$this->editform1 = new HTMLForm('update',
   			$camyks->get_adminlink( $this->name, array('mode'=>'update_record')),
   			'POST');
-  	$this->editform1->add_hidden('record_id', $this->recordItem->id );
-  	$this->editform1->add_hidden('cdate', $this->recordItem->vars['cdate'] );
-  	$this->editform1->add_hidden('user_agent', $this->recordItem->vars['user_agent'] );
-  	if($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
+  	$this->editform1->add_hidden('record_id', $this->recordItem->id);
+  	$this->editform1->add_hidden('cdate', $this->recordItem->vars['cdate']);
+  	$this->editform1->add_hidden('user_agent', $this->recordItem->vars['user_agent']);
+  	if ($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
   		$this->editform1->add_hidden('platform_type', $new_platform_type);
   	else
   		$this->editform1->add_hidden('platform_type', $this->recordItem->vars['platform_type']);
@@ -260,17 +260,19 @@ class Admin_MonitoringUserAgentChecker extends Module {
   	$this->editform2 = new HTMLForm('edit_status',
   			$camyks->get_adminlink( $this->name, array('mode'=>'update_record')),
   			'POST');
-  	$this->editform2->add_hidden('record_id', $this->recordItem->id );
-  	$this->editform2->add_hidden('cdate', $this->recordItem->vars['cdate'] );
-  	$this->editform2->add_hidden('user_agent', $this->recordItem->vars['user_agent'] );
+  	$this->editform2->add_hidden('record_id', $this->recordItem->id);
+  	$this->editform2->add_hidden('cdate', $this->recordItem->vars['cdate']);
+  	$this->editform2->add_hidden('user_agent', $this->recordItem->vars['user_agent']);
+  	
   	//Update platform_type
   	if($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
   		$this->editform2->add_hidden('platform_type', $new_platform_type);
   	else
   		$this->editform2->add_hidden('platform_type', $this->recordItem->vars['platform_type']);
-  	$this->editform2->add_hidden('fvisit', $this->recordItem->vars['fvisit'] );
-  	$this->editform2->add_hidden('lvisit', $this->recordItem->vars['lvisit'] );
-  	$this->editform2->add_hidden('nvisit', $this->recordItem->vars['nvisit'] );
+  	$this->editform2->add_hidden('fvisit', $this->recordItem->vars['fvisit']);
+  	$this->editform2->add_hidden('lvisit', $this->recordItem->vars['lvisit']);
+  	$this->editform2->add_hidden('nvisit', $this->recordItem->vars['nvisit']);
+  	
   	//Change Status
   	if($this->recordItem->vars['status'])
   		$this->editform2->add_hidden('status', 0);
@@ -311,10 +313,12 @@ class Admin_MonitoringUserAgentChecker extends Module {
       $this->buttons[] = array('link'=>$this->editform2->get_HTMLSubmitLink(), 'title'=>$this->get_translation('edit_status'));
   
   	/* update layout */
-  	if($this->recordItem->vars['platform_type'] == 'bot')
+  	if ($this->recordItem->vars['platform_type'] == 'bot')
   		$this->selected_layout = 'admin_view_bot_user_agent.html.inc';
-    elseif($this->recordItem->vars['platform_type'] == 'tool')
+    elseif ($this->recordItem->vars['platform_type'] == 'tool')
   		$this->selected_layout = 'admin_view_tool_user_agent.html.inc';
+    elseif ($this->recordItem->vars['platform_type'] == 'hack')
+  		$this->selected_layout = 'admin_view_hack_user_agent.html.inc';
   	else
   		$this->selected_layout = 'admin_view_user_agent.html.inc';
   }
@@ -416,7 +420,7 @@ class Admin_MonitoringUserAgentChecker extends Module {
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
+    $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
   }
   
   /*
@@ -450,8 +454,7 @@ class Admin_MonitoringUserAgentChecker extends Module {
   	/* update layout */
   	$this->selected_layout = 'admin_message.html.inc';
   	$this->selected_layout_location = 'camyks';
-  	$this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
-  	 
+  	$this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
   }
   
   /*
@@ -484,7 +487,7 @@ class Admin_MonitoringUserAgentChecker extends Module {
   	/* update layout */
   	$this->selected_layout = 'admin_message.html.inc';
   	$this->selected_layout_location = 'camyks';
-  	$this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink());
+  	$this->set_redirect($this->get_adminLink());
   }
     
   /* specific tool methods */
@@ -511,7 +514,7 @@ class Admin_MonitoringUserAgentChecker extends Module {
     } else {
       $this->recordItem->_libItems['user_agent']->value = $params['user_agent'];
       $uaInfos = client_getUAInfos($params['user_agent']);
-      if($uaInfos['platform_type'] != '')
+      if ($uaInfos['platform_type'] != '')
         $this->recordItem->_libItems['platform_type']->value = $uaInfos['platform_type'];
       else
         $this->recordItem->_libItems['platform_type']->value = 'undefined';

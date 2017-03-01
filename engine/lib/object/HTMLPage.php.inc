@@ -543,7 +543,6 @@ class HTMLPage {
    * @access public
    */
   function get_doctype( ) {
-    //echo '<?xml version="1.0" encoding="'.$this->charset.'">'."\n";
     echo $this->doctype."\n";
   }
   
@@ -560,6 +559,10 @@ class HTMLPage {
       echo "<html>\n<head>\n";
     else
       echo "<html lang=\"".$this->language."\">\n<head>\n";
+    
+    /* add base url for modern urls */
+    if ($camyks->get_confValue('friendlyurls') == 'modern')
+      echo "<base href=\"".$camyks->get_rootBaseURL('absolute_long')."\" />\n";
   }
   
   /*

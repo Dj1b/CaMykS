@@ -30,6 +30,9 @@
 \i CaMykS
 \i0  : Meilleure gestion du passage HTTP/HTTPS\
 - 
+\i CaMykS
+\i0  : Ne r\'e9pond plus aux User Agents marqu\'e9 comme "Hack"\
+- 
 \i Theme IndigoFlatStyle
 \i0  : Ajout des images pour l'ic\'f4ne menu\
 - 
@@ -37,15 +40,56 @@
 \i0  : Ajout des images pour l'ic\'f4ne menu\
 - 
 \i Module Admin_ContentPage
+\i0  : Meilleure gestion des noms (symboliques) des pages\
+- 
+\i Module Admin_ContentPage
 \i0  : R\'e9percussion des changements \'e0 la librairie Theme dans la librairie ContentPage\
 - 
 \i Module Admin_ContentPage
 \i0  : Support automatique des tags Open Graph (option \'e0 activer), surchargeable par les modules de contenu (News par exemple)\
 - 
+\i Librairie HTMLPage
+\i0  : Support (optionnel) du tag de comptabilit\'e9 IE (\'e0 d\'e9finir dans la configuration du site)\
+- 
+\i Skeleton Site / Config
+\i0  : Ajout de la valeur pour le tag de compatibilit\'e9 IE\
+- 
 \i Librairie client
 \i0  : Ajout de nouveaux robots et appareils dans la d\'e9tection via le User Agent\
-- Librairie HTMLPage : Support (optionnel) du tag de comptabilit\'e9 IE (\'e0 d\'e9finir dans la configuration du site)\
-- Skeleton Site / Config : Ajout de la valeur pour le tag de compatibilit\'e9 IE\
+- 
+\i Librairie client
+\i0  : Ajout d'un nouveau type "Hack" dans les User Agent, et ajout des premiers hacks d\'e9tectable\
+
+\i - Librairie client
+\i0  : S\'e9paration de la d\'e9tection des bots et outils g\'e9n\'e9riques pour de meilleurs r\'e9sultats\
+- 
+\i Module Admin_MonitoringUserAgentChecker
+\i0  : Ajout de la gestion des "Hacks" et am\'e9lioration des layouts\
+- 
+\i Librairie HTMLForm
+\i0  : Support des "quotes" dans les inputs de type hidden\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\i\b \cf0 [Exp\'e9rimental] Fonctionnalit\'e9 actuellement en test
+\i0\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\i \cf0 - Module Admin_ContentPage
+\i0  : Support d'URLs plus modernes\
+
+\i - Librairie HTMLPage
+\i0  : Support d'URLs plus modernes\
+- 
+\i Skeleton Site / .htaccess
+\i0  : Ajout du rewrite pour les URLs modernes \
+\
+Cette fonctionnalit\'e9 conserve la compatibilit\'e9 avec les versions pr\'e9c\'e9dentes, et doit \'eatre activ\'e9e pour \'eatre utilis\'e9e.\
+Attention, cette fonctionnalit\'e9 a \'e9t\'e9 d\'e9velopp\'e9e pour augmenter le r\'e9f\'e9rencement, cependant, l'activer sur un site en production peut faire perdre une partie du r\'e9f\'e9rencement actuel.\
+\
+Pour activer cette fonctionnalit\'e9, vous devez :\
+	- Copier / Activer la ligne de rewrite relative aux nouvelles URLs dans le .htaccess du site\
+	- D\'e9sactiver la ligne de rewrite relative aux anciennes URLs\
 \
 
 \b\fs26 1.0b20170201

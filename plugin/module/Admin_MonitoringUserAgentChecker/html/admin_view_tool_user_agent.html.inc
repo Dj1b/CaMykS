@@ -19,7 +19,7 @@ global $camyks;
 if($this->uaInfos == false)
 	$this->uaInfos =  array();
 ?>
-<?=$this->theme->get_boxHeader('width:610px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs,
 				$this->tabBuilder->jsParams);?>

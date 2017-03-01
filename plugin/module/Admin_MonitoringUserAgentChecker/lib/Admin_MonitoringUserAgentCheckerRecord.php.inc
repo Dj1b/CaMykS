@@ -78,6 +78,7 @@ class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
   				'computer' => $this->get_translation('platform_type_computer'),
 				'bot' => $this->get_translation('platform_type_bot'),
 				'tool' => $this->get_translation('platform_type_tool'),
+				'hack' => $this->get_translation('platform_type_hack'),
   				'other' => $this->get_translation('platform_type_other'));
   	else return array(
   	            'handheld' => $this->get_translation('platform_type_handheld'),
@@ -85,6 +86,7 @@ class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
   				'computer' => $this->get_translation('platform_type_computer'),
 				'bot' => $this->get_translation('platform_type_bot'),
 				'tool' => $this->get_translation('platform_type_tool'),
+				'hack' => $this->get_translation('platform_type_hack'),
   				'other' => $this->get_translation('platform_type_other'),
   				'undefined' => $this->get_translation('platform_type_other'));
   }
