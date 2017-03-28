@@ -32,7 +32,7 @@
     </div>
     <div class="eContent1">
       <a href="<?=$this->get_singlenewslink($n->id)?>" class="eLink1">
-	<?=$this->get_translation('readmore')?>
+	    <?=$this->get_translation('readmore')?>
       </a>
     </div>
   </div>

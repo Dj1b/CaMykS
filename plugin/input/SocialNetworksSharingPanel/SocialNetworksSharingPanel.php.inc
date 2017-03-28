@@ -261,7 +261,7 @@ class SocialNetworksSharingPanel extends Input {
      'clic'=>'',
      'default'=>1);*/
     
-    /* add delicious */
+    /* add delicious *
     $this->networks['delicious'] = array('title'=>'Delicious',
 					 'link'=>'http://delicious.com/save',
 					 'clic'=>'window.open(\'http://delicious.com/save?v=5&noui&jump=close&url=%1$s&title=%2$s\'),\'delicious\', \'toolbar=no,width=550,height=550\'); return false;',

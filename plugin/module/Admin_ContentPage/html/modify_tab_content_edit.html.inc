@@ -120,7 +120,7 @@ $edit_content = $this->get_fileURL('img/edit_content.gif');
 			<?=$this->get_translation('formitem_theme');?>
 		      </td>
 		      <td class="eTableLine<?=$alt;?> eContent1">
-		        <?=$this->form->display_selectInput(array('name'=>'m'.$i.'theme', 'values'=>$this->mthemeTitleList, 'default'=>$this->page->theme, 'onchange'=>'acpe.onBlockThemeChange('.$i.');'));?>
+		        <?=$this->form->display_selectInput(array('name'=>'m'.$i.'_theme', 'values'=>$this->mthemeTitleList, 'default'=>$this->page->theme, 'onchange'=>'acpe.onBlockThemeChange('.$i.');'));?>
 		      </td>
 		    </tr>
 		    <?php endif; ?>

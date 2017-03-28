@@ -7,7 +7,7 @@
  * Object Version 	: 1.0
  * Object Type      : Plugin / Module Library
  * Creation Date	: Oct 2008
- * Last Modif Date  : May 2015
+ * Last Modif Date  : Mar 2017
  *
  * Admin_StatisticWebToolDetector object for Admin_Statistics Module
  */
@@ -26,7 +26,7 @@ class Admin_StatisticWebToolDetector {
    * @access public
    */
   function detect() {
-    return client_checkIsTool($_SERVER['HTTP_USER_AGENT']);
+    return client_checkIsTool();
   }
 
   /*

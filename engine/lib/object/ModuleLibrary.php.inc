@@ -1175,6 +1175,8 @@ class ModuleLibrary {
       
       $l = 'l.language="'.$language.'" and m.id = l.objectid';
       
+      $where = $this->check_SQLCondition($where);
+      
       if ($where == '')
         $where = $l;
       else

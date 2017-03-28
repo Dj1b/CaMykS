@@ -2,11 +2,11 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Jan 2008
+ * Object Type	    : Plugin / Module Layout
+ * Create Date	    : Jan 2008
  * Last Modif Date	: Oct 2009
  *
  * Content_GenericHTMLNews Module Site Layout : site list complete
@@ -43,14 +43,14 @@
     <?php if ( file_exists( $n->vars['content'] ) ) : ?>
 	<?php include $n->vars['content']; ?>
     <?php endif; ?>
-    <p class="eContent1">
-    <?=$this->get_translation('shareon');?>
-    <a name="fb_share" type="icon" share_url="<?=$this->get_singlenewslink($this->newsitem->id);?>"></a>
-    </p>
+    
+    <?php if ($this->networkInput !== false) : ?>
+      <?=$this->networkInput->display(array('link'=>$this->get_singlenewslink($n->id)));?>
+    <?php endif; ?>
 
   </div>
   <?php endforeach; ?>
   
-  <?=$this->load_file('html/site_list_free_buttonsbar.html.inc');?>
+  <?php $this->load_file('html/site_list_free_buttonsbar.html.inc');?>
 
 </div>

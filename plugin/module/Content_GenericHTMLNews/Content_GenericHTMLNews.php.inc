@@ -195,9 +195,6 @@ class Content_GenericHTMLNews extends Module {
     $this->newslist->get();
     $this->newslist->get_fromItems();
 
-    /* add social network sharing tools */
-    $this->add_JSExternFile('http://static.ak.fbcdn.net/connect.php/js/FB.Share');
-
     if ( isset ( $params['newsitem'] ) and $params['newsitem'] >= 0 ) {
       /* get single item init */
       $this->init_site_item ( $params );
@@ -394,8 +391,8 @@ class Content_GenericHTMLNews extends Module {
     if ( $this->newslist->save() ) {
       /* update page information with object id for new content */
       if ( $this->id == 0 and $this->page_id > 0 ) {
-	ContentPage::static_update_singleModuleContent( $this->page_id, $this->module_index, $this->newslist->id );
-	$this->id = $this->newslist->id;
+	    ContentPage::static_update_singleModuleContent( $this->page_id, $this->module_index, $this->newslist->id );
+	    $this->id = $this->newslist->id;
       }
       $this->text = $this->get_translation('newslistsaved');
     } else {
@@ -594,6 +591,14 @@ class Content_GenericHTMLNews extends Module {
       $rssURL .= '&amp;page='.$camyks->contentPage->name;
       $this->set_RSSFeed($rssURL, $this->get_translation('rss_title') );
     }
+    
+    /* check for social network sharing */
+    if (isset($camyks->inputs['SocialNetworksSharingPanel'])) {     
+      /* load input */
+      $this->networkInput = &$camyks->inputs['SocialNetworksSharingPanel'];
+      $this->networkInput->initialise(array('text'=>$this->get_translation('shareon'), 'separator'=>'', 'block_class'=>'share'));
+    } else
+      $this->networkInput = false;
 
     /* set layout to display */
     $this->selected_layout = 'site_'.$this->newslist->vars['layout_list'].'.html.inc';
@@ -622,6 +627,31 @@ class Content_GenericHTMLNews extends Module {
 	 or ( $this->newsitem->vars['status'] == 0 ) 
 	 or ( $this->newsitem->vars['listid'] != $this->newslist->id ) )
       return $this->init_site_list($params);
+      
+    
+    /* check for social network sharing */
+    if (isset($camyks->inputs['SocialNetworksSharingPanel'])) {
+      /* load picture to share */
+      if (preg_match('/src="([^"]{1,})"/', $this->newsitem->vars['content'], $matches)) {
+        $picture = $matches[1];
+        if (!preg_match('/^https?:\/\//', $picture, $s))
+          $picture = $camyks->get_confValue('url').'/'.$picture;
+      } else {
+        $picture = '';
+      }       
+     
+      /* load input */
+      $this->networkInput = &$camyks->inputs['SocialNetworksSharingPanel'];
+      $this->networkInput->initialise(array('text'=>$this->get_translation('shareon'), 'separator'=>'', 'block_class'=>'share',
+      'link'=>$this->get_singlenewslink($this->newsitem->id),
+      'title'=> $this->newsitem->vars['title'],
+      'summary'=>$this->newsitem->vars['summary'],
+      'image'=>$picture,
+      'type'=>'article',
+      ));
+    } else
+      $this->networkInput = false;
+      
     /* buttons list */
     $this->buttons = array(array('title' => $this->get_translation('back'),
 				 'link' =>  $camyks->get_siteLink( $camyks->contentPage->id,

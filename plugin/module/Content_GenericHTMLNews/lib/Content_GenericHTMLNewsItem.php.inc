@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author               : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version       : 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Lib
- * Create Date          : Dec 2007
- * Last Modif Date      : Dec 2007
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0a
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Lib
+ * Create Date      : Dec 2007
+ * Last Modif Date  : Dec 2007
  *
  * Content_GenericHTMLNewsItem object for Content_GenericHTMLNews module
 */
@@ -30,6 +30,7 @@ class Content_GenericHTMLNewsItem extends ModuleLibrary {
     $this->add_newitem('source_title', 'db', 'etext', 'varchar', 255, '');
     $this->add_newitem('source_url', 'db', 'etext', 'varchar', 255, '');
     $this->add_newitem('summary', 'db', 'etext', 'text', '', '');
+    
     /* generic ModuleLibrary initialisation */
     $this->init_library();
   }

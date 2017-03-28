@@ -35,12 +35,12 @@ global $camyks;
     </div>
     <div class="eContent1">
       <a href="<?=$this->get_singlenewslink($n->id)?>" class="elink1">
-	<?=$this->get_translation('readmore')?>
+	    <?=$this->get_translation('readmore')?>
       </a>
     </div>
   </div>
   <?php endforeach; ?>
   
-  <?=$this->load_file('html/site_list_free_buttonsbar.html.inc');?>
+  <?php $this->load_file('html/site_list_free_buttonsbar.html.inc');?>
   
 </div>

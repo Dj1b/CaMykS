@@ -24,6 +24,17 @@ function client_getIp() {
 }
 
 /*
+ * get client user agent
+ * @return string
+ * @access public
+ */
+function client_getUserAgent() {
+  if (isset($_SERVER['HTTP_USER_AGENT']))
+    return $_SERVER['HTTP_USER_AGENT'];
+  return '';
+}
+
+/*
  * check if page is loaded is HTTPS(SSL)
  * @return boolean result
  * @access public
@@ -38,21 +49,22 @@ function client_isHTTPS() {
  * @access public
  */
 function client_getRefererSite() {
-  if (isset ($_SERVER['HTTP_REFERER']))
+  if (isset($_SERVER['HTTP_REFERER']))
     return $_SERVER['HTTP_REFERER'];
   return '';
 }
 
 /*                  
  * return client informations                     
- * @param mixte $req                
+ * @param mixte $ua                
  * @return array                  
  * @access public                   
  */
 function client_getUAInfos($ua=false) {
   $req = true;
+  
   /* get user agent */
-  if (!$ua)	$ua = $_SERVER['HTTP_USER_AGENT'];
+  if (!$ua)	$ua = client_getUserAgent();
 
   /* init result value */
   $infos = array();
@@ -283,7 +295,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
 
   /* check samsung tablets */
-  elseif (preg_match('/(GT-P|SM-T)([0-9]{3,})/', $ua, $matches)) {
+  elseif (preg_match('/(GT|SM)-(P|T)([0-9]{3,})/', $ua, $matches)) {
     $rep = array(
         'GT-P1000'=>array('platform_model' => 'Galaxy Tab',),
         'GT-P3100'=>array('platform_model' => 'Galaxy Tab 2',),
@@ -293,6 +305,7 @@ function client_getUAInfos($ua=false) {
         'GT-P5200' =>array('platform_model' => 'Galaxy Tab 3',),
         'GT-P5210'=>array('platform_model' => 'Galaxy Tab 3',),
         'GT-P7300'=>array('platform_model' => 'Galaxy Tab 8.9',),
+        'SM-T110' =>array('platform_model' => 'Galaxy Tab 3 Lite',),
         'SM-T310' =>array('platform_model' => 'Galaxy Tab 3',),
         'SM-T116NU' =>array('platform_model' => 'Galaxy Tab 3 V',),
         'SM-T320' =>array('platform_model' => 'Galaxy Tab Pro',),
@@ -301,8 +314,11 @@ function client_getUAInfos($ua=false) {
         'SM-T533' =>array('platform_model' => 'Galaxy Tab 4',),
         'SM-T535' =>array('platform_model' => 'Galaxy Tab 4 (4G)',),
         'SM-T550' =>array('platform_model' => 'Galaxy Tab A',),
+        'SM-P550' =>array('platform_model' => 'Galaxy Tab A',),
         'SM-T560' =>array('platform_model' => 'Galaxy Tab E',),
         'SM-T800' =>array('platform_model' => 'Galaxy Tab S',),
+        'SM-T810' =>array('platform_model' => 'Galaxy Tab S2',),
+        
     );
     
     $infos = array_merge($infos, array(
@@ -315,64 +331,79 @@ function client_getUAInfos($ua=false) {
   /* check samsung phones */
   elseif (preg_match('/(GT|SM|SGH)-([A-Z0-9]{4,})/', $ua, $matches)) {
     $rep = array(
-        'SM-E700H'=>array('platform_model' => 'Galaxy E7', ),
-        'GT-S7562'=>array('platform_model' => 'Galaxy S Duo', ),
-        'GT-I9100'=>array('platform_model' => 'Galaxy S2', ),
-        'GT-I9300'=>array('platform_model' => 'Galaxy S3', ),
-        'GT-I9305'=>array('platform_model' => 'Galaxy S3 (4G)', ),
-        'GT-I9301I'=>array('platform_model' => 'Galaxy S3 Neo', ),
-        'GT-I9500'=>array('platform_model' => 'Galaxy S4', ),
-        'GT-I9505'=>array('platform_model' => 'Galaxy S4', ),
-        'GT-I9506'=>array('platform_model' => 'Galaxy S4', ),
-        'SM-G900A'=>array('platform_model' => 'Galaxy S5', ),
-        'SM-G900F'=>array('platform_model' => 'Galaxy S5', ),
-        'SM-G903F'=>array('platform_model' => 'Galaxy S5', ),
-        'SM-G901F'=>array('platform_model' => 'Galaxy S5 Plus', ),
-        'SM-G920F'=>array('platform_model' => 'Galaxy S6'),
-        'SM-G920I'=>array('platform_model' => 'Galaxy S6'),
-        'SM-G925F'=>array('platform_model' => 'Galaxy S6 Edge'),
-        'SM-G930F'=>array('platform_model' => 'Galaxy S7'),
-        'SM-G935F'=>array('platform_model' => 'Galaxy S7 Edge'),
-        'SM-G313HZ'=>array('platform_model' => 'Galaxy V', ),
-        'SM-A300F'=>array('platform_model' => 'Galaxy A3', ),
-        'SM-A300FU'=>array('platform_model' => 'Galaxy A3', ),
-        'SM-A310F'=>array('platform_model' => 'Galaxy A3', ),
-        'SM-A500FU'=>array('platform_model' => 'Galaxy A5', ),
-        'SM-A510F'=>array('platform_model' => 'Galaxy A5 (2016)', ),
-        'SM-A700L'=>array('platform_model' => 'Galaxy A7', ),
-        'SM-J100H'=>array('platform_model' => 'Galaxy J1', ),
-        'SM-J320FN'=>array('platform_model' => 'Galaxy J3', ),
-        'SM-J500FN'=>array('platform_model' => 'Galaxy J5', ),
-        'SM-J510FN'=>array('platform_model' => 'Galaxy J5', ),
-        'GT-S6102'=>array('platform_model' => 'Galaxy Y Duos', ),
-        'GT-S7582'=>array('platform_model' => 'Galaxy S Duos', ),
-        'GT-I8750'=>array('platform_model' => 'Ativ S', ),
-        'GT-I8190'=>array('platform_model' => 'S3 Mini', ),
-        'GT-I9195'=>array('platform_model' => 'S4 Mini', ),
-        'GT-I9195I'=>array('platform_model' => 'Galaxy S4 Mini', ),
-        'SM-G800F'=>array('platform_model' => 'Galaxy S5 Mini', ),
-        'SM-G530H'=>array('platform_model' => 'Galaxy Grand Prime', ),
-        'SM-G530T'=>array('platform_model' => 'Galaxy Grand Prime', ),
-        'SM-G355HN'=>array('platform_model' => 'Galaxy Core 2'),
-        'SM-G360F'=>array('platform_model' => 'Galaxy Core Prime', ),
-        'SM-G361F'=>array('platform_model' => 'Galaxy Core Prime', ),
-        'SM-G530FZ'=>array('platform_model' => 'Galaxy Grand Prime', ),
-        'SM-G386F'=>array('platform_model' => 'Galaxy Core 4G'),
-        'GT-N5110'=>array('platform_model' => 'Galaxy Note', ),
-        'GT-N7000'=>array('platform_model' => 'Galaxy Note (3G)', ),
-        'GT-N7003'=>array('platform_model' => 'Galaxy Note (4G)', ),
-        'GT-N8000'=>array('platform_model' => 'Galaxy Note 10.1 (3G)', ),
-        'GT-N8010'=>array('platform_model' => 'Galaxy Note 10.1', ),
-        'GT-N7100'=>array('platform_model' => 'Galaxy Note II (3G)', ),
-        'GT-N7105'=>array('platform_model' => 'Galaxy Note II', ),
-        'SM-N900W8'=>array('platform_model' => 'Galaxy Note 3', ),
-        'SM-N900P'=>array('platform_model' => 'Galaxy Note 3', ),
-        'SM-N900' =>array('platform_model' => 'Galaxy Note 3 (3G)', ),
-        'SM-N9002'=>array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
-        'SM-N9005'=>array('platform_model' => 'Galaxy Note 3 (4G)', ),
-        'SM-N7505'=>array('platform_model' => 'Galaxy Note 3 Neo', ),
-        'SM-N910F'=>array('platform_model' => 'Galaxy Note 4', ),
-        'SM-N920V'=>array('platform_model' => 'Galaxy Note 5', ),
+        'GT-S7562'  =>array('platform_model' => 'Galaxy S Duo', ),
+        'GT-I9100'  =>array('platform_model' => 'Galaxy S2', ),
+        'GT-I9300'  =>array('platform_model' => 'Galaxy S3', ),
+        'GT-I9305'  =>array('platform_model' => 'Galaxy S3 (4G)', ),
+        'GT-I9301I' =>array('platform_model' => 'Galaxy S3 Neo', ),
+        'GT-I9500'  =>array('platform_model' => 'Galaxy S4', ),
+        'GT-I9505'  =>array('platform_model' => 'Galaxy S4', ),
+        'GT-I9506'  =>array('platform_model' => 'Galaxy S4', ),
+        'SM-G900A'  =>array('platform_model' => 'Galaxy S5', ),
+        'SM-G900F'  =>array('platform_model' => 'Galaxy S5', ),
+        'SM-G903F'  =>array('platform_model' => 'Galaxy S5', ),
+        'SM-G901F'  =>array('platform_model' => 'Galaxy S5 Plus', ),
+        'SM-G920F'  =>array('platform_model' => 'Galaxy S6'),
+        'SM-G920I'  =>array('platform_model' => 'Galaxy S6'),
+        'SM-G925F'  =>array('platform_model' => 'Galaxy S6 Edge'),
+        'SM-G930F'  =>array('platform_model' => 'Galaxy S7'),
+        'SM-G935F'  =>array('platform_model' => 'Galaxy S7 Edge'),
+        'SM-G313HZ' =>array('platform_model' => 'Galaxy V', ),
+        'SM-A300F'  =>array('platform_model' => 'Galaxy A3', ),
+        'SM-A300FU' =>array('platform_model' => 'Galaxy A3', ),
+        'SM-A310F'  =>array('platform_model' => 'Galaxy A3', ),
+        'SM-A500FU' =>array('platform_model' => 'Galaxy A5', ),
+        'SM-A510F'  =>array('platform_model' => 'Galaxy A5 (2016)', ),
+        'SM-A700L'  =>array('platform_model' => 'Galaxy A7', ),
+        'SM-E500F'  =>array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E500H'  =>array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E500HQ' =>array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E500M'  =>array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E700H'  =>array('platform_model' => 'Galaxy E7', ),
+        'SM-J100H'  =>array('platform_model' => 'Galaxy J1', ),
+        'SM-J320FN' =>array('platform_model' => 'Galaxy J3', ),
+        'SM-J500F'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500FN' =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500G'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500Y'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500M'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500H'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J5007'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J510FN' =>array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J500M'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J5010F' =>array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510G'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510M'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510Y'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
+        'GT-S6102'  =>array('platform_model' => 'Galaxy Y Duos', ),
+        'GT-S7582'  =>array('platform_model' => 'Galaxy S Duos', ),
+        'GT-I8750'  =>array('platform_model' => 'Ativ S', ),
+        'GT-I8190'  =>array('platform_model' => 'S3 Mini', ),
+        'GT-I9195'  =>array('platform_model' => 'S4 Mini', ),
+        'GT-I9195I' =>array('platform_model' => 'Galaxy S4 Mini', ),
+        'SM-G800F'  =>array('platform_model' => 'Galaxy S5 Mini', ),
+        'SM-G530H'  =>array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G530T'  =>array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G355HN' =>array('platform_model' => 'Galaxy Core 2'),
+        'SM-G360F'  =>array('platform_model' => 'Galaxy Core Prime', ),
+        'SM-G361F'  =>array('platform_model' => 'Galaxy Core Prime', ),
+        'SM-G530FZ' =>array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G386F'  =>array('platform_model' => 'Galaxy Core 4G'),
+        'GT-N5110'  =>array('platform_model' => 'Galaxy Note', ),
+        'GT-N7000'  =>array('platform_model' => 'Galaxy Note (3G)', ),
+        'GT-N7003'  =>array('platform_model' => 'Galaxy Note (4G)', ),
+        'GT-N8000'  =>array('platform_model' => 'Galaxy Note 10.1 (3G)', ),
+        'GT-N8010'  =>array('platform_model' => 'Galaxy Note 10.1', ),
+        'GT-N7100'  =>array('platform_model' => 'Galaxy Note II (3G)', ),
+        'GT-N7105'  =>array('platform_model' => 'Galaxy Note II', ),
+        'SM-N900W8' =>array('platform_model' => 'Galaxy Note 3', ),
+        'SM-N900P'  =>array('platform_model' => 'Galaxy Note 3', ),
+        'SM-N900'   =>array('platform_model' => 'Galaxy Note 3 (3G)', ),
+        'SM-N9002'  =>array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
+        'SM-N9005'  =>array('platform_model' => 'Galaxy Note 3 (4G)', ),
+        'SM-N7505'  =>array('platform_model' => 'Galaxy Note 3 Neo', ),
+        'SM-N910F'  =>array('platform_model' => 'Galaxy Note 4', ),
+        'SM-N920V'  =>array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'=>array('platform_model' => 'Galaxy Note 7', ),
         'SM-N950'=>array('platform_model' => 'Galaxy Note 8', ),
         'SGH-I527'=>array('platform_model' => 'Galaxy Mega', ),
@@ -411,6 +442,10 @@ function client_getUAInfos($ua=false) {
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   
+  /* check Samsung PC */
+  elseif (preg_match('/MASMJS/', $ua, $matches))
+ 	$infos = array_merge($infos, array(
+ 	  'platform_company'=>'Samsung (PC)'));
   
   /* check OnePlus - to be inserted before Sony */
   elseif (preg_match('/ ONE (E[0-9]+)/', $ua, $matches)) {
@@ -434,7 +469,7 @@ function client_getUAInfos($ua=false) {
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   
-  /* check Sony */
+  /* check Sony mobiles and tablets */
   elseif (preg_match('/ (C|D|E|F)([0-9]{4}) /', $ua, $matches)) {
     $rep = array(
         'C1505'=>array('platform_model' => 'Xperia E'),         
@@ -456,6 +491,11 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  
+  /* check Sony PCs */
+  elseif (preg_match('/MASP|MASPJS|MASA|MASAJS/', $ua, $matches))
+    $infos = array_merge($infos, array(
+  	  'platform_company'=>'Sony (PC)'));
   
   /* check Huawei */
   elseif (preg_match('/Huawei([A-Z0-9\-]{7,})/i', $ua, $matches)) {
@@ -516,6 +556,10 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  elseif (preg_match('/A40Ti/', $ua, $matches))
+    $infos = array_merge($infos, array(
+  	  'platform_company'=>'Archos', 
+      'platform_model'=>'A40Ti'));
   
   /* check Lenovo */
   elseif (preg_match('/Lenovo[ |_]([A-Z0-9\-]{3,})/', $ua, $matches)) {
@@ -532,7 +576,12 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
   
-  /* check Asus */
+  /* check Lenovo PCs */
+  elseif (preg_match('/MALC|MALCJS/', $ua, $matches))
+    $infos = array_merge($infos, array(
+  	  'platform_company'=>'Lenovo (PC)'));
+  
+  /* check Asus mobiles and tablets */
   elseif (preg_match('/(K|ME)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
     $rep = array(
         'K007'      => array('platform_model' => 'MeMO Pad 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
@@ -547,6 +596,11 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  
+  /* check Asus PCs */
+  elseif (preg_match('/MAAU|ASJB|ASU2JS|ASU2/', $ua, $matches))
+    $infos = array_merge($infos, array(
+  	  'platform_company'=>'Asus (PC)'));   
 
   /* check Micromax */
   elseif (preg_match('/Micromax ([^ \/]+)/', $ua, $matches))
@@ -626,6 +680,7 @@ function client_getUAInfos($ua=false) {
     $rep = array(
         '4015D' => array('platform_model' => 'One Touch Idol 3',),
         '5050X' => array('platform_model' => 'One Touch Pop S3',),
+        '5070D' => array('platform_model' => 'One Touch Pop Star 4G',),
         '6045Y' => array('platform_model' => 'One Touch Pop C1',),
     );
     $model = trim($matches[1]);
@@ -773,6 +828,25 @@ function client_getUAInfos($ua=false) {
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
   
+  /* check Vestel devices */
+  elseif (preg_match('/(Venus_V3_5570)/', $ua, $matches)) {
+    $rep = array(
+        'Venus_V3_5570'=>array('platform_model' => 'Ven&uuml;s V3 5570', 'platform_type'=>'handheld', 'platform_format'=>'handheld'),
+    );
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Vestel', 
+      'platform_model'=>$matches[1],
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$matches[1]])?$rep[$matches[1]]:array());
+  }
+  
+  /* check Hewlett Packard */
+  elseif (preg_match('/HPNTDF/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Hewlett Packard (PC)'));
+  }
+  
   /* check Xiaomi mobiles */
   elseif (preg_match('/MI ?([A-Za-z0-9]{1,} )Build/', $ua, $matches)) {
     $rep = array(
@@ -891,8 +965,8 @@ function client_getUAInfos($ua=false) {
         'platform_format'=>'handheld',), $infos);
   
     /* check unsmartly written browser */
-  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array('BIDUBrowser'=>'Baidu Brower');
+  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE )(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('BIDUBrowser'=>'Baidu Brower', 'SE '=>'Sogou Explorer', 'AcooBrowser' => 'Acoo Browser');
       $infos = array_merge($infos, array(
 	    'browser_title'=>isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       	'browser_version'=>isset($matches[2])?$matches[2]:''));
@@ -982,7 +1056,11 @@ function client_getUAInfos($ua=false) {
  * @return mixed
  * @access public
  */
-function client_checkIsBot($ua='') {
+function client_checkIsBot($ua=false) {
+  /* get user agent */
+  if (!$ua)	$ua = client_getUserAgent();
+ 
+  /* load known bots */
   $knownBots = client_getKnownBots();
   
   /* build detection pattern */
@@ -1198,6 +1276,15 @@ function client_getKnownBots() {
     'bot_url'=>'http://www.bing.com/bingbot.htm',
     'engine_title'=>'bing',
     'engine_url'=>'http://www.bing.com/');
+
+  /* MS Bing bot : BingPreview */
+  $knownBots['bingpreview'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'BingPreview',
+    'bot_url'=>'http://www.bing.com/bingbot.htm',
+    'engine_title'=>'bing',
+    'engine_url'=>'http://www.bing.com/');
     
   /*  MS Search 6.0 Robot  */
   $knownTools['ms search 6.0 robot'] = array(
@@ -1367,6 +1454,15 @@ function client_getKnownBots() {
     'platform_format'=>'desktop',
     'bot_title'=>'Yeti',
     'bot_url'=>'http://help.naver.com/robots/',
+    'engine_title'=>'Naver (cn)',
+    'engine_url'=>'http://www.naver.com');
+    
+  /* Naver bot : Yeti */
+  $knownBots['naver.me'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Yeti',
+    'bot_url'=>'http://naver.me/bot',
     'engine_title'=>'Naver (cn)',
     'engine_url'=>'http://www.naver.com');
     
@@ -3322,6 +3418,87 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
+  
+  /* UXCrawlerBot  */
+  $knownBots['uxcrawlerbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'UXCrawlerBot ',
+    'bot_url'=>'',
+    'engine_title'=>'Zium',
+    'engine_url'=>'http://zium.co');
+  
+  /* HRCrawlerBot  */
+  $knownBots['hrcrawlerbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'HRCrawlerBot ',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* LinqiaMetadataDownloaderBot  */
+  $knownBots['linqiametadatadownloaderbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'LinqiaMetadataDownloaderBot ',
+    'bot_url'=>'eng@linqia.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* roboto  */
+  $knownBots['roboto'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'roboto ',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* 2ADAMbot */
+  $knownBots['2adambot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'2ADAMbot ',
+    'bot_url'=>'',
+    'engine_title'=>'2adam',
+    'engine_url'=>'http://www.2adam.com');
+  
+  /* mfibot */
+  $knownBots['mfibot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'mfibot ',
+    'bot_url'=>'',
+    'engine_title'=>'mfisoft',
+    'engine_url'=>'http://www.mfisoft.ru/analyst/');
+  
+  /* FlippyBearBot */
+  $knownBots['flippybearbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'FlippyBearBot ',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* vebidoobot */
+  $knownBots['vebidoobot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'vebidoobot ',
+    'bot_url'=>'https://blog.vebidoo.de/vebidoobot/',
+    'engine_title'=>'vebidoo',
+    'engine_url'=>'https://www.vebidoo.de');
+  
+  /* Xaldon WebSpider */
+  $knownBots['xaldon'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Xaldon WebSpider ',
+    'bot_url'=>'',
+    'engine_title'=>'Xaldon',
+    'engine_url'=>'http://www.xaldon.de');
 
     
   /* return bot list */
@@ -3334,7 +3511,11 @@ function client_getKnownBots() {
  * @return mixed
  * @access public
  */
-function client_checkIsTool($ua='') {
+function client_checkIsTool($ua=false) {
+  /* get user agent */
+  if (!$ua)	$ua = client_getUserAgent();
+
+  /* load known tools */
   $knownTools = client_getKnownTools();
   
   /* build detection pattern */
@@ -3915,7 +4096,11 @@ function client_getKnownTools() {
  * @return mixed
  * @access public
  */
-function client_checkIsGeneric($ua='') {
+function client_checkIsGeneric($ua=false) {
+  /* get user agent */
+  if (!$ua)	$ua = client_getUserAgent();
+ 
+  /* load known generic agents */
   $knownGenerics = client_getKnownGenerics();
   
   /* build detection pattern */
@@ -4217,7 +4402,11 @@ function client_getKnownGenerics() {
  * @return mixed
  * @access public
  */
-function client_checkIsHack($ua='') {
+function client_checkIsHack($ua=false) {
+  /* get user agent */
+  if (!$ua)	$ua = client_getUserAgent();
+ 
+  /* load known bots */
   $knownHacks = client_getKnownHacks();
   
   /* build detection pattern */

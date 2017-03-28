@@ -2,18 +2,19 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a2
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
+ * Object Type      : Plugin / Module Engine
  * Create Date		: Jun 2005
- * Last Modif Date	: May 2008
+ * Last Modif Date	: Mar 2017
  * History :
  * * 05-06-xx : Initial file 
  * * 08-02-19 : layouts update
  * * 08-05-28 : Disable admin menu for data I/O modes
  * * 08-06-18 : Some HTML improvements for W3C compatibility
  * * 08-07-02 : Some minor HTML improvements
+ * * 17-03-17 : Some minor Code & HTML improvements
  *
  * Admin_User module
  * Manage admin users profiles and rights
@@ -44,7 +45,7 @@ class Admin_User extends Module {
     $this->author_group = 'camyks.net';
     
     /* initialise plugin variables */
-    $this->layout_itemsByLine = 2;
+    $this->layout_itemsByLine = 3;
     $this->layout_cellwidth = '180px';
     
     /* load plugin libraries */
@@ -160,6 +161,8 @@ class Admin_User extends Module {
 
   /* 
    * init module object in admin/edit mode
+   * @return void
+   * @access private
    */
   function init_admin_edit ( ) {
     global $camyks;
@@ -177,7 +180,7 @@ class Admin_User extends Module {
     
     /* get form */
     $this->form = new HTMLForm('adminuser',
-			       $camyks->get_adminLink($this->name),
+			       $this->get_adminLink(),
 			       'POST');
     $this->form->add_hidden('mode', 'save' );
     $this->form->add_hidden('adminuser_full_update', 1 );
@@ -208,7 +211,7 @@ class Admin_User extends Module {
     
     /* get buttons */
     $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=> $camyks->get_adminLink($this->name, array('mode'=>'list'))),
+				 'link'=> $this->get_adminLink()),
 			   array('title'=>$camyks->get_translation('valid'),
 				 'link'=>$this->form->get_HTMLSubmitLink()));
     
@@ -252,7 +255,7 @@ class Admin_User extends Module {
 				 'link'=>$camyks->get_adminLink($this->name, array('mode'=>'list'))));
     if ($this->check_right(1)===true)
       $this->buttons[] = array('title'=>$camyks->get_translation('edit'),
-			       'link'=>$camyks->get_adminLink($this->name, array('mode'=>'edit', 'user'=>$this->user->login)));
+			       'link'=>$this->get_adminLink(array('mode'=>'edit', 'user'=>$this->user->login)));
     
     /* update layout */
     $this->selected_layout = 'admin_view.html.inc';
@@ -290,7 +293,7 @@ class Admin_User extends Module {
       $this->selected_layout_location = 'camyks';
       $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode'=>'view', 'user'=> $this->user->login))); 
     } else {
-	$this->init_admin_edit();
+	  $this->init_admin_edit();
     }
   }
 

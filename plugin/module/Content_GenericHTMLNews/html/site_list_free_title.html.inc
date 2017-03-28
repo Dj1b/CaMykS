@@ -31,6 +31,6 @@
   </div>
   <?php endforeach; ?>
   
-  <?=$this->load_file('html/site_list_free_buttonsbar.html.inc');?>  
+  <?php $this->load_file('html/site_list_free_buttonsbar.html.inc');?>  
 
 </div>

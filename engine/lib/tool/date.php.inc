@@ -165,7 +165,7 @@ function date_displayShortDayDate( $date=TODAY ) {
  * @return string
  * @access public
  */
-function date_displayShortDate( $date=TODAY ) {
+function date_displayShortDate($date=TODAY) {
   global $camyks;
   $l = $camyks->current_language;
   switch ( $l ) {
@@ -177,6 +177,36 @@ function date_displayShortDate( $date=TODAY ) {
     return strftime ( '%e %b %y', $date );
   }
 }
+
+/*
+ * display short textual representation of date interval
+ * @param date $date
+ * @return string
+ * @access public
+ */
+function date_displayShortDateInterval($date1=TODAY, $date2=TODAY) {
+  global $camyks;
+  $l = $camyks->current_language;
+  
+  if ($date1 > $date2) {
+    $tmp = $date1;
+    $date1 = $date2;
+    $date2 = $tmp;
+    unset($tmp);
+  }
+  
+  if (date_isSameDay($date1, $date2))
+    return date_displayShortDate($date1);
+  
+  if (date_isSameMonth($date1, $date2))
+    return strftime('%e', $date1).' - '.ucwords(strftime('%e %b %y', $date2));
+
+  if (date_isSameYear($date1, $date2))
+    return ucwords(strftime('%e %b', $date1)).' - '.ucwords(strftime('%e %b %y', $date2));
+  
+  return ucwords(strftime('%e %b %y', $date1)).' - '.ucwords(strftime('%e %b %y', $date2));
+}
+
 
 /*
  * display numeric representation of date and hour
@@ -237,18 +267,18 @@ function date_displayTime ($date=TODAY) {
  * @return string
  * @access public
  */
-function date_displayHour( $date ) {
+function date_displayHour($date=TODAY) {
   return date_displayTime($date);
 }
 
 /*
- * shortcut to date_displayLongDayDateHour
+ * alias to date_displayLongDayDateHour
  * display long textual representation of day, date and hour
  * @param date $date
  * @return string
  * @access public
  */
-function date_display( $date=TODAY ) {
+function date_display($date=TODAY) {
   return date_displayLongDayDateHour( $date );
 }
 
@@ -455,7 +485,7 @@ function date_getOrdinalSuffix($date=0){
   $num = date('d', $date);
   
   /* check day */
-  if($num < 11 || $num > 13){
+  if ($num < 11 || $num > 13) {
     switch($num % 10){
       case 1: return 'st';
       case 2: return 'nd';

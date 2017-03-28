@@ -1,25 +1,25 @@
 <?php
-  /*
-   * CaMyks Engine
-   * Developed by     : camyks.net
-   * Author           : CaMykS Team <camyks.contact@gmail.com>
-   * CaMykS Version   : 1.0b
-   * Object Version   : 1.0
-   * Object Type      : Engine / Tool Library
-   * Creation Date    : Apr 2010
-   * Last Modif Date  : Apr 2010
-   * 
-   * Salesforce (http://www.salesforce.com) tools
-   * /!\ This library is not loaded with CaMykS initialisation
-   *
-   */
+/*
+ * CaMyks Engine
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * Object Version   : 1.0
+ * CaMykS Version   : 1.0b
+ * Object Type      : Engine / Tool Library
+ * Creation Date    : Apr 2010
+ * Last Modif Date  : Apr 2010
+ * 
+ * Salesforce (http://www.salesforce.com) tools
+ * /!\ This library is not loaded with CaMykS initialisation
+ *
+ */
 
-  /*
-   * submit web-to-lead request
-   * @param array $params
-   * @return boolean success
-   * @access public
-   */
+/*
+ * submit web-to-lead request
+ * @param array $params
+ * @return boolean success
+ * @access public
+ */
 function salesforce_submitWeb2Lead($params=array()) {
   /* check if request method exists */
   if (!function_exists('http_build_query'))

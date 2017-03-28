@@ -85,7 +85,7 @@ class SyntaxColoringEngine extends Input {
    * @return void
    * @access public
    */
-  function execute( $text=null, $mode=null ) {
+  function execute( $text=null, $mode=null, $params=array() ) {
     if ( isset( $text ) and isset ( $mode ) ) {
       if ( in_array( $mode, $this->modes ) ) {
 	/* load sub engine if needed */
@@ -96,7 +96,7 @@ class SyntaxColoringEngine extends Input {
 	/* set mode */
 	eval ( '$this->mode = new SyntaxColoringEngine_'.$mode.'();');
 	/* color */
-	$this->content = $this->mode->execute( $text );
+	$this->content = $this->mode->execute( $text, $params );
 	return;
       }
     }

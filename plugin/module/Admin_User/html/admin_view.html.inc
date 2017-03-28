@@ -2,18 +2,18 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a2
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Layout
+ * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2009
+ * Last Modif Date	: Mar 2017
  * 
  * Admin_User Module Admin Layout : view profile
 */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:600px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
 <?=$this->theme->get_boxTitleBar($this->get_translation('user').' : '.$this->user->login );?>
 <?=$this->theme->get_boxTabsBar($this->tabs,
 				  $this->tabObject.'.mouseclick',
@@ -25,72 +25,72 @@ global $camyks;
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <tr>
       <td class="eTableLine0 eContent2" style="width:150px;">
-	<?=$camyks->get_translation('formitem_login')?>
+	    <?=$camyks->get_translation('formitem_login')?>
       </td>
       <td class="eTableLine0 eContent1">
-	<?=$this->user->login?>
+	    <?=$this->user->login?>
       </td>
     </tr>
     <tr>
       <td class="eTableLine1 eContent2">
-	<?=$camyks->get_translation('formitem_status')?>
+	    <?=$camyks->get_translation('formitem_status')?>
       </td>
       <td class="eTableLine1 eContent1">
-	<?=$camyks->get_translation(($this->user->active == 1?'':'in').'active');?>
+	    <?=$camyks->get_translation(($this->user->active == 1?'':'in').'active');?>
       </td>
     </tr>
     <tr>
       <td class="eTableLine0 eContent2">
-	<?=$camyks->get_translation('formitem_firstname')?>
+	    <?=$camyks->get_translation('formitem_firstname')?>
       </td>
       <td class="eTableLine0 eContent1">
-	<?=$this->user->firstname?>
+	    <?=$this->user->firstname?>
       </td>
     </tr>
     <tr>
       <td class="eTableLine1 eContent2">
-	<?=$camyks->get_translation('formitem_lastname')?>
+	    <?=$camyks->get_translation('formitem_lastname')?>
       </td>
       <td class="eTableLine1 eContent1">
-	<?=$this->user->lastname?>
+	    <?=$this->user->lastname?>
       </td>
     </tr>
     <tr>
       <td class="eTableLine0 eContent2">
-	<?=$camyks->get_translation('formitem_email')?>
+	    <?=$camyks->get_translation('formitem_email')?>
       </td>
       <td class="eTableLine0 eContent1">
-	<?=$this->user->email?>
+	    <?=$this->user->email?>
       </td>
     </tr>
     <tr>
       <td class="eTableLine1 eContent2" style="vertical-align:top;">
-	<?=$camyks->get_translation('formitem_address')?>
+	    <?=$camyks->get_translation('formitem_address')?>
       </td>
       <td class="eTableLine1 eContent1">
-	<?=nl2br($this->user->address)?>
+	    <?=nl2br($this->user->address)?>
       </td>
     </tr>
   </table>
 </div>
 
 <div id="itemrights" style="display:none;" class="adminContentPanel">
-  <table cellspacing="0" cellpadding="0" border="0">
+  <table cellspacing="0" cellpadding="0" border="0" style="wdith:100%;">
     <?php $alt=0; ?>
     <?php foreach ( $camyks->modules as $m ) : ?>
     <?php if ( $m->type == 'admin' ) : ?>
     <?php $m->get_rights() ?>
     <tr>
-      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+      <td class="eTableLine<?=$alt?> eContent2" style="width:175px;">
 	<?= $m->title; ?>
       </td>
       
       <?php $rightcount = 0; ?>
       <?php $linecount = 0; ?>
       <?php foreach ( $m->rights as $ridx => $right ) : ?>
-            <td class="eTableLine<?=$alt?>" style="width:12px;">
+        <td class="eTableLine<?=$alt?> eTableIconCell">
 	      <input type="checkbox" name="<?=$right['name']?>" value="0" disabled="disabled" <?= $this->user->get_right( $m->name, $ridx) ? ' checked="checked"':''; ?> />
-            </td>
+        </td>
 	    <td class="eTableLine<?=$alt?> eContent1" style="width:<?=$this->layout_cellwidth?>;">
 	      <?= $right['title'] ?>
 	    </td>

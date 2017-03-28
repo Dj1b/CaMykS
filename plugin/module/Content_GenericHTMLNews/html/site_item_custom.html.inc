@@ -37,16 +37,15 @@
       <?php endif; ?>
     </h4>
     <?php endif; ?>
-    
 
     <?php if ( file_exists($this->newsitem->vars['content']) ) : ?>
     <?php include($this->newsitem->vars['content']); ?>
     <?php endif; ?>
 
-    <p class="eContent1">
-    <?=$this->get_translation('shareon');?>
-    <a name="fb_share" type="icon" share_url="<?=$this->get_singlenewslink($this->newsitem->id);?>"></a>
-    </p>
+    <?php if ($this->networkInput !== false) : ?>
+      <?=$this->networkInput->display();?>
+    <?php endif; ?>
+    
   </div>
 
 

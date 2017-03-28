@@ -1,10 +1,10 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		  : camyks.net
- * Author		        : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	  : 1.0b
- * Object Version	  : 1.0
+ * Developed by		: camyks.net
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0b
+ * Object Version	: 1.0
  * Object Type      : Engine / Object
  * Creation Date    : Jun 2011
  * Last Modif Date  : Jun 2011
@@ -233,7 +233,7 @@ class CRequestAnswer {
   	unset($this->params['line']);
   
     /* ensure that data are correctly handled by PHP json method */
-    setLocale("LC_NUMERIC, 'en_US.utf8'");
+    setLocale(LC_NUMERIC, 'en_US.utf8');
   
   	/* send XML */
   	header("Content-Type: text/javascript; charset=utf8");

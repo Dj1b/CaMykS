@@ -2,18 +2,18 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a2
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Layout
+ * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2009
+ * Last Modif Date	: Mar 2017
  * 
  * Admin_User Module Admin Layout : edit adminuser object
 */
 global $camyks;
 ?>
-<?=$camyks->theme->get_boxHeader('width:600px;margin:0 auto;');?>
+<?=$camyks->theme->get_boxHeader('width:800px;margin:0 auto;');?>
 <?=$camyks->theme->get_boxTitleBar($this->get_translation('user').' : '.$this->user->login );?>
 <?=$camyks->theme->get_boxTabsBar($this->tabs,
 				  $this->tabObject.'.mouseclick',
@@ -46,7 +46,7 @@ global $camyks;
     </tr>
     <?php else : ?>
     <tr>
-      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+      <td class="eTableLine<?=$alt?> eContent2" style="width:175px;">
 	<?=$camyks->get_translation('formitem_login')?>
       </td>      
       <td class="eTableLine<?=$alt?> eContent1">
@@ -109,54 +109,54 @@ global $camyks;
     <?php $alt = abs( $alt-1 ); ?>
     <tr>
       <td class="eTableLine<?=$alt?> eContent2">
-	<?=$camyks->get_translation('formitem_firstname')?>
+	    <?=$camyks->get_translation('formitem_firstname')?>
       </td>
       <td class="eTableLine<?=$alt?> eContent1">
-	<input type="text" name="adminuser_firstname" value="<?=$this->user->firstname?>" maxlength="32" class="inputs" />
+	    <input type="text" name="adminuser_firstname" value="<?=$this->user->firstname?>" maxlength="32" class="inputs" />
       </td>
     </tr>
 
     <?php $alt = abs( $alt-1 ); ?>    
     <tr>
       <td class="eTableLine<?=$alt?> eContent2">
-	<?= $camyks->get_translation('formitem_lastname')?>
+	    <?= $camyks->get_translation('formitem_lastname')?>
       </td>
       <td class="eTableLine<?=$alt?> eContent1">
-	<input type="text" name="adminuser_lastname" value="<?=$this->user->lastname?>" maxlength="32" class="inputs" />
+	    <input type="text" name="adminuser_lastname" value="<?=$this->user->lastname?>" maxlength="32" class="inputs" />
       </td>
     </tr>
     
     <?php $alt = abs( $alt-1 ); ?>
     <tr>
       <td class="eTableLine<?=$alt?> eContent2">
-	<?=$camyks->get_translation('formitem_email')?>
+	    <?=$camyks->get_translation('formitem_email')?>
       </td>
       <td class="eTableLine<?=$alt?> eContent1">
-	<input type="text" name="adminuser_email" value="<?=$this->user->email?>" maxlength="255" class="inputs"/>
+	    <input type="text" name="adminuser_email" value="<?=$this->user->email?>" maxlength="255" class="inputs"/>
       </td>
     </tr>
     
     <?php $alt = abs( $alt-1 ); ?>
     <tr>
       <td class="eTableLine<?=$alt?> eContent2" style="vertical-align:top;">
-	<?=$camyks->get_translation('formitem_address')?>
+	    <?=$camyks->get_translation('formitem_address')?>
       </td>
       <td class="eTableLine<?=$alt?> eContent1">
-	<textarea cols="40" rows="6" name="adminuser_address" class="inputs"><?=$this->user->address?></textarea>
+	    <textarea cols="40" rows="6" name="adminuser_address" class="inputs"><?=$this->user->address?></textarea>
       </td>
     </tr>
   </table>
 </div>
 
 <div id="itemrights" style="display:none;" class="adminContentPanel">
-  <table cellspacing="0" cellpadding="0" border="0">
+  <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <?php $alt=0 ?>
     <?php foreach ( $camyks->modules as $m ) : ?>
     <?php if ( $m->type == 'admin' ) : ?>
     <?php $m->get_rights() ?>
     <tr>
-      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
-	<?= $m->title; ?>
+      <td class="eTableLine<?=$alt?> eContent2" style="width:175px;">
+	    <?= $m->title; ?>
       </td>
       <?php $rightcount = 0; ?>
       <?php $linecount = 0; ?>
