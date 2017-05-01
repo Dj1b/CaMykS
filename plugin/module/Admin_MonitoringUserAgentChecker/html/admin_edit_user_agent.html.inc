@@ -8,8 +8,6 @@
  * Object Type	    : Plugin / Module Layout
  * Creation Date   	: Dec 2014
  * Last Modif Date	: Dec 2014
- * History :
- * * 12-19-14 : Initial files
  * 
  * Admin_MonitoringUserAgentChecker Module Admin Layout : edit record
 */

@@ -52,7 +52,7 @@ $default = $camyks->site_data_url.'/img/module/default_icon32.gif';
   <?php endforeach; ?>
   <?php if  ( $col != 0 ) : ?>
     <?php for ( $i=$col; $i < $this->cols; $i++ ) : ?>
-      <td class="adminControlPanelItem"> &nbsp; </td>
+      <td class="adminControlPanelItem"></td>
     <?php endfor; ?>
     </tr>
   <?php endif; ?>

@@ -90,6 +90,9 @@ class Theme extends Plugin {
     
     /* set useEnhancedSelectInputs to default value */
     $this->useEnhancedSelectInputs = false;
+    
+    /* check for responsive admin mode */
+    $this->isAdminResponsive = false;
   }
 
   /* methods */
@@ -102,19 +105,42 @@ class Theme extends Plugin {
    */
   function initialise() {
     global $camyks;
-        
-    /* add icons */
-    foreach ($this->touchIcons as $icon) {
-      $camyks->HTMLPage->add_link($icon['name'], $this->get_fileURL('img/touchIcons/'.$icon['url']), array('sizes'=>$icon['sizes']));
-      if (isset($icon['default']) and $icon['default'] == 1) {
-        if ($camyks->modules['Admin_ContentPage']->get_configValue('site_ogmeta') == 1)
-          $camyks->HTMLPage->add_meta('og:image', $this->get_fileURL('img/touchIcons/'.$icon['url']), 'property');
-        $camyks->HTMLPage->add_link('', $this->get_fileURL('img/touchIcons/'.$icon['url']), array('itemprop'=>'image'));
-      }
-    }
     
-    /* load styles */
-    $this->get_main_css();
+    if ($camyks->mode == CAMYKS_MODE_ADMIN) {
+      $this->initialise_adminMode();
+    
+    } else {
+      /* add icons */
+      foreach ($this->touchIcons as $icon) {
+        $camyks->HTMLPage->add_link($icon['name'], $this->get_fileURL('img/touchIcons/'.$icon['url']), array('sizes'=>$icon['sizes']));
+        if (isset($icon['default']) and $icon['default'] == 1) {
+          if ($camyks->modules['Admin_ContentPage']->get_configValue('site_ogmeta') == 1)
+            $camyks->HTMLPage->add_meta('og:image', $this->get_fileURL('img/touchIcons/'.$icon['url']), 'property');
+          $camyks->HTMLPage->add_link('', $this->get_fileURL('img/touchIcons/'.$icon['url']), array('itemprop'=>'image'));
+        }
+      }
+      
+      /* load styles */
+      $this->get_main_css();
+    }
+  }
+  
+  /*
+   * initialise admin mode
+   * @return void
+   * @access private
+   */
+  function initialise_adminMode() {
+    global $camyks;
+    
+    if ($this->isAdminResponsive) {
+      /* update page view port */
+      $camyks->HTMLPage->add_meta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0', 'name');
+    }
+    $this->add_styleFile('style.css');
+    $this->add_styleFile('admin.css');
+    $this->add_styleFile('editor.css');
+    $this->get_parts();
   }
 
   /*
@@ -160,16 +186,24 @@ class Theme extends Plugin {
   function get_main_css () {
     global $camyks, $global_theme_media_types;
     
-    /* main styles */
-    if ($camyks->mode == CAMYKS_MODE_ADMIN or !$camyks->get_confValue('enable_responsiveDesign') or count($this->responsiveStyles) == 0) {
+    
+    if ($camyks->get_confValue('enable_responsiveDesign') == 1) {
+      /* update page view port */
+      $camyks->HTMLPage->add_meta('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0', 'name');
+      
+      /* add styles */
+      if (count($this->responsiveStyles) > 0) {
+        foreach ($this->responsiveStyles as $style) {
+          $this->add_styleFile($style['file'], $style['condition']);
+          if ($style['default'])
+            $this->add_styleFile($style['file'], $style['condition'], '(lt IE 9)&(!IEMobile)');
+        }
+      } else {
+        $this->add_styleFile('style.css');
+      }
+    } else {
       $this->add_styleFile('style.css');
       $this->add_styleFile('editor.css');
-    } else {
-      foreach ($this->responsiveStyles as $style) {
-        $this->add_styleFile($style['file'], $style['condition']);
-        if ($style['default'])
-          $this->add_styleFile($style['file'], $style['condition'], '(lt IE 9)&(!IEMobile)');
-      }
     }
     
     /* alternate media styles */

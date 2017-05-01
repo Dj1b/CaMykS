@@ -203,8 +203,7 @@ class FileManager extends Input {
     $this->winSize = '450px;';
 
     /* load theme */
-    $this->theme->get_main_css();
-    $this->theme->get_parts();
+    $this->theme->initialise_adminMode();
     $this->add_styleFile('popup.css');
 
     /* display html page */

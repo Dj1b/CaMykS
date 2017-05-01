@@ -998,9 +998,11 @@ class Camyks {
     } else {
       $ua = client_getUAInfos();
       
-      /* check for hacks */
-      if ($ua['platform_type'] == 'hack')
+      /* check for hacks or fakes */
+      if (in_array($ua['platform_type'], array('hack', 'fake'))) {
+        header('HTTP/1.1 403 Forbidden');
         die();
+      }
       
       /* define define/format */
       $device = $ua['platform_format'];
@@ -1402,7 +1404,7 @@ class Camyks {
       return $this->site_engine_url.'/'.$file;
       
     /* get file from camyks data folder */
-    if (file_exists ($this->site_data_url.'/'.$file))
+    if (file_exists($this->camyks_path.'/engine/data/'.$file))
       return $this->site_data_url.'/'.$file ;
     
     /* TO DO */
@@ -1414,7 +1416,7 @@ class Camyks {
 
   /* init kill camyks object */
   function init_kill() {
-    if ($this->benchMode!==false) $this->benchMode->export();
+    if ($this->benchMode !== false) $this->benchMode->export();
     register_shutdown_function('camyks_kill');
     die();
   }
@@ -1620,6 +1622,9 @@ class Camyks {
       else
 	    $module = 'Tool_ControlPanel';
     }
+    
+    /* set up HTML Page config  */
+    $this->set_confValue('html_version', 5);
 
     /* create page */
     $this->HTMLPage = new HTMLPage();
@@ -1632,18 +1637,17 @@ class Camyks {
     
     /* get init from content */
     $this->theme->initialise();
-    $this->theme->get_parts();
     $this->contentPage->init_admin();
 
     /* update header vars */
-    $this->HTMLPage->set_siteInformations ( $this->_conf['site_title'],
+    $this->HTMLPage->set_siteInformations ($this->_conf['site_title'],
 					    'CaMykS Team',
 					    '');
-    $this->HTMLPage->set_pageInformations ( $this->get_translation('administration').' - ' .$this->contentPage->modules[0]->title,
+    $this->HTMLPage->set_pageInformations ($this->get_translation('administration').' - ' .$this->contentPage->modules[0]->title,
 					    null,
 					    null,
 					    $this->current_language);
-    $this->HTMLPage->set_robotInformations ( false, false );
+    $this->HTMLPage->set_robotInformations (false, false);
     if ( isset($this->_conf['favicon']) ) {
       $this->HTMLPage->set_favicon( $this->_conf['favicon'] );
     } else {
@@ -1661,6 +1665,7 @@ class Camyks {
   /* build content in request mode */
   function get_requestPageContent() {
     $plugin = false;
+    
     /* get plugin */
     if (isset($_GET['module'])) {
       if (($plugin = module_get ( $_GET['module'], 'site' )) === false)
@@ -1669,10 +1674,29 @@ class Camyks {
       if (($plugin = input_get ( $_GET['input'], 'site' )) === false) 
 	    $plugin = input_get ( $_GET['input'], 'camyks' );
     }
-
     /* get plugin init & display */
     if ( $plugin !== false ) {
       $plugin->execute_request();
+    }
+    
+    /* check for CaMykS Asset request */
+    if (isset($_GET['CaMykSAsset'])) {
+      $asset = $_GET['CaMykSAsset'];      
+      if (preg_match('/\.\./', $asset))
+        die();
+        
+      $file = new FSFile($this->camyks_path.'/engine/data/'.$asset);
+      if ($file->exists) $file->send();
+    }
+    
+    /* check for CaMykS Asset request */
+    if (isset($_GET['PluginAsset'])) {
+      $asset = $_GET['PluginAsset'];      
+      if (preg_match('/\.\./', $asset))
+        die();
+      
+      $file = new FSFile($this->camyks_path.'/plugin/'.$asset);
+      if ($file->exists) $file->send();
     }
   }
   

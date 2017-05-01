@@ -26,6 +26,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_platform_type_computer'] = 'O
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_bot'] = 'Robot';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tool'] = 'Outil';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_hack'] = 'Hack';
+$this->trads['mod_admin_monitoringuseragentchecker_platform_type_fake'] = 'Fausse visite';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_other'] = 'Autre';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_undefined'] = 'Autre';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_all'] = 'Tous';

@@ -79,6 +79,7 @@ class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 				'bot' => $this->get_translation('platform_type_bot'),
 				'tool' => $this->get_translation('platform_type_tool'),
 				'hack' => $this->get_translation('platform_type_hack'),
+				'fake' => $this->get_translation('platform_type_fake'),
   				'other' => $this->get_translation('platform_type_other'));
   	else return array(
   	            'handheld' => $this->get_translation('platform_type_handheld'),
@@ -87,6 +88,7 @@ class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 				'bot' => $this->get_translation('platform_type_bot'),
 				'tool' => $this->get_translation('platform_type_tool'),
 				'hack' => $this->get_translation('platform_type_hack'),
+				'fake' => $this->get_translation('platform_type_fake'),
   				'other' => $this->get_translation('platform_type_other'),
   				'undefined' => $this->get_translation('platform_type_other'));
   }
@@ -154,7 +156,7 @@ class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
     /* check user agent */
     if ($params['user_agent'] != '')
-    	$w[] = '(user_agent like "%'.$params['user_agent'].'%"';
+    	$w[] = '(user_agent like "%'.$params['user_agent'].'%")';
     
     /* check user agent */
     if ($params['platform_type'] != '')

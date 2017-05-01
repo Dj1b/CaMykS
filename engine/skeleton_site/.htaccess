@@ -26,6 +26,10 @@ Options +FollowSymlinks
 
   # admin, request (.php files)
   RewriteRule ^([^\.]*).php$ $1.php?%{QUERY_STRING} [L]
+  
+  # CaMykS assets 
+  # RewriteRule ^cdata/(.*)$ request.php?CaMykSAsset=$1 [L,NS,QSA]
+  # RewriteRule ^cplugin/(.*)$ request.php?PluginAsset=$1 [L,NS,QSA]
 
   # site page ( .htm, .html, .xhtml, no extension )
   RewriteCond %{REQUEST_FILENAME} !-s

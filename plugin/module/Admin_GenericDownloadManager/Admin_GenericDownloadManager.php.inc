@@ -625,48 +625,46 @@ class Admin_GenericDownloadManager extends Module {
    */
   function execute_request_downloadFile() {
   	global $camyks;
+  	
+  	/* load parameters */
     $fid = (int)$_REQUEST['did'];
     $sid = isset($_REQUEST['sid'])?addslashes($_REQUEST['sid']):'';
     
-    /* get database connection */
-    $camyks->get_databaseConnection();
-    
-    /* get file manager */
-    $statEngine = module_get('Admin_Statistics', 'camyks');
-    $logEngine = module_get('Admin_SystemReport', 'camyks');
-    
-    $camyks->modules[ $this->name ] = &$this;
-    $camyks->modules[ $logEngine->name ] = &$logEngine;
-    $camyks->modules[ $statEngine->name ] = &$statEngine;
+    /* load CaMykS */
+    $camyks->get_siteInit();
 
     /* load config */
     $this->config->get();
     
+    /* check if module is installed */
+    if (!$this->is_installed())
+      $camyks->throwFatalError($this->error);
+      
     /* get document object */
     $this->documentItem->id = $fid;
     $this->documentItem->get(true);
     $this->documentItem->get_fromItems();
 
     /* check security code */
-    if ( $this->config->vars['link_mode'] == 1
-	 and $this->documentItem->vars['security'] != $sid )
-      $camyks->throwFatalError( $this->error );
+    if ($this->config->vars['link_mode'] == 1
+	 and $this->documentItem->vars['security'] != $sid)
+      $camyks->throwFatalError($this->error);
 
     /* check document object */
-    if ( $this->documentItem->vars['active'] == 0)
-      $camyks->throwFatalError( $this->error );
+    if ($this->documentItem->vars['active'] == 0)
+      $camyks->throwFatalError($this->error);
 
     /* check document file */
     $file = new FSFile( $this->documentItem->vars['file'] );
-    if ( $file->exists === false )
-      $camyks->throwFatalError( $this->error );
+    if ($file->exists === false)
+      $camyks->throwFatalError($this->error);
     
     /* update statistics */
     $camyks->update_statistic('genericdownload', $this->name, 'mixed', $this->documentItem->id, '', '' );
     
     /* download file */
-    if ( $this->documentItem->vars['filetitle'] != '' )
-      $file->download( $this->documentItem->vars['filetitle'] );
+    if ($this->documentItem->vars['filetitle'] != '')
+      $file->download($this->documentItem->vars['filetitle']);
     else
       $file->download();
   }

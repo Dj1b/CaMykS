@@ -210,9 +210,9 @@ function string_replaceEntityChars( $string, $params=array()) {
 		   /* add html number entities for small letters */
 		   '/&#22[4-9];/', '/&#231;/', '/&#23[2-5];/', '/&#20[6-9];/', '/&#241;/', '/&#24[2-68];/', '/&#2(?:49|5[0-2]);/', '/&#25[35];/',
 		   /* add html number entities for special letters */
-		   '/&(?:#198|AElig);/', '/&(?:#223|szlig);/', '/&(?:#230|aelig);/', '/&#338;/', '/&#339;/', '/&#352;/', '/&#353;/', '/&#376;/',
+		   '/&(?:#198|AElig);/', '/&(?:#223|szlig);/', '/&(?:#230|aelig);/', '/&(?:#338|oelig);/', '/&(?:#339|OElig);/', '/&#352;/', '/&#353;/', '/&#376;/',
 		   /* add html number entities for special chars */
-		   '/&amp;/',
+		   '/&amp;/', '/&hellip;/',
   );
   
   /* init replacement array */
@@ -226,7 +226,7 @@ function string_replaceEntityChars( $string, $params=array()) {
 		   /* add html number entities for special letters */
 		   'AE', 'ss', 'ae', 'OE', 'oe', 'S', 's', 'Y',
 		   /* add html number entities for special chars */
-		   '',
+		   '', '...',
   );
   
   /* add param patterns and replacements */
@@ -247,7 +247,7 @@ function string_replaceEntityChars( $string, $params=array()) {
   }
   
   /* execute replacement */
-  return preg_replace($pattern, $replace, $string );
+  return preg_replace($pattern, $replace, $string);
 }
 
 /*

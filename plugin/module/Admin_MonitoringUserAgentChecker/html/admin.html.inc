@@ -7,27 +7,23 @@
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Layout
  * Creation Date   	: Dec 2014
- * Last Modif Date	: Dec 2014
- * History :
- * * 12-19-14 : Initial files
+ * Last Modif Date	: Apr 2017
  *
  * Admin_MonitoringUserAgentChecker Module Admin Layout : main
  */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->title) ?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs,
 				$this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header( )?>
 <div id="itemrecords" style="display:<?=$this->tabBuilder->get_tabDisplay('records')?>;" class="adminContentPanel">
-
-<?=$this->listRecord->display('head');?>
-<?=$this->listRecord->display('list');?>
-
+    <?=$this->listRecord->display('head');?>
+    <?=$this->listRecord->display('list');?>
 </div>
 
-<div id="admin_genericuseragentmanager_addpopup" class="adminPopupFrame" style="display:none;width:500px;position:absolute;z-index:10001">
+<div id="admin_genericuseragentmanager_addpopup" class="adminPopupFrame" style="display:none; width:500px; position:absolute; z-index:10001">
   <?=$this->addform->display_header();?>
   <?=$this->addform->display_hiddens();?>
   <?=$camyks->theme->get_boxHeader()?>
@@ -47,18 +43,6 @@ global $camyks;
 
 <div id="admin_genericuseragentmanager_viewpopup" class="adminPopupFrame" style="display:none;width:300px;position:absolute;z-index:10001">
 
-</div>
-
-<div> 
-<script>
-	var data = [];
-    <?php 
-	foreach($this->listRecord->objectList as $key=>$object){
-		echo 'data[' . $key . '] = ' . json_encode($object->vars) .';';
-	}
-	?>
-    console.log(data);
-</script>    
 </div>
 
 <?=$this->theme->get_boxContent2Footer(); ?>

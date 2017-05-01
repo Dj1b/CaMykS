@@ -506,15 +506,15 @@ function file_getMime ( $file, $ext=null )  {
   /* check file */
   if (!file_exists($file))
   	return '';
-  	  	  	  	
+    
   /* try to get file info from finfo methods */
   if (($mime = _file_getMimeFromFinfo($file)) !== false)
  	return $mime;
- 		    
+   		    
   /* try to get file info from mime content type method */
   if (($mime = _file_getMimeFromMimeContentType($file)) !== false)
  	return $mime;
-      		
+ 	      		
   /* try to get file info from internal method */
   return _file_getMimeFromExtension($file, $ext);
 }
@@ -639,6 +639,8 @@ function file_search($pattern='*', $rootPath='./', $globFlags=0) {
  * @accesss public
  */
 function file_md5($file, $params=array()) {
+  global $camyks;
+  
   /* check default md5_file method */
   if (($v = @md5_file($file)) !== false)
     return $v;
@@ -661,7 +663,7 @@ function file_md5($file, $params=array()) {
   /* check HTTP 403 error : forbidden */
   if (preg_match('/HTTP\/1.1 403/', $error['message'])) {  
     /* create fake context */
-    $params = array_merge(array('user_agent' => 'Mozilla/5.0',
+    $params = array_merge(array('user_agent' => $camyks->get_confValue('UserAgent'),
         'referer'=> string_getBaseURL($file)), $params);
     $context = stream_context_create(array('http'=>$params));
   

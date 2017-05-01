@@ -220,7 +220,7 @@ class HTMLForm {
     global $camyks;
     /* build param list */
     $params = array('id'=>'', 'name'=>'date', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 
-    'tabIndex'=>-1, 'objects'=>null, 'buttons'=>null, 'hasEmptyFirstOption'=>false, 'dayAsSelect'=>false, 'yearAsSelect'=>false, 'yearRange'=>array('from'=>2000, 'to'=>2050));
+    'tabIndex'=>-1, 'objects'=>null, 'buttons'=>null, 'hasEmptyFirstOption'=>false, 'dayAsSelect'=>false, 'monthAsText'=>false, 'yearAsSelect'=>false, 'yearRange'=>array('from'=>2000, 'to'=>2050));
 
     /* check header params */
     if ( is_array($date)) {
@@ -286,13 +286,28 @@ class HTMLForm {
 
     /* add month input */
     if ( in_array('month', $params['objects'])) {
-      $m = array();
-      if ( $params['hasEmptyFirstOption'] )
-        $m[0] = '';
-      for ( $i=1; $i<=12; $i++ )
-	  $m[$i] = ucfirst(strftime ( '%B', mktime( 0, 0, 0, $i, 1, 1 )));
-	  $default = $params['default'] === '' ? 0 : (int)date('n', $params['default']);	  
-      $html .= $this->display_selectInput(array('name'=>$params['name'].'_month',
+
+      if ( $params['monthAsText'] == true) {
+        $default = $params['default'] === '' ? 0 : date('m', $params['default']);
+        $html .= $this->display_textInput(array('name'=>$params['name'].'_month',
+		  'maxlength'=>2,
+		  'size'=>2,
+		  'class'=>'',
+		  'default'=>$default,
+          'tabIndex'=>$params['tabIndex'] == -1 ? -1 : $params['tabIndex'],
+          'onchange'=>$params['onchange'], 
+          'onfocus'=>$params['onfocus'], 
+          'onblur'=>$params['onblur']));
+      
+      } else {
+        $default = $params['default'] === '' ? 0 : (int)date('n', $params['default']);
+        $m = array();
+        if ( $params['hasEmptyFirstOption'] )
+          $m[0] = '';
+        for ( $i=1; $i<=12; $i++ )
+	      $m[$i] = ucfirst(strftime ( '%B', mktime( 0, 0, 0, $i, 1, 1 )));
+	  
+        $html .= $this->display_selectInput(array('name'=>$params['name'].'_month',
 						'values'=>$m,
 						'class'=>'sinputs',
 						'default'=>$default,
@@ -301,7 +316,8 @@ class HTMLForm {
           'onfocus'=>$params['onfocus'], 
           'onblur'=>$params['onblur'],
 						));
-      $html .= ' ';
+        $html .= ' ';
+      }
     }
     /* add year input */
     if ( in_array('year', $params['objects'])) {

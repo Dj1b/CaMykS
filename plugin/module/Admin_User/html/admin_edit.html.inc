@@ -36,7 +36,7 @@ global $camyks;
     <?php $alt=0 ?>
     <?php if ( $this->user->is_new == 1 ) : ?>
     <tr>
-      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+      <td class="eTableLine<?=$alt?> eContent2" style="width:175px;">
 	<?=$camyks->get_translation('formitem_login')?>
       </td>
       <td class="eTableLine<?=$alt?> eContent1">
@@ -72,7 +72,7 @@ global $camyks;
 	    <?php endif; ?>
 	    <?php $alt = abs( $alt-1 ); ?>
 	    <tr>
-	      <td class="eTableLine<?=$alt?> eContent2" style="width:150px;">
+	      <td class="eTableLine<?=$alt?> eContent2" style="width:175px;">
 		<?=$camyks->get_translation('formitem_pwd')?>
 	      </td>
 	      <td class="eTableLine<?=$alt?> eContent1">

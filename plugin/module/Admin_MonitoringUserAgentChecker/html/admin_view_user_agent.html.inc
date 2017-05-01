@@ -8,8 +8,6 @@
  * Object Type	    : Plugin / Module Layout
  * Creation Date   	: Dec 2014
  * Last Modif Date	: Dec 2014
- * History :
- * * 12-19-14 : Initial files
  * 
  * Admin_MonitoringUserAgentChecker Module Admin Layout : view record
 */
@@ -83,13 +81,12 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 <td class="eTableLine0 eContent1">
 <?php
 $new_platform_type = $this->uaInfos['platform_type'];
-if($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
+if ($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
 	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']) . ' (' . 
 		$this->get_translation('platform_type_' . $new_platform_type) . '*)';
 else
 	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']);
-
- ?>
+?>
 </td>
 </tr>
 

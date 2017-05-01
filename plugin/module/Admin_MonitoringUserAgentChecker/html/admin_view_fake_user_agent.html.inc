@@ -6,22 +6,22 @@
  * CaMykS Version	: 1.0b
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Layout
- * Creation Date   	: Dec 2014
- * Last Modif Date	: Dec 2014
+ * Creation Date   	: Apr 2017
+ * Last Modif Date	: Apr 2017
  * 
- * Admin_MonitoringUserAgentChecker Module Admin Layout : view tool record
+ * Admin_MonitoringUserAgentChecker Module Admin Layout : view fake record
 */
 global $camyks;
+$file = $this->theme->get_pictURL('file', 12, 'std');
+$file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 
-/* check user agent */
-if($this->uaInfos == false)
-	$this->uaInfos =  array();
 ?>
-<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader('width:800px; margin:0 auto;');?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs,
 				$this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header( )?>
+
 <?=$this->editform1->display_header(); ?>
 <?=$this->editform1->display_hiddens(); ?>
 <?=$this->editform1->display_footer(); ?>
@@ -36,8 +36,10 @@ if($this->uaInfos == false)
 <td class="eTableLine0 eContent2" style="width:150px">
 <?=$this->get_translation('formitem_user_agent')?>
 </td>
-<td class="eTableLine0 eContent1">
-<?=$this->recordItem->vars['user_agent']; ?>
+<td class="">
+  <div style="width:620px; overflow:auto; padding:8px;">
+    <?=$this->recordItem->vars['user_agent']; ?>
+  </div>
 </td>
 </tr>
 
@@ -55,7 +57,7 @@ if($this->uaInfos == false)
 
 <tr>
 <td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_platform_type')?>
+<?=$camyks->get_translation('formitem_type')?>
 </td>
 <td class="eTableLine0 eContent1">
 <?php
@@ -66,51 +68,6 @@ if ($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new
 else
 	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']);
 ?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_platform_format')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('platform_format', $this->uaInfos) ? $this->recordPlatformFormats[$this->uaInfos['platform_format']] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_tool_title')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('tool_title', $this->uaInfos) ? $this->uaInfos['tool_title'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_bot_url')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('tool_url', $this->uaInfos) ? $this->uaInfos['tool_url'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_engine_title')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('engine_title', $this->uaInfos) ? $this->uaInfos['engine_title'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_engine_url')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('engine_url', $this->uaInfos) ? $this->uaInfos['engine_url'] : '';?>
 </td>
 </tr>
 

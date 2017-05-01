@@ -1,11 +1,11 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
+ * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a2
- * Object Version       : 1.0b1
- * Object Type          : Plugin / Input Engine
+ * CaMykS Version   : 1.0a2
+ * Object Version   : 1.0b1
+ * Object Type      : Plugin / Input Engine
  * Create Date		: Sep 2008
  * Last Modif Date	: Oct 2008
  * History :

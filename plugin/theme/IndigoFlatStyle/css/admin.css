@@ -1,0 +1,102 @@
+/*
+ * CaMykS Engine
+ * Developed by     : Ideogram Design
+ * Author           : JB Lebrun
+ * CaMykS Version   : 1.0b
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Theme Main CSS Styles
+ * Creation Date    : Apr 2017
+ * Last Modif Date  : Apr 2017
+ *
+ * Indigo Flat Theme admin CSS styles
+ */
+ 
+ /* admin */
+#adminengine_main {background:url(../img/admin/bkgd.gif) 0 0 repeat-x;}
+#adminengine_main #pageHeader {width:800px; max-width:100%;}
+#adminengine_main #pageHeader img {max-width:100%;}
+#adminengine_main #pageFooter .indigoFlatStyleBar{display:none;}
+.adminControlPanel {width:800px !important; max-width:100%; margin: 0 auto;}
+.adminControlPanelGroup{background:white}
+.adminControlPanelItem {padding:4px;}
+.adminControlPanelItem .pluginTitle {margin-left:36px; padding:4px 4px 0;}
+.adminControlPanelItem .pluginDesc {margin-left:36px; padding:0 4px;}
+.adminEditorModule {width:800px !important; max-width:100%; margin:0 auto;}
+.adminPopupFrame {background:#eeeeee; padding:8px 16px; width:100%;box-sizing:content-box;}
+a.eTitle3 {text-decoration:none;}
+.eTableIconCell { width:12px; padding-left:3px !important; padding-right:3px !important; }
+.eTableHeader a {color:white; font-weight:bold;}
+.eTableHeader a:hover {color:#DEDEDE;}
+
+/* admin : help */
+.adminhelplist {
+  background : #eeeeee;
+  padding: 0px;
+  width:150px;
+  height:100%;
+  vertical-align:top;
+}
+
+.adminhelplist .indigoFlatStyleBoxTab{border-right: none; color: #808080;}
+.adminhelplist .indigoFlatStyleBoxTabO{border-right: none; }
+.adminhelplist .indigoFlatStyleBoxTabS{border-right: none; background:#808080; color:white;}
+.adminhelptext {vertical-align:top; padding:0px;}
+
+/* part complements */
+a.smallButton { padding:3px 4px 2px !important; font-size:9px important; }
+
+/* form file input */
+.fileInputButton {vertical-align:-2px;}
+
+/* mceEditor */
+.mceEditor * {box-sizing:content-box;}
+
+/* */
+.adminLoginBox {width:560px !important; max-width:100%; padding:100px 40px 40px !important;}
+.adminLoginBox .eTitle1 {text-align:center;}
+.adminLoginBox .error {text-align:center; font-size:14px;}
+.adminLoginBox .inputs {font-size:16px; text-align:center; text-align-last: center; font-weight:normal; width:400px; max-width:100%; background:white;}
+.adminLoginBox input.inputs[name=login] { margin: 16px 0 8px; padding:8px 16px;}
+.adminLoginBox input.inputs[name=pwd] { margin: 8px 0; padding:8px 16px;}
+.adminLoginBox select.inputs[name=_clg_] { margin: 8px 0; width:400px; -webkit-appearance: none; -moz-appearance: none; height:32px; padding:0;}
+.adminLoginBox select.inputs[name=_clg_] option {font-size:16px; font-weight:normal; padding: 8px 16px; text-align:center; }
+.adminLoginBox .buttons {margin: 8px 0; text-align:center;}
+.adminLoginBox .buttons .indigoFlatStyleButton {font-size:14px; padding: 12px 32px;}
+
+/* AdminItemListViewer */
+.AdminItemListViewer {padding: 4px 0; font-size:0;}
+.AdminItemListViewer .selector {width:50%; display:inline-block; font-size:0;}
+.AdminItemListViewer .selector div {display:inline-block;}
+.AdminItemListViewer .selector div.label {width:150px; max-width:50%;}
+.AdminItemListViewer .selector div.input {max-width:50%;}
+.AdminItemListViewer .selector .pageSelector {max-width:100%;}
+.AdminItemListViewer .selector div.input input,
+.AdminItemListViewer .selector div.input select {max-width:100%;}
+
+/* AdminItemListViewer for popup */
+@media screen and (max-width: 600px) {
+  .AdminItemListViewer .selector {width:100%;}
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0)  {
+  .adminLoginBox select.inputs[name=_clg_] {text-indent:16px;}
+}
+
+/* handheld adaptations */
+@media screen and (max-width: 670px) {
+  #pageHeader {padding:0 8px;}
+  
+  #pageHeaderTitle {font-size:16px; padding:12px 0;}
+  
+  #pageContent {margin:8px 8px 40px !important; min-height:250px !important;}
+  
+  .adminLoginBox {padding:40px 20px 20px !important;}
+  .adminControlPanelItem {display:inline-block !important; width:100% !important;}
+  .adminControlPanelItem:empty {display:none !important;}
+  .adminContentPanel {min-height:250px !important;}
+  
+  .AdminItemListViewer .selector {width:100%;}
+  .AdminItemListViewer .selector div.input input {max-width:160px;}
+  .AdminItemListViewer .selector div.input select {max-width:160px;}
+}

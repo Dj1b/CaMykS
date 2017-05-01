@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: May 2007
- * Last Modif Date	: Mar 2009
+ * Object Type	    : Plugin / Module Layout
+ * Creation Date	: May 2007
+ * Last Modif Date	: Apr 2017
  *
  * Admin_Statistics Module Admin part of Layout : detail object
 */
@@ -48,13 +48,13 @@ $main_bar_height = 58;
     </tr>
 	  
 	  <?php $alt=1; ?>
-	  <?php foreach ( $this->statsdetaillist as $stat=>$value ) : ?>
+	  <?php foreach ($this->statsdetaillist as $stat=>$value) : ?>
 	  <tr>
 	    <td class="eTableLine<?=$alt?>">
 	      <table cellspacing="0">
-		<tr>
+		    <tr>
 	            <td style="padding:0px;">
-		      <div style="width:<?=(int)($detail_bar_width*$value/$this->statsdetailmax)?>px;height:14px;background:#<?=$this->config->vars['coloralternate'.$alt]?>;border:solid 1px black;float:left;">     
+		      <div style="width:<?=(int)($detail_bar_width*$value/$this->statsdetailmax)?>px; height:14px ;background:#<?=$this->config->vars['coloralternate'.$alt]?>;border:solid 1px black;float:left;">     
 			&nbsp;
 		      </div>
 		    </td>
@@ -204,6 +204,11 @@ $main_bar_height = 58;
 	    </td>
 	  </tr>
 	  <tr>
+	    <td class="eTableLine0" colspan="2">
+	      &nbsp;
+	    </td>
+	  </tr>
+	  <tr>
 	    <td class="eTableHeader" colspan="2">
 	      <?=$this->get_translation('value3selection')?>
 	    </td>
@@ -227,7 +232,7 @@ $main_bar_height = 58;
 	    </td>
 	  </tr>
 	  <tr>
-	    <td class="eTableLine0 eContent2">
+	    <td class="eTableLine0 eContent2" style="width:100px;">
 	      <?=$this->get_translation('coloralternate1')?>
 	    </td>
 	    <td class="eTableLine0 eContent1">

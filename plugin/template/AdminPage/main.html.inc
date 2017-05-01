@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Template Layout
  * Creation Date	: Sep 2005
- * Last Modif Date	: Nov 2010
+ * Last Modif Date	: Apr 2017
  *      
  * AdminPage Template Main HTML
 */
@@ -32,11 +32,6 @@ global $camyks;
     <?=$this->display_module(0);?>
   </div>
   <div id="pageFooter">
-    <div id="pageFooterBar">
-      <?=$camyks->theme->get_barLeft('width:700px;')?>
-        <div>&nbsp;</div>
-      <?=$camyks->theme->get_barRight();?>
-    </div>
     <div id="pageFooterEngine">
       <a href="<?=$camyks->website?>" class="img" target="_blank">
         <img src="<?=$this->get_signPicture()?>" alt="Powered By CaMykS" border="0" />

@@ -6,12 +6,10 @@
  * CaMykS Version	: 1.0b
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Layout
- * Creation Date   	: Dec 2014
- * Last Modif Date	: Dec 2014
- * History :
- * * 12-19-14 : Initial files
+ * Creation Date   	: Mar 2017
+ * Last Modif Date	: Mar 2017
  * 
- * Admin_MonitoringUserAgentChecker Module Admin Layout : view record
+ * Admin_MonitoringUserAgentChecker Module Admin Layout : view hack record
 */
 global $camyks;
 $file = $this->theme->get_pictURL('file', 12, 'std');
@@ -62,7 +60,14 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 <?=$camyks->get_translation('formitem_type')?>
 </td>
 <td class="eTableLine0 eContent1">
-<?=$this->get_translation('platform_type_hack'); ?>
+<?php
+$new_platform_type = $this->uaInfos['platform_type'];
+if ($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
+	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']) . ' (' . 
+		$this->get_translation('platform_type_' . $new_platform_type) . '*)';
+else
+	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']);
+?>
 </td>
 </tr>
 

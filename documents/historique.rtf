@@ -2,11 +2,107 @@
 \cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 LucidaGrande;\f2\fnil\fcharset0 Monaco;
 }
 {\colortbl;\red255\green255\blue255;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww20080\viewh18280\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww24640\viewh18280\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\b\fs28 \cf0 Historique des versions\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs26 \cf0 1.0-20170501
+\b0\fs24 \
+- Ajout d'un fichier LISEZMOI et README au format markdown.\
+- 
+\i Librairie client
+\i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent.\
+- 
+\i Librairie client
+\i0  : Ajout d'un nouveau type "Fake" dans les User Agent, et ajout des premi\'e8res fausses visites d\'e9tectables.\
+
+\i - Librairie client
+\i0  : Correction d'outils g\'e9n\'e9riques mal formatt\'e9s.\
+- 
+\i Module Admin_MonitoringUserAgentChecker
+\i0  : Ajout de la gestion des "Fake".\
+- 
+\i Module Admin_MonitoringUserAgentChecker
+\i0  : Corrections sur les layouts.\
+- 
+\i Module Admin_MonitoringUserAgentChecker
+\i0  : Corrections d'une erreur dans le pr\'e9parateur de requ\'eate SQL.\
+- 
+\i CaMykS
+\i0  : Ne r\'e9pond plus aux User Agents marqu\'e9 comme "Fake".\
+- 
+\i CaMykS
+\i0  : Renvoie une en-t\'eate "403 Forbidden" aux "Fakes" et "Hacks"\
+
+\i - Module Admin_GenericDownloadManager
+\i0  : Ne g\'e9n\'e8re plus une erreur au t\'e9l\'e9chargement si le plugin n'est pas install\'e9.\
+
+\i - Input GenericMediaPopup
+\i0  : Acc\'e8de d\'e9sormais \'e0 Youtube et Dailymotion en HTTPS.\
+- 
+\i Module Admin_Statistics
+\i0  : Am\'e9lioration des layouts.\
+
+\i - Template AdminPage
+\i0  : Am\'e9lioration du layout, le pied de page est d\'e9sormais bloqu\'e9 en bas.\
+
+\i - Librairie Theme
+\i0  : Support pr\'e9liminaire de l'administration au format mobile.\
+- 
+\i CaMykS
+\i0  : Support pr\'e9liminaire de l'administration au format mobile.\
+
+\i - Theme IndigoFlatStyle
+\i0  : Support pr\'e9liminaire de l'administration au format mobile.\
+
+\i - Theme GreyStyle
+\i0  : Compatibilit\'e9 avec le support de l'administration au format mobile. \
+- 
+\i Input AdminItemListViewer
+\i0  : Compatibilit\'e9 avec le support de l'administration au format mobile. \
+
+\i - Module Tool_ControlPanel
+\i0  : Am\'e9lioration du layout pour support pr\'e9liminaire de l'administration au format mobile.\
+
+\i - Template AdminPage 
+\i0 : Am\'e9lioration du layout pour support pr\'e9liminaire de l'administration au format mobile.\
+
+\i - CaMykS
+\i0  : Retour d'une version "Majeure" dans le fichier de configuration statique\
+
+\i - CaMykS
+\i0  : Ajout d'un User Agent par d\'e9faut dans le fichier de configuration dynamique (surchargeable par les sites internets).\
+
+\i - Librairie file
+\i0  : Ajout du user agent par d\'e9faut lors de requ\'eates\
+
+\i - Input FileManager
+\i0  : Mise \'e0 jour suite changement des layouts admin\
+
+\i - Librairie string
+\i0  : Am\'e9lioration de la m\'e9thode string_replaceEntityChars\
+- Librairie HTMLForm : Ajout de la possibilit\'e9 d'avoir le mois au format text pour l'input d\'e9di\'e9 aux dates\
+- \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\i\b \cf0 [Exp\'e9rimental] Fonctionnalit\'e9 actuellement en test
+\i0\b0 \
+- CaMykS : request.php est d\'e9sormais capable de renvoyer les assets du CMS, sans passer par les liens symboliques "cdata" et "cplugin".\
+- 
+\i Skeleton Site / .htaccess
+\i0  : Ajout du rewrite pour le renvoi des assets depuis request.php\
+\
+Cette fonctionnalit\'e9 conserve la compatibilit\'e9 avec les versions pr\'e9c\'e9dentes, et doit \'eatre activ\'e9e pour \'eatre utilis\'e9e.\
+Elle permet de se passer des liens symboliques "cdata" et "cplugin", qui sont g\'e9r\'e9s par le CMS directement, en contrepartie, elle est plus lente (chaque fichier devient une requ\'eate au CMS).\
+Attention, sur certains serveurs, l'acc\'e8s au CSS est coup\'e9 car la fonction mime_content_type ne renvoie pas le bon mime pour les fichiers CSS qui sont ensuite bloqu\'e9s par les navigateurs.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b\fs28 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \fs26 \cf0 1.0-20170401
@@ -93,7 +189,7 @@
 \i0  : Ajout de nouveaux robots et appareils dans la d\'e9tection via le User Agent\
 - 
 \i Librairie client
-\i0  : Ajout d'un nouveau type "Hack" dans les User Agent, et ajout des premiers hacks d\'e9tectable\
+\i0  : Ajout d'un nouveau type "Hack" dans les User Agent, et ajout des premiers hacks d\'e9tectables\
 
 \i - Librairie client
 \i0  : S\'e9paration de la d\'e9tection des bots et outils g\'e9n\'e9riques pour de meilleurs r\'e9sultats\
@@ -120,7 +216,7 @@
 \i0  : Ajout du rewrite pour les URLs modernes \
 \
 Cette fonctionnalit\'e9 conserve la compatibilit\'e9 avec les versions pr\'e9c\'e9dentes, et doit \'eatre activ\'e9e pour \'eatre utilis\'e9e.\
-Attention, cette fonctionnalit\'e9 a \'e9t\'e9 d\'e9velopp\'e9e pour augmenter le r\'e9f\'e9rencement, cependant, l'activer sur un site en production peut faire perdre une partie du r\'e9f\'e9rencement actuel.\
+Attention, cette fonctionnalit\'e9 a \'e9t\'e9 d\'e9velopp\'e9e pour am\'e9liorer le r\'e9f\'e9rencement, cependant, l'activer sur un site en production peut faire perdre une partie du r\'e9f\'e9rencement actuel.\
 \
 Pour activer cette fonctionnalit\'e9, vous devez :\
 	- Copier / Activer la ligne de rewrite relative aux nouvelles URLs dans le .htaccess du site\

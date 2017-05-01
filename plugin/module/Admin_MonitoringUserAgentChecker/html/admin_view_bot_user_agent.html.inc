@@ -8,8 +8,6 @@
  * Object Type	    : Plugin / Module Layout
  * Creation Date   	: Dec 2014
  * Last Modif Date	: Dec 2014
- * History :
- * * 12-19-14 : Initial files
  * 
  * Admin_MonitoringUserAgentChecker Module Admin Layout : view bot record
 */
@@ -61,18 +59,13 @@ if($this->uaInfos == false)
 </td>
 <td class="eTableLine0 eContent1">
 <?php
-if(array_key_exists('platform_type', $this->uaInfos)){
-	$new_platform_type = $this->uaInfos['platform_type'];
-}else 
-	$new_platform_type = '';
-	
-if($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
+$new_platform_type = $this->uaInfos['platform_type'];
+if ($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
 	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']) . ' (' . 
 		$this->get_translation('platform_type_' . $new_platform_type) . '*)';
 else
 	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']);
-
- ?>
+?>
 </td>
 </tr>
 

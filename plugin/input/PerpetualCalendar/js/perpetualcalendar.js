@@ -243,7 +243,7 @@ function PerpetualCalendar(name) {
   this.display_month = function(month, year) {
     /* update date */
     d = this.get_param('date');
-    if (month) d.setMonth(month);
+    if (month>=0) d.setMonth(month);
     if (year) d.setYear(year);
     this.set_param('date', d);
     

@@ -7,9 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Theme 
  * Creation Date	: Oct 2014
- * Last Modif Date  : Oct 2014
- * History :
- * * 14-10-16 : Initial file
+ * Last Modif Date  : Apr 2017
  */
 
 class IndigoFlatStyle extends Theme {
@@ -29,6 +27,9 @@ class IndigoFlatStyle extends Theme {
     
     /* update useEnhanceSelectInputs value */
     $this->useEnhancedSelectInputs = false;
+    
+    /* check for responsive admin mode */
+    $this->isAdminResponsive = true;
   }
   
   /* additional parts methods */

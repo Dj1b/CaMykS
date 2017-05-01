@@ -366,8 +366,7 @@ class Admin_ContentPage extends Module {
     $this->add_JSScript('var pc_callback="'.$this->request_callback.'";');
 
     /* load theme */
-    $this->theme->get_main_css();
-    $this->theme->get_parts();
+    $this->theme->initialise_adminMode();
 
     $this->selected_layout = 'request.html.inc';
     

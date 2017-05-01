@@ -319,6 +319,8 @@ class Admin_MonitoringUserAgentChecker extends Module {
   		$this->selected_layout = 'admin_view_tool_user_agent.html.inc';
     elseif ($this->recordItem->vars['platform_type'] == 'hack')
   		$this->selected_layout = 'admin_view_hack_user_agent.html.inc';
+    elseif ($this->recordItem->vars['platform_type'] == 'fake')
+  		$this->selected_layout = 'admin_view_fake_user_agent.html.inc';
   	else
   		$this->selected_layout = 'admin_view_user_agent.html.inc';
   }
@@ -409,11 +411,11 @@ class Admin_MonitoringUserAgentChecker extends Module {
     $this->recordItem->get_fromHeader();
         
     /* verify duplicate */
-    if($this->recordItem->count($_REQUEST) == 0){
-    	if ( $this->recordItem->save() )
-    		$this->text = $this->get_translation('record_saved');
-    	else
-    		$this->text = $this->get_translation('record_notsaved');
+    if ($this->recordItem->count($_REQUEST) == 0) {
+      if ($this->recordItem->save())
+    	$this->text = $this->get_translation('record_saved');
+      else
+    	$this->text = $this->get_translation('record_notsaved');
     } else
     	$this->text = $this->get_translation('record_duplicated');
 

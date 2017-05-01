@@ -206,7 +206,7 @@ function MediaPopup(name) {
   		
   		/* add youtube iframe */
   		contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
-  		    + ' src="http://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
+  		    + ' src="https://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
   		    + ' frameborder="0" allowfullscreen></iframe>';
   		
   		/* display popup div */
@@ -223,7 +223,7 @@ function MediaPopup(name) {
   		  		
   		/* add dailymotion iframe */
   		contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
-  		    + ' src="http://www.dailymotion.com/embed/video/'+video+'"></iframe>';
+  		    + ' src="https://www.dailymotion.com/embed/video/'+video+'"></iframe>';
   		      		
   		/* display popup div */
  	    this.show_popup('youtube', width, height);

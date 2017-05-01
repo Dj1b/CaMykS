@@ -1,12 +1,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Theme Main CSS Styles
- * Create Date		: Jun 2005
- * Last Modif Date      : May 2008
+ * Object Type      : Plugin / Theme Main CSS Styles
+ * Creation Date	: Jun 2005
+ * Last Modif Date  : Apr 2017
  *
  * Main CSS styles for Grey Style Theme
  */
@@ -221,5 +221,11 @@ a.listheader:hover {
 .adminLoginBox {width:560px !important; padding:40px;}
 .adminLoginBox .eTitle1 {text-align:center;}
 .adminLoginBox .buttons>table {margin:0 auto;}
+
+/* AdminItemListViewer */
+.AdminItemListViewer {padding: 4px 0; font-size:0;}
+.AdminItemListViewer .selector {width:50%; display:inline-block;}
+.AdminItemListViewer .selector div {display:inline-block;}
+.AdminItemListViewer .selector div.label {width:150px; max-width:50%;}
 
 

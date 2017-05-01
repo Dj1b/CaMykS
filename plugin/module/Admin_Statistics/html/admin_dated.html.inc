@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: May 2007
- * Last Modif Date	: Mar 2009
+ * Object Type	    : Plugin / Module Layout
+ * Creation Date  	: May 2007
+ * Last Modif Date	: Apr 2017
  *
  * Admin_Statistics Module Admin part of Layout : single object
 */
@@ -35,7 +35,7 @@ $main_bar_height = 58;
     </tr>
     <tr>
       <td class="eTableLine0 eTitle4" colspan="2">
-<?=$this->get_translation('firstrecorddate', date_displayQuickFormat($this->statobject->vars['register_date']))?>
+<?=$this->get_translation('firstrecorddate', date_displayShortDateHour($this->statobject->vars['register_date']))?>
       </td>
     </tr>
     <tr>
@@ -197,7 +197,7 @@ $main_bar_height = 58;
       </td>
     </tr>
     <tr>
-      <td class="" style="border-right: solid 1px #888888;width:60%;vertical-align:top;">
+      <td class="" style="border-right: solid 1px #888888; width:60%; vertical-align:top;">
 	<table cellspacing="0" style="width:100%;">
 	  <tr>
 	    <td>
@@ -214,7 +214,7 @@ $main_bar_height = 58;
 	    </td>
 	  </tr>
 	  <tr>
-	    <td class="eTableLine0 eContent2">
+	    <td class="eTableLine0 eContent2" style="width:100px;">
 	      <?=$this->get_translation('coloralternate1')?>
 	    </td>
 	    <td class="eTableLine0 eContent1">

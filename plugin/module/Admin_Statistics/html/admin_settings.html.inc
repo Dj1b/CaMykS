@@ -2,11 +2,11 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: May 2007
+ * Object Type	    : Plugin / Module Layout
+ * Creation Date	: May 2007
  * Last Modif Date	: Oct 2009
  *
  * Admin_Statistics Module Admin part of Layout : configuration

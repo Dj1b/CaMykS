@@ -1,39 +1,35 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
+ * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Layout
- * Create Date		: Oct 2008
- * Last Modif Date	: Oct 2008
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Layout
+ * Creation Date	: Oct 2008
+ * Last Modif Date	: Apr 2017
  * 
  * AdminItemListViewer input head layout
 */
 if ( $this->selectorForm !== false ) {
   echo $this->selectorForm->display_header();
   echo $this->selectorForm->display_hiddens();
-  echo '<table cellspacing="0" cellpadding="0" border="0" style="width:100%; padding:4px 0;">' . "\n";
+  echo '<div class="AdminItemListViewer">';
 
-  $column = 0;
   foreach ( $this->params['headselectors'] as $name => $selector ) {
 
-    /* start line */
-    if ( $column == 0 )
-      echo '<tr>';
-
     /* start item box */
-    echo '<td class="eTableLine0 eContent2">';
+    echo '<div class="selector">';
+    echo '<div class="label eTableLine0 eContent2">';
     echo $selector['title'];
-    echo '</td>' . "\n";
-    echo '<td class="eTableLine0 eContent2">';
+    echo '</div>' . "\n";
+    echo '<div class="input eTableLine0 eContent2">';
     
     /* display selector item */
     switch ( $selector['itemtype'] ) {
     case 'page' :
       /* selector type is a page */
-      echo '<div style="width:160px; text-align:center;">';
+      echo '<div class="pageSelector" style="width:160px; text-align:center;">';
       echo '<a href="javascript:'.$this->params['name'].'.update_pageMinus(\''.$name.'\');void(0);" style="float:left">';
       echo '<img src="'.$this->get_icon('left', 'std').'" alt="" border="0" onmouseover="this.src=\''.$this->get_icon('left', 'ovr').'\';" onmouseout="this.src=\''.$this->get_icon('left', 'std').'\';" style="margin-top:6px;" />';
       echo '</a>';
@@ -65,23 +61,11 @@ if ( $this->selectorForm !== false ) {
     }
     
     /* end item box */
-    echo '</td>';
-
-    /* stop line */
-    if ( ++$column == $this->params['headcolumns'] ) {
-      echo '</tr>';
-      $column = 0;
-    }
+    echo '</div>';
+    echo '</div>';
   }
 
-  /* check & stop line */
-  if ( $column != 0 ) {
-    while( $column++ < $this->params['headcolumns'] )
-      echo '<td>&nbsp;</td>';
-    echo '</tr>';
-  }
-
-  echo '</table>';
+  echo '</div>';
   echo '<input type="submit" style="display:none" />';
   echo $this->selectorForm->display_footer();
 }

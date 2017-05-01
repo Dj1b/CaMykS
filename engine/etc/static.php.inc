@@ -17,6 +17,7 @@
 $this->title = 'CaMykS';
 $this->website = 'http://www.camyks.net';
 $this->version = '1.0-20170401';
+$this->mversion = '1.0';
 $this->nversion = '20170401';
 $this->last_modification_date = mktime(0, 0, 0, 4, 1, 2017);
 

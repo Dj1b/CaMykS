@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0b
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: May 2007
- * Last Modif Date	: Mar 2009
+ * Object Type	    : Plugin / Module Layout
+ * Creation Date	: May 2007
+ * Last Modif Date	: Apr 2017
  *
  * Admin_Statistics Module Admin part of Layout : single object
 */
@@ -29,7 +29,7 @@ global $camyks;
     </tr>
     <tr>
       <td class="eTableLine0 eTitle4" colspan="3">
-	<?=$this->get_translation('firstrecorddate'  , date_displayQuickFormat($this->statobject->vars['register_date']))?>
+	<?=$this->get_translation('firstrecorddate'  , date_displayShortDateHour($this->statobject->vars['register_date']))?>
       </td>
     </tr>
     <tr>
@@ -46,8 +46,8 @@ global $camyks;
           &nbsp;
 	 </div>
 	 </td>
-	 <td class="eTableLine<?=$alt?> eContent1" style="width:100px;">
-	   <?=date_displayQuickFormat( $stat->vars['statdate'] ) ?>
+	 <td class="eTableLine<?=$alt?> eContent1" style="width:110px;">
+	   <?=date_displayShortDateHour( $stat->vars['statdate'] ) ?>
 	 </td>
 	    <td class="eTableLine<?=$alt?> eContent1">
 	      : <?=isset ( $this->maintitles[$stat->vars['main']] )? $this->maintitles[$stat->vars['main']] : $stat->vars['main']?>
@@ -216,7 +216,7 @@ global $camyks;
 	    </td>
 	  </tr>
 	  <tr>
-	    <td class="eTableLine0 eContent2">
+	    <td class="eTableLine0 eContent2" style="width:100px;">
 	      <?=$this->get_translation('coloralternate1')?>
 	    </td>
 	    <td class="eTableLine0 eContent1">

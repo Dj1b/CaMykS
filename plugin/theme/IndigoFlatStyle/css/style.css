@@ -6,13 +6,13 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Theme Main CSS Styles
  * Creation Date    : Oct 2014
- * Last Modif Date  : Oct 2014
+ * Last Modif Date  : Apr 2017
  *
  * Indigo Flat Theme Main CSS styles
  */
 
 /* global */
-* { padding:0; margin:0;}
+* { padding:0; margin:0; box-sizing:border-box;}
 body {background: #eeeeee;}
 p {padding: 4px 0;}
 a { color:#5b8dcd; text-decoration:none;}
@@ -71,56 +71,4 @@ img.icon{ float:left; margin-right:4px; max-width:80px; }
   height:0;
   font-size:0;
   clear:both;
-}
-
-/* admin */
-#adminengine_main {background:url(../img/admin/bkgd.gif) 0 0 repeat-x;}
-#adminengine_main #pageHeader {width:800px;}
-#adminengine_main #pageFooter .indigoFlatStyleBar{display:none;}
-.adminControlPanel {width:800px !important; margin: 0 auto;}
-.adminControlPanelGroup{background:white}
-.adminControlPanelItem {padding:4px;}
-.adminControlPanelItem .pluginTitle {margin-left:36px; padding:4px 4px 0;}
-.adminControlPanelItem .pluginDesc {margin-left:36px; padding:0 4px;}
-.adminEditorModule {width:800px !important; margin:0 auto;}
-.adminPopupFrame {background:#eeeeee; padding:8px 16px; width:100%;}
-a.eTitle3 {text-decoration:none;}
-.eTableIconCell { width:12px; padding-left:3px !important; padding-right:3px !important; }
-.eTableHeader a {color:white; font-weight:bold;}
-.eTableHeader a:hover {color:#DEDEDE;}
-
-/* admin : help */
-.adminhelplist {
-  background : #eeeeee;
-  padding: 0px;
-  width:150px;
-  height:100%;
-  vertical-align:top;
-}
-
-.adminhelplist .indigoFlatStyleBoxTab{border-right: none; color: #808080;}
-.adminhelplist .indigoFlatStyleBoxTabO{border-right: none; }
-.adminhelplist .indigoFlatStyleBoxTabS{border-right: none; background:#808080; color:white;}
-.adminhelptext {vertical-align:top; padding:0px;}
-
-/* part complements */
-a.smallButton { padding:3px 4px 2px !important; font-size:9px important; }
-
-/* form file input */
-.fileInputButton {vertical-align:-2px;}
-
-/* */
-.adminLoginBox {width:560px !important; padding:40px;}
-.adminLoginBox .eTitle1 {text-align:center;}
-.adminLoginBox .error {text-align:center; font-size:14px;}
-.adminLoginBox .inputs {font-size:16px; text-align:center; text-align-last: center; font-weight:normal; width:400px; background:white;}
-.adminLoginBox input.inputs[name=login] { margin: 16px 0 8px; padding:8px 16px;}
-.adminLoginBox input.inputs[name=pwd] { margin: 8px 0; padding:8px 16px;}
-.adminLoginBox select.inputs[name=_clg_] { margin: 8px 0; width:432px; -webkit-appearance: none; -moz-appearance: none; height:32px; padding:0;}
-.adminLoginBox select.inputs[name=_clg_] option {font-size:16px; font-weight:normal; padding: 8px 16px; text-align:center; }
-.adminLoginBox .buttons {margin: 8px 0; text-align:center;}
-.adminLoginBox .buttons .indigoFlatStyleButton {font-size:14px; padding: 12px 32px;}
-
-@media screen and (-webkit-min-device-pixel-ratio:0)  {
-  .adminLoginBox select.inputs[name=_clg_] {text-indent:16px;}
 }

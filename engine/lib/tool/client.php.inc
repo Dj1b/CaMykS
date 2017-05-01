@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2007
- * Last Modif Date  : May 2015
+ * Last Modif Date  : Apr 2017
  *
  * client user methods
  */
@@ -64,10 +64,14 @@ function client_getUAInfos($ua=false) {
   $req = true;
   
   /* get user agent */
-  if (!$ua)	$ua = client_getUserAgent();
+  if ($ua===false) $ua = client_getUserAgent();
 
   /* init result value */
   $infos = array();
+  
+  /*** check fake visitors */
+  if ( ($c = client_getFakeInfosFromUserAgent($ua)) !== false)
+    return $c;
   
   /*** check hacks */
   if ( ($c = client_getHackInfosFromUserAgent($ua)) !== false)
@@ -294,127 +298,121 @@ function client_getUAInfos($ua=false) {
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
-  /* check samsung tablets */
-  elseif (preg_match('/(GT|SM)-(P|T)([0-9]{3,})/', $ua, $matches)) {
-    $rep = array(
-        'GT-P1000'=>array('platform_model' => 'Galaxy Tab',),
-        'GT-P3100'=>array('platform_model' => 'Galaxy Tab 2',),
-        'GT-P3110'=>array('platform_model' => 'Galaxy Tab 2',),
-        'GT-P5100'=>array('platform_model' => 'Galaxy Tab 2',),
-        'GT-P5110'=>array('platform_model' => 'Galaxy Tab 2',),
-        'GT-P5200' =>array('platform_model' => 'Galaxy Tab 3',),
-        'GT-P5210'=>array('platform_model' => 'Galaxy Tab 3',),
-        'GT-P7300'=>array('platform_model' => 'Galaxy Tab 8.9',),
-        'SM-T110' =>array('platform_model' => 'Galaxy Tab 3 Lite',),
-        'SM-T310' =>array('platform_model' => 'Galaxy Tab 3',),
-        'SM-T116NU' =>array('platform_model' => 'Galaxy Tab 3 V',),
-        'SM-T320' =>array('platform_model' => 'Galaxy Tab Pro',),
-        'SM-T530' =>array('platform_model' => 'Galaxy Tab 4',),
-        'SM-T531' =>array('platform_model' => 'Galaxy Tab 4 (3G)',),
-        'SM-T533' =>array('platform_model' => 'Galaxy Tab 4',),
-        'SM-T535' =>array('platform_model' => 'Galaxy Tab 4 (4G)',),
-        'SM-T550' =>array('platform_model' => 'Galaxy Tab A',),
-        'SM-P550' =>array('platform_model' => 'Galaxy Tab A',),
-        'SM-T560' =>array('platform_model' => 'Galaxy Tab E',),
-        'SM-T800' =>array('platform_model' => 'Galaxy Tab S',),
-        'SM-T810' =>array('platform_model' => 'Galaxy Tab S2',),
-        
-    );
-    
-    $infos = array_merge($infos, array(
- 	  'platform_company'=>'Samsung', 
-      'platform_model'=>$matches[0],
-      'platform_type'=>'tablet',
-      'platform_format'=>'tablet'), 
-      isset($rep[$matches[0]])?$rep[$matches[0]]:array());
-  }   
-  /* check samsung phones */
+  
+  /* check samsung devices */
   elseif (preg_match('/(GT|SM|SGH)-([A-Z0-9]{4,})/', $ua, $matches)) {
     $rep = array(
-        'GT-S7562'  =>array('platform_model' => 'Galaxy S Duo', ),
-        'GT-I9100'  =>array('platform_model' => 'Galaxy S2', ),
-        'GT-I9300'  =>array('platform_model' => 'Galaxy S3', ),
-        'GT-I9305'  =>array('platform_model' => 'Galaxy S3 (4G)', ),
-        'GT-I9301I' =>array('platform_model' => 'Galaxy S3 Neo', ),
-        'GT-I9500'  =>array('platform_model' => 'Galaxy S4', ),
-        'GT-I9505'  =>array('platform_model' => 'Galaxy S4', ),
-        'GT-I9506'  =>array('platform_model' => 'Galaxy S4', ),
-        'SM-G900A'  =>array('platform_model' => 'Galaxy S5', ),
-        'SM-G900F'  =>array('platform_model' => 'Galaxy S5', ),
-        'SM-G903F'  =>array('platform_model' => 'Galaxy S5', ),
-        'SM-G901F'  =>array('platform_model' => 'Galaxy S5 Plus', ),
-        'SM-G920F'  =>array('platform_model' => 'Galaxy S6'),
-        'SM-G920I'  =>array('platform_model' => 'Galaxy S6'),
-        'SM-G925F'  =>array('platform_model' => 'Galaxy S6 Edge'),
-        'SM-G930F'  =>array('platform_model' => 'Galaxy S7'),
-        'SM-G935F'  =>array('platform_model' => 'Galaxy S7 Edge'),
-        'SM-G313HZ' =>array('platform_model' => 'Galaxy V', ),
-        'SM-A300F'  =>array('platform_model' => 'Galaxy A3', ),
-        'SM-A300FU' =>array('platform_model' => 'Galaxy A3', ),
-        'SM-A310F'  =>array('platform_model' => 'Galaxy A3', ),
-        'SM-A500FU' =>array('platform_model' => 'Galaxy A5', ),
-        'SM-A510F'  =>array('platform_model' => 'Galaxy A5 (2016)', ),
-        'SM-A700L'  =>array('platform_model' => 'Galaxy A7', ),
-        'SM-E500F'  =>array('platform_model' => 'Galaxy E5 (2015)', ),
-        'SM-E500H'  =>array('platform_model' => 'Galaxy E5 (2015)', ),
-        'SM-E500HQ' =>array('platform_model' => 'Galaxy E5 (2015)', ),
-        'SM-E500M'  =>array('platform_model' => 'Galaxy E5 (2015)', ),
-        'SM-E700H'  =>array('platform_model' => 'Galaxy E7', ),
-        'SM-J100H'  =>array('platform_model' => 'Galaxy J1', ),
-        'SM-J320FN' =>array('platform_model' => 'Galaxy J3', ),
-        'SM-J500F'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J500FN' =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J500G'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J500Y'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J500M'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J500H'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J5007'  =>array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J510FN' =>array('platform_model' => 'Galaxy J5 (2016)', ),
-        'SM-J500M'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
-        'SM-J5010F' =>array('platform_model' => 'Galaxy J5 (2016)', ),
-        'SM-J510G'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
-        'SM-J510M'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
-        'SM-J510Y'  =>array('platform_model' => 'Galaxy J5 (2016)', ),
-        'GT-S6102'  =>array('platform_model' => 'Galaxy Y Duos', ),
-        'GT-S7582'  =>array('platform_model' => 'Galaxy S Duos', ),
-        'GT-I8750'  =>array('platform_model' => 'Ativ S', ),
-        'GT-I8190'  =>array('platform_model' => 'S3 Mini', ),
-        'GT-I9195'  =>array('platform_model' => 'S4 Mini', ),
-        'GT-I9195I' =>array('platform_model' => 'Galaxy S4 Mini', ),
-        'SM-G800F'  =>array('platform_model' => 'Galaxy S5 Mini', ),
-        'SM-G530H'  =>array('platform_model' => 'Galaxy Grand Prime', ),
-        'SM-G530T'  =>array('platform_model' => 'Galaxy Grand Prime', ),
-        'SM-G355HN' =>array('platform_model' => 'Galaxy Core 2'),
-        'SM-G360F'  =>array('platform_model' => 'Galaxy Core Prime', ),
-        'SM-G361F'  =>array('platform_model' => 'Galaxy Core Prime', ),
-        'SM-G530FZ' =>array('platform_model' => 'Galaxy Grand Prime', ),
-        'SM-G386F'  =>array('platform_model' => 'Galaxy Core 4G'),
-        'GT-N5110'  =>array('platform_model' => 'Galaxy Note', ),
-        'GT-N7000'  =>array('platform_model' => 'Galaxy Note (3G)', ),
-        'GT-N7003'  =>array('platform_model' => 'Galaxy Note (4G)', ),
-        'GT-N8000'  =>array('platform_model' => 'Galaxy Note 10.1 (3G)', ),
-        'GT-N8010'  =>array('platform_model' => 'Galaxy Note 10.1', ),
-        'GT-N7100'  =>array('platform_model' => 'Galaxy Note II (3G)', ),
-        'GT-N7105'  =>array('platform_model' => 'Galaxy Note II', ),
-        'SM-N900W8' =>array('platform_model' => 'Galaxy Note 3', ),
-        'SM-N900P'  =>array('platform_model' => 'Galaxy Note 3', ),
-        'SM-N900'   =>array('platform_model' => 'Galaxy Note 3 (3G)', ),
-        'SM-N9002'  =>array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
-        'SM-N9005'  =>array('platform_model' => 'Galaxy Note 3 (4G)', ),
-        'SM-N7505'  =>array('platform_model' => 'Galaxy Note 3 Neo', ),
-        'SM-N910F'  =>array('platform_model' => 'Galaxy Note 4', ),
-        'SM-N920V'  =>array('platform_model' => 'Galaxy Note 5', ),
-        'SM-N930T'=>array('platform_model' => 'Galaxy Note 7', ),
-        'SM-N950'=>array('platform_model' => 'Galaxy Note 8', ),
-        'SGH-I527'=>array('platform_model' => 'Galaxy Mega', ),
-        'SM-G850W'=>array('platform_model' => 'Galaxy Alpha', ),
-        'GT-S5830'=>array('platform_model' => 'Galaxy Ace', ),
-        'SM-G357FZ'=>array('platform_model' => 'Galaxy Ace 4', ),
-        'GT-I9082L'=>array('platform_model' => 'Galaxy Grand', ),
-        'GT-I9060I'=>array('platform_model' => 'Galaxy Grand Plus', ),
-        'GT-S7392'=>array('platform_model' => 'Galaxy Trend', ),
-        'GT-S5660'=>array('platform_model' => 'Galaxy Gio', ),
-        'GT-S5660M'=>array('platform_model' => 'Galaxy Gio', ),
+        /* check samsung tablets */
+        'GT-P1000'=>array('platform_model' => 'Galaxy Tab', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P3100'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P3110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5100'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5200' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5210'=>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P7300'=>array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T110' =>array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T310' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T116NU' =>array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T320' =>array('platform_model' => 'Galaxy Tab Pro', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T530' =>array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T531' =>array('platform_model' => 'Galaxy Tab 4 (3G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T533' =>array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T535' =>array('platform_model' => 'Galaxy Tab 4 (4G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-P550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T560' =>array('platform_model' => 'Galaxy Tab E', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T800' =>array('platform_model' => 'Galaxy Tab S', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T810' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        
+        /* check samsung phones */
+        'GT-S7562'  => array('platform_model' => 'Galaxy S Duo', ),
+        'GT-I9100'  => array('platform_model' => 'Galaxy S2', ),
+        'GT-I9300'  => array('platform_model' => 'Galaxy S3', ),
+        'GT-I9305'  => array('platform_model' => 'Galaxy S3 (4G)', ),
+        'GT-I9301I' => array('platform_model' => 'Galaxy S3 Neo', ),
+        'GT-I9500'  => array('platform_model' => 'Galaxy S4', ),
+        'GT-I9505'  => array('platform_model' => 'Galaxy S4', ),
+        'GT-I9506'  => array('platform_model' => 'Galaxy S4', ),
+        'SM-G900A'  => array('platform_model' => 'Galaxy S5', ),
+        'SM-G900F'  => array('platform_model' => 'Galaxy S5', ),
+        'SM-G903F'  => array('platform_model' => 'Galaxy S5', ),
+        'SM-G901F'  => array('platform_model' => 'Galaxy S5 Plus', ),
+        'SM-G920F'  => array('platform_model' => 'Galaxy S6'),
+        'SM-G920I'  => array('platform_model' => 'Galaxy S6'),
+        'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
+        'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
+        'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge'),
+        'SM-T580'   => array('platform_model' => 'Galaxy S8'),
+        'SM-G313HZ' => array('platform_model' => 'Galaxy V', ),
+        'SM-A300F'  => array('platform_model' => 'Galaxy A3', ),
+        'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
+        'SM-A310F'  => array('platform_model' => 'Galaxy A3', ),
+        'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
+        'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
+        'SM-A700L'  => array('platform_model' => 'Galaxy A7', ),
+        'SM-E500F'  => array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E500H'  => array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E500HQ' => array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E500M'  => array('platform_model' => 'Galaxy E5 (2015)', ),
+        'SM-E700H'  => array('platform_model' => 'Galaxy E7', ),
+        'SM-J100H'  => array('platform_model' => 'Galaxy J1', ),
+        'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
+        'SM-J500F'  => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500FN' => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500G'  => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500Y'  => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500M'  => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J500H'  => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J5007'  => array('platform_model' => 'Galaxy J5 (2015)', ),
+        'SM-J510FN' => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J500M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J5010F' => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510G'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510Y'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'GT-S5360'  => array('platform_model' => 'Galaxy Y', ),
+        'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos', ),
+        'GT-S7582'  => array('platform_model' => 'Galaxy S Duos', ),
+        'GT-I8750'  => array('platform_model' => 'Ativ S', ),
+        'GT-I8190'  => array('platform_model' => 'S3 Mini', ),
+        'GT-I9195'  => array('platform_model' => 'S4 Mini', ),
+        'GT-I9195I' => array('platform_model' => 'Galaxy S4 Mini', ),
+        'SM-G800F'  => array('platform_model' => 'Galaxy S5 Mini', ),
+        'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G355HN' => array('platform_model' => 'Galaxy Core 2'),
+        'SM-G360F'  => array('platform_model' => 'Galaxy Core Prime', ),
+        'SM-G361F'  => array('platform_model' => 'Galaxy Core Prime', ),
+        'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G386F'  => array('platform_model' => 'Galaxy Core 4G'),
+        'GT-N5110'  => array('platform_model' => 'Galaxy Note', ),
+        'GT-N7000'  => array('platform_model' => 'Galaxy Note (3G)', ),
+        'GT-N7003'  => array('platform_model' => 'Galaxy Note (4G)', ),
+        'GT-N8000'  => array('platform_model' => 'Galaxy Note 10.1 (3G)', ),
+        'GT-N8010'  => array('platform_model' => 'Galaxy Note 10.1', ),
+        'GT-N7100'  => array('platform_model' => 'Galaxy Note II (3G)', ),
+        'GT-N7105'  => array('platform_model' => 'Galaxy Note II', ),
+        'SM-N900W8' => array('platform_model' => 'Galaxy Note 3', ),
+        'SM-N900P'  => array('platform_model' => 'Galaxy Note 3', ),
+        'SM-N900A'  => array('platform_model' => 'Galaxy Note 3', ),
+        'SM-N900'   => array('platform_model' => 'Galaxy Note 3 (3G)', ),
+        'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
+        'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)', ),
+        'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo', ),
+        'SM-N910F'  => array('platform_model' => 'Galaxy Note 4', ),
+        'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
+        'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
+        'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
+        'SGH-I527'  => array('platform_model' => 'Galaxy Mega', ),
+        'SM-G850W'  => array('platform_model' => 'Galaxy Alpha', ),
+        'GT-S5830'  => array('platform_model' => 'Galaxy Ace', ),
+        'SM-G357FZ' => array('platform_model' => 'Galaxy Ace 4', ),
+        'GT-I9082L' => array('platform_model' => 'Galaxy Grand', ),
+        'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus', ),
+        'GT-S7392'  => array('platform_model' => 'Galaxy Trend', ),
+        'GT-S5660'  => array('platform_model' => 'Galaxy Gio', ),
+        'GT-S5660M' => array('platform_model' => 'Galaxy Gio', ),
     );
  	$infos = array_merge($infos, array(
  	  'platform_company'=>'Samsung', 
@@ -472,11 +470,14 @@ function client_getUAInfos($ua=false) {
   /* check Sony mobiles and tablets */
   elseif (preg_match('/ (C|D|E|F)([0-9]{4}) /', $ua, $matches)) {
     $rep = array(
-        'C1505'=>array('platform_model' => 'Xperia E'),         
+        'C1505'=>array('platform_model' => 'Xperia E'),  
+        'C2105'=>array('platform_model' => 'Xperia L'), 
         'C6603'=>array('platform_model' => 'Xperia Z'),
         'D2303'=>array('platform_model' => 'Xperia M2'),
         'D2305'=>array('platform_model' => 'Xperia M2'),
         'D2306'=>array('platform_model' => 'Xperia M2'),
+        'D5303'=>array('platform_model' => 'Xperia T2 Ultra'),
+        'D5503'=>array('platform_model' => 'Xperia Z1 Compact'),
         'D5803'=>array('platform_model' => 'Xperia Z3 Compact'), 
         'D6603'=>array('platform_model' => 'Xperia Z3'),         
         'E6653'=>array('platform_model' => 'Xperia Z5'),
@@ -491,9 +492,20 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
-  
+  elseif (preg_match('/SOV33/', $ua, $matches)) {
+    $rep = array(
+        'SOV33'=>array('platform_model' => 'Xperia X Performance'),  
+    );
+    $model = trim($matches[0]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Sony', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
   /* check Sony PCs */
-  elseif (preg_match('/MASP|MASPJS|MASA|MASAJS/', $ua, $matches))
+  elseif (preg_match('/MASE|MASEJS|MASP|MASPJS|MASA|MASAJS/', $ua, $matches))
     $infos = array_merge($infos, array(
   	  'platform_company'=>'Sony (PC)'));
   
@@ -501,10 +513,14 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/Huawei([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
         'EVA-L09'   => array('platform_model' => 'P9'),
+        'VNS-L31'   => array('platform_model' => 'P9 Lite'),
         'VIE-L29'   => array('platform_model' => 'P9 Plus'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
         'Y520-U22'  => array('platform_model' => 'Ascend'),
         'ALE-L21'   => array('platform_model' => 'P8 Lite'),
+        'GRA-L09'   => array('platform_model' => 'P8'),
+        'NXT-L09'   => array('platform_model' => 'Mate 8'),
+        'NXT-L29'   => array('platform_model' => 'Mate 8'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -575,9 +591,21 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  elseif (preg_match('/IdeaTab ([A-Z0-9\-]{3,})/', $ua, $matches)) {
+    $rep = array(
+        'A2107A-H'  => array('platform_model' => 'IdeaTab A2107A-H', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Lenovo', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
   
   /* check Lenovo PCs */
-  elseif (preg_match('/MALC|MALCJS/', $ua, $matches))
+  elseif (preg_match('/MALC|MALCJS|MALN|MALNJS|LCJB|LEN2/', $ua, $matches))
     $infos = array_merge($infos, array(
   	  'platform_company'=>'Lenovo (PC)'));
   
@@ -598,17 +626,25 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Asus PCs */
-  elseif (preg_match('/MAAU|ASJB|ASU2JS|ASU2/', $ua, $matches))
+  elseif (preg_match('/MAAU|ASJB|ASU2JS|ASU2|NP0[6789]/', $ua, $matches))
     $infos = array_merge($infos, array(
   	  'platform_company'=>'Asus (PC)'));   
 
   /* check Micromax */
-  elseif (preg_match('/Micromax ([^ \/]+)/', $ua, $matches))
+  elseif (preg_match('/Micromax( |_)([^ \/\)]+)/', $ua, $matches)) {
+    $rep = array(
+        'A62'       => array('platform_model' => 'Bolt A62'),
+        'Q335'      => array('platform_model' => 'Bolt Q335'),
+        'Q350'      => array('platform_model' => 'Canvas Spark Q350'),
+        'Q380'      => array('platform_model' => 'Canvas Spark Q380'),
+    );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Micromax', 
-      'platform_model'=>$matches[1],
+      'platform_model'=>$matches[2],
       'platform_type'=>'handheld',
-      'platform_format'=>'handheld',));
+      'platform_format'=>'handheld',), 
+      isset($rep[$matches[2]])?$rep[$matches[2]]:array());
+  }
       
   /* check ITel */
   elseif (preg_match('/itel it([^ \/]+)/', $ua, $matches))
@@ -841,11 +877,60 @@ function client_getUAInfos($ua=false) {
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
   
-  /* check Hewlett Packard */
-  elseif (preg_match('/HPNTDF/', $ua, $matches)) {
+  /* check Hewlett Packard OEM computers */
+  elseif (preg_match('/HPCMHP|HPNTDF|HPNTDFJS|HPDTDF|HPDTDFJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
  	  'platform_company'=>'Hewlett Packard (PC)'));
   }
+  
+  /* check Dell OEM computers */
+  elseif (preg_match('/MDDR|MDDRJS|MDDC|MDDCJS|MDDS|MDDSJS/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Dell (PC)'));
+  }
+  
+  /* check Toshiba OEM computers */
+  elseif (preg_match('/MATM|MATMJS|MATB|MATBJS|MATP|MATPJS|TNJB|TAJB/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Toshiba (PC)'));
+  }
+  
+  /* check Acer OEM computers */
+  elseif (preg_match('/MAAR|MAARJS/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Acer (PC)'));
+  }
+  
+  /* check Medion OEM computers */
+  elseif (preg_match('/MAMD/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Medion (PC)'));
+  }
+  
+  /* check MSI OEM computers */
+  elseif (preg_match('/MAMI|MAMIJS|MAM3/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Medion (PC)'));
+  }
+  
+  /* check Gateway OEM computers */
+  elseif (preg_match('/MAGW|MAGWJS/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Gateway (PC)'));
+  }
+  
+  /* check Fujitsu OEM computers */
+  elseif (preg_match('/MAFS|MAFSJS/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Fujitsu (PC)'));
+  }
+  
+  /* check Compaq OEM computers */
+  elseif (preg_match('/CPDTDF|CPNTDF|CMNTDF|CMNTDFJS/', $ua, $matches)) {
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Compaq (PC)'));
+  }
+  
   
   /* check Xiaomi mobiles */
   elseif (preg_match('/MI ?([A-Za-z0-9]{1,} )Build/', $ua, $matches)) {
@@ -879,7 +964,7 @@ function client_getUAInfos($ua=false) {
      'system_version'=>isset($matches[1])?$matches[1]:''), $infos);
     
     /* check Android */
-  	elseif (preg_match('/(?:Android|Adr) ?([^;\)]*)/', $ua, $matches)) 
+  	elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) 
       $infos = array_merge(array(
      'platform_type'=>(preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
      'platform_format'=>(preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
@@ -892,9 +977,10 @@ function client_getUAInfos($ua=false) {
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE', 
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000', 
           '2000'=>'2000', 'NT 5.1'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
-          'NT 6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 10.0'=>'10', '10'=>'10',
+          'NT 6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
+          'NT 10.0'=>'10', '10'=>'10',
       );
-      $v = substr($matches[1], 0, 7);
+      $v = trim(substr($matches[1], 0, 7));
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
@@ -903,13 +989,6 @@ function client_getUAInfos($ua=false) {
       	'system_title'=>'Windows',
       	'system_version'=>isset($w[$v])?$w[$v]:''), $infos);
   	}
-  	
-    /* check determined linux os with version *
-  	elseif (preg_match('/(Ubuntu|Mint)(?:\/| )([a-z0-9\._]*)?/', $ua, $matches))
-      $infos = array_merge(array('platform_company'=>'PC', 
-      	'platform_model'=>'',
-      	'system_title'=>$matches[1].' (Linux)',
-      	'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
   	
     /* check determined linux os */
   	elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux)/', $ua, $matches)) {
@@ -923,7 +1002,7 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>''), $infos);
   	}
     /* check gen os with notified version */
-  	elseif (preg_match('/(SymbianOS|webOS)(?:\/| )([0-9][a-z0-9\._]*)?/i', $ua, $matches)){
+  	elseif (preg_match('/(SymbianOS|webOS)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
@@ -943,14 +1022,36 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
   	
     /* check gen os without notified version */
-  	elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|OS\/2|BeOS|NetBSD|OpenSolaris)/', $ua, $matches))
-      $infos = array_merge(array(
+  	elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|SymbOS|OS\/2|BeOS|NetBSD|OpenSolaris)/', $ua, $matches)) {
+  	  $rep = array(
+        'SymbOS'    => array('platform_company' => '', 'system_title' => 'SymbianOS', 'platform_type'=>'handheld', 'platform_format'=>'handheld',),
+      );
+      
+      $model = trim($matches[1]);
+      
+      $infos = array_merge($infos, array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
       	'system_title'=>$matches[1],
-      	'system_version'=>''), $infos);
+      	'system_version'=>''), 
+      	isset($rep[$model])?$rep[$model]:array()
+      );      	
+    }
+    
+    /* check X11 gen unix  */
+    elseif (preg_match('/X11/', $ua, $matches)) {
+      $infos = array_merge($infos, array(
+        'platform_company'  =>'PC', 
+      	'platform_model'    =>'',
+        'platform_type'     =>'computer',
+        'platform_format'   =>'desktop',
+      	'system_title'      => 'UNIX',
+      	'system_version'    => ''), 
+      	isset($rep[$matches[0]])?$rep[$matches[0]]:array()
+      );
+    }
   }
   
   /*** check browser ***/
@@ -963,42 +1064,72 @@ function client_getUAInfos($ua=false) {
       	'browser_version'=>$matches[1],
       	'platform_type'=>'handheld',
         'platform_format'=>'handheld',), $infos);
-  
-    /* check unsmartly written browser */
-  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE )(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array('BIDUBrowser'=>'Baidu Brower', 'SE '=>'Sogou Explorer', 'AcooBrowser' => 'Acoo Browser');
+        
+    /* check no version written browser */
+    elseif (preg_match('/(HeadlessChrome)/', $ua, $matches)) {
+      $rep = array();
       $infos = array_merge($infos, array(
-	    'browser_title'=>isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'=>isset($matches[2])?$matches[2]:''));
+	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+      ));
     }
+            
+    /* check unsmartly written browser */
+  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE |Airmail|EmbeddedWB)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('BIDUBrowser'=>'Baidu Brower', 'SE '=>'Sogou Explorer', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser');
+      $infos = array_merge($infos, array(
+	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+      ));
+    }
+    
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|LinkedIn)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser');
+	  $infos = array_merge($infos, array(
+	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+      ));
+    }
+    
+    /* check some other browsers */
+    elseif (preg_match('/(Edge|TencentTraveler)/i', $ua, $matches)) {
+      $rep = array('TencentTraveler'=>'TT Explorer');
 	  $infos = array_merge($infos, array(
 	    'browser_title'=>isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'=>isset($matches[2])?$matches[2]:''));
-    
-    /* check MS Edge */
-    } elseif (preg_match('/(Edge)/i', $ua, $matches))
-	  $infos = array_merge($infos, array(
-	    'browser_title'=>$matches[1],
       	'browser_version'=>''));
+    }
     
     /* check gen browser */
-  	elseif (preg_match('/(Chromium|Chrome|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|SeaMonkey|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|SeaMonkey|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
       $infos = array_merge(array(
-        'platform_type'=>'computer',
-        'browser_title'=>$matches[1], 
-      	'browser_version'=>str_replace('_','.',$matches[2])), $infos);
+        'platform_type'     => 'computer',
+        'browser_title'     => $matches[1], 
+      	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+    
+    /* check chrome browser - separated from gen case of alternative browser using Chrome user agent */
+    elseif (preg_match('/(Chrome)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+      $infos = array_merge(array(
+        'platform_type'     => 'computer',
+        'browser_title'     => 'Chrome', 
+      	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
   
+      /* Amigo's Mail.ru web browser based on chrome (and using chrome version) */
+      if (preg_match('/(MRCHROME)/', $ua, $matches))
+        $infos['browser_title'] = 'Amigo';
+    }
+    
     /* check gen browser : ?? */
   	elseif (preg_match('/Version\/([a-z0-9\._]*)( Mobile)? Safari\//', $ua, $matches)) {
   	  if ( $infos['system_title'] == 'Android')
-  	    $infos = array_merge(array('browser_title'=>'Chrome'.(isset($matches[2])?$matches[2]:''), 
-      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
+  	    $infos = array_merge(array(
+  	        'browser_title'=>'Chrome'.(isset($matches[2])?$matches[2]:''), 
+      	    'browser_version'=>str_replace('_','.',$matches[1])
+      	), $infos);
   	  else
-      $infos = array_merge(array('browser_title'=>'Safari'.(isset($matches[2])?$matches[2]:''), 
-      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
+        $infos = array_merge(array(
+            'browser_title'=>'Safari'.(isset($matches[2])?$matches[2]:''), 
+      	    'browser_version'=>str_replace('_','.',$matches[1])
+      	), $infos);
       	
     /* check no version detection browser */
   	} elseif (preg_match('/(Opera Mobi)/', $ua, $matches))
@@ -1006,9 +1137,19 @@ function client_getUAInfos($ua=false) {
       	'browser_version'=>''), $infos);
       	
     /* check undeterminated safari version */
-  	elseif (preg_match('/(Safari|AppleWebKit)/', $ua, $matches))
-      $infos = array_merge(array('browser_title'=>'Safari', 
-      	'browser_version'=>''), $infos);
+  	elseif (preg_match('/(Safari|AppleWebKit)/', $ua, $matches)) {
+  	  if ($infos['system_title'] == 'Android') {
+        $infos = array_merge(array(
+            'browser_title'=>'Android browser', 
+      	    'browser_version'=>'',
+      	), $infos);
+  	  } else {
+        $infos = array_merge(array(
+            'browser_title'=>'Safari', 
+      	    'browser_version'=>'',
+      	), $infos);
+      }
+    }
     
     /* check America Online Browser */
     elseif (preg_match('/America Online Browser ([a-z0-9\._]*);/', $ua, $matches))
@@ -1016,7 +1157,7 @@ function client_getUAInfos($ua=false) {
       	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
   	
     /* check msie */
-  	elseif (preg_match('/MSIE ([a-z0-9\._]*)(;|\-)/', $ua, $matches))
+  	elseif (preg_match('/MSIE ([a-z0-9\._]*)( |;|\-)/', $ua, $matches))
       $infos = array_merge(array('browser_title'=>'Internet Explorer', 
       	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
   	
@@ -1028,24 +1169,34 @@ function client_getUAInfos($ua=false) {
     /* check trident compatible browsers */
   	elseif (preg_match('/(Trident\/)([a-z0-9\._]*)/', $ua, $matches))
   	  if ( preg_match('/rv:11.0/', $ua, $m))
-  	    $infos = array_merge(array('browser_title'=>'Internet Explorer', 
-      	'browser_version'=>'11.0'), $infos);
+  	    $infos = array_merge(array(
+  	        'browser_title'     => 'Internet Explorer', 
+      	    'browser_version'   => '11.0',
+      	), $infos);
   	  else
-      $infos = array_merge(array('browser_title'=>'Trident compatible', 
-      	'browser_version'=>str_replace('_','.',$matches[2])), $infos);
+        $infos = array_merge(array(
+            'browser_title'     => 'Trident compatible', 
+      	    'browser_version'   => str_replace('_','.',$matches[2]),
+      	), $infos);
   }
   
+  /* set type to "visitor" if not defined and browser title set */
+  if (!isset($infos['platform_type']) and isset($infos['browser_title']) and $infos['browser_title'] != '')
+     $infos['platform_type'] = 'computer';
+        
   if (!isset($infos['platform_format']) or $infos['platform_format'] == '' or $infos['platform_format'] == 'desktop') {
     /* check for generic mobile */
     if (preg_match('/mobile/i', $ua, $matches))
       $infos = array_merge($infos,array(
-        'platform_format'=>'handheld'));
+        'platform_format'=>'handheld'
+      ));
   
     /* check for generic tablet */
     elseif (preg_match('/tablet/i', $ua, $matches))
       $infos = array_merge($infos, array(
-        'platform_format'=>'tablet'));
-  }      
+        'platform_format'=>'tablet'
+      ));
+  }
   /* */
   return _client_mergeUAInfos($req, $infos);
 }
@@ -1117,6 +1268,15 @@ function client_getBotInfosFromUserAgent($ua='') {
 function client_getKnownBots() {
   $knownBots = array();
   
+  /* Ideogram Design bot */
+  $knownBots['idpunchbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',            
+	'bot_title'=>'IDPunchBot',
+	'bot_url'=>'http://www.ideogram-design.fr/Punch_Bot.html',
+	'engine_title'=>'Ideogram Design',
+	'engine_url'=>'http://www.ideogram-design.fr/');
+  
   /* import.io crawler bot (to be inserted before GoogleBot, use GoogleBot in user agent)  */
   $knownBots['googlebot/2.1; +http://import.io'] = array(
     'platform_type'=>'bot',
@@ -1141,6 +1301,24 @@ function client_getKnownBots() {
 	'bot_url'=>'',
 	'engine_title'=>'Dictanova',
 	'engine_url'=>'http://www.dictanova.com/');
+  
+  /* googlebot_poolmer (to be inserted before GoogleBot, use GoogleBot in user agent) / to complete */
+  $knownBots['googlebot_poolmer'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',            
+	'bot_title'=>'poolmer',
+	'bot_url'=>'',
+	'engine_title'=>'',
+	'engine_url'=>'');
+  
+  /* WebHistoryBot (to be inserted before GoogleBot, use GoogleBot in user agent) / to complete */
+  $knownBots['webhistorybot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',            
+	'bot_title'=>'WebHistoryBot',
+	'bot_url'=>'',
+	'engine_title'=>'',
+	'engine_url'=>'');
 	
   /* Yahoo mobile bot : Yahoo! Slurp */
   $knownBots['mobile (compatible; yahoo! slurp'] = array(
@@ -1222,6 +1400,15 @@ function client_getKnownBots() {
 	'bot_url'=>'http://www.google.com/bot.html',
 	'engine_title'=>'Google',
 	'engine_url'=>'http://www.google.com');
+
+  /* Google-Site-Verification */
+  $knownBots['google-site-verification'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop', 
+	'bot_title'=>'Google-Site-Verification',
+	'bot_url'=>'http://www.google.com/bot.html',
+	'engine_title'=>'Google',
+	'engine_url'=>'http://www.google.com');
     
   /* Apple bot : Applebot */
   $knownBots['applebot'] = array(
@@ -1252,6 +1439,24 @@ function client_getKnownBots() {
 
   /* MSN Search bot : msnbot */
   $knownBots['msnbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'msnbot',
+    'bot_url'=>'http://search.msn.com/msnbot.htm',
+    'engine_title'=>'MSN Search',
+    'engine_url'=>'http://search.msn.com');
+  
+  /* MSN Search bot : hidden behind fake user agent */
+  $knownBots['msie 9.0; windows nt 6.1; trident/5.0;  trident/5.0)'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'msnbot',
+    'bot_url'=>'http://search.msn.com/msnbot.htm',
+    'engine_title'=>'MSN Search',
+    'engine_url'=>'http://search.msn.com');
+  
+  /* MSN Search bot : hidden behind fake user agent */
+  $knownBots['msie 9.0; windows nt 6.0; trident/5.0;  trident/5.0)'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'msnbot',
@@ -1597,6 +1802,15 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'ia_archiver',
+    'bot_url'=>'http://www.alexa.com/site/help/webmasters',
+    'engine_title'=>'Alexa',
+    'engine_url'=>'http://www.alexa.com');
+       
+  /* Alexa site audit */
+  $knownBots['alexa site audit'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'alexa site audit',
     'bot_url'=>'http://www.alexa.com/site/help/webmasters',
     'engine_title'=>'Alexa',
     'engine_url'=>'http://www.alexa.com');
@@ -2444,7 +2658,7 @@ function client_getKnownBots() {
     'platform_format'=>'desktop',
     'bot_title'=>'Qwantify',
     'bot_url'=>'',
-    'engine_title'=>'Quant',
+    'engine_title'=>'Qwant',
     'engine_url'=>'https://www.qwant.com');
        
   /* meanpathbot */
@@ -3121,6 +3335,16 @@ function client_getKnownBots() {
     'bot_url'=>'https://www.safedns.com/searchbot',
     'engine_title'=>'SafeDNS',
     'engine_url'=>'https://www.safedns.com/');
+  
+  /* SMTBot mobile */
+  $knownBots['mobile/10a5376e safari/8536.25 (compatible; smtbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'handheld',
+    'bot_title'=>'SMTBot',
+    'bot_url'=>'http://www.similartech.com/smtbot',
+    'engine_title'=>'SimilarTech',
+    'engine_url'=>'http://www.similartech.com/');
+  
 
   /* SMTBot */
   $knownBots['smtbot'] = array(
@@ -3181,6 +3405,15 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'LinqiaCrawlerBot',
+    'bot_url'=>'eng@linqia.com',
+    'engine_title'=>'Linqia',
+    'engine_url'=>'http://www.linqia.com');
+
+  /* LinqiaRSSBot */
+  $knownBots['linqiarssbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'LinqiaRSSBot',
     'bot_url'=>'eng@linqia.com',
     'engine_title'=>'Linqia',
     'engine_url'=>'http://www.linqia.com');
@@ -3311,7 +3544,7 @@ function client_getKnownBots() {
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* Toweyabot */
+  /* ToweYandext */
   $knownBots['toweyabot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
@@ -3411,7 +3644,7 @@ function client_getKnownBots() {
     'engine_url'=>'');
   
   /* Jaunt */
-  $knownBots['jaunt'] = array(
+  $knownBots['jaunt/'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Jaunt',
@@ -3499,7 +3732,355 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'Xaldon',
     'engine_url'=>'http://www.xaldon.de');
+  
+  /* panscient.com */
+  $knownBots['panscient.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'panscient.com',
+    'engine_url'=>'http://panscient.com');
+  
+  /* semanticbot */
+  $knownBots['semanticbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'semanticbot',
+    'bot_url'=>'info@semanticaudience.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* LinqiaScrapeBot */
+  $knownBots['linqiascrapebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'LinqiaScrapeBot',
+    'bot_url'=>'',
+    'engine_title'=>'Linqia',
+    'engine_url'=>'http://www.linqia.com');
+  
+  /* focusbot */
+  $knownBots['focusbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'focusbot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* orbiter */
+  $knownBots['orbiter'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'orbiter',
+    'bot_url'=>'',
+    'engine_title'=>'DailyOrbit',
+    'engine_url'=>'http://dailyorbit.com');
+  
+  /* spuhexbot */
+  $knownBots['spuhexbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'SpuhexBot',
+    'bot_url'=>'',
+    'engine_title'=>'Spuhex',
+    'engine_url'=>'http://www.spuhex.com');
+  
+  /* iZSearch.com  */
+  $knownBots['izsearch.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'iZSearch.com',
+    'engine_url'=>'http://iZSearch.com');
+  
+  /* servernfo.com  */
+  $knownBots['servernfo.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'servernfo.com',
+    'engine_url'=>'http://servernfo.com/');
+  
+  /* PrivacyAwareBot */
+  $knownBots['privacyawarebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'PrivacyAwareBot',
+    'bot_url'=>'',
+    'engine_title'=>'Privacy Aware',
+    'engine_url'=>'http://www.privacyaware.org');
+  
+  /* WbSrch */
+  $knownBots['wbsrch'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'WbSrch',
+    'engine_url'=>'http://wbsrch.com');
+  
+  /* Cuasarbot */
+  $knownBots['cuasarbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Cuasarbot',
+    'bot_url'=>'',
+    'engine_title'=>'Cuasar',
+    'engine_url'=>'http://www.cuasar.com/spider_beta/');
+  
+  /* Lippershey */
+  $knownBots['lippershey'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Lippershey',
+    'bot_url'=>'https://www.lipperhey.com/en/about/website-spider/',
+    'engine_title'=>'Lipperhey',
+    'engine_url'=>'https://www.lipperhey.com');
+  
+  /* ImplisenseBot */
+  $knownBots['implisensebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ImplisenseBot',
+    'bot_url'=>'',
+    'engine_title'=>'Implisense',
+    'engine_url'=>'http://implisense.com');
+  
+  /* coccoc */
+  $knownBots['coccoc'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'coccocbot',
+    'bot_url'=>'',
+    'engine_title'=>'coccoc',
+    'engine_url'=>'http://help.coccoc.com/');
+  
+  /* coccoc */
+  $knownBots['coccoc'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'coccocbot',
+    'bot_url'=>'',
+    'engine_title'=>'coccoc',
+    'engine_url'=>'http://help.coccoc.com/');
+  
+  /* ltbot */
+  $knownBots['ltbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ltbot',
+    'bot_url'=>'',
+    'engine_title'=>'Knowledge Discovery Scientific Literature',
+    'engine_url'=>'http://www.kdsl.tu-darmstadt.de/de/kdsl/research-program/crawling-and-semantic-structuring/');
+  
+  /* HRCrawler */
+  $knownBots['hrcrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'HRCrawler',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Simple crawler */
+  $knownBots['simple crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Simple crawler',
+    'bot_url'=>'http://crawler.own3d.pl',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
+  /* uMBot */
+  $knownBots['umbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'uMBot',
+    'bot_url'=>'',
+    'engine_title'=>'ubermetrics',
+    'engine_url'=>'http://www.ubermetrics-technologies.com');
+
+  /* JobFeed discovery script */
+  $knownBots['jobfeed discovery script'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'uMBot',
+    'bot_url'=>'',
+    'engine_title'=>'JobFeed',
+    'engine_url'=>'http://www.jobfeed.com');
+
+  /* LinkStats Bot */
+  $knownBots['linkstats bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'LinkStats Bot',
+    'bot_url'=>'',
+    'engine_title'=>'Peter Shumacher',
+    'engine_url'=>'http://web-eifel.de');
+
+  /* ichiro */
+  $knownBots['ichiro'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ichiro',
+    'bot_url'=>'http://search.goo.ne.jp/option/use/sub4/sub4-1/',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* archive-fr.com */
+  $knownBots['archive-fr.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'archive-fr.com',
+    'bot_url'=>'http://archive-fr.com/bot',
+    'engine_title'=>'Archive-fr.com',
+    'engine_url'=>'http://archive-fr.com/');
+
+  /* serbot */
+  $knownBots['serbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'serbot',
+    'bot_url'=>'http://www.serdec.com/bot.html',
+    'engine_title'=>'serdec',
+    'engine_url'=>'http://www.serdec.com');
+
+  /* TWMBot */
+  $knownBots['twmbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'TWMBot',
+    'bot_url'=>'',
+    'engine_title'=>'The Web Miner',
+    'engine_url'=>'https://thewebminer.com');
+
+  /* LinkWalker */
+  $knownBots['linkwalker'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'LinkWalker',
+    'bot_url'=>'',
+    'engine_title'=>'Brand Protect',
+    'engine_url'=>'http://www.brandprotect.com');
+
+  /* SpiderLing */
+  $knownBots['spiderling'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'SpiderLing',
+    'bot_url'=>'http://nlp.fi.muni.cz/trac/spiderling',
+    'engine_title'=>'BiWeC',
+    'engine_url'=>'https://nlp.fi.muni.cz/projects/biwec/');
+
+  /* SafeSearch microdata crawler */
+  $knownBots['safesearch microdata crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'SafeSearch',
+    'bot_url'=>'https://safesearch.avira.com',
+    'engine_title'=>'Avira',
+    'engine_url'=>'https://www.avira.com/fr/index');
+
+  /* Corporama matcher */
+  $knownBots['corporama matcher'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Corporama matcher',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* ActiveWorlds */
+  $knownBots['activeworlds'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'ActiveWorlds',
+    'engine_url'=>'https://www.activeworlds.com/web/index.php');
+  
+  /* HELLO Crawler */
+  $knownBots['hello crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'HELLO Crawler',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Larbin */
+  $knownBots['larbin'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'larbin',
+    'bot_url'=>'http://larbin.sourceforge.net',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  $knownBots['binlar'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'larbin',
+    'bot_url'=>'http://larbin.sourceforge.net',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* IpixelY */
+  $knownBots['ipixely'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'IpixelY',
+    'bot_url'=>'',
+    'engine_title'=>'IpixelY',
+    'engine_url'=>'http://www.ipixely.xyz');
+  
+  /* JamesBOT */
+  $knownBots['james bot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'JamesBOT',
+    'bot_url'=>'http://cognitiveseo.com/bot.html',
+    'engine_title'=>'Congitive SEO',
+    'engine_url'=>'http://cognitiveseo.com');
+    
+  $knownBots['cognitiveseo'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'JamesBOT',
+    'bot_url'=>'http://cognitiveseo.com/bot.html',
+    'engine_title'=>'Congitive SEO',
+    'engine_url'=>'http://cognitiveseo.com');
+  
+  /* aranea */
+  $knownBots['aranea'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Aranea',
+    'bot_url'=>'http://aranea.juls.savba.sk/',
+    'engine_title'=>'Web Corpora &amp; Corpus Linguistics Portal',
+    'engine_url'=>'http://aranea.juls.savba.sk/aranea_about.html');
+  
+  /* VenusCrawler */
+  $knownBots['venuscrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'VenusCrawler',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
+  /* unknown bot */
+  $knownBots['no.indexing@gmail.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'mailto:no.indexing@gmail.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
     
   /* return bot list */
   return $knownBots;
@@ -4083,6 +4664,150 @@ function client_getKnownTools() {
     'tool_url'=>'http://www.seoterritory.com',
     'engine_title'=>'',
     'engine_url'=>'');
+  
+  /* Spatineo */
+  $knownTools['spatineo'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Spatineo Monitor Controller',
+    'tool_url'=>'http://www.spatineo.com/spatineo-monitor/',
+    'engine_title'=>'Spatineo',
+    'engine_url'=>'http://www.spatineo.com');
+  
+  /* Spatineo */
+  $knownTools['spatineo'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Spatineo Monitor Controller',
+    'tool_url'=>'http://www.spatineo.com/spatineo-monitor/',
+    'engine_title'=>'Spatineo',
+    'engine_url'=>'http://www.spatineo.com');
+  
+  /* Integrity */
+  $knownTools['integrity'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Integrity',
+    'tool_url'=>'http://peacockmedia.software/mac/integrity/free.html',
+    'engine_title'=>'PeacockMedia',
+    'engine_url'=>'http://peacockmedia.software');
+  
+  /* UniversalFeedParser */
+  $knownTools['universalfeedparser'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'UniversalFeedParser',
+    'tool_url'=>'',
+    'engine_title'=>'FeedParser',
+    'engine_url'=>'http://feedparser.org');
+  
+  /* FreeWebMonitoring SiteChecker */
+  $knownTools['freewebmonitoring sitechecker'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'FreeWebMonitoring SiteChecker',
+    'tool_url'=>'',
+    'engine_title'=>'FreeWebMonitoring SiteChecker',
+    'engine_url'=>'http://www.freewebmonitoring.com');
+  
+  /* SkypeUriPreview */
+  $knownTools['skypeuripreview'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'SkypeUriPreview',
+    'tool_url'=>'',
+    'engine_title'=>'Skype',
+    'engine_url'=>'https://www.skype.com');
+  
+  /* BrokenLinkCheck.com */
+  $knownTools['brokenlinkcheck.com'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'Broken Link Check',
+    'engine_url'=>'http://BrokenLinkCheck.com');
+  
+  /* OpenStat */
+  $knownTools['openstat'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'OpenStat',
+    'engine_url'=>'https://www.openstat.com');
+  
+  /* Iframely */
+  $knownTools['iframely'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'Iframely',
+    'engine_url'=>'https://iframely.com');
+  
+  /* Link Examiner */
+  $knownTools['linkexaminer'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'LinkExaminer',
+    'tool_url'=>'http://www.analogx.com/contents/download/network/lnkexam/freeware.htm',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Link Saver */
+  $knownTools['linksaver'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'LinkSaver',
+    'tool_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Link Saver */
+  $knownTools['linkparser'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'LinkParser',
+    'tool_url'=>'http://www.seerobots.com/linkparser',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* HEADMasterSEO */
+  $knownTools['headmasterseo'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'HEADMasterSEO',
+    'tool_url'=>'https://headmasterseo.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* BuiltWith */
+  $knownTools['builtwith'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'BuiltWith',
+    'engine_url'=>'https://builtwith.com');
+  
+  /* BlueCoat ProxySG */
+  $knownTools['bluecoat proxysg'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'BlueCoat ProxySG ',
+    'tool_url'=>'',
+    'engine_title'=>'BlueCoat',
+    'engine_url'=>'https://bluecoat.com');
+  
+  /* Flipboard */
+  $knownTools['flipboard'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Flipboard Proxy',
+    'tool_url'=>'http://flipboard.com/browserproxy',
+    'engine_title'=>'Flipboard',
+    'engine_url'=>'http://flipboard.com');
     
   /* return list */
   return $knownTools;
@@ -4155,6 +4880,15 @@ function client_getGenericInfosFromUserAgent($ua='') {
  */
 function client_getKnownGenerics() {
   $knownGenerics = array();
+  
+  /* CaMykS */
+  $knownGenerics['camyksrequest'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'CaMykSRequest',
+    'bot_url'=>'https://www.camyks.net/request_bot.html',
+    'engine_title'=>'CaMykS',
+    'engine_url'=>'https://www.camyks.net');
          
   /* NING */
   $knownGenerics['ning'] = array(
@@ -4232,8 +4966,8 @@ function client_getKnownGenerics() {
   $knownGenerics['mechanize'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Mechanize',
-    'generic_url'=>'http://github.com/sparklemotion/mechanize/',
+    'tool_title'=>'Mechanize',
+    'tool_url'=>'http://github.com/sparklemotion/mechanize/',
     'engine_title'=>'',
     'engine_url'=>'');
 
@@ -4250,8 +4984,8 @@ function client_getKnownGenerics() {
   $knownGenerics['gettor'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'gettor',
-    'generic_url'=>'',
+    'tool_title'=>'gettor',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4259,8 +4993,8 @@ function client_getKnownGenerics() {
   $knownGenerics['python-urllib'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Python Library',
-    'generic_url'=>'',
+    'tool_title'=>'Python Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4268,8 +5002,8 @@ function client_getKnownGenerics() {
   $knownGenerics['python-requests'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Python Request Library',
-    'generic_url'=>'',
+    'tool_title'=>'Python Request Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4277,8 +5011,17 @@ function client_getKnownGenerics() {
   $knownGenerics['apache-httpclient'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Apache-HttpClient',
-    'generic_url'=>'',
+    'tool_title'=>'Apache-HttpClient',
+    'tool_url'=>'',
+    'engine_title'=>'Apache Software Foundation',
+    'engine_url'=>'https://hc.apache.org');
+    
+  /* Apache-HttpAsyncClient library (before Java) */
+  $knownGenerics['apache-httpasyncclient'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Apache-HttpAsyncClient',
+    'tool_url'=>'',
     'engine_title'=>'Apache Software Foundation',
     'engine_url'=>'https://hc.apache.org');
   
@@ -4286,8 +5029,17 @@ function client_getKnownGenerics() {
   $knownGenerics['synapse-httpcomponent'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Apache Synapse',
-    'generic_url'=>'',
+    'tool_title'=>'Apache Synapse',
+    'tool_url'=>'',
+    'engine_title'=>'Apache Software Foundation',
+    'engine_url'=>'https://hc.apache.org');
+  
+  /* Jakarta Commons-HttpClient */
+  $knownGenerics['jakarta commons-httpclient'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Jakarta Commons-HttpClient',
+    'tool_url'=>'http://hc.apache.org/httpclient-3.x/',
     'engine_title'=>'Apache Software Foundation',
     'engine_url'=>'https://hc.apache.org');
   
@@ -4295,8 +5047,8 @@ function client_getKnownGenerics() {
   $knownGenerics['synapse'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'',
-    'generic_url'=>'',
+    'tool_title'=>'',
+    'tool_url'=>'',
     'engine_title'=>'Ararat Synapse',
     'engine_url'=>'http://synapse.ararat.cz/doku.php');
   
@@ -4304,8 +5056,8 @@ function client_getKnownGenerics() {
   $knownGenerics['java/'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Java Library',
-    'generic_url'=>'',
+    'tool_title'=>'Java Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4313,8 +5065,8 @@ function client_getKnownGenerics() {
   $knownGenerics['libwww-perl'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'PERL Library',
-    'generic_url'=>'',
+    'tool_title'=>'PERL Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4322,8 +5074,8 @@ function client_getKnownGenerics() {
   $knownGenerics['winhttprequest'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'WinHttpRequest',
-    'generic_url'=>'',
+    'tool_title'=>'WinHttpRequest',
+    'tool_url'=>'',
     'engine_title'=>'Microsoft',
     'engine_url'=>'');
   
@@ -4331,8 +5083,8 @@ function client_getKnownGenerics() {
   $knownGenerics['ruby'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Ruby Library',
-    'generic_url'=>'',
+    'tool_title'=>'Ruby Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4340,8 +5092,8 @@ function client_getKnownGenerics() {
   $knownGenerics['guzzle'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'GuzzleHttp Library',
-    'generic_url'=>'http://docs.guzzlephp.org/en/latest/',
+    'tool_title'=>'GuzzleHttp Library',
+    'tool_url'=>'http://docs.guzzlephp.org/en/latest/',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4349,8 +5101,8 @@ function client_getKnownGenerics() {
   $knownGenerics['libcurl'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'cURL Library',
-    'generic_url'=>'',
+    'tool_title'=>'cURL Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4358,8 +5110,8 @@ function client_getKnownGenerics() {
   $knownGenerics['curl/'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'cURL Library',
-    'generic_url'=>'',
+    'tool_title'=>'cURL Library',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4367,8 +5119,8 @@ function client_getKnownGenerics() {
   $knownGenerics['php/5'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'PHP Library',
-    'generic_url'=>'http://www.php.net',
+    'tool_title'=>'PHP Library',
+    'tool_url'=>'http://www.php.net',
     'engine_title'=>'',
     'engine_url'=>'');
   
@@ -4376,8 +5128,80 @@ function client_getKnownGenerics() {
   $knownGenerics['go-http-client'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
-    'generic_title'=>'Go Language Library',
-    'generic_url'=>'https://golang.org/pkg/net/http/',
+    'tool_title'=>'Go Language Library',
+    'tool_url'=>'https://golang.org/pkg/net/http/',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Typhoeus */
+  $knownGenerics['typhoeus'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Typhoeus',
+    'tool_url'=>'https://github.com/typhoeus/typhoeus',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Chilkat */
+  $knownGenerics['chilkat'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Chilkat',
+    'tool_url'=>'http://www.chilkatsoft.com/ChilkatHttpUA.asp',
+    'engine_title'=>'Chilkat Software',
+    'engine_url'=>'http://www.chilkatsoft.com');
+  
+  /* SEOstats */
+  $knownGenerics['seostats'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'SEOstats',
+    'tool_url'=>'https://github.com/eyecatchup/SEOstats',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* MLIB_NetWorkLibrary */
+  $knownGenerics['mlib_networklibrary'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'MLIB_NetWorkLibrary',
+    'tool_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* MLIB_NetWorkBot */
+  $knownGenerics['mlib_networkbot'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'MLIB_NetWorkBot',
+    'tool_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Mojolicious */
+  $knownGenerics['mojolicious'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'Mojolicious',
+    'engine_url'=>'http://mojolicious.org');
+  
+  /* httpunit */
+  $knownGenerics['httpunit'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'httpunit',
+    'tool_url'=>'http://httpunit.sourceforge.net',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* aria2 */
+  $knownGenerics['aria2'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'aria2',
+    'tool_url'=>'https://sourceforge.net/projects/aria2/',
     'engine_title'=>'',
     'engine_url'=>'');
 
@@ -4435,7 +5259,7 @@ function client_getHackInfos($hack='') {
 }
 
 /*
- * return bot info from user agent
+ * return hack info from user agent
  * @param string $ua
  * @return mixed
  * @access public
@@ -4492,20 +5316,122 @@ function client_getKnownHacks() {
     'hack_info'=>'Bash Exploit',
   );
   
-  /* Unknown/Old Windows version */
-  $knownHacks['mozilla/0.91 beta (windows)'] = array(
-    'platform_type'=>'hack',
-    'hack_info'=>'Unknown/Old Windows version',
-  );
-  
   /* Drupal Fckeditor exploit */
   $knownHacks['webfuck v2.1 t0phackteam www.t0p.xyz'] = array(
     'platform_type'=>'hack',
     'hack_info'=>'Drupal Fckeditor exploit',
   );
   
+  /* betaBot : should be in bot list with a trustee level to "unwanted" */
+  $knownHacks['betabot'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'Unwanted bot',
+  );
+  
   /* return list */
   return $knownHacks;
+}
+
+/*
+ * return fake visitor info from user agent
+ * @param string $ua
+ * @return mixed
+ * @access public
+ */
+function client_getFakeInfosFromUserAgent($ua='') {
+  $fake = array('platform_type'=>'fake');
+  
+  $ua = trim($ua);
+  
+  if ($ua == '')
+    return $fake;
+      
+  if ($ua == 'null')
+    return $fake;
+      
+  if (preg_match('#^Mozilla$#i', $ua))
+    return $fake;
+      
+  if (preg_match('#^Mozilla-1.1$#i', $ua))
+    return $fake;
+  
+  if (preg_match('#^Mozilla/[0-9][.|,]0$#i', $ua))
+    return $fake;
+  
+  if (preg_match('#^Mozilla/%2F[0-9][.|,]0$#i', $ua))
+    return $fake;
+    
+  if (preg_match('#^Mozilla/[0-9][.|,]0 \(compatible;?\)?$#i', $ua))
+    return $fake;
+        
+  if (preg_match('#^Mozilla/[0-9].0 \(compatible; MSIE[0-9].00; Windows 200[1-9]\)#i', $ua))
+    return $fake;
+    
+  if (preg_match('#^mozilla/0.([0-9]+) beta \(windows\)#i', $ua))
+    return $fake;
+   
+  if (preg_match('#^Mozilla/1.22 \(compatible; MSIE 2.0; Windows 95\)#i', $ua))
+    return $fake;
+  
+  if (preg_match('#^Mozilla/4.0 \(compatible; MSIE 5.0; Windows 98\)#i', $ua))
+    return $fake;
+  
+  if (preg_match('#^Mozilla/4.0 \(compatible; MSIE 999.1; Unknown\)#i', $ua))
+    return $fake;
+  
+  if (preg_match('#^Mozilla/3.0 \(x86 \[en\] Windows NT 5.1; Sun\)#i', $ua))
+    return $fake;
+    
+  if (preg_match('#^Mozilla/2.02E \(Win95; U\)$#i', $ua))
+    return $fake;
+    
+  if (preg_match('#^Mozilla/42.0 \(compatible; MSIE 28.0; Win128\)$#i', $ua))
+    return $fake;
+  
+  /* fake russian spammer */
+  if (preg_match('#^Mozilla/5.0 \(Windows NT 6.1; WOW64; rv:41.0\) Gecko/20100101 Firefox/41.0$#i', $ua))
+    return $fake;
+  
+  /* fake russian spammer */
+  if (preg_match('#^Mozilla/5.0 \(Windows NT 6.1; WOW64\) AppleWebKit/537.36 \(KHTML, like Gecko\) Chrome/40.0.2214.111 Safari/537.36$#i', $ua))
+    return $fake;
+  
+  /* php default useragent passed as string intead of CONST */
+  if (preg_match('#^_USERAGENT_$#i', $ua))
+    return $fake;
+    
+  /* fake requests from Amazon AWS services */
+  if (preg_match('#^Mozilla/5.0 \(Windows NT 6.1; rv:15.0\) Gecko/20120716 Firefox/15.0a2$#i', $ua))
+    return $fake;
+  if (preg_match('#^"Mozilla/5.0([^"]*)"$#i', $ua))
+    return $fake;
+    
+  /* fake requests from Lituania */
+  if (preg_match('#^Dalvik/2.1.0 \(Linux; U; Android 5.1.1; D5503 Build/14.6.A.1.236\)$#i', $ua))
+    return $fake;
+  
+  /* fake requests with double user agent combined */
+  if (preg_match_all('#Mozilla/[0-9].0#i', $ua, $matches) and count($matches[0]) > 1)
+    return $fake;
+  
+  /* fake requests from China */
+  if (preg_match('#^Mozilla/5.0 \(Windows; U; Windows NT 6.1; en-us; rv:1.9.2.3\) Gecko/20100401 YFF35 Firefox/3.6.3$#i', $ua))
+    return $fake;
+  
+  /* fake requests with uncomplete gecko firefox UA, same IP as Python requests */
+  if (preg_match('#^\'Mozilla/5.0 Gecko Firefox\'$#i', $ua))
+    return $fake;
+    
+  /* fake requests from 80.169.91.26 */
+  if (preg_match('#-[0-9]{7}$#', $ua))
+    return $fake;
+  
+  /* badly set user agent */
+  if (preg_match('#^=#', $ua))
+    return $fake;
+    
+  /* default result */
+  return false;
 }
 
 /*** private methods ***/
