@@ -483,7 +483,7 @@ class FileManager extends Input {
   function initialise_link_mode () {
     global $camyks;
     /* get popup link */
-    $link = $camyks->site_conf['url'].'/request.php?input=FileManager';
+    $link = $camyks->get_confValue('url').'/request.php?input=FileManager';
 
     $this->add_JSFile('filemanager.js');
     $this->add_JSScript($this->objname.' = new FileManager( "'.$link.'");');

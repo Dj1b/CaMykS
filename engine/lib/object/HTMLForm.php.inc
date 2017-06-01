@@ -175,11 +175,11 @@ class HTMLForm {
    * @return void
    * @access public
    */
-  function add_hidden ( $name, $value=null ) {
+  function add_hidden ( $name, $value=null, $id='' ) {
     if ( $value == null and isset($this->object) and isset($this->object->vars[$name]))
       $value = $this->object->vars[$name];
     if ($value !== null)
-      $this->hiddens[] = new HTMLForm_hidden ( $name, $value );
+      $this->hiddens[] = new HTMLForm_hidden ($name, $value, $id);
   }
   
   /* 
@@ -1334,6 +1334,8 @@ class HTMLForm_hidden {
   var $name;
   /* object value */
   var $value;
+  /* optional object id */
+  var $id;
   
   /* 
    * constructor
@@ -1342,9 +1344,10 @@ class HTMLForm_hidden {
    * @return void
    * @access public
    */
-  function HTMLForm_hidden ( $name, $value ) {
+  function HTMLForm_hidden ( $name, $value, $id='' ) {
     $this->name = $name;
-    $this->value = $value;	
+    $this->value = $value;
+    $this->id = $id;
   }
   
   /* methods */
@@ -1354,7 +1357,7 @@ class HTMLForm_hidden {
    * @access public
    */
   function display ( ) {
-    return '<input type="hidden" name="'.$this->name.'" value="'.htmlentities($this->value, ENT_COMPAT, 'UTF-8').'" />';
+    return '<input type="hidden" name="'.$this->name.'" '.($this->id!=''?'id="'.$this->id.'" ':'').'value="'.htmlentities($this->value, ENT_COMPAT, 'UTF-8').'" />';
   }
 }
 ?>

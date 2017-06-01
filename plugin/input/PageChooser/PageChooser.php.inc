@@ -46,7 +46,7 @@ class PageChooser extends Input {
     global $camyks;
     /* check if Admin_ContentPage exists */
     if ( isset( $camyks->modules['Admin_ContentPage']) ) {
-      $link = $camyks->site_conf['url'].'/request.php?module=Admin_ContentPage';
+      $link = $camyks->get_confValue('url').'/request.php?module=Admin_ContentPage';
       $this->add_JSFile('pagechooser.js');
       $this->add_JSScript('pc = new PageChooser("'.$mode.'", "'.$callback.'", "'.$link.'");');
     }

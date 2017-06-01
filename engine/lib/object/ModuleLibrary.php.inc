@@ -1059,10 +1059,12 @@ class ModuleLibrary {
    * return object id list
    * @param mixed $language
    * @param string $where
+   * @param string $orderBy
+   * @param string $orderWay
    * @return array
    * @access public
    */
-  function get_objectIdList($language=false, $where='') {
+  function get_objectIdList($language=false, $where='', $orderBy='', $orderWay='asc') {
     global $camyks;
     
     /* init list */
@@ -1083,6 +1085,10 @@ class ModuleLibrary {
       	$ids[] = $data['id'];
     }
     
+    /* add sorting condition */
+    if ( $orderBy != '')
+      $sql .= ' order by '.$orderBy.' '.$orderWay;
+    
     /* return result */
     return $ids;
   }
@@ -1092,6 +1098,8 @@ class ModuleLibrary {
    * @param string $element
    * @param string $where
    * @param string $language
+   * @param string $orderBy
+   * @param string $orderWay
    * @return array
    * @access public
    */

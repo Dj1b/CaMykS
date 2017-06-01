@@ -2,14 +2,14 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
+ * Object Type      : Engine / Tool Library
  * Creation Date	: Jul 2005
- * Last Modif Date      : May 2007
+ * Last Modif Date  : May 2017
  *
- * Folder methods
+ * All methods related to file system folders
  */
 
 /*
@@ -219,54 +219,76 @@ function folder_listFiles ( $folder ) {
   return array();
 }
 
-// 
-function folder_listFolders ( $folder ) {
-  // check for given folder
+/*
+ * return folder list inside a given folder
+ * @param string $folder
+ * @return array
+ * @access public
+ */
+function folder_listFolders ($folder) {
+
+  /* check for given root folder */
   if ( !is_dir( $folder ) ) {
     /* ERROR */
     /* TO DO */
     return array();
   }
- 
-   // start listing folders
-  if ( $dir = opendir( $folder ) ) {
-    $folders = array();
-    while ( ( $file = readdir ( $dir ) ) !== false ) {
-      if ( ( $file != '.') and ( $file != '..' ) and  ( is_dir( $folder.'/'.$file ) ) ) {
-	$folders[] = $file;
-      }
-    }
-    return $folders;
+  
+  /* initialise result */
+  $folders = array();
+  
+  /* load folder's elements */
+  $elements = scandir($folder);
+  
+  /* sort them */
+  sort($elements);
+  
+  /* keep all folders */
+  foreach ($elements as $element) {
+    if (($element != '.') and ($element != '..') and (is_dir($folder.'/'.$element)))
+	  $folders[] = $element;
   }
   
-  return array();
+  /* send result */
+  return $folders;
 }
 
-//
-function folder_listMatchingFolders ( $folder, $matching_folders = array() ) {
+/*
+ * return folder list inside a given folder matching 
+ * @param string $folder
+ * @return array
+ * @access public
+ */
+function folder_listMatchingFolders ($folder, $matching_folders = array()) {
   
-  // check for matching folders
-  if ( !is_array($matching_folders) or $matching_folders == array() )
+  /* check for matching folders */
+  if (!is_array($matching_folders) or $matching_folders == array())
     return array();
   
-  // check for given folder
+  /* check for given folder */
   if ( !is_dir( $folder ) ) {
     /* ERROR */
     /* TO DO */
     return array();
   }
   
-  // start listing folders
-  if ( $dir = opendir( $folder ) ) {
-    $folders = array();
-    while ( ( $file = readdir ( $dir ) ) !== false ) {
-      if ( ( $file != '.') and ( $file != '..' ) and  ( is_dir( $folder.'/'.$file ) ) and ( in_array( $file, $matching_folders ) ) ) {
-	$folders[] = $file;
-      }
-    }
-    return $folders;
+  /* initialise result */
+  $folders = array();
+  
+  /* load folder's elements */
+  $elements = scandir($folder);
+  
+  /* sort them */
+  sort($elements);
+  
+  /* keep all folders */
+  foreach ($elements as $element) {
+    if (($element != '.') and ($element != '..') and (is_dir( $folder.'/'.$element)) and (in_array($element, $matching_folders)))
+	  $folders[] = $element;
   }
-  return array();
+  
+  /* send result */
+  return $folders;
 }
 
 /*

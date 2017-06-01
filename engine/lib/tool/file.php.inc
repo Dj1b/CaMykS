@@ -663,8 +663,11 @@ function file_md5($file, $params=array()) {
   /* check HTTP 403 error : forbidden */
   if (preg_match('/HTTP\/1.1 403/', $error['message'])) {  
     /* create fake context */
-    $params = array_merge(array('user_agent' => $camyks->get_confValue('UserAgent'),
-        'referer'=> string_getBaseURL($file)), $params);
+    $params = array_merge(array(
+        'user_agent' => $camyks->get_confValue('UserAgent'),
+        'referer'=> string_getBaseURL($file),
+        'timeout' => 60,
+    ), $params);
     $context = stream_context_create(array('http'=>$params));
   
     /* load file */

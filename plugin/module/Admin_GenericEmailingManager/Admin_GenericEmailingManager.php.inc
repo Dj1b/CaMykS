@@ -1477,9 +1477,10 @@ class Admin_GenericEmailingManager extends Module {
 	$l = 1; // file line
 	$blockLength = 1000; // contacts block length to optimise memory usage
 	$blockCurrent = 0; // current block to run, to be updated in loop
-	
-	while (($blockCurrent + 1)*$blockLength < $contactCount) {
+		
+	while ($blockCurrent*$blockLength < $contactCount) {
 	  $contacts = $this->contactItem->get_objectList(false, '' , $blockCurrent*$blockLength, $blockLength, 'lastname', 'asc');
+	  	  
 	  foreach ($contacts as $id => $contact) {
 		$c = 0;
 		/* add details cells */

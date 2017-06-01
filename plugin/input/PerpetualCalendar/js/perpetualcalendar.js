@@ -82,7 +82,7 @@ function PerpetualCalendar(name) {
     if (item['date']) {
       date = new Date(parseInt(item['date']));
       my = date.getFullYear()+'-'+date.getMonth();
-      day = date.getDate();
+      day = date.getDate();      
     } else {/*
       my = params['year']+'-'+params['month'];
       day = parseInt(params['day']);*/

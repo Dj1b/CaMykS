@@ -1,0 +1,35 @@
+/*                                                                                                                 
+ * CaMykS Engine
+ * Developed by	    : camyks.net
+ * Author	       	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input CSS Styles
+ * Creation Date	: May 2017
+ * Last Modif Date	: May 2017
+ *                                                                                                                 
+ * CookieAgreementMessage input CSS style file                                                                           
+*/
+
+.cookieAgreementMessage {background:black; padding:4px; position:fixed; opacity:0.7;}
+.cookieAgreementMessage .message {color:white;}
+.cookieAgreementMessage .acceptButton {display:inline-block; color:black; background:#FEEB3D; padding:4px 8px; margin:0 4px;}
+.cookieAgreementMessage .aboutButton {display:inline-block; color:black; background:#C7C9C7; padding:4px 8px; margin:0 4px;}
+
+.cookieAgreementMessage.top {width:100%; text-align:center;}
+.cookieAgreementMessage.top .message {display:inline-block;}
+.cookieAgreementMessage.top .buttons {display:inline-block;}
+
+.cookieAgreementMessage.top-left {width:400px; text-align:center; top:10px; left:10px;}
+.cookieAgreementMessage.top-left .buttons {padding:8px 0;}
+.cookieAgreementMessage.top-right {width:400px; text-align:center; top:10px; right:10px;}
+.cookieAgreementMessage.top-right .buttons {padding:8px 0;}
+
+.cookieAgreementMessage.bottom {width:100%; text-align:center; bottom:0;}
+.cookieAgreementMessage.bottom .message {display:inline-block;}
+.cookieAgreementMessage.bottom .buttons {display:inline-block;}
+
+.cookieAgreementMessage.bottom-left {width:400px; text-align:center; bottom:10px; left:10px;}
+.cookieAgreementMessage.bottom-left .buttons {padding:8px 0;}
+.cookieAgreementMessage.bottom-right {width:400px; text-align:center; bottom:10px; right:10px;}
+.cookieAgreementMessage.bottom-right .buttons {padding:8px 0;}

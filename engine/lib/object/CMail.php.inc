@@ -360,6 +360,10 @@ class CMail {
     /* build message object */
     $message = new Mail_mime();
     
+    /* update message content type when a text body is defined */
+    if ($this->params['TextBody'] != '')
+      $message->setContentType('multipart/alternative');
+    
     /* build header list */
     $headers = $this->params['Headers'];
     $headers['MIME-Version'] = $this->params['MIME-Version'];
@@ -416,12 +420,25 @@ class CMail {
     }
     $headers['Cc'] = implode(', ', $cc);
     
+    /* add cc recipient list to header */
+    $bcc = array();
+    foreach ($this->params['Bcc'] as $contact) {
+        if ($contact['email'] == '')
+          continue;
+          
+        if ($contact['name'] != '')
+            $bcc[] = $contact['name'].' <'.$contact['email'].'>';
+        else
+            $bcc[] = $contact['email'];
+    }
+    $headers['Bcc'] = implode(', ', $bcc);
+    
     /* add subject to header */
     $headers['Subject'] = $this->params['Subject'];
     
     /* build body */
     $message->setHTMLBody($this->params['HTMLBody']);
-    $message->setTXTBody($this->params['TextBody']);
+    if ($this->params['TextBody'] != '') $message->setTXTBody($this->params['TextBody']);
     
     /* add attachments */
 	foreach($this->params['Attachments'] as $a)

@@ -9,27 +9,97 @@
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\fs26 \cf0 1.0-20170501
+\fs26 \cf0 1.0-20170601
 \b0\fs24 \
-- Ajout d'un fichier LISEZMOI et README au format markdown.\
-- 
-\i Librairie client
-\i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent.\
-- 
-\i Librairie client
-\i0  : Ajout d'un nouveau type "Fake" dans les User Agent, et ajout des premi\'e8res fausses visites d\'e9tectables.\
 
 \i - Librairie client
-\i0  : Correction d'outils g\'e9n\'e9riques mal formatt\'e9s.\
+\i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent\
+
+\i - Librairie france
+\i0  : Ajout de cette nouvelle librairie, int\'e9grant des fonctions d\'e9di\'e9es \'e0 des v\'e9rifications typiquement fran\'e7aises, la premi\'e8re m\'e9thode permet de v\'e9rifier si un num\'e9ro de t\'e9l\'e9phone est bien comptable avec les num\'e9ros de t\'e9l\'e9phone en France. Cette librairie n'est pas charg\'e9e par d\'e9faut, elle doit \'eatre charg\'e9e manuellement dans vos modules souhaitant l'utiliser.\
+
+\i - Librairie string
+\i0  : Ajout d'une m\'e9thode string_formatIntlPhoneNumber qui format un num\'e9ro de t\'e9l\'e9phone au format international (E.164)\
+- 
+\i Librairie country
+\i0  : Ajout d'une m\'e9thode countries_getPhonePrefix qui renvoie le pr\'e9fix international t\'e9l\'e9phonique pour le pays donn\'e9.\
+
+\i - Librairie HTMLForm
+\i0  : Gestion d'ids pour les inputs Hidden.\
+- 
+\i Input MoneticoPaiement 
+\i0 : Ajout d'un nouvel Input permettant de prendre en charge les paiements via Mon\'e9tico (CIC / Cr\'e9dit Mutuel).\
+
+\i - Input PayBoxPayment 
+\i0 : Ajout d'un nouvel Input permettant de prendre en charge les paiements via PayBox (Cr\'e9dit Agricole).\
+
+\i - Input CookieAgreementMessage
+\i0  : Ajout semi-automatique du message l\'e9gal d'acceptation des cookies, param\'e9trable.\
+- 
+\i Librairie folder
+\i0  : R\'e9-\'e9criture de la m\'e9thode folder_listFolders ainsi que de la m\'e9thode folder_listMatchingFolders de la m\'eame mani\'e8re.\
+
+\i => Note : les plugins dans le Gestionnaire de plugins s'affichent d\'e9sormais dans l'ordre alphab\'e9tique de l'identifiant des plugins.\
+- Librairie PEAR:Mail 
+\i0 : Mise \'e0 jour selon la derni\'e8re version.\
+
+\i - Librairie PEAR:Mail_Mime
+\i0  : Mise \'e0 jour selon la derni\'e8re version.\
+
+\i - Librairie CMail
+\i0  : Mise \'e0 jour en conjonction avec les mises \'e0 jour des librairies PEAR:Mail et PEAR:Mail_Mime.\
+- 
+\i Librairie string.js
+\i0  : Ajout d'une fonction "pad" pour compl\'e9ter une chaine \'e0 la longueur souhait\'e9e, avec le caract\'e8re souhait\'e9\
+
+\i - Input FileManager
+\i0  : Am\'e9lioration.\
+
+\i - Input PageChooser
+\i0  : Am\'e9lioration.\
+
+\i - Module Admin_GenericEmailingManager
+\i0  : Correction d'un bug sur l'export des contacts.\
+
+\i - Module Admin_MonitoringUserAgentChecker
+\i0  : Ajout d'une ic\'f4ne de module admin.\
+
+\i - Module Admin_SystemUniqueIDManager
+\i0  : Ajout d'une ic\'f4ne de module admin.\
+
+\i - Librairie ModuleLibrary
+\i0  : Ajout de la gestion du tri pour la fonction get_objectIdList\
+
+\i - Librairie file
+\i0  : Ajout d'un timeout dans le contexte HTTP des requ\'eates de la fonction file_md5\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\b\fs28 \cf0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs26 \cf0 1.0-20170501
+\b0\fs24 \
+- Ajout d'un fichier LISEZMOI et README au format markdown\
+- 
+\i Librairie client
+\i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent\
+- 
+\i Librairie client
+\i0  : Ajout d'un nouveau type "Fake" dans les User Agent, et ajout des premi\'e8res fausses visites d\'e9tectables\
+
+\i - Librairie client
+\i0  : Correction d'outils g\'e9n\'e9riques mal formatt\'e9s\
 - 
 \i Module Admin_MonitoringUserAgentChecker
-\i0  : Ajout de la gestion des "Fake".\
+\i0  : Ajout de la gestion des "Fake"\
 - 
 \i Module Admin_MonitoringUserAgentChecker
-\i0  : Corrections sur les layouts.\
+\i0  : Corrections sur les layouts\
 - 
 \i Module Admin_MonitoringUserAgentChecker
-\i0  : Corrections d'une erreur dans le pr\'e9parateur de requ\'eate SQL.\
+\i0  : Corrections d'une erreur dans le pr\'e9parateur de requ\'eate SQL\
 - 
 \i CaMykS
 \i0  : Ne r\'e9pond plus aux User Agents marqu\'e9 comme "Fake".\
@@ -38,43 +108,43 @@
 \i0  : Renvoie une en-t\'eate "403 Forbidden" aux "Fakes" et "Hacks"\
 
 \i - Module Admin_GenericDownloadManager
-\i0  : Ne g\'e9n\'e8re plus une erreur au t\'e9l\'e9chargement si le plugin n'est pas install\'e9.\
+\i0  : Ne g\'e9n\'e8re plus une erreur au t\'e9l\'e9chargement si le plugin n'est pas install\'e9\
 
 \i - Input GenericMediaPopup
-\i0  : Acc\'e8de d\'e9sormais \'e0 Youtube et Dailymotion en HTTPS.\
+\i0  : Acc\'e8de d\'e9sormais \'e0 Youtube et Dailymotion en HTTPS\
 - 
 \i Module Admin_Statistics
-\i0  : Am\'e9lioration des layouts.\
+\i0  : Am\'e9lioration des layouts\
 
 \i - Template AdminPage
-\i0  : Am\'e9lioration du layout, le pied de page est d\'e9sormais bloqu\'e9 en bas.\
+\i0  : Am\'e9lioration du layout, le pied de page est d\'e9sormais bloqu\'e9 en bas\
 
 \i - Librairie Theme
-\i0  : Support pr\'e9liminaire de l'administration au format mobile.\
+\i0  : Support pr\'e9liminaire de l'administration au format mobile\
 - 
 \i CaMykS
-\i0  : Support pr\'e9liminaire de l'administration au format mobile.\
+\i0  : Support pr\'e9liminaire de l'administration au format mobile\
 
 \i - Theme IndigoFlatStyle
-\i0  : Support pr\'e9liminaire de l'administration au format mobile.\
+\i0  : Support pr\'e9liminaire de l'administration au format mobile\
 
 \i - Theme GreyStyle
-\i0  : Compatibilit\'e9 avec le support de l'administration au format mobile. \
+\i0  : Compatibilit\'e9 avec le support de l'administration au format mobile.\
 - 
 \i Input AdminItemListViewer
-\i0  : Compatibilit\'e9 avec le support de l'administration au format mobile. \
+\i0  : Compatibilit\'e9 avec le support de l'administration au format mobile.\
 
 \i - Module Tool_ControlPanel
-\i0  : Am\'e9lioration du layout pour support pr\'e9liminaire de l'administration au format mobile.\
+\i0  : Am\'e9lioration du layout pour support pr\'e9liminaire de l'administration au format mobile\
 
 \i - Template AdminPage 
-\i0 : Am\'e9lioration du layout pour support pr\'e9liminaire de l'administration au format mobile.\
+\i0 : Am\'e9lioration du layout pour support pr\'e9liminaire de l'administration au format mobile\
 
 \i - CaMykS
 \i0  : Retour d'une version "Majeure" dans le fichier de configuration statique\
 
 \i - CaMykS
-\i0  : Ajout d'un User Agent par d\'e9faut dans le fichier de configuration dynamique (surchargeable par les sites internets).\
+\i0  : Ajout d'un User Agent par d\'e9faut dans le fichier de configuration dynamique (surchargeable par les sites internets)\
 
 \i - Librairie file
 \i0  : Ajout du user agent par d\'e9faut lors de requ\'eates\
@@ -84,8 +154,12 @@
 
 \i - Librairie string
 \i0  : Am\'e9lioration de la m\'e9thode string_replaceEntityChars\
-- Librairie HTMLForm : Ajout de la possibilit\'e9 d'avoir le mois au format text pour l'input d\'e9di\'e9 aux dates\
-- \
+- 
+\i Librairie HTMLForm
+\i0  : Ajout de la possibilit\'e9 d'avoir le mois au format texte pour l'input d\'e9di\'e9 aux dates\
+- 
+\i Input PerpetualCalendar
+\i0  : Correction d'un bug dans la m\'e9thode display_month du script client\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 

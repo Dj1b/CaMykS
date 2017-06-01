@@ -1,4 +1,4 @@
-<?PHP
+<?php
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
@@ -6,31 +6,33 @@
  *
  * SMTP MX implementation of the PEAR Mail interface. Requires the Net_SMTP class.
  *
- * PHP versions 4 and 5
+ * PHP version 5
  *
  * LICENSE:
  *
- * Copyright (c) 2010, gERD Schaufelberger
+ * Copyright (c) 2010-2017 gERD Schaufelberger
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
  *
- * o Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- * o Redistributions in binary form must reproduce the above copyright
- *   notice, this list of conditions and the following disclaimer in the
- *   documentation and/or other materials provided with the distribution.
- * o The names of the authors may not be used to endorse or promote
- *   products derived from this software without specific prior written
- *   permission.
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * 3. Neither the name of the copyright holder nor the names of its
+ *    contributors may be used to endorse or promote products derived from
+ *    this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
  * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
  * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
@@ -41,9 +43,9 @@
  * @category   Mail
  * @package    Mail_smtpmx
  * @author     gERD Schaufelberger <gerd@php-tools.net>
- * @copyright  2010 gERD Schaufelberger
- * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id: smtpmx.php 294747 2010-02-08 08:18:33Z clockwerx $
+ * @copyright  2010-2017 gERD Schaufelberger
+ * @license    http://opensource.org/licenses/BSD-3-Clause New BSD License
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Mail/
  */
 
@@ -56,7 +58,7 @@ require_once 'Net/SMTP.php';
  * @access public
  * @author  gERD Schaufelberger <gerd@php-tools.net>
  * @package Mail
- * @version $Revision: 294747 $
+ * @version $Revision$
  */
 class Mail_smtpmx extends Mail {
 
@@ -386,7 +388,7 @@ class Mail_smtpmx extends Mail {
             }
 
             // Send data
-            $res = $this->_smtp->data("$textHeaders\r\n$body");
+            $res = $this->_smtp->data($body, $textHeaders);
             if (is_a($res, 'PEAR_Error')) {
                 $info = array('rcpt' => $rcpt);
                 return $this->_raiseError('failed_send_data', $info);

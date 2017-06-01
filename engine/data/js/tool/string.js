@@ -45,7 +45,6 @@ String.prototype.untrim = function(slen, schar, sposition) {
 
 /*
  * prototype method to strip tags 
- * @param string string
  * @param string allowed
  * @return string
  */
@@ -58,6 +57,30 @@ String.prototype.strip_tags = function(allowed) {
   return this.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
     return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : ''
   });
+}
+
+/*
+ * pad element with given chars
+ * @param int len      - 1
+ * @param string str   - ' '
+ * @param string pos   - left / right
+ * @return string
+ */
+String.prototype.pad = function(len, str, pos) {
+  if (!pos || pos != 'right') pos = 'left';
+  if (!str || str == '') str = ' ';
+  if (!len) len = 1;
+
+  count = (len - this.length)/str.length;
+  if (count <= 0)
+    return this;
+  v = this;
+  if (pos == 'right')
+    for (i=0; i<count; i++) v = v + str;
+  else
+    for (i=0; i<count; i++) v = str+v;
+    
+  return v;
 }
 
 

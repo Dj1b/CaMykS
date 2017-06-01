@@ -501,9 +501,52 @@ function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=
   
   );
   
-  
   return preg_replace($pattern, $replace, $text);
 }
- 
+
+/*
+ * formt given phone number
+ * @param string $number
+ * @param string $prefix
+ * @return string
+ * @access public
+ */
+function string_formatIntlPhoneNumber($number, $prefix='') {
+
+  /* remove leading + from prefix */
+  if (substr($prefix, 0, 1) == '+')
+    $prefix = substr($prefix, 1);
+
+  /* check for prefix from country */
+  if (preg_match('/^[a-z]{2}$/', $prefix))
+    $prefix = countries_getPhonePrefix($prefix);
+  
+  if (preg_match('/^\+([0-9]{2,5}) ?(\(0\))? ([0-9\- ]+)$/', $number, $matches)) {
+    /* for intl formatted number */
+    
+    if ($matches[1] != $prefix) {
+      /* given prefix different from existing one */
+    }
+    
+    /* remove all unwanted characters */
+    $number = preg_replace ('/[^0-9]/', '', $matches[3]);
+      
+  } else {
+    /* for locale formatted number */
+    if ($prefix == '') {
+      $prefix == '33';
+    }
+
+    /* remove all unwanted */
+    $number = preg_replace ('/[^0-9]/', '', $number);
+    
+    /* remove leading 0 */
+    if (substr($number, 0, 1) == 0)
+      $number = substr($number, 1);
+  }
+  /* build number */
+  return '+'.$prefix.$number;
+}
+
 
 ?>

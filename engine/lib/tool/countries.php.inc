@@ -152,7 +152,7 @@ function countries_getCode($lang='', $key=''){
 }
 
 /*
- * return country code list
+ * return country phone prefixes list
  * @return array
  * @access public
  */
@@ -160,6 +160,19 @@ function countries_getPhonePrefixes() {
   global $__phonePrefixes;
   require_once ('countries_phonePrefixes.php.inc');
   return $__phonePrefixes;
+}
+
+/*
+ * return phone prefix value for given country
+ * @return string
+ * @access public
+ */
+function countries_getPhonePrefix($country) {
+  global $__phonePrefixes;  
+  require_once ('countries_phonePrefixes.php.inc');
+  if (isset($__phonePrefixes[$country]))
+    return $__phonePrefixes[$country];
+  return '';
 }
  
 
