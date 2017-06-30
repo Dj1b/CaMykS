@@ -32,13 +32,11 @@ class CMail {
    * @return void
    * @access public
    */
-  function initialise() {
-    global $camyks;
-   
+  function initialise() {   
     $this->params = array(
          /* initialise headers */
         'MIME-Version' => '1.0',
-        'Content-Type' => 'text/HTML; charset='.$camyks->get_HTMLencodingvalue(),
+        'Content-Type' => '',
         'Return-Path'=>'',
         'ReplyTo'=>array(),
         'From' => array(),
@@ -349,7 +347,6 @@ class CMail {
   function _send_PEARMimeMail() {
     global $camyks;
     
-    
     @include_once 'Mail.php';
     @include_once 'Mail/mime.php';
     
@@ -361,8 +358,15 @@ class CMail {
     $message = new Mail_mime();
     
     /* update message content type when a text body is defined */
-    if ($this->params['TextBody'] != '')
+    if (count($this->params['Attachments']) > 0 or count($this->params['EmbeddedImages']) > 0) {
+      /* let auto content type */
+      
+    } elseif ($this->params['TextBody'] != '' and $this->params['HTMLBody'] != '')
       $message->setContentType('multipart/alternative');
+    elseif ($this->params['HTMLBody'] != '')
+      $message->setContentType('text/HTML; charset='.$camyks->get_HTMLencodingvalue());
+    elseif ($this->params['TextBody'] != '')
+      $message->setContentType('text/plain; charset='.$camyks->get_HTMLencodingvalue());
     
     /* build header list */
     $headers = $this->params['Headers'];
@@ -437,7 +441,7 @@ class CMail {
     $headers['Subject'] = $this->params['Subject'];
     
     /* build body */
-    $message->setHTMLBody($this->params['HTMLBody']);
+    if ($this->params['HTMLBody'] != '') $message->setHTMLBody($this->params['HTMLBody']);
     if ($this->params['TextBody'] != '') $message->setTXTBody($this->params['TextBody']);
     
     /* add attachments */

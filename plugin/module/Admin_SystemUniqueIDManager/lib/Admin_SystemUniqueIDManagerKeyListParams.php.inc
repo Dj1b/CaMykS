@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date    : Jan 2015
- * Last Modif Date  : Jan 2015
+ * Last Modif Date  : Jun 2017
  * 
  * Admin_SystemUniqueIDManager uniqueID list parameters
  */
@@ -31,7 +31,7 @@ $this->keyListParams['headselectors'] = array(
 );
 
 /* build sort parameters */
-$this->keyListParams['sort'] = array('allowed'=>false, 'default'=>'cdate', 'defaultway'=>'desc');
+$this->keyListParams['sort'] = array('allowed'=>true, 'default'=>'cdate', 'defaultway'=>'desc');
 
 /* build master action parameters */
 if ($this->check_right(1)==true)

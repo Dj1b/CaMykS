@@ -70,7 +70,7 @@ $conf['site_languages'] = array('fr');
 $conf['site_default_language'] = 'fr';
 /* site available language for edition */
 $conf['editing_languages'] = array('fr');
-/* site maximum module by page : can't be raise later, 5 is a classic value, 8 is security*/
+/* site maximum module by page : can't be raise later, 5 is a classic value, 8 is security */
 $conf['page_maxmodules'] = 8;
 /* site google analytics code */
 $conf['google_analytics'] = '';

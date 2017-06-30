@@ -11,7 +11,7 @@
  * AdminPage CSS styles
  */
 #pageHeader{width:700px; margin:0 auto;}
-#pageHeaderTitle{padding:32px 0 16px !important; text-align:center !important; height:80px !important; margin:0px !important;}
+#pageHeaderTitle{padding:32px 0 16px !important; text-align:center !important; height:80px !important; margin:0px !important; box-sizing:border-box;}
 #pageHeaderBanner{text-align:center; font-size:0; height:80px; overflow:hidden; }
 #pageHeaderBar{height:35px; overflow:hidden;}
 #pageContent{margin:8px 0 50px; min-height:570px;}

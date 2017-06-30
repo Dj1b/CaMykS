@@ -230,18 +230,18 @@ function string_replaceEntityChars( $string, $params=array()) {
   );
   
   /* add param patterns and replacements */
-  if ( isset( $params['pattern'] ) and isset( $params['replace']) ) {
-    if ( is_string($params['pattern']) and is_string($params['replace']) ) {
+  if (isset( $params['pattern'] ) and isset( $params['replace'])) {
+    if (is_string($params['pattern']) and is_string($params['replace'])) {
       $pattern[] = $params['pattern'];
       $replace[] = $params['replace'];
-    } else if ( is_array($params['pattern']) and is_array($params['replace']) and count($params['pattern']) == count($params['replace'] ) ) {
+    } else if (is_array($params['pattern']) and is_array($params['replace']) and count($params['pattern']) == count($params['replace'])) {
       $pattern = array_merge( $pattern, $params['pattern']);
       $replace = array_merge( $replace, $params['replace']);
     }
   }
   
   /* all other entities */
-  if ( isset($params['lastreplace']) ) {
+  if (isset($params['lastreplace'])) {
     $pattern[] = '/&[#\w]+;/';
     $replace[] = $params['lastreplace'];
   }
@@ -380,6 +380,16 @@ function string_isHTML($string) {
 }
 
 /*
+ * check if given string is an URL
+ * @param string $string
+ * @return boolean
+ * @access public
+ */
+function string_isURL($string) {
+  return preg_match('#^https?://#i', $string);
+}
+
+/*
  * check if given string starts with other string
  * @param string $haystack
  * @param mixed $needle
@@ -491,7 +501,6 @@ function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=
     /* polish characters */
     '/Ą/', '/ą/', '/Ę/', '/ę/', '/Ó/', '/ó/', '/Ć/', '/ć/', '/Ł/', '/ł/', '/Ń/', '/ń/', '/Ś/', '/ś/',
     '/Ź/', '/ź/', '/Ż/', '/ż/',
-  
   );
   
   $replace = array(

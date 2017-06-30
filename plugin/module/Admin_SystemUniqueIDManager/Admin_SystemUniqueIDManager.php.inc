@@ -6,10 +6,10 @@
  * CaMykS Version   : 1.0b
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Engine
- * Creation Date    : Mar 2014
- * Last Modif Date  : Mar 2014
+ * Creation Date    : Jan 2015
+ * Last Modif Date  : Jan 2015
  * History :
- * * 14-03-16 : Initial files
+ * * 15-01-02 : Initial files
  * 
  * Admin_SystemUniqueIDManager
  */
@@ -142,15 +142,6 @@ class Admin_SystemUniqueIDManager extends Module {
     
     parent::init_admin();
   }
-  
-  /*
-   * display module object in admin mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
 
   /* specific admin mode methods */
 
@@ -192,11 +183,13 @@ class Admin_SystemUniqueIDManager extends Module {
 	  $this->tabBuilder->add_tab(array('name'=>'help',
 				     'title'=>$camyks->get_translation('help')));
     /* initialise tabs */
-    $this->tabBuilder->initialise(array('default'=>'keys'));
+    $this->tabBuilder->initialise(array('default'=>'Keys'));
     
     /* get buttons */
-    $this->buttons = array(array('link'=>$camyks->get_adminLink(),
-				 'title'=>$camyks->get_translation('back')));
+    $this->buttons = array(array(
+        'link'=>$camyks->get_adminLink(),
+		'title'=>$camyks->get_translation('back'),
+	));
   }
 
   /*
@@ -228,17 +221,21 @@ class Admin_SystemUniqueIDManager extends Module {
     
     /* build form */
     $this->editform = new HTMLForm(
-        'edit_uniqueID',
+        'edit_config',
 		$this->get_adminlink(array('mode'=>'save_config')),
 		'POST');
     $this->editform->set_object($this->config);
      
     /* get buttons */
     $this->buttons = array(
-      array('link'=>$this->get_adminLink(),
-			'title'=>$camyks->get_translation('back')),
-	  array('link'=>$this->editform->get_HTMLSubmitLink(),
-		    'title'=>$camyks->get_translation('valid')),
+      array(
+        'link'=>$this->get_adminLink(),
+		'title'=>$camyks->get_translation('back'),
+	  ),
+	  array(
+	    'link'=>$this->editform->get_HTMLSubmitLink(),
+		'title'=>$camyks->get_translation('valid'),
+	  ),
     );
     
     /* update layout */

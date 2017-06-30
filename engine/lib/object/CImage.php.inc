@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Object
  * Creation Date    : Nov 2011
- * Last Modif Date  : Nov 2011
+ * Last Modif Date  : Jun 2017
  *
  * Image generic object
  */
@@ -66,7 +66,7 @@ class CImage {
       return false;
     
     
-    if (stristr($source, 'http://') === false) {
+    if (string_isURL($source) === false) {
       /* check local file */
       if (!file_exists($source))
         return false;

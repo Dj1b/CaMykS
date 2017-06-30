@@ -1440,6 +1440,10 @@ class Admin_GenericEmailingManager extends Module {
   	
   	/* load site context */
     $camyks->get_adminInit();
+    
+    /* check admin user */
+    if ($camyks->check_adminUser() == false)
+      return $camyks->init_kill();
   	
     /* load excel writer library */
 	require_once('Spreadsheet/Excel/Writer.php');
