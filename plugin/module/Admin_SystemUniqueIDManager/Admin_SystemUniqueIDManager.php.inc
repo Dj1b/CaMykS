@@ -59,8 +59,7 @@ class Admin_SystemUniqueIDManager extends Module {
    * @access private
    */
   function install ( ) {
-    return ( $this->keyItem->install()
-     and parent::install());
+    return ( $this->keyItem->install() and parent::install());
   }
   
   /*
@@ -88,9 +87,18 @@ class Admin_SystemUniqueIDManager extends Module {
    */
   function get_rights() {
     global $camyks;
-    $this->rights[0] = array('name'=>'read',
-			     'title'=> $camyks->get_translation('read'),
-			     'default'=> false);
+    
+    $this->rights[0] = array(
+    	'name'		=>'read',
+		'title'		=> $camyks->get_translation('read'),
+		'default'	=> false,
+	);
+	
+	$this->rights[1] = array(
+    	'name'		=>'write',
+		'title'		=> $camyks->get_translation('write'),
+		'default'	=> false,
+	);
   }
   
   /*
@@ -102,11 +110,11 @@ class Admin_SystemUniqueIDManager extends Module {
     global $camyks;
 
     /* check read rights */
-    if ( $this->check_right(0) === false )
+    if ($this->check_right(0) === false)
       return $this->init_admin_accessDenied();
 
     /* check dependencies */
-    if(!isset($camyks->inputs['TabBuilder']))
+    if (!isset($camyks->inputs['TabBuilder']))
       return $this->init_admin_missingPlugin('Input', 'TabBuilder');
     if (!isset($camyks->inputs['AdminItemListViewer']))
       return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
@@ -173,10 +181,14 @@ class Admin_SystemUniqueIDManager extends Module {
     /* get tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
     $this->tabBuilder->add_tabs(array(
-                   array('name'=>'Summary',
-				     'title'=>$this->get_translation('formtitle_summary')),
-                   array('name'=>'Keys',
-				     'title'=>$this->get_translation('keys')),
+    	array(
+        	'name'	=> 'Summary',
+			'title'	=> $this->get_translation('formtitle_summary'),
+		),
+        array(
+        	'name'	=> 'Keys',
+		    'title'	=> $this->get_translation('keys'),
+		),
     ));
 				     
 	if ( $this->help != null )
@@ -187,8 +199,8 @@ class Admin_SystemUniqueIDManager extends Module {
     
     /* get buttons */
     $this->buttons = array(array(
-        'link'=>$camyks->get_adminLink(),
-		'title'=>$camyks->get_translation('back'),
+        'link'	=> $camyks->get_adminLink(),
+		'title'	=> $camyks->get_translation('back'),
 	));
   }
 
@@ -276,16 +288,15 @@ class Admin_SystemUniqueIDManager extends Module {
     global $camyks;
     
     /* check user rights */
-    if ( $this->check_right(1) === false )
+    if ($this->check_right(1) === false)
       return $this->init_admin_actionNotAllowed();
     
-    /* delete object */
+    /* create object */
     $this->keyItem->initialise();
-    if ( $this->keyItem->save() ) {
+    if ($this->keyItem->save())
       $this->text = $this->get_translation('key_created');
-    } else {
+    else
       $this->text = $this->get_translation('key_notcreated');
-    }
     
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
@@ -302,18 +313,17 @@ class Admin_SystemUniqueIDManager extends Module {
     global $camyks;
     
     /* check user rights */
-    if ( $this->check_right(1) === false )
+    if ($this->check_right(1) === false)
       return $this->init_admin_actionNotAllowed();
     
     /* delete object */
     $this->keyItem->id = isset($_REQUEST['key_id'])?(int)$_REQUEST['key_id']:0;
     $this->keyItem->get();
     $this->keyItem->get_fromItems();
-    if ($this->keyItem->is_deletable() and $this->keyItem->delete()) {
+    if ($this->keyItem->is_deletable() and $this->keyItem->delete())
       $this->text = $this->get_translation('key_deleted');
-    } else {
+    else
       $this->text = $this->get_translation('key_notdeleted');
-    }
     
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';

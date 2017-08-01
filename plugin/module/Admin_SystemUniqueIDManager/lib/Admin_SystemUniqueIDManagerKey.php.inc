@@ -157,7 +157,7 @@ class Admin_SystemUniqueIDManagerKey extends ModuleLibrary {
     global $camyks;
     
     /* default params list */
-    $dParams = array('status'=>-1, 'price'=>-1, 'language'=>$camyks->current_language,
+    $dParams = array('status'=>-1, 'language'=>$camyks->current_language,
 		    'limit'=>-1, 'count'=>-1, 'order'=>'sortPosition', 'orderway'=>'asc');
     /* merge params */
     $params = array_merge($dParams, $params);
@@ -175,7 +175,7 @@ class Admin_SystemUniqueIDManagerKey extends ModuleLibrary {
    */
   function count($params=array()) {
     global $camyks;
-    $p = array('status'=>-1, 'price'=>-1);
+    $p = array('status'=>-1,);
     $params = array_merge($p, $params);
     $where = $this->build_whereStatement($params);
     

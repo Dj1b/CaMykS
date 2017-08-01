@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
+ * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2005
- * Last Modif Date      : Mar 2007
+ * Last Modif Date  : Jul 2017
  *
  * File static methods
  * 
@@ -634,11 +634,11 @@ function file_search($pattern='*', $rootPath='./', $globFlags=0) {
 /*
  * md5_file replacement, to avoid 403 errors
  * @param string $file
- * @param array $params
+ * @param array $contextParams
  * @return mixed
  * @accesss public
  */
-function file_md5($file, $params=array()) {
+function file_md5($file, $contextParams=array()) {
   global $camyks;
   
   /* check default md5_file method */
@@ -661,20 +661,13 @@ function file_md5($file, $params=array()) {
     return false;
     
   /* check HTTP 403 error : forbidden */
-  if (preg_match('/HTTP\/1.1 403/', $error['message'])) {  
-    /* create fake context */
-    $params = array_merge(array(
-        'user_agent' => $camyks->get_confValue('UserAgent'),
-        'referer'=> string_getBaseURL($file),
-        'timeout' => 60,
-    ), $params);
-    $context = stream_context_create(array('http'=>$params));
-  
-    /* load file */
-    if (($v = @file_get_contents($file, false, $context)) !== false)
+  if (preg_match('/HTTP\/1.1 403/', $error['message'])) {
+    if (($v = http_getContents(array_merge($contextParams, array('url'=> $file)))) !== false)
       return md5($v);
-    return false;
   }
+
+  /* send default result */
+  return false;
 }
  
 

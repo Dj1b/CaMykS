@@ -3,14 +3,102 @@
 }
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww24640\viewh18280\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww26240\viewh18280\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\b\fs28 \cf0 Historique des versions\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\fs26 \cf0 1.0-20170701
+\fs26 \cf0 1.0-20170801
+\b0\fs24 \
+
+\i - Librairie client
+\i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent.\
+- 
+\i Librairie http
+\i0  : Nouvelle librairie\
+
+\i - CaMykS
+\i0  : Int\'e9gration de la nouvelle librairie\
+- 
+\i Librairie file 
+\i0 : Modification de la fonction file_md5 pour prendre en compte les nouvelles m\'e9thodes de la librairie http.\
+- 
+\i Module Admin_SystemNotifications
+\i0  : Nouveau module de contr\'f4les des notifications des modules du site. Possibilit\'e9 de mettre le module en mode "Maitre" afin de surveiller d'autres sites internet bas\'e9s sur CaMykS.\
+- 
+\i Librairie Module 
+\i0 : Nouvelle m\'e9thode pour renvoyer les notifications courantes.\
+
+\i - Module Admin_GenericGuestBookManager
+\i0  : Modification pour prendre en compte le nouveau syst\'e8me de notifications.\
+
+\i - Module Admin_SiteReport
+\i0  : Modification pour prendre en compte le nouveau syst\'e8me de notifications.\
+
+\i - Module Admin_MonitoringUserAgentChecker
+\i0  : Modification pour prendre en compte le nouveau syst\'e8me de notifications.\
+- 
+\i Module Admin_SystemReport
+\i0  : Modification pour prendre en compte le nouveau syst\'e8me de notifications.\
+- 
+\i Module Admin_SystemReport
+\i0  : Indique l'absence des plugins n\'e9cessaires au lieu de planter.\
+- 
+\i Module Admin_SystemUniqueIDManager 
+\i0 : Am\'e9liorations et nettoyage du code.\
+
+\i - Module Admin_SecurityTools
+\i0  : Renvoi une en-t\'eate 403 lors d'un refus par le filtre IP.\
+
+\i - Module Admin_Statistics
+\i0  : Correction d'une faille permettant \'e0 un utilisateur de manipuler une requ\'eate SQL.\
+
+\i - Module Admin_GenericBlogsManager 
+\i0 : Correction d'un bug sur le layout principal.\
+
+\i - Module Admin_ContentPage
+\i0  : Correction d'une faille permettant \'e0 un utilisateur de manipuler une requ\'eate SQL.\
+
+\i - Input AdminItemListViewer 
+\i0 : Correction d'un bug lors de l'utilisation des cases \'e0 cocher de s\'e9lection.\
+
+\i - Librairie Math.js
+\i0  : Optimisation de la fonction math_mod et ajout de fonctions de calcul de LCM et GCD sur 2 nombres ainsi qu'une fonction de calcul de LCM sur une liste de nombre.\
+
+\i - Librairie math
+\i0  : Nouvelle librairie d\'e9di\'e9e aux fonctions math\'e9matique avanc\'e9es, avec les m\'eames fonctions que la librairie Javascript. Cette librairie n'est pas charg\'e9e par d\'e9faut, elle doit \'eatre charg\'e9e manuellement dans vos modules souhaitant l'utiliser.
+\b\fs28 \
+
+\i\b0\fs24 - Locale frenchdepartments
+\i0  : Ajout des locales anglaise, allemande, italienne, espagnole et portugaise.\
+
+\i - Locale canadianstates
+\i0 : Ajout des locales fran\'e7aise, anglaise, allemande, italienne, espagnole et portugaise.\
+
+\i - Librairie canada 
+\i0 : Nouvelle librairie incluant des m\'e9thodes d\'e9di\'e9es au Canada. Cette librairie n'est pas charg\'e9e par d\'e9faut, elle doit \'eatre charg\'e9e manuellement dans vos modules souhaitant l'utiliser.\
+
+\i - Locale usastates
+\i0 : Ajout des locales fran\'e7aise, anglaise, allemande, italienne, espagnole et portugaise.\
+
+\i - Librairie usa 
+\i0 : Nouvelle librairie incluant des m\'e9thodes d\'e9di\'e9es aux USA. Cette librairie n'est pas charg\'e9e par d\'e9faut, elle doit \'eatre charg\'e9e manuellement dans vos modules souhaitant l'utiliser.\
+- 
+\i Input
+\i0  
+\i SocialNetworksSharingPanel 
+\i0 : Ajout de Pinterest et de Tumblr.\
+
+\i - Librairie array
+\i0  : Ajout de deux nouvelles m\'e9thodes de v\'e9rifications sur les valeurs contenues dans les listes, et d'une nouvelle m\'e9thodes pour appliquer une valeur absolue sur l'ensemble des valeurs.
+\b\fs28 \
+\
+\
+\
+
+\fs26 1.0-20170701
 \b0\fs24 \
 
 \i - Librairie client
@@ -23,7 +111,7 @@
 \i0  : Meilleure gestion des fichiers en ligne.\
 
 \i - Locale frenchdepartments
-\i0  : Ajout de la locale d\'e9di\'e9e aux d\'e9partements fran\'e7ais.\
+\i0  : Ajout de la locale fran\'e7aise d\'e9di\'e9e aux d\'e9partements fran\'e7ais.\
 
 \i - Librairie france
 \i0  : Ajout de 2 m\'e9thodes, france_getDepartmentList pour cr\'e9er la liste des d\'e9partements fran\'e7ais, france_getDepartmentTitle pour renvoyer le nom d'un d\'e9partement \'e0 partir de son code. \
@@ -137,7 +225,7 @@
 \i0  : Ajout d'un nouveau type "Fake" dans les User Agent, et ajout des premi\'e8res fausses visites d\'e9tectables\
 
 \i - Librairie client
-\i0  : Correction d'outils g\'e9n\'e9riques mal formatt\'e9s\
+\i0  : Correction d'outils g\'e9n\'e9riques mal format\'e9s\
 - 
 \i Module Admin_MonitoringUserAgentChecker
 \i0  : Ajout de la gestion des "Fake"\

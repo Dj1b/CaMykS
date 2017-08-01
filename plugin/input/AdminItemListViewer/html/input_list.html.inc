@@ -91,7 +91,7 @@ $cols = count($this->params['listcolumns']);
 
   <td class="eTableHeader<?=($c != ' '?' class='.$c:'');?>"<?=(isset($column['style'])?' style="'.$column['style'].'"':'')?>>
     <?php if ( $column['columntype'] == 'checkbox') : ?>
-      <input type="checkbox" name="<?=$name?>_all" name="<?=$name?>_all" value="1" onchange="update_allCheckboxes();" />
+      <input type="checkbox" name="<?=$name?>_all" id="<?=$name?>_all" value="1" onchange="<?=$this->params['name'];?>.update_allCheckboxes('<?=$name?>');" />
     <?php elseif ( $column['title']!= '' and $this->is_columnSortable($name) ) : ?>
       <?php if( $name == $this->sortValues['column'] and $this->sortValues['way'] == 'desc' ) : ?>
         <a href="javascript:<?=$this->params['name']?>.update_sortColumn('');">

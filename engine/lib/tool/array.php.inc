@@ -3,13 +3,13 @@
  * CaMykS Engine
  * Developed by       : camyks.net
  * Author             : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version     : 1.0b1
+ * CaMykS Version     : 1.0b
  * Object Version     : 1.0
  * Object Type        : Engine / Tool Library
  * Creation Date      : Jan 2010
- * Last Modif Date    : Jan 2010
+ * Last Modif Date    : Jul 2017
  *
- * array methods
+ * Array related methods
  */
 
 /*
@@ -18,7 +18,6 @@
  * @param mixed $value
  * @param boolean $keepKeys
  * @return string
- * @access public
  */
 function array_dropValue($array=array(), $value=null, $keepKeys=true) {
   /* check array */
@@ -43,7 +42,6 @@ function array_dropValue($array=array(), $value=null, $keepKeys=true) {
  * @param array $array1
  * @param array $array2
  * @return array
- * @access public
  */
 function array_recursiveMerge($array1=array(), $array2=array()) {
   /* check arrays */
@@ -69,6 +67,42 @@ function array_recursiveMerge($array1=array(), $array2=array()) {
   
   /* return merged array */
   return $array1;
+}
+
+/*
+ * check if all elements are numerics or numeric strings
+ * @param array $array
+ * @return boolean result
+ */
+function array_checkNumeric($array=array()) {
+  return (count($array) === count(array_filter($array, 'is_numeric')));
+}
+
+/*
+ * check if all elements are integers (strict)
+ * @param array $array
+ * @return boolean result
+ */
+function array_checkInteger($array=array()) {
+  return (count($array) === count(array_filter($array, 'is_integer')));
+}
+
+/*
+ * return array with all abs values
+ * @param array $array
+ * @return array
+ */
+function array_abs($array=array()) {
+    $result = array();
+    foreach ($array as $i => $v) {
+      if (is_array($v))
+        $result[$i] = array_abs($v);
+      elseif ($v < 0)
+        $result[$i] = $v * -1;
+      else
+        $result[$i] = $v;
+    }
+    return $result;
 }
 
 ?>

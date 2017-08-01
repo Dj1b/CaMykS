@@ -99,6 +99,7 @@ class Admin_SecurityIPFilterRule extends ModuleLibrary {
                      'content1'=>'This website have an active IP Filter.',
                      'content2'=>'Your IP is currently into the blacklist database.',
                      'content3'=>'Please contact the website administrator.');
+      header('HTTP/1.1 403 Forbidden');
       $camyks->throwFatalError( $error );
     }
   }

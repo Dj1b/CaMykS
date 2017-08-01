@@ -106,9 +106,37 @@ class Admin_GenericGuestBookManager extends Module {
     global $camyks;
     $n = $this->msgItem->get_objectCount('status=2');
     if ( $n == 1 )
-      $camyks->trads['mod_admin_genericguestbookmanager_desc'] = $camyks->trads['mod_admin_genericguestbookmanager_desc1'];
+      $camyks->trads['mod_admin_genericguestbookmanager_desc'] = $this->get_translation('desc1');
     elseif ($n > 1)
-      $camyks->trads['mod_admin_genericguestbookmanager_desc'] = vsprintf($camyks->trads['mod_admin_genericguestbookmanager_descx'], $n);
+      $camyks->trads['mod_admin_genericguestbookmanager_desc'] = $this->get_translation('descx', $n);
+  }  
+  
+  /*
+   * return notified items for module
+   * @return Array
+   * @access public
+   */
+  function get_adminInternalNotifications() {
+  
+  	/* load reports count */
+	$cnt = $this->msgItem->get_objectCount('status=2');
+	if ($cnt == 0)
+	  return array();
+	
+	/* initialise result */
+	$result = array($this->name => array(
+		'title'	=> $this->title,
+		'items'	=> array(
+	        array(
+	            'title'	    => $this->get_translation('messagestatus_pending'),
+			    'cnt'	    => $cnt,
+			    'priority'	=> 1,
+		    )
+	    )
+    ));
+	
+	/* send result */
+	return $result;	
   }
   
   /*
@@ -118,6 +146,7 @@ class Admin_GenericGuestBookManager extends Module {
    */
   function init_admin () {
     global $camyks;
+    
     /* check read rights */
     if ( $this->check_right(0) === false )
       return $this->init_admin_accessDenied();
@@ -125,7 +154,7 @@ class Admin_GenericGuestBookManager extends Module {
     /* check dependencies */
     if (!isset($camyks->inputs['AdminItemListViewer']))
       return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
-    if(!isset($camyks->inputs['TabBuilder']))
+    if (!isset($camyks->inputs['TabBuilder']))
       return $this->init_admin_missingPlugin('Input', 'TabBuilder');
     
     /* get informations */

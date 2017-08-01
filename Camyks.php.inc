@@ -6,7 +6,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Main Object
  * Creation Date    : Jun 2005
- * Last Modif Date  : Feb 2017
+ * Last Modif Date  : Jul 2017
  *
  * CaMykS engine object
  */
@@ -388,6 +388,7 @@ class Camyks {
     require_once( $this->camyks_engine_path.'/lib/tool/file.php.inc');
     require_once( $this->camyks_engine_path.'/lib/tool/folder.php.inc');
     require_once( $this->camyks_engine_path.'/lib/tool/html.php.inc');
+    require_once( $this->camyks_engine_path.'/lib/tool/http.php.inc');
     require_once( $this->camyks_engine_path.'/lib/tool/input.php.inc');
     require_once( $this->camyks_engine_path.'/lib/tool/language.php.inc');
     require_once( $this->camyks_engine_path.'/lib/tool/mail.php.inc');

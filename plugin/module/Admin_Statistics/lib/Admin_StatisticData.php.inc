@@ -76,9 +76,9 @@ class Admin_StatisticData extends ModuleLibrary {
     $sql .= ' from '.$this->_libSQLTable;
     $sql .= ' where statid='.$this->_libItems['statid']->value;
     $sql .= ' and statdate='.$this->_libItems['statdate']->value;
-    $sql .= ' and main="'.$this->_libItems['main']->value.'"';
-    $sql .= ' and data1="'.$this->_libItems['data1']->value.'"';
-    $sql .= ' and data2="'.$this->_libItems['data2']->value.'"';
+    $sql .= ' and main="'.addSlashes($this->_libItems['main']->value).'"';
+    $sql .= ' and data1="'.addSlashes($this->_libItems['data1']->value).'"';
+    $sql .= ' and data2="'.addSlashes($this->_libItems['data2']->value).'"';
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__)) {
       if ( $data = $this->get_DBQueryDataLine()) {
@@ -103,9 +103,9 @@ class Admin_StatisticData extends ModuleLibrary {
     $sql = 'select id, statcount, statdate';
     $sql .= ' from '.$this->_libSQLTable;
     $sql .= ' where statid='.$this->_libItems['statid']->value;
-    $sql .= ' and main="'.$this->_libItems['main']->value.'"';
-    $sql .= ' and data1="'.$this->_libItems['data1']->value.'"';
-    $sql .= ' and data2="'.$this->_libItems['data2']->value.'"';
+    $sql .= ' and main="'.addSlashes($this->_libItems['main']->value).'"';
+    $sql .= ' and data1="'.addSlashes($this->_libItems['data1']->value).'"';
+    $sql .= ' and data2="'.addSlashes($this->_libItems['data2']->value).'"';
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
       if ( $data = $this->get_DBQueryDataLine()) {

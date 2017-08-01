@@ -163,9 +163,11 @@ class Admin_SystemReportItem extends ModuleLibrary {
    */
   function update_reports( $list=array() ) {
     global $camyks;
+    
     /* do not execute sql for an empty list */
     if ( count($list) == 0 )
       return true;
+      
     /* build sql query */
     $sql = 'update '.$this->_libSQLTable;
     $sql .= ' set status=1';
@@ -185,14 +187,68 @@ class Admin_SystemReportItem extends ModuleLibrary {
    */
   function delete_reports( $list=array() ) {
     global $camyks;
+    
     /* do not execute sql for an empty list */
     if ( count($list) == 0 )
       return true;
+      
     /* build sql query */
     $sql = 'delete from '.$this->_libSQLTable;
     $sql .= ' where id in('.implode(',', $list).')';
+    
     /* return result of sql execution */
     return $camyks->db_conn->execute_query($sql);
   }
+  
+  /*
+   * count reports by type
+   * @param array $params
+   * @return array
+   * @access public
+   */
+  function count_reportsByType($params=array()) {
+  	$defaultParams = array('status'=>-1, 'ids'=>-1);
+  	$params = array_merge($defaultParams, $params);
+  	
+  	/* initialise result list */
+  	$result = array();
+  	
+  	/* build where statement */
+  	$where = $this->build_whereStatement($params);
+  	
+  	/* build sql query */
+  	$sql = 'select count(id) as cnt, type';
+  	$sql .= ' from '.$this->_libSQLTable;
+  	if ($where != '')
+  		$sql .= ' where '.$where;
+  	$sql .= ' group by type';
+  	
+  	/* execute sql query */
+    if ( $this->execute_DBQuery($sql, __LINE__ ))
+      /* get data from database */
+      while ( $data = $this->get_DBQueryDataLine())
+	    $result[$data['type']] = $data['cnt'];
+	    
+    /* send results */
+    return $result;
+  }
+  
+  /*                                                                                 
+   * build where statement from params                                               
+   * @param array $params                                                            
+   * @return string                                                                  
+   * @access private                                                                 
+   */
+  function build_whereStatement($params=array()) {
+    $w = array();
+    
+    /* check status */
+    if ($params['status'] != -1)
+      $w[] = 'status = '.$params['status'];
+    
+	/* return result */
+    return implode(' and ', $w);
+  }
+  
 }
 ?>

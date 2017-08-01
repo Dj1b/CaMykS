@@ -40,6 +40,9 @@ $this->trads['mod_admin_monitoringuseragentchecker_record_all'] = 'Tous';
 $this->trads['mod_admin_monitoringuseragentchecker_recordstatus_notverified'] = 'Non v&eacute;rifi&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_recordstatus_verified'] = 'V&eacute;rifi&eacute;';
 
+$this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_notverified'] = 'Non v&eacute;rifi&eacute;s';
+$this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_verified'] = 'V&eacute;rifi&eacute;s';
+
 /* filtres */
 $this->trads['mod_admin_monitoringuseragentchecker_tabrecords'] = 'Agents utilisateurs';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_platform_type'] = 'Type : ';

@@ -2,10 +2,10 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a
  * Object Version 	: 1.0
- * Object Type          : Plugin / Module Library
+ * Object Type      : Plugin / Module Library
  * Creation Date	: Sep 2005
  * Last Modif Date	: Mar 2007
  *
@@ -56,7 +56,7 @@ class AdminUser {
    * constructor
    * @param string $login
    */
-  function AdminUser ( $login = '' ) {
+  function AdminUser( $login = '' ) {
     $this->login = preg_replace('/["\']/', '', $login);
     $this->is_new = ( $this->login == '' ? 1 : 0 );
     /* update generic library vars */

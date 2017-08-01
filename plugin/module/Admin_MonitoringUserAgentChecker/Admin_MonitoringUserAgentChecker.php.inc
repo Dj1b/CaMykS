@@ -111,6 +111,34 @@ class Admin_MonitoringUserAgentChecker extends Module {
   }
   
   /*
+   * return notified items for module
+   * @return Array
+   * @access public
+   */
+  function get_adminInternalNotifications() {
+  
+  	/* load reports count */
+	$cnt = $this->count_records(array('status'=>0));
+	if ($cnt == 0)
+	  return array();
+	
+	/* initialise result */
+	$result = array($this->name => array(
+		'title'	=> $this->title,
+		'items'	=> array(
+	        array(
+	            'title'	    => $this->get_translation('recordsstatus_notverified'),
+			    'cnt'	    => $cnt,
+			    'priority'	=> 0,
+		    )
+	    )
+    ));
+	
+	/* send result */
+	return $result;	
+  }
+  
+  /*
    * init module object in admin mode
    * @return void
    * @access private

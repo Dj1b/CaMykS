@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
+ * Object Type      : Plugin / Module Engine
  * Create Date		: Apr 2007
- * Last Modif Date	: Jul 2008
+ * Last Modif Date	: Jul 2017
  * History :
  * * 07-04-xx : Initial files
  * * 08-05-28 : Disable admin menu for data I/O modes
@@ -122,6 +122,34 @@ class Admin_SiteReport extends Module {
     $condition = 'answer_date=0';
     $n = $this->ritem->get_objectcount( $condition );
     $camyks->trads['mod_admin_sitereport_desc'] = vsprintf($camyks->trads['mod_admin_sitereport_desc_'], $n );
+  }
+  
+  /*
+   * return notified items for module
+   * @return Array
+   * @access public
+   */
+  function get_adminInternalNotifications() {
+  
+  	/* load reports count */
+	$cnt = $this->ritem->get_objectcount('answer_date=0');
+	if ($cnt == 0)
+	  return array();
+	
+	/* initialise result */
+	$result = array($this->name => array(
+		'title'	=> $this->title,
+		'items'	=> array(
+	        array(
+	            'title'	    => $this->get_translation('tablist'),
+			    'cnt'	    => $cnt,
+			    'priority'	=> 1,
+		    )
+	    )
+    ));
+	
+	/* send result */
+	return $result;	
   }
  
   /*

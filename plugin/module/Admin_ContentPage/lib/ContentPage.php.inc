@@ -367,11 +367,11 @@ class ContentPage {
   function get_fromDatabase( $page=null ) {
     if ( isset ( $page ) ) {
       if ( is_numeric( $page ) )
-	    return $this->get_objectFromDatabase(' and admin_contentpage.id='.$page );
+	    return $this->get_objectFromDatabase(' and admin_contentpage.id='.(int)$page);
       else if ( is_string ( $page ) )
-	    return $this->get_objectFromDatabase(' and admin_contentpage.name="'.$page.'"' );
+	    return $this->get_objectFromDatabase(' and admin_contentpage.name="'.addSlashes($page).'"');
     }
-    return $this->get_objectFromDatabase(' and admin_contentpage.id='.$this->id );
+    return $this->get_objectFromDatabase(' and admin_contentpage.id='.(int)$this->id);
   }
     
   /*

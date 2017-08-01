@@ -327,8 +327,20 @@ class SocialNetworksSharingPanel extends Input {
 		'link'=>'http://www.viadeo.com/shareit/share/?url=%1$s&title=%2$s&urllanguage='.$camyks->current_language,
     	'clic'=>'',
     	'default'=>1);
+				    
+	/* add pinterest */
+	$this->networks['pinterest'] = array('title'=>'Pinterest', 
+		'link'=>'https://www.pinterest.com/pin/create/button/?url=%1$s&Description=%2$s',
+    	'clic'=>'',
+    	'default'=>0);
+				    
+	/* add tumbler */
+	$this->networks['tumblr'] = array('title'=>'Tumblr', 
+		'link'=>'http://tumblr.com/widgets/share/tool?canonicalUrl=%1$s',
+    	'clic'=>'',
+    	'default'=>0);
    
-    /* add emai */
+    /* add email */
     $this->networks['email'] = array('title'=>'E-mail',
         'link'=>'mailto:?subject='.$this->get_translation('emailsubject', $camyks->get_confValue('site_title')).'&body='.$this->get_translation('emailbody'),
         'clic'=>'',

@@ -141,6 +141,36 @@ class Admin_SystemReport extends Module {
     $n = $this->reportItem->get_objectCount('status=0');
     $camyks->trads['mod_admin_systemreport_desc'] = vsprintf($camyks->trads['mod_admin_systemreport_desc_'], $n );
   }
+  
+  /*
+   * return notified items for module
+   * @return Array
+   * @access public
+   */
+  function get_adminInternalNotifications() {
+  
+  	/* load reports count by type */
+	$cnts = $this->reportItem->count_reportsByType(array('status'=>0));
+	if (count($cnts) == 0)
+	  return array();
+	
+	/* initialise result */
+	$result = array($this->name => array(
+		'title'	=> $this->title,
+		'items'	=> array()));
+	
+	/* add types to results */
+	foreach ($cnts as $type => $cnt) {
+		$result[$this->name]['items'][] = array(
+			'title'	=> $type,
+			'cnt'	=> $cnt,
+			'priority'	=> $type == 'Information' ? 0 : 2,
+		);
+	}
+	
+	/* send result */
+	return $result;	
+  }
 
   /*
    * init object when in admin mode 
@@ -149,10 +179,14 @@ class Admin_SystemReport extends Module {
    */
   function init_admin () {
     global $camyks;
+    
     /* check read rights */
-    if ( $this->check_right(0) === false ) {
+    if ( $this->check_right(0) === false )
       return $this->init_admin_accessDenied();
-    }
+    
+    /* check dependencies */
+    if (!isset($camyks->inputs['AdminItemListViewer']))
+      return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
 
     /* get mode */
     $this->mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'display';
@@ -183,15 +217,7 @@ class Admin_SystemReport extends Module {
     /* generic initialisation */
     parent::init_admin();
   }
-  
-  /*
-   * display module object in admin mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
+
 
   /* specific admin mode methods */
 
@@ -222,12 +248,11 @@ class Admin_SystemReport extends Module {
     $this->add_JSScript('admin_systemreport_deletelogsmessage="'.string_html2Text($this->get_translation('deletelogsmessage')).'";');
     $this->add_JSScript('admin_systemreport_marklogsmessage="'.string_html2Text($this->get_translation('marklogsmessage')).'";');
     
-     
-    
-    
     /* set interface buttons */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=>$camyks->get_adminLink( )));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $camyks->get_adminLink(),
+	));
     
     return;
   }

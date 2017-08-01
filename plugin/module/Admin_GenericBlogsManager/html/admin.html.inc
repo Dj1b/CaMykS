@@ -428,7 +428,7 @@ onmouseout="this.src='<?=$cross?>';" />
 <?php endif; ?>
 
 <?php if ( $this->check_right(1) === true ) : ?>
-<?=$this->load_file('html/admin_mainconfigtab.html.inc');?>
+<?php $this->load_file('html/admin_mainconfigtab.html.inc');?>
 <?php endif; ?>
 
 <?=$this->theme->get_boxContent2Footer(); ?>

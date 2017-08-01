@@ -637,6 +637,15 @@ class Module extends Plugin {
     return '';
   }
 
+  /*
+   * return notified items for module
+   * @return Array
+   * @access public
+   */
+  function get_adminInternalNotifications() {
+    return array();
+  }
+
   /**************** MODULE SPECIFIC METHODS ***********/
 
   /*
@@ -646,7 +655,7 @@ class Module extends Plugin {
    */
   function disable_adminEngineMenus() {
     global $camyks;
-    if ( isset( $camyks->modules['Tool_InfoBar'] ) )
+    if (isset($camyks->modules['Tool_InfoBar']))
       $camyks->modules['Tool_InfoBar']->disable_adminMenus();
   }
 
