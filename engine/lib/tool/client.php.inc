@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2007
- * Last Modif Date  : Jul 2017
+ * Last Modif Date  : Aug 2017
  *
  * client user methods
  */
@@ -371,6 +371,7 @@ function client_getUAInfos($ua=false) {
         'SM-E700H'  => array('platform_model' => 'Galaxy E7', ),
         'SM-J100H'  => array('platform_model' => 'Galaxy J1', ),
         'SM-J110H'  => array('platform_model' => 'Galaxy J1 (2015)', ),
+        'SM-J120FN' => array('platform_model' => 'Galaxy J1 (2016)', ),
         'SM-J200F'  => array('platform_model' => 'Galaxy J2', ),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5 (2015)', ),
@@ -412,6 +413,7 @@ function client_getUAInfos($ua=false) {
         'GT-I9082L' => array('platform_model' => 'Galaxy Grand', ),
         'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus', ),
         'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos', ),
+        'SM-G550FY' => array('platform_model' => 'Galaxy On5', ),
         'GT-N5110'  => array('platform_model' => 'Galaxy Note', ),
         'GT-N7000'  => array('platform_model' => 'Galaxy Note (3G)', ),
         'GT-N7003'  => array('platform_model' => 'Galaxy Note (4G)', ),
@@ -469,7 +471,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
   
   /* check Samsung PC */
-  elseif (preg_match('/MASMJS/', $ua, $matches))
+  elseif (preg_match('/MASMJS|SMJB/', $ua, $matches))
  	$infos = array_merge($infos, array(
  	  'platform_company'=>'Samsung (PC)'));
   
@@ -486,6 +488,19 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  elseif (preg_match('/ ONEPLUS (A[0-9]+)/', $ua, $matches)) {
+    $rep = array(
+        'A5000'=>array('platform_model' => '5'),         
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'OnePlus', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
       
   /* check SonyEricsson */
   elseif (preg_match('/SonyEricsson([^ \/]+)/', $ua, $matches))
@@ -553,6 +568,7 @@ function client_getUAInfos($ua=false) {
         'FRD-L19'   => array('platform_model' => 'Honor 8'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
         'Y520-U22'  => array('platform_model' => 'Ascend'),
+        'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -623,10 +639,11 @@ function client_getUAInfos($ua=false) {
       'platform_model'=>'A40Ti'));
   
   /* check Lenovo */
-  elseif (preg_match('/Lenovo[ |_]([A-Z0-9\-]{3,})/', $ua, $matches)) {
+  elseif (preg_match('/Lenovo[ |_]([A-Z0-9\-]{3,})/i', $ua, $matches)) {
     $rep = array(
         'P70-A'     => array('platform_model' => 'P70'),
         'B8000-F'   => array('platform_model' => 'Yoga', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'A2010-a'   => array('platform_model' => 'A2010', ),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -1037,11 +1054,17 @@ function client_getUAInfos($ua=false) {
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
-      
-  } elseif (preg_match('/HM NOTE 1LTE/', $ua, $matches))
+  }    
+  elseif (preg_match('/HM NOTE 1LTE/', $ua, $matches))
     $infos = array_merge($infos, array(
   	  'platform_company'=>'Xiaomi', 
       'platform_model'=>'Redmi Note 4G',
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld',));
+  elseif (preg_match('/Redmi Note 3/', $ua, $matches))
+    $infos = array_merge($infos, array(
+  	  'platform_company'=>'Xiaomi', 
+      'platform_model'=>'Redmi Note 3',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   
@@ -1228,15 +1251,25 @@ function client_getUAInfos($ua=false) {
         'platform_format'=>'handheld',), $infos);
             
     /* check unsmartly written browser */
-  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE |Airmail|EmbeddedWB|DX-Browser)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE |Airmail|EmbeddedWB|DX-Browser|Links)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('BIDUBrowser'=>'Baidu Brower', 'SE '=>'Sogou Explorer', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser');
       $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       	'browser_version'   => isset($matches[2])?$matches[2]:'',
       ));
     }
+    
+    /* check compatible level 2 browsers */
+    elseif (preg_match('/(Yowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array();
+	  $infos = array_merge($infos, array(
+	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+      ));
+    }
+    
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1261,7 +1294,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen browser */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => $matches[1], 
@@ -1296,7 +1329,7 @@ function client_getUAInfos($ua=false) {
   	} elseif (preg_match('/(Opera Mobi)/', $ua, $matches))
       $infos = array_merge(array('browser_title'=>$matches[1], 
       	'browser_version'=>''), $infos);
-      	
+      
     /* check undeterminated safari version */
   	elseif (preg_match('/(Safari|AppleWebKit)/', $ua, $matches)) {
   	  if ($infos['system_title'] == 'Android') {
@@ -1339,28 +1372,53 @@ function client_getUAInfos($ua=false) {
             'browser_title'     => 'Trident compatible', 
       	    'browser_version'   => str_replace('_','.',$matches[2]),
       	), $infos);
-  //}
+    
+    /* check WMP */
+    elseif (preg_match('/^Windows-Media-Player\/([^\(]*)/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'Windows Media Player', 
+      	'browser_version'   => $matches[1],
+      	'system_title'      =>'Windows',
+      ), $infos);
   
-  /* set type to "visitor" if not defined and browser title set */
-  if (!isset($infos['platform_type']) and isset($infos['browser_title']) and $infos['browser_title'] != '')
-     $infos['platform_type'] = 'computer';
-  if ((!isset($infos['platform_format']) or $infos['platform_format'] == '') and isset($infos['browser_title']) and $infos['browser_title'] != '')
-     $infos['platform_format'] = 'desktop';
+    /* check MoonBrowser */
+    elseif (preg_match('/MoonBrowser \(([^\(]*)\)/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'Moon Browser', 
+      	'browser_version'   => $matches[1],
+      	'system_title'      =>'Windows',
+      ), $infos);
+    
+    /* check Barca */
+    elseif (preg_match('/^Barca\/([^\(]*)/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'Barca', 
+      	'browser_version'   => $matches[1],
+      	'system_title'      =>'Windows',
+      ), $infos);
+      	
+  
+    /* set type to "visitor" if not defined and browser title set */
+    if (!isset($infos['platform_type']) and isset($infos['browser_title']) and $infos['browser_title'] != '')
+      $infos['platform_type'] = 'computer';
+    if ((!isset($infos['platform_format']) or $infos['platform_format'] == '') and isset($infos['browser_title']) and $infos['browser_title'] != '')
+      $infos['platform_format'] = 'desktop';
         
-  if (!isset($infos['platform_format']) or $infos['platform_format'] == '' or $infos['platform_format'] == 'desktop') {
-    /* check for generic mobile */
-    if (preg_match('/mobile/i', $ua, $matches))
-      $infos = array_merge($infos,array(
-        'platform_format'=>'handheld'
-      ));
+    if (!isset($infos['platform_format']) or $infos['platform_format'] == '' or $infos['platform_format'] == 'desktop') {
+      /* check for generic mobile */
+      if (preg_match('/mobile/i', $ua, $matches))
+        $infos = array_merge($infos,array(
+          'platform_format'=>'handheld'
+        ));
   
-    /* check for generic tablet */
-    elseif (preg_match('/tablet/i', $ua, $matches))
-      $infos = array_merge($infos, array(
-        'platform_format'=>'tablet'
-      ));
+      /* check for generic tablet */
+      elseif (preg_match('/tablet/i', $ua, $matches))
+        $infos = array_merge($infos, array(
+          'platform_format'=>'tablet'
+        ));
   }
-  /* */
+  
+  /* return result */
   return _client_mergeUAInfos($req, $infos);
 }
 
@@ -3309,6 +3367,15 @@ function client_getKnownBots() {
     'bot_url'=>'http://search.thunderstone.com/texis/websearch/about.html',
     'engine_title'=>'Thunderstone',
     'engine_url'=>'http://search.thunderstone.com');
+     
+  /* Barkrowler - to be placed before Owler */
+  $knownBots['barkrowler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'KrOWLer',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
   
   /* Owler */
   $knownBots['owler'] = array(
@@ -4415,6 +4482,42 @@ function client_getKnownBots() {
     'bot_url'=>'mailto:crawler@aliveadvisor.com',
     'engine_title'=>'AliveAdvisor',
     'engine_url'=>'http://search.aliveadvisor.com');
+  
+  /* http://www.x9o.de */
+  $knownBots['www.x9o.de'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'x9o.de',
+    'engine_url'=>'http://www.x9o.de');
+  
+  /* ExtLinksBot */
+  $knownBots['extlinksbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ExtLinksBot',
+    'bot_url'=>'https://extlinks.com/Bot.html',
+    'engine_title'=>'ExtLinks',
+    'engine_url'=>'https://extlinks.com/');
+  
+  /* DomainStatsBot */
+  $knownBots['domainstatsbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'DomainStatsBot',
+    'bot_url'=>'http://domainstats.io/our-bot',
+    'engine_title'=>'DomainStats.io',
+    'engine_url'=>'http://domainstats.io/');
+  
+  /* GroupHigh */
+  $knownBots['grouphigh'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'GroupHigh',
+    'engine_url'=>'http://www.grouphigh.com/');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -5205,6 +5308,24 @@ function client_getKnownTools() {
     'tool_url'=>'https://www.openhub.net/p/webscreenie',
     'engine_title'=>'',
     'engine_url'=>'');
+  
+  /* JOC Web Spider */
+  $knownTools['joc web spider'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'JOC Web Spider',
+    'tool_url'=>'',
+    'engine_title'=>'Jocsoft',
+    'engine_url'=>'http://www.jocsoft.com/jws/');
+  
+  /* WhatWeb */
+  $knownTools['whatweb'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'WhatWeb',
+    'engine_url'=>'https://www.morningstarsecurity.com/research/whatweb');
     
   /* return list */
   return $knownTools;
@@ -5512,6 +5633,15 @@ function client_getKnownGenerics() {
     'engine_title'=>'',
     'engine_url'=>'');
   
+  /* pycurl */
+  $knownGenerics['pycurl'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'pycurl',
+    'tool_url'=>'http://pycurl.io',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
   /* PHP */
   $knownGenerics['php/5'] = array(
     'platform_type'=>'tool',
@@ -5610,6 +5740,24 @@ function client_getKnownGenerics() {
     'tool_url'=>'',
     'engine_title'=>'Google Apps Script',
     'engine_url'=>'https://www.google.com/script/start/');
+  
+  /* zgrab */
+  $knownGenerics['zgrab'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'zgrab',
+    'tool_url'=>'https://github.com/zmap/zgrab/blob/master/zlib/conn.go',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Dispatch */
+  $knownGenerics['dispatch'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Dispatch',
+    'tool_url'=>'https://github.com/dispatch/reboot',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* obot */
   $knownGenerics[' obot'] = array(
