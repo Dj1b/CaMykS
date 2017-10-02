@@ -954,8 +954,36 @@ class ModuleLibrary {
   function check_data( ) {
     return true;
   }
+  
+  
+  /*********************** SESSION I/O *************************/
+  
+  /*
+   * load object data from session
+   * @param string $name
+   * @return void
+   * @access private
+   */
+  function load_fromSession($name='ObjectData') {
+    global $camyks;
+    
+    $this->get_fromArray($camyks->get_sessionValue($name, array()));
+  }
+  
+  
+  /*
+   * save object data in session
+   * @param string $name
+   * @return void
+   * @access public
+   */
+  function save_toSession($name='ObjectData') {
+    global $camyks;
+    
+    $camyks->set_sessionValue($name, $this->vars);
+  }
 
-  /*********************** FILE I/O ************************/
+  /*********************** FILE I/O ****************************/
 
   /*
    * return complete file url

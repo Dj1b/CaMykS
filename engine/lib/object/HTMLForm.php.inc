@@ -495,7 +495,7 @@ class HTMLForm {
     global $camyks;
 
     /* build param list */
-    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'tabIndex'=>-1, 'buttons'=>null, 'language'=>'', 'accept'=>'');
+    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'tabIndex'=>-1, 'buttons'=>null, 'language'=>'', 'accept'=>'', 'allowMultiple'=>false);
     
     /* check header params */
     if ( is_array($file)) {
@@ -523,7 +523,7 @@ class HTMLForm {
     }  
    
     /* build file input element */
-    $html = '<input type="file" name="'.$n.'"';
+    $html = '<input type="file" name="'.$n.''.($params['allowMultiple']?'[]" multiple="':'').'"';
     if ($this->tabIndex>-1 or $params['tabIndex'] != -1)
       $html .= ' '.$this->get_tabIndex(true, $params['tabIndex']);
     if ($params['class'] != '')

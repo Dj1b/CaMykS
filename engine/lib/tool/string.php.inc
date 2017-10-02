@@ -59,9 +59,82 @@ function string_numberFormat( $string, $decimal=2, $country=null ) {
     case 'num' : return number_format($string, $decimal, '.', '');
     
     /* countries */
-    case 'fr': return number_format($string, $decimal, ',', ' ');
+    case 'al':
+    case 'at':
+    case 'be':
+    case 'br':
+    case 'cr':
+    case 'cz':
+    case 'dk':
+    case 'ee':
+    case 'es':
+    case 'fi':
+    case 'fr':
+    case 'gr':
+    case 'hu':
+    case 'hr':
+    case 'it':
+    case 'no':
+    case 'pe': 
+    case 'po': 
+    case 'pt':
+    case 'ro':
+    case 'rs': 
+    case 'ru': 
+    case 'se':
+    case 'sl': 
+    case 'sk':
+    case 'ua': 
+    case 'xk':
+    case 'za': 
+        return number_format($string, $decimal, ',', ' ');      // 1 234 567,89
+    case 'ie': 
+    case 'mt': 
+        return number_format($string, $decimal, '&#149;', ','); // 1,234,567·89
+    case 'ar':
+    case 'at':
+    case 'ba':
+    case 'cl':
+    case 'hr':
+    case 'id':
+    case 'it':
+    case 'gr':
+    case 'tr':
+        return number_format($string, $decimal, ',', '.');      // 1,234,567.89
+    case 'li':
+    case 'sw':
+        return number_format($string, $decimal, '.', '\'');     // 1'234'567.89
+    case 'lk':
+        return number_format($string, $decimal, ' ', '.');      // 1 234 567.89
+    /*
+      case 'in':
+      case 'bd':
+      case 'np':
+      case 'pk':
+        return ; // 12,34,567.89 //// https://en.wikipedia.org/wiki/Indian_numbering_system    
+    */
     default:
-    case 'en': return number_format($string, $decimal);
+    case 'au':
+    case 'ca':
+    case 'ca':
+    case 'en': 
+    case 'hk':
+    case 'ir':
+    case 'il':
+    case 'jp':
+    case 'kp':
+    case 'kr':
+    case 'mx':
+    case 'my':
+    case 'nz':
+    case 'ph':
+    case 'pk':
+    case 'sg':
+    case 'th':
+    case 'tw':
+    case 'uk':
+    case 'us':
+        return number_format($string, $decimal, '.', ',');      // 1,234,567.89
   }
 }
 
