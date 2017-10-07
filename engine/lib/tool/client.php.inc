@@ -231,7 +231,8 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/HTC(?: |_|\-)?([^ _\-\/]+)/', $ua, $matches)) {
   	$rep = array(
   	    'M8Sx'         => array('platform_model' => 'One', ),
-  	    'IncredibleS'  => array('platform_model' => 'Incredible S', ),
+  	    'IncredibleS'  => array('platform_model' => 'Incredible S'),
+  	    'D820u'        => array('platform_model' => 'Desire 820 Dual SIM'),
   	);
   	
   	$infos = array_merge($infos, array(
@@ -399,6 +400,7 @@ function client_getUAInfos($ua=false) {
         'GT-I8190'  => array('platform_model' => 'Galaxy S3 Mini', ),
         'GT-I9195'  => array('platform_model' => 'Galaxy S4 Mini', ),
         'GT-I9195I' => array('platform_model' => 'Galaxy S4 Mini', ),
+        'GT-I9192'  => array('platform_model' => 'Galaxy S4 Mini Duos', ),
         'SM-G800F'  => array('platform_model' => 'Galaxy S5 Mini', ),
         'GT-S5830'  => array('platform_model' => 'Galaxy Ace', ),
         'SM-G357FZ' => array('platform_model' => 'Galaxy Ace 4', ),
@@ -1167,10 +1169,11 @@ function client_getUAInfos($ua=false) {
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE', 
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000', 
           '2000'=>'2000', 'NT 5.1'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
-          'NT 6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
+          'NT 6.1'=>'7', 'NT6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
           'NT 10.0'=>'10', '10'=>'10',
       );
-      $v = trim(substr($matches[1], 0, 7));
+      $v = $matches[1];
+      if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7));      
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
@@ -1273,7 +1276,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1355,7 +1358,7 @@ function client_getUAInfos($ua=false) {
       	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
   	
     /* check msie */
-  	elseif (preg_match('/MSIE ([a-z0-9\._]*)( |;|\-|\))/', $ua, $matches))
+  	elseif (preg_match('/MSIE ?([a-z0-9\._]*)( |;|\-|\))/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'=>'Internet Explorer', 
       	'browser_version'=>str_replace('_','.',$matches[1])
@@ -3432,10 +3435,10 @@ function client_getKnownBots() {
   $knownBots['barkrowler'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'KrOWLer',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
+    'bot_title'=>'Barkrowler',
+    'bot_url'=>'http://www.exensa.com/crawl',
+    'engine_title'=>'exenSa',
+    'engine_url'=>'http://www.exensa.com');
   
   /* Owler */
   $knownBots['owler'] = array(
@@ -4605,6 +4608,33 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'Scopia',
     'engine_url'=>'http://www.scopia.co');
+    
+  /* Companybook-Crawler */
+  $knownBots['companybook-crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Companybook-Crawler',
+    'bot_url'=>'',
+    'engine_title'=>'Companybook',
+    'engine_url'=>'https://www.companybooknetworking.com');
+    
+  /* ExperianCrawlUK */
+  $knownBots['experiancrawluk'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ExperianCrawlUK',
+    'bot_url'=>'',
+    'engine_title'=>'PHGroup',
+    'engine_url'=>'http://www.phgroup.com');
+    
+  /* Zombiebot */
+  $knownBots['zombiebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Zombiebot',
+    'bot_url'=>'http://www.zombiedomain.net/robot/',
+    'engine_title'=>'ZombieDomain',
+    'engine_url'=>'http://www.zombiedomain.net');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -4630,6 +4660,15 @@ function client_getKnownBots() {
     'platform_format'=>'desktop',
     'bot_title'=>'Unknown bot',
     'bot_url'=>'mailto:centurybot9@gmail.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* unknown bot */
+  $knownBots['celious search engine'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
     
@@ -4705,6 +4744,15 @@ function client_getKnownTools() {
 
   /* w3c validator */
   $knownTools['w3c_validator'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'W3C Validator',
+    'tool_url'=>'http://validator.w3.org',
+    'engine_title'=>'World Wide Web Consortium',
+    'engine_url'=>'http://www.w3.org');
+  
+  /* Validator.nu/LV */
+  $knownTools['validator.nu/lv'] = array(
     'platform_type'=>'tool',
     'platform_format'=>'desktop',
     'tool_title'=>'W3C Validator',
@@ -5895,6 +5943,15 @@ function client_getKnownGenerics() {
     'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
+  
+  /* Faraday */
+  $knownGenerics['faraday'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Faraday',
+    'tool_url'=>'https://mislav.net/2011/07/faraday-advanced-http/',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* obot */
   $knownGenerics[' obot'] = array(
@@ -6017,6 +6074,12 @@ function client_getKnownHacks() {
   $knownHacks['betabot'] = array(
     'platform_type'=>'hack',
     'hack_info'=>'Unwanted bot',
+  );
+  
+  /* PHP Exploit */
+  $knownHacks['php system'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'PHP Exploit',
   );
   
   /* return list */

@@ -45,7 +45,7 @@ $this->recordListParams['sort'] = array('allowed'=>false, 'default'=>'lvisit', '
 /* build column parameters */
 $this->recordListParams['listcolumns'] = array(
 						 'status'=>array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
-						 'user_agent'=>array('title'=>$this->get_translation('user_agent'),'columntype'=>'text', 'maxlength'=>80),
+						 'user_agent'=>array('title'=>$this->get_translation('user_agent'),'columntype'=>'method', 'maxlength'=>80, 'method'=>'get_adminValue'),
 						 'platform_type'=>array('title'=>$this->get_translation('platform_type'),'columntype'=>'list', 'values'=>$this->recordTypeList),
 						 'comparaison'=>array('title'=>'' ,'columntype'=>'method', 'method'=>'is_user_agent_correct'),
 						 'nvisit'=>array('title'=>$this->get_translation('nvisits'),'columntype'=>'text'),

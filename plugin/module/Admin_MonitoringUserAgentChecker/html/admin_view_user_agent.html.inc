@@ -38,7 +38,7 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 </td>
 <td class="">
   <div style="width:620px; overflow:auto; padding:8px;">
-<?=$this->recordItem->vars['user_agent']; ?>
+<?=$this->recordItem->get_adminValue(); ?>
 </div>
 </td>
 </tr>

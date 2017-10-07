@@ -37,7 +37,7 @@ if($this->uaInfos == false)
 <?=$this->get_translation('formitem_user_agent')?>
 </td>
 <td class="eTableLine0 eContent1">
-<?=$this->recordItem->vars['user_agent']; ?>
+<?=$this->recordItem->get_adminValue(); ?>
 </td>
 </tr>
 

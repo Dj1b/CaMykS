@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
+ * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0b1
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Layout
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Layout
  * Create Date		: Nov 2009
- * Last Modif Date	: Nov 2009
+ * Last Modif Date	: Oct 2017
  * 
  * SocialNetworksSharingPanel input layout
 */
@@ -26,7 +26,7 @@ $n = $this->dparams['networks'][1];
 <?php if ($this->dparams['allow_'.$name]==1) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank">
 <img src="<?=$this->get_fileURL('img/icons/'.$name.'.gif');?>" 
-   alt="<?=$network['title']?>" title="<?=$network['title']?>" border="0" style="vertical-align:bottom; margin:0 2px;" />
+   alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:0 2px; border:0;" />
 </a>
 <?php if (--$n > 0 ) : ?>
 <?=$this->dparams['separator'];?>
@@ -43,9 +43,9 @@ $n = $this->dparams['networks'][1];
 <?=$this->dparams['separator'];?>
 
 <a href="javascript:snsp.open_panel(<?=$this->currentIndex?>);">
-<img src="<?=$plus?>" border="0"
+<img src="<?=$plus?>"
     id="snsButton<?=$this->currentIndex?>"
-    style="vertical-align:bottom; margin:0 4px;"
+    style="vertical-align:bottom; margin:0 4px; border:0;"
     alt=""
     title=""
     onmouseover="this.src='<?=$plus_?>';"
@@ -53,8 +53,8 @@ $n = $this->dparams['networks'][1];
 </a>
 
 <?php $closeButton = '<a href="javascript:snsp.close_panel('.$this->currentIndex.');">
-<img src="'.$close.'" border="0"
-    style="margin:2px; float:right;"
+<img src="'.$close.'"
+    style="margin:2px; float:right; border:0;"
     alt=""
     title=""
     onmouseover="this.src=\''.$close_.'\';"
@@ -84,7 +84,7 @@ $n = $this->dparams['networks'][1];
 <?php if ($this->dparams['allow_'.$name]==2) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank">
 <img src="<?=$this->get_fileURL('img/icons/'.$name.'.gif');?>" 
-   alt="<?=$network['title']?>" title="<?=$network['title']?>" border="0" style="vertical-align:bottom; margin:4px;" />
+   alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:4px; border:0;" />
 </a>
 <?php endif; ?>
 <?php endforeach; ?>

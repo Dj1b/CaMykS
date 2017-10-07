@@ -173,5 +173,5 @@ function string_numberFormat (number, decimals, decimalsSep, thousandsSep) {
     s[1] += new Array(prec - s[1].length + 1).join('0');
   }
 
-  return s.join(dec)
+  return s.join(dec);
 } 

@@ -212,5 +212,14 @@ class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
   	else
   	  return '';
   }
+  
+  /*
+   * return encoded user agent value
+   * @return string
+   * @access private
+   */
+  function get_adminValue() {
+    return string_text2Html($this->vars['user_agent']);
+  }
 }
 ?>

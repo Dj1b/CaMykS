@@ -10,27 +10,44 @@
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\fs26 \cf0 1.0-20171001
+\fs26 \cf0 1.0-20171101
+\b0\fs24 \
+
+\i - Librairie client
+\i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent.\
+
+\i - Module Admin_MonitoringUserAgentChecker
+\i0  : Ajout de protections lors de l'\'e9criture des agents utilisateurs.\
+- 
+\i Input SocialNetworksSharingPanel 
+\i0 : Modernisation l\'e9g\'e8re du layout (pour \'e9liminer des warnings lors de la validation sur W3.org).
+\b\fs28 \
+\
+\
+
+\fs26 1.0-20171001
 \b0\fs24 \
 
 \i - Librairie client
 \i0  : Ajout de nouveaux \'e9l\'e9ments dans la d\'e9tection via le User Agent.\
 
 \i - Librairie string.js
-\i0  : Ajout de deux nouvelles m\'e9thodes replaceAll (en prototype) et string_numberFormat.\
-
-\i - Librairie ModuleLibrary
-\i0  : Ajout de m\'e9thodes permettant d'exporter et d'importer les donn\'e9es d'un objet en session.\
+\i0  : Ajout de nouvelles fonctions : replaceAll en prototype et string_numberFormat en m\'e9thode.\
 
 \i - Librairie HTMLForm
-\i0  : Ajout du support "multi-fichier" lors de l'\'e9criture d'un champ de r\'e9cup\'e9ration de fichier.\
+\i0  : Ajout du support des envois multiples dans les champs File.\
+
+\i - Librairie ModuleLibrary
+\i0  : Ajout de m\'e9thodes permettant l'import et l'export des donn\'e9es d'un objet en session.\
+
+\i - Librairie string
+\i0  : Modification de la m\'e9thode string_numberFormat afin de prendre en compte plus de pays, \'e0 compl\'e9ter avec le format indien.
+\b\fs28 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\
+\
 
-\b\fs28 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-
-\fs26 \cf0 1.0-20170901
+\fs26 1.0-20170901
 \b0\fs24 \
 
 \i - Librairie client
@@ -1116,4 +1133,11 @@ alter table admin_genericblogtagitem add column name varchar(32) default '';\
 \i0 : Mise \'e0 jour du HTML de l'aide en ligne en fran\'e7ais.\
 - 
 \i Nouveau module : Content_GenericHTMLContent
-\i0 , il remplace le module Content_HT                                                                                                                                     
+\i0 , il remplace le module Content_HTMLContent_TinyMCE qui dispara\'eet d\'e9finitivement.
+\b\fs26 \
+\
+1.0a1 - 2008-05-10
+\b0\fs24 \
+- Premi\'e8re version disponible\
+\
+}
