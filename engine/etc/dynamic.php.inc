@@ -25,11 +25,11 @@ $this->_conf['database_login'] = '';
 $this->_conf['database_pwd'] = '';
 
 /* PEAR libs configuration */
-$this->_conf['PEARMailDriver'] = 'smtp';
-$this->_conf['PEARMailConfig'] = array('host'=>'smtp.orange.fr'); 
+//$this->_conf['PEARMailDriver'] = '';
+//$this->_conf['PEARMailConfig'] = array(); 
 
 /* module configuration */
-$this->_conf['ModuleActionDelay'] = 1;
+$this->_conf['ModuleActionDelay'] = 4;
 
 /* define time zone */
 $this->_conf['TimeZone'] = 'Europe/Paris';
