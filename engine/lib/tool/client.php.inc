@@ -367,6 +367,7 @@ function client_getUAInfos($ua=false) {
         'SM-A300M'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
+        'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7', ),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5 (2015)', ),
         'SM-E500H'  => array('platform_model' => 'Galaxy E5 (2015)', ),
@@ -1276,7 +1277,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -4635,6 +4636,15 @@ function client_getKnownBots() {
     'bot_url'=>'http://www.zombiedomain.net/robot/',
     'engine_title'=>'ZombieDomain',
     'engine_url'=>'http://www.zombiedomain.net');
+    
+  /* AlphaBot */
+  $knownBots['alphabot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'AlphaBot',
+    'bot_url'=>'http://alphaseobot.com/bot.html',
+    'engine_title'=>'Alpha SEO Bot',
+    'engine_url'=>'http://alphaseobot.com/');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -5470,6 +5480,16 @@ function client_getKnownTools() {
     'tool_url'=>'',
     'engine_title'=>'SoftByte Labs',
     'engine_url'=>'http://sbl.net');
+    
+  /* Chrome-Lighthouse */
+  $knownTools['chrome-lighthouse'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Chrome-Lighthouse',
+    'tool_url'=>'https://github.com/GoogleChrome/lighthouse',
+    'engine_title'=>'',
+    'engine_url'=>'');
+    
   /* return list */
   return $knownTools;
 }
@@ -5950,6 +5970,15 @@ function client_getKnownGenerics() {
     'platform_format'=>'desktop',
     'tool_title'=>'Faraday',
     'tool_url'=>'https://mislav.net/2011/07/faraday-advanced-http/',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Indy Library */
+  $knownGenerics['indy library'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Indy Library',
+    'tool_url'=>'http://www.indyproject.org/index.en.aspx',
     'engine_title'=>'',
     'engine_url'=>'');
 
