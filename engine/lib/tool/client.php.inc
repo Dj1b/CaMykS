@@ -6241,6 +6241,16 @@ function client_getFakeInfosFromUserAgent($ua='') {
   /* badly set user agent */
   if (preg_match('#^=#', $ua))
     return $fake;
+  
+  /* not a fake but Apple using a bad user agent */
+  if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
+    return array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Apple iMessages bot',
+    'tool_url'=>'',
+    'engine_title'=>'Apple',
+    'engine_url'=>'http://www.apple.com');
     
   /* default result */
   return false;

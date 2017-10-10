@@ -38,7 +38,7 @@ function adminengine_modalPopupOpen( myobject ) {
   }
   
   /* display background divs */
-  popupbg.style.display='block';
+  popupbg.style.display = 'block';
   popupbg.style.width = Math.max(body.offsetWidth, document.documentElement.clientWidth) + 'px';
   popupbg.style.height = Math.max(body.offsetHeight, document.documentElement.clientHeight) + 'px';
     
@@ -47,12 +47,12 @@ function adminengine_modalPopupOpen( myobject ) {
     popupbg.style.width = document.getElementById('adminengine_main').offsetWidth + 'px';
     popupbg.style.height = document.getElementById('adminengine_main').offsetHeight + 'px';
     }*/
+    
 
   popup.style.zIndex = popupbg.style.zIndex+1;
-  popup.style.display = 'block';
+  console.log(popup.offsetWidth);
   popup.style.left = (Math.min(body.offsetWidth, document.documentElement.clientWidth)-popup.offsetWidth)/2 + 'px';
   popup.style.top = (Math.min(body.offsetHeight, document.documentElement.clientHeight)-popup.offsetHeight)/2 + 'px';
-
   
   /*
   popup.style.top = ((body.offsetHeight-popup.offsetHeight)/2+document.body.scrollTop)+'px';
