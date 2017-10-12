@@ -311,7 +311,7 @@ function client_getUAInfos($ua=false) {
 
   
   /* check samsung devices */
-  elseif (preg_match('/(GT|SM|SGH)-([A-Z0-9]{4,})/', $ua, $matches)) {
+  elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
     $rep = array(
         /* check samsung tablets */
         'GT-P1000'=>array('platform_model' => 'Galaxy Tab', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
@@ -354,6 +354,7 @@ function client_getUAInfos($ua=false) {
         'SM-G901F'  => array('platform_model' => 'Galaxy S5 Plus', ),
         'SM-G920F'  => array('platform_model' => 'Galaxy S6'),
         'SM-G920I'  => array('platform_model' => 'Galaxy S6'),
+        'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge +'),
         'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
@@ -427,6 +428,7 @@ function client_getUAInfos($ua=false) {
         'GT-N8010'  => array('platform_model' => 'Galaxy Note 10.1', ),
         'GT-N7100'  => array('platform_model' => 'Galaxy Note II (3G)', ),
         'GT-N7105'  => array('platform_model' => 'Galaxy Note II', ),
+        'SHV-E250S' => array('platform_model' => 'Galaxy Note II', ),
         'SM-N900W8' => array('platform_model' => 'Galaxy Note 3', ),
         'SM-N900P'  => array('platform_model' => 'Galaxy Note 3', ),
         'SM-N900A'  => array('platform_model' => 'Galaxy Note 3', ),
@@ -438,6 +440,7 @@ function client_getUAInfos($ua=false) {
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
         'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
+        'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
         'SGH-I527'  => array('platform_model' => 'Galaxy Mega', ),
         'GT-S7392'  => array('platform_model' => 'Galaxy Trend', ),
         'GT-S7560'  => array('platform_model' => 'Galaxy Trend', ),
@@ -1090,9 +1093,10 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Condor mobiles */
-  elseif (preg_match('/(PGN521)/', $ua, $matches)) {
+  elseif (preg_match('/(PGN[0-9]{3})/', $ua, $matches)) {
     $rep = array(
         'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
+        'PGN605' => array('platform_model' => 'Plume P8',),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -1301,7 +1305,7 @@ function client_getUAInfos($ua=false) {
       	'browser_version'=>''));
     }
     
-    /* check gen browser */
+    /* check gen computer browsers */
   	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
       $infos = array_merge(array(
         'platform_type'     => 'computer',
@@ -1320,6 +1324,16 @@ function client_getUAInfos($ua=false) {
         $infos['browser_title'] = 'Amigo';
     }
     
+    /* check gen mobile browsers */
+  	elseif (preg_match('/(Dorado WAP-Browser)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+      $rep = array('Dorado WAP-Browser'=>'Dorado');
+      $infos = array_merge(array(
+        'platform_type'     => 'handheld',
+        'platform_format'   => 'handheld',
+        'browser_title'     => $matches[1], 
+      	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+    }
+    
     /* check gen browser : ?? */
   	elseif (preg_match('/Version\/([a-z0-9\._]*)( Mobile)? Safari\//', $ua, $matches)) {
   	  if ( $infos['system_title'] == 'Android')
@@ -1332,9 +1346,10 @@ function client_getUAInfos($ua=false) {
             'browser_title'=>'Safari'.(isset($matches[2])?$matches[2]:''), 
       	    'browser_version'=>str_replace('_','.',$matches[1])
       	), $infos);
-      	
+    } 
+
     /* check no version detection browser */
-  	} elseif (preg_match('/(Opera Mobi)/', $ua, $matches))
+  	elseif (preg_match('/(Opera Mobi)/', $ua, $matches))
       $infos = array_merge(array('browser_title'=>$matches[1], 
       	'browser_version'=>''), $infos);
       
@@ -5981,6 +5996,15 @@ function client_getKnownGenerics() {
     'tool_url'=>'http://www.indyproject.org/index.en.aspx',
     'engine_title'=>'',
     'engine_url'=>'');
+  
+  /* AnyEvent-HTTP */
+  $knownGenerics['anyevent-http'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'AnyEvent-HTTP',
+    'tool_url'=>'http://software.schmorp.de/pkg/AnyEvent-HTTP.html',
+    'engine_title'=>'Schmorpforge Software',
+    'engine_url'=>'http://software.schmorp.de');
 
   /* obot */
   $knownGenerics[' obot'] = array(
