@@ -441,6 +441,7 @@ function client_getUAInfos($ua=false) {
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
         'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
         'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
+        'SM-G130E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
         'SGH-I527'  => array('platform_model' => 'Galaxy Mega', ),
         'GT-S7392'  => array('platform_model' => 'Galaxy Trend', ),
         'GT-S7560'  => array('platform_model' => 'Galaxy Trend', ),
@@ -4660,6 +4661,24 @@ function client_getKnownBots() {
     'bot_url'=>'http://alphaseobot.com/bot.html',
     'engine_title'=>'Alpha SEO Bot',
     'engine_url'=>'http://alphaseobot.com/');
+    
+  /* Gowikibot */
+  $knownBots['gowikibot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Gowikibot',
+    'bot_url'=>'http://www.gowikibot.com',
+    'engine_title'=>'GoWiki',
+    'engine_url'=>'');
+    
+  /* Seobility */
+  $knownBots['seobility'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Seobility bot',
+    'bot_url'=>'https://www.seobility.net/sites/bot.html',
+    'engine_title'=>'Seobility',
+    'engine_url'=>'https://www.seobility.net/en/');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
