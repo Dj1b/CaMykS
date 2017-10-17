@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Engine
+ * Object Type	    : Plugin / Module Engine
  * Creation Date	: Jun 2005
- * Last Modif Date	: May 2008
+ * Last Modif Date	: Oct 2017
  * History :
  * * 05-06-xx : Initial files
  * * 08-05-21 : Rewrite online help (french)
@@ -172,15 +172,6 @@ class Admin_PluginManager extends Module {
     /* generic module admin initialisation */
     parent::init_admin();
   }
-  
-  /*
-   * display object when in admin part
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
 
   /* specific admin mode methods */
 
@@ -270,9 +261,9 @@ class Admin_PluginManager extends Module {
     $this->check_pluginsinfo();
     if ( count ( $this->unfound ) > 0 ) {
       foreach ( $this->unfound as $p ) {
-	$this->pluginItem->delete_fromDatabase( $p );
+	    $this->pluginItem->delete_fromDatabase( $p );
       }
-	$this->text = $this->get_translation ('cleaningdone');
+	  $this->text = $this->get_translation ('cleaningdone');
     } else {
       $this->text = $this->get_translation ('nocleaningneeded');
     }
@@ -300,7 +291,41 @@ class Admin_PluginManager extends Module {
     /* get help */
     $this->get_help();
     
-    /* get tab javascript */
+    /* build tabs */
+    if (!isset($camyks->inputs['TabBuilder']))
+      $this->tabBuilder = input_get('TabBuilder', 'camyks');
+    else
+      $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+    
+    if ($this->tabBuilder === false)
+      die();
+    
+    $this->tabBuilder->add_tabs(array(
+        array(
+            'name'  => 'Modules',
+			'title' => $this->get_translation('tabmodules'),
+	    ),
+		array(
+		    'name'  => 'Themes',
+			'title' => $this->get_translation('tabthemes'),
+		),
+		array(
+		    'name'  => 'Templates',
+            'title' => $this->get_translation('tabtemplates'),
+        ),
+		array(
+		    'name'  => 'Inputs',
+			'title' => $this->get_translation('tabinputs'),
+		),
+	));
+	
+	if ( $this->help != null )
+	 	$this->tabBuilder->add_tab(array('name'=>'help',
+				     'title'=>$camyks->get_translation('help')));
+	
+    $this->tabBuilder->initialise(array('default'=>'Modules'));
+       
+    /* get tab javascript *
     $this->openTab = isset($_REQUEST['openTab'])?$_REQUEST['openTab'] : 'modules';
     $this->tabObject = 'pluginmanager_tabObject';
     $this->add_JSEngineFile('object/ctab.js');
@@ -309,19 +334,29 @@ class Admin_PluginManager extends Module {
 			.$camyks->theme->parts['boxTabCSSStandart'].'","'
 			.$camyks->theme->parts['boxTabCSSSelected'].'","'
 			.$camyks->theme->parts['boxTabCSSRollover'].'");');
-    if ($this->openTab != 'modules')
+    if ($this->openTab != 'Modules')
       $this->add_JSLoadScript ('pluginmanager_tabObject.mouseclick(\''.$this->openTab.'\');');
 
 
-    /* tabs list */
-    $this->tabs = array(array('name'=>'modules',
-			      'title'=>$this->get_translation('tabmodules')),
-			array('name'=>'themes',
-			      'title'=>$this->get_translation('tabthemes')),
-			array('name'=>'templates',
-			      'title'=>$this->get_translation('tabtemplates')),
-			array('name'=>'inputs',
-			      'title'=>$this->get_translation('tabinputs')));
+    /* tabs list *
+    $this->tabs = array(
+        array(
+            'name'  => 'Modules',
+			'title' => $this->get_translation('tabmodules'),
+	    ),
+		array(
+		    'name'  => 'Themes',
+			'title' => $this->get_translation('tabthemes'),
+		),
+		array(
+		    'name'  => 'Templates',
+            'title' => $this->get_translation('tabtemplates'),
+        ),
+		array(
+		    'name'  => 'Inputs',
+			'title' => $this->get_translation('tabinputs'),
+		),
+	);
 
     if ( $this->help != null ) {
       $this->tabs[] = array('name'=> 'help',
@@ -329,8 +364,10 @@ class Admin_PluginManager extends Module {
     }
 
     /* button list for buttons bars */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=>$camyks->get_adminLink( )));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $camyks->get_adminLink(),
+	));
   }
   
   /* specific tool methods */
