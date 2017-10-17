@@ -324,44 +324,6 @@ class Admin_PluginManager extends Module {
 				     'title'=>$camyks->get_translation('help')));
 	
     $this->tabBuilder->initialise(array('default'=>'Modules'));
-       
-    /* get tab javascript *
-    $this->openTab = isset($_REQUEST['openTab'])?$_REQUEST['openTab'] : 'modules';
-    $this->tabObject = 'pluginmanager_tabObject';
-    $this->add_JSEngineFile('object/ctab.js');
-    $this->add_JSScript($this->tabObject.' = new CTab();');
-    $this->add_JSScript($this->tabObject.'.init("modules", "'
-			.$camyks->theme->parts['boxTabCSSStandart'].'","'
-			.$camyks->theme->parts['boxTabCSSSelected'].'","'
-			.$camyks->theme->parts['boxTabCSSRollover'].'");');
-    if ($this->openTab != 'Modules')
-      $this->add_JSLoadScript ('pluginmanager_tabObject.mouseclick(\''.$this->openTab.'\');');
-
-
-    /* tabs list *
-    $this->tabs = array(
-        array(
-            'name'  => 'Modules',
-			'title' => $this->get_translation('tabmodules'),
-	    ),
-		array(
-		    'name'  => 'Themes',
-			'title' => $this->get_translation('tabthemes'),
-		),
-		array(
-		    'name'  => 'Templates',
-            'title' => $this->get_translation('tabtemplates'),
-        ),
-		array(
-		    'name'  => 'Inputs',
-			'title' => $this->get_translation('tabinputs'),
-		),
-	);
-
-    if ( $this->help != null ) {
-      $this->tabs[] = array('name'=> 'help',
-			    'title'=> $camyks->get_translation('help'));
-    }
 
     /* button list for buttons bars */
     $this->buttons = array(array(
