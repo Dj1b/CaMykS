@@ -573,6 +573,31 @@ class Camyks {
       return $this->modules['Admin_Site']->get_confDefaultValue($confName, $default);
     return $default;
   }
+  
+  /*
+   * update configuration file
+   * @param array $params
+   * @return boolean result
+   * @access public
+   */
+  function update_siteConfFile($params=array()) {
+    
+    /* check admin mode and admin user connected */
+    if ($this->mode !== CAMYKS_MODE_ADMIN or !$this->check_adminUser())
+      return false;
+      
+    /* update camyks site configuration */
+    $this->site_conf = array_merge($this->site_conf, $params);
+    
+    /* build configuration file content */
+    $content = file_getPHPFileHeader('site configuration file', '1.0');
+    $content .= '$conf = ' . var_export( $this->site_conf, true ) . ';';
+    $content .= file_getPHPFileFooter();
+
+    /* write file */
+    file_write(realpath('./etc/site.php.inc'), $content);
+    return true;
+  }
 
   
   /******************** LOCALISATION ******************/
