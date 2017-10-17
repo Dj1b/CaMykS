@@ -90,9 +90,9 @@ class Admin_PluginManagerItem {
    * @access private
    */
   function get_fromHeader() {
-    $this->pluginvalue = $_REQUEST['plugin'];
-    $this->typevalue = $_REQUEST['type'];
-    $this->locationvalue = $_REQUEST['location'];
+    $this->pluginvalue = isset($_REQUEST['plugin'])?$_REQUEST['plugin']:'';
+    $this->typevalue = isset($_REQUEST['type'])?$_REQUEST['type']:'';
+    $this->locationvalue = isset($_REQUEST['location'])?$_REQUEST['location']:'';
   }
 
   /*
@@ -105,12 +105,11 @@ class Admin_PluginManagerItem {
 
     /* build sql query */
     $sql = 'select * from admin_pluginmanager';
-    $sql .= ' where plugin="'.$this->pluginvalue.'"';
-    $sql .= ' and type="'.$this->typevalue.'"';
+    $sql .= ' where plugin="'.addslashes($this->pluginvalue).'"';
+    $sql .= ' and type="'.addslashes($this->typevalue).'"';
 
     /* execute sql query */
     if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) { 
-
       /* check query result */
       if ($camyks->db_conn->get_queryDataLine()) {
 	    return $this->update_toDatabase();
@@ -132,9 +131,9 @@ class Admin_PluginManagerItem {
     /* build sql query */
     $sql = 'insert into admin_pluginmanager';
     $sql .= ' ( plugin, type, location, active, version ) VALUES';
-    $sql .= ' ( "'.$this->pluginvalue.'","'.$this->typevalue;
-    $sql .= '","'.$this->locationvalue.'",'.$this->activevalue.',';
-    $sql .= '"'.$this->versionvalue.'");';
+    $sql .= ' ( "'.addslashes($this->pluginvalue).'","'.addslashes($this->typevalue);
+    $sql .= '","'.addslashes($this->locationvalue).'",'.addslashes($this->activevalue).',';
+    $sql .= '"'.addslashes($this->versionvalue).'");';
     
     /* execute sql query */
     return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
@@ -151,9 +150,9 @@ class Admin_PluginManagerItem {
     
     /* build sql query */
     $sql = 'delete from admin_pluginmanager';
-    $sql .= ' where plugin="'.$p['plugin'].'"';
-    $sql .= ' and type="'.$p['type'].'"';
-    $sql .= ' and location="'.$p['location'].'"';
+    $sql .= ' where plugin="'.addslashes($p['plugin']).'"';
+    $sql .= ' and type="'.addslashes($p['type']).'"';
+    $sql .= ' and location="'.addslashes($p['location']).'"';
     
     /* execute sql query */
     return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
@@ -169,9 +168,9 @@ class Admin_PluginManagerItem {
     
     /* build sql query */
     $sql = 'update admin_pluginmanager';
-    $sql .= ' set active='.$this->activevalue;
-    $sql .= ' where plugin="'.$this->pluginvalue.'"';
-    $sql .= ' and type="'.$this->typevalue.'"';
+    $sql .= ' set active='.addslashes($this->activevalue);
+    $sql .= ' where plugin="'.addslashes($this->pluginvalue).'"';
+    $sql .= ' and type="'.addslashes($this->typevalue).'"';
     
     /* execute sql query */
     return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
@@ -216,7 +215,7 @@ class Admin_PluginManagerItem {
     }
     $this->versionvalue = $plugin->version;
     /* active plugin in database */
-    return $this->save_toDatabase( );
+    return $this->save_toDatabase();
   }
 
   /*
@@ -232,13 +231,34 @@ class Admin_PluginManagerItem {
     
     /* build sql query */
     $sql = 'update admin_pluginmanager';
-    $sql .= ' set version="'.$version.'"';
-    $sql .= ' where plugin="'.$plugin.'"';
-    $sql .= ' and type="'.$type.'"';
+    $sql .= ' set version="'.addslashes($version).'"';
+    $sql .= ' where plugin="'.addslashes($plugin).'"';
+    $sql .= ' and type="'.addslashes($type).'"';
     
     /* execute sql query */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );    
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ));    
   }
+  
+  /*
+   * set plugin as default plugin in CaMykS Configuration
+   * @param string $cMode
+   * @return boolean success
+   * @access public
+   */
+  function set_asDefault($cMode='site') {
+    global $camyks;
+    
+    /* check values */
+    if ($this->typevalue == 'theme' and in_array($cMode, array('admin', 'site'))
+       or ($this->typevalue == 'template' and $cMode == 'site'))
+      return $camyks->update_siteConfFile(array($cMode.'_default_'.$this->typevalue => $this->pluginvalue));
+        
+    /* by default, return false */
+    return false;
+  }
+  
+  
+  /*
 
   /* generic module library multi object data manipulation */
 

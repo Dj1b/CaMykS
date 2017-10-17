@@ -42,7 +42,18 @@ $this->trads['mod_admin_pluginmanager_activationfailed'] = 'Plugin "%s" could no
 $this->trads['mod_admin_pluginmanager_desactivationdone'] = 'Plugin "%s" is now disabled.';
 $this->trads['mod_admin_pluginmanager_cleaningdone'] = 'Database cleaning in progress..';
 $this->trads['mod_admin_pluginmanager_nocleaningneeded'] = 'No cleaning required, no action done.';
+$this->trads['mod_admin_pluginmanager_configurationupdated'] = 'Configuration updated.';
+$this->trads['mod_admin_pluginmanager_configurationotupdated'] = 'An error has occured while updating the configuration.';
 
 /* menu */
 $this->trads['mod_admin_pluginmanager_cleandatabase'] = 'Clean database';
+
+/* action menus */
+$this->trads['mod_admin_pluginmanager_applyassitedefaulttheme'] = 'Apply as default site theme.';
+$this->trads['mod_admin_pluginmanager_applyasadmindefaulttheme'] = 'Apply as default admin theme.';
+$this->trads['mod_admin_pluginmanager_applyassitedefaulttemplate'] = 'Apply as default site template.';
+
+/* plugin errors */
+$this->trads['mod_admin_pluginmanager_error_pluginmissing_title'] = 'A requiered plugin is missing.';
+$this->trads['mod_admin_pluginmanager_error_pluginmissing_desc'] = 'Plugin "%s" is required and missing in CaMykS installation.';
 ?>
