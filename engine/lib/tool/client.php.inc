@@ -4679,6 +4679,15 @@ function client_getKnownBots() {
     'bot_url'=>'https://www.seobility.net/sites/bot.html',
     'engine_title'=>'Seobility',
     'engine_url'=>'https://www.seobility.net/en/');
+    
+  /* IndeedBot */
+  $knownBots['indeedbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'IndeedBot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -6024,6 +6033,15 @@ function client_getKnownGenerics() {
     'tool_url'=>'http://software.schmorp.de/pkg/AnyEvent-HTTP.html',
     'engine_title'=>'Schmorpforge Software',
     'engine_url'=>'http://software.schmorp.de');
+  
+  /* Splashr */
+  $knownGenerics['splash'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'splash',
+    'tool_url'=>'https://cran.r-project.org/web/packages/splashr/vignettes/intro_to_splashr.html',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* obot */
   $knownGenerics[' obot'] = array(

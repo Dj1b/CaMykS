@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a
  * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
+ * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2005
- * Last Modif Date      : Jan 2008
+ * Last Modif Date  : Jan 2008
  * History :
  * * 05-06-xx : Initial File
  * * 08-01-07 : Rebuild input methods with generic plugin methods

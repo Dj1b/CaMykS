@@ -2,11 +2,11 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type		: Engine / Generic Layout
- * Create Date		: Jan 2008
+ * Creation Date	: Jan 2008
  * Last Modif Date	: Jan 2008
  * History :
  * * 08-01-17 : Initial file 
