@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Object Library
+ * Object Type      : Engine / Object Library
  * Creation Date	: Jun 2005
- * Last Modif Date	: Fev 2008
+ * Last Modif Date	: Oct 2017
  * History :
  * * 05-06-xx : Initial File
  * * 08-01-16 : generic file upload input builder method
@@ -46,6 +46,11 @@ class HTMLForm {
   var $object;
   /* the Module object */
   var $parent;
+  /* the inputs number limit */
+  var $inputsCount;
+  var $inputsLimit;
+  var $inputsLimitUniques;
+  var $inputsLimitReached;
 
   
   /* 
@@ -65,6 +70,10 @@ class HTMLForm {
     $this->tabIndex = -1;
     $this->object = null;
     $this->parent = null;
+    $this->inputsCount = 0;
+    $this->inputsLimit = ini_get('max_input_vars');
+    $this->inputsLimitUniques = array();
+    $this->inputsLimitReached = false;
 
     /* check for method type */
     switch ( $method ) {
@@ -220,7 +229,7 @@ class HTMLForm {
     global $camyks;
     /* build param list */
     $params = array('id'=>'', 'name'=>'date', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 
-    'tabIndex'=>-1, 'objects'=>null, 'buttons'=>null, 'hasEmptyFirstOption'=>false, 'dayAsSelect'=>false, 'monthAsText'=>false, 'yearAsSelect'=>false, 'yearRange'=>array('from'=>2000, 'to'=>2050));
+        'tabIndex'=>-1, 'objects'=>null, 'buttons'=>null, 'hasEmptyFirstOption'=>false, 'dayAsSelect'=>false, 'monthAsText'=>false, 'yearAsSelect'=>false, 'yearRange'=>array('from'=>2000, 'to'=>2050));
 
     /* check header params */
     if ( is_array($date)) {
@@ -497,6 +506,9 @@ class HTMLForm {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'tabIndex'=>-1, 'buttons'=>null, 'language'=>'', 'accept'=>'', 'allowMultiple'=>false);
     
+    /* check limit */
+    $this->check_inputsLimit(2);
+    
     /* check header params */
     if ( is_array($file)) {
       $params = array_merge($params, $file);
@@ -621,10 +633,13 @@ class HTMLForm {
     } else {
       $params['name'] = $select;
       if (isset($values))
-	$params['values'] = $values;
+	    $params['values'] = $values;
       if (isset($default))
-	$params['default'] = $default;
+	    $params['default'] = $default;
     }
+    
+    /* check limit */
+    $this->check_inputsLimit();
 
     /* check object params */
     if ( $params['default'] === '' and isset($this->object)) {
@@ -915,6 +930,9 @@ class HTMLForm {
       if (isset($default))
 	    $params['default'] = $default;
     }
+
+    /* check limit */
+    $this->check_inputsLimit();
     
     /* check object params */
     if (isset($this->object)) {
@@ -984,21 +1002,24 @@ class HTMLForm {
   function display_textareaInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'vlinputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'onkeyup'=>'', 'oninput'=>'', 'disabled'=>'', 'maxlength'=>0, 'language'=>'', 'cols'=>'40', 'rows'=>'4', 'placeholder'=>'', 'tabIndex'=>-1);
-
+    
     /* check header params */
     if ( is_array($input) ) {
       $params = array_merge($params, $input);
     } else {
       $params['name'] = $input;
       if (isset($default))
-	$params['default'] = $default;
+	    $params['default'] = $default;
     }
+
+    /* check limit */
+    $this->check_inputsLimit();
 
     /* check object params */
     if ($params['default'] == '') {
       $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
       if ($this->object != null and isset($this->object->vars[$v]))
-	$params['default'] = $this->object!=null?$this->object->vars[$v]:'';
+	    $params['default'] = $this->object!=null?$this->object->vars[$v]:'';
     }
 
     /* build input */
@@ -1048,30 +1069,33 @@ class HTMLForm {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
 
-    /* check header params */
+     /* check header params */
     if ( is_array($input) ) {
       $params = array_merge($params, $input);
     } else {
       $params['name'] = $input;
       if (isset($default))
-	$params['default'] = $default;
+	    $params['default'] = $default;
     }
 
+    /* check limit */
+    $this->check_inputsLimit();
+    
     /* check object params */
     if (isset($this->object)) {
       /* check default value */
       if ($params['default'] == '') {
-	$v = $params['name'].($params['language']==''?'':'_'.$params['language']);
-	$params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+	    $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
+	    $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
       }
       /* check maxlength value */
       if ( $params['maxlength'] == 0 )
-	if ( isset($this->object->_libItems[$params['name']]->datatype) 
-	     and in_array($this->object->_libItems[$params['name']]->datatype, array('etext', 'text'))
-	     and $this->object->_libItems[$params['name']]->datadesc2 > 0)
-	  $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
-	else
-	  $params['maxlength'] = 32;
+	    if ( isset($this->object->_libItems[$params['name']]->datatype) 
+	        and in_array($this->object->_libItems[$params['name']]->datatype, array('etext', 'text'))
+	        and $this->object->_libItems[$params['name']]->datadesc2 > 0)
+	      $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
+	    else
+	      $params['maxlength'] = 32;
     }
 
     /* build input */
@@ -1116,16 +1140,19 @@ class HTMLForm {
   function display_checkboxInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'value'=>'', 'tabIndex'=>-1, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
-
+    
     /* check header params */
     if ( is_array($input) ) {
       $params = array_merge($params, $input);
     } else {
       $params['name'] = $input;
       if (isset($default))
-	$params['default'] = $default;
+	    $params['default'] = $default;
     }
 
+    /* check limit */
+    $this->check_inputsLimit();
+    
     /* check object params */
     if (isset($this->object)) {
       /* check default value */
@@ -1198,7 +1225,7 @@ class HTMLForm {
   function display_radioInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'language'=>'', 'value'=>'', 'tabIndex'=>-1, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
-
+    
     /* check header params */
     if ( is_array($input) ) {
       $params = array_merge($params, $input);
@@ -1208,6 +1235,9 @@ class HTMLForm {
 	    $params['default'] = $default;
     }
 
+    /* check limit */
+    $this->check_inputsLimit(1, $params['name']);
+    
     /* check object params */
     if (isset($this->object)) {
       /* check default value */
@@ -1323,6 +1353,51 @@ class HTMLForm {
       return ' tabindex="'.$index.'"';
     }
     return $index;
+  }
+  
+  /*
+   * check max input vars limit
+   * @param integer $items
+   * @param integer $name
+   * @return boolean result
+   * @access private
+   */
+  function check_inputsLimit($items=1, $name=false) {
+    global $camyks;
+    
+    /* check is limit has already been reached */
+    if ($this->inputsLimitReached)
+      return false;
+        
+    /* check for unique items */
+    if ($name !== false) {
+      if (in_array($name, $this->inputsLimitUniques))
+        return true;
+      else
+        $this->inputsLimitUniques[] = $name;
+    }
+    
+    /* update count value */
+    $this->inputsCount += $items;
+    
+    /* check count value */
+    if ($this->inputsLimit !== false and $this->inputsCount >= $this->inputsLimit) {
+      $camyks->log_executionerror($this, 'Max inputs limit reached in form');
+      return false;
+    }
+        
+    /* success */
+    return true;
+  }
+  
+  /*
+   * temporarily and virtually update max input vars limit
+   * @param integer $value
+   * @return void
+   * @access public
+   */
+  function update_inputsLimit($value=1000) {
+    $this->inputsLimit = $value;
   }
 }
 
