@@ -380,6 +380,7 @@ function client_getUAInfos($ua=false) {
         'SM-J120FN' => array('platform_model' => 'Galaxy J1 (2016)', ),
         'SM-J200F'  => array('platform_model' => 'Galaxy J2', ),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
+        'SM-J320F'  => array('platform_model' => 'Galaxy J3 (2016)', ),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J500G'  => array('platform_model' => 'Galaxy J5 (2015)', ),

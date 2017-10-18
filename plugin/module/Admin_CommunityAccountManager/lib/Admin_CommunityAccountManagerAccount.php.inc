@@ -469,7 +469,7 @@ class Admin_CommunityAccountManagerAccount extends ModuleLibrary {
    * @return boolean result
    * @access private
    */
-  function save_toSession() {
+  function save_idToSession() {
     global $camyks;
     $camyks->set_sessionValue('accountid', $this->id);
     return true;
@@ -480,7 +480,7 @@ class Admin_CommunityAccountManagerAccount extends ModuleLibrary {
    * @return integer
    * @access private
    */
-  function get_fromSession() {
+  function get_idFromSession() {
     global $camyks;
     $this->id = $camyks->get_sessionValue('accountid', 0);
     return $this->id;
@@ -624,7 +624,7 @@ class Admin_CommunityAccountManagerAccount extends ModuleLibrary {
           $result['targetURL'] = $camyks->get_siteLink($this->get_configValue('site_membernavrootpage'));
           $this->id = $data['id'];
           $this->vars = $data;
-          $this->save_toSession();
+          $this->save_idToSession();
           if ( isset($_REQUEST['autologin']) and $_REQUEST['autologin']=='true')
             $this->set_loginCookie();
           return $result;
@@ -657,7 +657,7 @@ class Admin_CommunityAccountManagerAccount extends ModuleLibrary {
   function disconnect_member() {
     global $camyks;
     $this->id = -1;
-    $this->save_toSession();
+    $this->save_idToSession();
     return array('targetURL' => $camyks->get_siteHomePageLink());
   }
   
