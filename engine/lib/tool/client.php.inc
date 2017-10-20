@@ -394,6 +394,7 @@ function client_getUAInfos($ua=false) {
         'SM-J510G'  => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-G610F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y', ),
@@ -4687,6 +4688,15 @@ function client_getKnownBots() {
     'platform_format'=>'desktop',
     'bot_title'=>'IndeedBot',
     'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+    
+  /* looid.com crawler */
+  $knownBots['looid.com crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'looid.com crawler',
+    'bot_url'=>'looid.com',
     'engine_title'=>'',
     'engine_url'=>'');
 
