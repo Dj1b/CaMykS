@@ -52,8 +52,4 @@ $this->trads['mod_admin_pluginmanager_cleandatabase'] = 'Clean database';
 $this->trads['mod_admin_pluginmanager_applyassitedefaulttheme'] = 'Apply as default site theme.';
 $this->trads['mod_admin_pluginmanager_applyasadmindefaulttheme'] = 'Apply as default admin theme.';
 $this->trads['mod_admin_pluginmanager_applyassitedefaulttemplate'] = 'Apply as default site template.';
-
-/* plugin errors */
-$this->trads['mod_admin_pluginmanager_error_pluginmissing_title'] = 'A requiered plugin is missing.';
-$this->trads['mod_admin_pluginmanager_error_pluginmissing_desc'] = 'Plugin "%s" is required and missing in CaMykS installation.';
 ?>

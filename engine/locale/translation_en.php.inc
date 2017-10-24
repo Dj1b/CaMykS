@@ -198,4 +198,7 @@ $this->trads['civility_dr'] = 'Dr';
 $this->trads['civility_pr'] = 'Pr';
 $this->trads['civility_me'] = '';
 
+/* errors */
+$this->trads['error_pluginmissing_title'] = 'A required plugin is missing.';
+$this->trads['error_pluginmissing_desc'] = 'Plugin "%s" is required and missing in CaMykS installation.';
 ?>

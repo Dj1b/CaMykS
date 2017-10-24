@@ -346,8 +346,8 @@ class Admin_PluginManager extends Module {
     /* check if TabBuilder plugin is available */
     if ($this->tabBuilder === false)
       $camyks->throwFatalError(array(
-        'title'         => $this->get_translation('error_pluginmissing_title'),
-        'description'   => $this->get_translation('error_pluginmissing_desc', 'TabBuilder'),
+        'title'         => $camyks->get_translation('error_pluginmissing_title'),
+        'description'   => $camyks->get_translation('error_pluginmissing_desc', 'TabBuilder'),
       ));
     
     $this->tabBuilder->add_tabs(array(

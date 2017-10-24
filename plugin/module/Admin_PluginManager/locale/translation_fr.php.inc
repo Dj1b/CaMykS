@@ -52,8 +52,4 @@ $this->trads['mod_admin_pluginmanager_cleandatabase'] = 'Nettoyer la base de don
 $this->trads['mod_admin_pluginmanager_applyassitedefaulttheme'] = 'Appliquer en tant que th&egrave;me visiteur par d&eacute;faut';
 $this->trads['mod_admin_pluginmanager_applyasadmindefaulttheme'] = 'Appliquer en tant que th&egrave;me admin par d&eacute;faut';
 $this->trads['mod_admin_pluginmanager_applyassitedefaulttemplate'] = 'Appliquer en tant que template visiteur par d&eacute;faut';
-
-/* plugin errors */
-$this->trads['mod_admin_pluginmanager_error_pluginmissing_title'] = 'Un plugin requis est manquant.';
-$this->trads['mod_admin_pluginmanager_error_pluginmissing_desc'] = 'Le plugin "%s" est requis et manquant dans l\'installation de CaMykS.';
 ?>
