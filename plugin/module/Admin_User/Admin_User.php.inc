@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2017
+ * Last Modif Date	: Oct 2017
  * History :
  * * 05-06-xx : Initial file 
  * * 08-02-19 : layouts update
@@ -15,6 +15,7 @@
  * * 08-06-18 : Some HTML improvements for W3C compatibility
  * * 08-07-02 : Some minor HTML improvements
  * * 17-03-17 : Some minor Code & HTML improvements
+ * * 17-10-24 : General improvements
  *
  * Admin_User module
  * Manage admin users profiles and rights
@@ -53,7 +54,7 @@ class Admin_User extends Module {
     $this->get_PHPLibs();
     
     /* initialise plugin libraries */
-    $this->user = new AdminUser ('');
+    $this->user = new AdminUser('');
   }
 
   /* overwrite Module methods */
@@ -129,15 +130,6 @@ class Admin_User extends Module {
     }
     parent::init_admin();
   }
-
-  /*
-   * init module object in display mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
   
   /* specific admin mode methods */
 
@@ -148,12 +140,29 @@ class Admin_User extends Module {
    */
   function init_admin_list ( ) {
     global $camyks;
+    
+    /* load params */
+    $this->load_file('lib/Admin_UserListParams.php.inc');
+    $this->params = new Admin_UserListParams(0, $this);
+    $this->params->initialise();
+    $this->params->get_fromHeader();
+    $this->params->get_fromItems();
+    
+    /* build list params form */
+    $this->listForm = new HTMLForm('listForm', $this->get_adminLink(), 'POST');
+    $this->listForm->set_object($this->params);
+    
+    /* load data */
+    $this->usersStatusList = $this->user->get_usersStatusList(array('addAll'=>true));
+    
     /* get user list */
-    $this->user_list = $this->user->get_userList();
+    $this->user_list = $this->user->get_userList($this->params->build_whereStatement());
 
     /* button list for buttons bar */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link' =>$camyks->get_adminLink()));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $camyks->get_adminLink(),
+	));
     
     /* update layout */
     $this->selected_layout = 'admin_list.html.inc';
@@ -182,7 +191,7 @@ class Admin_User extends Module {
     $this->form = new HTMLForm('adminuser',
 			       $this->get_adminLink(),
 			       'POST');
-    $this->form->add_hidden('mode', 'save' );
+    $this->form->add_hidden('mode', 'save');
     $this->form->add_hidden('adminuser_full_update', 1 );
     $this->form->add_hidden('adminuser_webmaster', $this->user->webmaster );
     $this->form->add_hidden('adminuser_is_new', $this->user->is_new );  
@@ -196,24 +205,52 @@ class Admin_User extends Module {
       return;
     }
     
-    /* get javascript for tabs */
-    $this->tabObject = 'adminuserTabObject';
-    $this->add_JSEngineFile('object/ctab.js');
-    $this->add_JSScript($this->tabObject.' = new CTab();');
-    $this->add_JSScript($this->tabObject.'.init("general", "'
-			.$camyks->theme->parts['boxTabCSSStandart'].'","'
-			.$camyks->theme->parts['boxTabCSSSelected'].'","'
-			.$camyks->theme->parts['boxTabCSSRollover'].'");');
-    $this->tabs = array(array('name'=>'general',
-			      'title'=>$this->get_translation('personalinfos')),
-			array('name'=>'rights',
-			      'title'=>$this->get_translation('rights')));
+    /* get help */
+    $this->get_help();
     
-    /* get buttons */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=> $this->get_adminLink()),
-			   array('title'=>$camyks->get_translation('valid'),
-				 'link'=>$this->form->get_HTMLSubmitLink()));
+    /* build tabs */
+    if (!isset($camyks->inputs['TabBuilder']))
+      $this->tabBuilder = input_get('TabBuilder', 'camyks');
+    else
+      $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+    
+    /* check if TabBuilder plugin is available */
+    if ($this->tabBuilder === false)
+      $camyks->throwFatalError(array(
+        'title'         => $this->get_translation('error_pluginmissing_title'),
+        'description'   => $this->get_translation('error_pluginmissing_desc', 'TabBuilder'),
+      ));
+    
+    $this->tabBuilder->add_tabs(array(
+        array(
+            'name'  => 'Properties',
+			'title' => $this->get_translation('personalinfos'),
+	    ),
+		array(
+		    'name'  => 'Rights',
+			'title' => $this->get_translation('rights'),
+		),
+	));
+	
+	if ( $this->help != null )
+	 	$this->tabBuilder->add_tab(array(
+	 	    'name'  => 'help',
+			'title' => $camyks->get_translation('help'),
+	));
+	
+    $this->tabBuilder->initialise(array('default'=>'Properties'));
+    
+    /* load buttons */
+    $this->buttons = array(
+        array(
+            'title' => $camyks->get_translation('back'),
+		    'link'  => $this->get_adminLink(),
+		),
+	    array(
+	        'title' => $camyks->get_translation('valid'),
+			'link'  => $this->form->get_HTMLSubmitLink(),
+	    )
+	);
     
     /* get javascript for new passord entries */
     if ( $this->user->is_new == 0 ) {
@@ -237,25 +274,51 @@ class Admin_User extends Module {
     $this->user = new AdminUser ((isset ( $_REQUEST['user'] ) ? $_REQUEST['user'] : ''));
     $this->user->get();
     
-    /* get javascript for tabs */
-    $this->tabObject = 'adminuserTabObject';
-    $this->add_JSEngineFile('object/ctab.js');
-    $this->add_JSScript($this->tabObject.' = new CTab();');
-    $this->add_JSScript($this->tabObject.'.init("general", "'
-			.$camyks->theme->parts['boxTabCSSStandart'].'","'
-			.$camyks->theme->parts['boxTabCSSSelected'].'","'
-			.$camyks->theme->parts['boxTabCSSRollover'].'");');
-    $this->tabs = array(array('name'=>'general',
-			      'title'=>$this->get_translation('personalinfos')),
-			array('name'=>'rights',
-			      'title'=>$this->get_translation('rights')));
+    /* get help */
+    $this->get_help();
+    
+    /* build tabs */
+    if (!isset($camyks->inputs['TabBuilder']))
+      $this->tabBuilder = input_get('TabBuilder', 'camyks');
+    else
+      $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+    
+    /* check if TabBuilder plugin is available */
+    if ($this->tabBuilder === false)
+      $camyks->throwFatalError(array(
+        'title'         => $camyks->get_translation('error_pluginmissing_title'),
+        'description'   => $camyks->get_translation('error_pluginmissing_desc', 'TabBuilder'),
+      ));
+    
+    $this->tabBuilder->add_tabs(array(
+        array(
+            'name'  => 'Properties',
+			'title' => $this->get_translation('personalinfos'),
+	    ),
+		array(
+		    'name'  => 'Rights',
+			'title' => $this->get_translation('rights'),
+		),
+	));
+	
+	if ( $this->help != null )
+	 	$this->tabBuilder->add_tab(array(
+	 	    'name'  => 'help',
+			'title' => $camyks->get_translation('help'),
+	));
+	
+    $this->tabBuilder->initialise(array('default'=>'Properties'));
     
     /* get buttons */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=>$camyks->get_adminLink($this->name, array('mode'=>'list'))));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+        'link'  => $camyks->get_adminLink($this->name, array('mode'=>'list')),
+    ));
     if ($this->check_right(1)===true)
-      $this->buttons[] = array('title'=>$camyks->get_translation('edit'),
-			       'link'=>$this->get_adminLink(array('mode'=>'edit', 'user'=>$this->user->login)));
+      $this->buttons[] = array(
+        'title' => $camyks->get_translation('edit'),
+        'link'  => $this->get_adminLink(array('mode'=>'edit', 'user'=>$this->user->login)),
+      );
     
     /* update layout */
     $this->selected_layout = 'admin_view.html.inc';

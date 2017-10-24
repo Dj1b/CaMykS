@@ -57,9 +57,11 @@ class AdminUser {
    * @param string $login
    */
   function AdminUser( $login = '' ) {
+    global $camyks;
     $this->login = preg_replace('/["\']/', '', $login);
     $this->is_new = ( $this->login == '' ? 1 : 0 );
     /* update generic library vars */
+    $this->_libParent = &$camyks->modules['Admin_User'];
     $this->_libError = '';
     $this->_libDesc = 'Module: Admin_User Lib: AdminUser';
   }
@@ -593,11 +595,12 @@ class AdminUser {
     if ( $where != '' ) {
       $sql .= ' WHERE '.$where;
     }
-    $sql .= ' ORDER BY login';
+    $sql .= ' ORDER BY login;';
+    
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* get informations from sql query */
-      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+      while ($data = $camyks->db_conn->get_queryDataLine()) {
 	    if ($objMode) {
 	      $o = new AdminUser($data['login']);
 	      $o->get_fromArray($data);
@@ -633,6 +636,25 @@ class AdminUser {
       return $this->firstname;
     return $this->firstname.' '.$this->lastname;
   }
+  
+  /*
+   * return users status list
+   * @param array $params
+   * @return array
+   * @access public
+   */
+  function get_usersStatusList($params=array()) {
+    $defaultParams = array('addAll'=>false);
+    $params = array_merge($defaultParams, $params);
+    
+    $list = array();
+    if ($params['addAll'] == true)
+      $list['-1'] = $this->get_translation('users_all');
+    $list[0] = $this->get_translation('users_disabled');
+    $list[1] = $this->get_translation('users_enabled');
+    
+    return $list;
+  }
 
 
   /*
@@ -656,6 +678,19 @@ class AdminUser {
       }
     }
     return $list;
+  }
+  
+  /* tool methods */
+  
+  /*
+   * return translation
+   * @param string $translation
+   * @param array $params
+   * @return string
+   * @access private
+   */
+  function get_translation($translation, $params=null) {
+    return $this->_libParent->get_translation($translation, $params);
   }
 }
 ?>

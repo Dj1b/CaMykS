@@ -3,25 +3,21 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2017
+ * Last Modif Date	: Oct 2017
  * 
- * Admin_User Module Admin Layout : view profile
+ * Admin_User Module Admin Layout : view user
 */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
-<?=$this->theme->get_boxTitleBar($this->get_translation('user').' : '.$this->user->login );?>
-<?=$this->theme->get_boxTabsBar($this->tabs,
-				  $this->tabObject.'.mouseclick',
-				  $this->tabObject.'.mouseover',
-				  $this->tabObject.'.mouseout',
-				  'general');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:800px;margin:0 auto;'));?>
+<?=$this->theme->get_boxTitleBar($this->get_translation('user').$camyks->get_translation('formitem_separator').$this->user->login );?>
+<?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header()?>
-<div id="itemgeneral" style="display:block;" class="adminContentPanel">
+<div id="itemProperties"  style="display:<?=$this->tabBuilder->get_tabDisplay('Properties')?>;" class="adminContentPanel">
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <tr>
       <td class="eTableLine0 eContent2" style="width:150px;">
@@ -60,7 +56,9 @@ global $camyks;
 	    <?=$camyks->get_translation('formitem_email')?>
       </td>
       <td class="eTableLine0 eContent1">
-	    <?=$this->user->email?>
+        <a href="mailto:<?=$this->user->email?>" class="eLink1">
+	      <?=$this->user->email?>
+	    </a>
       </td>
     </tr>
     <tr>
@@ -74,7 +72,7 @@ global $camyks;
   </table>
 </div>
 
-<div id="itemrights" style="display:none;" class="adminContentPanel">
+<div id="itemRights" style="display:<?=$this->tabBuilder->get_tabDisplay('Rights')?>;" class="adminContentPanel">
   <table cellspacing="0" cellpadding="0" border="0" style="wdith:100%;">
     <?php $alt=0; ?>
     <?php foreach ( $camyks->modules as $m ) : ?>
@@ -89,7 +87,7 @@ global $camyks;
       <?php $linecount = 0; ?>
       <?php foreach ( $m->rights as $ridx => $right ) : ?>
         <td class="eTableLine<?=$alt?> eTableIconCell">
-	      <input type="checkbox" name="<?=$right['name']?>" value="0" disabled="disabled" <?= $this->user->get_right( $m->name, $ridx) ? ' checked="checked"':''; ?> />
+	      <input type="checkbox" name="<?=$right['name']?>" value="0" disabled="disabled" <?= $this->user->get_right($m->name, $ridx) ? ' checked="checked"':''; ?> />
         </td>
 	    <td class="eTableLine<?=$alt?> eContent1" style="width:<?=$this->layout_cellwidth?>;">
 	      <?= $right['title'] ?>

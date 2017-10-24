@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2017
+ * Last Modif Date	: Oct 2017
  * 
  * Admin_User layout for admin user list
 */
@@ -25,29 +25,55 @@ $valid = $camyks->theme->get_pictURL('valid', 12, 'std');
 $empty = $camyks->theme->get_pictURL('empty', 12, 'std');
 
 ?>
-<?=$camyks->theme->get_boxHeader('width:600px;margin:0 auto;');?>
+<?=$camyks->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:600px;margin:0 auto;'));?>
 <?=$camyks->theme->get_boxTitleBar($this->title);?>
 <?=$camyks->theme->get_boxContent2Header();?>
 <div class="adminContentPanel">
+
+  <?=$this->listForm->display_header(); ?>
+  <?=$this->listForm->display_hiddens(); ?>
+  
+  <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+  <tr>
+    <td style="width:150px;" class="eTableLine0 eContent2">
+      <?=$camyks->get_translation('formitem_status'); ?>
+    </td>
+    <td class="eTableLine0">
+        <?=$this->listForm->display_selectInput(array('name'=>'status', 'values'=>$this->usersStatusList, 'onchange'=>$this->listForm->get_JSSubmitLink())); ?>
+    </td>
+    <td style="width:150px;" class="eTableLine0 eContent2">
+      <?=$this->get_translation('formitem_search'); ?>
+    </td>
+    <td class="eTableLine0">
+        <?=$this->listForm->display_textInput(array('name'=>'search', 'onchange'=>$this->listForm->get_JSSubmitLink())); ?>
+    </td>
+  </tr>
+
+  </table>
+
+  <?=$this->listForm->display_footer(); ?>
+
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <?php if ( $this->check_right (1 ) ) : ?>
     <tr>
-    <td class="eTableLine1">
-      <td class="eTableLine1" colspan="4">
+      <td class="eTableSubHeader eTableIconCell">
+        &nbsp;
+      </td>
+      <td class="eTableSubHeader" colspan="4">
 	    <a href="<?=$this->get_adminLink(array('mode'=>'edit', 'user'=>''));?>" class="eLink1">
 	      <?=$this->get_translation('adduser');?>
 	    </a>
       </td>
-      <td class="eTableLine1 eTableIconCell">
+      <td class="eTableSubHeader eTableIconCell">
 	    <a href="<?=$this->get_adminLink(array('mode'=>'edit', 'user'=>''));?>">
-	      <img src="<?=$plus?>" border="0"
+	      <img src="<?=$plus?>" class="img"
             alt="<?=$this->get_translation('adduser')?>"
             title="<?=$this->get_translation('adduser')?>"
             onmouseover="this.src='<?=$plus_?>';"
             onmouseout="this.src='<?=$plus?>';" />
 	    </a>
       </td>
-      <td class="eTableLine1">
+      <td class="eTableSubHeader">
 	    &nbsp;
       </td>
     </tr>
@@ -57,10 +83,10 @@ $empty = $camyks->theme->get_pictURL('empty', 12, 'std');
       <td class="eTableHeader eTableIconCell">
         &nbsp;
       </td>
-      <td class="eTableHeader">
+      <td class="eTableHeader" style="width:120px;">
 	    <?=$camyks->get_translation('login')?>
       </td>
-      <td class="eTableHeader">
+      <td class="eTableHeader" style="width:250px;">
 	    <?=$camyks->get_translation('name')?>
       </td>
       <td class="eTableHeader">

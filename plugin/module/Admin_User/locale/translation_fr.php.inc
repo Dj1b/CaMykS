@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module dictionnary
+ * Object Type      : Plugin / Module dictionnary
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2009
+ * Last Modif Date	: Oct 2017
  *
  * Admin_User french dictionnary
 */
@@ -15,6 +15,14 @@
 $this->trads['mod_admin_user_title'] = 'Utilisateurs';
 $this->trads['mod_admin_user_desc'] = 'Gestion des utilisateurs';
 
+
+/* users status list */
+$this->trads['mod_admin_user_users_all'] = 'Tous';
+$this->trads['mod_admin_user_users_disabled'] = 'D&eacute;sactiv&eacute;s';
+$this->trads['mod_admin_user_users_enabled'] = 'Activ&eacute;s';
+
+/* admin list */
+$this->trads['mod_admin_user_formitem_search'] = 'Rechercher : ';
 $this->trads['mod_admin_user_adduser'] = 'Ajouter un utilisateur';
 $this->trads['mod_admin_user_select'] = 'S&eacute;lectionnez un utilisateur.';
 $this->trads['mod_admin_user_doesn_t_exist'] = 'L\'utilisateur n\'existe pas.';
