@@ -3,7 +3,7 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
@@ -56,7 +56,7 @@ $empty = $camyks->theme->get_pictURL('empty', 12, 'std');
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <?php if ( $this->check_right (1 ) ) : ?>
     <tr>
-      <td class="eTableSubHeader">
+      <td class="eTableSubHeader eTableIconCell">
         &nbsp;
       </td>
       <td class="eTableSubHeader" colspan="4">
@@ -83,10 +83,10 @@ $empty = $camyks->theme->get_pictURL('empty', 12, 'std');
       <td class="eTableHeader eTableIconCell">
         &nbsp;
       </td>
-      <td class="eTableHeader">
+      <td class="eTableHeader" style="width:120px;">
 	    <?=$camyks->get_translation('login')?>
       </td>
-      <td class="eTableHeader">
+      <td class="eTableHeader" style="width:250px;">
 	    <?=$camyks->get_translation('name')?>
       </td>
       <td class="eTableHeader">

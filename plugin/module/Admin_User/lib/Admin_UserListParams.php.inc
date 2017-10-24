@@ -1,9 +1,9 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: Ideogram Design
- * Author			: JB Lebrun <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0b
+ * Developed by		: camyks.net
+ * Author			: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Library
  * Creation Date	: Oct 2017
