@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2007
- * Last Modif Date  : Aug 2017
+ * Last Modif Date  : Oct 2017
  *
  * client user methods
  */
@@ -354,6 +354,7 @@ function client_getUAInfos($ua=false) {
         'SM-G901F'  => array('platform_model' => 'Galaxy S5 Plus', ),
         'SM-G920F'  => array('platform_model' => 'Galaxy S6'),
         'SM-G920I'  => array('platform_model' => 'Galaxy S6'),
+        'SM-G920P'  => array('platform_model' => 'Galaxy S6'),
         'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge +'),
@@ -799,7 +800,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
   
   /* check Alcatel */
-  elseif (preg_match('/([0-9]{4}[A-Z])/', $ua, $matches)) {
+  elseif (preg_match('/ ([0-9]{4}[A-Z])/', $ua, $matches)) {
     $rep = array(
         '4015D' => array('platform_model' => 'One Touch Idol 3',),
         '5050X' => array('platform_model' => 'One Touch Pop S3',),
@@ -1284,7 +1285,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -4699,6 +4700,24 @@ function client_getKnownBots() {
     'bot_url'=>'looid.com',
     'engine_title'=>'',
     'engine_url'=>'');
+    
+  /* um-LN */
+  $knownBots['um-ln'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'um-LN',
+    'bot_url'=>'mailto:techinfo@ubermetrics-technologies.com',
+    'engine_title'=>'uberMetrics Technologies',
+    'engine_url'=>'https://www.ubermetrics-technologies.com');
+    
+  /* um-FC */
+  $knownBots['um-fc'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'um-FC',
+    'bot_url'=>'mailto:techinfo@ubermetrics-technologies.com',
+    'engine_title'=>'uberMetrics Technologies',
+    'engine_url'=>'https://www.ubermetrics-technologies.com');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(

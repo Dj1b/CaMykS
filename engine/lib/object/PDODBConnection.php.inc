@@ -6,7 +6,7 @@
  * CaMykS Version   : 1.0b
  * Object Version   : 1.0
  * Creation Date    : Sep 2014
- * Last Modif Date  : Sep 2014
+ * Last Modif Date  : Oct 2017
  *
  * PDO Database connection object
  */
@@ -102,7 +102,7 @@ class PDODBConnection extends CDBConnection {
    * @access public
    */
   function database_exists ( $name ) {
-    return $this->connection->execute_query('show tables like "'.$name.'"');
+    return $this->connection->execute_query('show databases like "'.$name.'"');
   }
   
   /* query related methods */
