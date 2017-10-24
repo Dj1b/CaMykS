@@ -53,7 +53,7 @@ class Admin_User extends Module {
     $this->get_PHPLibs();
     
     /* initialise plugin libraries */
-    $this->user = new AdminUser ('');
+    $this->user = new AdminUser('');
   }
 
   /* overwrite Module methods */
@@ -129,15 +129,6 @@ class Admin_User extends Module {
     }
     parent::init_admin();
   }
-
-  /*
-   * init module object in display mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
   
   /* specific admin mode methods */
 
@@ -148,12 +139,29 @@ class Admin_User extends Module {
    */
   function init_admin_list ( ) {
     global $camyks;
+    
+    /* load params */
+    $this->load_file('lib/Admin_UserListParams.php.inc');
+    $this->params = new Admin_UserListParams(0, $this);
+    $this->params->initialise();
+    $this->params->get_fromHeader();
+    $this->params->get_fromItems();
+    
+    /* build list params form */
+    $this->listForm = new HTMLForm('listForm', $this->get_adminLink(), 'POST');
+    $this->listForm->set_object($this->params);
+    
+    /* load data */
+    $this->usersStatusList = $this->user->get_usersStatusList(array('addAll'=>true));
+    
     /* get user list */
-    $this->user_list = $this->user->get_userList();
+    $this->user_list = $this->user->get_userList($this->params->build_whereStatement());
 
     /* button list for buttons bar */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link' =>$camyks->get_adminLink()));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $camyks->get_adminLink(),
+	));
     
     /* update layout */
     $this->selected_layout = 'admin_list.html.inc';
@@ -182,7 +190,7 @@ class Admin_User extends Module {
     $this->form = new HTMLForm('adminuser',
 			       $this->get_adminLink(),
 			       'POST');
-    $this->form->add_hidden('mode', 'save' );
+    $this->form->add_hidden('mode', 'save');
     $this->form->add_hidden('adminuser_full_update', 1 );
     $this->form->add_hidden('adminuser_webmaster', $this->user->webmaster );
     $this->form->add_hidden('adminuser_is_new', $this->user->is_new );  

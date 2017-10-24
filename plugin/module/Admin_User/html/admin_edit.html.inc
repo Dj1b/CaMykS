@@ -9,18 +9,18 @@
  * Create Date		: Jun 2005
  * Last Modif Date	: Mar 2017
  * 
- * Admin_User Module Admin Layout : edit adminuser object
+ * Admin_User Module Admin Layout : edit user
 */
 global $camyks;
 ?>
-<?=$camyks->theme->get_boxHeader('width:800px;margin:0 auto;');?>
-<?=$camyks->theme->get_boxTitleBar($this->get_translation('user').' : '.$this->user->login );?>
-<?=$camyks->theme->get_boxTabsBar($this->tabs,
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:800px;margin:0 auto;'));?>
+<?=$this->theme->get_boxTitleBar($this->get_translation('user').$camyks->get_translation('formitem_separator').$this->user->login );?>
+<?=$this->theme->get_boxTabsBar($this->tabs,
 				  $this->tabObject.'.mouseclick',
 				  $this->tabObject.'.mouseover',
 				  $this->tabObject.'.mouseout',
 				  'general');?>
-<?=$camyks->theme->get_boxContent2Header()?>
+<?=$this->theme->get_boxContent2Header()?>
 <?=$this->form->display_header(); ?>
 <?=$this->form->display_hiddens(); ?>
 <div id="itemgeneral" style="display:block;" class="adminContentPanel">

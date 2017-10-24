@@ -7,14 +7,14 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2017
+ * Last Modif Date	: Oct 2017
  * 
- * Admin_User Module Admin Layout : view profile
+ * Admin_User Module Admin Layout : view user
 */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
-<?=$this->theme->get_boxTitleBar($this->get_translation('user').' : '.$this->user->login );?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:800px;margin:0 auto;'));?>
+<?=$this->theme->get_boxTitleBar($this->get_translation('user').$camyks->get_translation('formitem_separator').$this->user->login );?>
 <?=$this->theme->get_boxTabsBar($this->tabs,
 				  $this->tabObject.'.mouseclick',
 				  $this->tabObject.'.mouseover',
@@ -60,7 +60,9 @@ global $camyks;
 	    <?=$camyks->get_translation('formitem_email')?>
       </td>
       <td class="eTableLine0 eContent1">
-	    <?=$this->user->email?>
+        <a href="mailto:<?=$this->user->email?>" class="eLink1">
+	      <?=$this->user->email?>
+	    </a>
       </td>
     </tr>
     <tr>
@@ -89,7 +91,7 @@ global $camyks;
       <?php $linecount = 0; ?>
       <?php foreach ( $m->rights as $ridx => $right ) : ?>
         <td class="eTableLine<?=$alt?> eTableIconCell">
-	      <input type="checkbox" name="<?=$right['name']?>" value="0" disabled="disabled" <?= $this->user->get_right( $m->name, $ridx) ? ' checked="checked"':''; ?> />
+	      <input type="checkbox" name="<?=$right['name']?>" value="0" disabled="disabled" <?= $this->user->get_right($m->name, $ridx) ? ' checked="checked"':''; ?> />
         </td>
 	    <td class="eTableLine<?=$alt?> eContent1" style="width:<?=$this->layout_cellwidth?>;">
 	      <?= $right['title'] ?>
