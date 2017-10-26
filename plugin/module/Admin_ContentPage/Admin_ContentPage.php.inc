@@ -455,7 +455,6 @@ class Admin_ContentPage extends Module {
        $this->meta_languages[$l] = $camyks->get_translation('lang_'.$l);
     }
     
-    
     /* get page content */
     $this->page->id = $this->page_id;
     $this->page->get();

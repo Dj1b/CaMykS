@@ -370,6 +370,7 @@ function client_getUAInfos($ua=false) {
         'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
+        'SM-A520F'  => array('platform_model' => 'Galaxy A5 (2017)', ),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7', ),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5 (2015)', ),
         'SM-E500H'  => array('platform_model' => 'Galaxy E5 (2015)', ),
@@ -4748,6 +4749,24 @@ function client_getKnownBots() {
   
   /* unknown bot */
   $knownBots['celious search engine'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* unknown bot */
+  $knownBots['celious search engine'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* unknown bot */
+  $knownBots['smurlexpander'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Unknown bot',
