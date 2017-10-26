@@ -2,24 +2,26 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Library
+ * Object Type	    : Plugin / Module Library
  * Creation Date	: Oct 2008
- * Last Modif Date	: Oct 2008
+ * Last Modif Date	: Oct 2017
  *
  * Admin_PluginManagerItem library
  */
 
-class Admin_PluginManagerItem {
+final class Admin_PluginManagerItem {
+  
+  private $_libIsInstalled;
 
   /*
    * constructor
    * @param integer $id;
    * @param module $parent
    */
-  function Admin_PluginManagerItem($id=0, $parent=null) {
+  public function __construct($id=0, $parent=null) {
     $this->id = $id;
     $this->_libParent = $parent;
     $this->_libIsInstalled = null;
@@ -30,9 +32,9 @@ class Admin_PluginManagerItem {
   /*
    * install module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function install( ) {
+  public function install() {
     global $camyks;
     
     /* build sql query */
@@ -59,9 +61,9 @@ class Admin_PluginManagerItem {
   /*
    * check installation
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function is_installed ( ) {
+  public function is_installed ( ) {
     global $camyks;
     if ( $this->_libIsInstalled == null ) {
     
@@ -87,9 +89,9 @@ class Admin_PluginManagerItem {
   /*
    * get plugin data from header
    * @return void
-   * @access private
+   * @access public
    */
-  function get_fromHeader() {
+  public function get_fromHeader() {
     $this->pluginvalue = isset($_REQUEST['plugin'])?$_REQUEST['plugin']:'';
     $this->typevalue = isset($_REQUEST['type'])?$_REQUEST['type']:'';
     $this->locationvalue = isset($_REQUEST['location'])?$_REQUEST['location']:'';
@@ -98,9 +100,9 @@ class Admin_PluginManagerItem {
   /*
    * save plugin info in database
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function save_toDatabase( ) {
+  public function save_toDatabase( ) {
     global $camyks;
 
     /* build sql query */
@@ -109,7 +111,7 @@ class Admin_PluginManagerItem {
     $sql .= ' and type="'.addslashes($this->typevalue).'"';
 
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) { 
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
       /* check query result */
       if ($camyks->db_conn->get_queryDataLine()) {
 	    return $this->update_toDatabase();
@@ -123,9 +125,9 @@ class Admin_PluginManagerItem {
   /*
    * create new entry in database
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function create_toDatabase() {
+  public function create_toDatabase() {
     global $camyks;
     
     /* build sql query */
@@ -136,16 +138,16 @@ class Admin_PluginManagerItem {
     $sql .= '"'.addslashes($this->versionvalue).'");';
     
     /* execute sql query */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
 
   /*
    * delete item from database
    * @param $p array
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function delete_fromDatabase( $p ) {
+  public function delete_fromDatabase( $p ) {
     global $camyks;
     
     /* build sql query */
@@ -155,15 +157,15 @@ class Admin_PluginManagerItem {
     $sql .= ' and location="'.addslashes($p['location']).'"';
     
     /* execute sql query */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
   
   /*
    * update existing entry in database
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function update_toDatabase() {
+  public function update_toDatabase() {
     global $camyks;
     
     /* build sql query */
@@ -173,7 +175,7 @@ class Admin_PluginManagerItem {
     $sql .= ' and type="'.addslashes($this->typevalue).'"';
     
     /* execute sql query */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
 
   /*
@@ -183,9 +185,9 @@ class Admin_PluginManagerItem {
    * @param string $location
    * @param string $active
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function active_plugin( $plugin=null, $type=null, $location=null, $active=null ) {
+  public function active_plugin( $plugin=null, $type=null, $location=null, $active=null ) {
     if ( isset( $plugin ) )
       $this->pluginvalue = $plugin;
     if ( isset( $type ) )
@@ -200,7 +202,7 @@ class Admin_PluginManagerItem {
     case 'module':
       $plugin = module_get ($this->pluginvalue, $this->locationvalue);
       if ( $plugin->is_installed()===false and $plugin->install()===false ) {
-	return false;
+	    return false;
       }
       break;
     case 'template':
@@ -214,6 +216,7 @@ class Admin_PluginManagerItem {
       break;
     }
     $this->versionvalue = $plugin->version;
+    
     /* active plugin in database */
     return $this->save_toDatabase();
   }
@@ -224,9 +227,9 @@ class Admin_PluginManagerItem {
    * @param string $type
    * @param string $version
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function update_pluginVersion($plugin, $type, $version) {
+  public function update_pluginVersion($plugin, $type, $version) {
     global $camyks;
     
     /* build sql query */
@@ -236,7 +239,7 @@ class Admin_PluginManagerItem {
     $sql .= ' and type="'.addslashes($type).'"';
     
     /* execute sql query */
-    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ));    
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));    
   }
   
   /*
@@ -245,7 +248,7 @@ class Admin_PluginManagerItem {
    * @return boolean success
    * @access public
    */
-  function set_asDefault($cMode='site') {
+  public function set_asDefault($cMode='site') {
     global $camyks;
     
     /* check values */
@@ -257,17 +260,14 @@ class Admin_PluginManagerItem {
     return false;
   }
   
-  
-  /*
-
   /* generic module library multi object data manipulation */
 
   /*
    * get plugin list
    * @return array
-   * @access private
+   * @access public
    */
-  function get_objectList() {
+  public function get_objectList() {
     global $camyks;
 
     $plugins = array();
@@ -277,7 +277,7 @@ class Admin_PluginManagerItem {
     $sql .= ' from admin_pluginmanager';
 
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__))
     
       /* get data from database */
       while ($data = $camyks->db_conn->get_queryDataLine())

@@ -23,31 +23,28 @@
  *
 */
 
-class Admin_PluginManager extends Module {
+final class Admin_PluginManager extends Module {
   /* vars */
-  var $mode;
-  /* list vars */
-  var $openTab;
-  var $modules;
-  var $templates;
-  var $themes;
-  var $inputs;
-  var $pluginsinfo;
-  /* action vars */
-  var $plugin;
-  var $type;
-  var $activate;
-  var $unfound;
-  var $text;  
+  private $mode;
   
-  /* generic plugin library values */
-  var $_libIsInstalled;
+  /* list vars */
+  protected $modules;
+  protected $templates;
+  protected $themes;
+  protected $inputs;
+  private $pluginsinfo;
+  protected $installedTables;
+  
+  /* action vars */
+  protected $pluginItem;
+  protected $unfound;
+  protected $text;  
 
   /* 
    * constructor
    * @param string $path_type
    */
-  function Admin_PluginManager ( $path_type ) {
+  public function __construct ($path_type) {
     parent::Module('Admin_PluginManager', $path_type);
     /* set module type */
     $this->type = 'admin';
@@ -76,36 +73,36 @@ class Admin_PluginManager extends Module {
   /*
    * install module object
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function install() {
+  public function install() {
     return ($this->pluginItem->install() and parent::install());
   }
 
   /*
    * uninstall module object
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function uninstall() {
+  public function uninstall() {
     return false;
   }
 
   /*
    * check module installation
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function is_installed() {
+  public function is_installed() {
     return $this->pluginItem->is_installed();
   }
 
   /*
    * add menu object
    * @return array
-   * @access private
+   * @access public
    */
-  function get_adminEngineSpecificMenus( ) {
+  public function get_adminEngineSpecificMenus( ) {
     if ( $this->check_right(1)===true ) {
       return array(array('name'=>'pluginmanager',
 			 'title'=>$this->get_translation('title')));
@@ -116,9 +113,9 @@ class Admin_PluginManager extends Module {
   /*
    * add menu items object
    * @return array
-   * @access private
+   * @access public
    */
-  function get_adminEngineSpecificMenuItems( ) {
+  public function get_adminEngineSpecificMenuItems( ) {
     global $camyks;
     if ( $this->check_right(1)===true ) {
       return array(array('name'=>'cleandatabase',
@@ -133,9 +130,9 @@ class Admin_PluginManager extends Module {
   /*
    * init object when in admin mode
    * @return void
-   * @access private 
+   * @access public 
    */
-  function init_admin () {
+  public function init_admin () {
     global $camyks;
 
     /* check basic rights */
@@ -184,7 +181,7 @@ class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  function init_admin_activate() {
+  private function init_admin_activate() {
     global $camyks;
 
     /* check admin rights */
@@ -217,7 +214,7 @@ class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  function init_admin_desactivate() {
+  private function init_admin_desactivate() {
     global $camyks;
 
     /* check admin rights */
@@ -252,7 +249,7 @@ class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  function init_admin_setAsDefault() {
+  private function init_admin_setAsDefault() {
     global $camyks;
 
     /* check admin rights */
@@ -286,7 +283,7 @@ class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  function init_admin_cleandb() {
+  private function init_admin_cleandb() {
     global $camyks;
 
     /* check rights */
@@ -323,7 +320,7 @@ class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  function init_admin_list() {
+  private function init_admin_list() {
     global $camyks;
 
     $camyks->get_neededPlugins();
@@ -437,7 +434,7 @@ class Admin_PluginManager extends Module {
    * @return boolean success
    * @access public
    */
-  function install_plugin($plugin, $type, $location='camyks', $version='1.0') {
+  public function install_plugin($plugin, $type, $location='camyks', $version='1.0') {
     return $this->pluginItem->active_plugin($plugin, $type, $location, $version);
   }
 
@@ -447,9 +444,9 @@ class Admin_PluginManager extends Module {
    * @param string $type
    * @param string $version
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function update_pluginVersion($plugin, $type, $version) {
+  public function update_pluginVersion($plugin, $type, $version) {
     return $this->pluginItem->update_pluginVersion($plugin, $type, $version);
   }
 
@@ -458,7 +455,7 @@ class Admin_PluginManager extends Module {
    * @return array
    * @access private
    */
-  function get_modules ( ) {
+  private function get_modules ( ) {
     global $camyks;
     $this->modules = array_merge(
         module_getList($camyks->camyks_plugin_path, 'camyks'),
@@ -471,7 +468,7 @@ class Admin_PluginManager extends Module {
    * @return array
    * @access private
    */
-  function get_templates ( ) {
+  private function get_templates ( ) {
     global $camyks;
     $this->templates = array_merge(
         template_getList($camyks->camyks_plugin_path, 'camyks'),
@@ -484,7 +481,7 @@ class Admin_PluginManager extends Module {
    * @return array
    * @access private
    */
-  function get_themes ( ) {
+  private function get_themes ( ) {
     global $camyks;
     $this->themes = array_merge(
         theme_getList($camyks->camyks_plugin_path, 'camyks'),
@@ -497,7 +494,7 @@ class Admin_PluginManager extends Module {
    * @return array
    * @access private
    */
-  function get_inputs ( ) {
+  private function get_inputs ( ) {
     global $camyks;
     $this->inputs = array_merge(
         input_getList($camyks->camyks_plugin_path, 'camyks'),
@@ -510,7 +507,7 @@ class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  function check_pluginsinfo ( ) {
+  private function check_pluginsinfo ( ) {
     foreach ( $this->pluginsinfo as $p ) {
       /* get active value ( while checking if plugin folder exists ) */
       switch ( $p['type'] ) {
@@ -553,7 +550,7 @@ class Admin_PluginManager extends Module {
    * @return boolean success
    * @access private
    */
-  function get_pluginsFromDatabase( ) {
+  private function get_pluginsFromDatabase( ) {
     $this->pluginsinfo = $this->pluginItem->get_objectList();
   }
   
@@ -562,7 +559,7 @@ class Admin_PluginManager extends Module {
    * @return boolean success
    * @access private
    */
-  function load_installedTables() {
+  private function load_installedTables() {
     global $camyks;
     
     $this->installedTables = array();
@@ -582,12 +579,23 @@ class Admin_PluginManager extends Module {
   }
   
   /*
+   * return installed table list
+   * @return array
+   * @access public
+   */
+  public function get_tableList() {
+    if ($this->installedTables == null)
+      $this->load_installedTables();
+    return $this->installedTables;
+  }
+  
+  /*
    * check if table is installed 
    * @param string $tableName
    * @return boolean result
    * @access public
    */
-  function check_tableExists($tableName='') {
+  public function check_tableExists($tableName='') {
     if ($this->installedTables == null)
       $this->load_installedTables();
     return (in_array($tableName, $this->installedTables));     
