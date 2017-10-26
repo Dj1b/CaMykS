@@ -3,23 +3,23 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Creation Date	: Jun 2005
- * Last Modif Date  : Sep 2014
+ * Last Modif Date  : Oct 2017
  *
  * Database connection object
  */
 
-class Database_connection { 
+final class Database_connection { 
   /* connection object */
-  var $connection;
+  private $connection;
   
   /* statistics */
-  var $statistics;
-  var $reportStats;
-  var $queries;
-  var $reportQueries;
+  private $statistics;
+  private $reportStats;
+  private $queries;
+  private $reportQueries;
     
   /*
    * object constructor
@@ -30,7 +30,7 @@ class Database_connection {
    * @return void
    * @access public
    */
-  function Database_connection( $host='localhost', $login='root', $pwd='', $driver='' ) {
+  public function __construct($host='localhost', $login='root', $pwd='', $driver='') {
     $cDriver = explode(':', strtolower($driver));
     $cDriver = $cDriver[0];
         
@@ -76,7 +76,7 @@ class Database_connection {
    * @return boolean
    * @access public
    */
-  function select ( $name ) {
+  public function select ( $name ) {
     return $this->connection->select_database($name);
   }
   
@@ -85,7 +85,7 @@ class Database_connection {
    * @return boolean
    * @access public
    */
-  function kill() {
+  public function kill() {
     global $camyks;
     
     if ($this->reportStats) {
@@ -105,7 +105,7 @@ class Database_connection {
    * @return boolean
    * @access public
    */
-  function is_active () {
+  public function is_active () {
     return $this->connection->is_connectionActive();
   }
   
@@ -114,7 +114,7 @@ class Database_connection {
    * return void
    * @access public
    */
-  function enable_statsReport() {
+  public function enable_statsReport() {
     $this->reportStats = true;
   }
   
@@ -123,8 +123,17 @@ class Database_connection {
    * return void
    * @access public
    */
-  function enable_statsQueries() {
+  public function enable_statsQueries() {
     $this->reportQueries = true;
+  }
+  
+  /*
+   * return version
+   * @return string
+   * @access public
+   */
+  public function get_version() {
+    return $this->connection->get_version();
   }
   
   /* query related method */
@@ -136,7 +145,7 @@ class Database_connection {
    * @return boolean success
    * @access public
    */
-  function execute_query($sql='', $resName='defaultRes') {
+  public function execute_query($sql='', $resName='defaultRes') {
     $this->statistics['queries']++;
     if ($this->reportQueries)
       $this->queries[] = $sql;
@@ -149,7 +158,7 @@ class Database_connection {
    * @return integer
    * @access public
    */
-  function get_queryGeneratedId($resName='defaultRes') {
+  public function get_queryGeneratedId($resName='defaultRes') {
     return $this->connection->get_queryGeneratedId($resName);
   }
   
@@ -159,7 +168,7 @@ class Database_connection {
    * @return array
    * @access public
    */
-  function get_queryDataLine($resName='defaultRes') {
+  public function get_queryDataLine($resName='defaultRes') {
     if ($l = $this->connection->get_queryDataLine($resName)) {
       $this->statistics['fetchedLines']++;
       return $l;
@@ -173,7 +182,7 @@ class Database_connection {
    * @return array
    * @access public
    */
-  function get_queryNumDataLine($resName='defaultRes') {
+  public function get_queryNumDataLine($resName='defaultRes') {
     if ($l = $this->connection->get_queryNumDataLine($resName)) {
       $this->statistics['fetchedLines']++;
       return $l;
@@ -187,7 +196,7 @@ class Database_connection {
    * @return string
    * @access public
    */
-  function get_queryError($resName='defaultRes') {
+  public function get_queryError($resName='defaultRes') {
     return $this->connection->get_queryError($resName);
   }
   
@@ -197,7 +206,7 @@ class Database_connection {
    * @return integer
    * @access public
    */
-  function get_queryAffectedRows($resName='defaultRes') {
+  public function get_queryAffectedRows($resName='defaultRes') {
     return $this->connection->get_queryAffectedRows($resName);
   }
   
@@ -207,7 +216,7 @@ class Database_connection {
    * @return integer 
    * @access public
    */
-  function get_queryFieldCount($resName='defaultRes') {
+  public function get_queryFieldCount($resName='defaultRes') {
     return $this->connection->get_queryFieldCount($resName);
   }
   
@@ -218,7 +227,7 @@ class Database_connection {
    * @return string
    * @access public
    */
-  function get_queryFieldType($fIndex=0, $resName='defaultRes') {
+  public function get_queryFieldType($fIndex=0, $resName='defaultRes') {
     return $this->connection->get_queryFieldType($fIndex, $resName);
   }
   
@@ -228,7 +237,7 @@ class Database_connection {
    * @return boolean result
    * @access public
    */
-  function close_ressource($resName='defaultRes') {
+  public function close_ressource($resName='defaultRes') {
     return $this->connection->close_ressource($resName);
   }
   
@@ -241,7 +250,7 @@ class Database_connection {
    * @return boolean
    * @access public
    */
-  function database_create($name, $charset='utf8') {
+  public function database_create($name, $charset='utf8') {
     return $this->connection->create_database($name, $charset);
   }
 
@@ -251,7 +260,7 @@ class Database_connection {
    * @return boolean
    * @access public
    */
-  function database_exists($name) {
+  public function database_exists($name) {
     return $this->connection->database_exists($name);
   }
 
@@ -261,7 +270,7 @@ class Database_connection {
    * @return mixed
    * @access public
    */
-  function database_dump($file=false) {
+  public function database_dump($file=false) {
     return $this->connection->dump_database($file);
   }
 
@@ -270,7 +279,7 @@ class Database_connection {
    * @return integer
    * @access public
    */
-  function database_getSize() {
+  public function database_getSize() {
     return $this->connection->get_databaseSize();
   }
   
@@ -282,7 +291,7 @@ class Database_connection {
    * @return string
    * @access public
    */
-  function escape_string($string='') {
+  public function escape_string($string='') {
     return $this->connection->escape_string($string);
   }
 }
