@@ -282,7 +282,9 @@ final class Admin_PluginManagerItem {
       /* get data from database */
       while ($data = $camyks->db_conn->get_queryDataLine())
 	    $plugins[] = $data;
-    return $plugins;
+	
+	/* return result */
+	return $plugins;
   }
 }
 ?>

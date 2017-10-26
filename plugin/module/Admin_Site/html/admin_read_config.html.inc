@@ -317,7 +317,7 @@ global $camyks;
     <?php foreach (array('error', 'info', 'note', 'warning') as $type) : ?>
     
     <tr>
-	  <td class="eTableLine0 eTitle3" colspan="2">
+	  <td class="eTableLine0 eContent4" colspan="2">
 	    <?=$this->get_translation('formtitle_'.$type);?> 
 	  </td>
 	</tr>
