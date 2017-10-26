@@ -85,8 +85,11 @@ class MLFileItem extends ModuleLibraryItem {
       
       /* add file */
       $path = $this->path.'/'.$this->get_folder($_libObjId).'/'.$this->name.$_libObjId.'.'.$ext;
-      
-      return (move_uploaded_file($_FILES[$this->name]['tmp_name'], $path) and $this->get($_libObjId));
+      if (!move_uploaded_file($_FILES[$this->name]['tmp_name'], $path) and $this->get($_libObjId))
+        return false;
+            
+      /* auto rotate picture with orientation in exif */
+      $this->update_orientation($path);
     }
     
     return true;
@@ -204,6 +207,52 @@ class MLFileItem extends ModuleLibraryItem {
    */
   function get_folder($_libObjId=0) {
     return preg_replace('/%%ID%%/', $_libObjId, $this->folder);
+  }
+  
+  /*
+   * check orientation and auto rotate picture
+   * @param string $picture
+   * @return boolean result
+   * @access private
+   */
+  function update_orientation($picture='') {
+        
+    /* load picture exif */
+    $exif = @exif_read_data($picture);
+        
+    /* no exif data, quit */
+    if ($exif === false)
+      return true;
+    
+    if (isset($exif['Orientation']))
+      $orientation = $exif['Orientation'];
+    elseif (isset($exif['COMPUTED']['Orientation']))-
+      $orientation = $exif['COMPUTED']['Orientation'];
+    else
+      return true;
+    
+    /* orientation is correct, quit */
+    if ($orientation == 1)
+      return true;
+        
+    /* rotate picture to follow given orientation */
+    $img = new CImage($picture);
+    $img->update_JPGQuality(90);
+    
+    switch($orientation) {
+        case 3:
+            $img->rotate(array('angle'=>180));
+            break;
+        case 6:
+            $img->rotate(array('angle'=>-90));
+            break;
+        case 8:
+            $img->rotate(array('angle'=>90));
+            break;
+    }
+    
+    $img->save_image($picture);
+    return true;
   }
 }
 ?>
