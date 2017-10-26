@@ -2,10 +2,10 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Dictionnary
+ * Object Type	    : Plugin / Module Dictionnary
  * Creation Date	: Jun 2005
  * Last Modif Date	: May 2007
  *
