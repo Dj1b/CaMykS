@@ -132,8 +132,8 @@ final class Database_connection {
    * @return string
    * @access public
    */
-  public function get_version() {
-    return $this->connection->get_version();
+  public function get_serverVersion() {
+    return $this->connection->get_serverVersion();
   }
   
   /* query related method */
@@ -281,6 +281,15 @@ final class Database_connection {
    */
   public function database_getSize() {
     return $this->connection->get_databaseSize();
+  }
+
+  /*
+   * return database summary
+   * @return integer
+   * @access public
+   */
+  public function database_getSummary() {
+    return $this->connection->get_databaseSummary();
   }
   
   /* data related methods */

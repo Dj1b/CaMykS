@@ -58,7 +58,7 @@ final class MySQLDBConnection extends CDBConnection {
    * @return string
    * @access public
    */
-  public function get_version() {
+  public function get_serverVersion() {
     if ($this->is_connectionActive())
       return mysql_get_server_info();
     return '';
@@ -98,6 +98,67 @@ final class MySQLDBConnection extends CDBConnection {
    */
   public function database_exists ( $name ) {
     return mysql_select_db( $name );
+  }
+  
+  /*
+   * return database summary
+   * @return array
+   * @access public
+   */
+  public function get_databaseSummary() {
+    global $camyks;
+    
+    $summary = array(
+        'version'       => $this->get_serverVersion(),
+        'size'          => $this->get_databaseSize(),
+        'tables'        => array(),
+        'tablesStatus'  => array(
+            'status'    => array('OK'=>0, 'NotOK'=>0),
+            'error'     => array(),
+            'info'      => array(),
+            'note'      => array(),
+            'warning'   => array(),
+        ),
+        'needRepair'    => false,
+        'lineCount'     => 0,
+    );
+    
+    /* build tables list */
+    $sql = 'show table status';
+    
+    /* execute sql query */
+    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      /* get data from database */
+      while ($data = $this->get_queryDataLine()) {
+        $summary['tables'][] = $data['Name'];
+        $summary['lineCount'] += $data['Rows'];
+      }
+    }
+    
+    /* build table status */
+    $sql = 'check table '.implode(',', $summary['tables']);
+        
+    /* execute sql query */
+    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      /* get data from database */
+      while ($data = $this->get_queryDataLine()) {
+        if ($data['Msg_type'] == 'status') {
+          if ($data['Msg_text'] == 'OK')
+            $summary['tablesStatus']['status']['OK'] ++;
+          else {
+            $summary['tablesStatus']['status']['NotOK'] ++;
+            $summary['needRepair'] = true;
+          }
+        } else {
+          $table = explode('.', $data['Table']);
+          $table = isset($table[1])?$table[1]:$table[0];
+          $summary['tablesStatus'][$data['Msg_type']][] = array('table' => $table, 'message'=>$data['Msg_text']);
+        }
+      }
+    }
+    
+    /* return summary */
+    return $summary;
   }
   
   /* query related methods */

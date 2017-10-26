@@ -59,6 +59,13 @@ abstract class CDBConnection {
     return $this->active;
   }
   
+  /*
+   * return version 
+   * @return string
+   * @access public
+   */
+  abstract public function get_serverVersion();
+  
   /* database related methods */
   
   /*
@@ -174,11 +181,11 @@ abstract class CDBConnection {
   }
   
   /*
-   * return version 
-   * @return string
+   * return database summary
+   * @return array
    * @access public
    */
-  abstract public function get_version();
+  abstract public function get_databaseSummary();
   
   /* query related methods */
     
