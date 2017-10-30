@@ -32,6 +32,25 @@ Edit `site.php.inc` configuration file located in the etc folder.
 
 Open `index.php` or `admin.php` from your web browser to finalise your website installation.
 
+## Running CaMykS in docker
+### Building the docker container
+
+``
+docker build -t camyks:latest .
+``
+
+### Running the container
+
+``
+docker run -h camyks --name camyks -p 8081:80 -it camyks:latest
+``
+
+And if you want to login to the container to look around
+
+``
+ docker exec -it camyks  /bin/bash
+``
+
 ## License
 
 CaMykS is available under [GNU GPL](http://www.gnu.org/licenses/licenses.en.html) licence.
