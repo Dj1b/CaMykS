@@ -334,6 +334,7 @@ function client_getUAInfos($ua=false) {
         'SM-P550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T560' =>array('platform_model' => 'Galaxy Tab E', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T800' =>array('platform_model' => 'Galaxy Tab S', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T715' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T810' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T813' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         
@@ -514,7 +515,6 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
-  
       
   /* check SonyEricsson */
   elseif (preg_match('/SonyEricsson([^ \/]+)/', $ua, $matches))
@@ -777,7 +777,7 @@ function client_getUAInfos($ua=false) {
       'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER/', $ua, $matches))
+  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY/', $ua, $matches))
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
       'platform_model'=>ucfirst(strtolower($matches[0])),
@@ -1154,6 +1154,34 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
       
+  /* check Smartisan mobiles */
+  elseif (preg_match('/(SM[0-9]{3})/', $ua, $matches)) {
+    $rep = array(
+        'SM801' => array('platform_model' => 'T2',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Smartisan', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+      
+  /* check Gigabyte mobiles */
+  elseif (preg_match('/(GSmart Rey R3)/', $ua, $matches)) {
+    $rep = array(
+        /* '' => array('platform_model' => '',), */
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Gigabyte', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+      
   /*** check operating system ***/
   
   if (!isset($infos['system_title'])) {
@@ -1277,8 +1305,8 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check compatible level 2 browsers */
-    elseif (preg_match('/(Yowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array();
+    elseif (preg_match('/(Yowser|MQQBrowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('MQQBrowser'=>'Mobile QQBrowser');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       	'browser_version'   => isset($matches[2])?$matches[2]:'',
@@ -1411,13 +1439,14 @@ function client_getUAInfos($ua=false) {
       ), $infos);
       
     /* check WMP */
-    elseif (preg_match('/^Windows-Media-Player\/([^\(]*)/', $ua, $matches))
+    elseif (preg_match('/^Windows-Media-Player\/([^\(]*)|Media Player Classic/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Microsoft Windows Media Player', 
-      	'browser_version'   => $matches[1],
+      	'browser_version'   => isset($matches[1])?$matches[1]:'',
       	'system_title'      =>'Windows',
       ), $infos);
-      
+    
+    
     /* check FrontPage */
     elseif (preg_match('/^MSFrontPage\/([^\(]*)/', $ua, $matches))
       $infos = array_merge(array(
@@ -1454,6 +1483,13 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^Microsoft Data Access Internet Publishing Provider DAV$/', $ua, $matches))
       $infos = array_merge(array($infos, 
         'browser_title'     => 'Office (2000 and superior) WebDav client ', 
+      	'system_title'      =>'Windows',
+      ));  
+       
+    /* check Microsoft Office */
+    elseif (preg_match('/^(Microsoft Office [A-Za-z0-9\ ]*)$/', $ua, $matches))
+      $infos = array_merge(array($infos, 
+        'browser_title'     => $matches[1], 
       	'system_title'      =>'Windows',
       ));  
       
@@ -4719,6 +4755,15 @@ function client_getKnownBots() {
     'bot_url'=>'mailto:techinfo@ubermetrics-technologies.com',
     'engine_title'=>'uberMetrics Technologies',
     'engine_url'=>'https://www.ubermetrics-technologies.com');
+    
+  /* Grobbot */
+  $knownBots['grobbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Grobbot',
+    'bot_url'=>'',
+    'engine_title'=>'Grob',
+    'engine_url'=>'https://grob.it');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -5582,6 +5627,24 @@ function client_getKnownTools() {
     'engine_title'=>'',
     'engine_url'=>'');
     
+  /* Google-AMPHTML */
+  $knownTools['google-amphtml'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Google-AMPHTML',
+    'tool_url'=>'https://www.ampproject.org',
+    'engine_title'=>'',
+    'engine_url'=>'');
+    
+  /* SiteWinder */
+  $knownTools['sitewinder'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'SiteWinder',
+    'tool_url'=>'',
+    'engine_title'=>'Web washer',
+    'engine_url'=>'https://www.mcafee.com');
+    
   /* return list */
   return $knownTools;
 }
@@ -6089,6 +6152,15 @@ function client_getKnownGenerics() {
     'platform_format'=>'desktop',
     'tool_title'=>'splash',
     'tool_url'=>'https://cran.r-project.org/web/packages/splashr/vignettes/intro_to_splashr.html',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* .NET Framework Test Client  */
+  $knownGenerics['.net framework'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Microsoft .NET Framework',
+    'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
 
