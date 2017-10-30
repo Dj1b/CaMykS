@@ -608,7 +608,7 @@ function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=
 }
 
 /*
- * formt given phone number
+ * format given phone number
  * @param string $number
  * @param string $prefix
  * @return string
@@ -651,5 +651,27 @@ function string_formatIntlPhoneNumber($number, $prefix='') {
   return '+'.$prefix.$number;
 }
 
+/*
+ * return string all lowercase, including accentuated characters
+ * @param string $string
+ * @return string
+ * @access public
+ */
+function string_toLower($string='') {
+  if (string_isUTF8($string))
+    return utf8_encode(mb_strtolower(utf8_decode($string)));
+  return strtolower($string);
+}
 
+/*
+ * return string all uppercase, including accentuated characters
+ * @param string $string
+ * @return string
+ * @access public
+ */
+function string_toUpper($string='') {
+  if (string_isUTF8($string))
+    return utf8_encode(mb_strtoupper(utf8_decode($string)));
+  return strtoupper($string);
+}
 ?>
