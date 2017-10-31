@@ -4764,6 +4764,15 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'Grob',
     'engine_url'=>'https://grob.it');
+    
+  /* Contacts-Crawler */
+  $knownBots['contacts-crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Contacts-Crawler',
+    'bot_url'=>'',
+    'engine_title'=>'Scrapinghub',
+    'engine_url'=>'http://www.scrapinghub.com');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
