@@ -15,6 +15,8 @@
 $this->trads['mod_admin_user_title'] = 'Users';
 $this->trads['mod_admin_user_desc'] = 'Manager administrators';
 
+/* admin list */
+$this->trads['mod_admin_user_formitem_search'] = 'Rechercher : ';
 $this->trads['mod_admin_user_adduser'] = 'Add a new administrator';
 $this->trads['mod_admin_user_select'] = 'Select an user';
 $this->trads['mod_admin_user_doesn_t_exist'] = 'This user account doesn\'t exist.';

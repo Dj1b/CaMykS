@@ -16,10 +16,10 @@
 /* version */
 $this->title = 'CaMykS';
 $this->website = 'http://www.camyks.net';
-$this->version = '1.0-20171001';
+$this->version = '1.0-20171101';
 $this->mversion = '1.0';
-$this->nversion = '20171001';
-$this->last_modification_date = mktime(0, 0, 0, 10, 1, 2017);
+$this->nversion = '20171101';
+$this->last_modification_date = mktime(0, 0, 0, 11, 1, 2017);
 
 /* paths & folders */
 $this->visit_path = '../..';

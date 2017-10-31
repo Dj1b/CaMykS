@@ -67,16 +67,16 @@ class MLFileLocalizedItem extends MLFileItem {
     if ( isset( $language ) ) {
       /* get specific language */
       if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' )
-	$this->value[$language] = $url.$file;
+	    $this->value[$language] = $url.$file;
       else
-	$this->value[$language] = '';
+	    $this->value[$language] = '';
     } else {
       /* get all language */
       foreach ( $camyks->_conf['editing_languages'] as $language ) {
-	if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' )
-	  $this->value[$language] = $url.$file;
-	else
-	  $this->value[$language] = '';	
+	    if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' )
+	      $this->value[$language] = $url.$file;
+	    else
+	      $this->value[$language] = '';	
       }
     }
     return true;
@@ -110,9 +110,9 @@ class MLFileLocalizedItem extends MLFileItem {
 
       /* get file extension */
       if ( preg_match( '/.*\.([^\.]*)/', $_FILES[$this->name.'_'.$l]['name'], $ext ) ) 
-	$ext = $ext[1];
+	    $ext = $ext[1];
       else
-	$ext = '';
+	    $ext = '';
       
       /* add file */
       $path = $this->path.'/'.$this->get_folder($_libObjId).'/';
@@ -120,6 +120,9 @@ class MLFileLocalizedItem extends MLFileItem {
       if (! move_uploaded_file($_FILES[$this->name.'_'.$l]['tmp_name'], $path) ) 
 	    $ok = false;
 	  $this->get($_libObjId, $l);
+	  
+	  /* auto rotate picture with orientation in exif */
+      $this->update_orientation($path);
     }
     return $ok;
   }

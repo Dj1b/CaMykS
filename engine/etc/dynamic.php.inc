@@ -37,4 +37,7 @@ $this->_conf['TimeZone'] = 'Europe/Paris';
 /* user agent for requests */
 $this->_conf['UserAgent'] = 'Mozilla/5.0 (compatible; CaMykSRequest/1.0; +http://www.camyks.net/request_bot.html)';
 
+/* load locale configuration */
+if (file_exists($this->camyks_path.'/engine/etc/dynamic.local.php.inc'))
+  require($this->camyks_path.'/engine/etc/dynamic.local.php.inc');
 ?>

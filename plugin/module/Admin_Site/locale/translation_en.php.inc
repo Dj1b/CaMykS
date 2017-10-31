@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
+ * Object Type      : Plugin / Module Dictionnary
  * Creation Date	: Feb 2013
- * Last Modif Date      : Feb 2013
+ * Last Modif Date  : Oct 2017
  *
  * Admin_Site english dictionnary
 */
@@ -15,7 +15,8 @@ $this->trads['mod_admin_site_title'] = 'Website configuration';
 $this->trads['mod_admin_site_desc'] = 'Check website configuration';
 
 /* generic conf texts */
-$this->trads['mod_admin_site_theme'] = 'Used theme: ';
+$this->trads['mod_admin_site_formitem_theme'] = 'Used theme: ';
+$this->trads['mod_admin_site_formitem_ssl'] = 'SSL connection: ';
 
 /* global conf texts */
 $this->trads['mod_admin_site_general'] = 'Properties';
@@ -44,11 +45,11 @@ $this->trads['mod_admin_site_editing_languages'] = 'Edition available languages:
 
 /* site conf texts */
 $this->trads['mod_admin_site_viewpart'] = 'Visit';
-$this->trads['mod_admin_site_visit_content'] = 'Content: ';
+$this->trads['mod_admin_site_visit_content'] = 'Content';
 $this->trads['mod_admin_site_template'] = 'Default template: ';
 $this->trads['mod_admin_site_pagemaxmodules'] = 'Max. module by page: ';
 $this->trads['mod_admin_site_languages'] = 'Available languages: ';
-$this->trads['mod_admin_site_visit_stats'] = 'Statistics: ';
+$this->trads['mod_admin_site_visit_stats'] = 'Statistics';
 $this->trads['mod_admin_site_google_analytics_code'] = 'Google Analytics code: ';
 $this->trads['mod_admin_site_stats_none'] = 'None';
 $this->trads['mod_admin_site_stats_nonef'] = 'None';

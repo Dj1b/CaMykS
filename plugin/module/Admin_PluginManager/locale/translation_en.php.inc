@@ -2,10 +2,10 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type	        : Plugin / Module Dictionnary
+ * Object Type	    : Plugin / Module Dictionnary
  * Creation Date	: Feb 2013
  * Last Modif Date	: Feb 2013
  *
@@ -42,7 +42,14 @@ $this->trads['mod_admin_pluginmanager_activationfailed'] = 'Plugin "%s" could no
 $this->trads['mod_admin_pluginmanager_desactivationdone'] = 'Plugin "%s" is now disabled.';
 $this->trads['mod_admin_pluginmanager_cleaningdone'] = 'Database cleaning in progress..';
 $this->trads['mod_admin_pluginmanager_nocleaningneeded'] = 'No cleaning required, no action done.';
+$this->trads['mod_admin_pluginmanager_configurationupdated'] = 'Configuration updated.';
+$this->trads['mod_admin_pluginmanager_configurationotupdated'] = 'An error has occured while updating the configuration.';
 
 /* menu */
 $this->trads['mod_admin_pluginmanager_cleandatabase'] = 'Clean database';
+
+/* action menus */
+$this->trads['mod_admin_pluginmanager_applyassitedefaulttheme'] = 'Apply as default site theme.';
+$this->trads['mod_admin_pluginmanager_applyasadmindefaulttheme'] = 'Apply as default admin theme.';
+$this->trads['mod_admin_pluginmanager_applyassitedefaulttemplate'] = 'Apply as default site template.';
 ?>

@@ -7,34 +7,34 @@ CaMykS is a CMS ("Content Management System"). More precisely, it's a tool used 
 CaMykS is made to be the more flexible and ergonomic as possible into the two main steps of the lifetime of a website - building and managing.
 
 
-## Benefits of CaMykS
+## CaMykS features
 
-CaMykS have several assets to made it powerful and performing. It is multi-site, multilingual, collaborative and plugin-based to be highly evolutive. Ergonomic of the management interface has been a key-point while developping it. CaMykS is able to use latest technologies such as Wysiwyg edition, RSS feeds, AJAX and so many more.
+CaMykS have several features that makes it powerful. It is multi-site, multilingual, collaborative and plugin-based to allow easy customisation. Management interface ergonomics has been a key-point during development. CaMykS is using the latest technologies such as Wysiwyg edition, RSS feeds, AJAX and many more.
 
 [Read more, in french](http://www.camyks.net/benefits.htm)
 
 ## Requirements
 
-CaMykS is working on LAMP (Linux/Apache/MySQL/PHP) ou MAMP (Mac OS X/Apache/MySQL/PHP) systems.
+CaMykS is working on LAMP (Linux/Apache/MySQL/PHP) or MAMP (Mac OS X/Apache/MySQL/PHP) systems.
 
 We advise to suit the following versions:
 * Apache 2.0+ (+ Module Rewrite)
 * MySQL 5.5+
 * PHP 5+ (version 5.6 advised, version 7 is currently untested)
 
-## Start with CaMykS
+## Getting started with CaMykS
 
-Duplicate and rename the skeleton_site folder located in engine folder to the root base of your web server.
+Duplicate and rename the `skeleton_site` folder located in engine folder to the root base of your web server.
 
 For a single-site installation, move CaMykS folder into the website folder.
 
-Edit site.php.inc configuration file located in the etc folder.
+Edit `site.php.inc` configuration file located in the etc folder.
 
-Open index.php or admin.php from your webbrowser to finalise your website installation.
+Open `index.php` or `admin.php` from your web browser to finalise your website installation.
 
 ## License
 
-CaMykS is available une [GNU GPL](http://www.gnu.org/licenses/licenses.en.html) licence.
+CaMykS is available under [GNU GPL](http://www.gnu.org/licenses/licenses.en.html) licence.
 
 ## Contacts
 
@@ -44,6 +44,6 @@ You can contact Jean-Baptiste:
 * [Email](mailto:contact@ideogram-design.fr)
 * [Email](mailto:camyks.contact@gmail.com)
 
-## Remerciements
+## Acknowlegments
 
 Thanks to Fanny, Frank and Ludo for their help and support.

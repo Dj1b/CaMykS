@@ -248,6 +248,25 @@ class CImage {
     return false;
   }
   
+  /*
+   * rotate image
+   * @param array $params
+   * @return boolean success
+   */
+  function rotate($params=array()) {
+    /* check params */
+    $dParams = array('angle'=>0, 'bkgdColor'=>0, 'ignoreTransparency'=>0);
+    $params = array_merge($dParams, $params);
+    
+    /* execute action is selected engine */
+    switch ($this->engine) {
+      case 'gd':
+        return $this->_gd_rotate($params);
+            
+    }
+    return false;
+  }
+  
   /* GD methods */
   
   /*
@@ -295,7 +314,7 @@ class CImage {
         $type = $this->type;
     
     /* check file extension */
-    if (!(substr($filename, -4, 4) == '.'.$type)) {
+    if (!(strtolower(substr($filename, -4, 4)) == '.'.$type)) {
       $filename .= '.'.$type;
     }
     
@@ -746,6 +765,39 @@ class CImage {
   	$this->width = imagesx($this->resource);
     $this->height = imagesy($this->resource);
     
+    return true;
+  }
+  
+  /*
+   * trim rotate with GD
+   * @param array $params
+   * @return boolean success
+   * @access private
+   ** TO DO : other angles than 90, -90, 180
+   */
+  function _gd_rotate($params) {
+    
+    if ($params['angle'] == 0)
+      return true;
+    if ($params['angle'] == 180) {
+      $width = $this->width;
+      $height = $this->height;
+    } elseif (in_array($params['angle'], array(-90, 90, 270))) {
+      $width = $this->height;
+      $height = $this->width;
+    } else {
+      /* to do */
+      return true;
+    }
+        
+    /* rotate picture */
+    $this->resource = imagerotate($this->resource, $params['angle'], $params['bkgdColor'], $params['ignoreTransparency']);
+    
+    /* update sizes */
+    $this->width = imagesx($this->resource);
+    $this->height = imagesy($this->resource);
+    
+    /* return result */
     return true;
   }
   

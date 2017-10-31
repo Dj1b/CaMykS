@@ -3,29 +3,26 @@
  * CaMykS Engine
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Creation Date    : Sep 2014
- * Last Modif Date  : Sep 2014
+ * Last Modif Date  : Oct 2017
  *
- * MySQL (object) Database connection object
+ * MySQLi Database connection object
  */
 
-class MySQLiDBConnection extends CDBConnection {
+final class MySQLiDBConnection extends CDBConnection {
 
   /*
    * Class constructor
    * @return void
-   * @access private
+   * @access public
    */
-  function MySQLiDBConnection() {
-    $this->active = false;
-    $this->connection = null;
-    $this->queryRes = null;
-    $this->dbName = null;
+  public function __construct() {
+    parent::__construct();
   }
 
-  /* database related methods */
+  /* server related methods */
   
   /*
    * connect to server
@@ -33,9 +30,9 @@ class MySQLiDBConnection extends CDBConnection {
    * @param string $login
    * @param string $pwd
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function connect_server($host='localhost', $login='', $pwd='', $driver='') {
+  public function connect_server($host='localhost', $login='', $pwd='', $driver='') {
     /* database server connection */
     $this->connection = @(new MySQLi($host, $login, $pwd));
    
@@ -47,12 +44,23 @@ class MySQLiDBConnection extends CDBConnection {
   /*
    * close server connection
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function disconnect_server() {
+  public function disconnect_server() {
     if ($this->is_connectionActive())
       return $this->connection->close();
     return true;
+  }
+  
+  /*
+   * return version
+   * @return string
+   * @access public
+   */
+  public function get_serverVersion() {
+    if ($this->is_connectionActive())
+      return $this->connection->server_info;
+    return '';
   }
   
   /* database related methods */
@@ -63,7 +71,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  function select_database ( $name ) {
+  public function select_database ( $name ) {
     if (!$this->is_connectionActive())
       return false;
     $this->dbName = $name;
@@ -77,7 +85,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  function create_database ( $name, $charset='utf8' ) {
+  public function create_database ( $name, $charset='utf8' ) {
     return $this->execute_query('CREATE DATABASE '.$name.' DEFAULT CHARACTER SET '.$charset);
   }
 
@@ -87,8 +95,69 @@ class MySQLiDBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  function database_exists ( $name ) {
+  public function database_exists ( $name ) {
     return $this->connection->select_db($name);
+  }  
+  
+  /*
+   * return database summary
+   * @return array
+   * @access public
+   */
+  public function get_databaseSummary() {
+    global $camyks;
+    
+    $summary = array(
+        'version'       => $this->get_serverVersion(),
+        'size'          => $this->get_databaseSize(),
+        'tables'        => array(),
+        'tablesStatus'  => array(
+            'status'    => array('OK'=>0, 'NotOK'=>0),
+            'error'     => array(),
+            'info'      => array(),
+            'note'      => array(),
+            'warning'   => array(),
+        ),
+        'needRepair'    => false,
+        'lineCount'     => 0,
+    );
+    
+    /* build tables list */
+    $sql = 'show table status';
+    
+    /* execute sql query */
+    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      /* get data from database */
+      while ($data = $this->get_queryDataLine()) {
+        $summary['tables'][] = $data['Name'];
+        $summary['lineCount'] += $data['Rows'];
+      }
+    }
+    
+    /* build table status */
+    $sql = 'check table '.implode(',', $summary['tables']);
+        
+    /* execute sql query */
+    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      /* get data from database */
+      while ($data = $this->get_queryDataLine()) {
+        if ($data['Msg_type'] == 'status') {
+          if ($data['Msg_text'] == 'OK')
+            $summary['tablesStatus']['status']['OK'] ++;
+          else {
+            $summary['tablesStatus']['status']['NotOK'] ++;
+            $summary['needRepair'] = true;
+          }
+        } else {
+          $table = explode('.', $data['Table']);
+          $table = isset($table[1])?$table[1]:$table[0];
+          $summary['tablesStatus'][$data['Msg_type']][] = array('table' => $table, 'message'=>$data['Msg_text']);
+        }
+      }
+    }
+    
+    /* return summary */
+    return $summary;
   }
   
   /* query related methods */
@@ -100,7 +169,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return boolean success
    * @access public
    */
-  function execute_query($sql='', $resName='defaultRes') {
+  public function execute_query($sql='', $resName='defaultRes') {
     $this->queryRes[$resName] = $this->connection->query($sql);
     return ($this->queryRes[$resName] !== false);
   }
@@ -111,7 +180,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return integer
    * @access public
    */
-  function get_queryGeneratedId($resName='defaultRes') {
+  public function get_queryGeneratedId($resName='defaultRes') {
     return $this->connection->insert_id;
   }
 
@@ -121,7 +190,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return array
    * @access public
    */
-  function get_queryDataLine($resName='defaultRes') {
+  public function get_queryDataLine($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
       return $this->queryRes[$resName]->fetch_assoc();
     return false;
@@ -133,7 +202,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return array
    * @access public
    */
-  function get_queryNumDataLine($resName='defaultRes') {
+  public function get_queryNumDataLine($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
       return $this->queryRes[$resName]->fetch_row();
     return false;
@@ -145,7 +214,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return string
    * @access public
    */
-  function get_queryError($resName='defaultRes') {
+  public function get_queryError($resName='defaultRes') {
     return $this->connection->error;
   }
 
@@ -155,7 +224,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return integer
    * @access public
    */
-  function get_queryAffectedRows($resName='defaultRes') {
+  public function get_queryAffectedRows($resName='defaultRes') {
     return $this->connection->affected_rows;
   }
   
@@ -165,7 +234,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return integer 
    * @access public
    */
-  function get_queryFieldCount($resName='defaultRes') {
+  public function get_queryFieldCount($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
       return $this->queryRes[$resName]->field_count;
     return '';
@@ -178,7 +247,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return string
    * @access public
    */
-  function get_queryFieldType($fIndex=0, $resName='defaultRes') {
+  public function get_queryFieldType($fIndex=0, $resName='defaultRes') {
     if (isset($this->queryRes[$resName])) {
       $finfo = $this->queryRes[$resName]->fetch_field_direct($fIndex);
       return $this->get_compatibleType($finfo->type);
@@ -192,7 +261,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return boolean result
    * @access public
    */
-  function close_ressource($resName='defaultRes') {
+  public function close_ressource($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
       return $this->queryRes[$resName]->close();
     return true;
@@ -206,7 +275,7 @@ class MySQLiDBConnection extends CDBConnection {
    * @return string
    * @access public
    */
-  function escape_string($string) {
+  public function escape_string($string) {
     return mysqli_real_escape_string($this->connection, $string);
   }
   
@@ -214,9 +283,9 @@ class MySQLiDBConnection extends CDBConnection {
    * return mysql compatible type from given type
    * @param integer $type
    * @return string
-   * @access public
+   * @access private
    */
-  function get_compatibleType($type=1) {
+  private function get_compatibleType($type=1) {
     switch ($type) {
       /* int */
       case 1 /* tinyint */: case 2 /* smallint */: case 3 /* int */:  case 8 /* bigint */: case 9 /* mediumint */: case 16 /* bit */: return 'int';

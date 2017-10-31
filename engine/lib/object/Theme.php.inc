@@ -45,7 +45,9 @@ $global_theme_picts_items['12']['items'] = array('empty',
 						 'text',
 						 'up',
 						 'valid',
-						 'view');
+						 'view', 
+						 'action',
+						 );
 $global_theme_picts_items['12']['positions'] = array('std',
 						     'ovr'); 
 /* available style media */

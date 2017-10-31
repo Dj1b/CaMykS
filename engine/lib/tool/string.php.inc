@@ -106,13 +106,34 @@ function string_numberFormat( $string, $decimal=2, $country=null ) {
         return number_format($string, $decimal, '.', '\'');     // 1'234'567.89
     case 'lk':
         return number_format($string, $decimal, ' ', '.');      // 1 234 567.89
-    /*
-      case 'in':
-      case 'bd':
-      case 'np':
-      case 'pk':
-        return ; // 12,34,567.89 //// https://en.wikipedia.org/wiki/Indian_numbering_system    
-    */
+    
+    case 'in':
+    case 'bd':
+    case 'np':
+    case 'pk':
+        /* split number to remove decimals */
+        $number = (string)string_numberFormat($string, $decimal, 'num');
+        $number = explode('.', $number);
+        
+        /* split number to have the last 3 */
+        $a = substr($number[0], -3);
+        $b = substr($number[0], 0, -3);
+        
+        /* split rest of number in 2 */
+        if (strlen($b) == 0) {
+          /* do nothing */
+        } elseif (strlen($b) < 2)
+          $a = $b.','.$a;
+        elseif (strlen($b) % 2 == 0) {
+          $a = chunk_split($b, 2, ',').$a;
+        } else {
+          $a = substr($b, 0, 1).','.chunk_split(substr($b, 1), 2, ',').$a;
+        }
+        /* add decimals */
+        if (isset($number[1]))
+          $a .= '.'.$number[1];
+        /* return value */
+        return $a; // 12,34,567.89
     default:
     case 'au':
     case 'ca':
@@ -587,7 +608,7 @@ function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=
 }
 
 /*
- * formt given phone number
+ * format given phone number
  * @param string $number
  * @param string $prefix
  * @return string
@@ -630,5 +651,27 @@ function string_formatIntlPhoneNumber($number, $prefix='') {
   return '+'.$prefix.$number;
 }
 
+/*
+ * return string all lowercase, including accentuated characters
+ * @param string $string
+ * @return string
+ * @access public
+ */
+function string_toLower($string='') {
+  if (string_isUTF8($string))
+    return utf8_encode(mb_strtolower(utf8_decode($string)));
+  return strtolower($string);
+}
 
+/*
+ * return string all uppercase, including accentuated characters
+ * @param string $string
+ * @return string
+ * @access public
+ */
+function string_toUpper($string='') {
+  if (string_isUTF8($string))
+    return utf8_encode(mb_strtoupper(utf8_decode($string)));
+  return strtoupper($string);
+}
 ?>
