@@ -400,6 +400,7 @@ function client_getUAInfos($ua=false) {
         'SM-G610F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
+        'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime (2016)', ),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y', ),
         'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos', ),
         'GT-S7582'  => array('platform_model' => 'Galaxy S Duos', ),
@@ -583,6 +584,7 @@ function client_getUAInfos($ua=false) {
         'FRD-L19'   => array('platform_model' => 'Honor 8'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
         'Y520-U22'  => array('platform_model' => 'Ascend'),
+        'CUN-L21'   => array('platform_model' => 'Y5'),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
     );
     $model = trim($matches[1]);
@@ -1667,6 +1669,15 @@ function client_getKnownBots() {
     'platform_format'=>'desktop',            
 	'bot_title'=>'Yahoo! Slurp',
 	'bot_url'=>'http://help.yahoo.com/help/us/ysearch/slurp',
+	'engine_title'=>'Yahoo!',
+	'engine_url'=>'http://www.yahoo.com');
+	
+  /* Yahoo bot : yahoo/Nutch */
+  $knownBots['yahoo/nutch'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',            
+	'bot_title'=>'',
+	'bot_url'=>'',
 	'engine_title'=>'Yahoo!',
 	'engine_url'=>'http://www.yahoo.com');
 
