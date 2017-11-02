@@ -150,7 +150,7 @@ final class Admin_Site extends Module {
       $this->tabBuilder = input_get('TabBuilder', 'camyks');
     else
       $this->tabBuilder = &$camyks->inputs['TabBuilder'];
-    
+      
     /* check if TabBuilder plugin is available */
     if ($this->tabBuilder === false)
       $camyks->throwFatalError(array(
