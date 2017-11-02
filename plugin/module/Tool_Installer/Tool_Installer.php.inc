@@ -604,6 +604,10 @@ class Tool_Installer extends Module {
    */
   function installDone() {
     global $camyks;
+    
+    /* update camyks version in conf file */
+    $camyks->site_conf['cms_version'] = $camyks->version;
+    
     /* add 'installed' value to the conf file */
     $camyks->site_conf['installed'] = 1;
     
