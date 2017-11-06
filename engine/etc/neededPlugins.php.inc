@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Engine / Configuration File
  * Creation Date	: Jun 2005
- * Last Modif Date	: Jan 2008
+ * Last Modif Date	: Oct 2017
  * History :
  * 05-06-xx : Initial file
  * 08-01-07 : Update with new templates & themes names
@@ -38,13 +38,20 @@ $this->neededInputs = array();
 /* Templates */
 $this->neededTemplates = array();
 $this->neededTemplates['AdminPage'] = array('name'=>'AdminPage', 'version'=>'1.0');
-$this->neededTemplates['DefaultPage'] = array('name'=>'DefaultPage', 'version'=>'1.0');
+//$this->neededTemplates['DefaultPage'] = array('name'=>'DefaultPage', 'version'=>'1.0');
 
 /* Themes */
 $this->neededThemes = array();
-$this->neededThemes['GreyStyle'] = array('name'=>'GreyStyle', 'version'=>'1.0');
+//$this->neededThemes['GreyStyle'] = array('name'=>'GreyStyle', 'version'=>'1.0');
 
-/* Widgets */
-$this->neededWidgets = array();
+/* add site configuration plugins */
+if ($this->get_confValue('admin_default_theme') != '')
+  $this->neededThemes[$this->get_confValue('admin_default_theme')] = array('name'=>$this->get_confValue('admin_default_theme'), 'version'=>'1.0');
+
+if ($this->get_confValue('site_default_theme') != '')
+  $this->neededThemes[$this->get_confValue('site_default_theme')] = array('name'=>$this->get_confValue('site_default_theme'), 'version'=>'1.0');
+
+if ($this->get_confValue('site_default_template') != '')
+  $this->neededTemplates[$this->get_confValue('site_default_template')] = array('name'=>$this->get_confValue('site_default_template'), 'version'=>'1.0');
 
 ?>

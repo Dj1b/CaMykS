@@ -56,14 +56,14 @@ $conf['admin_ssl'] = 'default';
 $conf['admin_default_language'] = 'fr';
 /* site admin available languages, set at least one language */ 
 $conf['admin_languages'] = array('fr');
-/* site admin theme : GreyStyle as default */
-$conf['admin_default_theme'] = 'GreyStyle';
+/* site admin theme : IndigoFlatStyle as default */
+$conf['admin_default_theme'] = 'IndigoFlatStyle';
 /* site ssl : default | auto | forced | none */
 $conf['site_ssl'] = 'default';
-/* site default theme : GreyStyle as default */
-$conf['site_default_theme'] = 'GreyStyle';
-/* site default template : DefaultPage as default  */
-$conf['site_default_template'] = 'DefaultPage';
+/* site default theme : no theme as default */
+$conf['site_default_theme'] = '';
+/* site default template : no template as default  */
+$conf['site_default_template'] = '';
 /* site available languages */
 $conf['site_languages'] = array('fr');
 /* site default language */
