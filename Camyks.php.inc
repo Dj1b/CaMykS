@@ -220,10 +220,10 @@ class Camyks {
     $this->get_adminUser();
 
     /* get generic & site conf */
-    $this->check_siteConf( );
+    $this->check_siteConf();
 
     /* check plugins version */
-    $this->check_plugins( );
+    $this->check_plugins();
   }
   
   /* init camyks in admin mode */
@@ -247,7 +247,7 @@ class Camyks {
     $this->add_generic_translation();
 
     /* check plugins version */
-    $this->check_plugins( );
+    $this->check_plugins();
 
     /* check admin user */
     $this->get_adminUser();
@@ -272,9 +272,12 @@ class Camyks {
 
     /* get global language */
     $this->add_generic_translation();
+    
+    /* prepare page */
+    $this->HTMLPage = new HTMLPage();
 
     /* initialise installer module */
-    if ( isset( $this->modules['Tool_Installer'] ) )
+    if (isset( $this->modules['Tool_Installer']))
       $this->modules['Tool_Installer']->init_admin();
     else {
       /* throw fatal error */
@@ -282,7 +285,7 @@ class Camyks {
 		     'description'=>'Installer Module not found',
 		     'error_link'=>'http://www.camyks.net',
 		     'error_title'=>'Check CaMykS website for more informations.');
-      $this->throwFatalError( $error );
+      $this->throwFatalError($error);
     }
   }
   
@@ -844,33 +847,33 @@ class Camyks {
     /* check modules */
     foreach ( $this->neededModules as $p ) {
       if ( !isset($this->modules[$p['name']]))
-	die ( 'Plugin '.$p['name'].' is missing.' );
+	    die ( 'Plugin '.$p['name'].' is missing.' );
       else if ( $this->modules[$p['name']]->version < $p['version'] )
-	die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->modules[$p['name']]->version.'.');
+	    die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->modules[$p['name']]->version.'.');
     }
 
     /* check inputs */
     foreach ( $this->neededInputs as $p ) {
       if ( !isset($this->inputs[$p['name']]))
-	die ( 'Plugin '.$p['name'].' is missing.' );
+	    die ( 'Plugin '.$p['name'].' is missing.' );
       else if ( $this->modules[$p['name']]->version < $p['version'] )
-	die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->inputs[$p['name']]->version.'.');
+	    die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->inputs[$p['name']]->version.'.');
     }
 
     /* check themes */
     foreach ( $this->neededThemes as $p ) {
       if ( !isset($this->themes[$p['name']]))
-	die ( 'Plugin '.$p['name'].' is missing.' );
+	    die ( 'Plugin '.$p['name'].' is missing.' );
       else if ( $this->themes[$p['name']]->version < $p['version'] )
-	die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->inputs[$p['name']]->version.'.');
+	    die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->inputs[$p['name']]->version.'.');
     }
 
     /* check templates */
     foreach ( $this->neededTemplates as $p ) {
       if ( !isset($this->templates[$p['name']]))
-	die ( 'Plugin '.$p['name'].' is missing.' );
+	    die ( 'Plugin '.$p['name'].' is missing.' );
       else if ( $this->templates[$p['name']]->version < $p['version'] )
-	die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->templates[$p['name']]->version.'.');
+	    die ( 'CaMykS need version '.$p['version'] . ' of plugin '.$p['name'].', current is '.$this->templates[$p['name']]->version.'.');
     }
   }
   
@@ -1736,27 +1739,31 @@ class Camyks {
   function get_installPageContent() {
     
     $this->get_currentLanguage('admin');
+    
     /* create page */
-    $this->HTMLPage = new HTMLPage();
-    $this->HTMLPage->set_charset ( $this->get_htmlencodingvalue());
+    $this->HTMLPage->set_charset($this->get_htmlencodingvalue());
     $this->theme->get_included_main_css();
     $this->theme->get_included_parts();
 
-    /* start to build the page with header */
-    $this->HTMLPage->set_siteInformations ( $this->_conf['site_title'],
-					    'CaMykS Team',
-					    '');
-    $this->HTMLPage->set_pageInformations ( $this->modules['Tool_Installer']->title,
-					    null,
-					    null,
-					    $this->current_language);
-    $this->HTMLPage->set_robotInformations ( false, false );
-
+    /* start to build the page with headers */
+    $this->HTMLPage->set_siteInformations(
+        $this->_conf['site_title'],
+		'CaMykS Team',
+		''
+    );
+    $this->HTMLPage->set_pageInformations(
+        $this->modules['Tool_Installer']->title,
+		null,
+		null,
+		$this->current_language
+    );
+    $this->HTMLPage->set_robotInformations(false, false);
     $this->HTMLPage->add_HTMLHeader();
 
+    /* add installer display */
     $this->modules['Tool_Installer']->display_admin();
 
-    /* html ender */
+    /* add html footer */
     $this->HTMLPage->add_HTMLFooter();
   }
 }
