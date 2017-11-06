@@ -114,11 +114,12 @@ class GreyStyle extends Theme {
         $b['more'] .= ' id="'.$b['id'].'"';
 
       if ($b['link'] != '') {
-	    $str .= $this->get_part('boxButtonWithLink', array( $b['style'], $b['link'], $b['title'], $b['more'], $colw));
+	    $str .= $this->get_part('boxButtonWithLink', array($b['style'], $b['link'], $b['title'], $b['more'], $colw));
       } else {
-	    $str .= $this->get_part('boxButtonWithoutLink', array( $b['style'], $b['title'], $b['more'], $colw));
+	    $str .= $this->get_part('boxButtonWithoutLink', array($b['style'], $b['title'], $b['more'], $colw));
       }
     }
+    
     /* simulate a "min" cols bar */
     for( $i=count($buttons); $i < $min; $i++ ) {
       $str .= $this->get_part('boxButtonWithoutLink', array( '', '&nbsp;', '', $colw));

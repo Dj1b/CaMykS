@@ -53,7 +53,7 @@ class FSFile {
    * @access public
    */
   function FSFile($path='', $file=null) {
-    if ( isset($file) ) {
+    if (isset($file)) {
       $this->filename = $file;
       $this->path = $path;
       $this->fullpath = $path.'/'.$file;
