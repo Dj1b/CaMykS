@@ -401,6 +401,7 @@ function client_getUAInfos($ua=false) {
         'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime (2016)', ),
+        'SM-J730F'  => array('platform_model' => 'Galaxy J7 (2017)', ),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y', ),
         'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos', ),
         'GT-S7582'  => array('platform_model' => 'Galaxy S Duos', ),
@@ -779,13 +780,20 @@ function client_getUAInfos($ua=false) {
       'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY/', $ua, $matches))
+  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2/', $ua, $matches)) {
+    $rep = array(
+        'TOMMY2'    => array('platform_model' => 'Tommy 2',),
+    );
+    
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
       'platform_model'=>ucfirst(strtolower($matches[0])),
       'platform_type'=>'handheld',
-      'platform_format'=>'handheld',));
-      
+      'platform_format'=>'handheld'),
+      isset($rep[$matches[0]])?$rep[$matches[0]]:array()
+      );
+  }
+  
   /* check SpreadTrum */
   elseif (preg_match('/SpreadTrum/', $ua, $matches))
   	$infos = array_merge($infos, array(
@@ -1184,6 +1192,20 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
       
+  /* check Lyf mobiles */
+  elseif (preg_match('/(LYF\/F61F)/', $ua, $matches)) {
+    $rep = array(
+         'LYF/F61F' => array('platform_model' => 'JioPhone',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Lyf', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+      
   /*** check operating system ***/
   
   if (!isset($infos['system_title'])) {
@@ -1235,7 +1257,7 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>''), $infos);
   	}
     /* check mobile gen os with notified version */
-  	elseif (preg_match('/(SymbianOS|webOS)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
+  	elseif (preg_match('/(SymbianOS|webOS|KAIOS)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
@@ -1255,7 +1277,7 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
   	
     /* check gen os without notified version */
-  	elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|SymbOS|OS\/2|BeOS|NetBSD|OpenSolaris)/', $ua, $matches)) {
+  	elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|SymbOS|OS\/2|BeOS|NetBSD|OpenSolaris)[^\.]/', $ua, $matches)) {
   	  $rep = array(
         'SymbOS'    => array('platform_company' => '', 'system_title' => 'SymbianOS', 'platform_type'=>'handheld', 'platform_format'=>'handheld',),
       );
@@ -1298,7 +1320,7 @@ function client_getUAInfos($ua=false) {
         'platform_format'=>'handheld',), $infos);
             
     /* check unsmartly written browser */
-  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE |Airmail|EmbeddedWB|DX-Browser|Links)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|SE |Airmail|EmbeddedWB|DX-Browser|Links|Sputnik)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('BIDUBrowser'=>'Baidu Brower', 'SE '=>'Sogou Explorer', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser');
       $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -4784,6 +4806,15 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'Scrapinghub',
     'engine_url'=>'http://www.scrapinghub.com');
+    
+  /* GeeGee */
+  $knownBots['geegee'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'GeeGee',
+    'engine_url'=>'https://geegee.online/');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -4832,6 +4863,15 @@ function client_getKnownBots() {
   
   /* unknown bot */
   $knownBots['smurlexpander'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* unknown bot */
+  $knownBots['dnyzbot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Unknown bot',
