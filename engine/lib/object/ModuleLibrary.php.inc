@@ -923,18 +923,22 @@ class ModuleLibrary {
    * get each item value from an array
    * @param array $data
    * @param array $match
+   * @param boolean $onlyAvailable
    * @return void
    * @access public
    */
-  function get_fromArray( $data, $match=null ) {
-    if ( $match == null) {
-      foreach ( $this->_libItems as &$item )
-	    $item->get_fromArray($data);
+  function get_fromArray($data, $match=null, $onlyAvailable=false ) {
+    if ($match == null) {
+      foreach ($this->_libItems as $name => &$item) {
+        if ($onlyAvailable == false or isset($data[$name]))
+	      $item->get_fromArray($data);
+	  }
       return;
     }
 
-    foreach ( $match as $n )
-      $this->_libItems[$n]->get_fromArray( $data );
+    foreach ($match as $n)
+      if ($onlyAvailable == false or isset($data[$name]))
+        $this->_libItems[$n]->get_fromArray($data);
   }
   
   /*
@@ -961,15 +965,15 @@ class ModuleLibrary {
   /*
    * load object data from session
    * @param string $name
+   * @param boolean $onlyAvailable
    * @return void
    * @access private
    */
-  function load_fromSession($name='ObjectData') {
+  function load_fromSession($name='ObjectData', $onlyAvailable=false) {
     global $camyks;
     
-    $this->get_fromArray($camyks->get_sessionValue($name, array()));
+    $this->get_fromArray($camyks->get_sessionValue($name, array()), null, $onlyAvailable);
   }
-  
   
   /*
    * save object data in session
@@ -981,6 +985,18 @@ class ModuleLibrary {
     global $camyks;
     
     $camyks->set_sessionValue($name, $this->vars);
+  }
+  
+  /*
+   * delete object from session
+   * @param string $name
+   * @return void
+   * @access public
+   */
+  function delete_fromSession($name='ObjectData') {
+    global $camyks;
+    
+    $camyks->set_sessionValue($name, array());
   }
 
   /*********************** FILE I/O ****************************/
