@@ -7,12 +7,12 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Object
  * Creation Date    : Nov 2011
- * Last Modif Date  : Jun 2017
+ * Last Modif Date  : Nov 2017
  *
  * Image generic object
  */
 
-class CImage {
+final class CImage {
   /* params */
   var $source;
   var $resource;
@@ -32,7 +32,7 @@ class CImage {
    * @return void
    * @access public
    */
-  function CImage($source='') {
+  public function __construct($source='') {
     $this->loaded = false;
     $this->tempSrc = null;
     $this->jpgQuality = 75;
@@ -48,9 +48,9 @@ class CImage {
   /*
    * check which image manipulation to use
    * @return void
-   * @access private
+   * @access public
    */
-  function check_imageManipulationEngine() {
+  public function check_imageManipulationEngine() {
     $this->engine = 'gd';
   }
   
@@ -58,13 +58,12 @@ class CImage {
    * load image resource
    * @param string $source
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function load_image($source) {
+  public function load_image($source) {
     /* check source value */
     if ($source == '')
       return false;
-    
     
     if (string_isURL($source) === false) {
       /* check local file */
@@ -92,7 +91,7 @@ class CImage {
    * @return boolean success
    * @access public
    */
-  function save_image($filename, $type='') {
+  public function save_image($filename, $type='') {
     switch ($this->engine) {
         case 'gd':
             return $this->_gd_save_image($filename, $type);
@@ -106,7 +105,7 @@ class CImage {
    * @return boolean result
    * @access public
    */
-  function is_loaded() {
+  public function is_loaded() {
     return $this->loaded;
   }
   
@@ -116,7 +115,7 @@ class CImage {
    * @return void
    * @access public
    */
-  function update_JPGQuality($quality=75) {
+  public function update_JPGQuality($quality=75) {
     $this->jpgQuality = max( 0, min(100, (int)$quality));
   }
   
@@ -129,7 +128,7 @@ class CImage {
    * @return boolean success
    * @access public
    */
-  function crop($width, $height, $position='', $bgColor='#FFFFFF') {
+  public function crop($width, $height, $position='', $bgColor='#FFFFFF') {
     switch ($this->engine) {
         case 'gd':
             return $this->_gd_crop($width, $height, $position, $bgColor);
@@ -146,7 +145,7 @@ class CImage {
    * @return boolean success
    * @access public
    */
-  function resize($width, $height=0, $homothetic=0) {
+  public function resize($width, $height=0, $homothetic=0) {
     switch ($this->engine) {
         case 'gd':
             return $this->_gd_resize($width, $height, $homothetic);
@@ -161,7 +160,7 @@ class CImage {
    * @return boolean success
    * @access public
    */
-  function sharp($gain=40) {
+  public function sharp($gain=40) {
     /* check value */
     $gain = min(100, max(0, (int)$gain));
     
@@ -180,7 +179,7 @@ class CImage {
    * @return boolean success
    * @access public
    */
-  function blur($loss=50) {
+  public function blur($loss=50) {
     /* check value */
     $loss = min(100, max(0, (int)$loss));
     
@@ -198,7 +197,7 @@ class CImage {
    * @param integer $factor
    * @return boolean success
    */
-  function darken($factor=0) {
+  public function darken($factor=0) {
     /* check value */
     $factor = min(100, max(0, (int)$factor));
     
@@ -216,7 +215,7 @@ class CImage {
    * @param integer $factor
    * @return boolean success
    */
-  function lighten($factor=0) {
+  public function lighten($factor=0) {
     /* check value */
     $factor = min(100, max(0, (int)$factor));
     
@@ -234,7 +233,7 @@ class CImage {
    * @param array $params
    * @return boolean success
    */
-  function trim($params=array()) {
+  public function trim($params=array()) {
     /* check params */
     $dParams = array('sides'=>'tblr', 'color'=>'auto');
     $params = array_merge($dParams, $params);
@@ -253,7 +252,7 @@ class CImage {
    * @param array $params
    * @return boolean success
    */
-  function rotate($params=array()) {
+  public function rotate($params=array()) {
     /* check params */
     $dParams = array('angle'=>0, 'bkgdColor'=>0, 'ignoreTransparency'=>0);
     $params = array_merge($dParams, $params);
@@ -274,7 +273,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_load_image($source) {
+  private function _gd_load_image($source) {
     /* save source */
     $this->source = $source;
         
@@ -302,7 +301,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_save_image($filename, $type) {
+  private function _gd_save_image($filename, $type) {
     /* check resource */
     if ($this->resource == null) return false;
   
@@ -340,7 +339,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_crop($width, $height, $position, $bgColor) {
+  private function _gd_crop($width, $height, $position, $bgColor) {
     /* check resource */
     if ($this->resource == null) return false;
     
@@ -588,7 +587,7 @@ class CImage {
    * @return result success
    * @access private
    */
-  function _gd_resize($width, $height, $homothetic) {
+  private function _gd_resize($width, $height, $homothetic) {
     /* check sizes */
     if ( $width == 0 and $height == 0) {
       return false;
@@ -621,7 +620,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_sharp($gain) {
+  private function _gd_sharp($gain) {
     if ($gain >= 80) {
       $gain = 4 + ((100-$gain)*5)/100;
     } else {
@@ -637,7 +636,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_blur($loss) {
+  private function _gd_blur($loss) {
     $loss = 17 - ($loss/5);
             
     return $this->_gd_convolution(array(array(1, 1, 1), array(1, $loss, 1), array(1, 1, 1)));
@@ -649,7 +648,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_darken($factor) {
+  private function _gd_darken($factor) {
     $factor = 100 - min(100, max(0, $factor));
             
     return $this->_gd_convolution(array(array(0, 0, 0), array(0, $factor, 0), array(0, 0, 0)), 100);
@@ -661,7 +660,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_lighten($factor) {
+  private function _gd_lighten($factor) {
     $factor = 100 - $factor;
         
     return $this->_gd_convolution(array(array(0, 0, 0), array(0, 100, 0), array(0, 0, 0)), $factor);
@@ -673,7 +672,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_trim($params) {
+  private function _gd_trim($params) {
     /* auto detect color */
     if ( $params['color'] == 'auto' ) {
       $cc = array();
@@ -775,7 +774,7 @@ class CImage {
    * @access private
    ** TO DO : other angles than 90, -90, 180
    */
-  function _gd_rotate($params) {
+  private function _gd_rotate($params) {
     
     if ($params['angle'] == 0)
       return true;
@@ -810,7 +809,7 @@ class CImage {
    * @return resource
    * @access private
    */
-  function _gd_getAllocatedColor($color, $resource=false) {
+  private function _gd_getAllocatedColor($color, $resource=false) {
   
     /* check color */
     if (preg_match('/#?([0-9A-Fa-f]{6})/', $color, $matches)) {
@@ -835,7 +834,7 @@ class CImage {
    * @return boolean success
    * @access private
    */
-  function _gd_convolution($matrix, $divisor=false, $offset=0) {
+  private function _gd_convolution($matrix, $divisor=false, $offset=0) {
     /* check for convolution method (PHP > 5.1) */
     if(!function_exists("imageconvolution"))
       return false;
