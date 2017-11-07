@@ -174,7 +174,7 @@ class AdminUser {
     $sql .= ')';
     
     /* return result of sql query execution */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
   
   /*
@@ -201,7 +201,7 @@ class AdminUser {
     $sql .= " WHERE login='".$this->login."'";
 
     /* return result of sql query execution */
-    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__));
   }
 
   /*
@@ -218,8 +218,20 @@ class AdminUser {
    * @return boolean success
    * @access private
    */
-  function install ( ) {
+  function install() {
     global $camyks;
+    
+    /* initialise params */
+    $params = array('login' => 'admin', 'password' => 'admin', 'email' => 'admin@example.com');
+    
+    /* check session params */
+    $sData = $camyks->get_sessionValue('InstallerConfig', array());
+    if (isset($sData['webmaster_login']) and trim($sData['webmaster_login']) != '')
+      $params['login'] = preg_replace('/["\']/', '', $sData['webmaster_login']);
+    if (isset($sData['webmaster_password']) and trim($sData['webmaster_password']) != '')
+      $params['password'] = $sData['webmaster_password'];
+    if (isset($sData['webmaster_email']) and trim($sData['webmaster_email']) != '')
+      $params['email'] = $sData['webmaster_email'];
     
     /* build sql query */
     $sql = 'CREATE  TABLE `admin_user` (';
@@ -237,15 +249,15 @@ class AdminUser {
     $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
   
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* try to add first user */
       $this->initialise();
-      $this->login = 'admin';
-      $this->pwd = 'admin';
-      $this->pwd_conf = 'admin';
+      $this->login = $params['login'];
+      $this->pwd = $params['password'];
+      $this->pwd_conf = $params['password'];
       $this->webmaster = 1;
       $this->active = 1;
-      $this->email = 'admin@example.com';
+      $this->email = $params['email'];
       /* other vars */
       $this->change_pwd = 1;
       $this->is_new = 1;
@@ -274,7 +286,7 @@ class AdminUser {
         $sql = 'show tables like "admin_user"';
       
         /* execute sql query */
-        if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )) { 
+        if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
 	      /* get data from database */
 	      $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
 	    }
@@ -315,13 +327,13 @@ class AdminUser {
       /* get all rights */
       $this->rights = array();
       foreach ( $camyks->modules as $m ) {
-	if ( $m->type == 'admin' ) {
-	  $m->get_rights();
-	  $this->rights[ $m->name ] = array();
-	  foreach ( $m->rights as $ridx => $right ) {
-	    $this->rights[ $m->name ][$ridx] = isset ( $_REQUEST[$prefix.$m->name.'_'.$ridx] ) ? $_REQUEST[$prefix.$m->name.'_'.$ridx] : 0;
-	  }
-	}
+	    if ( $m->type == 'admin' ) {
+	      $m->get_rights();
+	      $this->rights[ $m->name ] = array();
+	      foreach ( $m->rights as $ridx => $right ) {
+	        $this->rights[ $m->name ][$ridx] = isset ( $_REQUEST[$prefix.$m->name.'_'.$ridx] ) ? $_REQUEST[$prefix.$m->name.'_'.$ridx] : 0;
+	      }
+	    }
       }
     }
   }
@@ -339,7 +351,7 @@ class AdminUser {
     $this->lastname = isset($data['lastname'])?stripslashes($data['lastname']):'';
     $this->address = isset($data['address'])?stripslashes($data['address']):'';
     $this->rights_ = isset($data['rights'])?$data['rights']:'';
-    $this->rights = data_decode_properties( $this->rights_, ':' );
+    $this->rights = data_decode_properties($this->rights_, ':');
     $this->is_new = 0;
   }
 

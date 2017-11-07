@@ -303,5 +303,26 @@ final class Database_connection {
   public function escape_string($string='') {
     return $this->connection->escape_string($string);
   }
+  
+  /* static methods */
+  
+  /*
+   * return available driver list
+   * method is static to be called without having a working database connection
+   * @return array
+   * @access public
+   */
+  public static function get_availableDriverList() {
+    $list = array();
+    
+    if (function_exists('mysql_connect'))
+      $list['MySQL'] = 'MySQL';
+    if (class_exists('MySQLi'))
+      $list['MySQLi'] = 'MySQLi';
+    if (class_exists('PDO'))
+      $list['PDO:MySQL'] = 'PDO:MySQL';
+    
+    return $list;
+  }
 }
 ?>

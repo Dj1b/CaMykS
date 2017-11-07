@@ -179,11 +179,11 @@ class FSFile {
    * @return void
    * @access public
    */
-  function download( $title=null ) {    
+  function download($title=null) {    
     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
     header('Content-Type: application/octet-stream');
     header('Content-Description: File Transfer');
-    header('Content-Length: ' . $this->size );
+    header('Content-Length: '.$this->size);
     if (isset($title)) {
       if (!preg_match('/\.'.$this->ext.'$/', $title))
         $title .= '.'.$this->ext;
@@ -221,6 +221,14 @@ class FSFile {
   function md5($raw_output=false) {
     return md5_file($this->fullpath, $raw_output);
   }
-   
+  
+  /*
+   * return file as base64 data
+   * @return string
+   * @access public
+   */
+  public function get_base64Data() {
+    return 'data:'.$this->mime.';base64,'.base64_encode(file_get_contents($this->fullpath));
+  }
 }
 ?>
