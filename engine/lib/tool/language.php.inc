@@ -2,65 +2,78 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
+ * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2005
  * Last Modif Date	: Jun 2007
  *
  * Language static methods
  */
 
-define( "LANG_ICON_PATH", 	"");
-define( "LANG_ICON_EXTENSION",	".gif");
-define( "LANG_ICON_DEFAULT", 	"default");
+define("LANG_ICON_PATH", 	"");
+define("LANG_ICON_EXTENSION",	".gif");
+define("LANG_ICON_DEFAULT", 	"default");
 
 global $languages;
-$languages = array('de'=>array('title'=>'Deutsch', 
-			       'locale'=>array(''=>array('de_DE'),
-				 				 'utf8'=>array('de_DE.utf8', 'de_DE.UTF8', 'de_DE.UTF-8' ))),
-                   'en'=>array('title'=>'English',
-			       'locale'=>array(''=>array('en_GB'))),
-                   'fr'=>array('title'=>'Fran&ccedil;ais',
-			       'locale'=>array('' => array('fr_FR',
-							   'french',
-							   'france',
-							   'fr_FR@euro'),
-					       'utf8' => array('fr_FR.utf8',
-							       'fr_FR.UTF-8',
-							       'fr_FR.UTF8',
-							       'fr_FR',
-							       'french',
-							       'france',
-							       'fr_FR@euro'),
-					       'iso88591'=>array('fr_FR.iso88591',
-								 'fr_FR.iso885915@euro',
-								 'fr_FR.8859-1',
-								   'fr_FR.88591',
-								 'fr_FR.ISO8859-1',
-								 'fr_FR',
-								 'french',
-								 'france',
-								 'fr_FR@euro'))),
-		   'it' => array('title'=>'Italiano',
-				 'locale'=>array(''=>array('it_IT'))),
-		   'es' => array('title'=>'Espa&ntild;ol', 
-				 'locale'=>array(''=>array('es_ES'),
-				 				 'utf8'=>array('es_ES.utf8', 'es_ES.UTF8', 'es_ES.UTF-8' ))),
-		   'br' => array('title'=>'Brasileiro', 
-				 'locale'=>array(''=>array('pt_BR'),
-				 				 'utf8'=>array('pt_BR.utf8', 'pt_BT.UTF8', 'pt_BR.UTF-8' ))),
-				 				 
-				 				 
-				 				 );
+$languages = array(
+    'en'    => array(
+        'title'     => 'English',
+        'locale'    => array(
+            ''      => array('en_GB'),
+        ),
+    ),
+    'fr'    => array(
+        'title'     => 'Fran&ccedil;ais',
+        'locale'    => array(
+            ''          => array('fr_FR', 'french', 'france', 'fr_FR@euro'),
+			'utf8'      => array('fr_FR.utf8', 'fr_FR.UTF-8', 'fr_FR.UTF8', 'fr_FR', 'french', 'france', 'fr_FR@euro'),
+            'iso88591'  => array('fr_FR.iso88591', 'fr_FR.iso885915@euro', 'fr_FR.8859-1', 'fr_FR.88591', 'fr_FR.ISO8859-1', 'fr_FR', 'french', 'france', 'fr_FR@euro'),
+        ),
+    ),
+    'de'    => array(
+        'title'     => 'Deutsch', 
+	    'locale'    => array(
+	        ''      => array('de_DE'),
+	        'utf8'  => array('de_DE.utf8', 'de_DE.UTF8', 'de_DE.UTF-8' ),
+	    ),
+	),
+	'it'    => array(
+	    'title'     => 'Italiano',
+		'locale'    => array(
+		    ''      => array('it_IT'),
+		),
+    ),
+	'es'    => array(
+	    'title'     => 'Espa&ntilde;ol', 
+        'locale'    => array(
+            ''      => array('es_ES'),
+    		'utf8'  => array('es_ES.utf8', 'es_ES.UTF8', 'es_ES.UTF-8'),
+        ),
+    ),
+    'pt'    => array(
+        'title'     => 'Portugu&ecirc;s', 
+		'locale'    => array(
+		    ''      => array('pt_PT'),
+		   'utf8'   => array('pt_PT.utf8', 'pt_PT.UTF8', 'pt_PT.UTF-8'),
+		),
+    ),
+	'br'    => array(
+	    'title'     => 'Brasileiro',
+	    'locale'    => array(
+	        ''      => array('pt_BR'),
+    	    'utf8'  => array('pt_BR.utf8', 'pt_BT.UTF8', 'pt_BR.UTF-8')
+    	),
+    ),
+);
 
 /* 
  * send languages
  * @return array
  * @access public
  */
-function language_getAvailableLanguages ( ) {
+function language_getAvailableLanguages() {
   global $languages;
   return $languages;
 }
@@ -70,9 +83,9 @@ function language_getAvailableLanguages ( ) {
  * @param string $lg
  * @return boolean
  */
-function language_isKnownlanguage ( $lg ) {
+function language_isKnownlanguage($lg) {
   global $languages;
-  return ( isset( $languages[$lg]  ) );
+  return (isset($languages[$lg]));
 }
 
 /*
@@ -81,9 +94,9 @@ function language_isKnownlanguage ( $lg ) {
  * @return string
  * @access public
  */
-function language_getTitle ( $lg ) {
+function language_getTitle($lg) {
   global $languages;
-  if ( isset( $languages[$lg] ) ) {
+  if (isset($languages[$lg])) {
     return $languages[$lg]['title'];
   } else {
     return '';
@@ -99,7 +112,7 @@ function language_getTitle ( $lg ) {
  * @return string
  * @access public
  */
-function language_getIcon ( $short, $full=true ) {
+function language_getIcon($short, $full=true) {
   global $camyks;
   
   $flag = $camyks->get_dataFileURL('img/flag/'.$short.LANG_ICON_EXTENSION);
@@ -119,7 +132,7 @@ function language_getIcon ( $short, $full=true ) {
  * @return string
  * @access public
  */
-function language_getLocale ( $short_name, $encodage='' ) {
+function language_getLocale($short_name, $encodage='') {
   global $languages;
   if ( isset ( $languages[$short_name]['locale'][$encodage]) ) {
     return $languages[$short_name]['locale'][$encodage];
@@ -148,7 +161,7 @@ function language_getFileUnit ( ) {
 }
 
 /*
- * return number formatting case of countries
+ * return number formatting case of current language
  * @param float $number
  * @param integer $floats
  * @return string
@@ -156,17 +169,6 @@ function language_getFileUnit ( ) {
  */
 function language_numberFormat($number, $floats=2) {
   global $camyks;
-  switch ( $camyks->current_language ) {
-  case 'fr':
-    return number_format($number, $floats, ',', ' ');
-  case 'de':
-  case 'it':
-    return number_format($number, $floats, ',', '.');
-  case 'ch':
-    return number_format($number, $floats, ',', '\'');
-  case 'en':
-  default:
-    return number_format($number, $floats);
-  }
+  return string_numberFormat($number, $floats, $camyks->current_language);
 }
 ?>
