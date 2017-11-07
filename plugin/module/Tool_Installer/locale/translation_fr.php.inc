@@ -2,17 +2,68 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
+ * Object Type      : Plugin / Module Dictionnary
  * Creation Date	: Aug 2007
- * Last Modif Date      : Jun 2008
+ * Last Modif Date  : Oct 2017
  *
  * Tool_Installer language dictionnary : French
 */
 $this->trads['mod_tool_installer_title'] = 'Installation du site';
 $this->trads['mod_tool_installer_desc'] = 'Installation du site';
+
+/* SSL mode values */
+$this->trads['mod_tool_installer_sslmode_default'] = 'Par d&eacute;faut (choix de l\'utilisateur)';
+$this->trads['mod_tool_installer_sslmode_auto'] = 'Automatique (SSL utilis&eacute; si disponible)';
+$this->trads['mod_tool_installer_sslmode_forced'] = 'Forc&eacute;';
+$this->trads['mod_tool_installer_sslmode_none'] = 'Forc&eacute; sans SSL';
+
+/* mobile mode values */
+$this->trads['mod_tool_installer_mobilemode_none'] = 'Aucune';
+$this->trads['mod_tool_installer_mobilemode_responsive'] = 'Affichage adaptatif';
+$this->trads['mod_tool_installer_mobilemode_dedicated'] = 'Affichage d&eacute;di&eacute;';
+
+/* welcome */
+$this->trads['mod_tool_installer_welcome_title'] = 'Bienvenue sur';
+$this->trads['mod_tool_installer_start_installation'] = 'D&eacute;marrer l\'installation';
+
+/* utilities texts */
+$this->trads['mod_tool_installer_no_selected_theme'] = 'Aucun';
+$this->trads['mod_tool_installer_no_selected_template'] = 'Aucun';
+
+/* configuration */
+$this->trads['mod_tool_installer_formtitle_configuration'] = 'Configuration';
+$this->trads['mod_tool_installer_formtitle_website'] = 'Site internet';
+$this->trads['mod_tool_installer_formitem_title'] = 'Titre : ';
+$this->trads['mod_tool_installer_formitem_version'] = 'Version : ';
+$this->trads['mod_tool_installer_formitem_encoding'] = 'Encodage : ';
+$this->trads['mod_tool_installer_formitem_author'] = 'Auteur : ';
+$this->trads['mod_tool_installer_formitem_company'] = 'Soci&eacute;t&eacute; : ';
+$this->trads['mod_tool_installer_formtitle_admin'] = 'Espace d\'administration';
+$this->trads['mod_tool_installer_formitem_languages'] = 'Langues disponibles : ';
+$this->trads['mod_tool_installer_formitem_default_language'] = 'Langue par d&eacute;faut : ';
+$this->trads['mod_tool_installer_formitem_editing_languages'] = 'Langues en &eacute;dition : ';
+$this->trads['mod_tool_installer_formitem_theme'] = 'Th&egrave;me : ';
+$this->trads['mod_tool_installer_formitem_ssl'] = 'SSL : ';
+$this->trads['mod_tool_installer_formtitle_visitor'] = 'Espace visiteur';
+$this->trads['mod_tool_installer_formitem_template'] = 'Template : ';
+$this->trads['mod_tool_installer_formitem_maxmodules'] = 'Modules max. par page : ';
+$this->trads['mod_tool_installer_formtitle_database'] = 'Base de donn&eacute;es';
+$this->trads['mod_tool_installer_formitem_driver'] = 'Driver : ';
+$this->trads['mod_tool_installer_formitem_host'] = 'H&ocirc;te : ';
+$this->trads['mod_tool_installer_formitem_name'] = 'Nom de la base : ';
+$this->trads['mod_tool_installer_formtitle_webmaster'] = 'Compte principal';
+$this->trads['mod_tool_installer_formdesc_webmaster'] = 'Indiquez les informations de connection pour le compte administrateur principal.';
+$this->trads['mod_tool_installer_formitem_login'] = 'Identifiant : ';
+$this->trads['mod_tool_installer_formitem_password'] = 'Mot de passe : ';
+$this->trads['mod_tool_installer_formtitle_options'] = 'Options';
+$this->trads['mod_tool_installer_formitem_googleanalytics'] = 'Google Analytics : ';
+$this->trads['mod_tool_installer_formitem_domain'] = 'Domaine : ';
+$this->trads['mod_tool_installer_formdesc_domain'] = 'Laissez vide si n&eacute;cessaire';
+$this->trads['mod_tool_installer_formitem_mobilemode'] = 'Adaptation mobile : ';
+$this->trads['mod_tool_installer_continue'] = 'Continuer';
 
 /* check interface */
 $this->trads['mod_tool_installer_camyksconfigcheck'] = 'V&eacute;rification du syst&egrave;me CaMykS';
@@ -54,4 +105,7 @@ $this->trads['mod_tool_installer_template_x_installed'] = 'Template "%s" install
 $this->trads['mod_tool_installer_symlink_x_created'] = 'Lien "%s" cr&eacute;&eacute;';
 $this->trads['mod_tool_installer_installation_done'] = 'Installation termin&eacute;e';
 $this->trads['mod_tool_installer_open_admin'] = 'Acc&eacute;der &agrave; l\'administration du site';
+
+/* installation errors */
+$this->trads['mod_tool_installer_installation_error_cantwriteconfigfile'] = 'Impossible d\'&eacute;crire le fichier de configuration.';
 ?>
