@@ -4815,6 +4815,15 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'GeeGee',
     'engine_url'=>'https://geegee.online/');
+    
+  /* AplicatiiGalaxy */
+  $knownBots['aplicatiigalaxy'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'AplicatiiGalaxy',
+    'bot_url'=>'mailto:aplicatiigalaxy@gmail.com',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
