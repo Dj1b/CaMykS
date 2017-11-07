@@ -86,7 +86,7 @@ class MLDatabaseItem extends ModuleLibraryItem {
    * @return void
    * @access public
    */
-  function get_fromArray( $data ) {
+  function get_fromArray($data) {
     global $camyks;
         
     switch ( $this->datatype ) {

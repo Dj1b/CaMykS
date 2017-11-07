@@ -62,28 +62,25 @@ class Admin_User extends Module {
   /*
    * install module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function install ( ) {
-    if ( $this->user->install( ) ) {
-      return parent::install();
-    }
-    return false;
+  function install( ) {
+    return ($this->user->install() and parent::install());
   }
   
   /*
    * unsinstall module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function uninstall ( ) {
+  function uninstall( ) {
     return 'module_can_t_be_uninstalled';
   }
 
   /*
    * check module installation
    * @return boolean result
-   * @access private
+   * @access public
    */
   function is_installed ( ) {
     return $this->user->is_installed();
@@ -92,7 +89,7 @@ class Admin_User extends Module {
   /*
    * init module object in admin mode
    * @return void
-   * @access private
+   * @access public
    */
   function init_admin () {
     global $camyks;

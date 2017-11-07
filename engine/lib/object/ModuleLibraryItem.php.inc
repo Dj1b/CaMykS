@@ -30,8 +30,8 @@ class ModuleLibraryItem {
    * @return void
    * @access public
    */
-  function get_fromArray( $data ) {
-    $this->value = isset($data[ $this->name ]) ? $data[$this->name] : $this->default;
+  function get_fromArray($data) {
+    $this->value = isset($data[$this->name]) ? $data[$this->name] : $this->default;
   }
 
   /*
@@ -40,8 +40,8 @@ class ModuleLibraryItem {
    * @return string
    * @access public
    */
-  function get_valueFromHeader( $name ) {
-    return isset ( $_REQUEST[ $name ] ) ? $_REQUEST[ $name ] : $this->default;
+  function get_valueFromHeader($name) {
+    return isset($_REQUEST[$name]) ? $_REQUEST[ $name ] : $this->default;
   }
 
   /*
@@ -50,7 +50,7 @@ class ModuleLibraryItem {
    * @return integer
    * @access public
    */
-  function get_dateFromHeader( $name ) {
+  function get_dateFromHeader($name) {
     if ( isset($_REQUEST[$name]) ) {
       return $_REQUEST[$name] == -1 ? $this->default : (int)$_REQUEST[$name];
     } else if ( !isset ( $_REQUEST[$name.'_year']) ) {
