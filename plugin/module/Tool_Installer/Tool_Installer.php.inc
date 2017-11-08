@@ -476,12 +476,15 @@ final class Tool_Installer extends Module {
 	);
 	
     if ($this->db_conn->is_active()) {
-      if ($this->db_conn->select($camyks->site_conf['database_name']))
+      if ($this->db_conn->database_exists($camyks->site_conf['database_name']))
 	    $message['value'] = $this->get_translation('ok');
       else
 	    $message['value'] = $this->get_translation('database_dbdoesntexist');
     }
     $this->summary[] = $message;
+    
+    /* close the database */
+    $this->db_conn->kill();
   }
 
   /*
@@ -493,20 +496,25 @@ final class Tool_Installer extends Module {
     global $camyks;
 
     /* do not install sym links in "dedicated" installation mode */
-    if ( $camyks->_installationMode == 'dedicated' )
+    if ($camyks->_installationMode == 'dedicated')
       return;
     
     /* add symLinks check title */
-    $this->summary[] = array('type'=>'title',
-			     'name'=>$this->get_translation('symLinkscheck'),
-			     'value'=>'');
+    $this->summary[] = array(
+        'type'  => 'title',
+		'name'  => $this->get_translation('symLinkscheck'),
+	    'value' => '',
+	);
+	
     /* check write right */
-    $message = array('type'=>'message',
-		     'name'=>$this->get_translation('write_rights'),
-		     'value'=>'');
+    $message = array(
+        'type'  => 'message',
+		'name'  => $this->get_translation('write_rights'),
+		'value' => '',
+	);
     $myfile = realpath('.');
 
-    if ( is_writable( $myfile ) ) {
+    if (is_writable( $myfile ) ) {
       $message['value'] = $camyks->get_translation('yes');
       $message['color'] = $this->textColors['yes'];
     } else {
@@ -517,10 +525,12 @@ final class Tool_Installer extends Module {
     $this->summary[] = $message;
 
     /* check symlink exists */
-    foreach ( $this->symLinks as $l ) {
-      $message = array('type'=>'message',
-		       'name'=>$this->get_translation('symlinkfound', $l),
-		       'value'=>'');
+    foreach ($this->symLinks as $l) {
+      $message = array(
+        'type'  => 'message',
+		'name'  => $this->get_translation('symlinkfound', $l),
+		'value' => '',
+	  );
       
       if (file_exists(realpath('./'.$l))) {
 	    $message['value'] = $camyks->get_translation('yes');
@@ -550,8 +560,10 @@ final class Tool_Installer extends Module {
 
     /* check modules */
     foreach ($camyks->neededModules as $p) {
-      $message = array('type'=>'message',
-		       'name'=>$camyks->get_translation('modulex', $p['name']));
+      $message = array(
+        'type'  => 'message',
+		'name'  => $camyks->get_translation('modulex', $p['name'])
+	  );
       if ( !isset($camyks->modules[$p['name']])) {
 	    $message['value'] = $this->get_translation('notfound');
 	    $message['color'] = $this->textColors['no'];
@@ -652,7 +664,7 @@ final class Tool_Installer extends Module {
 					       
     /* check if connection is active */
     if ($camyks->db_conn->is_active()) {
-      if(!$camyks->db_conn->select( $camyks->site_conf['database_name'])) {
+      if (!$camyks->db_conn->database_exists($camyks->site_conf['database_name'])) {
 	    $message = array(
 	      'type'    => 'message',
 		  'name'    => $this->get_translation('database_created'),
@@ -701,8 +713,14 @@ final class Tool_Installer extends Module {
 		'name'  => $this->get_translation('symlink_x_created', $l),
 	  );
 	  
+	  /* check if link already exists */
+	  if (file_exists( realpath('./'.$l )))
+	    continue;
+	  
+	  /* create link */
       shell_ln ( $camyks->site_conf['engine_path'].'/'.$f, realpath('.').'/'.$l);
       
+      /* check it has correctly be created */
       if (file_exists( realpath('./'.$l ))) {
 	    $message['value'] = $camyks->get_translation('yes');
 	    $message['color'] = $this->textColors['yes'];
@@ -871,7 +889,7 @@ final class Tool_Installer extends Module {
     
     /* remove config from session */
     $this->params->delete_fromSession('InstallerConfig');
-    
+
     /* add site admin link button */
     $this->buttons = array(array(
         'title' => $this->get_translation('open_admin'),

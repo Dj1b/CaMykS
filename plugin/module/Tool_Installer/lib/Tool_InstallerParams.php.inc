@@ -129,7 +129,8 @@ final class Tool_InstallerParams extends ModuleLibrary {
     $this->_libItems['site_name']->value = basename(getcwd());
     
     /* set up site url value */
-    $this->_libItems['url']->value = (isset($_SERVER['HTTPS']) ? "https" : "http").'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    $uri = explode('?', $_SERVER['REQUEST_URI'], 2);
+    $this->_libItems['url']->value = (isset($_SERVER['HTTPS']) ? "https" : "http").'://'.$_SERVER['HTTP_HOST'].$uri[0];
   }
   
   /* specific data related methods */
