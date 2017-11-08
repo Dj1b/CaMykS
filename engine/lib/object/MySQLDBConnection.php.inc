@@ -49,7 +49,10 @@ final class MySQLDBConnection extends CDBConnection {
    */
   public function disconnect_server() {
     if ($this->is_connectionActive())
-      return mysql_close();
+      if (mysql_close())
+        $this->active = false;
+      else
+        return false;
     return true;
   }
   

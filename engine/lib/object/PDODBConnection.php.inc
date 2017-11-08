@@ -54,6 +54,7 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function disconnect_server() {
+    $this->active = false;
     $this->connection = null;
   }
   

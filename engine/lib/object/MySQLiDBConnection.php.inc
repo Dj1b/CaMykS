@@ -34,7 +34,7 @@ final class MySQLiDBConnection extends CDBConnection {
    */
   public function connect_server($host='localhost', $login='', $pwd='', $driver='') {
     /* database server connection */
-    $this->connection = @(new MySQLi($host, $login, $pwd));
+    $this->connection = @(new MySQLi($host, $login, $pwd, ''));
    
     /* check if connection is made successfully */
     $this->active = ($this->connection->connect_errno === 0);
@@ -48,7 +48,10 @@ final class MySQLiDBConnection extends CDBConnection {
    */
   public function disconnect_server() {
     if ($this->is_connectionActive())
-      return $this->connection->close();
+      if ($this->connection->close())
+        $this->active = false;
+      else
+        return false;
     return true;
   }
   
