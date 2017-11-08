@@ -2,47 +2,47 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Object
+ * Object Type      : Engine / Object
  * Creation Date	: Jun 2007
- * Last Modif Date      : Jun 2007
+ * Last Modif Date  : Nov 2017
  *
  * FileSystem File Object
  */
 
-class FSFile {
+final class FSFile {
   /* file name */
-  var $filename;
+  public $filename;
   /* parent folder path */
-  var $path; 
+  public $path; 
   /* full file path */
-  var $fullpath;
+  public $fullpath;
   /* file existence value */
-  var $exists;
+  public $exists;
   /* size in octet/byte */
-  var $size;
+  public $size;
   /* human readable size */
-  var $hsize;
+  public $hsize;
   /* file mime */
-  var $mime;
+  public $mime;
   /* type : first part of mime */
-  var $type;
+  public $type;
   /* file extension */
-  var $ext;
+  public $ext;
   /* file last opening time */
-  var $atime;
+  public $atime;
   /* file last modification time */
-  var $mtime;
+  public $mtime;
   /* file last inode change time */
-  var $ctime;
+  public $ctime;
   /* mime description */
-  var $mimedesc;
+  public $mimedesc;
   /* type description */
-  var $typedesc;
+  public $typedesc;
   /* more information list */
-  var $moreinfos;
+  public $moreinfos;
 
 
   /*
@@ -52,7 +52,7 @@ class FSFile {
    * @return void
    * @access public
    */
-  function FSFile($path='', $file=null) {
+  public function __construct($path='', $file=null) {
     if (isset($file)) {
       $this->filename = $file;
       $this->path = $path;
@@ -75,7 +75,7 @@ class FSFile {
    * @return void
    * @access private
    */
-  function get() {
+  private function get() {
     if ( $this->exists === false ) {
       return;
     }
@@ -98,21 +98,20 @@ class FSFile {
   /*
    * get file mime
    * @return void
-   * @access public
+   * @access private
    */
-  function get_mime() {
+  private function get_mime() {
     $this->mime = file_getMime( $this->fullpath, $this->ext );
     $t = explode( '/', $this->mime );
     $this->type = $t[0];
   }
 
-
   /* 
    * get file stat
    * @return void
-   * @access public
+   * @access private
    */
-  function get_stat() {
+  private function get_stat() {
     $stat = stat( $this->fullpath );
     $this->size = $stat['size'];
     $this->atime = $stat['atime'];
@@ -124,9 +123,9 @@ class FSFile {
   /*
    * get file description
    * @return void
-   * @access public
+   * @access private
    */
-  function get_descriptions() {
+  private function get_descriptions() {
     $this->typedesc = file_getTypeDescription( $this->mime, $this->ext );
     $this->mimedesc = file_getMimeDescription( $this->mime );
     $this->hsize = file_getFileSize( $this->size );
@@ -135,9 +134,9 @@ class FSFile {
   /*
    * get more info from file
    * @return void
-   * @access public
+   * @access private
    */
-  function get_moreInfos() {
+  private function get_moreInfos() {
     if ( $this->type == 'image' ) {
       $this->get_imageInfos();
     }
@@ -146,9 +145,9 @@ class FSFile {
   /*
    * get more info from image file 
    * @return void
-   * @access public
+   * @access private
    */
-  function get_imageInfos() {
+  private function get_imageInfos() {
     $this->moreinfos = array_merge($this->moreinfos, file_getImageSize( $this->fullpath ));
   }
 
@@ -159,7 +158,7 @@ class FSFile {
    * @return string
    * @access public
    */
-  function get_mimeIcon($size=32, $styles='') {
+  public function get_mimeIcon($size=32, $styles='') {
     return file_getMimeIcon($this->mime, $size, $styles);
   }
   
@@ -169,7 +168,7 @@ class FSFile {
    * @return string
    * @access public
    */
-  function get_mimeIconURL($size=32) {
+  public function get_mimeIconURL($size=32) {
     return file_getMimeIconURL($this->mime, $size);
   }
 
@@ -179,7 +178,7 @@ class FSFile {
    * @return void
    * @access public
    */
-  function download($title=null) {    
+  public function download($title=null) {    
     header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
     header('Content-Type: application/octet-stream');
     header('Content-Description: File Transfer');
@@ -200,7 +199,7 @@ class FSFile {
    * @return void
    * @access public
    */
-  function send($title=null) {
+  public function send($title=null) {
     header('Content-Type: '.$this->mime.'');
     if (isset($title)) {
       if (!preg_match('/\.'.$this->ext.'$/', $title))
@@ -218,7 +217,7 @@ class FSFile {
    * @return string
    * @access public
    */
-  function md5($raw_output=false) {
+  public function md5($raw_output=false) {
     return md5_file($this->fullpath, $raw_output);
   }
   
