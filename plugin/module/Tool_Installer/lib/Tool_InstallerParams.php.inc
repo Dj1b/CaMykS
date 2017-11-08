@@ -126,11 +126,14 @@ final class Tool_InstallerParams extends ModuleLibrary {
   public function initialise_hiddenValues() {
      
     /* set up site name/folder value */
-    $this->_libItems['site_name']->value = basename(getcwd());
+    if ($this->_libItems['site_name']->value == '')
+      $this->_libItems['site_name']->value = basename(getcwd());
     
     /* set up site url value */
-    $uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-    $this->_libItems['url']->value = (isset($_SERVER['HTTPS']) ? "https" : "http").'://'.$_SERVER['HTTP_HOST'].$uri[0];
+    if ($this->_libItems['url']->value == '') {
+      $uri = explode('?', $_SERVER['REQUEST_URI'], 2);
+      $this->_libItems['url']->value = (isset($_SERVER['HTTPS']) ? "https" : "http").'://'.$_SERVER['HTTP_HOST'].$uri[0];
+    }
   }
   
   /* specific data related methods */
