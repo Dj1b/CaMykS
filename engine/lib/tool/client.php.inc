@@ -5714,6 +5714,24 @@ function client_getKnownTools() {
     'engine_title'=>'Web washer',
     'engine_url'=>'https://www.mcafee.com');
     
+  /* Optimizer */
+  $knownTools['optimizer'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Optimizer',
+    'tool_url'=>'',
+    'engine_title'=>'Sistrix',
+    'engine_url'=>'https://www.sistrix.com');
+    
+  /* evc-batch */
+  $knownTools['evc-batch'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'evc-batch',
+    'tool_url'=>'',
+    'engine_title'=>'eVenture Capital Partners II, LLC',
+    'engine_url'=>'http://www.eventures.vc/');
+    
   /* return list */
   return $knownTools;
 }
