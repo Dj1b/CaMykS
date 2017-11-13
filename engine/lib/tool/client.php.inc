@@ -352,17 +352,19 @@ function client_getUAInfos($ua=false) {
         'SM-G900A'  => array('platform_model' => 'Galaxy S5', ),
         'SM-G900F'  => array('platform_model' => 'Galaxy S5', ),
         'SM-G903F'  => array('platform_model' => 'Galaxy S5', ),
-        'SM-G901F'  => array('platform_model' => 'Galaxy S5 Plus', ),
+        'SM-G901F'  => array('platform_model' => 'Galaxy S5+', ),
         'SM-G920F'  => array('platform_model' => 'Galaxy S6'),
         'SM-G920I'  => array('platform_model' => 'Galaxy S6'),
         'SM-G920P'  => array('platform_model' => 'Galaxy S6'),
         'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
-        'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge +'),
+        'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+'),
         'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge'),
         'SM-T580'   => array('platform_model' => 'Galaxy S8'),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
+        'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
+        'SM-G955F'  => array('platform_model' => 'Galaxy S8+'),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V', ),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
@@ -447,12 +449,13 @@ function client_getUAInfos($ua=false) {
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
         'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
+        'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313 (2014)', ),
         'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
         'SM-G130E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
         'SGH-I527'  => array('platform_model' => 'Galaxy Mega', ),
         'GT-S7392'  => array('platform_model' => 'Galaxy Trend', ),
         'GT-S7560'  => array('platform_model' => 'Galaxy Trend', ),
-        'GT-S7580'  => array('platform_model' => 'Galaxy Trend Plus (2013)', ),
+        'GT-S7580'  => array('platform_model' => 'Galaxy Trend+ (2013)', ),
         'SM-G318H'  => array('platform_model' => 'Galaxy Trend 2 lite (2015)', ),
         'GT-S5660'  => array('platform_model' => 'Galaxy Gio', ),
         'GT-S5660M' => array('platform_model' => 'Galaxy Gio', ),
@@ -1338,7 +1341,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -4824,6 +4827,15 @@ function client_getKnownBots() {
     'bot_url'=>'mailto:aplicatiigalaxy@gmail.com',
     'engine_title'=>'',
     'engine_url'=>'');
+    
+  /* PiplBot */
+  $knownBots['piplbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'PiplBot',
+    'bot_url'=>'http://www.pipl.com/bot/',
+    'engine_title'=>'Pipl',
+    'engine_url'=>'http://www.pipl.com');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
