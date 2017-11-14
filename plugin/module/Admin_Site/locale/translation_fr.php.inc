@@ -55,8 +55,8 @@ $this->trads['mod_admin_site_formitem_serverside'] = 'C&ocirc;t&eacute; serveur 
 $this->trads['mod_admin_site_formitem_clientside'] = 'C&ocirc;t&eacute; client : ';
 
 /* database conf texts */
-$this->trads['mod_admin_site_formtitle_connection'] = 'Connexion';
 $this->trads['mod_admin_site_tabdatabase'] = 'Base de donn&eacute;es';
+$this->trads['mod_admin_site_formtitle_connection'] = 'Connexion';
 $this->trads['mod_admin_site_formitem_databasedriver'] = 'Driver : ';
 $this->trads['mod_admin_site_formitem_databasehost'] = 'Serveur h&ocirc;te : ';
 $this->trads['mod_admin_site_formitem_databasename'] = 'Nom de la base : ';
@@ -64,6 +64,7 @@ $this->trads['mod_admin_site_formitem_databaselogin'] = 'Identifiant : ';
 $this->trads['mod_admin_site_formitem_databasesize'] = 'Taille de la base : ';
 $this->trads['mod_admin_site_formitem_tables'] = 'Tables : ';
 $this->trads['mod_admin_site_formitem_lines'] = 'Lignes : ';
+$this->trads['mod_admin_site_formitem_connections'] = 'Connexions : ';
 $this->trads['mod_admin_site_formtitle_status'] = 'Etat';
 $this->trads['mod_admin_site_formitem_tablesok'] = 'Tables en bonne sant&eacute; : ';
 $this->trads['mod_admin_site_formitem_tablesnotok'] = 'N&eacute;cessitant r&eacute;paration : ';

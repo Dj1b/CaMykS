@@ -10,49 +10,100 @@
  * Last Modif Date  : Oct 2017
  *
  * Admin_Site english dictionnary
-*/
+ *
+ */
 $this->trads['mod_admin_site_title'] = 'Website configuration';
 $this->trads['mod_admin_site_desc'] = 'Check website configuration';
 
-/* generic conf texts */
-$this->trads['mod_admin_site_formitem_theme'] = 'Used theme: ';
-$this->trads['mod_admin_site_formitem_ssl'] = 'SSL connection: ';
+/* ssl values */
+$this->trads['mod_admin_site_sslvalue_auto'] = 'Automatic (SSL used if available)';
+$this->trads['mod_admin_site_sslvalue_forced'] = 'Forced';
+$this->trads['mod_admin_site_sslvalue_none'] = 'Forced without SSL';
+$this->trads['mod_admin_site_sslvalue_default'] = 'Default (visitor\'s choice)';
 
-/* global conf texts */
-$this->trads['mod_admin_site_general'] = 'Properties';
-$this->trads['mod_admin_site_site_title'] = 'Title: ';
-$this->trads['mod_admin_site_site_name'] = 'Name: ';
-$this->trads['mod_admin_site_url'] = 'URL: ';
-$this->trads['mod_admin_site_version'] = 'Version: ';
-$this->trads['mod_admin_site_friendly_urls'] = 'Friendly URLs: ';
-$this->trads['mod_admin_site_author'] = 'Author: ';
-$this->trads['mod_admin_site_company'] = 'Company: ';
+/* caches values */
+$this->trads['mod_admin_site_cache_none'] = 'None';
+$this->trads['mod_admin_site_cache_default'] = 'Default (browser\'s one)';
+$this->trads['mod_admin_site_cache_disabled'] = 'Disabled';
+$this->trads['mod_admin_site_cache_enabled'] = 'Enabled';
+
+/* camyks installation values */
+$this->trads['mod_admin_site_camyksinstallation_dedicated'] = 'Dedicated';
+$this->trads['mod_admin_site_camyksinstallation_shared'] = 'Shared';
+
+/* generic conf texts */
+$this->trads['mod_admin_site_formtitle_general'] = 'General';
+$this->trads['mod_admin_site_formitem_ssl'] = 'SSL connection: ';
+$this->trads['mod_admin_site_formtitle_languages'] = 'Languages';
+$this->trads['mod_admin_site_formitem_version'] = 'Version: ';
+
+/* properties conf texts */
+$this->trads['mod_admin_site_tabproperties'] = 'Properties';
+$this->trads['mod_admin_site_formitem_sitetitle'] = 'Title: ';
+$this->trads['mod_admin_site_formitem_sitename'] = 'Name: ';
+$this->trads['mod_admin_site_formitem_url'] = 'URL: ';
+$this->trads['mod_admin_site_formitem_friendlyurls'] = 'Friendly URLs: ';
+$this->trads['mod_admin_site_formitem_author'] = 'Author: ';
+$this->trads['mod_admin_site_formitem_company'] = 'Company: ';
+$this->trads['mod_admin_site_formitem_installation'] = 'Installation: ';
+$this->trads['mod_admin_site_formitem_path'] = 'Path: ';
+$this->trads['mod_admin_site_formtitle_contacts'] = 'Contacts';
+$this->trads['mod_admin_site_formtitle_settings'] = 'Settings';
+$this->trads['mod_admin_site_formitem_encoding'] = 'Encoding: ';
+$this->trads['mod_admin_site_formitem_htmlversion'] = 'HTML version: ';
+$this->trads['mod_admin_site_formtitle_caches'] = 'Caches';
+$this->trads['mod_admin_site_formitem_serverside'] = 'Server-side: ';
+$this->trads['mod_admin_site_formitem_clientside'] = 'Client-side: ';
 
 /* database conf texts */
-$this->trads['mod_admin_site_database'] = 'Database';
-$this->trads['mod_admin_site_database_host'] = 'Host: ';
-$this->trads['mod_admin_site_database_name'] = 'Name: ';
-$this->trads['mod_admin_site_database_login'] = 'Login: ';
-$this->trads['mod_admin_site_database_change_pwd'] = 'Change password? ';
-$this->trads['mod_admin_site_database_pwd'] = 'Password: ';
-$this->trads['mod_admin_site_database_size'] = 'Database size: ';
+$this->trads['mod_admin_site_tabdatabase'] = 'Database';
+$this->trads['mod_admin_site_formtitle_connection'] = 'Connection';
+$this->trads['mod_admin_site_formitem_databasedriver'] = 'Driver : ';
+$this->trads['mod_admin_site_formitem_databasehost'] = 'Host: ';
+$this->trads['mod_admin_site_formitem_databasename'] = 'Name : ';
+$this->trads['mod_admin_site_formitem_databaselogin'] = 'Login : ';
+$this->trads['mod_admin_site_formitem_databasesize'] = 'Database size: ';
+$this->trads['mod_admin_site_formitem_tables'] = 'Tables: ';
+$this->trads['mod_admin_site_formitem_lines'] = 'Lines: ';
+$this->trads['mod_admin_site_formitem_connections'] = 'Connections : ';
+$this->trads['mod_admin_site_formtitle_status'] = 'Status';
+$this->trads['mod_admin_site_formitem_tablesok'] = 'Good wealth status: ';
+$this->trads['mod_admin_site_formitem_tablesnotok'] = 'Requiring repair: ';
+$this->trads['mod_admin_site_formtitle_error'] = 'Errors';
+$this->trads['mod_admin_site_formtitle_info'] = 'Information';
+$this->trads['mod_admin_site_formtitle_note'] = 'Notes';
+$this->trads['mod_admin_site_formtitle_warning'] = 'Warning';
+$this->trads['mod_admin_site_formdesc_nomessage'] = 'No message';
 
 /* admin conf texts */
-$this->trads['mod_admin_site_adminpart'] = 'Administration';
-$this->trads['mod_admin_site_admin_entry'] = 'Admin entry point: ';
-$this->trads['mod_admin_site_admin_languages'] = 'Admin authorised languages: ';
-$this->trads['mod_admin_site_editing_languages'] = 'Edition available languages: ';
+$this->trads['mod_admin_site_tabadminmode'] = 'Administration';
+$this->trads['mod_admin_site_formitem_adminentry'] = 'Entry point: ';
+$this->trads['mod_admin_site_formitem_theme'] = 'Theme used: ';
+$this->trads['mod_admin_site_formitem_adminlanguages'] = 'Administration languages: ';
+$this->trads['mod_admin_site_formitem_editinglanguages'] = 'Edition languages: ';
+$this->trads['mod_admin_site_formtitle_lists'] = 'Lists';
+$this->trads['mod_admin_site_formitem_items'] = 'Displayed items: ';
+$this->trads['mod_admin_site_formtitle_files'] = 'Files';
+$this->trads['mod_admin_site_formitem_uploadmaxsize'] = 'Upload max size: ';
 
 /* site conf texts */
-$this->trads['mod_admin_site_viewpart'] = 'Visit';
-$this->trads['mod_admin_site_visit_content'] = 'Content';
-$this->trads['mod_admin_site_template'] = 'Default template: ';
-$this->trads['mod_admin_site_pagemaxmodules'] = 'Max. module by page: ';
-$this->trads['mod_admin_site_languages'] = 'Available languages: ';
-$this->trads['mod_admin_site_visit_stats'] = 'Statistics';
-$this->trads['mod_admin_site_google_analytics_code'] = 'Google Analytics code: ';
-$this->trads['mod_admin_site_stats_none'] = 'None';
-$this->trads['mod_admin_site_stats_nonef'] = 'None';
+$this->trads['mod_admin_site_tabsitemode'] = 'Visit';
+$this->trads['mod_admin_site_formitem_defaulttheme'] = 'Default theme: ';
+$this->trads['mod_admin_site_formitem_defaulttemplate'] = 'Default template: ';
+$this->trads['mod_admin_site_formitem_pagemaxmodules'] = 'Max. module by page: ';
+$this->trads['mod_admin_site_formtitle_statistics'] = 'Statistics';
+$this->trads['mod_admin_site_formitem_google_analytics'] = 'Google Analytics code: ';
+$this->trads['mod_admin_site_formitem_domain'] = ' - Domain: ';
+$this->trads['mod_admin_site_stats_none'] = 'Aucun';
+$this->trads['mod_admin_site_stats_nonef'] = 'Aucune';
 $this->trads['mod_admin_site_stats_enabled'] = 'Enabled';
 $this->trads['mod_admin_site_stats_disabled'] = 'Disabled';
+$this->trads['mod_admin_site_formtitle_handheld'] = 'Mobile';
+$this->trads['mod_admin_site_formitem_responsive'] = 'Responsive design: '; 	
+$this->trads['mod_admin_site_formitem_declination'] = 'Mobile declination: ';
+
+/* server conf texts */
+$this->trads['mod_admin_site_tabserver'] = 'Server';
+$this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
+$this->trads['mod_admin_site_formtitle_php'] = 'PHP';
 ?>

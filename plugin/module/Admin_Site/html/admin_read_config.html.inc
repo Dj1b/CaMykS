@@ -260,23 +260,42 @@ global $camyks;
       </td>
     </tr>
     
+    <?php $alt = 1; ?>
+    <?php if (isset($this->dbSummary['tables'])) : ?>
     <tr>
-      <td class="eTableLine1 eContent2">
+      <td class="eTableLine<?=$alt;?> eContent2">
 	    <?=$this->get_translation('formitem_tables');?>
       </td>
-      <td class="eTableLine1 eContent1">
+      <td class="eTableLine<?=$alt;?> eContent1">
 	    <?=count($this->dbSummary['tables']);?>
       </td>
     </tr>
+    <?php $alt=abs($alt-1); ?>
+    <?php endif; ?>
     
+    <?php if (isset($this->dbSummary['tables'])) : ?>
     <tr>
-      <td class="eTableLine0 eContent2">
+      <td class="eTableLine<?=$alt;?> eContent2">
 	    <?=$this->get_translation('formitem_lines');?>
       </td>
-      <td class="eTableLine0 eContent1">
+      <td class="eTableLine<?=$alt;?> eContent1">
 	    <?=$this->dbSummary['lineCount'];?>
       </td>
     </tr>
+    <?php $alt=abs($alt-1); ?>
+    <?php endif; ?>
+    
+    <?php if (isset($this->dbSummary['tables'])) : ?>
+    <tr>
+      <td class="eTableLine<?=$alt;?> eContent2">
+	    <?=$this->get_translation('formitem_connections');?>
+      </td>
+      <td class="eTableLine<?=$alt;?> eContent1">
+	    <?=$this->dbSummary['connections'];?>
+      </td>
+    </tr>
+    <?php $alt=abs($alt-1); ?>
+    <?php endif; ?>
     
     <?php if (isset($this->dbSummary['tablesStatus'])) : ?>
     
