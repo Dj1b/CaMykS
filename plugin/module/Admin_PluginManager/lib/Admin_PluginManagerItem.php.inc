@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Library
  * Creation Date	: Oct 2008
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Nov 2017
  *
  * Admin_PluginManagerItem library
  */
@@ -37,23 +37,23 @@ final class Admin_PluginManagerItem {
   public function install() {
     global $camyks;
     
-    /* build sql query */
-    $sql ='create table if not exists admin_pluginmanager';
-    $sql .= '( plugin varchar (255) not null,';
-    $sql .= ' type varchar (16) not null,';
-    $sql .= ' location varchar (8) not null,';
-    $sql .= ' active tinyint default 0,';
-    $sql .= ' version varchar(16) default "1.0",';
-    $sql .= ' primary key(plugin, type));';
-        
-    /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
-      /* add plugin_manager installation value */
-      $sql = 'insert ignore into admin_pluginmanager';
-      $sql .= ' ( plugin, type, location, active, version ) VALUES';
-      $sql .= ' ( "'.$this->_libParent->name.'", "module", "camyks", 1, "'.$this->_libParent->version.'");';
-      /* execute sql query */
-      return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    /* create table */
+    $fields = array(
+        array('name'=>'plugin', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
+        array('name'=>'type', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>16, 'default'=>''),
+        array('name'=>'location', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>8, 'default'=>''),
+        array('name'=>'active', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'version', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>16, 'default'=>'1.0'),
+    );
+    
+    if ($camyks->db_conn->create_table('admin_pluginmanager', $fields, $camyks->get_mysqlencodingvalue(), false, array('plugin', 'type'))) {
+      /* add first element, plugin itself */
+      $this->pluginvalue = $this->_libParent->name;
+      $this->typevalue = 'module';
+      $this->locationvalue = 'camyks';
+      $this->activevalue = 1;
+      $this->versionvalue = $this->_libParent->version;
+      return $this->create_toDatabase();
     }
     return false;
   }
@@ -65,21 +65,18 @@ final class Admin_PluginManagerItem {
    */
   public function is_installed ( ) {
     global $camyks;
+    
     if ( $this->_libIsInstalled == null ) {
     
-      /* check with plugin manager */
-      if (isset($camyks->modules['Admin_PluginManager'])) {
+      /* check database presence in plugin manager module */
+      if (isset($camyks->modules['Admin_PluginManager']))
         $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('admin_pluginmanager');
-      } else {
-        /* build sql query */
-        $sql = "show tables like 'admin_pluginmanager'";
-      
-        /* execute sql query */
-        if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) { 
-	      /* get data from database */
-	      $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
-        }
-      }
+    
+      /* load table list */
+      $tl = $camyks->db_conn->get_tableList();
+    
+      /* check if main table is in installed table list */
+      $this->_libIsInstalled = in_array('admin_pluginmanager', $tl);
     }
     return $this->_libIsInstalled;
   }
@@ -134,7 +131,7 @@ final class Admin_PluginManagerItem {
     $sql = 'insert into admin_pluginmanager';
     $sql .= ' ( plugin, type, location, active, version ) VALUES';
     $sql .= ' ( "'.addslashes($this->pluginvalue).'","'.addslashes($this->typevalue);
-    $sql .= '","'.addslashes($this->locationvalue).'",'.addslashes($this->activevalue).',';
+    $sql .= '","'.addslashes($this->locationvalue).'",'.(int)$this->activevalue.',';
     $sql .= '"'.addslashes($this->versionvalue).'");';
     
     /* execute sql query */
@@ -260,24 +257,36 @@ final class Admin_PluginManagerItem {
     return false;
   }
   
-  /* generic module library multi object data manipulation */
+  /* generic methods for multi object data manipulation  */
 
   /*
    * get plugin list
+   * @param array $params
    * @return array
    * @access public
    */
-  public function get_objectList() {
+  public function get_objectList($params=array()) {
     global $camyks;
 
+    /* check params */
+    $params = array_merge($this->get_defaultParams(), $params);
+
+    /* initialise plugin list */
     $plugins = array();
+    
+    /* build where statement */
+    $where = $this->build_whereStatement($params);
 
     /* build sql query */
     $sql = 'select *';
     $sql .= ' from admin_pluginmanager';
+    
+    /* add where statement */
+    if ($where != '')
+      $sql .= ' where '.$where;
 
     /* execute sql query */
-    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__))
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__))
     
       /* get data from database */
       while ($data = $camyks->db_conn->get_queryDataLine())
@@ -285,6 +294,39 @@ final class Admin_PluginManagerItem {
 	
 	/* return result */
 	return $plugins;
+  }
+  
+  /*                                                                                 
+   * build where statement from params                                               
+   * @param array $params                                                            
+   * @return string                                                                  
+   * @access private                                                                 
+   */
+  function build_whereStatement($params=array()) {
+    $w = array();
+    
+    /* check status */
+    if ($params['status'] != -1)
+      $w[] = 'active = '.(int)$params['status'];
+      
+    /* check type */
+    if ($params['type'] != -1)
+      $w[] = 'type = "'.$params['type'].'"';
+    
+	/* return result */
+    return implode(' and ', $w);
+  }
+  
+  /*
+   * return default params
+   * @return array
+   * @access private
+   */
+  function get_defaultParams() {
+    return array(
+      'status'      => -1, 
+      'type'        => -1,
+    );
   }
 }
 ?>

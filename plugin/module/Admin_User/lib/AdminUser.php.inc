@@ -233,7 +233,23 @@ class AdminUser {
     if (isset($sData['webmaster_email']) and trim($sData['webmaster_email']) != '')
       $params['email'] = $sData['webmaster_email'];
     
-    /* build sql query */
+    /* create table */
+    $fields = array(
+        array('name'=>'login', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_LOGIN_MAX_LENGTH, 'default'=>''),
+        array('name'=>'pwd', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>32, 'default'=>''),
+        array('name'=>'firstname', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_FIRSTNAME_LENGTH, 'default'=>''),
+        array('name'=>'lastname', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_LASTNAME_LENGTH, 'default'=>''),
+        array('name'=>'email', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_EMAIL_LENGTH, 'default'=>''),
+        array('name'=>'active', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'webmaster', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'address', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'rights', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'content', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+    );
+    
+    if ($camyks->db_conn->create_table('admin_user', $fields, $camyks->get_mysqlencodingvalue(), false, array('login'))) {    
+    
+    /* build sql query *
     $sql = 'CREATE  TABLE `admin_user` (';
     $sql .= ' `login` VARCHAR ( '.ADMINUSER_LOGIN_MAX_LENGTH.' ) BINARY NOT NULL ,';
     $sql .= ' `pwd` VARCHAR ( 32 ) NOT NULL ,';
@@ -248,7 +264,7 @@ class AdminUser {
     $sql .= ' PRIMARY  KEY ( `login` ) )';
     $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
   
-    /* execute sql query */
+    /* execute sql query *
     if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* try to add first user */
       $this->initialise();
