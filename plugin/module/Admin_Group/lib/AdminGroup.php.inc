@@ -274,12 +274,13 @@ class AdminGroup {
       /* check database presence in plugin manager module */
       if (isset($camyks->modules['Admin_PluginManager']))
         $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('admin_user_group');
+      else {
+        /* load table list */
+        $tl = $camyks->db_conn->get_tableList();
     
-      /* load table list */
-      $tl = $camyks->db_conn->get_tableList();
-    
-      /* check if main table is in installed table list */
-      $this->_libIsInstalled = in_array('admin_user_group', $tl);
+        /* check if main table is in installed table list */
+        $this->_libIsInstalled = in_array('admin_user_group', $tl);
+      }
     }
     return $this->_libIsInstalled;
   }
@@ -324,32 +325,32 @@ class AdminGroup {
     if ( $this->is_new == 1 ) {
       /* check empty name */
       if ( $this->name == '' ) {
-	$this->_libError = 'erroremptyname';
-	return false;
+	    $this->_libError = 'erroremptyname';
+	    return false;
       }
       /* check name first and last char validity */
       if ( $this->name != trim ( $this->name ) ) {
-	$this->_libError = 'errorbadname';
-	$this->name = trim ( $this->name );
-	return false;
+	    $this->_libError = 'errorbadname';
+	    $this->name = trim ( $this->name );
+	    return false;
       }
       /* check name length */
       if ( strlen($this->name) < 3 ) {
-	$this->_libError = 'errorshortname';
-	return false;
+	    $this->_libError = 'errorshortname';
+	    return false;
       }
       
       /* check name chars validity */
       $n = string_parseSpecialChars($this->name, array('pattern'=>'/[^_a-zA-Z0-9]/'));
       if ( $this->name != $n ) {
-	$this->_libError = 'errorbadname';
-	$this->name = $n;
-	return false;
+	    $this->_libError = 'errorbadname';
+	    $this->name = $n;
+	    return false;
       }
       /* check existing name */
       if ( $this->exists_group($this->name)) {
-	$this->_libError = 'errorexistingname';
-	return false;
+	    $this->_libError = 'errorexistingname';
+	    return false;
       }
     }
     return true;

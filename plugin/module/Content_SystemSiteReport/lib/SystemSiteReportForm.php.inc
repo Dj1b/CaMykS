@@ -235,12 +235,13 @@ class SystemSiteReportForm {
       /* check database presence in plugin manager module */
       if (isset($camyks->modules['Admin_PluginManager']))
         $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('content_systemsitereportform');
+      else {
+        /* load table list */
+        $tl = $camyks->db_conn->get_tableList();
     
-      /* load table list */
-      $tl = $camyks->db_conn->get_tableList();
-    
-      /* check if main table is in installed table list */
-      $this->_libIsInstalled = in_array('content_systemsitereportform', $tl);
+        /* check if main table is in installed table list */
+        $this->_libIsInstalled = in_array('content_systemsitereportform', $tl);
+      }
     }
     return $this->_libIsInstalled;
   }

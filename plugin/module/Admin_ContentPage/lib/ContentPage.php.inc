@@ -814,12 +814,13 @@ class ContentPage {
       /* check database presence in plugin manager module */
       if (isset($camyks->modules['Admin_PluginManager']))
         $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('admin_contentpage');
+      else {
+        /* load table list */
+        $tl = $camyks->db_conn->get_tableList();
     
-      /* load table list */
-      $tl = $camyks->db_conn->get_tableList();
-    
-      /* check if main table is in installed table list */
-      $this->_libIsInstalled = in_array('admin_contentpage', $tl);
+        /* check if main table is in installed table list */
+        $this->_libIsInstalled = in_array('admin_contentpage', $tl);
+      }
     }
     return $this->_libIsInstalled;
   }
