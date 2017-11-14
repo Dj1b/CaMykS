@@ -681,7 +681,7 @@ class ContentPage {
    */
   function install ( ) {
     global $camyks;
-    /*  create main table */
+    /*  create main table *
     $sql = 'CREATE  TABLE `admin_contentpage`(';
     $sql .= ' `id` BIGINT UNSIGNED NOT  NULL  AUTO_INCREMENT ,';
     $sql .= ' `parent_id` BIGINT UNSIGNED NOT  NULL ,';
@@ -713,7 +713,7 @@ class ContentPage {
       return false;
     }
 	  
-    /* create locale table */
+    /* create locale table *
     $sql = 'create table `admin_contentpagelocale` (';
     $sql .= ' `id` bigint unsigned not null,';
     $sql .= ' `wf_version` int unsigned default 1,';
@@ -728,13 +728,55 @@ class ContentPage {
     if  ( !($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__) ) ) {
       return false;
     }
+    
+    /* create master table */
+    $fields = array(
+        array('name'=>'parent_id', 'type'=>'int', 'desc1'=>'bigint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'position', 'type'=>'int', 'desc1'=>'int unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'type', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>16, 'default'=>''),
+        array('name'=>'name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>128, 'default'=>''),
+        array('name'=>'active', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>1),
+        array('name'=>'secured', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'wf_version', 'type'=>'int', 'desc1'=>'int unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'wf_status', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>16, 'default'=>''),
+        array('name'=>'wf_cdate', 'type'=>'int', 'desc1'=>'bigint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'wf_mdate', 'type'=>'int', 'desc1'=>'bigint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'wf_owner', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>32, 'default'=>''),
+        array('name'=>'wf_editor', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>32, 'default'=>''),
+        array('name'=>'wf_validator', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>32, 'default'=>''),
+        array('name'=>'template', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
+        array('name'=>'theme', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
+        array('name'=>'homepage', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'metas', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+    );
+    for ( $i=0; $i< $this->maxmodules; $i++ ) {
+      $fields[] = array('name'=>'m'.$i.'_name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
+      $fields[] = array('name'=>'m'.$i.'_content', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
+      $fields[] = array('name'=>'m'.$i.'_theme', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
+    }
+    
+    if (!$camyks->db_conn->create_table('admin_contentpage', $fields, $camyks->get_mysqlencodingvalue(), true, array('id', 'wf_version')))
+      return false;
+      
+    /* create locale table */
+    $fields = array(
+        array('name'=>'wf_version', 'type'=>'int', 'desc1'=>'int unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'language', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>3, 'default'=>''),
+        array('name'=>'title', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
+        array('name'=>'shorttitle', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
+        array('name'=>'keywords', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'description', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+    );
+    
+    if (!$camyks->db_conn->create_table('admin_contentpagelocale', $fields, $camyks->get_mysqlencodingvalue(), true, array('id', 'wf_version', 'language')))
+      return false;
 
-    /* add root folder */
+    /* add first page */
     $this->id = 0;
     $this->parent_id = 0;
     $this->position = 0;
     $this->type = 'page';
-    $this->name = 'homepage';
+    $this->name = 'home';
     $this->active = 1;
     $this->secured = 0;
 
@@ -769,21 +811,15 @@ class ContentPage {
     global $camyks;
     
     if (!isset($this->_libIsInstalled)) {
-    
-      /* check with plugin manager */
-      if (isset($camyks->modules['Admin_PluginManager'])) {
+      /* check database presence in plugin manager module */
+      if (isset($camyks->modules['Admin_PluginManager']))
         $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('admin_contentpage');
-      } else {
-     
-        /* build sql query */
-        $sql = "show tables like 'admin_contentpage'";
-      
-        /* execute sql query */
-        $camyks->db_conn->execute_query($sql);
-      
-        /* get data from database */
-        $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
-      }
+    
+      /* load table list */
+      $tl = $camyks->db_conn->get_tableList();
+    
+      /* check if main table is in installed table list */
+      $this->_libIsInstalled = in_array('admin_contentpage', $tl);
     }
     return $this->_libIsInstalled;
   }
@@ -798,12 +834,12 @@ class ContentPage {
     if ( $this->parent_id > 0 ){
       $sql = 'select wf_editor, wf_validator from admin_contentpage where id='.$this->parent_id.' order by wf_version desc';
       if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
-	/* execute sql query */
-	if ( $data = $camyks->db_conn->get_queryDataLine() ) {
-	  $this->wf_editor = $data['wf_editor'];
-	  $this->wf_validator = $data['wf_validator'];
-	  return;
-	}
+	    /* execute sql query */
+	    if ( $data = $camyks->db_conn->get_queryDataLine() ) {
+	      $this->wf_editor = $data['wf_editor'];
+	      $this->wf_validator = $data['wf_validator'];
+	      return;
+	    }
       }
     }
     if ( $camyks->site_conf['workflow'] == 0 ) {
