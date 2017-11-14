@@ -661,7 +661,7 @@ final class Tool_Installer extends Module {
 		$camyks->site_conf['database_pwd'],
 		$camyks->site_conf['database_driver'] != '' ? $camyks->site_conf['database_driver']:$camyks->_conf['database_driver']
 	);
-					       
+    
     /* check if connection is active */
     if ($camyks->db_conn->is_active()) {
       if (!$camyks->db_conn->database_exists($camyks->site_conf['database_name'])) {
@@ -670,18 +670,19 @@ final class Tool_Installer extends Module {
 		  'name'    => $this->get_translation('database_created'),
 		);
 		
-	    /* try to create database  */
-	    if ($camyks->db_conn->database_create($camyks->site_conf['database_name'], $camyks->get_mysqlencodingvalue())) {
-	      $message['value'] = $camyks->get_translation('yes');
-	      $message['color'] = $this->textColors['yes'];
-	      $camyks->db_conn->select($camyks->site_conf['database_name']);
-	    } else {
+		/* try to create database  */
+	    if (!$camyks->db_conn->database_create($camyks->site_conf['database_name'], $camyks->get_mysqlencodingvalue())) {
 	      $message['value'] = $camyks->get_translation('no');
 	      $message['color'] = $this->textColors['no'];
 	      $this->isInstalled = false;
+	      $this->summary[] = $message;
+	      return;
 	    }
-	    $this->summary[] = $message;
+	    $message['value'] = $camyks->get_translation('yes');
+	    $message['color'] = $this->textColors['yes'];
       }
+      $this->summary[] = $message;
+      $camyks->db_conn->select($camyks->site_conf['database_name']);      
     } else {
       /* database connection failed */
       $this->summary[] = array(
