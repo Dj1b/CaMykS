@@ -291,7 +291,7 @@ class AdminUser {
    */
   function is_installed ( ) {
     global $camyks;
-    if ( ! isset ( $this->_libIsInstalled ) ) {
+    if (!isset($this->_libIsInstalled)) {
     
       /* check with plugin manager */
       if (isset($camyks->modules['Admin_PluginManager'])) {
@@ -384,32 +384,32 @@ class AdminUser {
     if ( $this->is_new == 1 ) {
       /* check empty login */
       if ( $this->login == '' ) {
-	$this->_libError = 'erroremptylogin';
-	return false;
+	    $this->_libError = 'erroremptylogin';
+	    return false;
       }
       /* check login first and last char validity */
       if ( $this->login != trim ( $this->login ) ) {
-	$this->_libError = 'errorbadlogin';
-	$this->login = trim ( $this->login );
-	return false;
+	    $this->_libError = 'errorbadlogin';
+	    $this->login = trim ( $this->login );
+	    return false;
       }
       /* check login length */
       if ( strlen($this->login) < 3 ) {
-	$this->_libError = 'errorshortlogin';
-	return false;
+	    $this->_libError = 'errorshortlogin';
+	    return false;
       }
       
       /* check login chars validity */
       $l = string_parseSpecialChars($this->login, array('pattern'=>'/[^_a-zA-Z0-9]/'));
       if ( $this->login != $l ) {
-	$this->_libError = 'errorbadlogin';
-	$this->login = $l;
-	return false;
+	    $this->_libError = 'errorbadlogin';
+	    $this->login = $l;
+	    return false;
       }
       /* check existing login */
       if ( $this->exists_login($this->login)) {
-	$this->_libError = 'errorexistinglogin';
-	return false;
+	    $this->_libError = 'errorexistinglogin';
+	    return false;
       }
     }
     
@@ -429,25 +429,25 @@ class AdminUser {
     if ( $this->change_pwd == 1 ) {
       /* check empty password */
       if ( $this->pwd == '' ) {
-	$this->_libError = 'erroremptypwd';
-	return false;
+	    $this->_libError = 'erroremptypwd';
+	    return false;
       }
       /* check password length */
       if ( strlen($this->pwd) < 3 ) {
-	$this->_libError = 'errorshortpwd';
-	return false;
+	    $this->_libError = 'errorshortpwd';
+	    return false;
       }
       /* check password & confirmation */
       if ( $this->pwd != $this->pwd_conf ) {
-	$this->_libError = 'errorconfpwd';
-	return false;
+	    $this->_libError = 'errorconfpwd';
+	    return false;
       }
     }
 
     if ( $this->full_update == 1 ) {
       /* get rights */
       foreach ( $this->rights as $m => $r ){
-	$this->encode_rights( $m, $r );
+	    $this->encode_rights( $m, $r );
       }
       $this->rights_ = data_encode_properties( $this->rights, ':' );
     }
@@ -485,13 +485,13 @@ class AdminUser {
    * @return boolean result
    * @access private
    */
-  function can_Login ( $pwd ) {
+  function can_login($pwd) {
     global $camyks;
 
     /* build sql query */
     $sql = 'SELECT login FROM admin_user';
     $sql .= ' WHERE pwd="'.password_encode($pwd).'"';
-    $sql .= ' AND BINARY login="'.$this->login .'"';
+    $sql .= ' AND login="'.$this->login .'"';
     $sql .= ' AND active="1"';
     
     /* execute sql query */
