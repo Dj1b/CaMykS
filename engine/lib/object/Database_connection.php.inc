@@ -6,7 +6,7 @@
  * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Creation Date	: Jun 2005
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Nov 2017
  *
  * Database connection object
  */
@@ -31,6 +31,8 @@ final class Database_connection {
    * @access public
    */
   public function __construct($host='localhost', $login='root', $pwd='', $driver='') {
+    global $camyks;
+    
     $cDriver = explode(':', strtolower($driver));
     $cDriver = $cDriver[0];
         
@@ -43,11 +45,15 @@ final class Database_connection {
             require_once 'MySQLiDBConnection.php.inc';
             $this->connection = new MySQLiDBConnection();
             break;
+        case 'sqlite3':
+            require_once 'SQLite3DBConnection.php.inc';
+            $this->connection = new SQLite3DBConnection();
+            break;
         case 'mysql':
         default:
             require_once 'MySQLDBConnection.php.inc';
             $this->connection = new MySQLDBConnection();
-        break;
+            break;
     }
     
     /* initialise statistics */
@@ -66,9 +72,12 @@ final class Database_connection {
     
     /* connect to database */
     $this->connection->connect_server($host, $login, $pwd, $driver);
+    
+    /* register connection to CaMykS */
+    $camyks->register_dbConnection(&$this);
   }
   
-  /* methods */
+  /* server/connection related methods */
   
   /*
    * select database
@@ -76,16 +85,16 @@ final class Database_connection {
    * @return boolean
    * @access public
    */
-  public function select ( $name ) {
+  public function select($name) {
     return $this->connection->select_database($name);
   }
   
   /* 
-   * kill mysql connnection
+   * close mysql connnection
    * @return boolean
    * @access public
    */
-  public function kill() {
+  public function close() {
     global $camyks;
     
     if ($this->reportStats) {
@@ -134,6 +143,82 @@ final class Database_connection {
    */
   public function get_serverVersion() {
     return $this->connection->get_serverVersion();
+  }
+  
+  /* database related methods */
+  
+  /* 
+   * create a database
+   * @param string $name
+   * @param string $charset
+   * @return boolean
+   * @access public
+   */
+  public function database_create($name, $charset='utf8') {
+    return $this->connection->create_database($name, $charset);
+  }
+
+  /*
+   * check if a base exits
+   * @param string $name
+   * @return boolean
+   * @access public
+   */
+  public function database_exists($name) {
+    return $this->connection->database_exists($name);
+  }
+
+  /*
+   * dump database
+   * @param mixed $file
+   * @return mixed
+   * @access public
+   */
+  public function database_dump($file=false) {
+    return $this->connection->dump_database($file);
+  }
+
+  /*
+   * return database size
+   * @return integer
+   * @access public
+   */
+  public function database_getSize() {
+    return $this->connection->get_databaseSize();
+  }
+
+  /*
+   * return database summary
+   * @return integer
+   * @access public
+   */
+  public function database_getSummary() {
+    return $this->connection->get_databaseSummary();
+  } 
+  
+  /* table related methods */
+  
+  /*
+   * return database table list
+   * @return array
+   * @access public
+   */
+  public function get_tableList() {
+    return $this->connection->get_tableList();
+  }
+    
+  /*
+   * create a table in the database
+   * @param string $name
+   * @param array $fields
+   * @param string $charset
+   * @param boolean $autoId
+   * @param array $primaryKeys
+   * @return boolean success
+   * @access private
+   */
+  public function create_table($name, $fields, $charset='utf8', $autoId=true, $primaryKeys=array('id')) {
+    return $this->connection->create_table($name, $fields, $charset, $autoId, $primaryKeys);
   }
   
   /* query related method */
@@ -240,57 +325,7 @@ final class Database_connection {
   public function close_ressource($resName='defaultRes') {
     return $this->connection->close_ressource($resName);
   }
-  
-  /* database related methods */
-  
-  /* 
-   * create a database
-   * @param string $name
-   * @param string $charset
-   * @return boolean
-   * @access public
-   */
-  public function database_create($name, $charset='utf8') {
-    return $this->connection->create_database($name, $charset);
-  }
-
-  /*
-   * check if a base exits
-   * @param string $name
-   * @return boolean
-   * @access public
-   */
-  public function database_exists($name) {
-    return $this->connection->database_exists($name);
-  }
-
-  /*
-   * dump database
-   * @param mixed $file
-   * @return mixed
-   * @access public
-   */
-  public function database_dump($file=false) {
-    return $this->connection->dump_database($file);
-  }
-
-  /*
-   * return database size
-   * @return integer
-   * @access public
-   */
-  public function database_getSize() {
-    return $this->connection->get_databaseSize();
-  }
-
-  /*
-   * return database summary
-   * @return integer
-   * @access public
-   */
-  public function database_getSummary() {
-    return $this->connection->get_databaseSummary();
-  }
+   
   
   /* data related methods */
   
@@ -321,8 +356,21 @@ final class Database_connection {
       $list['MySQLi'] = 'MySQLi';
     if (class_exists('PDO'))
       $list['PDO:MySQL'] = 'PDO:MySQL';
+    if (class_exists('SQLite3'))
+      $list['SQLite3'] = 'SQLite3';
     
     return $list;
+  }
+  
+  /* deprecated methods */
+  
+  /*
+   * close connection alias
+   * @return void
+   * @access public
+   */
+  public function kill() {
+    $this->close();
   }
 }
 ?>
