@@ -13,6 +13,7 @@
 
 final class SQLite3DBConnection extends CDBConnection {
   
+  protected $dbName;
   private $dbPath;
   private $dbExtension;
   private $dbEncryptionKey;
@@ -27,6 +28,7 @@ final class SQLite3DBConnection extends CDBConnection {
     parent::__construct();
     
     /* prepare database file path & extension */
+    $this->dbName = '';
     $this->dbPath = $camyks->site_var_path.'/databases/';
     $this->dbExtension = '.sqlite3.inc';
     
@@ -84,9 +86,11 @@ final class SQLite3DBConnection extends CDBConnection {
    */
   public function select_database($name) {
     
+    $this->dbName = $this->get_fullDatabaseName($name);
+    
     try {
       /* open connection */
-      $this->connection = @(new SQLite3($this->get_fullDatabaseName($name), SQLITE3_OPEN_READWRITE, $this->dbEncryptionKey));
+      $this->connection = @(new SQLite3($this->dbName, SQLITE3_OPEN_READWRITE, $this->dbEncryptionKey));
     } catch (SQLite3Exception $error) {
       die ($error);
       return false;
@@ -202,7 +206,7 @@ final class SQLite3DBConnection extends CDBConnection {
    * @access public
    */
   public function get_databaseSize() {
-    $file = new FSFile($this->get_fullDatabaseName($name));
+    $file = new FSFile($this->dbName);
     return $file->size;
   }
   
