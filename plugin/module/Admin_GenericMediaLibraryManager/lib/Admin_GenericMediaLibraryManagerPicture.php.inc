@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Library
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Nov 2017
  *
  * Admin_GenericMediaLibraryManagerPicture object for Admin_GenericMediaLibraryManager Module
  */
@@ -35,7 +35,9 @@ class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
     
     /* define pictures & thumbs folders */
     $this->foldersUpdated = false;
+    $this->autoDisabled = false;
     $this->update_imageFolders();
+    $this->isNew = false;
 
     /* generic initialisation */
     $this->init_library();
@@ -49,8 +51,29 @@ class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
    * @access public
    */
   function check_data() {
-    if ($this->id == 0)
+    
+    /* check for auto disable picture object without a picture file */
+    if (!$this->_libItems['original']->upload) {
+  	  if ($this->id == 0) {
+  	    $this->_libItems['status']->value = 0;
+  	    $this->autoDisabled = true;
+  	  }
+  	  else {
+  	    $obj = $this->get_newObject($this->id);
+  	    $obj->get();
+  	    $obj->get_fromItems();
+  	    if ($obj->vars['original'] == '') {
+  	      $this->_libItems['status']->value = 0;
+  	      $this->autoDisabled = true;
+  	    }
+  	  }
+  	}  
+  
+    /* check for position */
+    if ($this->id == 0) {
         $this->_libItems['sortPosition']->value = $this->get_newPosition();
+        $this->isNew = true;
+    }
     return true;
   }
   
@@ -66,7 +89,8 @@ class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
         and $this->save_databaseLocalisedItems()
         and $this->update_imageFolders()
 	    and $this->save_textItems() 
-	    and $this->save_fileItems();
+	    and $this->save_fileItems()
+	    and $this->check_forGalleryDefaultPicture();
     }
     return false;
   }
@@ -183,6 +207,25 @@ class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
     return $list;
   }
   
+  /* 
+   * check parent gallery for picture as default one
+   * @return true
+   * @access private
+   */
+  function check_forGalleryDefaultPicture() {
+    $this->get_fromItems();
+    
+    if ($this->isNew == false or $this->vars['status']==0 or $this->vars['gallery']==0)
+      return true;
+    
+    $gallery = &$this->_libParent->pictureGalleryItem;
+    $gallery->id = $this->vars['gallery'];
+    $gallery->get();
+    $gallery->get_fromItems();
+    $gallery->check_forDefaultPicture($this->id);
+    return true;
+  }
+  
   /*
    * optimise picture
    * @return 
@@ -293,7 +336,7 @@ class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
    * @access private
    */
   function get_isDefaultIconRadio() {
-    return '<input type="radio" name="defaultPicture" value="'.$this->id.'" '.($this->is_defaultPicture()?'checked="checked"':'').' />';
+    return '<input type="radio" name="defaultPicture" value="'.$this->id.'"'.($this->is_defaultPicture()?' checked="checked"':'').($this->vars['status']==0?' disabled="disabled"':'').' />';
   }
   
   /*

@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Nov 2017
  * 
  * Admin_GenericMediaLibraryManager picture list parameters
  */
@@ -33,12 +33,12 @@ $this->pictureListParams['headselectors'] = array('page'=> array('title'=>$camyk
 						   'status'=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->picturesStatusList, 'default'=>'-1'));
 
 /* build sort parameters */
-$this->pictureListParams['sort'] = array('allowed'=>false, 'default'=>'title', 'defaultway'=>'');
+$this->pictureListParams['sort'] = array('allowed'=>false, 'default'=>'sortPosition', 'defaultway'=>'asc');
 
 /* build column parameters */
 $this->pictureListParams['listcolumns'] = array('thumbIcon'=>array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultIconRadio', 'style'=>'width:20px;'),
 						 'title'=>array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-						 'cdate'=>array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric'),
+						 'cdate'=>array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric', 'style'=>'width:80px;'),
 						 /* 'infos'=>array('title'=>$this->get_translation('header_infos'), 'columntype'=>'method', 'method'=>'get_fileInfos'),*/
 						 'view'=>array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
 );

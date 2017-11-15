@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Library
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Nov 2017
  *
  * Admin_GenericMediaLibraryManagerPictureGallery object for Admin_GenericMediaLibraryManager Module
  */
@@ -292,5 +292,19 @@ class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary {
   function get_galleriesFirstPictures($params=array()) {
     return $this->_libParent->get_firstPicturesList($params);
   }
+  
+  /*
+   * check for default picture
+   * @param int $pictureId
+   * @return void
+   * @access public
+   */
+  function check_forDefaultPicture($pictureId=0) {
+    if ($pictureId == 0) return;
+    if ($this->vars['defaultPicture'] > 0)
+      return;
+    $this->_libItems['defaultPicture']->value = $pictureId;
+    $this->update_databaseSpecificItems(array('defaultPicture'));
+  } 
 }
 ?>

@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Nov 2017
  * History :
  * * 15-06-24 : Initial files
  * 
@@ -123,6 +123,8 @@ class Admin_GenericMediaLibraryManager extends Module {
       return $this->init_admin_missingPlugin('Input', 'TabBuilder');
     if (!isset($camyks->inputs['AdminItemListViewer']))
       return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
+    if (!isset($camyks->inputs['TinyMCEv3']))
+      return $this->init_admin_missingPlugin('Input', 'TinyMCEv3');
    
     /* load config */
     $this->config->get();
@@ -540,7 +542,7 @@ class Admin_GenericMediaLibraryManager extends Module {
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode'=>'view_pictureGallery', 'pictureGallery_id'=>$this->pictureGalleryItem->id)));
+    $this->set_redirect($this->get_adminLink(array('mode'=>'view_pictureGallery', 'pictureGallery_id'=>$this->pictureGalleryItem->id)));
   }
   
   /*
@@ -573,7 +575,7 @@ class Admin_GenericMediaLibraryManager extends Module {
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('openTab'=>'PictureGalleries')));
+    $this->set_redirect($this->get_adminLink(array('openTab'=>'PictureGalleries')));
   }
 
   /*
@@ -656,7 +658,10 @@ class Admin_GenericMediaLibraryManager extends Module {
     $this->pictureItem->id = $picture_id;
     $this->pictureItem->get_fromHeader();
     if ($c = $this->pictureItem->save() )
-      $this->text = $this->get_translation('picture_saved');
+      if ($this->pictureItem->autoDisabled == 1)
+        $this->text = $this->get_translation('picture_autodisabled');
+      else
+        $this->text = $this->get_translation('picture_saved');
     else
       $this->text = $this->get_translation('picture_notsaved');
     $this->pictureItem->get_fromItems();
@@ -680,7 +685,7 @@ class Admin_GenericMediaLibraryManager extends Module {
         $this->add_JSScript('ps.set_locale("thumb_saved", "'.$this->get_translation('picturethumb_saved').'");');
         $this->add_JSLoadScript('ps.initialise();');
     } else
-      $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode'=>'view_pictureGallery', 'pictureGallery_id'=>$this->pictureItem->vars['gallery'], 'openTab'=>'Pictures')));
+      $this->set_redirect($this->get_adminLink(array('mode'=>'view_pictureGallery', 'pictureGallery_id'=>$this->pictureItem->vars['gallery'], 'openTab'=>'Pictures')));
   }
   
   /*
@@ -705,6 +710,8 @@ class Admin_GenericMediaLibraryManager extends Module {
     
     /* delete picture */
     $this->pictureItem->id = $picture_id;
+    $this->pictureItem->get();
+    $this->pictureItem->get_fromItems();
     if ( $this->pictureItem->delete())
       $this->text = $this->get_translation('picture_deleted');
     else
@@ -713,7 +720,7 @@ class Admin_GenericMediaLibraryManager extends Module {
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink());
+    $this->set_redirect($this->get_adminLink(array('mode'=>'view_pictureGallery', 'pictureGallery_id'=>$this->pictureItem->vars['gallery'], 'openTab'=>'Pictures')));
   }
   
   /* 
