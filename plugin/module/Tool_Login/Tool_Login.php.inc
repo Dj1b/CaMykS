@@ -58,7 +58,7 @@ class Tool_Login extends Module {
       $this->pwd = ( isset ( $_REQUEST['pwd'] ) ? $_REQUEST['pwd'] : '' );
       
       $user = new AdminUser($this->login);
-      if ($user->can_login( $this->pwd )) {
+      if ($user->can_login($this->pwd)) {
 	    $camyks->set_sessionValue('admin_user', $this->login);
 	    $camyks->set_sessionValue('admin_time', time());
        	    /* add stat */
@@ -85,15 +85,6 @@ class Tool_Login extends Module {
     /* build button list */
     $this->buttons = array(array('title'=>$this->get_translation('access'),
 				 'url'=>$this->form->get_HTMLSubmitLink()));
-  }
-  
-  /*
-   * display module object in admin mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
   }
 }
 ?>

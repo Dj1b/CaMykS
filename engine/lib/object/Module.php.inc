@@ -438,7 +438,7 @@ class Module extends Plugin {
     global $camyks;
 
     /* check module value */
-    if(isset($module)) {
+    if (isset($module)) {
 
     } elseif (isset($params['module'])) {
       $module = $params['module'];
