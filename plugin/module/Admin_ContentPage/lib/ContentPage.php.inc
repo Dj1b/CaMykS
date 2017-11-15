@@ -681,53 +681,6 @@ class ContentPage {
    */
   function install ( ) {
     global $camyks;
-    /*  create main table *
-    $sql = 'CREATE  TABLE `admin_contentpage`(';
-    $sql .= ' `id` BIGINT UNSIGNED NOT  NULL  AUTO_INCREMENT ,';
-    $sql .= ' `parent_id` BIGINT UNSIGNED NOT  NULL ,';
-    $sql .= ' `position` INT UNSIGNED NOT  NULL ,';
-    $sql .= ' `type` VARCHAR(16) NOT NULL,';
-    $sql .= ' `name` VARCHAR(128) NOT  NULL ,';
-    $sql .= ' `active` TINYINT(4) default 1,';
-    $sql .= ' `secured` TINYINT(4) default 0,';
-    $sql .= ' `wf_version` INT default 1,';
-    $sql .= ' `wf_status` VARCHAR(16) NOT NULL,';
-    $sql .= ' `wf_cdate` BIGINT UNSIGNED default 0 ,';
-    $sql .= ' `wf_mdate` BIGINT UNSIGNED default 0 ,';
-    $sql .= ' `wf_owner` VARCHAR(32) NOT NULL,';
-    $sql .= ' `wf_editor` VARCHAR(32) NOT NULL,';
-    $sql .= ' `wf_validator` VARCHAR(32) NOT NULL,';
-    $sql .= ' `template` VARCHAR( 255 )  NOT  NULL ,';
-    $sql .= ' `theme` VARCHAR( 255 )  NOT  NULL ,';
-    $sql .= ' `homepage` TINYINT default 0 ,';
-    $sql .= ' `metas` TEXT default "" ,';
-    for ( $i=0; $i< $this->maxmodules; $i++ ) {
-      $sql .= '`m'.$i.'_name` VARCHAR( 255 )  NOT  NULL ,';
-      $sql .= '`m'.$i.'_content` VARCHAR( 255 )  NOT  NULL ,';
-      $sql .= '`m'.$i.'_theme` VARCHAR( 255 )  NOT  NULL ,';
-    }
-    $sql .= 'PRIMARY  KEY ( `id`, `wf_version` ) ';
-    $sql .= ') CHARACTER  SET '.$camyks->get_mysqlencodingvalue();
-
-    if  ( !($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__) ) ) {
-      return false;
-    }
-	  
-    /* create locale table *
-    $sql = 'create table `admin_contentpagelocale` (';
-    $sql .= ' `id` bigint unsigned not null,';
-    $sql .= ' `wf_version` int unsigned default 1,';
-    $sql .= ' `language` varchar(3) not null,';
-    $sql .= ' `title` varchar(255) default "",';
-    $sql .= ' `shorttitle` varchar(255) default "",';
-    $sql .= ' `keywords` text default "",';
-    $sql .= ' `description` text default "",';
-    $sql .= ' primary key ( id, wf_version, language)';
-    $sql .= ') character set '.$camyks->get_mysqlencodingvalue().';';
-      
-    if  ( !($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__) ) ) {
-      return false;
-    }
     
     /* create master table */
     $fields = array(
@@ -791,10 +744,6 @@ class ContentPage {
     $this->homepage = 1;
     $this->metas_ = '';
 
-    /* add dummy module as single displayed module
-    $this->modules[0] = array('name'=>'Dummy',
-			      'content'=>'',
-			      'theme'=>''); */
     $this->locales = array();
     foreach ( $camyks->site_conf['editing_languages'] as $l ) {
       $this->locales[$l] = array('title'=>'', 'shorttitle'=>'', 'keywords'=>'', 'description'=>'');

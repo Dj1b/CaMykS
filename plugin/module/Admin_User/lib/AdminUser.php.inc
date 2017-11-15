@@ -248,25 +248,7 @@ class AdminUser {
     );
     
     if ($camyks->db_conn->create_table('admin_user', $fields, $camyks->get_mysqlencodingvalue(), false, array('login'))) {    
-    
-    /* build sql query *
-    $sql = 'CREATE  TABLE `admin_user` (';
-    $sql .= ' `login` VARCHAR ( '.ADMINUSER_LOGIN_MAX_LENGTH.' ) BINARY NOT NULL ,';
-    $sql .= ' `pwd` VARCHAR ( 32 ) NOT NULL ,';
-    $sql .= ' `firstname` VARCHAR ( '.ADMINUSER_FIRSTNAME_LENGTH.'  ) NOT NULL ,';
-    $sql .= ' `lastname` VARCHAR ( '.ADMINUSER_LASTNAME_LENGTH.' ) NOT NULL ,';
-    $sql .= ' `email` VARCHAR ( '.ADMINUSER_EMAIL_LENGTH.' ) NOT NULL ,';
-    $sql .= ' `active` TINYINT NOT  NULL ,';
-    $sql .= ' `webmaster` TINYINT NOT  NULL ,';
-    $sql .= ' `address` TEXT  NOT  NULL ,';
-    $sql .= ' `rights` TEXT  NOT  NULL ,';
-    $sql .= ' `content` TEXT NOT  NULL ,';
-    $sql .= ' PRIMARY  KEY ( `login` ) )';
-    $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
-  
-    /* execute sql query *
-    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
-      /* try to add first user */
+      /* add first user */
       $this->initialise();
       $this->login = $params['login'];
       $this->pwd = $params['password'];
@@ -278,7 +260,7 @@ class AdminUser {
       $this->change_pwd = 1;
       $this->is_new = 1;
       $this->rights_ = '';
-      /* add user */
+      /* save user */
       return $this->save();
     }
     return false; 

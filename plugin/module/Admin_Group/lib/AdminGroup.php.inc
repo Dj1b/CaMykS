@@ -50,8 +50,8 @@ class AdminGroup {
    * @return boolean success
    * @access private
    */
-  function get ( ) {
-    if ( $this->name == '' )
+  function get() {
+    if ($this->name == '')
       return $this->initialise();
     else 
       return $this->get_fromDatabase(); 
@@ -62,7 +62,7 @@ class AdminGroup {
    * @return boolean success
    * @access private
    */
-  function initialise ( ) {
+  function initialise() {
     $this->description = '';
     $this->users = array();
     $this->is_new = 1;
@@ -74,11 +74,10 @@ class AdminGroup {
    * @return boolean success
    * @access private
    */
-  function save ( ) {
-    if ( $this->check_data() ) {
-      if ( $this->is_new == 1 and  $this->create_toDatabase()
-	   or $this->update_toDatabase() )
-	return $this->update_usersToDatabase();
+  function save() {
+    if ($this->check_data()) {
+      if ($this->is_new == 1 and  $this->create_toDatabase() or $this->update_toDatabase())
+	    return $this->update_usersToDatabase();
     }
     return false;
   }
@@ -90,6 +89,7 @@ class AdminGroup {
    */
   function get_fromDatabase( ) {
     global $camyks;
+    
     /* build sql query */
     $sql = "SELECT *";
     $sql .= " FROM admin_group";
@@ -99,12 +99,12 @@ class AdminGroup {
     if ( $req = $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
       /* get data from database */
       if ( $data = $camyks->db_conn->get_queryDataLine()) {
-	$this->get_fromArray( $data );
-	$this->is_new = 0;
-	return $this->get_usersFromDatabase();
+	    $this->get_fromArray( $data );
+	    $this->is_new = 0;
+	    return $this->get_usersFromDatabase();
       } else {
-	$this->initialise();
-	return false;
+	    $this->initialise();
+	    return false;
       }
     }
     return false;
@@ -117,6 +117,7 @@ class AdminGroup {
    */
   function create_toDatabase ( ) {
     global $camyks;
+    
     /* build sql query */
     $sql = 'INSERT INTO `admin_group` (';
     $sql .= '`name`';
@@ -125,8 +126,9 @@ class AdminGroup {
     $sql .= '"'.$this->name.'"';
     $sql .= ',"'.addslashes($this->description).'"';
     $sql .= ')';
+    
     /* return result of sql query execution */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__));
   }
   
   /*
@@ -136,12 +138,14 @@ class AdminGroup {
    */
   function update_toDatabase ( ) {
     global $camyks;
+    
     /* build sql query */
     $sql = 'UPDATE `admin_group` ';
     $sql .= ' SET description="'.addslashes($this->description).'"';
     $sql .= ' WHERE name="'.$this->name.'"';
+    
     /* return result of sql query execution */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );    
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));    
   }
 
   /*
@@ -151,14 +155,16 @@ class AdminGroup {
    */
   function delete_fromDatabase( ) {
     global $camyks;
+    
     /* build sql query */
     $sql = 'delete from admin_group where name="'.$this->name.'";';
+    
     /* return result of sql query execution */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {   
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {   
       /* build sql query */
       $sql = 'delete from admin_user_group where group="'.$this->name.'";';
       /* return result of sql query execution */
-      return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );    
+      return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));    
     }
     return false;
   }
@@ -170,16 +176,18 @@ class AdminGroup {
    */
   function get_usersFromDatabase() {
     global $camyks;
+    
     /* build sql query */
     $sql = 'select user';
     $sql .= ' from admin_user_group';
     $sql .= ' where `group`="'.$this->name.'"';
+    
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* get data from database */
-      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+      while ($data = $camyks->db_conn->get_queryDataLine())
 	    $this->users[] = $data['user'];
-      }
+
       /* encode user list as string */
       $this->users_ = implode( $this->users, ':' );
       return true;
@@ -200,7 +208,7 @@ class AdminGroup {
     /* build sql query */
     $sql = 'delete from admin_user_group where `group`="'.$this->name.'";';
     /* add new items */
-    if ( count($this->users) > 0 and ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ))) {
+    if (count($this->users) > 0 and ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__))) {
       $isFirst = true;
       $sql = 'insert into admin_user_group ( `group`, `user` ) values';
       foreach ( $this->users as $u ) {
@@ -239,26 +247,6 @@ class AdminGroup {
     
       return ($camyks->db_conn->create_table('admin_user_group', $fields, $camyks->get_mysqlencodingvalue(), false, array('user', 'group')));
     }
-    
-    /* build sql query *
-    $sql = 'CREATE TABLE IF NOT EXISTS `admin_group` (';
-    $sql .= ' `name` VARCHAR ( 32 ) NOT NULL ,';
-    $sql .= ' `description` VARCHAR ( 64 ) NOT NULL ,';
-    $sql .= ' PRIMARY  KEY ( `name` ) ';
-    $sql .= ')';
-    $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
-    /* execute sql query *
-    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
-      $sql = 'CREATE TABLE IF NOT EXISTS `admin_user_group` (';
-      $sql .= ' `user` VARCHAR ( 32 ) NOT NULL ,';
-      $sql .= ' `group` VARCHAR ( 32 ) NOT NULL ,';
-      $sql .= ' PRIMARY  KEY ( `user`,`group` ) ';
-      $sql .= ')';
-      $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
-      /* execute sql query *
-      return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
-    }
-    */
     return false;
   }
   

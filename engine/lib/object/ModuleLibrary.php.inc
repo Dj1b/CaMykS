@@ -453,32 +453,6 @@ class ModuleLibrary {
     
     /* execute table creation */
     return $this->create_DBTable($this->_libSQLTable, $fields, $camyks->get_mysqlencodingvalue());
-    
-    
-    
-    
-    
-    
-    /* build sql query */
-    $sql = 'CREATE TABLE IF NOT EXISTS '.$this->_libSQLTable.' (';
-    $sql .= ' id BIGINT UNSIGNED NOT NULL auto_increment,';
-    /* add workflow version if needed */
-    if ( $this->_libWFVersion !== false ) {
-      $sql .= ' and wf_version INT UNSIGNED default 1,';
-    }
-    foreach ( $this->_libItemTypes['db'] as $n ) {
-      $sql .= ' '.$this->_libItems[$n]->get_databaseDescription().',';
-    }
-    /* add workflow version if needed */
-    if ( $this->_libWFVersion !== false ) {
-      $sql .= ' PRIMARY KEY(id, wf_version) )';
-    } else {
-      $sql .= ' PRIMARY KEY(id) )';
-    }
-    $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
-    
-    /* return result of sql query execution */
-    return $this->execute_DBQuery($sql, __LINE__);
   }
   
   /*
@@ -486,8 +460,10 @@ class ModuleLibrary {
    */
   function uninstall_databaseItems() {
     global $camyks;
+    
     /* build sql query */
     $sql = 'drop table '.$this->_libSQLTable;
+    
     /* return result of sql query execution */
     return $this->execute_DBQuery($sql, __LINE__);
   }
