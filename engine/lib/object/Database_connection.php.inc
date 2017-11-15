@@ -74,7 +74,7 @@ final class Database_connection {
     $this->connection->connect_server($host, $login, $pwd, $driver);
     
     /* register connection to CaMykS */
-    $camyks->register_dbConnection(&$this);
+    $camyks->register_dbConnection($this);
   }
   
   /* server/connection related methods */
