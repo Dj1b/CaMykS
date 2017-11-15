@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Library
  * Creation Date    : Oct 2017
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Nov 2017
  *
  * Tool_InstallerParams object for Tool_Installer Module
  */

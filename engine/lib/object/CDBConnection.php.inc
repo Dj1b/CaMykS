@@ -6,7 +6,7 @@
  * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Creation Date    : Sep 2014
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Nov 2017
  *
  * CaMykS Generic Database connection object
  * to be extended by specific database connection objects
@@ -99,86 +99,14 @@ abstract class CDBConnection {
    * @return mixed
    * @access public
    */
-  public function dump_database($file=false) {
-    if (!isset($this->dbName)) {
-      return false;
-    }
-    
-    $content = '';
-    
-    /* write header comments */
-    $content = "-- ************************\n";
-    $content .= "-- Database \"".$this->dbName."\" dump\n";
-    $content .= "-- ".date('r')."\n";
-    $content .= "-- ************************\n\n";
-    
-    /* get list of all table */
-    if ($this->execute_query('show tables', 'tableList')) {
-    
-      /* write tables to content */
-      while ($table = $this->get_queryNumDataLine('tableList')) {
-      
-        /* write table */
-        if ($this->execute_query('show create table '.$table[0], 'createTable')) {
-          if ($createTable = $this->get_queryNumDataLine('createTable')) {
-    
-            /* write table comments */
-            $content .= "-- ************************\n";
-            $content .= "-- Table \"".$table[0]."\"\n";
-            $content .= "-- ************************\n";
-     
-            /* write table creation */
-            $content .= $createTable[1].";\n\n";
-    
-            /* write table content */
-            if ($this->execute_query('select * from '.$table[0], 'tableItemList')) {
-              while ($insertData = $this->get_queryNumDataLine('tableItemList')) {
-                $content .= "insert into ".$table[0]." values(";
-                for ($i=0; $i < $this->get_queryFieldCount('tableItemList'); $i++) {
-                  if ($i != 0)
-                    $content .=  ", ";
-                  if ($this->get_queryFieldType($i, 'tableItemList') == "string" || $this->get_queryFieldType($i, 'tableItemList') == "blob")
-                    $content .=  "'" . addslashes($insertData[$i]) . "'";
-                  else
-                    $content .= addslashes($insertData[$i]);
-                }
-                $content .=  ");\n"; 
-              }
-            }
-          }
-          $content .= "\n\n";
-        }
-      }
-    }
-    
-    
-    /* write content to file and return file writting result or return content */
-    if ( $file !== false ) {
-      return file_write ($file, $content);
-    } else {
-      return $content;
-    }
-  }
+  abstract public function dump_database($file=false);
 
   /*
    * return database size
    * @return integer
    * @access public
    */
-  public function get_databaseSize() {
-    /* init size */
-    $size = 0;
-    
-    /* get infos from database */
-    if ($this->execute_query('show table status')) {      
-      /* set size with infos */
-      while ($data = $this->get_queryDataLine()) {
-        $size += $data["Data_length"] + $data["Index_length"];
-      }
-      return $size;
-    }
-    return 0;
-  }
+  abstract public function get_databaseSize();
   
   /*
    * return database summary
@@ -186,6 +114,27 @@ abstract class CDBConnection {
    * @access public
    */
   abstract public function get_databaseSummary();
+  
+  /* table related methods */
+  
+  /*
+   * return available table list
+   * @return array
+   * @access public
+   */
+  abstract public function get_tableList();
+  
+  /*
+   * create a table in the database
+   * @param string $name
+   * @param array $fields
+   * @param string $charset
+   * @param boolean $autoId
+   * @param array $primaryKeys
+   * @return boolean success
+   * @access private
+   */
+  abstract public function create_table($name, $fields, $charset='utf8', $autoId=true, $primaryKeys=array('id'));
   
   /* query related methods */
     

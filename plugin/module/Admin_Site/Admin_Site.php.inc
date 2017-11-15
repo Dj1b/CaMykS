@@ -270,13 +270,13 @@ final class Admin_Site extends Module {
     case 'admin_languages':
       return array('en');
     case 'admin_default_theme':
-      return 'GreyStyle';
+      return 'IndigoFlatStyle';
     case 'site_ssl':
       return 'default';
     case 'site_default_theme':
-      return 'GreyStyle';
+      return '';
     case 'site_default_template':
-      return 'DefaultPage';
+      return '';
     case 'site_languages':
       return array('en');
     case 'site_default_language':

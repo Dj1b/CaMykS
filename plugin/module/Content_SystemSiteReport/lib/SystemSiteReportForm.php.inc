@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
+ * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Dictionnary
  * Create Date		: Apr 2007
- * Last Modif Date	: Dec 2007
+ * Last Modif Date	: Nov 2017
  *
  * SystemSiteReportForm object for Content_SystemSiteReport object
  */
@@ -36,7 +36,7 @@ class SystemSiteReportForm {
    * @param integer $id
    * @param Module $parentModule
    */
-  function SystemSiteReportForm ( $id = 0, &$parentModule ) {
+  function SystemSiteReportForm($id = 0, &$parentModule) {
     global $camyks;
     $this->id = $id;
     $this->_libDesc = 'Module:'.$parentModule->name.'  Lib:SystemSiteReportForm';
@@ -103,7 +103,7 @@ class SystemSiteReportForm {
     if ( $this->check_data() ) {
       if ( $this->id == 0 and $this->create_toDatabase()
 	   or $this->update_toDatabase()){
-	return $this->save_HTMLFiles();
+	    return $this->save_HTMLFiles();
       }
     }
     return false;
@@ -172,6 +172,7 @@ class SystemSiteReportForm {
     global $camyks;
     /* build sql query */
     $sql = 'delete from content_systemsitereportform where id='.$this->id;
+    
     /* return result of execute sql query */
     return $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ );
   }
@@ -183,27 +184,25 @@ class SystemSiteReportForm {
    */
   function install( ) {
     global $camyks;
-    /* install table in database */
-    /* build sql query */
-    $sql = 'CREATE TABLE IF NOT EXISTS content_systemsitereportform (';
-    $sql .= ' id BIGINT auto_increment,';
-    $sql .= ' name  VARCHAR (16),';
-    $sql .= ' type_list VARCHAR(255),';
-    $sql .= ' layout_name varchar(64) DEFAULT "",';
-    $sql .= ' title_mode TINYINT default 0,';
-    $sql .= ' title_texts TEXT DEFAULT "",';
-    $sql .= ' title_imgs TEXT DEFAULT "",';
-    $sql .= ' file_allowed tinyint unsigned default 0';
-    $sql .= ' PRIMARY KEY(id) )';
-    $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( );
-    /*  sql query execution */
-    if  ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+    
+    /* create table */
+    $fields = array(
+        array('name'=>'name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>16, 'default'=>''),
+        array('name'=>'type_list', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
+        array('name'=>'layout_name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>64, 'default'=>''),
+        array('name'=>'title_mode', 'type'=>'int', 'desc1'=>'tinyint', 'desc2'=>'', 'default'=>0),
+        array('name'=>'title_texts', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'title_imgs', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'file_allowed', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+    );
+    
+    if ($camyks->db_conn->create_table('content_systemsitereportform', $fields, $camyks->get_mysqlencodingvalue())) { 
       /* create folder */
       if ( folder_createPath ( $this->_libParent->plugin_var_path.'/img', '',  0771) and
-	   folder_createPath ( $this->_libParent->plugin_var_path.'/html', '',  0771)) {
-	return true;
+	    folder_createPath ( $this->_libParent->plugin_var_path.'/html', '',  0771)) {
+	      return true;
       } else {
-	$camyks->log_pluginerror( $this->_libParent, 
+	    $camyks->log_pluginerror( $this->_libParent, 
 				  'Installation Failed', 
 				  'Could not create "var" folder in site folder');
       }
@@ -231,21 +230,17 @@ class SystemSiteReportForm {
    */
   function is_installed () {
     global $camyks;
+    
     if ( $this->_libIsInstalled === null ) {
-    
-      /* check with plugin manager */
-      if (isset($camyks->modules['Admin_PluginManager'])) {
+      /* check database presence in plugin manager module */
+      if (isset($camyks->modules['Admin_PluginManager']))
         $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('content_systemsitereportform');
-      } else {
+      else {
+        /* load table list */
+        $tl = $camyks->db_conn->get_tableList();
     
-        /* build sql query */
-        $sql = "show tables like 'content_systemsitereportform'";
-      
-        /* execute sql query */
-        if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
-	      /* return info from database */
-	      $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
-        }
+        /* check if main table is in installed table list */
+        $this->_libIsInstalled = in_array('content_systemsitereportform', $tl);
       }
     }
     return $this->_libIsInstalled;
@@ -259,16 +254,16 @@ class SystemSiteReportForm {
    * @access private
    */
   function save_HTMLFiles( ) {
-    $fcontent = file_getPHPFileHeader( 'htmlcontent file', '1.0' );
+    $fcontent = file_getPHPFileHeader('htmlcontent file', '1.0');
     $fcontent .= file_getPHPFileFooter();
   
     foreach ( $this->descriptions as $c=>$v ) {
-      if ( get_magic_quotes_gpc() ) {
-	$v = stripslashes( $v );
+      if (get_magic_quotes_gpc()) {
+	    $v = stripslashes( $v );
       }
       $this->filepath = $this->_libParent->plugin_var_path.'/html/file'. $this->id.'_'.$c.'.html.inc';
       if ( ! file_write( $this->filepath, $fcontent."\n".$v ) ) {
-	return false;
+	    return false;
       }
     }
     return true;
@@ -283,7 +278,7 @@ class SystemSiteReportForm {
     global $camyks;
     $this->descriptions = array();
     foreach ( $camyks->site_conf['editing_languages'] as $l ) {
-      $this->descriptions[$l] = $this->_libParent->get_varFilePath ( 'html/file'.$this->id.'_'.$l.'.html.inc');
+      $this->descriptions[$l] = $this->_libParent->get_varFilePath('html/file'.$this->id.'_'.$l.'.html.inc');
     }
   }
   
@@ -331,8 +326,8 @@ class SystemSiteReportForm {
     $type_count = isset ( $_REQUEST['type_count'] ) ? $_REQUEST['type_count'] : 0;
     $this->type_list = array();
     for ( $i=0; $i< $type_count; $i++ ) {
-      if ( isset ( $_REQUEST['type_'.$i] ) and $_REQUEST['type_'.$i]>0 ) {
-	$this->type_list[] = $_REQUEST['type_'.$i];
+      if ( isset ($_REQUEST['type_'.$i] ) and $_REQUEST['type_'.$i]>0 ) {
+	    $this->type_list[] = $_REQUEST['type_'.$i];
       }
     }
 
@@ -412,24 +407,24 @@ class SystemSiteReportForm {
   function get_siteTitle ( ) {
     global $camyks;
     switch ( $this->title_mode ) {
-    case 0:
-      return '';
-    case 1:
-      return isset ( $this->title_texts['gen'] ) ? $this->title_texts['gen'] : '';
-    case 2:
-      if ( isset ( $this->title_imgs['gen']) and $this->title_imgs['gen'] != '' ) {
-	return '<img src="'.$this->_libParent->get_varFileURL('img/'.$this->title_imgs['gen']).'" alt="" border="0"/>';
-      } else {
-	return '';
-      }
-    case 3:
-      return isset ($this->title_texts[$camyks->current_language])?$this->title_texts[$camyks->current_language]:'';
-    case 4:
-      if ( isset ( $this->title_imgs[$camyks->current_language]) and $this->title_imgs[$camyks->current_language] != '') {
-	return '<img src="'.$this->_libParent->get_varFileURL('img/'.$this->title_imgs[$camyks->current_language]).'" alt="" border="0"/>';
-      } else {
-	return '';
-      }
+      case 0:
+        return '';
+      case 1:
+        return isset ( $this->title_texts['gen'] ) ? $this->title_texts['gen'] : '';
+      case 2:
+        if ( isset ( $this->title_imgs['gen']) and $this->title_imgs['gen'] != '' ) {
+	      return '<img src="'.$this->_libParent->get_varFileURL('img/'.$this->title_imgs['gen']).'" alt="" border="0"/>';
+        } else {
+	      return '';
+        }
+      case 3:
+        return isset ($this->title_texts[$camyks->current_language])?$this->title_texts[$camyks->current_language]:'';
+      case 4:
+        if ( isset ( $this->title_imgs[$camyks->current_language]) and $this->title_imgs[$camyks->current_language] != '') {
+	      return '<img src="'.$this->_libParent->get_varFileURL('img/'.$this->title_imgs[$camyks->current_language]).'" alt="" border="0"/>';
+        } else {
+	      return '';
+        }
     }
     return '';
   }
@@ -442,15 +437,16 @@ class SystemSiteReportForm {
   function get_namelist ( ) {
     global $camyks;
     $items = array();
+    
     /* build sql query */
     $sql = 'select id, name';
     $sql .= ' from content_systemsitereportform';
 
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
+    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* get data from database */
       while ( $data = $camyks->db_conn->get_queryDataLine()) {
-	$items[$data['id']] = $data['name'];
+	    $items[$data['id']] = $data['name'];
       }  
     }
     return $items;

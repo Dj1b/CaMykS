@@ -118,7 +118,16 @@ class MLDatabaseItem extends ModuleLibraryItem {
    * @return mixed
    * @access public
    */
-  function get_databaseDescription( ) {    
+  function get_databaseDescription( ) {
+    return array(
+        'name'      => $this->name,
+        'type'      => $this->datatype,
+        'desc1'     => $this->datadesc,
+        'desc2'     => $this->datadesc2,
+        'default'   => $this->default,
+    );  
+  
+    /*
     $s = ' `'.$this->name.'` ';
     $s .= strtoupper ( $this->datadesc );
     if ( $this->datadesc2 != '' ) {
@@ -145,6 +154,7 @@ class MLDatabaseItem extends ModuleLibraryItem {
       break;
     }
     return $s;
+    */
   }
 
   /*

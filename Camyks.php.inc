@@ -6,119 +6,122 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Main Object
  * Creation Date    : Jun 2005
- * Last Modif Date  : Jul 2017
+ * Last Modif Date  : Nov 2017
  *
  * CaMykS engine object
  */
 
 /* constants */
-define ('CAMYKS_MODE_SITE',		    0 );
-define ('CAMYKS_MODE_ADMIN',		1 );
-define ('CAMYKS_MODE_REQUEST',		2 );
-define ('CAMYKS_MODE_MANAGER',		3 );
-define ('CAMYKS_MODE_INSTALL',		4 );
-define ('CAMYKS_NAME', 			    'CaMykS');
+define('CAMYKS_MODE_SITE',		    0 );
+define('CAMYKS_MODE_ADMIN',         1 );
+define('CAMYKS_MODE_REQUEST',		2 );
+define('CAMYKS_MODE_MANAGER',		3 );
+define('CAMYKS_MODE_INSTALL',		4 );
+define('CAMYKS_NAME', 			    'CaMykS');
 
-class Camyks {
+final class Camyks {
   /* name */
-  var $name;	
-  /* camyks current version */
-  var $version;
+  public $name;	
+  /* CaMykS current version */
+  public $version;
   /* camyks last modification date */
-  var $last_modification_date;
+  public $last_modification_date;
  
-  /* Camyks objects */
+  /* CaMykS objects */
   /* site */
-  var $site;
-  var $site_name;
+  public $site;
+  public $site_name;
   /* mode ( admin / site / manager / install ) */
-  var $mode;
+  public $mode;
   
   /* all "in file" translation for site */
-  var $trads;
+  public $trads;
   /* all "from db" translation for site */
-  var $dbtrads;
+  public $dbtrads;
 
-  /* camyks path */
-  var $camyks_path;
-  /* plugin path in camyks folder */
-  var $camyks_plugin_path;
-  /* module url in camyks folder */
-  var $camyks_plugin_url;
+  /* CaMykS path */
+  public $camyks_path;
+  /* plugin path in CaMykS folder */
+  public $camyks_plugin_path;
+  /* module url in CaMykS folder */
+  public $camyks_plugin_url;
   /* engine path in camyks folder */
-  var $camyks_engine_path;
+  public $camyks_engine_path;
   
   /* site site path */
-  var $site_path;
+  public $site_path;
   /* plugin path in site folder */
-  var $site_plugin_path;
+  public $site_plugin_path;
   /* plugin url in site folder */
-  var $site_plugin_url;
-  /* var folder path in site folder */
-  var $site_var_path;
-  /* var folder url in site folder */
-  var $site_var_url;
+  public $site_plugin_url;
+  /* public folder path in site folder */
+  public $site_public_path;
+  /* public folder url in site folder */
+  public $site_public_url;
   /* cache path in site folder */
-  var $site_cache_path;
+  public $site_cache_path;
   /* cache url in site folder */
-  var $site_data_url;
+  public $site_data_url;
   
   /* site base url */
-  var $site_base_url;
+  public $site_base_url;
 
-  /* database vars */
-  var $db_table_prefix;
-  var $db_conn;
+  /* database publics */
+  public $db_table_prefix;
+  public $db_conn;
   
   /* file extension */
-  var $file_extension;
+  public $file_extension;
   
   /* CMS plugins */
-  var $modules;
-  var $templates;
-  var $inputs;
-  var $themes;
+  public $modules;
+  public $templates;
+  public $inputs;
+  public $themes;
 
   /* selected theme */
-  var $theme;
+  public $theme;
   
   /* languages */
-  var $current_language;
+  public $current_language;
   
   /* cache */
-  var $cache;
+  public $cache;
   
   /* session */
-  var $session_vars;	
+  public $session_publics;	
 
   /* shared data */
-  var $shared_data;
+  public $shared_data;
   
-  var $plugin_extensions;
+  public $plugin_extensions;
 
   /* page */
-  var $HTMLPage;
-  var $contentPage;
+  public $HTMLPage;
+  public $contentPage;
 
   /* running modes */
-  var $previewMode;
-  var $deviceMode;
+  public $previewMode;
+  public $deviceMode;
+  
+  /* */
+  private $openedDBonnections;
 
   /*
    * CaMykS Constructor
    * @param array $site_conf
    * @param integer $mode
    */
-  function Camyks ( $site_conf, $mode=CAMYKS_MODE_SITE ) {
-    /* init vars */
+  public function __construct($site_conf, $mode=CAMYKS_MODE_SITE) {
+  
+    /* initialise some variables */
     $this->name = CAMYKS_NAME;
     $this->object_type = CAMYKS_NAME;
     $this->site_conf = $site_conf;
     $this->site_name = $site_conf['site_name'];
 
     $this->camyks_path = realpath($site_conf['engine_path']);
-    if ( isset($this->site_conf['installed'])
-	 and $this->site_conf['installed']==1 ) {
+    if (isset($this->site_conf['installed']) and $this->site_conf['installed']==1) {
       $this->mode = $mode;
     } else {
       $this->mode = CAMYKS_MODE_INSTALL;
@@ -130,48 +133,63 @@ class Camyks {
     $this->shared_data = array();
     $this->plugin_extensions = array();
     $this->adminUser = false;
+    $this->openedDBonnections = array();
+    
+    /* register shutdown function  */
+    register_shutdown_function(array($this, 'terminate'));
   }
   
   /* methods */
   
-  /* CaMykS main method */
-  function execute ( ) {
+  /*
+   * Execute CaMykS
+   * @return void
+   * @access public
+   */
+  public function execute() {
     /* init camyks object */
     $this->initialise();
     /* build content with CaMykS engine object */
     $this->get_pageContent();
-    /* kill CaMykS engine object */
-    $this->init_kill();
   }
   
   /******************** INIT **************************/
-  /* global init for object */
-  function initialise () {
+  
+  /*
+   * global initialisation 
+   * @return void
+   * @access tbd
+   */
+  public function initialise() {
     /* get generic initialisation */
     $this->get_genericInit();
     
     /* get specific initialisation */
     switch ( $this->mode ) {
-    case CAMYKS_MODE_SITE:
-      $this->get_siteInit();
-      break;
-    case CAMYKS_MODE_ADMIN:
-      $this->get_adminInit();
-      break;
-    case CAMYKS_MODE_REQUEST:
-      $this->get_requestInit();
-      break;
-    case CAMYKS_MODE_MANAGER:
-      $this->get_managerInit();
-      break;
-    case CAMYKS_MODE_INSTALL:
-      $this->get_installInit();
-      break;
+      case CAMYKS_MODE_SITE:
+        $this->get_siteInit();
+        break;
+      case CAMYKS_MODE_ADMIN:
+        $this->get_adminInit();
+        break;
+      case CAMYKS_MODE_REQUEST:
+        $this->get_requestInit();
+        break;
+      case CAMYKS_MODE_MANAGER:
+        $this->get_managerInit();
+        break;
+      case CAMYKS_MODE_INSTALL:
+        $this->get_installInit();
+        break;
     }
   }
   
-  /* generic camyks initialization */
-  function get_genericInit() {
+  /*
+   * CaMykS basics initialisation
+   * @return void
+   * @access private
+   */
+  private function get_genericInit() {
     /* get camyks configuration file */
     $this->get_confFiles();
 
@@ -199,8 +217,12 @@ class Camyks {
     }    
   }
   
-  /* init camyks in site mode */
-  function get_siteInit() {
+  /* 
+   * initialise CaMykS in site mode
+   * @return void
+   * @access public
+   */
+  public function get_siteInit() {
     /* check security */
     $this->check_security('site');
     
@@ -226,8 +248,12 @@ class Camyks {
     $this->check_plugins();
   }
   
-  /* init camyks in admin mode */
-  function get_adminInit() {
+  /*
+   * initialise CaMykS in admin mode
+   * @return void
+   * @access public
+   */
+  public function get_adminInit() {
     /* check security */
     $this->check_security('admin');
   
@@ -253,19 +279,29 @@ class Camyks {
     $this->get_adminUser();
   }
 
-  /* init camyks in request mode */
-  function get_requestInit() {
-
+  /* 
+   * initialise CaMykS in request mode
+   * @return void
+   * @access private
+   */
+  private function get_requestInit() {
+    /* do nothing, to be set in plugin execution */
   }
 
-  /* init camyks in install mode */
-  function get_installInit() {
-    
+  /*
+   * init camyks in install mode
+   * @return void
+   * @access private
+   */
+  private function get_installInit() {  
     /* language */
     $this->get_currentLanguage('admin');
 
-    /* get plugin lists */
-    $this->get_plugins();
+    /* get minimal plugin lists */
+    $this->load_neededPlugins();
+    
+    /* load installer plugin */
+    $this->modules['Tool_Installer'] = module_get('Tool_Installer');
 
     /* get generic & admin conf */
     $this->check_adminConf();
@@ -294,19 +330,18 @@ class Camyks {
    * @return void
    * @access private
    */
-  function get_managerInit() {
-    /* get manager libs */
-    require_once ('./fx/engine/include.php.inc');
+  private function get_managerInit() {
+    /* to do */
   }
   
   /******************** CONFIGURATION *****************/
   
   /*
-   * get camyks conf files
+   * get CaMykS conf files
    * @return void
    * @access private
    */
-  function get_confFiles ( ) {
+  private function get_confFiles() {
     /* load global config */
     require_once ($this->camyks_path.'/engine/etc/dynamic.php.inc');
     
@@ -325,7 +360,7 @@ class Camyks {
    * @return void
    * @access private
    */
-  function get_camyksPathes ( ) {
+  private function get_camyksPathes ( ) {
     /* check camyks installation mode */
     if ( preg_match('/^camyks/', $this->_conf['engine_path']))
       $this->_installationMode = 'dedicated';
@@ -348,7 +383,7 @@ class Camyks {
    * @return void
    * @access private
    */
-  function get_libs () {
+  private function get_libs () {
   
     /* start capture extra codes */
     ob_start();
@@ -422,7 +457,7 @@ class Camyks {
    * @return void
    * @access private
    */
-  function get_sitePathes (  ) {
+  private function get_sitePathes() {
     /* set site full path */
     $this->site_path = '.';
     /* set site plugin full path */
@@ -452,8 +487,8 @@ class Camyks {
    * @return void
    * @access private
    */
-  function check_security($mode) {
-    if ( !in_array($mode, array('site', 'admin')))
+  private function check_security($mode) {
+    if (!in_array($mode, array('site', 'admin')))
       die();
     
     /* load ssl value to apply */
@@ -499,7 +534,7 @@ class Camyks {
    * @return void
    * @access private
    */
-  function check_siteConf ( ) {
+  private function check_siteConf() {
     /* get site theme from configuration */
     $theme = isset($this->_conf['site_default_theme'])?$this->_conf['site_default_theme']:'GreyStyle';
 
@@ -512,7 +547,6 @@ class Camyks {
 		     'description'=>'Configuration file error',
 		     'content1'=>'Check your site configuration file for the "site_default_theme" value.',
 		     'content2'=>'This value must be set to the name of an activated theme.',
-		     'content3'=>'The default theme value is "GreyStyle". ',
 		     'error_link'=>'http://www.camyks.net',
 		     'error_title'=>'Check CaMykS website for more informations.');
       $this->throwFatalError( $error );
@@ -530,7 +564,7 @@ class Camyks {
    * @return void
    * @access private
    */
-  function check_adminConf ( ) {
+  private function check_adminConf() {
 
     /* get admin theme from configuration */
     $theme = isset($this->_conf['admin_default_theme'])?$this->_conf['admin_default_theme']:'GreyStyle';
@@ -544,7 +578,7 @@ class Camyks {
 		     'description'=>'Configuration file error',
 		     'content1'=>'Check your site configuration file for the "admin_default_theme" value.',
 		     'content2'=>'This value must be set to the name of an activated theme.',
-		     'content3'=>'The default theme value is "GreyStyle". ',
+		     'content3'=>'The default theme value is "IndigoFlatStyle". ',
 		     'error_link'=>'http://www.camyks.net',
 		     'error_title'=>'Check CaMykS website for more informations.');
       $this->throwFatalError( $error );
@@ -558,7 +592,7 @@ class Camyks {
    * @return void
    * @access public
    */
-  function set_confValue($confName, $value='') {
+  public function set_confValue($confName, $value='') {
     $this->_conf[$confName] = $value;
   }
 
@@ -569,7 +603,7 @@ class Camyks {
    * @return mixed
    * @access public
    */
-  function get_confValue($confName, $default='') {
+  public function get_confValue($confName, $default='') {
     if (isset($this->_conf[$confName]))
       return $this->_conf[$confName];
     if (isset($this->modules['Admin_Site']))
@@ -583,7 +617,7 @@ class Camyks {
    * @return boolean result
    * @access public
    */
-  function update_siteConfFile($params=array()) {
+  public function update_siteConfFile($params=array()) {
     
     /* check admin mode and admin user connected */
     if ($this->mode !== CAMYKS_MODE_ADMIN or !$this->check_adminUser())
@@ -594,7 +628,7 @@ class Camyks {
     
     /* build configuration file content */
     $content = file_getPHPFileHeader('site configuration file', '1.0');
-    $content .= '$conf = ' . var_export( $this->site_conf, true ) . ';';
+    $content .= '$conf = ' . var_export($this->site_conf, true) . ';';
     $content .= file_getPHPFileFooter();
 
     /* write file */
@@ -612,7 +646,7 @@ class Camyks {
    * @return void
    * @access public 
    */
-  function add_translation ( $path, $lang=null ) {
+  public function add_translation($path, $lang=null) {
     
     /* check language */
     if ( $lang == null )
@@ -623,16 +657,16 @@ class Camyks {
    
     if (file_exists ($file)){
       /* load file for given language */
-      require ( $file );
+      require ($file);
     } else {
       /* build full path for default language */
       $file = $path . '/translation_'.$this->default_language.$this->file_extension;
       if ( file_exists ( $file ) ) {
-	/* load file for default language */
-	require_once ( $file );
+	    /* load file for default language */
+	    require_once ( $file );
       } else {
-	/* TO DO */
-	/* send an error to a global object : current language & default language file not found */
+	    /* TO DO */
+	    /* send an error to a global object : current language & default language file not found */
       }
     }
   }
@@ -644,8 +678,8 @@ class Camyks {
    * @return void
    * @access public
    */
-  function add_generic_translation ( $more='', $language=null ) {
-    $this->add_translation ( $this->camyks_engine_path.'/locale/'.$more, $language );
+  public function add_generic_translation($more='', $language=null) {
+    $this->add_translation($this->camyks_engine_path.'/locale/'.$more, $language);
   }
   
   /*
@@ -655,7 +689,7 @@ class Camyks {
    * @return string
    * @access public
    */
-  function get_translation ( $string, $data=array() ) {
+  public function get_translation($string, $data=array()) {
     $string = strtolower ($string);
     if (isset($this->trads[$string]))
       return vsprintf($this->trads[$string], $data );
@@ -668,28 +702,28 @@ class Camyks {
    * @return void
    * @access private
    */
-  function get_currentLanguage ( $type ) {
+  public function get_currentLanguage($type) {
     /* get available language list */
-    if ( isset ( $this->_conf[$type.'_languages'] ) and is_array( $this->_conf[$type.'_languages']) ) {
+    if (isset($this->_conf[$type.'_languages']) and is_array($this->_conf[$type.'_languages'])) {
       $list = $this->_conf[$type.'_languages'];
     } else {
       $list = array();
     }
 
-    if ( $type == 'admin' ) {
-      $newlg = (isset( $_REQUEST['_clg_'] ) ? $_REQUEST['_clg_'] : '' );
+    if ( $type == 'admin') {
+      $newlg = (isset($_REQUEST['_clg_']) ? $_REQUEST['_clg_'] : '');
     } else {
-      $newlg = (isset( $_REQUEST['_clg_'] ) ? substr($_REQUEST['_clg_'], 1, 3) : '' );
+      $newlg = (isset($_REQUEST['_clg_']) ? substr($_REQUEST['_clg_'], 1, 3) : '');
     }
 
-    if ( count( $list ) == 0 or $newlg=='' or !in_array ( $newlg, $list ) ) {
-      if ( $this->get_sessionValue($type.'language') != null ) {
-	    $l = $this->get_sessionValue( $type.'language');
-      } else if ($type == 'admin' and ($lc = cookie_get('adminlanguage'))!=null) {
+    if (count($list) == 0 or $newlg == '' or !in_array ($newlg, $list)) {
+      if ($this->get_sessionValue($type.'language') != null) {
+	    $l = $this->get_sessionValue($type.'language');
+      } else if ($type == 'admin' and ($lc = cookie_get('adminlanguage')) != null) {
 	    $l = $lc;
-	  } else if ( isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) and in_array ( ($lc = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)), $list)) {
+	  } else if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) and in_array (($lc = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)), $list)) {
 	    $l = $lc;
-      } else if ( isset ( $this->_conf[$type.'_default_language']) ) {
+      } else if (isset($this->_conf[$type.'_default_language'])) {
 	    $l = $this->_conf[$type.'_default_language'];
       } else {
 	    $l = 'en';
@@ -703,7 +737,7 @@ class Camyks {
       cookie_save('adminlanguage', $l, 90);
     $this->set_sessionValue($type.'language', $l);
     $this->current_language = $l;
-    $loc = setlocale ( LC_ALL, language_getLocale( $l, $this->_conf['encoding'] ) );
+    $loc = setlocale (LC_ALL, language_getLocale( $l, $this->_conf['encoding']));
   }
 
   /*
@@ -711,91 +745,103 @@ class Camyks {
    * @return array
    * @access public
    */
-  function get_availableLanguages ( ) {
+  public function get_availableLanguages() {
     return language_getAvailableLanguages();
   }
 
   /******************** ENCODING **********************/
 
-
-  function decode_value ( $v ) {
-    switch ( $this->_conf['encoding'] ) {
-    case 'utf8':
-      return utf8_decode(stripslashes( $v ));
-      break;
-    default:
-      return stripslashes( $v );
+  /*
+   * return decoded value
+   * @param mixed $v
+   * @return mixed
+   * @access public
+   */
+  public function decode_value($v) {
+    switch ($this->_conf['encoding']) {
+      case 'utf8':
+        return utf8_decode(stripslashes($v));
+        break;
+      default:
+        return stripslashes($v);
     }
   }
 
-  function encode_value ( $v ) {
-    switch ( $this->_conf['encoding'] ) {
-    case 'utf8':
-      return addslashes(utf8_encode( $v ));
-      break;
-    default:
-      return addslashes( $v );
+  /*
+   * return encoded value
+   * @param mixed $v
+   * @return mixed
+   * @access public
+   */
+  public function encode_value($v) {
+    switch ($this->_conf['encoding']) {
+      case 'utf8':
+        return addslashes(utf8_encode($v));
+        break;
+      default:
+        return addslashes($v);
+    }
+  }
+
+  /*
+   * return HTML value for encoding
+   * @return string
+   * @access public
+   */
+  public function get_htmlencodingvalue() {
+    switch ($this->_conf['encoding']) {
+      case 'utf8':
+        return 'UTF-8';
+        break;
+      default:
+        return 'UTF-8';
     }
   }
   
-  function get_htmlencodingvalue( ) {
-    switch ( $this->_conf['encoding'] ) {
-    case 'utf8':
-      return 'UTF-8';
-      break;
-    default:
-      return 'UTF-8';
-    }
-  }
-  
-  function get_mysqlencodingvalue( ) {
-    switch ( $this->_conf['encoding'] ) {
-    case 'utf8':
-      return 'utf8';
-      break;
-    default:
-      return 'utf8';
+  /*
+   * return HTML value for encoding
+   * @return string
+   * @access public
+   */
+  public function get_mysqlencodingvalue() {
+    switch ($this->_conf['encoding']) {
+      case 'utf8':
+        return 'utf8';
+        break;
+      default:
+        return 'utf8';
     }
   }
 
   /******************** PLUGINS ***********************/
-  /* get all available and active plugins */
-  function get_plugins ( ) {
-    ob_start();
-    $this->modules = array();
-    $this->themes = array();
-    $this->templates = array();
-    $this->inputs = array();
-    /* check if pluginmanager table exists */
-    /* build sql query */
-    $sql = "show tables like 'admin_pluginmanager'";
-    
-    /* execute sql query */
-    if ( isset($this->db_conn) and $this->db_conn->execute_query($sql) and $this->db_conn->get_queryDataLine()) {
-      /* get active plugins from database */
-      /* build sql query */
-      $sql = 'select * ';
-      $sql .= ' from admin_pluginmanager';
-      $sql .= ' where active = 1';
-      $sql .= ' order by plugin';
-            
-      /* execute sql query */
-      $this->db_conn->execute_query($sql) or $this->throwFatalError(array('title'=>'Fatal Error',
-							       'description'=>'Connection to plugin database failed',
-							       'content1'=>'CaMykS is not able to get plugins from your website.',
-							       'error_link'=>'http://www.camyks.net',
-							       'error_title'=>'Check CaMykS website for more informations.'));
+  
+  /*
+   * get all available and active plugins
+   * @return void
+   * @access private
+   */
+  private function get_plugins() {
+        
+    /* load plugin manager */
+    $pluginManager = module_get('Admin_PluginManager', 'camyks');
+    if ($pluginManager != false) {
       
-      $plugins = array();
+      /* load active plugin list from plugin manager */
+      $plugins = $pluginManager->get_pluginList(array('status'=>1));
       
-      /* get data from database */
-      while ($data = $this->db_conn->get_queryDataLine()) {
-        $plugins[] = $data;
-     }
+      /* prepare lists */
+      $this->modules = array();
+      $this->themes = array();
+      $this->templates = array();
+      $this->inputs = array();
+      
+      /* prevent errors display in plugins */
+      ob_start();
              
-      /* load plugins */
+      /* load plugin objects */
       foreach ($plugins as $data) {
-	    switch ( $data['type'] ) {
+	    switch ($data['type']) {
+	      /* load module */
 	      case 'module':
 	        $m = module_get( $data['plugin'], $data['location'] );
 	        if ( $m !== false ) {
@@ -803,6 +849,7 @@ class Camyks {
 	         $this->modules[$data['plugin']] = $m;
 	        }
 	        break;
+	      /* load theme */
 	      case 'theme':
 	        $t = theme_get ( $data['plugin'], $data['location'] );
 	        if ( $t !== false ) {
@@ -810,6 +857,7 @@ class Camyks {
 	          $this->themes[$data['plugin']] = $t;
 	        }
 	        break;
+	      /* load template */
 	      case 'template':
 	        $t = template_get ( $data['plugin'], $data['location']);
 	        if ( $t !== false ) {
@@ -817,6 +865,7 @@ class Camyks {
 	          $this->templates[$data['plugin']] = $t;
 	        }
 	        break;
+	      /* load input */
 	      case 'input':
 	        $i = input_get( $data['plugin'], $data['location'] );
 	        if ( $i !== false ) {
@@ -827,23 +876,35 @@ class Camyks {
 	    }
       }
       
-      unset($plugins);
+      /* stop catching errors */
+      ob_clean();
       
       /* check for plugin updates */
       plugin_checkUpdates();
     } else {
-      /* get all plugins */
-      $this->get_modules( );
-      $this->get_templates( );
-      $this->get_inputs( );
-      $this->get_themes( );
+    
+      /* connection failed, throw fatal error */
+      $this->throwFatalError(array(
+        'title'         => 'Fatal Error',
+		'description'   => 'Connection to plugin database failed',
+		'content1'      => 'CaMykS is not able to get plugins from your website.',
+		'error_link'    => 'http://www.camyks.net',
+		'error_title'   => 'Check CaMykS website for more informations.'
+	  ));
     }
-    ob_clean();
+    
   }
   
-  /* compare active plugins and requiered plugins */
-  function check_plugins() {
+  /* 
+   * compare active plugins and required plugins
+   * @return void
+   * @access private
+   */
+  private function check_plugins() {
+  
+    /* load needed plugins */
     $this->get_neededPlugins();
+    
     /* check modules */
     foreach ( $this->neededModules as $p ) {
       if ( !isset($this->modules[$p['name']]))
@@ -877,36 +938,63 @@ class Camyks {
     }
   }
   
-  /* get modules list in CaMykS object */
-  function get_modules ( ) {
-    $this->modules = array_merge(module_getList($this->camyks_plugin_path, 'camyks'), 
-				 module_getList($this->site_plugin_path, 'site'));
+  /* 
+   * get modules list in CaMykS object
+   * @return void
+   * @access public
+   */
+  public function get_modules() {
+    $this->modules = array_merge(
+        module_getList($this->camyks_plugin_path, 'camyks'), 
+		module_getList($this->site_plugin_path, 'site')
+	);
   }
   
-  /* get templates list in CaMykS object */
-  function get_templates ( ) {
-    $this->templates = array_merge(template_getList($this->camyks_plugin_path, 'camyks'),
-				   template_getList($this->site_plugin_path, 'site'));
+  /*
+   * get themes list in CaMykS object
+   * @return void
+   * @access public
+   */
+  public function get_themes() {
+    $this->themes = array_merge(
+        theme_getList($this->camyks_plugin_path, 'camyks'),
+		theme_getList($this->site_plugin_path, 'site')
+	);
   }
   
-  /* get inputs list in CaMykS object */
-  function get_inputs ( ) {
-    $this->inputs = array_merge(input_getList($this->camyks_plugin_path, 'camyks'),
-				input_getList($this->site_plugin_path, 'site'));
+  /* 
+   * get templates list in CaMykS object
+   * @return void
+   * @access public
+   */
+  public function get_templates() {
+    $this->templates = array_merge(
+        template_getList($this->camyks_plugin_path, 'camyks'),
+		template_getList($this->site_plugin_path, 'site')
+	);
   }
   
-  /* get themes list in CaMykS object */
-  function get_themes ( ) {
-    $this->themes = array_merge(theme_getList($this->camyks_plugin_path, 'camyks'),
-				theme_getList($this->site_plugin_path, 'site'));
+  /*
+   * get inputs list in CaMykS object
+   * @return void
+   * @access public
+   */
+  public function get_inputs() {
+    $this->inputs = array_merge(
+        input_getList($this->camyks_plugin_path, 'camyks'),
+		input_getList($this->site_plugin_path, 'site')
+	);
   }
   
-  
-  /* get needed plug-ins list */
-  function get_neededPlugins () {
+  /*
+   * load needed plug-ins list from CaMykS configuration
+   * @return void
+   * @access public
+   */
+  public function get_neededPlugins() {
     $file = $this->camyks_engine_path.'/'.$this->conf_folder.'/neededPlugins'.$this->file_extension;
-    if ( file_exists( $file ) ) {
-      require_once ( $file );
+    if (file_exists($file)) {
+      require_once ($file);
     } else {
       $this->neededModules = array();
       $this->neededInputs = array();
@@ -914,30 +1002,68 @@ class Camyks {
       $this->neededThemes = array();
     }
   }
-
-  /* return plugin path */
-  function get_pluginPath ( $path_type ) {
-    switch ( $path_type ) {
-    case 'camyks' : return $this->camyks_plugin_path;
-    case 'site' : return $this->site_plugin_path;
-    }
-  }
-
-  /* return plugin url */
-  function get_pluginURL ( $path_type ) {
-    switch ( $path_type ) {
-    case 'camyks' : return $this->camyks_plugin_url;
-    case 'site' : return $this->site_plugin_url;
-    }
-  }
-
-  /****************** ADMIN USER *********************/
+  
   /*
-   * load admin user
+   * get needed plug-ins list
    * @return void
    * @access private
    */
-  function get_adminUser() {
+  private function load_neededPlugins() {
+    $this->get_neededPlugins();
+    
+    /* load modules */
+    foreach ($this->neededModules as $module) 
+      $this->modules[$module['name']] = module_get($module['name']);
+      
+    /* load themes */
+    foreach ($this->neededThemes as $theme) 
+      $this->themes[$theme['name']] = theme_get($theme['name']);
+    
+    /* load templates */
+    foreach ($this->neededTemplates as $template) 
+      $this->templates[$template['name']] = template_get($template['name']);
+    
+    /* load inputs */
+    foreach ($this->neededInputs as $input) 
+      $this->inputs[$input['name']] = input_get($input['name']);
+  }
+
+  /* 
+   * return plugin path case of plugin path type 
+   * @param string $path_type
+   * @return string
+   * @access public
+   */
+  public function get_pluginPath($path_type) {
+    switch ($path_type) {
+      case 'camyks' : return $this->camyks_plugin_path;
+      case 'site' : return $this->site_plugin_path;
+    }
+    return '';
+  }
+
+  /* 
+   * return plugin url case of plugin path type
+   * @param string $path_type
+   * @return string
+   * @access public
+   */
+  public function get_pluginURL($path_type) {
+    switch ($path_type) {
+      case 'camyks' : return $this->camyks_plugin_url;
+      case 'site' : return $this->site_plugin_url;
+    }
+    return '';
+  }
+
+  /****************** ADMIN USER *********************/
+  
+  /*
+   * load admin user
+   * @return void
+   * @access public
+   */
+  public function get_adminUser() {
     /* load current adminUser */
     if (isset($this->modules['Admin_User'])) {
       $this->adminUser = new AdminUser($this->get_sessionValue('admin_user'));
@@ -950,8 +1076,8 @@ class Camyks {
    * @return boolean result
    * @access public
    */
-  function check_adminUser() {
-    return ( $this->adminUser != false and $this->adminUser->login != '' );
+  public function check_adminUser() {
+    return ($this->adminUser != false and $this->adminUser->login != '');
   }
 
   /******************** CACHES ***********************/
@@ -962,23 +1088,23 @@ class Camyks {
    * @return mixed
    * @access public
    */
-  function get_cache ( $title ) {
-    // if cache is already loaded, get cached cache value
-    if ( isset ( $this->cache[$title] ) ) {
+  public function get_cache($title) {
+    /* if cache is already loaded, get cached cache value */
+    if (isset($this->cache[$title])) {
       return $this->cache[$title];
     }
     
-    // check if cache file exists
+    /* check if cache file exists */
     $file = $this->site_cache_path."/".$title.$this->file_extension;
-    if ( file_exists ( $file ) ) {
+    if (file_exists ($file)) {
       require_once( $file );
-      // check if cache var is correctly set
-      if ( isset ( $cache_value ) ) {
-	$this->cache[ $title ] = file_getUnserializedVar ( $cache_value );
-	return $this->cache[ $title ];
+      /* check if cache var is correctly set */
+      if (isset($cache_value)) {
+	    $this->cache[ $title ] = file_getUnserializedVar($cache_value);
+	    return $this->cache[$title];
       } else {
-	/* TO DO */
-	/* no cache value founded */
+	    /* TO DO */
+	    /* no cache value founded */
       }
     } else {
       /* TO DO */
@@ -987,19 +1113,26 @@ class Camyks {
     return null;
   }
   
-	// set cache file	
-  function set_cache ( $title, $content, $desc = "" ) {
+  /*
+   * set cache file	
+   * @param string $title
+   * @param mixed $content
+   * @param string $desc
+   * @return void
+   * @access public
+   */
+  public function set_cache ( $title, $content, $desc = "" ) {
     $file_path = $this->site_cache_path."/".$title.$this->file_extension;
-    // try to open file & write inside
+    /* try to open file & write inside */
     if ( $file = fopen($file_path, "w")) {
-			// update content
-      $file_content = file_getPHPFileHeader( $desc );
-      $file_content .= file_getSerializedVar ( $title, $content );
+	  /* update content */
+      $file_content = file_getPHPFileHeader($desc);
+      $file_content .= file_getSerializedVar($title, $content);
       $file_content .= file_getPHPFileEnder();
       
-      // write content to file
-      fputs( $file, $file_content);
-      fclose( $file);
+      /* write content to file */
+      fputs($file, $file_content);
+      fclose($file);
     } else {
       /* TO DO */
       /* cannot save cache file */
@@ -1014,7 +1147,7 @@ class Camyks {
    * @return void
    * @access public
    */
-  function check_deviceMode ($device='') {
+  public function check_deviceMode($device='') {
     /* load device value */
     if ($device != '') {
       $deviceStatus = 'forced';
@@ -1054,77 +1187,106 @@ class Camyks {
 
   /******************** ERRORS *************************/
 
-  function throwFatalError( $error ) {
+  /*
+   * stop CaMykS, with an error
+   * @param array $error
+   * @access public
+   */
+  public function throwFatalError($error) {
     /* complete error values */
     $error['site_title'] = isset($this->_conf['site_title'])?$this->_conf['site_title']:'';
+    
     /* display error */
     $splashError = $this->camyks_engine_path.'/data/html/splash_error.html.inc';
-    if ( file_exists( $splashError ) ) {
-      require_once( $splashError );
+    if (file_exists($splashError)) {
+      require_once($splashError);
     } else {
       /* to do */
     }
+    
+    /* start closing CaMykS */
     $this->init_kill();
     die();
   }
 
   /******************** LOGS ***************************/
-  function log_event( $type, &$object, $desc1='', $desc2='', $file='', $line=0 ) {
+  
+  /*
+   * log event in system report module
+   * @param string $type
+   * @param object $object
+   * @param string $desc1
+   * @param string $desc2
+   * @param string $file
+   * @param integer $line
+   * @return boolean success
+   * @access public
+   */
+  public function log_event($type, &$object, $desc1='', $desc2='', $file='', $line=0) {
     if ( is_string( $object ) ) {
       /* old system create a report */
 
     } else {
-    
       /* add log report */
-      if ( isset ( $this->modules['Admin_SystemReport'] ) 
-	   and $this->modules['Admin_SystemReport']->is_installed() ) {
-	   
-	    $this->modules['Admin_SystemReport']->add_newReport($type,
-							    $object,
-							    $desc1,
-							    $desc2,
-							    $file,
-							    $line );
+      if (isset($this->modules['Admin_SystemReport']) and $this->modules['Admin_SystemReport']->is_installed()) {
+	    $this->modules['Admin_SystemReport']->add_newReport($type, $object, $desc1, $desc2, $file, $line);
       }
     }
     /* always return false */
     return false;
   }
   
-  /* log_event shortcut for sql error */
-  function log_sqlerror ( &$object, $sqlquery='', $file='', $line=0 ) {
-    return $this->log_event('SQL Error',
-			    $object,
-			    $sqlquery,
-			    $this->db_conn->get_queryError(),
-			    $file,
-			    $line);
+  /*
+   * log sql error in system report module
+   * @param object $object
+   * @param string $desc1
+   * @param string $desc2
+   * @param string $file
+   * @param integer $line
+   * @return boolean success
+   * @access public
+   */
+  public function log_sqlerror(&$object, $sqlquery='', $file='', $line=0) {
+    return $this->log_event('SQL Error', $object, $sqlquery, $this->db_conn->get_queryError(), $file, $line);
   }
 
-  /* log_event shortcut for internal error */
-  function log_internalerror ( &$object, $desc1='', $desc2='', $file='', $line=0 ) {
-    return  $this->log_event('Internal Error',
-			     $object,
-			     $desc1,
-			     $desc2,
-			     $file,
-			     $line);
+  /*
+   * log internal error in system report module
+   * @param object $object
+   * @param string $desc1
+   * @param string $desc2
+   * @param string $file
+   * @param integer $line
+   * @return boolean success
+   * @access public
+   */
+  public function log_internalerror(&$object, $desc1='', $desc2='', $file='', $line=0) {
+    return  $this->log_event('Internal Error', $object, $desc1, $desc2, $file, $line);
   }
 
-  /* log_event shortcut for information */
-  function log_information ( &$object, $info1='', $info2='' ) {
-    return $this->log_event('Information',
-			    $object,
-			    $info1,
-			    $info2);
+  /*
+   * log information in system report module
+   * @param object $object
+   * @param string $desc1
+   * @param string $desc2
+   * @return boolean success
+   * @access public
+   */
+  public function log_information(&$object, $info1='', $info2='') {
+    return $this->log_event('Information', $object, $info1, $info2);
   }
 
-  /* log_event shortcut for execution error */
-  function log_executionerror( &$object, $desc1='', $desc2='') {
-    return $this->log_event('Execution Error',
-			    $object,
-			    $desc1,
-			    $desc2);
+  /*
+   * log execution error in system report module
+   * @param string $type
+   * @param object $object
+   * @param string $desc1
+   * @param string $desc2
+   * @return boolean success
+   * @access public
+   */
+  public function log_executionerror(&$object, $desc1='', $desc2='') {
+    return $this->log_event('Execution Error', $object, $desc1, $desc2);
   }
 
   /******************** STATS **************************/
@@ -1140,7 +1302,7 @@ class Camyks {
    * @return void
    * @access public
    */
-  function update_statistic ( $name='', $module='', $type='', $main='', $data1='', $data2='', $params=array() ) {
+  public function update_statistic($name='', $module='', $type='', $main='', $data1='', $data2='', $params=array()) {
     if (isset($this->modules['Admin_Statistics'])) {
       $this->modules['Admin_Statistics']->update_statistic($name, $module, $type, $main, $data1, $data2, $params);
     }
@@ -1151,7 +1313,7 @@ class Camyks {
    * @return void
    * @access private
    */
-  function update_siteStatistics ( ) {
+  public function update_siteStatistics() {
     /* update global statistics in site mode only */
     if ( $this->mode != CAMYKS_MODE_SITE )
       return;
@@ -1170,7 +1332,8 @@ class Camyks {
    * @return boolean success
    * @access public
    */
-  function get_databaseConnection () {
+  public function get_databaseConnection() {
+    
     if ( $this->_conf['database_name'] != "" ) {
       $this->db_conn = new Database_connection($this->get_confValue('database_host'),
 					       $this->get_confValue('database_login'), 
@@ -1178,7 +1341,7 @@ class Camyks {
 					       $this->get_confValue('database_driver', '')
 					);
       if ($this->db_conn->is_active()) {
-	    if ($this->db_conn->select($this->_conf['database_name'])) {
+	    if ($this->db_conn->select($this->get_confValue('database_name'))) {
 	      return true;
 	    } else {
 	      /* error : database not found on database server */
@@ -1206,7 +1369,7 @@ class Camyks {
 		     'error_link'=>'http://www.camyks.net',
 		     'error_title'=>'Check CaMykS website for more informations.');
     }
-    $this->throwFatalError( $error );
+    $this->throwFatalError($error);
   }
   
   /*
@@ -1214,8 +1377,18 @@ class Camyks {
    * @return Object 
    * @access public
    */
-  function &get_dbConnection() {
+  public function &get_dbConnection() {
     return $this->db_conn;
+  }
+  
+  /*
+   * register an opened connection
+   * @param Object $connection
+   * @return void
+   * @access public
+   */
+  public function register_dbConnection(&$connection) {
+    $this->openedDBonnections[] = $connection;
   }
   
   /******************** SESSION  *************************/
@@ -1227,7 +1400,7 @@ class Camyks {
    * @return void
    * @access public
    */
-  function set_sessionValue ( $name, $value='' ) {
+  public function set_sessionValue($name, $value='') {
     $_SESSION[$this->site_name.'_'.$name] = $value;
   }
   
@@ -1238,7 +1411,7 @@ class Camyks {
    * @return void
    * @access public
    */
-  function get_sessionValue( $name, $value = null ) {
+  public function get_sessionValue($name, $value = null) {
     if ( isset($_SESSION[$this->site_name.'_'.$name ]) )
       return $_SESSION[$this->site_name.'_'.$name];
     return $value;
@@ -1249,39 +1422,61 @@ class Camyks {
    * @return void
    * @access public
    */
-  function kill_session ( ) {
-    foreach ( $_SESSION as $name => $value ) {
-      if ( strpos($name, $this->site_name.'_')==0 ) {
+  public function kill_session() {
+    foreach ($_SESSION as $name => $value) {
+      if (strpos($name, $this->site_name.'_') == 0) {
 	    unset($_SESSION[$name]);
       }
     }
   }
 
   /******************** SHARED DATA ********************/
-
-  function set_sharedData ( $name, $data=null, $sub=null ) {
+  
+  /*
+   * define some shared data
+   * @param string $name
+   * @param mixed $data
+   * @param string $sub
+   * @return void
+   * @access public
+   */
+  public function set_sharedData($name, $data=null, $sub=null) {
   	if ( $sub == null)
-  		$this->shared_data[$name] = $data;
+  	  $this->shared_data[$name] = $data;
   	else {
-  		if (!isset($this->shared_data[$name]))
-  			$this->shared_data[$name] = array();
-  		if ($data == null)
-				$this->shared_data[$name][] = $sub;
-			else
-				$this->shared_data[$name][$data] = $sub;
+  	 if (!isset($this->shared_data[$name]))
+        $this->shared_data[$name] = array();
+      if ($data == null)
+        $this->shared_data[$name][] = $sub;
+      else
+        $this->shared_data[$name][$data] = $sub;
   	}
   }
 
-  function get_sharedData ( $name, $value=null ) {
+  /*
+   * get some shared data
+   * @param string $name
+   * @param mixed $value
+   * @return mixed
+   * @access public
+   */
+  public function get_sharedData($name, $value=null) {
   	if ($value != null and isset($this->shared_data[$name][$value]))
   		return $this->shared_data[$name][$value];
   
-    if ( isset ( $this->shared_data[$name] ) )
+    if (isset($this->shared_data[$name]))
       return $this->shared_data[$name];
+      
     return $value;
   }
 
-  function check_sharedData ( $name ) {
+  /*
+   * check some shared data
+   * @param string $name
+   * @return boolean result
+   * @access public
+   */
+  public function check_sharedData($name) {
     return isset($this->shared_data[$name]);
   }
   
@@ -1295,7 +1490,7 @@ class Camyks {
    * @return void
    * @access public
    */
-  function register_asExtension($plugin, $ext_name, $ext_type) {
+  public function register_asExtension($plugin, $ext_name, $ext_type) {
   	if (!isset($this->plugin_extensions[$plugin]))
   		$this->plugin_extensions[$plugin] = array();
   	$this->plugin_extensions[$plugin][] = array('name'=>$ext_name, 'type'=>$ext_type);
@@ -1307,9 +1502,9 @@ class Camyks {
    * @return array
    * @access public
    */
-  function get_registeredExtensions($plugin) {
+  public function get_registeredExtensions($plugin) {
   	if (!isset($this->plugin_extensions[$plugin]))
-  		return array();
+  	  return array();
 	$list = array();
 	foreach ($this->plugin_extensions[$plugin] as $p) {
 	  switch ($p['type']) {
@@ -1344,7 +1539,7 @@ class Camyks {
    * @return string
    * @access public
    */
-  function get_rootBaseURL($mode = null) {
+  public function get_rootBaseURL($mode = null) {
   	if ($mode == null)
   		return $this->site_base_url;
   	return $this->get_defaultBaseURL($mode);
@@ -1354,9 +1549,9 @@ class Camyks {
    * return default base url
    * @param mixed $mode
    * @return $string
-   * @access private
+   * @access public
    */
-  function get_defaultBaseURL($mode=null) {
+  public function get_defaultBaseURL($mode=null) {
   	/* check for default mode */
   	if ($mode == null)
   		$mode = $this->get_confValue('file_path');
@@ -1369,14 +1564,14 @@ class Camyks {
   
   	/* return base url from mode */
   	switch ($mode) {
-  		case 'absolute':
-  		case 'absolute_long':
-  			return $this->get_confValue('url').'/';
-  		case 'absolute_short':
-  			return '/';
-  		case 'relative':
-  		default:
-  			return '';
+  	  case 'absolute':
+  	  case 'absolute_long':
+  		return $this->get_confValue('url').'/';
+  	  case 'absolute_short':
+  		return '/';
+  	  case 'relative':
+  	  default:
+  		return '';
   	}
   	return '';
   }
@@ -1386,9 +1581,9 @@ class Camyks {
    * @param string $filePath
    * @param string $mode
    * @return $string
-   * @access private
+   * @access public
    */
-  function get_fileURL($file='', $mode=null) {
+  public function get_fileURL($file='', $mode=null) {
     if (substr($file, 0, 2) == './')
       $file = substr($file, 2);
     return $this->get_rootBaseURL($mode).$file;
@@ -1405,7 +1600,7 @@ class Camyks {
    * @return string
    * access public
    */
-  function get_dataFileURL($file, $full=null, $default='') {
+  public function get_dataFileURL($file, $full=null, $default='') {
 	
 	$baseURL = $this->get_rootBaseURL($full);
     
@@ -1427,7 +1622,7 @@ class Camyks {
    * @return string
    * @access public
    */
-  function get_dataFilePath ( $file ) {
+  public function get_dataFilePath ( $file ) {
   	/* get file from site data folder */
     if (file_exists ($this->site_engine_url.'/'.$file))
       return $this->site_engine_url.'/'.$file;
@@ -1443,37 +1638,60 @@ class Camyks {
   
   /******************** ENDING *************************/
 
-  /* init kill camyks object */
-  function init_kill() {
-    if ($this->benchMode !== false) $this->benchMode->export();
-    register_shutdown_function('camyks_kill');
+  /* 
+   * ** Deprecated **
+   * start closing CaMykS object
+   * @return void
+   * @access public
+   */
+  public function init_kill() {
     die();
   }
 
-  /* kill camyks object */
-  function kill () {
-    /* close database */
-    if ( isset($this->db_conn) ) {
-      $this->db_conn->kill();
-    }
+  /* 
+   * finish closing CaMykS object
+   * @return void
+   * @access public
+   */
+  public function terminate() {
+    /* export bench before closing */
+    if ($this->benchMode !== false) $this->benchMode->export();
+    
+    /* close databases */
+    foreach ($this->openedDBonnections as $connection)
+      $connection->close();
   }
   
   /******************* LINKS ***************************/
 
-  function get_adminLink ( $module='', $params=array() ) {
+  /*
+   * return HTML admin mode link
+   * @param string $module
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_adminLink($module='', $params=array()) {
     $link = $this->_conf['admin_entry'];
     if ( $module != '' ) {
       $link .= '?module='.$module;
     }
     foreach ( $params as $key => $value ) {
       if ( $key != '' ) {
-	$link .= '&amp;'.$key .'='.$value;
+	    $link .= '&amp;'.$key .'='.$value;
       }
     }
-   return $link;
+    return $link;
   }
 
-  function get_adminJSLink ($module='', $params=array()) {
+  /*
+   * return JavaScript admin mode link
+   * @param string $module
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_adminJSLink($module='', $params=array()) {
     $link = $this->_conf['admin_entry'];
     if ( $module != '' ) {
       $link .= '?module='.$module;
@@ -1486,7 +1704,13 @@ class Camyks {
     return $link;
   }
   
-  function get_requestLink ($params=array()) {
+  /*
+   * return HTML request mode link
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_requestLink($params=array()) {
     $link = 'request.php?';
 
     $items = array();
@@ -1498,8 +1722,14 @@ class Camyks {
     $link .= implode('&amp;', $items);
     return $link;
   }
-
-  function get_requestJSLink ($params=array()) {
+  
+  /*
+   * return JavaScript request mode link
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_requestJSLink($params=array()) {
     $link = 'request.php?';
 
     $items = array();
@@ -1511,54 +1741,97 @@ class Camyks {
     $link .= implode('&', $items);
     return $link;
   }
-
-  function get_siteLink ($page, $name='', $lg='', $params=array()) {
+  
+  /*
+   * return site mode link
+   * @param mixed $page
+   * @param string $name
+   * @param string $lg
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_siteLink ($page, $name='', $lg='', $params=array()) {
     return $this->modules['Admin_ContentPage']->get_sitePageLink($page, $lg, $params);
   }
-
-  function get_siteHomepageLink () {
+  
+  /*
+   * return home page link in site mode
+   * @return string
+   * @access public
+   */
+  public function get_siteHomepageLink () {
     return $this->modules['Admin_ContentPage']->get_siteHomePageLink();
   }
 
-  function get_siteCurrentLink ($lg='', $params=null) {
-    return $this->get_siteLink ( $this->contentPage->id,
-				 $this->contentPage->name,
-				 $lg,
-				 $params!=null?$params:$this->contentPage->params);
+  /*
+   * return site mode link based on current one
+   * @param mixed $page
+   * @param string $name
+   * @param string $lg
+   * @param array $params
+   * @return string
+   * @access public
+   */    
+  public function get_siteCurrentLink($lg='', $params=null) {
+    return $this->get_siteLink ($this->contentPage->id, $this->contentPage->name, $lg, $params!=null?$params:$this->contentPage->params);
   }
 
-  function get_siteLinkByName ($name, $lg='', $params=array()) {
-    $page = ContentPage::static_get_pageBasicInfoByName( $name );
-    return $this->get_rootBaseURL().$this->get_siteLink ( $page->id,
-				 $page->name,
-				 $lg,
-				 $params);
+  /*
+   * **DEPRECATED : now use get_siteLink directly
+   * return site mode link based name
+   * @param string $name
+   * @param string $lg
+   * @param array $params
+   * @return string
+   * @access public
+   */  
+  public function get_siteLinkByName ($name, $lg='', $params=array()) {
+    $page = ContentPage::static_get_pageBasicInfoByName($name);
+    return $this->get_rootBaseURL().$this->get_siteLink($page->id, $page->name, $lg, $params);
   }
-
-  function get_siteLinkEncodeParams($params) {
-    if ( count( $params ) == 0 ) 
+  
+  /*
+   * return encoded params for link
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_siteLinkEncodeParams($params) {
+    if (count($params) == 0 ) 
       return '';
     $p = array();
-    foreach ( $params as $n => $v ) {
+    foreach ($params as $n => $v) {
       $p[] = ''.$n;
       $p[] = ''.$v;
     }
-    $p = implode('_', $p );
+    $p = implode('_', $p);
     return $p;
   }
 
+  /*
+   * return decoded params for link
+   * @param string $params
+   * @return array
+   * @access public
+   */
   function get_siteLinkDecodeParams($params) {
     $p = array();
-    $params = explode ('_', $params);
-    for ( $i=1; $i<count( $params); $i+=2 ) {
+    $params = explode('_', $params);
+    for ($i=1; $i<count( $params); $i+=2) {
       $p[$params[$i-1]] = $params[$i];
     }
     return $p;
   }
 
   /******************* CONTENT *************************/
-  /* build content */
-  function get_pageContent() {
+  
+  /* 
+   * build page content
+   * @return void
+   * @access private
+   */
+  private function get_pageContent() {
     if ($this->benchMode!==false) $this->benchMode->start('CaMykS page loading');
   
     switch ( $this->mode ) {
@@ -1581,29 +1854,34 @@ class Camyks {
 
   }
   
-  /* build content for visite site */
-  function get_sitePageContent() {
+  /* 
+   * build page content in site mode
+   * @return void
+   * @access private
+   */
+  private function get_sitePageContent() {
     /* create page */
     $this->HTMLPage = new HTMLPage();
     $this->HTMLPage->set_charset($this->get_htmlencodingvalue());
 
     /* update HTML page metas with site informations */
-    $this->HTMLPage->set_siteInformations( $this->get_confValue('site_title'), 
-					   $this->get_confValue('site_company'));
+    $this->HTMLPage->set_siteInformations($this->get_confValue('site_title'), $this->get_confValue('site_company'));
 
     /* create page content */
-    $page = isset ( $_REQUEST['page'] ) ? $_REQUEST['page'] : '';
-    $params = isset ( $_REQUEST['params'] ) ? $_REQUEST['params'] : '';
-    $this->contentPage = new ContentPage ($this->mode, 0, $params );
+    $page = isset ($_REQUEST['page']) ? $_REQUEST['page'] : '';
+    $params = isset ($_REQUEST['params']) ? $_REQUEST['params'] : '';
+    $this->contentPage = new ContentPage($this->mode, 0, $params);
         
     /* get init from content */
     $this->contentPage->load_asFrontPage($page);
           
     /* get internal locales */
-    $this->HTMLPage->set_pageInformations ( $this->contentPage->title,
-					    $this->contentPage->description,
-					    $this->contentPage->keywords, 
-					    $this->current_language);
+    $this->HTMLPage->set_pageInformations(
+        $this->contentPage->title,
+		$this->contentPage->description,
+		$this->contentPage->keywords, 
+		$this->current_language
+    );
     $this->HTMLPage->set_robotInformations();
 
     /* set mobile configuration values */
@@ -1614,12 +1892,11 @@ class Camyks {
     $this->HTMLPage->set_googleInformations($this->get_confValue('google_analytics', ''), $this->get_confValue('google_analytics_domain', ''));
 
     /* add favicon */
-    if ( ($f = $this->get_confValue('favicon', false)) !== false ) {
+    if (($f = $this->get_confValue('favicon', false)) !== false) {
       $this->HTMLPage->set_favicon($f);
     } else {
       $this->HTMLPage->set_favicon();
     }
-        
     $this->contentPage->init_site();
 
     /* update statistics */
@@ -1633,8 +1910,12 @@ class Camyks {
     $this->HTMLPage->add_HTMLFooter();
   }
   
-  /* build content for admin */
-  function get_adminPageContent() {
+  /* 
+   * build page content in admin mode
+   * @return void
+   * @access private
+   */
+  private function get_adminPageContent() {
     /* init admin module to display */
     if ( $this->check_adminUser() === false ) {
       /* check for over written admin login module */
@@ -1691,7 +1972,11 @@ class Camyks {
     $this->HTMLPage->add_HTMLFooter();
   }
 
-  /* build content in request mode */
+  /* 
+   * build page content in request mode
+   * @return void
+   * @access private
+   */
   function get_requestPageContent() {
     $plugin = false;
     
@@ -1729,14 +2014,23 @@ class Camyks {
     }
   }
   
-  /* build content in manager mode */
-  function get_managerPageContent() {
-    /* open manager */
+  /* 
+   * build page content in manager mode
+   * @return void
+   * @access private
+   */
+  private function get_managerPageContent() {
+    /* open manager *
     manager_main();
+    */
   }
 
-  /* build content in install mode */
-  function get_installPageContent() {
+  /* 
+   * build content in install mode
+   * @return void
+   * @access private
+   */
+  private function get_installPageContent() {
     
     $this->get_currentLanguage('admin');
     
