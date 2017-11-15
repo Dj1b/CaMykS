@@ -33,7 +33,7 @@ class AdminGroup {
    * constructor
    * @param string $name
    */
-  function AdminGroup ( $name = '', $parent = null) {
+  function AdminGroup($name = '', $parent = null) {
     $this->name = $name;
     $this->is_new = ( $name == '' ? 1 : 0 );
     /* update generic library vars */
@@ -65,6 +65,7 @@ class AdminGroup {
   function initialise() {
     $this->description = '';
     $this->users = array();
+    $this->users_ = '';
     $this->is_new = 1;
     return true;
   }
@@ -99,7 +100,7 @@ class AdminGroup {
     if ( $req = $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
       /* get data from database */
       if ( $data = $camyks->db_conn->get_queryDataLine()) {
-	    $this->get_fromArray( $data );
+	    $this->get_fromArray($data);
 	    $this->is_new = 0;
 	    return $this->get_usersFromDatabase();
       } else {
