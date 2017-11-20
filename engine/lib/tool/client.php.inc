@@ -242,6 +242,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'),
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
+  
   /* check LG */
   elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'LG', 
@@ -257,6 +258,7 @@ function client_getUAInfos($ua=false) {
         'D722'  => array('platform_model' => 'G3 S',),
         'H815'  => array('platform_model' => 'G4',),
         'H831'  => array('platform_model' => 'G5',),
+        'M700'  => array('platform_model' => 'Q6 Alpha',),
     );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'LG', 
@@ -275,6 +277,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
+  
   /* check Motorola */
   elseif (preg_match('/mot(?:-|orola |o|\-moto)([^ \/;]+)/i', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'Motorola', 
@@ -360,6 +363,7 @@ function client_getUAInfos($ua=false) {
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+'),
         'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
+        'SM-G930V'  => array('platform_model' => 'Galaxy S7'),
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge'),
         'SM-T580'   => array('platform_model' => 'Galaxy S8'),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
@@ -1114,7 +1118,9 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/(PGN[0-9]{3})/', $ua, $matches)) {
     $rep = array(
         'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
+        'PGN528' => array('platform_model' => 'Plume P6 Pro',),
         'PGN605' => array('platform_model' => 'Plume P8',),
+        
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -1422,7 +1428,7 @@ function client_getUAInfos($ua=false) {
       	), $infos);
   	  } else {
         $infos = array_merge(array(
-            'browser_title'=>'Safari', 
+            'browser_title'=>'Safari compatible', 
       	    'browser_version'=>'',
       	), $infos);
       }
@@ -1525,6 +1531,12 @@ function client_getUAInfos($ua=false) {
       $infos = array_merge(array(
         'browser_title'     => 'HotJava', 
       	'browser_version'   => $matches[1],
+      ), $infos);
+    
+    /* check Gecko compatible */
+    elseif (preg_match('/Gecko/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'Firefox compatible', 
       ), $infos);
   
     /* set type to "visitor" if not defined and browser title set */
