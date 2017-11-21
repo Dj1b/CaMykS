@@ -3,18 +3,18 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Engine / Object
  * Creation Date    : Jun 2011
- * Last Modif Date  : Jun 2011
+ * Last Modif Date  : Nov 2017
  *
  * Request Answer generic object
  */
 
-class CRequestAnswer {
-	/* params */
-  var $params;
+final class CRequestAnswer {
+  /* define variables */
+  private $params;
 
   /*
    * object constructor
@@ -22,7 +22,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function CRequestAnswer($params=array()) {
+  public function __construct($params=array()) {
     /* build default param list */
     $defaultParams = array(
     	/* Answer status : success / failure ( / fail ) */
@@ -40,6 +40,7 @@ class CRequestAnswer {
     	/* Request line */
     	'line'=>0,
     	);
+    	
     /* build object param list */
     $this->params = array_merge($defaultParams, $params);
   }
@@ -52,7 +53,7 @@ class CRequestAnswer {
    * @return mixed
    * @access public
    */
-  function get_param($param='') {
+  public function get_param($param='') {
     if (isset($this->params[$param]))
       return $this->params[$param];
     return false;
@@ -64,7 +65,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function update_params($params=array()) {
+  public function update_params($params=array()) {
   	$this->params = array_merge($this->params, $params);
   }
   
@@ -75,7 +76,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function update_param($name, $value) {
+  public function update_param($name, $value) {
   	$this->params[$name] = $value;
   }
   
@@ -85,7 +86,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function set_asSuccess($msg='') {
+  public function set_asSuccess($msg='') {
   	$this->params['status'] = 'success';
   	if ($msg != '')
   	    $this->params['message'] = $msg;
@@ -98,7 +99,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function set_asFailure($msg='', $error='') {
+  public function set_asFailure($msg='', $error='') {
   	$this->params['status'] = 'failure';
   	if ($msg != '')
   	    $this->params['message'] = $msg;
@@ -111,7 +112,7 @@ class CRequestAnswer {
    * @return boolean result
    * @access public
    */
-  function is_success() {
+  public function is_success() {
   	return ($this->params['status'] == 'success');
   }
   
@@ -120,7 +121,7 @@ class CRequestAnswer {
    * @return boolean result
    * @access public
    */
-  function is_failure() {
+  public function is_failure() {
   	return (in_array($this->params['status'], array('failure', 'fail')));
   }
   
@@ -129,7 +130,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function throw_fatalError() {
+  public function throw_fatalError() {
   	global $camyks;
   
   	/* check if answer is a failure */
@@ -151,17 +152,17 @@ class CRequestAnswer {
     	}
     }
 
-		/* check for description & content */
-		if (is_string($this->params['message'])) {
-			$error['description'] = $this->params['message'];
-		} else {
-			$error['description'] = $this->params['message'][0];
-			for ($i=1; $i<count($this->params['message']); $i++)
-				$error['content'.$i] = $this->params['message'][0];
-		}
+	/* check for description & content */
+	if (is_string($this->params['message'])) {
+		$error['description'] = $this->params['message'];
+	} else {
+		$error['description'] = $this->params['message'][0];
+		for ($i=1; $i<count($this->params['message']); $i++)
+			$error['content'.$i] = $this->params['message'][0];
+	}
 		
-		/* throw fatal error */
-    $camyks->throwFatalError( $this->error );
+	/* throw fatal error */
+    $camyks->throwFatalError($error);
   }
   
   /*
@@ -169,7 +170,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function log_error() {
+  public function log_error() {
   	global $camyks;
   	
   	/* check parent */
@@ -177,15 +178,15 @@ class CRequestAnswer {
   		return;
   	
   	/* check description & content */
-		if (is_string($this->params['message'])) {
-			$msg1 = $this->params['message'];
-		} else {
-			$msg1 = implode('<br />', $this->params['message']);
-		}
+	if (is_string($this->params['message'])) {
+		$msg1 = $this->params['message'];
+	} else {
+		$msg1 = implode('<br />', $this->params['message']);
+	}
 		
-		/* check error  */
+	/* check error  */
   	if ( $this->params['error'] != '') {
-  		$msg2 = $msg1;
+  	    $msg2 = $msg1;
   		$msg1 = $this->params['error'];
   	} else {
   		$msg2 = '';
@@ -201,7 +202,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function send_asXML($params=array()) {
+  public function send_asXML($params=array()) {
   	/* check for new params */
   	if (count($params) > 0)
   		$this->update_params($params);
@@ -222,7 +223,7 @@ class CRequestAnswer {
    * @return void
    * @access public
    */
-  function send_asJSON($params=array()) {
+  public function send_asJSON($params=array()) {
   	/* check for new params */
   	if (count($params) > 0)
   		$this->update_params($params);
