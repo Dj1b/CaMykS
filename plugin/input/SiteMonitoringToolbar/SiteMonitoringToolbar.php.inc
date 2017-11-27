@@ -1,0 +1,344 @@
+<?php
+/*
+ * CaMykS Engine
+ * Developed by	    : camyks.net
+ * Author	       	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Engine
+ * Create Date		: Nov 2017
+ * Last Modif Date	: Nov 2017
+ * 
+ * Display a monitoring toolbar on website for connected admin
+ * 
+ * Available tools
+ * CaMykS Main button to open/close toolbar
+ * Publish / Unpublish
+ * Edit 
+ * Add
+ * Configuration
+ * Statistics
+ * ----
+ * Messages (start / enabled status)
+ * dB Stats (start / enabled status)
+ * Page bench (start / enabled status)
+ * ---
+ * Disconnect
+ */
+
+final class SiteMonitoringToolbar extends Input {
+  /* variables */
+  
+  /* 
+   * constructor
+   * @param string $path_type
+   * @access public
+   */
+  public function __construct ( $path_type ) {
+    global $camyks;
+    parent::Input('SiteMonitoringToolbar', $path_type);
+    /* set plugin version */
+    $this->version = '1.0';
+    
+    /* set plugin package */
+    $this->plugin_package = 'Default';
+    
+    /* set plugin author */
+    $this->author_name = 'CaMykS Team';
+    $this->author_mail = 'camyks.contact@gmail.com';
+    $this->author_group = 'camyks.net';
+    
+    /* register plugin as CaMykS event handler */
+    if ($camyks->mode == CAMYKS_MODE_SITE) {
+      $this->register_asCaMykSEventHandler('onPageLoad');
+      $this->register_asCaMykSEventHandler('onTerminate');
+    }
+  }
+  
+  /* overwrite input methods */
+
+  /*
+   * initialise input
+   * @param array $params
+   * @return void
+   * @access public
+   */
+  public function initialise($params=array()) {
+    global $camyks;
+    
+    $locale = in_array($camyks->current_language, array('fr', 'en')) ? $camyks->current_language : 'en';
+    
+    
+    /* load styles */
+    $this->add_styleFile('SiteMonitoringToolbar.css');
+
+    /* load scripts */
+    $this->add_JSEngineFile('tool/xml.js');
+    $this->add_JSEngineFile('tool/htmlelement.js');
+    $this->add_JSEngineFile('object/cajaxrequest.js');
+    $this->add_JSFile('SiteMonitoringToolbar.js');
+    $this->add_JSLoadScript('SiteMonitoringToolbar.initialise();');
+    $this->add_JSWindowEventScript('resize', 'SiteMonitoringToolbar.resize_toolbar();');
+    $this->add_JSScript('SiteMonitoringToolbar.set_param("pluginURL", "'.$this->plugin_url.'");');
+    $this->add_JSScript('SiteMonitoringToolbar.set_param("locale", "'.$locale.'");');
+    $this->add_JSScript('SiteMonitoringToolbar.set_param("pictureBaseURL", "'.$this->get_fileURL('img').'");');
+    $this->add_JSScript('SiteMonitoringToolbar.set_param("requestBaseURL", "request.php?input='.$this->name.'");');
+    
+    /* clean session value */
+    $camyks->set_sessionValue('SMTLastBench', false);
+    $camyks->set_sessionValue('SMTDBStats', false);
+    $camyks->set_sessionValue('SMTSDBQueries', false);
+        
+    /* Input generic initialization */
+    parent::initialise();
+  }
+  
+  /*
+   * execute input in request mode
+   * @return void
+   * @access public
+   */
+  public function execute_request() {
+    global $camyks;
+
+    /* load camyks in site mode */
+    $camyks->get_siteInit();
+        
+    /* build error message */
+    $error = array(
+        'title'         => $this->get_translation('requestfailed'),
+		'description'   => $this->get_translation('requestfailed'),
+		'content1'      => $this->get_translation('requestfailed2'),
+	);
+	
+	/* check if admin user is still connected */
+	if ($camyks->check_adminUser() === false) {
+      $camyks->throwFatalError($error);
+    }
+	
+    /* load mode to execute */
+    $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
+    
+    /* check file value */
+    switch ($mode) {
+      case 'loadConfig':
+      	$this->execute_request_loadConfig();
+      	break;
+      case 'startDBStats':
+      	$this->execute_request_startDBStats();
+      	break;
+      case 'stopDBStats':
+      	$this->execute_request_stopDBStats();
+      	break;
+      case 'displayDBStats':
+      	$this->execute_request_displayDBStats();
+      	break;
+      case 'startBench':
+      	$this->execute_request_startBench();
+      	break;
+      case 'stopBench':
+      	$this->execute_request_stopBench();
+      	break;
+      case 'displayBench':
+      	$this->execute_request_displayBench();
+      	break;
+      case 'disconnect':
+      	$this->execute_request_disconnect();
+      	break;
+      default:
+        /* throw fatal error */
+        $camyks->throwFatalError($error);
+    }
+  }
+  
+  /* overwrite plugin methods */
+  
+  /*
+   * execute handler on CaMykS page load
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSPageLoad() {
+    global $camyks;
+    
+    if ($camyks->check_adminUser() !== false) {
+      $this->initialise();
+    }
+  }
+  
+  /*
+   * execute handler on camyks terminate
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSTerminate() {
+    global $camyks;
+           
+    /* check for bench values loading */
+    if ($camyks->get_executionVariable('_cBench') == 'shared')
+      $camyks->set_sessionValue('SMTBench', $camyks->get_sharedData('_cBenchResult'));
+          
+    /* check for DB statistics values loading */
+    if ($camyks->get_executionVariable('_cDBQueries') == 'shared') {
+      $camyks->set_sessionValue('SMTDBStats', $camyks->get_sharedData('_cDBStatsResult'));
+      $camyks->set_sessionValue('SMTDBQueries', $camyks->get_sharedData('_cDBQueriesResult'));
+    }
+  }
+  
+  /* request mode methods */
+  
+  /*
+   * execute input in request/loadConfig mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_loadConfig() {
+    global $camyks;
+    
+    $config = array(
+        'toolbarLocation' => 'bottom:right',
+        
+        'DBStatsStatus' => $camyks->get_executionVariable('_cDBQueries') == 'shared' ? 1 : 0,
+        'BenchStatus' => $camyks->get_executionVariable('_cBench') == 'shared' ? 1 : 0,
+        
+    );
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'loadConfig'));
+    $result->update_param('config', $config);
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/startDBStats mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_startDBStats() {
+    global $camyks;
+    
+    $camyks->set_executionVariable('_cDBQueries', 'shared');
+    $camyks->set_executionVariable('_cDBStats', 'shared');
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'startDBStats'));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/stopDBStats mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_stopDBStats() {
+    global $camyks;
+    
+    $camyks->set_executionVariable('_cDBQueries', 'false');
+    $camyks->set_executionVariable('_cDBStats', 'false');
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'stopDBStats'));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/displayDBStats mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_displayDBStats() {
+    global $camyks;
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'displayDBStats'));
+    $result->update_param('DBStats', $camyks->get_sessionValue('SMTDBStats', false));
+    $result->update_param('DBQueries', $camyks->get_sessionValue('SMTDBQueries', false));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+    
+  }
+  
+  /*
+   * execute input in request/startBench mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_startBench() {
+    global $camyks;
+    
+    $camyks->set_executionVariable('_cBench', 'shared');
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'startBench'));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/stopBench mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_stopBench() {
+    global $camyks;
+    
+    $camyks->set_executionVariable('_cBench', 'false');
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'stopBench'));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/displayBench mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_displayBench() {
+    global $camyks;
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'displayBench'));
+    $result->update_param('Bench', $camyks->get_sessionValue('SMTBench', false));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/disconnect mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_disconnect() {
+    global $camyks;
+    
+    /* disconnect admin user */
+    $camyks->kill_session();
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'disconnect'));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+}
+?>

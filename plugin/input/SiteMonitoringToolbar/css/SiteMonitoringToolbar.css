@@ -1,0 +1,29 @@
+/*
+ * CaMykS Engine
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Styles
+ * Creation Date    : Nov 2017
+ * Last Modif Date  : Nov 2017
+ * 
+ * SiteMonitoringToolbar custom styles
+ */
+
+/* toolbar */
+#SiteMonitoringToolbar {position:fixed; width:42px; overflow:hidden; background:black;}
+#SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px;}
+#SiteMonitoringToolbar .button {cursor:pointer; border-top:solid 1px #444444; border-bottom:solid 1px #888888;}
+#SiteMonitoringToolbar .separator {height:12px; border-top:solid 1px #444444; border-bottom:solid 1px #888888;}
+
+/* data panel */
+#SiteMonitoringToolbarDataPanel {position:fixed;}
+#SiteMonitoringToolbarDataPanel.left {left:42px; padding-left:9px; background:url(../img/leftArrow.png) 0 8px no-repeat;}
+#SiteMonitoringToolbarDataPanel.right {right:42px; padding-right:9px; background:url(../img/rightArrow.png) 100% 8px no-repeat;}
+#SiteMonitoringToolbarDataPanel .contentBox {background:black; border-radius:4px; padding:16px; min-height:25px; /* max-height:400px; overflow:auto;*/ box-shadow:0 0 8px 3px rgba(0,0,0,0.5);}
+#SiteMonitoringToolbarDataPanel .contentBox .title {text-transform:uppercase; font-size:14px; color:white; border-bottom:solid 1px white; padding: 0 0 2px 0; margin: 0 0 2px 0; }
+#SiteMonitoringToolbarDataPanel .contentBox .subtitle {font-weight:bold; color:white;}
+#SiteMonitoringToolbarDataPanel .contentBox .content {font-size:12px; color:white; padding:2px 0;}
+#SiteMonitoringToolbarDataPanel .contentBox .description {font-size:12px; color:white; font-style:italic; padding:2px 0;}
+#SiteMonitoringToolbarDataPanel .contentBox .value {font-size:12px; color:#33CC33;}
