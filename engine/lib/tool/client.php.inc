@@ -589,6 +589,7 @@ function client_getUAInfos($ua=false) {
         'NXT-L09'   => array('platform_model' => 'Mate 8'),
         'NXT-L29'   => array('platform_model' => 'Mate 8'),
         'CRR-L09'   => array('platform_model' => 'Mate S'),
+        'FRD-L09'   => array('platform_model' => 'Honor 8'),
         'FRD-L19'   => array('platform_model' => 'Honor 8'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
         'Y520-U22'  => array('platform_model' => 'Ascend'),
@@ -787,7 +788,7 @@ function client_getUAInfos($ua=false) {
       'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2/', $ua, $matches)) {
+  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2|RAINBOW/', $ua, $matches)) {
     $rep = array(
         'TOMMY2'    => array('platform_model' => 'Tommy 2',),
     );
@@ -1088,18 +1089,20 @@ function client_getUAInfos($ua=false) {
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }    
   elseif (preg_match('/HM NOTE 1LTE/', $ua, $matches))
-    $infos = array_merge($infos, array(
-  	  'platform_company'=>'Xiaomi', 
-      'platform_model'=>'Redmi Note 4G',
-      'platform_type'=>'handheld',
-      'platform_format'=>'handheld',));
-  elseif (preg_match('/Redmi Note 3/', $ua, $matches))
-    $infos = array_merge($infos, array(
+  	$infos = array_merge($infos, array(
   	  'platform_company'=>'Xiaomi', 
       'platform_model'=>'Redmi Note 3',
       'platform_type'=>'handheld',
-      'platform_format'=>'handheld',));
-  
+      'platform_format'=>'handheld')
+    );
+  elseif (preg_match('/(Redmi [A-Za-z0-9 ]{1,}) Build/', $ua, $matches))
+    $infos = array_merge($infos, array(
+  	  'platform_company'=>'Xiaomi', 
+      'platform_model'=>$matches[1],
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld',)
+    );
+    
   /* check Iris Sat mobiles */
   elseif (preg_match('/(I-S3)/', $ua, $matches)) {
     $rep = array(
@@ -4848,6 +4851,24 @@ function client_getKnownBots() {
     'bot_url'=>'http://www.pipl.com/bot/',
     'engine_title'=>'Pipl',
     'engine_url'=>'http://www.pipl.com');
+    
+  /* LightspeedSystemsCrawler */
+  $knownBots['lightspeedsystemscrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'LightspeedSystemsCrawler',
+    'bot_url'=>'',
+    'engine_title'=>'Lightspeed Systems, Inc.',
+    'engine_url'=>'https://www.lightspeedsystems.com');
+    
+  /* unknown bot */
+  $knownBots['seo bulls'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'SEO Bulls (unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -5756,6 +5777,15 @@ function client_getKnownTools() {
     'engine_title'=>'eVenture Capital Partners II, LLC',
     'engine_url'=>'http://www.eventures.vc/');
     
+  /* Nmap Scripting Engine */
+  $knownTools['nmap scripting engine'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Nmap Scripting Engine',
+    'tool_url'=>'https://nmap.org/book/nse.html',
+    'engine_title'=>'NMAP',
+    'engine_url'=>'https://nmap.org/');
+    
   /* return list */
   return $knownTools;
 }
@@ -6404,6 +6434,12 @@ function client_getKnownHacks() {
     'hack_info'=>'PHP Exploit',
   );
   
+  /* the beast malware */
+  $knownHacks['the beast'] = array(
+    'platform_type'=>'hack',
+    'hack_info'=>'the beast malware',
+  );
+  
   /* return list */
   return $knownHacks;
 }
@@ -6453,6 +6489,9 @@ function client_getFakeInfosFromUserAgent($ua='') {
     return $fake;
   
   if (preg_match('#^Mozilla/4.0 \(compatible; MSIE 999.1; Unknown\)#i', $ua))
+    return $fake;
+  
+  if (preg_match('#^Mozilla/1.22 \(compatible; MSIE 10.0; Windows 3.1\)#i', $ua))
     return $fake;
   
   if (preg_match('#^Mozilla/3.0 \(x86 \[en\] Windows NT 5.1; Sun\)#i', $ua))
@@ -6544,6 +6583,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     'tool_url'=>'',
     'engine_title'=>'Apple',
     'engine_url'=>'http://www.apple.com');
+  
+  /* badly set user agent */
+  if (preg_match('#Connection: closern$#i', $ua))
+    return $fake;
     
   /* default result */
   return false;
