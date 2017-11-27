@@ -31,7 +31,7 @@ final class CBench {
     );
     
     /* build object param list */
-    $this->params = array_merge($defaultParams, $params);
+    $this->params = array_merge($defaultParams, $params);    
     $this->status = 'idle';
     
     /* initialise bench */
@@ -80,23 +80,61 @@ final class CBench {
    * @return void
    * @access public
    */
-  public function export($method='') {
+  public function export($output='') {
     /* check if bench is stopped */
     if ($this->status != 'stopped')
         $this->stop();
     
+    $method = $output != '' ? $output : $this->params['output'];
+    
     /* compute result */
     $this->_compute_results();
-  
+    
     /* export */
     switch ($method) {
+      case 'none': return;
+      case 'shared': return $this->_export_toSharedData();
+      case 'session': return $this->_export_toSession();
       case 'logs': return $this->_export_toCaMykSLogs();
       case 'html': default : return $this->_export_toHTML();
     }
     return;
   }
   
+  /*
+   * return results 
+   * @return array
+   * @access public
+   */
+  public function get_results() {
+    return $this->results;
+  }
+  
   /* private methods */
+  
+  /*
+   * export results to CaMykS shared data
+   * @return void
+   * @access private
+   */
+  private function _export_toSharedData() {
+  	global $camyks;
+  	  	
+  	/* save bench to shared data  */
+  	$camyks->set_sharedData('_cBenchResult', $this->results);
+  }
+  
+  /*
+   * export results to session
+   * @return void
+   * @access private
+   */
+  private function _export_toSession() {
+  	global $camyks;
+  	  	
+  	/* save bench to session  */
+  	$camyks->set_sessionValue('_cBenchResult', $this->results);
+  }
   
   /*
    * export results to CaMykS logs
@@ -106,7 +144,7 @@ final class CBench {
   private function _export_toCaMykSLogs() {
   	global $camyks;
   	  	
-  	/* send error */
+  	/* log information */
   	$camyks->log_information($this->params['parent'], $msg1, $msg2, $this->params['file'], $this->params['line']);
   }
   
@@ -132,11 +170,11 @@ final class CBench {
    */
   private function _compute_results() {
     for ( $i=0; $i<count($this->bench)-1; $i++) {
-      $t = round($this->bench[$i+1]['time']-$this->bench[$i]['time'], 4);
-      $this->results[$i] = array('title'=>$this->bench[$i]['title'], 'time'=>$t.' s');
+      $t = (int)(($this->bench[$i+1]['time']-$this->bench[$i]['time'])*1000);
+      $this->results[$i] = array('title'=>$this->bench[$i]['title'], 'time'=>$t.' ms');
     }
-    $t = round($this->bench[count($this->bench)-1]['time']-$this->bench[0]['time'], 4);
-    $this->results[$i] = array('title'=>'Total', 'time'=>$t.' s');
+    $t = (int)(($this->bench[count($this->bench)-1]['time']-$this->bench[0]['time'])*1000);
+    $this->results[$i] = array('title'=>'Total', 'time'=>$t.' ms');
   }
 }
 ?>
