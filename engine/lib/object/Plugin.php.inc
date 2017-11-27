@@ -532,5 +532,53 @@ class Plugin {
   	global $camyks;
   	return $camyks->get_registeredExtensions($this->name);
   }
+  
+  /* CaMykS event handler management methods */
+  
+  /*
+   * register plugin as handler for CaMykS event
+   * @param string $event
+   * @access protected
+   */
+  protected function register_asCaMykSEventHandler($event) {
+    global $camyks;
+    $camyks->register_eventHandler($event, $this);
+  }
+  
+  /*
+   * execute handler on CaMykS initialisation
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSInitialise() {}
+  
+  /*
+   * execute handler on CaMykS page load
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSPageLoad() {}
+  
+  /*
+   * execute handler on body opening
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSBodyOpen() {return '';}
+  
+  /*
+   * execute handler on body closing
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSBodyClose() {return '';}
+  
+  /*
+   * execute handler on camyks terminate
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSTerminate() {}
+  
 }
 ?>
