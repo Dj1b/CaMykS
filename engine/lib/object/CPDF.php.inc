@@ -3,17 +3,18 @@
  * CaMykS Engine
  * Developed by	    : camyks.net
  * Author	        : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Engine / Object Lib
  * Creation Date    : May 2010
- * Last Modif Date  : May 2010
+ * Last Modif Date  : Nov 2017
  * History :
  * * 10-05-17 : Initial File
  *
  * CaMykS PDF creator object extending FDPF object
  * /!\ This library is not loaded with CaMykS initialisation
  *
+ * Plugin is not a final object, it can be extended by module libraries
  */
  
 require_once('FPDF/fpdf.php');
@@ -25,8 +26,9 @@ class CPDF extends FPDF {
    * @param string $orientation
    * @param string $unit
    * @param mixed $format
+   * @access public
    */
-  function CPDF($orientation=null, $unit=null, $format=null) {
+  public function __construct($orientation=null, $unit=null, $format=null) {
     global $camyks;
     
     /* Generic FPDF Init */
@@ -58,7 +60,7 @@ class CPDF extends FPDF {
    * @return void
    * @access public
    */
-  function set_htmlParams($params=array()) {
+  public function set_htmlParams($params=array()) {
     $this->htmlParams = array_merge($this->htmlParams, $params);
   }
 
@@ -68,7 +70,7 @@ class CPDF extends FPDF {
    * @return float
    * @access public
    */
-  function get_realWidth($w=0) {
+  public function get_realWidth($w=0) {
     switch ($this->unit) {
       case 'pt':
         return $w;
@@ -88,7 +90,7 @@ class CPDF extends FPDF {
    * @return void
    * @access public
    */
-  function write_html($html) {
+  public function write_html($html) {
     /* parse unknown tags */
     $html = strip_tags($html,"<b><u><i><a><img><p><br><strong><em><font><tr><blockquote><ol><ul><li>");
 
@@ -138,7 +140,7 @@ class CPDF extends FPDF {
    * @return string
    * @access public
    */
-  function decode_text($text) {
+  public function decode_text($text) {
     if ($this->serverEncoding == 'utf8')
       return utf8_decode($text);
     return $text;
@@ -150,7 +152,7 @@ class CPDF extends FPDF {
    * @return string
    * @access public
    */
-  function decode_HTMLText($text='') {
+  public function decode_HTMLText($text='') {
     /* replace special chars */
     $patterns = array('/&euro;/', '/&quot;/', '/&rsquo;/', '/&oelig;/');
     $replacem = array(chr(128), '"', '\'', chr(156));    
@@ -172,7 +174,7 @@ class CPDF extends FPDF {
    * @return string
    * @access public
    */
-  function set_textColor($color) {
+  public function set_textColor($color) {
     /* color as hexa string */
     if (is_string($color)) {
       if ($color == '')
@@ -211,7 +213,7 @@ class CPDF extends FPDF {
    * @return void
    * @access private
    */
-  function move_page($page, $location) {
+  public function move_page($page, $location) {
     $p = $this->pages[$page];
     
     if ($location < $page) {
@@ -236,7 +238,7 @@ class CPDF extends FPDF {
    * @return void
    * @access private
    */
-  function _write_htmlOpenTag($tag, $attr) {
+  private function _write_htmlOpenTag($tag, $attr) {
     switch($tag) {
       case 'STRONG':
         $this->_write_htmlSetStyle('B',true);
@@ -316,7 +318,7 @@ class CPDF extends FPDF {
    * @return void
    * @access private
    */
-  function _write_htmlCloseTag($tag) {
+  private function _write_htmlCloseTag($tag) {
     if ($tag=='STRONG')
         $tag='B';
     if ($tag=='EM')
@@ -346,7 +348,7 @@ class CPDF extends FPDF {
    * @return void
    * @access private
    */
-  function _write_htmlSetStyle($tag, $enable) {
+  private function _write_htmlSetStyle($tag, $enable) {
     $this->$tag+=($enable ? 1 : -1);
     $style='';
     foreach(array('B','I','U') as $s) {
@@ -363,7 +365,7 @@ class CPDF extends FPDF {
    * @return void
    * @access private
    */
-  function _write_htmlAddLink($URL, $txt) {
+  private function _write_htmlAddLink($URL, $txt) {
     $this->set_textColor(array(0,0,255));
     $this->_write_htmlSetStyle('U', true);
     $this->Write(5, $txt, $URL);
@@ -377,7 +379,7 @@ class CPDF extends FPDF {
    * @return string
    * @access private
    */
-  function _encode_entities($text) {
+  private function _encode_entities($text) {
     global $camyks;
     
     return html_entity_decode($text, ENT_COMPAT, 'ISO-8859-15');

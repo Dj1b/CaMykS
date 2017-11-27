@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Object Library
  * Creation Date	: Jun 2005
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Nov 2017
  * History :
  * * 05-06-xx : Initial File
  * * 08-01-16 : generic file upload input builder method
@@ -25,33 +25,32 @@ define('HTMLFORM_METHOD_GET',		1);
 /*
  * HTMLForm object 
  */
-class HTMLForm {
+final class HTMLForm {
   /* the form name */
-  var $name;
+  public $name;
   /* the form action url */
-  var $action;
+  public $action;
   /* the method use to send data */
-  var $method;
+  public $method;
   /* the onSubmit script to execute */ 
-  var $onSubmit;
+  public $onSubmit;
   /* the window target */
-  var $target;
+  public $target;
   /* the hidden values */
-  var $hiddens;
+  public $hiddens;
   /* indicate if the form allow files */
-  var $allowFiles;
+  public $allowFiles;
   /* the current tab value */
-  var $tabIndex;
+  public $tabIndex;
   /* the ModuleLibrary object */
-  var $object;
+  private $object;
   /* the Module object */
-  var $parent;
+  private $parent;
   /* the inputs number limit */
-  var $inputsCount;
-  var $inputsLimit;
-  var $inputsLimitUniques;
-  var $inputsLimitReached;
-
+  private $inputsCount;
+  private $inputsLimit;
+  private $inputsLimitUniques;
+  private $inputsLimitReached;
   
   /* 
    * constructor
@@ -61,7 +60,7 @@ class HTMLForm {
    * @param string $onSubmit the onSubmit script to execute
    * @param string $target the window target
    */
-  function HTMLForm ( $name='', $action='./', $method=null, $onSubmit='', $target='' ) {
+  public function __construct($name='', $action='./', $method=null, $onSubmit='', $target='') {
     $this->name = $name;
     $this->action = $action;
     $this->onSubmit = $onSubmit;
@@ -98,11 +97,11 @@ class HTMLForm {
   /* 
    * update allowFiles value 
    * @param boolean $allow
-   * @param int $size the allow file size in bytes
+   * @param int $size the allowed file size in bytes
    * @return void
    * @access public
    */
-  function allow_files ( $allow=true, $size=null ) {
+  public function allow_files($allow=true, $size=null) {
     $this->allowFiles = $allow;
     if ( $size > 0 ) {
       $this->add_hidden('MAX_FILE_SIZE', $size);
@@ -116,7 +115,7 @@ class HTMLForm {
    * @return void
    * @access public
    */
-  function set_object($object=null) {
+  public function set_object($object=null) {
     $this->object = &$object;
   }
 
@@ -126,7 +125,7 @@ class HTMLForm {
    * @return void
    * @access public
    */
-  function set_parent($parent=null) {
+  public function set_parent($parent=null) {
     $this->parent = &$parent;
   }
   
@@ -135,7 +134,7 @@ class HTMLForm {
    * @return string 
    * @access public
    */
-  function display_header( ) {
+  public function display_header( ) {
     $html = '<form';
     
     if ( $this->name != '' ) {
@@ -164,7 +163,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_footer( ) {
+  public function display_footer( ) {
     return '</form>';
   }
 
@@ -173,7 +172,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_ender( ) {
+  public function display_ender( ) {
     return $this->display_footer();
   }
   
@@ -184,8 +183,8 @@ class HTMLForm {
    * @return void
    * @access public
    */
-  function add_hidden ( $name, $value=null, $id='' ) {
-    if ( $value == null and isset($this->object) and isset($this->object->vars[$name]))
+  public function add_hidden ( $name, $value=null, $id='' ) {
+    if ($value == null and isset($this->object) and isset($this->object->vars[$name]))
       $value = $this->object->vars[$name];
     if ($value !== null)
       $this->hiddens[] = new HTMLForm_hidden ($name, $value, $id);
@@ -196,7 +195,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_hiddens ( ) {
+  public function display_hiddens ( ) {
     $html = "";
     foreach ( $this->hiddens as $hidden )
       $html .= $hidden->display()."\n";
@@ -209,7 +208,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function set_jsFocus( $focus ) {
+  public function set_jsFocus($focus) {
     return 'document.'.$this->name.'.'.$focus.'.focus();';
   }
 
@@ -222,7 +221,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_dateInput($date=TODAY, 
+  public function display_dateInput($date=TODAY, 
 			     $oname='date',
 			     $objects=array('day','month','year','hours','minutes'),
 			     $buttons=array()){
@@ -498,7 +497,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_fileInput($file='file',
+  public function display_fileInput($file='file',
 			     $default='',
 			     $buttons=null) {
     global $camyks;
@@ -621,7 +620,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_selectInput($select, $values=null, $default=null) {
+  public function display_selectInput($select, $values=null, $default=null) {
     global $camyks;
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'values'=>array(), 'default'=>'', 'class'=>'inputs', 'style'=>'', 'disabled'=>'', 'onchange'=>'', 'tabIndex'=>-1, 'onfocus'=>'', 'onblur'=>'', 'language'=>'', 'hasEmptyFirstOption'=>false,
@@ -728,7 +727,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_booleanSelectInput($select, $default=null) {
+  public function display_booleanSelectInput($select, $default=null) {
     global $camyks;
     /* build param list */
     $params = array('name'=>'', 'values'=>array(0=>$camyks->get_translation('no'), 1=>$camyks->get_translation('yes')), 'default'=>'');
@@ -753,7 +752,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_countrySelectInput($select=array(), $default=null) {
+  public function display_countrySelectInput($select=array(), $default=null) {
     global $camyks;
     /* build param list */
     $params = array('name'=>'country', 'default'=>'', 'highlighted'=>array(), 'shortlist'=>array(), 'territories'=>1, 'highlight_separator'=>'', 'language'=>'', 'hasEmptyFirstOption'=>false);
@@ -805,7 +804,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_phonePrefixSelectInput($select=array(), $default=null) {
+  public function display_phonePrefixSelectInput($select=array(), $default=null) {
     global $camyks;
     /* build param list */
     $params = array('name'=>'phonePrefix', 'default'=>'', 'highlighted'=>array(), 'shortList'=>array(), 'territories'=>1, 'highlight_separator'=>'', 'language'=>'', 'hasEmptyFirstOption'=>false, 'display_country'=>false, 'display_plus'=>false, 'display_zero'=>false, 'value'=>'countryCode', 'class'=>'sinputs');
@@ -887,7 +886,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_civilitySelectInput($select, $default=null) {
+  public function display_civilitySelectInput($select, $default=null) {
     global $camyks;
     /* build param list */
     $params = array('name'=>'', 'default'=>'', 'class'=>'vsinput');
@@ -916,9 +915,9 @@ class HTMLForm {
    * @param mixed $input
    * @param string default
    * @return string
-   * @access private
+   * @access public
    */
-  function display_textInput($input, $default=null) {
+  public function display_textInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'oninput'=>'',  'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'onkeydown'=>'', 'list'=>'', 'autocomplete'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
 
@@ -997,9 +996,9 @@ class HTMLForm {
    * @param mixed $input
    * @param string default
    * @return string
-   * @access private
+   * @access public
    */
-  function display_textareaInput($input, $default=null) {
+  public function display_textareaInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'vlinputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'onkeyup'=>'', 'oninput'=>'', 'disabled'=>'', 'maxlength'=>0, 'language'=>'', 'cols'=>'40', 'rows'=>'4', 'placeholder'=>'', 'tabIndex'=>-1);
     
@@ -1063,9 +1062,9 @@ class HTMLForm {
    * @param mixed $input
    * @param string default
    * @return string
-   * @access private
+   * @access public
    */
-  function display_passwordInput($input, $default=null) {
+  public function display_passwordInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
 
@@ -1135,9 +1134,9 @@ class HTMLForm {
    * @param mixed $input
    * @param string default
    * @return string
-   * @access private
+   * @access public
    */
-  function display_checkboxInput($input, $default=null) {
+  public function display_checkboxInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'value'=>'', 'tabIndex'=>-1, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
     
@@ -1220,9 +1219,9 @@ class HTMLForm {
    * @param mixed $input
    * @param string default
    * @return string
-   * @access private
+   * @access public
    */
-  function display_radioInput($input, $default=null) {
+  public function display_radioInput($input, $default=null) {
     /* build param list */
     $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'disabled'=>'', 'language'=>'', 'value'=>'', 'tabIndex'=>-1, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
     
@@ -1299,7 +1298,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function display_hiddenSubmit() {
+  public function display_hiddenSubmit() {
     return '<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />';
   }
 
@@ -1308,7 +1307,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function get_HTMLSubmitLink() {
+  public function get_HTMLSubmitLink() {
     return 'javascript:document.'.$this->name.'.submit();';
   }
 
@@ -1317,7 +1316,7 @@ class HTMLForm {
    * @return string
    * @access public
    */
-  function get_JSSubmitLink() {
+  public function get_JSSubmitLink() {
     return 'document.'.$this->name.'.submit();';
   }
 
@@ -1326,7 +1325,7 @@ class HTMLForm {
    * @return void
    * @access public
    */
-  function start_tabIndex() {
+  public function start_tabIndex() {
     $this->tabIndex = 0;
   }
 
@@ -1337,7 +1336,7 @@ class HTMLForm {
    * @return mixed
    * @access public
    */
-  function get_tabIndex( $full=false, $index=-1 ) {
+  public function get_tabIndex($full=false, $index=-1) {
     if ( $index ) {
       if ($this->tabIndex < $index)
         $this->tabIndex = $index;
@@ -1362,7 +1361,7 @@ class HTMLForm {
    * @return boolean result
    * @access private
    */
-  function check_inputsLimit($items=1, $name=false) {
+  private function check_inputsLimit($items=1, $name=false) {
     global $camyks;
     
     /* check is limit has already been reached */
@@ -1396,7 +1395,7 @@ class HTMLForm {
    * @return void
    * @access public
    */
-  function update_inputsLimit($value=1000) {
+  public function update_inputsLimit($value=1000) {
     $this->inputsLimit = $value;
   }
 }
@@ -1404,7 +1403,7 @@ class HTMLForm {
 /* 
  * hidden input object
  */
-class HTMLForm_hidden {
+final class HTMLForm_hidden {
   /* object name */
   var $name;
   /* object value */
@@ -1419,7 +1418,7 @@ class HTMLForm_hidden {
    * @return void
    * @access public
    */
-  function HTMLForm_hidden ( $name, $value, $id='' ) {
+  public function __construct($name, $value, $id='') {
     $this->name = $name;
     $this->value = $value;
     $this->id = $id;
@@ -1431,7 +1430,7 @@ class HTMLForm_hidden {
    * @return string
    * @access public
    */
-  function display ( ) {
+  public function display() {
     return '<input type="hidden" name="'.$this->name.'" '.($this->id!=''?'id="'.$this->id.'" ':'').'value="'.htmlentities($this->value, ENT_COMPAT, 'UTF-8').'" />';
   }
 }
