@@ -51,6 +51,17 @@ class CPDF extends FPDF {
     $this->olIndex = 1;
     $this->htmlParams = array('lineHeight'=>5, 'paragraphHeight'=>10, 'defaultTextColor'=>0, 'ulBulletChar'=>chr(149), 'ulBulletColor'=>0);
   }
+  
+  /*
+   * old style constructor definition
+   * @param string $orientation
+   * @param string $unit
+   * @param mixed $format
+   * @access public
+   */
+  public function CPDF($orientation=null, $unit=null, $format=null) {
+    $this->__construct($orientation, $unit, $format);
+  }
 
   /* specific methods */
 
