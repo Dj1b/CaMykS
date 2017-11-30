@@ -374,6 +374,7 @@ function client_getUAInfos($ua=false) {
         'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
         'SM-A310F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300M'  => array('platform_model' => 'Galaxy A3', ),
+        'SM-A320FL' => array('platform_model' => 'Galaxy A3 (2017)', ),
         'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
@@ -588,6 +589,7 @@ function client_getUAInfos($ua=false) {
         'GRA-L09'   => array('platform_model' => 'P8'),
         'NXT-L09'   => array('platform_model' => 'Mate 8'),
         'NXT-L29'   => array('platform_model' => 'Mate 8'),
+        'MHA-L09'   => array('platform_model' => 'Mate 9'),
         'CRR-L09'   => array('platform_model' => 'Mate S'),
         'FRD-L09'   => array('platform_model' => 'Honor 8'),
         'FRD-L19'   => array('platform_model' => 'Honor 8'),
@@ -698,11 +700,12 @@ function client_getUAInfos($ua=false) {
   	  'platform_company'=>'Lenovo (PC)'));
   
   /* check Asus mobiles and tablets */
-  elseif (preg_match('/(K|ME)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
+  elseif (preg_match('/(K|ME|P)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
     $rep = array(
         'K007'      => array('platform_model' => 'MeMO Pad 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'K01E'      => array('platform_model' => 'MeMO Pad', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'ME173X'    => array('platform_model' => 'MeMO Pad HD 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'P00C'      => array('platform_model' => 'ZenPad 10', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $model = trim($matches[0]);
   	$infos = array_merge($infos, array(
