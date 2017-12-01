@@ -47,7 +47,6 @@ function tool_getObjectPositionY(object) {
       object = object.offsetParent;
     }
   }
-  
   return top;
 }
 

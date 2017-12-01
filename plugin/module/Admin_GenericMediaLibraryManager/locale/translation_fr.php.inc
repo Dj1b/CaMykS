@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author     		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type		: Plugin / Module Dictionnary
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Nov 2017
  *
  * Admin_GenericMediaLibraryManager french dictionnary
 */
@@ -116,6 +116,7 @@ $this->trads['mod_admin_genericmedialibrarymanager_picturegallery_notdeleted'] =
 /* save picture messages */
 $this->trads['mod_admin_genericmedialibrarymanager_picture_saved'] = 'Image enregistr&eacute;e.';
 $this->trads['mod_admin_genericmedialibrarymanager_picture_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de cette image.';
+$this->trads['mod_admin_genericmedialibrarymanager_picture_autodisabled'] = 'Aucune image fournie, &eacute;l&eacute;ment d&eacute;sactiv&eacute;.';
 $this->trads['mod_admin_genericmedialibrarymanager_pictureimage_saved'] = 'Image optimis&eacute;e.';
 $this->trads['mod_admin_genericmedialibrarymanager_picturethumb_saved'] = 'Vignette optimis&eacute;e.';
 

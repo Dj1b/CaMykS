@@ -3,15 +3,20 @@
  * CaMykS Engine
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Creation Date    : Sep 2014
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0b1
+ * Creation Date    : Nov 2017
  * Last Modif Date  : Nov 2017
  *
- * PDO Database connection object
+ * SQLite3 Database connection object
  */
 
-final class PDODBConnection extends CDBConnection {
+final class SQLite3DBConnection extends CDBConnection {
+  
+  protected $dbName;
+  private $dbPath;
+  private $dbExtension;
+  private $dbEncryptionKey;
 
   /*
    * Class constructor
@@ -19,7 +24,16 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function __construct() {
+    global $camyks;
     parent::__construct();
+    
+    /* prepare database file path & extension */
+    $this->dbName = '';
+    $this->dbPath = $camyks->site_var_path.'/databases/';
+    $this->dbExtension = '.sqlite3.inc';
+    
+    /* define connection object */
+    $this->connection = null;
   }
 
   /* server related methods */
@@ -33,19 +47,9 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function connect_server($host='localhost', $login='', $pwd='', $driver='') {
-    $driver = explode(':', $driver);
-    if (!isset($driver[1]))
-      return $this->active;
-    $d = strtolower($driver[1]);
-    
-    /* database server connection */
-    try {
-      $this->connection = @(new PDO($d.':host='.$host.';', $login, $pwd));
-      $this->active = 1;
-    } catch (PDOException $e) {
-      /* connection failed */
-    }
-    return $this->active;
+    $this->active = class_exists('SQLite3');
+    $this->dbEncryptionKey = $pwd;
+    return true;
   }
   
   /*
@@ -54,8 +58,12 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function disconnect_server() {
-    $this->active = false;
-    $this->connection = null;
+    if ($this->connection != null) {
+      $this->connection->close();
+      $this->connection = null;
+      $this->active = false;
+    }
+    return true;
   }
   
   /*
@@ -64,9 +72,8 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function get_serverVersion() {
-    if ($this->is_connectionActive())
-      return $this->connection->getAttribute(PDO::ATTR_SERVER_VERSION);
-    return '';
+    $version = SQLite3::version();
+    return $version['versionString'];
   }
   
   /* database related methods */
@@ -77,11 +84,20 @@ final class PDODBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  public function select_database ( $name ) {
-    if (!$this->is_connectionActive())
+  public function select_database($name) {
+    
+    $this->dbName = $this->get_fullDatabaseName($name);
+    
+    try {
+      /* open connection */
+      $this->connection = @(new SQLite3($this->dbName, SQLITE3_OPEN_READWRITE, $this->dbEncryptionKey));
+    } catch (SQLite3Exception $error) {
+      die ($error);
       return false;
-    $this->dbName = $name;
-    return $this->execute_query('use '.$name);
+    }
+    
+    /* return connection test : to do */
+    return true; 
   }
   
   /* 
@@ -91,8 +107,19 @@ final class PDODBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  public function create_database ( $name, $charset='utf8' ) {
-    return $this->execute_query('CREATE DATABASE '.$name.' DEFAULT CHARACTER SET '.$charset);
+  public function create_database($name, $charset='utf8') {
+    /* complete folder path */
+    folder_completePath($this->dbPath);
+    
+    try {
+      /* open database file in create mode */
+      @(new SQLite3($this->get_fullDatabaseName($name), SQLITE3_OPEN_CREATE|SQLITE3_OPEN_READWRITE, $this->dbEncryptionKey));
+    } catch (SQLite3Exception $error) {
+      return false;
+    }
+    
+    /* return connection test : to do */
+    return true; 
   }
 
   /*
@@ -101,8 +128,8 @@ final class PDODBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  public function database_exists ( $name ) {
-    return $this->connection->execute_query('show databases like "'.$name.'"');
+  public function database_exists($name) {
+    return file_exists($this->get_fullDatabaseName($name));
   }
   
   /*
@@ -112,37 +139,38 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function dump_database($file=false) {
+    /*
     if (!isset($this->dbName)) {
       return false;
     }
     
     $content = '';
     
-    /* write header comments */
+    /* write header comments *
     $content = "-- ************************\n";
     $content .= "-- Database \"".$this->dbName."\" dump\n";
     $content .= "-- ".date('r')."\n";
     $content .= "-- ************************\n\n";
     
-    /* get list of all table */
+    /* get list of all table *
     if ($this->execute_query('show tables', 'tableList')) {
     
-      /* write tables to content */
+      /* write tables to content *
       while ($table = $this->get_queryNumDataLine('tableList')) {
       
-        /* write table */
+        /* write table *
         if ($this->execute_query('show create table '.$table[0], 'createTable')) {
           if ($createTable = $this->get_queryNumDataLine('createTable')) {
     
-            /* write table comments */
+            /* write table comments *
             $content .= "-- ************************\n";
             $content .= "-- Table \"".$table[0]."\"\n";
             $content .= "-- ************************\n";
      
-            /* write table creation */
+            /* write table creation *
             $content .= $createTable[1].";\n\n";
     
-            /* write table content */
+            /* write table content *
             if ($this->execute_query('select * from '.$table[0], 'tableItemList')) {
               while ($insertData = $this->get_queryNumDataLine('tableItemList')) {
                 $content .= "insert into ".$table[0]." values(";
@@ -163,33 +191,23 @@ final class PDODBConnection extends CDBConnection {
       }
     }
     
-    
-    /* write content to file and return file writting result or return content */
+    /* write content to file and return file writting result or return content *
     if ( $file !== false ) {
       return file_write ($file, $content);
     } else {
       return $content;
     }
+    */
   }
-
+  
   /*
    * return database size
    * @return integer
    * @access public
    */
   public function get_databaseSize() {
-    /* init size */
-    $size = 0;
-    
-    /* get infos from database */
-    if ($this->execute_query('show table status')) {      
-      /* set size with infos */
-      while ($data = $this->get_queryDataLine()) {
-        $size += $data["Data_length"] + $data["Index_length"];
-      }
-      return $size;
-    }
-    return 0;
+    $file = new FSFile($this->dbName);
+    return $file->size;
   }
   
   /*
@@ -203,6 +221,7 @@ final class PDODBConnection extends CDBConnection {
     $summary = array(
         'version'       => $this->get_serverVersion(),
         'size'          => $this->get_databaseSize(),
+        /*
         'tables'        => array(),
         'tablesStatus'  => array(
             'status'    => array('OK'=>0, 'NotOK'=>0),
@@ -213,27 +232,27 @@ final class PDODBConnection extends CDBConnection {
         ),
         'needRepair'    => false,
         'lineCount'     => 0,
-        'connections'   => '',
+        */
     );
     
-    /* build tables list */
+    /* build tables list *
     $sql = 'show table status';
     
-    /* execute sql query */
+    /* execute sql query *
     if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
-      /* get data from database */
+      /* get data from database *
       while ($data = $this->get_queryDataLine()) {
         $summary['tables'][] = $data['Name'];
         $summary['lineCount'] += $data['Rows'];
       }
     }
     
-    /* build table status */
+    /* build table status *
     $sql = 'check table '.implode(',', $summary['tables']);
         
-    /* execute sql query */
+    /* execute sql query *
     if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
-      /* get data from database */
+      /* get data from database *
       while ($data = $this->get_queryDataLine()) {
         if ($data['Msg_type'] == 'status') {
           if ($data['Msg_text'] == 'OK')
@@ -250,33 +269,12 @@ final class PDODBConnection extends CDBConnection {
       }
     }
     
-    /* get maximum allowed connections */
-    $sql = 'show variables like "max_connections";';
-    $max = 0;
-    
-    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
-      /* get data from database */
-      if ($data = $this->get_queryDataLine())
-        $max = $data['Value'];
-    }
-    
-    /* get current connections */
-    $sql = 'show processlist;';
-    $current = 0;
-    
-    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
-      /* get data from database */
-      while ($data = $this->get_queryDataLine())
-        $current++;
-    }
-    $summary['connections'] = $current . '/'. $max;
-    
     /* return summary */
     return $summary;
   }
   
   /* table related methods */
-    
+      
   /*
    * return available table list
    * @return array
@@ -289,7 +287,7 @@ final class PDODBConnection extends CDBConnection {
     $list = array();
     
     /* load list from database */
-    if ($this->execute_query('show tables') or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+    if ($this->execute_query('SELECT name FROM sqlite_master WHERE type = "table" AND name NOT LIKE "sqlite%";') or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
       while ($data = $this->get_queryNumDataLine()) {
         $list[] = $data[0];
       }
@@ -315,45 +313,35 @@ final class PDODBConnection extends CDBConnection {
     /* build sql query */
     $sql = 'CREATE TABLE IF NOT EXISTS '.$name.' (';
     
+    $items = array();
+    
     /* add auto id */
     if ($autoId)
-      $sql .= ' id BIGINT UNSIGNED NOT NULL auto_increment,';
+      $items[] = ' id INTEGER '.(in_array('id', $primaryKeys)?'PRIMARY KEY ':'').'AUTOINCREMENT';
     
     /* add fields description */
-    foreach ($fields as $field) {      
+    foreach ($fields as $field) {
       $s = ' `'.$field['name'].'` ';
-      $s .= strtoupper ($field['desc1']);
-      if ($field['desc2'] != '' ) {
-        $s .= '('.$field['desc2'].')';
-      }
       switch ( $field['type'] ) {
         case 'int':
-          $s .= ' default '.(int)$field['default'];
+        case 'date':
+          $s .= 'INTEGER';
           break;
         case 'float':
-          $s .= ' default '.(float)$field['default'];
+          $s .= 'REAL';
           break;
         case 'text':
         case 'etext':
-          if ($field['desc2'] == 'varchar')
-            $s .= ' default "'.addslashes($field['default']).'"';
-          break;
         case 'password':
-          $s .= ' default ""';
-          break;
-        case 'date':
-          $s .= ' default 0';
-          break;
         case 'list':
-          $s .= ' default ""';
+          $s .= 'TEXT';
           break;
-        }
-        $sql .= $s.',';
+      }
+      $items[] = $s;
     }
     
-    $sql .= ' PRIMARY KEY('.implode(',', $primaryKeys).'))';
-    $sql .= ' CHARACTER SET '.$charset.'';
-        
+    $sql .= implode(', ',$items).');';
+                
     /* return result of sql query execution */
     return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
@@ -363,101 +351,100 @@ final class PDODBConnection extends CDBConnection {
   /*
    * execute query
    * @param string $sql
+   * @param string $resName
    * @return boolean success
    * @access public
    */
   public function execute_query($sql='', $resName='defaultRes') {
-    
-    if (string_startsWith($sql, array('select', 'show'), true)) {
-      $this->queryRes[$resName] = $this->connection->prepare($sql);
-      $this->queryRes[$resName]->execute();
-      $this->queryError = $this->queryRes[$resName]->errorInfo();
-      if ((int)$this->queryError[0] > 0)
-        return false;
-      return true;
-    } else {
+  
+    if (string_startsWith($sql, array('select'), true)) {
+      /* execute a sql query with results */
       $this->queryRes[$resName] = $this->connection->query($sql);
-      $this->queryError = $this->connection->errorInfo();
       return ($this->queryRes[$resName] !== false);
+    } else {
+      /* execute a resultless query */
+      return $this->connection->exec($sql);
     }
+    
   }
 
   /*
    * return id generated by last query
+   * @param string $resName
    * @return integer
    * @access public
    */
   public function get_queryGeneratedId($resName='defaultRes') {
-    return $this->connection->lastInsertId();
+    return $this->connection->lastInsertRowID();
   }
 
   /*
    * return next query data line
+   * @param string $resName
    * @return array
    * @access public
    */
   public function get_queryDataLine($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
-      return $this->queryRes[$resName]->fetch(PDO::FETCH_ASSOC);
+      return $this->queryRes[$resName]->fetchArray(SQLITE3_ASSOC);
     return false;
   }
   
   /*
    * return next query data line with numeric indexes
+   * @param string $resName
    * @return array
    * @access public
    */
   public function get_queryNumDataLine($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
-      return $this->queryRes[$resName]->fetch(PDO::FETCH_NUM);
+      return $this->queryRes[$resName]->fetchArray(SQLITE3_NUM);
     return false;
   }
 
   /*
    * return latest query error
+   * @param string $resName
    * @return string
    * @access public
    */
   public function get_queryError($resName='defaultRes') {
-    return $this->queryError[2];
+    return $this->connection->lastErrorMsg();
   }
 
   /*
    * return latest query affected rows
+   * @param string $resName
    * @return integer
    * @access public
    */
   public function get_queryAffectedRows($resName='defaultRes') {
-    if (isset($this->queryRes[$resName]))
-      return $this->queryRes[$resName]->rowCount();
-    return false;
+    return $this->connection->changes();
   }
   
   /*
    * return latest query field count
+   * @param string $resName
    * @return integer 
    * @access public
    */
   public function get_queryFieldCount($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
-      return $this->queryRes[$resName]->columnCount();
-    return false;
+      return $this->queryRes[$resName]->numColumns();
+    return '';
   }
   
   /*
    * return latest query field type
    * @param integer $fIndex
+   * @param string $resName
    * @return string
    * @access public
    */
   public function get_queryFieldType($fIndex=0, $resName='defaultRes') {
-    if (isset($this->queryRes[$resName])) {
-      $meta = $this->queryRes[$resName]->getColumnMeta($fIndex);
-      if (isset($meta['native_type']))
-        return $this->get_compatibleType($meta['native_type']);
-      return $this->get_compatibleType('DEFAULT');
-    }
-    return 'string';
+    if (isset($this->queryRes[$resName]))
+      return $this->get_compatibleType($this->queryRes[$resName]->columnType($fIndex));
+    return false;
   }
   
   /*
@@ -468,7 +455,7 @@ final class PDODBConnection extends CDBConnection {
    */
   public function close_ressource($resName='defaultRes') {
     if (isset($this->queryRes[$resName]))
-      return $this->queryRes[$resName]->closeCursor();
+      return $this->queryRes[$resName]->finalize();
     return true;
   }
   
@@ -481,49 +468,48 @@ final class PDODBConnection extends CDBConnection {
    * @access public
    */
   public function escape_string($string) {
-    return $this->connection->quote($string);
+    return SQLite3::escapeString($string);
   }
   
   /*
-   * return mysql compatible type from given type
+   * return sqlite3 compatible type from given type
    * @param integer $type
    * @return string
    * @access private
-   *
-   * MySQL can return :
-   * var_string
-   * longlong
-   * newdecimal
-   * geometry
-   * 
-   * SQLLite may return :
    */
-  private function get_compatibleType($type='default') {
-    switch (strtolower($type)) {
+  private function get_compatibleType($type=1) {
+    switch ($type) {    
       /* int */
-      case 'tiny': case 'short': case 'long': case 'longlong': case 'integer': return 'int';
+      case SQLITE3_INTEGER: return 'int';
       
-      /* real */
-      case 'float': case 'double': case 'decimal': return 'real';
-      
-      /* date & time */
-      case 'timestamp': return 'timestamp';
-      case 'date': return 'date';
-      case 'time': return 'time';
-      case 'datetime': return 'datetime';
-      
+      /* float */
+      case SQLITE3_FLOAT: return 'real';
+  
       /* blobs */
-      case 'tiny_blob': case 'medium_blob': case 'blob': case 'long_blob': return 'blob';
+      case SQLITE3_BLOB: return 'blob';
       
-      /* strings */
-      case 'var_string': case 'string': return 'string';
+      /* texts */
+      case SQLITE3_TEXT: return 'string';
       
       /* null */
-      case 'null': return 'null';
-
-      /* default value for not defined types */
-      case 'default': return 'tinyint';
+      case SQLITE3_NULL: return 'null';
     }
-    return $type;
+    return '';
+  }
+  
+  /* private tool methods */
+  
+  /*
+   * return full database path
+   * @param string $dbName
+   * @return string
+   * @access private
+   */
+  private function get_fullDatabaseName($dbName) {
+    /* check name : to do */
+    $name = $dbName;
+    
+    /* return database path */
+    return $this->dbPath.$name.$this->dbExtension;
   }
 }

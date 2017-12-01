@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Object Library
  * Creation Date    : Jun 2005
- * Last Modif Date  : Feb 2017
+ * Last Modif Date  : Oct 2017
  * History : 
  * 05-06-xx : Initial File
  * 08-01-07 : Themes are now full objects
@@ -150,9 +150,10 @@ class Theme extends Plugin {
    * @return void
    * @access public
    */
-  function get_parts () {
+  function get_parts() {
     global $camyks;
-    if ( !$this->partsLoaded ) {
+    
+    if (!$this->partsLoaded) {
       /* get parts css */
       $this->add_styleFile('parts.css');
       /* get parts file */
@@ -167,13 +168,19 @@ class Theme extends Plugin {
    * @return void
    * @access public
    */
-  function get_included_parts () {
+  function get_included_parts() {
     global $camyks;
-    if ( !$this->partsLoaded ) {
+    
+    if (!$this->partsLoaded) {
       /* get parts css */
-      $camyks->HTMLPage->add_styleIncludedFile( $this->get_filePath('parts.css') );
+      if ($this->get_fileURL('css/parts.css') != '')
+        $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('css/parts.css'));
+      else
+        $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('parts.css'));
+        
       /* get parts file */
-      $this->load_file ( 'parts.php.inc' );
+      $this->load_file ('parts.php.inc');
+      
       /* update partsLoaded check value */
       $this->partsLoaded = true; 
     }
@@ -187,7 +194,6 @@ class Theme extends Plugin {
    */
   function get_main_css () {
     global $camyks, $global_theme_media_types;
-    
     
     if ($camyks->get_confValue('enable_responsiveDesign') == 1) {
       /* update page view port */
@@ -222,8 +228,14 @@ class Theme extends Plugin {
    */
   function get_included_main_css() {
     global $camyks;
-    $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('style.css'));
-    $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('editor.css'));
+    if ($this->get_fileURL('css/style.css') != '')
+      $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('css/style.css'));
+    else
+      $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('style.css'));
+    if ($this->get_fileURL('css/editor.css') != '')
+      $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('css/editor.css'));
+    else
+      $camyks->HTMLPage->add_styleIncludedFile($this->get_filePath('editor.css'));
   }
   
   /*
@@ -233,7 +245,7 @@ class Theme extends Plugin {
    */
   function get_editor_css() {
     global $camyks;
-    $camyks->HTMLPage->add_styleFile( $this->get_fileURL('editor.css') );
+    $camyks->HTMLPage->add_styleFile($this->get_fileURL('editor.css'));
   }
   
   /*
@@ -242,7 +254,7 @@ class Theme extends Plugin {
    * @access public
    */
   function get_editorCSSURL() {
-    if ( $this->get_fileURL('css/editor.css') != '')
+    if ($this->get_fileURL('css/editor.css') != '')
       return $this->get_fileURL('css/editor.css');
     return $this->get_fileURL('editor.css');
   }
@@ -254,19 +266,21 @@ class Theme extends Plugin {
    * @return string
    * @access private
    */
-  function get_part ( $part, $data=array() ) {
+  function get_part($part, $data=array()) {
     global $camyks;
     
     /* check if theme is loaded */
     $this->get_parts();
+    
     /* check if part exist */
-    if ( isset ( $this->parts[$part] )  ) {
+    if (isset($this->parts[$part])) {
       return vsprintf($this->parts[$part], $data );
-    } else if ( $this->name != 'Default' ) {
-      if ( isset ( $camyks->themes['camyks']['default'] ) ) {
+    } else if ($this->name != 'Default') {
+      if ( isset ($camyks->themes['camyks']['default'])) {
 	    return $camyks->themes['camyks']['default']->get_part($part, $data);
       }
     }
+    
     /* return default value */
     return '';
   }
@@ -285,8 +299,8 @@ class Theme extends Plugin {
     $size = (STRING)$size;
     if ( isset( $global_theme_picts_items[$size] ) === false ) {
       foreach ( $global_theme_picts_items as $s => $v ) {
-	$size = $s;
-	break;
+	    $size = $s;
+	    break;
       }
     }
     /* check item */
@@ -307,8 +321,8 @@ class Theme extends Plugin {
    * @return string
    * @access public
    */
-  function get_pictURLWithName ( $pict ) {
-    return $this->get_fileURL ('img/picts/'.$pict);
+  function get_pictURLWithName( $pict ) {
+    return $this->get_fileURL('img/picts/'.$pict);
   }
 
   /************* PART : SIMPLE BAR ************/
@@ -465,9 +479,8 @@ class Theme extends Plugin {
     return $str;
   }
   
-  function get_boxButtonsBar ( $buttons=array() ) {  
+  function get_boxButtonsBar($buttons=array()) {  
     $defaultButton = array('link'=>'', 'title'=>'', 'style'=>'', 'id'=>'', 'more'=>'');
-  
   
     $str = '';
     $str .= $this->get_part('boxButtonsBarHeader');
@@ -478,9 +491,9 @@ class Theme extends Plugin {
         $b['more'] .= ' id="'.$b['id'].'"';
 
       if ($b['link'] != '') {
-	    $str .= $this->get_part('boxButtonWithLink', array( $b['style'], $b['link'], $b['title'], $b['more']));
+	    $str .= $this->get_part('boxButtonWithLink', array($b['style'], $b['link'], $b['title'], $b['more']));
       } else {
-	    $str .= $this->get_part('boxButtonWithoutLink', array( $b['style'], $b['title'], $b['more']));
+	    $str .= $this->get_part('boxButtonWithoutLink', array($b['style'], $b['title'], $b['more']));
       }
     }
     $str .= $this->get_part('boxButtonsBarFooter');

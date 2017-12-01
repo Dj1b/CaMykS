@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Engine
  * Creation Date	: Jun 2005
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Nov 2017
  * History :
  * * 05-06-xx : Initial files
  * * 08-05-21 : Rewrite online help (french)
@@ -228,7 +228,7 @@ final class Admin_PluginManager extends Module {
     $this->pluginItem->get_fromHeader();
     $this->pluginItem->activevalue = 0;
     
-    if ( $this->pluginItem->save_toDatabase() )
+    if ($this->pluginItem->save_toDatabase())
       $this->text = $this->get_translation ('desactivationdone', $this->pluginItem->pluginvalue);
     else
       $this->text = $this->get_translation ('desactivationfailed', $this->pluginItem->pluginvalue);
@@ -507,46 +507,56 @@ final class Admin_PluginManager extends Module {
    * @return void
    * @access private
    */
-  private function check_pluginsinfo ( ) {
-    foreach ( $this->pluginsinfo as $p ) {
+  private function check_pluginsinfo() {
+    foreach ($this->pluginsinfo as $p) {
       /* get active value ( while checking if plugin folder exists ) */
-      switch ( $p['type'] ) {
-      case 'module':
-	    if (isset($this->modules[$p['plugin']])) {
-	      $this->modules[$p['plugin']]->active = ( $p['active'] == 1 ? true : false );
-	    } else {
-	      $this->unfound[] = $p;
-	    }
-	    break;
-      case 'theme':
-	    if (isset($this->themes[$p['plugin']])) {
-	      $this->themes[$p['plugin']]->active = ( $p['active'] == 1 ? true : false );
-	    } else {
-	      $this->unfound[] = $p;
-	    }
-    	break;
-      case 'template':
-	    if (isset($this->templates[$p['plugin']])) {
-	      $this->templates[$p['plugin']]->active = ( $p['active'] == 1 ? true : false );
-	    } else {
-	      $this->unfound[] = $p;
-	    }
-	    break;
-      case 'input':
-	    if (isset($this->inputs[$p['plugin']])) {
-	      $this->inputs[$p['plugin']]->active = ( $p['active'] == 1 ? true : false );
-	    } else {
-	      $this->unfound[] = $p;
-	    }
-	    break;
+      switch ($p['type']) {
+        case 'module':
+	      if (isset($this->modules[$p['plugin']])) {
+	        $this->modules[$p['plugin']]->active = $p['active'];
+	      } else {
+	        $this->unfound[] = $p;
+	      }
+	      break;
+        case 'theme':
+	      if (isset($this->themes[$p['plugin']])) {
+	        $this->themes[$p['plugin']]->active = $p['active'];
+	      } else {
+	        $this->unfound[] = $p;
+	      }
+    	  break;
+        case 'template':
+	      if (isset($this->templates[$p['plugin']])) {
+	        $this->templates[$p['plugin']]->active = $p['active'];
+	      } else {
+	        $this->unfound[] = $p;
+	      }
+	      break;
+        case 'input':
+	      if (isset($this->inputs[$p['plugin']])) {
+	        $this->inputs[$p['plugin']]->active = $p['active'];
+	      } else {
+	        $this->unfound[] = $p;
+	      }
+	      break;
       }
     }
   }
   
   /* specific i/o methods */
+  
+  /*
+   * return plugin list
+   * @param array $params
+   * @return array
+   * @access public
+   */
+  public function get_pluginList($params=array()) {
+    return $this->pluginItem->get_objectList($params);
+  }
 
   /*
-   * get plugins info from database
+   * load plugins info from database
    * @return boolean success
    * @access private
    */
@@ -562,19 +572,8 @@ final class Admin_PluginManager extends Module {
   private function load_installedTables() {
     global $camyks;
     
-    $this->installedTables = array();
+    $this->installedTables = $camyks->db_conn->get_tableList();
     
-    /* build sql query */
-    $sql = 'show tables';
-    
-    /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) { 
-      /* get data from database */
-      while ($data = $camyks->db_conn->get_queryNumDataLine()) {
-        $this->installedTables[] = $data[0];
-      }
-    }
-        
     return true;
   }
   
@@ -617,7 +616,7 @@ final class Admin_PluginManager extends Module {
     $sql .= ' where active = 1';
         
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) { 
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
       /* get data from database */
       while ($data = $camyks->db_conn->get_queryDataLine()) {
 	    switch ( $data['type'] ) {

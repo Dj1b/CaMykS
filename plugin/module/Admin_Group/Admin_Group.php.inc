@@ -178,7 +178,7 @@ class Admin_Group extends Module {
 			       $camyks->get_adminLink( $this->name, array('mode'=>'save' )),
 			       'POST');
     $this->form->add_hidden('is_new', $this->group->is_new);
-    $this->form->add_hidden('users', $this->group->users);
+    $this->form->add_hidden('users', $this->group->users_);
     if ( $this->group->is_new == 0 ) {
       $this->form->add_hidden('name', $this->group->name);
     }

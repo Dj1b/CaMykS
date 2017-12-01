@@ -124,8 +124,8 @@ class AdminUser {
     
     /* build sql query */
     $sql = "select *";
-    $sql .= " FROM admin_user";
-    $sql .= " WHERE login='".$this->login."'";
+    $sql .= " from admin_user";
+    $sql .= " where login='".$this->login."'";
     
     /* execute sql query */
     if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ )) {
@@ -174,7 +174,7 @@ class AdminUser {
     $sql .= ')';
     
     /* return result of sql query execution */
-    return ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
   
   /*
@@ -201,7 +201,7 @@ class AdminUser {
     $sql .= " WHERE login='".$this->login."'";
 
     /* return result of sql query execution */
-    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) );
+    return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__));
   }
 
   /*
@@ -218,39 +218,49 @@ class AdminUser {
    * @return boolean success
    * @access private
    */
-  function install ( ) {
+  function install() {
     global $camyks;
     
-    /* build sql query */
-    $sql = 'CREATE  TABLE `admin_user` (';
-    $sql .= ' `login` VARCHAR ( '.ADMINUSER_LOGIN_MAX_LENGTH.' ) BINARY NOT NULL ,';
-    $sql .= ' `pwd` VARCHAR ( 32 ) NOT NULL ,';
-    $sql .= ' `firstname` VARCHAR ( '.ADMINUSER_FIRSTNAME_LENGTH.'  ) NOT NULL ,';
-    $sql .= ' `lastname` VARCHAR ( '.ADMINUSER_LASTNAME_LENGTH.' ) NOT NULL ,';
-    $sql .= ' `email` VARCHAR ( '.ADMINUSER_EMAIL_LENGTH.' ) NOT NULL ,';
-    $sql .= ' `active` TINYINT NOT  NULL ,';
-    $sql .= ' `webmaster` TINYINT NOT  NULL ,';
-    $sql .= ' `address` TEXT  NOT  NULL ,';
-    $sql .= ' `rights` TEXT  NOT  NULL ,';
-    $sql .= ' `content` TEXT NOT  NULL ,';
-    $sql .= ' PRIMARY  KEY ( `login` ) )';
-    $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
-  
-    /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) ) {
-      /* try to add first user */
+    /* initialise params */
+    $params = array('login' => 'admin', 'password' => 'admin', 'email' => 'admin@example.com');
+    
+    /* check session params */
+    $sData = $camyks->get_sessionValue('InstallerConfig', array());
+    if (isset($sData['webmaster_login']) and trim($sData['webmaster_login']) != '')
+      $params['login'] = preg_replace('/["\']/', '', $sData['webmaster_login']);
+    if (isset($sData['webmaster_password']) and trim($sData['webmaster_password']) != '')
+      $params['password'] = $sData['webmaster_password'];
+    if (isset($sData['webmaster_email']) and trim($sData['webmaster_email']) != '')
+      $params['email'] = $sData['webmaster_email'];
+    
+    /* create table */
+    $fields = array(
+        array('name'=>'login', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_LOGIN_MAX_LENGTH, 'default'=>''),
+        array('name'=>'pwd', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>32, 'default'=>''),
+        array('name'=>'firstname', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_FIRSTNAME_LENGTH, 'default'=>''),
+        array('name'=>'lastname', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_LASTNAME_LENGTH, 'default'=>''),
+        array('name'=>'email', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_EMAIL_LENGTH, 'default'=>''),
+        array('name'=>'active', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'webmaster', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
+        array('name'=>'address', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'rights', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+        array('name'=>'content', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+    );
+    
+    if ($camyks->db_conn->create_table('admin_user', $fields, $camyks->get_mysqlencodingvalue(), false, array('login'))) {    
+      /* add first user */
       $this->initialise();
-      $this->login = 'admin';
-      $this->pwd = 'admin';
-      $this->pwd_conf = 'admin';
+      $this->login = $params['login'];
+      $this->pwd = $params['password'];
+      $this->pwd_conf = $params['password'];
       $this->webmaster = 1;
       $this->active = 1;
-      $this->email = 'admin@example.com';
+      $this->email = $params['email'];
       /* other vars */
       $this->change_pwd = 1;
       $this->is_new = 1;
       $this->rights_ = '';
-      /* add user */
+      /* save user */
       return $this->save();
     }
     return false; 
@@ -263,7 +273,7 @@ class AdminUser {
    */
   function is_installed ( ) {
     global $camyks;
-    if ( ! isset ( $this->_libIsInstalled ) ) {
+    if (!isset($this->_libIsInstalled)) {
     
       /* check with plugin manager */
       if (isset($camyks->modules['Admin_PluginManager'])) {
@@ -274,7 +284,7 @@ class AdminUser {
         $sql = 'show tables like "admin_user"';
       
         /* execute sql query */
-        if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ )) { 
+        if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
 	      /* get data from database */
 	      $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
 	    }
@@ -315,13 +325,13 @@ class AdminUser {
       /* get all rights */
       $this->rights = array();
       foreach ( $camyks->modules as $m ) {
-	if ( $m->type == 'admin' ) {
-	  $m->get_rights();
-	  $this->rights[ $m->name ] = array();
-	  foreach ( $m->rights as $ridx => $right ) {
-	    $this->rights[ $m->name ][$ridx] = isset ( $_REQUEST[$prefix.$m->name.'_'.$ridx] ) ? $_REQUEST[$prefix.$m->name.'_'.$ridx] : 0;
-	  }
-	}
+	    if ( $m->type == 'admin' ) {
+	      $m->get_rights();
+	      $this->rights[ $m->name ] = array();
+	      foreach ( $m->rights as $ridx => $right ) {
+	        $this->rights[ $m->name ][$ridx] = isset ( $_REQUEST[$prefix.$m->name.'_'.$ridx] ) ? $_REQUEST[$prefix.$m->name.'_'.$ridx] : 0;
+	      }
+	    }
       }
     }
   }
@@ -339,7 +349,7 @@ class AdminUser {
     $this->lastname = isset($data['lastname'])?stripslashes($data['lastname']):'';
     $this->address = isset($data['address'])?stripslashes($data['address']):'';
     $this->rights_ = isset($data['rights'])?$data['rights']:'';
-    $this->rights = data_decode_properties( $this->rights_, ':' );
+    $this->rights = data_decode_properties($this->rights_, ':');
     $this->is_new = 0;
   }
 
@@ -356,32 +366,32 @@ class AdminUser {
     if ( $this->is_new == 1 ) {
       /* check empty login */
       if ( $this->login == '' ) {
-	$this->_libError = 'erroremptylogin';
-	return false;
+	    $this->_libError = 'erroremptylogin';
+	    return false;
       }
       /* check login first and last char validity */
       if ( $this->login != trim ( $this->login ) ) {
-	$this->_libError = 'errorbadlogin';
-	$this->login = trim ( $this->login );
-	return false;
+	    $this->_libError = 'errorbadlogin';
+	    $this->login = trim ( $this->login );
+	    return false;
       }
       /* check login length */
       if ( strlen($this->login) < 3 ) {
-	$this->_libError = 'errorshortlogin';
-	return false;
+	    $this->_libError = 'errorshortlogin';
+	    return false;
       }
       
       /* check login chars validity */
       $l = string_parseSpecialChars($this->login, array('pattern'=>'/[^_a-zA-Z0-9]/'));
       if ( $this->login != $l ) {
-	$this->_libError = 'errorbadlogin';
-	$this->login = $l;
-	return false;
+	    $this->_libError = 'errorbadlogin';
+	    $this->login = $l;
+	    return false;
       }
       /* check existing login */
       if ( $this->exists_login($this->login)) {
-	$this->_libError = 'errorexistinglogin';
-	return false;
+	    $this->_libError = 'errorexistinglogin';
+	    return false;
       }
     }
     
@@ -401,25 +411,25 @@ class AdminUser {
     if ( $this->change_pwd == 1 ) {
       /* check empty password */
       if ( $this->pwd == '' ) {
-	$this->_libError = 'erroremptypwd';
-	return false;
+	    $this->_libError = 'erroremptypwd';
+	    return false;
       }
       /* check password length */
       if ( strlen($this->pwd) < 3 ) {
-	$this->_libError = 'errorshortpwd';
-	return false;
+	    $this->_libError = 'errorshortpwd';
+	    return false;
       }
       /* check password & confirmation */
       if ( $this->pwd != $this->pwd_conf ) {
-	$this->_libError = 'errorconfpwd';
-	return false;
+	    $this->_libError = 'errorconfpwd';
+	    return false;
       }
     }
 
     if ( $this->full_update == 1 ) {
       /* get rights */
       foreach ( $this->rights as $m => $r ){
-	$this->encode_rights( $m, $r );
+	    $this->encode_rights( $m, $r );
       }
       $this->rights_ = data_encode_properties( $this->rights, ':' );
     }
@@ -457,14 +467,14 @@ class AdminUser {
    * @return boolean result
    * @access private
    */
-  function can_Login ( $pwd ) {
+  function can_login($pwd) {
     global $camyks;
 
     /* build sql query */
-    $sql = 'SELECT login FROM admin_user';
-    $sql .= ' WHERE pwd="'.password_encode($pwd).'"';
-    $sql .= ' AND BINARY login="'.$this->login .'"';
-    $sql .= ' AND active="1"';
+    $sql = 'select login from admin_user';
+    $sql .= ' where pwd="'.password_encode($pwd).'"';
+    $sql .= ' and login="'.$this->login .'"';
+    $sql .= ' and active="1"';
     
     /* execute sql query */
     if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ ) )
@@ -590,12 +600,12 @@ class AdminUser {
     $list = array();
     
     /* build sql query */
-    $sql = 'SELECT login, firstname, lastname, email, active, rights';
-    $sql .= ' FROM admin_user';
+    $sql = 'select login, firstname, lastname, email, active, rights';
+    $sql .= ' from admin_user';
     if ( $where != '' ) {
-      $sql .= ' WHERE '.$where;
+      $sql .= ' where '.$where;
     }
-    $sql .= ' ORDER BY login;';
+    $sql .= ' order by login;';
     
     /* execute sql query */
     if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
@@ -667,13 +677,13 @@ class AdminUser {
     $list = array();
     
     /* build sql query */
-    $sql = 'SELECT login ';
-    $sql .= ' FROM admin_user';
-    $sql .= ' ORDER BY login';
+    $sql = 'select login ';
+    $sql .= ' from admin_user';
+    $sql .= ' order by login';
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* get informations from sql query */
-      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+      while ($data = $camyks->db_conn->get_queryDataLine()) {
 	    $list[] = new AdminUser($data['login']);
       }
     }

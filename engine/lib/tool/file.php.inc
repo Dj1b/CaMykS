@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2005
- * Last Modif Date  : Jul 2017
+ * Last Modif Date  : Oct 2017
  *
  * File static methods
  * 
@@ -24,15 +24,8 @@ define ('FILE_ICON_EXTENSION', 'gif');
  * @return boolean
  * @access public
  */
-function file_write( $file_path, $content ) {
-  /* try to open/create file *
-  if ( $file = @fopen($file_path, "w")) {
-    /* write content to file *
-    fputs( $file, $content);
-    fclose( $file);
-    return true;
-  */
-  if ( file_put_contents($file_path, $content, LOCK_EX) !== false) {
+function file_write($file_path, $content) {
+  if (@file_put_contents($file_path, $content, LOCK_EX) !== false) {
     return true;
   } else {
     /* TO DO */
@@ -47,10 +40,10 @@ function file_write( $file_path, $content ) {
  * @return string
  * @access public
  */
-function file_getPHPFileHeader( $desc="", $version="none" ) {
+function file_getPHPFileHeader($desc="", $version="none") {
   $str = "<?php\n";
   $str .= "/*\n";
-  $str .= " * Camyks Engine\n";
+  $str .= " * CaMykS Engine\n";
   $str .= " * Version\t: ".$version."\n";
   $str .= " * Date\t: ".date("M Y")."\n";
   $str .= " * ** Generated file ** \n";
@@ -85,7 +78,7 @@ function file_getPHPFileEnder() {
  * @access public
  */
 function file_getHTAccessFileHeader( $desc="", $version="none" ) {
-  $str = "# Camyks Engine\n";
+  $str = "# CaMykS Engine\n";
   $str .= "# Version\t: ".$version."\n";
   $str .= "# Date\t: ".date("M Y")."\n";
   $str .= "# ** Generated file ** \n";
@@ -102,21 +95,20 @@ function file_getHTAccessFileEnder() {
   return "";
 }
 
-
 /*
  * return file content
  * @param string $file
  * @return string
  * @access public
  */
-function file_getContent ( $file ) {
-  if ( !file_exists ( $file ) ) {
+function file_getContent($file) {
+  if (!file_exists($file)) {
     return '';
   }
   $content = '';
   $ff = fopen ( $file, "r");
   $content .= fread ($ff, filesize ($file));
-  fclose ( $ff );
+  fclose ($ff);
   return $content;
 }
 
@@ -127,23 +119,24 @@ function file_getContent ( $file ) {
  * @return void
  * @access public
  */
-function file_download ( $file, $path ) {
-  // open file to be written
-  $ff = fopen( $path, "w");
+function file_download($file, $path) {
+  /* open file to be written */
+  $ff = fopen($path, "w");
 
-  // init curl object
+  /* init curl object */
   $dl = curl_init();
 
-  // fill curl object info
-  curl_setopt( $dl, CURLOPT_URL, $file );
-  curl_setopt( $dl, CURLOPT_FILE, $ff );
-  curl_setopt( $dl, CURLOPT_HEADER, 0 );
-  // download file
-  curl_exec( $dl );
+  /* fill curl object info */
+  curl_setopt($dl, CURLOPT_URL, $file);
+  curl_setopt($dl, CURLOPT_FILE, $ff);
+  curl_setopt($dl, CURLOPT_HEADER, 0);
+  
+  /* download file */
+  curl_exec($dl);
  
-  // end download
-  curl_close ( $dl );
-  fclose ( $ff );
+  /* end download */
+  curl_close ($dl);
+  fclose ($ff);
 }
 
 /*
@@ -153,7 +146,7 @@ function file_download ( $file, $path ) {
  * @return string
  * @access public
  */
-function file_getMimeIconURL ( $mime='', $size=32) {
+function file_getMimeIconURL($mime='', $size=32) {
   global $camyks;
     
   /* get file extension from mime */
@@ -281,7 +274,7 @@ function file_getMimeIconURL ( $mime='', $size=32) {
  * @return string
  * @access public
  */
-function file_getMimeIcon ( $mime='', $size=32, $styles='' ) {
+function file_getMimeIcon($mime='', $size=32, $styles='') {
   /* get icon */
   $icon = file_getMimeIconURL ($mime, $size);
   
@@ -296,7 +289,7 @@ function file_getMimeIcon ( $mime='', $size=32, $styles='' ) {
  * @return string
  * @access public
  */
-function file_getTypeDescription( $mime='', $ext=null ) {
+function file_getTypeDescription($mime='', $ext=null) {
   global $camyks;
   /* get file extension from mime */
   if ( !isset($ext) ) {
@@ -459,7 +452,7 @@ function file_getTypeDescription( $mime='', $ext=null ) {
  * @return string
  * @access public
  */
-function file_getMimeDescription( $mime='' ) {
+function file_getMimeDescription($mime='') {
   switch ( $mime ) {
     /* image */
   case 'image/jpeg':
@@ -481,7 +474,7 @@ function file_getMimeDescription( $mime='' ) {
  * @return string
  * @access public
  */
-function file_getFileSize( $size ) {
+function file_getFileSize($size) {
   $t = language_getFileUnit();
   $l = array('', 'K', 'M', 'G', 'T', 'P' );
   $s = 0; 
@@ -502,7 +495,7 @@ function file_getFileSize( $size ) {
  * @return string
  * @access public
  */
-function file_getMime ( $file, $ext=null )  {
+function file_getMime($file, $ext=null)  {
   /* check file */
   if (!file_exists($file))
   	return '';
@@ -525,7 +518,7 @@ function file_getMime ( $file, $ext=null )  {
  * @return string
  * @access public
  */
-function file_getImageSize( $file ) {
+function file_getImageSize($file) {
   if ( file_isImage( $file ) ) {
     $d = getimagesize( $file );
     return array('width'=>$d[0], 'height'=>$d[1]);
@@ -539,8 +532,8 @@ function file_getImageSize( $file ) {
  * @return boolean
  * @access public
  */
-function file_isImage ( $file ) {
-  if ( file_exists( $file ) ) {
+function file_isImage($file) {
+  if (file_exists($file)) {
     $s = stat( $file );
     if ( $s['size'] > 10 )
       return ( exif_imagetype( $file ) > 0 );
@@ -592,8 +585,8 @@ function file_readfile($filename,$retbytes=true) {
 /*
  * write a configration file
  */
-function file_writeConfFile( $file_path, $desc, $datas ) {
-  $file_content = file_getPHPFileHeader( $desc  );
+function file_writeConfFile($file_path, $desc, $datas) {
+  $file_content = file_getPHPFileHeader($desc);
   // check for global value
   $str = '';
   $str2 = '';
@@ -670,7 +663,6 @@ function file_md5($file, $contextParams=array()) {
   return false;
 }
  
-
 /* private mime gathering methods */
 
 /*

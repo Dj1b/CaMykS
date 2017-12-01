@@ -3,16 +3,16 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Engine / Object
  * Creation Date    : Jun 2012
- * Last Modif Date  : Jun 2012
+ * Last Modif Date  : Nov 2017
  *
  * E-mail generic object
  */
 
-class CMail {
+final class CMail {
   /* variables */
   var $params;
 
@@ -21,7 +21,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function CMail() {
+  public function __construct() {
     $this->initialise();
   }
 
@@ -32,7 +32,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function initialise() {   
+  public function initialise() {   
     $this->params = array(
          /* initialise headers */
         'MIME-Version' => '1.0',
@@ -62,7 +62,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function set_mimeVersion($mime) {
+  public function set_mimeVersion($mime) {
     $this->params['MIME-Version'] = $mime;
   }
   
@@ -72,7 +72,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function set_contentType($type) {
+  public function set_contentType($type) {
     $this->params['Content-Type'] = $type;
   }
   
@@ -82,7 +82,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function set_returnPath($email) {
+  public function set_returnPath($email) {
     $this->params['Return-Path'] = $email;
   }
   
@@ -93,7 +93,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_header($name, $value) {
+  public function add_header($name, $value) {
     $this->params['Headers'][$name] = $value;
   }
   
@@ -104,7 +104,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function set_sender($email, $name='') {
+  public function set_sender($email, $name='') {
     $this->params['From'] = array('email'=>$email, 'name'=>$this->_check_stringEncoding($name));
   }
   
@@ -115,7 +115,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_replyTo($email, $name='') {
+  public function add_replyTo($email, $name='') {
     $this->params['ReplyTo'][] = array('email'=>$email, 'name'=>$this->_check_stringEncoding($name));
   }
   
@@ -126,7 +126,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_recipient($email, $name='') {
+  public function add_recipient($email, $name='') {
     $this->params['To'][] = array('email'=>$email, 'name'=>$this->_check_stringEncoding($name));
   }
   
@@ -137,7 +137,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_ccRecipient($email, $name='') {
+  public function add_ccRecipient($email, $name='') {
     $this->params['Cc'][] = array('email'=>$email, 'name'=>$this->_check_stringEncoding($name));
   }
   
@@ -148,7 +148,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_bccRecipient($email, $name='') {
+  public function add_bccRecipient($email, $name='') {
     $this->params['Bcc'][] = array('email'=>$email, 'name'=>$this->_check_stringEncoding($name));
   }
   
@@ -161,7 +161,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function set_subject($subject) {
+  public function set_subject($subject) {
     /* check for HTML subject */
     
     /* update subject value */
@@ -187,7 +187,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function set_HTMLBody($content) {
+  public function set_HTMLBody($content) {
     /* update HTML body value */
     $this->params['HTMLBody'] = $content;
   }
@@ -199,7 +199,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function build_HTMLBody($content, $cssPath=false) {
+  public function build_HTMLBody($content, $cssPath=false) {
     global $camyks;
         
     /* load CSS */
@@ -229,7 +229,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_attachment($file) {
+  public function add_attachment($file) {
     $this->params['Attachments'][] = $file;
   }
   
@@ -239,7 +239,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function attach_file($file) {
+  public function attach_file($file) {
     return $this->add_attachment($file);
   }
   
@@ -249,7 +249,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_attachments($files) {
+  public function add_attachments($files) {
     $this->params['Attachements'] += $files;
   }
   
@@ -259,7 +259,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function attach_files($files) {
+  public function attach_files($files) {
     return $this->add_attachments($files);
   }
   
@@ -269,7 +269,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_embeddedImage($img) {
+  public function add_embeddedImage($img) {
     $this->params['EmbeddedImages'][] = $img;
   }
   
@@ -279,7 +279,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function embed_image($img) {
+  public function embed_image($img) {
     return $this->add_embeddedImage($img);
   }
   
@@ -289,7 +289,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function add_embeddedImages($imgs) {
+  public function add_embeddedImages($imgs) {
     $this->params['EmbeddedImages'] += $imgs;
   }
   
@@ -299,7 +299,7 @@ class CMail {
    * @return void
    * @access public
    */
-  function embed_images($imgs) {
+  public function embed_images($imgs) {
     return $this->add_embeddedImages($imgs);
   }
   
@@ -310,7 +310,7 @@ class CMail {
    * @return boolean success
    * @access public
    */
-  function send() {
+  public function send() {
     global $camyks;
     
     switch($camyks->get_confValue('email_defaultLibrary')) {
@@ -332,7 +332,7 @@ class CMail {
    * @return string
    * @access public
    */
-  function get_lastError() {
+  public function get_lastError() {
     return $this->error;
   }
   
@@ -344,7 +344,7 @@ class CMail {
    * @return boolean success
    * @access private
    */
-  function _send_PEARMimeMail() {
+  private function _send_PEARMimeMail() {
     global $camyks;
     
     @include_once 'Mail.php';
@@ -487,7 +487,7 @@ class CMail {
    * @return boolean success
    * @access private
    */
-  function _send_PHPMailerMail() {
+  private function _send_PHPMailerMail() {
     global $camyks;
     
     @include_once 'PHPMailer/PHPMailerAutoload.php';
@@ -600,7 +600,7 @@ class CMail {
    * @return string
    * @access private
    */
-  function _check_stringEncoding($string) {
+  private function _check_stringEncoding($string) {
     if (string_isUTF8($string))
       return utf8_decode($string);
     return $string;

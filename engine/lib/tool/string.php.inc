@@ -44,7 +44,7 @@ function string_isValidIPv4( $ip, $allow_mask=false ) {
  * @return string
  * @access public
  */
-function string_numberFormat( $string, $decimal=2, $country=null ) {
+function string_numberFormat($string, $decimal=2, $country=null) {
   global $camyks;
   
   /* check decimal value */

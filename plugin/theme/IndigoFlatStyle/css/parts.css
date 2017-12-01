@@ -62,7 +62,6 @@ a.indigoFlatStyleBarButton:hover{
   background:#5b8dcd;
 }
 
-
 /* box part */
 div.indigoFlatStyleBox { 
 }
@@ -92,7 +91,18 @@ a.indigoFlatStyleBoxButton {
 a.indigoFlatStyleBoxButton:hover {
  opacity:0.8;
  filter:alpha(opacity=80);
-} 
+}
+
+div.indigoFlatStyleBoxButton {
+  display:inline-block;
+  padding:8px 16px;
+  background:#5b8dcd;
+  color:#81b1ee;
+  margin-right:8px;
+  font-size:12px;
+  text-transform:uppercase;
+  text-decoration:none;
+}
 
 div.indigoFlatStyleBoxTabsBarLine {
  background:#808080;

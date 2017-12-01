@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Nov 2017
  * 
  * Admin_GenericMediaLibraryManager picture list parameters
  */

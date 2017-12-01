@@ -6,7 +6,7 @@
  * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Creation Date    : Sep 2014
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Nov 2017
  *
  * MySQL Database connection object
  */
@@ -49,7 +49,10 @@ final class MySQLDBConnection extends CDBConnection {
    */
   public function disconnect_server() {
     if ($this->is_connectionActive())
-      return mysql_close();
+      if (mysql_close())
+        $this->active = false;
+      else
+        return false;
     return true;
   }
   
@@ -72,7 +75,7 @@ final class MySQLDBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  public function select_database ( $name ) {
+  public function select_database($name) {
     if (!$this->is_connectionActive())
       return false;
     $this->dbName = $name;
@@ -86,7 +89,7 @@ final class MySQLDBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  public function create_database ( $name, $charset='utf8' ) {
+  public function create_database($name, $charset='utf8') {
     return $this->execute_query('CREATE DATABASE '.$name.' DEFAULT CHARACTER SET '.$charset);
   }
 
@@ -96,10 +99,96 @@ final class MySQLDBConnection extends CDBConnection {
    * @return boolean
    * @access public
    */
-  public function database_exists ( $name ) {
-    return mysql_select_db( $name );
+  public function database_exists($name) {
+    return mysql_select_db($name);
   }
   
+  /*
+   * dump database
+   * @param mixed $file
+   * @return mixed
+   * @access public
+   */
+  public function dump_database($file=false) {
+    if (!isset($this->dbName)) {
+      return false;
+    }
+    
+    $content = '';
+    
+    /* write header comments */
+    $content = "-- ************************\n";
+    $content .= "-- Database \"".$this->dbName."\" dump\n";
+    $content .= "-- ".date('r')."\n";
+    $content .= "-- ************************\n\n";
+    
+    /* get list of all table */
+    if ($this->execute_query('show tables', 'tableList')) {
+    
+      /* write tables to content */
+      while ($table = $this->get_queryNumDataLine('tableList')) {
+      
+        /* write table */
+        if ($this->execute_query('show create table '.$table[0], 'createTable')) {
+          if ($createTable = $this->get_queryNumDataLine('createTable')) {
+    
+            /* write table comments */
+            $content .= "-- ************************\n";
+            $content .= "-- Table \"".$table[0]."\"\n";
+            $content .= "-- ************************\n";
+     
+            /* write table creation */
+            $content .= $createTable[1].";\n\n";
+    
+            /* write table content */
+            if ($this->execute_query('select * from '.$table[0], 'tableItemList')) {
+              while ($insertData = $this->get_queryNumDataLine('tableItemList')) {
+                $content .= "insert into ".$table[0]." values(";
+                for ($i=0; $i < $this->get_queryFieldCount('tableItemList'); $i++) {
+                  if ($i != 0)
+                    $content .=  ", ";
+                  if ($this->get_queryFieldType($i, 'tableItemList') == "string" || $this->get_queryFieldType($i, 'tableItemList') == "blob")
+                    $content .=  "'" . addslashes($insertData[$i]) . "'";
+                  else
+                    $content .= addslashes($insertData[$i]);
+                }
+                $content .=  ");\n"; 
+              }
+            }
+          }
+          $content .= "\n\n";
+        }
+      }
+    }
+    
+    
+    /* write content to file and return file writting result or return content */
+    if ( $file !== false ) {
+      return file_write ($file, $content);
+    } else {
+      return $content;
+    }
+  }
+
+  /*
+   * return database size
+   * @return integer
+   * @access public
+   */
+  public function get_databaseSize() {
+    /* init size */
+    $size = 0;
+    
+    /* get infos from database */
+    if ($this->execute_query('show table status')) {      
+      /* set size with infos */
+      while ($data = $this->get_queryDataLine()) {
+        $size += $data["Data_length"] + $data["Index_length"];
+      }
+      return $size;
+    }
+    return 0;
+  }
   /*
    * return database summary
    * @return array
@@ -121,6 +210,7 @@ final class MySQLDBConnection extends CDBConnection {
         ),
         'needRepair'    => false,
         'lineCount'     => 0,
+        'connections'   => '',
     );
     
     /* build tables list */
@@ -157,8 +247,112 @@ final class MySQLDBConnection extends CDBConnection {
       }
     }
     
+    /* get maximum allowed connections */
+    $sql = 'show variables like "max_connections";';
+    $max = 0;
+    
+    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      /* get data from database */
+      if ($data = $this->get_queryDataLine())
+        $max = $data['Value'];
+    }
+    
+    /* get current connections */
+    $sql = 'show processlist;';
+    $current = 0;
+    
+    if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      /* get data from database */
+      while ($data = $this->get_queryDataLine())
+        $current++;
+    }
+    $summary['connections'] = $current . '/'. $max;
+    
     /* return summary */
     return $summary;
+  }
+  
+  /* table related methods */
+    
+  /*
+   * return available table list
+   * @return array
+   * @access public
+   */
+  public function get_tableList() {
+    global $camyks;
+    
+    /* initialise table list */
+    $list = array();
+    
+    /* load list from database */
+    if ($this->execute_query('show tables') or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+      while ($data = $this->get_queryNumDataLine()) {
+        $list[] = $data[0];
+      }
+    }
+    
+    /* return result */
+    return $list;
+  }
+  
+  /*
+   * create a table in the database
+   * @param string $name
+   * @param array $fields
+   * @param string $charset
+   * @param boolean $autoId
+   * @param array $primaryKeys
+   * @return boolean success
+   * @access private
+   */
+  public function create_table($name, $fields, $charset='utf8', $autoId=true, $primaryKeys=array('id')) {
+    global $camyks;
+
+    /* build sql query */
+    $sql = 'CREATE TABLE IF NOT EXISTS '.$name.' (';
+    
+    /* add auto id */
+    if ($autoId)
+      $sql .= ' id BIGINT UNSIGNED NOT NULL auto_increment,';
+    
+    /* add fields description */
+    foreach ($fields as $field) {      
+      $s = ' `'.$field['name'].'` ';
+      $s .= strtoupper ($field['desc1']);
+      if ($field['desc2'] != '' ) {
+        $s .= '('.$field['desc2'].')';
+      }
+      switch ( $field['type'] ) {
+        case 'int':
+          $s .= ' default '.(int)$field['default'];
+          break;
+        case 'float':
+          $s .= ' default '.(float)$field['default'];
+          break;
+        case 'text':
+        case 'etext':
+          if ($field['desc2'] == 'varchar')
+            $s .= ' default "'.addslashes($field['default']).'"';
+          break;
+        case 'password':
+          $s .= ' default ""';
+          break;
+        case 'date':
+          $s .= ' default 0';
+          break;
+        case 'list':
+          $s .= ' default ""';
+          break;
+        }
+        $sql .= $s.',';
+    }
+    
+    $sql .= ' PRIMARY KEY('.implode(',', $primaryKeys).'))';
+    $sql .= ' CHARACTER SET '.$charset.'';
+        
+    /* return result of sql query execution */
+    return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
   }
   
   /* query related methods */

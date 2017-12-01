@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type	    : Engine / Object Lib
  * Creation Date	: Mar 2007
- * Last Modif Date  : Apr 2016
+ * Last Modif Date  : Nov 2017
  * History :
  * * 07-03-xx : Initial file
  *	
@@ -442,26 +442,17 @@ class ModuleLibrary {
    */
   function install_databaseItems( ) {
     global $camyks;
-    /* build sql query */
-    $sql = 'CREATE TABLE IF NOT EXISTS '.$this->_libSQLTable.' (';
-    $sql .= ' id BIGINT UNSIGNED NOT NULL auto_increment,';
-    /* add workflow version if needed */
-    if ( $this->_libWFVersion !== false ) {
-      $sql .= ' and wf_version INT UNSIGNED default 1,';
-    }
-    foreach ( $this->_libItemTypes['db'] as $n ) {
-      $sql .= ' '.$this->_libItems[$n]->get_databaseDescription().',';
-    }
-    /* add workflow version if needed */
-    if ( $this->_libWFVersion !== false ) {
-      $sql .= ' PRIMARY KEY(id, wf_version) )';
-    } else {
-      $sql .= ' PRIMARY KEY(id) )';
-    }
-    $sql .= ' CHARACTER SET '.$camyks->get_mysqlencodingvalue( ).'';
     
-    /* return result of sql query execution */
-    return $this->execute_DBQuery($sql, __LINE__);
+    /* initialise field list */
+    $fields = array();
+    
+    /* prepare data fields */
+    foreach ($this->_libItemTypes['db'] as $n) {
+      $fields[] = $this->_libItems[$n]->get_databaseDescription();
+    }
+    
+    /* execute table creation */
+    return $this->create_DBTable($this->_libSQLTable, $fields, $camyks->get_mysqlencodingvalue());
   }
   
   /*
@@ -469,8 +460,10 @@ class ModuleLibrary {
    */
   function uninstall_databaseItems() {
     global $camyks;
+    
     /* build sql query */
     $sql = 'drop table '.$this->_libSQLTable;
+    
     /* return result of sql query execution */
     return $this->execute_DBQuery($sql, __LINE__);
   }
@@ -480,20 +473,16 @@ class ModuleLibrary {
    */
   function check_databaseInstallation() {
     global $camyks;
-        
-    if (isset($camyks->modules['Admin_PluginManager'])) {
-      return $camyks->modules['Admin_PluginManager']->check_tableExists($this->_libSQLTable);
-    }
-        
-    /* build sql query */
-    $sql = 'show tables like "'.$this->_libSQLTable.'"';
     
-    /* execute sql query */
-    if ( $this->execute_DBQuery($sql, __LINE__)) {
-      /* get info from database */
-      return ($this->get_DBQueryDataLine()!==false);
-    }
-    return false;
+    /* check database presence in plugin manager module */
+    if (isset($camyks->modules['Admin_PluginManager']))
+      return $camyks->modules['Admin_PluginManager']->check_tableExists($this->_libSQLTable);
+    
+    /* load table list */
+    $tl = $camyks->db_conn->get_tableList();
+    
+    /* check if main table is in installed table list */
+    return in_array($this->_libSQLTable, $tl);
   }
 
   /*
@@ -505,13 +494,13 @@ class ModuleLibrary {
    * param string $sens
    * return string
    */
-  function get_objectList_databaseItemsSQLQuery ( $where='', $limit=-1, $count=-1, $order='id', $sens='' ) {
+  function get_objectList_databaseItemsSQLQuery($where='', $limit=-1, $count=-1, $order='id', $sens='') {
     /* build sql query */
     $sql = 'select *';
     $sql .= ' from '.$this->_libSQLTable.' as m';
 
     /* add where conditions to sql query  */
-    if ( trim($where) != '' ) {
+    if (trim($where) != '') {
       $sql .= ' where '. $this->check_SQLCondition($where);
     }    
 
@@ -533,7 +522,7 @@ class ModuleLibrary {
 	}
       }
       if (count($osql) > 0 )
-	$sql .= ' order by '.implode(', ', $osql);
+	    $sql .= ' order by '.implode(', ', $osql);
     }
     
     /* add limit to sql query */
@@ -698,9 +687,30 @@ class ModuleLibrary {
    */
   function install_databaseLocalisedItems( ) {
     global $camyks;
+    
     /* check if object add some databaselocalised item */
-    if ( count($this->_libItemTypes['dbl']) == 0 )
+    if (count($this->_libItemTypes['dbl']) == 0)
       return true;
+
+    /* initialise field list */
+    $fields = array();
+    
+    /* prepare engine fields */
+    $fields[] = array('name'=>'objectid', 'type'=>'int', 'desc1'=>'bigint unsigned', 'desc2'=>'', 'default'=>'');
+    $fields[] = array('name'=>'language', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>'3', 'default'=>''); 
+    
+    /* prepare data fields */
+    foreach ($this->_libItemTypes['dbl'] as $n) {
+      $fields[] = $this->_libItems[$n]->get_databaseDescription();
+    }
+    
+    /* execute table creation */
+    return $this->create_DBTable($this->_libSQLLocaleTable, $fields, $camyks->get_mysqlencodingvalue());
+
+
+
+
+
 
     /* build sql query */
     $sql = 'CREATE TABLE IF NOT EXISTS '.$this->_libSQLLocaleTable.' (';
@@ -923,18 +933,22 @@ class ModuleLibrary {
    * get each item value from an array
    * @param array $data
    * @param array $match
+   * @param boolean $onlyAvailable
    * @return void
    * @access public
    */
-  function get_fromArray( $data, $match=null ) {
-    if ( $match == null) {
-      foreach ( $this->_libItems as &$item )
-	    $item->get_fromArray($data);
+  function get_fromArray($data, $match=null, $onlyAvailable=false ) {
+    if ($match == null) {
+      foreach ($this->_libItems as $name => &$item) {
+        if ($onlyAvailable == false or isset($data[$name]))
+	      $item->get_fromArray($data);
+	  }
       return;
     }
 
-    foreach ( $match as $n )
-      $this->_libItems[$n]->get_fromArray( $data );
+    foreach ($match as $n)
+      if ($onlyAvailable == false or isset($data[$name]))
+        $this->_libItems[$n]->get_fromArray($data);
   }
   
   /*
@@ -961,15 +975,15 @@ class ModuleLibrary {
   /*
    * load object data from session
    * @param string $name
+   * @param boolean $onlyAvailable
    * @return void
    * @access private
    */
-  function load_fromSession($name='ObjectData') {
+  function load_fromSession($name='ObjectData', $onlyAvailable=false) {
     global $camyks;
     
-    $this->get_fromArray($camyks->get_sessionValue($name, array()));
+    $this->get_fromArray($camyks->get_sessionValue($name, array()), null, $onlyAvailable);
   }
-  
   
   /*
    * save object data in session
@@ -981,6 +995,18 @@ class ModuleLibrary {
     global $camyks;
     
     $camyks->set_sessionValue($name, $this->vars);
+  }
+  
+  /*
+   * delete object from session
+   * @param string $name
+   * @return void
+   * @access public
+   */
+  function delete_fromSession($name='ObjectData') {
+    global $camyks;
+    
+    $camyks->set_sessionValue($name, array());
   }
 
   /*********************** FILE I/O ****************************/
@@ -1530,8 +1556,19 @@ class ModuleLibrary {
    * @access public
    */
   function escape_string($string) {
-    global $camyks;
     return $this->_libDBConnector->escape_string($string);
+  }
+  
+  /*
+   * create a table in database
+   * @param string $name
+   * @param array $fields
+   * @param string $charset
+   * @return boolean success
+   * @access public
+   */
+  public function create_DBTable($name, $fields, $charset='utf8') {
+    return $this->_libDBConnector->create_table($name, $fields, $charset);
   }
 }
 ?>

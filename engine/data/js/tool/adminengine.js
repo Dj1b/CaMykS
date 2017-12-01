@@ -46,11 +46,11 @@ function adminengine_modalPopupOpen( myobject ) {
   if ( document.getElementById('adminengine_main') ) {
     popupbg.style.width = document.getElementById('adminengine_main').offsetWidth + 'px';
     popupbg.style.height = document.getElementById('adminengine_main').offsetHeight + 'px';
-    }*/
-    
-
+    }
+  */
+  
+  popup.style.display = 'block';
   popup.style.zIndex = popupbg.style.zIndex+1;
-  console.log(popup.offsetWidth);
   popup.style.left = (Math.min(body.offsetWidth, document.documentElement.clientWidth)-popup.offsetWidth)/2 + 'px';
   popup.style.top = (Math.min(body.offsetHeight, document.documentElement.clientHeight)-popup.offsetHeight)/2 + 'px';
   

@@ -40,9 +40,9 @@ CaMykS is available under [GNU GPL](http://www.gnu.org/licenses/licenses.en.html
 
 CaMykS is now maintained and hosted by [Ideogram Design](http://www.ideogram-design.fr)
 
-You can contact Jean-Baptiste: 
-* [Email](mailto:contact@ideogram-design.fr)
-* [Email](mailto:camyks.contact@gmail.com)
+You can contact us using : 
+* [Ideogram Design website](http://www.ideogram-design.fr)
+* [Github](https://github.com/Dj1b/CaMykS)
 
 ## Acknowlegments
 

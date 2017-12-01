@@ -89,7 +89,7 @@ $this->parts['boxButtonWithLink'] = '
 <a class="unselectable indigoFlatStyleBoxButton" style="%1$s" %4$s href="%2$s">%3$s</a>';
 
 $this->parts['boxButtonWithoutLink'] = '
-<div class="unselectable indigoFlatStyleBoxButton" style="%3$s" %4$s>%2$s</div>';
+<div class="unselectable indigoFlatStyleBoxButton" style="%1$s" %3$s>%2$s</div>';
 
 $this->parts['boxButtonsBarFooter'] = '
 </div>';
