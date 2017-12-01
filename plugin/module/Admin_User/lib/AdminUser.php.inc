@@ -124,8 +124,8 @@ class AdminUser {
     
     /* build sql query */
     $sql = "select *";
-    $sql .= " FROM admin_user";
-    $sql .= " WHERE login='".$this->login."'";
+    $sql .= " from admin_user";
+    $sql .= " where login='".$this->login."'";
     
     /* execute sql query */
     if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ )) {
@@ -471,10 +471,10 @@ class AdminUser {
     global $camyks;
 
     /* build sql query */
-    $sql = 'SELECT login FROM admin_user';
-    $sql .= ' WHERE pwd="'.password_encode($pwd).'"';
-    $sql .= ' AND login="'.$this->login .'"';
-    $sql .= ' AND active="1"';
+    $sql = 'select login from admin_user';
+    $sql .= ' where pwd="'.password_encode($pwd).'"';
+    $sql .= ' and login="'.$this->login .'"';
+    $sql .= ' and active="1"';
     
     /* execute sql query */
     if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ ) )
@@ -600,12 +600,12 @@ class AdminUser {
     $list = array();
     
     /* build sql query */
-    $sql = 'SELECT login, firstname, lastname, email, active, rights';
-    $sql .= ' FROM admin_user';
+    $sql = 'select login, firstname, lastname, email, active, rights';
+    $sql .= ' from admin_user';
     if ( $where != '' ) {
-      $sql .= ' WHERE '.$where;
+      $sql .= ' where '.$where;
     }
-    $sql .= ' ORDER BY login;';
+    $sql .= ' order by login;';
     
     /* execute sql query */
     if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
@@ -677,13 +677,13 @@ class AdminUser {
     $list = array();
     
     /* build sql query */
-    $sql = 'SELECT login ';
-    $sql .= ' FROM admin_user';
-    $sql .= ' ORDER BY login';
+    $sql = 'select login ';
+    $sql .= ' from admin_user';
+    $sql .= ' order by login';
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* get informations from sql query */
-      while ( $data = $camyks->db_conn->get_queryDataLine()) {
+      while ($data = $camyks->db_conn->get_queryDataLine()) {
 	    $list[] = new AdminUser($data['login']);
       }
     }
