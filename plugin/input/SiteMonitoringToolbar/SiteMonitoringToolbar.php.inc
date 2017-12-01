@@ -48,6 +48,9 @@ final class SiteMonitoringToolbar extends Input {
     $this->author_mail = 'camyks.contact@gmail.com';
     $this->author_group = 'camyks.net';
     
+    /* load configuration library */
+    $this->load_library('SiteMonitoringToolbarConfig');
+    
     /* register plugin as CaMykS event handler */
     if ($camyks->mode == CAMYKS_MODE_SITE) {
       $this->register_asCaMykSEventHandler('onPageLoad');
@@ -66,8 +69,8 @@ final class SiteMonitoringToolbar extends Input {
   public function initialise($params=array()) {
     global $camyks;
     
+    /* check locale */
     $locale = in_array($camyks->current_language, array('fr', 'en')) ? $camyks->current_language : 'en';
-    
     
     /* load styles */
     $this->add_styleFile('SiteMonitoringToolbar.css');
@@ -103,6 +106,10 @@ final class SiteMonitoringToolbar extends Input {
 
     /* load camyks in site mode */
     $camyks->get_siteInit();
+    
+    /* load plugin configuration */
+    $this->config = new SiteMonitoringToolbarConfig('config', $this);
+    $this->config->get();
         
     /* build error message */
     $error = array(
@@ -141,6 +148,9 @@ final class SiteMonitoringToolbar extends Input {
       	break;
       case 'displayBench':
       	$this->execute_request_displayBench();
+      	break;
+     case 'displayConfiguration':
+      	$this->execute_request_displayConfiguration();
       	break;
       case 'disconnect':
       	$this->execute_request_disconnect();
@@ -196,11 +206,17 @@ final class SiteMonitoringToolbar extends Input {
     global $camyks;
     
     $config = array(
-        'toolbarLocation' => 'bottom:right',
+        /* plugin configuration */
+        'buttonLocation'        => $this->config->vars['buttonLocation'],
+        'appliedTheme'          => $this->config->vars['appliedTheme'],
         
-        'DBStatsStatus' => $camyks->get_executionVariable('_cDBQueries') == 'shared' ? 1 : 0,
-        'BenchStatus' => $camyks->get_executionVariable('_cBench') == 'shared' ? 1 : 0,
+        /* admin specific */
+        'allowConfiguration'    => $camyks->check_adminUser() ? $camyks->adminUser->webmaster : 0,
+        'allowLogout'           => $camyks->check_adminUser(),
         
+        /* live settings */
+        'DBStatsStatus'         => $camyks->get_executionVariable('_cDBQueries') == 'shared' ? 1 : 0,
+        'BenchStatus'           => $camyks->get_executionVariable('_cBench') == 'shared' ? 1 : 0,
     );
     
     /* prepare answer */
@@ -316,6 +332,39 @@ final class SiteMonitoringToolbar extends Input {
     /* prepare answer */
     $result = new CRequestAnswer(array('action'=>'displayBench'));
     $result->update_param('Bench', $camyks->get_sessionValue('SMTBench', false));
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+    
+  /*
+   * execute input in request/displayConfiguration mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_displayConfiguration() {
+    global $camyks;
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'displayConfiguration'));
+    
+    /* check admin user */
+    if (!$camyks->check_adminUser() or !$camyks->adminUser->webmaster) {
+      $result->set_asFailure();
+      $result->send_asJSON();
+    }
+    
+    /* add configuration data to answer */
+    $data = array(
+      'accessRestrictionList'   => $this->config->get_accessRestrictionList(),
+      'buttonLocationList'      => $this->config->get_buttonLocationList(),
+      'availableThemeList'      => $this->config->get_availableThemeList(),
+      'default'                 => array(
+        'accessRestriction'         => $this->config->vars['accessRestriction'],
+      ),
+    );    
+    $result->update_param('ConfigurationData', $data);
     
     /* send answer */
     $result->set_asSuccess();

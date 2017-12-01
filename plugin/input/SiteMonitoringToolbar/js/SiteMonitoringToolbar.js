@@ -79,9 +79,6 @@ var SiteMonitoringToolbar = {
   
     /* detect navigator type */
     this.navType = navigator.userAgent.toLowerCase().indexOf('msie') ? 'msie':'row';
-    
-    /* load locales */
-    this.load_file(this.get_param('pluginURL')+'/js/locale/locales.'+this.get_param('locale')+'.js');
   
     /* load ajax request engine */
     this.loader = new CAjaxRequest(this.name+'.loader');
@@ -92,9 +89,19 @@ var SiteMonitoringToolbar = {
     this.set_param('toolbarStatus', 0);
     this.set_param('dataPanelStatus', 'off');
     
+    /* load locales */
+    this.load_file(this.get_param('pluginURL')+'/js/locale/locales.'+this.get_param('locale')+'.js', 'SiteMonitoringToolbar.start()');
+    
     /* set as loaded */
     this.loaded = true;
-    
+  },
+  
+  /*
+   * finalise object initialisation
+   * @return void
+   * @access private
+   */
+  start: function() {
     /* post loaded action */
     this.execute_action('loadConfig');
   },
@@ -109,12 +116,13 @@ var SiteMonitoringToolbar = {
   display_toolbar: function() {
     
     /* create toolbar */
-    pos = this.get_param('toolbarLocation');
+    pos = this.get_param('buttonLocation');
     if (pos === false) return;
     pos = pos.split(':');
     
     this.toolbar = document.createElement('div');
     this.toolbar.id = 'SiteMonitoringToolbar';
+    this.toolbar.className = this.get_param('appliedTheme');
     if (pos[0] == 'top') this.toolbar.style.top = 0;
     else if (pos[0] == 'bottom') this.toolbar.style.bottom = 0;
     if (pos[1] == 'left') this.toolbar.style.left = 0;
@@ -141,21 +149,21 @@ var SiteMonitoringToolbar = {
     button.className = 'button';
     image = document.createElement('img');
     if (this.get_param('DBStatsStatus') == 0) {
-      console.log ('build: sql stats not enabled'); 
       image.src = this.get_param('pictureBaseURL')+'/DBStatsEnable.png';
       if (this.get_param('navType') == 'row') {
 	    image.setAttribute('onclick', this.name+'.execute_action(\'startDBStats\')');
       } else {
 	    image.onclick = new Function('onclick', this.name+'.execute_action(\'startDBStats\')');
       }
+      image.title = this.get_locale('startdbstats');
     } else {
-      console.log ('build: sql stats enabled'); 
       image.src = this.get_param('pictureBaseURL')+'/DBStatsDisplay.png';
       if (this.get_param('navType') == 'row') {
 	    image.setAttribute('onclick', this.name+'.open_DBStatsPanel()');
       } else {
 	    image.onclick = new Function('onclick', this.name+'.open_DBStatsPanel()');
       }
+      image.title = this.get_locale('displaydbstats');
     }
     
     button.appendChild(image);
@@ -167,21 +175,21 @@ var SiteMonitoringToolbar = {
     button.className = 'button';
     image = document.createElement('img');
     if (this.get_param('BenchStatus') == 0) {
-      console.log ('build: bench not enabled'); 
       image.src = this.get_param('pictureBaseURL')+'/BenchEnable.png';
       if (this.get_param('navType') == 'row') {
 	    image.setAttribute('onclick', this.name+'.execute_action(\'startBench\')');
       } else {
 	    image.onclick = new Function('onclick', this.name+'.execute_action(\'startBench\')');
       }
+      image.title = this.get_locale('startbench');
     } else {
-      console.log ('build: bench enabled'); 
       image.src = this.get_param('pictureBaseURL')+'/BenchDisplay.png';
       if (this.get_param('navType') == 'row') {
 	    image.setAttribute('onclick', this.name+'.open_benchPanel()');
       } else {
 	    image.onclick = new Function('onclick', this.name+'.open_benchPanel()');
       }
+      image.title = this.get_locale('displaybench');
     }
     button.appendChild(image);
     this.toolbar.appendChild(button);
@@ -191,32 +199,65 @@ var SiteMonitoringToolbar = {
     sep.className = 'separator';
     this.toolbar.appendChild(sep);
     
-    /* create disconnect button */
+    /* create reload button */
     button = document.createElement('div');
     button.className = 'button';
     image = document.createElement('img');
-    image.src = this.get_param('pictureBaseURL')+'/Disconnect.png';
+    image.src = this.get_param('pictureBaseURL')+'/Reload.png';
     if (this.get_param('navType') == 'row') {
-	    image.setAttribute('onclick', this.name+'.execute_action(\'disconnect\')');
+	    image.setAttribute('onclick', this.name+'.reload_page()');
     } else {
-	    image.onclick = new Function('onclick', this.name+'.execute_action(\'disconnect\')');
+	    image.onclick = new Function('onclick', this.name+'.reload_page()');
     }
+    image.title = this.get_locale('reloadpage');
     button.appendChild(image);
     this.toolbar.appendChild(button);
+    
+    /* create configuration button */
+    if (this.get_param('allowConfiguration')) {
+      button = document.createElement('div');
+      button.id = 'ConfigurationButton';
+      button.className = 'button';
+      image = document.createElement('img');
+      image.src = this.get_param('pictureBaseURL')+'/Configuration.png';
+      if (this.get_param('navType') == 'row') {
+	    image.setAttribute('onclick', this.name+'.open_configurationPanel()');
+      } else {
+	    image.onclick = new Function('onclick', this.name+'.open_configurationPanel()');
+      }
+      image.title = this.get_locale('displayconfiguration');
+      button.appendChild(image);
+      this.toolbar.appendChild(button);
+    }
+    
+    /* create disconnect button */
+    if (this.get_param('allowLogout')) {
+      button = document.createElement('div');
+      button.className = 'button';
+      image = document.createElement('img');
+      image.src = this.get_param('pictureBaseURL')+'/Disconnect.png';
+      if (this.get_param('navType') == 'row') {
+	    image.setAttribute('onclick', this.name+'.execute_action(\'disconnect\')');
+      } else {
+	    image.onclick = new Function('onclick', this.name+'.execute_action(\'disconnect\')');
+      }
+      image.title = this.get_locale('logout');
+      button.appendChild(image);
+      this.toolbar.appendChild(button);
+    }
     
     /* create data panel */
     this.dataPanel = document.createElement('div');
     this.dataPanel.id = 'SiteMonitoringToolbarDataPanel';
     this.dataPanel.style.display = 'none';
     this.dataPanel.style.top = 0;
-    this.dataPanel.className = pos[1];
+    this.dataPanel.className = pos[1]+' '+this.get_param('appliedTheme');
     document.getElementsByTagName('body')[0].appendChild(this.dataPanel);
     
     /* create data panel content box */
     div = document.createElement('div');
     div.className = 'contentBox';
     this.dataPanel.appendChild(div);
-    
   },
 
   /*
@@ -339,6 +380,25 @@ var SiteMonitoringToolbar = {
     /* execute bench loading */
     this.execute_request({'mode':'displayBench'});
   },
+    
+  /*
+   * open/close configuration panel
+   * @return void
+   * @access private
+   */
+  open_configurationPanel: function() {
+    
+    /* close data panel if it's already open on bench, and stop  */
+    if (this.get_param('dataPanelStatus') === 'configuration')
+      return this.hide_dataPanel();
+
+    /* close data panel if it's already open */
+    if (this.get_param('dataPanelStatus') !== 'off')
+      this.hide_dataPanel();
+
+    /* execute bench loading */
+    this.execute_request({'mode':'displayConfiguration'});
+  },
   
   /*
    * execute action request
@@ -433,6 +493,11 @@ var SiteMonitoringToolbar = {
         this._receive_displayBench(result);
         break;
       
+      /* configuration actions */
+      case 'displayConfiguration':
+        this._receive_displayConfiguration(result);
+        break;
+        
       /* tool actions */
       case 'disconnect':
         this._receive_disconnectResult(result);
@@ -644,7 +709,129 @@ var SiteMonitoringToolbar = {
     this.set_param('dataPanelStatus', 'bench');
  
     /* display results */   
-    this.show_dataPanel(box, vTop, 300)
+    this.show_dataPanel(box, vTop, 300);
+  },
+    
+  /*
+   * receive result after displayConfiguration request
+   * @param Object result
+   * @return void
+   * @access private
+   */
+  _receive_displayConfiguration: function(result) {
+    console.log('configuration display');
+    
+    /* compute button position */
+    vTop = tool_getObjectPositionY(document.getElementById('ConfigurationButton'));
+    
+    /* get data */
+    configData = result['ConfigurationData'];
+    console.log (configData);
+    
+    /* create container */
+    form = document.createElement('form');
+    form.setAttribute('method',"get");
+    form.setAttribute('action',"javascript:void(0);");
+    
+    /* add title */
+    div = document.createElement('div');
+    div.className = 'title';
+    div.innerHTML = this.get_locale('configuration_title');
+    form.appendChild(div);
+    
+    /* add access restriction line */
+    div = document.createElement('div');
+    div.className = 'formLine';
+    form.appendChild(div);
+    
+    label = document.createElement('div');
+    label.className = 'formLabel';
+    label.innerHTML = this.get_locale('formlabel_accessrestriction');
+    div.appendChild(label);
+    
+    input = document.createElement('div');
+    input.className = 'formInput';
+    select = document.createElement('select');
+    select.id = 'ConfigurationAccessRestriction';
+    select.className = 'inputs';
+    for (i in configData['accessRestrictionList']) {
+      if (i == configData['default']['accessRestriction'])
+        selected = select.options.length;
+      select.options[select.options.length] = new Option(configData['accessRestrictionList'][i], i);
+    }
+    select.options[selected].selected = 'selected';
+    input.appendChild(select);
+    div.appendChild(input);
+    
+    /* add button location line */
+    div = document.createElement('div');
+    div.className = 'formLine';
+    form.appendChild(div);
+    
+    label = document.createElement('div');
+    label.className = 'formLabel';
+    label.innerHTML = this.get_locale('formlabel_buttonlocation');
+    div.appendChild(label);
+    
+    input = document.createElement('div');
+    input.className = 'formInput';
+    select = document.createElement('select');
+    select.id = 'ConfigurationButtonLocation';
+    select.className = 'inputs';
+    selected = 0;
+    for (i in configData['buttonLocationList']) {
+      if (i == this.get_param('buttonLocation'))
+        selected = select.options.length;
+      select.options[select.options.length] = new Option(configData['buttonLocationList'][i], i);
+    }
+    select.options[selected].selected = 'selected';
+    input.appendChild(select);
+    div.appendChild(input);
+    
+    /* add applied theme line */
+    div = document.createElement('div');
+    div.className = 'formLine';
+    form.appendChild(div);
+    
+    label = document.createElement('div');
+    label.className = 'formLabel';
+    label.innerHTML = this.get_locale('formlabel_appliedtheme');
+    div.appendChild(label);
+    
+    input = document.createElement('div');
+    input.className = 'formInput';
+    select = document.createElement('select');
+    select.id = 'ConfigurationAppliedTheme';
+    select.className = 'inputs';
+    for (i in configData['availableThemeList']) {
+      if (i == this.get_param('appliedTheme'))
+        selected = select.options.length;
+      select.options[select.options.length] = new Option(configData['availableThemeList'][i], i);
+    }
+    select.options[selected].selected = 'selected';
+    input.appendChild(select);
+    div.appendChild(input);
+    
+    /* add submit button line */
+    div = document.createElement('div');
+    div.className = 'buttonLine';
+    form.appendChild(div);
+    
+    button = document.createElement('div');
+    button.className = 'button';
+    button.innerHTML = this.get_locale('save');
+    if (this.get_param('navType') == 'row') {
+	  button.setAttribute('onclick', this.name+'.save_configuration()');
+    } else {
+	  button.onclick = new Function('onclick', this.name+'.save_configuration()');
+    }
+    div.appendChild(button);
+    
+    /* update status */
+    this.set_param('dataPanelStatus', 'configuration');
+ 
+    /* display results */   
+    this.show_dataPanel(form, vTop, 400);
   },
   
   /*
@@ -655,7 +842,7 @@ var SiteMonitoringToolbar = {
    */
   _receive_disconnectResult: function(result) {    
     /* reload page */
-    location.reload(true);
+    this.reload_page();
   },
   
   /* tool methods */
@@ -663,15 +850,27 @@ var SiteMonitoringToolbar = {
   /*
    * load a JS file
    * @param string fileURL
+   * @param string action
    * @return void
    * @access private
    */
-  load_file: function(fileURL) {
+  load_file: function(fileURL, action) {
     tag = document.createElement('script');
     tag.setAttribute("type","text/javascript");
     tag.setAttribute("src", fileURL+'?'+Math.floor((Math.random() * 1000) + 1));
-    //tag.onload = function() {}
+    tag.onload = function() {
+      if (typeof(action) === 'string')
+        eval(action);
+    }
     document.getElementsByTagName('head')[0].appendChild(tag);
   },
   
+  /*
+   * reload page
+   * @return void
+   * @access private
+   */
+  reload_page: function() {
+    location.reload(true);
+  },
 };
