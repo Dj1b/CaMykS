@@ -404,8 +404,9 @@ final class Camyks {
     require_once( $this->camyks_engine_path.'/lib/object/Module.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/Template.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/Theme.php.inc');
+    require_once( $this->camyks_engine_path.'/lib/object/PluginConfig.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleConfig.php.inc');
-    require_once( $this->camyks_engine_path.'/lib/object/ModuleConfigItem.php.inc');
+    require_once( $this->camyks_engine_path.'/lib/object/PluginConfigItem.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleLibrary.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleLibraryItem.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleLibraryJoin.php.inc');

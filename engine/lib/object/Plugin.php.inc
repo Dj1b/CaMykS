@@ -75,6 +75,24 @@ class Plugin {
   }
   
   /* plugin methods */
+  
+  /*
+   * load library file
+   * @param string $library
+   * @return boolean success
+   * @access public
+   */
+  function load_library($library) {
+    global $camyks;
+   
+    /* build file path */
+    $filePath = $this->plugin_path.'/lib/'.$library.$camyks->file_extension;
+   
+    /* load file if exists */
+    if (file_exists($filePath))
+      return ((require_once($filePath)) == true);
+    return false;
+  }
 
   /*
    * load a file from plugin folder
