@@ -12,22 +12,24 @@
  */
 
 /* toolbar */
-#SiteMonitoringToolbar {position:fixed; width:42px; overflow:hidden; transition: height 0.3s;}
-#SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px;}
-#SiteMonitoringToolbar .button {cursor:pointer; border-top:solid 1px #444444; border-bottom:solid 1px #888888;}
-#SiteMonitoringToolbar .separator {height:12px; border-top:solid 1px #444444; border-bottom:solid 1px #888888;}
+#SiteMonitoringToolbar {position:fixed; width:43px; overflow:hidden; transition: height 0.3s;}
+#SiteMonitoringToolbar.left {border-right:solid 1px white;}
+#SiteMonitoringToolbar.right {border-left:solid 1px white;}
+#SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px; font-size:0;}
+#SiteMonitoringToolbar .button {cursor:pointer; font-size:0;}
+#SiteMonitoringToolbar .button:hover {background:#676767;}
+#SiteMonitoringToolbar .separator {font-size:0; height:0; margin:6px 0;}
 
 /* data panel */
 #SiteMonitoringToolbarDataPanel {position:fixed;}
-#SiteMonitoringToolbarDataPanel.left {left:42px; padding-left:9px; background:url(../img/leftArrow.png) 0 8px no-repeat;}
-#SiteMonitoringToolbarDataPanel.right {right:42px; padding-right:9px; background:url(../img/rightArrow.png) 100% 8px no-repeat;}
+#SiteMonitoringToolbarDataPanel.left {left:42px; padding-left:9px;}
+#SiteMonitoringToolbarDataPanel.right {right:42px; padding-right:9px;}
 #SiteMonitoringToolbarDataPanel .contentBox { border-radius:4px; padding:16px; min-height:25px; /* max-height:400px; overflow:auto;*/ box-shadow:0 0 8px 3px rgba(0,0,0,0.5);}
 #SiteMonitoringToolbarDataPanel .contentBox .title {text-transform:uppercase; font-size:14px; padding: 0 0 2px 0; margin: 0 0 2px 0; }
 #SiteMonitoringToolbarDataPanel .contentBox .subtitle {font-weight:bold;}
 #SiteMonitoringToolbarDataPanel .contentBox .content {font-size:12px; padding:2px 0;}
 #SiteMonitoringToolbarDataPanel .contentBox .description {font-size:12px; font-style:italic; padding:2px 0;}
 #SiteMonitoringToolbarDataPanel .contentBox .value {font-size:12px;}
-
 #SiteMonitoringToolbarDataPanel .contentBox .formLine {font-size:0; padding:4px 0;}
 #SiteMonitoringToolbarDataPanel .contentBox .formLine .formLabel {display:inline-block; font-size:12px; width:45%;}
 #SiteMonitoringToolbarDataPanel .contentBox .formLine .formInput {display:inline-block; width:55%;}
@@ -37,10 +39,12 @@
 #SiteMonitoringToolbarDataPanel .contentBox .buttonLine .button {display:inline-block; margin-left:4px; padding:4px 16px; cursor:pointer;} 
 
 /* dark theme */
-#SiteMonitoringToolbar.dark {background:black;}
+#SiteMonitoringToolbar.dark {background:url(../img/Dark_bkgd.png) repeat-y 0 0; }
+#SiteMonitoringToolbar.dark .separator {border-top:solid 1px #3E3E3E; border-bottom: solid 1px #676767;}
 
-#SiteMonitoringToolbarDataPanel.dark {}
-#SiteMonitoringToolbarDataPanel.dark .contentBox {background:black;}
+#SiteMonitoringToolbarDataPanel.dark.left {background:url(../img/Dark_leftArrow.png) 0 8px no-repeat;}
+#SiteMonitoringToolbarDataPanel.dark.right {background:url(../img/Dark_rightArrow.png) 100% 8px no-repeat;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox {background:#3e3e3e;}
 #SiteMonitoringToolbarDataPanel.dark .contentBox * {color:white;}
 #SiteMonitoringToolbarDataPanel.dark .contentBox .title {border-bottom:solid 1px white;}
 #SiteMonitoringToolbarDataPanel.dark .contentBox .value {color:#33CC33;}

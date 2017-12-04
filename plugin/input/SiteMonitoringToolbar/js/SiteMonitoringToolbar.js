@@ -122,12 +122,13 @@ var SiteMonitoringToolbar = {
     
     this.toolbar = document.createElement('div');
     this.toolbar.id = 'SiteMonitoringToolbar';
-    this.toolbar.className = this.get_param('appliedTheme');
+    this.toolbar.className = pos[1]+' '+this.get_param('appliedTheme');
     if (pos[0] == 'top') this.toolbar.style.top = 0;
     else if (pos[0] == 'bottom') this.toolbar.style.bottom = 0;
     if (pos[1] == 'left') this.toolbar.style.left = 0;
     else if (pos[1] == 'right') this.toolbar.style.right = 0;
     this.toolbar.style.height = '42px';
+    this.toolbar.style.background = 'white';
     document.getElementsByTagName('body')[0].appendChild(this.toolbar);
     
     /* create master button */
@@ -142,6 +143,11 @@ var SiteMonitoringToolbar = {
     }
     button.appendChild(image);
     this.toolbar.appendChild(button);
+    
+    /* add separator */
+    sep = document.createElement('div');
+    sep.className = 'separator';
+    this.toolbar.appendChild(sep);
     
     /* create DB stats button */
     button = document.createElement('div');
@@ -273,10 +279,16 @@ var SiteMonitoringToolbar = {
       /* update variable */
       this.set_param('toolbarStatus', 1);
       
+      
+      this.toolbar.style.background = null;
+      
       /* resize toolbar */
       this.resize_toolbar();
       
     } else {
+      
+      setTimeout("SiteMonitoringToolbar.toolbar.style.background = 'white';", 300);
+    
       /* close toolbar */
       this.toolbar.style.height = '42px';
       
