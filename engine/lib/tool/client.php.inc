@@ -4864,6 +4864,15 @@ function client_getKnownBots() {
     'engine_title'=>'Lightspeed Systems, Inc.',
     'engine_url'=>'https://www.lightspeedsystems.com');
     
+  /* DocSpotBot */
+  $knownBots['docspotbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'DocSpotBot',
+    'bot_url'=>'http://docspot.com/bot.html',
+    'engine_title'=>'DocSpot',
+    'engine_url'=>'https://docspot.com');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
@@ -5788,6 +5797,15 @@ function client_getKnownTools() {
     'tool_url'=>'https://nmap.org/book/nse.html',
     'engine_title'=>'NMAP',
     'engine_url'=>'https://nmap.org/');
+    
+  /* lwp-request */
+  $knownTools['lwp-request'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'lwp-request',
+    'tool_url'=>'http://search.cpan.org/dist/libwww-perl/bin/lwp-request',
+    'engine_title'=>'',
+    'engine_url'=>'');
     
   /* return list */
   return $knownTools;
