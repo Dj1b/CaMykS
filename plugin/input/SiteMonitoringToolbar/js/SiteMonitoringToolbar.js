@@ -6,7 +6,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Javascript
  * Creation Date    : Nov 2017
- * Last Modif Date  : Nov 2017
+ * Last Modif Date  : Dec 2017
  * 
  * SiteMonitoringToolbar master script
  */
@@ -279,18 +279,16 @@ var SiteMonitoringToolbar = {
       /* update variable */
       this.set_param('toolbarStatus', 1);
       
-      
       this.toolbar.style.background = null;
       
       /* resize toolbar */
       this.resize_toolbar();
       
     } else {
-      
-      setTimeout("SiteMonitoringToolbar.toolbar.style.background = 'white';", 300);
-    
+          
       /* close toolbar */
       this.toolbar.style.height = '42px';
+      setTimeout("SiteMonitoringToolbar.toolbar.style.background = 'white';", 300);
       
       /* update variable */
       this.set_param('toolbarStatus', 0);
@@ -370,7 +368,7 @@ var SiteMonitoringToolbar = {
     if (this.get_param('dataPanelStatus') !== 'off')
       this.hide_dataPanel();
 
-    /* execute bench loading */
+    /* execute db stats loading */
     this.execute_request({'mode':'displayDBStats'});
   },
   
@@ -408,8 +406,32 @@ var SiteMonitoringToolbar = {
     if (this.get_param('dataPanelStatus') !== 'off')
       this.hide_dataPanel();
 
-    /* execute bench loading */
+    /* execute congifuration loading */
     this.execute_request({'mode':'displayConfiguration'});
+  },
+  
+  /*
+   * save (and close) configuration panel
+   * @return void
+   * @access private
+   */
+  save_configuration: function() {
+    
+    /* do nothing if current panel is not configuration  */
+    if (this.get_param('dataPanelStatus') !== 'configuration')
+      return;
+
+    /* load configuration values */
+    params = {'mode':'saveConfiguration'};
+    params['accessRestriction'] = document.getElementById('ConfigurationAccessRestriction').options[document.getElementById('ConfigurationAccessRestriction').options.selectedIndex].value;
+    params['buttonLocation'] = document.getElementById('ConfigurationButtonLocation').options[document.getElementById('ConfigurationButtonLocation').options.selectedIndex].value;
+    params['appliedTheme'] = document.getElementById('ConfigurationAppliedTheme').options[document.getElementById('ConfigurationAppliedTheme').options.selectedIndex].value;
+    
+    /* close panel */
+    this.hide_dataPanel();
+
+    /* execute bench loading */
+    this.execute_request(params);
   },
   
   /*

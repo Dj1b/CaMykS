@@ -7,27 +7,30 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Engine
  * Create Date		: Nov 2017
- * Last Modif Date	: Nov 2017
+ * Last Modif Date	: Dec 2017
  * 
  * Display a monitoring toolbar on website for connected admin
  * 
  * Available tools
- * CaMykS Main button to open/close toolbar
- * Publish / Unpublish
- * Edit 
- * Add
- * Configuration
- * Statistics
+ * + CaMykS Main button to open/close toolbar
+ * - Publish / Unpublish
+ * - Edit 
+ * - Add
+ * - Statistics
  * ----
- * Messages (start / enabled status)
- * dB Stats (start / enabled status)
- * Page bench (start / enabled status)
+ * - Messages (start / enabled status)
+ * + dB Stats (start / enabled status)
+ * + Page bench (start / enabled status)
  * ---
- * Disconnect
+ * + Configuration
+ * + Reload
+ * + Disconnect
  */
 
 final class SiteMonitoringToolbar extends Input {
+
   /* variables */
+  private $loaded;
   
   /* 
    * constructor
@@ -56,6 +59,9 @@ final class SiteMonitoringToolbar extends Input {
       $this->register_asCaMykSEventHandler('onPageLoad');
       $this->register_asCaMykSEventHandler('onTerminate');
     }
+    
+    /* set up vars */
+    $this->loaded = false;
   }
   
   /* overwrite input methods */
@@ -91,6 +97,9 @@ final class SiteMonitoringToolbar extends Input {
     $camyks->set_sessionValue('SMTLastBench', false);
     $camyks->set_sessionValue('SMTDBStats', false);
     $camyks->set_sessionValue('SMTSDBQueries', false);
+    
+    /* set as loaded */
+    $this->loaded = true;
         
     /* Input generic initialization */
     parent::initialise();
@@ -118,10 +127,11 @@ final class SiteMonitoringToolbar extends Input {
 		'content1'      => $this->get_translation('requestfailed2'),
 	);
 	
-	/* check if admin user is still connected */
-	if ($camyks->check_adminUser() === false) {
+	/* check access restriction */
+    if ($this->config->vars['accessRestriction'] == 0 and ($camyks->check_adminUser() === false or $camyks->adminUser->webmaster == 0))
       $camyks->throwFatalError($error);
-    }
+    elseif ($this->config->vars['accessRestriction'] == 1 and $camyks->check_adminUser() === false)
+      $camyks->throwFatalError($error);
 	
     /* load mode to execute */
     $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
@@ -152,6 +162,9 @@ final class SiteMonitoringToolbar extends Input {
      case 'displayConfiguration':
       	$this->execute_request_displayConfiguration();
       	break;
+      case 'saveConfiguration':
+      	$this->execute_request_saveConfiguration();
+      	break;
       case 'disconnect':
       	$this->execute_request_disconnect();
       	break;
@@ -171,9 +184,18 @@ final class SiteMonitoringToolbar extends Input {
   public function execute_onCaMykSPageLoad() {
     global $camyks;
     
-    if ($camyks->check_adminUser() !== false) {
-      $this->initialise();
-    }
+    /* load plugin configuration */
+    $this->config = new SiteMonitoringToolbarConfig('config', $this);
+    $this->config->get();
+    
+    /* check rights */
+    if ($this->config->vars['accessRestriction'] == 0 and ($camyks->check_adminUser() === false or $camyks->adminUser->webmaster == 0))
+      return;
+    elseif ($this->config->vars['accessRestriction'] == 1 and $camyks->check_adminUser() === false)
+      return;
+    
+    /* start initialisation */
+    $this->initialise();
   }
   
   /*
@@ -183,6 +205,10 @@ final class SiteMonitoringToolbar extends Input {
    */
   public function execute_onCaMykSTerminate() {
     global $camyks;
+    
+    /* check if plugin is loaded */
+    if ($this->loaded == false)
+      return;
            
     /* check for bench values loading */
     if ($camyks->get_executionVariable('_cBench') == 'shared')
@@ -282,7 +308,6 @@ final class SiteMonitoringToolbar extends Input {
     /* send answer */
     $result->set_asSuccess();
     $result->send_asJSON();
-    
   }
   
   /*
@@ -355,16 +380,56 @@ final class SiteMonitoringToolbar extends Input {
       $result->send_asJSON();
     }
     
+    /* load values and encode them to JS */
+    $lAR = $this->config->get_accessRestrictionList();
+    foreach ($lAR as $index => $value)
+      $lAR[$index] = string_html2Text($value);
+    
+    $lBL = $this->config->get_buttonLocationList();
+    foreach ($lBL as $index => $value)
+      $lBL[$index] = string_html2Text($value);
+    
+    $lAT = $this->config->get_availableThemeList();
+    foreach ($lAT as $index => $value)
+      $lAT[$index] = string_html2Text($value);
+    
+    
     /* add configuration data to answer */
     $data = array(
-      'accessRestrictionList'   => $this->config->get_accessRestrictionList(),
-      'buttonLocationList'      => $this->config->get_buttonLocationList(),
-      'availableThemeList'      => $this->config->get_availableThemeList(),
+      'accessRestrictionList'   => $lAR,
+      'buttonLocationList'      => $lBL,
+      'availableThemeList'      => $lAT,
       'default'                 => array(
         'accessRestriction'         => $this->config->vars['accessRestriction'],
       ),
     );    
     $result->update_param('ConfigurationData', $data);
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/saveConfiguration mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_saveConfiguration() {
+    global $camyks;
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'saveConfiguration'));
+    
+    /* check admin user */
+    if (!$camyks->check_adminUser() or !$camyks->adminUser->webmaster) {
+      $result->set_asFailure();
+      $result->send_asJSON();
+    }
+    
+    /* save configuration */
+    $this->config->get_fromHeader();
+    $this->config->save();
     
     /* send answer */
     $result->set_asSuccess();

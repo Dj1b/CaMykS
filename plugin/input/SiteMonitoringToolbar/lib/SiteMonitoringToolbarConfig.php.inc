@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Input Config
  * Creation Date	: Nov 2017
- * Last Modif Date	: Nov 2017
+ * Last Modif Date	: Dec 2017
  *
  * SiteMonitoringToolbar configuration file
  */
@@ -65,7 +65,9 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
    */
   public function get_availableThemeList() {
     return array(
-      'dark' => $this->get_translation('availabletheme_dark'),
+      'dark'    => $this->get_translation('availabletheme_dark'),
+      'blue'    => $this->get_translation('availabletheme_blue'),
+      'purple'  => $this->get_translation('availabletheme_purple'),
     );
   }
 }

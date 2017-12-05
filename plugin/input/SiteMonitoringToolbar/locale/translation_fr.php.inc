@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Dictionnary
  * Create Date		: Nov 2017
- * Last Modif Date	: Nov 2017
+ * Last Modif Date	: Dec 2017
  *
  * SiteMonitoringToolbar language dictionnary : French 
  */
@@ -25,5 +25,6 @@ $this->trads['input_sitemonitoringtoolbar_buttonlocation_bottomright'] = 'Bas/Dr
 
 /* available theme values */
 $this->trads['input_sitemonitoringtoolbar_availabletheme_dark'] = 'Dark';
-
+$this->trads['input_sitemonitoringtoolbar_availabletheme_blue'] = 'Blue';
+$this->trads['input_sitemonitoringtoolbar_availabletheme_purple'] = 'Violet';
 ?>
