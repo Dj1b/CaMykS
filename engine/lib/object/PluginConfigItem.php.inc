@@ -15,7 +15,7 @@
 final class PluginConfigItem {
   /* vars */
   public $_name;
-  private $_type;
+  public $_type;
   private $_default;
 
   /*
