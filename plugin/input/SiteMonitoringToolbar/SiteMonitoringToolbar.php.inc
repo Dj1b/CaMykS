@@ -31,6 +31,7 @@ final class SiteMonitoringToolbar extends Input {
 
   /* variables */
   private $loaded;
+  private $extensions;
   
   /* 
    * constructor
@@ -94,9 +95,11 @@ final class SiteMonitoringToolbar extends Input {
     $this->add_JSScript('SiteMonitoringToolbar.set_param("requestBaseURL", "request.php?input='.$this->name.'");');
     
     /* clean session value */
-    $camyks->set_sessionValue('SMTLastBench', false);
+    $camyks->set_sessionValue('SMTBench', false);
     $camyks->set_sessionValue('SMTDBStats', false);
     $camyks->set_sessionValue('SMTSDBQueries', false);
+    $camyks->set_sessionValue('SMTStatItems', false);
+    $camyks->set_sessionValue('SMTEditItems', false);
     
     /* set as loaded */
     $this->loaded = true;
@@ -209,6 +212,9 @@ final class SiteMonitoringToolbar extends Input {
     /* check if plugin is loaded */
     if ($this->loaded == false)
       return;
+      
+    /* load extensions */
+    $this->load_registeredExtensions();
            
     /* check for bench values loading */
     if ($camyks->get_executionVariable('_cBench') == 'shared')
@@ -219,6 +225,19 @@ final class SiteMonitoringToolbar extends Input {
       $camyks->set_sessionValue('SMTDBStats', $camyks->get_sharedData('_cDBStatsResult'));
       $camyks->set_sessionValue('SMTDBQueries', $camyks->get_sharedData('_cDBQueriesResult'));
     }
+        
+    /* check for registered statistics items */
+    $statItems = array();
+    $statItems[] = array('objectName'=>'visits', 'objectId'=>0);
+    if (isset($camyks->contentPage) and $camyks->contentPage->id > 0)
+      $statItems[] = array('objectName'=>'sitepage', 'objectId'=>$camyks->contentPage->id);
+    /* load registered statistics items from extensions */
+    foreach ($this->extensions as &$plugin)
+      $statItems += $plugin->get_SMTStatItems();
+        
+    /* check for edit action items */
+    
+    
   }
   
   /* request mode methods */
@@ -453,6 +472,17 @@ final class SiteMonitoringToolbar extends Input {
     /* send answer */
     $result->set_asSuccess();
     $result->send_asJSON();
+  }
+  
+  /* specific tool methods */
+  
+  /* 
+   * load registered extensions
+   * @return void
+   * @access private
+   */
+  private function load_registeredExtensions() {
+    $this->extensions = $this->get_registeredExtensions();
   }
 }
 ?>
