@@ -15,7 +15,8 @@
 #SiteMonitoringToolbar {position:fixed; width:43px; overflow:hidden; transition: height 0.3s;}
 #SiteMonitoringToolbar.left {border-right:solid 1px white;}
 #SiteMonitoringToolbar.right {border-left:solid 1px white;}
-#SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px; font-size:0;}
+#SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px; font-size:0; filter: grayscale(1); transition:all 0.25s;}
+#SiteMonitoringToolbar .masterButton:hover {filter: grayscale(0);} 
 #SiteMonitoringToolbar .button {cursor:pointer; font-size:0;}
 #SiteMonitoringToolbar .separator {font-size:0; height:0; margin:6px 0;}
 
