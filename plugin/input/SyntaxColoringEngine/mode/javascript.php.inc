@@ -20,11 +20,11 @@ final class SyntaxColoringEngine_javascript {
    * @access public
    */
   public function __construct () {
-    $this->style = array();
-    $this->style['comments'] = 'color:#CC3333';
-    $this->style['keywords'] = 'color:#0000FF;font-weight:bold;';
-    $this->style['string'] = 'color:#888888';
-    $this->style['indent'] = 'padding-left:8px';
+    $this->styles = array();
+    $this->styles['comments'] = 'color:#CC3333';
+    $this->styles['keywords'] = 'color:#0000FF;font-weight:bold;';
+    $this->styles['string'] = 'color:#888888';
+    $this->styles['indent'] = 'padding-left:8px';
   
     $this->keywords = array();
     $this->keywords[] = 'if';
@@ -72,12 +72,12 @@ final class SyntaxColoringEngine_javascript {
     /* replace DOS breakline by unix brealines */
     $search = '/\r\n/';
     $replace = "\n";
-    $text = preg_replace ( $search, $replace, $text ); 
+    $text = preg_replace ($search, $replace, $text); 
 
     /* colorize strings */
     $search = '/([\'"])([^\']*?)\1/s';
-    $replace = '<span style="'.$this->style['string'].'">\\1\\2\\1</span>';
-    $text = preg_replace ( $search, $replace, $text );
+    $replace = '<span style="'.$this->styles['string'].'">\\1\\2\\1</span>';
+    $text = preg_replace ($search, $replace, $text);
 
     /* colorize keywords */
     foreach ( $this->keywords as $id=>$value ) {
@@ -85,37 +85,51 @@ final class SyntaxColoringEngine_javascript {
     }
 
     $search = $this->keywords;
-    $replace = '<span style="'.$this->style['keywords'].'">\\1</span>';
-    $text = preg_replace ( $search, $replace, $text );
+    $replace = '<span style="'.$this->styles['keywords'].'">\\1</span>';
+    $text = preg_replace ($search, $replace, $text);
    
-    /* colorize multiline comments */
-    $search = '/\/\*/';
-    $replace = '<span style="'.$this->style['comments'].'">/*';
-    $text = preg_replace ( $search, $replace, $text );
+    /* remove existing colored element from comments */    
+    $search = '/\/\*(.+?)\*\//s';
+    $text = preg_replace_callback($search, 
+        function($match) {
+            return preg_replace('/<([^>]*)>/', '', $match[0]);
+        }, 
+        $text
+    );
+    
+    /* colorise multiline comments */
+    $search = '/(\/\*)(.+?)(\*\/)/s';
+    $replace = '<span style="'.$this->styles['comments'].'">\\1\\2\\3</span>';
+    $text = preg_replace($search, $replace, $text);
 
-    $search = '/\*\//';
-    $replace = '*/</span>';
-    $text = preg_replace ( $search, $replace, $text );
+    /* remove existing colored element from comments */
+    $search = '/\/\/(.*)/';
+    $text = preg_replace_callback($search, 
+        function($match) {
+            return preg_replace('/<([^>]*)>/', '', $match[0]);
+        }, 
+        $text
+    );
 
     /* colorize single line comment */
     $search = '/(\/\/.*)/';
-    $replace = '<span style="'.$this->style['comments'].'">\\1</span>';
-    $text = preg_replace ( $search, $replace, $text );
+    $replace = '<span style="'.$this->styles['comments'].'">\\1</span>';
+    $text = preg_replace ($search, $replace, $text);
     
     /* text indentation : with {} */
     $search = '/({\n)/';
-    $replace = '{<div style="'.$this->style['indent'].'">';
-    $text = preg_replace ( $search, $replace, $text );
+    $replace = '{<div style="'.$this->styles['indent'].'">';
+    $text = preg_replace ($search, $replace, $text);
 
     $search = '/(}[\n]?)/';
     $replace = '</div>}'."\n";
-    $text = preg_replace ( $search, $replace, $text );
+    $text = preg_replace ($search, $replace, $text);
     
     /* text indentation : without {} */
     foreach ( $this->ikeywords as $value ) {
       $search = '/(\b'.$value.'\b[^{\n]*)\n([^\n]*)\n/';
-      $replace = '\\1<div style="'.$this->style['indent'].'">\\2</div>';
-      $text = preg_replace ( $search, $replace, $text );
+      $replace = '\\1<div style="'.$this->styles['indent'].'">\\2</div>';
+      $text = preg_replace ($search, $replace, $text);
     }
     
     /* check autobreakline params */
