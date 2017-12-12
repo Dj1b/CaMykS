@@ -24,7 +24,7 @@ final class SyntaxColoringEngine extends Input {
    * constructor
    * @param sting path_type
    */
-  function __construct($path_type) {
+  public function __construct($path_type) {
     parent::Input('SyntaxColoringEngine', $path_type);
     
     /* set plugin version */
@@ -51,7 +51,7 @@ final class SyntaxColoringEngine extends Input {
    * @return void
    * @access public
    */
-  function initialise ($text=null, $mode=null) {
+  public function initialise ($text=null, $mode=null) {
     global $camyks;    
     $this->content='';
     $this->loaded = array();
@@ -72,7 +72,7 @@ final class SyntaxColoringEngine extends Input {
    * @return void
    * @access public
    */
-  function display ( $text=null, $mode=null ) {
+  public function display ( $text=null, $mode=null ) {
     /* update data */
     if ( isset ($text) and isset($mode) ) {
       $this->execute ($text, $mode);
@@ -90,7 +90,7 @@ final class SyntaxColoringEngine extends Input {
    * @return void
    * @access public
    */
-  function execute($text=null, $mode=null, $params=array()) {
+  public function execute($text=null, $mode=null, $params=array()) {
     if (isset($text) and isset($mode)) {
       if (in_array($mode, $this->modes)) {
 	    /* load sub engine if needed */
