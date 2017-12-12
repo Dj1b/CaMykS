@@ -3,19 +3,23 @@
  * CaMykS Engine
  * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0a
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Library
  * Create Date		: May 2007
- * Last Modif Date	: Mar 2017
+ * Last Modif Date	: Dec 2017
  * 
  * SyntaxColoringEngine mode library : javascript
 */
 
-class SyntaxColoringEngine_javascript {
+final class SyntaxColoringEngine_javascript {
 
-  /* constructor */
-  function SyntaxColoringEngine_javascript () {
+  /* 
+   * constructor
+   * @return void
+   * @access public
+   */
+  public function __construct () {
     $this->style = array();
     $this->style['comments'] = 'color:#CC3333';
     $this->style['keywords'] = 'color:#0000FF;font-weight:bold;';
@@ -58,13 +62,12 @@ class SyntaxColoringEngine_javascript {
    * execute colorisation
    * @param string $text
    * @return string
-   * @access private
+   * @access public
    */
-  function execute( $text, $params ) {
+  public function execute($text, $params) {
     
     $defaultParams = array('autoBreakLine'=>true);
     $params = array_merge($defaultParams, $params);
-  
   
     /* replace DOS breakline by unix brealines */
     $search = '/\r\n/';
