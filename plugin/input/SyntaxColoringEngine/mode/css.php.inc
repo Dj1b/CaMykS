@@ -6,7 +6,7 @@
  * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Library
- * Create Date		: Dec 2017
+ * Creation Date	: Dec 2017
  * Last Modif Date	: Dec 2017
  * 
  * SyntaxColoringEngine mode library : css mode
@@ -19,7 +19,7 @@ final class SyntaxColoringEngine_css {
    * @return void
    * @access public
    */
-  public function __construct () {
+  public function __construct() {
     $this->styles = array();
     $this->styles['comments'] = 'color:#CC3333';
     $this->styles['string'] = 'color:#888888';

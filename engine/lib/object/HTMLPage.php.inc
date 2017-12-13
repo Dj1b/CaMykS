@@ -647,6 +647,8 @@ class HTMLPage {
       $r = '?'.rand(0, 999999);
     else
       $r = '';
+    
+    
     foreach ( $this->js_files as $js ) {
       if (preg_match('/https?:\/\//i', $js))
         echo "<script type=\"text/javascript\" src=\"".$js.$r."\">/* add javascript */</script>\n";
