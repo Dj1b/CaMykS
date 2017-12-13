@@ -9,12 +9,8 @@
  * Create Date		: Dec 2017
  * Last Modif Date	: Dec 2017
  * 
- * SyntaxColoringEngine mode library : css
- * 
- * TO DO : 
- * * Do not colour font name, that looks like a pseudo-class (font-family:arial, ...)
- * * Do not colour float values, that looks like a class (transition:color 0.5s, ....)
-*/
+ * SyntaxColoringEngine mode library : css mode
+ */
 
 final class SyntaxColoringEngine_css {
 
@@ -33,6 +29,7 @@ final class SyntaxColoringEngine_css {
     $this->styles['classes'] = 'color:#258123;';
     $this->styles['pseudos'] = 'color:#da560f;';
     $this->styles['properties'] = 'color:#000088;';
+    $this->styles['values'] = 'color:#666666;';
     $this->styles['at-rules'] = 'color:#000088; font-weight:bold;';
   }
 
@@ -62,8 +59,8 @@ final class SyntaxColoringEngine_css {
     $text = preg_replace($search, $replace, $text);
     
     /* colorise properties */
-    $search = '/([a-zA-Z\-]{2,})[\s]*:[\s]*([^;\}\{>\+]*)[\s]*([;|\}])/';
-    $replace = '<span style="'.$this->styles['properties'].'">\\1</span>:\\2\\3';
+    $search = '/([a-zA-Z\-]{2,})[\s]*:[\s]*([^;\}\{\+]*)[\s]*([;|\}])/';
+    $replace = '<span style="'.$this->styles['properties'].'">\\1</span>:<span style="'.$this->styles['values'].'">\\2</span>\\3';
     $text = preg_replace($search, $replace, $text);
     
     /* colorise @rules */
@@ -77,13 +74,13 @@ final class SyntaxColoringEngine_css {
     $text = preg_replace($search, $replace, $text);
     
     /* colorise classes */
-    $search = '/(\.[a-zA-Z0-9\-]{2,})([\s|{|,|:|\+|£])/';
-    $replace = '<span style="'.$this->styles['classes'].'">\\1</span>\\2';
+    $search = '/(\A|[^0-9])(\.[a-zA-Z0-9\-]{2,})([\s|{|,|:|\+|£])/';
+    $replace = '\\1<span style="'.$this->styles['classes'].'">\\2</span>\\3';
     $text = preg_replace($search, $replace, $text);
     
     /* colorise pseudo-classes */
-    $search = '/(:?:[a-zA-Z\-]{2,})[\s]*([{|,|\+|£])/';
-    $replace = '<span style="'.$this->styles['pseudos'].'">\\1</span> \\2';
+    $search = '/(:?:[a-zA-Z\-]{2,})([\s]*)([{|,|\+|£])/';
+    $replace = '<span style="'.$this->styles['pseudos'].'">\\1</span>\\2\\3';
     $text = preg_replace($search, $replace, $text);
     
     /* remove existing colored element from comments */    
