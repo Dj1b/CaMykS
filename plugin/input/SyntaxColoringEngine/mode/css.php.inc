@@ -12,7 +12,8 @@
  * SyntaxColoringEngine mode library : css
  * 
  * TO DO : 
- * * Do not color font name, that looks like a pseudo-class
+ * * Do not colour font name, that looks like a pseudo-class (font-family:arial, ...)
+ * * Do not colour float values, that looks like a class (transition:color 0.5s, ....)
 */
 
 final class SyntaxColoringEngine_css {
