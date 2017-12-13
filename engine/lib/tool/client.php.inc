@@ -3904,6 +3904,15 @@ function client_getKnownBots() {
     'engine_title'=>'DomainCrawler',
     'engine_url'=>'http://www.domaincrawler.com');
 
+  /* CipaCrawler */
+  $knownBots['cipacrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'CipaCrawler',
+    'bot_url'=>'info@domaincrawler.com',
+    'engine_title'=>'DomainCrawler',
+    'engine_url'=>'http://www.domaincrawler.com');
+
   /* parsijoo-bot */
   $knownBots['parsijoo-bot'] = array(
     'platform_type'=>'bot',
@@ -4920,15 +4929,6 @@ function client_getKnownBots() {
     'engine_url'=>'');
   
   /* unknown bot */
-  $knownBots['celious search engine'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* unknown bot */
   $knownBots['smurlexpander'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
@@ -4939,6 +4939,15 @@ function client_getKnownBots() {
   
   /* unknown bot */
   $knownBots['dnyzbot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* unknown bot */
+  $knownBots['saleslift'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Unknown bot',
