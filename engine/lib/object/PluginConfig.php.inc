@@ -149,15 +149,18 @@ abstract class PluginConfig {
    * @access public
    */
   public function save() {
-    if ( isset($this->vars) and $this->check_data() ) {
-      $content = file_getPHPFileHeader( $this->name . ' '. $this->_libName.' file', '1.0');
-      $content .= '$this->vars = ' . var_export( $this->vars, true ) . ';';
+    if (isset($this->vars) and $this->check_data()) {
+      /* build config content */
+      $content = file_getPHPFileHeader($this->name . ' '. $this->_libName.' file', '1.0');
+      $content .= '$this->vars = ' . var_export($this->vars, true) . ';';
       $content .= file_getPHPFileFooter();
       
+      /* create folder */
       if (!file_exists($this->_libFolder)) {
 	    folder_completePath($this->_libFolder);
       }
       
+      /* write file */
       if (file_write($this->_libFile, $content))
 	    return true;
     }
