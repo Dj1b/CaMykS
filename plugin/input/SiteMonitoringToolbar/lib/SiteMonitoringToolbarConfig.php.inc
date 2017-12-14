@@ -21,7 +21,7 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
   public function SiteMonitoringToolbarConfig($name, &$parent) {
     parent::__construct($name, $parent);
     
-    $this->add_newItem('accessRestriction', 'integer', 1);
+    $this->add_newItem('accessRestriction', 'integer', 0);
     $this->add_newItem('buttonLocation', 'string', 'top:right');
     $this->add_newItem('appliedTheme', 'string', 'dark');
 
