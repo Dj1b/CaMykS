@@ -528,6 +528,29 @@ class Plugin {
     return true;
   }
   
+  /* shared object management */
+  
+  /*
+   * register this plugin to be accessed by any other 
+   * @param string $name
+   * @return boolean success
+   * @access public
+   */
+  public function register_asSharedObject($name) {
+    global $camyks;
+    return $camyks->register_sharedObject($name, $this);
+  }
+  
+  /*
+   * return requested shared object
+   * @param string $name
+   * @return Object
+   * @access public
+   */
+  public function &get_sharedObject($name) {
+    return $camyks->get_sharedObject($name);
+  }
+  
   /* extensions management methods */
   
   /*

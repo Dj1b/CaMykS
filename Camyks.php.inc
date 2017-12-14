@@ -1517,6 +1517,46 @@ final class Camyks {
     return isset($this->shared_data[$name]);
   }
   
+  /******************** SHARED OBJECTS ********************/
+  
+  /*
+   * register a plugin to be accessed by any other 
+   * @param string $name
+   * @param Object $object
+   * @return boolean success
+   * @access public
+   */
+  public function register_sharedObject($name, &$object) {
+    if (isset($this->sharedObjects[$name]))
+      return false;
+    $this->sharedObjects[$name] = $object;
+    return true;
+  }
+  
+  /*
+   * return requested shared object
+   * @param string $name
+   * @return Object
+   * @access public
+   */
+  public function &get_sharedObject($name) {
+    if (!isset($this->sharedObjects[$name]))
+      return false;
+    return $this->sharedObjects[$name];
+  }
+  
+  /*
+   * return shared object name list
+   * @return array
+   * @access public
+   */
+  public function get_sharedObjectList() {
+    $list = array();
+    foreach ($this->sharedObjects as $name => $object)
+      $list[$name] = get_class($object);
+    return $list;
+  }
+  
   /******************** PLUGIN EXTENSIONS **************/
   
   /*
