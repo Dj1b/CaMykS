@@ -13,10 +13,12 @@
  */
 
 final class SyntaxColoringEngine extends Input {
-  /* variables */
-  private $text;
+  /* public variables */
   public $mode;
   public $content;
+ 
+  /* private variables */
+  private $text;
   private $modes;
   private $loaded;
 
@@ -51,7 +53,7 @@ final class SyntaxColoringEngine extends Input {
    * @return void
    * @access public
    */
-  public function initialise ($text=null, $mode=null) {
+  public function initialise($text=null, $mode=null) {
     global $camyks;    
     $this->content='';
     $this->loaded = array();
@@ -72,11 +74,9 @@ final class SyntaxColoringEngine extends Input {
    * @return void
    * @access public
    */
-  public function display ( $text=null, $mode=null ) {
+  public function display($text='', $mode='') {
     /* update data */
-    if ( isset ($text) and isset($mode) ) {
-      $this->execute ($text, $mode);
-    }
+    echo $this->execute ($text, $mode);
     
     /* Input generic display */
     parent::display();
@@ -87,27 +87,26 @@ final class SyntaxColoringEngine extends Input {
    * execute colorisation
    * @param string $text
    * @param string $mode
-   * @return void
+   * @return string
    * @access public
    */
-  public function execute($text=null, $mode=null, $params=array()) {
-    if (isset($text) and isset($mode)) {
-      if (in_array($mode, $this->modes)) {
-	    /* load sub engine if needed */
-	    if (!in_array( $mode, $this->loaded)) {
-	      $this->load_file('mode/'.$mode.'.php.inc');
-	      $this->loaded[] = $mode;
-	    }
-	    /* set mode */
-	    eval('$this->mode = new SyntaxColoringEngine_'.$mode.'();');
+  public function execute($text='', $mode='', $params=array()) {
+    if (in_array($mode, $this->modes)) {
+      /* load mode engine if needed */
+      if (!in_array($mode, $this->loaded)) {
+	    $this->load_file('mode/'.$mode.'.php.inc');
+	    $this->loaded[] = $mode;
+	  }
+	  /* set mode */
+	  eval('$this->mode = new SyntaxColoringEngine_'.$mode.'();');
 	    
-	    /* color */
-	    $this->content = $this->mode->execute($text, $params);
-	    return;
-      }
-    }
-    $this->content = '';
-    return;
+	  /* color */
+	  $this->content = $this->mode->execute($text, $params);
+    } else
+      $this->content = $text;
+    
+    /* return content */
+    return $this->content;
   }
 }
 ?>
