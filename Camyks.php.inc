@@ -134,6 +134,7 @@ final class Camyks {
     $this->cache = array();
     $this->session_vars = array();
     $this->shared_data = array();
+    $this->sharedObjects = array();
     $this->plugin_extensions = array();
     $this->adminUser = false;
     $this->openedDBonnections = array();
