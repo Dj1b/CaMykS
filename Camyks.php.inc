@@ -1497,8 +1497,11 @@ final class Camyks {
    * @return mixed
    * @access public
    */
-  public function get_sharedData($name, $value=null) {
-  	if ($value != null and isset($this->shared_data[$name][$value]))
+  public function get_sharedData($name=null, $value=null) {
+    if ($name == null)
+      return $this->shared_data;
+      
+    if ($value != null and isset($this->shared_data[$name][$value]))
   		return $this->shared_data[$name][$value];
   
     if (isset($this->shared_data[$name]))
@@ -1506,6 +1509,7 @@ final class Camyks {
       
     return $value;
   }
+  
 
   /*
    * check some shared data
