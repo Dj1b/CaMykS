@@ -515,7 +515,6 @@ var SiteMonitoringToolbar = {
     	if (wait) this.requestQueue.push(url);
       return;
     }
-    console.log(url);
     this.loader._execute(url);
   },
 
@@ -614,9 +613,7 @@ var SiteMonitoringToolbar = {
     /* save config */
     for (i in result['config'])
       this.set_param(i, result['config'][i]);
-      
-    console.log('configuration loaded');
-  
+        
     /* post loaded action */
     this.display_toolbar();
   },
@@ -628,7 +625,6 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayPHPStats: function(result) {
-    console.log('sql stats display');
     
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('PHPStatsButton'));
@@ -774,7 +770,6 @@ var SiteMonitoringToolbar = {
           div.innerHTML += i + ' : <span class="value"> Object </span> <br />';
         else
           div.innerHTML += i + ' : <span class="value">'+result['PHPStats']['sharedData'][i]+'</span> <br />';
-      
       }
     }
     box.appendChild(div);
@@ -793,7 +788,6 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_startDBStats: function(result) {
-    console.log('sql stats started');    
     /* reload page */
     location.reload(true); 
   },
@@ -805,7 +799,7 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_stopDBStats: function(result) {
-    console.log('sql stats stopped');
+
   },
   
   /*
@@ -815,7 +809,6 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayDBStats: function(result) {
-    console.log('sql stats display');
     
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('DBStatsButton'));
@@ -892,7 +885,6 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_startBench: function(result) {
-    console.log('bench started');
     /* reload page */
     location.reload(true);
   },
@@ -904,7 +896,6 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_stopBench: function(result) {
-    console.log('bench stopped');
   
   },
   
@@ -915,7 +906,6 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayBench: function(result) {
-    console.log('bench display');
     
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('BenchButton'));
@@ -958,14 +948,12 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayConfiguration: function(result) {
-    console.log('configuration display');
     
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('ConfigurationButton'));
     
     /* get data */
     configData = result['ConfigurationData'];
-    console.log (configData);
     
     /* create container */
     form = document.createElement('form');
