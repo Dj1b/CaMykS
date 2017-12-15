@@ -149,6 +149,22 @@ var SiteMonitoringToolbar = {
     sep.className = 'separator';
     this.toolbar.appendChild(sep);
     
+    /* create PHP stats button */
+    button = document.createElement('div');
+    button.id = 'PHPStatsButton';
+    button.className = 'button';
+    image = document.createElement('img');
+    image.src = this.get_param('pictureBaseURL')+'/PHPStats.png';
+    if (this.get_param('navType') == 'row') {
+	  image.setAttribute('onclick', this.name+'.open_PHPStatsPanel();');
+    } else {
+	  image.onclick = new Function('onclick', this.name+'.open_PHPStatsPanel();');
+    }
+    image.title = this.get_locale('displayphpstats');
+    
+    button.appendChild(image);
+    this.toolbar.appendChild(button);
+    
     /* create DB stats button */
     button = document.createElement('div');
     button.id = 'DBStatsButton';
@@ -352,15 +368,34 @@ var SiteMonitoringToolbar = {
   },
    
   /* action methods */
-    
+  
   /*
-   * open/close bench panel
+   * open/close PHP stats panel
+   * @return void
+   * @access private
+   */
+  open_PHPStatsPanel: function() {
+    
+    /* close data panel if it's already open on php stats, and stop  */
+    if (this.get_param('dataPanelStatus') === 'phpstats')
+      return this.hide_dataPanel();
+
+    /* close data panel if it's already open */
+    if (this.get_param('dataPanelStatus') !== 'off')
+      this.hide_dataPanel();
+
+    /* execute PHP stats loading */
+    this.execute_request({'mode':'displayPHPStats'});
+  },
+  
+  /*
+   * open/close DB stats panel
    * @return void
    * @access private
    */
   open_DBStatsPanel: function() {
     
-    /* close data panel if it's already open on bench, and stop  */
+    /* close data panel if it's already open on db stats, and stop  */
     if (this.get_param('dataPanelStatus') === 'dbstats')
       return this.hide_dataPanel();
 
@@ -504,7 +539,12 @@ var SiteMonitoringToolbar = {
       case 'loadConfig':
         this._receive_loadConfigResult(result);
         break;
-        
+      
+      /* PHP Stats actions */
+      case 'displayPHPStats':
+        this._receive_displayPHPStats(result);
+        break;
+      
       /* DB Stats actions */
       case 'startDBStats':
         this._receive_startDBStats(result);
@@ -579,6 +619,171 @@ var SiteMonitoringToolbar = {
   
     /* post loaded action */
     this.display_toolbar();
+  },
+    
+  /*
+   * receive result after displayPHPStats request
+   * @param Object result
+   * @return void
+   * @access private
+   */
+  _receive_displayPHPStats: function(result) {
+    console.log('sql stats display');
+    
+    /* compute button position */
+    vTop = tool_getObjectPositionY(document.getElementById('PHPStatsButton'));
+    
+    /* create container */
+    box = document.createElement('div');
+    
+    /* add title */
+    div = document.createElement('div');
+    div.className = 'title';
+    div.innerHTML = this.get_locale('phpstats_title');
+    box.appendChild(div);
+    
+    /* add memory values */
+    div = document.createElement('div');
+    div.className = 'subtitle';
+    div.innerHTML = this.get_locale('phpstats_title_memory');
+    box.appendChild(div);
+    
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = this.get_locale('phpstats_item_memoryend') + ' <span class="value">' + result['PHPStats']['memoryEnd']+'</span> <br />';
+    div.innerHTML += this.get_locale('phpstats_item_memorypeak') + ' <span class="value">' + result['PHPStats']['memoryPeak']+'</span> <br />';
+    div.innerHTML += this.get_locale('phpstats_item_memorylimit') + ' <span class="value">' + result['PHPStats']['memoryLimit']+'</span> <br />';
+    box.appendChild(div);
+    
+    /* add empty line */
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = '&nbsp;';
+    box.appendChild(div);
+    
+    /* add files values */
+    div = document.createElement('div');
+    div.className = 'subtitle';
+    div.innerHTML = this.get_locale('phpstats_title_files');
+    box.appendChild(div);
+    
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = this.get_locale('phpstats_item_includedfiles') + ' <span class="value">' + result['PHPStats']['includedFiles']+'</span> <br />';
+    box.appendChild(div);
+    
+    /* add empty line */
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = '&nbsp;';
+    box.appendChild(div);
+    
+    /* add request values */
+    div = document.createElement('div');
+    div.className = 'subtitle';
+    div.innerHTML = this.get_locale('phpstats_title_request');
+    box.appendChild(div);
+    
+    div = document.createElement('div');
+    if (result['PHPStats']['requestData'].length == 0) {
+      div.className = 'description';
+      div.innerHTML = this.get_locale('no_result');
+    } else {
+      div.className = 'content';
+      div.innerHTML = '';
+      for (i in result['PHPStats']['requestData']) {
+        div.innerHTML += i + ' : <span class="value">' + result['PHPStats']['requestData'][i] +'</span> <br />';
+      }
+    }
+    box.appendChild(div);
+    
+    /* add empty line */
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = '&nbsp;';
+    box.appendChild(div);
+        
+    /* add cookie values */
+    div = document.createElement('div');
+    div.className = 'subtitle';
+    div.innerHTML = this.get_locale('phpstats_title_cookie');
+    box.appendChild(div);
+    
+    div = document.createElement('div');
+    if (result['PHPStats']['cookieData'].length == 0) {
+      div.className = 'description';
+      div.innerHTML = this.get_locale('no_result');
+    } else {
+      div.className = 'content';
+      div.innerHTML = '';
+      for (i in result['PHPStats']['cookieData']) {
+        div.innerHTML += i + ' : <span class="value">' + result['PHPStats']['cookieData'][i] +'</span> <br />';
+      }
+    }
+    box.appendChild(div);
+    
+    /* add empty line */
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = '&nbsp;';
+    box.appendChild(div);
+        
+    /* add cms shared objects values */
+    div = document.createElement('div');
+    div.className = 'subtitle';
+    div.innerHTML = this.get_locale('phpstats_title_sharedobjects');
+    box.appendChild(div);
+    
+    div = document.createElement('div');
+    if (result['PHPStats']['sharedObjects'].length == 0) {
+      div.className = 'description';
+      div.innerHTML = this.get_locale('no_result');
+    } else {
+      div.className = 'content';
+      div.innerHTML = '';
+      for (i in result['PHPStats']['sharedObjects']) {
+        div.innerHTML += i + ' : <span class="value">'+result['PHPStats']['sharedObjects'][i]+'</span> <br />';
+      }
+    }
+    box.appendChild(div);
+    
+    /* add empty line */
+    div = document.createElement('div');
+    div.className = 'content';
+    div.innerHTML = '&nbsp;';
+    box.appendChild(div);
+        
+    /* add cms shared data values */
+    div = document.createElement('div');
+    div.className = 'subtitle';
+    div.innerHTML = this.get_locale('phpstats_title_shareddata');
+    box.appendChild(div);
+    
+    div = document.createElement('div');
+    if (result['PHPStats']['sharedData'].length == 0) {
+      div.className = 'description';
+      div.innerHTML = this.get_locale('no_result');
+    } else {
+      div.className = 'content';
+      div.innerHTML = '';
+      for (i in result['PHPStats']['sharedData']) {
+        
+        if (Array.isArray(result['PHPStats']['sharedData'][i])) 
+          div.innerHTML += i + ' : <span class="value"> Array('+result['PHPStats']['sharedData'][i].length +')</span> <br />';
+        else if (typeof result['PHPStats']['sharedData'][i] == 'object')
+          div.innerHTML += i + ' : <span class="value"> Object </span> <br />';
+        else
+          div.innerHTML += i + ' : <span class="value">'+result['PHPStats']['sharedData'][i]+'</span> <br />';
+      
+      }
+    }
+    box.appendChild(div);
+    
+    /* update status */
+    this.set_param('dataPanelStatus', 'phpstats');
+ 
+    /* display results */   
+    this.show_dataPanel(box, vTop, 400)
   },
   
   /*

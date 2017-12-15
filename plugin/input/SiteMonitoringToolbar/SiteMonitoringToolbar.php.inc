@@ -144,6 +144,9 @@ final class SiteMonitoringToolbar extends Input {
       case 'loadConfig':
       	$this->execute_request_loadConfig();
       	break;
+      case 'displayPHPStats':
+      	$this->execute_request_displayPHPStats();
+      	break;
       case 'startDBStats':
       	$this->execute_request_startDBStats();
       	break;
@@ -225,6 +228,10 @@ final class SiteMonitoringToolbar extends Input {
       $camyks->set_sessionValue('SMTDBStats', $camyks->get_sharedData('_cDBStatsResult'));
       $camyks->set_sessionValue('SMTDBQueries', $camyks->get_sharedData('_cDBQueriesResult'));
     }
+    
+    
+    
+    
         
     /* check for registered statistics items */
     $statItems = array();
@@ -238,6 +245,31 @@ final class SiteMonitoringToolbar extends Input {
     /* check for edit action items */
     
     
+    
+    
+    /* build PHP stats */
+    $PHPStats = array(
+        /* memory */
+        'memoryEnd'     => file_getFileSize(memory_get_usage()),
+        'memoryPeak'    => file_getFileSize(memory_get_peak_usage()),
+        'memoryLimit'   => ini_get('memory_limit').language_getFileUnit(),
+        
+        /* files */
+        'includedFiles' => count(get_included_files()),
+        
+        /* request values */
+        'requestData'   => $_REQUEST,
+        
+        /* cookies values */
+        'cookieData'    => $_COOKIE,
+        
+        /* shared objects */
+        'sharedObjects' => $camyks->get_sharedObjectList(),
+        
+        /* shared data */
+        'sharedData'    => $camyks->get_sharedData(),        
+    );
+    $camyks->set_sessionValue('SMTPHPStats', $PHPStats);
   }
   
   /* request mode methods */
@@ -267,6 +299,23 @@ final class SiteMonitoringToolbar extends Input {
     /* prepare answer */
     $result = new CRequestAnswer(array('action'=>'loadConfig'));
     $result->update_param('config', $config);
+    
+    /* send answer */
+    $result->set_asSuccess();
+    $result->send_asJSON();
+  }
+  
+  /*
+   * execute input in request/displayPHPStats mode
+   * @return void
+   * @access private
+   */
+  private function execute_request_displayPHPStats() {
+    global $camyks;
+    
+    /* prepare answer */
+    $result = new CRequestAnswer(array('action'=>'displayPHPStats'));
+    $result->update_param('PHPStats', $camyks->get_sessionValue('SMTPHPStats', false));
     
     /* send answer */
     $result->set_asSuccess();
