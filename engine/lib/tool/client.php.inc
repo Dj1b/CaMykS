@@ -673,6 +673,7 @@ function client_getUAInfos($ua=false) {
         'P70-A'     => array('platform_model' => 'P70'),
         'B8000-F'   => array('platform_model' => 'Yoga', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'A2010-a'   => array('platform_model' => 'A2010', ),
+        'K53a48'    => array('platform_model' => 'K6 Note', ),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
