@@ -106,6 +106,9 @@ final class Camyks {
   
   /* */
   private $openedDBonnections;
+  
+  /* event handlers */
+  private $eventsHandlers;
 
   /*
    * CaMykS Constructor
@@ -134,6 +137,10 @@ final class Camyks {
     $this->plugin_extensions = array();
     $this->adminUser = false;
     $this->openedDBonnections = array();
+    $this->eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onTerminate'=>array());
+    
+    /* load request vars */
+    $this->benchMode = $this->get_executionVariable('_cBench'); 
     
     /* register shutdown function  */
     register_shutdown_function(array($this, 'terminate'));
@@ -182,6 +189,9 @@ final class Camyks {
         $this->get_installInit();
         break;
     }
+        
+    /* run onInitialise event handlers */
+    $this->run_eventHandlers('onInitialise');
   }
   
   /*
@@ -201,18 +211,10 @@ final class Camyks {
 
     /* get site site needed pathes */
     $this->get_sitePathes();
-
-    /* update included pathes */
-    set_include_path(get_include_path().PATH_SEPARATOR
-		     .$this->camyks_engine_path.'/lib/object/'.PATH_SEPARATOR
-		     .$this->camyks_engine_path.'/lib/tool/'.PATH_SEPARATOR
-		     .$this->camyks_engine_path.'/lib/external/'.PATH_SEPARATOR
-		     .$this->camyks_engine_path.'/lib/external/PEAR/');
 		     
     /* check bench to start */
-    $this->benchMode = isset($_REQUEST['_cBench']);
     if ($this->benchMode) {
-      $this->benchMode = new CBench(array('output'=>$_REQUEST['_cBench']));
+      $this->benchMode = new CBench(array('output'=>$this->benchMode));
       $this->benchMode->start('CaMykS mode initialisation');
     }    
   }
@@ -402,8 +404,9 @@ final class Camyks {
     require_once( $this->camyks_engine_path.'/lib/object/Module.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/Template.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/Theme.php.inc');
+    require_once( $this->camyks_engine_path.'/lib/object/PluginConfig.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleConfig.php.inc');
-    require_once( $this->camyks_engine_path.'/lib/object/ModuleConfigItem.php.inc');
+    require_once( $this->camyks_engine_path.'/lib/object/PluginConfigItem.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleLibrary.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleLibraryItem.php.inc');
     require_once( $this->camyks_engine_path.'/lib/object/ModuleLibraryJoin.php.inc');
@@ -480,6 +483,13 @@ final class Camyks {
       
     /* set site base url */
     $this->site_base_url = $this->get_defaultBaseURL();
+    
+    /* update included pathes */
+    set_include_path(get_include_path().PATH_SEPARATOR
+		     .$this->camyks_engine_path.'/lib/object/'.PATH_SEPARATOR
+		     .$this->camyks_engine_path.'/lib/tool/'.PATH_SEPARATOR
+		     .$this->camyks_engine_path.'/lib/external/'.PATH_SEPARATOR
+		     .$this->camyks_engine_path.'/lib/external/PEAR/');
   }
   
   /*
@@ -1429,6 +1439,33 @@ final class Camyks {
       }
     }
   }
+  
+  /******************** EXECUTION VARS *****************/
+  
+  /*
+   * get variable from session or header
+   * @return mixed
+   * @access public
+   */
+  public function get_executionVariable($name) {
+    if (isset($_REQUEST[$name])) {
+      if (($value = $_REQUEST[$name]) == 'false')
+        $value = false;
+      $this->set_sessionValue($name, $value);
+      return $value;
+    }
+    
+    return $this->get_sessionValue($name, false);
+  }
+  
+  /*
+   * set variable to session
+   * @return void
+   * @access public
+   */
+  public function set_executionVariable($name, $value) {
+    $this->set_sessionValue($name, $value);
+  }
 
   /******************** SHARED DATA ********************/
   
@@ -1460,8 +1497,11 @@ final class Camyks {
    * @return mixed
    * @access public
    */
-  public function get_sharedData($name, $value=null) {
-  	if ($value != null and isset($this->shared_data[$name][$value]))
+  public function get_sharedData($name=null, $value=null) {
+    if ($name == null)
+      return $this->shared_data;
+      
+    if ($value != null and isset($this->shared_data[$name][$value]))
   		return $this->shared_data[$name][$value];
   
     if (isset($this->shared_data[$name]))
@@ -1469,6 +1509,7 @@ final class Camyks {
       
     return $value;
   }
+  
 
   /*
    * check some shared data
@@ -1478,6 +1519,46 @@ final class Camyks {
    */
   public function check_sharedData($name) {
     return isset($this->shared_data[$name]);
+  }
+  
+  /******************** SHARED OBJECTS ********************/
+  
+  /*
+   * register a plugin to be accessed by any other 
+   * @param string $name
+   * @param Object $object
+   * @return boolean success
+   * @access public
+   */
+  public function register_sharedObject($name, &$object) {
+    if (isset($this->sharedObjects[$name]))
+      return false;
+    $this->sharedObjects[$name] = $object;
+    return true;
+  }
+  
+  /*
+   * return requested shared object
+   * @param string $name
+   * @return Object
+   * @access public
+   */
+  public function &get_sharedObject($name) {
+    if (!isset($this->sharedObjects[$name]))
+      return false;
+    return $this->sharedObjects[$name];
+  }
+  
+  /*
+   * return shared object name list
+   * @return array
+   * @access public
+   */
+  public function get_sharedObjectList() {
+    $list = array();
+    foreach ($this->sharedObjects as $name => $object)
+      $list[$name] = get_class($object);
+    return $list;
   }
   
   /******************** PLUGIN EXTENSIONS **************/
@@ -1529,6 +1610,38 @@ final class Camyks {
 		}
 	}
 	return $list;
+  }
+  
+  /******************** EVENT HANDLERS *****************/
+  
+  /*
+   * register an event handler
+   * @param string $event
+   * @param Object $plugin
+   * @return void
+   * @access public
+   */
+  public function register_eventHandler($event, &$plugin) {
+    $this->eventsHandlers[$event][] = $plugin;
+  }
+  
+  
+  /*
+   * run event handlers
+   * @param string $event
+   * @return void
+   * @access private
+   */
+  private function run_eventHandlers($event) {
+    foreach ($this->eventsHandlers[$event] as $plugin) {
+      switch ($event) {
+        case 'onInitialise' :   $plugin->execute_onCaMykSInitialise(); break;
+        case 'onPageLoad' :     $plugin->execute_onCaMykSPageLoad(); break;
+        case 'onBodyOpen' :     $this->HTMLPage->write($plugin->execute_onCaMykSBodyOpen()); break;
+        case 'onBodyClose' :    $this->HTMLPage->write($plugin->execute_onCaMykSBodyClose()); break;
+        case 'onTerminate' :    $plugin->execute_onCaMykSTerminate(); break;
+      }
+    }
   }
   
   /******************** PATHES & URLS ******************/
@@ -1660,6 +1773,9 @@ final class Camyks {
     /* close databases */
     foreach ($this->openedDBonnections as $connection)
       $connection->close();
+    
+    /* run onTerminate event handlers */
+    $this->run_eventHandlers('onTerminate');
   }
   
   /******************* LINKS ***************************/
@@ -1874,6 +1990,9 @@ final class Camyks {
         
     /* get init from content */
     $this->contentPage->load_asFrontPage($page);
+        
+    /* run onInitialise event handlers */
+    $this->run_eventHandlers('onPageLoad');
           
     /* get internal locales */
     $this->HTMLPage->set_pageInformations(
@@ -1904,8 +2023,16 @@ final class Camyks {
 
     /* display html header */
     $this->HTMLPage->add_HTMLHeader();
+    
+    /* run onBodyOpen event handlers */
+    $this->run_eventHandlers('onBodyOpen');
+    
     /* display html content */
     $this->contentPage->display();
+    
+    /* run onBodyClose event handlers */
+    $this->run_eventHandlers('onBodyClose');
+    
     /* display html footer */
     $this->HTMLPage->add_HTMLFooter();
   }

@@ -1,0 +1,91 @@
+/*
+ * CaMykS Engine
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Styles
+ * Creation Date    : Nov 2017
+ * Last Modif Date  : Dec 2017
+ * 
+ * SiteMonitoringToolbar custom styles
+ */
+
+/* toolbar */
+#SiteMonitoringToolbar {position:fixed; width:43px; overflow:hidden; transition: height 0.3s;}
+#SiteMonitoringToolbar.left {border-right:solid 1px white;}
+#SiteMonitoringToolbar.right {border-left:solid 1px white;}
+#SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px; font-size:0; filter: grayscale(1); transition:all 0.25s;}
+#SiteMonitoringToolbar .masterButton:hover {filter: grayscale(0);} 
+#SiteMonitoringToolbar .button {cursor:pointer; font-size:0;}
+#SiteMonitoringToolbar .separator {font-size:0; height:0; margin:6px 0;}
+
+/* data panel */
+#SiteMonitoringToolbarDataPanel {position:fixed;}
+#SiteMonitoringToolbarDataPanel.left {left:42px; padding-left:9px;}
+#SiteMonitoringToolbarDataPanel.right {right:42px; padding-right:9px;}
+#SiteMonitoringToolbarDataPanel .contentBox { border-radius:4px; padding:16px; min-height:25px; /* max-height:400px; overflow:auto;*/ box-shadow:0 0 8px 3px rgba(0,0,0,0.5);}
+#SiteMonitoringToolbarDataPanel .contentBox .title {text-transform:uppercase; font-size:14px; padding: 0 0 2px 0; margin: 0 0 2px 0; }
+#SiteMonitoringToolbarDataPanel .contentBox .subtitle {font-weight:bold;}
+#SiteMonitoringToolbarDataPanel .contentBox .content {font-size:12px; padding:2px 0;}
+#SiteMonitoringToolbarDataPanel .contentBox .description {font-size:12px; font-style:italic; padding:2px 0;}
+#SiteMonitoringToolbarDataPanel .contentBox .value {font-size:12px;}
+#SiteMonitoringToolbarDataPanel .contentBox .formLine {font-size:0; padding:4px 0;}
+#SiteMonitoringToolbarDataPanel .contentBox .formLine .formLabel {display:inline-block; font-size:12px; width:45%;}
+#SiteMonitoringToolbarDataPanel .contentBox .formLine .formInput {display:inline-block; width:55%;}
+#SiteMonitoringToolbarDataPanel .contentBox .formLine .formInput input,
+#SiteMonitoringToolbarDataPanel .contentBox .formLine .formInput select {width:100%;}
+#SiteMonitoringToolbarDataPanel .contentBox .buttonLine {font-size:0; text-align:right; padding:4px 0;}
+#SiteMonitoringToolbarDataPanel .contentBox .buttonLine .button {display:inline-block; margin-left:4px; padding:4px 16px; cursor:pointer;} 
+
+/* dark theme */
+#SiteMonitoringToolbar.dark {background:url(../img/Dark_bkgd.png) repeat-y 0 0; }
+#SiteMonitoringToolbar.dark .separator {border-top:solid 1px #3E3E3E; border-bottom: solid 1px #676767;}
+#SiteMonitoringToolbar.dark .button:hover {background:#676767;}
+
+#SiteMonitoringToolbarDataPanel.dark.left {background:url(../img/Dark_arrow.png) 0 10px no-repeat;}
+#SiteMonitoringToolbarDataPanel.dark.right {background:url(../img/Dark_arrow.png) 100% 10px no-repeat;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox {background:#3e3e3e;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox * {color:white;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox .title {border-bottom:solid 1px white;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox .value {color:#33CC33;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox .buttonLine .button {border:solid 1px white; transition: color 0.3s, border 0.3s;}
+#SiteMonitoringToolbarDataPanel.dark .contentBox .buttonLine .button:hover {border:solid 1px #33CC33; color:#33CC33;}
+
+
+#SiteMonitoringToolbarDataPanel.dark input {background:#333333;}
+#SiteMonitoringToolbarDataPanel.dark select {background:#333333;}
+
+/* blue theme */
+#SiteMonitoringToolbar.blue {background:url(../img/Blue_bkgd.png) repeat-y 0 0; }
+#SiteMonitoringToolbar.blue .separator {border-top:solid 1px #004e82; border-bottom: solid 1px #0079ad;}
+#SiteMonitoringToolbar.blue .button:hover {background:#0079ad;}
+
+#SiteMonitoringToolbarDataPanel.blue.left {background:url(../img/Blue_arrow.png) 0 10px no-repeat;}
+#SiteMonitoringToolbarDataPanel.blue.right {background:url(../img/Blue_arrow.png) 100% 10px no-repeat;}
+#SiteMonitoringToolbarDataPanel.blue .contentBox {background:#004e82;}
+#SiteMonitoringToolbarDataPanel.blue .contentBox * {color:white;}
+#SiteMonitoringToolbarDataPanel.blue .contentBox .title {border-bottom:solid 1px white;}
+#SiteMonitoringToolbarDataPanel.blue .contentBox .value {color:#f9bc24;}
+#SiteMonitoringToolbarDataPanel.blue .contentBox .buttonLine .button {border:solid 1px white; transition: color 0.3s, border 0.3s;}
+#SiteMonitoringToolbarDataPanel.blue .contentBox .buttonLine .button:hover {border:solid 1px #f9bc24; color:#f9bc24;}
+
+#SiteMonitoringToolbarDataPanel.blue input {background:#00406b;}
+#SiteMonitoringToolbarDataPanel.blue select {background:#00406b;}
+
+/* purple theme */
+#SiteMonitoringToolbar.purple {background:url(../img/Purple_bkgd.png) repeat-y 0 0; }
+#SiteMonitoringToolbar.purple .separator {border-top:solid 1px #42327a; border-bottom: solid 1px #6b5ba4;}
+#SiteMonitoringToolbar.purple .button:hover {background:#6b5ba4;}
+
+#SiteMonitoringToolbarDataPanel.purple.left {background:url(../img/Purple_arrow.png) 0 10px no-repeat;}
+#SiteMonitoringToolbarDataPanel.purple.right {background:url(../img/Purple_arrow.png) 100% 10px no-repeat;}
+#SiteMonitoringToolbarDataPanel.purple .contentBox {background:#42327a;}
+#SiteMonitoringToolbarDataPanel.purple .contentBox * {color:white;}
+#SiteMonitoringToolbarDataPanel.purple .contentBox .title {border-bottom:solid 1px white;}
+#SiteMonitoringToolbarDataPanel.purple .contentBox .value {color:#f9bc24;}
+#SiteMonitoringToolbarDataPanel.purple .contentBox .buttonLine .button {border:solid 1px white; transition: color 0.3s, border 0.3s;}
+#SiteMonitoringToolbarDataPanel.purple .contentBox .buttonLine .button:hover {border:solid 1px #f9bc24; color:#f9bc24;}
+
+#SiteMonitoringToolbarDataPanel.purple input {background:#2c2055;}
+#SiteMonitoringToolbarDataPanel.purple select {background:#2c2055;}

@@ -15,6 +15,9 @@ final class Database_connection {
   /* connection object */
   private $connection;
   
+  /* variables */
+  private $dbName;
+  
   /* statistics */
   private $statistics;
   private $reportStats;
@@ -57,19 +60,11 @@ final class Database_connection {
     }
     
     /* initialise statistics */
-    $this->statistics = array('queries'=>0, 'fetchedLines'=>0);
-    $this->reportStats = false;
+    $this->statistics = array('queries'=>0, 'fetchedLines'=>0, 'updatedLines'=>0);
     $this->queries = array();
-    $this->reportQueries = false;
-    
-    /* check db stats report */
-    if (isset($_REQUEST['_cDBStats']))
-      $this->enable_statsReport();
-    
-    /* check db queries reports */
-    if (isset($_REQUEST['_cDBQueries']))
-      $this->enable_statsQueries();
-    
+    $this->reportStats = $camyks->get_executionVariable('_cDBStats');
+    $this->reportQueries = $camyks->get_executionVariable('_cDBQueries');
+        
     /* connect to database */
     $this->connection->connect_server($host, $login, $pwd, $driver);
     
@@ -86,6 +81,7 @@ final class Database_connection {
    * @access public
    */
   public function select($name) {
+    $this->dbName = $name;
     return $this->connection->select_database($name);
   }
   
@@ -96,16 +92,37 @@ final class Database_connection {
    */
   public function close() {
     global $camyks;
-    
-    if ($this->reportStats) {
-      $s = 'Queries : '.$this->statistics['queries'].' - Fetched lines : '.$this->statistics['fetchedLines'];
+        
+    if ($this->reportStats == 'logs') {
+      $s = 'Queries : '.$this->statistics['queries'].' - Fetched lines : '.$this->statistics['fetchedLines'].' - Updated lines : '.$this->statistics['updatedLines'];
       $camyks->log_information($camyks, 'Database connection statistics report', $s);
+    } elseif ($this->reportStats == 'html') {
+      echo '<div style="display:none">'."\n";
+  	  echo 'Queries : '.$this->statistics['queries'].' - Fetched lines : '.$this->statistics['fetchedLines'].' - Updated lines : '.$this->statistics['updatedLines'];
+  	  echo '</div>';
+    } elseif ($this->reportStats == 'session') {
+      $stats = $camyks->get_sessionValue('_cDBStatsResult', array());
+      $stats[$this->dbName] = $this->statistics;
+      $camyks->set_sessionValue('_cDBStatsResult', $stats);
+    } elseif ($this->reportStats == 'shared') {
+      $camyks->set_sharedData('_cDBStatsResult', $this->dbName, $this->statistics);
     }
     
-    if ($this->reportQueries) {
+    if ($this->reportQueries == 'logs') {
       $s = implode("<br />\n", $this->queries);
       $camyks->log_information($camyks, 'Database connection queries report', $s);
+    } elseif ($this->reportQueries == 'html') {
+      echo '<div style="display:none">'."\n";
+  	  echo implode("<br />\n", $this->queries);
+  	  echo '</div>';
+    } elseif ($this->reportQueries == 'session') {
+      $queries = $camyks->get_sessionValue('_cDBQueriesResult', array());
+      $queries[$this->dbName] = $this->queries;
+      $camyks->set_sessionValue('_cDBQueriesResult', $queries);
+    } elseif ($this->reportQueries == 'shared') {
+      $camyks->set_sharedData('_cDBQueriesResult', $this->dbName, $this->queries);
     }
+    
     return $this->connection->disconnect_server();
   }
 	
@@ -119,21 +136,21 @@ final class Database_connection {
   }
   
   /*
-   * enable stats report
-   * return void
+   * return stats report result
+   * return string
    * @access public
    */
-  public function enable_statsReport() {
-    $this->reportStats = true;
+  public function get_statsReportResult() {
+    return $this->statistics;
   }
   
   /*
-   * enable stats queries
-   * return void
+   * return stats queries result
+   * return string
    * @access public
    */
-  public function enable_statsQueries() {
-    $this->reportQueries = true;
+  public function get_statsQueriesResult() {
+    return $this->queries;
   }
   
   /*
@@ -292,7 +309,9 @@ final class Database_connection {
    * @access public
    */
   public function get_queryAffectedRows($resName='defaultRes') {
-    return $this->connection->get_queryAffectedRows($resName);
+    $v = $this->connection->get_queryAffectedRows($resName);
+    $this->statistics['updatedLines'] += $v;
+    return $v;
   }
   
   /*
