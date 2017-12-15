@@ -39,6 +39,8 @@ SiteMonitoringToolbar.set_locale('phpstats_title_files', 'Files');
 SiteMonitoringToolbar.set_locale('phpstats_item_includedfiles', 'Included: ');
 SiteMonitoringToolbar.set_locale('phpstats_title_request', 'Header variables');
 SiteMonitoringToolbar.set_locale('phpstats_title_cookie', 'Cookie');
+SiteMonitoringToolbar.set_locale('phpstats_title_sharedobjects', 'CaMykS shared objects');
+SiteMonitoringToolbar.set_locale('phpstats_title_shareddata', 'CaMykS shared data');
 
 /* bench */
 SiteMonitoringToolbar.set_locale('bench_title', 'Page benchmark');
