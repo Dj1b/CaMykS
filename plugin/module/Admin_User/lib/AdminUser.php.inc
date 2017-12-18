@@ -56,7 +56,7 @@ class AdminUser {
    * constructor
    * @param string $login
    */
-  function AdminUser( $login = '' ) {
+  function AdminUser($login = '') {
     global $camyks;
     $this->login = preg_replace('/["\']/', '', $login);
     $this->is_new = ( $this->login == '' ? 1 : 0 );
@@ -103,11 +103,11 @@ class AdminUser {
    * @access private
    */
   function save ( ) {
-    if ( $this->check_data() ) {
-      if ( $this->is_new == 1 )
-	return $this->create_toDatabase();
+    if ($this->check_data()) {
+      if ($this->is_new == 1)
+	    return $this->create_toDatabase();
       else 
-	return $this->update_toDatabase();
+	    return $this->update_toDatabase();
     }
     return false;
   }
@@ -119,8 +119,12 @@ class AdminUser {
    * @return boolean success
    * @access private
    */
-  function get_fromDatabase( ) {
+  function get_fromDatabase() {
     global $camyks;
+    
+    /* check login */
+    if ($this->login=='')
+      return false;
     
     /* build sql query */
     $sql = "select *";
@@ -128,11 +132,11 @@ class AdminUser {
     $sql .= " where login='".$this->login."'";
     
     /* execute sql query */
-    if ( $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ )) {
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__ )) {
     
       /* get data from database */
-      if ( $data = $camyks->db_conn->get_queryDataLine()) {
-	    $this->get_fromArray( $data );
+      if ($data = $camyks->db_conn->get_queryDataLine()) {
+	    $this->get_fromArray($data);
 	    return true;
       } else {
 	    $this->initialise();
