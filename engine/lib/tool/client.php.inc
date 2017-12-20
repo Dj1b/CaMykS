@@ -259,6 +259,7 @@ function client_getUAInfos($ua=false) {
         'H815'  => array('platform_model' => 'G4',),
         'H831'  => array('platform_model' => 'G5',),
         'M700'  => array('platform_model' => 'Q6 Alpha',),
+        'K220'  => array('platform_model' => 'X Power',),
     );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'LG', 
