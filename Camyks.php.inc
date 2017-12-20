@@ -1479,12 +1479,12 @@ final class Camyks {
    * @access public
    */
   public function set_sharedData($name, $data=null, $sub=null) {
-  	if ( $sub == null)
+  	if ($sub === null) {
   	  $this->shared_data[$name] = $data;
-  	else {
+  	} else {
   	 if (!isset($this->shared_data[$name]))
         $this->shared_data[$name] = array();
-      if ($data == null)
+      if ($data === null)
         $this->shared_data[$name][] = $sub;
       else
         $this->shared_data[$name][$data] = $sub;
