@@ -259,7 +259,6 @@ function client_getUAInfos($ua=false) {
         'H815'  => array('platform_model' => 'G4',),
         'H831'  => array('platform_model' => 'G5',),
         'M700'  => array('platform_model' => 'Q6 Alpha',),
-        'K220'  => array('platform_model' => 'X Power',),
     );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'LG', 
@@ -325,9 +324,9 @@ function client_getUAInfos($ua=false) {
         'GT-P5110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'GT-P5200' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'GT-P5210'=>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5220'=>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'GT-P7300'=>array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T110' =>array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T113' =>array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T310' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T116NU' =>array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T320' =>array('platform_model' => 'Galaxy Tab Pro', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
@@ -376,7 +375,6 @@ function client_getUAInfos($ua=false) {
         'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
         'SM-A310F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300M'  => array('platform_model' => 'Galaxy A3', ),
-        'SM-A320FL' => array('platform_model' => 'Galaxy A3 (2017)', ),
         'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
@@ -542,6 +540,7 @@ function client_getUAInfos($ua=false) {
         'C1505'=>array('platform_model' => 'Xperia E'),  
         'C2105'=>array('platform_model' => 'Xperia L'), 
         'C6603'=>array('platform_model' => 'Xperia Z'),
+        'D2005'=>array('platform_model' => 'Xperia E1'),
         'D2303'=>array('platform_model' => 'Xperia M2'),
         'D2305'=>array('platform_model' => 'Xperia M2'),
         'D2306'=>array('platform_model' => 'Xperia M2'),
@@ -591,12 +590,12 @@ function client_getUAInfos($ua=false) {
         'GRA-L09'   => array('platform_model' => 'P8'),
         'NXT-L09'   => array('platform_model' => 'Mate 8'),
         'NXT-L29'   => array('platform_model' => 'Mate 8'),
-        'MHA-L09'   => array('platform_model' => 'Mate 9'),
         'CRR-L09'   => array('platform_model' => 'Mate S'),
         'FRD-L09'   => array('platform_model' => 'Honor 8'),
         'FRD-L19'   => array('platform_model' => 'Honor 8'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
         'Y520-U22'  => array('platform_model' => 'Ascend'),
+        'Y600-U151' => array('platform_model' => 'Ascend'),
         'CUN-L21'   => array('platform_model' => 'Y5'),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
     );
@@ -674,7 +673,6 @@ function client_getUAInfos($ua=false) {
         'P70-A'     => array('platform_model' => 'P70'),
         'B8000-F'   => array('platform_model' => 'Yoga', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'A2010-a'   => array('platform_model' => 'A2010', ),
-        'K53a48'    => array('platform_model' => 'K6 Note', ),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -703,12 +701,11 @@ function client_getUAInfos($ua=false) {
   	  'platform_company'=>'Lenovo (PC)'));
   
   /* check Asus mobiles and tablets */
-  elseif (preg_match('/(K|ME|P)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
+  elseif (preg_match('/(K|ME)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
     $rep = array(
         'K007'      => array('platform_model' => 'MeMO Pad 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'K01E'      => array('platform_model' => 'MeMO Pad', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'ME173X'    => array('platform_model' => 'MeMO Pad HD 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'P00C'      => array('platform_model' => 'ZenPad 10', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $model = trim($matches[0]);
   	$infos = array_merge($infos, array(
@@ -794,9 +791,10 @@ function client_getUAInfos($ua=false) {
       'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2|RAINBOW/', $ua, $matches)) {
+  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2|RAINBOW|SUNSET2/', $ua, $matches)) {
     $rep = array(
         'TOMMY2'    => array('platform_model' => 'Tommy 2',),
+        'SUNSET2'    => array('platform_model' => 'Sunset 2',),
     );
     
   	$infos = array_merge($infos, array(
@@ -1224,6 +1222,20 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
       
+  /* check Cubot mobiles */
+  elseif (preg_match('/(GT90)/', $ua, $matches)) {
+    $rep = array(
+         
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Cubot', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+      
   /*** check operating system ***/
   
   if (!isset($infos['system_title'])) {
@@ -1356,7 +1368,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|Midori)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -3906,15 +3918,6 @@ function client_getKnownBots() {
     'engine_title'=>'DomainCrawler',
     'engine_url'=>'http://www.domaincrawler.com');
 
-  /* CipaCrawler */
-  $knownBots['cipacrawler'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'CipaCrawler',
-    'bot_url'=>'info@domaincrawler.com',
-    'engine_title'=>'DomainCrawler',
-    'engine_url'=>'http://www.domaincrawler.com');
-
   /* parsijoo-bot */
   $knownBots['parsijoo-bot'] = array(
     'platform_type'=>'bot',
@@ -4876,14 +4879,14 @@ function client_getKnownBots() {
     'engine_title'=>'Lightspeed Systems, Inc.',
     'engine_url'=>'https://www.lightspeedsystems.com');
     
-  /* DocSpotBot */
-  $knownBots['docspotbot'] = array(
+  /* SearchmetricsBot */
+  $knownBots['searchmetricsbot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'DocSpotBot',
-    'bot_url'=>'http://docspot.com/bot.html',
-    'engine_title'=>'DocSpot',
-    'engine_url'=>'https://docspot.com');
+    'bot_title'=>'SearchmetricsBot',
+    'bot_url'=>'https://www.searchmetrics.com/searchmetricsbot/',
+    'engine_title'=>'SearchMetrics',
+    'engine_url'=>'https://www.searchmetrics.com/');
     
   /* unknown bot */
   $knownBots['seo bulls'] = array(
@@ -4931,6 +4934,15 @@ function client_getKnownBots() {
     'engine_url'=>'');
   
   /* unknown bot */
+  $knownBots['celious search engine'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Unknown bot',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* unknown bot */
   $knownBots['smurlexpander'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
@@ -4941,15 +4953,6 @@ function client_getKnownBots() {
   
   /* unknown bot */
   $knownBots['dnyzbot'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* unknown bot */
-  $knownBots['saleslift'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Unknown bot',
@@ -5809,15 +5812,6 @@ function client_getKnownTools() {
     'tool_url'=>'https://nmap.org/book/nse.html',
     'engine_title'=>'NMAP',
     'engine_url'=>'https://nmap.org/');
-    
-  /* lwp-request */
-  $knownTools['lwp-request'] = array(
-    'platform_type'=>'tool',
-    'platform_format'=>'desktop',
-    'tool_title'=>'lwp-request',
-    'tool_url'=>'http://search.cpan.org/dist/libwww-perl/bin/lwp-request',
-    'engine_title'=>'',
-    'engine_url'=>'');
     
   /* return list */
   return $knownTools;
