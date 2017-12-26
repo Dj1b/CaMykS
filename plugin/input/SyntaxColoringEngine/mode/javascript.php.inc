@@ -117,13 +117,13 @@ final class SyntaxColoringEngine_javascript {
     $text = preg_replace ($search, $replace, $text);
     
     /* text indentation : with {} */
-    $search = '/({\n)/';
+    $search = '/({[\s]*\n)/';
     $replace = '{<div style="'.$this->styles['indent'].'">';
-    $text = preg_replace ($search, $replace, $text);
+    $text = preg_replace($search, $replace, $text);
 
-    $search = '/(}[\n]?)/';
+    $search = '/(\n}[\s]*[\n]?)/';
     $replace = '</div>}'."\n";
-    $text = preg_replace ($search, $replace, $text);
+    $text = preg_replace($search, $replace, $text);
     
     /* text indentation : without {} */
     foreach ( $this->ikeywords as $value ) {
