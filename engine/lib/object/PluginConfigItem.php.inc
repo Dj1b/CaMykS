@@ -2,24 +2,21 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version       : 1.0a
- * Object Version       : 1.0
- * Object Type	        : Engine / Object Library
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type	    : Engine / Object Library
  * Creation Date	: Oct 2007
- * Last Modif Date      : Oct 2009
- * History:
- * * 07-10-xx : Initial file
- * * 09-10-11 : Add support for array values
+ * Last Modif Date  : Nov 2017
  *	
- * Module Config Item Generic Object
+ * Plugin Config Item Generic Object
  */
 
-class ModuleConfigItem {
+final class PluginConfigItem {
   /* vars */
-  var $_name;
-  var $_type;
-  var $_default;
+  public $_name;
+  public $_type;
+  private $_default;
 
   /*
    * constructor
@@ -27,10 +24,10 @@ class ModuleConfigItem {
    * @param string $type
    * @param mixed $default
    */
-  function ModuleConfigItem( $name, $type, $default=null ) {
+  function __construct($name, $type, $default=null) {
     $this->_name = $name;
     $this->_type = $type;
-    $this->_default = isset( $default ) ? $this->update_type($default) : $this->get_default();
+    $this->_default = isset($default) ? $this->update_type($default) : $this->get_default();
   }
 
   /*
@@ -48,7 +45,7 @@ class ModuleConfigItem {
    * @access public
    */
   function check_value($value) {
-    switch ( $this->_type ) {
+    switch ($this->_type) {
     case 'string':
       return stripslashes($value);
     case 'int':
@@ -71,15 +68,15 @@ class ModuleConfigItem {
     case 'array':
       $value = array();
       if (isset($_REQUEST[$this->_name.'_count_'])) {
-	for ($i=0; $i < $_REQUEST[$this->_name.'_count_']; $i++)
-	  if (isset($_REQUEST[$this->_name.'_'.$i]))
-	    $value[$i] = $_REQUEST[$this->_name.'_'.$i];
+	    for ($i=0; $i < $_REQUEST[$this->_name.'_count_']; $i++)
+	      if (isset($_REQUEST[$this->_name.'_'.$i]))
+	        $value[$i] = $_REQUEST[$this->_name.'_'.$i];
       } else {
-	$s = 0;
-	while (isset($_REQUEST[$this->_name.'_'.$s])) {
-	  $value[$s] = $_REQUEST[$this->_name.'_'.$s];
-	  $s++;
-	}
+	    $s = 0;
+	    while (isset($_REQUEST[$this->_name.'_'.$s])) {
+	      $value[$s] = $_REQUEST[$this->_name.'_'.$s];
+	      $s++;
+	    }
       }
       return $value;
     case 'date':
@@ -114,7 +111,7 @@ class ModuleConfigItem {
    * @access public
    */
   function get_default() {
-    switch ( $this->_type ) {
+    switch ($this->_type) {
     case 'string':
       return '';
     case 'int':

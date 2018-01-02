@@ -75,6 +75,24 @@ class Plugin {
   }
   
   /* plugin methods */
+  
+  /*
+   * load library file
+   * @param string $library
+   * @return boolean success
+   * @access public
+   */
+  function load_library($library) {
+    global $camyks;
+   
+    /* build file path */
+    $filePath = $this->plugin_path.'/lib/'.$library.$camyks->file_extension;
+   
+    /* load file if exists */
+    if (file_exists($filePath))
+      return ((require_once($filePath)) == true);
+    return false;
+  }
 
   /*
    * load a file from plugin folder
@@ -510,6 +528,29 @@ class Plugin {
     return true;
   }
   
+  /* shared object management */
+  
+  /*
+   * register this plugin to be accessed by any other 
+   * @param string $name
+   * @return boolean success
+   * @access public
+   */
+  public function register_asSharedObject($name) {
+    global $camyks;
+    return $camyks->register_sharedObject($name, $this);
+  }
+  
+  /*
+   * return requested shared object
+   * @param string $name
+   * @return Object
+   * @access public
+   */
+  public function &get_sharedObject($name) {
+    return $camyks->get_sharedObject($name);
+  }
+  
   /* extensions management methods */
   
   /*
@@ -532,5 +573,53 @@ class Plugin {
   	global $camyks;
   	return $camyks->get_registeredExtensions($this->name);
   }
+  
+  /* CaMykS event handler management methods */
+  
+  /*
+   * register plugin as handler for CaMykS event
+   * @param string $event
+   * @access protected
+   */
+  protected function register_asCaMykSEventHandler($event) {
+    global $camyks;
+    $camyks->register_eventHandler($event, $this);
+  }
+  
+  /*
+   * execute handler on CaMykS initialisation
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSInitialise() {}
+  
+  /*
+   * execute handler on CaMykS page load
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSPageLoad() {}
+  
+  /*
+   * execute handler on body opening
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSBodyOpen() {return '';}
+  
+  /*
+   * execute handler on body closing
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSBodyClose() {return '';}
+  
+  /*
+   * execute handler on camyks terminate
+   * @return void
+   * @access public
+   */
+  public function execute_onCaMykSTerminate() {}
+  
 }
 ?>

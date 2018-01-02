@@ -104,6 +104,7 @@ $this->trads['mod_admin_site_formitem_declination'] = 'Mobile declination: ';
 
 /* server conf texts */
 $this->trads['mod_admin_site_tabserver'] = 'Server';
+$this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Operating system';
 $this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
 ?>

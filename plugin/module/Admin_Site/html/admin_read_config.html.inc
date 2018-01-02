@@ -624,6 +624,27 @@ global $camyks;
 
 <div id="itemServer" style="display:<?=$this->tabBuilder->get_tabDisplay('Server')?>;" class="adminContentPanel">
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+    <tr>
+	  <td class="eTableHeader" colspan="2">
+	    <?=$this->get_translation('formtitle_operatingsystem');?>
+	  </td>
+	</tr>
+	  	  
+	<tr>
+	  <td class="eTableLine0 eContent2">
+	    <?=$this->get_translation('formitem_version')?>
+	  </td>
+	  <td class="eTableLine0 eContent1">
+	    <?=php_uname('s').' '.php_uname('r').' ('.php_uname('m').')';?>
+	  </td>
+	</tr>
+	  
+	<tr>
+	  <td class="eTableLine0" colspan="2">
+	    &nbsp;
+	  </td>
+	</tr>
+	
 	<tr>
 	  <td class="eTableHeader" colspan="2">
 	    <?=$this->get_translation('formtitle_apache');?>

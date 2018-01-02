@@ -103,6 +103,7 @@ $this->trads['mod_admin_site_formitem_declination'] = 'D&eacute;clinaison mobile
 
 /* server conf texts */
 $this->trads['mod_admin_site_tabserver'] = 'Serveur';
+$this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Syst&egrave;me d\'exploitation';
 $this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
 ?>

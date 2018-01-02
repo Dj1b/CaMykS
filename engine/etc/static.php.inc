@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type		: Engine / Config file
  * Creation Date	: Sep 2005
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Dec 2017
  *
  * CaMykS global static configuration
  * Included in camyks object
@@ -16,10 +16,10 @@
 /* version */
 $this->title = 'CaMykS';
 $this->website = 'http://www.camyks.net';
-$this->version = '1.0-20171201';
+$this->version = '1.0-20180101';
 $this->mversion = '1.0';
-$this->nversion = '20171201';
-$this->last_modification_date = mktime(0, 0, 0, 12, 1, 2017);
+$this->nversion = '20180101';
+$this->last_modification_date = mktime(0, 0, 0, 1, 1, 2018);
 
 /* paths & folders */
 $this->visit_path = '../..';

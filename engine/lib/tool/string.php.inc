@@ -166,7 +166,7 @@ function string_numberFormat($string, $decimal=2, $country=null) {
  * @return string
  * @access public
  */
-function string_html2Text( $string, $encoding=null ) {
+function string_html2Text($string, $encoding=null) {
   global $camyks;
 
   /* check encoding */
@@ -195,7 +195,7 @@ function string_html2Text( $string, $encoding=null ) {
  * @return string
  * @access public
  */
-function string_text2Html( $string, $encoding=null ) {
+function string_text2Html($string, $encoding=null) {
   global $camyks;
 
   /* check encoding */
