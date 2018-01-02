@@ -1080,6 +1080,17 @@ function client_getUAInfos($ua=false) {
  	  'platform_company'=>'Compaq (PC)'));
   }
   
+  /* check Polaroid tablets, to be inserted before Xiaomi */
+  elseif (preg_match('/MID4X10/', $ua, $matches)) {
+    $rep = array();
+    $infos = array_merge($infos, array(
+ 	  'platform_company'=>'Polaroid', 
+      'platform_model'=>$matches[0],
+      'platform_type'=>'tablet',
+      'platform_format'=>'tablet'), 
+      isset($rep[$matches[0]])?$rep[$matches[0]]:array());
+  }
+  
   /* check Xiaomi mobiles */
   elseif (preg_match('/MI ?([A-Za-z0-9]{1,} )Build/', $ua, $matches)) {
     $rep = array(
@@ -1121,24 +1132,7 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
   
-  /* check Condor mobiles */
-  elseif (preg_match('/(PGN[0-9]{3})/', $ua, $matches)) {
-    $rep = array(
-        'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
-        'PGN528' => array('platform_model' => 'Plume P6 Pro',),
-        'PGN605' => array('platform_model' => 'Plume P8',),
-        
-    );
-    $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Condor', 
-      'platform_model'=>$model,
-      'platform_type'=>'handheld',
-      'platform_format'=>'handheld'), 
-      isset($rep[$model])?$rep[$model]:array());
-  }
-  
-  /* check UMi mobiles */
+  /* check Umi mobiles */
   elseif (preg_match('/(IRON Pro)/', $ua, $matches)) {
     $rep = array(
         'IRON Pro' => array('platform_model' => 'IRON Pro',),
@@ -1167,9 +1161,12 @@ function client_getUAInfos($ua=false) {
   }
     
   /* check Condor mobiles */
-  elseif (preg_match('/(PHQ520)/', $ua, $matches)) {
+  elseif (preg_match('/(P[A-Z]{2}[0-9]{3})/', $ua, $matches)) {
     $rep = array(
+        'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
         'PHQ520' => array('platform_model' => 'Griffe G5',),
+        'PGN528' => array('platform_model' => 'Plume P6 Pro',),
+        'PGN605' => array('platform_model' => 'Plume P8',),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
