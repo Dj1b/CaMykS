@@ -99,6 +99,10 @@ function client_getUAInfos($ua=false) {
     return $c;
 
   /*** check plateform ***/
+  
+  /* load max versions to check and default fake value */
+  $maxVersions = _client_getUAPropertiesMaxVersions();
+  $fake = array('platform_type'=>'fake');
 
   /* check Playstation 4 / Vita */
   if (preg_match('/\(PlayStation ([^ ]*) ([0-9\.]*)\)/i', $ua, $matches))
@@ -192,23 +196,35 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
       
   /* check iphone / ipod / ipad */
-  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version|GSA)\/([0-9\.]*)/', $ua, $matches))
+  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version|GSA)\/([0-9\.]*)/', $ua, $matches)) {
+    /* check version */
+    $version = str_replace('_', '.', $matches[3]);
+    if (version_compare($version, $maxVersions['system']['iOS']) > 0)
+      return $fake;
+      
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'system_title'=> 'iOS', //$matches[2],
-      'system_version'=>str_replace('_', '.', $matches[3]),
+      'system_version'=>$version,
       'browser_title'=>'Safari Mobile',
-      'browser_version'=>$matches[5]));
-  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches))
+      'browser_version'=>$matches[5],
+    ));
+  } elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches)) {
+    /* check version */
+    $version = str_replace('_', '.', $matches[3]);
+    if (version_compare($version, $maxVersions['system']['iOS']) > 0)
+      return $fake;
+    
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'system_title'=>'iOS', //$matches[2],
-      'system_version'=>str_replace('_', '.', $matches[3])));
-  elseif (preg_match('/(iPod|iPhone|iPad);/', $ua, $matches))
+      'system_version'=>$version,
+    ));
+  } elseif (preg_match('/(iPod|iPhone|iPad);/', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
@@ -313,7 +329,6 @@ function client_getUAInfos($ua=false) {
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
-
   
   /* check samsung devices */
   elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
@@ -468,6 +483,7 @@ function client_getUAInfos($ua=false) {
         'SM-G318H'  => array('platform_model' => 'Galaxy Trend 2 lite (2015)', ),
         'GT-S5660'  => array('platform_model' => 'Galaxy Gio', ),
         'GT-S5660M' => array('platform_model' => 'Galaxy Gio', ),
+        'GT-S8500'  => array('platform_model' => 'Galaxy Wave', ),
         'GT-I8552'  => array('platform_model' => 'Galaxy Win Duos', ),
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3', ),
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2', ),
@@ -786,14 +802,21 @@ function client_getUAInfos($ua=false) {
       'browser_version'=>$matches[1]));
       
   /* check Macintosh */
-  elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches))
+  elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
+    /* check version */
+    $version = ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):'';
+    if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
+      return $fake;
+    
+    /* build info */
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Apple', 
       'platform_model'=>'Macintosh',
       'platform_type'=>'computer',
       'platform_format'=>'desktop',
       'system_title'=>'Mac OS X',
-      'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
+      'system_version'=> $version));
+  }
   
   /* check Wiko */
   elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2|RAINBOW|SUNSET2/', $ua, $matches)) {
@@ -801,7 +824,6 @@ function client_getUAInfos($ua=false) {
         'TOMMY2'    => array('platform_model' => 'Tommy 2',),
         'SUNSET2'    => array('platform_model' => 'Sunset 2',),
     );
-    
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
       'platform_model'=>ucfirst(strtolower($matches[0])),
@@ -850,7 +872,8 @@ function client_getUAInfos($ua=false) {
       'system_title'    =>'Firefox OS',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'));
-  }    
+  }
+  
   /* check Lava Iris models */
   elseif (preg_match('/Iris([A-Z0-9]+)/i', $ua, $matches))
   	$infos = array_merge($infos, array(
@@ -1272,31 +1295,49 @@ function client_getUAInfos($ua=false) {
      'system_version'=>isset($matches[1])?$matches[1]:''), $infos);
     
     /* check Android */
-  	elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) 
+  	elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
+  	  /* check version */
+      $version = isset($matches[1])?$matches[1]:'';
+      if ($version != '' and version_compare($version, $maxVersions['system']['Android']) > 0)
+        return $fake;
+      
       $infos = array_merge(array(
-     'platform_type'=>(preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
-     'platform_format'=>(preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
-     'system_title'=>'Android',
-     'system_version'=>isset($matches[1])?$matches[1]:''), $infos);  	
-      	
+        'platform_type'     => (preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
+        'platform_format'   => (preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
+        'system_title'      => 'Android',
+        'system_version'    => $version,
+      ), $infos);  	
+    }
+    
     /* check Windows */
   	else if (preg_match('/(?:Windows;)?[^.]*(?:Windows |Windows|Win |Win)([^;\)]+)/', $ua, $matches)) {
-  	    // '/(?:Windows |Win)([^;]{1,});/'
+  	  // '/(?:Windows |Win)([^;]{1,});/'
+  	  
+  	  /* build known windows version */
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE', 
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000', 
           '2000'=>'2000', 'NT 5.1'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
           'NT 6.1'=>'7', 'NT6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
-          'NT 10.0'=>'10', '10'=>'10',
+          'NT 10.0'=>'10', '10'=>'10', 
+          
+          /* add fake windows version */
+          'NT 15.0'=>'15', 
       );
+      
+      /* load and check version */
       $v = $matches[1];
-      if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7));      
+      if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7)); 
+      $version = isset($w[$v])?$w[$v]:'';
+      if ($version != '' and version_compare($version, $maxVersions['system']['Windows']) > 0)
+        return $fake;
+        
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
       	'system_title'=>'Windows',
-      	'system_version'=>isset($w[$v])?$w[$v]:''), $infos);
+      	'system_version'=>$version), $infos);
   	}
   	
     /* check determined linux os */
@@ -1311,7 +1352,7 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>''), $infos);
   	}
     /* check mobile gen os with notified version */
-  	elseif (preg_match('/(SymbianOS|webOS|KAIOS)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
+  	elseif (preg_match('/(SymbianOS|webOS|KAIOS|Bada)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
@@ -1392,7 +1433,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1612,6 +1653,10 @@ function client_getUAInfos($ua=false) {
           'platform_format'=>'tablet'
         ));
   }
+  
+  /* check browser and version */
+  if (isset($infos['browser_version']) and isset($maxVersions['browser'][$infos['browser_title']]) and version_compare($infos['browser_version'], $maxVersions['browser'][$infos['browser_title']]) > 0)
+    return $fake;
   
   /* return result */
   return _client_mergeUAInfos($req, $infos);
@@ -6675,15 +6720,17 @@ function client_getFakeInfosFromUserAgent($ua='') {
 /*                  
  * return merged informations                     
  * @param array $req                
- * param array $infos               
+ * @param array $infos               
  * @return array                  
  * @access private                  
  */
 function _client_mergeUAInfos($req, $infos) {
   if ($req === true)
-    $req = array('platform_company', 'platform_model', 'platform_type', 'platform_format',
-          'system_title', 'system_version',
-          'browser_title', 'browser_version');
+    $req = array(
+        'platform_company', 'platform_model', 'platform_type', 'platform_format',
+        'system_title', 'system_version',
+        'browser_title', 'browser_version'
+    );
   $i = array();
   foreach($req as $r)
     if (isset($infos[$r]))
@@ -6691,5 +6738,29 @@ function _client_mergeUAInfos($req, $infos) {
     else
       $i[$r] = '';
   return $i;
+}
+
+/*
+ * return some max property values to check 
+ * @return array
+ * @access private
+ */
+function _client_getUAPropertiesMaxVersions() {
+  return array(
+    'system' => array(
+        'Mac OS X'          => '10.15.0',
+        'iOS'               => '13',
+        'Android'           => '8',
+        'Windows'           => '11',
+    ),
+    'browser' => array(
+        'Firefox'           => '60',
+        'Chrome'            => '70',
+        'Chromium'          => '70',
+        'Internet Explorer' => '11.0.50',
+        'Edge'              => '45',
+        'Opera'             => '52',
+    ),
+  );
 }
 ?>
