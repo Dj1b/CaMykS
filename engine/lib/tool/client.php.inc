@@ -3,7 +3,7 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2007
@@ -254,11 +254,13 @@ function client_getUAInfos($ua=false) {
     $rep = array(
         'E610'  => array('platform_model' => 'Optimus L5',),
         'L160L' => array('platform_model' => 'Optimus LTE2',),
+        'D315'  => array('platform_model' => 'F70',),
         'D855'  => array('platform_model' => 'G3',),
         'D722'  => array('platform_model' => 'G3 S',),
         'H815'  => array('platform_model' => 'G4',),
         'H831'  => array('platform_model' => 'G5',),
         'M700'  => array('platform_model' => 'Q6 Alpha',),
+        'M160'  => array('platform_model' => 'K4 (2017)',),
     );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'LG', 
@@ -362,6 +364,7 @@ function client_getUAInfos($ua=false) {
         'SM-G920P'  => array('platform_model' => 'Galaxy S6'),
         'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
+        'SM-G928C'  => array('platform_model' => 'Galaxy S6 Edge+'),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+'),
         'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
         'SM-G930V'  => array('platform_model' => 'Galaxy S7'),
@@ -431,6 +434,7 @@ function client_getUAInfos($ua=false) {
         'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime', ),
         'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime', ),
         'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus', ),
         'GT-I9082L' => array('platform_model' => 'Galaxy Grand', ),
         'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus', ),
         'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos', ),
@@ -718,6 +722,7 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/ASUS_([A-Z0-9]+) /', $ua, $matches)) {
     $rep = array(
         'Z00ED'     => array('platform_model' => 'Zenfon 2'),
+        'Z00LD'     => array('platform_model' => 'Zenfon 2 Laser'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -925,13 +930,20 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
   
-  /* check Haier */
-  elseif (preg_match('/CDP7TAB4C8/', $ua, $matches))
+  /* check Haier mobiles */
+  elseif (preg_match('/(CDP7TAB4C8|G30)/', $ua, $matches)) {
+    $rep = array(
+        'CDP7TAB4C8'    => array('platform_model' => 'CDisplay E701', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'G30'           => array('platform_model' => 'Voyage G30',),
+    );
+    $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Haier', 
-      'platform_model'=>'CDisplay E701',
-      'platform_type'=>'tablet',
-      'platform_format'=>'tablet',));
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
   
   /* check Bloom */
   elseif (preg_match('/BLOOM Build/', $ua, $matches))
@@ -970,10 +982,11 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Logicom */
-  elseif (preg_match('/L-EMENT[0-9]{3}/', $ua, $matches)) {
+  elseif (preg_match('/L-EMENT?_[0-9]{3}/', $ua, $matches)) {
     $rep = array(
         'L-EMENT501'=>array('platform_model' => 'L-Element 501'),
         'L-EMENT451'=>array('platform_model' => 'L-Element 451'),
+        'L-EMENT_403'=>array('platform_model' => 'L-Element 403'),
     );
     $model = trim($matches[0]);
   	$infos = array_merge($infos, array(
@@ -1233,6 +1246,20 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
       
+  /* check Infinix  mobiles */
+  elseif (preg_match('/(X559)/', $ua, $matches)) {
+    $rep = array(
+        'X559'  => array('platform_model' => 'Hot 5 Lite',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Infinix', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+            
   /*** check operating system ***/
   
   if (!isset($infos['system_title'])) {
@@ -1549,6 +1576,15 @@ function client_getUAInfos($ua=false) {
       $infos = array_merge(array(
         'browser_title'     => 'HotJava', 
       	'browser_version'   => $matches[1],
+      ), $infos);
+      
+    /* check MAUI WAP Browser  */
+    elseif (preg_match('/^MAUI( |_)WAP( |_)Browser/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'MAUI WAP Browser', 
+      	'browser_version'   => '',
+      	'platform_type'     => 'handheld',
+        'platform_format'   => 'handheld',
       ), $infos);
     
     /* check Gecko compatible */
@@ -4884,6 +4920,24 @@ function client_getKnownBots() {
     'bot_url'=>'https://www.searchmetrics.com/searchmetricsbot/',
     'engine_title'=>'SearchMetrics',
     'engine_url'=>'https://www.searchmetrics.com/');
+    
+  /* Techlimed */
+  $knownBots['techlimed'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ntlk/Nutch',
+    'bot_url'=>'',
+    'engine_title'=>'Techlimed',
+    'engine_url'=>'');
+    
+  /* pmoz.info */
+  $knownBots['pmoz.info'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'pmoz.info ODP link checker',
+    'bot_url'=>'http://pmoz.info/doc/botinfo.htm',
+    'engine_title'=>'Dmoz.org',
+    'engine_url'=>'http://www.dmoz.org');
     
   /* unknown bot */
   $knownBots['seo bulls'] = array(
