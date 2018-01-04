@@ -6,7 +6,7 @@
  * Object Version	: 1.0
  * Object Type		: Plugin / Template CSS Styles
  * Creation Date	: Mar 2007
- * Last Modif Date	: Apr 2017
+ * Last Modif Date	: Jan 2018
  *
  * AdminPage CSS styles
  */
@@ -17,7 +17,8 @@
 #pageContent{margin:8px 0 50px; min-height:570px;}
 #pageFooter{position:fixed; bottom:0; height:40px; background: white; box-shadow:inset 0px 4px 4px -3px rgba(42, 42, 42, 0.3); width:100%;}
 #pageFooterBar{}
-#pageFooterEngine{text-align:center; padding:12px 0;}
+#pageFooterEngine{text-align:center; padding:12px 0; margin: 0 200px;}
+#pageFooterVersion{float:right; padding: 15px; color:#9f9bb0;}
 #adminengine_modalPopupBackground{position:absolute;top:0px;left:0px;background:black;opacity:0.75;filter:alpha(opacity=75);display:none;}
 
 /* content min height */
