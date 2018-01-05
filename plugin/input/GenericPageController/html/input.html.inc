@@ -33,10 +33,10 @@ if ($camyks->get_confValue('html_version') == 5) {
       <?php if ( $this->params['buttonSource'] != 'none' ) : ?>
       <td class="gpcButton">
         <?php if ( ($l=$this->get_previousPageURL()) == '' ) : ?>
-          <img src="<?=$this->get_buttonURL('pager_off')?>" alt="" style="border:0;" />
+          <img src="<?=$this->get_buttonURL('pager_off')?>" alt="<?=$this->get_translation('isfirstpage');?>" style="border:0;" />
         <?php else : ?>
           <a href="<?=$l;?>" style="font-size:0;">
-            <img src="<?=$this->get_buttonURL('pager_left')?>" alt="" style="border:0;"
+            <img src="<?=$this->get_buttonURL('pager_left')?>" alt="<?=$this->get_translation('gotopreviouspage');?>" style="border:0;"
               onmouseover="this.src='<?=$this->get_buttonURL('pager_left_r')?>';"
               onmouseout="this.src='<?=$this->get_buttonURL('pager_left')?>';" />
           </a>
@@ -130,10 +130,10 @@ if ($camyks->get_confValue('html_version') == 5) {
       <?php if ( $this->params['buttonSource'] != 'none' ) : ?>
       <td class="gpcButton">
         <?php if ( ($l = $this->get_nextPageURL()) == '' ) : ?>
-          <img src="<?=$this->get_buttonURL('pager_off')?>" alt="" style="border:0;" />
+          <img src="<?=$this->get_buttonURL('pager_off')?>" alt="<?=$this->get_translation('islastpage');?>" style="border:0;" />
         <?php else : ?>
           <a href="<?=$l;?>" style="font-size:0;">
-            <img src="<?=$this->get_buttonURL('pager_right')?>" alt="" style="border:0;"
+            <img src="<?=$this->get_buttonURL('pager_right')?>" alt="<?=$this->get_translation('gotonextpage');?>" style="border:0;"
               onmouseover="this.src='<?=$this->get_buttonURL('pager_right_r')?>';"
               onmouseout="this.src='<?=$this->get_buttonURL('pager_right')?>';" />
           </a>
