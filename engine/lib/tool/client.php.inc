@@ -196,7 +196,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
       
   /* check iphone / ipod / ipad */
-  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version|GSA)\/([0-9\.]*)/', $ua, $matches)) {
+  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version)\/([0-9\.]*)/', $ua, $matches)) {
     /* check version */
     $version = str_replace('_', '.', $matches[3]);
     if (version_compare($version, $maxVersions['system']['iOS']) > 0)
@@ -473,6 +473,7 @@ function client_getUAInfos($ua=false) {
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
         'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
+        'SM-N950F'  => array('platform_model' => 'Galaxy Note 8', ),
         'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313 (2014)', ),
         'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
         'SM-G130E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
@@ -559,6 +560,7 @@ function client_getUAInfos($ua=false) {
     $rep = array(
         'C1505'=>array('platform_model' => 'Xperia E'),  
         'C2105'=>array('platform_model' => 'Xperia L'), 
+        'C5303'=>array('platform_model' => 'Xperia SP'),
         'C6603'=>array('platform_model' => 'Xperia Z'),
         'D2005'=>array('platform_model' => 'Xperia E1'),
         'D2303'=>array('platform_model' => 'Xperia M2'),
@@ -693,6 +695,7 @@ function client_getUAInfos($ua=false) {
         'P70-A'     => array('platform_model' => 'P70'),
         'B8000-F'   => array('platform_model' => 'Yoga', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'A2010-a'   => array('platform_model' => 'A2010', ),
+        'K53a48'    => array('platform_model' => 'K6 Note', ),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -1313,22 +1316,24 @@ function client_getUAInfos($ua=false) {
   	else if (preg_match('/(?:Windows;)?[^.]*(?:Windows |Windows|Win |Win)([^;\)]+)/', $ua, $matches)) {
   	  // '/(?:Windows |Win)([^;]{1,});/'
   	  
-  	  /* build known windows version */
+  	  /* build known windows versions */
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE', 
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000', 
           '2000'=>'2000', 'NT 5.1'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
           'NT 6.1'=>'7', 'NT6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
-          'NT 10.0'=>'10', '10'=>'10', 
-          
-          /* add fake windows version */
-          'NT 15.0'=>'15', 
+          'NT 10.0'=>'10', '10'=>'10',           
       );
       
-      /* load and check version */
+      /* build known windows fake versions */
+      $wf = array('NT 15.0');
+      
+      /* load version */
       $v = $matches[1];
       if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7)); 
       $version = isset($w[$v])?$w[$v]:'';
-      if ($version != '' and version_compare($version, $maxVersions['system']['Windows']) > 0)
+      
+      /* check fake version */
+      if (in_array($v, $wf))
         return $fake;
         
       $infos = array_merge(array(
@@ -1433,8 +1438,8 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       	'browser_version'   => isset($matches[2])?$matches[2]:'',
@@ -1458,7 +1463,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => $matches[1], 
@@ -5909,6 +5914,15 @@ function client_getKnownTools() {
     'engine_title'=>'NMAP',
     'engine_url'=>'https://nmap.org/');
     
+  /* Outiref */
+  $knownTools['outiref'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'Outiref',
+    'engine_url'=>'https://www.outiref.fr/');
+    
   /* return list */
   return $knownTools;
 }
@@ -6750,8 +6764,7 @@ function _client_getUAPropertiesMaxVersions() {
     'system' => array(
         'Mac OS X'          => '10.15.0',
         'iOS'               => '13',
-        'Android'           => '8',
-        'Windows'           => '11',
+        'Android'           => '9',
     ),
     'browser' => array(
         'Firefox'           => '60',
