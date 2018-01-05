@@ -6,8 +6,10 @@ Options +FollowSymlinks
   Header set X-Frame-Options SAMEORIGIN
   # Cookie protection
   Header edit Set-Cookie ^(.*)$ $1;HttpOnly
-  #XSS protection
+  # XSS protection
   Header set X-XSS-Protection "1; mode=block"
+  # Enable HSTS to force use secure connections
+  # Header always set Strict-Transport-Security "max-age=300;ÊincludeSubDomains;Êpreload"
 </IfModule>
 
 # Set up default expire	value
