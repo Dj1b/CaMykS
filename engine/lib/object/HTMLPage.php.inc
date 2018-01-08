@@ -30,7 +30,7 @@ final class HTMLPage {
 
   /* header titles */
   private $site_title;
-  private $page_title;
+  public $page_title;
 
   /* header metas */
   private $charset;
@@ -624,22 +624,28 @@ final class HTMLPage {
     global $camyks;
     
     $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
-    
+        
     /* check for server side caches */
     if ($camyks->mode == CAMYKS_MODE_SITE and $camyks->get_confValue('cache_server_side') == 'enabled' and count($this->js_files)>1) {
       $str = '';
-      foreach ( $this->js_files as $js ) {
+      $cachedJS = array();
+      foreach ($this->js_files as $idx => $js) {
         $f = new FSFile($js);
+        if (preg_match('/http?s:\/\//', $js)) 
+          continue;
+        
+        $cachedJS[] = $js;
+        unset($this->js_files[$idx]);
         $str .= $f->filename.'-'.$f->md5().'/';
       }
       
       $checksum = md5($str);
-      $masterScript = $camyks->site_var_path.'/ServerCache/scripts/script-'.count($this->js_files).'-'.$checksum.'.js';
+      $masterScript = $camyks->site_var_path.'/ServerCache/scripts/script-'.count($cachedJS).'-'.$checksum.'.js';
       
       if (!file_exists($masterScript)) {
         folder_completePath ($camyks->site_var_path.'/ServerCache/scripts');
         $mf = fopen($masterScript, 'a+');
-        foreach ( $this->js_files as $js ) {
+        foreach ($cachedJS as $js) {
           $content = file_get_contents($js);
           $content = preg_replace('/(\r\n){1,}/', "\n", $content);
           fwrite($mf, $content."\n\n");
@@ -647,7 +653,6 @@ final class HTMLPage {
         fclose($mf);
       }
       echo "<script type=\"text/javascript\" src=\"".$camyks->get_fileURL($masterScript)."\">/* add javascript */</script>\n";
-      return;
     }
     
     /* check for client side cache */
@@ -657,7 +662,7 @@ final class HTMLPage {
       $r = '';
     
     /* add files */
-    foreach ( $this->js_files as $js ) {
+    foreach ($this->js_files as $js ) {
       if (preg_match('/https?:\/\//i', $js))
         echo "<script type=\"text/javascript\" src=\"".$js.$r."\">/* add javascript */</script>\n";
       else
@@ -735,17 +740,25 @@ final class HTMLPage {
           continue;
           
         $str = '';
-        foreach ($files as $fInfo) {
+        $cachedCSS = array();
+        foreach ($files as $idx => $fInfo) {
           $f = new FSFile($fInfo['file']);
+          if ($fInfo['condition'] != '' or preg_match('/https?:\/\//', $fInfo['file'])) {
+            continue;
+          }
+          
+          $cachedCSS[] = $fInfo;
+          unset($this->style_files[$media][$idx]);
           $str .= $f->filename.'-'.$f->md5().'/';
         }
+        
         $checksum = md5($str);
-        $masterStyles = $camyks->site_var_path.'/ServerCache/styles/style-'.count($files).'-'.$checksum.'.css';
+        $masterStyles = $camyks->site_var_path.'/ServerCache/styles/style-'.count($cachedCSS).'-'.$checksum.'.css';
       
         if (!file_exists($masterStyles)) {
           folder_completePath ($camyks->site_var_path.'/ServerCache/styles');
           $mf = fopen($masterStyles, 'a+');
-          foreach ( $files as $f ) {
+          foreach ($cachedCSS as $f) {
             $file= new FSFile($f['file']);
             $p = $file->path;
             
@@ -758,11 +771,10 @@ final class HTMLPage {
           fclose($mf);
         }
 
-        if ( $media == '' )
+        if ($media == '')
 	      echo '<link href="'.$camyks->get_fileURL($masterStyles).'" type="text/css" rel="stylesheet" />'."\n";
 	    else
 	      echo '<link href="'.$camyks->get_fileURL($masterStyles).'" media="'.$media.'" type="text/css" rel="stylesheet" />'."\n";
-        unset($this->style_files[$media]);
       }
     }
     
@@ -771,23 +783,23 @@ final class HTMLPage {
       $r = '?'.rand(0, 999999);
     else
       $r = '';
-    
+        
     /* add specific styles */
     foreach ($this->style_files as $media => $files) {
         
       foreach ($files as $file) {      
         /* check for condition */
-        if ( $file['condition'] != '') 
+        if ($file['condition'] != '') 
           echo '<!--[if '.$file['condition'].']>'."\n";
         
         /* add files */
-	    if ( $media == '' )
+	    if ($media == '')
 	      echo '<link href="'.$camyks->get_fileURL($file['file']).$r.'" type="text/css" rel="stylesheet" />'."\n";
 	    else
 	      echo '<link href="'.$camyks->get_fileURL($file['file']).$r.'" media="'.$media.'" type="text/css" rel="stylesheet" />'."\n";
 	    
 	    /* end condition */
-	    if ( $file['condition'] != '') 
+	    if ($file['condition'] != '') 
   	      echo '<![endif]-->'."\n";
       }
     }
@@ -800,18 +812,17 @@ final class HTMLPage {
    */
   public function get_styleScripts() {
     /* check for scripts to write */
-    if ( count ( $this->style_scripts ) == 0 
-	 and count ( $this->style_included_files ) == 0 ) {
+    if (count($this->style_scripts) == 0 and count ($this->style_included_files) == 0) {
       return;
     }
     /* write styles */
     echo '<style type="text/css">'."\n";
-    foreach ( $this->style_included_files as $s ) {
+    foreach ($this->style_included_files as $s) {
       if ( file_exists( $s ) )
-	require($s);
+	    require($s);
     }
     $str = '';
-    foreach ( $this->style_scripts as $s ) {
+    foreach ($this->style_scripts as $s) {
       $str .= $s ."\n\n";
     }
     $str .= '</style>'."\n";
