@@ -388,11 +388,13 @@ function client_getUAInfos($ua=false) {
         'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+'),
+        'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active'),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V', ),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
         'SM-A310F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300M'  => array('platform_model' => 'Galaxy A3', ),
+        'SM-A320FL' => array('platform_model' => 'Galaxy A3 (2017)', ),
         'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
@@ -563,6 +565,7 @@ function client_getUAInfos($ua=false) {
         'C5303'=>array('platform_model' => 'Xperia SP'),
         'C6603'=>array('platform_model' => 'Xperia Z'),
         'D2005'=>array('platform_model' => 'Xperia E1'),
+        'D2203'=>array('platform_model' => 'Xperia E3 (2014)'),
         'D2303'=>array('platform_model' => 'Xperia M2'),
         'D2305'=>array('platform_model' => 'Xperia M2'),
         'D2306'=>array('platform_model' => 'Xperia M2'),
@@ -1463,7 +1466,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => $matches[1], 
@@ -4989,6 +4992,15 @@ function client_getKnownBots() {
     'engine_title'=>'Dmoz.org',
     'engine_url'=>'http://www.dmoz.org');
     
+  /* ArchiveBot */
+  $knownBots['archivebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ArchiveBot',
+    'bot_url'=>'https://www.archiveteam.org/index.php?title=ArchiveBot',
+    'engine_title'=>'ArchiveTeam',
+    'engine_url'=>'https://www.archiveteam.org');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
@@ -5922,6 +5934,24 @@ function client_getKnownTools() {
     'tool_url'=>'',
     'engine_title'=>'Outiref',
     'engine_url'=>'https://www.outiref.fr/');
+    
+  /* alyze.info */
+  $knownTools['alyze.info'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'alyze',
+    'engine_url'=>'https://alyze.info/');
+    
+  /* DareBoost */
+  $knownTools['dareboost'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'DareBoost',
+    'engine_url'=>'https://www.dareboost.com/');
     
   /* return list */
   return $knownTools;
