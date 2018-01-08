@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Layout
  * Create Date		: Nov 2009
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Jan 2018
  * 
  * SocialNetworksSharingPanel input layout
 */
@@ -24,7 +24,7 @@ $n = $this->dparams['networks'][1];
 
 <?php foreach ($this->networks as $name => $network ) : ?>
 <?php if ($this->dparams['allow_'.$name]==1) : ?>
-<a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank">
+<a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank" rel="noopener">
 <img src="<?=$this->get_fileURL('img/icons/'.$name.'.gif');?>" 
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:0 2px; border:0;" />
 </a>
