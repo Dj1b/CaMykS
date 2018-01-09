@@ -224,11 +224,13 @@ function client_getUAInfos($ua=false) {
       'system_title'=>'iOS', //$matches[2],
       'system_version'=>$version,
     ));
-  } elseif (preg_match('/(iPod|iPhone|iPad);/', $ua, $matches))
+  } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
-      'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',));
+      'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
+      'system_title'=>'iOS',
+    ));
       
   /* check Google Nexus */
   elseif (preg_match('/(Nexus( [^ \/;]+)?) Build/', $ua, $matches))
@@ -856,7 +858,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
   
   /* check Alcatel */
-  elseif (preg_match('/ ([0-9]{4}[A-Z])/', $ua, $matches)) {
+  elseif (preg_match('/ ([0-9]{4}[A-Z]) Build/', $ua, $matches)) {
     $rep = array(
         '4015D' => array('platform_model' => 'One Touch Idol 3',),
         '5050X' => array('platform_model' => 'One Touch Pop S3',),
@@ -1288,6 +1290,15 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  
+  /* check Digital Alpha servers */
+  elseif (preg_match('/ (Digital AlphaServer [A-Za-z0-9]*) /', $ua, $matches)) {
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'PC (Digital Equipment Corporation)', 
+      'platform_model'=>$model
+    ));
+  }
             
   /*** check operating system ***/
   
@@ -1441,7 +1452,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
