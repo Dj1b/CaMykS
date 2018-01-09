@@ -45,6 +45,16 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
   }
   
   /*
+   * return access restriction value
+   * @return string
+   * @access public
+   */
+  public function get_accessRestrictionValue() {
+    $l = $this->get_accessRestrictionList();
+    return $l[$this->vars['accessRestriction']];
+  }
+  
+  /*
    * return button location value list
    * @return array
    * @access public
@@ -59,7 +69,17 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
   }
   
   /*
-   * return button location value list
+   * return button location value
+   * @return string
+   * @access public
+   */
+  public function get_buttonLocationValue() {
+    $l = $this->get_buttonLocationList();
+    return $l[$this->vars['buttonLocation']];
+  }
+  
+  /*
+   * return available theme value list
    * @return array
    * @access public
    */
@@ -69,6 +89,16 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
       'blue'    => $this->get_translation('availabletheme_blue'),
       'purple'  => $this->get_translation('availabletheme_purple'),
     );
+  }
+  
+  /*
+   * return available theme value
+   * @return string
+   * @access public
+   */
+  public function get_availableThemeValue() {
+    $l = $this->get_availableThemeList();
+    return $l[$this->vars['appliedTheme']];
   }
 }
 ?>
