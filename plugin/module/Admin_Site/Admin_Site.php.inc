@@ -93,12 +93,30 @@ final class Admin_Site extends Module {
    */
   public function get_rights() {
     global $camyks;
-    $this->rights[0] = array('name'=>'read',
-			     'title'=> $camyks->get_translation('read'),
-			     'default'=> false);
-    /* $this->rights[1] = array('name'=>'edit',
-			     'title'=> $camyks->get_translation('write'),
-			     'default'=> false);*/
+    
+    $this->rights[0] = array(
+        'name'=>'read',
+		'title'=> $this->get_translation('rights_read_site_config'),
+		'default'=> false,
+	);
+			     
+    /* $this->rights[1] = array(
+        'name'=>'edit',
+		'title'=> $camyks->get_translation('rights_edit_site_config'),
+		'default'=> false,
+    ); */
+    
+    $this->rights[2] = array(
+        'name'=>'read_plugin_config',
+		'title'=> $this->get_translation('rights_read_plugin_config'),
+		'default'=> false,
+    );
+    
+    $this->rights[3] = array(
+        'name'=>'edit_plugin_config',
+		'title'=> $this->get_translation('rights_edit_plugin_config'),
+		'default'=> false,
+    );
   }
 
   /*
@@ -108,38 +126,43 @@ final class Admin_Site extends Module {
    */
   public function init_admin () {
     global $camyks;
-    if ( $this->check_right(0) === false ) {
+    
+    /* check access right */
+    if ($this->check_right(0) === false)
       $this->init_admin_accessDenied();
-    } else if ( $this->check_right(1) === false ) {
-      $this->init_admin_read();
-    } else {
-      $this->mode = ( isset( $_REQUEST['mode'] ) ? $_REQUEST['mode'] : 'modify');      
-      switch ( $this->mode ) {
-      case 'save':
-	    $this->init_admin_save();
-	    break;
-      case 'modify':
+    
+    /* load mode */
+    $this->mode = (isset($_REQUEST['mode'])? $_REQUEST['mode'] : 'readSiteConfig');
+    
+    /* check action to execute */
+    switch ($this->mode) {
+      case 'viewPluginConfig':
+        $this->init_admin_viewPluginConfig();
+        break;
+      case 'editPluginConfig':
+        $this->init_admin_editPluginConfig();
+        break;
+      case 'savePluginConfig':
+        $this->init_admin_savePluginConfig();
+        break;
+      case 'viewSiteConfig':
       default:
-	    /* 
-	     * TO DO 
-	     * execute init_admin_modify method
-	     */
-	    $this->init_admin_read();
-	    break;
-      }
+        $this->init_admin_viewSiteConfig();
+        break;
     }
+    
+    /* generic init */
     parent::init_admin();
   }
   
-  /* specific admin mode methods */ 
-
+  /* specific admin init mode methods */ 
 
   /*
-   * init object module in admin/read mode
+   * init object module in admin/viewSiteConfig mode
    * @return void
    * @access private
    */
-  private function init_admin_read() {
+  private function init_admin_viewSiteConfig() {
     global $camyks;
     
     /* get help */
@@ -181,7 +204,25 @@ final class Admin_Site extends Module {
 		),
 	));
 	
-	if ( $this->help != null )
+	if ($this->check_right(2)) {
+	    /* load extension plugin list */
+        $extensions = $this->get_registeredExtensions();        
+        
+        /* build plugin list by type */
+        $this->plugins = array('modules' => array(), 'themes' => array(), 'templates' => array(), 'inputs' => array());
+        foreach ($extensions as $name => &$plugin) {
+          $this->plugins[$plugin->plugin_type.'s'][$name] = $plugin->title;
+        }
+        unset($extensions);
+	
+	    /* add plugins tab */
+	    $this->tabBuilder->add_tab(array(
+	        'name'  => 'Plugins',
+			'title' => $this->get_translation('tabplugins'),
+	    ));
+	}
+	
+	if ($this->help != null)
 	 	$this->tabBuilder->add_tab(array('name'=>'help',
 				     'title'=>$camyks->get_translation('help')));
 	
@@ -197,29 +238,135 @@ final class Admin_Site extends Module {
 	));
 
     /* update layout */
-    $this->selected_layout = 'admin_read_config.html.inc';   
+    $this->selected_layout = 'admin_view_site_config.html.inc';   
   }
-  
+
   /*
-   * init object module in admin/modify mode
+   * init object module in admin/viewPluginConfig mode
    * @return void
    * @access private
    */
-  private function init_admin_modify() {
+  private function init_admin_viewPluginConfig() {
     global $camyks;
     
-    return true;    
+    /* check access right */
+    if ($this->check_right(2) === false)
+      $this->init_admin_accessDenied();
+      
+    /* load extension plugin list */
+    $extensions = $this->get_registeredExtensions();      
+    
+    /* check plugin */
+    if (!isset($_REQUEST['plugin']) or !isset($extensions[$_REQUEST['plugin']])) {
+        $this->text = $this->get_translation('error_pluginnotfound');
+        /* update layout */
+        $this->selected_layout = 'admin_message.html.inc';
+        $this->selected_layout_location = 'camyks';
+        $this->set_redirect($this->get_adminLink(array('openTab'=>'Plugins')));
+    }
+    
+    $this->plugin = &$extensions[$_REQUEST['plugin']];
+    $this->plugin->initialise_configDisplay();
+        
+    /* button list for buttons bar */
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $this->get_adminLink(array('openTab'=>'Plugins')),
+	));
+	if ($this->check_right(3)) {
+	  $this->buttons[] = array(
+        'title' => $camyks->get_translation('modify'),
+		'link'  => $this->get_adminLink(array('mode'=>'editPluginConfig', 'plugin'=>$this->plugin->name)),
+	  );
+	}
+
+    /* update layout */
+    $this->selected_layout = 'admin_view_plugin_config.html.inc';   
   }
-  
+    
   /*
-   * init object module in admin/save mode
+   * init object module in admin/viewPluginConfig mode
    * @return void
    * @access private
    */
-  private function init_admin_save () {
+  private function init_admin_editPluginConfig() {
     global $camyks;
     
-    return true;
+    /* check access right */
+    if ($this->check_right(3) === false)
+      $this->init_admin_accessDenied();
+      
+    /* load extension plugin list */
+    $extensions = $this->get_registeredExtensions();      
+    
+    /* check plugin */
+    if (!isset($_REQUEST['plugin']) or !isset($extensions[$_REQUEST['plugin']])) {
+        $this->text = $this->get_translation('error_pluginnotfound');
+        /* update layout */
+        $this->selected_layout = 'admin_message.html.inc';
+        $this->selected_layout_location = 'camyks';
+        $this->set_redirect($this->get_adminLink(array('openTab'=>'Plugins')));
+    }
+    $this->plugin = &$extensions[$_REQUEST['plugin']];
+
+    
+    /* build form */
+    $this->form = new HTMLForm(
+        'edit_pluginConfiguration',
+		$this->get_adminlink(array('mode'=>'savePluginConfig', 'plugin'=>$this->plugin->name)),
+		'POST');
+    
+    /* initialise plugin edition */
+    $this->plugin->initialise_configEdition($this->form);
+    
+        
+    /* button list for buttons bar */
+    $this->buttons = array(
+      array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $this->get_adminLink(array('openTab'=>'Plugins')),
+      ),
+	  array(
+        'title' => $camyks->get_translation('valid'),
+		'link'  => $this->form->get_HTMLSubmitLink(),
+	  ),
+	);
+
+    /* update layout */
+    $this->selected_layout = 'admin_edit_plugin_config.html.inc';   
+  }
+  
+  /*
+   * init object module in admin/savePluginConfig mode
+   * @return void
+   * @access private
+   */
+  private function init_admin_savePluginConfig() {
+    global $camyks;
+    
+    /* check access right */
+    if ($this->check_right(3) === false)
+      $this->init_admin_accessDenied();
+      
+    /* load extension plugin list */
+    $extensions = $this->get_registeredExtensions();      
+    
+    /* check plugin */
+    if (!isset($_REQUEST['plugin']) or !isset($extensions[$_REQUEST['plugin']])) {
+        $this->text = $this->get_translation('error_pluginnotfound');
+    } else {
+      $this->plugin = &$extensions[$_REQUEST['plugin']];
+      /* save configuration */
+      if ($this->plugin->save_configuration()) 
+        $this->text = $this->get_translation('pluginconfiguration_saved', $this->plugin->name);
+      else
+        $this->text = $this->get_translation('pluginconfiguration_notsaved', $this->plugin->name);
+    }
+    
+    /* update layout */
+    $this->selected_layout = 'admin_message.html.inc';
+    $this->selected_layout_location = 'camyks';
+    $this->set_redirect($this->get_adminLink(array('openTab'=>'Plugins')));
   }
 
   /* specific tool methods */

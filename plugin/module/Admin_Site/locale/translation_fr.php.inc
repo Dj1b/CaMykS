@@ -7,12 +7,18 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Dictionnary
  * Creation Date	: Jun 2005
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Jan 2018
  *
  * Admin_Site language dictionnary : French 
 */
 $this->trads['mod_admin_site_title'] = 'Configuration du site';
 $this->trads['mod_admin_site_desc'] = 'Gestion de tous les param&egrave;tres du site';
+
+/* admin rights */
+$this->trads['mod_admin_site_rights_read_site_config'] = 'Lecture de la configuration du site';
+$this->trads['mod_admin_site_rights_edit_site_config'] = 'Edition de la configuration du site';
+$this->trads['mod_admin_site_rights_read_plugin_config'] = 'Lecture de la configuration des plugins';
+$this->trads['mod_admin_site_rights_edit_plugin_config'] = 'Edition de la configuration des plugins';
 
 /* ssl values */
 $this->trads['mod_admin_site_sslvalue_auto'] = 'Automatique (SSL utilis&eacute; si disponible)';
@@ -106,4 +112,14 @@ $this->trads['mod_admin_site_tabserver'] = 'Serveur';
 $this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Syst&egrave;me d\'exploitation';
 $this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
+
+/* plugins conf texts */
+$this->trads['mod_admin_site_tabplugins'] = 'Plugins';
+$this->trads['mod_admin_site_viewthispluginconfig'] = 'Voir la configuration de ce plugin';
+$this->trads['mod_admin_site_editthispluginconfig'] = 'Modifier la configuration de ce plugin';
+$this->trads['mod_admin_site_formtitle_pluginconfig'] = 'Configuration du plugin %s';
+
+/* save configuration messages */
+$this->trads['mod_admin_site_pluginconfiguration_saved'] = 'Configuration du plugin %s enregistr&eacute;e.';
+$this->trads['mod_admin_site_pluginconfiguration_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de la configuration du plugin %s.';
 ?>
