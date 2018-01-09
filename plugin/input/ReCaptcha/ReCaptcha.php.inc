@@ -27,12 +27,20 @@ class ReCaptcha extends Input {
     parent::Input('ReCaptcha', $path_type);
     /* set plugin version */
     $this->version = '1.0';
+    
     /* set plugin package */
     $this->plugin_package = 'Default';
+    
     /* set plugin author */
     $this->author_name = 'CaMykS Team';
     $this->author_mail = 'camyks.contact@gmail.com';
     $this->author_group = 'camyks.net';
+    
+    /* load configuration library */
+    $this->load_library('ReCaptchaConfig');
+    
+    /* register plugin as Admin_Site extension */
+    $this->register_asExtension('Admin_Site');
   }
   
   /* overwrite input methods */
@@ -45,21 +53,22 @@ class ReCaptcha extends Input {
    */
   function initialise($params=array()) {
     global $camyks;
+    
+    /* load configuration */
+    $this->config = new ReCaptchaConfig('config', $this);
+    $this->config->get();
 
     /* build default params */
     $dParams = array(
         'mode' => 'display',
-        'publicKey' => $camyks->get_confValue('reCaptcha_publicKey'),
-        'privateKey' => $camyks->get_confValue('reCaptcha_privateKey'),
     );
         
     /* define params */
-    $this->params = array_merge($dParams, $params);
+    $this->params = array_merge($this->config->vars, $dParams, $params);
     
     /* add script */
-    if ($this->params['publicKey'] != false and $this->params['mode'] != 'verify')
+    if ($this->params['publicKey'] != false and $this->params['publicKey'] != '' and $this->params['mode'] != 'verify')
       $this->add_JSExternFile('https://www.google.com/recaptcha/api.js');
-
     
     /* define variables */
     $this->_lastError = '';
@@ -134,6 +143,65 @@ class ReCaptcha extends Input {
     if ($this->_lastError == '')
       return '';
     return $this->get_translation($this->_lastError);
+  }
+  
+  /* Admin_Site extension configuration methods */
+  
+  /*
+   * initialise object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function initialise_configDisplay() {
+    /* load plugin configuration */
+    $this->config = new ReCaptchaConfig('config', $this);
+    $this->config->get();
+  }
+  
+  /*
+   * display object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configDisplay() {
+    $this->load_file('html/configuration/view.html.inc');
+  }
+  
+  /*
+   * initialise object in Admin_Site / edit configuration mode
+   * @param Object $form
+   * @return void
+   * @access public
+   */
+  public function initialise_configEdition($form) {
+    /* load plugin configuration */
+    $this->config = new ReCaptchaConfig('config', $this);
+    $this->config->get();
+    
+    /* update form */
+    $this->form = &$form;
+    $this->form->set_object($this->config);
+  }
+  
+  /*
+   * display object in Admin_Site / edit configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configEdition() {
+    $this->load_file('html/configuration/edit.html.inc');
+  }
+    
+  /*
+   * execute object in Admin_Site / save configuration mode
+   * @return void
+   * @access public
+   */
+  public function save_configuration() {
+    $this->config = new ReCaptchaConfig('config', $this);
+    $this->config->get();
+    $this->config->get_fromHeader();
+    return $this->config->save();
   }
 }
 ?>
