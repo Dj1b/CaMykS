@@ -61,6 +61,9 @@ final class SiteMonitoringToolbar extends Input {
       $this->register_asCaMykSEventHandler('onTerminate');
     }
     
+    /* register plugin as Admin_Site extension */
+    $this->register_asExtension('Admin_Site');
+    
     /* set up vars */
     $this->loaded = false;
   }
@@ -532,6 +535,65 @@ final class SiteMonitoringToolbar extends Input {
    */
   private function load_registeredExtensions() {
     $this->extensions = $this->get_registeredExtensions();
+  }
+  
+  /* Admin_Site extension configuration methods */
+  
+  /*
+   * initialise object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function initialise_configDisplay() {
+    /* load plugin configuration */
+    $this->config = new SiteMonitoringToolbarConfig('config', $this);
+    $this->config->get();
+  }
+  
+  /*
+   * display object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configDisplay() {
+    $this->load_file('html/configuration/view.html.inc');
+  }
+  
+  /*
+   * initialise object in Admin_Site / edit configuration mode
+   * @param Object $form
+   * @return void
+   * @access public
+   */
+  public function initialise_configEdition($form) {
+    /* load plugin configuration */
+    $this->config = new SiteMonitoringToolbarConfig('config', $this);
+    $this->config->get();
+    
+    /* update form */
+    $this->form = &$form;
+    $this->form->set_object($this->config);
+  }
+  
+  /*
+   * display object in Admin_Site / edit configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configEdition() {
+    $this->load_file('html/configuration/edit.html.inc');
+  }
+    
+  /*
+   * execute object in Admin_Site / save configuration mode
+   * @return void
+   * @access public
+   */
+  public function save_configuration() {
+    $this->config = new SiteMonitoringToolbarConfig('config', $this);
+    $this->config->get();
+    $this->config->get_fromHeader();
+    return $this->config->save();
   }
 }
 ?>

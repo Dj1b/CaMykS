@@ -847,7 +847,7 @@ var SiteMonitoringToolbar = {
         box.appendChild(div);
         
         /* add queries */
-        if (result['DBQueries'][db]) {
+        if (result['DBQueries'][db] != undefined) {
           div = document.createElement('div');
           div.className = 'content';
           div.innerHTML = this.get_locale('dbstats_querylist');
