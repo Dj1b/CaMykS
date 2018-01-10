@@ -1477,11 +1477,13 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+      $rep = array('FDM'=>'Free Download Manager',);
       $infos = array_merge(array(
         'platform_type'     => 'computer',
-        'browser_title'     => $matches[1], 
+        'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1], 
       	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+    }
     
     /* check chrome browser - separated from gen case of alternative browser using Chrome user agent */
     elseif (preg_match('/(Chrome)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
@@ -6480,6 +6482,15 @@ function client_getKnownGenerics() {
     'platform_format'=>'desktop',
     'tool_title'=>'Microsoft .NET Framework',
     'tool_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* scalaj-http  */
+  $knownGenerics['scalaj-http'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'scalaj-http',
+    'tool_url'=>'https://github.com/scalaj/scalaj-http',
     'engine_title'=>'',
     'engine_url'=>'');
 
