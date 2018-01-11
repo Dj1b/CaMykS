@@ -1638,8 +1638,8 @@ final class Camyks {
       switch ($event) {
         case 'onInitialise' :   $plugin->execute_onCaMykSInitialise(); break;
         case 'onPageLoad' :     $plugin->execute_onCaMykSPageLoad(); break;
-        case 'onBodyOpen' :     $this->HTMLPage->write($plugin->execute_onCaMykSBodyOpen()); break;
-        case 'onBodyClose' :    $this->HTMLPage->write($plugin->execute_onCaMykSBodyClose()); break;
+        case 'onBodyOpen' :     $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyOpen()); break;
+        case 'onBodyClose' :    $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyClose()); break;
         case 'onTerminate' :    $plugin->execute_onCaMykSTerminate(); break;
       }
     }
