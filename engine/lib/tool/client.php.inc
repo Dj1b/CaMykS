@@ -566,6 +566,7 @@ function client_getUAInfos($ua=false) {
         'C2105'=>array('platform_model' => 'Xperia L'), 
         'C5303'=>array('platform_model' => 'Xperia SP'),
         'C6603'=>array('platform_model' => 'Xperia Z'),
+        'D6503'=>array('platform_model' => 'Xperia Z2'),
         'D2005'=>array('platform_model' => 'Xperia E1'),
         'D2203'=>array('platform_model' => 'Xperia E3 (2014)'),
         'D2303'=>array('platform_model' => 'Xperia M2'),
@@ -638,6 +639,7 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/HONOR([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
         'KIW-L21'   => array('platform_model' => 'Honor 5X'),
+        'PLK-L01'   => array('platform_model' => 'Honor 7'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
