@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Dictionnary
  * Creation Date	: Feb 2016
- * Last Modif Date	: Jan 2017
+ * Last Modif Date	: Jan 2018
  *
  * ReCaptcha language french dictionnary
  */
