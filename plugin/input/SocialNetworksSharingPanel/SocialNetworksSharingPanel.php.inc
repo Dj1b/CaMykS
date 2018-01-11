@@ -122,16 +122,6 @@ class SocialNetworksSharingPanel extends Input {
 			   'networks'=>array(0, 0, 0),
 			   'locale'=>$camyks->current_language);
     
-    /* add allowed networks *
-    foreach ($this->networks as $name => $network )
-      $this->iparams['allow_'.$name] = $network['default'];
-    
-
-    /* add special networks */
-    $this->iparams['allow_fb:like'] = array('default'=>0,
-					    'layout'=>'standard', //button_count
-					    );
-					    
     /* merge params */
     $this->iparams = array_merge($this->iparams, $params);
     
@@ -149,11 +139,8 @@ class SocialNetworksSharingPanel extends Input {
     $this->add_JSEngineFile('tool/htmlelement.js');
     $this->add_JSLoadScript('snsp.initialise();');
     
+    /* prepare specific facebook like integration */
     if ($this->config->vars['like_facebook'] == 1 ) {
-        /*
-      $this->add_JSScript('snsp.set_param("fblike_allowed", 1);');
-      $this->add_JSScript('snsp.set_param("fblike_language", "'.$camyks->current_language.'_'.strtoupper($camyks->current_language).'");');
-      */
       $this->register_asCaMykSEventHandler('onBodyOpen');
     }
 
@@ -308,7 +295,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 		
 		/* add google+ */
@@ -318,7 +304,6 @@ class SocialNetworksSharingPanel extends Input {
             'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
     
         /* add linkedin */
@@ -328,7 +313,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 	    ),
     
         /* add instagram */
@@ -338,7 +322,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 	    ),
     
         /* add Youtube */
@@ -348,7 +331,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 	    ),
     
         /* add DailyMotion */
@@ -358,7 +340,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 	    ),
 
         /* add google bookmarks */
@@ -368,7 +349,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
     
         /* add digg */
@@ -378,7 +358,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 
         /* add slashdot */
@@ -388,7 +367,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
     
         /* add technorati */
@@ -398,7 +376,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 
         /* add reddit */
@@ -408,7 +385,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 		
         /* add stumbleupon */
@@ -418,7 +394,6 @@ class SocialNetworksSharingPanel extends Input {
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add viadeo */
@@ -428,7 +403,6 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add pinterest */
@@ -438,7 +412,6 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add tumbler */
@@ -448,7 +421,6 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add vimeo */
@@ -458,7 +430,6 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add flickr */
@@ -468,7 +439,6 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add blogger */
@@ -478,7 +448,6 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add DeviantArt */
@@ -488,17 +457,15 @@ class SocialNetworksSharingPanel extends Input {
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 		),
 				    
 	    /* add SnapShat */
 	    'snapchat' => array(
-	        'title'     => 'SnapShat', 
+	        'title'     => 'Snapshat', 
 		    'link'      => '',
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
-			'like'      => 0,
 		),
    
         /* add email */
@@ -508,7 +475,6 @@ class SocialNetworksSharingPanel extends Input {
             'clic'      => '',
 			'share'     => 1,
 			'follow'    => 0,
-			'like'      => 0,
 		),
 	);
   }
@@ -628,7 +594,6 @@ class SocialNetworksSharingPanel extends Input {
         
     $l = $languages[$camyks->current_language]['locale'][''][0];
      
-  
     return "<div id=\"fb-root\"></div>\n
             <script>(function(d, s, id) {\n
             var js, fjs = d.getElementsByTagName(s)[0];\n

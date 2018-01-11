@@ -64,7 +64,8 @@ $n = $this->dparams['networks'][1];
 
 <?php if ($this->config->vars['like_facebook'] == 1) : ?>
 <?=$this->dparams['separator'];?>
-<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="<?=$this->config->vars['like_facebookLayout'];?>" data-action="<?=$this->config->vars['like_facebookAction'];?>" data-size="<?=$this->config->vars['like_facebookSize'];?>" data-show-faces="false" data-share="false"></div>
+&nbsp;
+<div class="fb-like" data-href="<?=$this->dparams['link'];?>" data-layout="<?=$this->config->vars['like_facebookLayout'];?>" data-action="<?=$this->config->vars['like_facebookAction'];?>" data-size="<?=$this->config->vars['like_facebookSize'];?>" data-show-faces="false" data-share="false"></div>
 <?php endif; ?>
 
 <?php if ($this->dparams['enable_poppanel']==1 and $this->dparams['networks'][2] > 0 ) : ?>
