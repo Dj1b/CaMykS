@@ -24,3 +24,10 @@
 /* content min height */
 a.img{font-size:0px;}
 .adminContentPanel{min-height:450px;}
+
+/* handheld adaptations */
+@media screen and (max-width: 670px) {
+  #pageFooterEngine{text-align:right; padding:12px 0; margin: 0; width:50%;}
+  #pageFooterEngine img {max-width:100%;}
+  #pageFooterVersion{float:right; padding: 15px; color:#9f9bb0; width:50%; font-size: 10px;}
+}
