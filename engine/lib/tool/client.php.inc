@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2007
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Jan 2018
  *
  * client user methods
  */
@@ -276,8 +276,8 @@ function client_getUAInfos($ua=false) {
         'D855'  => array('platform_model' => 'G3',),
         'D722'  => array('platform_model' => 'G3 S',),
         'H815'  => array('platform_model' => 'G4',),
-        'H831'  => array('platform_model' => 'G5',),
-        'M700'  => array('platform_model' => 'Q6 Alpha',),
+        'H870D'	=> array('platform_model' => 'G6',),
+	    'M700'  => array('platform_model' => 'Q6 Alpha',),
         'M160'  => array('platform_model' => 'K4 (2017)',),
     );
   	$infos = array_merge($infos, array(
@@ -336,30 +336,31 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
     $rep = array(
         /* check samsung tablets */
-        'GT-P1000'=>array('platform_model' => 'Galaxy Tab', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P3100'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P3110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5100'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5200' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5210'=>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P7300'=>array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T110' =>array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T113' =>array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T310' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T116NU' =>array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T320' =>array('platform_model' => 'Galaxy Tab Pro', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T530' =>array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T531' =>array('platform_model' => 'Galaxy Tab 4 (3G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T533' =>array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T535' =>array('platform_model' => 'Galaxy Tab 4 (4G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-P550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T560' =>array('platform_model' => 'Galaxy Tab E', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T800' =>array('platform_model' => 'Galaxy Tab S', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T715' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T810' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T813' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P1000'  => array('platform_model' => 'Galaxy Tab', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P3100'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P3110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5100'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5200'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5210'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P7300'  => array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T110'   => array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T113'   => array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T310'   => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T116NU' => array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T320'   => array('platform_model' => 'Galaxy Tab Pro', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T230'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T530'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T531'   => array('platform_model' => 'Galaxy Tab 4 (3G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T533'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T535'   => array('platform_model' => 'Galaxy Tab 4 (4G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T550'   => array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-P550'   => array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T560'   => array('platform_model' => 'Galaxy Tab E', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T800'   => array('platform_model' => 'Galaxy Tab S', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T715'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T810'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T813'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         
         /* check samsung phones */
         'GT-S3800W' => array('platform_model' => 'REX 70', ),
@@ -1212,6 +1213,7 @@ function client_getUAInfos($ua=false) {
         'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
         'PHQ520' => array('platform_model' => 'Griffe G5',),
         'PGN528' => array('platform_model' => 'Plume P6 Pro',),
+	    'PGN523' => array('platform_model' => 'Plume P7 Plus',),
         'PGN605' => array('platform_model' => 'Plume P8',),
     );
     $model = trim($matches[1]);
