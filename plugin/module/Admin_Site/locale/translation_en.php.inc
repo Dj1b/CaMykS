@@ -107,4 +107,14 @@ $this->trads['mod_admin_site_tabserver'] = 'Server';
 $this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Operating system';
 $this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
+
+/* plugins conf texts */
+$this->trads['mod_admin_site_tabplugins'] = 'Plugins';
+$this->trads['mod_admin_site_viewthispluginconfig'] = 'View this plugin configuration';
+$this->trads['mod_admin_site_editthispluginconfig'] = 'Edit this plugin configuration';
+$this->trads['mod_admin_site_formtitle_pluginconfig'] = 'Configuring plugin %s';
+
+/* save configuration messages */
+$this->trads['mod_admin_site_pluginconfiguration_saved'] = 'Plugin %s configuration saved.';
+$this->trads['mod_admin_site_pluginconfiguration_notsaved'] = 'An error has occured while saving plugin %s configuration.';
 ?>
