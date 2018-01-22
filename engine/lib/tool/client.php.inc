@@ -474,6 +474,7 @@ function client_getUAInfos($ua=false) {
         'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
         'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)', ),
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo', ),
+        'SM-N910A'  => array('platform_model' => 'Galaxy Note 4', ),
         'SM-N910F'  => array('platform_model' => 'Galaxy Note 4', ),
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
@@ -1007,6 +1008,18 @@ function client_getUAInfos($ua=false) {
         '510'=>array('platform_model' => 'Smart 5'),
     );
     $model = trim($matches[0]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Orange', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  elseif (preg_match('/Orange ([^.]*) Build/', $ua, $matches)) {
+    $rep = array(
+        
+    );
+    $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Orange', 
       'platform_model'=>$model,
@@ -5026,6 +5039,15 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
+    
+  /* unknown bot */
+  $knownBots['tmm crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'TMM Crawler (unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* unknown bot */
   $knownBots['no.indexing@gmail.com'] = array(
@@ -6765,6 +6787,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
   
   /* badly set user agent */
   if (preg_match('#^=#', $ua))
+    return $fake;
+  
+  /* bad msie/msid request */
+  if (preg_match('#^Mozilla/4.0 \(compatible; MSID [0-9\.]+; Windows NT [0-9\.]+\)$#i', $ua))
     return $fake;
   
   /* not a fake but Apple using a bad user agent */
