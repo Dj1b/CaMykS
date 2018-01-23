@@ -389,7 +389,6 @@ function client_getUAInfos($ua=false) {
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge'),
         'SM-T580'   => array('platform_model' => 'Galaxy S8'),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
-        'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+'),
         'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active'),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V', ),
@@ -5030,6 +5029,24 @@ function client_getKnownBots() {
     'bot_url'=>'https://www.archiveteam.org/index.php?title=ArchiveBot',
     'engine_title'=>'ArchiveTeam',
     'engine_url'=>'https://www.archiveteam.org');
+    
+  /* OrgProbe */
+  $knownBots['orgprobe'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'OrgProbe',
+    'bot_url'=>'',
+    'engine_title'=>'Blocked!',
+    'engine_url'=>'https://www.blocked.org.uk');
+    
+  /* RobotsChecker */
+  $knownBots['robotschecker'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'OrgProbe',
+    'bot_url'=>'',
+    'engine_title'=>'Blocked!',
+    'engine_url'=>'https://www.blocked.org.uk');
     
   /* unknown bot */
   $knownBots['seo bulls'] = array(
