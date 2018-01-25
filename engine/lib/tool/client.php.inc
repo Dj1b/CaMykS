@@ -816,6 +816,7 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
     /* check version */
     $version = ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):'';
+    
     if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
       return $fake;
     
@@ -825,7 +826,7 @@ function client_getUAInfos($ua=false) {
       'platform_model'=>'Macintosh',
       'platform_type'=>'computer',
       'platform_format'=>'desktop',
-      'system_title'=>'Mac OS X',
+      'system_title'=> version_compare ($version, '10.12') >= 0 ? 'macOS' : 'Mac OS X',
       'system_version'=> $version));
   }
   
@@ -5047,6 +5048,15 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'Blocked!',
     'engine_url'=>'https://www.blocked.org.uk');
+    
+  /* Researchscan */
+  $knownBots['researchscan'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Researchscan',
+    'bot_url'=>'http://researchscan.comsys.rwth-aachen.de',
+    'engine_title'=>'RWTH Aachen University',
+    'engine_url'=>'http://www.rwth-aachen.de');
     
   /* unknown bot */
   $knownBots['seo bulls'] = array(
