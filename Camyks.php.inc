@@ -1172,13 +1172,13 @@ final class Camyks {
       $ua = client_getUAInfos();
       
       /* check for hacks or fakes */
-      if (in_array($ua['platform_type'], array('hack', 'fake'))) {
+      if ($this->get_confValue('site_disableFake') == 1 and in_array($ua['platform_type'], array('hack', 'fake'))) {
         header('HTTP/1.1 403 Forbidden');
         die();
       }
       
       /* define define/format */
-      $device = $ua['platform_format'];
+      $device = isset($ua['platform_format'])?$ua['platform_format']:'desktop';
       $deviceStatus = 'auto';
     }
         
