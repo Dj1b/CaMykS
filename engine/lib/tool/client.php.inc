@@ -49,9 +49,7 @@ function client_isHTTPS() {
  * @access public
  */
 function client_getRefererSite() {
-  if (isset($_SERVER['HTTP_REFERER']))
-    return $_SERVER['HTTP_REFERER'];
-  return '';
+  return (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'');
 }
 
 /* 
@@ -61,6 +59,15 @@ function client_getRefererSite() {
  */
 function client_isServerClient() {
   return ($_SERVER['SERVER_ADDR'] == client_getIp()); 
+}
+
+/* 
+ * check if server is marked as Do Not Track
+ * @return boolean result
+ * @access public
+ */
+function client_getDoNotTrack() {
+  return (isset($_SERVER['HTTP_DNT']) and $_SERVER['HTTP_DNT'] == 1);
 }
 
 /*                  
@@ -232,8 +239,8 @@ function client_getUAInfos($ua=false) {
       'system_title'=>'iOS',
     ));
       
-  /* check Google Nexus */
-  elseif (preg_match('/(Nexus( [^ \/;]+)?) Build/', $ua, $matches))
+  /* check Google */
+  elseif (preg_match('/(Nexus( [^ \/;]+)?|Pixel) Build/', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'Google', 
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
@@ -541,7 +548,9 @@ function client_getUAInfos($ua=false) {
   }
   elseif (preg_match('/ ONEPLUS (A[0-9]+)/', $ua, $matches)) {
     $rep = array(
-        'A5000'=>array('platform_model' => '5'),         
+        'A3003' => array('platform_model' => '3T'),
+        'A3010' => array('platform_model' => '3T'),
+        'A5000' => array('platform_model' => '5'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -1315,6 +1324,20 @@ function client_getUAInfos($ua=false) {
   	  'platform_company'=>'PC (Digital Equipment Corporation)', 
       'platform_model'=>$model
     ));
+  }
+  
+  /* check Vodafone mobiles */
+  elseif (preg_match('/Vodafone ([A-Za-z0-9]{3}N) Build/', $ua, $matches)) {
+    $rep = array(
+        '890N'  => array('platform_model' => 'Smart 4 Turbo (2014)',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Vodafone', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
   }
             
   /*** check operating system ***/
@@ -5062,7 +5085,7 @@ function client_getKnownBots() {
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'SEO Bulls (unknown bot)',
+    'bot_title'=>'SEO Bulls (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
@@ -5071,7 +5094,7 @@ function client_getKnownBots() {
   $knownBots['tmm crawler'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'TMM Crawler (unknown bot)',
+    'bot_title'=>'TMM Crawler (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
@@ -5094,47 +5117,38 @@ function client_getKnownBots() {
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
+  /* Centurybot9 - unknown bot */
   $knownBots['centurybot9'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'Centurybot9 (Unknown bot)',
     'bot_url'=>'mailto:centurybot9@gmail.com',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
+  /* celious search engine - unknown bot */
   $knownBots['celious search engine'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'Celious Search Engine (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
-  $knownBots['celious search engine'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* unknown bot */
+  /* SMURLExpander - unknown bot */
   $knownBots['smurlexpander'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'SMURLExpander (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
+  /* DnyzBot - unknown bot */
   $knownBots['dnyzbot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'DnyzBot (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
