@@ -19,7 +19,7 @@ $this->trads['mod_admin_languagechecker_desc'] = 'Permet de comparer les fichier
 $this->trads['mod_admin_languagechecker_engine'] = 'Moteur %s';
 $this->trads['mod_admin_languagechecker_module'] = 'Module %s';
 $this->trads['mod_admin_languagechecker_input'] = 'Input %s';
-$this->trads['mod_admin_languagechecker_item'] = 'El&eacute;ment';
+$this->trads['mod_admin_languagechecker_item'] = '&Eacute;l&eacute;ment';
 $this->trads['mod_admin_languagechecker_value'] = 'Valeur';
 $this->trads['mod_admin_languagechecker_unset'] = 'Non d&eacute;fini';
 ?>
