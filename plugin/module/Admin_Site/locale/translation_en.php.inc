@@ -7,13 +7,19 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Dictionnary
  * Creation Date	: Feb 2013
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Jan 2018
  *
  * Admin_Site english dictionnary
  *
  */
 $this->trads['mod_admin_site_title'] = 'Website configuration';
 $this->trads['mod_admin_site_desc'] = 'Check website configuration';
+
+/* admin rights */
+$this->trads['mod_admin_site_rights_read_site_config'] = 'Read website configuration';
+$this->trads['mod_admin_site_rights_edit_site_config'] = 'Edit website configuration';
+$this->trads['mod_admin_site_rights_read_plugin_config'] = 'Read plugin configuration';
+$this->trads['mod_admin_site_rights_edit_plugin_config'] = 'Edit plugin configuration';
 
 /* ssl values */
 $this->trads['mod_admin_site_sslvalue_auto'] = 'Automatic (SSL used if available)';

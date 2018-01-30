@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module dictionnary
  * Creation Date	: Nov 2012
- * Last Modif Date	: Nov 2012
+ * Last Modif Date	: Jan 2018
  *
  * Admin_User english dictionnary
 */
@@ -15,8 +15,13 @@
 $this->trads['mod_admin_user_title'] = 'Users';
 $this->trads['mod_admin_user_desc'] = 'Manager administrators';
 
+/* users status list */
+$this->trads['mod_admin_user_users_all'] = 'All';
+$this->trads['mod_admin_user_users_disabled'] = 'Disabled';
+$this->trads['mod_admin_user_users_enabled'] = 'Enabled';
+
 /* admin list */
-$this->trads['mod_admin_user_formitem_search'] = 'Rechercher : ';
+$this->trads['mod_admin_user_formitem_search'] = 'Search: ';
 $this->trads['mod_admin_user_adduser'] = 'Add a new administrator';
 $this->trads['mod_admin_user_select'] = 'Select an user';
 $this->trads['mod_admin_user_doesn_t_exist'] = 'This user account doesn\'t exist.';
