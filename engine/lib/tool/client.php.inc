@@ -1547,7 +1547,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
       $rep = array('FDM'=>'Free Download Manager',);
       $infos = array_merge(array(
         'platform_type'     => 'computer',
@@ -1610,11 +1610,6 @@ function client_getUAInfos($ua=false) {
       	), $infos);
       }
     }
-    
-    /* check America Online Browser */
-    elseif (preg_match('/America Online Browser ([a-z0-9\._]*);/', $ua, $matches))
-      $infos = array_merge(array('browser_title'=>'America Online Browser', 
-      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
   	
     /* check msie */
   	elseif (preg_match('/MSIE ?([a-z0-9\._]*)( |;|\-|\))/', $ua, $matches))
@@ -1647,6 +1642,11 @@ function client_getUAInfos($ua=false) {
         'browser_title'     => 'Netscape', 
       	'browser_version'   => $matches[1],
       ), $infos);
+    
+    /* check America Online Browser */
+    elseif (preg_match('/America Online Browser ([a-z0-9\._]*);/', $ua, $matches))
+      $infos = array_merge(array('browser_title'=>'America Online Browser', 
+      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
       
     /* check WMP */
     elseif (preg_match('/^Windows-Media-Player\/([^\(]*)|Media Player Classic/', $ua, $matches))
@@ -3662,6 +3662,15 @@ function client_getKnownBots() {
     'bot_url'=>'',
     'engine_title'=>'DomainMacro',
     'engine_url'=>'http://domainmacro.com');
+  
+  /* glindahl-cocrawler */
+  $knownBots['glindahl-cocrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'glindahl-cocrawler',
+    'bot_url'=>'http://www.pbm.com/~lindahl/glindahl-cocrawler.html',
+    'engine_title'=>'Greg Lindahl',
+    'engine_url'=>'http://www.pbm.com/~lindahl/');
   
   /* ocrawler */
   $knownBots['ocrawler'] = array(
