@@ -14,63 +14,63 @@
  * Build xhtml1-transitional pages
 */
 
-class HTMLPage {  
+final class HTMLPage {  
   /* current page content */
-  var $content;
+  private $content;
 
   /* header doctype */
-  var $doctype;
+  private $doctype;
 
   /* redirect values */
-  var $redirect_time;
-  var $redirect_url;
+  private $redirect_time;
+  private $redirect_url;
 
   /* cache control */
-  var $disable_cache;
+  private $disable_cache;
 
   /* header titles */
-  var $site_title;
-  var $page_title;
+  private $site_title;
+  public $page_title;
 
   /* header metas */
-  var $charset;
-  var $metas;
-  var $rss;
-  var $robots_index;
-  var $robots_follow;
+  private $charset;
+  private $metas;
+  private $rss;
+  private $robots_index;
+  private $robots_follow;
  
   /* header language */
-  var $language;
+  private $language;
   
   /* included javascript files */
-  var $js_files;
+  private $js_files;
   /* included javascript scripts */
-  var $js_scripts;
+  private $js_scripts;
   /* included javascript scripts, added before files importation */
-  var $js_pre_scripts;
+  private $js_pre_scripts;
   
   /* included style files */
-  var $style_files;
+  private $style_files;
   /* included style scripts */
-  var $style_scripts;
+  private $style_scripts;
   /* included style files as script */
-  var $style_included_files;
+  private $style_included_files;
   
   /* header extra */
-  var $header_extras;
+  private $header_extras;
 
   /* header favicon */
-  var $favicon;
+  private $favicon;
   
   /* onload attributes */
-  var $js_event_scripts;
+  private $js_event_scripts;
 
   /* 
    * HTMLPage object constructor
    * @return void
    * @access public
    */
-  function HTMLPage( ){
+  public function __construct(){
     global $camyks;
     
     /* load HTML version to display */
@@ -135,10 +135,10 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_siteInformations( $site_title, $site_author='') {
+  public function set_siteInformations($site_title, $site_author='') {
     $this->site_title = $site_title;
-    if ( $site_author != '' ) 
-      $this->add_meta ("author",  $site_author);
+    if ($site_author != '') 
+      $this->add_meta('author',  $site_author);
   }
   
   /*
@@ -150,15 +150,15 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_pageInformations( $page_title, $page_desc='', $page_keys='', $page_lang='' ) {
+  public function set_pageInformations($page_title, $page_desc='', $page_keys='', $page_lang='') {
     $this->page_title = $page_title;
     $this->language = $page_lang;
     if ( $page_keys != '' )
-      $this->add_meta ("keywords",  $page_keys);
+      $this->add_meta('keywords',  $page_keys);
     if ( $page_desc != '' )
-      $this->add_meta ("description", $page_desc);
+      $this->add_meta('description', $page_desc);
     if ( $page_lang != '' and $this->htmlVersion == 4)
-      $this->add_meta ("Content-Language", $page_lang, 'http-equiv');
+      $this->add_meta('Content-Language', $page_lang, 'http-equiv');
   }
   
   /* 
@@ -168,11 +168,10 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_robotInformations ( $index=true, $follow=true ) {
+  public function set_robotInformations($index=true, $follow=true) {
     $this->robots_index = $index;
     $this->robots_follow = $follow;
-    $this->add_meta('robots', ($this->robots_index?'':'no').'index,'
-		    .($this->robots_follow?'':'no').'follow');
+    $this->add_meta('robots', ($this->robots_index?'':'no').'index,'.($this->robots_follow?'':'no').'follow');
   }
 
   /* 
@@ -181,7 +180,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_googleInformations( $code='', $domain='' ) {
+  public function set_googleInformations($code='', $domain='') {
     if ($code != '')
       $this->google_analytics['code'] = $code;
     if ($domain != '') 
@@ -194,7 +193,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_favicon ( $fav=null ) {
+  public function set_favicon($fav=null) {
   	global $camyks;
   	$root = $camyks->get_rootBaseURL('absolute_long');
     if ( isset( $fav ) and file_exists($fav) ) {
@@ -210,8 +209,8 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_charset ( $charset='' ) {
-    if ( $charset != '' and $this->charset != $charset ) {
+  public function set_charset($charset='') {
+    if ($charset != '' and $this->charset != $charset) {
       $this->charset = $charset;
       $this->add_meta('Content-Type', 'text/html; charset='.$this->charset.'', 'http-equiv');
     }
@@ -225,7 +224,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_meta ( $key, $value, $method='name' ) {
+  public function add_meta($key, $value, $method='name') {
     if ($method == 'link:rel')
       return $this->add_link($key, $value);
     $this->metas[$key] = array('value'=>$value, 'method'=>$method);
@@ -239,7 +238,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_link( $rel, $href, $params=array()) {
+  public function add_link($rel, $href, $params=array()) {
     if ($rel == '')
       $this->links[] = array_merge($params, array('href'=>$href));
     else
@@ -252,8 +251,8 @@ class HTMLPage {
    * @return void
    * @access public 
    */
-  function add_JSFile( $file='' ) {
-    if ( $file != '' and !in_array($file, $this->js_files))
+  public function add_JSFile($file='') {
+    if ($file != '' and !in_array($file, $this->js_files))
       $this->js_files[] = $file;
   }
   
@@ -264,7 +263,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_JSScript( $script='', $unique=false ) {
+  public function add_JSScript( $script='', $unique=false ) {
     if ( $script=='' or ($unique and in_array($script, $this->js_scripts)))
       return;
     $this->js_scripts[] = $script;
@@ -277,8 +276,8 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_JSPreScript( $script='', $unique=false ) {
-    if ( $script=='' or ($unique and in_array($script, $this->js_pre_scripts)))
+  public function add_JSPreScript( $script='', $unique=false ) {
+    if ($script=='' or ($unique and in_array($script, $this->js_pre_scripts)))
       return;
     $this->js_pre_scripts[] = $script;
   }
@@ -292,7 +291,7 @@ class HTMLPage {
    * @access public
    */
    
-  function add_JSWindowEventScript($event, $script, $unique=false) {
+  public function add_JSWindowEventScript($event, $script, $unique=false) {
     /* check empty script */
     if ($script == '')
       return;
@@ -320,7 +319,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_JSloadScript( $script='', $unique=false ) {
+  public function add_JSloadScript($script='', $unique=false) {
     return $this->add_JSWindowEventScript('load', $script, $unique);
   }
 
@@ -331,7 +330,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_JSunloadScript( $script='', $unique=false ) {
+  public function add_JSunloadScript($script='', $unique=false) {
     return $this->add_JSWindowEventScript('unload', $script, $unique);
   }
   
@@ -342,11 +341,11 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_styleFile( $file='', $media='', $condition='' ) {  
+  public function add_styleFile($file='', $media='', $condition='') {  
     $file = trim($file);
-    if ( $file == '' )
+    if ($file == '')
       return;
-    if ( !isset($this->style_files[$media] ) )
+    if (!isset($this->style_files[$media]))
       $this->style_files[$media] = array();
     $this->style_files[$media][] = array('file'=>$file, 'condition'=>$condition);
   }
@@ -357,8 +356,8 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_styleScript( $css='' ) {
-    if ( $css != '' )
+  public function add_styleScript($css='') {
+    if ($css != '')
       $this->style_scripts[] = $css;
   }
 
@@ -368,8 +367,8 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_styleIncludedFile( $file='' ) {
-    if ( $file != '' ) 
+  public function add_styleIncludedFile($file='') {
+    if ($file != '') 
       $this->style_included_files[] = $file;
   }
   
@@ -379,7 +378,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_headerExtra($content='') {
+  public function add_headerExtra($content='') {
     $this->header_extras .= $content."\n";
   }
 
@@ -390,7 +389,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_RSSFeed( $url='', $title='' ) {
+  public function set_RSSFeed($url='', $title='') {
     $this->add_RSSFeed($url, $title);
   }
   
@@ -401,7 +400,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_RSSFeed( $url='', $title='') {
+  public function add_RSSFeed($url='', $title='') {
     $this->add_link('alternate', $url, array('title'=>$title, 'type'=>'application/rss+xml'));
   }
 
@@ -412,7 +411,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_redirect ( $time, $url ) {
+  public function set_redirect($time, $url) {
     $this->redirect_time = $time;
     $this->redirect_url = $url;
     $this->add_meta('Refresh', $time.';url='.$url, 'http-equiv');
@@ -425,8 +424,8 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function set_mobileMeta($enabled=false, $config=array()) {
-    if ( $enabled == false )
+  public function set_mobileMeta($enabled=false, $config=array()) {
+    if ($enabled == false)
       return;
 
     /* set default config */
@@ -448,7 +447,7 @@ class HTMLPage {
     $value = implode(', ', $value);
 
     /* set meta */
-    $this->add_meta ('viewport', $value, 'name');
+    $this->add_meta('viewport', $value, 'name');
     
     /* update doctype */
     if ( $this->htmlVersion != 5 )
@@ -463,9 +462,9 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function write_HTMLContent( $buffer = '' ) {
+  public function write_HTMLContent($buffer = '') {
     echo $this->content.$buffer;
-    $this->content = "";
+    $this->content = '';
   }
   
   /*
@@ -474,8 +473,8 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function flush ( $buffer = '') {
-    $this->write_HTMLContent( $buffer );
+  public function flush($buffer = '') {
+    $this->write_HTMLContent($buffer);
   }
 
   /*
@@ -484,7 +483,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_HTMLContent ( $content='' ) {
+  public function add_HTMLContent($content='') {
     $this->content .= $content;
   }
   
@@ -495,11 +494,11 @@ class HTMLPage {
    * @return string
    * @access public
    */
-  function write_HTMLFile ( $file='', $buffer='' ) {
-    if ( file_exists ( $file ) ) {
-      $this->add_HTMLContent( $buffer );
-      $this->write_HTMLContent( );
-      require( $file );
+  public function write_HTMLFile($file='', $buffer='') {
+    if (file_exists($file)) {
+      $this->add_HTMLContent($buffer);
+      $this->write_HTMLContent();
+      require($file);
       return '';
     }
     return $buffer;
@@ -510,7 +509,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function add_HTMLHeader() {
+  public function add_HTMLHeader() {
     $this->get_doctype();
     $this->get_htmlHeader();
     $this->get_title();
@@ -530,7 +529,7 @@ class HTMLPage {
    * @return void
    * @access public 
    */
-  function add_HTMLFooter ( ) {
+  public function add_HTMLFooter() {
     echo "</body>\n";
     echo "</html>\n";
   }
@@ -542,7 +541,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_doctype( ) {
+  public function get_doctype() {
     echo $this->doctype."\n";
   }
   
@@ -551,9 +550,9 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_htmlHeader( ) {
+  public function get_htmlHeader() {
     global $camyks;
-    if ( $this->language != "" and $this->htmlVersion == 4 )
+    if ($this->language != "" and $this->htmlVersion == 4)
       echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$this->language.'" lang="'.$this->language.'">'."\n".'<head>';
     elseif ($this->language == '')
       echo "<html>\n<head>\n";
@@ -570,15 +569,23 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_title( ) {
-    $str = "<title>";
-    if ( $this->site_title != "" and $this->page_title != "") {
-      $str .= $this->site_title." - ".$this->page_title;
-    } else if (  $this->site_title == "" ) {
-      $str .= $this->page_title;
-    } else if (  $this->page_title == "" ) {
-      $str .= $this->site_title;
+  public function get_title() {
+    global $camyks;
+    
+    /* prepare title */
+    $t = array();
+    
+    if (!isset($camyks->contentPage) or $camyks->contentPage->homepage == 1) {
+      /* display site title first on home page, then page title */
+      if ($this->site_title != "") $t[] = $this->site_title;
+      if ($this->page_title != "") $t[] = $this->page_title;
+    } else {
+      /* display page title first on other pages, then site title */
+      if ($this->page_title != "") $t[] = $this->page_title;
+      if ($this->site_title != "") $t[] = $this->site_title;
     }
+    $str = "<title>";
+    $str .= implode(' - ', $t);
     $str .= "</title>\n";
     echo $str;
   }
@@ -588,9 +595,9 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_metas( ) {      
-    foreach ( $this->metas as $key => $meta ) {
-      echo "<meta ".$meta['method']."=\"".$key."\" content=\"".$meta['value']."\" />\n";
+  public function get_metas() {      
+    foreach ($this->metas as $key => $meta) {
+      echo "<meta ".$meta['method']."=\"".$key."\" content=\"".preg_replace('/"/', '\'', $meta['value'])."\" />\n";
     } 
   }
   
@@ -599,7 +606,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_links( ) {      
+  public function get_links() {      
     foreach ( $this->links as $link ) {
       echo '<link';
       foreach ($link as $key => $value)
@@ -613,26 +620,32 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_JSFiles( ) {
+  public function get_JSFiles() {
     global $camyks;
     
     $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
-    
-    if ($camyks->mode == CAMYKS_MODE_SITE 
-        and $camyks->get_confValue('cache_server_side') == 'enabled' and count($this->js_files)>1) {
+        
+    /* check for server side caches */
+    if ($camyks->mode == CAMYKS_MODE_SITE and $camyks->get_confValue('cache_server_side') == 'enabled' and count($this->js_files)>1) {
       $str = '';
-      foreach ( $this->js_files as $js ) {
+      $cachedJS = array();
+      foreach ($this->js_files as $idx => $js) {
         $f = new FSFile($js);
+        if (preg_match('/http?s:\/\//', $js)) 
+          continue;
+        
+        $cachedJS[] = $js;
+        unset($this->js_files[$idx]);
         $str .= $f->filename.'-'.$f->md5().'/';
       }
       
       $checksum = md5($str);
-      $masterScript = $camyks->site_var_path.'/ServerCache/scripts/script-'.count($this->js_files).'-'.$checksum.'.js';
+      $masterScript = $camyks->site_var_path.'/ServerCache/scripts/script-'.count($cachedJS).'-'.$checksum.'.js';
       
       if (!file_exists($masterScript)) {
         folder_completePath ($camyks->site_var_path.'/ServerCache/scripts');
         $mf = fopen($masterScript, 'a+');
-        foreach ( $this->js_files as $js ) {
+        foreach ($cachedJS as $js) {
           $content = file_get_contents($js);
           $content = preg_replace('/(\r\n){1,}/', "\n", $content);
           fwrite($mf, $content."\n\n");
@@ -640,16 +653,16 @@ class HTMLPage {
         fclose($mf);
       }
       echo "<script type=\"text/javascript\" src=\"".$camyks->get_fileURL($masterScript)."\">/* add javascript */</script>\n";
-      return;
     }
-        
+    
+    /* check for client side cache */
     if ($camyks->get_confValue('cache_client_side') == 'disabled')
       $r = '?'.rand(0, 999999);
     else
       $r = '';
     
-    
-    foreach ( $this->js_files as $js ) {
+    /* add files */
+    foreach ($this->js_files as $js ) {
       if (preg_match('/https?:\/\//i', $js))
         echo "<script type=\"text/javascript\" src=\"".$js.$r."\">/* add javascript */</script>\n";
       else
@@ -662,14 +675,14 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_JSPreScripts( ) {
+  public function get_JSPreScripts() {
     /* check for pre-scripts to write */
-    if ( count ( $this->js_pre_scripts ) == 0 )
+    if (count ($this->js_pre_scripts) == 0)
       return;
       
     /* add scripts */
     $str = "<script type=\"text/javascript\">\n";
-    foreach ( $this->js_pre_scripts as $script ) {
+    foreach ($this->js_pre_scripts as $script) {
       $str .= "\t".$script."\n";
     }
     $str .= "</script>\n";
@@ -682,7 +695,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_JSScripts( ) {
+  public function get_JSScripts() {
     /* check for scripts to write */
     if ( count ( $this->js_scripts ) == 0 
 	 and count ( $this->js_event_scripts ) == 0
@@ -716,28 +729,36 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_styleFiles( ) {
+  public function get_styleFiles() {
     global $camyks;
     
-    if ($camyks->mode == CAMYKS_MODE_SITE 
-        and $camyks->get_confValue('cache_server_side') == 'enabled') {
+    /* check for server side caches */
+    if ($camyks->mode == CAMYKS_MODE_SITE and $camyks->get_confValue('cache_server_side') == 'enabled') {
       $allfiles = array();
       foreach ( $this->style_files as $media => $files ) {
         if (count($files) <= 1)
           continue;
           
         $str = '';
-        foreach ($files as $fInfo) {
+        $cachedCSS = array();
+        foreach ($files as $idx => $fInfo) {
           $f = new FSFile($fInfo['file']);
+          if ($fInfo['condition'] != '' or preg_match('/https?:\/\//', $fInfo['file'])) {
+            continue;
+          }
+          
+          $cachedCSS[] = $fInfo;
+          unset($this->style_files[$media][$idx]);
           $str .= $f->filename.'-'.$f->md5().'/';
         }
+        
         $checksum = md5($str);
-        $masterStyles = $camyks->site_var_path.'/ServerCache/styles/style-'.count($files).'-'.$checksum.'.css';
+        $masterStyles = $camyks->site_var_path.'/ServerCache/styles/style-'.count($cachedCSS).'-'.$checksum.'.css';
       
         if (!file_exists($masterStyles)) {
           folder_completePath ($camyks->site_var_path.'/ServerCache/styles');
           $mf = fopen($masterStyles, 'a+');
-          foreach ( $files as $f ) {
+          foreach ($cachedCSS as $f) {
             $file= new FSFile($f['file']);
             $p = $file->path;
             
@@ -750,35 +771,35 @@ class HTMLPage {
           fclose($mf);
         }
 
-        if ( $media == '' )
+        if ($media == '')
 	      echo '<link href="'.$camyks->get_fileURL($masterStyles).'" type="text/css" rel="stylesheet" />'."\n";
 	    else
 	      echo '<link href="'.$camyks->get_fileURL($masterStyles).'" media="'.$media.'" type="text/css" rel="stylesheet" />'."\n";
-        unset($this->style_files[$media]);
       }
     }
     
+    /* check for client side caches */
     if ($camyks->get_confValue('cache_client_side') == 'disabled')
-          $r = '?'.rand(0, 999999);
-        else
-          $r = '';
-    
-    /* add specific styles */
-    foreach ( $this->style_files as $media => $files ) {
+      $r = '?'.rand(0, 999999);
+    else
+      $r = '';
         
-      foreach ( $files as $file ) {      
+    /* add specific styles */
+    foreach ($this->style_files as $media => $files) {
+        
+      foreach ($files as $file) {      
         /* check for condition */
-        if ( $file['condition'] != '') 
+        if ($file['condition'] != '') 
           echo '<!--[if '.$file['condition'].']>'."\n";
         
         /* add files */
-	    if ( $media == '' )
+	    if ($media == '')
 	      echo '<link href="'.$camyks->get_fileURL($file['file']).$r.'" type="text/css" rel="stylesheet" />'."\n";
 	    else
 	      echo '<link href="'.$camyks->get_fileURL($file['file']).$r.'" media="'.$media.'" type="text/css" rel="stylesheet" />'."\n";
 	    
 	    /* end condition */
-	    if ( $file['condition'] != '') 
+	    if ($file['condition'] != '') 
   	      echo '<![endif]-->'."\n";
       }
     }
@@ -789,20 +810,19 @@ class HTMLPage {
    * @return void
    * @access public 
    */
-  function get_styleScripts( ) {
+  public function get_styleScripts() {
     /* check for scripts to write */
-    if ( count ( $this->style_scripts ) == 0 
-	 and count ( $this->style_included_files ) == 0 ) {
+    if (count($this->style_scripts) == 0 and count ($this->style_included_files) == 0) {
       return;
     }
     /* write styles */
     echo '<style type="text/css">'."\n";
-    foreach ( $this->style_included_files as $s ) {
+    foreach ($this->style_included_files as $s) {
       if ( file_exists( $s ) )
-	require($s);
+	    require($s);
     }
     $str = '';
-    foreach ( $this->style_scripts as $s ) {
+    foreach ($this->style_scripts as $s) {
       $str .= $s ."\n\n";
     }
     $str .= '</style>'."\n";
@@ -814,7 +834,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_headerExtras() {
+  public function get_headerExtras() {
     echo $this->header_extras;
   }
   
@@ -823,7 +843,7 @@ class HTMLPage {
    * @return void
    * @access public
    */
-  function get_body ( ) {
+  public function get_body ( ) {
     echo "</head>\n<body>\n";
     if ( $this->google_analytics['code'] != '' ) {
       /* add google analytics */

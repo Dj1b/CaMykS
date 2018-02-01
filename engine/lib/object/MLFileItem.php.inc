@@ -54,7 +54,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @return boolean
    * @access public
    */
-  function get( $_libObjId ) {
+  function get($_libObjId) {
   	/* get file path */
     if ( ($file = $this->exists( $this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId )) != '' )  {
       $this->value = $this->url.'/'.$this->get_folder($_libObjId).'/'.$file;
@@ -68,15 +68,15 @@ class MLFileItem extends ModuleLibraryItem {
    * @return boolean
    * @access public
    */
-  function save( $_libObjId ) {  
-    if ( $this->upload or $this->delete ) {
+  function save($_libObjId) {  
+    if ($this->upload or $this->delete) {
       /* create parent library object folder */
       folder_completePath ( $this->path.'/'.$this->get_folder($_libObjId),  0771);
       /* try to delete old file */
       $this->delete( $_libObjId );
     }
     
-    if ( $this->upload ) {
+    if ($this->upload) {
       /* get file extension */
       if ( preg_match( '/.*\.([^\.]*)/', $_FILES[$this->name]['name'], $ext ) ) 
 		$ext = $ext[1];

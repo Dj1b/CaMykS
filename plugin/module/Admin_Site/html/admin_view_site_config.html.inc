@@ -7,10 +7,16 @@
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Layout
  * Creation Date   	: Jan 2005
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Jan 2018
  *
- * Admin_Site Module Admin Layout : read mode
+ * Admin_Site Module Admin Layout : view site configuration mode
  */
+ 
+$view = $this->theme->get_pictURL('view', 12, 'std');
+$view_ = $this->theme->get_pictURL('view', 12, 'ovr');
+$cnfg = $this->theme->get_pictURL('action', 12, 'std');
+$cnfg_ = $this->theme->get_pictURL('action', 12, 'ovr');
+ 
 global $camyks;
 ?>
 <?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:500px;margin:0 auto;'));?>
@@ -682,6 +688,58 @@ global $camyks;
 	</tr>
   </table>
 </div>
+
+<?php if ($this->check_right(2)) : ?>
+<div id="itemPlugins" style="display:<?=$this->tabBuilder->get_tabDisplay('Plugins')?>;" class="adminContentPanel">
+  <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+
+    <?php foreach ($this->plugins as $type => $list) : ?>
+	  <?php if (count($list) == 0) continue; ?>
+	  <tr>
+	    <td class="eTableHeader" colspan="3">
+	      <?=$camyks->get_translation($type);?>  
+	    </td>
+	  </tr>
+
+      <?php $alt = 0; ?>
+      <?php foreach ($list as $name => $title) : ?>
+    
+        <tr>
+	      <td class="eTableLine<?=$alt;?> eContent2">
+	        <?=$title;?>
+	      </td>
+	      <td class="eTableLine<?=$alt;?> eTableIconCell">
+	        <a href="<?=$this->get_adminLink(array('mode'=>'viewPluginConfig', 'plugin'=>$name));?>" class="img">
+	          <img src="<?=$view;?>" alt="<?=$this->get_translation('viewthispluginconfig');?>" title="<?=$this->get_translation('viewthispluginconfig');?>"
+	            onmouseover="this.src='<?=$view_;?>';" onmouseout="this.src='<?=$view;?>';" />
+	        </a>
+	      </td>
+	      <td class="eTableLine<?=$alt;?> eTableIconCell">
+	        <?php if ($this->check_right(2)) : ?>
+	          <a href="<?=$this->get_adminLink(array('mode'=>'editPluginConfig', 'plugin'=>$name));?>" class="img">
+	            <img src="<?=$cnfg;?>" alt="<?=$this->get_translation('editthispluginconfig');?>" title="<?=$this->get_translation('editthispluginconfig');?>"
+	              onmouseover="this.src='<?=$cnfg_;?>';" onmouseout="this.src='<?=$cnfg;?>';" />
+	           </a>
+	        <?php else : ?>
+	          &nbsp; 
+	        <?php endif; ?>
+	      </td>
+	    </tr>
+    
+        <?php $alt = abs($alt-1); ?>
+      <?php endforeach; ?>
+      
+      <tr>
+	    <td class="eTableLine0" colspan="3">
+	      &nbsp;
+	    </td>
+	  </tr>
+
+    <?php endforeach; ?>
+    
+  </table>
+</div>
+<?php endif; ?>
 
 <?=$this->theme->get_boxContent2Footer();?>
 <?=$this->theme->get_boxButtonsBar($this->buttons);?>

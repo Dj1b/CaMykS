@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Engine / Tool Library
  * Creation Date	: Jun 2007
- * Last Modif Date  : Oct 2017
+ * Last Modif Date  : Jan 2018
  *
  * client user methods
  */
@@ -49,9 +49,7 @@ function client_isHTTPS() {
  * @access public
  */
 function client_getRefererSite() {
-  if (isset($_SERVER['HTTP_REFERER']))
-    return $_SERVER['HTTP_REFERER'];
-  return '';
+  return (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'');
 }
 
 /* 
@@ -61,6 +59,15 @@ function client_getRefererSite() {
  */
 function client_isServerClient() {
   return ($_SERVER['SERVER_ADDR'] == client_getIp()); 
+}
+
+/* 
+ * check if server is marked as Do Not Track
+ * @return boolean result
+ * @access public
+ */
+function client_getDoNotTrack() {
+  return (isset($_SERVER['HTTP_DNT']) and $_SERVER['HTTP_DNT'] == 1);
 }
 
 /*                  
@@ -99,6 +106,10 @@ function client_getUAInfos($ua=false) {
     return $c;
 
   /*** check plateform ***/
+  
+  /* load max versions to check and default fake value */
+  $maxVersions = _client_getUAPropertiesMaxVersions();
+  $fake = array('platform_type'=>'fake');
 
   /* check Playstation 4 / Vita */
   if (preg_match('/\(PlayStation ([^ ]*) ([0-9\.]*)\)/i', $ua, $matches))
@@ -192,30 +203,44 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
       
   /* check iphone / ipod / ipad */
-  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version|GSA)\/([0-9\.]*)/', $ua, $matches))
+  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version)\/([0-9\.]*)/', $ua, $matches)) {
+    /* check version */
+    $version = str_replace('_', '.', $matches[3]);
+    if (version_compare($version, $maxVersions['system']['iOS']) > 0)
+      return $fake;
+      
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'system_title'=> 'iOS', //$matches[2],
-      'system_version'=>str_replace('_', '.', $matches[3]),
+      'system_version'=>$version,
       'browser_title'=>'Safari Mobile',
-      'browser_version'=>$matches[5]));
-  elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches))
+      'browser_version'=>$matches[5],
+    ));
+  } elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches)) {
+    /* check version */
+    $version = str_replace('_', '.', $matches[3]);
+    if (version_compare($version, $maxVersions['system']['iOS']) > 0)
+      return $fake;
+    
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'system_title'=>'iOS', //$matches[2],
-      'system_version'=>str_replace('_', '.', $matches[3])));
-  elseif (preg_match('/(iPod|iPhone|iPad);/', $ua, $matches))
+      'system_version'=>$version,
+    ));
+  } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'Apple', 
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
-      'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',));
+      'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
+      'system_title'=>'iOS',
+    ));
       
-  /* check Google Nexus */
-  elseif (preg_match('/(Nexus( [^ \/;]+)?) Build/', $ua, $matches))
+  /* check Google */
+  elseif (preg_match('/(Nexus( [^ \/;]+)?|Pixel) Build/', $ua, $matches))
   	$infos = array_merge($infos, array('platform_company'=>'Google', 
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
@@ -228,18 +253,20 @@ function client_getUAInfos($ua=false) {
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
-  elseif (preg_match('/HTC(?: |_|\-)?([^ _\-\/]+)/', $ua, $matches)) {
+  elseif (preg_match('/HTC[ |_]([^\/\-]*)( Build|\-)/', $ua, $matches)) {
   	$rep = array(
   	    'M8Sx'         => array('platform_model' => 'One', ),
   	    'IncredibleS'  => array('platform_model' => 'Incredible S'),
   	    'D820u'        => array('platform_model' => 'Desire 820 Dual SIM'),
   	);
   	
+  	$model = preg_replace('/_/', ' ', $matches[1]);
+  	
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'HTC', 
-      'platform_model'=>((isset($matches[1]) and strlen($matches[1]) > 1)?ucwords(strtolower($matches[1])):''),
+      'platform_model'=>$model,
       'platform_type'=>'handheld',
-      'platform_format'=>'handheld'),
+      'platform_format'=>'handheld'), 
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
   
@@ -252,13 +279,30 @@ function client_getUAInfos($ua=false) {
       
   elseif (preg_match('/LG-([A-Z][0-9]{3}[A-Z]?)/', $ua, $matches)) {
     $rep = array(
-        'E610'  => array('platform_model' => 'Optimus L5',),
-        'L160L' => array('platform_model' => 'Optimus LTE2',),
-        'D855'  => array('platform_model' => 'G3',),
+        'D160'  => array('platform_model' => 'L40',),
+        'D315'  => array('platform_model' => 'F70',),
+        'D320'  => array('platform_model' => 'L70',),
+        'D405'  => array('platform_model' => 'L90',),
+        'D505'  => array('platform_model' => 'Optimus F6',),
+        'D620'  => array('platform_model' => 'G2 Mini',),
         'D722'  => array('platform_model' => 'G3 S',),
+        'D802'  => array('platform_model' => 'Nexus 5',),
+        'D821'  => array('platform_model' => 'G2',),
+        'D855'  => array('platform_model' => 'G3',),
+        'D855'  => array('platform_model' => 'G Flex',),
+        'E410'  => array('platform_model' => 'Optimus L1 II',),
+        'E430'  => array('platform_model' => 'Optimus L3 II',),
+        'E440'  => array('platform_model' => 'Optimus L4 II',),
+        'E460'  => array('platform_model' => 'Optimus L5 II',),
+        'E610'  => array('platform_model' => 'Optimus L5',),
+        'E960'  => array('platform_model' => 'Nexus 4',),
         'H815'  => array('platform_model' => 'G4',),
-        'H831'  => array('platform_model' => 'G5',),
-        'M700'  => array('platform_model' => 'Q6 Alpha',),
+        'H870D'	=> array('platform_model' => 'G6',),
+        'L160L' => array('platform_model' => 'Optimus LTE2',),
+	    'M700'  => array('platform_model' => 'Q6 Alpha',),
+        'M160'  => array('platform_model' => 'K4 (2017)',),
+        'P715'  => array('platform_model' => 'Optimus L7 II',),
+        'P875'  => array('platform_model' => 'Optimus F5',),
     );
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'LG', 
@@ -311,71 +355,84 @@ function client_getUAInfos($ua=false) {
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
-
   
   /* check samsung devices */
   elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
     $rep = array(
         /* check samsung tablets */
-        'GT-P1000'=>array('platform_model' => 'Galaxy Tab', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P3100'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P3110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5100'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5110'=>array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5200' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P5210'=>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'GT-P7300'=>array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T110' =>array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T113' =>array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T310' =>array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T116NU' =>array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T320' =>array('platform_model' => 'Galaxy Tab Pro', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T530' =>array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T531' =>array('platform_model' => 'Galaxy Tab 4 (3G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T533' =>array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T535' =>array('platform_model' => 'Galaxy Tab 4 (4G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-P550' =>array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T560' =>array('platform_model' => 'Galaxy Tab E', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T800' =>array('platform_model' => 'Galaxy Tab S', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T715' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T810' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
-        'SM-T813' =>array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P1000'  => array('platform_model' => 'Galaxy Tab', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P3100'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P3110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5100'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5200'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5210'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P7300'  => array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T110'   => array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T113'   => array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T310'   => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T116NU' => array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T320'   => array('platform_model' => 'Galaxy Tab Pro', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T230'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T530'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T531'   => array('platform_model' => 'Galaxy Tab 4 (3G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T533'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T535'   => array('platform_model' => 'Galaxy Tab 4 (4G)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T550'   => array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-P550'   => array('platform_model' => 'Galaxy Tab A', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T560'   => array('platform_model' => 'Galaxy Tab E', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T800'   => array('platform_model' => 'Galaxy Tab S', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T715'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T810'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'SM-T813'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         
         /* check samsung phones */
         'GT-S3800W' => array('platform_model' => 'REX 70', ),
-        'GT-S7562'  => array('platform_model' => 'Galaxy S Duo', ),
         'GT-I9000'  => array('platform_model' => 'Galaxy S', ),
+        'GT-S7562'  => array('platform_model' => 'Galaxy S Duo', ),
         'GT-I9100'  => array('platform_model' => 'Galaxy S2', ),
+        'GT-I9195'  => array('platform_model' => 'Galaxy S4 Mini', ),
+        'GT-I9295'  => array('platform_model' => 'Galaxy S4 Active', ),
         'GT-I9300'  => array('platform_model' => 'Galaxy S3', ),
         'GT-I9305'  => array('platform_model' => 'Galaxy S3 (4G)', ),
         'GT-I9301I' => array('platform_model' => 'Galaxy S3 Neo', ),
+        'GT-I8190'  => array('platform_model' => 'Galaxy S3 Mini', ),
         'GT-I9500'  => array('platform_model' => 'Galaxy S4', ),
         'GT-I9505'  => array('platform_model' => 'Galaxy S4', ),
         'GT-I9506'  => array('platform_model' => 'Galaxy S4', ),
+        'GT-I9195I' => array('platform_model' => 'Galaxy S4 Mini', ),
+        'GT-I9192'  => array('platform_model' => 'Galaxy S4 Mini Duos', ),
         'SM-G900A'  => array('platform_model' => 'Galaxy S5', ),
         'SM-G900F'  => array('platform_model' => 'Galaxy S5', ),
         'SM-G903F'  => array('platform_model' => 'Galaxy S5', ),
         'SM-G901F'  => array('platform_model' => 'Galaxy S5+', ),
+        'SM-G800F'  => array('platform_model' => 'Galaxy S5 Mini', ),
         'SM-G920F'  => array('platform_model' => 'Galaxy S6'),
         'SM-G920I'  => array('platform_model' => 'Galaxy S6'),
         'SM-G920P'  => array('platform_model' => 'Galaxy S6'),
         'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge'),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
+        'SM-G928C'  => array('platform_model' => 'Galaxy S6 Edge+'),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+'),
+        'SM-G930'   => array('platform_model' => 'Galaxy S7'),
         'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
         'SM-G930V'  => array('platform_model' => 'Galaxy S7'),
+        'SM-G935'   => array('platform_model' => 'Galaxy S7 Edge'),
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge'),
         'SM-T580'   => array('platform_model' => 'Galaxy S8'),
-        'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
+        'SM-G950'   => array('platform_model' => 'Galaxy S8'),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+'),
+        'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active'),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V', ),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
         'SM-A310F'  => array('platform_model' => 'Galaxy A3', ),
         'SM-A300M'  => array('platform_model' => 'Galaxy A3', ),
+        'SM-A320L'  => array('platform_model' => 'Galaxy A3 (2017)', ),
+        'SM-A320FL' => array('platform_model' => 'Galaxy A3 (2017)', ),
         'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
+        'SM-A510'   => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
         'SM-A520F'  => array('platform_model' => 'Galaxy A5 (2017)', ),
@@ -389,8 +446,10 @@ function client_getUAInfos($ua=false) {
         'SM-J110H'  => array('platform_model' => 'Galaxy J1 (2015)', ),
         'SM-J120FN' => array('platform_model' => 'Galaxy J1 (2016)', ),
         'SM-J200F'  => array('platform_model' => 'Galaxy J2', ),
+        'SM-J310'   => array('platform_model' => 'Galaxy J3 (2016)', ),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
         'SM-J320F'  => array('platform_model' => 'Galaxy J3 (2016)', ),
+        'SM-J500'   => array('platform_model' => 'Galaxy J5', ),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J500G'  => array('platform_model' => 'Galaxy J5 (2015)', ),
@@ -398,9 +457,9 @@ function client_getUAInfos($ua=false) {
         'SM-J500M'  => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J500H'  => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J5007'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-        'SM-J510FN' => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J500M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
-        'SM-J5010F' => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510F'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J510FN' => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510G'  => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5 (2016)', ),
@@ -413,12 +472,9 @@ function client_getUAInfos($ua=false) {
         'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos', ),
         'GT-S7582'  => array('platform_model' => 'Galaxy S Duos', ),
         'GT-I8750'  => array('platform_model' => 'Ativ S', ),
-        'GT-I8190'  => array('platform_model' => 'Galaxy S3 Mini', ),
-        'GT-I9195'  => array('platform_model' => 'Galaxy S4 Mini', ),
-        'GT-I9195I' => array('platform_model' => 'Galaxy S4 Mini', ),
-        'GT-I9192'  => array('platform_model' => 'Galaxy S4 Mini Duos', ),
-        'SM-G800F'  => array('platform_model' => 'Galaxy S5 Mini', ),
         'GT-S5830'  => array('platform_model' => 'Galaxy Ace', ),
+        'GT-S5839'  => array('platform_model' => 'Galaxy Ace Plus', ),
+        'GT-S5839I' => array('platform_model' => 'Galaxy Ace Plus', ),
         'SM-G357FZ' => array('platform_model' => 'Galaxy Ace 4', ),
         'SM-G850F'  => array('platform_model' => 'Galaxy Alpha', ),
         'SM-G850W'  => array('platform_model' => 'Galaxy Alpha', ),
@@ -431,6 +487,7 @@ function client_getUAInfos($ua=false) {
         'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime', ),
         'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime', ),
         'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime', ),
+        'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus', ),
         'GT-I9082L' => array('platform_model' => 'Galaxy Grand', ),
         'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus', ),
         'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos', ),
@@ -438,22 +495,26 @@ function client_getUAInfos($ua=false) {
         'GT-N5110'  => array('platform_model' => 'Galaxy Note', ),
         'GT-N7000'  => array('platform_model' => 'Galaxy Note (3G)', ),
         'GT-N7003'  => array('platform_model' => 'Galaxy Note (4G)', ),
+        'GT-N7005'  => array('platform_model' => 'Galaxy Note (4G)', ),
         'GT-N8000'  => array('platform_model' => 'Galaxy Note 10.1 (3G)', ),
         'GT-N8010'  => array('platform_model' => 'Galaxy Note 10.1', ),
         'GT-N7100'  => array('platform_model' => 'Galaxy Note II (3G)', ),
         'GT-N7105'  => array('platform_model' => 'Galaxy Note II', ),
         'SHV-E250S' => array('platform_model' => 'Galaxy Note II', ),
         'SM-N900W8' => array('platform_model' => 'Galaxy Note 3', ),
+        'GT-N9005'  => array('platform_model' => 'Galaxy Note 3', ),
         'SM-N900P'  => array('platform_model' => 'Galaxy Note 3', ),
         'SM-N900A'  => array('platform_model' => 'Galaxy Note 3', ),
         'SM-N900'   => array('platform_model' => 'Galaxy Note 3 (3G)', ),
         'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
         'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)', ),
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo', ),
+        'SM-N910A'  => array('platform_model' => 'Galaxy Note 4', ),
         'SM-N910F'  => array('platform_model' => 'Galaxy Note 4', ),
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
         'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
+        'SM-N950F'  => array('platform_model' => 'Galaxy Note 8', ),
         'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313 (2014)', ),
         'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
         'SM-G130E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
@@ -464,6 +525,7 @@ function client_getUAInfos($ua=false) {
         'SM-G318H'  => array('platform_model' => 'Galaxy Trend 2 lite (2015)', ),
         'GT-S5660'  => array('platform_model' => 'Galaxy Gio', ),
         'GT-S5660M' => array('platform_model' => 'Galaxy Gio', ),
+        'GT-S8500'  => array('platform_model' => 'Galaxy Wave', ),
         'GT-I8552'  => array('platform_model' => 'Galaxy Win Duos', ),
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3', ),
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2', ),
@@ -515,7 +577,9 @@ function client_getUAInfos($ua=false) {
   }
   elseif (preg_match('/ ONEPLUS (A[0-9]+)/', $ua, $matches)) {
     $rep = array(
-        'A5000'=>array('platform_model' => '5'),         
+        'A3003' => array('platform_model' => '3T'),
+        'A3010' => array('platform_model' => '3T'),
+        'A5000' => array('platform_model' => '5'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -539,8 +603,11 @@ function client_getUAInfos($ua=false) {
     $rep = array(
         'C1505'=>array('platform_model' => 'Xperia E'),  
         'C2105'=>array('platform_model' => 'Xperia L'), 
+        'C5303'=>array('platform_model' => 'Xperia SP'),
         'C6603'=>array('platform_model' => 'Xperia Z'),
+        'D6503'=>array('platform_model' => 'Xperia Z2'),
         'D2005'=>array('platform_model' => 'Xperia E1'),
+        'D2203'=>array('platform_model' => 'Xperia E3 (2014)'),
         'D2303'=>array('platform_model' => 'Xperia M2'),
         'D2305'=>array('platform_model' => 'Xperia M2'),
         'D2306'=>array('platform_model' => 'Xperia M2'),
@@ -611,6 +678,7 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/HONOR([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
         'KIW-L21'   => array('platform_model' => 'Honor 5X'),
+        'PLK-L01'   => array('platform_model' => 'Honor 7'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -673,6 +741,7 @@ function client_getUAInfos($ua=false) {
         'P70-A'     => array('platform_model' => 'P70'),
         'B8000-F'   => array('platform_model' => 'Yoga', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'A2010-a'   => array('platform_model' => 'A2010', ),
+        'K53a48'    => array('platform_model' => 'K6 Note', ),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -718,6 +787,8 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/ASUS_([A-Z0-9]+) /', $ua, $matches)) {
     $rep = array(
         'Z00ED'     => array('platform_model' => 'Zenfon 2'),
+        'Z00ED'     => array('platform_model' => 'Zenfon 2'),
+        'Z00LD'     => array('platform_model' => 'Zenfon 2 Laser'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -781,29 +852,33 @@ function client_getUAInfos($ua=false) {
       'browser_version'=>$matches[1]));
       
   /* check Macintosh */
-  elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches))
+  elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
+    /* check version */
+    $version = ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):'';
+    
+    if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
+      return $fake;
+    
+    /* build info */
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Apple', 
       'platform_model'=>'Macintosh',
       'platform_type'=>'computer',
       'platform_format'=>'desktop',
-      'system_title'=>'Mac OS X',
-      'system_version'=> ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):''));
+      'system_title'=> version_compare ($version, '10.12') >= 0 ? 'macOS' : 'Mac OS X',
+      'system_version'=> $version));
+  }
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2|RAINBOW|SUNSET2/', $ua, $matches)) {
-    $rep = array(
-        'TOMMY2'    => array('platform_model' => 'Tommy 2',),
-        'SUNSET2'    => array('platform_model' => 'Sunset 2',),
-    );
-    
+  elseif (preg_match('/(DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY|RAINBOW|SUNSET)([0-9]*)?/', $ua, $matches)) {
+    $rep = array();
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
-      'platform_model'=>ucfirst(strtolower($matches[0])),
+      'platform_model'=>ucwords(strtolower($matches[1])).(isset($matches[2])?' '.$matches[2]:''),
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
-      isset($rep[$matches[0]])?$rep[$matches[0]]:array()
-      );
+      isset($rep[$matches[1]])?$rep[$matches[1]]:array()
+    );
   }
   
   /* check SpreadTrum */
@@ -823,7 +898,7 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
   
   /* check Alcatel */
-  elseif (preg_match('/ ([0-9]{4}[A-Z])/', $ua, $matches)) {
+  elseif (preg_match('/ ([0-9]{4}[A-Z]) Build/', $ua, $matches)) {
     $rep = array(
         '4015D' => array('platform_model' => 'One Touch Idol 3',),
         '5050X' => array('platform_model' => 'One Touch Pop S3',),
@@ -845,7 +920,8 @@ function client_getUAInfos($ua=false) {
       'system_title'    =>'Firefox OS',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'));
-  }    
+  }
+  
   /* check Lava Iris models */
   elseif (preg_match('/Iris([A-Z0-9]+)/i', $ua, $matches))
   	$infos = array_merge($infos, array(
@@ -925,13 +1001,20 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
   
-  /* check Haier */
-  elseif (preg_match('/CDP7TAB4C8/', $ua, $matches))
+  /* check Haier mobiles */
+  elseif (preg_match('/(CDP7TAB4C8|G30)/', $ua, $matches)) {
+    $rep = array(
+        'CDP7TAB4C8'    => array('platform_model' => 'CDisplay E701', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'G30'           => array('platform_model' => 'Voyage G30',),
+    );
+    $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Haier', 
-      'platform_model'=>'CDisplay E701',
-      'platform_type'=>'tablet',
-      'platform_format'=>'tablet',));
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
   
   /* check Bloom */
   elseif (preg_match('/BLOOM Build/', $ua, $matches))
@@ -968,12 +1051,25 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  elseif (preg_match('/Orange ([^.]*) Build/', $ua, $matches)) {
+    $rep = array(
+        
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Orange', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
   
   /* check Logicom */
-  elseif (preg_match('/L-EMENT[0-9]{3}/', $ua, $matches)) {
+  elseif (preg_match('/L-EMENT?_[0-9]{3}/', $ua, $matches)) {
     $rep = array(
         'L-EMENT501'=>array('platform_model' => 'L-Element 501'),
         'L-EMENT451'=>array('platform_model' => 'L-Element 451'),
+        'L-EMENT_403'=>array('platform_model' => 'L-Element 403'),
     );
     $model = trim($matches[0]);
   	$infos = array_merge($infos, array(
@@ -1166,6 +1262,7 @@ function client_getUAInfos($ua=false) {
         'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
         'PHQ520' => array('platform_model' => 'Griffe G5',),
         'PGN528' => array('platform_model' => 'Plume P6 Pro',),
+	    'PGN523' => array('platform_model' => 'Plume P7 Plus',),
         'PGN605' => array('platform_model' => 'Plume P8',),
     );
     $model = trim($matches[1]);
@@ -1233,6 +1330,57 @@ function client_getUAInfos($ua=false) {
       isset($rep[$model])?$rep[$model]:array());
   }
       
+  /* check Infinix  mobiles */
+  elseif (preg_match('/(X559)/', $ua, $matches)) {
+    $rep = array(
+        'X559'  => array('platform_model' => 'Hot 5 Lite',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Infinix', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
+  /* check Digital Alpha servers */
+  elseif (preg_match('/ (Digital AlphaServer [A-Za-z0-9]*) /', $ua, $matches)) {
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'PC (Digital Equipment Corporation)', 
+      'platform_model'=>$model
+    ));
+  }
+  
+  /* check Vodafone mobiles */
+  elseif (preg_match('/Vodafone ([A-Za-z0-9]{3}N) Build/', $ua, $matches)) {
+    $rep = array(
+        '890N'  => array('platform_model' => 'Smart 4 Turbo (2014)',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Vodafone', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
+  /* check SFR (France) mobiles */
+  elseif (preg_match('/(STARTRAIL7) Build/', $ua, $matches)) {
+    $rep = array(
+        'STARTRAIL7'  => array('platform_model' => 'StarTrail 7',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'SFR', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+            
   /*** check operating system ***/
   
   if (!isset($infos['system_title'])) {
@@ -1245,31 +1393,51 @@ function client_getUAInfos($ua=false) {
      'system_version'=>isset($matches[1])?$matches[1]:''), $infos);
     
     /* check Android */
-  	elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) 
+  	elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
+  	  /* check version */
+      $version = isset($matches[1])?$matches[1]:'';
+      if ($version != '' and version_compare($version, $maxVersions['system']['Android']) > 0)
+        return $fake;
+      
       $infos = array_merge(array(
-     'platform_type'=>(preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
-     'platform_format'=>(preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
-     'system_title'=>'Android',
-     'system_version'=>isset($matches[1])?$matches[1]:''), $infos);  	
-      	
+        'platform_type'     => (preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
+        'platform_format'   => (preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
+        'system_title'      => 'Android',
+        'system_version'    => $version,
+      ), $infos);  	
+    }
+    
     /* check Windows */
   	else if (preg_match('/(?:Windows;)?[^.]*(?:Windows |Windows|Win |Win)([^;\)]+)/', $ua, $matches)) {
-  	    // '/(?:Windows |Win)([^;]{1,});/'
+  	  // '/(?:Windows |Win)([^;]{1,});/'
+  	  
+  	  /* build known windows versions */
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE', 
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000', 
           '2000'=>'2000', 'NT 5.1'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
           'NT 6.1'=>'7', 'NT6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
-          'NT 10.0'=>'10', '10'=>'10',
+          'NT 10.0'=>'10', '10'=>'10',           
       );
+      
+      /* build known windows fake versions */
+      $wf = array('NT 15.0');
+      
+      /* load version */
       $v = $matches[1];
-      if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7));      
+      if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7)); 
+      $version = isset($w[$v])?$w[$v]:'';
+      
+      /* check fake version */
+      if (in_array($v, $wf))
+        return $fake;
+        
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
       	'system_title'=>'Windows',
-      	'system_version'=>isset($w[$v])?$w[$v]:''), $infos);
+      	'system_version'=>$version), $infos);
   	}
   	
     /* check determined linux os */
@@ -1284,7 +1452,7 @@ function client_getUAInfos($ua=false) {
       	'system_version'=>''), $infos);
   	}
     /* check mobile gen os with notified version */
-  	elseif (preg_match('/(SymbianOS|webOS|KAIOS)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
+  	elseif (preg_match('/(SymbianOS|webOS|KAIOS|Bada)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
       $infos = array_merge(array(
         'platform_company'=>'PC', 
       	'platform_model'=>'',
@@ -1365,8 +1533,8 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+      $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       	'browser_version'   => isset($matches[2])?$matches[2]:'',
@@ -1390,11 +1558,13 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches))
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+      $rep = array('FDM'=>'Free Download Manager',);
       $infos = array_merge(array(
         'platform_type'     => 'computer',
-        'browser_title'     => $matches[1], 
+        'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1], 
       	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+    }
     
     /* check chrome browser - separated from gen case of alternative browser using Chrome user agent */
     elseif (preg_match('/(Chrome)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
@@ -1451,11 +1621,6 @@ function client_getUAInfos($ua=false) {
       	), $infos);
       }
     }
-    
-    /* check America Online Browser */
-    elseif (preg_match('/America Online Browser ([a-z0-9\._]*);/', $ua, $matches))
-      $infos = array_merge(array('browser_title'=>'America Online Browser', 
-      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
   	
     /* check msie */
   	elseif (preg_match('/MSIE ?([a-z0-9\._]*)( |;|\-|\))/', $ua, $matches))
@@ -1488,6 +1653,11 @@ function client_getUAInfos($ua=false) {
         'browser_title'     => 'Netscape', 
       	'browser_version'   => $matches[1],
       ), $infos);
+    
+    /* check America Online Browser */
+    elseif (preg_match('/America Online Browser ([a-z0-9\._]*);/', $ua, $matches))
+      $infos = array_merge(array('browser_title'=>'America Online Browser', 
+      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
       
     /* check WMP */
     elseif (preg_match('/^Windows-Media-Player\/([^\(]*)|Media Player Classic/', $ua, $matches))
@@ -1550,6 +1720,15 @@ function client_getUAInfos($ua=false) {
         'browser_title'     => 'HotJava', 
       	'browser_version'   => $matches[1],
       ), $infos);
+      
+    /* check MAUI WAP Browser  */
+    elseif (preg_match('/^MAUI( |_)WAP( |_)Browser/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'MAUI WAP Browser', 
+      	'browser_version'   => '',
+      	'platform_type'     => 'handheld',
+        'platform_format'   => 'handheld',
+      ), $infos);
     
     /* check Gecko compatible */
     elseif (preg_match('/Gecko/', $ua, $matches))
@@ -1576,6 +1755,10 @@ function client_getUAInfos($ua=false) {
           'platform_format'=>'tablet'
         ));
   }
+  
+  /* check browser and version */
+  if (isset($infos['browser_version']) and isset($maxVersions['browser'][$infos['browser_title']]) and version_compare($infos['browser_version'], $maxVersions['browser'][$infos['browser_title']]) > 0)
+    return $fake;
   
   /* return result */
   return _client_mergeUAInfos($req, $infos);
@@ -3491,6 +3674,15 @@ function client_getKnownBots() {
     'engine_title'=>'DomainMacro',
     'engine_url'=>'http://domainmacro.com');
   
+  /* glindahl-cocrawler */
+  $knownBots['glindahl-cocrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'glindahl-cocrawler',
+    'bot_url'=>'http://www.pbm.com/~lindahl/glindahl-cocrawler.html',
+    'engine_title'=>'Greg Lindahl',
+    'engine_url'=>'http://www.pbm.com/~lindahl/');
+  
   /* ocrawler */
   $knownBots['ocrawler'] = array(
     'platform_type'=>'bot',
@@ -4885,11 +5077,74 @@ function client_getKnownBots() {
     'engine_title'=>'SearchMetrics',
     'engine_url'=>'https://www.searchmetrics.com/');
     
+  /* Techlimed */
+  $knownBots['techlimed'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ntlk/Nutch',
+    'bot_url'=>'',
+    'engine_title'=>'Techlimed',
+    'engine_url'=>'');
+    
+  /* pmoz.info */
+  $knownBots['pmoz.info'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'pmoz.info ODP link checker',
+    'bot_url'=>'http://pmoz.info/doc/botinfo.htm',
+    'engine_title'=>'Dmoz.org',
+    'engine_url'=>'http://www.dmoz.org');
+    
+  /* ArchiveBot */
+  $knownBots['archivebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'ArchiveBot',
+    'bot_url'=>'https://www.archiveteam.org/index.php?title=ArchiveBot',
+    'engine_title'=>'ArchiveTeam',
+    'engine_url'=>'https://www.archiveteam.org');
+    
+  /* OrgProbe */
+  $knownBots['orgprobe'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'OrgProbe',
+    'bot_url'=>'',
+    'engine_title'=>'Blocked!',
+    'engine_url'=>'https://www.blocked.org.uk');
+    
+  /* RobotsChecker */
+  $knownBots['robotschecker'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'OrgProbe',
+    'bot_url'=>'',
+    'engine_title'=>'Blocked!',
+    'engine_url'=>'https://www.blocked.org.uk');
+    
+  /* Researchscan */
+  $knownBots['researchscan'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Researchscan',
+    'bot_url'=>'http://researchscan.comsys.rwth-aachen.de',
+    'engine_title'=>'RWTH Aachen University',
+    'engine_url'=>'http://www.rwth-aachen.de');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'SEO Bulls (unknown bot)',
+    'bot_title'=>'SEO Bulls (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+    
+  /* unknown bot */
+  $knownBots['tmm crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'TMM Crawler (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
@@ -4912,47 +5167,38 @@ function client_getKnownBots() {
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
+  /* Centurybot9 - unknown bot */
   $knownBots['centurybot9'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'Centurybot9 (Unknown bot)',
     'bot_url'=>'mailto:centurybot9@gmail.com',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
+  /* celious search engine - unknown bot */
   $knownBots['celious search engine'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'Celious Search Engine (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
-  $knownBots['celious search engine'] = array(
-    'platform_type'=>'bot',
-    'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
-    'bot_url'=>'',
-    'engine_title'=>'',
-    'engine_url'=>'');
-  
-  /* unknown bot */
+  /* SMURLExpander - unknown bot */
   $knownBots['smurlexpander'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'SMURLExpander (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* unknown bot */
+  /* DnyzBot - unknown bot */
   $knownBots['dnyzbot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-    'bot_title'=>'Unknown bot',
+    'bot_title'=>'DnyzBot (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
@@ -5810,6 +6056,33 @@ function client_getKnownTools() {
     'engine_title'=>'NMAP',
     'engine_url'=>'https://nmap.org/');
     
+  /* Outiref */
+  $knownTools['outiref'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'Outiref',
+    'engine_url'=>'https://www.outiref.fr/');
+    
+  /* alyze.info */
+  $knownTools['alyze.info'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'alyze',
+    'engine_url'=>'https://alyze.info/');
+    
+  /* DareBoost */
+  $knownTools['dareboost'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'',
+    'tool_url'=>'',
+    'engine_title'=>'DareBoost',
+    'engine_url'=>'https://www.dareboost.com/');
+    
   /* return list */
   return $knownTools;
 }
@@ -6328,6 +6601,15 @@ function client_getKnownGenerics() {
     'tool_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
+  
+  /* scalaj-http  */
+  $knownGenerics['scalaj-http'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'scalaj-http',
+    'tool_url'=>'https://github.com/scalaj/scalaj-http',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* obot */
   $knownGenerics[' obot'] = array(
@@ -6548,7 +6830,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
   if (preg_match('#Mozilla/4.0 \(compatible; MSIE 5.0; Windows 3.1\)#i', $ua))
     return $fake;
   
-  /* funwebproducts malware */
+  /* funwebproducts malware *
   if (preg_match('#FunWebProducts#i', $ua))
     return $fake;
   
@@ -6598,6 +6880,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
   if (preg_match('#^=#', $ua))
     return $fake;
   
+  /* bad msie/msid request */
+  if (preg_match('#^Mozilla/4.0 \(compatible; MSID [0-9\.]+; Windows NT [0-9\.]+\)$#i', $ua))
+    return $fake;
+  
   /* not a fake but Apple using a bad user agent */
   if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
     return array(
@@ -6621,15 +6907,17 @@ function client_getFakeInfosFromUserAgent($ua='') {
 /*                  
  * return merged informations                     
  * @param array $req                
- * param array $infos               
+ * @param array $infos               
  * @return array                  
  * @access private                  
  */
 function _client_mergeUAInfos($req, $infos) {
   if ($req === true)
-    $req = array('platform_company', 'platform_model', 'platform_type', 'platform_format',
-          'system_title', 'system_version',
-          'browser_title', 'browser_version');
+    $req = array(
+        'platform_company', 'platform_model', 'platform_type', 'platform_format',
+        'system_title', 'system_version',
+        'browser_title', 'browser_version'
+    );
   $i = array();
   foreach($req as $r)
     if (isset($infos[$r]))
@@ -6637,5 +6925,29 @@ function _client_mergeUAInfos($req, $infos) {
     else
       $i[$r] = '';
   return $i;
+}
+
+/*
+ * return some max property values to check 
+ * @return array
+ * @access private
+ */
+function _client_getUAPropertiesMaxVersions() {
+  return array(
+    'system' => array(
+        'Mac OS X'          => '10.15.0',       // current is 10.13.x
+        'iOS'               => '13',            // current is 11.x
+        'Android'           => '10',            // current is 8.x.x
+    ),
+    'browser' => array(
+        'Firefox'           => '64',            // current is 58
+        'Chrome'            => '70',            // current is 64
+        'Chromium'          => '70',            // current is 64
+        'Internet Explorer' => '11.0.50',       // latest
+        'Edge'              => '45',            // current is 40
+        'Opera'             => '55',            // current is 50
+        'Safari'            => '15',            // current is 11
+    ),
+  );
 }
 ?>

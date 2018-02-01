@@ -5,9 +5,11 @@ Options +FollowSymlinks
   # Framed page protection
   Header set X-Frame-Options SAMEORIGIN
   # Cookie protection
-  Header edit Set-Cookie ^(.*)$ $1;HttpOnly
-  #XSS protection
+  Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+  # XSS protection
   Header set X-XSS-Protection "1; mode=block"
+  # Enable HSTS to force use secure connections
+  Header always set Strict-Transport-Security "max-age=300;ÊincludeSubDomains;Êpreload"
 </IfModule>
 
 # Set up default expire	value
@@ -39,5 +41,4 @@ Options +FollowSymlinks
 
   # Modern url rewriting
   #RewriteRule ^([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$1&params=$2&_clg_=$3&ext=$4&%{QUERY_STRING} [L,NS]
-  
 </IfModule>

@@ -40,12 +40,12 @@ $cols = count($this->params['listcolumns']);
   </td>
   <?php endif; ?>
   <td class="eTable<?=$line?>" <?=($spans['title']>1?'colspan="'.$spans['title'].'"':'')?>>
-    <a href="<?=$link['url_value']?>" class="eLink2">
+    <a href="<?=$link['url_value']?>" class="eLink2"<?= isset($link['url_target']) ? ' target="'.$link['url_target'].'" ': '';?>>
       <?=$link['title']?>
     </a>
   </td>
   <td class="eTable<?=$line?> eTableIconCell">
-    <a href="<?=$link['url_value']?>">
+    <a href="<?=$link['url_value']?>"<?= isset($link['url_target']) ? ' target="'.$link['url_target'].'" ': '';?>>
   <?php if ( in_array($link['icon'], $global_theme_picts_items['12']['items']) ): ?>
       <img src="<?=$this->get_icon($link['icon'], 'std')?>"
         alt="<?=$link['title']?>" title="<?=$link['title']?>" border="0" 

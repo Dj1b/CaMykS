@@ -15,8 +15,7 @@ global $camyks;
 ?>
 <?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->title) ?>
-<?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs,
-				$this->tabBuilder->jsParams);?>
+<?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header( )?>
 <div id="itemrecords" style="display:<?=$this->tabBuilder->get_tabDisplay('records')?>;" class="adminContentPanel">
     <?=$this->listRecord->display('head');?>

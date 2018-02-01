@@ -1172,13 +1172,13 @@ final class Camyks {
       $ua = client_getUAInfos();
       
       /* check for hacks or fakes */
-      if (in_array($ua['platform_type'], array('hack', 'fake'))) {
+      if ($this->get_confValue('site_disableFake') == 1 and in_array($ua['platform_type'], array('hack', 'fake'))) {
         header('HTTP/1.1 403 Forbidden');
         die();
       }
       
       /* define define/format */
-      $device = $ua['platform_format'];
+      $device = isset($ua['platform_format'])?$ua['platform_format']:'desktop';
       $deviceStatus = 'auto';
     }
         
@@ -1638,8 +1638,8 @@ final class Camyks {
       switch ($event) {
         case 'onInitialise' :   $plugin->execute_onCaMykSInitialise(); break;
         case 'onPageLoad' :     $plugin->execute_onCaMykSPageLoad(); break;
-        case 'onBodyOpen' :     $this->HTMLPage->write($plugin->execute_onCaMykSBodyOpen()); break;
-        case 'onBodyClose' :    $this->HTMLPage->write($plugin->execute_onCaMykSBodyClose()); break;
+        case 'onBodyOpen' :     $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyOpen()); break;
+        case 'onBodyClose' :    $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyClose()); break;
         case 'onTerminate' :    $plugin->execute_onCaMykSTerminate(); break;
       }
     }

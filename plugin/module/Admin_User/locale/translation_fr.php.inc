@@ -7,14 +7,13 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module dictionnary
  * Create Date		: Jun 2005
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Jan 2018
  *
  * Admin_User french dictionnary
 */
 
 $this->trads['mod_admin_user_title'] = 'Utilisateurs';
 $this->trads['mod_admin_user_desc'] = 'Gestion des utilisateurs';
-
 
 /* users status list */
 $this->trads['mod_admin_user_users_all'] = 'Tous';

@@ -7,9 +7,9 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Layout
  * Create Date		: Nov 2009
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Jan 2018
  * 
- * SocialNetworksSharingPanel input layout
+ * SocialNetworksSharingPanel input layout - share mode
 */
 $n = $this->dparams['networks'][1];
 ?>
@@ -23,9 +23,9 @@ $n = $this->dparams['networks'][1];
 <?php endif; ?>
 
 <?php foreach ($this->networks as $name => $network ) : ?>
-<?php if ($this->dparams['allow_'.$name]==1) : ?>
-<a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank">
-<img src="<?=$this->get_fileURL('img/icons/'.$name.'.gif');?>" 
+<?php if ($network['share'] == 1 and $this->config->vars['share_'.$name] == 1) : ?>
+<a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> class="img" target="_blank" rel="noopener">
+<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>" 
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:0 2px; border:0;" />
 </a>
 <?php if (--$n > 0 ) : ?>
@@ -62,17 +62,11 @@ $n = $this->dparams['networks'][1];
 </a>'; ?>
 <?php endif; ?>
 
-<?php if ($this->dparams['allow_fb:like']['default'] == 1) : ?>
+<?php if ($this->config->vars['like_facebook'] == 1) : ?>
+<?=$this->dparams['separator'];?>
 &nbsp;
-<fb:like href="<?=$this->dparams['link'];?>" <?=$this->dparams['allow_fb:like']['layout'] == 'button_count'?' layout="button_count"':''?>></fb:like>
-<div id="fb-root"></div>
+<div class="fb-like" data-href="<?=$this->dparams['link'];?>" data-layout="<?=$this->config->vars['like_facebookLayout'];?>" data-action="<?=$this->config->vars['like_facebookAction'];?>" data-size="<?=$this->config->vars['like_facebookSize'];?>" data-show-faces="false" data-share="false"></div>
 <?php endif; ?>
-
-<?php if ($this->dparams['allow_google:plus']['default'] == 1) : ?>
-&nbsp;
-<g:plusone size="<?=$this->dparams['allow_google:plus']['size']?>" annotation="<?=$this->dparams['allow_google:plus']['annotation']?>"></g:plusone>
-<?php endif; ?>
-
 
 <?php if ($this->dparams['enable_poppanel']==1 and $this->dparams['networks'][2] > 0 ) : ?>
 <div id="snsPanel<?=$this->currentIndex?>" style="display:none; width:100px; position:absolute;">
@@ -80,10 +74,10 @@ $n = $this->dparams['networks'][1];
 <?=$this->theme->get_boxTitleBar($closeButton . $this->dparams['text']);?>
 <?=$this->theme->get_boxContent2Header();?>
 
-<?php foreach ($this->networks as $name => $network ) : ?>
-<?php if ($this->dparams['allow_'.$name]==2) : ?>
-<a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank">
-<img src="<?=$this->get_fileURL('img/icons/'.$name.'.gif');?>" 
+<?php foreach ($this->networks as $name => $network) : ?>
+<?php if ($network['share'] == 1 and $this->config->vars['share_'.$network] == 2) : ?>
+<a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank" rel="noopener">
+<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>" 
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:4px; border:0;" />
 </a>
 <?php endif; ?>
