@@ -870,18 +870,15 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Wiko */
-  elseif (preg_match('/DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY2|RAINBOW|SUNSET2/', $ua, $matches)) {
-    $rep = array(
-        'TOMMY2'    => array('platform_model' => 'Tommy 2',),
-        'SUNSET2'    => array('platform_model' => 'Sunset 2',),
-    );
+  elseif (preg_match('/(DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY|RAINBOW|SUNSET)([0-9]*)?/', $ua, $matches)) {
+    $rep = array();
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
-      'platform_model'=>ucfirst(strtolower($matches[0])),
+      'platform_model'=>ucwords(strtolower($matches[1])).(isset($matches[2])?' '.$matches[2]:''),
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
-      isset($rep[$matches[0]])?$rep[$matches[0]]:array()
-      );
+      isset($rep[$matches[1]])?$rep[$matches[1]]:array()
+    );
   }
   
   /* check SpreadTrum */
@@ -1364,6 +1361,20 @@ function client_getUAInfos($ua=false) {
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Vodafone', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
+  /* check SFR (France) mobiles */
+  elseif (preg_match('/(STARTRAIL7) Build/', $ua, $matches)) {
+    $rep = array(
+        'STARTRAIL7'  => array('platform_model' => 'StarTrail 7',),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'SFR', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
@@ -6819,7 +6830,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
   if (preg_match('#Mozilla/4.0 \(compatible; MSIE 5.0; Windows 3.1\)#i', $ua))
     return $fake;
   
-  /* funwebproducts malware */
+  /* funwebproducts malware *
   if (preg_match('#FunWebProducts#i', $ua))
     return $fake;
   
@@ -6924,17 +6935,18 @@ function _client_mergeUAInfos($req, $infos) {
 function _client_getUAPropertiesMaxVersions() {
   return array(
     'system' => array(
-        'Mac OS X'          => '10.15.0',
-        'iOS'               => '13',
-        'Android'           => '9',
+        'Mac OS X'          => '10.15.0',       // current is 10.13.x
+        'iOS'               => '13',            // current is 11.x
+        'Android'           => '10',            // current is 8.x.x
     ),
     'browser' => array(
-        'Firefox'           => '60',
-        'Chrome'            => '70',
-        'Chromium'          => '70',
-        'Internet Explorer' => '11.0.50',
-        'Edge'              => '45',
-        'Opera'             => '52',
+        'Firefox'           => '64',            // current is 58
+        'Chrome'            => '70',            // current is 64
+        'Chromium'          => '70',            // current is 64
+        'Internet Explorer' => '11.0.50',       // latest
+        'Edge'              => '45',            // current is 40
+        'Opera'             => '55',            // current is 50
+        'Safari'            => '15',            // current is 11
     ),
   );
 }
