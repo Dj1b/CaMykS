@@ -886,32 +886,32 @@ class ModuleLibrary {
   }
 
   /* save file items */
-  function save_fileItems( ) {
-    foreach ( $this->_libItemTypes['file'] as $file ) {
-      $this->_libItems[$file]->save( $this->id );
+  function save_fileItems() {
+    foreach ($this->_libItemTypes['file'] as $file) {
+      $this->_libItems[$file]->save($this->id);
     }
     return true;
   }
 
   /* delete file items */
-  function delete_fileItems( ) {
-    foreach ( $this->_libItemTypes['file'] as $file ) {
-      $this->_libItems[$file]->delete( $this->id );
+  function delete_fileItems() {
+    foreach ($this->_libItemTypes['file'] as $file) {
+      $this->_libItems[$file]->delete($this->id);
     }
     return true;
   }
 
   /* reset file items */
-  function reset_fileItems( ) {
-    foreach ( $this->_libItemTypes['file'] as $file ) {
-      $this->_libItems[$file]->reset( );
+  function reset_fileItems() {
+    foreach ($this->_libItemTypes['file'] as $file) {
+      $this->_libItems[$file]->reset();
     }
     return true;
   }
 
   /* install file items folders */
-  function install_fileItems( ) {
-    foreach ( $this->_libItemTypes['file'] as $file ) {
+  function install_fileItems() {
+    foreach ($this->_libItemTypes['file'] as $file) {
       $this->_libItems[$file]->install();
     }
     return true;
