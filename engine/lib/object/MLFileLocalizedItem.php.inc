@@ -3,13 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type	    : Engine / Object Lib
  * Creation Date	: Jul 2007
- * Last Modif Date  : May 2015
- * History :
- * * 07-07-xx : Initial file
+ * Last Modif Date  : Feb 2018
  *
  * Module Library Localized File Item Object
  */
@@ -25,7 +23,7 @@ class MLFileLocalizedItem extends MLFileItem {
   var $upload;
 
   /* constructor */
-  function MLFileLocalizedItem ( $name, $folder, $path, $url ) {
+  function MLFileLocalizedItem ($name, $folder, $path, $url) {
     $this->name = $name;
     $this->folder = $folder;
     $this->path = $path;
@@ -46,7 +44,7 @@ class MLFileLocalizedItem extends MLFileItem {
   function initialise() {
     global $camyks;
     $this->value = array();
-    foreach ( $camyks->_conf['editing_languages'] as $l ) {
+    foreach ($camyks->get_confValue('editing_languages') as $l) {
       $this->value[$l] = '';
     }
   }
@@ -58,22 +56,22 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return boolean
    * @aaccess public
    */
-  function get( $_libObjId, $language=null ) {
+  function get($_libObjId, $language=null) {
     global $camyks;
     
     $path = $this->path.'/'.$this->get_folder($_libObjId).'/';
     $url = $this->url.'/'.$this->get_folder($_libObjId).'/';
     
-    if ( isset( $language ) ) {
+    if (isset($language)) {
       /* get specific language */
-      if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' )
+      if (($file = $this->exists($path , $this->name.$_libObjId.'_'.$language)) != '')
 	    $this->value[$language] = $url.$file;
       else
 	    $this->value[$language] = '';
     } else {
       /* get all language */
-      foreach ( $camyks->_conf['editing_languages'] as $language ) {
-	    if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' )
+      foreach ($camyks->get_confValue('editing_languages') as $language) {
+	    if (($file = $this->exists($path, $this->name.$_libObjId.'_'.$language)) != '')
 	      $this->value[$language] = $url.$file;
 	    else
 	      $this->value[$language] = '';	
@@ -88,28 +86,29 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return void
    * @access public
    */
-  function save( $_libObjId ) {
+  function save($_libObjId) {
+    /* initialise result value */
     $ok = true;
         
     /* check if there is at least one file to upload or delete */
-    if ( count( $this->upload ) == 0 and count($this->delete) == 0 )
+    if (count($this->upload) == 0 and count($this->delete) == 0)
       return true;
       
     /* create parent library object folder */
-    folder_completePath ( $this->path.'/'.$this->get_folder($_libObjId),  0771);
+    folder_completePath($this->path.'/'.$this->get_folder($_libObjId),  0771);
     
     /* try to delete removed files */
-    foreach ( $this->delete as $l ) {
-      $this->delete( $_libObjId, $l );
+    foreach ($this->delete as $l) {
+      $this->delete($_libObjId, $l);
     }
     
     /* update files */
-    foreach ( $this->upload as $l ) {
+    foreach($this->upload as $l) {
       /* try to delete old file */
-      $this->delete( $_libObjId, $l );
+      $this->delete($_libObjId, $l);
 
       /* get file extension */
-      if ( preg_match( '/.*\.([^\.]*)/', $_FILES[$this->name.'_'.$l]['name'], $ext ) ) 
+      if (preg_match( '/.*\.([^\.]*)/', $this->uploadedFileName[$l], $ext)) 
 	    $ext = $ext[1];
       else
 	    $ext = '';
@@ -117,7 +116,7 @@ class MLFileLocalizedItem extends MLFileItem {
       /* add file */
       $path = $this->path.'/'.$this->get_folder($_libObjId).'/';
       $path .= $this->name.$_libObjId.'_'.$l.'.'.$ext;
-      if (! move_uploaded_file($_FILES[$this->name.'_'.$l]['tmp_name'], $path) ) 
+      if (!move_uploaded_file($this->uploadedTempName[$l], $path)) 
 	    $ok = false;
 	  $this->get($_libObjId, $l);
 	  
@@ -134,19 +133,19 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return boolean
    * @access public
    */
-  function delete( $_libObjId, $language=null ) {
+  function delete($_libObjId, $language=null) {
     global $camyks;
     $path = $this->path.'/'.$this->folder.'/';
     
-    if ( isset( $language )) {
+    if (isset($language)) {
       /* delete given language file */
-      if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' ) 
-	    unlink( $this->path.'/'.$this->get_folder($_libObjId).'/'.$file );
+      if (($file = $this->exists($path , $this->name.$_libObjId.'_'.$language)) != '') 
+	    unlink($this->path.'/'.$this->get_folder($_libObjId).'/'.$file);
     } else {
       /* delete all files */
-      foreach ( $camyks->_conf['editing_languages'] as $language ) {
-	    if ( ($file = $this->exists( $path , $this->name.$_libObjId.'_'.$language )) != '' ) 
-	      unlink( $this->path.'/'.$this->get_folder($_libObjId).'/'.$file );
+      foreach ($camyks->get_confValue('editing_languages') as $language) {
+	    if (($file = $this->exists $path , $this->name.$_libObjId.'_'.$language)) != '') 
+	      unlink($this->path.'/'.$this->get_folder($_libObjId).'/'.$file);
       }
     }
     return true;
@@ -157,8 +156,8 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return boolean
    * @access public
    */
-  function reset( ) {
-    return folder_delete( $this->path.'/'.$this->get_folder(), true );
+  function reset() {
+    return folder_delete($this->path.'/'.$this->get_folder(), true);
   }
 
   /*
@@ -168,7 +167,7 @@ class MLFileLocalizedItem extends MLFileItem {
    */
   function install() {
     /* create folders in site plugin */
-    return folder_completePath ( $this->path.'/'.$this->get_folder(),  0771);
+    return folder_completePath($this->path.'/'.$this->get_folder(),  0771);
   }
 
   /*
@@ -194,11 +193,12 @@ class MLFileLocalizedItem extends MLFileItem {
     $name = $prefix.$this->name;
     
     /* load values */
-    foreach ( $camyks->_conf['editing_languages'] as $language ) {
-      if ( isset( $_FILES[ $name.'_'.$language ] ) and $_FILES[$name.'_'.$language]['name'] != '' ) {
+    foreach ($camyks->get_confValue('editing_languages') as $language) {
+      if (isset($_FILES[$name.'_'.$language ] ) and $_FILES[$name.'_'.$language]['name'] != '') {
         $this->uploadedFileName[$language] = $_FILES[$name.'_'.$language]['name'];
+        $this->uploadedTempName[$language] = $_FILES[$name.'_'.$language]['tmp_name'];
 		$this->upload[] = $language;
-	  } else if ( isset( $_REQUEST[$name.'_'.$language.'_deletefile']) and $_REQUEST[$name.'_'.$language.'_deletefile']==1 )
+	  } else if (isset($_REQUEST[$name.'_'.$language.'_deletefile']) and $_REQUEST[$name.'_'.$language.'_deletefile']==1)
       	$this->delete[] = $language;
     }
   }
@@ -208,17 +208,17 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return array
    * @access public
    */
-  function get_exportedValue ( ) {
+  function get_exportedValue() {
     $a = array();
-    if ( count( $this->value ) == 0) {
+    if (count($this->value) == 0) {
         /* nothing to do */
-    } else if ( count( $this->value ) == 1 ) {
-      foreach ( $this->value as $l => $v ) {
-				$a[$this->name] = $v;
-				$a[$this->name.'_'.$l] = $v;
+    } else if (count($this->value) == 1) {
+      foreach ($this->value as $l => $v) {
+		$a[$this->name] = $v;
+		$a[$this->name.'_'.$l] = $v;
       } 
     } else {
-      foreach ( $this->value as $l => $v )
+      foreach ($this->value as $l => $v)
 		$a[$this->name.'_'.$l] = $v;
     }
     return $a;

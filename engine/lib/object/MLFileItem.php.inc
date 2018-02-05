@@ -3,13 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type	    : Engine / Object Lib
  * Creation Date	: Jul 2007
- * Last Modif Date  : May 2015
- * History :
- * * 07-07-xx : Initial file
+ * Last Modif Date  : Feb 2018
  *
  * Module Library File Item Object
  */
@@ -56,7 +54,7 @@ class MLFileItem extends ModuleLibraryItem {
    */
   function get($_libObjId) {
   	/* get file path */
-    if ( ($file = $this->exists( $this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId )) != '' )  {
+    if (($file = $this->exists($this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId)) != '')  {
       $this->value = $this->url.'/'.$this->get_folder($_libObjId).'/'.$file;
     }
     return true;
@@ -78,14 +76,14 @@ class MLFileItem extends ModuleLibraryItem {
     
     if ($this->upload) {
       /* get file extension */
-      if ( preg_match( '/.*\.([^\.]*)/', $_FILES[$this->name]['name'], $ext ) ) 
+      if ( preg_match( '/.*\.([^\.]*)/', $this->uploadedFileName, $ext ) ) 
 		$ext = $ext[1];
       else
 		$ext = '';
       
       /* add file */
       $path = $this->path.'/'.$this->get_folder($_libObjId).'/'.$this->name.$_libObjId.'.'.$ext;
-      if (!move_uploaded_file($_FILES[$this->name]['tmp_name'], $path) and $this->get($_libObjId))
+      if (!move_uploaded_file($this->uploadedTempName, $path) and $this->get($_libObjId))
         return false;
             
       /* auto rotate picture with orientation in exif */
@@ -102,8 +100,8 @@ class MLFileItem extends ModuleLibraryItem {
    * @access public
    */
   function delete( $_libObjId ) {
-    if ( ($file = $this->exists( $this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId )) != '' ) 
-      unlink( $this->path.'/'.$this->get_folder($_libObjId).'/'.$file );
+    if (($file = $this->exists( $this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId )) != '')
+      unlink($this->path.'/'.$this->get_folder($_libObjId).'/'.$file);
     return true;
   }
 
@@ -112,8 +110,8 @@ class MLFileItem extends ModuleLibraryItem {
    * @return boolean
    * @access public
    */
-  function reset( ) {
-    return folder_delete( $this->path.'/'.$this->get_folder(), true );
+  function reset() {
+    return folder_delete($this->path.'/'.$this->get_folder(), true);
   }
 
   /*
@@ -123,7 +121,7 @@ class MLFileItem extends ModuleLibraryItem {
    */
   function install() {
     /* create folders in site plugin */
-    return folder_completePath ( $this->path.'/'.$this->get_folder(),  0771);
+    return folder_completePath($this->path.'/'.$this->get_folder(),  0771);
   }
 
   /*
@@ -147,10 +145,11 @@ class MLFileItem extends ModuleLibraryItem {
     $name = $prefix.$this->name;
         
     /* load values */
-    if ( isset( $_FILES[ $this->name ] ) and $_FILES[$this->name]['name'] != '') {
+    if (isset($_FILES[$this->name]) and $_FILES[$this->name]['name'] != '') {
       $this->uploadedFileName = $_FILES[$this->name]['name'];
+      $this->uploadedTempName = $_FILES[$this->name]['tmp_name'];
       $this->upload = true;
-    } else if ( isset( $_REQUEST[$this->name.'_deletefile']) and $_REQUEST[$this->name.'_deletefile']==1 )
+    } else if (isset($_REQUEST[$this->name.'_deletefile']) and $_REQUEST[$this->name.'_deletefile']==1)
       $this->delete = true;
   }
 
@@ -159,8 +158,8 @@ class MLFileItem extends ModuleLibraryItem {
    * @return array
    * @access public
    */
-  function get_exportedValue ( ) {
-    return array( $this->name=>$this->value );
+  function get_exportedValue() {
+    return array($this->name=>$this->value);
   }
 
   /*
@@ -170,10 +169,10 @@ class MLFileItem extends ModuleLibraryItem {
    * @return string
    * @access public
    */
-  function exists ( $path, $filebase ) {
+  function exists($path, $filebase ) {
     $filelist = glob($path.$filebase.'.*');
 
-    if ( count( $filelist ) == 0 )
+    if (count($filelist) == 0)
       return '';
     else
       return substr($filelist[0], strlen($path));
@@ -224,6 +223,7 @@ class MLFileItem extends ModuleLibraryItem {
     if ($exif === false)
       return true;
     
+    /* check orientation from exif */
     if (isset($exif['Orientation']))
       $orientation = $exif['Orientation'];
     elseif (isset($exif['COMPUTED']['Orientation']))-
