@@ -870,7 +870,7 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Wiko */
-  elseif (preg_match('/(DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY|RAINBOW|SUNSET)([0-9]*)?/', $ua, $matches)) {
+  elseif (preg_match('/(DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY|RAINBOW|SUNSET|PULP 4G)([0-9]*)?/', $ua, $matches)) {
     $rep = array();
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Wiko', 
@@ -1375,6 +1375,19 @@ function client_getUAInfos($ua=false) {
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'SFR', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
+  /* check MobiWire mobiles */
+  elseif (preg_match('/(Taima) Build/', $ua, $matches)) {
+    $rep = array(
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'MobiWire', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
@@ -5131,6 +5144,15 @@ function client_getKnownBots() {
     'engine_title'=>'RWTH Aachen University',
     'engine_url'=>'http://www.rwth-aachen.de');
     
+  /* Jooblebot */
+  $knownBots['jooblebot'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Jooblebot',
+    'bot_url'=>'https://jooble.org/jooble-bot',
+    'engine_title'=>'Jooble',
+    'engine_url'=>'https://jooble.org');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
@@ -5199,6 +5221,15 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'DnyzBot (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* adscanner - unknown bot */
+  $knownBots['adscanner'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'adscanner (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
