@@ -2,10 +2,10 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
+ * Object Type      : Engine / Tool Library
  * Create Date		: Oct 2007
  * Last Modif Date	: Jun 2008
  * History :
@@ -177,13 +177,13 @@ function string_html2Text($string, $encoding=null) {
   $string = html_entity_decode($string);
  
   /* encode text */
-  switch ( $encoding ) {
-  case 'utf8':
-    if ( $camyks->get_confValue('server_encoding') != 'utf8')
-      return utf8_encode($string);
-  default:
-  case '':
-    return $string;
+  switch ($encoding) {
+    case 'utf8':
+      if ( $camyks->get_confValue('server_encoding') != 'utf8')
+        return utf8_encode($string);
+    default:
+    case '':
+      return $string;
   }
   return $string;
 }
@@ -203,13 +203,13 @@ function string_text2Html($string, $encoding=null) {
     $encoding = $camyks->get_confValue('encoding');
   
   /* encode text */
-  switch ( $encoding ) {
-  case 'utf8':
-    return htmlentities($string, null, 'UTF-8');
-    if ( $camyks->get_confValue('server_encoding') == 'utf8')
-      $string = utf8_decode($string);
-  default:
-  case '':
+  switch ($encoding) {
+    case 'utf8':
+      return htmlentities($string, null, 'UTF-8');
+      if ($camyks->get_confValue('server_encoding') == 'utf8')
+        $string = utf8_decode($string);
+    default:
+    case '':
   }
   
   /* decode html */

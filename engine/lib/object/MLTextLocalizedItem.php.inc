@@ -158,16 +158,16 @@ class MLTextLocalizedItem extends MLTextItem {
    * @return array
    * @access public
    */
-  function get_exportedValue ( ) {
+  function get_exportedValue() {
     $a = array();
-      if ( count( $this->value ) == 1 ) {
-      foreach ( $this->value as $l => $v ) {
-	$a[$this->name] = $v;
-	$a[$this->name.'_'.$l] = $v;
+      if (count($this->value) == 1) {
+      foreach ($this->value as $l => $v) {
+	    $a[$this->name] = $v;
+	    $a[$this->name.'_'.$l] = $v;
       }
-    } else { 
-      foreach ( $this->value as $l => $v ) {
-	$a[$this->name.'_'.$l] = $v;
+    } else {
+      foreach ($this->value as $l => $v) {
+	    $a[$this->name.'_'.$l] = $v;
       }
     }
     return $a;
