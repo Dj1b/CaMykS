@@ -144,7 +144,7 @@ class MLFileLocalizedItem extends MLFileItem {
     } else {
       /* delete all files */
       foreach ($camyks->get_confValue('editing_languages') as $language) {
-	    if (($file = $this->exists $path , $this->name.$_libObjId.'_'.$language)) != '') 
+	    if (($file = $this->exists($path , $this->name.$_libObjId.'_'.$language)) != '') 
 	      unlink($this->path.'/'.$this->get_folder($_libObjId).'/'.$file);
       }
     }
