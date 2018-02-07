@@ -48,11 +48,12 @@ class Tool_Login extends Module {
    */
   function init_admin () {
     global $camyks;
+    
     /* init values */
-    $this->text = '';
+    $this->text = '';    
 
     /* check if a user is loging */
-    if ( isset( $_REQUEST['login']) ) {
+    if (isset($_REQUEST['login'])) {
 
       $this->login = ( isset ( $_REQUEST['login'] ) ? $_REQUEST['login'] : '' );
       $this->pwd = ( isset ( $_REQUEST['pwd'] ) ? $_REQUEST['pwd'] : '' );
@@ -61,11 +62,11 @@ class Tool_Login extends Module {
       if ($user->can_login($this->pwd)) {
 	    $camyks->set_sessionValue('admin_user', $this->login);
 	    $camyks->set_sessionValue('admin_time', time());
-       	    /* add stat */
+       	/* add stat */
 	    $camyks->update_statistic('adminlogin', $this->name, 'single', $this->login, client_getIp(), '', array('checkIPFilter'=>0, 'checkAdmin'=>0));
 	    $this->selected_layout = 'null';
 	    header('Location:'.$camyks->get_adminLink());
-	    return;
+	    die();
       } else {
 	    /* add stat */
 	    $camyks->update_statistic('adminloginfailed', $this->name, 'single', $this->login, client_getIp(), '', array('checkIPFilter'=>0));

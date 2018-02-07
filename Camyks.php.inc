@@ -1994,7 +1994,7 @@ final class Camyks {
         
     /* run onInitialise event handlers */
     $this->run_eventHandlers('onPageLoad');
-          
+        
     /* get internal locales */
     $this->HTMLPage->set_pageInformations(
         $this->contentPage->title,
@@ -2078,18 +2078,16 @@ final class Camyks {
     $this->contentPage->init_admin();
 
     /* update header vars */
-    $this->HTMLPage->set_siteInformations ($this->_conf['site_title'],
-					    'CaMykS Team',
-					    '');
-    $this->HTMLPage->set_pageInformations ($this->get_translation('administration').' - ' .$this->contentPage->modules[0]->title,
+    $this->HTMLPage->set_siteInformations($this->_conf['site_title'], 'CaMykS Team', '');
+    $this->HTMLPage->set_pageInformations($this->get_translation('administration').' - ' .$this->contentPage->modules[0]->title,
 					    null,
 					    null,
 					    $this->current_language);
-    $this->HTMLPage->set_robotInformations (false, false);
+    $this->HTMLPage->set_robotInformations(false, false);
     if (isset($this->_conf['favicon'])) {
       $this->HTMLPage->set_favicon($this->_conf['favicon']);
     } else {
-      $this->HTMLPage->set_favicon( );
+      $this->HTMLPage->set_favicon();
     }
 
     /* display html header */

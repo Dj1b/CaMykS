@@ -110,7 +110,6 @@ class Theme extends Plugin {
     
     if ($camyks->mode == CAMYKS_MODE_ADMIN) {
       $this->initialise_adminMode();
-    
     } else {
       /* add icons */
       foreach ($this->touchIcons as $icon) {
