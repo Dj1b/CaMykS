@@ -1393,6 +1393,19 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld'), 
       isset($rep[$model])?$rep[$model]:array());
   }
+  
+  /* check Oppo mobiles */
+  elseif (preg_match('/(1201) Build/', $ua, $matches)) {
+    $rep = array(
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Oppo', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
             
   /*** check operating system ***/
   
@@ -1427,13 +1440,13 @@ function client_getUAInfos($ua=false) {
   	  /* build known windows versions */
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE', 
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000', 
-          '2000'=>'2000', 'NT 5.1'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
-          'NT 6.1'=>'7', 'NT6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10', 'NT 9.1'=>'NT 9.1',
+          '2000'=>'2000', 'NT 5.1'=>'XP', 'XP'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista', 
+          'NT 6.1'=>'7', 'NT6.1'=>'7', 'NT 6.1'=>'7', 'NT 6.2'=>'8', 'NT 6.3'=>'8.1', 'NT 6.4'=>'10',
           'NT 10.0'=>'10', '10'=>'10',           
       );
       
       /* build known windows fake versions */
-      $wf = array('NT 15.0');
+      $wf = array('NT 7.1', 'NT 9.1', 'NT 15.0');
       
       /* load version */
       $v = $matches[1];
@@ -1571,8 +1584,8 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
-      $rep = array('FDM'=>'Free Download Manager',);
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+      $rep = array('FDM'=>'Free Download Manager', 'VSE'=>'VSE Link Tester');
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1], 
@@ -1712,6 +1725,13 @@ function client_getUAInfos($ua=false) {
       	'browser_version'   => $matches[1],
       	'system_title'      =>'Windows',
       ), $infos);
+  
+    /* check Pizilla */
+    elseif (preg_match('/^Pizilla\+\+ ver ([0-9\. ]*)$/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'Pizilla', 
+      	'browser_version'   => $matches[1],
+      ), $infos);
       
     /* check Microsoft Data Access Internet Publishing Provider DAV */
     elseif (preg_match('/^Microsoft Data Access Internet Publishing Provider DAV$/', $ua, $matches))
@@ -1742,13 +1762,21 @@ function client_getUAInfos($ua=false) {
       	'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
       ), $infos);
+      
+    /* check AWeb  */
+    elseif (preg_match('/AWeb/', $ua, $matches))
+      $infos = array_merge(array(
+        'browser_title'     => 'AWeb', 
+      	'browser_version'   => '',
+      	'system_title'      =>'Amiga',
+      ), $infos);
     
     /* check Gecko compatible */
     elseif (preg_match('/Gecko/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Firefox compatible', 
       ), $infos);
-  
+     
     /* set type to "visitor" if not defined and browser title set */
     if (!isset($infos['platform_type']) and isset($infos['browser_title']) and $infos['browser_title'] != '')
       $infos['platform_type'] = 'computer';
@@ -5230,6 +5258,51 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'adscanner (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* UCmore - unknown bot */
+  $knownBots['ucmore'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'UCmore (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* BigDataCloud - unknown bot */
+  $knownBots['bigdatacloud'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'BigDataCloud (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Peopleman - unknown bot */
+  $knownBots['peopleman'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Peopleman (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* KickFire - unknown bot */
+  $knownBots['kickfire'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'KickFire (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+  
+  /* Microgine Crawler */
+  $knownBots['microgine crawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'Microgine Crawler (Unknown bot)',
     'bot_url'=>'',
     'engine_title'=>'',
     'engine_url'=>'');
