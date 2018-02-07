@@ -152,13 +152,16 @@ final class HTMLPage {
    */
   public function set_pageInformations($page_title, $page_desc='', $page_keys='', $page_lang='') {
     $this->page_title = $page_title;
-    $this->language = $page_lang;
-    if ( $page_keys != '' )
+    if ($page_keys != '')
       $this->add_meta('keywords',  $page_keys);
-    if ( $page_desc != '' )
+    if ($page_desc != '')
       $this->add_meta('description', $page_desc);
-    if ( $page_lang != '' and $this->htmlVersion == 4)
-      $this->add_meta('Content-Language', $page_lang, 'http-equiv');
+    if ($page_lang != '') {
+      if ($this->htmlVersion == 4)
+        $this->add_meta('Content-Language', $page_lang, 'http-equiv');
+      else
+        $this->language = $page_lang;
+    }
   }
   
   /* 
@@ -552,7 +555,7 @@ final class HTMLPage {
    */
   public function get_htmlHeader() {
     global $camyks;
-    if ($this->language != "" and $this->htmlVersion == 4)
+    if ($this->language != '' and $this->htmlVersion == 4)
       echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$this->language.'" lang="'.$this->language.'">'."\n".'<head>';
     elseif ($this->language == '')
       echo "<html>\n<head>\n";
@@ -560,7 +563,7 @@ final class HTMLPage {
       echo "<html lang=\"".$this->language."\">\n<head>\n";
     
     /* add base url for modern urls */
-    if ($camyks->get_confValue('friendlyurls') == 'modern')
+    if ($camyks->get_confValue('friendlyurls') == 'modern' and $camyks->mode != CAMYKS_MODE_ADMIN)
       echo "<base href=\"".$camyks->get_rootBaseURL('absolute_long')."\" />\n";
   }
   
@@ -652,7 +655,7 @@ final class HTMLPage {
         }
         fclose($mf);
       }
-      echo "<script type=\"text/javascript\" src=\"".$camyks->get_fileURL($masterScript)."\">/* add javascript */</script>\n";
+      echo "<script".$t." src=\"".$camyks->get_fileURL($masterScript)."\">/* add javascript */</script>\n";
     }
     
     /* check for client side cache */
@@ -664,9 +667,9 @@ final class HTMLPage {
     /* add files */
     foreach ($this->js_files as $js ) {
       if (preg_match('/https?:\/\//i', $js))
-        echo "<script type=\"text/javascript\" src=\"".$js.$r."\">/* add javascript */</script>\n";
+        echo "<script".$t." src=\"".$js.$r."\">/* add javascript */</script>\n";
       else
-        echo "<script type=\"text/javascript\" src=\"".$camyks->get_fileURL($js).$r."\">/* add javascript */</script>\n";
+        echo "<script".$t." src=\"".$camyks->get_fileURL($js).$r."\">/* add javascript */</script>\n";
     }
   }
 
@@ -680,8 +683,10 @@ final class HTMLPage {
     if (count ($this->js_pre_scripts) == 0)
       return;
       
+    $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
+      
     /* add scripts */
-    $str = "<script type=\"text/javascript\">\n";
+    $str = "<script".$t.">\n";
     foreach ($this->js_pre_scripts as $script) {
       $str .= "\t".$script."\n";
     }
@@ -702,8 +707,10 @@ final class HTMLPage {
 	 and $this->google_analytics['code'] == '' )
       return;
 
+    $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
+      
     /* add main scripts */
-    $str = "<script type=\"text/javascript\">\n";
+    $str = "<script".$t.">\n";
     foreach ( $this->js_scripts as $script ) {
       $str .= "\t".$script."\n";
     }

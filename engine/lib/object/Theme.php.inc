@@ -118,7 +118,6 @@ class Theme extends Plugin {
         if (isset($icon['default']) and $icon['default'] == 1) {
           if ($camyks->modules['Admin_ContentPage']->get_configValue('site_ogmeta') == 1)
             $camyks->HTMLPage->add_meta('og:image', $this->get_fileURL('img/touchIcons/'.$icon['url']), 'property');
-          $camyks->HTMLPage->add_link('', $this->get_fileURL('img/touchIcons/'.$icon['url']), array('itemprop'=>'image'));
         }
       }
       
