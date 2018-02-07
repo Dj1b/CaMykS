@@ -4,12 +4,12 @@ Options +FollowSymlinks
 <IfModule mod_headers.c>
   # Framed page protection
   Header set X-Frame-Options SAMEORIGIN
-  # Cookie protection
-  Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
   # XSS protection
   Header set X-XSS-Protection "1; mode=block"
-  # Enable HSTS to force use secure connections
-  Header always set Strict-Transport-Security "max-age=300;ÊincludeSubDomains;Êpreload"
+  # Cookie protection - Enable "secure" for HTTPS 
+  Header edit Set-Cookie ^(.*)$ $1;HttpOnly;#Secure
+  # Enable HSTS to force use secure connections - Enable only if HTTPS is forced on both website sides
+  #Header always set Strict-Transport-Security "max-age=300; includeSubDomains; preload"
 </IfModule>
 
 # Set up default expire	value
