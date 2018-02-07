@@ -1423,7 +1423,7 @@ final class Camyks {
    * @access public
    */
   public function get_sessionValue($name, $value = null) {
-    if ( isset($_SESSION[$this->site_name.'_'.$name ]) )
+    if (isset($_SESSION[$this->site_name.'_'.$name]))
       return $_SESSION[$this->site_name.'_'.$name];
     return $value;
   }
@@ -1680,7 +1680,7 @@ final class Camyks {
   	switch ($mode) {
   	  case 'absolute':
   	  case 'absolute_long':
-  		return $this->get_confValue('url').'/';
+  		return $this->get_confValue('url').(substr($this->get_confValue('url'), -1) == '/' ? '' : '/');
   	  case 'absolute_short':
   		return '/';
   	  case 'relative':
@@ -2047,7 +2047,7 @@ final class Camyks {
     /* init admin module to display */
     if ( $this->check_adminUser() === false ) {
       /* check for over written admin login module */
-      if ( isset( $this->_conf['adminLoginModule'] ) and isset( $this->modules[$this->_conf['adminLoginModule']]))
+      if ( isset( $this->_conf['adminLoginModule'] ) and isset($this->modules[$this->_conf['adminLoginModule']]))
 	    $module = $this->_conf['adminLoginModule'];
       else
 	    $module = 'Tool_Login';
@@ -2060,7 +2060,7 @@ final class Camyks {
       else
 	    $module = 'Tool_ControlPanel';
     }
-    
+        
     /* set up HTML Page config  */
     $this->set_confValue('html_version', 5);
 
@@ -2071,7 +2071,7 @@ final class Camyks {
     
     /* create admin special page content */
     $this->contentPage = $this->modules['Admin_ContentPage']->get_newPage();
-    $this->contentPage->set_adminData ( $module );
+    $this->contentPage->set_adminData ($module);
     
     /* get init from content */
     $this->theme->initialise();
@@ -2086,8 +2086,8 @@ final class Camyks {
 					    null,
 					    $this->current_language);
     $this->HTMLPage->set_robotInformations (false, false);
-    if ( isset($this->_conf['favicon']) ) {
-      $this->HTMLPage->set_favicon( $this->_conf['favicon'] );
+    if (isset($this->_conf['favicon'])) {
+      $this->HTMLPage->set_favicon($this->_conf['favicon']);
     } else {
       $this->HTMLPage->set_favicon( );
     }
