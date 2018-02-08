@@ -919,7 +919,7 @@ final class HTMLForm {
    */
   public function display_textInput($input, $default=null) {
     /* build param list */
-    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'oninput'=>'',  'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'onkeydown'=>'', 'list'=>'', 'autocomplete'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
+    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'oninput'=>'',  'disabled'=>'', 'readonly'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'onkeydown'=>'', 'list'=>'', 'autocomplete'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
 
     /* check header params */
     if ( is_array($input) ) {
@@ -979,6 +979,8 @@ final class HTMLForm {
       $html .= ' oninput="'.$params['oninput'].'"';
     if ( $params['disabled'] != '')
       $html .= ' disabled="disabled"';
+    if ($params['readonly'] == 'readonly' or $params['readonly'] == true)
+      $html .= ' readonly="readonly"';
     if ( $params['list'] != '')
       $html .= ' list="'.$params['list'].'"';
     if ( $params['placeholder'] != '')
