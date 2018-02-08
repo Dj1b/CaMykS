@@ -626,7 +626,7 @@ final class HTMLPage {
   public function get_JSFiles() {
     global $camyks;
     
-    $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
+    $t = ($this->htmlVersion > 4 ? '' : ' type="text/javascript"');
         
     /* check for server side caches */
     if ($camyks->mode == CAMYKS_MODE_SITE and $camyks->get_confValue('cache_server_side') == 'enabled' and count($this->js_files)>1) {
@@ -683,7 +683,7 @@ final class HTMLPage {
     if (count ($this->js_pre_scripts) == 0)
       return;
       
-    $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
+    $t = ($this->htmlVersion > 4 ? '' : ' type="text/javascript"');
       
     /* add scripts */
     $str = "<script".$t.">\n";
@@ -707,7 +707,7 @@ final class HTMLPage {
 	 and $this->google_analytics['code'] == '' )
       return;
 
-    $t = ($this->htmlVersion > 4 ? '' : ' type=\"text/javascript\"');
+    $t = ($this->htmlVersion > 4 ? '' : ' type="text/javascript"');
       
     /* add main scripts */
     $str = "<script".$t.">\n";
