@@ -5,14 +5,14 @@
  * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Javascripts
- * Creation Date    : May 2017
+ * Creation Date    : Feb 2018
  * Last Modif Date  : Feb 2018
  *
- * CookieAgreementMessage JS Engine
+ * CookieAgreementMessage config JS Engine
  *
  */
 
-var CookieAgreementMessage = {
+var CookieAgreementMessageConfig = {
   params: {},
 
   /*
@@ -49,16 +49,20 @@ var CookieAgreementMessage = {
    * @access public
    */
   initialise: function() {
-    
+    this.set_param('form', document.getElementById(this.get_param('form')));
   },
   
   /*
-   * go to given anchor
-   * @param string anchor
+   * handle onclick event on aboutCookie radios
+   * @param string value
+   * @return void
    * @access public
    */
-  accept_cookies: function() {
-    cookie_save('cookieAccepted', 1, this.get_param('cookieTTL'));
-    document.getElementById('cookieAgreementMessage').style.display = 'none';
+  onAboutCookieChange: function(value) {
+    console.log ('value:' + value);
+    if (value == '')
+      document.getElementById('aboutCookiePersValue').disabled = 'disabled';
+    else
+      document.getElementById('aboutCookiePersValue').disabled = false;
   },
 }
