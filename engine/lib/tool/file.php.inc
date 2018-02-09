@@ -21,11 +21,17 @@ define ('FILE_ICON_EXTENSION', 'gif');
  * write given file with given content, return boolean indicate if file is writed
  * @param string $file_path 
  * @param string $content
+ * @param boolean $deleteCache
  * @return boolean
  * @access public
  */
-function file_write($file_path, $content) {
+function file_write($file_path, $content, $deleteCache=false) {
   if (@file_put_contents($file_path, $content, LOCK_EX) !== false) {
+
+    /* remove cache from OPCache */
+    if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate(file_path);  
+  
+    /* return sucess */
     return true;
   } else {
     /* TO DO */
