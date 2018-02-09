@@ -122,9 +122,11 @@ abstract class PluginConfig {
    * @access public
    */
   public function get() {
-    if ( file_exists( $this->_libFile ) ) {
+    if (file_exists($this->_libFile)) {
+        
       /* get file "vars" value */
-      require $this->_libFile;
+      require $this->_libFile; 
+      
       /* check if vars value list exists */
       if ( !isset( $this->vars ))
 	    return $this->initialise();
@@ -161,7 +163,7 @@ abstract class PluginConfig {
       }
       
       /* write file */
-      if (file_write($this->_libFile, $content))
+      if (file_write($this->_libFile, $content, true))
 	    return true;
     }
     return false;
@@ -203,7 +205,7 @@ abstract class PluginConfig {
    * @access public
    */
   public function get_fromHeader() {
-    foreach ( $this->_libItems as $item ) {
+    foreach ($this->_libItems as $item) {
       $this->vars[$item->_name] = $item->get_fromHeader();
     }
   }
