@@ -29,7 +29,7 @@ function file_write($file_path, $content, $deleteCache=false) {
   if (@file_put_contents($file_path, $content, LOCK_EX) !== false) {
 
     /* remove cache from OPCache */
-    if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate(file_path);  
+    if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate($file_path);  
   
     /* return sucess */
     return true;
@@ -65,15 +65,6 @@ function file_getPHPFileHeader($desc="", $version="none") {
  */
 function file_getPHPFileFooter() {
   return "?".">";
-}
-
-/*
- * DEPRECATED : alias to file_getPHPFileFooter
- * @return string
- * @access public
- */
-function file_getPHPFileEnder() {
-  return file_getPHPFileFooter();
 }
 
 /*
@@ -922,9 +913,7 @@ function _file_getMimeFromExtension($file, $ext=null) {
 /* deprecated methods */
 
 /*
- * ** Deprecated ** 
- * ** Use file_getMimeIcon instead
- * return file mime icon
+ * alias to file_getMimeIcon
  * @param string $mime
  * @param int $size
  * @return string
@@ -933,4 +922,14 @@ function _file_getMimeFromExtension($file, $ext=null) {
 function file_getFileIcon ( $mime='', $size=32 ) {
     return file_getMimeIcon($mime, $size);
 }
+
+/*
+ * alias to file_getPHPFileFooter
+ * @return string
+ * @access public
+ */
+function file_getPHPFileEnder() {
+  return file_getPHPFileFooter();
+}
+
 ?>
