@@ -7,12 +7,19 @@
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Layout
  * Creation Date    : Dec 2014
- * Last Modif Date	: Feb 2017
+ * Last Modif Date	: Feb 2018
  * 
  * Admin_ContentPage Module Admin Layout : view configuration
 */
 global $camyks;
 ?>
+<?php if (isset($this->isConfig) and $this->isConfig) : ?>
+
+<?=$camyks->theme->get_boxContent2Header();?>
+<div class="adminContentPanel">
+
+<?php endif; ?>
+
 <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
 <tr>
@@ -26,7 +33,7 @@ global $camyks;
         <?=$this->get_translation('formitem_w3cvalidator');?>
     </td>
     <td class="eTableLine0 eContent1">
-        <?=$this->W3CValidatorStatus[$this->config->vars['action_w3cValidator']]; ?>
+        <?=$this->config->get_w3cValidatorTitle(); ?>
     </td>
 </tr>
 
@@ -48,7 +55,7 @@ global $camyks;
         <?=$camyks->get_translation('formitem_status');?>
     </td>
     <td class="eTableLine0 eContent1">
-        <?=$this->OGMetaStatus[$this->config->vars['site_ogmeta']]; ?>
+        <?=$this->config->get_ogMetaStatusTitle(); ?>
     </td>
 </tr>
 
@@ -70,7 +77,7 @@ global $camyks;
         <?=$this->get_translation('formitem_404fallback');?>
     </td>
     <td class="eTableLine0 eContent1">
-      <?=$this->Error404FallBacks[$this->config->vars['page_404FallBack']]; ?>
+      <?=$this->config->get_404FallbackTitle(); ?>
       <?php if (in_array($this->config->vars['page_404FallBack'], array('error404_display', 'error404_redirect'))) : ?>
       (<?=$this->get_translation('formitem_file') . $this->config->vars['page_404ErrorFile'];?>)
       <?php elseif (in_array($this->config->vars['page_404FallBack'], array('page_display', 'page_redirect'))) : ?>
@@ -90,12 +97,11 @@ global $camyks;
 </tr>
 <?php endif; ?>
 
-<?php if ($this->check_right(8)) : ?>
-<tr>
-    <td class="eTableLine0 eContent2" coslpan="2">
-        <?=$this->theme->get_button(array('url'=>$this->get_adminLink(array('mode'=>'edit_config')), 'title'=>$camyks->get_translation('modify')));?>
-    </td>
-</tr>
-<?php endif; ?>
-
 </table>
+
+<?php if (isset($this->isConfig) and $this->isConfig) :?>
+
+</div>
+<?=$camyks->theme->get_boxContent2Footer();?>
+
+<?php endif; ?>

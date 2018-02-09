@@ -39,6 +39,15 @@ global $camyks;
 <?php if ($this->check_right(8)) : ?>
 <div id="itemConfiguration" style="display:<?=$this->tabBuilder->get_tabDisplay('Configuration')?>;" class="adminContentPanel">
 <?php $this->load_file('html/configuration/view.html.inc'); ?>
+
+<div>
+  &nbsp;
+</div>
+
+<div>
+  <?=$this->theme->get_button(array('url'=>$this->get_adminLink(array('mode'=>'edit_config')), 'title'=>$camyks->get_translation('modify')));?>
+</div>
+
 </div>
 <?php endif; ?>
 

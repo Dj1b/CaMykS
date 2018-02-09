@@ -7,12 +7,19 @@
  * Object Version	: 1.0
  * Object Type	    : Plugin / Module Layout
  * Creation Date    : Dec 2014
- * Last Modif Date	: Dec 2014
+ * Last Modif Date	: Feb 2018
  * 
  * Admin_ContactPage Module Admin Layout : edit configuration
 */
 global $camyks;
 ?>
+<?php if (isset($this->isConfig) and $this->isConfig) :?>
+
+<?=$camyks->theme->get_boxContent2Header();?>
+<div class="adminContentPanel">
+
+<?php endif; ?>
+
 <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
 <tr>
@@ -68,7 +75,7 @@ global $camyks;
         <?=$this->get_translation('formitem_404fallback');?>
     </td>
     <td class="eTableLine0 eContent1" style="width:210px;">
-      <?=$this->editform->display_selectInput(array('name'=>'page_404FallBack', 'values'=>$this->Error404FallBacks, 'onchange'=>'ce.check_selected404FallBack()')); ?>
+      <?=$this->editform->display_selectInput(array('name'=>'page_404FallBack', 'values'=>$this->Error404FallBacks, 'onchange'=>'ConfigEditor.check_selected404FallBack()')); ?>
     </td>
     <td class="eTableLine0">
       <div id="FileSelectionBox" style="display:none;">
@@ -97,4 +104,11 @@ global $camyks;
     </td>
 </tr>
 </table>
+
+<?php if (isset($this->isConfig) and $this->isConfig) :?>
+
+</div>
+<?=$camyks->theme->get_boxContent2Footer();?>
+
+<?php endif; ?>
 

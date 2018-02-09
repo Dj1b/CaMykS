@@ -2,20 +2,19 @@
  * CaMykS Engine
  * Developed by		: Ideogram Design
  * Author			: JB Lebrun <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date    : Dec 2014
- * Last Modif Date	: Dec 2014
+ * Last Modif Date	: Feb 2018
  * 
  * Admin_ContentPage config edition scripts
  */
  
-function ConfigEditor(name) {
-  this.name = name;
-  this.params = {};
-  this.locales = {};
-  this.loaded = false;
+var ConfigEditor = {
+  params: {},
+  locales: {},
+  loaded: false,
 
   /*
    * add parameter
@@ -24,12 +23,12 @@ function ConfigEditor(name) {
    * @return void
    * @access public
    */
-  this.set_param = function(param, value, subvalue) {
+  set_param: function(param, value, subvalue) {
     if ( subvalue != undefined && this.params[param] )
       this.params[param][value] = subvalue;
     else
       this.params[param] = value;
-  };
+  },
    
   /*
    * return param value from name
@@ -37,13 +36,13 @@ function ConfigEditor(name) {
    * @return mixed
    * @access public
    */
-  this.get_param = function(param, value) {
+  get_param: function(param, value) {
     if (value != undefined && (this.params[param][value] || this.params[param][value] === 0))
         return this.params[param][value];
     if (this.params[param] || this.params[param] === 0)
       return this.params[param]
     return false;
-  };
+  },
   
   /*
    * set locale value 
@@ -52,9 +51,9 @@ function ConfigEditor(name) {
    * @return void
    * @access public
    */
-  this.set_locale = function(name, value) {
+  set_locale: function(name, value) {
     this.locales[name.toLowerCase()] = value;
-  };
+  },
   
   /*
    * get locale value 
@@ -62,18 +61,18 @@ function ConfigEditor(name) {
    * @return void
    * @access public
    */
-  this.get_locale = function(name) {
+  get_locale: function(name) {
     if (this.locales[name.toLowerCase()])
       return this.locales[name.toLowerCase()];
     return name;
-  };
+  },
   
   /* 
    * initialise object
    * @return void
    * @access public
    */
-  this.initialise = function() {
+  initialise: function() {
     /* check navigator type */
   	this.set_param('navType',  navigator.appName.indexOf("Microsoft")==-1? 'real':'msie');
   	
@@ -85,14 +84,14 @@ function ConfigEditor(name) {
   	
   	/* after init actions */
   	this.check_selected404FallBack();
-  };
+  },
   
   /*
    * check selected 404 Fallback value
    * @return void
    * @access public
    */
-  this.check_selected404FallBack = function() {
+  check_selected404FallBack: function() {
     if (!this.loaded)
       return false;
   
@@ -116,6 +115,5 @@ function ConfigEditor(name) {
       document.getElementById('HeaderSendingBox').style.display = 'block';
     else
       document.getElementById('HeaderSendingBox').style.display = 'none';
-    
-  };
+  },
 }
