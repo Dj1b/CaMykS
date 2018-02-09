@@ -142,9 +142,9 @@ $view_ = $this->theme->get_pictURL('view', 12, 'ovr');
 
 <div id="itemsending" style="display:<?=$this->tabBuilder->get_tabDisplay('sending');?>" class="adminContentPanel">
 
+<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 
 <?php if ($this->emailingItem->vars['status'] == 0) : ?>
-<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 <tr>
   <td class="eTableLine0 eContent2" style="width:250px;">
   	<?=$this->get_translation('formitem_approxemailtosend');?>
@@ -169,9 +169,48 @@ $view_ = $this->theme->get_pictURL('view', 12, 'ovr');
 <?php endif; ?>
 </table>
 
-<?php else : ?>
+<?php elseif ($this->emailingItem->vars['status'] == 1 and $this->check_right(4) == true) : ?>
 
-<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+<tr>
+  <td class="eTableLine0 eContent2" style="width:250px;">
+  	<?=$this->get_translation('formitem_approxemailtosend');?>
+  </td>
+  <td class="eTableLine0">
+  	<?=$this->contactCount;?>
+  </td>
+</tr>
+
+<tr>
+  <td class="eTableLine0 eContent2">
+  	<?=$this->get_translation('formitem_alreadysent');?>
+  </td>
+  <td class="eTableLine0">
+  	<?=$this->emailingItem->config->get_value('emailing_current', 0);?>
+  </td>
+</tr>
+
+<tr>
+  <td class="eTableLine0 eContent2">
+  	<?=$this->get_translation('formitem_remainingtosend');?>
+  </td>
+  <td class="eTableLine0">
+  	<?=$this->contactCount - $this->emailingItem->config->get_value('emailing_current', 0);?>
+  </td>
+</tr>
+
+
+<tr>
+	<td colspan="2">
+		&nbsp;
+	</td>
+</tr>
+<tr>
+  <td colspan="2">
+  	<?=$this->theme->get_button(array('url'=>$this->get_adminLink(array('mode'=>'send_emailing', 'emailing_id'=>$this->emailingItem->id)), 'title'=>$this->get_translation('action_continuesending')));?>
+  </td>
+</tr>
+
+<?php elseif ($this->emailingItem->vars['status'] == 2) : ?>
 
 <tr>
 	<td class="eTableLine0 eContent2" style="width:150px;">
@@ -266,24 +305,10 @@ $view_ = $this->theme->get_pictURL('view', 12, 'ovr');
 	</td>
 </tr>
 
-<?php if ($this->check_right(4) == true and $this->emailingItem->vars['status'] == 1) : ?>
-<tr>
-	<td colspan="2">
-		&nbsp;
-	</td>
-</tr>
-<tr>
-  <td colspan="2">
-  	<?=$this->theme->get_button(array('url'=>$this->get_adminLink(array('mode'=>'send_emailing', 'emailing_id'=>$this->emailingItem->id)), 'title'=>$this->get_translation('action_continuesending')));?>
-  </td>
-</tr>
 
 <?php endif; ?>
-
-
 </table>
 
-<?php endif; ?>
 </div>
 
 <?php if ($this->emailingItem->vars['status'] == 2) : ?>

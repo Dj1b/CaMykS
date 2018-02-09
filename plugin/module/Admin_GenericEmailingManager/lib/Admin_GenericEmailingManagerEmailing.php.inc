@@ -180,7 +180,7 @@ class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
   		
   	/* check config name for new objects */ 
   	if ($this->config->name == 'emailing0') {
-  		$this->config->name = 'emailing'.$this->id;
+      $this->config->name = 'emailing'.$this->id;
   	  $this->config->vars['emailing_id'] = $this->id;
   	  $this->config->_libFile = $this->config->_libFolder.'/'.$this->config->name.'.php.inc';
   	}

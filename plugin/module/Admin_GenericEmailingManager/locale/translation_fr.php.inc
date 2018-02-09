@@ -134,8 +134,11 @@ $this->trads['mod_admin_genericemailingmanager_formitem_invalid'] = 'Invalides :
 
 /* admin view emailing : sending tab */
 $this->trads['mod_admin_genericemailingmanager_tabsending'] = 'Envoi';
-$this->trads['mod_admin_genericemailingmanager_formitem_approxemailtosend'] = 'Nb. approximatif d\'envoi : ';
+$this->trads['mod_admin_genericemailingmanager_formitem_approxemailtosend'] = 'Nb. approximatif d\'envoi(s) : ';
+$this->trads['mod_admin_genericemailingmanager_formitem_alreadysent'] = 'Envoi(s) d&eacute;j&agrave; effectu&eacute;(s) : ';
+$this->trads['mod_admin_genericemailingmanager_formitem_remainingtosend'] = 'Envoi(s) restant : ';
 $this->trads['mod_admin_genericemailingmanager_action_startsending'] = 'D&eacute;marrer l\'envoi';
+$this->trads['mod_admin_genericemailingmanager_action_continuesending'] = 'Continuer l\'envoi';
 $this->trads['mod_admin_genericemailingmanager_formitem_totalsent'] = 'E-mails envoy&eacute;s : ';
 $this->trads['mod_admin_genericemailingmanager_formitem_totalsucceededsent'] = 'Envois r&eacute;ussis : ';
 $this->trads['mod_admin_genericemailingmanager_formitem_totalopened'] = 'E-mails ouverts : ';
@@ -156,6 +159,7 @@ $this->trads['mod_admin_genericemailingmanager_emailsending'] = 'Envoi des e-mai
 
 $this->trads['mod_admin_genericemailingmanager_initialise_emailing'] = 'Initialisation des envois en cours.';
 $this->trads['mod_admin_genericemailingmanager_initialise_emailing_done'] = 'Initialisation des envois termin&eacute;e.';
+$this->trads['mod_admin_genericemailingmanager_initialise_emailing_failure'] = 'Initialisation des envois &eacute;chou&eacute;e.';
 $this->trads['mod_admin_genericemailingmanager_send_email'] = 'Envoi en cours.';
 $this->trads['mod_admin_genericemailingmanager_send_email_done'] = 'Envoi &agrave; %s termin&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_send_email_failure'] = 'Envoi &agrave; %s &eacute;chou&eacute;.';
