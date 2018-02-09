@@ -179,32 +179,32 @@ $this->trads['mod_admin_genericemailingmanager_config_saved'] = 'Configuration e
 $this->trads['mod_admin_genericemailingmanager_config_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de la configuration.';
 
 /* admin save emailing */
-$this->trads['mod_admin_genericemailingmanager_emailing_saved'] = 'E-mailing enregistr&eacute;';
+$this->trads['mod_admin_genericemailingmanager_emailing_saved'] = 'E-mailing enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_emailing_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de ce e-mailing.';
 
 /* admin delete emailing */
-$this->trads['mod_admin_genericemailingmanager_emailing_deleted'] = 'E-mailing supprim&eacute;';
+$this->trads['mod_admin_genericemailingmanager_emailing_deleted'] = 'E-mailing supprim&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_emailing_notdeleted'] = 'Une erreur est survenue lors de la suppression de cet emailing.';
 
 /* admin reset emailing */
-$this->trads['mod_admin_genericemailingmanager_emailing_reseted'] = 'E-mailing r&eacute;initialis&eacute;';
+$this->trads['mod_admin_genericemailingmanager_emailing_reseted'] = 'E-mailing r&eacute;initialis&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_emailing_notreseted'] = 'Une erreur est survenue lors de la r&eacute;initialisation de cet emailing.';
 
 /* admin delete email results */
-$this->trads['mod_admin_genericemailingmanager_email_deleted'] = 'R&eacute;sultats d\'envoi supprim&eacute;s';
+$this->trads['mod_admin_genericemailingmanager_email_deleted'] = 'R&eacute;sultats d\'envoi supprim&eacute;s.';
 $this->trads['mod_admin_genericemailingmanager_email_notdeleted'] = 'Une erreur est survenue lors de la suppression de ecs r&eacute;sultats d\'envoi.';
 
 /* admin mark email as invalid */
 $this->trads['mod_admin_genericemailingmanager_email_markedasinvalid'] = 'Adresse e-mail marqu&eacute;e comme invalide.';
 
 /* admin save contact */
-$this->trads['mod_admin_genericemailingmanager_contact_saved'] = 'Contact enregistr&eacute;';
+$this->trads['mod_admin_genericemailingmanager_contact_saved'] = 'Contact enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de ce contact.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_alreadyexists'] = 'Un contact utilisant cette adresse e-mail existe d&eacute;j&agrave; dans la base de donn&eacute;es. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_emailinvalid'] = 'L\'adresse e-mail est invalide. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
 
 /* admin delete contact */
-$this->trads['mod_admin_genericemailingmanager_contact_deleted'] = 'Contact supprim&eacute;';
+$this->trads['mod_admin_genericemailingmanager_contact_deleted'] = 'Contact supprim&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_notdeleted'] = 'Une erreur est survenue lors de la suppression de ce contact.';
 
 /* admin import contacts */
