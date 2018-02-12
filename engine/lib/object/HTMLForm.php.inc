@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Object Library
  * Creation Date	: Jun 2005
- * Last Modif Date	: Nov 2017
+ * Last Modif Date	: Feb 2018
  * History :
  * * 05-06-xx : Initial File
  * * 08-01-16 : generic file upload input builder method
@@ -1216,7 +1216,7 @@ final class HTMLForm {
     return $html;
   }
   
-    /*
+  /*
    * build and return radio input
    * @param mixed $input
    * @param string default
@@ -1290,6 +1290,55 @@ final class HTMLForm {
         $html .= ' style="'.$params['labelStyle'].'"';
       $html .= '>'.$params['label'].'</label>';
     }
+    
+    /* send html code */
+    return $html;
+  }
+  
+    /*
+   * build and return hidden input
+   * @param mixed $input
+   * @param string default
+   * @return string
+   * @access public
+   */
+  public function display_hiddenInput($input, $default=null) {
+    /* build param list */
+    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'language'=>'');
+    
+    /* check header params */
+    if ( is_array($input) ) {
+      $params = array_merge($params, $input);
+    } else {
+      $params['name'] = $input;
+      if (isset($default))
+	    $params['default'] = $default;
+    }
+
+    /* check limit */
+    $this->check_inputsLimit(1, $params['name']);
+    
+    /* check object params */
+    if (isset($this->object)) {
+      /* check default value */
+      if ($params['default'] == '') {
+	    $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
+	    $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+      }
+    }
+
+    /* build input */
+    $html = '<input type="hidden"';
+    if ($params['language'] == '' )
+      $html .= ' name="'.$params['name'].'"';
+    else
+      $html .= ' name="'.$params['name'].'_'.$params['language'].'"';
+    if ( $params['id'] != '' )
+      $html .= ' id="'.$params['id'].'"';    
+    
+    $html .= ' value="'.$params['default'].'"';
+    
+    $html .= ' />';
     
     /* send html code */
     return $html;
