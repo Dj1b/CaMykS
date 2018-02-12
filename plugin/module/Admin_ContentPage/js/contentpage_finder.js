@@ -1,12 +1,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
- * Create Date		: Sep 2005
- * Last Modif Date      : Feb 2008
+ * Object Type      : Plugin / Module Engine
+ * Creation Date	: Sep 2005
+ * Last Modif Date  : Feb 2018
  *
  * ContentPage object javascript
  */
@@ -182,16 +182,19 @@ function contentPage_requestSelectPage() {
     if ( cpt.items[i].path == pc_item ) {
       switch ( pc_mode ) {
       case 'pageid':
-	pc_value = cpt.items[i].id;
-	break;
+	    pc_value = cpt.items[i].id;
+	    break;
       case 'pagename':
-	pc_value = cpt.items[i].name;
-	break;
+	    pc_value = cpt.items[i].name;
+	    break;
+      case 'pageidname':
+	    pc_value = cpt.items[i].id + '","' + cpt.items[i].name;
+	    break;
       case 'pagelink':
-	pc_value = cpt.items[i].url;
-	break;
+	    pc_value = cpt.items[i].url;
+	    break;
       default:
-	return;
+	    return;
       }
       break;
     }

@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Dictionnary
  * Create Date		: Jun 2005
- * Last Modif Date  : Dec 2014
+ * Last Modif Date  : Feb 2018
  *
  * Admin_ContentPage french dictionnary 
  */
@@ -16,6 +16,7 @@ $this->trads['mod_admin_contentpage_desc'] = 'Gestion des pages du site';
 
 /* global */
 $this->trads['mod_admin_contentpage_pagetitle'] = 'Page';
+$this->trads['mod_admin_contentpage_page'] = 'Page';
 $this->trads['mod_admin_contentpage_pages'] = 'Pages';
 
 /* rights */
@@ -29,8 +30,30 @@ $this->trads['mod_admin_contentpage_rights_configuration'] = 'Configuration';
 
 /* configuration */
 $this->trads['mod_admin_contentpage_configuration'] = 'Configuration';
+$this->trads['mod_admin_contentpage_select_sitepage'] = 'S&eacute;lectionner une page du site';
+$this->trads['mod_admin_contentpage_page_notfound'] = 'Page non trouv&eacute;e';
+
+/* configuration - navigations */
+$this->trads['mod_admin_contentpage_formtitle_navigations'] = 'Navigations';
+$this->trads['mod_admin_contentpage_formitem_main'] = 'Principale : ';
+$this->trads['mod_admin_contentpage_formitem_alt'] = 'Secondaire : ';
+$this->trads['mod_admin_contentpage_navigation_none'] = 'Aucune';
+$this->trads['mod_admin_contentpage_add_new_navigation'] = 'Ajouter une navigation';
+$this->trads['mod_admin_contentpage_remove_navigation'] = 'Supprimer la navigation';
+$this->trads['mod_admin_contentpage_name'] = 'Nom';
+
+/* configuration - key pages */
+$this->trads['mod_admin_contentpage_formtitle_keypages'] = 'Pages cl&eacute;s';
+$this->trads['mod_admin_contentpage_keypage_none'] = 'Aucune';
+$this->trads['mod_admin_contentpage_add_new_keypage'] = 'Ajouter une page cl&eacute;';
+$this->trads['mod_admin_contentpage_remove_keypage'] = 'Supprimer la page cl&eacute;';
+$this->trads['mod_admin_contentpage_key'] = 'Cl&eacute;';
+
+/* configuration - actions */
 $this->trads['mod_admin_contentpage_formtitle_actions'] = 'Actions';
 $this->trads['mod_admin_contentpage_formitem_w3cvalidator'] = 'Validation W3C : ';
+
+/* configuration - 404 fallback */
 $this->trads['mod_admin_contentpage_formtitle_pagesnotfound'] = 'Pages non trouv&eacute;es';
 $this->trads['mod_admin_contentpage_formitem_404fallback'] = 'Solution de repli : ';
 $this->trads['mod_admin_contentpage_config_404fallback_homedisplay'] = 'Affichage de la page d\'accueil';
@@ -44,6 +67,8 @@ $this->trads['mod_admin_contentpage_formitem_page'] = 'Page : ';
 $this->trads['mod_admin_contentpage_formitem_send404header'] = 'Envoyer l\'en-t&ecirc;te 404 : ';
 $this->trads['mod_admin_contentpage_config_w3cvalidator_disabled'] = 'D&eacute;sactiv&eacute;e';
 $this->trads['mod_admin_contentpage_config_w3cvalidator_enabled'] = 'Activ&eacute;e';
+
+/* configuration - site */
 $this->trads['mod_admin_contentpage_formtitle_ogmeta'] = 'Metas Open Graph';
 $this->trads['mod_admin_contentpage_config_ogmeta_disabled'] = 'D&eacute;sactiv&eacute;s';
 $this->trads['mod_admin_contentpage_config_ogmeta_enabled'] = 'Activ&eacute;s';

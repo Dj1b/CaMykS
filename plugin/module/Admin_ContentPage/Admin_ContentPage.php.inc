@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2005
- * Last Modif Date  : Dec 2014
+ * Last Modif Date  : Feb 2018
  * History :
  * * 05-06-xx : Initial files
  * * 08-02-19 : Add model support
@@ -842,10 +842,6 @@ class Admin_ContentPage extends Module {
     if ( $this->check_right(8) === false )
       return $this->init_admin_actionNotAllowed();
     
-    /* load data */
-    $this->W3CValidatorStatus = $this->config->get_w3cValidatorList();
-    $this->OGMetaStatus = $this->config->get_ogMetaStatusList();
-    $this->Error404FallBacks = $this->config->get_404FallbackList();
     $this->get_help();
                       
     /* get tabs */
@@ -864,26 +860,28 @@ class Admin_ContentPage extends Module {
     
     /* load config form */
     $this->editform = new HTMLForm('edit_config',
-				   $this->get_adminlink( array('mode'=>'save_config')),
+				   $this->get_adminlink(array('mode'=>'save_config')),
 				   'POST');
-    $this->editform->set_object($this->config);
-    
-    /* add scripts */
-    $this->add_JSFile('ConfigEditor.js');
-    $this->add_JSLoadScript('ConfigEditor.set_param("form", "'.$this->editform->name.'");');
-    $this->add_JSLoadScript('ConfigEditor.initialise();');
-    
+	
+	$this->initialise_configEdition($this->editform);
+	$this->isConfig = false;
+				   
     /* build title */
     $this->adminTitle = $this->title;
     $this->adminTitle .= $camyks->get_translation('formitem_separator');
     $this->adminTitle .= $this->get_translation('configuration');
     
     /* build button list */
-    $this->buttons = array(array('link'=>$this->get_adminLink(array('openTab'=>'Configuration')),
-				        'title'=>$camyks->get_translation('back')),
-				     array('link'=>$this->editform->get_HTMLSubmitLink(),
-				        'title'=>$camyks->get_translation('valid')),
-				    );
+    $this->buttons = array(
+        array(
+            'link'  => $this->get_adminLink(array('openTab'=>'Configuration')),
+	        'title' => $camyks->get_translation('back'),
+	    ),
+		array(
+		    'link'  =>$this->editform->get_HTMLSubmitLink(),
+			'title' =>$camyks->get_translation('valid')
+		),
+	);
     
     /* update layout */
     $this->selected_layout = 'admin_edit_config.html.inc';
@@ -1225,6 +1223,25 @@ class Admin_ContentPage extends Module {
     return $this->config->get_value($param, $default);
   }
 
+  /*
+   * return key page from config
+   * @param string $key
+   * @return mixed
+   * @access public
+   */
+  function get_keyPage($key) {
+    return $this->config->get_keyPage($key);
+  }
+
+  /*
+   * return navigation root from config
+   * @param string $key
+   * @return mixed
+   * @access public
+   */
+  function get_navigationRoot($key) {
+    return $this->config->get_navigationRoot($key);
+  }
 
   /*
    * initialise finder mode
@@ -1379,6 +1396,9 @@ class Admin_ContentPage extends Module {
    */
   public function initialise_configDisplay() {
     $this->isConfig = true;
+    
+    /* load pages */ 
+    $this->get_adminPages();
   }
   
   /*
@@ -1397,6 +1417,8 @@ class Admin_ContentPage extends Module {
    * @access public
    */
   public function initialise_configEdition($form) {
+    global $camyks;
+    
     $this->isConfig = true;
     
     /* load data */
@@ -1407,11 +1429,24 @@ class Admin_ContentPage extends Module {
     /* update form */
     $this->editform = &$form;
     $this->editform->set_object($this->config);
+    $this->editform->add_hidden('keyPageCnt', count($this->config->get_value('keyPages')));
+    $this->editform->add_hidden('navAddCnt', count($this->config->get_value('navigation_additional')));
+        
+    /* load pages */ 
+    $this->get_adminPages();
   
     /* add scripts */
+    $this->add_JSEngineFile('tool/string.js');
     $this->add_JSFile('ConfigEditor.js');
     $this->add_JSLoadScript('ConfigEditor.set_param("form", "'.$this->editform->name.'");');
     $this->add_JSLoadScript('ConfigEditor.initialise();');
+    
+    if (isset($camyks->inputs['PageChooser'])) {
+	  $this->pc = true;
+      $camyks->inputs['PageChooser']->initialise('pageidname', null, 'ConfigEditor.update_selectedPage');
+	} else {
+	  $this->pc = false;
+	}
   }
   
   /*

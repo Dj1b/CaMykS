@@ -79,12 +79,18 @@ var ConfigEditor = {
   	/* set form */
   	this.set_param('form', document.getElementById(this.get_param('form')));
   	
+  	/* default vars */
+  	this.set_param('selectedPage', '');
+  	this.set_param('keyPageCnt', 0);
+  	
 	/* finalise initialisation */
   	this.loaded = true;
   	
   	/* after init actions */
   	this.check_selected404FallBack();
   },
+  
+  /* 404 fallback management methods */
   
   /*
    * check selected 404 Fallback value
@@ -115,5 +121,93 @@ var ConfigEditor = {
       document.getElementById('HeaderSendingBox').style.display = 'block';
     else
       document.getElementById('HeaderSendingBox').style.display = 'none';
+  },
+  
+  /* page chooser methods */
+  
+  /*
+   * open page chooser to select a page for given variable
+   * @param string inputName
+   * @return void
+   */
+  open_pageChooser: function (inputName) {
+    this.set_param('selectedPage', inputName);
+    pc.open(this.get_param('form')[inputName].value);
+  },
+  
+  /*
+   * update selected page value 
+   * @param integer id
+   * @param string name
+   * @return void
+   * @access public
+   */
+  update_selectedPage: function (id, name) {
+    if (this.get_param('selectedPage') !== false) {
+      this.get_param('form')[this.get_param('selectedPage')].value = id;
+      this.get_param('form')[this.get_param('selectedPage')+'_name'].value = name;
+    }
+  },
+  
+  /* key pages management methods */
+  
+  /*
+   * insert new key page
+   * @return void
+   * @access public
+   */
+  insert_keyPage: function() {
+    keyIndex = this.get_param('form')['keyPageCnt'].value;
+  
+    keyLine = document.getElementById('keyPageTemplate').cloneNode(true);
+    keyLine.id = 'keyPage'+keyIndex;
+  	keyLine.innerHTML = keyLine.innerHTML.replaceAll('XXX', keyIndex);
+    keyLine.style.display = 'block';
+    
+    document.getElementById('keyPages').appendChild(keyLine);
+    
+    this.get_param('form')['keyPageCnt'].value++;
+  },
+  
+  /*
+   * remove key page
+   * @param integer pageIndex
+   * @return void
+   * @access public
+   */
+  remove_keyPage: function(pageIndex) {
+    this.get_param('form')['keyPageName'+pageIndex].value = '';
+    document.getElementById('keyPage'+pageIndex).style.display = 'none';
+  },
+  
+  /* navigation management methods */
+  
+  /*
+   * insert new navigation
+   * @return void
+   * @access public
+   */
+  insert_navigation: function() {
+    keyIndex = this.get_param('form')['navAddCnt'].value;
+  
+    keyLine = document.getElementById('navAddTemplate').cloneNode(true);
+    keyLine.id = 'navAdd'+keyIndex;
+  	keyLine.innerHTML = keyLine.innerHTML.replaceAll('XXX', keyIndex);
+    keyLine.style.display = 'block';
+    
+    document.getElementById('navAdds').appendChild(keyLine);
+    
+    this.get_param('form')['navAddCnt'].value++;
+  },
+  
+  /*
+   * remove navigation
+   * @param integer pageIndex
+   * @return void
+   * @access public
+   */
+  remove_navigation: function(pageIndex) {
+    this.get_param('form')['navAddName'+pageIndex].value = '';
+    document.getElementById('navAdd'+pageIndex).style.display = 'none';
   },
 }
