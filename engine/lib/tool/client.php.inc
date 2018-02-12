@@ -466,6 +466,7 @@ function client_getUAInfos($ua=false) {
         'SM-G610F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
+        'SM-J710GN' => array('platform_model' => 'Galaxy J7 Duos (2016)', ),
         'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime (2016)', ),
         'SM-J730F'  => array('platform_model' => 'Galaxy J7 (2017)', ),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y', ),
@@ -1446,7 +1447,7 @@ function client_getUAInfos($ua=false) {
       );
       
       /* build known windows fake versions */
-      $wf = array('NT 7.1', 'NT 9.1', 'NT 15.0');
+      $wf = array('NT 7.0', 'NT 7.1', 'NT 9.1', 'NT 15.0');
       
       /* load version */
       $v = $matches[1];
@@ -1584,8 +1585,8 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
-      $rep = array('FDM'=>'Free Download Manager', 'VSE'=>'VSE Link Tester');
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla|UCWEB)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+      $rep = array('FDM'=>'Free Download Manager', 'VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser');
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1], 
