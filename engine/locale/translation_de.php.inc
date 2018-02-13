@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by	    : camyks.net
- * Author	    			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b1
+ * Author	    	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Engine / Global Dictionnary
  * Creation Date    : Dec 2010
- * Last Modif Date  : Dec 2010
+ * Last Modif Date  : Feb 2018
  *
  * CaMykS engine german dictionnary
  */
@@ -198,5 +198,14 @@ $this->trads['civility_sir'] = '';
 $this->trads['civility_dr'] = 'Dr.';
 $this->trads['civility_pr'] = 'Prof.';
 $this->trads['civility_me'] = '';
+
+/* errors */
+$this->trads['error_pluginmissing_title'] = 'Ein ben&ouml;tigtes Plugin fehlt.';
+$this->trads['error_pluginmissing_desc'] = 'Plugin "%s" ist erforderlich und fehlt in der CaMykS-Installation.';
+
+$this->trads['error_fatalerror'] = 'Fataler Fehler';
+$this->trads['error_plugin_doesnt_support_requests_desc'] = 'Dieses Plugin unterst&uuml;tzt keine Anfragen.';
+$this->trads['error_plugin_doesnt_support_requests_content'] = 'Wenn das Problem weiterhin besteht, wenden Sie sich an den Website-Administrator.';
+$this->trads['error_plugin_doesnt_support_requests_back_title'] = 'Zur&uuml;ck zur Homepage';
 
 ?>

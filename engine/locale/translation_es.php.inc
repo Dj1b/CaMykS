@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type  	: Engine / Global Dictionnary
  * Creation Date	: Oct 2014
- * Last Modif Date	: Dec 2014
+ * Last Modif Date	: Feb 2018
  * * Status         : -- Uncomplete --
  *
  * CaMykS engine spanish dictionnary
@@ -181,5 +181,24 @@ $this->trads['formitem_website'] = 'Website: ';
 
 /* form input titles */
 $this->trads['formtitle_properties'] = 'Properties';
+
+/* civility title list */
+$this->trads['civility_'] = '';
+$this->trads['civility_mr'] = 'Mr';
+$this->trads['civility_mrs'] = 'Mrs';
+$this->trads['civility_ms'] = 'Ms';
+$this->trads['civility_sir'] = 'Sir';
+$this->trads['civility_dr'] = 'Dr';
+$this->trads['civility_pr'] = 'Pr';
+$this->trads['civility_me'] = '';
+
+/* errors */
+$this->trads['error_pluginmissing_title'] = 'A required plugin is missing.';
+$this->trads['error_pluginmissing_desc'] = 'Plugin "%s" is required and missing in CaMykS installation.';
+
+$this->trads['error_fatalerror'] = 'Fatal error';
+$this->trads['error_plugin_doesnt_support_requests_desc'] = 'This plugin doesn\'t support requests.';
+$this->trads['error_plugin_doesnt_support_requests_content'] = 'If the problem persists, contact the website administrator.';
+$this->trads['error_plugin_doesnt_support_requests_back_title'] = 'Back to home';
 
 ?>
