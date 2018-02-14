@@ -6,6 +6,8 @@ Options +FollowSymlinks
   Header set X-Frame-Options SAMEORIGIN
   # XSS protection
   Header set X-XSS-Protection "1; mode=block"
+  # MIME-Type sniffing protection
+  Header always set X-Content-Type-Options "nosniff"
   # Cookie protection - Enable "secure" for HTTPS 
   Header edit Set-Cookie ^(.*)$ $1;HttpOnly;#Secure
   # Enable HSTS to force use secure connections - Enable only if HTTPS is forced on both website sides
