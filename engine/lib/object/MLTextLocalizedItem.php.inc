@@ -22,7 +22,7 @@ final class MLTextLocalizedItem extends MLTextItem {
    * @param string $default
    */
   public function __construct($name, $folder, $path, $default='') {
-    parent::__construct();
+    parent::__construct($name, $folder, $path, $default);
     $this->value = array();
   }
   
