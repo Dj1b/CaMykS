@@ -7,87 +7,83 @@
  * Object Version	: 1.0
  * Object Type	    : Engine / Object Lib
  * Creation Date	: Apr 2007
- * Last Modif Date  : Jan 2018
+ * Last Modif Date  : Feb 2018
  *
  * Module Library Database Item Object
  */
 
-class MLDatabaseLocalizedItem extends MLDatabaseItem {
-  /* engine vars */
-  var $name;
-  var $datatype; /* text / etext / int / float / date / password  */
-  var $datadesc;
-  var $datadesc2;
-  var $default;
-  /* running vars */
-  var $value;
+final class MLDatabaseLocalizedItem extends MLDatabaseItem {
 
-  /* constructor */
-  function MLDatabaseLocalizedItem ( $name, $datatype, $desc, $desc2='', $default=null ) {
-    $this->name = $name;
-    $this->datatype = $datatype;
-    $this->datadesc = $desc;
-    $this->datadesc2 = $desc2;
+  /*
+   * constructor
+   * @param string $name
+   * @param string $datatype
+   * @param string $desc
+   * @param mixed $desc2
+   * @param mixed $default
+   * @return void
+   * @access public
+   */
+  public function __construct($name, $datatype, $desc, $desc2='', $default=null) {
+    parent::__construct($name, $datatype, $desc, $desc2, $default);
     $this->value = array();
-    $this->default = isset ($default) ? $default : $this->get_defaultValue();
   }
   
-  /* methods */
-
   /*
    * initialise object
    * @return void
    * @access public
    */
-  function initialise() {
+  public function initialise() {
     global $camyks;
-    foreach ($camyks->get_confValue('editing_languages') as $l ) {
+    foreach ($camyks->get_confValue('editing_languages') as $l) {
       $this->value[$l] = $this->default;
     }
   }
 
   /*
    * get object value from header
+   * @param string $prefix
    * @return void
    * @access public
    */
-  function get_fromHeader($prefix = '') {
+  public function get_fromHeader($prefix='') {
     global $camyks;
     
     /* set header value name */
     $name = $prefix.$this->name;
     
     /* load value */
-    switch ( $this->datatype ) {
+    switch ($this->datatype) {
     case 'date':
-      foreach ( $camyks->get_confValue('editing_languages') as $l ) {
-	    $this->value[$l] = $this->get_dateFromHeader( $name.'_'.$l );
+      foreach ($camyks->get_confValue('editing_languages') as $l) {
+	    $this->value[$l] = $this->get_dateFromHeader($name.'_'.$l);
       }
       break;
     case 'text':
     case 'etext':
-      foreach ( $camyks->get_confValue('editing_languages') as $l ) {
-	    $v = (string)$this->get_valueFromHeader( $name.'_'.$l );
-	    $v = $this->parse_PHPTags( $v );
-	    if ( $this->datadesc2>0 )
-	      $v = substr( $v, 0, $this->datadesc2 );
+      foreach ($camyks->get_confValue('editing_languages') as $l) {
+	    $v = (string)$this->get_valueFromHeader($name.'_'.$l);
+	    $v = $this->parse_PHPTags($v);
+	    if ($this->datadesc2 > 0)
+	      $v = substr($v, 0, $this->datadesc2);
 	    $this->value[$l] = $v;
       }
       break;
     case 'int':
-      foreach ( $camyks->get_confValue('editing_languages') as $l ) {
-	    $this->value[$l] = (int)$this->get_valueFromHeader( $name.'_'.$l );
+      foreach ($camyks->get_confValue('editing_languages') as $l) {
+	    $this->value[$l] = (int)$this->get_valueFromHeader($name.'_'.$l);
       }
       break;
     case 'float':
-      foreach ( $camyks->get_confValue('editing_languages') as $l ) {
-	    $this->value[$l] = $this->get_valueFromHeader( $name.'_'.$l );
+      foreach ($camyks->get_confValue('editing_languages') as $l) {
+	    $this->value[$l] = $this->get_valueFromHeader($name.'_'.$l);
 	    $this->value[$l] = preg_replace('/,/', '.', (float)preg_replace('/,/', '.', $this->value[$l]));
       }
       break;
     default:
-      foreach ( $camyks->get_confValue('editing_languages') as $l ) {
-	    $this->value[$l] = $this->get_valueFromHeader( $name.'_'.$l );
+      foreach ($camyks->get_confValue('editing_languages') as $l) {
+	    $this->value[$l] = $this->get_valueFromHeader($name.'_'.$l);
       }
       break;
     }
@@ -99,31 +95,41 @@ class MLDatabaseLocalizedItem extends MLDatabaseItem {
    * @return void
    * @access public
    */
-  function get_fromArray( $data ) {
+  public function get_fromArray($data) {
     global $camyks;
     
     /* check language */
-    if (isset ( $data['language']))
+    if (isset ($data['language']))
       $l = $data['language'];
     else
       $l = $camyks->current_language;
       
+    /* check if value exists in array */
+    if (isset($data[$this->name.'_'.$l]))
+      $value = $data[$this->name.'_'.$l];
+    elseif (isset($data[$this->name]))
+      $value = $data[$this->name];
+    else {
+      $value = $this->default;
+      return;
+    }
+      
     /* set value */
-    switch ( $this->datatype ) {
+    switch ($this->datatype) {
     case 'etext':
-      $this->value[$l] = isset($data[$this->name.'_'.$l])?$camyks->decode_value($data[$this->name.'_'.$l]):(isset($data[$this->name])?$camyks->decode_value($data[$this->name]):$this->default);
+      $this->value[$l] = $camyks->decode_value($value);
       break;
     case 'text':
-      $this->value[$l] = isset ($data[$this->name.'_'.$l])?stripslashes($data[$this->name.'_'.$l]):(isset ($data[$this->name])?stripslashes($data[$this->name]):$this->default);
+      $this->value[$l] = stripslashes($value);
       break;
     case 'int':
     case 'date':
-      $this->value[$l] = isset ($data[$this->name.'_'.$l])?(int)$data[$this->name.'_'.$l]:(isset ($data[ $this->name])?(int)$data[$this->name]:$this->default);
+      $this->value[$l] = (int)$value;
       break;
     case 'list':
-      $this->value[$l] = isset($data[$this->name.'_'.$l])?$this->uncompile_listValue($data[$this->name.'_'.$l]):(isset($data[$this->name])?$this->uncompile_listValue($data[$this->name]):$this->default);
+      $this->value[$l] = $this->uncompile_listValue($value);
     default:
-      $this->value[$l] = isset($data[$this->name.'_'.$l])?$data[$this->name.'_'.$l]:(isset($data[$this->name])?$data[$this->name]:$this->default);
+      $this->value[$l] = $value;
       break;
     }
     return;
@@ -134,16 +140,16 @@ class MLDatabaseLocalizedItem extends MLDatabaseItem {
    * @return mixed
    * @access public
    */
-  function get_exportedValue() {
+  public function get_exportedValue() {
     global $camyks;
     $v = array();
-    if (count($this->value ) == 1) {
-      foreach($this->value as $l=>$value) {
+    if (count($this->value) == 1) {
+      foreach($this->value as $l => $value) {
 	    $v[$this->name.'_'.$l] = $value;
 	    $v[$this->name] = $value;
       } 
     } else { 
-      foreach($this->value as $l=>$value) {
+      foreach($this->value as $l => $value) {
 	    $v[$this->name.'_'.$l] = $value;
       }
     }
@@ -152,30 +158,30 @@ class MLDatabaseLocalizedItem extends MLDatabaseItem {
 
   /*
    * return database value
-   * @param string $language
+   * @param string $l
    * @return void
    * @access public
    */
-  function get_databaseValue($language=null) {
+  public function get_databaseValue($l=null) {
     global $camyks;
     
     /* check if value exists in given language */
-    if (!isset($this->value[$language]))
+    if (!isset($this->value[$l]))
       return $this->default;
     
     /* return value case of type */
     switch ($this->datatype) {
       case 'int':
       case 'date':
-        return ''.$this->value[$language];
+        return ''.$this->value[$l];
       case 'float':
-        return preg_replace('/,/', '.', (string)$this->value[$language]);
+        return preg_replace('/,/', '.', (string)$this->value[$l]);
       case 'text':
-        return '"'.addslashes($this->value[$language]).'"';
+        return '"'.addslashes($this->value[$l]).'"';
       case 'etext':
-        return '"'.$camyks->encode_value($this->value[$language]).'"';
+        return '"'.$camyks->encode_value($this->value[$l]).'"';
       case 'list':
-        return '"'.$this->compile_listValue($this->value[$language]).'"';
+        return '"'.$this->compile_listValue($this->value[$l]).'"';
     }
   }
 }

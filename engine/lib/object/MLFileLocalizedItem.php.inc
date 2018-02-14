@@ -12,18 +12,10 @@
  * Module Library Localized File Item Object
  */
 
-class MLFileLocalizedItem extends MLFileItem {
-  /* engine variables */
-  var $name;
-  var $folder;
-  var $path;
-  var $url;
-  /* running variables */
-  var $value;
-  var $upload;
+final class MLFileLocalizedItem extends MLFileItem {
 
   /* constructor */
-  function MLFileLocalizedItem ($name, $folder, $path, $url) {
+  public function __construct($name, $folder, $path, $url) {
     $this->name = $name;
     $this->folder = $folder;
     $this->path = $path;
@@ -34,14 +26,12 @@ class MLFileLocalizedItem extends MLFileItem {
     $this->delete = array();
   }
   
-  /* methods */
-
   /*
    * initialise object
    * @return void
    * @access public
    */
-  function initialise() {
+  public function initialise() {
     global $camyks;
     $this->value = array();
     foreach ($camyks->get_confValue('editing_languages') as $l) {
@@ -51,12 +41,12 @@ class MLFileLocalizedItem extends MLFileItem {
 
   /*
    * get object value
-   * @param integer $_libObjId the parent object id
-   * @param string $language the language to get
+   * @param integer $_libObjId, the parent object id
+   * @param string $language, the language to get
    * @return boolean
    * @aaccess public
    */
-  function get($_libObjId, $language=null) {
+  public function get($_libObjId, $language=null) {
     global $camyks;
     
     $path = $this->path.'/'.$this->get_folder($_libObjId).'/';
@@ -81,12 +71,12 @@ class MLFileLocalizedItem extends MLFileItem {
   }
   
   /*
-   * save text item
-   * @param integer $_libObjId the parent object id
+   * save file items
+   * @param integer $_libObjId, the parent object id
    * @return void
    * @access public
    */
-  function save($_libObjId) {
+  public function save($_libObjId) {
     /* initialise result value */
     $ok = true;
         
@@ -128,12 +118,12 @@ class MLFileLocalizedItem extends MLFileItem {
 
   /*
    * delete file
-   * @param integer $_libObjId the parent object id
-   * @param string $language the language
+   * @param integer $_libObjId, the parent object id
+   * @param string $language, the language
    * @return boolean
    * @access public
    */
-  function delete($_libObjId, $language=null) {
+  public function delete($_libObjId, $language=null) {
     global $camyks;
     $path = $this->path.'/'.$this->folder.'/';
     
@@ -150,43 +140,14 @@ class MLFileLocalizedItem extends MLFileItem {
     }
     return true;
   }
-
-  /*
-   * delete object folder and its content
-   * @return boolean
-   * @access public
-   */
-  function reset() {
-    return folder_delete($this->path.'/'.$this->get_folder(), true);
-  }
-
-  /*
-   * install object
-   * @return boolean
-   * @access public
-   */
-  function install() {
-    /* create folders in site plugin */
-    return folder_completePath($this->path.'/'.$this->get_folder(),  0771);
-  }
-
-  /*
-   * uninstall object
-   * @return boolean
-   * @access public
-   */
-  function uninstall() {
-    /* TO DO */
-    return true;
-  }
-
+  
   /* 
    * get object value from header
    * @param string $prefix
    * @return void
    * @access public
    */
-  function get_fromHeader($prefix='') {
+  public function get_fromHeader($prefix='') {
     global $camyks;
     
     /* set header value name */
@@ -194,7 +155,7 @@ class MLFileLocalizedItem extends MLFileItem {
     
     /* load values */
     foreach ($camyks->get_confValue('editing_languages') as $language) {
-      if (isset($_FILES[$name.'_'.$language ] ) and $_FILES[$name.'_'.$language]['name'] != '') {
+      if (isset($_FILES[$name.'_'.$language ]) and $_FILES[$name.'_'.$language]['name'] != '') {
         $this->uploadedFileName[$language] = $_FILES[$name.'_'.$language]['name'];
         $this->uploadedTempName[$language] = $_FILES[$name.'_'.$language]['tmp_name'];
 		$this->upload[] = $language;
@@ -208,7 +169,7 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return array
    * @access public
    */
-  function get_exportedValue() {
+  public function get_exportedValue() {
     $a = array();
     if (count($this->value) == 0) {
         /* nothing to do */
@@ -230,7 +191,7 @@ class MLFileLocalizedItem extends MLFileItem {
    * @return string
    * @access private
    */
-  function get_uploadedFileName($language=false) {
+  public function get_uploadedFileName($language=false) {
   	if ($language === false)
   		return $this->uploadedFileName;
   	if (isset($this->uploadedFileName[$language]))

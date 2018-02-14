@@ -14,17 +14,23 @@
 
 class MLFileItem extends ModuleLibraryItem {
   /* engine variables */
-  var $name;
-  var $folder;
-  var $path;
-  var $default;
+  public $name;
+  public $folder;
+  public $path;
+  public $default;
   /* running variables */
-  var $value;
-  var $upload;
-  var $delete;
+  public $value;
+  public $upload;
+  public $delete;
 
-  /* constructor */
-  function MLFileItem ( $name, $folder, $path, $url ) {
+  /*
+   * constructor
+   * @param string $name
+   * @param string $folder
+   * @param string $path
+   * @param string $url
+   */
+  public function __construct($name, $folder, $path, $url) {
     $this->name = $name;
     $this->folder = $folder;
     $this->path = $path;
@@ -34,25 +40,23 @@ class MLFileItem extends ModuleLibraryItem {
     $this->upload = false;
     $this->delete = false;
   }
-  
-  /* methods */
-  
+    
   /*
    * initialise object
    * @return void
    * @access public
    */
-  function initialise() {
+  public function initialise() {
     $this->value = '';
   }
 
   /*
    * get object value
-   * @param integer $_libObjId the parent object id
+   * @param integer $_libObjId, the parent object id
    * @return boolean
    * @access public
    */
-  function get($_libObjId) {
+  public function get($_libObjId) {
   	/* get file path */
     if (($file = $this->exists($this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId)) != '')  {
       $this->value = $this->url.'/'.$this->get_folder($_libObjId).'/'.$file;
@@ -61,17 +65,17 @@ class MLFileItem extends ModuleLibraryItem {
   }
 
   /*
-   * save text item
-   * @param integer $_libObjId the parent object id
+   * save file item
+   * @param integer $_libObjId, the parent object id
    * @return boolean
    * @access public
    */
-  function save($_libObjId) {  
+  public function save($_libObjId) {  
     if ($this->upload or $this->delete) {
       /* create parent library object folder */
-      folder_completePath ( $this->path.'/'.$this->get_folder($_libObjId),  0771);
+      folder_completePath ($this->path.'/'.$this->get_folder($_libObjId),  0771);
       /* try to delete old file */
-      $this->delete( $_libObjId );
+      $this->delete($_libObjId);
     }
     
     if ($this->upload) {
@@ -95,11 +99,11 @@ class MLFileItem extends ModuleLibraryItem {
 
   /*
    * delete file
-   * @param integer $_libObjId the parent object id
+   * @param integer $_libObjId, the parent object id
    * @return boolean
    * @access public
    */
-  function delete( $_libObjId ) {
+  public function delete($_libObjId) {
     if (($file = $this->exists( $this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId )) != '')
       unlink($this->path.'/'.$this->get_folder($_libObjId).'/'.$file);
     return true;
@@ -110,7 +114,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @return boolean
    * @access public
    */
-  function reset() {
+  public function reset() {
     return folder_delete($this->path.'/'.$this->get_folder(), true);
   }
 
@@ -119,7 +123,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @return boolean
    * @access public
    */
-  function install() {
+  public function install() {
     /* create folders in site plugin */
     return folder_completePath($this->path.'/'.$this->get_folder(),  0771);
   }
@@ -129,7 +133,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @return boolean
    * @access public
    */
-  function uninstall() {
+  public function uninstall() {
     /* TO DO */
     return true;
   }
@@ -140,16 +144,16 @@ class MLFileItem extends ModuleLibraryItem {
    * @return void
    * @access public
    */
-  function get_fromHeader($prefix='') {
+  public function get_fromHeader($prefix='') {
     /* set header name value */
     $name = $prefix.$this->name;
         
     /* load values */
-    if (isset($_FILES[$this->name]) and $_FILES[$this->name]['name'] != '') {
-      $this->uploadedFileName = $_FILES[$this->name]['name'];
-      $this->uploadedTempName = $_FILES[$this->name]['tmp_name'];
+    if (isset($_FILES[$name]) and $_FILES[$name]['name'] != '') {
+      $this->uploadedFileName = $_FILES[$name]['name'];
+      $this->uploadedTempName = $_FILES[$name]['tmp_name'];
       $this->upload = true;
-    } else if (isset($_REQUEST[$this->name.'_deletefile']) and $_REQUEST[$this->name.'_deletefile']==1)
+    } else if (isset($_REQUEST[$name.'_deletefile']) and $_REQUEST[$name.'_deletefile']==1)
       $this->delete = true;
   }
 
@@ -158,7 +162,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @return array
    * @access public
    */
-  function get_exportedValue() {
+  public function get_exportedValue() {
     return array($this->name=>$this->value);
   }
 
@@ -169,7 +173,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @return string
    * @access public
    */
-  function exists($path, $filebase ) {
+  public function exists($path, $filebase) {
     $filelist = glob($path.$filebase.'.*');
 
     if (count($filelist) == 0)
@@ -181,30 +185,28 @@ class MLFileItem extends ModuleLibraryItem {
   /*
    * return real file name while uploading it
    * @return string
-   * @access private
+   * @access public
    */
-  function get_uploadedFileName() {
+  public function get_uploadedFileName() {
   	return $this->uploadedFileName;
   }
   
   /*
    * return temporary file
    * @return string
-   * @access private
+   * @access public
    */
-  function get_temporaryFileName() {
-    if (isset($_FILES[$this->name]['tmp_name']))
-      return $_FILES[$this->name]['tmp_name'];
-    return '';
+  public function get_temporaryFileName() {
+    return $this->uploadedTempName;
   }
   
   /*
    * get updated folder
    * @param integer $id
    * @return path
-   * @access private
+   * @access public
    */
-  function get_folder($_libObjId=0) {
+  public function get_folder($_libObjId=0) {
     return preg_replace('/%%ID%%/', $_libObjId, $this->folder);
   }
   
@@ -212,9 +214,9 @@ class MLFileItem extends ModuleLibraryItem {
    * check orientation and auto rotate picture
    * @param string $picture
    * @return boolean result
-   * @access private
+   * @access protected
    */
-  function update_orientation($picture='') {
+  protected function update_orientation($picture='') {
         
     /* load picture exif */
     $exif = @exif_read_data($picture);
