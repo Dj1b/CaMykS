@@ -24,9 +24,9 @@ class Input extends Plugin {
    * @return void
    * @access public
    */
-  public function __construct($name, $path_type) {
+  public function Input($name, $path_type) {
     /* Plugin Init */
-    parent::Plugin($name, 'input', $path_type);
+    parent::__construct($name, 'input', $path_type);
     
     /* initialise internal vars */
     $this->title = $this->name;
@@ -34,17 +34,6 @@ class Input extends Plugin {
     
     /* add language */
     $this->add_translation();
-  }
-  
-  /*
-   * alias to constructor
-   * @param string $name
-   * @param string $path_type
-   * @return void
-   * @access public
-   */
-  public function input($name, $path_type) {
-    $this->__construct($name, $path_type);
   }
 
   /* basic methods */
