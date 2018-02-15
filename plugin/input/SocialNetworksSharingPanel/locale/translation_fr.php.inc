@@ -37,4 +37,20 @@ $this->trads['input_socialnetworkssharingpanel_share_secondary'] = 'Affich&eacut
 
 $this->trads['input_socialnetworkssharingpanel_like_disabled'] = 'D&eacute;sactiv&eacute;';
 $this->trads['input_socialnetworkssharingpanel_like_enabled'] = 'Activ&eacute;';
+
+$this->trads['input_socialnetworkssharingpanel_formdesc_settings'] = 'Param&egrave;tres';
+$this->trads['input_socialnetworkssharingpanel_formitem_insertion'] = 'Insertion : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_stylesource'] = 'Source des styles : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_location'] = 'Emplacement : ';
+
+$this->trads['input_socialnetworkssharingpanel_followinsertion_manual'] = 'Manuelle';
+$this->trads['input_socialnetworkssharingpanel_followinsertion_automatic'] = 'Automatique';
+
+$this->trads['input_socialnetworkssharingpanel_followstylesource_plugin'] = 'Plugin';
+$this->trads['input_socialnetworkssharingpanel_followstylesource_theme'] = 'Theme';
+
+$this->trads['input_socialnetworkssharingpanel_followlocation_fixedleft'] = 'Fix&eacute; &agrave; gauche';
+$this->trads['input_socialnetworkssharingpanel_followlocation_fixedright'] = 'Fix&eacute; &agrave; droite';
+ 
+$this->trads['input_socialnetworkssharingpanel_formtitle_follownetworks'] = 'Vos pages &agrave; suivre';
 ?>

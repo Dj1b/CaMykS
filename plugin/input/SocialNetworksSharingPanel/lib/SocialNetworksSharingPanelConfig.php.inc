@@ -38,7 +38,11 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
     foreach ($parent->networks as $network => $data)
       if ($data['follow'] == 1)
         $this->add_newItem('follow_'.$network, 'string', '');
-
+    
+    $this->add_newItem('follow_insertion', 'int', 0);  // 0 : manual / 1 : automatic
+    $this->add_newItem('follow_styleSource', 'string', 'plugin');   // plugin / theme
+    $this->add_newItem('follow_location', 'string', 'fixed-left'); // left / right
+    
     /* set up variables */
     $this->sharingValues = false;
     $this->likeValues = false;
@@ -140,6 +144,74 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
         'like'      => 'like',
         'recommend' => 'recommend',
     );
+  }
+  
+  /* follow related methods */
+  
+    /*
+   * return follow insertion value list
+   * @return array
+   * @access public
+   */
+  public function get_followInsertionList() {
+    return array(
+      0 => $this->get_translation('followinsertion_manual'),
+      1 => $this->get_translation('followinsertion_automatic'),
+    );
+  }
+  
+  /*
+   * return insertion value title
+   * @return string
+   * @access public
+   */
+  public function get_followInsertionTitle() {
+    $l = $this->get_followInsertionList();
+    return $l[$this->vars['follow_insertion']];
+  }
+  
+  /*
+   * return style source value list
+   * @return array
+   * @access public
+   */
+  public function get_followStyleSourceList() {
+    return array(
+      'plugin'  => $this->get_translation('followstylesource_plugin'),
+      'theme'   => $this->get_translation('followstylesource_theme'),
+    );
+  }
+  
+  /*
+   * return style source value title
+   * @return string
+   * @access public
+   */
+  public function get_followStyleSourceTitle() {
+    $l = $this->get_followStyleSourceList();
+    return $l[$this->vars['follow_styleSource']];
+  }
+  
+  /*
+   * return location value list
+   * @return array
+   * @access public
+   */
+  public function get_followLocationList() {
+    return array(
+      'fixed-left'        => $this->get_translation('followlocation_fixedleft'),
+      'fixed-right'       => $this->get_translation('followlocation_fixedright'),
+    );
+  }
+  
+  /*
+   * return location value title
+   * @return string
+   * @access public
+   */
+  public function get_followLocationTitle() {
+    $l = $this->get_followLocationList();
+    return $l[$this->vars['follow_location']];
   }
 }
 ?>

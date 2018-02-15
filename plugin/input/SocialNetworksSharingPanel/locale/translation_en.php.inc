@@ -38,4 +38,20 @@ $this->trads['input_socialnetworkssharingpanel_share_secondary'] = 'Displayed in
 $this->trads['input_socialnetworkssharingpanel_like_disabled'] = 'Disabled';
 $this->trads['input_socialnetworkssharingpanel_like_enabled'] = 'Enabled';
 
+$this->trads['input_socialnetworkssharingpanel_formdesc_settings'] = 'Settings';
+$this->trads['input_socialnetworkssharingpanel_formitem_insertion'] = 'Insertion: ';
+$this->trads['input_socialnetworkssharingpanel_formitem_stylesource'] = 'Styles source: ';
+$this->trads['input_socialnetworkssharingpanel_formitem_location'] = 'Location: ';
+
+$this->trads['input_socialnetworkssharingpanel_followinsertion_manual'] = 'Manuel';
+$this->trads['input_socialnetworkssharingpanel_followinsertion_automatic'] = 'Automatic';
+
+$this->trads['input_socialnetworkssharingpanel_followstylesource_plugin'] = 'Plugin';
+$this->trads['input_socialnetworkssharingpanel_followstylesource_theme'] = 'Theme';
+
+$this->trads['input_socialnetworkssharingpanel_followlocation_fixedleft'] = 'Fixed to the left';
+$this->trads['input_socialnetworkssharingpanel_followlocation_fixedright'] = 'Fixed to the right';
+ 
+$this->trads['input_socialnetworkssharingpanel_formtitle_follownetworks'] = 'Your pages to follow';
+
 ?>

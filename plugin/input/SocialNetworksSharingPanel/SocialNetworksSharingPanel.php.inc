@@ -47,6 +47,16 @@ class SocialNetworksSharingPanel extends Input {
     
     /* register plugin as Admin_Site extension */
     $this->register_asExtension('Admin_Site');
+    
+    /* load config */
+    $this->config = new SocialNetworksSharingPanelConfig('config', $this);
+    $this->config->get();
+    
+    /* check for automatique adding */
+    if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['follow_insertion'] == 1) {
+      $this->register_asCaMykSEventHandler('onPageLoad');
+      $this->register_asCaMykSEventHandler('onBodyClose');
+    }
   }
   
   /* overwrite input methods */
@@ -60,10 +70,6 @@ class SocialNetworksSharingPanel extends Input {
    */
   function initialise($params=array(), $mode='share') {
     
-    /* load plugin configuration */
-    $this->config = new SocialNetworksSharingPanelConfig('config', $this);
-    $this->config->get();
-        
     /* check mode to execute */
     switch ($mode) {
       case 'share': return $this->initialise_sharePanel($params);
@@ -88,6 +94,47 @@ class SocialNetworksSharingPanel extends Input {
     
     /* generic display */
     parent::display();
+  }
+  
+  
+  
+  /*
+   * execute handler on body closing
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSPageLoad() {
+    $this->initialise(array(), 'follow');
+  }
+  
+  /*
+   * execute handler on body opening
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSBodyOpen() {
+    global $languages, $camyks;
+        
+    $l = $languages[$camyks->current_language]['locale'][''][0];
+     
+    return "<div id=\"fb-root\"></div>\n
+            <script>(function(d, s, id) {\n
+            var js, fjs = d.getElementsByTagName(s)[0];\n
+            if (d.getElementById(id)) return;\n
+            js = d.createElement(s); js.id = id;\n
+            js.src = 'https://connect.facebook.net/".$l."/sdk.js#xfbml=1&version=v2.11';\n
+            fjs.parentNode.insertBefore(js, fjs);\n
+            }(document, 'script', 'facebook-jssdk'));</script>";
+  }
+  
+  /*
+   * execute handler on body closing
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSBodyClose() {
+    $this->display(array(), 'follow');
+    return '';
   }
   
   /* specific initialise mode methods */
@@ -167,6 +214,13 @@ class SocialNetworksSharingPanel extends Input {
    */
   function initialise_followPanel($params) {
     
+    /* merge params */
+    $this->params = array_merge($this->config->vars, $params);
+    
+    /* check for styles loading */
+    if ($this->params['follow_insertion'] == 1 and $this->params['follow_styleSource'] == 'plugin') {
+      $this->add_styleFile('css/styles.css');
+    }
   }
   
   /* specific display mode methods */
@@ -489,10 +543,6 @@ class SocialNetworksSharingPanel extends Input {
   public function initialise_configDisplay() {
     global $camyks;
     
-    /* load plugin configuration */
-    $this->config = new SocialNetworksSharingPanelConfig('config', $this);
-    $this->config->get();
-    
     /* prepare tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
     
@@ -529,10 +579,6 @@ class SocialNetworksSharingPanel extends Input {
    */
   public function initialise_configEdition($form) {
     global $camyks;
-    
-    /* load plugin configuration */
-    $this->config = new SocialNetworksSharingPanelConfig('config', $this);
-    $this->config->get();
     
     /* update form */
     $this->form = &$form;
@@ -576,32 +622,9 @@ class SocialNetworksSharingPanel extends Input {
    * @access public
    */
   public function save_configuration() {
-    $this->config = new SocialNetworksSharingPanelConfig('config', $this);
-    $this->config->get();
+
     $this->config->get_fromHeader();
     return $this->config->save();
-  }
-  
-  /** **/
-  
-  /*
-   * execute handler on body opening
-   * @return string
-   * @access public
-   */
-  public function execute_onCaMykSBodyOpen() {
-    global $languages, $camyks;
-        
-    $l = $languages[$camyks->current_language]['locale'][''][0];
-     
-    return "<div id=\"fb-root\"></div>\n
-            <script>(function(d, s, id) {\n
-            var js, fjs = d.getElementsByTagName(s)[0];\n
-            if (d.getElementById(id)) return;\n
-            js = d.createElement(s); js.id = id;\n
-            js.src = 'https://connect.facebook.net/".$l."/sdk.js#xfbml=1&version=v2.11';\n
-            fjs.parentNode.insertBefore(js, fjs);\n
-            }(document, 'script', 'facebook-jssdk'));</script>";
   }
 }
 ?>
