@@ -86,7 +86,10 @@ function ContentAnchorMenu(name) {
    * @access public
    */
   this.go_toAnchor = function(anchor) {
-    document.location.href = '#' + anchor;
+    if (this.get_param('mode') == 'objId')
+      document.getElementById(anchor).scrollIntoView();
+    else
+      document.location.href = document.location.href.split('#')[0] + '#' + anchor;
     if ( document.documentElement.scrollTop)
       document.documentElement.scrollTop = document.documentElement.scrollTop + parseInt(this.get_param('shift'));
     else if ( document.body.scrollTop ) 
