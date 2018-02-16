@@ -27,6 +27,7 @@ class SocialNetworksSharingPanel extends Input {
    * @param string $path_type
    */
   function SocialNetworksSharingPanel($path_type) {
+    global $camyks;
     parent::Input('SocialNetworksSharingPanel', $path_type);
     /* set plugin version */
     $this->version = '1.0';
