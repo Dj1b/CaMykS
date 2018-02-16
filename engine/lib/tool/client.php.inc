@@ -1396,7 +1396,7 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Oppo mobiles */
-  elseif (preg_match('/(1201) Build/', $ua, $matches)) {
+  elseif (preg_match('/(1201|A37fw) Build/', $ua, $matches)) {
     $rep = array(
     );
     $model = trim($matches[1]);
@@ -1447,7 +1447,7 @@ function client_getUAInfos($ua=false) {
       );
       
       /* build known windows fake versions */
-      $wf = array('NT 7.0', 'NT 7.1', 'NT 8.0', 'NT 8.1', 'NT 9.0', 'NT 9.1', 'NT 15.0');
+      $wf = array('NT 7.0', 'NT 7.1', 'NT 8.0', 'NT 8.1', 'NT 9.0', 'NT 9.1', 'NT 10.1', 'NT 15.0');
       
       /* load version */
       $v = $matches[1];
