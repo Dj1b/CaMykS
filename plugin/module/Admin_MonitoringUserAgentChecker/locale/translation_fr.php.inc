@@ -7,7 +7,7 @@
 * Object Version   : 1.0
 * Object Type	   : Plugin / Module Dictionnary
 * Creation Date    : Dec 2014
-* Last Modif Date  : Dec 2014
+* Last Modif Date  : Feb 2018
 * History :
 * * 12-19-14 : Initial files
 *
@@ -23,6 +23,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_descx'] = '%s agents utilisat
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_handheld'] = 'Mobile';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tablet'] = 'Tablette';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_computer'] = 'Ordinateur';
+$this->trads['mod_admin_monitoringuseragentchecker_platform_type_tvset'] = 'T&eacute;l&eacute;vision';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_bot'] = 'Robot';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tool'] = 'Outil';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_hack'] = 'Hack';
