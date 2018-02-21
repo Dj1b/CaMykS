@@ -911,6 +911,41 @@ final class HTMLForm {
   }
 
   /*
+   * build and return week days select input
+   * @param mixed $select
+   * @param mixed $default
+   * @return string
+   * @access public
+   */
+  public function display_weekDaySelectInput($select, $default=null) {
+    global $camyks;
+    /* build param list */
+    $params = array('name'=>'', 'default'=>'', 'format'=>1);
+
+    /* check header params */
+    if ( is_array($select) ) {
+      $params = array_merge($params, $select);
+    } else {
+      $params['name'] = $select;
+      if (isset($default))
+	    $params['default'] = $default;
+    }
+    
+    /* setup values */
+    $params['values'] = array();
+    
+    for ($i=(0+$params['format']); $i<=(6+$params['format']); $i++) {
+      
+      $params['values'][$i] = strftime('%A', mktime(0, 0, 0, 1, 2+$i, 0));
+      
+    }
+    
+
+    /* build display */
+    return $this->display_selectInput($params);
+  }
+
+  /*
    * build and return text input
    * @param mixed $input
    * @param string default

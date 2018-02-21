@@ -24,7 +24,7 @@ define('TODAY',    time());
  * @return string
  * @access public
  */
-function date_displayLongDayDateHour( $date=TODAY ) {
+function date_displayLongDayDateHour($date=TODAY) {
   global $camyks;
   $l = $camyks->current_language;
   switch ( $l ) {
@@ -272,6 +272,18 @@ function date_displayHour($date=TODAY) {
 }
 
 /*
+ * display day
+ * @param date or week day $date
+ * @return string
+ * @access public
+ */
+function date_displayDay($date=TODAY) {
+  if ($date <= 7)
+    $date = mktime(0,0,0,1,2+$date,0);
+  return strftime('%A', $date);
+}
+
+/*
  * alias to date_displayLongDayDateHour
  * display long textual representation of day, date and hour
  * @param date $date
@@ -279,7 +291,7 @@ function date_displayHour($date=TODAY) {
  * @access public
  */
 function date_display($date=TODAY) {
-  return date_displayLongDayDateHour( $date );
+  return date_displayLongDayDateHour($date);
 }
 
 /************ DATE TESTS *************************************/
