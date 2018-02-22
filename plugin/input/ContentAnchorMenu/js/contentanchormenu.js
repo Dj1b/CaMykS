@@ -1,12 +1,12 @@
 /*
  * CaMykS Engine
  * Developed by	    : camyks.net
- * Author	    : CaMykS Team
- * CaMykS Version   : 1.0b
+ * Author	        : CaMykS Team
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Javascripts
  * Creation Date    : Feb 2010
- * Last Modif Date  : Feb 2010
+ * Last Modif Date  : Feb 2018
  *
  * ContentAnchorMenu JS Engine
  *
@@ -25,7 +25,7 @@ function ContentAnchorMenu(name) {
    * @access public
    */
   this.set_param = function(param, value, subvalue) {
-    if ( subvalue != undefined && this.params[param] )
+    if (subvalue != undefined && this.params[param])
       this.params[param][value] = subvalue;
     else
       this.params[param] = value;
@@ -37,9 +37,11 @@ function ContentAnchorMenu(name) {
    * @return mixed
    * @access public
    */
-  this.get_param = function(param) {
-    if (this.params[param])
-      return this.params[param];
+  this.get_param = function(param, value) {
+    if (value != undefined && (this.params[param][value] || this.params[param][value] === 0))
+        return this.params[param][value];
+    if (this.params[param] || this.params[param] === 0)
+      return this.params[param]
     return false;
   }
   
@@ -67,15 +69,25 @@ function ContentAnchorMenu(name) {
       this.get_param('menuBox').innerHTML = '';
     } else
       return;
+     
+    /* check html has a base tag to create correct links */
+    if (document.getElementsByTagName('base').length > 0) {
+      if (document.location.href.indexOf('#') > 0)
+        this.set_param('baseURL', document.location.href.split('#')[0]);
+      else
+        this.set_param('baseURL', document.location.href);
+    } else {
+      this.set_param('baseURL', '');
+    }
       	
     /* get anchors */
     if (this.get_param('mode') == 'AName')
       this._create_menuForANames();
     else if(this.get_param('mode') == 'objId')
       this._create_menuForObjIds();
-    
+     
     /* check hash */
-    if ( window.location.hash != '' )  {
+    if (window.location.hash != '')  {
       this.go_toAnchor(window.location.hash.substring(1, window.location.hash.length));
     }
   };
@@ -89,7 +101,7 @@ function ContentAnchorMenu(name) {
     if (this.get_param('mode') == 'objId')
       document.getElementById(anchor).scrollIntoView();
     else
-      document.location.href = document.location.href.split('#')[0] + '#' + anchor;
+      document.location.href = this.get_param('baseURL') + '#' + anchor;
     if ( document.documentElement.scrollTop)
       document.documentElement.scrollTop = document.documentElement.scrollTop + parseInt(this.get_param('shift'));
     else if ( document.body.scrollTop ) 
@@ -111,7 +123,7 @@ function ContentAnchorMenu(name) {
 	    a.innerHTML = anchors[i].title;
 	    
 	    if (this.get_param('shift') == 0) {
-	      a.href='#'+ anchors[i].name;
+	      a.href = this.get_param('baseURL') + '#'+ anchors[i].name;
 	    } else {
 	      a.href = 'javascript:void(0);';
 	      if (this.get_param('navType')) {
@@ -144,7 +156,7 @@ function ContentAnchorMenu(name) {
 	      a.innerHTML = anchors[i].innerHTML;
 	    
 	    if (this.get_param('shift') == 0) {
-	      a.href='#'+ anchors[i].id;
+	      a.href= this.get_param('baseURL') + '#'+ anchors[i].id;
 	    } else {
 	      a.href = 'javascript:void(0);';
 	      if (this.get_param('navType')) {
