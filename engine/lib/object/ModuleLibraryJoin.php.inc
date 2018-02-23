@@ -13,6 +13,9 @@
  */
 
 class ModuleLibraryJoin extends ModuleLibrary {
+  
+  private $_initParams;
+  
   /*
    * constructor
    * @param integer $id
@@ -22,18 +25,33 @@ class ModuleLibraryJoin extends ModuleLibrary {
     parent::ModuleLibrary(0, $module);
     
     /* default params */
-    $defaultParams = array('item1'=>'item1',
-    	'item2'=>'item2');
+    $defaultParams = array(
+        'item1'=>'item1',
+    	'item2'=>'item2'
+    );
     
     /* merge params */
-    $this->params = array_merge($defaultParams, $params);
+    $this->_initParams = array_merge($defaultParams, $params);
 
     /* admin data */
-    $this->add_newItem($this->params['item1'], 'db', 'int', 'bigint unsigned', '', 0);
-    $this->add_newItem($this->params['item2'], 'db', 'int', 'bigint unsigned', '', 0);
+    $this->add_newItem($this->_initParams['item1'], 'db', 'int', 'bigint unsigned', '', 0);
+    $this->add_newItem($this->_initParams['item2'], 'db', 'int', 'bigint unsigned', '', 0);
 
     /* generic initialisation */
     $this->init_library();
+  }
+
+  /* overwrite ModuleLibrary methods */
+  
+  /*
+   * return a new object
+   * @param integer $id
+   * @return Object
+   * @access public
+   */
+  function &get_newObject($id=0) {
+    eval('$obj = new '.get_class($this).'($this->_libParent, $this->_initParams);');
+    return $obj;
   }
 
   /* define ModuleLibraryJoin methods */
@@ -45,7 +63,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @access public
    */
   function get_item1ListForItem2($id) {
-  	return $this->_get_itemJoinedList($this->params['item1'], $this->params['item2'], $id);
+  	return $this->_get_itemJoinedList($this->_initParams['item1'], $this->_initParams['item2'], $id);
   }
   
   /*
@@ -55,7 +73,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @access private
    */
   function get_item2ListForItem1($id) {
-  	return $this->_get_itemJoinedList($this->params['item2'], $this->params['item1'], $id);
+  	return $this->_get_itemJoinedList($this->_initParams['item2'], $this->_initParams['item1'], $id);
   }
   
   /*
@@ -66,7 +84,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @access public
    */
   function save_item1ListForItem2($id, $list) {
-  	return $this->_save_itemJoinedList($this->params['item1'], $list, $this->params['item2'], $id);
+  	return $this->_save_itemJoinedList($this->_initParams['item1'], $list, $this->_initParams['item2'], $id);
   }
   
   /*
@@ -77,7 +95,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @access public
    */
   function save_item2ListForItem1($id, $list) {
-  	return $this->_save_itemJoinedList($this->params['item2'], $list, $this->params['item1'], $id);
+  	return $this->_save_itemJoinedList($this->_initParams['item2'], $list, $this->_initParams['item1'], $id);
   }
   
   /* specific private tool methods */
@@ -139,10 +157,10 @@ class ModuleLibraryJoin extends ModuleLibrary {
     $keep = array();
     
     foreach ($list as $t) {
-			if (in_array($t, $oldTargets))
-				$keep[] = $t;
-			else
-				$add[] = $t;
+	  if (in_array($t, $oldTargets))
+		$keep[] = $t;
+	  else
+		$add[] = $t;
     }
     
     /* delete old targets */
@@ -158,9 +176,9 @@ class ModuleLibraryJoin extends ModuleLibrary {
     if (!($this->execute_DBQuery($sql, __LINE__)))
     	return false;
 
-		/* add new targets from list */
-		if (count($add) == 0)
-			return true;
+	/* add new targets from list */
+	if (count($add) == 0)
+		return true;
 
     /* build sql query */
     $sql = 'insert into `'.$this->_libSQLTable.'`';
