@@ -6775,6 +6775,15 @@ function client_getKnownGenerics() {
     'tool_url'=>'https://github.com/scalaj/scalaj-http',
     'engine_title'=>'',
     'engine_url'=>'');
+    
+  /* zombie.js */
+  $knownGenerics['zombie.js'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Zombie',
+    'tool_url'=>'',
+    'engine_title'=>'Zombie.js',
+    'engine_url'=>'http://zombie.js.org');
 
   /* obot */
   $knownGenerics[' obot'] = array(
