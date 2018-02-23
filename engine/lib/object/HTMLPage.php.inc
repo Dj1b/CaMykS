@@ -109,17 +109,19 @@ final class HTMLPage {
       $this->add_meta('X-UA-Compatible', $camyks->get_confValue('html_compatibilityTag'), 'http-equiv');
 
     /* add mandatory metas */
-    $this->add_meta('Content-Type', 'text/html; charset='.$this->charset.'', 'http-equiv');
+    
 
     /* add other meta case of HTML version */
     if ($this->htmlVersion == 4) {
-      if ( $this->disable_cache ) {
+      $this->add_meta('Content-Type', 'text/html; charset='.$this->charset.'', 'http-equiv');
+      if ($this->disable_cache) {
         $this->add_meta('Expires', '0', 'http-equiv');
         $this->add_meta('Pragma', 'no-cache', 'http-equiv');
       }
       $this->add_meta('Content-Style-Type', 'text/css', 'http-equiv' );
       $this->add_meta('Content-Script-Type', 'text/javascript', 'http-equiv');
     } elseif ($this->htmlVersion == 5) {
+       $this->add_meta($this->charset, '', 'charset');
        $this->add_meta('viewport', 'width=device-width, user-scalable=1', 'name');
     }
     $this->add_meta('generator', $camyks->name.' '.$camyks->version);
@@ -600,7 +602,10 @@ final class HTMLPage {
    */
   public function get_metas() {      
     foreach ($this->metas as $key => $meta) {
-      echo "<meta ".$meta['method']."=\"".$key."\" content=\"".preg_replace('/"/', '\'', $meta['value'])."\" />\n";
+      if (isset($meta['value']) and $meta['value'] != '')
+        echo "<meta ".$meta['method']."=\"".$key."\" content=\"".preg_replace('/"/', '\'', $meta['value'])."\" />\n";
+      else
+        echo "<meta ".$meta['method']."=\"".$key."\" />\n";
     } 
   }
   
