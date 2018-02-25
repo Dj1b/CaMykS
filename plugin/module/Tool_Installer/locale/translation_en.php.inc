@@ -17,7 +17,7 @@ $this->trads['mod_tool_installer_desc'] = 'Site installer';
 /* SSL mode values */
 $this->trads['mod_tool_installer_sslmode_default'] = 'By default (User choice)';
 $this->trads['mod_tool_installer_sslmode_auto'] = 'Automatic (SSL enabled if available)';
-$this->trads['mod_tool_installer_sslmode_forced'] = 'Always On'
+$this->trads['mod_tool_installer_sslmode_forced'] = 'Always On';
 $this->trads['mod_tool_installer_sslmode_none'] = 'Always Off';
 
 /* mobile mode values */
