@@ -12,7 +12,7 @@
  * Module Config Generic Object, alias to PluginConfig, kept for retro-compatibility
  */
 
-class ModuleConfig extends PluginConfig {
+abstract class ModuleConfig extends PluginConfig {
   
   /*
    * constructor
