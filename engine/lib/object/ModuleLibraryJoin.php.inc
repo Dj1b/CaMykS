@@ -156,11 +156,13 @@ class ModuleLibraryJoin extends ModuleLibrary {
     $add = array();
     $keep = array();
     
-    foreach ($list as $t) {
-	  if (in_array($t, $oldTargets))
-		$keep[] = $t;
-	  else
-		$add[] = $t;
+    if (is_array($list)) {
+      foreach ($list as $t) {
+	    if (in_array($t, $oldTargets))
+	  	  $keep[] = $t;
+	    else
+		  $add[] = $t;
+	  }
     }
     
     /* delete old targets */
