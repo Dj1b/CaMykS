@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module dictionnary
  * Creation Date	: Nov 2012
- * Last Modif Date	: Jan 2018
+ * Last Modif Date	: Feb 2018
  *
  * Admin_User english dictionnary
 */
@@ -34,7 +34,7 @@ $this->trads['mod_admin_user_viewuser'] = 'View this user';
 $this->trads['mod_admin_user_edituser'] = 'Edit this user';
 $this->trads['mod_admin_user_deleteuser'] = 'Delete this user';
 $this->trads['mod_admin_user_personalinfos'] = 'Personal information';
-$this->trads['mod_admin_user_rights'] = 'Rights';
+$this->trads['mod_admin_user_rights'] = 'Permissions';
 $this->trads['mod_admin_user_user'] = 'User';
 
 /* message */
