@@ -1635,7 +1635,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla|UCWEB|Otter)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
       $rep = array('FDM'=>'Free Download Manager', 'VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser');
       $infos = array_merge(array(
         'platform_type'     => 'computer',
@@ -5233,6 +5233,15 @@ function client_getKnownBots() {
     'engine_title'=>'Jooble',
     'engine_url'=>'https://jooble.org');
     
+  /* MBCrawler */
+  $knownBots['mbcrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'MBCrawler',
+    'bot_url'=>'',
+    'engine_title'=>'monitorbacklinks',
+    'engine_url'=>'https://monitorbacklinks.com');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
@@ -6784,6 +6793,15 @@ function client_getKnownGenerics() {
     'tool_url'=>'',
     'engine_title'=>'Zombie.js',
     'engine_url'=>'http://zombie.js.org');
+    
+  /* axios */
+  $knownGenerics['axios'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'axios',
+    'tool_url'=>'https://libraries.io/npm/axios',
+    'engine_title'=>'',
+    'engine_url'=>'');
 
   /* obot */
   $knownGenerics[' obot'] = array(
