@@ -946,12 +946,18 @@ function client_getUAInfos($ua=false) {
       'platform_format'=>'handheld',));
       
   /* check Tecno mobiles */
-  elseif (preg_match('/Tecno ?([^;| ]*)/i', $ua, $matches))
+  elseif (preg_match('/Tecno ?([^;| ]*) Build/i', $ua, $matches)) {
+    $rep = array(
+        'K7'	=> array('platform_model' => 'Spark (K7)'),
+    );
+    $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Tecno', 
       'platform_model'=>isset($matches[1])?$matches[1]:'',
       'platform_type'=>'handheld',
-      'platform_format'=>'handheld',));
+      'platform_format'=>'handheld'), 
+    isset($rep[$model])?$rep[$model]:array());
+  }
   
   /* check Yezz Andy models */
   elseif (preg_match('/Andy[_ ]([A-Z0-9]{2,})/i', $ua, $matches))
@@ -1430,6 +1436,21 @@ function client_getUAInfos($ua=false) {
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Hisense', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
+  /* check Yotaphone mobiles */
+  elseif (preg_match('/(YD20[0-9]) Build/', $ua, $matches)) {
+    $rep = array(
+        'YD201' => array('platform_model' => '2'),
+        'YD206' => array('platform_model' => '2'),
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Yotaphone', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
