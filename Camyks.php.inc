@@ -6,7 +6,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Main Object
  * Creation Date    : Jun 2005
- * Last Modif Date  : Nov 2017
+ * Last Modif Date  : Feb 2018
  *
  * CaMykS engine object
  */
@@ -139,6 +139,7 @@ final class Camyks {
     $this->adminUser = false;
     $this->openedDBonnections = array();
     $this->eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onTerminate'=>array());
+    $this->falseRef = false;
     
     /* load request vars */
     $this->benchMode = $this->get_executionVariable('_cBench'); 
@@ -950,7 +951,7 @@ final class Camyks {
   }
   
   /* 
-   * get modules list in CaMykS object
+   * load modules list in CaMykS object
    * @return void
    * @access public
    */
@@ -962,7 +963,7 @@ final class Camyks {
   }
   
   /*
-   * get themes list in CaMykS object
+   * load themes list in CaMykS object
    * @return void
    * @access public
    */
@@ -974,7 +975,7 @@ final class Camyks {
   }
   
   /* 
-   * get templates list in CaMykS object
+   * load templates list in CaMykS object
    * @return void
    * @access public
    */
@@ -986,7 +987,7 @@ final class Camyks {
   }
   
   /*
-   * get inputs list in CaMykS object
+   * load inputs list in CaMykS object
    * @return void
    * @access public
    */
@@ -995,6 +996,50 @@ final class Camyks {
         input_getList($this->camyks_plugin_path, 'camyks'),
 		input_getList($this->site_plugin_path, 'site')
 	);
+  }
+  
+  /*
+   * return module object
+   * @return Object 
+   * @access public
+   */
+  public function &get_module($moduleName) {
+    if (isset($this->modules[$moduleName]))
+      return $this->modules[$moduleName];
+    return $this->falseRef;
+  }
+  
+  /*
+   * return theme object
+   * @return Object 
+   * @access public
+   */
+  public function &get_theme($themeName) {
+    if (isset($this->themes[$themeName]))
+      return $this->themes[$themeName];
+    return $this->falseRef;
+  }
+  
+  /*
+   * return template object
+   * @return Object 
+   * @access public
+   */
+  public function &get_template($templateName) {
+    if (isset($this->templates[$templateName]))
+      return $this->templates[$templateName];
+    return $this->falseRef;
+  }
+  
+  /*
+   * return input object
+   * @return Object 
+   * @access public
+   */
+  public function &get_input($inputName) {
+    if (isset($this->inputs[$inputName]))
+      return $this->inputs[$inputName];
+    return $this->falseRef;
   }
   
   /*
@@ -1216,7 +1261,6 @@ final class Camyks {
     }
     
     /* start closing CaMykS */
-    $this->init_kill();
     die();
   }
 
