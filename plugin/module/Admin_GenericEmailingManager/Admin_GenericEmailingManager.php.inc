@@ -557,7 +557,7 @@ class Admin_GenericEmailingManager extends Module {
     $this->emailingStatusList = $this->get_emailingStatusList();
     $this->contactSourceList = $this->get_contactSourceList();
     
-    if ($this->emailingItem->vars['status'] == 0) {
+    if ($this->emailingItem->vars['status'] < 2) {
         $source = explode(':', $this->emailingItem->vars['contact_source']);
         if ($source[0] == 'internal') {
      	  $this->contactCount = $this->count_contacts(array('status'=>$source[1],
@@ -777,13 +777,18 @@ class Admin_GenericEmailingManager extends Module {
     /* disable admin menu */
     $this->disable_adminEngineMenus();
     
-    /* get object */
+    /* get object and update it */
     $this->emailingItem->id = $_REQUEST['emailing_id'];
     $this->emailingItem->get();
     $this->emailingItem->_libItems['status']->value = 0;
+    $this->emailingItem->get_fromItems();
+    
+    /* update config object */
+    $this->emailingItem->config->vars['emailing_current'] = 0;
+    $this->emailingItem->config->vars['emailing_list'] = array();
     
     /* delete object */
-    if ( $this->emailingItem->save() ) {
+    if ($this->emailingItem->save() and $this->emailingItem->config->save()) {
       $this->text = $this->get_translation('emailing_reseted');
     } else {
       $this->text = $this->get_translation('emailing_notreseted');
@@ -1542,18 +1547,22 @@ class Admin_GenericEmailingManager extends Module {
     $this->emailingItem->config->vars['emailing_list'] = array();
     foreach ($contactList as $c)
       $this->emailingItem->config->vars['emailing_list'][] = array('contactid'=>$c, 'status'=>0);
-    $this->emailingItem->config->save();
-    
-    /* update emailing status */
-    $this->emailingItem->_libItems['status']->value = 1;
-    $this->emailingItem->_libItems['sdate']->value = time();
-    $this->emailingItem->update_databaseSpecificItems(array('status', 'sdate'));
-    
-    $result['result'] = 'success';
-    $result['count'] = count($contactList);
-    $result['message'] = $this->get_translation('initialise_emailing_done');
-    $result['message2'] = $this->get_translation('emailstobesent', count($contactList));
       
+    if ($this->emailingItem->config->save()) {
+      /* update emailing status */
+      $this->emailingItem->_libItems['status']->value = 1;
+      $this->emailingItem->_libItems['sdate']->value = time();
+      $this->emailingItem->update_databaseSpecificItems(array('status', 'sdate'));
+    
+      $result['result'] = 'success';
+      $result['count'] = count($contactList);
+      $result['message'] = $this->get_translation('initialise_emailing_done');
+      $result['message2'] = $this->get_translation('emailstobesent', count($contactList));
+    } else {
+      $result['result'] = 'failure';
+      $result['message'] = $this->get_translation('initialise_emailing_failure');
+    } 
+    
     /* send XML */
     header("Content-type: text/xml");
     echo xml_serialize2XML($result);

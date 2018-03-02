@@ -1,12 +1,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Theme Editor CSS Styles
- * Create Date		: Jun 2007
- * Last Modif Date      : Sep 2009
+ * Object Type      : Plugin / Theme Editor CSS Styles
+ * Create Date      : Jun 2007
+ * Last Modif Date  : Feb 2018
  *
  * Editor CSS styles for Grey Style Theme
 */
@@ -58,3 +58,6 @@ table.eTable td, table.eTable tr { border:solid 1px #666666; }
 .eTableLine0 {padding:3px 4px;}
 .eTableLine1 {background:#DDDDDD; padding:3px 4px;}
 .eTableSubHeader a {color:white;}
+
+.eTableLineAuto {padding:3px 4px; vertical-align:top;}
+tr:nth-child(odd) td.eTableLineAuto, div.eTableLineAuto:nth-of-type(odd) {background:#DDDDDD;}

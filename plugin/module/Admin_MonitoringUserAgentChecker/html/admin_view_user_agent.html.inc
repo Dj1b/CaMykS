@@ -14,12 +14,10 @@
 global $camyks;
 $file = $this->theme->get_pictURL('file', 12, 'std');
 $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
-
 ?>
 <?=$this->theme->get_boxHeader('width:800px; margin:0 auto;');?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
-<?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs,
-				$this->tabBuilder->jsParams);?>
+<?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header( )?>
 
 <?=$this->editform1->display_header(); ?>
@@ -33,14 +31,14 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 
 <tr>
-<td class="eTableLine0 eContent2" style="width:150px">
-<?=$this->get_translation('formitem_user_agent')?>
-</td>
-<td class="">
-  <div style="width:620px; overflow:auto; padding:8px;">
-<?=$this->recordItem->get_adminValue(); ?>
-</div>
-</td>
+  <td class="eTableLine0 eContent2" style="width:150px">
+    <?=$this->get_translation('formitem_user_agent')?>
+  </td>
+  <td class="">
+    <div style="width:620px; overflow:auto; padding:8px;">
+      <?=$this->recordItem->get_adminValue();?>
+    </div>
+  </td>
 </tr>
 
 <tr>

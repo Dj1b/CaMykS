@@ -1,0 +1,22 @@
+/*                                                                                                                 
+ * CaMykS Engine
+ * Developed by	    : camyks.net
+ * Author	       	: CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input CSS Styles
+ * Creation Date	: Feb 2018
+ * Last Modif Date	: Feb 2018
+ *                                                                                                                 
+ * SocialNetworksSharingPanel input CSS style file                                                                           
+*/
+
+.SNSP.follow.fixed-left {position:fixed; top:100px; left:0; width:44px; font-size:0;}
+.SNSP.follow.fixed-left a {font-size:0; position:relative; top:0; left:0; transition:left 0.3s;}
+.SNSP.follow.fixed-left a:hover {left:6px;}
+.SNSP.follow.fixed-left a img {margin:0 4px 4px 0;}
+
+.SNSP.follow.fixed-right {position:fixed; top:100px; right:0; width:44px; font-size:0;}
+.SNSP.follow.fixed-right a {font-size:0; position:relative; top:0; right:0; transition:right 0.3s;}
+.SNSP.follow.fixed-right a:hover {right:6px;}
+.SNSP.follow.fixed-right a img {margin:0 0 4px 4px;}

@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by	    : camyks.net
- * Author	    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * Author	        : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Engine / Global Dictionnary
  * Creation Date    : Jun 2005
- * Last Modif Date  : Oct 2010
+ * Last Modif Date  : Feb 2018
  *
  * CaMykS engine french dictionnary
 */
@@ -202,4 +202,10 @@ $this->trads['civility_me'] = 'Me';
 /* errors */
 $this->trads['error_pluginmissing_title'] = 'Un plugin requis est manquant.';
 $this->trads['error_pluginmissing_desc'] = 'Le plugin "%s" est requis et manquant dans l\'installation de CaMykS.';
+
+$this->trads['error_fatalerror'] = 'Erreur irr&eacute;m&eacute;diable';
+$this->trads['error_plugin_doesnt_support_requests_desc'] = 'Ce plugin n\'est pas con&ccedil;u pour supporter les requ&ecirc;tes.';
+$this->trads['error_plugin_doesnt_support_requests_content'] = 'Si le probl&egrave;me persiste, contactez l\'administrateur du site.';
+$this->trads['error_plugin_doesnt_support_requests_back_title'] = 'Retour &agrave; l\'accueil du site';
+
 ?>

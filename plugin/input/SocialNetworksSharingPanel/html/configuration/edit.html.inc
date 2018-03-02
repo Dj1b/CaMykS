@@ -82,6 +82,50 @@ global $camyks;
 <div id="itemFollow" style="display:<?=$this->tabBuilder->get_tabDisplay('Follow')?>;"  class="adminContentPanel">
 <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
   
+    <tr>
+      <td class="eTableHeader" colspan="2">
+        <?=$this->get_translation('formdesc_settings'); ?>
+      </td>
+    </tr>
+  
+    <tr>
+    <td class="eTableLine0 eContent2">
+      <?=$this->get_translation('formitem_insertion');?>
+    </td>
+    <td class="eTableLine0 eContent1">
+      <?=$this->form->display_selectInput(array('name'=>'follow_insertion', 'values'=>$this->config->get_followInsertionList())); ?>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="eTableLine1 eContent2">
+      <?=$this->get_translation('formitem_stylesource');?>
+    </td>
+    <td class="eTableLine1 eContent1">
+      <?=$this->form->display_selectInput(array('name'=>'follow_styleSource', 'values'=>$this->config->get_followStyleSourceList())); ?>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="eTableLine0 eContent2">
+      <?=$this->get_translation('formitem_location');?>
+    </td>
+    <td class="eTableLine0 eContent1">
+      <?=$this->form->display_selectInput(array('name'=>'follow_location', 'values'=>$this->config->get_followLocationList())); ?>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="eTableLine0 eContent2" colspan="2">
+      &nbsp;
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="eTableHeader" colspan="2">
+      <?=$this->get_translation('formtitle_follownetworks'); ?>
+    </td>
+  </tr>
   <tr>
     <td class="eTableLine0 eContent2" colspan="2">
       <?=$this->get_translation('formdesc_follow'); ?>

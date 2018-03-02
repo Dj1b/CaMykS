@@ -134,8 +134,11 @@ $this->trads['mod_admin_genericemailingmanager_formitem_invalid'] = 'Invalides :
 
 /* admin view emailing : sending tab */
 $this->trads['mod_admin_genericemailingmanager_tabsending'] = 'Envoi';
-$this->trads['mod_admin_genericemailingmanager_formitem_approxemailtosend'] = 'Nb. approximatif d\'envoi : ';
+$this->trads['mod_admin_genericemailingmanager_formitem_approxemailtosend'] = 'Nb. approximatif d\'envoi(s) : ';
+$this->trads['mod_admin_genericemailingmanager_formitem_alreadysent'] = 'Envoi(s) d&eacute;j&agrave; effectu&eacute;(s) : ';
+$this->trads['mod_admin_genericemailingmanager_formitem_remainingtosend'] = 'Envoi(s) restant : ';
 $this->trads['mod_admin_genericemailingmanager_action_startsending'] = 'D&eacute;marrer l\'envoi';
+$this->trads['mod_admin_genericemailingmanager_action_continuesending'] = 'Continuer l\'envoi';
 $this->trads['mod_admin_genericemailingmanager_formitem_totalsent'] = 'E-mails envoy&eacute;s : ';
 $this->trads['mod_admin_genericemailingmanager_formitem_totalsucceededsent'] = 'Envois r&eacute;ussis : ';
 $this->trads['mod_admin_genericemailingmanager_formitem_totalopened'] = 'E-mails ouverts : ';
@@ -156,6 +159,7 @@ $this->trads['mod_admin_genericemailingmanager_emailsending'] = 'Envoi des e-mai
 
 $this->trads['mod_admin_genericemailingmanager_initialise_emailing'] = 'Initialisation des envois en cours.';
 $this->trads['mod_admin_genericemailingmanager_initialise_emailing_done'] = 'Initialisation des envois termin&eacute;e.';
+$this->trads['mod_admin_genericemailingmanager_initialise_emailing_failure'] = 'Initialisation des envois &eacute;chou&eacute;e.';
 $this->trads['mod_admin_genericemailingmanager_send_email'] = 'Envoi en cours.';
 $this->trads['mod_admin_genericemailingmanager_send_email_done'] = 'Envoi &agrave; %s termin&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_send_email_failure'] = 'Envoi &agrave; %s &eacute;chou&eacute;.';
@@ -175,32 +179,32 @@ $this->trads['mod_admin_genericemailingmanager_config_saved'] = 'Configuration e
 $this->trads['mod_admin_genericemailingmanager_config_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de la configuration.';
 
 /* admin save emailing */
-$this->trads['mod_admin_genericemailingmanager_emailing_saved'] = 'E-mailing enregistr&eacute;';
+$this->trads['mod_admin_genericemailingmanager_emailing_saved'] = 'E-mailing enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_emailing_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de ce e-mailing.';
 
 /* admin delete emailing */
-$this->trads['mod_admin_genericemailingmanager_emailing_deleted'] = 'E-mailing supprim&eacute;';
+$this->trads['mod_admin_genericemailingmanager_emailing_deleted'] = 'E-mailing supprim&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_emailing_notdeleted'] = 'Une erreur est survenue lors de la suppression de cet emailing.';
 
 /* admin reset emailing */
-$this->trads['mod_admin_genericemailingmanager_emailing_reseted'] = 'E-mailing r&eacute;initialis&eacute;';
+$this->trads['mod_admin_genericemailingmanager_emailing_reseted'] = 'E-mailing r&eacute;initialis&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_emailing_notreseted'] = 'Une erreur est survenue lors de la r&eacute;initialisation de cet emailing.';
 
 /* admin delete email results */
-$this->trads['mod_admin_genericemailingmanager_email_deleted'] = 'R&eacute;sultats d\'envoi supprim&eacute;s';
+$this->trads['mod_admin_genericemailingmanager_email_deleted'] = 'R&eacute;sultats d\'envoi supprim&eacute;s.';
 $this->trads['mod_admin_genericemailingmanager_email_notdeleted'] = 'Une erreur est survenue lors de la suppression de ecs r&eacute;sultats d\'envoi.';
 
 /* admin mark email as invalid */
 $this->trads['mod_admin_genericemailingmanager_email_markedasinvalid'] = 'Adresse e-mail marqu&eacute;e comme invalide.';
 
 /* admin save contact */
-$this->trads['mod_admin_genericemailingmanager_contact_saved'] = 'Contact enregistr&eacute;';
+$this->trads['mod_admin_genericemailingmanager_contact_saved'] = 'Contact enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de ce contact.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_alreadyexists'] = 'Un contact utilisant cette adresse e-mail existe d&eacute;j&agrave; dans la base de donn&eacute;es. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_emailinvalid'] = 'L\'adresse e-mail est invalide. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
 
 /* admin delete contact */
-$this->trads['mod_admin_genericemailingmanager_contact_deleted'] = 'Contact supprim&eacute;';
+$this->trads['mod_admin_genericemailingmanager_contact_deleted'] = 'Contact supprim&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_notdeleted'] = 'Une erreur est survenue lors de la suppression de ce contact.';
 
 /* admin import contacts */

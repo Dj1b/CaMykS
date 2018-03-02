@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Dictionnary
  * Create Date		: Sep 2009
- * Last Modif Date  : Dec 2014
+ * Last Modif Date  : Feb 2018
  *
  * Admin_ContentPage english dictionnary 
  */
@@ -29,8 +29,30 @@ $this->trads['mod_admin_contentpage_rights_configuration'] = 'Configuration';
 
 /* configuration */
 $this->trads['mod_admin_contentpage_configuration'] = 'Configuration';
+$this->trads['mod_admin_contentpage_select_sitepage'] = 'Select site page';
+$this->trads['mod_admin_contentpage_page_notfound'] = 'Page not found';
+
+/* configuration - navigations */
+$this->trads['mod_admin_contentpage_formtitle_navigations'] = 'Navigations';
+$this->trads['mod_admin_contentpage_formitem_main'] = 'Primary: ';
+$this->trads['mod_admin_contentpage_formitem_alt'] = 'Secondary: ';
+$this->trads['mod_admin_contentpage_navigation_none'] = 'None';
+$this->trads['mod_admin_contentpage_add_new_navigation'] = 'Add a navigation';
+$this->trads['mod_admin_contentpage_remove_navigation'] = 'Delete navigation';
+$this->trads['mod_admin_contentpage_name'] = 'Name';
+
+/* configuration - key pages */
+$this->trads['mod_admin_contentpage_formtitle_keypages'] = 'Key pages';
+$this->trads['mod_admin_contentpage_keypage_none'] = 'None';
+$this->trads['mod_admin_contentpage_add_new_keypage'] = 'Add a key page';
+$this->trads['mod_admin_contentpage_remove_keypage'] = 'Delete key page';
+$this->trads['mod_admin_contentpage_key'] = 'Key';
+
+/* configuration - actions */
 $this->trads['mod_admin_contentpage_formtitle_actions'] = 'Actions';
 $this->trads['mod_admin_contentpage_formitem_w3cvalidator'] = 'W3C validation: ';
+
+/* configuration - 404 fallback */
 $this->trads['mod_admin_contentpage_formtitle_pagesnotfound'] = 'Pages not found';
 $this->trads['mod_admin_contentpage_formitem_404fallback'] = 'Fallback: ';
 $this->trads['mod_admin_contentpage_config_404fallback_homedisplay'] = 'Display home page';
@@ -44,6 +66,8 @@ $this->trads['mod_admin_contentpage_formitem_page'] = 'Page: ';
 $this->trads['mod_admin_contentpage_formitem_send404header'] = 'Send 404 header: ';
 $this->trads['mod_admin_contentpage_config_w3cvalidator_disabled'] = 'Disabled';
 $this->trads['mod_admin_contentpage_config_w3cvalidator_enabled'] = 'Enabled';
+
+/* configuration - site */
 $this->trads['mod_admin_contentpage_formtitle_ogmeta'] = 'Open Graph metas';
 $this->trads['mod_admin_contentpage_config_ogmeta_disabled'] = 'Disabled';
 $this->trads['mod_admin_contentpage_config_ogmeta_enabled'] = 'Enabled';

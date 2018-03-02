@@ -2,43 +2,49 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Engine / Object Lib
+ * Object Type      : Engine / Object Lib
  * Creation Date	: Jun 2005
- * Last Modif Date	: May 2007
- * History :
- * * 05-06-xx : Initial File
- * * 07-05-xx : Request mode support
+ * Last Modif Date	: Feb 2018
  *
  * Input engine object
  */
 
 class Input extends Plugin {
   /* vars */
-  var $title;
+  public $title;
+  public $selected_layout;
   
-  /* constructor */
-  function Input ( $name, $path_type ) {
+  /* 
+   * constructor
+   * @param string $name
+   * @param string $path_type
+   * @return void
+   * @access public
+   */
+  public function Input($name, $path_type) {
     /* Plugin Init */
-    parent::Plugin( $name, 'input', $path_type );
-    /* internal vars */
+    parent::__construct($name, 'input', $path_type);
+    
+    /* initialise internal vars */
     $this->title = $this->name;
     $this->selected_layout = 'input.html.inc';
+    
     /* add language */
     $this->add_translation();
   }
 
-  /* methods */
-
+  /* basic methods */
 
   /*
    * generic initialisation
+   * @param array $params
    * @return boolean
    * @access public
    */
-  function initialise($params=array()) {
+  public function initialise($params=array()) {
     global $camyks;
     return true;
   }
@@ -48,32 +54,42 @@ class Input extends Plugin {
    * @return boolean
    * @access public
    */
-  function display ( ) {
+  public function display() {
     $this->load_file('html/'.$this->selected_layout);
     return true;
   }
   
-  /***************** REQUEST MODE **********************/
+  /* request mode methods */
   
   /*
-   * generic request
+   * execute input object in request mode
    * @return boolean
    * @access public
    */
-  function execute_request() {
-    echo 'This plugin doesn\'t support requests.';
-    return true;
+  public function execute_request() {
+    global $camyks;    
+    
+    /* throw a fatal error, if not overwritten */
+    $camyks->add_generic_translation();
+    $camyks->throwFatalError(array(
+        'title'         => $camyks->get_translation('error_fatalerror'),
+        'description'   => $camyks->get_translation('error_plugin_doesnt_support_requests_desc'),
+        'content1'      => $camyks->get_translation('error_plugin_doesnt_support_requests_content'),
+        'back_title'    => $camyks->get_translation('error_plugin_doesnt_support_requests_back_title'),
+        'back_link'     => $camyks->get_confValue('url'),
+    ));
   }
 
-  /***************** LOCALES METHODS *************************/
+  /* locales related methods */
+  
   /*
    * load correct language file
    * @return void
    * @access public
    */
-  function add_translation ( ) {
+  public function add_translation() {
     global $camyks;
-    $camyks->add_translation ( $this->plugin_path.'/locale');
+    $camyks->add_translation($this->plugin_path.'/locale');
   }
 
   /*
@@ -83,9 +99,20 @@ class Input extends Plugin {
    * @return string
    * @access public
    */
-  function get_translation ( $value, $data=null ) {
+  public function get_translation($value, $data=null) {
     global $camyks;
     return $camyks->get_translation('input_'.strtolower($this->name).'_'.$value, $data);
+  }
+  
+  /* tool methods */
+  
+  /*
+   * update selected layout
+   * @param string $layout
+   * @access public
+   */
+  public function set_selectedLayout($layout='') {
+    $this->selected_layout = $layout;
   }
 }
 ?>

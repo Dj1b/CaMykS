@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
- * Create Date		: May 2007
- * Last Modif Date	: Oct 2008
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Engine
+ * Creation Date    : May 2007
+ * Last Modif Date  : Feb 2018
  * History :
  * * 07-03-xx : Initial files
  * * 08-05-28 : Check rights for configuration modes
@@ -922,10 +922,10 @@ class Admin_Statistics extends Module {
 				$params);
       }
       /* referer : ( remove http:// from url, and compare to current site url ) */
-      if ( $this->settings->vars['stat_referer'] == 1  ){
-	$rsite = client_getRefererSite();
-	if ( $rsite != '' ) {
-	  $csite = $camyks->_conf['url'];
+      if ($this->settings->vars['stat_referer'] == 1 ) {
+	    $rsite = client_getRefererSite();
+	    if ($rsite != '') {
+	      $csite = $camyks->_conf['url'];
 	  $find = '@^(?:https?://)?([^/]+)@i';
 	  if ( preg_match( $find, $rsite, $result )  )
 	    $rsite = $result[1];
@@ -950,8 +950,8 @@ class Admin_Statistics extends Module {
 	}
       }
       /* first page */
-      if ( $this->settings->vars['stat_firstpage'] == 1  ){
-	$this->update_statistic('firstpage', 
+      if ($this->settings->vars['stat_firstpage'] == 1 ) {
+	    $this->update_statistic('firstpage', 
 				'Admin_ContentPage',
 				'detail',
 				$camyks->contentPage->id,
@@ -977,11 +977,11 @@ class Admin_Statistics extends Module {
     if (isset($this->config->vars[$name])) {      
       $color = $this->config->vars[$name];
       /* check if color picker is available */
-      if( $this->colorPicker !== false ) {
-	$this->colorPicker->display( $name, $color);
+      if ($this->colorPicker !== false) {
+	    $this->colorPicker->display( $name, $color);
       } else {
-	$this->colorPickerValue = $color;
-	$this->load_file('html/admin_colorpicker.html.inc');
+	    $this->colorPickerValue = $color;
+	    $this->load_file('html/admin_colorpicker.html.inc');
       }
     }
   }

@@ -7,7 +7,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Layout
  * Create Date		: May 2017
- * Last Modif Date	: May 2017
+ * Last Modif Date	: Feb 2018
  * 
  * CookieAgreementMessage input layout
 */
@@ -23,13 +23,13 @@ global $camyks;
   
     <?php if ($this->params['styleSource'] == 'plugin') : ?>
     
-      <a href="javascript:if(cookieMessage)cookieMessage.accept_cookies();void(0);" class="acceptButton">
+      <a href="javascript:CookieAgreementMessage.accept_cookies();void(0);" class="acceptButton">
         <?=$this->get_translation('accept'); ?>
       </a>
     
       <?php if ($this->params['aboutCookie'] != '') : ?>
     
-        <a href="<?=$this->params['aboutCookie'];?>" class="aboutButton" target="_blank">
+        <a href="<?=$this->params['aboutCookie'];?>" class="aboutButton" target="_blank" rel="noopener">
           <?=$this->get_translation('about'); ?>
         </a>
     
@@ -39,7 +39,7 @@ global $camyks;
   
       <?=$camyks->theme->get_button(array(
           'title'     => $this->get_translation('accept'),
-          'link'      => 'javascript:if(cookieMessage)cookieMessage.accept_cookies(); void(0);',
+          'link'      => 'javascript:CookieAgreementMessage.accept_cookies();void(0);',
         )); ?>
     
       <?php if ($this->params['aboutCookie'] != '') : ?>

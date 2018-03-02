@@ -1,0 +1,28 @@
+# CaMykS Template for apache2.4
+
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /app
+
+        <Directory />
+            Options +Indexes +FollowSymLinks +MultiViews
+            AllowOverride All
+            Require all granted
+        </Directory>
+
+        <Directory /app >
+            Options +Indexes +FollowSymLinks +MultiViews
+            AllowOverride All
+            Require all granted
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	#
+	# Set HTTPS environment variable if we came in over secure
+	#  channel.
+	SetEnvIf x-forwarded-proto https HTTPS=on
+
+</VirtualHost>

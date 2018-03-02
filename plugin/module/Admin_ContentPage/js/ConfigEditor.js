@@ -1,21 +1,20 @@
 /*
  * CaMykS Engine
- * Developed by		: Ideogram Design
- * Author			: JB Lebrun <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0b
+ * Developed by		: camyks.net
+ * Author		    : CaMykS Team
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date    : Dec 2014
- * Last Modif Date	: Dec 2014
+ * Last Modif Date	: Feb 2018
  * 
  * Admin_ContentPage config edition scripts
  */
  
-function ConfigEditor(name) {
-  this.name = name;
-  this.params = {};
-  this.locales = {};
-  this.loaded = false;
+var ConfigEditor = {
+  params: {},
+  locales: {},
+  loaded: false,
 
   /*
    * add parameter
@@ -24,12 +23,12 @@ function ConfigEditor(name) {
    * @return void
    * @access public
    */
-  this.set_param = function(param, value, subvalue) {
-    if ( subvalue != undefined && this.params[param] )
+  set_param: function(param, value, subvalue) {
+    if (subvalue != undefined && this.params[param])
       this.params[param][value] = subvalue;
     else
       this.params[param] = value;
-  };
+  },
    
   /*
    * return param value from name
@@ -37,13 +36,13 @@ function ConfigEditor(name) {
    * @return mixed
    * @access public
    */
-  this.get_param = function(param, value) {
+  get_param: function(param, value) {
     if (value != undefined && (this.params[param][value] || this.params[param][value] === 0))
         return this.params[param][value];
     if (this.params[param] || this.params[param] === 0)
       return this.params[param]
     return false;
-  };
+  },
   
   /*
    * set locale value 
@@ -52,9 +51,9 @@ function ConfigEditor(name) {
    * @return void
    * @access public
    */
-  this.set_locale = function(name, value) {
+  set_locale: function(name, value) {
     this.locales[name.toLowerCase()] = value;
-  };
+  },
   
   /*
    * get locale value 
@@ -62,37 +61,43 @@ function ConfigEditor(name) {
    * @return void
    * @access public
    */
-  this.get_locale = function(name) {
+  get_locale: function(name) {
     if (this.locales[name.toLowerCase()])
       return this.locales[name.toLowerCase()];
     return name;
-  };
+  },
   
   /* 
    * initialise object
    * @return void
    * @access public
    */
-  this.initialise = function() {
+  initialise: function() {
     /* check navigator type */
   	this.set_param('navType',  navigator.appName.indexOf("Microsoft")==-1? 'real':'msie');
   	
   	/* set form */
   	this.set_param('form', document.getElementById(this.get_param('form')));
   	
+  	/* default vars */
+  	this.set_param('selectedPage', '');
+  	this.set_param('keyPageCnt', 0);
+  	
 	/* finalise initialisation */
   	this.loaded = true;
   	
   	/* after init actions */
   	this.check_selected404FallBack();
-  };
+  },
+  
+  /* 404 fallback management methods */
   
   /*
    * check selected 404 Fallback value
    * @return void
    * @access public
    */
-  this.check_selected404FallBack = function() {
+  check_selected404FallBack: function() {
     if (!this.loaded)
       return false;
   
@@ -116,6 +121,93 @@ function ConfigEditor(name) {
       document.getElementById('HeaderSendingBox').style.display = 'block';
     else
       document.getElementById('HeaderSendingBox').style.display = 'none';
+  },
+  
+  /* page chooser methods */
+  
+  /*
+   * open page chooser to select a page for given variable
+   * @param string inputName
+   * @return void
+   */
+  open_pageChooser: function (inputName) {
+    this.set_param('selectedPage', inputName);
+    pc.open(this.get_param('form')[inputName].value);
+  },
+  
+  /*
+   * update selected page value 
+   * @param integer id
+   * @param string name
+   * @return void
+   * @access public
+   */
+  update_selectedPage: function (id, name) {
+    if (this.get_param('selectedPage') !== false) {
+      this.get_param('form')[this.get_param('selectedPage')].value = id;
+      this.get_param('form')[this.get_param('selectedPage')+'_name'].value = name;
+    }
+  },
+  
+  /* key pages management methods */
+  
+  /*
+   * insert new key page
+   * @return void
+   * @access public
+   */
+  insert_keyPage: function() {
+    keyIndex = this.get_param('form')['keyPageCnt'].value;
+  
+    keyLine = document.getElementById('keyPageTemplate').cloneNode(true);
+    keyLine.id = 'keyPage'+keyIndex;
+  	keyLine.innerHTML = keyLine.innerHTML.replaceAll('XXX', keyIndex);
+    keyLine.style.display = 'block';
     
-  };
+    document.getElementById('keyPages').appendChild(keyLine);
+    
+    this.get_param('form')['keyPageCnt'].value++;
+  },
+  
+  /*
+   * remove key page
+   * @param integer pageIndex
+   * @return void
+   * @access public
+   */
+  remove_keyPage: function(pageIndex) {
+    this.get_param('form')['keyPageName'+pageIndex].value = '';
+    document.getElementById('keyPage'+pageIndex).style.display = 'none';
+  },
+  
+  /* navigation management methods */
+  
+  /*
+   * insert new navigation
+   * @return void
+   * @access public
+   */
+  insert_navigation: function() {
+    keyIndex = this.get_param('form')['navAddCnt'].value;
+  
+    keyLine = document.getElementById('navAddTemplate').cloneNode(true);
+    keyLine.id = 'navAdd'+keyIndex;
+  	keyLine.innerHTML = keyLine.innerHTML.replaceAll('XXX', keyIndex);
+    keyLine.style.display = 'block';
+    
+    document.getElementById('navAdds').appendChild(keyLine);
+    
+    this.get_param('form')['navAddCnt'].value++;
+  },
+  
+  /*
+   * remove navigation
+   * @param integer pageIndex
+   * @return void
+   * @access public
+   */
+  remove_navigation: function(pageIndex) {
+    this.get_param('form')['navAddName'+pageIndex].value = '';
+    document.getElementById('navAdd'+pageIndex).style.display = 'none';
+  },
 }

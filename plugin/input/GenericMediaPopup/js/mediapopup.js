@@ -542,6 +542,10 @@ function MediaPopup(name) {
    * @access private
    */
   this.on_keyPressed = function(event) {
+    /* check if a popup is opened */
+    if (this.get_param('popupBkgd').style.display == 'none')
+      return;
+  
     switch(event.keyCode) {
     case 27: /* key : escape */
       this.close_media();

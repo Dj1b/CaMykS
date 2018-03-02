@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by     : camyks.net
- * Author	    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * Author	        : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type	    : Plugin / Module Layout
  * Creation Date    : May 2010
- * Last Modif Date  : May 2010
+ * Last Modif Date  : Feb 2018
  * 
  * Admin_GenericGlossaryManager Module Admin Layout : edit_category
  */
@@ -15,7 +15,7 @@ global $camyks;
 
 $flags = array();
 $lgs = $camyks->get_confValue('editing_languages');
-if ( count($lgs) == 1) {
+if (count($lgs) == 1) {
   $flags[$lgs[0]] = '';
 } else {
   foreach ($lgs as $l)

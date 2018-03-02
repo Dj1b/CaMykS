@@ -6,7 +6,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Main Object
  * Creation Date    : Jun 2005
- * Last Modif Date  : Nov 2017
+ * Last Modif Date  : Feb 2018
  *
  * CaMykS engine object
  */
@@ -139,6 +139,7 @@ final class Camyks {
     $this->adminUser = false;
     $this->openedDBonnections = array();
     $this->eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onTerminate'=>array());
+    $this->falseRef = false;
     
     /* load request vars */
     $this->benchMode = $this->get_executionVariable('_cBench'); 
@@ -950,7 +951,7 @@ final class Camyks {
   }
   
   /* 
-   * get modules list in CaMykS object
+   * load modules list in CaMykS object
    * @return void
    * @access public
    */
@@ -962,7 +963,7 @@ final class Camyks {
   }
   
   /*
-   * get themes list in CaMykS object
+   * load themes list in CaMykS object
    * @return void
    * @access public
    */
@@ -974,7 +975,7 @@ final class Camyks {
   }
   
   /* 
-   * get templates list in CaMykS object
+   * load templates list in CaMykS object
    * @return void
    * @access public
    */
@@ -986,7 +987,7 @@ final class Camyks {
   }
   
   /*
-   * get inputs list in CaMykS object
+   * load inputs list in CaMykS object
    * @return void
    * @access public
    */
@@ -995,6 +996,50 @@ final class Camyks {
         input_getList($this->camyks_plugin_path, 'camyks'),
 		input_getList($this->site_plugin_path, 'site')
 	);
+  }
+  
+  /*
+   * return module object
+   * @return Object 
+   * @access public
+   */
+  public function &get_module($moduleName) {
+    if (isset($this->modules[$moduleName]))
+      return $this->modules[$moduleName];
+    return $this->falseRef;
+  }
+  
+  /*
+   * return theme object
+   * @return Object 
+   * @access public
+   */
+  public function &get_theme($themeName) {
+    if (isset($this->themes[$themeName]))
+      return $this->themes[$themeName];
+    return $this->falseRef;
+  }
+  
+  /*
+   * return template object
+   * @return Object 
+   * @access public
+   */
+  public function &get_template($templateName) {
+    if (isset($this->templates[$templateName]))
+      return $this->templates[$templateName];
+    return $this->falseRef;
+  }
+  
+  /*
+   * return input object
+   * @return Object 
+   * @access public
+   */
+  public function &get_input($inputName) {
+    if (isset($this->inputs[$inputName]))
+      return $this->inputs[$inputName];
+    return $this->falseRef;
   }
   
   /*
@@ -1216,7 +1261,6 @@ final class Camyks {
     }
     
     /* start closing CaMykS */
-    $this->init_kill();
     die();
   }
 
@@ -1423,7 +1467,7 @@ final class Camyks {
    * @access public
    */
   public function get_sessionValue($name, $value = null) {
-    if ( isset($_SESSION[$this->site_name.'_'.$name ]) )
+    if (isset($_SESSION[$this->site_name.'_'.$name]))
       return $_SESSION[$this->site_name.'_'.$name];
     return $value;
   }
@@ -1546,7 +1590,7 @@ final class Camyks {
    */
   public function &get_sharedObject($name) {
     if (!isset($this->sharedObjects[$name]))
-      return false;
+      return $this->falseRef;
     return $this->sharedObjects[$name];
   }
   
@@ -1680,7 +1724,7 @@ final class Camyks {
   	switch ($mode) {
   	  case 'absolute':
   	  case 'absolute_long':
-  		return $this->get_confValue('url').'/';
+  		return $this->get_confValue('url').(substr($this->get_confValue('url'), -1) == '/' ? '' : '/');
   	  case 'absolute_short':
   		return '/';
   	  case 'relative':
@@ -1994,7 +2038,7 @@ final class Camyks {
         
     /* run onInitialise event handlers */
     $this->run_eventHandlers('onPageLoad');
-          
+        
     /* get internal locales */
     $this->HTMLPage->set_pageInformations(
         $this->contentPage->title,
@@ -2047,7 +2091,7 @@ final class Camyks {
     /* init admin module to display */
     if ( $this->check_adminUser() === false ) {
       /* check for over written admin login module */
-      if ( isset( $this->_conf['adminLoginModule'] ) and isset( $this->modules[$this->_conf['adminLoginModule']]))
+      if ( isset( $this->_conf['adminLoginModule'] ) and isset($this->modules[$this->_conf['adminLoginModule']]))
 	    $module = $this->_conf['adminLoginModule'];
       else
 	    $module = 'Tool_Login';
@@ -2060,7 +2104,7 @@ final class Camyks {
       else
 	    $module = 'Tool_ControlPanel';
     }
-    
+        
     /* set up HTML Page config  */
     $this->set_confValue('html_version', 5);
 
@@ -2071,25 +2115,23 @@ final class Camyks {
     
     /* create admin special page content */
     $this->contentPage = $this->modules['Admin_ContentPage']->get_newPage();
-    $this->contentPage->set_adminData ( $module );
+    $this->contentPage->set_adminData ($module);
     
     /* get init from content */
     $this->theme->initialise();
     $this->contentPage->init_admin();
 
     /* update header vars */
-    $this->HTMLPage->set_siteInformations ($this->_conf['site_title'],
-					    'CaMykS Team',
-					    '');
-    $this->HTMLPage->set_pageInformations ($this->get_translation('administration').' - ' .$this->contentPage->modules[0]->title,
+    $this->HTMLPage->set_siteInformations($this->_conf['site_title'], 'CaMykS Team', '');
+    $this->HTMLPage->set_pageInformations($this->get_translation('administration').' - ' .$this->contentPage->modules[0]->title,
 					    null,
 					    null,
 					    $this->current_language);
-    $this->HTMLPage->set_robotInformations (false, false);
-    if ( isset($this->_conf['favicon']) ) {
-      $this->HTMLPage->set_favicon( $this->_conf['favicon'] );
+    $this->HTMLPage->set_robotInformations(false, false);
+    if (isset($this->_conf['favicon'])) {
+      $this->HTMLPage->set_favicon($this->_conf['favicon']);
     } else {
-      $this->HTMLPage->set_favicon( );
+      $this->HTMLPage->set_favicon();
     }
 
     /* display html header */

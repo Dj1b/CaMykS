@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2005
- * Last Modif Date  : Dec 2014
+ * Last Modif Date  : Feb 2018
  * History :
  * * 05-06-xx : Initial files
  * * 08-02-19 : Add model support
@@ -76,6 +76,9 @@ class Admin_ContentPage extends Module {
     /* load config */
     $this->config = new Admin_ContentPageConfig('config', $this);
     $this->config->get();
+    
+    /* register plugin as Admin_Site extension */
+    $this->register_asExtension('Admin_Site');
   }
   
   /* overwrite module methods */
@@ -839,10 +842,6 @@ class Admin_ContentPage extends Module {
     if ( $this->check_right(8) === false )
       return $this->init_admin_actionNotAllowed();
     
-    /* load data */
-    $this->W3CValidatorStatus = $this->config->get_w3cValidatorList();
-    $this->OGMetaStatus = $this->config->get_ogMetaStatusList();
-    $this->Error404FallBacks = $this->config->get_404FallbackList();
     $this->get_help();
                       
     /* get tabs */
@@ -861,27 +860,28 @@ class Admin_ContentPage extends Module {
     
     /* load config form */
     $this->editform = new HTMLForm('edit_config',
-				   $this->get_adminlink( array('mode'=>'save_config')),
+				   $this->get_adminlink(array('mode'=>'save_config')),
 				   'POST');
-    $this->editform->set_object($this->config);
-    
-    /* add scripts */
-    $this->add_JSFile('ConfigEditor.js');
-    $this->add_JSScript('var ce = new ConfigEditor("ce");');
-    $this->add_JSLoadScript('ce.initialise();');
-    $this->add_JSScript('ce.set_param("form", "'.$this->editform->name.'");');
-    
+	
+	$this->initialise_configEdition($this->editform);
+	$this->isConfig = false;
+				   
     /* build title */
     $this->adminTitle = $this->title;
     $this->adminTitle .= $camyks->get_translation('formitem_separator');
     $this->adminTitle .= $this->get_translation('configuration');
     
     /* build button list */
-    $this->buttons = array(array('link'=>$this->get_adminLink(array('openTab'=>'Configuration')),
-				        'title'=>$camyks->get_translation('back')),
-				     array('link'=>$this->editform->get_HTMLSubmitLink(),
-				        'title'=>$camyks->get_translation('valid')),
-				    );
+    $this->buttons = array(
+        array(
+            'link'  => $this->get_adminLink(array('openTab'=>'Configuration')),
+	        'title' => $camyks->get_translation('back'),
+	    ),
+		array(
+		    'link'  =>$this->editform->get_HTMLSubmitLink(),
+			'title' =>$camyks->get_translation('valid')
+		),
+	);
     
     /* update layout */
     $this->selected_layout = 'admin_edit_config.html.inc';
@@ -913,7 +913,7 @@ class Admin_ContentPage extends Module {
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('openTab'=>'configuration')));
+    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('openTab'=>'Configuration')));
   }
 
   /*
@@ -1223,6 +1223,25 @@ class Admin_ContentPage extends Module {
     return $this->config->get_value($param, $default);
   }
 
+  /*
+   * return key page from config
+   * @param string $key
+   * @return mixed
+   * @access public
+   */
+  function get_keyPage($key) {
+    return $this->config->get_keyPage($key);
+  }
+
+  /*
+   * return navigation root from config
+   * @param string $key
+   * @return mixed
+   * @access public
+   */
+  function get_navigationRoot($key) {
+    return $this->config->get_navigationRoot($key);
+  }
 
   /*
    * initialise finder mode
@@ -1368,75 +1387,85 @@ class Admin_ContentPage extends Module {
     $this->add_JSScript('movePageFailedMessage="'.string_html2Text($this->get_translation('movepagefailedmessage')).'";');
   }
 
-
-  function __backup () {
-    $this->add_JSFile('contentpage_modify.js');
-    /* check default template */
-    $this->add_JSLoadScript('contentpage_updateTemplatePanel();');
-      
-    /* module values */
-      $this->add_JSScript('contentpage_maxModules = '.$this->page->maxmodules.';');
-      $this->add_JSScript('contentpage_countModules = {');
-      foreach( $camyks->templates as $t ) {
-	$this->add_JSScript('"'.$t->name.'" : '.$t->modules.',');
-      }
-      $this->add_JSScript('"__null__" : 1 ');
-      $this->add_JSScript('};');
-      $this->add_JSScript('site_default_template="'.$camyks->site_conf['site_default_template'].'";');
-      
-      if ( $this->check_right(6) ) {
-	$this->add_JSScript('contentpage_mode="admin";');
-      } else {	
-	$this->add_JSScript('contentpage_mode="user";');
-      }
-      
-      $this->add_JSScript('contentpage_allowThemeChange='.($this->allow_theme_change?'true':'false').';');      
-      $this->add_JSScript('contentpage_contents = {};' );
-      foreach ( $this->contents as $c => $v ) {
-	if ( $v == -1 ) {
-	  $s = 'contentpage_contents["'.$c.'"] = -1;';
+  /* Admin_Site extension configuration methods */
+  
+  /*
+   * initialise object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function initialise_configDisplay() {
+    $this->isConfig = true;
+    
+    /* load pages */ 
+    $this->get_adminPages();
+  }
+  
+  /*
+   * display object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configDisplay() {
+    $this->load_file('html/configuration/view.html.inc');
+  }
+  
+  /*
+   * initialise object in Admin_Site / edit configuration mode
+   * @param Object $form
+   * @return void
+   * @access public
+   */
+  public function initialise_configEdition($form) {
+    global $camyks;
+    
+    $this->isConfig = true;
+    
+    /* load data */
+    $this->W3CValidatorStatus = $this->config->get_w3cValidatorList();
+    $this->OGMetaStatus = $this->config->get_ogMetaStatusList();
+    $this->Error404FallBacks = $this->config->get_404FallbackList();
+    
+    /* update form */
+    $this->editform = &$form;
+    $this->editform->set_object($this->config);
+    $this->editform->add_hidden('keyPageCnt', count($this->config->get_value('keyPages')));
+    $this->editform->add_hidden('navAddCnt', count($this->config->get_value('navigation_additional')));
+        
+    /* load pages */ 
+    $this->get_adminPages();
+  
+    /* add scripts */
+    $this->add_JSEngineFile('tool/string.js');
+    $this->add_JSFile('ConfigEditor.js');
+    $this->add_JSLoadScript('ConfigEditor.set_param("form", "'.$this->editform->name.'");');
+    $this->add_JSLoadScript('ConfigEditor.initialise();');
+    
+    if (isset($camyks->inputs['PageChooser'])) {
+	  $this->pc = true;
+      $camyks->inputs['PageChooser']->initialise('pageidname', null, 'ConfigEditor.update_selectedPage');
 	} else {
-	  $s = 'contentpage_contents["'.$c.'"] = {';
-	  if ( count( $v ) > 0 ) {
-	    foreach ( $v as $id => $name ) {
-	      $s .= ''. $id .':"'.$name.'",';
-	    }
-	    $s = substr ( $s, 0, strlen($s)-1);
-	  }
-	  $s .= '};';
+	  $this->pc = false;
 	}
-	$this->add_JSScript( $s );
-      }
-      
-      $this->add_JSScript('contentpage_selcontents = new Array();');
-      for( $i=0; $i< $this->page->maxmodules; $i++ ) {
-	$c = isset($this->page->modules[$i]['content'])?$this->page->modules[$i]['content']:'';
-	$this->add_JSScript( 'contentpage_selcontents['.$i.'] = "'.$c.'";' );
-      }
-      
-      $this->add_JSScript('contentpage_no_content="'.string_html2Text($this->get_translation('no_content')).'";');
-      $this->add_JSScript('contentpage_new_content="'.string_html2Text($this->get_translation('new_content')).'";');
-      $this->add_JSLoadScript('contentpage_updateModules();');
-      if ( count($this->models) > 0 ) {
-	$this->add_JSLoadScript('contentpage_selectModel();');
-      }
-      $this->add_JSLoadScript('contentpage_lockContent();');
-      /* write models */
-      $this->add_JSScript('contentpage_models = new Array();');
-      foreach($this->models as $model){
-	$this->add_JSScript('contentpage_models['.$model->id.'] ={');
-	$this->add_JSScript('"id":'.$model->id.', "name":"'.$model->name.'",');
-	$this->add_JSScript('"template":"'.$model->template.'", "theme":"'.$model->theme.'",');
-	if ( $model->template == '' ) {
-	  $model->template = $camyks->_conf['site_default_template'];
-	}
-	for ( $i = 0; $i< $camyks->templates[$model->template]->modules; $i++ ) {
-	  $this->add_JSScript('"m'.$i.'_name":"'.$model->modules[$i]['name'].'",'.
-			      '"m'.$i.'_content":"'.$model->modules[$i]['content'].'",'.
-			      '"m'.$i.'_theme":"'.$model->modules[$i]['theme'].'",');
-	}
-	$this->add_JSScript('};');
-      }
+  }
+  
+  /*
+   * display object in Admin_Site / edit configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configEdition() {
+    $this->load_file('html/configuration/edit.html.inc');
+  }
+    
+  /*
+   * execute object in Admin_Site / save configuration mode
+   * @return void
+   * @access public
+   */
+  public function save_configuration() {
+    $this->config->get_fromHeader();
+    return $this->config->save();
   }
 }
 ?>

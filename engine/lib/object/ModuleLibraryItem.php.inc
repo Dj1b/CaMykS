@@ -3,26 +3,16 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Object Type	    : Engine / Object Lib
  * Creation Date	: Mar 2007
- * Last Modif Date  : Apr 2016
- * History :
- * * 07-03-xx : Initial file
+ * Last Modif Date  : Feb 2018
  *
  * Module Library Item master object
  */
 
-class ModuleLibraryItem {
-  /* variables */
-
-  /* constructor */
-  function ModuleLibraryItem ( ) {
-    /* nothing to do */
-  }
-  
-  /* methods */
+abstract class ModuleLibraryItem {
 
   /*
    * get value from array
@@ -30,7 +20,7 @@ class ModuleLibraryItem {
    * @return void
    * @access public
    */
-  function get_fromArray($data) {
+  public function get_fromArray($data) {
     $this->value = isset($data[$this->name]) ? $data[$this->name] : $this->default;
   }
 
@@ -40,8 +30,8 @@ class ModuleLibraryItem {
    * @return string
    * @access public
    */
-  function get_valueFromHeader($name) {
-    return isset($_REQUEST[$name]) ? $_REQUEST[ $name ] : $this->default;
+  public function get_valueFromHeader($name) {
+    return isset($_REQUEST[$name]) ? $_REQUEST[$name] : $this->default;
   }
 
   /*
@@ -50,20 +40,20 @@ class ModuleLibraryItem {
    * @return integer
    * @access public
    */
-  function get_dateFromHeader($name) {
-    if ( isset($_REQUEST[$name]) ) {
+  public function get_dateFromHeader($name) {
+    if (isset($_REQUEST[$name])) {
       return $_REQUEST[$name] == -1 ? $this->default : (int)$_REQUEST[$name];
-    } else if ( !isset ( $_REQUEST[$name.'_year']) ) {
+    } else if (!isset($_REQUEST[$name.'_year'])) {
       return $this->default;
-    } else if ( $_REQUEST[$name.'_year'] == 0 ) {
+    } else if ($_REQUEST[$name.'_year'] == 0) {
       return 0;
     } else {
-      return mktime(isset($_REQUEST[$name.'_hours'] ) ? (int)$_REQUEST[$name.'_hours'] : 1,
-		     isset($_REQUEST[$name.'_minutes'] ) ? (int)$_REQUEST[$name.'_minutes'] : 0,
-		     isset($_REQUEST[$name.'_seconds'] ) ? (int)$_REQUEST[$name.'_seconds'] : 0,
-		     isset($_REQUEST[$name.'_month'] ) ? (int)$_REQUEST[$name.'_month'] : 1,
-		     isset($_REQUEST[$name.'_day'] ) ? (int)$_REQUEST[$name.'_day'] : 1,
-		     isset($_REQUEST[$name.'_year'] ) ? (int)$_REQUEST[$name.'_year']:date('Y'));
+      return mktime(isset($_REQUEST[$name.'_hours']) ? (int)$_REQUEST[$name.'_hours'] : 1,
+		     isset($_REQUEST[$name.'_minutes']) ? (int)$_REQUEST[$name.'_minutes'] : 0,
+		     isset($_REQUEST[$name.'_seconds']) ? (int)$_REQUEST[$name.'_seconds'] : 0,
+		     isset($_REQUEST[$name.'_month']) ? (int)$_REQUEST[$name.'_month'] : 1,
+		     isset($_REQUEST[$name.'_day']) ? (int)$_REQUEST[$name.'_day'] : 1,
+		     isset($_REQUEST[$name.'_year']) ? (int)$_REQUEST[$name.'_year']:date('Y'));
     }
   }
   
@@ -73,7 +63,7 @@ class ModuleLibraryItem {
    * @return string
    * @access public
    */
-  function parse_PHPTags ( $value ){
+  public function parse_PHPTags ($value){
     $tags = array();
     $tags[] = '/<\?[^\?>]*\?>/';
     $tags[] = '/<\?/';
@@ -81,7 +71,7 @@ class ModuleLibraryItem {
     $tags[] = '/<qss/';
     $tags[] = '/<script[^>]*>[^<]<\/script>/';
     $tags[] = '/<script/';
-    return preg_replace ( $tags, '', $value );
+    return preg_replace ($tags, '', $value);
   }
   
   /* list data type specific methods */
@@ -90,9 +80,9 @@ class ModuleLibraryItem {
    * compile value 
    * @param array $value
    * @return string
-   * @access private
+   * @access protected
    */
-  function compile_listValue($value) {
+  protected function compile_listValue($value) {
     /* check value */
     if (!is_array($value))
       return '';
@@ -122,9 +112,9 @@ class ModuleLibraryItem {
    * uncompile list value
    * @param string $value
    * @return array
-   * @access private
+   * @access protected
    */
-  function uncompile_listValue($value) {
+  protected function uncompile_listValue($value) {
     /* assume that it is already uncompiled */
     if (is_array($value))
       return $value;

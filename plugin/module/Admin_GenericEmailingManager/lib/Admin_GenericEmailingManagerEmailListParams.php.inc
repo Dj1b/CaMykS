@@ -22,9 +22,10 @@ $this->add_JSScript('var deleteEmailUrl="'.$this->get_adminJSLink(array('mode'=>
 $this->emailListParams = array('name'=>'emailList', 'useSession'=>true, 'object'=>&$this->emailItem);
 
 /* build head parameters */
-$this->emailListParams['headselectors'] = array('page'=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-                                                'search'=> array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text', 'default'=>''),
-                                                );
+$this->emailListParams['headselectors'] = array(
+    'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+    'search'    => array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text', 'default'=>''),
+);
 
 $this->emailListParams['headhiddens'] = array('openTab'=>'emails');
 
@@ -32,12 +33,13 @@ $this->emailListParams['headhiddens'] = array('openTab'=>'emails');
 $this->emailListParams['sort'] = array('allowed'=>true, 'default'=>'id', 'defaultway'=>'asc');
 
 /* build column parameters */
-$this->emailListParams['listcolumns'] = array('status'=>array('title'=>' ', 'columntype'=>'method', 'method'=>'get_statusIcon', 'style'=>'width:12px;'),
-						 'title'=>array('title'=>$this->get_translation('contact'),'columntype'=>'text', 'maxlength'=>'64'),
-						 'sent_date'=>array('title'=>$this->get_translation('sending'),'columntype'=>'method', 'method'=>'get_sentDateValue'),
-						 'opened_date'=>array('title'=>$this->get_translation('opening'),'columntype'=>'method', 'method'=>'get_openedDateValue'),
-						 'firstclick_date'=>array('title'=>$this->get_translation('firstclick'),'columntype'=>'method', 'method'=>'get_firstClickDateValue'),
-                         'click_count'=>array('title'=>$this->get_translation('clicks'),'columntype'=>'text'),
+$this->emailListParams['listcolumns'] = array(
+    'status'            => array('title'=>' ', 'columntype'=>'method', 'method'=>'get_statusIcon', 'style'=>'width:12px;'),
+	'title'             => array('title'=>$this->get_translation('contact'),'columntype'=>'text', 'maxlength'=>'64'),
+	'sent_date'         => array('title'=>$this->get_translation('sending'),'columntype'=>'method', 'method'=>'get_sentDateValue'),
+	'opened_date'       => array('title'=>$this->get_translation('opening'),'columntype'=>'method', 'method'=>'get_openedDateValue'),
+	'firstclick_date'   => array('title'=>$this->get_translation('firstclick'),'columntype'=>'method', 'method'=>'get_firstClickDateValue'),
+    'click_count'       => array('title'=>$this->get_translation('clicks'),'columntype'=>'text'),
 );
 
 /* add delete email result button */

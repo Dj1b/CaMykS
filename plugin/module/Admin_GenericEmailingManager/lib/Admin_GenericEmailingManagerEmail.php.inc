@@ -36,6 +36,7 @@ class Admin_GenericEmailingManagerEmail extends ModuleLibrary {
     $this->add_newItem('invalid_status', 'db', 'int', 'tinyint unsigned', '', 0);
     
     $this->add_newItem('title', 'temp', 'string', '', '', '');
+    $this->add_newItem('email', 'temp', 'string', '', '', '');
     
     /* generic initialisation */
     $this->init_library();

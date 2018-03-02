@@ -6,7 +6,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Theme Editor CSS Styles
  * Creation Date	: Oct 2014
- * Last Modif Date  : Oct 2014
+ * Last Modif Date  : Feb 2018
  *
  * Indigo Flat Theme Editor CSS style
 */
@@ -63,3 +63,6 @@ table.eTable td{}
 .eTableLine {padding:4px 8px; border-bottom: solid 1px #DDDDDD; vertical-align:top; box-sizing: border-box;}
 .eTableLine0 {padding:4px 8px; box-sizing: border-box;}
 .eTableLine1 {background:#eeeeee; padding:4px 8px; box-sizing: border-box;}
+
+.eTableLineAuto {padding:4px 8px; vertical-align:top; box-sizing: border-box;}
+tr:nth-child(odd) td.eTableLineAuto, div.eTableLineAuto:nth-of-type(odd) {background:#eeeeee;}

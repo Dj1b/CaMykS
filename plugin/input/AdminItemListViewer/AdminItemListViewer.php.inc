@@ -484,12 +484,14 @@ class AdminItemListViewer extends Input {
       return $object->vars[$name];
     case 'list':
       /* columntype == list */
-      return isset($column['values'][$object->vars[$name]])?$column['values'][$object->vars[$name]]:'';
-      break;
+      if (!isset($column['values'][$object->vars[$name]]))
+        return '';
+      if (isset($column['maxlength']) and $column['maxlength']>0 )
+        return string_getShortenedSentence($column['values'][$object->vars[$name]], $column['maxlength']);
+      return $column['values'][$object->vars[$name]];
     case 'country':
       /* columntype == country */
       return language_getIcon($object->vars[$name]);
-      break;
     case 'date':
       /* columntype == date */
       switch( $column['mode'] ) {  

@@ -1,12 +1,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team
- * CaMykS Version	: 1.0b1
+ * Author		    : CaMykS Team
+ * CaMykS Version	: 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Scripts
- * Create Date		: Oct 2009
- * Last Modif Date      : Oct 2009
+ * Object Type      : Plugin / Module Scripts
+ * Creation Date	: Oct 2009
+ * Last Modif Date  : Feb 2018
  *
  * AdminContentPageEditor object javascript
  */

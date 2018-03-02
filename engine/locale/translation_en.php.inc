@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by	    : camyks.net
- * Author	    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b1
+ * Author	        : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Engine / Global Dictionnary
  * Creation Date    : Jun 2005
- * Last Modif Date  : Oct 2010
+ * Last Modif Date  : Feb 2018
  *
  * CaMykS engine english dictionnary
  */
@@ -201,4 +201,9 @@ $this->trads['civility_me'] = '';
 /* errors */
 $this->trads['error_pluginmissing_title'] = 'A required plugin is missing.';
 $this->trads['error_pluginmissing_desc'] = 'Plugin "%s" is required and missing in CaMykS installation.';
+
+$this->trads['error_fatalerror'] = 'Fatal error';
+$this->trads['error_plugin_doesnt_support_requests_desc'] = 'This plugin doesn\'t support requests.';
+$this->trads['error_plugin_doesnt_support_requests_content'] = 'If the problem persists, contact the website administrator.';
+$this->trads['error_plugin_doesnt_support_requests_back_title'] = 'Back to home';
 ?>

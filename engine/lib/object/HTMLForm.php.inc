@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Engine / Object Library
  * Creation Date	: Jun 2005
- * Last Modif Date	: Nov 2017
+ * Last Modif Date	: Feb 2018
  * History :
  * * 05-06-xx : Initial File
  * * 08-01-16 : generic file upload input builder method
@@ -911,6 +911,41 @@ final class HTMLForm {
   }
 
   /*
+   * build and return week days select input
+   * @param mixed $select
+   * @param mixed $default
+   * @return string
+   * @access public
+   */
+  public function display_weekDaySelectInput($select, $default=null) {
+    global $camyks;
+    /* build param list */
+    $params = array('name'=>'', 'default'=>'', 'format'=>1);
+
+    /* check header params */
+    if ( is_array($select) ) {
+      $params = array_merge($params, $select);
+    } else {
+      $params['name'] = $select;
+      if (isset($default))
+	    $params['default'] = $default;
+    }
+    
+    /* setup values */
+    $params['values'] = array();
+    
+    for ($i=(0+$params['format']); $i<=(6+$params['format']); $i++) {
+      
+      $params['values'][$i] = strftime('%A', mktime(0, 0, 0, 1, 2+$i, 0));
+      
+    }
+    
+
+    /* build display */
+    return $this->display_selectInput($params);
+  }
+
+  /*
    * build and return text input
    * @param mixed $input
    * @param string default
@@ -919,7 +954,7 @@ final class HTMLForm {
    */
   public function display_textInput($input, $default=null) {
     /* build param list */
-    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'oninput'=>'',  'disabled'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'onkeydown'=>'', 'list'=>'', 'autocomplete'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
+    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'class'=>'inputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'oninput'=>'',  'disabled'=>'', 'readonly'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'onkeydown'=>'', 'list'=>'', 'autocomplete'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
 
     /* check header params */
     if ( is_array($input) ) {
@@ -979,6 +1014,8 @@ final class HTMLForm {
       $html .= ' oninput="'.$params['oninput'].'"';
     if ( $params['disabled'] != '')
       $html .= ' disabled="disabled"';
+    if ($params['readonly'] == 'readonly' or $params['readonly'] == true)
+      $html .= ' readonly="readonly"';
     if ( $params['list'] != '')
       $html .= ' list="'.$params['list'].'"';
     if ( $params['placeholder'] != '')
@@ -1214,7 +1251,7 @@ final class HTMLForm {
     return $html;
   }
   
-    /*
+  /*
    * build and return radio input
    * @param mixed $input
    * @param string default
@@ -1288,6 +1325,55 @@ final class HTMLForm {
         $html .= ' style="'.$params['labelStyle'].'"';
       $html .= '>'.$params['label'].'</label>';
     }
+    
+    /* send html code */
+    return $html;
+  }
+  
+  /*
+   * build and return hidden input
+   * @param mixed $input
+   * @param string default
+   * @return string
+   * @access public
+   */
+  public function display_hiddenInput($input, $default=null) {
+    /* build param list */
+    $params = array('id'=>'', 'name'=>'', 'default'=>'', 'language'=>'');
+    
+    /* check header params */
+    if ( is_array($input) ) {
+      $params = array_merge($params, $input);
+    } else {
+      $params['name'] = $input;
+      if (isset($default))
+	    $params['default'] = $default;
+    }
+
+    /* check limit */
+    $this->check_inputsLimit(1, $params['name']);
+    
+    /* check object params */
+    if (isset($this->object)) {
+      /* check default value */
+      if ($params['default'] == '') {
+	    $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
+	    $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+      }
+    }
+
+    /* build input */
+    $html = '<input type="hidden"';
+    if ($params['language'] == '' )
+      $html .= ' name="'.$params['name'].'"';
+    else
+      $html .= ' name="'.$params['name'].'_'.$params['language'].'"';
+    if ( $params['id'] != '' )
+      $html .= ' id="'.$params['id'].'"';    
+    
+    $html .= ' value="'.$params['default'].'"';
+    
+    $html .= ' />';
     
     /* send html code */
     return $html;
