@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
+ * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Engine
- * Create Date		: Jun 2007
- * Last Modif Date	: Jun 2007
+ * CaMykS Version 	: 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Input Engine
+ * Creation Date	: Jun 2007
+ * Last Modif Date	: Feb 2018
  * History : 
  * * 07-06-01 : Initial files
  * 
@@ -42,10 +42,10 @@ class PageChooser extends Input {
    * @return void
    * @access public
    */
-  function initialise ( $mode='pageid', $page='1', $callback='' ) {
+  function initialise ($mode='pageid', $page='1', $callback='') {
     global $camyks;
     /* check if Admin_ContentPage exists */
-    if ( isset( $camyks->modules['Admin_ContentPage']) ) {
+    if (isset( $camyks->modules['Admin_ContentPage']) ) {
       $link = $camyks->get_confValue('url').'/request.php?module=Admin_ContentPage';
       $this->add_JSFile('pagechooser.js');
       $this->add_JSScript('pc = new PageChooser("'.$mode.'", "'.$callback.'", "'.$link.'");');

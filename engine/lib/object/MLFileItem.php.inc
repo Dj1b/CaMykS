@@ -1,12 +1,12 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type	    : Engine / Object Lib
- * Creation Date	: Jul 2007
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Engine / Object Lib
+ * Creation Date    : Jul 2007
  * Last Modif Date  : Feb 2018
  *
  * Module Library File Item Object
@@ -57,7 +57,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @access public
    */
   public function get($_libObjId) {
-  	/* get file path */
+      /* get file path */
     if (($file = $this->exists($this->path.'/'.$this->get_folder($_libObjId).'/', $this->name.$_libObjId)) != '')  {
       $this->value = $this->url.'/'.$this->get_folder($_libObjId).'/'.$file;
     }
@@ -81,9 +81,9 @@ class MLFileItem extends ModuleLibraryItem {
     if ($this->upload) {
       /* get file extension */
       if ( preg_match( '/.*\.([^\.]*)/', $this->uploadedFileName, $ext ) ) 
-		$ext = $ext[1];
+        $ext = $ext[1];
       else
-		$ext = '';
+        $ext = '';
       
       /* add file */
       $path = $this->path.'/'.$this->get_folder($_libObjId).'/'.$this->name.$_libObjId.'.'.$ext;
@@ -188,7 +188,7 @@ class MLFileItem extends ModuleLibraryItem {
    * @access public
    */
   public function get_uploadedFileName() {
-  	return $this->uploadedFileName;
+      return $this->uploadedFileName;
   }
   
   /*

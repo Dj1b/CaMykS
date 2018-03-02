@@ -1590,7 +1590,7 @@ final class Camyks {
    */
   public function &get_sharedObject($name) {
     if (!isset($this->sharedObjects[$name]))
-      return false;
+      return $this->falseRef;
     return $this->sharedObjects[$name];
   }
   

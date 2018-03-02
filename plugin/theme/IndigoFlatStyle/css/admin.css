@@ -6,7 +6,7 @@
  * Object Version   : 1.0
  * Object Type      : Plugin / Theme Main CSS Styles
  * Creation Date    : Apr 2017
- * Last Modif Date  : Apr 2017
+ * Last Modif Date  : Feb 2018
  *
  * Indigo Flat Theme admin CSS styles
  */
@@ -43,7 +43,7 @@ a.eTitle3 {text-decoration:none;}
 .adminhelptext {vertical-align:top; padding:0px;}
 
 /* part complements */
-a.smallButton { padding:3px 4px 2px !important; font-size:9px important; }
+a.smallButton {padding:3px 4px 2px !important; font-size:9px important;}
 
 /* form file input */
 .fileInputButton {vertical-align:-2px;}

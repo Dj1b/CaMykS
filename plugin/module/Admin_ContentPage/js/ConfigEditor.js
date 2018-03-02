@@ -1,7 +1,7 @@
 /*
  * CaMykS Engine
- * Developed by		: Ideogram Design
- * Author			: JB Lebrun <jb.lebrun@ideogram-design.fr>
+ * Developed by		: camyks.net
+ * Author		    : CaMykS Team
  * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Engine
@@ -24,7 +24,7 @@ var ConfigEditor = {
    * @access public
    */
   set_param: function(param, value, subvalue) {
-    if ( subvalue != undefined && this.params[param] )
+    if (subvalue != undefined && this.params[param])
       this.params[param][value] = subvalue;
     else
       this.params[param] = value;

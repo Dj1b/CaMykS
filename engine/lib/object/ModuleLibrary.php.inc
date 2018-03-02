@@ -746,7 +746,7 @@ class ModuleLibrary {
   /*
    * 
    */
-  function get_allDatabaseItems( $language ) {
+  function get_allDatabaseItems($language) {
     global $camyks;
     /* no database item : get simple database items */
     if ( count($this->_libItemTypes['dbl']) == 0 )
@@ -1157,7 +1157,7 @@ class ModuleLibrary {
    * @return array
    * @access public
    */
-  function get_nameList ( $element='name', $where='', $language='', $orderBy='', $orderWay='asc' ) {
+  function get_nameList($element='name', $where='', $language='', $orderBy='', $orderWay='asc') {
     global $camyks;
     /* initialise items list */
     $items = array();

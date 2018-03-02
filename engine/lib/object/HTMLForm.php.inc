@@ -1330,7 +1330,7 @@ final class HTMLForm {
     return $html;
   }
   
-    /*
+  /*
    * build and return hidden input
    * @param mixed $input
    * @param string default

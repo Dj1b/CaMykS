@@ -141,7 +141,7 @@ class MLTextItem extends ModuleLibraryItem {
    * @access public
    */
   public function get_exportedValue() {
-    return array($this->name=>$this->value);
+    return array($this->name => $this->value);
   }
 }
 ?>

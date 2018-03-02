@@ -2,12 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by	    : camyks.net
- * Author	    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * Author	        : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Engine
- * Create Date	    : Feb 2010
- * Last Modif Date  : Feb 2010
+ * Creation Date    : Feb 2010
+ * Last Modif Date  : Feb 2018
  * History : 
  * * 10-02-25 : Initial files
  * 
@@ -45,12 +45,12 @@ class ContentAnchorMenu extends Input {
     
     /* initialise default params */
     $p = array(
-           'mode'=>'AName', // AName (HTML4) / objId (HTML5)
-           'name'=>'anchorMenu',
-	       'content'=>'body',
-	       'linkClass'=>'eLink1',
-	       'menuClass'=>'',
-	       'shift' => 0 );
+           'mode'       =>'AName', // AName (HTML4) / objId (HTML5)
+           'name'       =>'anchorMenu',
+	       'content'    =>'body',
+	       'linkClass'  =>'eLink1',
+	       'menuClass'  =>'',
+	       'shift'      => 0 );
     
     /* merge params */
     $this->params = array_merge($p, $params);
