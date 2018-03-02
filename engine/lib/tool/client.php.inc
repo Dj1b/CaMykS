@@ -1324,9 +1324,10 @@ function client_getUAInfos($ua=false) {
   }
       
   /* check Lyf mobiles */
-  elseif (preg_match('/(LYF\/F61F)/', $ua, $matches)) {
+  elseif (preg_match('/(LYF\/F[0-9]{2}[A-Z])/', $ua, $matches)) {
     $rep = array(
-         'LYF/F61F' => array('platform_model' => 'JioPhone',),
+         'LYF/F61F' => array('platform_model' => 'JioPhone F61F',),
+         'LYF/F90M' => array('platform_model' => 'JioPhone F90M',),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
