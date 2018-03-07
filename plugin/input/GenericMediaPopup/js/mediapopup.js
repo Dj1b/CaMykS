@@ -147,7 +147,7 @@ function MediaPopup(name) {
   	this.get_param('body').appendChild(popup);
   	
   	/* attach close button */
-    if ( this.get_param('pictures', 'closeButton') !== false)
+    if (this.get_param('pictures', 'closeButton') !== false)
   	  popup.appendChild(this._get_closeButton());
   	
   	/* attach previous and next button bar */

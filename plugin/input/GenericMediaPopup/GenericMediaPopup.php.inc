@@ -3,13 +3,11 @@
  * CaMykS Engine
  * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Input Engine
- * Creation Date	: Oct 2011
- * Last Modif Date	: Oct 2011
- * History : 
- * * 11-10-03 : Initial files
+ * Creation Date	: Mar 2018
+ * Last Modif Date	: Mar 2018
  * 
  * GenericMediaPopup
  * Supported format : 
@@ -21,13 +19,16 @@
  * - 
  */
 
-class GenericMediaPopup extends Input {
+final class GenericMediaPopup extends Input {
+
+  private $loaded;
+  private $diaporamaPictures;
 
   /* 
    * constructor
    * @param string $path_type
    */
-  function GenericMediaPopup ( $path_type ) {
+  function __construct($path_type) {
     global $camyks;
     parent::Input('GenericMediaPopup', $path_type);
     /* set plugin version */
@@ -39,12 +40,28 @@ class GenericMediaPopup extends Input {
     $this->author_mail = 'camyks.contact@gmail.com';
     $this->author_group = 'http://www.camyks.net';
     
-    /* TinyMCE Extension */
+    /* register plugin as TinyMCE extension */
     if ($camyks->mode == CAMYKS_MODE_ADMIN)
       $this->register_asExtension('TinyMCEv3');
     
+    /* register plugin as Admin_Site extension */
+    $this->register_asExtension('Admin_Site');
+      
+    /* plugin variables */ 
     $this->loaded = false;
     $this->diaporamaPictures = array();
+    
+    /* load configuration library */
+    $this->load_library('GenericMediaPopupConfig');
+    
+    /* load config */
+    $this->config = new GenericMediaPopupConfig('config', $this);
+    $this->config->get();
+    
+    /* check for automatique adding */
+    if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['insertion'] == 1) {
+      $this->register_asCaMykSEventHandler('onPageLoad');
+    }
   }
   
   /* overwrite input methods */
@@ -55,35 +72,36 @@ class GenericMediaPopup extends Input {
    * @return void
    * @access public
    */
-  function initialise ($params=array()) {
+  public function initialise ($params=array()) {
     global $camyks;
     
-    $defaultParams = array('objectName'=>'mp',
-                           'styleSource'=>'plugin',
-                           'styleFile'=>'',
-                           'clickBkgdToClose'=>1,
-                           'enableKeyboard'=>1,
-                           'enableFlash'=>1,
-                           'enableCloseButton'=>1,
-                           'flvControlerColor'=>'1F1F1F',
-                           'flvControlerAlpha'=>0.85,
-                           'flvControlerHeight'=>20,
-                           'enableDiaporama'=>1,
-                           'diaporamaButtonsShift'=>0,
-                           'maxWidth'=>0,
-                           'directOpenOnMobile' =>0,
-                           'isMobile'=> -1, // -1 : undefined / 0 : not mobile / 1 : is mobile //
-                           'buttonPictures'=>array(
-                             'close'=>$this->get_fileURL('img/close.gif'),
-                             'closeOver'=>$this->get_fileURL('img/close_r.gif'),
-                             'left'=>$this->get_fileURL('img/left.gif'),
-                             'leftOver'=>$this->get_fileURL('img/left_r.gif'),
-                             'right'=>$this->get_fileURL('img/right.gif'),
-                             'rightOver'=>$this->get_fileURL('img/right_r.gif'),
-                           ),
-                          );
-    $this->params = array_merge($defaultParams, $params);
-    
+    /* build default params */
+    $defaultParams = array(
+        'objectName'            => 'mp',
+        'styleSource'           => 'plugin',
+        'styleFile'             => '',
+        'clickBkgdToClose'      => 1,
+        'enableKeyboard'        => 1,
+        'enableFlash'           => 1,
+        'enableCloseButton'     => 1,
+        'flvControlerColor'     => '1F1F1F',
+        'flvControlerAlpha'     => 0.85,
+        'flvControlerHeight'    => 20,
+        'enableDiaporama'       => 1,
+        'diaporamaButtonsShift' => 0,
+        'maxWidth'              => 0,
+        'directOpenOnMobile'    => 0,
+        'isMobile'              => -1, // -1 : undefined / 0 : not mobile / 1 : is mobile //
+        'buttonPictures'        => array(
+            'close'     => $this->get_fileURL('img/close.gif'),
+            'closeOver' => $this->get_fileURL('img/close_r.gif'),
+            'left'      => $this->get_fileURL('img/left.gif'),
+            'leftOver'  => $this->get_fileURL('img/left_r.gif'),
+            'right'     => $this->get_fileURL('img/right.gif'),
+            'rightOver' => $this->get_fileURL('img/right_r.gif'),
+        ),
+    );
+    $this->params = array_merge($defaultParams, $this->config->vars, $params);
     
     /* insert style file */
     if ($this->params['styleSource'] == 'theme') {
@@ -124,7 +142,7 @@ class GenericMediaPopup extends Input {
 	$this->add_JSScript($name.'.set_param("enableKeyboard", '.$this->params['enableKeyboard'].');');
 	if ($this->params['maxWidth'] > 0)
 	  $this->add_JSScript($name.'.set_param("maxWidth", '.$this->params['maxWidth'].');');
-    if ( $this->params['enableCloseButton'] == 1 ) {
+    if ($this->params['enableCloseButton'] == 1) {
 	  $this->add_JSScript($name.'.set_param("pictures", "closeButton", "'.$this->params['buttonPictures']['close'].'");');
    	  $this->add_JSScript($name.'.set_param("pictures", "closeButtonOver", "'.$this->params['buttonPictures']['closeOver'].'");');
    	}
@@ -146,6 +164,17 @@ class GenericMediaPopup extends Input {
   
     $this->loaded = true;
   }
+    
+  /*
+   * execute handler on body closing
+   * @return string
+   * @access public
+   */
+  public function execute_onCaMykSPageLoad() {
+    $this->initialise();
+  }
+  
+  /* specific tool methods */
   
   /*
    * add picture to diaporama
@@ -154,26 +183,83 @@ class GenericMediaPopup extends Input {
    * @return void
    * @access private
    */
-  function add_pictureToDiaporama($url, $title) {
+  public function add_pictureToDiaporama($url, $title) {
    $this->diaporamaPictures[] = array('url'=>$url, 'title'=>$title);
    if ($this->loaded)
       $this->add_JSScript($this->params['objectName'].'.set_param("diaporama", '.(count($this->diaporamaPictures)-1).', {picture:"'.$url.'", title:"'.$title.'"});');
   }
   
-  /* specific extension methods */
+  /* TinyMCE extension methods */
   
   /*
    * return TinyMCE plugin params
    * @return array
    * @access public
    */
-  function get_tinyMCEPluginParams() {
+  public function get_tinyMCEPluginParams() {
   	global $camyks;
   	$this->add_JSFile('tinymce_plugin/editor_plugin.js');
   	$this->add_JSFile('tinymce_plugin/langs/'.$camyks->current_language.'.js');
   	return array(
     		'name'=>'genericmediapopup',
     		'buttons'=>array('insertMediaPopupLink'));
+  }
+  
+  /* Admin_Site extension configuration methods */
+  
+  /*
+   * initialise object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function initialise_configDisplay() {
+  }
+  
+  /*
+   * display object in Admin_Site / view configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configDisplay() {
+    $this->load_file('html/configuration/view.html.inc');
+  }
+  
+  /*
+   * initialise object in Admin_Site / edit configuration mode
+   * @param Object $form
+   * @return void
+   * @access public
+   */
+  public function initialise_configEdition($form) {
+    
+    /* update form */
+    $this->form = &$form;
+    $this->form->set_object($this->config);
+  
+    /* add scripts *
+    $this->add_JSFile('GenericMediaPopupConfig.js');
+    $this->add_JSLoadScript('GenericMediaPopupConfig.set_param("form", '.$this->form->name.');');
+    $this->add_JSLoadScript('GenericMediaPopupConfig.initialise();');
+    */
+  }
+  
+  /*
+   * display object in Admin_Site / edit configuration mode
+   * @return void
+   * @access public
+   */
+  public function display_configEdition() {
+    $this->load_file('html/configuration/edit.html.inc');
+  }
+    
+  /*
+   * execute object in Admin_Site / save configuration mode
+   * @return void
+   * @access public
+   */
+  public function save_configuration() {
+    $this->config->get_fromHeader();
+    return $this->config->save();
   }
 }
 ?>
