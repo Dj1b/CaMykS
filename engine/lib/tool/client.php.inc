@@ -667,6 +667,7 @@ function client_getUAInfos($ua=false) {
         'Y600-U151' => array('platform_model' => 'Ascend'),
         'CUN-L21'   => array('platform_model' => 'Y5'),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
+        'NMO-L31'   => array('platform_model' => 'GT3'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
