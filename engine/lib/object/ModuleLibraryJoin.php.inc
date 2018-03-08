@@ -12,7 +12,7 @@
  * Generic Module Library object used to Join 2 Module Library 
  */
 
-class ModuleLibraryJoin extends ModuleLibrary {
+abstract class ModuleLibraryJoin extends ModuleLibrary {
   
   private $_initParams;
   
@@ -21,8 +21,8 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @param integer $id
    * @param Module $module
    */
-  function ModuleLibraryJoin (&$module, $params=array()) {
-    parent::ModuleLibrary(0, $module);
+  function __construct(&$module, $params=array()) {
+    parent::__construct(0, $module);
     
     /* default params */
     $defaultParams = array(
@@ -49,7 +49,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @return Object
    * @access public
    */
-  function &get_newObject($id=0) {
+  public function &get_newObject($id=0) {
     eval('$obj = new '.get_class($this).'($this->_libParent, $this->_initParams);');
     return $obj;
   }
@@ -62,7 +62,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @return array
    * @access public
    */
-  function get_item1ListForItem2($id) {
+  public function get_item1ListForItem2($id) {
   	return $this->_get_itemJoinedList($this->_initParams['item1'], $this->_initParams['item2'], $id);
   }
   
@@ -72,8 +72,28 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @return array
    * @access private
    */
-  function get_item2ListForItem1($id) {
+  public function get_item2ListForItem1($id) {
   	return $this->_get_itemJoinedList($this->_initParams['item2'], $this->_initParams['item1'], $id);
+  }
+  
+  /*
+   * return item1 id list for given item2 id list
+   * @param array $ids
+   * @return array
+   * @access public
+   */
+  public function get_item1ListForItem2List($ids) {
+  	return $this->_get_itemJoinedLists($this->_initParams['item1'], $this->_initParams['item2'], $ids);
+  }
+  
+  /*
+   * return item2 id list for given item1 id list
+   * @param array $ids
+   * @return array
+   * @access private
+   */
+  public function get_item2ListForItem1List($ids) {
+  	return $this->_get_itemJoinedLists($this->_initParams['item2'], $this->_initParams['item1'], $ids);
   }
   
   /*
@@ -83,7 +103,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @return boolean success
    * @access public
    */
-  function save_item1ListForItem2($id, $list) {
+  public function save_item1ListForItem2($id, $list) {
   	return $this->_save_itemJoinedList($this->_initParams['item1'], $list, $this->_initParams['item2'], $id);
   }
   
@@ -94,7 +114,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @return boolean success
    * @access public
    */
-  function save_item2ListForItem1($id, $list) {
+  public function save_item2ListForItem1($id, $list) {
   	return $this->_save_itemJoinedList($this->_initParams['item2'], $list, $this->_initParams['item1'], $id);
   }
   
@@ -108,7 +128,7 @@ class ModuleLibraryJoin extends ModuleLibrary {
    * @return array
    * @access private
    */
-  function _get_itemJoinedList($target, $given, $id) {
+  private function _get_itemJoinedList($target, $given, $id) {
   	global $camyks;
   	
   	/* initialise list */
@@ -117,14 +137,52 @@ class ModuleLibraryJoin extends ModuleLibrary {
   	/* build sql query */
   	$sql = 'select `'.$target.'`';
   	$sql .= ' from '.$this->_libSQLTable.' as l';
-  	$sql .= ' where l.'.$given.' = '.$id;
+  	$sql .= ' where l.'.$given.' = '.(int)$id;
   	
   	/* execute sql query */
     if ($this->execute_DBQuery($sql, __LINE__))
       /* get data from database */
       while ( $data = $this->get_DBQueryDataLine()) {
       	$list[] = $data[$target];
-     	}
+      }
+    return $list;
+  }
+  
+  /*
+   * return item joined list
+   * @param string $target
+   * @param string $given
+   * @param array $ids
+   * @return array
+   * @access private
+   */
+  private function _get_itemJoinedLists($target, $given, $ids) {
+  	global $camyks;
+  	
+  	/* initialise list */
+  	$list = array();
+  	
+  	/* check id list */
+  	if (!is_array($ids) or count($ids) == 0 or !array_checkInteger($ids))
+  	  return $list;
+  	
+  	/* build sql query */
+  	$sql = 'select  `'.$given.'`, `'.$target.'`';
+  	$sql .= ' from '.$this->_libSQLTable.' as l';
+  	if (count($ids) == 1)
+  	  foreach ($ids as $id)
+  	    $sql .= ' where l.'.$given.' = '.$ids;
+  	else
+  	  $sql .= ' where l.'.$given.' in ('.implode(',', $ids).')';
+  	
+  	/* execute sql query */
+    if ($this->execute_DBQuery($sql, __LINE__))
+      /* get data from database */
+      while ( $data = $this->get_DBQueryDataLine()) {
+        if (!isset($list[$data[$given]]))
+          $list[$data[$given]] = array();
+      	$list[$data[$given]][] = $data[$target];
+      }
     return $list;
   }
   
