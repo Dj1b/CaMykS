@@ -2,32 +2,34 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Oct 2007
- * Last Modif Date	: Oct 2007
+ * Author		    : CaMykS team <camyks.contact@gmail.com>
+ * CaMykS Version	: 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Layout
+ * Creation Date    : Oct 2007
+ * Last Modif Date  : Mar 2018
  * 
- * Admin_SecurityTools module admin layout
+ * Admin_SecurityTools module admin layout 
 */
 global $camyks;
 
-$view = $this->theme->get_pictURL('view', 12, 'std' );
-$view_ = $this->theme->get_pictURL('view', 12, 'ovr' );
+$view = $this->theme->get_pictURL('view', 12, 'std');
+$view_ = $this->theme->get_pictURL('view', 12, 'ovr');
 
-$edit = $this->theme->get_pictURL('edit', 12, 'std' );
-$edit_ = $this->theme->get_pictURL('edit', 12, 'ovr' );
+$edit = $this->theme->get_pictURL('edit', 12, 'std');
+$edit_ = $this->theme->get_pictURL('edit', 12, 'ovr');
 
-$del = $this->theme->get_pictURL('cross', 12, 'std' );
-$del_ = $this->theme->get_pictURL('cross', 12, 'ovr' );
+$del = $this->theme->get_pictURL('cross', 12, 'std');
+$del_ = $this->theme->get_pictURL('cross', 12, 'ovr');
 
-$add = $this->theme->get_pictURL('plus', 12, 'std' );
-$add_ = $this->theme->get_pictURL('plus', 12, 'ovr' );
+$add = $this->theme->get_pictURL('plus', 12, 'std');
+$add_ = $this->theme->get_pictURL('plus', 12, 'ovr');
 
-$file = $this->theme->get_pictURL('file', 12, 'std' );
-$file_ = $this->theme->get_pictURL('file', 12, 'ovr' );
+$file = $this->theme->get_pictURL('file', 12, 'std');
+$file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 
+$valid = $this->theme->get_pictURL('valid', 12, 'std');
+$empty = $this->theme->get_pictURL('empty', 12, 'std');
 ?>
 <?=$this->theme->get_boxHeader('width:600px;margin:0 auto;');?>
 <?=$this->theme->get_boxTitleBar($this->title);?>
@@ -36,7 +38,8 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr' );
 				$this->tabObject.'.mouseover',
 				$this->tabObject.'.mouseout',
 				'main');?>
-<?=$camyks->theme->get_boxContent2Header( )?>
+<?=$camyks->theme->get_boxContent2Header()?>
+
 <div id="itemmain" style="display:block;" class="adminContentPanel">
 <table cellspacing="0" cellpadding="0" border="0">
 
@@ -69,25 +72,30 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr' );
 </table>
 </div>
 
-<?php if ( $this->config->vars['ipfilter'] ) : ?>
+<?php if ($this->config->vars['ipfilter']) : ?>
 <div id="itemipfilter" style="display:none;" class="adminContentPanel">
+<div class="eTitle3">
+  <?=$this->get_translation('ipfilter_therules');?>
+</div>
+
+
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 <tr>
-<td class="eTitle3" colspan="4">
-<?=$this->get_translation('ipfilter_therules');?>
+<td class="eTitle3" colspan="5">
+
 </td>
 </tr>
-<?php if ( $this->check_right(2) ) : ?>
+<?php if ($this->check_right(2)) : ?>
 <tr>
-<td class="eTableLine1">
+<td class="eTableLine1 eTableIconCell" >
 &nbsp;
 </td>
-<td class="eTableLine1" colspan="4">
-<a href="<?=$camyks->get_adminLink($this->name, array('mode'=>'edit_ipfilter', 'ruleid'=>0))?>">
+<td class="eTableLine1" colspan="3">
+<a href="<?=$camyks->get_adminLink($this->name, array('mode'=>'edit_ipfilter', 'ruleid'=>0))?>" class="eLink2">
 <?=$this->get_translation('ipfilter_addrule');?>
 </a>
 </td>
-<td class="eTableLine1 eContent1" style="width:12px;">
+<td class="eTableLine1 eTableIconCell">
 <a href="<?=$camyks->get_adminLink($this->name, array('mode'=>'edit_ipfilter', 'ruleid'=>0))?>">
 <img src="<?=$add?>" border="0"
  alt="<?=$this->get_translation('ipfilter_addrule');?>"
@@ -95,7 +103,7 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr' );
  onmouseover="this.src='<?=$add_?>';" onmouseout="this.src='<?=$add?>';" />
 </a>
 </td>
-<td class="eTableLine1 eContent1" style="width:12px;">
+<td class="eTableLine1 eTableIconCell">
 &nbsp;
 </td>
 </tr>
@@ -112,20 +120,17 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr' );
 
 <?php $cnt = 0; ?>
 <?php $alt = 0; ?>
-<?php foreach ( $this->ipfilterrules as $rule ) : ?>
+<?php foreach ($this->ipfilterrules as $rule) : ?>
 <?php if ( $rule->vars['permission'] == 1 ) : ?>
 <tr>
 <td class="eTableLine<?=$alt?> eContent1">
-&nbsp;
+<img src="<?=$rule->vars['active']?$valid:$empty;?>" alt="<?=$this->get_translation('ipfilter_active'.$rule->vars['active']);?>" />
 </td>
 <td class="eTableLine<?=$alt?> eContent1">
 <?=$rule->vars['ipaddress'];?>
 </td>
 <td class="eTableLine<?=$alt?> eContent1">
-<?=$this->get_translation('ipfilter_active'.$rule->vars['active']);?>
-</td>
-<td class="eTableLine<?=$alt?> eContent1">
-<?=$this->get_translation('ipfilter_mode'.$rule->vars['permission']);?>
+<?=$this->get_translation('ipfilter_mode'.$rule->vars['sitemode']);?>
 </td>
 <td class="eTableLine<?=$alt?> eContent1">
 <?=$rule->vars['comment'];?>
@@ -168,7 +173,7 @@ onmouseover="this.src='<?=$del_?>';" onmouseout="this.src='<?=$del?>';" />
 <td class="eTableHeader">
 &nbsp;
 </td>
-<td class="eTableHeader" colspan="6">
+<td class="eTableHeader" colspan="5">
 <?=$this->get_translation('ipfilter_authorizedip');?>
 </td>
 </tr>
@@ -179,16 +184,13 @@ onmouseover="this.src='<?=$del_?>';" onmouseout="this.src='<?=$del?>';" />
 <?php if ( $rule->vars['permission'] == 0 ) : ?>
 <tr>
 <td class="eTableLine<?=$alt?> eContent1">
-&nbsp;
+<img src="<?=$rule->vars['active']?$valid:$empty;?>" alt="<?=$this->get_translation('ipfilter_active'.$rule->vars['active']);?>" />
 </td>
 <td class="eTableLine<?=$alt?> eContent1">
 <?=$rule->vars['ipaddress'];?>
 </td>
 <td class="eTableLine<?=$alt?> eContent1">
-<?=$this->get_translation('ipfilter_active'.$rule->vars['active']);?>
-</td>
-<td class="eTableLine<?=$alt?> eContent1">
-<?=$this->get_translation('ipfilter_mode'.$rule->vars['permission']);?>
+<?=$this->get_translation('ipfilter_mode'.$rule->vars['sitemode']);?>
 </td>
 <td class="eTableLine<?=$alt?> eContent1">
 <?=$rule->vars['comment'];?>
