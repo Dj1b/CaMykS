@@ -450,6 +450,7 @@ function client_getUAInfos($ua=false) {
         'SM-J310'   => array('platform_model' => 'Galaxy J3 (2016)', ),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
         'SM-J320F'  => array('platform_model' => 'Galaxy J3 (2016)', ),
+        'SM-J330G'  => array('platform_model' => 'Galaxy J3 Pro (2017)', ),
         'SM-J500'   => array('platform_model' => 'Galaxy J5', ),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5 (2015)', ),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5 (2015)', ),
@@ -650,7 +651,7 @@ function client_getUAInfos($ua=false) {
   	  'platform_company'=>'Sony (PC)'));
   
   /* check Huawei */
-  elseif (preg_match('/Huawei([A-Z0-9\-]{7,})/i', $ua, $matches)) {
+  elseif (preg_match('/Huawei|HONOR([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
         'EVA-L09'   => array('platform_model' => 'P9'),
         'VNS-L31'   => array('platform_model' => 'P9 Lite'),
@@ -660,6 +661,9 @@ function client_getUAInfos($ua=false) {
         'NXT-L09'   => array('platform_model' => 'Mate 8'),
         'NXT-L29'   => array('platform_model' => 'Mate 8'),
         'CRR-L09'   => array('platform_model' => 'Mate S'),
+        'KIW-L21'   => array('platform_model' => 'Honor 5X'),
+        'BLN-L21'   => array('platform_model' => 'Honor 6X'),
+        'PLK-L01'   => array('platform_model' => 'Honor 7'),
         'FRD-L09'   => array('platform_model' => 'Honor 8'),
         'FRD-L19'   => array('platform_model' => 'Honor 8'),
         'Y635-L01'  => array('platform_model' => 'Y635'),
@@ -668,20 +672,6 @@ function client_getUAInfos($ua=false) {
         'CUN-L21'   => array('platform_model' => 'Y5'),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
         'NMO-L31'   => array('platform_model' => 'GT3'),
-    );
-    $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Huawei', 
-      'platform_model'=>$model,
-      'platform_type'=>'handheld',
-      'platform_format'=>'handheld'), 
-      isset($rep[$model])?$rep[$model]:array());
-  }
-  
-  elseif (preg_match('/HONOR([A-Z0-9\-]{7,})/i', $ua, $matches)) {
-    $rep = array(
-        'KIW-L21'   => array('platform_model' => 'Honor 5X'),
-        'PLK-L01'   => array('platform_model' => 'Honor 7'),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
@@ -1237,9 +1227,8 @@ function client_getUAInfos($ua=false) {
     );
     
   /* check Iris Sat mobiles */
-  elseif (preg_match('/(I-S3)/', $ua, $matches)) {
+  elseif (preg_match('/(I-S[0-9])/', $ua, $matches)) {
     $rep = array(
-        'I-S3' => array('platform_model' => 'I-S3',),
     );
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
