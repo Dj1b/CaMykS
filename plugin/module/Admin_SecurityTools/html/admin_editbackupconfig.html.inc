@@ -2,22 +2,22 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Oct 2007
- * Last Modif Date	: Mar 2009
+ * Author		    : CaMykS team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Layout
+ * Creation Date    : Oct 2007
+ * Last Modif Date  : Mar 2018
  * 
  * Admin_SecurityTools Module Admin Layout : edit backup config
 */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:600px;margin:0 auto;');?>
-<?=$this->theme->get_boxTitleBar ( $this->title.' : '.$this->get_translation('backup_modifyconfig') ) ?>
-<?=$this->theme->get_boxContent2Header( )?>
-<?=$this->form->display_header(); ?>
-<?=$this->form->display_hiddens(); ?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
+<?=$this->theme->get_boxTitleBar($this->title.' : '.$this->get_translation('backup_modifyconfig'));?>
+<?=$this->theme->get_boxContent2Header();?>
+<?=$this->form->display_header();?>
+<?=$this->form->display_hiddens();?>
 <div class="adminContentPanel">
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <tr>
@@ -31,7 +31,7 @@ global $camyks;
     
     <tr>
       <td class="eTableLine1 eContent2">
-	<?=$this->get_translation('backup_compression'); ?>
+	    <?=$this->get_translation('backup_compression'); ?>
       </td>
       <td class="eTableLine1 eContent1">
       <?=$this->form->display_selectInput(array('name'=>'backup_compression', 'values'=>$this->backup_compressions, 'default'=>$this->config->vars['backup_compression']));?>
@@ -39,7 +39,7 @@ global $camyks;
     </tr>
     <tr>
       <td class="eTableLine0 eContent2">
-	<?=$this->get_translation('backup_type'); ?>
+	    <?=$this->get_translation('backup_type'); ?>
       </td>
       <td class="eTableLine0 eContent1">
       <?=$this->form->display_selectInput(array('name'=>'backup_type', 'values'=>$this->backup_types, 'default'=>$this->config->vars['backup_type']));?>
@@ -48,18 +48,18 @@ global $camyks;
     
     <tr>
       <td class="eTableLine1 eContent2">
-	<?=$this->get_translation('backup_temp'); ?>
+	    <?=$this->get_translation('backup_temp'); ?>
       </td>
       <td class="eTableLine1 eContent1">
-	<input type="text" name="backup_temp" value="<?=$this->config->vars['backup_temp']?>" maxlength="128" class="inputs" />
+	    <input type="text" name="backup_temp" value="<?=$this->config->vars['backup_temp']?>" maxlength="128" class="inputs" />
       </td>
     </tr>
     <tr>
       <td class="eContent1">
-	&nbsp; 
+	    &nbsp; 
       </td>
       <td class="eContent3">
-	<?=$this->get_translation('backup_nulltempissystemfolder');?>
+	    <?=$this->get_translation('backup_nulltempissystemfolder');?>
       </td>
     </tr>
   </table>

@@ -1,26 +1,26 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Oct 2007
- * Last Modif Date	: Oct 2007
+ * Developed by     : camyks.net
+ * Author           : CaMykS team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Layout
+ * Creation Date    : Oct 2007
+ * Last Modif Date  : Mar 2018
  * 
  * Admin_SecurityTools module admin layout : edit filter ip rule
  */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:600px;margin:0 auto;');?>
-<?=$this->theme->get_boxTitleBar($this->title.' : '.$this->get_translation('ipfilter_editruleid', $this->ipfilterrule->id) ) ?>
-<?=$this->theme->get_boxContent2Header( )?>
-<?=$this->form->display_header(); ?>
-<?=$this->form->display_hiddens(); ?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
+<?=$this->theme->get_boxTitleBar($this->title.' : '.$this->get_translation('ipfilter_editruleid', $this->ipfilterrule->id));?>
+<?=$this->theme->get_boxContent2Header();?>
+<?=$this->form->display_header();?>
+<?=$this->form->display_hiddens();?>
 <div class="adminContentPanel">
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
-    <?php if ( isset( $this->ipfilterrule->_libError ) ) : ?>
+    <?php if (isset($this->ipfilterrule->_libError)) : ?>
     <tr>
       <td class="error" colspan="3">
 	<?=$this->ipfilterrule->_libError?>

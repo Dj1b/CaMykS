@@ -31,16 +31,12 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 $valid = $this->theme->get_pictURL('valid', 12, 'std');
 $empty = $this->theme->get_pictURL('empty', 12, 'std');
 ?>
-<?=$this->theme->get_boxHeader('width:600px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->title);?>
-<?=$this->theme->get_boxTabsBar($this->tabs,
-				$this->tabObject.'.mouseclick',
-				$this->tabObject.'.mouseover',
-				$this->tabObject.'.mouseout',
-				'main');?>
-<?=$camyks->theme->get_boxContent2Header()?>
+<?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
+<?=$this->theme->get_boxContent2Header();?>
 
-<div id="itemmain" style="display:block;" class="adminContentPanel">
+<div id="itemConfiguration" style="display:<?=$this->tabBuilder->get_tabDisplay('Configuration')?>;" class="adminContentPanel">
 <table cellspacing="0" cellpadding="0" border="0">
 
 <tr>
@@ -49,7 +45,7 @@ $empty = $this->theme->get_pictURL('empty', 12, 'std');
 </td>
 </tr>
 
-<?php foreach ( $this->tools as $tool ) : ?>
+<?php foreach ($this->tools as $tool) : ?>
 <tr>
 <td class="eTableLine0 eContent1" style="width:12px;">
 &nbsp;
@@ -73,7 +69,7 @@ $empty = $this->theme->get_pictURL('empty', 12, 'std');
 </div>
 
 <?php if ($this->config->vars['ipfilter']) : ?>
-<div id="itemipfilter" style="display:none;" class="adminContentPanel">
+<div id="itemIPFilter" style="display:<?=$this->tabBuilder->get_tabDisplay('IPFilter')?>;" class="adminContentPanel">
 <div class="eTitle3">
   <?=$this->get_translation('ipfilter_therules');?>
 </div>
@@ -234,7 +230,7 @@ onmouseover="this.src='<?=$del_?>';" onmouseout="this.src='<?=$del?>';" />
 <?php endif; ?>
 
 <?php if ( $this->config->vars['backup'] ) : ?>
-<div id="itembackup" style="display:none;" class="adminContentPanel">
+<div id="itemBackup" style="display:<?=$this->tabBuilder->get_tabDisplay('Backup')?>;" class="adminContentPanel">
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 <tr>
 <td class="eTitle3" colspan="3">
@@ -391,6 +387,6 @@ onmouseover="this.src='<?=$del_?>';" onmouseout="this.src='<?=$del?>';" />
 </div>
 <?php endif; ?>
 
-<?=$this->theme->get_boxContent2Footer(); ?>
-<?=$this->theme->get_boxButtonsBar( $this->buttons ); ?>
-<?=$this->theme->get_boxFooter(); ?>
+<?=$this->theme->get_boxContent2Footer();?>
+<?=$this->theme->get_boxButtonsBar($this->buttons);?>
+<?=$this->theme->get_boxFooter();?>
