@@ -1601,7 +1601,7 @@ function client_getUAInfos($ua=false) {
     }
     
     /* check compatible level 2 browsers */
-    elseif (preg_match('/(Yowser|MQQBrowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(Yowser|MQQBrowser|Goanna)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('MQQBrowser'=>'Mobile QQBrowser');
 	  $infos = array_merge($infos, array(
 	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1609,7 +1609,7 @@ function client_getUAInfos($ua=false) {
       ));
     }
     
-    /* check Chrome/Safari/Firefox/Explorer with specific details */
+    /* check Chrome/Safari/Firefox/Explorer compatible browsers, with specific details */
     elseif (preg_match('/(Viera)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array(
         'Viera'   => array('browser_title'=>'Viera', 'platform_type'=>'tvset'),
@@ -3883,7 +3883,7 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Digincore crawler',
-    'bot_url'=>'',
+    'bot_url'=>'https://www.digincore.com/crawler.html',
     'engine_title'=>'Digincore.com',
     'engine_url'=>'https://www.digincore.com/index.php');
   
@@ -7145,8 +7145,8 @@ function _client_getUAPropertiesMaxVersions() {
     ),
     'browser' => array(
         'Firefox'           => '64',            // current is 58
-        'Chrome'            => '70',            // current is 64
-        'Chromium'          => '70',            // current is 64
+        'Chrome'            => '70',            // current is 65
+        'Chromium'          => '70',            // current is 65
         'Internet Explorer' => '11.0.50',       // latest
         'Edge'              => '45',            // current is 40
         'Opera'             => '55',            // current is 50
