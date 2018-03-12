@@ -1927,15 +1927,25 @@ final class Camyks {
 
   /*
    * return site mode link based on current one
-   * @param mixed $page
-   * @param string $name
    * @param string $lg
    * @param array $params
    * @return string
    * @access public
    */    
   public function get_siteCurrentLink($lg='', $params=null) {
-    return $this->get_siteLink ($this->contentPage->id, $this->contentPage->name, $lg, $params!=null?$params:$this->contentPage->params);
+    return $this->get_siteLink($this->contentPage->id, $this->contentPage->name, $lg, $params!=null?$params:$this->contentPage->params);
+  }
+  
+  /*
+   * return site mode link to key page
+   * @param string $key
+   * @param string $lg
+   * @param array $params
+   * @return string
+   * @access public
+   */
+  public function get_siteKeypageLink($key='', $lg='', $params=null) {
+    return $this->modules['Admin_ContentPage']->get_siteKeyPageLink($key, $lg, $params);
   }
 
   /*

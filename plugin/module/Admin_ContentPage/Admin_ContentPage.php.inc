@@ -966,6 +966,28 @@ class Admin_ContentPage extends Module {
   }
 
   /*
+   * return key page link
+   * @param string $key
+   * @param string $lg
+   * @param array $param
+   * @return string
+   * @access public
+   */
+  public function get_siteKeyPageLink($key='', $lg='', $params=array()) {
+  
+    /* no page, no link */
+    if ($key == '')
+      return '';
+    
+    /* load page from key */
+    $page = $this->get_keyPage($key);
+    if ($page == false)
+      return '';
+    
+    /* return site page link */
+    return $this->get_sitePageLink($page, $lg, $params);
+  }
+  /*
    * return homepage link
    * @return string
    * @access public
