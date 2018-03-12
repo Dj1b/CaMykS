@@ -1,25 +1,27 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Library
- * Create Date		: May 2008
- * Last Modif Date	: May 2008
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Library
+ * Creation Date    : May 2008
+ * Last Modif Date  : Mar 2018
  *
  * Content_GenericHTMLContentItem library for Content_GenericHTMLContent module 
 */
 
-class Content_GenericHTMLContentItem extends ModuleLibrary {
+final class Content_GenericHTMLContentItem extends ModuleLibrary {
   /*
    * constructor
    * @param integer $d
    * @param Module $module
+   * @return void
+   * @access public
    */
-  function Content_GenericHTMLContentItem ( $id, &$module ) {
-    parent::ModuleLibrary( $id, $module );
+  public function __construct($id, &$module) {
+    parent::__construct($id, $module);
     /* content */
     $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
     $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
@@ -31,9 +33,9 @@ class Content_GenericHTMLContentItem extends ModuleLibrary {
   /*
    * check content data
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function check_data() {
+  public function check_data() {
     /* check symbolic name value */
     $this->_libItems['name']->check_value('symbolic_name', 'content');
     return true;
@@ -44,11 +46,11 @@ class Content_GenericHTMLContentItem extends ModuleLibrary {
   /*
    * write content
    * @return void
-   * @access private
+   * @access public
    */
-  function write_content() {
-    if ( file_exists( $this->vars['content'] ) )
-      include ( $this->vars['content'] );
+  public function write_content() {
+    if (file_exists($this->vars['content']))
+      include ($this->vars['content']);
   }
 }
 ?>
