@@ -150,13 +150,13 @@ class MLDatabaseItem extends ModuleLibraryItem {
     switch ($this->datatype) {
     case 'int':
     case 'date':
-      return ''.$this->value;
+      return ''.(int)$this->value;
     case 'float':
       return preg_replace('/,/', '.', (string)$this->value);
     case 'text':
       return '"'.addslashes($this->value).'"';
     case 'etext':
-      return '"'.$camyks->encode_value( $this->value ). '"';
+      return '"'.$camyks->encode_value($this->value). '"';
     case 'password':
       return '"'.$this->value.'"';
     case 'list':
