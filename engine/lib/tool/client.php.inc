@@ -1,12 +1,12 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
  * Object Type      : Engine / Tool Library
- * Creation Date	: Jun 2007
+ * Creation Date    : Jun 2007
  * Last Modif Date  : Feb 2018
  *
  * client user methods
@@ -626,8 +626,8 @@ function client_getUAInfos($ua=false) {
         'G8141'=>array('platform_model' => 'Xperia XZ Premium'),
     );
     $model = trim($matches[0]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Sony', 
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Sony', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
@@ -638,8 +638,8 @@ function client_getUAInfos($ua=false) {
         'SOV33'=>array('platform_model' => 'Xperia X Performance'),  
     );
     $model = trim($matches[0]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Sony', 
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Sony', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
@@ -651,7 +651,7 @@ function client_getUAInfos($ua=false) {
   	  'platform_company'=>'Sony (PC)'));
   
   /* check Huawei */
-  elseif (preg_match('/Huawei|HONOR([A-Z0-9\-]{7,})/i', $ua, $matches)) {
+  elseif (preg_match('/Build\/(HONOR|HUAWEI)([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
         'EVA-L09'   => array('platform_model' => 'P9'),
         'VNS-L31'   => array('platform_model' => 'P9 Lite'),
@@ -660,6 +660,7 @@ function client_getUAInfos($ua=false) {
         'GRA-L09'   => array('platform_model' => 'P8'),
         'NXT-L09'   => array('platform_model' => 'Mate 8'),
         'NXT-L29'   => array('platform_model' => 'Mate 8'),
+        'MHA-L09'   => array('platform_model' => 'Mate 8'),
         'CRR-L09'   => array('platform_model' => 'Mate S'),
         'KIW-L21'   => array('platform_model' => 'Honor 5X'),
         'BLN-L21'   => array('platform_model' => 'Honor 6X'),
@@ -672,10 +673,11 @@ function client_getUAInfos($ua=false) {
         'CUN-L21'   => array('platform_model' => 'Y5'),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
         'NMO-L31'   => array('platform_model' => 'GT3'),
+        'CAN-L11'   => array('platform_model' => 'Nova'),
     );
-    $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Huawei', 
+    $model = trim($matches[2]);
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Huawei', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
@@ -5254,6 +5256,15 @@ function client_getKnownBots() {
     'engine_title'=>'monitorbacklinks',
     'engine_url'=>'https://monitorbacklinks.com');
     
+  /* DomainSigmaCrawler */
+  $knownBots['domainsigmacrawler'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'DomainSigmaCrawler',
+    'bot_url'=>'http://domainsigma.com/robot',
+    'engine_title'=>'DomainSigma',
+    'engine_url'=>'http://domainsigma.com/');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
@@ -5371,7 +5382,7 @@ function client_getKnownBots() {
     'engine_title'=>'',
     'engine_url'=>'');
   
-  /* Microgine Crawler */
+  /* Microgine Crawler - unknown bot */
   $knownBots['microgine crawler'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
@@ -7045,6 +7056,14 @@ function client_getFakeInfosFromUserAgent($ua='') {
   /* fake russian spammer */
   if (preg_match('#^Mozilla/5.0 \(Windows NT 6.1; WOW64\) AppleWebKit/537.36 \(KHTML, like Gecko\) Chrome/40.0.2214.111 Safari/537.36$#i', $ua))
     return $fake;
+
+  /* fake russian spammer */
+  if (preg_match('#Mozilla/4.0 \(compatible; MSIE 5.0; Windows NT; DigExt\)#i', $ua))
+    return $fake;
+
+  /* fake russian spammer */
+  if (preg_match('#Mozilla/4.0 \(compatible; MSIE 6.0; AOL 9.0; Windows NT 5.1\)#i', $ua))
+    return $fake;
   
   /* php default useragent passed as string intead of CONST */
   if (preg_match('#^_USERAGENT_$#i', $ua))
@@ -7066,6 +7085,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
   
   /* fake requests from China */
   if (preg_match('#^Mozilla/5.0 \(Windows; U; Windows NT 6.1; en-us; rv:1.9.2.3\) Gecko/20100401 YFF35 Firefox/3.6.3$#i', $ua))
+    return $fake;
+  
+  /* fake requests from China */
+  if (preg_match('#^MSDN SurfBear$#i', $ua))
     return $fake;
   
   /* fake request */
