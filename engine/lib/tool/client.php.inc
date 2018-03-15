@@ -4,10 +4,10 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Engine / Tool Library
  * Creation Date    : Jun 2007
- * Last Modif Date  : Feb 2018
+ * Last Modif Date  : Mar 2018
  *
  * client user methods
  */
@@ -653,11 +653,12 @@ function client_getUAInfos($ua=false) {
   /* check Huawei */
   elseif (preg_match('/Build\/(HONOR|HUAWEI)([A-Z0-9\-]{7,})/i', $ua, $matches)) {
     $rep = array(
+        'ALE-L21'   => array('platform_model' => 'P8 Lite'),
+        'GRA-L09'   => array('platform_model' => 'P8'),
         'EVA-L09'   => array('platform_model' => 'P9'),
         'VNS-L31'   => array('platform_model' => 'P9 Lite'),
         'VIE-L29'   => array('platform_model' => 'P9 Plus'),
-        'ALE-L21'   => array('platform_model' => 'P8 Lite'),
-        'GRA-L09'   => array('platform_model' => 'P8'),
+        'VTR-L29'   => array('platform_model' => 'P10'),
         'NXT-L09'   => array('platform_model' => 'Mate 8'),
         'NXT-L29'   => array('platform_model' => 'Mate 8'),
         'MHA-L09'   => array('platform_model' => 'Mate 8'),
@@ -5265,6 +5266,15 @@ function client_getKnownBots() {
     'engine_title'=>'DomainSigma',
     'engine_url'=>'http://domainsigma.com/');
     
+  /* Hstpnetwork.com */
+  $knownBots['hstpnetwork.com'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'',
+    'bot_url'=>'',
+    'engine_title'=>'HSTPNetwork',
+    'engine_url'=>'http://www.hstpnetwork.com');
+    
   /* unknown bot */
   $knownBots['seo bulls'] = array(
     'platform_type'=>'bot',
@@ -7167,12 +7177,12 @@ function _client_getUAPropertiesMaxVersions() {
         'Android'           => '10',            // current is 8.x.x
     ),
     'browser' => array(
-        'Firefox'           => '64',            // current is 58
+        'Firefox'           => '64',            // current is 59
         'Chrome'            => '70',            // current is 65
         'Chromium'          => '70',            // current is 65
         'Internet Explorer' => '11.0.50',       // latest
         'Edge'              => '45',            // current is 40
-        'Opera'             => '55',            // current is 50
+        'Opera'             => '55',            // current is 51
         'Safari'            => '15',            // current is 11
     ),
   );
