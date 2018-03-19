@@ -465,6 +465,7 @@ function client_getUAInfos($ua=false) {
         'SM-J510G'  => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5 (2016)', ),
+        'SM-J530F'  => array('platform_model' => 'Galaxy J5 (2017)', ),
         'SM-G610F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
         'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
@@ -773,6 +774,18 @@ function client_getUAInfos($ua=false) {
         'ME173X'    => array('platform_model' => 'MeMO Pad HD 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $model = trim($matches[0]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Asus', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  elseif (preg_match('/(P01MA) Build/', $ua, $matches)) {
+    $rep = array(
+        'P01MA'      => array('platform_model' => 'Zen Pad 8', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+    );
+    $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Asus', 
       'platform_model'=>$model,
@@ -1203,13 +1216,13 @@ function client_getUAInfos($ua=false) {
   }
   
   /* check Xiaomi mobiles */
-  elseif (preg_match('/MI ?([A-Za-z0-9]{1,} )Build/', $ua, $matches)) {
+  elseif (preg_match('/MI ?([A-Za-z0-9]{1,} )Build/i', $ua, $matches)) {
     $rep = array(
         'PAD'=>array('platform_model' => 'MI PAD', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $infos = array_merge($infos, array(
  	  'platform_company'=>'Xiaomi', 
-      'platform_model'=>'MI '.$matches[1],
+      'platform_model'=>'Mi '.$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
@@ -1445,6 +1458,19 @@ function client_getUAInfos($ua=false) {
     $model = trim($matches[1]);
   	$infos = array_merge($infos, array(
   	  'platform_company'=>'Yotaphone', 
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'), 
+      isset($rep[$model])?$rep[$model]:array());
+  }
+  
+  /* check Caterpillar mobiles */
+  elseif (preg_match('/(S60) Build/', $ua, $matches)) {
+    $rep = array(
+    );
+    $model = trim($matches[1]);
+  	$infos = array_merge($infos, array(
+  	  'platform_company'=>'Caterpillar CAT', 
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'), 
@@ -5540,6 +5566,15 @@ function client_getKnownTools() {
     'platform_format'=>'desktop',
     'tool_title'=>'Babel Fish',
     'tool_url'=>'http://babelfish.yahoo.com',
+    'engine_title'=>'Yahoo',
+    'engine_url'=>'http://www.yahoo.com');
+        
+  /* Yahoo Link Preview */
+  $knownTools['yahoo link preview'] = array(
+    'platform_type'=>'tool',
+    'platform_format'=>'desktop',
+    'tool_title'=>'Yahoo Link Preview',
+    'tool_url'=>'https://help.yahoo.com/kb/mail/yahoo-link-preview-SLN23615.html',
     'engine_title'=>'Yahoo',
     'engine_url'=>'http://www.yahoo.com');
  
