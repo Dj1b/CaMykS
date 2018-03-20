@@ -71,6 +71,7 @@ $this->trads['mod_tool_installer_siteconfigcheck'] = 'V&eacute;rification du fic
 $this->trads['mod_tool_installer_databasecheck'] = 'V&eacute;rification de la base de donn&eacute;es';
 $this->trads['mod_tool_installer_symlinkscheck'] = 'V&eacute;rification des droits d\'acc&egrave;s et des liens symboliques';
 $this->trads['mod_tool_installer_pluginscheck'] = 'V&eacute;rification des plugins obligatoires';
+$this->trads['mod_tool_installer_adminscheck'] = 'V&eacute;rification du compte principal';
 
 $this->trads['mod_tool_installer_symlinkfound'] = 'Lien "%s" trouv&eacute;';
 $this->trads['mod_tool_installer_configvalue'] = 'Valeur "%s"';
@@ -95,6 +96,9 @@ $this->trads['mod_tool_installer_database_db'] = 'Base';
 $this->trads['mod_tool_installer_database_dbdoesntexist'] = 'La base n\'existe pas.';
 $this->trads['mod_tool_installer_write_rights'] = 'Droits d\'&eacute;criture';
 
+$this->trads['mod_tool_installer_masteraccount'] = 'Administrateur ';
+
+/* install interface */
 $this->trads['mod_tool_installer_install'] = 'Installer';
 
 $this->trads['mod_tool_installer_database_created'] = 'Base de donn&eacute;es cr&eacute;&eacute;e';

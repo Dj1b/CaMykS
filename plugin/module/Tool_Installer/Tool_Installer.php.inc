@@ -217,6 +217,7 @@ final class Tool_Installer extends Module {
     $this->checkPlugins();
     $this->checkDatabase();
     $this->checkSymLinks();
+    $this->checkAdminUser();
 
     /* build button list */
     $this->buttons = array(array(
@@ -484,7 +485,7 @@ final class Tool_Installer extends Module {
     $this->summary[] = $message;
     
     /* close the database */
-    $camyks->db_conn->kill();
+    $camyks->db_conn->close();
   }
 
   /*
@@ -514,7 +515,7 @@ final class Tool_Installer extends Module {
 	);
     $myfile = realpath('.');
 
-    if (is_writable( $myfile ) ) {
+    if (is_writable($myfile)) {
       $message['value'] = $camyks->get_translation('yes');
       $message['color'] = $this->textColors['yes'];
     } else {
@@ -644,6 +645,48 @@ final class Tool_Installer extends Module {
       }
       $this->summary[] = $message;
     }
+  }
+  
+  /*
+   * check admin user
+   * @return void
+   * @access private
+   */
+  private function checkAdminUser() {
+    global $camyks;
+    
+    if (!$camyks->modules['Admin_User']) 
+      return;
+    
+    /* add title */
+    $this->summary[] = array(
+        'type'  => 'title',
+		'name'  => $this->get_translation('adminscheck'),
+		'value' => ''
+    );
+    
+    /* prepare message */
+    $message = array(
+        'type'  => 'message',
+		'name'  => $this->get_translation('masteraccount'),
+	  );
+    
+    $user = $camyks->modules['Admin_User']->user;
+    $user->login = $this->params->vars['webmaster_login'];
+    $user->change_pwd = 1;
+    $user->pwd = $this->params->vars['webmaster_password'];
+    $user->pwd_conf = $this->params->vars['webmaster_password'];
+    $user->email = $this->params->vars['webmaster_email'];
+    
+    if ($user->check_data()) {
+      $message['value'] = $camyks->get_translation('yes');
+	  $message['color'] = $this->textColors['yes'];
+    } else {
+      $message['value'] = $user->_libError;
+	  $message['color'] = $this->textColors['no'];
+      $this->allowInstall = false;
+    }
+    $this->summary[] = $message;
   }
 
   /*

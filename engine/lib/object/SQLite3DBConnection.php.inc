@@ -61,8 +61,8 @@ final class SQLite3DBConnection extends CDBConnection {
     if ($this->connection != null) {
       $this->connection->close();
       $this->connection = null;
-      $this->active = false;
     }
+    $this->active = false;
     return true;
   }
   
