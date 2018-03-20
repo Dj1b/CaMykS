@@ -2,15 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
  * Object Type      : Engine / Tool Library
- * Creation Date	: Jun 2005
- * Last Modif Date  : Jan 2008
- * History :
- * * 05-06-xx : Initial File
- * * 08-01-07 : Rebuild input methods with generic plugin methods
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Mar 2018
  *
  * Inputs static methods
  */
@@ -22,8 +19,12 @@
  * @return Input object
  * @access public
  */
-function input_get( $name, $path_type='camyks' ) {
-  return plugin_get( 'input', $name, $path_type );
+function input_get($name, $path_type=false) {
+  if ($path_type !== false)
+    return plugin_get('input', $name, $path_type);
+  if (($p = plugin_get('input', $name, 'camyks')) !== false)
+    return $p;
+  return plugin_get('input', $name, 'site');
 }
 
 /*
@@ -33,7 +34,7 @@ function input_get( $name, $path_type='camyks' ) {
  * @return array
  * @access public
  */
-function input_getList( $path, $path_type='camyks' ) {
-  return plugin_getList( $path.'/input', $path_type );
+function input_getList($path, $path_type='camyks') {
+  return plugin_getList($path.'/input', $path_type);
 }
 ?>
