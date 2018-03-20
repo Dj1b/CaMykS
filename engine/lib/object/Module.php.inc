@@ -547,6 +547,15 @@ class Module extends Plugin {
   }
 
   /***************** LAYOUT MANAGEMENT **************/
+  
+  /*
+   * update selected layout
+   * @param string $layout
+   * @access public
+   */
+  public function set_selectedLayout($layout='') {
+    $this->selected_layout = $layout;
+  }
 
   /*
    * load selected admin layout
@@ -575,9 +584,9 @@ class Module extends Plugin {
   function get_siteLayout ( ) {
     if ( $this->selected_layout != '' ) {
       if ( $this->selected_layout_location == 'camyks' )
-	$this->load_engineFile( 'data/html/'.$this->selected_layout );
+	    $this->load_engineFile( 'data/html/'.$this->selected_layout );
       else
-	$this->load_file( 'html/'.$this->selected_layout );
+	    $this->load_file( 'html/'.$this->selected_layout );
     } else {
       $this->load_file( 'html/site.html.inc' ); 
     }
