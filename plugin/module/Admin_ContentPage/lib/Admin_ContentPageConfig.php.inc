@@ -85,10 +85,28 @@ final class Admin_ContentPageConfig extends PluginConfig {
    * @return mixed
    * @access public
    */
-  function get_keyPage($key) {
+  public function get_keyPage($key) {
     if (isset($this->vars['keyPages'][$key]))
       return $this->vars['keyPages'][$key];
     return false;
+  }
+  
+  /*
+   * update key page in config
+   * @param string $key
+   * @param mixed $value
+   * @return void
+   * @access public
+   */
+  public function set_keyPage($key, $value=null) {
+    if ($value == null) {
+      if (isset($this->vars['keyPages'][$key]))
+        return;
+      unset($this->vars['keyPages'][$key]);
+    } else {
+      $this->vars['keyPages'][$key] = $value;
+    }
+    $this->save();
   }
 
   /*
@@ -97,7 +115,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
    * @return mixed
    * @access public
    */
-  function get_navigationRoot($key) {
+  public function get_navigationRoot($key) {
     if ($key == 'main')
       return $this->vars['navigation_main'];
     elseif ($key == 'alt')
@@ -112,7 +130,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
   /*
    * return w3c validation status list
    * @return array
-   * @access private
+   * @access public
    */
   public function get_w3cValidatorList() {
     return array(
@@ -124,7 +142,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
   /*
    * return w3c validation status title
    * @return array
-   * @access private
+   * @access public
    */
   public function get_w3cValidatorTitle() {
     $l = $this->get_w3cValidatorList();
@@ -136,7 +154,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
   /*
    * return ogmeta status list
    * @return array
-   * @access private
+   * @access public
    */
   public function get_ogMetaStatusList() {
     return array(
@@ -148,7 +166,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
   /*
    * return ogmeta status title
    * @return array
-   * @access private
+   * @access public
    */
   public function get_ogMetaStatusTitle() {
     $l = $this->get_ogMetaStatusList();
@@ -160,7 +178,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
   /*
    * return error 404 fallback values
    * @return array
-   * @access private
+   * @access public
    */
   public function get_404FallbackList() {
     return array(
@@ -176,7 +194,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
   /*
    * return ogmeta status title
    * @return array
-   * @access private
+   * @access public
    */
   public function get_404FallbackTitle() {
     $l = $this->get_404FallbackList();

@@ -962,12 +962,12 @@ final class Admin_ContentPage extends Module {
       return '';
             
     /* check with loaded pages */
-    if ( isset( $this->pages[$page] ) )
+    if (isset($this->pages[$page]))
       return $this->pages[$page]->get_siteLink($params, $lg);
           
     /* load page as single one */
     $p = new ContentPage( CAMYKS_MODE_SITE, 0);
-    if ($p->get( $page ))
+    if ($p->get($page))
 	  return $p->get_siteLink($params, $lg);
 
     /* page found */
@@ -1259,6 +1259,17 @@ final class Admin_ContentPage extends Module {
    */
   public function get_keyPage($key) {
     return $this->config->get_keyPage($key);
+  }
+  
+  /*
+   * update key page in config
+   * @param string $key
+   * @param mixed $value
+   * @return void
+   * @access public
+   */
+  public function set_keyPage($key, $value=null) {
+    return $this->config->set_keyPage($key, $value);
   }
 
   /*
