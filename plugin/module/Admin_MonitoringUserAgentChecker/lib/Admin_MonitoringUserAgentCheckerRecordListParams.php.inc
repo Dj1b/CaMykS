@@ -1,16 +1,14 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
  * Object Type      : Plugin / Module Library
- * Creation Date	: Dec 2014
- * Last Modif Date	: Dec 2014
- * History :
- * * 12-19-14 : Initial files
- * 
+ * Creation Date    : Dec 2014
+ * Last Modif Date  : Mar 2018
+ *
  * Admin_MonitoringUserAgentChecker record list parameters
  */
 global $camyks;
@@ -19,8 +17,6 @@ $this->recordTypeListAll = $this->get_multiPlatformTypesList();
 $this->recordTypeList = $this->get_singlePlatformTypesList();
 $this->viewRecordLink = $this->get_adminLink(array('mode'=>'view_record', 'record_id'=>'%s'));
 $this->recordStatusList = $this->get_recordStatusList();
-
-// $this->comparaison = $this->is_user_agetnt_correct('%s');
 
 /* build links */
 $this->editRecordLink = $this->get_adminLink(array('mode'=>'edit_record', 'record_id'=>'%s'));
@@ -33,27 +29,27 @@ $this->recordListParams = array('name'=>'recordList', 'useSession'=>true, 'objec
 
 /* build head parameters */
 $this->recordListParams['headselectors'] = array(
-						   'page'=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-						   'status'=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->recordStatusList, 'default'=>'-1'),
-						   'user_agent'=> array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text'),
-						   'platform_type'=> array('title'=>$this->get_translation('formitem_platform_type'), 'itemtype'=>'select', 'values'=>$this->recordTypeListAll, 'default'=>'-1'),
-						   );
+    'page'          => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+    'status'        => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->recordStatusList, 'default'=>'-1'),
+    'user_agent'    => array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text'),
+    'platform_type' => array('title'=>$this->get_translation('formitem_platform_type'), 'itemtype'=>'select', 'values'=>$this->recordTypeListAll, 'default'=>'-1'),
+);
 
 /* build sort parameters */
 $this->recordListParams['sort'] = array('allowed'=>false, 'default'=>'lvisit', 'defaultway'=>'desc');
 
 /* build column parameters */
 $this->recordListParams['listcolumns'] = array(
-						 'status'=>array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
-						 'user_agent'=>array('title'=>$this->get_translation('user_agent'),'columntype'=>'method', 'maxlength'=>80, 'method'=>'get_adminValue'),
-						 'platform_type'=>array('title'=>$this->get_translation('platform_type'),'columntype'=>'list', 'values'=>$this->recordTypeList),
-						 'comparaison'=>array('title'=>'' ,'columntype'=>'method', 'method'=>'is_user_agent_correct'),
-						 'nvisit'=>array('title'=>$this->get_translation('nvisits'),'columntype'=>'text'),
-						 'lvisit'=>array('title'=>$this->get_translation('lvisits'),'columntype'=>'date', 'mode'=>'numeric'),
- 						 'view'=>array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewRecordLink,'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewrecord')));
-
-$this->recordListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewrecord'), 'icon'=>'plus', 'url_value'=>'javascript:adminengine_modalPopupOpen(\'admin_genericuseragentmanager_addpopup\');', 'titlecolumn'=>'user_agent', 'buttoncolumn'=>'edit')
+    'status'        => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
+    'user_agent'    => array('title'=>$this->get_translation('user_agent'),'columntype'=>'method', 'maxlength'=>80, 'method'=>'get_adminValue'),
+    'platform_type' => array('title'=>$this->get_translation('platform_type'),'columntype'=>'list', 'values'=>$this->recordTypeList),
+    'comparaison'   => array('title'=>'' ,'columntype'=>'method', 'method'=>'is_user_agent_correct'),
+    'nvisit'        => array('title'=>$this->get_translation('nvisits'),'columntype'=>'text'),
+    'lvisit'        => array('title'=>$this->get_translation('lvisits'),'columntype'=>'date', 'mode'=>'numeric'),
+    'view'          => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewRecordLink,'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewrecord')),
 );
+
+$this->recordListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewrecord'), 'icon'=>'plus', 'url_value'=>'javascript:adminengine_modalPopupOpen(\'admin_genericuseragentmanager_addpopup\');', 'titlecolumn'=>'user_agent', 'buttoncolumn'=>'edit'));
 $this->recordListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editRecordLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editrecord'));
 $this->recordListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteRecordLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deleterecord'));
 

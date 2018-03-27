@@ -1,33 +1,24 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Layout
- * Creation Date   	: Dec 2014
- * Last Modif Date	: Dec 2014
- * 
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Layout
+ * Creation Date    : Dec 2014
+ * Last Modif Date  : Dec 2014
+ *
  * Admin_MonitoringUserAgentChecker Module Admin Layout : view record
 */
 global $camyks;
-$file = $this->theme->get_pictURL('file', 12, 'std');
-$file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 ?>
-<?=$this->theme->get_boxHeader('width:800px; margin:0 auto;');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
-<?=$this->theme->get_boxContent2Header( )?>
+<?=$this->theme->get_boxContent2Header();?>
 
-<?=$this->editform1->display_header(); ?>
-<?=$this->editform1->display_hiddens(); ?>
-<?=$this->editform1->display_footer(); ?>
-
-<?=$this->editform2->display_header(); ?>
-<?=$this->editform2->display_hiddens(); ?>
-<?=$this->editform2->display_footer(); ?>
-<div id="itemproperties" style="display:<?=$this->tabBuilder->get_tabDisplay('properties')?>;" class="adminContentPanel">
+<div id="itemProperties" style="display:<?=$this->tabBuilder->get_tabDisplay('Properties')?>;" class="adminContentPanel">
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 
 <tr>
@@ -55,84 +46,25 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 
 <tr>
 <td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_platform_company')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('platform_company', $this->uaInfos) ? $this->uaInfos['platform_company'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_platform_model')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('platform_model', $this->uaInfos) ? $this->uaInfos['platform_model'] : '';?>
-</td>
-</tr>
-
-
-<tr>
-<td class="eTableLine0 eContent2">
 <?=$this->get_translation('formitem_platform_type')?>
 </td>
 <td class="eTableLine0 eContent1">
+	<?= $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']); ?>
+	<?php if ($this->uaInfos['platform_type'] != '' and $this->recordItem->vars['platform_type'] != $this->uaInfos['platform_type']) : ?>
+	(<?=$this->get_translation('platform_type_' . $this->uaInfos['platform_type']);?> *)
+	<?php endif; ?>
+</td>
+</tr>
+
 <?php
-$new_platform_type = $this->uaInfos['platform_type'];
-if ($new_platform_type != '' && $this->recordItem->vars['platform_type'] != $new_platform_type)
-	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']) . ' (' . 
-		$this->get_translation('platform_type_' . $new_platform_type) . '*)';
-else
-	echo $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']);
+switch($this->recordItem->vars['platform_type']) {
+	case 'bot': $this->load_file('html/admin_view_user_agent_bot_details.html.inc'); break;
+	case 'tool': $this->load_file('html/admin_view_user_agent_tool_details.html.inc'); break;
+	case 'fake': $this->load_file('html/admin_view_user_agent_fake_details.html.inc'); break;
+	case 'hack': $this->load_file('html/admin_view_user_agent_hack_details.html.inc'); break;
+	default: $this->load_file('html/admin_view_user_agent_generic_details.html.inc'); break;
+}
 ?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_platform_format')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= (array_key_exists('platform_format', $this->uaInfos) and isset($this->recordPlatformFormats[$this->uaInfos['platform_format']])) ? $this->recordPlatformFormats[$this->uaInfos['platform_format']] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_system_title')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('system_title', $this->uaInfos) ? $this->uaInfos['system_title'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_system_version')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('system_version', $this->uaInfos) ? $this->uaInfos['system_version'] : '';?>
-</td>
-</tr>
-
-<tr>
-<td class="eTableLine0 eContent2">
-<?=$this->get_translation('formitem_browser_title')?>
-</td>
-<td class="eTableLine0 eContent1">
-<?= array_key_exists('browser_title', $this->uaInfos) ? $this->uaInfos['browser_title'] : ''; ?>
-</td>
-</tr>
-
-
-<tr>
-<td class="eTableLine1 eContent2">
-<?=$this->get_translation('formitem_browser_version')?>
-</td>
-<td class="eTableLine1 eContent1">
-<?= array_key_exists('browser_version', $this->uaInfos) ? $this->uaInfos['browser_version'] : '';?>
-</td>
-</tr>
 
 <tr>
   <td class="eTableLine0" colspan="2">
@@ -176,6 +108,6 @@ else
 </table>
 </div>
 
-<?=$this->theme->get_boxContent2Footer(); ?>
-<?=$this->theme->get_boxButtonsBar( $this->buttons ); ?>
-<?=$this->theme->get_boxFooter(); ?>
+<?=$this->theme->get_boxContent2Footer();?>
+<?=$this->theme->get_boxButtonsBar($this->buttons);?>
+<?=$this->theme->get_boxFooter();?>

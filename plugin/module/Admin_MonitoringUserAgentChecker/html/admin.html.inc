@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Layout
- * Creation Date   	: Dec 2014
- * Last Modif Date	: Apr 2017
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0b
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Layout
+ * Creation Date    : Dec 2014
+ * Last Modif Date  : Apr 2018
  *
  * Admin_MonitoringUserAgentChecker Module Admin Layout : main
  */
@@ -17,9 +17,9 @@ global $camyks;
 <?=$this->theme->get_boxTitleBar($this->title) ?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header( )?>
-<div id="itemrecords" style="display:<?=$this->tabBuilder->get_tabDisplay('records')?>;" class="adminContentPanel">
-    <?=$this->listRecord->display('head');?>
-    <?=$this->listRecord->display('list');?>
+<div id="itemRecords" style="display:<?=$this->tabBuilder->get_tabDisplay('Records')?>;" class="adminContentPanel">
+    <?=$this->recordList->display('head');?>
+    <?=$this->recordList->display('list');?>
 </div>
 
 <div id="admin_genericuseragentmanager_addpopup" class="adminPopupFrame" style="display:none; width:500px; position:absolute; z-index:10001">
@@ -45,5 +45,5 @@ global $camyks;
 </div>
 
 <?=$this->theme->get_boxContent2Footer(); ?>
-<?=$this->theme->get_boxButtonsBar( $this->buttons ); ?>
+<?=$this->theme->get_boxButtonsBar($this->buttons); ?>
 <?=$this->theme->get_boxFooter(); ?>
