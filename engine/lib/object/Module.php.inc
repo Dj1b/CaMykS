@@ -1,17 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Engine / Object Library
- * Creation Date	: Jun 2005
- * Last Modif Date  : Feb 2015
- * History:
- * * 06-05-xx : Initial file
- * * 08-05-28 : Add disable_adminEngineMenus method
- * * 15-02-24 : Add add_moduleContentToPage method
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Engine / Object Library
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Mar 2018
  *
  * CaMykS engine Module object
  *
@@ -21,7 +17,7 @@
 
 class Module extends Plugin {
   /* variables */
-  
+
   /* module type */
   var $type;
   /* php libs needed for current module */
@@ -92,13 +88,13 @@ class Module extends Plugin {
 
     /* load language : needed to have title & description */
     $this->add_translation ();
-    
+
     /* get localized title from translation file */
     $this->title = $this->get_translation('title');
-    
+
     /* set help value by default */
     $this->help = null;
-    
+
     /* set libdesc value by default */
     $this->libdesc = 'Module:'.$this->name;
 
@@ -109,7 +105,7 @@ class Module extends Plugin {
     $this->selected_layout = '';
     $this->selected_layout_location = 'module';
   }
-  
+
   /* methods */
 
   /*
@@ -123,7 +119,7 @@ class Module extends Plugin {
     }
     $this->init_done = true;
   }
-  
+
   /***************** TESTS ******************/
   /*
    * return if module is active
@@ -133,7 +129,7 @@ class Module extends Plugin {
   function is_active ( ) {
     return $this->active;
   }
-  
+
   /*
    * return if module is correctly installed
    * @return boolean
@@ -142,10 +138,10 @@ class Module extends Plugin {
   function is_installed ( ) {
     return null;
   }
-  
+
   /***************** INFO REQUEST ***********/
 
-  /* 
+  /*
    * return version value
    * @return string
    * @access public
@@ -153,13 +149,13 @@ class Module extends Plugin {
   function get_version ( ) {
     return $version;
   }
-  
+
   /***************** MODULE SUB ENGINE *********/
 
   /*
    * load PHP libraries
    * @return void
-   * @access public 
+   * @access public
    */
   function get_PHPLibs ( ) {
     foreach ( $this->libs as $lib ) {
@@ -214,15 +210,15 @@ class Module extends Plugin {
 	'", "","'.$camyks->theme->parts['boxTabCSSStandart'].
 	'","'.$camyks->theme->parts['boxTabCSSSelected'].
 	'","'.$camyks->theme->parts['boxTabCSSRollover'].'");');
-    
+
       /* open first element */
       foreach ( $this->help as $i => $v ) {
 	$this->add_JSLoadScript( strtolower($this->name).'_helpObject.mouseclick(\''.$i.'\');');
-	break; 
+	break;
       }
     }
   }
-  
+
   /*
    * display help files
    * @return void
@@ -232,9 +228,9 @@ class Module extends Plugin {
     global $camyks;
     $this->load_engineFile('data/html/help.html.inc');
   }
-  
+
   /***************** ADD INFOS TO MAIN PAGE *******************/
-  
+
   /*
    * set module applied theme
    * @param string $theme the theme name
@@ -284,7 +280,7 @@ class Module extends Plugin {
    */
   function get_adminEditionLanguage() {
     global $camyks;
-    
+
     if ( ($l =  $camyks->get_confValue('editing_default_language')) != false )
       return $l;
     $elgs =  $camyks->get_confValue('editing_languages');
@@ -345,7 +341,7 @@ class Module extends Plugin {
   function display_admin () {
     $this->get_adminLayout();
   }
-  
+
   /* init parent only */
   function init_parent_admin ( ) {
     Module::init_admin();
@@ -368,7 +364,7 @@ class Module extends Plugin {
     $this->selected_layout_location = 'camyks';
   }
 
-  /* 
+  /*
    * init module object in admin/page access denied mode
    * @return void
    * @access public
@@ -504,7 +500,7 @@ class Module extends Plugin {
   /*
    * init module object in site mode
    * @return void
-   * @access public 
+   * @access public
    */
   function init_site ( $content=1, $params=array(), $index=null ) {
     /* generic init */
@@ -514,7 +510,7 @@ class Module extends Plugin {
       $this->selected_layout = 'site.html.inc';
     }
   }
-  
+
   /*
    * display module in site mode
    * @return void
@@ -547,14 +543,17 @@ class Module extends Plugin {
   }
 
   /***************** LAYOUT MANAGEMENT **************/
-  
+
   /*
    * update selected layout
    * @param string $layout
+   * @param string $location
    * @access public
    */
-  public function set_selectedLayout($layout='') {
+  public function set_selectedLayout($layout='', $location='') {
     $this->selected_layout = $layout;
+    if ($location != '')
+      $this->selected_layout_location = $location;
   }
 
   /*
@@ -563,19 +562,19 @@ class Module extends Plugin {
    * @return void
    * @access public
    */
-  function get_adminLayout ( $layout='' ) {
-    if ( $layout != '' ) {
-      $this->load_file( 'html/'.$layout );
-    } else if ( $this->selected_layout != '' ) {	
-      if ( $this->selected_layout_location == 'camyks' )
-	$this->load_engineFile( 'data/html/'.$this->selected_layout );
+  function get_adminLayout ($layout='') {
+    if ($layout != '') {
+      $this->load_file('html/'.$layout);
+    } else if ($this->selected_layout != '') {
+      if ($this->selected_layout_location == 'camyks')
+		$this->load_engineFile('data/html/'.$this->selected_layout);
       else
-	$this->load_file( 'html/'.$this->selected_layout );
+		$this->load_file('html/'.$this->selected_layout);
     } else {
-      $this->load_file( 'html/admin.html.inc' );
+      $this->load_file('html/admin.html.inc');
     }
   }
-  
+
   /*
    * load selected site layout
    * @return void
@@ -588,7 +587,7 @@ class Module extends Plugin {
       else
 	    $this->load_file( 'html/'.$this->selected_layout );
     } else {
-      $this->load_file( 'html/site.html.inc' ); 
+      $this->load_file( 'html/site.html.inc' );
     }
   }
 
@@ -718,10 +717,10 @@ class Module extends Plugin {
 			      'default'=> false);
   }
 
-  /* 
+  /*
    * return right value for this module/mode
    * @return boolean
-   * @access public 
+   * @access public
    */
   function check_right ( $info ) {
     global $camyks;
@@ -757,12 +756,12 @@ class Module extends Plugin {
    */
   function get_fileInputButtons( $buttons=array(), $delete=true) {
     global $camyks;
-    
+
     if (is_array($buttons))
       $buttons = array_merge(array('view'=>true, 'listen'=>true, 'delete'=>true), $buttons);
     else
       $buttons = array('view'=>$buttons, 'delete'=>$delete, 'listen'=>$buttons);
-      
+
     $list = array();
     if ( $buttons['view']===true )
       $list['view']=array('std'=>$this->theme->get_pictURL('view', 12, 'std'),
@@ -800,10 +799,10 @@ class Module extends Plugin {
 			   'title'=>$camyks->get_translation('reset'));
     return $list;
   }
-  
+
   /*************** PAGE MANAGER RELATED METHODS *****/
-  
-  
+
+
   /*
    * set module object, with current settings in given page slot
    * @param integer $pageId
@@ -814,15 +813,15 @@ class Module extends Plugin {
    */
   function add_moduleContentToPage( $pageId, $moduleIndex, $contentId) {
     global $camyks;
-    
+
     /* check module type */
     if ( $this->type != 'content')
       return false;
-    
+
     /* check page manager module */
     if (!isset($camyks->modules['Admin_ContentPage']))
       return false;
-    
+
     /* update page information with object id for new content */
 	return $camyks->modules['Admin_ContentPage']->page->static_update_singleModuleContent( $pageId, $moduleIndex, $contentId );
   }
