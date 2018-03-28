@@ -374,9 +374,9 @@ final class ContentPage {
   /*
    * get homepage object data from database
    * @return boolean success
-   * @access private
+   * @access public
    */
-  private function get_homeFromDatabase() {
+  public function get_homeFromDatabase() {
     return $this->get_objectFromDatabase(' and admin_contentpage.homepage=1');
   }
 
