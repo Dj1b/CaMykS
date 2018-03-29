@@ -1122,9 +1122,7 @@ final class ContentPage {
     if ($this->template == '') {
       $this->template = $camyks->site_conf['site_default_template'];
     } else if (!isset($camyks->templates[$this->template])) {
-      $camyks->log_event('Page Error',
-			 $this,
-			 'Template not found :'.$this->template);
+      $camyks->log_event('Page Error', $this, 'Template not found :'.$this->template);
       $this->template = $camyks->site_conf['site_default_template'];
     }
     $this->template = &$camyks->templates[$this->template];
@@ -1134,10 +1132,7 @@ final class ContentPage {
     if ($this->theme == ''){
       $this->theme = $camyks->site_conf['site_default_theme'];
     } else if (! isset ($camyks->themes[$this->theme])) {
-      $camyks->log_event('Page Error',
-			 $this,
-			 'Theme not found :'.$this->theme);
-      
+      $camyks->log_event('Page Error', $this, 'Theme not found :'.$this->theme);
       $this->theme = $camyks->site_conf['site_default_theme'];
     }
     $this->theme = &$camyks->themes[$this->theme];
@@ -1155,19 +1150,10 @@ final class ContentPage {
       } else if (isset($camyks->modules[$mod_name])) {
 	    /* active module */
 	    $m[$i] = $camyks->modules[$mod_name];
-      } else if (isset ($camyks->modules['Dummy'])) {
-	    /* log : module not found */
-	    $camyks->log_event('Page Error',
-			   'Module: Admin_ContentPage Lib: ContentPage',
-			   'Module not found :'.$mod_name);
-	    /* set dummy module instead */
-	    $m[$i] = $camyks->modules['Dummy'];
       } else {
 	    /* log : module not found */
-	    $camyks->log_event('Page Error',
-			   'Module: Admin_ContentPage Lib: ContentPage',
-			   'Module not found :'.$mod_name);
-	    /* TO DO : !!!!! */
+	    $camyks->log_event('Page Error', $this, 'Module not found :'.$mod_name);
+	    $m[$i] = new Module('Empty', 'camyks');
       }
       /* theme */
       if ($this->modules[$i]['theme'] != '' ) {
@@ -1196,14 +1182,12 @@ final class ContentPage {
       $mod_name = $m['name']; 
       if (isset($camyks->modules[$mod_name])) {
 	    $this->modules[$i] = &$camyks->modules[$mod_name];
-      } else if (isset($camyks->modules['Dummy'])) {
-	    $this->modules[$i] = &$camyks->modules['Dummy'];
 	  } else {
 	    $this->modules[$i] = new Module('Empty', 'camyks');
       }
     }
     foreach ($this->modules as $i=>$m) {
-      $this->modules[$i]->set_theme($camyks->site_conf['admin_default_theme']);
+      $this->modules[$i]->set_theme($camyks->get_confValue('admin_default_theme'));
       $this->modules[$i]->init_admin();
     }
   }
