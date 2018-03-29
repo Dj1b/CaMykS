@@ -4,7 +4,7 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0.2
+ * Object Version   : 1.0.3
  * Object Type      : Engine / Tool Library
  * Creation Date    : Jun 2007
  * Last Modif Date  : Mar 2018
@@ -18,9 +18,7 @@
  * @access public
  */
 function client_getIp() {
-  if (isset($_SERVER['HTTP_PC_REMOTE_ADDR']))
-    return $_SERVER['HTTP_PC_REMOTE_ADDR'];
-  return $_SERVER['REMOTE_ADDR'];
+    return (isset($_SERVER['HTTP_PC_REMOTE_ADDR'])?$_SERVER['HTTP_PC_REMOTE_ADDR']:$_SERVER['REMOTE_ADDR']);
 }
 
 /*
@@ -29,9 +27,7 @@ function client_getIp() {
  * @access public
  */
 function client_getUserAgent() {
-  if (isset($_SERVER['HTTP_USER_AGENT']))
-    return $_SERVER['HTTP_USER_AGENT'];
-  return '';
+    return (isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'');
 }
 
 /*
@@ -40,7 +36,7 @@ function client_getUserAgent() {
  * @access public
  */
 function client_isHTTPS() {
-  return (!empty($_SERVER['HTTPS']));
+    return (!empty($_SERVER['HTTPS']));
 }
 
 /*
@@ -49,7 +45,7 @@ function client_isHTTPS() {
  * @access public
  */
 function client_getRefererSite() {
-  return (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'');
+    return (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'');
 }
 
 /*
@@ -58,7 +54,7 @@ function client_getRefererSite() {
  * @access public
  */
 function client_isServerClient() {
-  return ($_SERVER['SERVER_ADDR'] == client_getIp());
+    return ($_SERVER['SERVER_ADDR'] == client_getIp());
 }
 
 /*
@@ -67,7 +63,7 @@ function client_isServerClient() {
  * @access public
  */
 function client_getDoNotTrack() {
-  return (isset($_SERVER['HTTP_DNT']) and $_SERVER['HTTP_DNT'] == 1);
+    return (isset($_SERVER['HTTP_DNT']) and $_SERVER['HTTP_DNT'] == 1);
 }
 
 /*
@@ -77,65 +73,69 @@ function client_getDoNotTrack() {
  * @access public
  */
 function client_getUAInfos($ua=false) {
-  $req = true;
-
-  /* get user agent */
-  if ($ua===false) $ua = client_getUserAgent();
-
-  /* init result value */
-  $infos = array();
-
-  /*** check fake visitors */
-  if ( ($c = client_getFakeInfosFromUserAgent($ua)) !== false)
-    return $c;
-
-  /*** check hacks */
-  if ( ($c = client_getHackInfosFromUserAgent($ua)) !== false)
-    return $c;
-
-  /*** check tool */
-  if ( ($c = client_getToolInfosFromUserAgent($ua)) !== false)
-    return $c;
-
-  /*** check bot */
-  if ( ($c = client_getBotInfosFromUserAgent($ua)) !== false)
-    return $c;
-
-  /*** check generic bot/tool */
-  if ( ($c = client_getGenericInfosFromUserAgent($ua)) !== false)
-    return $c;
-
-  /*** check plateform ***/
-
-  /* load max versions to check and default fake value */
-  $maxVersions = _client_getUAPropertiesMaxVersions();
-  $fake = array('platform_type'=>'fake');
-
-  /* check Playstation 4 / Vita */
-  if (preg_match('/\(PlayStation ([^ ]*) ([0-9\.]*)\)/i', $ua, $matches))
-  	return _client_mergeUAInfos($req, array('platform_company'=>'Sony',
-      'platform_model'=>'Playstation '.$matches[1],
-  	  'platform_type'=>'computer',
-  	  'platform_format'=>'desktop',
-      'system_title'=>'Playstation '.$matches[1],
-      'system_version'=>$matches[2],
-      'browser_title'=>'PS '.$matches[1].' Browser',
-      'browser_version'=>'--'));
-
-  /* check Playstation 3 */
-  if (preg_match('/\(PLAYSTATION 3; ([0-9\.]*)\)$/', $ua, $matches))
-  	return _client_mergeUAInfos($req, array('platform_company'=>'Sony',
-  	  'platform_model'=>'Playstation 3',
-  	  'platform_type'=>'computer',
-      'platform_format'=>'desktop',
-      'system_title'=>'Playstation 3',
-      'system_version'=>$matches[1],
-      'browser_title'=>'PS3 Browser',
-      'browser_version'=>'--'));
+    $req = true;
+    
+    /* get user agent */
+    if ($ua===false) $ua = client_getUserAgent();
+    
+    /* init result value */
+    $infos = array();
+    
+    /*** check fake visitors */
+    if (($c = client_getFakeInfosFromUserAgent($ua)) !== false)
+        return $c;
+    
+    /*** check hacks */
+    if (($c = client_getHackInfosFromUserAgent($ua)) !== false)
+        return $c;
+    
+    /*** check tool */
+    if (($c = client_getToolInfosFromUserAgent($ua)) !== false)
+        return $c;
+    
+    /*** check bot */
+    if (($c = client_getBotInfosFromUserAgent($ua)) !== false)
+        return $c;
+    
+    /*** check generic bot/tool */
+    if (($c = client_getGenericInfosFromUserAgent($ua)) !== false)
+        return $c;
+    
+    /*** check plateform ***/
+    
+    /* load max versions to check and default fake value */
+    $maxVersions = _client_getUAPropertiesMaxVersions();
+    $fake = array('platform_type'=>'fake');
+    
+    /* check Playstation 4 / Vita */
+    if (preg_match('/\(PlayStation ([^ ]*) ([0-9\.]*)\)/i', $ua, $matches))
+        return _client_mergeUAInfos($req, array(
+            'platform_company'=>'Sony',
+            'platform_model'=>'Playstation '.$matches[1],
+            'platform_type'=>'computer',
+            'platform_format'=>'desktop',
+            'system_title'=>'Playstation '.$matches[1],
+            'system_version'=>$matches[2],
+            'browser_title'=>'PS '.$matches[1].' Browser',
+            'browser_version'=>'--'
+        ));
+    
+    /* check Playstation 3 */
+    if (preg_match('/\(PLAYSTATION 3; ([0-9\.]*)\)$/', $ua, $matches))
+        return _client_mergeUAInfos($req, array(
+            'platform_company'=>'Sony',
+            'platform_model'=>'Playstation 3',
+            'platform_type'=>'computer',
+            'platform_format'=>'desktop',
+            'system_title'=>'Playstation 3',
+            'system_version'=>$matches[1],
+            'browser_title'=>'PS3 Browser',
+            'browser_version'=>'--'
+        ));
 
   /* check Playstation Portable */
   if (preg_match('/PSP \(PlayStation Portable\); ([0-9\.]*)\)?$/', $ua, $matches))
-  	return _client_mergeUAInfos($req, array('platform_company'=>'Sony',
+    return _client_mergeUAInfos($req, array('platform_company'=>'Sony',
       'platform_model'=>'Playstation Portable',
       'platform_type'=>'computer',
       'platform_format'=>'handheld',
@@ -146,7 +146,7 @@ function client_getUAInfos($ua=false) {
 
   /* check Black Berry */
   if (preg_match('/BlackBerry([^\/;]{1,})\/([0-9\.]*)/', $ua, $matches))
-  	return _client_mergeUAInfos($req, array('platform_company'=>'BlackBerry',
+    return _client_mergeUAInfos($req, array('platform_company'=>'BlackBerry',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',
@@ -155,7 +155,7 @@ function client_getUAInfos($ua=false) {
       'browser_title'=>'BB Browser',
       'browser_version'=>'--'));
   if (preg_match('/BlackBerry ([^;]{1,});?.*Version\/([0-9\.]*) /', $ua, $matches))
-  	return _client_mergeUAInfos($req, array('platform_company'=>'BlackBerry',
+    return _client_mergeUAInfos($req, array('platform_company'=>'BlackBerry',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',
@@ -164,7 +164,7 @@ function client_getUAInfos($ua=false) {
       'browser_title'=>'BB Browser',
       'browser_version'=>'--'));
   if (preg_match('/BB([^\/;]{1,});/', $ua, $matches))
-  	return _client_mergeUAInfos($req, array('platform_company'=>'BlackBerry',
+    return _client_mergeUAInfos($req, array('platform_company'=>'BlackBerry',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',
@@ -175,8 +175,8 @@ function client_getUAInfos($ua=false) {
 
   /* check Nokia - before iPhone */
   elseif (preg_match('/RX-51 N900/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Nokia',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Nokia',
       'platform_model'=>'N900',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',
@@ -188,16 +188,16 @@ function client_getUAInfos($ua=false) {
         'X2DS'  => array('platform_model' => 'X2 (Dual Sim)', ),
     );
 
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Nokia',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Nokia',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
   elseif (preg_match('/Lumia ([a-zA-Z0-9]*)/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Nokia',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Nokia',
       'platform_model'=>'Lumia '.$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -209,7 +209,7 @@ function client_getUAInfos($ua=false) {
     if (version_compare($version, $maxVersions['system']['iOS']) > 0)
       return $fake;
 
-  	$infos = array_merge($infos, array('platform_company'=>'Apple',
+    $infos = array_merge($infos, array('platform_company'=>'Apple',
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
@@ -224,7 +224,7 @@ function client_getUAInfos($ua=false) {
     if (version_compare($version, $maxVersions['system']['iOS']) > 0)
       return $fake;
 
-  	$infos = array_merge($infos, array('platform_company'=>'Apple',
+    $infos = array_merge($infos, array('platform_company'=>'Apple',
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
@@ -232,7 +232,7 @@ function client_getUAInfos($ua=false) {
       'system_version'=>$version,
     ));
   } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches))
-  	$infos = array_merge($infos, array('platform_company'=>'Apple',
+    $infos = array_merge($infos, array('platform_company'=>'Apple',
       'platform_model'=>$matches[1],
       'platform_type'=>$matches[1]=='iPad'? 'tablet': 'handheld',
       'platform_format'=>$matches[1]=='iPad'? 'tablet': 'handheld',
@@ -241,29 +241,29 @@ function client_getUAInfos($ua=false) {
 
   /* check Google */
   elseif (preg_match('/(Nexus( [^ \/;]+)?|Pixel) Build/', $ua, $matches))
-  	$infos = array_merge($infos, array('platform_company'=>'Google',
+    $infos = array_merge($infos, array('platform_company'=>'Google',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check HTC */
   elseif (preg_match('/HTC;([A-Za-z0-9 ]*)/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'HTC',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'HTC',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   elseif (preg_match('/HTC[ |_]([^\/\-]*)( Build|\-)/', $ua, $matches)) {
-  	$rep = array(
-  	    'M8Sx'         => array('platform_model' => 'One', ),
-  	    'IncredibleS'  => array('platform_model' => 'Incredible S'),
-  	    'D820u'        => array('platform_model' => 'Desire 820 Dual SIM'),
-  	);
+    $rep = array(
+        'M8Sx'         => array('platform_model' => 'One', ),
+        'IncredibleS'  => array('platform_model' => 'Incredible S'),
+        'D820u'        => array('platform_model' => 'Desire 820 Dual SIM'),
+    );
 
-  	$model = preg_replace('/_/', ' ', $matches[1]);
+    $model = preg_replace('/_/', ' ', $matches[1]);
 
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'HTC',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'HTC',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -272,7 +272,7 @@ function client_getUAInfos($ua=false) {
 
   /* check LG */
   elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches))
-  	$infos = array_merge($infos, array('platform_company'=>'LG',
+    $infos = array_merge($infos, array('platform_company'=>'LG',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -298,15 +298,15 @@ function client_getUAInfos($ua=false) {
         'E610'  => array('platform_model' => 'Optimus L5',),
         'E960'  => array('platform_model' => 'Nexus 4',),
         'H815'  => array('platform_model' => 'G4',),
-        'H870D'	=> array('platform_model' => 'G6',),
+        'H870D'  => array('platform_model' => 'G6',),
         'L160L' => array('platform_model' => 'Optimus LTE2',),
-	    'M700'  => array('platform_model' => 'Q6 Alpha',),
+      'M700'  => array('platform_model' => 'Q6 Alpha',),
         'M160'  => array('platform_model' => 'K4 (2017)',),
         'P715'  => array('platform_model' => 'Optimus L7 II',),
         'P875'  => array('platform_model' => 'Optimus F5',),
     );
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'LG',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'LG',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld'),
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
@@ -315,8 +315,8 @@ function client_getUAInfos($ua=false) {
     $rep = array(
         'LS996'=>array('platform_model' => 'G Flex 2', ),
     );
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'LG',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'LG',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -325,12 +325,12 @@ function client_getUAInfos($ua=false) {
 
   /* check Motorola */
   elseif (preg_match('/mot(?:-|orola |o|\-moto)([^ \/;]+)/i', $ua, $matches))
-  	$infos = array_merge($infos, array('platform_company'=>'Motorola',
+    $infos = array_merge($infos, array('platform_company'=>'Motorola',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   elseif (preg_match('/ (Droid|MB200|RAZR HD|Moto G)/', $ua, $matches))
- 	$infos = array_merge($infos, array('platform_company'=>'Motorola',
+   $infos = array_merge($infos, array('platform_company'=>'Motorola',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -342,7 +342,7 @@ function client_getUAInfos($ua=false) {
                  'XT1072'=>array('platform_model' => 'Moto G 4G (2nd Gen)', ),
                  'XT1092'=>array('platform_model' => 'Moto X (2nd Gen)', ),
     );
- 	$infos = array_merge($infos, array('platform_company'=>'Motorola',
+   $infos = array_merge($infos, array('platform_company'=>'Motorola',
       'platform_model'=>$matches[0],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -351,8 +351,8 @@ function client_getUAInfos($ua=false) {
 
   /* check palm */
   elseif (preg_match('/(Pre|Pixi)\/[0-9\.]*$/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Palm',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Palm',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -368,6 +368,7 @@ function client_getUAInfos($ua=false) {
         'GT-P5110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'GT-P5200'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'GT-P5210'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
+        'GT-P5220'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'GT-P7300'  => array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T110'   => array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
         'SM-T113'   => array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
@@ -535,36 +536,36 @@ function client_getUAInfos($ua=false) {
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2', ),
         'SM-G130HN' => array('platform_model' => 'Galaxy Young 2', ),
     );
- 	$infos = array_merge($infos, array(
- 	  'platform_company'=>'Samsung',
+   $infos = array_merge($infos, array(
+     'platform_company'=>'Samsung',
       'platform_model'=>$matches[0],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
       isset($rep[$matches[0]])?$rep[$matches[0]]:array());
 
   } elseif (preg_match('/SAMSUNG\-(?:SGH\-|)([^\/]+)/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Samsung',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Samsung',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   elseif (preg_match('/(Galaxy)/', $ua, $matches))
- 	$infos = array_merge($infos, array(
- 	  'platform_company'=>'Samsung',
+   $infos = array_merge($infos, array(
+     'platform_company'=>'Samsung',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
   elseif (preg_match('/(klte)/', $ua, $matches))
- 	$infos = array_merge($infos, array(
- 	  'platform_company'=>'Samsung',
+   $infos = array_merge($infos, array(
+     'platform_company'=>'Samsung',
       'platform_model'=>'Galaxy S5',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check Samsung PC */
   elseif (preg_match('/MASMJS|SMJB/', $ua, $matches))
- 	$infos = array_merge($infos, array(
- 	  'platform_company'=>'Samsung (PC)'));
+   $infos = array_merge($infos, array(
+     'platform_company'=>'Samsung (PC)'));
 
   /* check OnePlus - to be inserted before Sony */
   elseif (preg_match('/ ONE (E[0-9]+)/', $ua, $matches)) {
@@ -572,8 +573,8 @@ function client_getUAInfos($ua=false) {
         'E1003'=>array('platform_model' => 'X'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'OnePlus',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'OnePlus',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -586,8 +587,8 @@ function client_getUAInfos($ua=false) {
         'A5000' => array('platform_model' => '5'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'OnePlus',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'OnePlus',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -596,8 +597,8 @@ function client_getUAInfos($ua=false) {
 
   /* check SonyEricsson */
   elseif (preg_match('/SonyEricsson([^ \/]+)/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'SonyEricsson',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'SonyEricsson',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -649,7 +650,7 @@ function client_getUAInfos($ua=false) {
   /* check Sony PCs */
   elseif (preg_match('/MASE|MASEJS|MASP|MASPJS|MASA|MASAJS/', $ua, $matches))
     $infos = array_merge($infos, array(
-  	  'platform_company'=>'Sony (PC)'));
+      'platform_company'=>'Sony (PC)'));
 
   /* check Huawei */
   elseif (preg_match('/Build\/(HONOR|HUAWEI)([A-Z0-9\-]{7,})/i', $ua, $matches)) {
@@ -693,7 +694,7 @@ function client_getUAInfos($ua=false) {
     );
     $model = trim($matches[0]);
     $infos = array_merge($infos, array(
-  	  'platform_company'=>'Huawei',
+      'platform_company'=>'Huawei',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -706,8 +707,8 @@ function client_getUAInfos($ua=false) {
         'Mi-349'   => array('platform_model' => 'Smart Flo Edge'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Spice Mobility',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Spice Mobility',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -721,8 +722,8 @@ function client_getUAInfos($ua=false) {
         '50BHE'=>array('platform_model' => 'Helium 50b'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Archos',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Archos',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -730,7 +731,7 @@ function client_getUAInfos($ua=false) {
   }
   elseif (preg_match('/A40Ti/', $ua, $matches))
     $infos = array_merge($infos, array(
-  	  'platform_company'=>'Archos',
+      'platform_company'=>'Archos',
       'platform_model'=>'A40Ti'));
 
   /* check Lenovo */
@@ -742,8 +743,8 @@ function client_getUAInfos($ua=false) {
         'K53a48'    => array('platform_model' => 'K6 Note', ),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Lenovo',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Lenovo',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -754,8 +755,8 @@ function client_getUAInfos($ua=false) {
         'A2107A-H'  => array('platform_model' => 'IdeaTab A2107A-H', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Lenovo',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Lenovo',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -765,7 +766,18 @@ function client_getUAInfos($ua=false) {
   /* check Lenovo PCs */
   elseif (preg_match('/MALC|MALCJS|MALN|MALNJS|LCJB|LEN2/', $ua, $matches))
     $infos = array_merge($infos, array(
-  	  'platform_company'=>'Lenovo (PC)'));
+      'platform_company'=>'Lenovo (PC)'));
+
+  /* check Outikel mobiles (before Asus) */
+  elseif (preg_match('/(K6000 Pro) Build/', $ua, $matches)) {
+    $model = trim($matches[1]);
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Oukitel',
+      'platform_model'=>$model,
+      'platform_type'=>'handheld',
+      'platform_format'=>'handheld'),
+      isset($rep[$model])?$rep[$model]:array());
+  }
 
   /* check Asus mobiles and tablets */
   elseif (preg_match('/(K|ME)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
@@ -775,8 +787,8 @@ function client_getUAInfos($ua=false) {
         'ME173X'    => array('platform_model' => 'MeMO Pad HD 7', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $model = trim($matches[0]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Asus',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Asus',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -787,8 +799,8 @@ function client_getUAInfos($ua=false) {
         'P01MA'      => array('platform_model' => 'Zen Pad 8', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Asus',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Asus',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -802,8 +814,8 @@ function client_getUAInfos($ua=false) {
         'X00DD'     => array('platform_model' => 'Zenfon 3 Max'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Asus',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Asus',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -813,7 +825,7 @@ function client_getUAInfos($ua=false) {
   /* check Asus PCs */
   elseif (preg_match('/MAAU|ASJB|ASU2JS|ASU2|NP0[6789]/', $ua, $matches))
     $infos = array_merge($infos, array(
-  	  'platform_company'=>'Asus (PC)'));
+      'platform_company'=>'Asus (PC)'));
 
   /* check Micromax */
   elseif (preg_match('/Micromax( |_)([^ \/\)]+)/', $ua, $matches)) {
@@ -823,8 +835,8 @@ function client_getUAInfos($ua=false) {
         'Q350'      => array('platform_model' => 'Canvas Spark Q350'),
         'Q380'      => array('platform_model' => 'Canvas Spark Q380'),
     );
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Micromax',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Micromax',
       'platform_model'=>$matches[2],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',),
@@ -833,29 +845,29 @@ function client_getUAInfos($ua=false) {
 
   /* check ITel */
   elseif (preg_match('/itel it([^ \/;]+( Plus)?)/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'ITel',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'ITel',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check Nintendo */
   elseif (preg_match('/Nintendo ([^ \/;\)]+)/', $ua, $matches)) {
-  	$infos = array_merge($infos, array('platform_company'=>'Nintendo',
+    $infos = array_merge($infos, array('platform_company'=>'Nintendo',
       'platform_model'=>$matches[1],
       'platform_type'=>preg_match('/DS/', $matches[1])?'handheld':'computer',
       'platform_format'=>preg_match('/DS/', $matches[1])?'handheld':'desktop'));
   }
   /* check Xbox / XBox One */
   elseif (preg_match('/Xbox(; Xbox [a-zA-Z0-9]*)?/i', $ua, $matches))
-  	$infos = array_merge($infos, array('platform_company'=>'Microsoft',
+    $infos = array_merge($infos, array('platform_company'=>'Microsoft',
       'platform_model'=>isset($matches[1])?substr($matches[1], 2):'Xbox 360',
       'platform_type'=>'computer',
       'platform_format'=>'desktop',));
 
   /* check Amazon Kindle */
   elseif (preg_match('/Kindle([0-9\.]*)/', $ua, $matches))
-  	$infos = array_merge($infos, array('platform_company'=>'Amazon',
+    $infos = array_merge($infos, array('platform_company'=>'Amazon',
       'platform_model'=>'Kindle',
       'platform_type'=>'tablet',
       'platform_format'=>'tablet',
@@ -871,8 +883,8 @@ function client_getUAInfos($ua=false) {
       return $fake;
 
     /* build info */
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Apple',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Apple',
       'platform_model'=>'Macintosh',
       'platform_type'=>'computer',
       'platform_format'=>'desktop',
@@ -884,8 +896,8 @@ function client_getUAInfos($ua=false) {
   elseif (preg_match('/Mac_PowerPC|Macintosh/i', $ua, $matches)) {
 
     /* build info */
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Apple',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Apple',
       'platform_model'=>'Macintosh',
       'platform_type'=>'computer',
       'platform_format'=>'desktop',
@@ -896,8 +908,8 @@ function client_getUAInfos($ua=false) {
   /* check Wiko */
   elseif (preg_match('/(DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY|RAINBOW|SUNSET|PULP 4G)([0-9]*)?/i', $ua, $matches)) {
     $rep = array();
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Wiko',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Wiko',
       'platform_model'=>ucwords(strtolower($matches[1])).(isset($matches[2])?' '.$matches[2]:''),
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -907,16 +919,16 @@ function client_getUAInfos($ua=false) {
 
   /* check SpreadTrum */
   elseif (preg_match('/SpreadTrum/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'SpreadTrum',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'SpreadTrum',
       'platform_model'=>'',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check Maximus MAX908 */
   elseif (preg_match('/MAX908/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Maximus',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Maximus',
       'platform_model'=>'MAX908',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -930,16 +942,16 @@ function client_getUAInfos($ua=false) {
         '6045Y' => array('platform_model' => 'One Touch Pop C1',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Alcatel',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Alcatel',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
       isset($rep[$model])?$rep[$model]:array());
   }
   elseif (preg_match('/Orange KLIF/', $ua, $matches)) {
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Alcatel',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Alcatel',
       'platform_model'  =>'Orange KLIF',
       'system_title'    =>'Firefox OS',
       'platform_type'=>'handheld',
@@ -948,8 +960,8 @@ function client_getUAInfos($ua=false) {
 
   /* check Lava Iris models */
   elseif (preg_match('/Iris([A-Z0-9]+)/i', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Lava',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Lava',
       'platform_model'=>'Iris '.$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -957,11 +969,11 @@ function client_getUAInfos($ua=false) {
   /* check Tecno mobiles */
   elseif (preg_match('/Tecno ?([^;| ]*) Build/i', $ua, $matches)) {
     $rep = array(
-        'K7'	=> array('platform_model' => 'Spark (K7)'),
+        'K7'  => array('platform_model' => 'Spark (K7)'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Tecno',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Tecno',
       'platform_model'=>isset($matches[1])?$matches[1]:'',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -970,48 +982,48 @@ function client_getUAInfos($ua=false) {
 
   /* check Yezz Andy models */
   elseif (preg_match('/Andy[_ ]([A-Z0-9]{2,})/i', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Yezz',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Yezz',
       'platform_model'=>'Andy '.$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check accent mobiles */
   elseif (preg_match('/Accent ?([^;| ]*)/i', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Accent',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Accent',
       'platform_model'=>isset($matches[1])?ucwords(strtolower($matches[1])):'',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check Memup SlidePad 704CE */
   elseif (preg_match('/SP704CE/i', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Memup',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Memup',
       'platform_model'=>'SP704CE',
       'platform_type'=>'handheld',
       'platform_format'=>'tablet',));
 
   /* check Wing mobiles */
   elseif (preg_match('/Wing_([A-Za-z0-9]{2,})/i', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Wing',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Wing',
       'platform_model'=>isset($matches[1])?ucwords(strtolower($matches[1])):'',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check Leagoo mobiles */
   elseif (preg_match('/ Elite 2 Build/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Leagoo',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Leagoo',
       'platform_model'=>'Elite 2',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
 
   /* check Wortmann TERRA PAD 1003 mobiles */
   elseif (preg_match('/TERRA PAD 1003/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Wortmann',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Wortmann',
       'platform_model'=>'Terra Pad 1003',
       'platform_type'=>'tablet',
       'platform_format'=>'tablet',));
@@ -1019,12 +1031,12 @@ function client_getUAInfos($ua=false) {
   /* check QMobile */
   elseif (preg_match('/A3 Build|LT700/', $ua, $matches)) {
     $rep = array(
-        'A3 Build'	=> array('platform_model' => 'A3'),
-        'LT700'	=> array('platform_model' => 'LT700'),
+        'A3 Build'  => array('platform_model' => 'A3'),
+        'LT700'  => array('platform_model' => 'LT700'),
     );
     $model = trim($matches[0]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'QMobile',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'QMobile',
       'platform_model'=>'A3',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1038,8 +1050,8 @@ function client_getUAInfos($ua=false) {
         'G30'           => array('platform_model' => 'Voyage G30',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Haier',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Haier',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1048,8 +1060,8 @@ function client_getUAInfos($ua=false) {
 
   /* check Bloom */
   elseif (preg_match('/BLOOM Build/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Bloom',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Bloom',
       'platform_model'=>'',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',));
@@ -1060,8 +1072,8 @@ function client_getUAInfos($ua=false) {
         '510'=>array('platform_model' => 'Smart 5'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Carrefour',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Carrefour',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1074,8 +1086,8 @@ function client_getUAInfos($ua=false) {
         '510'=>array('platform_model' => 'Smart 5'),
     );
     $model = trim($matches[0]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Orange',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Orange',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1086,8 +1098,8 @@ function client_getUAInfos($ua=false) {
 
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Orange',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Orange',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1102,8 +1114,8 @@ function client_getUAInfos($ua=false) {
         'L-EMENT_403'=>array('platform_model' => 'L-Element 403'),
     );
     $model = trim($matches[0]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Logicom',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Logicom',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1116,7 +1128,7 @@ function client_getUAInfos($ua=false) {
         '8298_I00'=>array('platform_model' => 'Note Lite 3', 'platform_type'=>'handheld', 'platform_format'=>'handheld'),
     );
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Coolpad',
+     'platform_company'=>'Coolpad',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1129,7 +1141,7 @@ function client_getUAInfos($ua=false) {
         'Venus_V3_5570'=>array('platform_model' => 'Ven&uuml;s V3 5570', 'platform_type'=>'handheld', 'platform_format'=>'handheld'),
     );
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Vestel',
+     'platform_company'=>'Vestel',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1139,19 +1151,19 @@ function client_getUAInfos($ua=false) {
   /* check Hewlett Packard OEM computers */
   elseif (preg_match('/HPCMHP|HPNTDF|HPNTDFJS|HPDTDF|HPDTDFJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Hewlett Packard (PC)'));
+     'platform_company'=>'Hewlett Packard (PC)'));
   }
 
   /* check Dell OEM computers */
   elseif (preg_match('/MDDR|MDDRJS|MDDC|MDDCJS|MDDS|MDDSJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Dell (PC)'));
+     'platform_company'=>'Dell (PC)'));
   }
 
   /* check Toshiba OEM computers */
   elseif (preg_match('/MATM|MATMJS|MATB|MATBJS|MATP|MATPJS|TNJB|TAJB/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Toshiba (PC)'));
+     'platform_company'=>'Toshiba (PC)'));
   }
 
   /* check Acer mobiles */
@@ -1162,8 +1174,8 @@ function client_getUAInfos($ua=false) {
         'T04' => array('platform_model' => 'Liquid Z630S',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Acer',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Acer',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1173,44 +1185,44 @@ function client_getUAInfos($ua=false) {
   /* check Acer OEM computers */
   elseif (preg_match('/MAAR|MAARJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Acer (PC)'));
+     'platform_company'=>'Acer (PC)'));
   }
 
   /* check Medion OEM computers */
   elseif (preg_match('/MAMD/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Medion (PC)'));
+     'platform_company'=>'Medion (PC)'));
   }
 
   /* check MSI OEM computers */
   elseif (preg_match('/MAMI|MAMIJS|MAM3/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Medion (PC)'));
+     'platform_company'=>'Medion (PC)'));
   }
 
   /* check Gateway OEM computers */
   elseif (preg_match('/MAGW|MAGWJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Gateway (PC)'));
+     'platform_company'=>'Gateway (PC)'));
   }
 
   /* check Fujitsu OEM computers */
   elseif (preg_match('/MAFS|MAFSJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Fujitsu (PC)'));
+     'platform_company'=>'Fujitsu (PC)'));
   }
 
   /* check Compaq OEM computers */
   elseif (preg_match('/CPDTDF|CPNTDF|CMNTDF|CMNTDFJS/', $ua, $matches)) {
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Compaq (PC)'));
+     'platform_company'=>'Compaq (PC)'));
   }
 
   /* check Polaroid tablets, to be inserted before Xiaomi */
   elseif (preg_match('/MID4X10/', $ua, $matches)) {
     $rep = array();
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Polaroid',
+     'platform_company'=>'Polaroid',
       'platform_model'=>$matches[0],
       'platform_type'=>'tablet',
       'platform_format'=>'tablet'),
@@ -1223,22 +1235,22 @@ function client_getUAInfos($ua=false) {
         'PAD'=>array('platform_model' => 'MI PAD', 'platform_type'=>'tablet', 'platform_format'=>'tablet'),
     );
     $infos = array_merge($infos, array(
- 	  'platform_company'=>'Xiaomi',
+     'platform_company'=>'Xiaomi',
       'platform_model'=>'Mi '.$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
       isset($rep[$matches[1]])?$rep[$matches[1]]:array());
   }
   elseif (preg_match('/HM NOTE 1LTE/', $ua, $matches))
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Xiaomi',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Xiaomi',
       'platform_model'=>'Redmi Note 3',
       'platform_type'=>'handheld',
       'platform_format'=>'handheld')
     );
   elseif (preg_match('/(Redmi [A-Za-z0-9 ]{1,}) Build/', $ua, $matches))
     $infos = array_merge($infos, array(
-  	  'platform_company'=>'Xiaomi',
+      'platform_company'=>'Xiaomi',
       'platform_model'=>$matches[1],
       'platform_type'=>'handheld',
       'platform_format'=>'handheld',)
@@ -1249,8 +1261,8 @@ function client_getUAInfos($ua=false) {
     $rep = array(
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Iris Sat',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Iris Sat',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1263,8 +1275,8 @@ function client_getUAInfos($ua=false) {
         'IRON Pro' => array('platform_model' => 'IRON Pro',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Umi',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Umi',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1277,8 +1289,8 @@ function client_getUAInfos($ua=false) {
         'Trooper_450L' => array('platform_model' => 'Trooper 450L',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Kazam',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Kazam',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1291,12 +1303,12 @@ function client_getUAInfos($ua=false) {
         'PGN521' => array('platform_model' => 'Griffe G4 Plus',),
         'PHQ520' => array('platform_model' => 'Griffe G5',),
         'PGN528' => array('platform_model' => 'Plume P6 Pro',),
-	    'PGN523' => array('platform_model' => 'Plume P7 Plus',),
+      'PGN523' => array('platform_model' => 'Plume P7 Plus',),
         'PGN605' => array('platform_model' => 'Plume P8',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Condor',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Condor',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1309,8 +1321,8 @@ function client_getUAInfos($ua=false) {
         'SM801' => array('platform_model' => 'T2',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Smartisan',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Smartisan',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1323,8 +1335,8 @@ function client_getUAInfos($ua=false) {
         /* '' => array('platform_model' => '',), */
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Gigabyte',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Gigabyte',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1338,8 +1350,8 @@ function client_getUAInfos($ua=false) {
          'LYF/F90M' => array('platform_model' => 'JioPhone F90M',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Lyf',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Lyf',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1352,8 +1364,8 @@ function client_getUAInfos($ua=false) {
 
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Cubot',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Cubot',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1366,8 +1378,8 @@ function client_getUAInfos($ua=false) {
         'X559'  => array('platform_model' => 'Hot 5 Lite',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Infinix',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Infinix',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1377,8 +1389,8 @@ function client_getUAInfos($ua=false) {
   /* check Digital Alpha servers */
   elseif (preg_match('/ (Digital AlphaServer [A-Za-z0-9]*) /', $ua, $matches)) {
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'PC (Digital Equipment Corporation)',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'PC (Digital Equipment Corporation)',
       'platform_model'=>$model
     ));
   }
@@ -1389,8 +1401,8 @@ function client_getUAInfos($ua=false) {
         '890N'  => array('platform_model' => 'Smart 4 Turbo (2014)',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Vodafone',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Vodafone',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1403,8 +1415,8 @@ function client_getUAInfos($ua=false) {
         'STARTRAIL7'  => array('platform_model' => 'StarTrail 7',),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'SFR',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'SFR',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1416,8 +1428,8 @@ function client_getUAInfos($ua=false) {
     $rep = array(
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'MobiWire',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'MobiWire',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1429,8 +1441,8 @@ function client_getUAInfos($ua=false) {
     $rep = array(
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Oppo',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Oppo',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1443,8 +1455,8 @@ function client_getUAInfos($ua=false) {
         'L678' => array('platform_model' => 'Staraddict 5'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Hisense',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Hisense',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1458,8 +1470,8 @@ function client_getUAInfos($ua=false) {
         'YD206' => array('platform_model' => '2'),
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Yotaphone',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Yotaphone',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1471,8 +1483,8 @@ function client_getUAInfos($ua=false) {
     $rep = array(
     );
     $model = trim($matches[1]);
-  	$infos = array_merge($infos, array(
-  	  'platform_company'=>'Caterpillar CAT',
+    $infos = array_merge($infos, array(
+      'platform_company'=>'Caterpillar CAT',
       'platform_model'=>$model,
       'platform_type'=>'handheld',
       'platform_format'=>'handheld'),
@@ -1491,8 +1503,8 @@ function client_getUAInfos($ua=false) {
      'system_version'=>isset($matches[1])?$matches[1]:''), $infos);
 
     /* check Android */
-  	elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
-  	  /* check version */
+    elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
+      /* check version */
       $version = isset($matches[1])?$matches[1]:'';
       if ($version != '' and version_compare($version, $maxVersions['system']['Android']) > 0)
         return $fake;
@@ -1506,10 +1518,10 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Windows */
-  	else if (preg_match('/(?:Windows;)?[^.]*(?:Windows |Windows|Win |Win)([^;\)]+)/', $ua, $matches)) {
-  	  // '/(?:Windows |Win)([^;]{1,});/'
+    else if (preg_match('/(?:Windows;)?[^.]*(?:Windows |Windows|Win |Win)([^;\)]+)/', $ua, $matches)) {
+      // '/(?:Windows |Win)([^;]{1,});/'
 
-  	  /* build known windows versions */
+      /* build known windows versions */
       $w = array('3.1'=>'3.1', '95'=>'95', '98'=>'98', '9x 4.90' => '98', '9x4.90' => '98', 'CE'=>'CE',
           'ME'=>'ME', 'NT'=>'NT', 'NT3.51'=> 'NT 3.51',  'NT 4.0'=>'NT 4.0', 'NT4.0'=>'NT 4.0', 'NT 5.0'=>'2000',
           '2000'=>'2000', 'NT 5.1'=>'XP', 'XP'=>'XP', 'NT 5.2'=>'XP Pro / Server 2003 / Home Server', 'NT 6.0'=>'Vista',
@@ -1531,47 +1543,47 @@ function client_getUAInfos($ua=false) {
 
       $infos = array_merge(array(
         'platform_company'=>'PC',
-      	'platform_model'=>'',
+        'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
-      	'system_title'=>'Windows',
-      	'system_version'=>$version), $infos);
-  	}
+        'system_title'=>'Windows',
+        'system_version'=>$version), $infos);
+    }
 
     /* check determined linux os */
-  	elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux)/i', $ua, $matches)) {
+    elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux)/i', $ua, $matches)) {
       $w = array('CrOS'=>'Chrome OS');
       $infos = array_merge(array(
         'platform_company'=>'PC',
-      	'platform_model'=>'',
+        'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
-      	'system_title'=>isset($w[$matches[1]])?$w[$matches[1]]:ucwords($matches[1]).' (Linux)',
-      	'system_version'=>''), $infos);
-  	}
+        'system_title'=>isset($w[$matches[1]])?$w[$matches[1]]:ucwords($matches[1]).' (Linux)',
+        'system_version'=>''), $infos);
+    }
     /* check mobile gen os with notified version */
-  	elseif (preg_match('/(SymbianOS|webOS|KAIOS|Bada)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
+    elseif (preg_match('/(SymbianOS|webOS|KAIOS|Bada)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
       $infos = array_merge(array(
         'platform_company'=>'PC',
-      	'platform_model'=>'',
+        'platform_model'=>'',
         'platform_type'=>'handheld',
         'platform_format'=>'handheld',
-      	'system_title'=>$matches[1],
-      	'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
+        'system_title'=>$matches[1],
+        'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
     }
     /* check gen os with notified version */
-  	elseif (preg_match('/(AmigaOS|WebTV)(?:\/| )([0-9][a-z0-9\._]*)?/i', $ua, $matches))
+    elseif (preg_match('/(AmigaOS|WebTV)(?:\/| )([0-9][a-z0-9\._]*)?/i', $ua, $matches))
       $infos = array_merge(array(
         'platform_company'=>'PC',
-      	'platform_model'=>'',
+        'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
-      	'system_title'=>$matches[1],
-      	'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
+        'system_title'=>$matches[1],
+        'system_version'=>isset($matches[2])?$matches[2]:''), $infos);
 
     /* check gen os without notified version */
-  	elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|SymbOS|OS\/2|BeOS|NetBSD|OpenSolaris)[^\.]/', $ua, $matches)) {
-  	  $rep = array(
+    elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|SymbOS|OS\/2|BeOS|NetBSD|OpenSolaris)[^\.]/', $ua, $matches)) {
+      $rep = array(
         'SymbOS'    => array('platform_company' => '', 'system_title' => 'SymbianOS', 'platform_type'=>'handheld', 'platform_format'=>'handheld',),
       );
 
@@ -1579,12 +1591,12 @@ function client_getUAInfos($ua=false) {
 
       $infos = array_merge($infos, array(
         'platform_company'=>'PC',
-      	'platform_model'=>'',
+        'platform_model'=>'',
         'platform_type'=>'computer',
         'platform_format'=>'desktop',
-      	'system_title'=>$matches[1],
-      	'system_version'=>''),
-      	isset($rep[$model])?$rep[$model]:array()
+        'system_title'=>$matches[1],
+        'system_version'=>''),
+        isset($rep[$model])?$rep[$model]:array()
       );
     }
 
@@ -1592,12 +1604,12 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/X11/', $ua, $matches)) {
       $infos = array_merge($infos, array(
         'platform_company'  =>'PC',
-      	'platform_model'    =>'',
+        'platform_model'    =>'',
         'platform_type'     =>'computer',
         'platform_format'   =>'desktop',
-      	'system_title'      => 'UNIX',
-      	'system_version'    => ''),
-      	isset($rep[$matches[0]])?$rep[$matches[0]]:array()
+        'system_title'      => 'UNIX',
+        'system_version'    => ''),
+        isset($rep[$matches[0]])?$rep[$matches[0]]:array()
       );
     }
   }
@@ -1605,38 +1617,38 @@ function client_getUAInfos($ua=false) {
   /*** check browser ***/
   //if ( !isset($infos['browser_title'])) {
     /* check opera mini */
-  	if (preg_match('/Opera Mini\/([0-9]+\.[0-9]+)/', $ua, $matches))
+    if (preg_match('/Opera Mini\/([0-9]+\.[0-9]+)/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'=>'Opera Mini',
-      	'browser_version'=>$matches[1],
-      	'platform_type'=>'handheld',
+        'browser_version'=>$matches[1],
+        'platform_type'=>'handheld',
         'platform_format'=>'handheld',), $infos);
 
 
     /* check unsmartly written browser, case sensitive */
-  	elseif (preg_match('/(SE )(?:\/| )?([a-z0-9\._]*)?/', $ua, $matches)) {
+    elseif (preg_match('/(SE )(?:\/| )?([a-z0-9\._]*)?/', $ua, $matches)) {
       $rep = array('SE '=>'Sogou Explorer');
       $infos = array_merge($infos, array(
-	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+      'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+        'browser_version'   => isset($matches[2])?$matches[2]:'',
       ));
     }
 
     /* check unsmartly written browser, non case sensitive */
-  	elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser');
       $infos = array_merge($infos, array(
-	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+      'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+        'browser_version'   => isset($matches[2])?$matches[2]:'',
       ));
     }
 
     /* check compatible level 2 browsers */
     elseif (preg_match('/(Yowser|MQQBrowser|Goanna)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('MQQBrowser'=>'Mobile QQBrowser');
-	  $infos = array_merge($infos, array(
-	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+    $infos = array_merge($infos, array(
+      'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+        'browser_version'   => isset($matches[2])?$matches[2]:'',
       ));
     }
 
@@ -1645,9 +1657,9 @@ function client_getUAInfos($ua=false) {
       $rep = array(
         'Viera'   => array('browser_title'=>'Viera', 'platform_type'=>'tvset'),
       );
-	  $infos = array_merge($infos, array(
-	      'browser_title'     => isset($matches[1])?$matches[1]:'',
-      	  'browser_version'   => isset($matches[2])?$matches[2]:'',
+    $infos = array_merge($infos, array(
+        'browser_title'     => isset($matches[1])?$matches[1]:'',
+          'browser_version'   => isset($matches[2])?$matches[2]:'',
         ), (isset($rep[$matches[1]])?$rep[$matches[1]]:array())
       );
     }
@@ -1655,9 +1667,9 @@ function client_getUAInfos($ua=false) {
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
     elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
       $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes');
-	  $infos = array_merge($infos, array(
-	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'   => isset($matches[2])?$matches[2]:'',
+    $infos = array_merge($infos, array(
+      'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+        'browser_version'   => isset($matches[2])?$matches[2]:'',
       ));
     }
 
@@ -1665,25 +1677,25 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/(HeadlessChrome|Iron|Advanced Browser)/', $ua, $matches)) {
       $rep = array();
       $infos = array_merge($infos, array(
-	    'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+      'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
       ));
     }
 
     /* check some other browsers */
     elseif (preg_match('/(Edge|TencentTraveler)/i', $ua, $matches)) {
       $rep = array('TencentTraveler'=>'TT Explorer');
-	  $infos = array_merge($infos, array(
-	    'browser_title'=>isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'=>''));
+    $infos = array_merge($infos, array(
+      'browser_title'=>isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
+        'browser_version'=>''));
     }
 
     /* check gen computer browsers */
-  	elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+    elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|OmniWeb|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FDM|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
       $rep = array('FDM'=>'Free Download Manager', 'VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser');
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
-      	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+        'browser_version'   => str_replace('_','.',$matches[2])), $infos);
     }
 
     /* check chrome browser - separated from gen case of alternative browser using Chrome user agent */
@@ -1691,7 +1703,7 @@ function client_getUAInfos($ua=false) {
       $infos = array_merge(array(
         'platform_type'     => 'computer',
         'browser_title'     => 'Chrome',
-      	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+        'browser_version'   => str_replace('_','.',$matches[2])), $infos);
 
       /* Amigo's Mail.ru web browser based on chrome (and using chrome version) */
       if (preg_match('/(MRCHROME)/', $ua, $matches))
@@ -1699,85 +1711,85 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check gen mobile browsers */
-  	elseif (preg_match('/(Dorado WAP-Browser)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+    elseif (preg_match('/(Dorado WAP-Browser)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
       $rep = array('Dorado WAP-Browser'=>'Dorado');
       $infos = array_merge(array(
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
         'browser_title'     => $matches[1],
-      	'browser_version'   => str_replace('_','.',$matches[2])), $infos);
+        'browser_version'   => str_replace('_','.',$matches[2])), $infos);
     }
 
     /* check gen browser : ?? */
-  	elseif (preg_match('/Version\/([a-z0-9\._]*)( Mobile)? Safari\//', $ua, $matches)) {
-  	  if ( $infos['system_title'] == 'Android')
-  	    $infos = array_merge(array(
-  	        'browser_title'=>'Chrome'.(isset($matches[2])?$matches[2]:''),
-      	    'browser_version'=>str_replace('_','.',$matches[1])
-      	), $infos);
-  	  else
+    elseif (preg_match('/Version\/([a-z0-9\._]*)( Mobile)? Safari\//', $ua, $matches)) {
+      if ( $infos['system_title'] == 'Android')
+        $infos = array_merge(array(
+            'browser_title'=>'Chrome'.(isset($matches[2])?$matches[2]:''),
+            'browser_version'=>str_replace('_','.',$matches[1])
+        ), $infos);
+      else
         $infos = array_merge(array(
             'browser_title'=>'Safari'.(isset($matches[2])?$matches[2]:''),
-      	    'browser_version'=>str_replace('_','.',$matches[1])
-      	), $infos);
+            'browser_version'=>str_replace('_','.',$matches[1])
+        ), $infos);
     }
 
     /* check no version detection browser */
-  	elseif (preg_match('/(Opera Mobi)/', $ua, $matches))
+    elseif (preg_match('/(Opera Mobi)/', $ua, $matches))
       $infos = array_merge(array('browser_title'=>$matches[1],
-      	'browser_version'=>''), $infos);
+        'browser_version'=>''), $infos);
 
     /* check undeterminated safari version */
-  	elseif (preg_match('/(Safari|AppleWebKit)/', $ua, $matches)) {
-  	  if ($infos['system_title'] == 'Android') {
+    elseif (preg_match('/(Safari|AppleWebKit)/', $ua, $matches)) {
+      if ($infos['system_title'] == 'Android') {
         $infos = array_merge(array(
             'browser_title'=>'Android browser',
-      	    'browser_version'=>'',
-      	), $infos);
-  	  } else {
+            'browser_version'=>'',
+        ), $infos);
+      } else {
         $infos = array_merge(array(
             'browser_title'=>'Safari compatible',
-      	    'browser_version'=>'',
-      	), $infos);
+            'browser_version'=>'',
+        ), $infos);
       }
     }
 
     /* check msie */
-  	elseif (preg_match('/MSIE ?([a-z0-9\._]*)( |;|\-|\))/', $ua, $matches))
+    elseif (preg_match('/MSIE ?([a-z0-9\._]*)( |;|\-|\))/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'=>'Internet Explorer',
-      	'browser_version'=>str_replace('_','.',$matches[1])
+        'browser_version'=>str_replace('_','.',$matches[1])
       ), $infos);
 
     /* check IE Mobile detection */
-  	elseif (preg_match('/(IEMobile)(?:\ )([a-z0-9\._]*)/', $ua, $matches))
+    elseif (preg_match('/(IEMobile)(?:\ )([a-z0-9\._]*)/', $ua, $matches))
       $infos = array_merge(array('browser_title'=>'IE Mobile',
-      	'browser_version'=>str_replace('_','.',$matches[2])), $infos);
+        'browser_version'=>str_replace('_','.',$matches[2])), $infos);
 
     /* check trident compatible browsers */
-  	elseif (preg_match('/(Trident\/)([a-z0-9\._]*)/', $ua, $matches))
-  	  if ( preg_match('/rv:11.0/', $ua, $m))
-  	    $infos = array_merge(array(
-  	        'browser_title'     => 'Internet Explorer',
-      	    'browser_version'   => '11.0',
-      	), $infos);
-  	  else
+    elseif (preg_match('/(Trident\/)([a-z0-9\._]*)/', $ua, $matches))
+      if ( preg_match('/rv:11.0/', $ua, $m))
+        $infos = array_merge(array(
+            'browser_title'     => 'Internet Explorer',
+            'browser_version'   => '11.0',
+        ), $infos);
+      else
         $infos = array_merge(array(
             'browser_title'     => 'Trident compatible',
-      	    'browser_version'   => str_replace('_','.',$matches[2]),
-      	), $infos);
+            'browser_version'   => str_replace('_','.',$matches[2]),
+        ), $infos);
 
     /* check America Online Browser */
     elseif (preg_match('/America Online Browser ([a-z0-9\._]*);/', $ua, $matches))
       $infos = array_merge(array('browser_title'=>'America Online Browser',
-      	'browser_version'=>str_replace('_','.',$matches[1])), $infos);
+        'browser_version'=>str_replace('_','.',$matches[1])), $infos);
 
     /* check WMP */
     elseif (preg_match('/^Windows-Media-Player\/([^\(]*)|Media Player Classic/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Microsoft Windows Media Player',
-      	'browser_version'   => isset($matches[1])?$matches[1]:'',
-      	'system_title'      =>'Windows',
+        'browser_version'   => isset($matches[1])?$matches[1]:'',
+        'system_title'      =>'Windows',
       ), $infos);
 
 
@@ -1785,60 +1797,60 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^MSFrontPage\/([^\(]*)/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Microsoft FrontPage',
-      	'browser_version'   => $matches[1],
-      	'system_title'      =>'Windows',
+        'browser_version'   => $matches[1],
+        'system_title'      =>'Windows',
       ), $infos);
 
     /* check MoonBrowser */
     elseif (preg_match('/MoonBrowser \(([^\(]*)\)/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Moon Browser',
-      	'browser_version'   => $matches[1],
-      	'system_title'      =>'Windows',
+        'browser_version'   => $matches[1],
+        'system_title'      =>'Windows',
       ), $infos);
 
     /* check Barca */
     elseif (preg_match('/^Barca\/([^\(]*)/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Barca',
-      	'browser_version'   => $matches[1],
-      	'system_title'      =>'Windows',
+        'browser_version'   => $matches[1],
+        'system_title'      =>'Windows',
       ), $infos);
 
     /* check Pizilla */
     elseif (preg_match('/^Pizilla\+\+ ver ([0-9\. ]*)$/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Pizilla',
-      	'browser_version'   => $matches[1],
+        'browser_version'   => $matches[1],
       ), $infos);
 
     /* check Microsoft Data Access Internet Publishing Provider DAV */
     elseif (preg_match('/^Microsoft Data Access Internet Publishing Provider DAV$/', $ua, $matches))
       $infos = array_merge(array($infos,
         'browser_title'     => 'Office (2000 and superior) WebDav client ',
-      	'system_title'      =>'Windows',
+        'system_title'      =>'Windows',
       ));
 
     /* check Microsoft Office */
     elseif (preg_match('/^(Microsoft Office [A-Za-z0-9\ ]*)$/', $ua, $matches))
       $infos = array_merge(array($infos,
         'browser_title'     => $matches[1],
-      	'system_title'      =>'Windows',
+        'system_title'      =>'Windows',
       ));
 
     /* check HotJava */
     elseif (preg_match('/^HotJava\/([^\(]*)/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'HotJava',
-      	'browser_version'   => $matches[1],
+        'browser_version'   => $matches[1],
       ), $infos);
 
     /* check MAUI WAP Browser  */
     elseif (preg_match('/^MAUI( |_)WAP( |_)Browser/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'MAUI WAP Browser',
-      	'browser_version'   => '',
-      	'platform_type'     => 'handheld',
+        'browser_version'   => '',
+        'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
       ), $infos);
 
@@ -1852,9 +1864,9 @@ function client_getUAInfos($ua=false) {
         'SlimBrowser'           => array('system_title' =>'Windows'),
         'Zoo Tycoon 2 Client'   => array('system_title' =>'Windows', 'browser_title'=>'Microsoft Zoo Tycoon 2 Client'),
       );
-	  $infos = array_merge($infos, array(
-	      'browser_title'     => isset($matches[1])?$matches[1]:'',
-      	  'browser_version'   => isset($matches[2])?$matches[2]:'',
+    $infos = array_merge($infos, array(
+        'browser_title'     => isset($matches[1])?$matches[1]:'',
+          'browser_version'   => isset($matches[2])?$matches[2]:'',
         ), (isset($rep[$matches[1]])?$rep[$matches[1]]:array())
       );
     }
@@ -1869,7 +1881,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^Mozilla\/([1-4].[0-9]{1,2})/', $ua, $matches))
       $infos = array_merge(array(
         'browser_title'     => 'Netscape',
-      	'browser_version'   => $matches[1],
+        'browser_version'   => $matches[1],
       ), $infos);
 
     /* set type to "visitor" if not defined and browser title set */
@@ -1908,7 +1920,7 @@ function client_getUAInfos($ua=false) {
  */
 function client_checkIsBot($ua=false) {
   /* get user agent */
-  if (!$ua)	$ua = client_getUserAgent();
+  if (!$ua)  $ua = client_getUserAgent();
 
   /* load known bots */
   $knownBots = client_getKnownBots();
@@ -1971,161 +1983,161 @@ function client_getKnownBots() {
   $knownBots['idpunchbot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'IDPunchBot',
-	'bot_url'=>'http://www.ideogram-design.fr/Punch_Bot.html',
-	'engine_title'=>'Ideogram Design',
-	'engine_url'=>'http://www.ideogram-design.fr/');
+  'bot_title'=>'IDPunchBot',
+  'bot_url'=>'http://www.ideogram-design.fr/Punch_Bot.html',
+  'engine_title'=>'Ideogram Design',
+  'engine_url'=>'http://www.ideogram-design.fr/');
 
   /* import.io crawler bot (to be inserted before GoogleBot, use GoogleBot in user agent)  */
   $knownBots['googlebot/2.1; +http://import.io'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'import.io crawler',
-	'bot_url'=>'http://support.import.io/knowledgebase/articles/265494-crawler-faq',
-	'engine_title'=>'import.io',
-	'engine_url'=>'http://import.io');
+  'bot_title'=>'import.io crawler',
+  'bot_url'=>'http://support.import.io/knowledgebase/articles/265494-crawler-faq',
+  'engine_title'=>'import.io',
+  'engine_url'=>'http://import.io');
 
   /* Dictanova crawler bot (to be inserted before GoogleBot, use GoogleBot in user agent) / to complete */
   $knownBots['googlebot/1.0 (dictanova'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Dictanova crawler',
-	'bot_url'=>'',
-	'engine_title'=>'Dictanova',
-	'engine_url'=>'http://www.dictanova.com/');
+  'bot_title'=>'Dictanova crawler',
+  'bot_url'=>'',
+  'engine_title'=>'Dictanova',
+  'engine_url'=>'http://www.dictanova.com/');
   $knownBots['googlebot/1.0 (googlebot; http://www.google.com/bot.html; crawler at dictanova dot com)'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Dictanova crawler',
-	'bot_url'=>'',
-	'engine_title'=>'Dictanova',
-	'engine_url'=>'http://www.dictanova.com/');
+  'bot_title'=>'Dictanova crawler',
+  'bot_url'=>'',
+  'engine_title'=>'Dictanova',
+  'engine_url'=>'http://www.dictanova.com/');
 
   /* googlebot_poolmer (to be inserted before GoogleBot, use GoogleBot in user agent) / to complete */
   $knownBots['googlebot_poolmer'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'poolmer',
-	'bot_url'=>'',
-	'engine_title'=>'',
-	'engine_url'=>'');
+  'bot_title'=>'poolmer',
+  'bot_url'=>'',
+  'engine_title'=>'',
+  'engine_url'=>'');
 
   /* WebHistoryBot (to be inserted before GoogleBot, use GoogleBot in user agent) / to complete */
   $knownBots['webhistorybot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'WebHistoryBot',
-	'bot_url'=>'',
-	'engine_title'=>'',
-	'engine_url'=>'');
+  'bot_title'=>'WebHistoryBot',
+  'bot_url'=>'',
+  'engine_title'=>'',
+  'engine_url'=>'');
 
   /* startmebot (to be inserted before GoogleBot, use GoogleBot in user agent) / to complete */
   $knownBots['googlebot/2.1; startmebot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'startmebot',
-	'bot_url'=>'https://start.me/bot',
-	'engine_title'=>'start.me',
-	'engine_url'=>'https://start.me');
+  'bot_title'=>'startmebot',
+  'bot_url'=>'https://start.me/bot',
+  'engine_title'=>'start.me',
+  'engine_url'=>'https://start.me');
 
   /* Yahoo mobile bot : Yahoo! Slurp */
   $knownBots['mobile (compatible; yahoo! slurp'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'handheld',
-	'bot_title'=>'Yahoo! Slurp Mobile',
-	'bot_url'=>'http://help.yahoo.com/help/us/ysearch/slurp',
-	'engine_title'=>'Yahoo!',
-	'engine_url'=>'http://www.yahoo.com');
+  'bot_title'=>'Yahoo! Slurp Mobile',
+  'bot_url'=>'http://help.yahoo.com/help/us/ysearch/slurp',
+  'engine_title'=>'Yahoo!',
+  'engine_url'=>'http://www.yahoo.com');
 
   /* Yahoo bot : Yahoo! Slurp */
   $knownBots['yahoo! slurp'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Yahoo! Slurp',
-	'bot_url'=>'http://help.yahoo.com/help/us/ysearch/slurp',
-	'engine_title'=>'Yahoo!',
-	'engine_url'=>'http://www.yahoo.com');
+  'bot_title'=>'Yahoo! Slurp',
+  'bot_url'=>'http://help.yahoo.com/help/us/ysearch/slurp',
+  'engine_title'=>'Yahoo!',
+  'engine_url'=>'http://www.yahoo.com');
 
   /* Yahoo bot : yahoo/Nutch */
   $knownBots['yahoo/nutch'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'',
-	'bot_url'=>'',
-	'engine_title'=>'Yahoo!',
-	'engine_url'=>'http://www.yahoo.com');
+  'bot_title'=>'',
+  'bot_url'=>'',
+  'engine_title'=>'Yahoo!',
+  'engine_url'=>'http://www.yahoo.com');
 
   /* Google mobile bot : Googlebot-Mobile */
   $knownBots['safari/537.36 (compatible; googlebot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'handheld',
-	'bot_title'=>'Googlebot Mobile',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Googlebot Mobile',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google mobile bot : Googlebot-Mobile */
   $knownBots['safari/600.1.4 (compatible; googlebot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'handheld',
-	'bot_title'=>'Googlebot Mobile',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Googlebot Mobile',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google mobile bot : Googlebot-Mobile */
   $knownBots['safari/8536.25 (compatible; googlebot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'handheld',
-	'bot_title'=>'Googlebot Mobile',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Googlebot Mobile',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google mobile bot : Googlebot-Mobile */
   $knownBots['googlebot-mobile'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'handheld',
-	'bot_title'=>'Googlebot Mobile',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Googlebot Mobile',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google bot : Googlebot */
   $knownBots['googlebot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Googlebot',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Googlebot',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google bot : Google Favicon */
   $knownBots['google favicon'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Google favicon',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Google favicon',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google bot : Google Web Preview */
   $knownBots['google web preview'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Google Web Preview',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Google Web Preview',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google-Site-Verification */
   $knownBots['google-site-verification'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'Google-Site-Verification',
-	'bot_url'=>'http://www.google.com/bot.html',
-	'engine_title'=>'Google',
-	'engine_url'=>'http://www.google.com');
+  'bot_title'=>'Google-Site-Verification',
+  'bot_url'=>'http://www.google.com/bot.html',
+  'engine_title'=>'Google',
+  'engine_url'=>'http://www.google.com');
 
   /* Google Media Partners */
   $knownBots['mediapartners-google'] = array(
@@ -2158,10 +2170,10 @@ function client_getKnownBots() {
   $knownBots['voilabot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
-	'bot_title'=>'VoilaBot',
-	'bot_url'=>'',
-	'engine_title'=>'Voila',
-	'engine_url'=>'http://www.voila.com');
+  'bot_title'=>'VoilaBot',
+  'bot_url'=>'',
+  'engine_title'=>'Voila',
+  'engine_url'=>'http://www.voila.com');
 
   /* MSN Search bot : msnbot */
   $knownBots['msnbot'] = array(
@@ -2654,9 +2666,9 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'Sogou Spider',
-	'bot_url'=>'http://www.sogou.com/docs/help/webmasters.htm',
-	'engine_title'=>'Sogou',
-	'engine_url'=>'http://www.sogou.com');
+  'bot_url'=>'http://www.sogou.com/docs/help/webmasters.htm',
+  'engine_title'=>'Sogou',
+  'engine_url'=>'http://www.sogou.com');
 
   /* CamontSpider bot */
   $knownBots['camontspider'] = array(
@@ -2708,27 +2720,27 @@ function client_getKnownBots() {
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'MLBot',
-	'bot_url'=>'http://www.metadatalabs.com/mlbot',
-	'engine_title'=>'metadata labs',
-	'engine_url'=>'http://www.metadatalabs.com');
+  'bot_url'=>'http://www.metadatalabs.com/mlbot',
+  'engine_title'=>'metadata labs',
+  'engine_url'=>'http://www.metadatalabs.com');
 
   /*  DotBot */
   $knownBots['dotbot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'DotBot',
-	'bot_url'=>'http://www.opensiteexplorer.org/dotbot',
-	'engine_title'=>'DotNetDotCom',
-	'engine_url'=>'http://www.dotnetdotcom.org');
+  'bot_url'=>'http://www.opensiteexplorer.org/dotbot',
+  'engine_title'=>'DotNetDotCom',
+  'engine_url'=>'http://www.dotnetdotcom.org');
 
   /*  KaloogaBot */
   $knownBots['kaloogabot'] = array(
     'platform_type'=>'bot',
     'platform_format'=>'desktop',
     'bot_title'=>'KaloogaBot',
-	'bot_url'=>'http://www.kalooga.com/info.html?page=crawler',
-	'engine_title'=>'Kalooga',
-	'engine_url'=>'http://www.kalooga.com');
+  'bot_url'=>'http://www.kalooga.com/info.html?page=crawler',
+  'engine_title'=>'Kalooga',
+  'engine_url'=>'http://www.kalooga.com');
 
   /* Majestic 12 Bot */
   $knownBots['mj12bot'] = array(
@@ -5474,6 +5486,15 @@ function client_getKnownBots() {
     'engine_title'=>'',
     'engine_url'=>'');
 
+  /*  test/0.1 (tester)  - unknown bot */
+  $knownBots['tester'] = array(
+    'platform_type'=>'bot',
+    'platform_format'=>'desktop',
+    'bot_title'=>'test (Unknown bot)',
+    'bot_url'=>'',
+    'engine_title'=>'',
+    'engine_url'=>'');
+
   /* return bot list */
   return $knownBots;
 }
@@ -5486,7 +5507,7 @@ function client_getKnownBots() {
  */
 function client_checkIsTool($ua=false) {
   /* get user agent */
-  if (!$ua)	$ua = client_getUserAgent();
+  if (!$ua)  $ua = client_getUserAgent();
 
   /* load known tools */
   $knownTools = client_getKnownTools();
@@ -6386,7 +6407,7 @@ function client_getKnownTools() {
  */
 function client_checkIsGeneric($ua=false) {
   /* get user agent */
-  if (!$ua)	$ua = client_getUserAgent();
+  if (!$ua)  $ua = client_getUserAgent();
 
   /* load known generic agents */
   $knownGenerics = client_getKnownGenerics();
@@ -6941,7 +6962,7 @@ function client_getKnownGenerics() {
  */
 function client_checkIsHack($ua=false) {
   /* get user agent */
-  if (!$ua)	$ua = client_getUserAgent();
+  if (!$ua)  $ua = client_getUserAgent();
 
   /* load known bots */
   $knownHacks = client_getKnownHacks();
