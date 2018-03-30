@@ -1567,7 +1567,16 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
+    } elseif (preg_match('/OPPO ([^.]+) Build/', $ua, $matches)) {
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Oppo',
+            'platform_model'    => $model,
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld',
+        ));
     }
+    
 
     /* check Hisense mobiles */
     elseif (preg_match('/Hisense ([A-Z][0-9]{2,3}) Build/', $ua, $matches)) {
@@ -6024,22 +6033,32 @@ function client_getKnownBots() {
         'engine_url'=>'',
     );
     
-    /* crawler (crawler.feedback@gmail.com) - unknown bot */
-    $knownBots['crawler.feedback@gmail.com'] = array(
-        'platform_type'=>'bot',
-        'platform_format'=>'desktop',
-        'bot_title'=>'crawler (crawler.feedback@gmail.com) (Unknown bot)',
-        'bot_url'=>'mailto:crawler.feedback@gmail.com',
-        'engine_title'=>'',
-        'engine_url'=>'',
-    );
-    
     /* test/0.1 (tester)    - unknown bot */
     $knownBots['tester'] = array(
         'platform_type'=>'bot',
         'platform_format'=>'desktop',
         'bot_title'=>'test (Unknown bot)',
         'bot_url'=>'',
+        'engine_title'=>'',
+        'engine_url'=>'',
+    );
+    
+    /* MauiBot - unknown bot */
+    $knownBots['mauibot'] = array(
+        'platform_type'=>'bot',
+        'platform_format'=>'desktop',
+        'bot_title'=>'MauiBot',
+        'bot_url'=>'mailto:crawler.feedback+wc@gmail.com',
+        'engine_title'=>'',
+        'engine_url'=>'',
+    );
+    
+    /* MauiBot ? crawler (crawler.feedback@gmail.com) - unknown bot */
+    $knownBots['crawler.feedback@gmail.com'] = array(
+        'platform_type'=>'bot',
+        'platform_format'=>'desktop',
+        'bot_title'=>'crawler (crawler.feedback@gmail.com) (Unknown bot)',
+        'bot_url'=>'mailto:crawler.feedback@gmail.com',
         'engine_title'=>'',
         'engine_url'=>'',
     );
