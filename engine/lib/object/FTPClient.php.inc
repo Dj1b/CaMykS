@@ -1,10 +1,10 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
  * Object Type      : Engine / Object
  * Creation Date    : Mar 2018
  * Last Modif Date  : Mar 2018

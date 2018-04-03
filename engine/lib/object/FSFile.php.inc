@@ -63,7 +63,7 @@ final class FSFile {
       $this->filename = array_pop( $p );
       $this->path = implode('/', $p);
     }
-    $this->exists = file_exists( $this->fullpath );
+    $this->exists = file_exists($this->fullpath);
     $this->moreinfos = array();
     $this->get();
   }
@@ -101,7 +101,7 @@ final class FSFile {
    * @access private
    */
   private function get_mime() {
-    $this->mime = file_getMime( $this->fullpath, $this->ext );
+    $this->mime = file_getMime($this->fullpath, $this->ext);
     $t = explode( '/', $this->mime );
     $this->type = $t[0];
   }
@@ -126,9 +126,9 @@ final class FSFile {
    * @access private
    */
   private function get_descriptions() {
-    $this->typedesc = file_getTypeDescription( $this->mime, $this->ext );
-    $this->mimedesc = file_getMimeDescription( $this->mime );
-    $this->hsize = file_getFileSize( $this->size );
+    $this->typedesc = file_getTypeDescription($this->mime, $this->ext);
+    $this->mimedesc = file_getMimeDescription($this->mime);
+    $this->hsize = file_getFileSize($this->size);
   }
 
   /*
@@ -137,7 +137,7 @@ final class FSFile {
    * @access private
    */
   private function get_moreInfos() {
-    if ( $this->type == 'image' ) {
+    if ($this->type == 'image') {
       $this->get_imageInfos();
     }
   }
@@ -148,7 +148,7 @@ final class FSFile {
    * @access private
    */
   private function get_imageInfos() {
-    $this->moreinfos = array_merge($this->moreinfos, file_getImageSize( $this->fullpath ));
+    $this->moreinfos = array_merge($this->moreinfos, file_getImageSize($this->fullpath));
   }
 
   /*

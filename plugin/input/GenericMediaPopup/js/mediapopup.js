@@ -258,24 +258,25 @@ function MediaPopup(name) {
          	 	    
  	    /* display popup div */
  	    this.show_popup('html', width, height);
- 	} else if ( file.substring(0, 8) == 'content:' )  {  // display HTML content
+ 	} else if (file.substring(0, 8) == 'content:')  {  // display HTML content
         
         /* update container div size */
   		contentBox.style.width = width+'px';
   		contentBox.style.height = height+'px';
+  		contentBox.style.maxWidth = '100%';
         
         contentBox.innerHTML = file.substring(8);
          	 	    
  	    /* display popup div */
  	    this.show_popup('html', width, height); 	
- 	} else if ( fileExt == 'mp4' || fileExt == 'm4v' ) {
+ 	} else if (fileExt == 'mp4' || fileExt == 'm4v') {
  	  
  	  /* update container div size */
   	  contentBox.style.width = width+'px';
   	  contentBox.style.height = height+'px';
   	  
   	  /* add video tag */
-  	  contentBox.innerHTML = '<video controls=""  width="'+width+'" height="'+height+'" preload="" src="'+file+'">&nbsp;</video>';
+  	  contentBox.innerHTML = '<video controls="" width="'+width+'" height="'+height+'" preload="" src="'+file+'">&nbsp;</video>';
  	  
  	  /* display popup div */
  	  this.show_popup('video', width, height); 	

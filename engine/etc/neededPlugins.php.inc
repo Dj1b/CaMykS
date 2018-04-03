@@ -53,5 +53,4 @@ if ($this->get_confValue('site_default_theme') != '')
 
 if ($this->get_confValue('site_default_template') != '')
   $this->neededTemplates[$this->get_confValue('site_default_template')] = array('name'=>$this->get_confValue('site_default_template'), 'version'=>'1.0');
-
 ?>
