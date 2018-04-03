@@ -1,15 +1,13 @@
 <?php
 /*
  * CaMykS Engine
-* Developed by	   : camyks.net
-* Author           : CaMykS Team <camyks.contact@gmail.com>
-* CaMykS Version   : 1.0b
-* Object Version   : 1.0
-* Object Type	   : Plugin / Module Dictionnary
-* Creation Date    : Dec 2014
-* Last Modif Date  : Feb 2018
-* History :
-* * 12-19-14 : Initial files
+* Developed by      : camyks.net
+* Author            : CaMykS Team <camyks.contact@gmail.com>
+* CaMykS Version    : 1.0
+* Object Version    : 1.0
+* Object Type       : Plugin / Module Dictionnary
+* Creation Date     : Dec 2014
+* Last Modif Date   : Feb 2018
 *
 * Admin_MonitoringUserAgentChecker french dictionnary
 */
@@ -79,7 +77,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_formitem_system_title'] = 'Sy
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_system_version'] = 'Version du Syst&egrave;me : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_browser_title'] = 'Navigateur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_browser_version'] = 'Version du Navigateur : ';
-$this->trads['mod_admin_monitoringuseragentchecker_edit_status'] = 'Marquer comme v&eacute;rifi&eacute;';
+$this->trads['mod_admin_monitoringuseragentchecker_markasverified'] = 'Marquer comme v&eacute;rifi&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_title'] = 'Nom du robot : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_tool_title'] = 'Nom de l\'outil : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_url'] = 'URL : ';

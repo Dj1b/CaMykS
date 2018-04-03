@@ -113,11 +113,10 @@ function CAjaxRequest(name) {
 	  if ( this._resultMethod == 'txt' ) {
 	    this._receive ( this._requestObject.responseText );
 	  } else {
-	    //  alert(this._requestObject.responseText);
 	    this._receive ( this._requestObject.responseXML );
 	  }
       } else {
-	this._throwError('http_error_'+this._requestObject.status);
+	    this._throwError('http_error_'+this._requestObject.status);
       } 
     }
   };

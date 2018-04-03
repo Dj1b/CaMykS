@@ -2,13 +2,13 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Library
- * Creation Date	: Oct 2007
- * Last Modif Date	: Oct 2007
- *
+ * Object Type      : Plugin / Module Config
+ * Creation Date    : Oct 2007
+ * Last Modif Date  : Mar 2018
+ * *
  * Admin_SecurityBackUpFile Library Object for Admin_SecurityTools Module
  * Items :
  * - name : file name
@@ -19,7 +19,7 @@
  * -- file : var folder
  */
 
-class Admin_SecurityBackUpFile extends ModuleLibrary {
+final class Admin_SecurityBackUpFile extends ModuleLibrary {
   /* variables */
   var $backupdir;
   
@@ -28,15 +28,16 @@ class Admin_SecurityBackUpFile extends ModuleLibrary {
    * @param integer $id
    * @param Module $parent
    */
-  function Admin_SecurityBackUpFile ( $id, &$parent ) {
-    global $camyks;
-    parent::ModuleLibrary( $id, $parent );
+  function __construct($id, &$parent) {
+    parent::__construct($id, $parent);
     /* library items */
     $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
     $this->add_newItem('ndate', 'db', 'date', 'bigint unsigned', '', time());
-    $this->add_newItem('type', 'db', 'text', 'varchar', '8', 0);    
+    $this->add_newItem('type', 'db', 'text', 'varchar', '8', 0);  
+      
     /* variables */
     $this->backupdir = 'backups';
+    
     /* generic library initialisation */
     parent::init_library();
   }
@@ -46,10 +47,10 @@ class Admin_SecurityBackUpFile extends ModuleLibrary {
   /*
    * return current backup file size display
    * @return string
-   * @access private
+   * @access public
    */
-  function get_fileSize() {
-    $f = new FSFile( $this->_libParent->plugin_var_path.'/'.$this->backupdir, $this->vars['name'] );
+  public function get_fileSize() {
+    $f = new FSFile($this->_libParent->plugin_var_path.'/'.$this->backupdir, $this->vars['name']);
     return $f->hsize;
   }
 
@@ -59,9 +60,9 @@ class Admin_SecurityBackUpFile extends ModuleLibrary {
    * @param string $type
    * @param string $compression
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function backup( $method=null, $type=null, $compression=null ) {
+  public function backup($method=null, $type=null, $compression=null) {
     global $camyks;
 
     /* extends script time limitation */

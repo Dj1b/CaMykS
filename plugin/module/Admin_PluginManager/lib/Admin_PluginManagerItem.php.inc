@@ -186,34 +186,35 @@ final class Admin_PluginManagerItem {
    * @access public
    */
   public function active_plugin( $plugin=null, $type=null, $location=null, $active=null ) {
-    if ( isset( $plugin ) )
+    if (isset($plugin))
       $this->pluginvalue = $plugin;
-    if ( isset( $type ) )
+    if (isset($type))
       $this->typevalue = $type;
-    if ( isset( $location ) )
+    if (isset($location))
       $this->locationvalue = $location;
-    if ( isset( $active) )
+    if (isset($active))
       $this->activevalue = $active;
 
     /* install module if needed */
-    switch ( $this->typevalue ) {
+    switch ($this->typevalue) {
     case 'module':
-      $plugin = module_get ($this->pluginvalue, $this->locationvalue);
-      if ( $plugin->is_installed()===false and $plugin->install()===false ) {
+      $plugin = module_get($this->pluginvalue, $this->locationvalue);
+      if ($plugin->is_installed()===false and $plugin->install()===false) {
 	    return false;
       }
       break;
     case 'template':
-      $plugin = template_get ($this->pluginvalue, $this->locationvalue);
+      $plugin = template_get($this->pluginvalue, $this->locationvalue);
       break;
     case 'theme':
-      $plugin = theme_get ($this->pluginvalue, $this->locationvalue);
+      $plugin = theme_get($this->pluginvalue, $this->locationvalue);
       break;
     case 'input':
-      $plugin = input_get ($this->pluginvalue, $this->locationvalue);
+      $plugin = input_get($this->pluginvalue, $this->locationvalue);
       break;
     }
     $this->versionvalue = $plugin->version;
+    $this->locationvalue = $plugin->path_type;
     
     /* active plugin in database */
     return $this->save_toDatabase();

@@ -2,24 +2,27 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
- * Object Type          : Plugin / Module Config
- * Create Date		: Oct 2007
- * Last Modif Date	: Dec 2007
+ * Object Type      : Plugin / Module Config
+ * Creation Date    : Oct 2007
+ * Last Modif Date  : Mar 2018
  *
- * Admin SecurityTools Config Object 
+ * Admin_SecurityTools Config Object 
  */
 
-class Admin_SecurityToolsConfig extends ModuleConfig {
+final class Admin_SecurityToolsConfig extends PluginConfig {
   /*
    * constructor
    * @param string $name
    * @param Module $parent
+   * @return void
+   * @access public
    */
-  function Admin_SecurityToolsConfig ( $name, &$parent ) {
-    parent::ModuleConfig( $name, $parent );
+  public function __construct($name, &$parent) {
+    parent::__construct($name, $parent);
+    
     /* object items */
     $this->add_newItem('ipfilter', 'boolean', false);
     $this->add_newItem('backup', 'boolean', false);
@@ -28,6 +31,7 @@ class Admin_SecurityToolsConfig extends ModuleConfig {
     $this->add_newItem('backup_nextdate', 'int', 0 );
     $this->add_newItem('backup_type', 'string', 'complete');
     $this->add_newItem('backup_temp', 'string', '');
+    
     /* generic initialisation */
     parent::init_config();
   }

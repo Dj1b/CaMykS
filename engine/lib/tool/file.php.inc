@@ -290,11 +290,11 @@ function file_getTypeDescription($mime='', $ext=null) {
   global $camyks;
   /* get file extension from mime */
   if ( !isset($ext) ) {
-    $ext = explode ('/', $mime );
+    $ext = explode ('/', $mime);
     $ext = $ext[count($ext)-1];
   }
 
-  switch ( $mime ) {
+  switch ($mime) {
   case 'folder':
     /* folder */
     return $camyks->get_translation('file_folder');
@@ -475,7 +475,7 @@ function file_getFileSize($size) {
   $t = language_getFileUnit();
   $l = array('', 'K', 'M', 'G', 'T', 'P' );
   $s = 0; 
-  while ( $size > 1024 ) {
+  while ($size > 1024) {
     $s++;
     $size /= 1024.00;
   }
@@ -516,8 +516,8 @@ function file_getMime($file, $ext=null)  {
  * @access public
  */
 function file_getImageSize($file) {
-  if ( file_isImage( $file ) ) {
-    $d = getimagesize( $file );
+  if (file_isImage($file)) {
+    $d = getimagesize($file);
     return array('width'=>$d[0], 'height'=>$d[1]);
   }
   return array();
@@ -533,7 +533,7 @@ function file_isImage($file) {
   if (file_exists($file)) {
     $s = stat( $file );
     if ( $s['size'] > 10 )
-      return ( exif_imagetype( $file ) > 0 );
+      return (exif_imagetype($file) > 0);
   }
   return false;
 }
@@ -674,6 +674,7 @@ function _file_getMimeFromFinfo($file) {
 				
 	/* build magic file source list */
 	$magicSource = array(
+		'/usr/lib/file/magic.mgc',
 		'/usr/share/file/magic.mgc',
 		'/usr/share/file/magic.mime',
 		'/usr/share/misc/magic.mgc',
@@ -681,16 +682,21 @@ function _file_getMimeFromFinfo($file) {
 		'/usr/share/misc/file/magic.mgc',
 		'/usr/share/misc/file/magic.mime',
 	);
-	
+
 	/* check correct magic file source */
-	$source = '';
-	foreach ($magicSource as $s) {
-		if(file_exists($s)) {
+	if (preg_match('/armv/', php_uname('m')))
+          $source = null;
+	else {
+	  $source = '';
+	  foreach ($magicSource as $s) {
+		if (file_exists($s) and is_readable($s)) {
 			$source = $s;
 			break;
 		}
-	}
-	
+	  }
+        }
+
+	/* check source */	
 	if ($source == '')
 		return false;
 	
@@ -701,6 +707,9 @@ function _file_getMimeFromFinfo($file) {
 	/* check result */
 	$mime = $finfo->file($file);
 	$mime = explode(';', $mime);
+	
+	/* close finfo */
+	$finfo->close();
 
 	/* return result */
 	if ($mime[0] == '')

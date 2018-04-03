@@ -1,12 +1,12 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version	: 1.0a
- * Object Version	: 1.0
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * Camyks Version   : 1.0
+ * Object Version   : 1.0
  * Creation Date    : Jun 2005
- * Last Modif Date  : Feb 2007
+ * Last Modif Date  : Mar 2018
  * History :
  * * 05-06-xx : Initial file
  *
@@ -48,7 +48,7 @@ class Plugin {
    * @param string $plugin_type
    * @param string $path_type
    */
-  function Plugin ( $name, $plugin_type, $path_type  ) {
+  function Plugin ($name, $plugin_type, $path_type ) {
     global $camyks;
     /* set title value */
     $this->name = $name;
@@ -65,7 +65,7 @@ class Plugin {
     $this->plugin_path = $camyks->get_pluginPath($path_type).'/'.$plugin_type.'/'.$this->name;
     $this->plugin_site_path = $camyks->get_pluginPath('site').'/'.$plugin_type.'/'.$this->name;
     $this->plugin_var_path = $camyks->site_var_path.'/'.$plugin_type.'/'.$this->name;
-    /* set url values */ 
+    /* set url values */
     $this->plugin_url = $camyks->get_pluginURL($path_type).'/'.$plugin_type.'/'.$this->name;
     $this->plugin_site_url = $camyks->get_pluginURL('site').'/'.$plugin_type.'/'.$this->name;
     $this->plugin_var_url = $camyks->site_var_url.'/'.$plugin_type.'/'.$this->name;
@@ -73,9 +73,9 @@ class Plugin {
     $this->plugin_dependencies = array();
     $this->plugin_package = '';
   }
-  
+
   /* plugin methods */
-  
+
   /*
    * load library file
    * @param string $library
@@ -84,10 +84,10 @@ class Plugin {
    */
   function load_library($library) {
     global $camyks;
-   
+
     /* build file path */
     $filePath = $this->plugin_path.'/lib/'.$library.$camyks->file_extension;
-   
+
     /* load file if exists */
     if (file_exists($filePath))
       return ((require_once($filePath)) == true);
@@ -110,7 +110,7 @@ class Plugin {
     } else {
       /* TO DO */
       /* File not found */
-    } 
+    }
     return false;
   }
 
@@ -147,7 +147,7 @@ class Plugin {
       /* File not found */
     }
   }
-  
+
   /*
    * get a file URL from engine data folder
    * @param string $file
@@ -157,13 +157,13 @@ class Plugin {
    */
   function get_engineFileURL ( $file, $path=false ) {
     global $camyks;
-    
+
     switch ($path) {
       case 2: $baseURL = ''; break;
       case true: case 1: $baseURL = $camyks->get_rootBaseURL('absolute');  break;
       case 0: default : $baseURL = $camyks->get_rootBaseURL($path); break;
     }
-        
+
     if (file_exists($camyks->site_engine_url.'/'.$file)) {
       return $baseURL.$camyks->site_engine_url.'/'.$file;
     } elseif (file_exists($camyks->camyks_engine_path.'/'.$file)){
@@ -188,13 +188,13 @@ class Plugin {
    */
   function get_fileURL ( $file, $path=null, $default='' ) {
     global $camyks;
-    
+
     switch ($path) {
       case 2: $baseURL = ''; break;
       case true: case 1: $baseURL = $camyks->get_rootBaseURL('absolute');  break;
       case 0: default : $baseURL = $camyks->get_rootBaseURL($path); break;
     }
-    
+
     /* get file url in site plugin folder */
     if ( file_exists ( $this->plugin_site_path.'/'.$file ) )
       return $baseURL.$this->plugin_site_url.'/'.$file;
@@ -215,7 +215,7 @@ class Plugin {
    */
   function get_varFileURL ( $file, $full=false, $default='' ) {
     global $camyks;
-    
+
     $baseURL = $camyks->get_rootBaseURL($full);
 
     /* get file url in plugin folder */
@@ -238,9 +238,9 @@ class Plugin {
     } else {
       /* TO DO */
       /* File not found */
-    } 
+    }
   }
-  
+
   /*
    * return file from var plugin folder
    * @param string $file
@@ -262,7 +262,7 @@ class Plugin {
    * DEPRECATED : alias to previous method
    */
   function get_varFile($file){$this->get_varFilePath($file);}
-  
+
   /***************** HTML PAGE HEADER METHODS ***********************/
 
   /*
@@ -278,7 +278,7 @@ class Plugin {
       $url = $time;
       $time = $camyks->get_confValue('ModuleActionDelay');
     }
-    
+
     $camyks->HTMLPage->set_redirect( $time, $url );
   }
 
@@ -401,7 +401,7 @@ class Plugin {
    */
   function add_styleFile ( $file, $media='', $condition='' ) {
     global $camyks;
-        
+
     if ($this->get_filePath('css/'.$file, false) != false)
       $camyks->HTMLPage->add_styleFile($this->get_fileURL('css/'.$file, 2), $media, $condition);
     elseif ($this->get_filePath($file, false) != false)
@@ -429,7 +429,7 @@ class Plugin {
     global $camyks;
     $camyks->HTMLPage->add_styleIncludedFile ( $file );
   }
-  
+
   /*
    * update style file list
    * @param string $file
@@ -441,7 +441,7 @@ class Plugin {
     $camyks->HTMLPage->add_styleFile($file, $media, $condition);
   }
 
-  /* 
+  /*
    * update RSS Feed link
    * @param string $title
    * @param string $url
@@ -452,7 +452,7 @@ class Plugin {
     global $camyks;
     $camyks->HTMLPage->set_RSSFeed( $title, $url );
   }
-  
+
   /*
    * add extra texts to page header
    * @param string $content
@@ -474,17 +474,17 @@ class Plugin {
    */
   function install () {
     global $camyks;
-    $camyks->log_information($this, 'Installation Successfull', ''); 
+    $camyks->log_information($this, 'Installation Successfull', '');
     return true;
   }
-  
+
   /*
    * uninstall plugin
    * @return boolean
    * @access public
    */
   function uninstall(){
-    $camyks->log_information($this, 'Uninstall Successfull', ''); 
+    $camyks->log_information($this, 'Uninstall Successfull', '');
     return true;
   }
 
@@ -495,9 +495,9 @@ class Plugin {
    */
   function update( $version, $more='' ) {
     global $camyks;
-    if ( isset($camyks->modules['Admin_PluginManager']) and 
+    if ( isset($camyks->modules['Admin_PluginManager']) and
 	 $camyks->modules['Admin_PluginManager']->update_pluginVersion($this->name, $this->plugin_type, $this->version)){
-      $camyks->log_information($this, 'Update from '.$version.' to version '.$this->version.' successful', $more); 
+      $camyks->log_information($this, 'Update from '.$version.' to version '.$this->version.' successful', $more);
       return true;
     }
     return false;
@@ -518,7 +518,7 @@ class Plugin {
 				       'version'=>$version,
 				       'mandatory'=>$mandatory);
   }
-  
+
   /*
    * build dependencies list
    * @return boolean success
@@ -527,11 +527,11 @@ class Plugin {
   function set_dependencies() {
     return true;
   }
-  
+
   /* shared object management */
-  
+
   /*
-   * register this plugin to be accessed by any other 
+   * register this plugin to be accessed by any other
    * @param string $name
    * @return boolean success
    * @access public
@@ -540,7 +540,7 @@ class Plugin {
     global $camyks;
     return $camyks->register_sharedObject($name, $this);
   }
-  
+
   /*
    * return requested shared object
    * @param string $name
@@ -550,9 +550,9 @@ class Plugin {
   public function &get_sharedObject($name) {
     return $camyks->get_sharedObject($name);
   }
-  
+
   /* extensions management methods */
-  
+
   /*
    * register plugin as extension to another
    * @param string $plugin
@@ -563,7 +563,7 @@ class Plugin {
   	global $camyks;
   	$camyks->register_asExtension($plugin, $this->name, $this->plugin_type);
   }
-  
+
   /*
    * get registered extensions
    * @return array
@@ -573,9 +573,9 @@ class Plugin {
   	global $camyks;
   	return $camyks->get_registeredExtensions($this->name);
   }
-  
+
   /* CaMykS event handler management methods */
-  
+
   /*
    * register plugin as handler for CaMykS event
    * @param string $event
@@ -585,41 +585,41 @@ class Plugin {
     global $camyks;
     $camyks->register_eventHandler($event, $this);
   }
-  
+
   /*
    * execute handler on CaMykS initialisation
    * @return void
    * @access public
    */
   public function execute_onCaMykSInitialise() {}
-  
+
   /*
    * execute handler on CaMykS page load
    * @return void
    * @access public
    */
   public function execute_onCaMykSPageLoad() {}
-  
+
   /*
    * execute handler on body opening
    * @return string
    * @access public
    */
   public function execute_onCaMykSBodyOpen() {return '';}
-  
+
   /*
    * execute handler on body closing
    * @return string
    * @access public
    */
   public function execute_onCaMykSBodyClose() {return '';}
-  
+
   /*
    * execute handler on camyks terminate
    * @return void
    * @access public
    */
   public function execute_onCaMykSTerminate() {}
-  
+
 }
 ?>

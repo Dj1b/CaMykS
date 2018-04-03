@@ -71,6 +71,7 @@ $this->trads['mod_tool_installer_siteconfigcheck'] = 'Checking configuration fil
 $this->trads['mod_tool_installer_databasecheck'] = 'Checking database';
 $this->trads['mod_tool_installer_symlinkscheck'] = 'Checking access rights and symbolic links';
 $this->trads['mod_tool_installer_pluginscheck'] = 'Checking required plugins';
+$this->trads['mod_tool_installer_adminscheck'] = 'Checking admin account';
 
 $this->trads['mod_tool_installer_symlinkfound'] = 'Link "%s" found';
 $this->trads['mod_tool_installer_configvalue'] = 'Value "%s"';
@@ -95,6 +96,9 @@ $this->trads['mod_tool_installer_database_db'] = 'Database';
 $this->trads['mod_tool_installer_database_dbdoesntexist'] = 'The database does not exist.';
 $this->trads['mod_tool_installer_write_rights'] = 'Write permissions';
 
+$this->trads['mod_tool_installer_masteraccount'] = 'Administrator ';
+
+/* install interface */
 $this->trads['mod_tool_installer_install'] = 'Install';
 
 $this->trads['mod_tool_installer_database_created'] = 'Database created';

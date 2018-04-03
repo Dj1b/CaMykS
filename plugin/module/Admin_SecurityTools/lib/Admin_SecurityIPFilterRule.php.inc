@@ -3,11 +3,13 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Library
- * Create Date		: Oct 2007
- * Last Modif Date	: Oct 2007
+ * Creation Date    : Oct 2007
+ * Last Modif Date  : Mar 2018
+ *
+ * Admin_SecurityTools IPFilter Rule library
  *
  * Admin_SecurityIPFilterRule Library Object for Admin_SecurityTools Module
  * Items :
@@ -18,16 +20,17 @@
  * - comment : admin comment for the rule
  */
 
-class Admin_SecurityIPFilterRule extends ModuleLibrary {
+final class Admin_SecurityIPFilterRule extends ModuleLibrary {
   
   /*
    * constructor
    * @param integer $id
    * @param Module $parent
+   * @return void
+   * @access public
    */
-  function Admin_SecurityIPFilterRule ( $id, &$parent ) {
-    global $camyks;
-    parent::ModuleLibrary( $id, $parent );
+  public function __construct($id, &$parent) {
+    parent::__construct($id, $parent);
     /* library items */
     $this->add_newItem('ipaddress', 'db', 'text', 'varchar', 16, '');
     $this->add_newItem('active', 'db', 'int', 'tinyint unsigned', '', 0);
@@ -44,11 +47,11 @@ class Admin_SecurityIPFilterRule extends ModuleLibrary {
   /*
    * check library data
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function check_data() {
+  public function check_data() {
     /* check if ip is valid */
-    if ( string_isValidIPv4( $this->_libItems['ipaddress']->value, true ) === false ) {
+    if (string_isValidIPv4($this->_libItems['ipaddress']->value, true) === false) {
       $this->_libError = $this->get_translation('error_nonvalidipaddress');
       return false;
     }
@@ -60,11 +63,10 @@ class Admin_SecurityIPFilterRule extends ModuleLibrary {
   /*
    * check IP Filter security
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function check_security() {
+  public function check_security() {
     global $camyks;
-    
     
     /* init result */
     $allow = true;
@@ -76,31 +78,31 @@ class Admin_SecurityIPFilterRule extends ModuleLibrary {
     $this->rules = $this->get_objectList(false, 'active=1', -1, -1);
     
     /* check if IP match a rule */
-    foreach ( $this->rules as $rule ) {
-      $pattern = $this->update_matching_ip( $rule->vars['ipaddress']);
-      if ( preg_match( $pattern, $ip  ) ) {
-	/* ip match to a rule ip address */
-	if ( $rule->vars['sitemode'] == 0
-	     or ( $rule->vars['sitemode'] == 1 and $camyks->mode == CAMYKS_MODE_SITE )
-	     or ( $rule->vars['sitemode'] == 2 and $camyks->mode == CAMYKS_MODE_ADMIN ) ) {
-	  if ( $rule->vars['permission'] == 0 ) {
-	    $allow = true;
-	    break;
-	  } else { 
-	    $allow = false;
-	  }
-	}
+    foreach ($this->rules as $rule) {
+      $pattern = $this->update_matching_ip($rule->vars['ipaddress']);
+      if (preg_match($pattern, $ip)) {
+	    /* ip match to a rule ip address */
+	    if ($rule->vars['sitemode'] == 0
+	        or ($rule->vars['sitemode'] == 1 and $camyks->mode == CAMYKS_MODE_SITE)
+	        or ($rule->vars['sitemode'] == 2 and $camyks->mode == CAMYKS_MODE_ADMIN)) {
+	        if ($rule->vars['permission'] == 0) {
+	            $allow = true;
+	            break;
+	        } else { 
+	            $allow = false;
+	        }
+	    }
       }
     }
     /* kill navigator session if ip is not allowed */
-    if ( !$allow ) {
+    if (!$allow) {
       $error = array('title'=>'Security: Access denied',
                      'description'=>'',
                      'content1'=>'This website have an active IP Filter.',
-                     'content2'=>'Your IP is currently into the blacklist database.',
-                     'content3'=>'Please contact the website administrator.');
+                     'content2'=>'Your IP is currently into the blacklist.',
+                     'content3'=>'If you think, it is an error, please contact the website administrator.');
       header('HTTP/1.1 403 Forbidden');
-      $camyks->throwFatalError( $error );
+      $camyks->throwFatalError($error);
     }
   }
   
@@ -110,7 +112,7 @@ class Admin_SecurityIPFilterRule extends ModuleLibrary {
    * @return string updated IP
    * @access private
    */
-  function update_matching_ip( $ip ) {
+  private function update_matching_ip($ip) {
     $replace = '/\*/';
     $by = '([0-9]{1,3})';
     return '/\A'.preg_replace( $replace, $by, $ip ).'\Z/';

@@ -2,15 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
- * Creation Date	: Jun 2005
- * Last Modif Date      : Jan 2008
- * History :
- * * 05-06-xx : Initial File
- * * 08-01-07 : Rebuild template methods with generic plugin methods
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Engine / Tool Library
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Mar 2018
  *
  * Template static methods
  */
@@ -22,8 +19,12 @@
  * @return Template object
  * @access public
  */
-function template_get( $name, $path_type='camyks' ) {
-  return plugin_get( 'template', $name, $path_type );
+function template_get($name, $path_type=false) {
+  if ($path_type !== false)
+    return plugin_get('template', $name, $path_type);
+  if (($p = plugin_get('template', $name, 'camyks')) !== false)
+    return $p;
+  return plugin_get('template', $name, 'site');
 }
 
 /*
@@ -33,7 +34,7 @@ function template_get( $name, $path_type='camyks' ) {
  * @return array
  * @access public
  */
-function template_getList( $path, $path_type='camyks' ) {
-  return plugin_getList( $path.'/template', $path_type );
+function template_getList($path, $path_type='camyks') {
+  return plugin_getList($path.'/template', $path_type);
 }
 ?>

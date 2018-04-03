@@ -1,23 +1,19 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Engine
- * Create Date		: May 2008
- * Last Modif Date	: Jul 2008
- * History :
- * * 08-05-21 : Initial Files
- * * 08-06-13 : Disable admin menu for data I/O modes
- * * 08-07-22 : Add support of TinyMCE version 3
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Plugin / Module Engine
+ * Creation Date    : May 2008
+ * Last Modif Date	: Mar 2018
  * 
  * Content_GenericHTMLContent
  * Display HTML content, use TinyMCE input
  */
 
-class Content_GenericHTMLContent extends Module {
+final class Content_GenericHTMLContent extends Module {
   /* variables */
   var $content;
 
@@ -30,9 +26,11 @@ class Content_GenericHTMLContent extends Module {
   /* 
    * constructor
    * @param string $path_type
+   * @return void
+   * @access public
    */
-  function Content_GenericHTMLContent ( $path_type ) {
-    parent::Module('Content_GenericHTMLContent', $path_type);
+  public function __construct($path_type) {
+    parent::__construct('Content_GenericHTMLContent', $path_type);
     /* set module type */
     $this->type = 'content';
     /* set plugin version */
@@ -47,11 +45,15 @@ class Content_GenericHTMLContent extends Module {
     /* load plugin libraries */
     $this->libs[] = 'Content_GenericHTMLContentItem.php.inc';
     $this->get_PHPLibs();
+    
     /* initialise plugin libraries */
     $this->content = new Content_GenericHTMLContentItem(0, $this);
+    
     /* initialise plugin variables */
-    $this->layouts = array('nobox'=>$this->get_translation('layout_nobox'),
-			   'largebox'=>$this->get_translation('layout_largebox'));
+    $this->layouts = array(
+        'nobox'     => $this->get_translation('layout_nobox'),
+		'largebox'  => $this->get_translation('layout_largebox')
+	);
   }
   
   /* overwrite Module methods */
@@ -59,65 +61,63 @@ class Content_GenericHTMLContent extends Module {
   /*
    * install module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function install ( ) {
-    if ( $this->content->install() )
-      return parent::install();
-    return false;
+  public function install ( ) {
+    return $this->content->install() and parent::install();
   }
   
   /*
    * uninstall module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function uninstall ( ) {
-    if ( $this->content->uninstall() )
-      return parent::uninstall();
-    return false;
+  public function uninstall ( ) {
+    return $this->content->uninstall() and parent::uninstall();
   }
   
   /*
    * check module installation
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function is_installed () {
+  public function is_installed () {
     return $this->content->is_installed();
   }
   
   /*
    * get available content id/name as list
+   * @return array
+   * @access public
    */
-  function get_contentList ( ) {
+  public function get_contentList () {
     return $this->content->get_nameList();
   }
-  
 
   /*
    * init module object when in admin mode
    * @return void
-   * @access private
+   * @access public
    */
-  function init_admin () {
+  public function init_admin() {
     global $camyks;
     /* page values */
-    $this->page_id = isset ( $_REQUEST['page_id'] ) ? $_REQUEST['page_id'] : 0;
-    $this->module_index = isset ( $_REQUEST['module_index'] ) ? $_REQUEST['module_index']: -1;
+    $this->page_id = isset ($_REQUEST['page_id']) ? (int)$_REQUEST['page_id'] : 0;
+    $this->module_index = isset ($_REQUEST['module_index']) ? (int)$_REQUEST['module_index']: -1;
  
     /* check right for this page */
-    if ( $this->check_right( $this->page_id ) === false ) {
+    if ($this->check_right($this->page_id) === false) {
       return $this->init_admin_pageAccessDenied();
     }
 
     /* get menu object */
-    $this->id = isset ( $_REQUEST['id'] ) ? $_REQUEST['id'] : 0;
+    $this->id = isset ($_REQUEST['id']) ? (int)$_REQUEST['id'] : 0;
     $this->content->id = $this->id;
+    
     /* get mode */
-    $this->mode = isset ( $_REQUEST['mode'] ) ? $_REQUEST['mode'] : 'modify';
+    $this->mode = isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'modify';
 
-    switch ( $this->mode ) {
+    switch ($this->mode) {
     case 'save' :
       /* mode == save */
       $this->init_admin_save();
@@ -132,30 +132,17 @@ class Content_GenericHTMLContent extends Module {
   }
 
   /*
-   * display module object when in admin part
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
-
-
-  /*
    * init module object in site mode
    * @param integer $content
    * @param array $params
    * @param integer $mindex
    * @return void
-   * @access private
+   * @access public
    */
-  function init_site ( $content=1, $params=array(), $mindex=null ) {
+  public function init_site ($content=1, $params=array(), $mindex=null) {
     global $camyks;
 
-    if ( !isset( $this->contents ) ) {
-      /* add editor styles */
-      $camyks->theme->get_editor_css();
-
+    if (!isset($this->contents)) {
       /* add email javascript library */
       $this->add_JSEngineFile('tool/mail.js');
 
@@ -177,9 +164,10 @@ class Content_GenericHTMLContent extends Module {
    * @return void
    * @access private
    */
-  function display_site ( $mindex=null ) {
+  public function display_site ($mindex=null) {
     /* get module content */
-    $this->content = $this->contents[ $mindex ];
+    $this->content = $this->contents[$mindex];
+    
     /* update layout */
     $this->selected_layout = 'site_'.$this->content->vars['layout'].'.html.inc';
     parent::display_site();
@@ -193,12 +181,15 @@ class Content_GenericHTMLContent extends Module {
    * @return void
    * @access private
    */
-  function init_admin_modify ( ) {
+  private function init_admin_modify( ) {
     global $camyks;
 
     /* check editor availability */
     if (!isset($camyks->inputs['TinyMCEv3']) and !isset($camyks->inputs['TinyMCE']))
       return $this->init_admin_missingPlugin('Input', 'TinyMCEv3');
+    /* check tabBuilder availability */
+    if (!isset($camyks->inputs['TabBuilder']))
+      return $this->init_admin_missingPlugin('Input', 'TabBuilder');
     
     /* load help files */
     $this->get_help();
@@ -207,7 +198,7 @@ class Content_GenericHTMLContent extends Module {
     $this->content->get();
     $this->content->get_fromItems();
 
-    /* get tiny_mce input */
+    /* get TinyMCE input */
     if (isset($camyks->inputs['TinyMCEv3'])) {
       $this->input = &$camyks->inputs['TinyMCEv3'];
     } elseif (isset($camyks->inputs['TinyMCE'])) {
@@ -224,51 +215,50 @@ class Content_GenericHTMLContent extends Module {
     /* initialise */
     $this->input->initialise();
 
-    /* get tab javascript */
-    $this->openTab = isset ( $_REQUEST['openTab'] ) ? $_REQUEST['openTab'] : 'general';
-    $this->tabObject = 'generichtmlcontent_tabObject';
-    $this->add_JSEngineFile ('object/ctab.js');
-    $this->add_JSScript($this->tabObject.' = new CTab();');
-    $this->add_JSScript($this->tabObject.'.init("general", "'
-			.$camyks->theme->parts['boxTabCSSStandart'].'","'
-			.$camyks->theme->parts['boxTabCSSSelected'].'","'
-			.$camyks->theme->parts['boxTabCSSRollover'].'");');
-    if ( $this->openTab != 'general' )
-      $this->add_JSLoadScript($this->tabObject.'.mouseclick(\''.$this->openTab.'\');');
-
+    /* get tabs */
+    $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+    $this->tabBuilder->add_tab(array(
+        'name'  => 'Properties',
+		'title' => $camyks->get_translation('properties')
+	));
+	
+    /* update tabs with languages */
+    foreach ( $camyks->get_confValue('editing_languages') as $l) {  
+        $this->tabBuilder->add_tab(array(
+            'name'  => $l,
+		    'title' => language_getIcon($l)
+	    ));
+    }
+	if ( $this->help != null )
+	    $this->tabBuilder->add_tab(array(
+	        'name'  => 'help',
+		    'title' => $camyks->get_translation('help')
+	    ));
+    $this->tabBuilder->initialise(array('default'=>'Properties'));
 
     /* create html form */
-    $this->form = new HTMLForm('generichtmlcontent_form',
-			       $camyks->get_adminlink( $this->name, array('mode'=>'save')),
-			       'POST');
-    $this->form->add_hidden ('page_id', $this->page_id );
-    $this->form->add_hidden ('module_index', $this->module_index);
-    $this->form->add_hidden ('id', $this->content->id );
-
-    /* tab list for tabs list */
-    $this->tabs = array(array('name'=>'general',
-			'title'=>$this->get_translation('tabgeneral')));
-    
-    /* update tabs with languages */
-    foreach ( $camyks->_conf['editing_languages'] as $l ) {
-      $this->tabs[] = array('name'=> $l,
-		      'title'=> language_getIcon($l));
-    }
-    
-    /* update tabs width help */
-    if ( $this->help != null ) {
-      $this->tabs[] = array('name'=> 'help',
-			    'title'=> $camyks->get_translation('help'));
-    }
+    $this->form = new HTMLForm(
+        'generichtmlcontent_form',
+		$this->get_adminlink(array('mode'=>'save')),
+		'POST'
+	);
+	$this->form->set_object($this->content);
     
     /* button list for buttons bars */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=>$camyks->get_adminLink( 'Admin_ContentPage',
-								 array('mode'=>'modify',
-								       'page_id'=> $this->page_id,
-								       'openTab'=>'content'))),
-			   array('title'=>$camyks->get_translation('valid'),
-				 'link'=>$this->form->get_HTMLSubmitLink()));
+    $this->buttons = array(
+        array(
+            'title' => $camyks->get_translation('back'),
+			'link'  => $camyks->get_adminLink('Admin_ContentPage', array(
+			    'mode'      => 'modify',
+				'page_id'   => $this->page_id,
+				'openTab'   => 'content'
+			))
+		),
+		array(
+		    'title' => $camyks->get_translation('valid'),
+			'link'  => $this->form->get_HTMLSubmitLink(),
+		)
+	);
   }
 
   /*
@@ -276,7 +266,7 @@ class Content_GenericHTMLContent extends Module {
    * @return void
    * @access private
    */
-  function init_admin_save ( ) {
+  private function init_admin_save() {
     global $camyks;
 
     /* disable admin menus */
@@ -284,20 +274,23 @@ class Content_GenericHTMLContent extends Module {
 
     /* save content */
     $this->content->get_fromHeader();
-    if ( $this->content->save() ) {
-      if ( $this->id == 0 and $this->page_id > 0 ) {
+    if ($this->content->save()) {
+      if ($this->id == 0 and $this->page_id > 0) {
 	    /* update page information with object id for new content */
-	    ContentPage::static_update_singleModuleContent( $this->page_id, $this->module_index, $this->content->id );
+	    $this->add_moduleContentToPage($this->page_id, $this->module_index, $this->content->id);
       }
       $this->text = $camyks->get_translation('savedone');
     } else {
       $this->text = $camyks->get_translation('savefailed');
     }
+    $lgs = $camyks->get_confValue('editing_languages');
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect ( 4, $this->get_adminLink(array('mode'=>'modify',
-							'id'=>$this->content->id, 
-							'openTab'=>$camyks->_conf['editing_languages'][0])));
+    $this->set_redirect($this->get_adminLink(array(
+        'mode'      => 'modify',
+		'id'        => $this->content->id, 
+		'openTab'   => $lgs[0],
+	)));
   }
 }
 ?>

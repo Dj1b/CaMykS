@@ -2,15 +2,12 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Engine / Tool library
- * Creation Date	: Jun 2005
- * Last Modif Date	: Jan 2002
- * History : 
- * * 05-06-xx : Initial File
- * * 08-01-07 : Rebuild theme methods with generic plugin methods
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Engine / Tool Library
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Mar 2018
  *
  * Theme static methods
  */
@@ -22,8 +19,12 @@
  * @return Theme object
  * @access public
  */
-function theme_get( $name, $path_type='camyks' ) {
-  return plugin_get( 'theme', $name, $path_type );
+function theme_get($name, $path_type=false) {
+  if ($path_type !== false)
+    return plugin_get('theme', $name, $path_type);
+  if (($p = plugin_get('theme', $name, 'camyks')) !== false)
+    return $p;
+  return plugin_get('theme', $name, 'site');
 }
 
 /*

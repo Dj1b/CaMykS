@@ -55,7 +55,7 @@ final class Tool_Installer extends Module {
    */
   public function init_admin () {
     global $camyks;
-    
+        
     /* get mode */
     $mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'welcome';
 
@@ -217,6 +217,7 @@ final class Tool_Installer extends Module {
     $this->checkPlugins();
     $this->checkDatabase();
     $this->checkSymLinks();
+    $this->checkAdminUser();
 
     /* build button list */
     $this->buttons = array(array(
@@ -224,7 +225,7 @@ final class Tool_Installer extends Module {
         'link'  => '?mode=configuration',
     ));
     
-    if ( $this->allowInstall ) {
+    if ($this->allowInstall) {
       $this->buttons[] = array(
         'title' => $this->get_translation('install'),
 		'link'  => '?mode=install',
@@ -368,7 +369,7 @@ final class Tool_Installer extends Module {
 	  'value'   => '',
 	);
 	
-    if ( isset($camyks->site_conf['url']) and $camyks->site_conf['url'] != '' ) {
+    if (isset($camyks->site_conf['url']) and $camyks->site_conf['url'] != '') {
       $message['value'] = $this->get_translation('ok');
       $message['color'] = $this->textColors['yes'];
     } else {
@@ -484,7 +485,7 @@ final class Tool_Installer extends Module {
     $this->summary[] = $message;
     
     /* close the database */
-    $camyks->db_conn->kill();
+    $camyks->db_conn->close();
   }
 
   /*
@@ -514,7 +515,7 @@ final class Tool_Installer extends Module {
 	);
     $myfile = realpath('.');
 
-    if (is_writable( $myfile ) ) {
+    if (is_writable($myfile)) {
       $message['value'] = $camyks->get_translation('yes');
       $message['color'] = $this->textColors['yes'];
     } else {
@@ -562,13 +563,13 @@ final class Tool_Installer extends Module {
     foreach ($camyks->neededModules as $p) {
       $message = array(
         'type'  => 'message',
-		'name'  => $camyks->get_translation('modulex', $p['name'])
+		'name'  => $camyks->get_translation('modulex', $p['name']),
 	  );
-      if ( !isset($camyks->modules[$p['name']])) {
+      if (!isset($camyks->modules[$p['name']])) {
 	    $message['value'] = $this->get_translation('notfound');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
-      } else if ( $camyks->modules[$p['name']]->version < $p['version'] ) {
+      } elseif ($camyks->modules[$p['name']]->version < $p['version']) {
 	    $message['value'] = $this->get_translation('oldversion');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
@@ -586,11 +587,11 @@ final class Tool_Installer extends Module {
 		'name'  => $camyks->get_translation('inputx', $p['name']),
 	  );
 
-      if ( !isset($camyks->inputs[$p['name']])) {
+      if (!isset($camyks->inputs[$p['name']])) {
 	    $message['value'] = $this->get_translation('notfound');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
-      } else if ( $camyks->inputs[$p['name']]->version < $p['version'] ) {
+      } elseif ($camyks->inputs[$p['name']]->version < $p['version']) {
 	    $message['value'] = $this->get_translation('oldversion');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
@@ -605,14 +606,14 @@ final class Tool_Installer extends Module {
     foreach ($camyks->neededThemes as $p) {
       $message = array(
         'type'  => 'message',
-		'name'  => $camyks->get_translation('themex', $p['name'])
+		'name'  => $camyks->get_translation('themex', $p['name']),
 	  );
 
-      if ( !isset($camyks->themes[$p['name']])) {
+      if (!isset($camyks->themes[$p['name']])) {
 	    $message['value'] = $this->get_translation('notfound');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
-      } else if ( $camyks->themes[$p['name']]->version < $p['version'] ) {
+      } elseif ($camyks->themes[$p['name']]->version < $p['version']) {
 	    $message['value'] = $this->get_translation('oldversion');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
@@ -627,14 +628,14 @@ final class Tool_Installer extends Module {
     foreach ($camyks->neededTemplates as $p) {
       $message = array(
         'type'  => 'message',
-		'name'  => $camyks->get_translation('templatex', $p['name'])
+		'name'  => $camyks->get_translation('templatex', $p['name']),
 	  );
 
-      if ( !isset($camyks->templates[$p['name']])) {
+      if (!isset($camyks->templates[$p['name']])) {
 	    $message['value'] = $this->get_translation('notfound');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
-      } else if ( $camyks->templates[$p['name']]->version < $p['version'] ) {
+      } elseif ($camyks->templates[$p['name']]->version < $p['version']) {
 	    $message['value'] = $this->get_translation('oldversion');
 	    $message['color'] = $this->textColors['no'];
 	    $this->allowInstall = false;
@@ -644,6 +645,48 @@ final class Tool_Installer extends Module {
       }
       $this->summary[] = $message;
     }
+  }
+  
+  /*
+   * check admin user
+   * @return void
+   * @access private
+   */
+  private function checkAdminUser() {
+    global $camyks;
+    
+    if (!$camyks->modules['Admin_User']) 
+      return;
+    
+    /* add title */
+    $this->summary[] = array(
+        'type'  => 'title',
+		'name'  => $this->get_translation('adminscheck'),
+		'value' => ''
+    );
+    
+    /* prepare message */
+    $message = array(
+        'type'  => 'message',
+		'name'  => $this->get_translation('masteraccount'),
+	  );
+    
+    $user = $camyks->modules['Admin_User']->user;
+    $user->login = $this->params->vars['webmaster_login'];
+    $user->change_pwd = 1;
+    $user->pwd = $this->params->vars['webmaster_password'];
+    $user->pwd_conf = $this->params->vars['webmaster_password'];
+    $user->email = $this->params->vars['webmaster_email'];
+    
+    if ($user->check_data()) {
+      $message['value'] = $camyks->get_translation('yes');
+	  $message['color'] = $this->textColors['yes'];
+    } else {
+      $message['value'] = $user->_libError;
+	  $message['color'] = $this->textColors['no'];
+      $this->allowInstall = false;
+    }
+    $this->summary[] = $message;
   }
 
   /*
@@ -655,7 +698,7 @@ final class Tool_Installer extends Module {
     global $camyks;
     
     /* get database connection */
-    $camyks->db_conn = new Database_connection (
+    $camyks->db_conn = new Database_connection(
         $camyks->site_conf['database_host'] != '' ? $camyks->site_conf['database_host']:$camyks->_conf['database_host'],
 		$camyks->site_conf['database_login'], 
 		$camyks->site_conf['database_pwd'],
@@ -715,7 +758,7 @@ final class Tool_Installer extends Module {
 	  );
 	  
 	  /* check if link already exists */
-	  if (file_exists( realpath('./'.$l )))
+	  if (file_exists(realpath('./'.$l)))
 	    continue;
 	  
 	  /* create link */
@@ -759,9 +802,9 @@ final class Tool_Installer extends Module {
       foreach ($camyks->neededModules as $p) {
 	    $message = array(
 	      'type'=>'message',
-	      'name'=>$this->get_translation('module_x_installed', $p['name'] )
+	      'name'=>$this->get_translation('module_x_installed', $p['name']),
 	    );
-	    if ($camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'module', 'camyks', 1)) {
+	    if ($camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'module', false, 1)) {
 	      $message['value'] = $camyks->get_translation('yes');
 	      $message['color'] = $this->textColors['yes'];
 	      $this->summary[] = $message;
@@ -778,10 +821,10 @@ final class Tool_Installer extends Module {
       foreach ($camyks->neededInputs as $p) {
 	    $message = array(
 	      'type'    => 'message',
-	      'name'    => $this->get_translation('input_x_installed', $p['name'])
+	      'name'    => $this->get_translation('input_x_installed', $p['name']),
 	    );
 	    
-	    if ($camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'input', 'camyks', 1)) {
+	    if ($camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'input', false, 1)) {
 	      $message['value'] = $camyks->get_translation('yes');
 	      $message['color'] = $this->textColors['yes'];
 	      $this->summary[] = $message;
@@ -798,10 +841,10 @@ final class Tool_Installer extends Module {
       foreach ($camyks->neededThemes as $p) {
 	    $message = array(
 	      'type'    => 'message',
-		  'name'    => $this->get_translation('theme_x_installed', $p['name'])
+		  'name'    => $this->get_translation('theme_x_installed', $p['name']),
 		);
 		
-	    if ($camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'theme', 'camyks', 1)) {
+	    if ($camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'theme', false, 1)) {
 	      $message['value'] = $camyks->get_translation('yes');
 	      $message['color'] = $this->textColors['yes'];
 	      $this->summary[] = $message;
@@ -821,7 +864,7 @@ final class Tool_Installer extends Module {
 		  'name'    => $this->get_translation('template_x_installed', $p['name']),
 		);
 		
-	    if ( $camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'template', 'camyks', 1) ) {
+	    if ( $camyks->modules['Admin_PluginManager']->install_plugin($p['name'], 'template', false, 1) ) {
 	      $message['value'] = $camyks->get_translation('yes');
 	      $message['color'] = $this->textColors['yes'];
 	      $this->summary[] = $message;

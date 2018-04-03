@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Mar 2018
  * 
  * Admin_User Module Admin Layout : edit user
 */
@@ -21,10 +21,10 @@ global $camyks;
 <?=$this->form->display_hiddens(); ?>
 <div id="itemProperties"  style="display:<?=$this->tabBuilder->get_tabDisplay('Properties')?>;" class="adminContentPanel">
   <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
-    <?php if ( $this->user->_libError != '' ) : ?>
+    <?php if ($this->user->_libError != '') : ?>
     <tr>
       <td class="error" colspan="2">
-	<?= $this->get_translation( $this->user->_libError ); ?>
+	    <?= $this->user->_libError; ?>
       </td>
     </tr>
     <?php endif; ?>

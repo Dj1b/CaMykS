@@ -1,16 +1,14 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
- * Object Type	    : Engine / Object Lib
- * Creation Date	: Mar 2007
- * Last Modif Date  : Nov 2017
- * History :
- * * 07-03-xx : Initial file
- *	
+ * Object Type      : Engine / Object Lib
+ * Creation Date    : Mar 2007
+ * Last Modif Date  : Mar 2018
+ *
  * Module Library Generic Object
  *
  * Use to manage localised ( or not ) content from database, files or text objects
@@ -53,8 +51,8 @@ class ModuleLibrary {
   var $id;
   /* exported vars */
   var $vars;
-  
-  /* 
+
+  /*
    * object constructor
    * @param integer $id
    * @param Object module
@@ -84,7 +82,7 @@ class ModuleLibrary {
 
   /* methods */
 
-  /* 
+  /*
    * finish library object initialization
    */
   function init_library() {
@@ -92,10 +90,10 @@ class ModuleLibrary {
     $this->_libDesc = 'Module:'.$this->_libParent->name.' Lib:'.$this->_libName;
   }
 
-  /* 
+  /*
    * insert a new item in object
    */
-  function add_newItem ( $name, $itemtype, $info0, $info1, $info2,  $default=null, $localised=false ) { 
+  function add_newItem ( $name, $itemtype, $info0, $info1, $info2,  $default=null, $localised=false ) {
    global $camyks;
     /* check item name */
     if ( isset ( $this->_libItems[$name] ) ) {
@@ -112,7 +110,7 @@ class ModuleLibrary {
       if ( $localised ) {
 	$this->_libItems[$name] = new MLDatabaseLocalizedItem($name,
 							      $info0,
-							      $info1, 
+							      $info1,
 							      $info2,
 							      $default);
 	$this->_libItemTypes['dbl'][] = $name;
@@ -132,13 +130,13 @@ class ModuleLibrary {
 							  $info0,
 							  $this->_libParent->plugin_var_path,
 							  $default);
-	$this->_libItemTypes['text'][] = $name; 
+	$this->_libItemTypes['text'][] = $name;
       } else {
 	$this->_libItems[$name] = new MLTextItem($name,
 						 $info0,
 						 $this->_libParent->plugin_var_path,
 						 $default);
-	$this->_libItemTypes['text'][] = $name; 
+	$this->_libItemTypes['text'][] = $name;
       }
       break;
     case 'file':
@@ -148,13 +146,13 @@ class ModuleLibrary {
 							  $info0,
 							  $this->_libParent->plugin_var_path,
 							  $this->_libParent->plugin_var_url);
-	$this->_libItemTypes['file'][] = $name; 
+	$this->_libItemTypes['file'][] = $name;
       } else {
 	$this->_libItems[$name] = new MLFileItem($name,
 						 $info0,
 						 $this->_libParent->plugin_var_path,
 						 $this->_libParent->plugin_var_url);
-	$this->_libItemTypes['file'][] = $name; 
+	$this->_libItemTypes['file'][] = $name;
       }
       break;
     case 'temp':
@@ -180,17 +178,17 @@ class ModuleLibrary {
     return true;
   }
 
-  /* 
+  /*
    * get object
    * param mixed $language
    */
   function get( $language=true ) {
     global $camyks;
-    
+
     /* new object */
     if ( $this->id == 0 )
       return $this->initialise();
-    
+
     if ( $language === false ) {
       /* get object database items only */
       return $this->get_databaseItems();
@@ -201,7 +199,7 @@ class ModuleLibrary {
 	    and $this->get_textItems()
 	    and $this->get_fileItems()
 	    and $this->get_tempItems();
-	  
+
     } else {
       if ( $language === true )
 	    $language = $camyks->site_conf['editing_languages'][0];
@@ -213,7 +211,7 @@ class ModuleLibrary {
     }
   }
 
-  /* 
+  /*
    * get object from header POST/GET values
    */
   function get_fromHeader($prefix='') {
@@ -221,23 +219,23 @@ class ModuleLibrary {
       $this->_libItems[$n]->get_fromHeader($prefix);
     }
   }
-  
-  /* 
+
+  /*
    * save object
    */
   function save( ) {
     /* check data validity */
     if ( $this->check_data() ) {
       return $this->save_databaseItems()
-        and $this->save_databaseLocalisedItems() 
-	    and $this->save_textItems() 
+        and $this->save_databaseLocalisedItems()
+	    and $this->save_textItems()
 	    and $this->save_fileItems();
     }
     return false;
   }
 
-  /* 
-   * delete object 
+  /*
+   * delete object
    */
   function delete( ) {
     return $this->delete_databaseItems()
@@ -274,7 +272,7 @@ class ModuleLibrary {
       and $this->uninstall_databaseLocalisedItems();
   }
 
-  /* 
+  /*
    * check if object is installed
    */
   function is_installed( ) {
@@ -283,7 +281,7 @@ class ModuleLibrary {
     }
     return $this->_libIsInstalled;
   }
-  
+
   /*
    * check if oject is marked, to be overwrite
    * @return boolean result
@@ -368,7 +366,7 @@ class ModuleLibrary {
       $sql .= $this->_libItems[$n]->get_databaseValue();
     }
     $sql .= ' );';
-    
+
     /* return result of sql query execution */
     if ($this->execute_DBQuery($sql, __LINE__)) {
       $this->id = $this->get_DBQueryGeneratedId();
@@ -376,7 +374,7 @@ class ModuleLibrary {
     }
     return false;
   }
-  
+
   /*
    * update object values to database
    */
@@ -405,7 +403,7 @@ class ModuleLibrary {
     if ( $this->_libWFVersion !== false ) {
       $sql .= ' and wf_version='.$this->_libWFVersion;
     }
-    
+
     /* return result of sql query */
     return $this->execute_DBQuery($sql, __LINE__);
   }
@@ -420,7 +418,7 @@ class ModuleLibrary {
     /* check workflow version if needed */
     if ( $this->_libWFVersion !== false ) {
       $sql .= ' and wf_version='.$this->_libWFVersion;
-    }    
+    }
     /* return result of execute sql query */
     return $this->execute_DBQuery($sql, __LINE__);
   }
@@ -442,45 +440,45 @@ class ModuleLibrary {
    */
   function install_databaseItems( ) {
     global $camyks;
-    
+
     /* initialise field list */
     $fields = array();
-    
+
     /* prepare data fields */
     foreach ($this->_libItemTypes['db'] as $n) {
       $fields[] = $this->_libItems[$n]->get_databaseDescription();
     }
-    
+
     /* execute table creation */
     return $this->create_DBTable($this->_libSQLTable, $fields, $camyks->get_mysqlencodingvalue());
   }
-  
+
   /*
    * delete table from database
    */
   function uninstall_databaseItems() {
     global $camyks;
-    
+
     /* build sql query */
     $sql = 'drop table '.$this->_libSQLTable;
-    
+
     /* return result of sql query execution */
     return $this->execute_DBQuery($sql, __LINE__);
   }
-  
+
   /*
    * check if table is installed in database and cache value
    */
   function check_databaseInstallation() {
     global $camyks;
-    
+
     /* check database presence in plugin manager module */
     if (isset($camyks->modules['Admin_PluginManager']))
       return $camyks->modules['Admin_PluginManager']->check_tableExists($this->_libSQLTable);
-    
+
     /* load table list */
     $tl = $camyks->db_conn->get_tableList();
-    
+
     /* check if main table is in installed table list */
     return in_array($this->_libSQLTable, $tl);
   }
@@ -502,13 +500,13 @@ class ModuleLibrary {
     /* add where conditions to sql query  */
     if (trim($where) != '') {
       $sql .= ' where '. $this->check_SQLCondition($where);
-    }    
+    }
 
     /* check order to sql query */
     if ( is_string($order) ) {
       $order = array($order=>$sens);
     }
-    
+
     if (is_array($order)) {
       /* add multi order to sql query */
       $osql = array();
@@ -524,7 +522,7 @@ class ModuleLibrary {
       if (count($osql) > 0 )
 	    $sql .= ' order by '.implode(', ', $osql);
     }
-    
+
     /* add limit to sql query */
     if ( $limit >=0 and $count > 0 ) {
       $sql .= ' limit '.$limit.', '.$count;
@@ -537,16 +535,16 @@ class ModuleLibrary {
     return $sql;
   }
 
-  /* 
+  /*
    * update specific items values from object to database
    * param array[string] $updateditems
    */
-  function update_databaseSpecificItems( $updatedItems ) {
+  function update_databaseSpecificItems($updatedItems) {
     global $camyks;
     $isfirst = true;
     /* build sql query */
     $sql = 'update `'.$this->_libSQLTable.'`';
-    foreach ( $updatedItems as $n ) {
+    foreach ($updatedItems as $n) {
       if ( in_array( $n, $this->_libItemTypes['db'] ) ) {
 	$item = $this->_libItems[$n] ;
 	if ( $isfirst ) {
@@ -563,13 +561,13 @@ class ModuleLibrary {
     if ( $this->_libWFVersion !== false ) {
       $sql .= ' and wf_version='.$this->_libWFVersion;
     }
-                  
+
     /* return result of sql query */
     return $this->execute_DBQuery($sql, __LINE__);
   }
 
   /*********************** LOCALISED DATABASE I/O **************/
-  /* 
+  /*
    * get database localised items
    */
   function get_databaseLocalisedItems ( ) {
@@ -594,7 +592,7 @@ class ModuleLibrary {
       }
       return true;
     }
-    return false; 
+    return false;
   }
 
   /*
@@ -614,7 +612,7 @@ class ModuleLibrary {
       if ( $this->_libWFVersion !== false ) {
 	    $sql .= ', `objectwf_version`';
       }
-      
+
       $sql .= ', `language`';
       foreach ( $this->_libItemTypes['dbl'] as $n ) {
 	    $sql .= ', `'.$n.'`';
@@ -645,7 +643,7 @@ class ModuleLibrary {
     return false;
   }
 
-  /* 
+  /*
    * delete object localised items from database
    */
   function delete_databaseLocalisedItems( ) {
@@ -656,18 +654,18 @@ class ModuleLibrary {
 
     /* build sql query */
     $sql = 'delete from '.$this->_libSQLLocaleTable.' where objectid='.$this->id;
-    
+
     /* check workflow version if needed */
     if ( $this->_libWFVersion !== false ) {
       $sql .= ' and objectwf_version='.$this->_libWFVersion;
     }
-    
+
     /* return result of execute sql query */
     return $this->execute_DBQuery($sql, __LINE__ );
   }
 
 
-  /* 
+  /*
    * reset objects localised items from database
    */
   function reset_databaseLocalisedItems( ) {
@@ -687,23 +685,23 @@ class ModuleLibrary {
    */
   function install_databaseLocalisedItems( ) {
     global $camyks;
-    
+
     /* check if object add some databaselocalised item */
     if (count($this->_libItemTypes['dbl']) == 0)
       return true;
 
     /* initialise field list */
     $fields = array();
-    
+
     /* prepare engine fields */
     $fields[] = array('name'=>'objectid', 'type'=>'int', 'desc1'=>'bigint unsigned', 'desc2'=>'', 'default'=>'');
-    $fields[] = array('name'=>'language', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>'3', 'default'=>''); 
-    
+    $fields[] = array('name'=>'language', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>'3', 'default'=>'');
+
     /* prepare data fields */
     foreach ($this->_libItemTypes['dbl'] as $n) {
       $fields[] = $this->_libItems[$n]->get_databaseDescription();
     }
-    
+
     /* execute table creation */
     return $this->create_DBTable($this->_libSQLLocaleTable, $fields, $camyks->get_mysqlencodingvalue());
 
@@ -744,7 +742,7 @@ class ModuleLibrary {
   /*********************** MIXED DATABASE I/O ******************/
 
   /*
-   * 
+   *
    */
   function get_allDatabaseItems($language) {
     global $camyks;
@@ -774,7 +772,7 @@ class ModuleLibrary {
   }
 
   /*
-   * return sql query for database items object list gathering 
+   * return sql query for database items object list gathering
    */
   function get_objectList_allDatabaseItemsSQLQuery ( $language, $where='', $limit=-1, $count=-1, $order='id', $sens ) {
     /* build sql query */
@@ -786,13 +784,13 @@ class ModuleLibrary {
     /* add where conditions to sql query  */
     if ( $where != '' ) {
       $sql .= ' and( '. $this->check_SQLCondition($where).' )';
-    }    
+    }
 
     /* add order to sql query */
     if (is_string($order)) {
       $order = array($order=>$sens);
     }
-    
+
     if (is_array($order)) {
       /* add multi order to sql query */
       $osql = array();
@@ -825,7 +823,7 @@ class ModuleLibrary {
 
   /*********************** TEXT ITEMS I/O **********************/
 
-  /* 
+  /*
    * get text files path
    */
   function get_textItems( $language=null ) {
@@ -862,7 +860,7 @@ class ModuleLibrary {
     foreach ( $this->_libItemTypes['text'] as $text ) {
       $this->_libItems[$text]->reset( );
     }
-    return true;    
+    return true;
   }
 
   /*
@@ -876,7 +874,7 @@ class ModuleLibrary {
   }
 
   /*********************** FILE ITEMS I/O *********************/
-  
+
   /* get files url */
   function get_fileItems( $language=null ){
     foreach ( $this->_libItemTypes['file'] as $file ) {
@@ -916,9 +914,9 @@ class ModuleLibrary {
     }
     return true;
   }
-  
+
   /*********************** TEMP ITEMS I/O *********************/
-  
+
   /* get temp item */
   function get_tempItems() {
     foreach ( $this->_libItemTypes['temp'] as $temp ) {
@@ -928,7 +926,7 @@ class ModuleLibrary {
   }
 
   /*********************** DATA I/O ****************************/
-  
+
   /*
    * get each item value from an array
    * @param array $data
@@ -937,7 +935,7 @@ class ModuleLibrary {
    * @return void
    * @access public
    */
-  function get_fromArray($data, $match=null, $onlyAvailable=false ) {
+  function get_fromArray($data, $match=null, $onlyAvailable=false) {
     if ($match == null) {
       foreach ($this->_libItems as $name => &$item) {
         if ($onlyAvailable == false or isset($data[$name]))
@@ -950,11 +948,11 @@ class ModuleLibrary {
       if ($onlyAvailable == false or isset($data[$name]))
         $this->_libItems[$n]->get_fromArray($data);
   }
-  
+
   /*
    * export vars to be easily usable
    */
-  function get_fromItems ( ) {
+  function get_fromItems() {
     $vars = array();
     foreach ( $this->_libItems as $item ) {
       $vars = array_merge($vars, $item->get_exportedValue());
@@ -963,15 +961,14 @@ class ModuleLibrary {
   }
 
   /*
-   * check content data validity ( to be overwrite )
+   * check content data validity (to be overwrite)
    */
-  function check_data( ) {
+  function check_data() {
     return true;
   }
-  
-  
+
   /*********************** SESSION I/O *************************/
-  
+
   /*
    * load object data from session
    * @param string $name
@@ -981,10 +978,10 @@ class ModuleLibrary {
    */
   function load_fromSession($name='ObjectData', $onlyAvailable=false) {
     global $camyks;
-    
+
     $this->get_fromArray($camyks->get_sessionValue($name, array()), null, $onlyAvailable);
   }
-  
+
   /*
    * save object data in session
    * @param string $name
@@ -993,10 +990,10 @@ class ModuleLibrary {
    */
   function save_toSession($name='ObjectData') {
     global $camyks;
-    
+
     $camyks->set_sessionValue($name, $this->vars);
   }
-  
+
   /*
    * delete object from session
    * @param string $name
@@ -1005,7 +1002,7 @@ class ModuleLibrary {
    */
   function delete_fromSession($name='ObjectData') {
     global $camyks;
-    
+
     $camyks->set_sessionValue($name, array());
   }
 
@@ -1052,7 +1049,7 @@ class ModuleLibrary {
    * @access public
    */
   function load_varFile ( $file ) {
-    return $this->_libParent->load_varFile( $file ); 
+    return $this->_libParent->load_varFile( $file );
   }
 
 
@@ -1088,12 +1085,12 @@ class ModuleLibrary {
     return preg_replace( '#\bid\b#', 'm.id', $where );
   }
 
-  
+
   /******************** LIST & COUNT METHODS **********************/
   /* return object list : get the most optimised sub method */
   function get_objectList( $language=false, $where='', $limit=-1, $count=-1, $order='id', $sens='' ) {
     global $camyks;
-                
+
     if ( $language === false ) {
       return $this->get_quickObjectList ( $where, $limit, $count, $order, $sens );
     } else if ( $language === true and count ( $this->_libItemTypes['dbl'] ) == 0 ) {
@@ -1108,7 +1105,7 @@ class ModuleLibrary {
       return $this->get_localisedObjectList ( $language, $where, $limit, $count, $order, $sens );
     }
   }
-  
+
   /*
    * return object id list
    * @param mixed $language
@@ -1120,10 +1117,10 @@ class ModuleLibrary {
    */
   function get_objectIdList($language=false, $where='', $orderBy='', $orderWay='asc') {
     global $camyks;
-    
+
     /* init list */
     $ids = array();
-    
+
     /* build sql query */
     $sql = 'select id';
     $sql .= ' from '.$this->_libSQLTable.' as m';
@@ -1131,18 +1128,18 @@ class ModuleLibrary {
       $sql .= ', '.$this->_libSQLLocaleTable.' as l';
     if ( $where != '' )
       $sql .= ' where '.$where;
-    
+
     /* execute sql query */
     if ($this->execute_DBQuery($sql, __LINE__ )) {
       /* get data from database */
       while ( $data = $this->get_DBQueryDataLine())
       	$ids[] = $data['id'];
     }
-    
+
     /* add sorting condition */
     if ( $orderBy != '')
       $sql .= ' order by '.$orderBy.' '.$orderWay;
-    
+
     /* return result */
     return $ids;
   }
@@ -1166,22 +1163,22 @@ class ModuleLibrary {
     if ( $element == '' ) {
       $element = 'name';
     }
-    
+
     /* check if element exists in main information items */
     if ( in_array( $element, $this->_libItemTypes['db'] ) ) {
       /* build sql query */
       $sql = 'select id, '.$element;
       $sql .= ' from '.$this->_libSQLTable;
-      
+
       /* add where conditions to sql query  */
       if ( $where != '' ) {
         $sql .= ' where '. $where;
       }
-      
+
       /* add sorting condition */
       if ( $orderBy != '')
         $sql .= ' order by '.$orderBy.' '.$orderWay;
-            
+
       /* execute sql query */
       if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
         /* get data from database */
@@ -1200,62 +1197,62 @@ class ModuleLibrary {
       $sql .= ' from '.$this->_libSQLTable.' as m, '.$this->_libSQLLocaleTable.' as l';
       $sql .= ' where language="'.$language.'"';
       $sql .= ' and m.id = l.objectid';
-      
+
       /* add where conditions to sql query  */
       if ( $where != '' ) {
         $sql .= ' and '.$this->check_SQLCondition($where, true);
       }
-      
+
       /* add sorting condition */
       if ( $orderBy != '') {
         if ($orderBy == 'id') $orderBy = 'm.id';
         $sql .= ' order by '.$orderBy.' '.$orderWay;
       }
-                    
+
       /* execute sql query */
       if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
         /* get data from database */
         while ( $data = $this->get_DBQueryDataLine()) {
           $this->_libItems[$element]->get_fromArray($data);
 	  		$items[$data['objectid']] = $this->_libItems[$element]->value[$language];
-        }  
+        }
       }
     }
     return $items;
   }
-  
+
   /* return object count */
   function get_objectCount ( $where='', $language=false ) {
     global $camyks;
     /* build sql query */
     $sql = 'select count(m.id) as cnt';
     $sql .= ' from '.$this->_libSQLTable.' as m';
-    
+
     /* check language */
     if (count($this->_libItemTypes['dbl']) > 0 and $language !== false) {
       $sql .= ', '. $this->_libSQLLocaleTable.' as l';
-      
+
       $l = 'l.language="'.$language.'" and m.id = l.objectid';
-      
+
       $where = $this->check_SQLCondition($where);
-      
+
       if ($where == '')
         $where = $l;
       else
         $where .= ' and '.$l;
     }
-    
+
     /* add where conditions to sql query  */
     if ( $where != '' ) {
       $sql .= ' where '. $where;
-    } 
+    }
 
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
       /* get data from database */
       if ( $data = $this->get_DBQueryDataLine()) {
 	    return $data['cnt'];
-      }  
+      }
     }
     return 0;
   }
@@ -1264,13 +1261,13 @@ class ModuleLibrary {
   function get_quickObjectList ( $where='', $limit=-1, $count=-1, $order='id', $sens='' ) {
     global $camyks;
     $items = array();
-  
+
     /* build sql query */
     $sql = $this->get_objectList_databaseItemsSQLQuery( $where, $limit, $count, $order, $sens );
-    
+
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
-     
+
       /* get data from database */
       while ( $data = $this->get_DBQueryDataLine()) {
 	    $item = $this->get_newObject($data['id']);
@@ -1280,9 +1277,9 @@ class ModuleLibrary {
 	    $item->get_tempItems( );
 	    $item->get_fromItems();
 	    $items[$data['id']] = $item;
-      }  
-    } 
-    
+      }
+    }
+
     return $items;
   }
 
@@ -1290,10 +1287,10 @@ class ModuleLibrary {
   function get_unlocalisedObjectList ( $where='', $limit=-1, $count=-1, $order='id', $sens='' ) {
     global $camyks;
     $items = array();
-  
+
     /* build sql query */
     $sql = $this->get_objectList_databaseItemsSQLQuery( $where, $limit, $count, $order, $sens );
-        
+
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
       /* get data from database */
@@ -1305,7 +1302,7 @@ class ModuleLibrary {
     $item->get_tempItems( );
 	$item->get_fromItems();
 	$items[$data['id']] = $item;
-      }  
+      }
     }
     return $items;
   }
@@ -1313,12 +1310,12 @@ class ModuleLibrary {
   /* get_objectList sub methods : return complete objects */
   function get_completeObjectList ( $where='', $limit=-1, $count=-1, $order='id', $sens='' ) {
     global $camyks;
-       
+
     $items = array();
     $ids = array();
     /* build sql query */
     $sql = $this->get_objectList_databaseItemsSQLQuery( $where, $limit, $count, $order, $sens );
-        
+
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
       /* get data from database */
@@ -1326,12 +1323,12 @@ class ModuleLibrary {
 	$item = $this->get_newObject($data['id']);
 	$ids[] = $data['id'];
 	$item->get_fromArray( $data, $this->_libItemTypes['db'] );
-	if ( $item->get_textItems() 
+	if ( $item->get_textItems()
 	     and $item->get_fileItems()
 	     and $item->get_tempItems()) {
 	  $items[$data['id']] = $item;
 	}
-      }  
+      }
     }
 
     /* no item in list */
@@ -1359,9 +1356,9 @@ class ModuleLibrary {
   function get_localisedObjectList ( $language=null, $where='', $limit=-1, $count=-1, $order='id', $sens='' ) {
     global $camyks;
     $items = array();
-    
+
     /* check language value */
-    if ( !isset ( $language ) ) 
+    if ( !isset ( $language ) )
        return $items;
 
     if ( count($this->_libItemTypes['dbl']) == 0 ) {
@@ -1375,21 +1372,21 @@ class ModuleLibrary {
       $match = array_merge($this->_libItemTypes['db'], $this->_libItemTypes['dbl']);
       $objectid = 'objectid';
     }
-           
+
     /* execute sql query */
     if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
       /* get data from database */
       while ( $data = $this->get_DBQueryDataLine()) {
 	$item = $this->get_newObject($data[$objectid]);
 	$item->get_fromArray( $data, $match );
-	if ( $item->get_textItems( $language ) 
+	if ( $item->get_textItems( $language )
 	     and $item->get_fileItems($language)
 	     and $item->get_tempItems()) {
 	  $item->get_fromItems();
-	  
+
 	  $items[$data[$objectid]] = $item;
 	}
-      }  
+      }
     }
     return $items;
   }
@@ -1409,25 +1406,25 @@ class ModuleLibrary {
     if ( $element == '' ) {
       $element = 'name';
     }
-    
+
     /* check if element exists in main information items */
     if ( in_array( $element, $this->_libItemTypes['db'] ) ) {
       /* build sql query */
       $sql = 'select '.$element;
       $sql .= ' from '.$this->_libSQLTable.' as m';
-      
+
       /* add where conditions to sql query  */
       if ( $where != '' ) {
         $sql .= ' where '. $where;
       }
-      
+
       /* add group condition */
       $sql .= ' group by '.$element;
-      
+
       /* add sorting condition */
       $sql .= ' order by '.$element;
-          
-      
+
+
       /* execute sql query */
       if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
         /* get data from database */
@@ -1443,18 +1440,18 @@ class ModuleLibrary {
       $sql = 'select '.$element;
       $sql .= ' from '.$this->_libSQLLocaleTable.' as l';
       $sql .= ' where language="'.$camyks->current_language.'"';
-      
+
       /* add where conditions to sql query  */
       if ( $where != '' ) {
         $sql .= ' and '.$this->check_SQLCondition($where);
-      } 
-      
+      }
+
       /* add group condition */
       $sql .= ' group by '.$element;
-      
+
       /* add sorting condition */
-      $sql .= ' order by '.$element;     
-     
+      $sql .= ' order by '.$element;
+
       /* execute sql query */
       if ( $this->execute_DBQuery($sql, __LINE__ ) ) {
         /* get data from database */
@@ -1468,9 +1465,9 @@ class ModuleLibrary {
     }
     return $items;
   }
-  
+
   /* shortcuts to parent module methods */
-  
+
   /*
    * return localised string
    * @param string $str
@@ -1481,9 +1478,9 @@ class ModuleLibrary {
   function get_translation( $str, $args=null ) {
     return $this->_libParent->get_translation( $str, $args );
   }
-  
+
   /* shortcuts to database methods */
-  
+
   /*
    * execute database query
    * @param string $sql
@@ -1498,7 +1495,7 @@ class ModuleLibrary {
     if ($file == '') $file = $this->_libParentFile;
     return $this->_libDBConnector->execute_query($sql, $resName) or $camyks->log_sqlerror($this, $sql, $file, $line);
   }
-  
+
   /*
    * return id generated by last query
    * @param string $resName
@@ -1507,8 +1504,8 @@ class ModuleLibrary {
    */
   function get_DBQueryGeneratedId($resName=null) {
     return $this->_libDBConnector->get_queryGeneratedId($resName);
-  } 
-  
+  }
+
   /*
    * return next query data line
    * @param string $resName
@@ -1518,7 +1515,7 @@ class ModuleLibrary {
   function get_DBQueryDataLine($resName=null) {
     return $this->_libDBConnector->get_queryDataLine($resName);
   }
-  
+
   /*
    * return next query data line with numeric index
    * @param string $resName
@@ -1528,7 +1525,7 @@ class ModuleLibrary {
   function get_DBQueryNumDataLine($resName=null) {
     return $this->_libDBConnector->get_queryNumDataLine($resName);
   }
-  
+
   /*
    * return latest query error
    * @param string $resName
@@ -1538,7 +1535,7 @@ class ModuleLibrary {
   function get_DBQueryError($resName=null) {
     return $this->_libDBConnector->get_queryError($resName);
   }
-  
+
   /*
    * return latest query affected rows
    * @param string $resName
@@ -1548,7 +1545,7 @@ class ModuleLibrary {
   function get_DBQueryAffectedRows($resName=null) {
     return $this->_libDBConnector->get_queryAffectedRows($resName);
   }
-  
+
   /*
    * return espaced string
    * @param string $string
@@ -1558,7 +1555,7 @@ class ModuleLibrary {
   function escape_string($string) {
     return $this->_libDBConnector->escape_string($string);
   }
-  
+
   /*
    * create a table in database
    * @param string $name

@@ -277,7 +277,7 @@ class Content_GenericPageRedirector extends Module {
     if ($this->pritem->save()) {
       /* update page information with object id for new content */
       if ($this->id == 0 and $this->page_id > 0)
-	    $this->add_moduleContentToPage($this->page_id, $this->module_index, $this->pritem->id );
+	    $this->add_moduleContentToPage($this->page_id, $this->module_index, $this->pritem->id);
       $this->text = $camyks->get_translation('savedone');
     } else {
       $this->text = $camyks->get_translation('savefailed');

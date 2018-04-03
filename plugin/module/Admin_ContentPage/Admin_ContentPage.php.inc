@@ -7,7 +7,7 @@
  * Object Version	: 1.0
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2005
- * Last Modif Date  : Feb 2018
+ * Last Modif Date  : Mar 2018
  * History :
  * * 05-06-xx : Initial files
  * * 08-02-19 : Add model support
@@ -28,27 +28,32 @@
  * - rights propagation
  */
 
-class Admin_ContentPage extends Module {
+final class Admin_ContentPage extends Module {
   /* variables */
 
   /* page object */
-  var $page;
+  public $page;
 
   /* mode : finder / modify / save / delete / moveup / movedown */
-  var $mode;
-  var $available_modes;
+  public $mode;
+  public $available_modes;
 
   /* modify / save vars */
-  var $page_id;
+  public $page_id;
   /* finder vars */
-  var $htmlcols;
-  var $opened;
+  public $htmlcols;
+  public $opened;
+  
+  /* configuration */
+  public $config;
    
   /*
    * constructor
    * @param string $path_type
+   * @return void
+   * @access public
    */
-  function Admin_ContentPage ($path_type) {
+  public function __construct($path_type) {
     global $camyks;
     /* get Module generic init */
     parent::Module('Admin_ContentPage', $path_type);
@@ -86,151 +91,61 @@ class Admin_ContentPage extends Module {
   /*
    * install module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function install () {
-    return ( $this->page->install() and $this->config->install()
-      and parent::install());
+  public function install() {
+    return ($this->page->install() and $this->config->install() and parent::install());
   }
 
   /*
    * uninstall module
    * @return boolean success
-   * @access private
+   * @access public
    */
-  function uninstall ( ) {
+  public function uninstall() {
     return false;
   }
 
   /*
    * check module installation
    * @return boolean result
-   * @access private
+   * @access public
    */
-  function is_installed( ) {
+  public function is_installed( ) {
     return $this->page->is_installed();
   }
   
-  /*
-   * initialise modulee object in admin mode
-   * @return void
-   * @access private
-   */
-  function init_admin () {
-    global $camyks;
-
-    /* check read right */
-    if ( $this->check_right(0) === false )
-      return $this->init_admin_accessDenied();
-      
-    /* check dependencies */
-    if(!isset($camyks->inputs['TabBuilder']))
-      return $this->init_admin_missingPlugin('Input', 'TabBuilder');
-    
-    $this->available_modes = array('finder','modify', 'save', 'delete', 'moveup', 'movedown', 'move', 'edit_config', 'save_config');
-    $this->add_styleFile('contentpage.css');
-    /* get mode to display from header params */
-    if ( isset($_REQUEST['mode'] ) ) {
-      $this->mode = ( in_array($_REQUEST['mode'], $this->available_modes ) ? $_REQUEST['mode'] : 'finder');
-    } else {
-      $this->mode = 'finder';
-    }
-    
-    /* mode == modif or mod == save */
-    if ( !in_array($this->mode, array('finder', 'edit_config', 'save_config'))) {
-      $this->page_id = ( isset ( $_REQUEST['page_id'] ) ? $_REQUEST['page_id'] : -1 );
-      if ( ! ($this->page_id >= 0) ) {
-	    /* no page id given, switch to finder mode */
-	    $this->mode = 'finder';
-      }
-    }
-    
-    switch( $this->mode ) {
-    case 'finder':
-      /* mode == finder */
-      /* get default opened pages */
-      $this->opened = isset ( $_REQUEST['opened'] ) ? $_REQUEST['opened'] : '';
-      $this->allowedition = $this->check_right(1);
-      $this->language = $camyks->current_language;
-      $this->init_admin_finder();
-      break;
-    case 'modify':
-      /* mode  == modify */
-      $this->init_admin_modify();
-      break;
-    case 'save':
-      /* mode == save */
-      $this->init_admin_save();
-      break;
-    case 'delete':
-      /* mode == delete */
-      $this->init_admin_delete();
-      break;
-    case 'moveup':
-      /* mode == moveup */
-      $this->init_admin_moveup();
-      break;
-    case 'movedown':
-      /* mode == movedown */
-      $this->init_admin_movedown();
-      break;
-    case 'move':
-      /* mode == move */
-      $this->init_admin_move();
-      break;
-    case 'edit_config':
-      /* mode == edit_config */
-      $this->init_admin_edit_config();
-      break;
-    case 'save_config':
-      /* mode == save_config */
-      $this->init_admin_save_config();
-      break;
-    }
-    parent::init_admin();
-  }
-  
-  /*
-   * display module object in admin mode
-   * @return void
-   * @access private
-   */
-  function display_admin ( ) {
-    parent::display_admin();
-  }
-
-
   /*
    * return statistic titles
    * @param array $pages
    * @param string $type
    * @return array
-   * @access private
+   * @access public
    */
-  function get_adminStatisticsValueTitles ( $pages, $type=null ) {
-    switch ( $type ) {
-    case 'sitepage':
-    case 'firstpage':
-      $lg = $this->get_adminEditionLanguage();
-      $page_objects = $this->page->static_get_listedPages(implode(',', $pages), $lg);
-      foreach ( $pages as $page ) {
-	if ( isset ( $page_objects[$page] ) ) {
-	  $pages[$page] = $page_objects[$page]->title;
-	}
-      }
-      return $pages;
-      break;
-    default:
-      return $pages;
+  public function get_adminStatisticsValueTitles($pages, $type=null) {
+    switch ($type) {
+      case 'sitepage':
+      case 'firstpage':
+        $lg = $this->get_adminEditionLanguage();
+        $page_objects = $this->page->static_get_listedPages(implode(',', $pages), $lg);
+        foreach ($pages as $page) {
+	      if (isset ( $page_objects[$page])) {
+	        $pages[$page] = $page_objects[$page]->title;
+	      }
+        }
+        return $pages;
+        break;
+      default:
+        return $pages;
     }
   }
   
   /* 
    * set module rights 
    * @return void
-   * @access private
+   * @access public
    */
-  function get_rights() {
+  public function get_rights() {
     global $camyks;
     $this->rights[0] = array( 'name'=>'read',
 			      'title'=> $camyks->get_translation('read'),
@@ -259,7 +174,6 @@ class Admin_ContentPage extends Module {
 				'title'=> $this->get_translation('rights_putinline'),
 				'default'=> false);
     }
-    
     $this->rights[8] = array('name'=>'configuration',
         'title'=>$this->get_translation('rights_configuration'),
         'default'=>false);
@@ -268,13 +182,15 @@ class Admin_ContentPage extends Module {
   /*
    * build admin menu object
    * @return array
-   * @access private
+   * @access public
    */
-  function get_adminEngineSpecificMenus() {
-    /* return menu in finder mode and when admin has rights */
-    if ( $this->mode == 'finder' and $this->check_right(5)===true ) {
-      return array(array('name'=>'pagesmanager',
-			 'title'=>$this->get_translation('title')));
+  public function get_adminEngineSpecificMenus() {
+    /* return menu in finder mode and when admin is allowed */
+    if ($this->mode == 'finder' and $this->check_right(5)===true) {
+      return array(array(
+        'name'  => 'pagesmanager',
+		'title' => $this->get_translation('title'),
+	  ));
     }
     /* return empty menu in other modes */
     return array();
@@ -283,58 +199,146 @@ class Admin_ContentPage extends Module {
   /*
    * build admin menu items
    * @return array
-   * @access private
+   * @access public
    */
-  function get_adminEngineSpecificMenuItems() {
+  public function get_adminEngineSpecificMenuItems() {
     global $camyks;
-    /* return menu items in finder mode and when admin has rights */
-    if ( $this->mode == 'finder' and $this->check_right(5)===true ) {
+    /* return menu items in finder mode and when admin is allowed */
+    if ($this->mode == 'finder' and $this->check_right(5)===true) {
       $items = array();
-      $items[] = array('name'=>'newmodel',
-		       'title'=>$this->get_translation('newmodel'),
-		       'icon'=>$this->theme->get_pictURL('plus', 12, 'std'),
-		       'menu'=>'pagesmanager',
-		       'url'=>$camyks->get_adminLink($this->name,
-						     array('mode'=>'modify',
-							   'type'=>'model',
-							   'page_id'=>0)));
+      $items[] = array(
+        'name'  => 'newmodel',
+		'title' => $this->get_translation('newmodel'),
+		'icon'  => $this->theme->get_pictURL('plus', 12, 'std'),
+		'menu'  => 'pagesmanager',
+		'url'   => $camyks->get_adminLink(
+		    $this->name,
+			array(
+			    'mode'=>'modify',
+			    'type'=>'model',
+				'page_id'=>0
+			)
+		)
+	  );
       /* load models */
       $models = $this->page->get_modelsList();
-      if ( count($models) > 0 ) {
-	$items[] = array('name'=>'separator',
-			 'title'=>'----',
-			 'menu'=>'pagesmanager');
-	foreach ( $models as $model ) {
-	  $items[] = array('name'=>'model'.$model->id,
-			   'title'=>$this->get_translation('modelobject', $model->name),
-			   'icon'=>$this->theme->get_pictURL('file', 12, 'std'),
-			   'menu'=>'pagesmanager',
-			   'url'=>'javascript:contentPage_openModelActions('.$model->id.');');
-	}
+      if (count($models) > 0) {
+	    $items[] = array(
+	        'name'  => 'separator',
+			'title' => '----',
+			'menu'  => 'pagesmanager');
+	    foreach ($models as $model) {
+	        $items[] = array(
+	            'name'  => 'model'.$model->id,
+			    'title' => $this->get_translation('modelobject', $model->name),
+			    'icon'  => $this->theme->get_pictURL('file', 12, 'std'),
+			    'menu'  => 'pagesmanager',
+			    'url'   => 'javascript:contentPage_openModelActions('.$model->id.');'
+			);
+	    }
       }
       return $items;
     }
     /* return empty menu in other modes */
     return array();
   }
+  
+  /*
+   * initialise module object in admin mode
+   * @return void
+   * @access public
+   */
+  public function init_admin() {
+    global $camyks;
+
+    /* check read right */
+    if ( $this->check_right(0) === false )
+      return $this->init_admin_accessDenied();
+      
+    /* check dependencies */
+    if(!isset($camyks->inputs['TabBuilder']))
+      return $this->init_admin_missingPlugin('Input', 'TabBuilder');
+    
+    $this->available_modes = array('finder','modify', 'save', 'delete', 'moveup', 'movedown', 'move', 'edit_config', 'save_config');
+    $this->add_styleFile('contentpage.css');
+    /* get mode to display from header params */
+    if ( isset($_REQUEST['mode'] ) ) {
+      $this->mode = ( in_array($_REQUEST['mode'], $this->available_modes ) ? $_REQUEST['mode'] : 'finder');
+    } else {
+      $this->mode = 'finder';
+    }
+    
+    /* mode == modif or mod == save */
+    if ( !in_array($this->mode, array('finder', 'edit_config', 'save_config'))) {
+      $this->page_id = ( isset ( $_REQUEST['page_id'] ) ? $_REQUEST['page_id'] : -1 );
+      if ( ! ($this->page_id >= 0) ) {
+	    /* no page id given, switch to finder mode */
+	    $this->mode = 'finder';
+      }
+    }
+    
+    switch($this->mode) {
+      case 'finder':
+        /* mode == finder */
+        /* get default opened pages */
+        $this->opened = isset ( $_REQUEST['opened'] ) ? $_REQUEST['opened'] : '';
+        $this->allowedition = $this->check_right(1);
+        $this->language = $camyks->current_language;
+        $this->init_admin_finder();
+        break;
+      case 'modify':
+        /* mode  == modify */
+        $this->init_admin_modify();
+        break;
+      case 'save':
+        /* mode == save */
+        $this->init_admin_save();
+        break;
+      case 'delete':
+        /* mode == delete */
+        $this->init_admin_delete();
+        break;
+      case 'moveup':
+        /* mode == moveup */
+        $this->init_admin_moveup();
+        break;
+      case 'movedown':
+        /* mode == movedown */
+        $this->init_admin_movedown();
+        break;
+      case 'move':
+        /* mode == move */
+        $this->init_admin_move();
+        break;
+      case 'edit_config':
+         /* mode == edit_config */
+         $this->init_admin_edit_config();
+        break;
+      case 'save_config':
+        /* mode == save_config */
+        $this->init_admin_save_config();
+        break;
+    }
+    parent::init_admin();
+  }
 
   /*
    * execute module object as a request 
    * @return void
-   * @access private
+   * @access public
    */
-  function execute_request() {
+  public function execute_request() {
     global $camyks;
 
     /* initialise camyks */
     $camyks->get_adminInit();
     
     /* check admin session value  */
-    if ( $camyks->get_sessionValue('admin_user') == null ) {
+    if ($camyks->get_sessionValue('admin_user') == null) {
       die();
     }
-    $camyks->adminUser = new AdminUser( $camyks->get_sessionValue('admin_user') );
-    if ( !$camyks->adminUser->get_fromDatabase() ) {
+    $camyks->adminUser = new AdminUser($camyks->get_sessionValue('admin_user'));
+    if (!$camyks->adminUser->get_fromDatabase()) {
       die();
     }
 
@@ -381,14 +385,14 @@ class Admin_ContentPage extends Module {
     $camyks->HTMLPage->write_HTMLContent();
   }
 
-  /* specific methods */
+  /* specific mode methods */
 
   /*
    * initialise module object in admin/finder mode
    * @return void
    * @access private
    */
-  function init_admin_finder ( ) {
+  private function init_admin_finder() {
     global $camyks;
     
     $this->initialise_finderMode();
@@ -396,8 +400,8 @@ class Admin_ContentPage extends Module {
     /* get tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
     $this->tabBuilder->add_tab(array(
-        'name'=>'finder',
-		'title'=>$this->get_translation('pages'),
+        'name'  => 'finder',
+		'title' => $this->get_translation('pages'),
     ));
     
     /* load configuration data */
@@ -414,15 +418,18 @@ class Admin_ContentPage extends Module {
     /* get help pages */
     $this->get_help();
     if ( $this->help != null )
-	 	 $this->tabBuilder->add_tab(array('name'=>'help',
-				     'title'=>$camyks->get_translation('help')));
-
-    $this->tabBuilder->initialise(array('default'=>'pages'));
+	 	 $this->tabBuilder->add_tab(array(
+	 	    'name'  => 'help',
+			'title' => $camyks->get_translation('help')
+		));
+    $this->tabBuilder->initialise(array('default'=>'finder'));
   
 
     /* button list for buttons bar */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=>$camyks->get_adminLink()));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $camyks->get_adminLink()
+	));
 
     /* update layout */
     $this->selected_layout = 'finder.html.inc';
@@ -433,7 +440,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_modify ( ) {
+  private function init_admin_modify() {
     global $camyks;
 
     /* get help pages */
@@ -592,9 +599,9 @@ class Admin_ContentPage extends Module {
 
       /* add mode mode value */
       if ( $this->check_right(6) ) {
-	$this->add_JSScript('acpe.add_param("modelMode", "admin");');
+	    $this->add_JSScript('acpe.add_param("modelMode", "admin");');
       } else {	
-	$this->add_JSScript('acpe.add_param("modelMode", "user");');
+	    $this->add_JSScript('acpe.add_param("modelMode", "user");');
       }
       
       /* add block theme change value */
@@ -604,48 +611,48 @@ class Admin_ContentPage extends Module {
       $this->add_JSScript('acpe.add_param("moduleContents", {});');
       $this->add_JSScript('acpe.add_param("moduleEditable", {});');
       foreach ( $this->contents as $c => $v ) {
-	if ( $v == -1 ) {
-	  $this->add_JSScript('acpe.add_arrayParam("moduleContents", "'.$c.'", -1);');
-	  $this->add_JSScript('acpe.add_arrayParam("moduleEditable", "'.$c.'", 0);');
-	} else {
-	  $s = 'acpe.add_arrayParam("moduleContents", "'.$c.'", {';
-	  if ( count( $v ) > 0 ) {
-	    foreach ( $v as $id => $name ) {
-	      $s .= ''. $id .':"'.$name.'",';
+	    if ( $v == -1 ) {
+	        $this->add_JSScript('acpe.add_arrayParam("moduleContents", "'.$c.'", -1);');
+	        $this->add_JSScript('acpe.add_arrayParam("moduleEditable", "'.$c.'", 0);');
+	    } else {
+	        $s = 'acpe.add_arrayParam("moduleContents", "'.$c.'", {';
+	        if (count($v) > 0) {
+	            foreach ( $v as $id => $name ) {
+	                $s .= ''. $id .':"'.$name.'",';
+	            }
+	            $s = substr ( $s, 0, strlen($s)-1);
+	        }
+	        $s .= '});';
+	        $this->add_JSScript($s);
+	        $this->add_JSScript('acpe.add_arrayParam("moduleEditable", "'.$c.'", '.($camyks->modules[$c]->is_editable === false?0 : $camyks->modules[$c]->is_editable).');'); 
 	    }
-	    $s = substr ( $s, 0, strlen($s)-1);
-	  }
-	  $s .= '});';
-	  $this->add_JSScript( $s );
-	  $this->add_JSScript('acpe.add_arrayParam("moduleEditable", "'.$c.'", '.($camyks->modules[$c]->is_editable === false?0 : $camyks->modules[$c]->is_editable).');'); 
-	}
       }
       
       /* add selected content values */
       $this->add_JSScript('acpe.add_param("selectedContents", new Array());');
       for( $i=0; $i< $this->page->maxmodules; $i++ ) {
-	$c = isset($this->page->modules[$i]['content'])?$this->page->modules[$i]['content']:'';
-	$this->add_JSScript('acpe.add_arrayParam("selectedContents", '.$i.', "'.$c.'");');
+	    $c = isset($this->page->modules[$i]['content'])?$this->page->modules[$i]['content']:'';
+	    $this->add_JSScript('acpe.add_arrayParam("selectedContents", '.$i.', "'.$c.'");');
       }
 
       /* add model values */
       $this->add_JSScript('acpe.add_param("models", new Array());');
-      foreach($this->models as $model){
-	$s = 'acpe.add_arrayParam("models", '.$model->id.', {';
-	$s .= '"id":'.$model->id.', "name":"'.$model->name.'",';
-	$s .= '"template":"'.$model->template.'", ';
-	$s .= '"theme":"'.$model->theme.'", ';
+      foreach($this->models as $model) {
+	    $s = 'acpe.add_arrayParam("models", '.$model->id.', {';
+	    $s .= '"id":'.$model->id.', "name":"'.$model->name.'",';
+	    $s .= '"template":"'.$model->template.'", ';
+	    $s .= '"theme":"'.$model->theme.'", ';
 
-	if ( $model->template == '' ) {
-	  $model->template = $camyks->get_confValue('site_default_template');
-	}
-	for ($i = 0; $i< $camyks->templates[$model->template]->modules; $i++){
-	  $s .= '"m'.$i.'_name":"'.$model->modules[$i]['name'].'",';
-	  $s .= '"m'.$i.'_content":"'.$model->modules[$i]['content'].'",';
-	  $s .= '"m'.$i.'_theme":"'.$model->modules[$i]['theme'].'",';
-	}
-	$s .= '});';
-	$this->add_JSScript($s);
+      if ( $model->template == '' ) {
+	    $model->template = $camyks->get_confValue('site_default_template');
+	  }
+	  for ($i = 0; $i< $camyks->templates[$model->template]->modules; $i++) {
+	    $s .= '"m'.$i.'_name":"'.$model->modules[$i]['name'].'",';
+	    $s .= '"m'.$i.'_content":"'.$model->modules[$i]['content'].'",';
+	    $s .= '"m'.$i.'_theme":"'.$model->modules[$i]['theme'].'",';
+	  }
+	  $s .= '});';
+	  $this->add_JSScript($s);
       }
       
       /* add locales */
@@ -654,11 +661,15 @@ class Admin_ContentPage extends Module {
     }
     
     /* button list for buttons bars */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=>$camyks->get_adminLink( $this->name, array('opened'=> $this->page->id))));
+    $this->buttons = array(array(
+        'title' => $camyks->get_translation('back'),
+		'link'  => $camyks->get_adminLink( $this->name, array('opened'=> $this->page->id))
+	));
     if ( $this->allow_content_edition or $this->allow_rights_edition ) {
-      $this->buttons[] = array('title'=>$camyks->get_translation('valid'),
-			       'link'=>'javascript:acpe.valid_page();');
+      $this->buttons[] = array(
+        'title' => $camyks->get_translation('valid'),
+		'link'  => 'javascript:acpe.valid_page();'
+	  );
     }
     
     /* update layout */
@@ -670,7 +681,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_save ( ) {
+  private function init_admin_save() {
     global $camyks;
 
     /* disable admin menus */
@@ -691,26 +702,22 @@ class Admin_ContentPage extends Module {
     $this->page->get_fromHeader();
 
     /* save page */
-    if ( $this->page->save() ) {
+    if ($this->page->save()) {
       $this->text = $this->get_translation('save', array( "'".$this->page->name."'") );
       if ( $_REQUEST['next'] == '' ) {
-	$this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $camyks->get_adminLink($this->name, array('mode'=>'modify', 
-									   'page_id'=> $this->page->id )));
+	    $this->set_redirect ($this->get_adminLink(array('mode'=>'modify', 'page_id'=> $this->page->id )));
       } else {
-	$n = $_REQUEST['next'];
-	$m = $this->page->modules[$n]['name'];
-	$id = $this->page->modules[$n]['content'];
-	$this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $camyks->get_adminLink($m, array('id'=>$id, 
-								  'page_id'=> $this->page->id, 
-								  'module_index' => $n )));
+	    $n = $_REQUEST['next'];
+	    $m = $this->page->modules[$n]['name'];
+	    $id = $this->page->modules[$n]['content'];
+	    $this->set_redirect ($camyks->get_adminLink($m, array('id'=>$id, 'page_id'=> $this->page->id, 'module_index' => $n )));
       }
     } else {
-      $this->text = $this->get_translation('savefailed', array( "'".$this->page->name."'") );
-      if ( $this->page->id == 0 ) {
-	$this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $camyks->get_adminLink($m ));
+      $this->text = $this->get_translation('savefailed', array( "'".$this->page->name."'"));
+      if ($this->page->id == 0) {
+	    $this->set_redirect($camyks->get_adminLink($m));
       } else {
-	$this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode'=>'modify', 
-									   'page_id'=> $this->page->id )));
+	    $this->set_redirect($this->get_adminLink(array('mode'=>'modify', 'page_id'=> $this->page->id)));
       }
     }
     
@@ -724,7 +731,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_delete ( ) {
+  private function init_admin_delete() {
     global $camyks;
 
     /* disable admin menus */
@@ -733,13 +740,13 @@ class Admin_ContentPage extends Module {
     /* get page */
     $this->page->id = $this->page_id;
     $this->page->get();
-    if ( $this->page->has_children() ) {
-      $this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('opened'=>$this->page->parent_id)));
-      $this->text = $this->get_translation( 'deletepagefailed_haschildren', array( "'".$this->page->name."'") );
+    if ($this->page->has_children()) {
+      $this->text = $this->get_translation('deletepagefailed_haschildren', array("'".$this->page->name."'"));
+      $this->set_redirect($this->get_adminLink(array('opened'=>$this->page->parent_id)));
     } else {
       $this->page->delete_fromDatabase();
-      $this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('opened'=>$this->page->parent_id)));
-      $this->text = $this->get_translation( 'deletepage', array( "'".$this->page->name."'") );
+      $this->text = $this->get_translation('deletepage', array( "'".$this->page->name."'"));
+      $this->set_redirect($this->get_adminLink(array('opened'=>$this->page->parent_id)));
     }
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
@@ -751,25 +758,25 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_move() {
+  private function init_admin_move() {
     global $camyks;
 
     /* disable admin menus */
     $this->disable_adminEngineMenus();
     
     /* get page */
-    if ( isset( $_REQUEST['parent_id'] ) ) {
-      $newParentId = $_REQUEST['parent_id'];
+    if (isset($_REQUEST['parent_id'])) {
+      $newParentId = (int)$_REQUEST['parent_id'];
       $this->page->id = $this->page_id;
       $this->page->get();
-      if ( $this->page->update_move($newParentId) ) {
-	    $this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('opened'=>$this->page->id)));
-	    $this->text = $this->get_translation('pagemoved', array( "'".$this->page->name."'") );
+      if ($this->page->update_move($newParentId)) {
+	    $this->text = $this->get_translation('pagemoved', array( "'".$this->page->name."'"));
+	    $this->set_redirect($this->get_adminLink(array('opened'=>$this->page->id)));
 	    return;
       }
     }
-    $this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('opened'=>$this->page->parent_id)));
-    $this->text = $this->get_translation('modifypageerror', array( "'".$this->page->name."'") );
+    $this->set_redirect($this->get_adminLink(array('opened'=>$this->page->parent_id)));
+    $this->text = $this->get_translation('modifypageerror', array( "'".$this->page->name."'"));
     
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
@@ -781,7 +788,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_moveup() {
+  private function init_admin_moveup() {
     global $camyks;
 
     /* disable admin menus */
@@ -790,13 +797,13 @@ class Admin_ContentPage extends Module {
     /* get page */
     $this->page->id = $this->page_id;
     $this->page->get();
-    if ( $this->page->update_moveUp() ) {
+    if ($this->page->update_moveUp()) {
       $this->set_redirect (0, $this->get_adminLink(array('opened'=>$this->page->parent_id)));
       $this->selected_layout = 'admin_empty.html.inc';
       $this->selected_layout_location = 'camyks';
     } else {
-      $this->set_redirect ($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('opened'=>$this->page->parent_id)));
-      $this->text = $this->get_translation( 'modifypageerror', array( "'".$this->page->name."'") );
+      $this->set_redirect ($this->get_adminLink(array('opened'=>$this->page->parent_id)));
+      $this->text = $this->get_translation('modifypageerror', array("'".$this->page->name."'"));
       /* update layout */
       $this->selected_layout = 'admin_message.html.inc';
       $this->selected_layout_location = 'camyks';
@@ -808,7 +815,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_movedown() {
+  private function init_admin_movedown() {
     global $camyks;
 
     /* disable admin menus */
@@ -817,13 +824,13 @@ class Admin_ContentPage extends Module {
     /* get page */
     $this->page->id = $this->page_id;
     $this->page->get();
-    if ( $this->page->update_moveDown() ) {
-      $this->set_redirect ( 0, $this->get_adminLink(array('opened'=>$this->page->parent_id)));
+    if ($this->page->update_moveDown()) {
+      $this->set_redirect(0, $this->get_adminLink(array('opened'=>$this->page->parent_id)));
       $this->selected_layout = 'admin_empty.html.inc';
       $this->selected_layout_location = 'camyks';
     } else {
-      $this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('opened'=>$this->page->parent_id)));
-      $this->text = $this->get_translation( 'modifypageerror', array( "'".$this->page->name."'") );
+      $this->text = $this->get_translation('modifypageerror', array("'".$this->page->name."'"));
+      $this->set_redirect ($this->get_adminLink(array('opened'=>$this->page->parent_id)));
       /* update layout */
       $this->selected_layout = 'admin_message.html.inc';
       $this->selected_layout_location = 'camyks';
@@ -835,11 +842,11 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_edit_config() {
+  private function init_admin_edit_config() {
     global $camyks;
     
     /* check edit product rights */
-    if ( $this->check_right(8) === false )
+    if ($this->check_right(8) === false)
       return $this->init_admin_actionNotAllowed();
     
     $this->get_help();
@@ -847,8 +854,8 @@ class Admin_ContentPage extends Module {
     /* get tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
     $this->tabBuilder->add_tab(array(
-        'name'=>'Configuration',
-		'title'=>$this->get_translation('configuration'),
+        'name'  => 'Configuration',
+		'title' => $this->get_translation('configuration'),
     ));
 	if ( $this->help != null )
 	 	$this->tabBuilder->add_tab(array(
@@ -859,9 +866,11 @@ class Admin_ContentPage extends Module {
     $this->tabBuilder->initialise(array('default'=>'Configuration'));
     
     /* load config form */
-    $this->editform = new HTMLForm('edit_config',
-				   $this->get_adminlink(array('mode'=>'save_config')),
-				   'POST');
+    $this->editform = new HTMLForm(
+        'edit_config',
+		$this->get_adminlink(array('mode'=>'save_config')),
+		'POST'
+	);
 	
 	$this->initialise_configEdition($this->editform);
 	$this->isConfig = false;
@@ -878,8 +887,8 @@ class Admin_ContentPage extends Module {
 	        'title' => $camyks->get_translation('back'),
 	    ),
 		array(
-		    'link'  =>$this->editform->get_HTMLSubmitLink(),
-			'title' =>$camyks->get_translation('valid')
+		    'link'  => $this->editform->get_HTMLSubmitLink(),
+			'title' => $camyks->get_translation('valid'),
 		),
 	);
     
@@ -892,11 +901,11 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function init_admin_save_config() {
+  private function init_admin_save_config() {
     global $camyks;
     
     /* check user rights */
-    if ( $this->check_right(8) === false )
+    if ($this->check_right(8) === false)
       return $this->init_admin_actionNotAllowed();
 
     /* disable admin menu */
@@ -904,7 +913,7 @@ class Admin_ContentPage extends Module {
     
     /* save object */
     $this->config->get_fromHeader();
-    if ( $this->config->save() ) {
+    if ($this->config->save()) {
       $this->text = $this->get_translation('config_saved');
     } else {
       $this->text = $this->get_translation('config_notsaved');
@@ -913,7 +922,7 @@ class Admin_ContentPage extends Module {
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
-    $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('openTab'=>'Configuration')));
+    $this->set_redirect($this->get_adminLink(array('openTab'=>'Configuration')));
   }
 
   /*
@@ -921,7 +930,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function get_adminPages ( ) {
+  private function get_adminPages() {
     $this->pages = $this->page->get_adminPagesTree();
   }
 
@@ -932,9 +941,9 @@ class Admin_ContentPage extends Module {
    * @return array
    * @access public
    */
-  function get_sitePages( $lg=null, $where='' ) {
-    if ( $this->pages == null )
-      $this->pages = $this->page->get_pagesList( $lg, $where );
+  public function get_sitePages($lg=null, $where='') {
+    if ($this->pages == null)
+      $this->pages = $this->page->get_pagesList($lg, $where);
     return $this->pages;
   }
 
@@ -946,19 +955,19 @@ class Admin_ContentPage extends Module {
    * @return string
    * @access public
    */
-  function get_sitePageLink( $page='', $lg='', $params=array() ) {
+  public function get_sitePageLink($page='', $lg='', $params=array()) {
   
     /* no page, no link */
     if ( $page == '' )
       return '';
             
     /* check with loaded pages */
-    if ( isset( $this->pages[$page] ) )
+    if (isset($this->pages[$page]))
       return $this->pages[$page]->get_siteLink($params, $lg);
           
     /* load page as single one */
     $p = new ContentPage( CAMYKS_MODE_SITE, 0);
-    if ($p->get( $page ))
+    if ($p->get($page))
 	  return $p->get_siteLink($params, $lg);
 
     /* page found */
@@ -966,19 +975,42 @@ class Admin_ContentPage extends Module {
   }
 
   /*
+   * return key page link
+   * @param string $key
+   * @param string $lg
+   * @param array $param
+   * @return string
+   * @access public
+   */
+  public function get_siteKeyPageLink($key='', $lg='', $params=array()) {
+  
+    /* no page, no link */
+    if ($key == '')
+      return '';
+    
+    /* load page from key */
+    $page = $this->get_keyPage($key);
+    if ($page == false)
+      return '';
+    
+    /* return site page link */
+    return $this->get_sitePageLink($page, $lg, $params);
+  }
+
+  /*
    * return homepage link
    * @return string
    * @access public
    */
-  function get_siteHomePageLink() {
+  public function get_siteHomePageLink() {
     
     /* check if home page is defined */
     if ($this->siteHomePage > 0)
       return $this->pages[$this->siteHomePage]->get_siteLink();
   
     /* load home page from db */
-    $p = new ContentPage( CAMYKS_MODE_SITE, 0);
-    if ( $p->get_homeFromDatabase() ) {
+    $p = new ContentPage(CAMYKS_MODE_SITE, 0);
+    if ($p->get_homeFromDatabase()) {
       return $p->get_siteLink();
     }
     return '';
@@ -989,7 +1021,7 @@ class Admin_ContentPage extends Module {
    * @return string
    * @access public
    */
-  function set_siteHomePage($pId) {
+  public function set_siteHomePage($pId) {
     if ($this->siteHomePage > 0)
       return;
     $this->siteHomePage = $pId;
@@ -1000,9 +1032,9 @@ class Admin_ContentPage extends Module {
    * @return ContentPage Object
    * @access public
    */
-  function get_newPage() {
+  public function get_newPage() {
     global $camyks;
-    return new ContentPage( $camyks->mode, 0 );
+    return new ContentPage($camyks->mode, 0);
   }
 
   /*
@@ -1011,8 +1043,8 @@ class Admin_ContentPage extends Module {
    * @return boolean result
    * @access private
    */
-  function check_pageRights ( $page ) {
-    if ( $page == 0 ) {
+  private function check_pageRights($page) {
+    if ($page == 0) {
       return $this->check_right(2);
     } else {
       return $this->pages[$page]->check_rights();
@@ -1024,15 +1056,11 @@ class Admin_ContentPage extends Module {
    * @return string
    * @access private
    */
-  function get_sitePagesHtmlCols ( ) {
+  private function get_sitePagesHtmlCols() {
     $this->htmlcols = array();
     $this->pages[0]->_level = 0;
     $this->pages[0]->_path = 'r';
-    $this->build_sitePagesHtmlCols ( $this->pages[0]->children,
-				     0,
-				     'r',
-				     true,
-				     0);
+    $this->build_sitePagesHtmlCols ($this->pages[0]->children, 0, 'r', true, 0);
   }
 
   /*
@@ -1045,15 +1073,15 @@ class Admin_ContentPage extends Module {
    * @return string
    * @access private
    */
-  function build_sitePagesHtmlCols ( $children, $level, $root, $visible, $parent_id ) {
+  private function build_sitePagesHtmlCols ($children, $level, $root, $visible, $parent_id) {
     global $camyks;
 
     /* build html */
     $h = '<div style="display:'.($visible?'block':'none').';"';
     $h .= ' id="'.$root.'"';
     $h .= ' class="contentpagemain">';
-    $h .= html_getTableHeader( 0, 0, 'width:100%;');
-    foreach ( $children as $child ) {
+    $h .= html_getTableHeader(0, 0, 'width:100%;');
+    foreach ($children as $child) {
       /* child item shortcut */
       $item = &$this->pages[$child];
       $item->_level = $level+1;
@@ -1074,39 +1102,39 @@ class Admin_ContentPage extends Module {
       $h .= '<tr>';
       /* display homepage pict */
       $h .= '<td class="contentpagecolhp" align="center">';
-      if ( $item->homepage == 1 ) {
-	$h .= '<img src="'.$this->get_fileURL('img/home.gif').'"';
-	$h .= ' width="12" height="12" border="0" alt="';
-	$h .= $this->get_translation('is_homepage');
-	$h .= '" />';
+      if ($item->homepage == 1) {
+	    $h .= '<img src="'.$this->get_fileURL('img/home.gif').'"';
+	    $h .= ' width="12" height="12" border="0" alt="';
+	    $h .= $this->get_translation('is_homepage');
+	    $h .= '" />';
       } else {
-	$h .= '<img src="'.$this->get_fileURL('img/page.gif').'"';
-	$h .= ' width="9" height="12" border="0" alt="';
-	$h .= $this->get_translation('is_page');
-	$h .= '" />';
+	    $h .= '<img src="'.$this->get_fileURL('img/page.gif').'"';
+	    $h .= ' width="9" height="12" border="0" alt="';
+	    $h .= $this->get_translation('is_page');
+	    $h .= '" />';
       }
       $h .= '</td>';
       /* display page title */
       $h .= '<td class="contentpagecoltxt'.($item->active==0?'dis':'').'" title="'.$item->name.'">';
       $h .= substr($item->name, 0, 18);
       $h .= '</td>';
-      if ( $this->allowedition ) {
-	/* display menu button */
-	$h .= '<td class="contentpagecolimg" align="center">';
-	$h .= '<img id="pageActionsButton'.$item->id.'" src="'.$this->get_fileURL('img/menu_off.gif').'"';
-	$h .= ' width="10" height="10" alt="" border="0" style="cursor:pointer;"';
-	$h .= ' onmouseover="this.src=\''.$this->get_fileURL('img/menu_on.gif').'\';"';
-	$h .= ' onmouseout="this.src=\''.$this->get_fileURL('img/menu_off.gif').'\';';
-	$h .= ' contentPage_closePageActions();"';
-	$h .= ' onclick="contentPage_openPageActions('.$item->id.')" />';
-	$h .= '</td>';
+      if ($this->allowedition) {
+	    /* display menu button */
+	    $h .= '<td class="contentpagecolimg" align="center">';
+	    $h .= '<img id="pageActionsButton'.$item->id.'" src="'.$this->get_fileURL('img/menu_off.gif').'"';
+	    $h .= ' width="10" height="10" alt="" border="0" style="cursor:pointer;"';
+	    $h .= ' onmouseover="this.src=\''.$this->get_fileURL('img/menu_on.gif').'\';"';
+	    $h .= ' onmouseout="this.src=\''.$this->get_fileURL('img/menu_off.gif').'\';';
+	    $h .= ' contentPage_closePageActions();"';
+	    $h .= ' onclick="contentPage_openPageActions('.$item->id.')" />';
+	    $h .= '</td>';
       }
       $h .= '</tr>';
       $h .= html_getTableFooter();
       $h .= '</td>';
       $h .= '</tr>';
     }
-    if ( $this->allowedition and $this->check_pageRights( $parent_id ) ) {
+    if ($this->allowedition and $this->check_pageRights($parent_id)) {
       /* "add new page" box */
       $h .= '<tr>';
       $h .= '<td class="contentpageadd"';
@@ -1131,21 +1159,21 @@ class Admin_ContentPage extends Module {
       $h .= ' onclick="contentPage_openColumnActions('.$parent_id.')" />';
       $h .= '</td>';
       $h .= '</tr>';
-      $h .= html_getTableFooter ( );
+      $h .= html_getTableFooter();
       $h .= '</td>';
       $h .= '</tr>';
     }
-    $h .= html_getTableFooter ( );
+    $h .= html_getTableFooter();
     $h .= '</div>';
-    if ( ! isset ( $this->htmlcols[$level] )  ) 
+    if (!isset($this->htmlcols[$level])) 
       $this->htmlcols[$level] = ''; 
     $this->htmlcols[$level] .= $h;
     $h = '';
     
     /* start building children  */
-    foreach ( $children as $child ) {
+    foreach ($children as $child) {
       $item = &$this->pages[$child];
-	$this->build_sitePagesHtmlCols ( $item->children, $level+1, $root.'-'.$item->id, false, $item->id );
+	$this->build_sitePagesHtmlCols($item->children, $level+1, $root.'-'.$item->id, false, $item->id);
     }
   }
 
@@ -1154,15 +1182,15 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function get_openedPages ( ) {
-    $t = explode('-', $this->opened );
+  private function get_openedPages() {
+    $t = explode('-', $this->opened);
     $this->opened = array();
     if ( count($t) == 0 )
       return;
     $r = $t[0];
-    for ( $i=1; $i<count($t); $i++ ) {
+    for ($i=1; $i<count($t); $i++) {
       $r .= '-'.$t[$i];
-      $this->opened[] = array( 'level'=> $i, 'item'=>$r );
+      $this->opened[] = array('level'=> $i, 'item'=>$r);
     }
   }
 
@@ -1171,7 +1199,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function execute_request_get_headerValues() {
+  private function execute_request_get_headerValues() {
     global $camyks;
     $this->request_mode = isset($_REQUEST['pc_mode'])?$_REQUEST['pc_mode']:'page_id';
     $this->opened = isset($_REQUEST['pc_page'])?$_REQUEST['pc_page']:'';
@@ -1190,21 +1218,21 @@ class Admin_ContentPage extends Module {
    * @return array
    * @access public
    */
-  function get_adminSearchEngineResultsInfos($lib='', $ids=array()) {
+  public function get_adminSearchEngineResultsInfos($lib='', $ids=array()) {
     global $camyks;
 
     switch ($lib) {
     case 'ContentPage':
-      if ( count($ids) > 1 )
-	$w = 'admin_contentpage.id IN('.implode(',', array_keys($ids)).')';
-        else
-	  $w = 'admin_contentpage.id='.implode(',', array_keys($ids));
+      if (count($ids) > 1)
+	    $w = 'admin_contentpage.id IN('.implode(',', array_keys($ids)).')';
+      else
+	    $w = 'admin_contentpage.id='.implode(',', array_keys($ids));
       $objs = $this->get_sitePages(null, $w);
       $type = $this->get_translation('pagetitle');
       $results = array();
       foreach ($objs as $pid => $obj) {
-	if ( $pid > 0 )
-	  $results[$pid] = array('title'=>$obj->title, 'type'=>$type, 'link'=>$obj->get_siteLink());
+	    if ($pid > 0)
+	      $results[$pid] = array('title'=>$obj->title, 'type'=>$type, 'link'=>$obj->get_siteLink());
       }
       return $results;
       break;
@@ -1219,7 +1247,7 @@ class Admin_ContentPage extends Module {
    * @return mixed
    * @access public
    */
-  function get_configValue($param, $default=false) {
+  public function get_configValue($param, $default=false) {
     return $this->config->get_value($param, $default);
   }
 
@@ -1229,8 +1257,19 @@ class Admin_ContentPage extends Module {
    * @return mixed
    * @access public
    */
-  function get_keyPage($key) {
+  public function get_keyPage($key) {
     return $this->config->get_keyPage($key);
+  }
+  
+  /*
+   * update key page in config
+   * @param string $key
+   * @param mixed $value
+   * @return void
+   * @access public
+   */
+  public function set_keyPage($key, $value=null) {
+    return $this->config->set_keyPage($key, $value);
   }
 
   /*
@@ -1239,7 +1278,7 @@ class Admin_ContentPage extends Module {
    * @return mixed
    * @access public
    */
-  function get_navigationRoot($key) {
+  public function get_navigationRoot($key) {
     return $this->config->get_navigationRoot($key);
   }
 
@@ -1248,7 +1287,7 @@ class Admin_ContentPage extends Module {
    * @return void
    * @access private
    */
-  function initialise_finderMode() {
+  private function initialise_finderMode() {
     global $camyks;
     
     /* add javascript for "finder" mode */
@@ -1300,7 +1339,7 @@ class Admin_ContentPage extends Module {
 					 'icon'=> $this->theme->get_pictURL('valid', 12, 'std'));
     
     /* add structure modification */   
-    if ( $this->check_right(4) ) {
+    if ($this->check_right(4)) {
       /* separator */
       $this->pageActionsMenu[] = array('title'=>'----',
 				       'url'=>'');
@@ -1333,7 +1372,7 @@ class Admin_ContentPage extends Module {
 					   'icon'=> $this->theme->get_pictURL('plus', 12, 'std')));
     
     
-    if ( $this->check_right(5) ) {
+    if ($this->check_right(5)) {
       $this->modelActionsMenu=array(/* edit model */
 				    array('title'=>$this->get_translation('editmodel'),
 					  'url'=>'javascript:contentPage_modelActionEdit()',
@@ -1376,7 +1415,7 @@ class Admin_ContentPage extends Module {
     }
     
     /* add javascript onLoad script to automaticaly open item at startup */
-    foreach ( $this->opened as $o ) {
+    foreach ($this->opened as $o) {
       $this->add_JSLoadScript( 'cpt.openitem('.$o['level'].', \''.$o['item'].'\');' );
     }
     

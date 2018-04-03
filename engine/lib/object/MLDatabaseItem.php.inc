@@ -1,14 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type	    : Engine / Object Lib
- * Creation Date	: Apr 2007
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0
+ * Object Type      : Engine / Object Library
+ * Creation Date    : Apr 2007
  * Last Modif Date  : Feb 2018
- * History :
  *
  * Module Library Database Item Object
  */
@@ -40,8 +39,8 @@ class MLDatabaseItem extends ModuleLibraryItem {
     $this->datadesc2 = $desc2;
     $this->default = isset($default) ? $default : $this->get_defaultValue();
   }
-  
-  /* 
+
+  /*
    * initialise object with default value
    * @return void
    * @access public
@@ -58,10 +57,10 @@ class MLDatabaseItem extends ModuleLibraryItem {
    */
   public function get_fromHeader($prefix='') {
     global $camyks;
-    
+
     /* set header value name */
     $name = $prefix.$this->name;
-    
+
     /* load value */
     switch ($this->datatype) {
     case 'date':
@@ -86,7 +85,7 @@ class MLDatabaseItem extends ModuleLibraryItem {
       break;
     }
   }
-  
+
   /*
    * get object value from given array
    * @return void
@@ -94,14 +93,14 @@ class MLDatabaseItem extends ModuleLibraryItem {
    */
   public function get_fromArray($data) {
     global $camyks;
-    
+
     /* check if value exists in array */
     if (!isset($data[$this->name])) {
       $this->value = $this->default;
       return;
     }
 
-    /* set value from type */ 
+    /* set value from type */
     switch ($this->datatype) {
     case 'etext':
       $this->value = $camyks->decode_value($data[$this->name]);
@@ -150,13 +149,13 @@ class MLDatabaseItem extends ModuleLibraryItem {
     switch ($this->datatype) {
     case 'int':
     case 'date':
-      return ''.$this->value;
+      return ''.(int)$this->value;
     case 'float':
       return preg_replace('/,/', '.', (string)$this->value);
     case 'text':
       return '"'.addslashes($this->value).'"';
     case 'etext':
-      return '"'.$camyks->encode_value( $this->value ). '"';
+      return '"'.$camyks->encode_value($this->value). '"';
     case 'password':
       return '"'.$this->value.'"';
     case 'list':
@@ -193,7 +192,7 @@ class MLDatabaseItem extends ModuleLibraryItem {
   public function get_exportedValue() {
     return array($this->name => $this->value);
   }
-  
+
   /*
    * check value case of given type
    * @param string $type

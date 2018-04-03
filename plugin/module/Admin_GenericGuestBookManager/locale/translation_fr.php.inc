@@ -3,18 +3,22 @@
  * CaMykS Engine
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
+ * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Dictionnary
  * Creation Date    : Sep 2010
- * Last Modif Date  : Sep 2010
+ * Last Modif Date  : Mar 2018
  *
  * Admin_GenericGuestBookManager french dictionnary
  */
 $this->trads['mod_admin_genericguestbookmanager_title'] = 'Livre d\'or';
 $this->trads['mod_admin_genericguestbookmanager_desc'] = 'Lecture et &eacute;dition des messages';
-$this->trads['mod_admin_genericguestbookmanager_desc1'] = '1 message en attente!';
-$this->trads['mod_admin_genericguestbookmanager_descx'] = '%s messages en attente!';
+$this->trads['mod_admin_genericguestbookmanager_desc1'] = '1 message en attente de validation';
+$this->trads['mod_admin_genericguestbookmanager_descx'] = '%s messages en attente de validation';
+
+/* object */
+$this->trads['mod_admin_genericguestbookmanager_message'] = 'Message';
+$this->trads['mod_admin_genericguestbookmanager_messages'] = 'Messages';
 
 /* rights */
 $this->trads['mod_admin_genericguestbookmanager_rights_editconfig'] = 'Configuration';
@@ -52,6 +56,7 @@ $this->trads['mod_admin_genericguestbookmanager_tabconfig'] = 'Configuration';
 $this->trads['mod_admin_genericguestbookmanager_itempage'] = 'Page : ';
 $this->trads['mod_admin_genericguestbookmanager_header_author'] = 'Auteur';
 $this->trads['mod_admin_genericguestbookmanager_header_date'] = 'Date';
+$this->trads['mod_admin_genericguestbookmanager_header_message'] = 'Message';
 
 $this->trads['mod_admin_genericguestbookmanager_addnewmsg'] = 'Ajouter un message';
 $this->trads['mod_admin_genericguestbookmanager_viewmsg'] = 'Voir ce message';
