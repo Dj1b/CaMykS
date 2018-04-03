@@ -4,7 +4,7 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0.4
+ * Object Version   : 1.0.5
  * Object Type      : Engine / Tool Library
  * Creation Date    : Jun 2007
  * Last Modif Date  : Mar 2018
@@ -479,6 +479,7 @@ function client_getUAInfos($ua=false) {
             'SM-J100H'  => array('platform_model' => 'Galaxy J1', ),
             'SM-J110H'  => array('platform_model' => 'Galaxy J1 (2015)', ),
             'SM-J120FN' => array('platform_model' => 'Galaxy J1 (2016)', ),
+            'SM-J120H'  => array('platform_model' => 'Galaxy J1 (2016)', ),
             'SM-J200F'  => array('platform_model' => 'Galaxy J2', ),
             'SM-J310'   => array('platform_model' => 'Galaxy J3 (2016)', ),
             'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
@@ -1418,6 +1419,7 @@ function client_getUAInfos($ua=false) {
         $rep = array(
             'PGN521'    => array('platform_model' => 'Griffe G4 Plus',),
             'PHQ520'    => array('platform_model' => 'Griffe G5',),
+            'PGN527'    => array('platform_model' => 'Plume P4 Plus',),
             'PGN528'    => array('platform_model' => 'Plume P6 Pro',),
             'PGN523'    => array('platform_model' => 'Plume P7 Plus',),
             'PGN605'    => array('platform_model' => 'Plume P8',),
@@ -1615,6 +1617,17 @@ function client_getUAInfos($ua=false) {
         $model = trim($matches[1]);
         $infos = array_merge($infos, array(
             'platform_company'  => 'Caterpillar CAT',
+            'platform_model'    => $model,
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld',
+        ));
+    }
+
+    /* check Vernee mobiles */
+    elseif (preg_match('/(Apollo Lite) Build/', $ua, $matches)) {
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Vernee',
             'platform_model'    => $model,
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
@@ -5874,8 +5887,18 @@ function client_getKnownBots() {
         'engine_url'        => 'https://www.ubtsupport.com',
     );
     
-    /* unknown bot */
+    /* SEOBulls - unknown bot */
     $knownBots['seo bulls'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'SEO Bulls (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+    
+    /* SEOBulls - unknown bot */
+    $knownBots['seobulls'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'SEO Bulls (Unknown bot)',
