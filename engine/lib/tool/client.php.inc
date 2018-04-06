@@ -714,6 +714,7 @@ function client_getUAInfos($ua=false) {
             'NXT-L09'   => array('platform_model' => 'Mate 8'),
             'NXT-L29'   => array('platform_model' => 'Mate 8'),
             'MHA-L09'   => array('platform_model' => 'Mate 8'),
+            'RNE-L21'   => array('platform_model' => 'Mate 10 Lite'),
             'CRR-L09'   => array('platform_model' => 'Mate S'),
             'KIW-L21'   => array('platform_model' => 'Honor 5X'),
             'BLN-L21'   => array('platform_model' => 'Honor 6X'),
@@ -5887,6 +5888,18 @@ function client_getKnownBots() {
         'engine_url'        => 'https://www.ubtsupport.com',
     );
     
+    /* DomainCheck.io */
+    $knownBots['domaincheck.io'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DomainCheck.io Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'DomainCheck.io',
+        'engine_url'        => 'https://domaincheck.io',
+    );
+    
+    /* unknown bot */
+    
     /* SEOBulls - unknown bot */
     $knownBots['seo bulls'] = array(
         'platform_type'     => 'bot',
@@ -7671,6 +7684,16 @@ function client_getKnownGenerics() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'axios',
         'tool_url'          => 'https://libraries.io/npm/axios',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+    
+    /* jsoup */
+    $knownGenerics['jsoup'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'jsoup',
+        'tool_url'          => 'http://static.javadoc.io/org.jsoup/jsoup/1.8.1/org/jsoup/helper/HttpConnection.html',
         'engine_title'      => '',
         'engine_url'        => '',
     );
