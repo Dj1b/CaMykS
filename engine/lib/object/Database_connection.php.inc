@@ -6,7 +6,7 @@
  * CaMykS Version	: 1.0
  * Object Version	: 1.0
  * Creation Date	: Jun 2005
- * Last Modif Date  : Nov 2017
+ * Last Modif Date  : Apr 2018
  *
  * Database connection object
  */
@@ -51,6 +51,10 @@ final class Database_connection {
         case 'sqlite3':
             require_once 'SQLite3DBConnection.php.inc';
             $this->connection = new SQLite3DBConnection();
+            break;
+        case 'pgsql':
+            require_once 'PgSQLDBConnection.php.inc';
+            $this->connection = new PgSQLDBConnection();
             break;
         case 'mysql':
         default:
@@ -131,8 +135,18 @@ final class Database_connection {
    * @return boolean
    * @access public
    */
-  public function is_active () {
+  public function is_active() {
     return $this->connection->is_connectionActive();
+  }
+  
+  /*
+   * check connection status
+   * @param string $name
+   * @return array
+   * @access public
+   */
+  public function check_status($name) {
+    return $this->connection->check_status($name);
   }
   
   /*
@@ -357,6 +371,17 @@ final class Database_connection {
   public function escape_string($string='') {
     return $this->connection->escape_string($string);
   }
+      
+    /* special methods */
+    
+    /*
+     * return specific insert extra from driver
+     * @return string
+     * @access public
+     */
+    public function get_insertExtra() {
+        return $this->connection->get_insertExtra();
+    }
   
   /* static methods */
   
@@ -377,6 +402,8 @@ final class Database_connection {
       $list['PDO:MySQL'] = 'PDO:MySQL';
     if (class_exists('SQLite3'))
       $list['SQLite3'] = 'SQLite3';
+    if (function_exists('pg_connect'))
+      $list['PgSQL'] = 'PgSQL';
     
     return $list;
   }

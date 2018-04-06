@@ -446,7 +446,7 @@ final class Tool_Installer extends Module {
 	  'value'   => '',
 	);
 
-    /* check connection */
+    /* create connection */
     $message = array(
       'type'    => 'message',
 	  'name'    => $this->get_translation('database_connection'),
@@ -459,7 +459,10 @@ final class Tool_Installer extends Module {
 		$camyks->site_conf['database_driver'] != '' ? $camyks->site_conf['database_driver']:$camyks->_conf['database_driver']
 	);
 	
-    if ($camyks->db_conn->is_active()) {
+	/* check status */
+	$status = $camyks->db_conn->check_status($camyks->site_conf['database_name']);
+	
+    if ($status['ServerConnected']) {
       $message['value'] = $this->get_translation('ok');
       $message['color'] = $this->textColors['yes'];
     } else {
@@ -476,12 +479,11 @@ final class Tool_Installer extends Module {
 	  'value'   => ''
 	);
 	
-    if ($camyks->db_conn->is_active()) {
-      if ($camyks->db_conn->database_exists($camyks->site_conf['database_name']))
-	    $message['value'] = $this->get_translation('ok');
-      else
-	    $message['value'] = $this->get_translation('database_dbdoesntexist');
-    }
+    if ($status['DatabaseExists'])
+	  $message['value'] = $this->get_translation('ok');
+    else
+	  $message['value'] = $this->get_translation('database_dbdoesntexist');
+ 
     $this->summary[] = $message;
     
     /* close the database */
@@ -723,8 +725,10 @@ final class Tool_Installer extends Module {
 	    }
 	    $message['value'] = $camyks->get_translation('yes');
 	    $message['color'] = $this->textColors['yes'];
+	    
+	    $this->summary[] = $message;
       }
-      $this->summary[] = $message;
+      
       $camyks->db_conn->select($camyks->site_conf['database_name']);      
     } else {
       /* database connection failed */
@@ -797,6 +801,8 @@ final class Tool_Installer extends Module {
       $message['value'] = $camyks->get_translation('yes');
       $message['color'] = $this->textColors['yes'];
       $this->summary[] = $message;
+      /* remove plugin manager from needed modules list */
+      unset($camyks->neededModules['Admin_PluginManager']);
 
       /* install needed modules */
       foreach ($camyks->neededModules as $p) {

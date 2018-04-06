@@ -365,8 +365,10 @@ class ModuleLibrary {
       }
       $sql .= $this->_libItems[$n]->get_databaseValue();
     }
-    $sql .= ' );';
-
+    $sql .= ' )';
+    $sql .= $this->get_DBInsertExtra();
+    $sql .= ';';
+    
     /* return result of sql query execution */
     if ($this->execute_DBQuery($sql, __LINE__)) {
       $this->id = $this->get_DBQueryGeneratedId();
@@ -1554,6 +1556,16 @@ class ModuleLibrary {
    */
   function escape_string($string) {
     return $this->_libDBConnector->escape_string($string);
+  }
+
+  /*
+   * return latest query affected rows
+   * @param string $resName
+   * @return integer
+   * @access public
+   */
+  function get_DBInsertExtra() {
+    return $this->_libDBConnector->get_insertExtra();
   }
 
   /*
