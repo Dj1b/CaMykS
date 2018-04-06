@@ -193,7 +193,7 @@ final class Admin_PluginManager extends Module {
     
     $this->pluginItem->get_fromHeader();
     $this->pluginItem->activevalue = 1;
-    if ( $this->pluginItem->active_plugin() )
+    if ($this->pluginItem->active_plugin())
       $this->text = $this->get_translation ('activationdone', $this->pluginItem->pluginvalue);
     else
       $this->text = $this->get_translation ('activationfailed', $this->pluginItem->pluginvalue);
@@ -330,6 +330,7 @@ final class Admin_PluginManager extends Module {
     $this->get_inputs();
     $this->get_pluginsFromDatabase();
     $this->check_pluginsinfo();
+    $this->load_installedTables();
 
     /* get help */
     $this->get_help();
@@ -573,7 +574,7 @@ final class Admin_PluginManager extends Module {
     global $camyks;
     
     $this->installedTables = $camyks->db_conn->get_tableList();
-    
+        
     return true;
   }
   
@@ -595,7 +596,7 @@ final class Admin_PluginManager extends Module {
    * @access public
    */
   public function check_tableExists($tableName='') {
-    if ($this->installedTables == null)
+    if ($this->installedTables === null)
       $this->load_installedTables();
     return (in_array($tableName, $this->installedTables));     
   }
