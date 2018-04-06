@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMyks Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
- * Creation Date	: Jun 2005
- * Last Modif Date	: Jun 2005
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0.1
+ * Object Type      : Engine / Tool Library
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Apr 2018
  * 
  * Shell methods
  */
@@ -17,10 +17,9 @@
  * @param string $from
  * @param string $to
  * @return mixed
- * @access public
  */
-function shell_mv ( $from, $to ) {
-  return shell_exec ( 'mv '.$from.' '.$to );
+function shell_mv($from, $to) {
+    return shell_exec('mv '.$from.' '.$to);
 }
 
 /*
@@ -28,10 +27,9 @@ function shell_mv ( $from, $to ) {
  * @param string $from
  * @param string $to
  * @return mixed
- * @access public
  */
-function shell_cp ( $from, $to ) {
-  return shell_exec ( 'cp -R '.$from.' '.$to );
+function shell_cp($from, $to) {
+    return shell_exec('cp -R '.$from.' '.$to);
 }
 
 /*
@@ -39,10 +37,9 @@ function shell_cp ( $from, $to ) {
  * @param string $file
  * @param string $rights
  * @return mixed
- * @access public
  */
-function shell_chmod ( $file, $rights ) {
-  return shell_exec ( 'chmod -R '.$rights.' '.$file );
+function shell_chmod($file, $rights) {
+    return shell_exec('chmod -R '.$rights.' '.$file);
 }
 
 /*
@@ -50,10 +47,9 @@ function shell_chmod ( $file, $rights ) {
  * @param string $file
  * @param string $grp
  * @return mixed
- * @access public
  */
-function shell_chgrp ( $file, $grp ) {
-  return shell_exec ( 'chgrp -R '.$grp.' '.$file );
+function shell_chgrp($file, $grp) {
+    return shell_exec('chgrp -R '.$grp.' '.$file);
 }
 
 /*
@@ -61,10 +57,9 @@ function shell_chgrp ( $file, $grp ) {
  * @param string $file
  * @param string $user
  * @return mixed
- * @access public
  */
-function shell_chown ( $file, $user ) {
-  return shell_exec ( 'chown -R '.$user.' '.$file );
+function shell_chown($file, $user) {
+    return shell_exec('chown -R '.$user.' '.$file);
 }
 
 /*
@@ -72,9 +67,8 @@ function shell_chown ( $file, $user ) {
  * @param string $link
  * @param string $file
  * @return mixed
- * @access public
  */
-function shell_ln ( $link, $file ) {
-  return shell_exec ( 'ln -s '.$link.' '.$file );
+function shell_ln($link, $file) {
+    return shell_exec('ln -s '.$link.' '.$file);
 }
 ?>

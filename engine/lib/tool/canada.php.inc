@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by       : camyks.net
- * Author             : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version     : 1.0
- * Object Version     : 1.0
- * Object Type        : Engine / Tool Library
- * Creation Date      : Jul 2017
- * Last Modif Date    : Jul 2017
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0.1
+ * Object Type      : Engine / Tool Library
+ * Creation Date    : Jul 2017
+ * Last Modif Date  : Apr 2018
  *
  * Specific methods related to Canada
  * /!\ This library is not loaded with CaMykS initialisation
@@ -19,13 +19,13 @@
  * @return void
  */
 function canada_getStatesLocales($language='') {
-  global $camyks;
-  
-  /* check lang value */
-  if ($language=='') $language = $camyks->current_language;
-  
-  /* load locales */
-  $camyks->add_generic_translation('canadianstates', $language);
+    global $camyks;
+    
+    /* check lang value */
+    if ($language=='') $language = $camyks->current_language;
+    
+    /* load locales */
+    $camyks->add_generic_translation('canadianstates', $language);
 }
 
 /*
@@ -33,7 +33,7 @@ function canada_getStatesLocales($language='') {
  * @return array
  */
 function canada_getStatesCodeList() {
-  return array('ab', 'bc', 'ipe', 'mb', 'nb', 'ns', 'on', 'qc', 'sk', 'nl', 'nu', 'nt', 'yt');
+    return array('ab', 'bc', 'ipe', 'mb', 'nb', 'ns', 'on', 'qc', 'sk', 'nl', 'nu', 'nt', 'yt');
 }
  
 /*
@@ -42,31 +42,31 @@ function canada_getStatesCodeList() {
  * @return array
  */
 function canada_getStatesList($params=array()) {
-  global $camyks;
-  
-  /* build default params list */
-  $defaultParams = array(
-    'language'  => $camyks->current_language,
-  );
-  
-  /* merge params */
-  $params = array_merge($defaultParams, $params);
-  
-  /* load locales */
-  canada_getStatesLocales($params['language']);
-  
-  /* load states code list */
-  $statesCodes = canada_getStatesCodeList();
-  
-  /* initialise list */
-  $list = array();
-  
-  /* build list */
-  foreach ($statesCodes as $state)
-    $list[$state] = $camyks->get_translation('canadianstate_'.$state);
-  
-  /* return list */
-  return $list;
+    global $camyks;
+    
+    /* build default params list */
+    $defaultParams = array(
+        'language'  => $camyks->current_language,
+    );
+    
+    /* merge params */
+    $params = array_merge($defaultParams, $params);
+    
+    /* load locales */
+    canada_getStatesLocales($params['language']);
+    
+    /* load states code list */
+    $statesCodes = canada_getStatesCodeList();
+    
+    /* initialise list */
+    $list = array();
+    
+    /* build list */
+    foreach ($statesCodes as $state)
+        $list[$state] = $camyks->get_translation('canadianstate_'.$state);
+    
+    /* return list */
+    return $list;
 }
 
 /*
@@ -76,15 +76,14 @@ function canada_getStatesList($params=array()) {
  * @return string
  */
 function canada_getStateTitle($state='', $language='') {
-  global $camyks;
-  
-  /* load locales */
-  canada_getStatesLocales($language);
-  
-  /* check locale */
-  if (isset($camyks->trads['canadianstate_'.$state]))
-    return $camyks->trads['canadianstate_'.$state];
-  return $state;
+    global $camyks;
+    
+    /* load locales */
+    canada_getStatesLocales($language);
+    
+    /* check locale */
+    if (isset($camyks->trads['canadianstate_'.$state]))
+        return $camyks->trads['canadianstate_'.$state];
+    return $state;
 }
-
 ?>
