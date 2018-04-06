@@ -444,7 +444,6 @@ final class Camyks {
         require_once($this->camyks_engine_path.'/lib/tool/shell.php.inc');
         require_once($this->camyks_engine_path.'/lib/tool/statics.php.inc');
         require_once($this->camyks_engine_path.'/lib/tool/string.php.inc');
-        require_once($this->camyks_engine_path.'/lib/tool/string2.php.inc');
         require_once($this->camyks_engine_path.'/lib/tool/template.php.inc');
         require_once($this->camyks_engine_path.'/lib/tool/theme.php.inc');
         require_once($this->camyks_engine_path.'/lib/tool/xml.php.inc');
