@@ -1,76 +1,69 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.6
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jun 2007
- * Last Modif Date  : Apr 2018
- *
- * client user methods
+/**
+ * @brief Client related methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/client.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.6
+ * @date Creation: Jun 2007
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * get client IP address
+/**
+ * Return client IP address.
  * @return string
- * @access public
  */
 function client_getIp() {
     return (isset($_SERVER['HTTP_PC_REMOTE_ADDR'])?$_SERVER['HTTP_PC_REMOTE_ADDR']:$_SERVER['REMOTE_ADDR']);
 }
 
-/*
- * get client user agent
+/**
+ * Return client user agent.
  * @return string
- * @access public
  */
 function client_getUserAgent() {
     return (isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'');
 }
 
-/*
- * check if page is loaded is HTTPS(SSL)
+/**
+ * Check if page is loaded in HTTPS(SSL).
  * @return boolean result
- * @access public
  */
 function client_isHTTPS() {
     return (!empty($_SERVER['HTTPS']));
 }
 
-/*
- * get client referer site
+/**
+ * Return client referer site.
  * @return string
- * @access public
  */
 function client_getRefererSite() {
     return (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'');
 }
 
-/*
- * check if server is also client
+/**
+ * Check if the server is also the client.
  * @return boolean result
- * @access public
  */
 function client_isServerClient() {
     return ($_SERVER['SERVER_ADDR'] == client_getIp());
 }
 
-/*
- * check if server is marked as Do Not Track
+/**
+ * Check if client is marked as Do Not Track.
  * @return boolean result
- * @access public
  */
 function client_getDoNotTrack() {
     return (isset($_SERVER['HTTP_DNT']) and $_SERVER['HTTP_DNT'] == 1);
 }
 
-/*
- * return client informations
+/**
+ * Return client informations.
  * @param mixte $ua
  * @return array
- * @access public
  */
 function client_getUAInfos($ua=false) {
     $req = true;
@@ -2115,11 +2108,10 @@ function client_getUAInfos($ua=false) {
     return _client_mergeUAInfos($req, $infos);
 }
 
-/*
- * return bot index if bot
+/**
+ * Return bot index if bot.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_checkIsBot($ua=false) {
     /* get user agent */
@@ -2139,11 +2131,10 @@ function client_checkIsBot($ua=false) {
     return false;
 }
 
-/*
- * return bot info if bot
- * @param string $ua
+/**
+ * Return bot info if bot.
+ * @param string $bot
  * @return mixed
- * @access public
  */
 function client_getBotInfos($bot='') {
     $knownBots = client_getKnownBots();
@@ -2154,30 +2145,28 @@ function client_getBotInfos($bot='') {
 }
 
 
-/*
- * return bot info from user agent
+/**
+ * Return bot info from user agent.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_getBotInfosFromUserAgent($ua='') {
     $knownBots = client_getKnownBots();
-
+    
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownBots));
     $detectionPattern = preg_replace ('/(\/|\(|\)|\.|\+)/', '\\\$1', $detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
-
+    
     /* start detection and return result */
     if ( preg_match ( $detectionPattern, strtolower($ua), $result ) )
         return $knownBots[$result[0]];
     return false;
 }
 
-/*
- * return known bots list
+/**
+ * Return known bots list.
  * @return array
- * @access private
  */
 function client_getKnownBots() {
     $knownBots = array();
@@ -6131,11 +6120,10 @@ function client_getKnownBots() {
     return $knownBots;
 }
 
-/*
+/**
  * return tool index if tool
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_checkIsTool($ua=false) {
     /* get user agent */
@@ -6155,11 +6143,10 @@ function client_checkIsTool($ua=false) {
     return false;
 }
 
-/*
- * return bot info if tool
+/**
+ * Return tool info if tool.
  * @param string $tool
  * @return mixed
- * @access public
  */
 function client_getToolInfos($tool='') {
     $knownTools = client_getKnownTools();
@@ -6169,11 +6156,10 @@ function client_getToolInfos($tool='') {
     return array();
 }
 
-/*
- * return bot info from user agent
+/**
+ * Return tool info from user agent.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_getToolInfosFromUserAgent($ua='') {
     $knownTools = client_getKnownTools();
@@ -6189,10 +6175,9 @@ function client_getToolInfosFromUserAgent($ua='') {
     return false;
 }
 
-/*
- * return given known web tool or tool list
+/**
+ * Return given known tool list.
  * @return array
- * @access public
  */
 function client_getKnownTools() {
     $knownTools = array();
@@ -7123,11 +7108,10 @@ function client_getKnownTools() {
 
 /*** generic tool/boot specific methods */
 
-/*
- * return generic index if generic
+/**
+ * Return generic index if generic.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_checkIsGeneric($ua=false) {
     /* get user agent */
@@ -7147,11 +7131,10 @@ function client_checkIsGeneric($ua=false) {
     return false;
 }
 
-/*
- * return bot info if generic
+/**
+ * Return generic info if generic.
  * @param string $generic
  * @return mixed
- * @access public
  */
 function client_getGenericInfos($generic='') {
     $knownGenerics = client_getKnownGenerics();
@@ -7161,11 +7144,10 @@ function client_getGenericInfos($generic='') {
     return array();
 }
 
-/*
- * return bot info from user agent
+/**
+ * Return bot info from user agent.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_getGenericInfosFromUserAgent($ua='') {
 
@@ -7187,10 +7169,9 @@ function client_getGenericInfosFromUserAgent($ua='') {
     return false;
 }
 
-/*
- * return given known web generic or generic list
+/**
+ * Return given known web generic or generic list.
  * @return array
- * @access public
  */
 function client_getKnownGenerics() {
     $knownGenerics = array();
@@ -7741,11 +7722,10 @@ function client_getKnownGenerics() {
 
 /*** hack type specific methods ***/
 
-/*
- * return hack index if hack
+/**
+ * Return hack index if hack.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_checkIsHack($ua=false) {
     /* get user agent */
@@ -7758,32 +7738,30 @@ function client_checkIsHack($ua=false) {
     $detectionPattern = implode('|', array_keys($knownHacks));
     $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
-
+    
     /* start detection and return result */
     if (preg_match($detectionPattern, strtolower($ua), $result))
         return $result[0];
     return false;
 }
 
-/*
- * return bot info if hack
+/**
+ * Return bot info if hack.
  * @param string $hack
  * @return mixed
- * @access public
  */
 function client_getHackInfos($hack='') {
     $knownHacks = client_getKnownHacks();
-
+    
     if (isset($knownHacks[$hack]))
         return $knownHacks[$hack];
     return array();
 }
 
-/*
- * return hack info from user agent
+/**
+ * Return hack info from user agent.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_getHackInfosFromUserAgent($ua='') {
     $knownHacks = client_getKnownHacks();
@@ -7799,10 +7777,9 @@ function client_getHackInfosFromUserAgent($ua='') {
     return false;
 }
 
-/*
- * return given known web hack or hack list
+/**
+ * Return given known web hack or hack list.
  * @return array
- * @access public
  */
 function client_getKnownHacks() {
     $knownHacks = array();
@@ -7865,11 +7842,10 @@ function client_getKnownHacks() {
     return $knownHacks;
 }
 
-/*
- * return fake visitor info from user agent
+/**
+ * Return fake visitor info from user agent.
  * @param string $ua
  * @return mixed
- * @access public
  */
 function client_getFakeInfosFromUserAgent($ua='') {
     $fake = array('platform_type'     => 'fake');
@@ -8032,12 +8008,12 @@ function client_getFakeInfosFromUserAgent($ua='') {
 
 /*** private methods ***/
 
-/*
- * return merged informations
+/**
+ * Return merged informations.
  * @param array $req
  * @param array $infos
  * @return array
- * @access private
+ * @private
  */
 function _client_mergeUAInfos($req, $infos) {
     if ($req === true)
@@ -8055,10 +8031,10 @@ function _client_mergeUAInfos($req, $infos) {
     return $i;
 }
 
-/*
- * return some max property values to check
+/**
+ * Return some max property values to check.
  * @return array
- * @access private
+ * @private
  */
 function _client_getUAPropertiesMaxVersions() {
     return array(

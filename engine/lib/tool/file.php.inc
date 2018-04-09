@@ -1,24 +1,25 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jun 2005
- * Last Modif Date  : Apr 2018
- *
- * File static methods
- * 
- * TO DO :
- * complete file type, extension, and mime list
+/**
+ * @brief File related methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/file.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @todo complete file type, extension, and mime list
  */
 
-define ('FILE_ICON_EXTENSION', 'gif');
+/**
+ * @def FILE_ICON_EXTENSION
+ */
+define('FILE_ICON_EXTENSION', 'gif');
 
-/*
- * write given file with given content, return boolean indicate if file is writed
+/**
+ * Write given file with given content.
  * @param string $file_path 
  * @param string $content
  * @param boolean $deleteCache
@@ -37,8 +38,8 @@ function file_write($file_path, $content, $deleteCache=false) {
     }
 }
 
-/*
- * return CaMykS header for PHP file
+/**
+ * Return CaMykS header for PHP file.
  * @param string $desc
  * @param string $version
  * @return string
@@ -55,16 +56,16 @@ function file_getPHPFileHeader($desc="", $version="none") {
     return $str;
 }
 
-/*
- * return CaMykS footer for PHP file
+/**
+ * Return CaMykS footer for PHP file.
  * @return string
  */
 function file_getPHPFileFooter() {
     return "?".">";
 }
 
-/*
- * return CaMykS header for htaccess file
+/**
+ * Return CaMykS header for htaccess file.
  * @param string $desc
  * @param string $version
  * @return string
@@ -78,16 +79,16 @@ function file_getHTAccessFileHeader($desc="", $version="none") {
     return $str;
 }
 
-/*
- * return CaMykS ender for htaccess file
+/**
+ * Return CaMykS ender for htaccess file.
  * @return string
  */
 function file_getHTAccessFileEnder() {
     return "";
 }
 
-/*
- * return file content
+/**
+ * Return file content.
  * @param string $file
  * @return string
  */
@@ -102,8 +103,8 @@ function file_getContent($file) {
     return $content;
 }
 
-/*
- * download file with curl 
+/**
+ * Download file with curl.
  * @param string $file
  * @param string $path
  * @return void
@@ -128,8 +129,8 @@ function file_download($file, $path) {
     fclose ($ff);
 }
 
-/*
- * return file type icon
+/**
+ * Return file type icon.
  * @param string $mime
  * @param int $size
  * @return string
@@ -254,8 +255,8 @@ function file_getMimeIconURL($mime='', $size=32) {
     return $camyks->site_data_url.'/img/mime/'.$ext.$size.'.'.FILE_ICON_EXTENSION;
 }
 
-/*
- * return file type icon
+/**
+ * Return file type icon.
  * @param string $mime
  * @param int $size
  * @param string $styles
@@ -269,9 +270,10 @@ function file_getMimeIcon($mime='', $size=32, $styles='') {
     return '<img src="'.$icon.'"'.' width="'.$size.'" height="'.$size.'" alt="" style="'.$styles.'" border="0" />';
 }
 
-/*
- * return file type description
+/**
+ * Return file type description.
  * @param string $mime
+ * @param string $ext
  * @return string
  */
 function file_getTypeDescription($mime='', $ext=null) {
@@ -431,8 +433,8 @@ function file_getTypeDescription($mime='', $ext=null) {
     }
 }
 
-/*
- * return file mime description
+/**
+ * Return file mime description.
  * @param string $mime
  * @return string
  */
@@ -452,9 +454,9 @@ function file_getMimeDescription($mime='') {
     }
 }
 
-/*
- * return human readable file size
- * @param int $size : file size in byte
+/**
+ * Return human readable file size.
+ * @param int $size
  * @return string
  */
 function file_getFileSize($size) {
@@ -472,9 +474,10 @@ function file_getFileSize($size) {
     return $size.' '.$l[$s].$t;
 }
 
-/*
- * return file mime type
+/**
+ * Return file mime type.
  * @param string $file
+ * @param string $ext
  * @return string
  */
 function file_getMime($file, $ext=null)  {
@@ -494,8 +497,8 @@ function file_getMime($file, $ext=null)  {
     return _file_getMimeFromExtension($file, $ext);
 }
 
-/*
- * return image size in pixel as formatted string 
+/**
+ * Return image size in pixel as formatted string.
  * @param string $file
  * @return string
  */
@@ -507,8 +510,8 @@ function file_getImageSize($file) {
     return array();
 }
 
-/*
- * return is an image value
+/**
+ * Check if file is an image.
  * @param string $file
  * @return boolean
  */
@@ -521,13 +524,13 @@ function file_isImage($file) {
     return false;
 }
 
-/*
- * equivalent to php readfile, without the 2Mo limitation on PHP 5.0.0 to 5.0.4 bug
- * @param string filename
- * @param boolean retbytes
+/**
+ * Equivalent to php readfile, without the 2Mo limitation on PHP 5.0.0 to 5.0.4 bug.
+ * @param string $filename
+ * @param boolean $retbytes
  * @return mixed
  */
-function file_readfile($filename,$retbytes=true) {
+function file_readfile($filename, $retbytes=true) {
     /* load file size */
     $s = stat($filename);
     $s = (int)($s['size']/1024/1024);
@@ -561,8 +564,8 @@ function file_readfile($filename,$retbytes=true) {
     return $status;
 }
 
-/*
- * write a configration file
+/**
+ * Write a configration file.
  * @param string $file_path
  * @param string $desc
  * @param array $datas
@@ -570,7 +573,7 @@ function file_readfile($filename,$retbytes=true) {
  */
 function file_writeConfFile($file_path, $desc, $datas) {
     $file_content = file_getPHPFileHeader($desc);
-    // check for global value
+    /* check for global value */
     $str = '';
     $str2 = '';
     foreach ($datas as $data_name => $data_content) {
@@ -591,10 +594,11 @@ function file_writeConfFile($file_path, $desc, $datas) {
     return file_write($file_path, $file_content);
 }
 
-/*
- * search a file in a folder
+/**
+ * Search a file in a folder.
  * @param string $pattern
  * @param string $rootPath
+ * @param integer $globFlags
  * @return array
  */
 function file_search($pattern='*', $rootPath='./', $globFlags=0) {
@@ -606,8 +610,8 @@ function file_search($pattern='*', $rootPath='./', $globFlags=0) {
     return $files;
 }
 
-/*
- * md5_file replacement, to avoid 403 errors
+/**
+ * MD5_file replacement, to avoid 403 errors.
  * @param string $file
  * @param array $contextParams
  * @return mixed
@@ -646,11 +650,11 @@ function file_md5($file, $contextParams=array()) {
  
 /* private mime gathering methods */
 
-/*
- * get file mime from finfo method
+/**
+ * Return file mime from finfo method.
  * @param string $file
  * @return string
- * @access private
+ * @private
  */
 function _file_getMimeFromFinfo($file) {
     if (!class_exists('finfo'))
@@ -702,10 +706,10 @@ function _file_getMimeFromFinfo($file) {
 }
 
 /* 
- * get file mime from content_mime_type method
+ * Return file mime from content_mime_type method.
  * @param string $file
  * @return string
- * @access private
+ * @private
  */
 function _file_getMimeFromMimeContentType($file) {
     if (!function_exists('mime_content_type'))
@@ -716,12 +720,12 @@ function _file_getMimeFromMimeContentType($file) {
     return ''.$mime;
 }
 
-/*
- * get file mime from file extension
+/**
+ * Return file mime from file extension.
  * @param string $file
  * @param string $ext
  * @return string
- * @access private
+ * @private
  */
 function _file_getMimeFromExtension($file, $ext=null) {
     /* try to get mime from extension */
@@ -904,19 +908,21 @@ function _file_getMimeFromExtension($file, $ext=null) {
 
 /* deprecated methods */
 
-/*
- * alias to file_getMimeIcon
+/**
+ * @see file_getMimeIcon
  * @param string $mime
  * @param int $size
  * @return string
+ * @deprecated Use file_getMimeIcon instead.
  */
 function file_getFileIcon($mime='', $size=32) {
     return file_getMimeIcon($mime, $size);
 }
 
-/*
- * alias to file_getPHPFileFooter
+/**
+ * @see file_getPHPFileFooter
  * @return string
+ * @deprecated Use file_getPHPFileFooter instead.
  */
 function file_getPHPFileEnder() {
     return file_getPHPFileFooter();
