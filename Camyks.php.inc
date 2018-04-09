@@ -1,6 +1,6 @@
 <?php
 /**
- * CaMykS CMS master class
+ * @brief CaMykS CMS master class
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
@@ -13,32 +13,32 @@
  */
 
 /**
- * \def CAMYKS_MODE_SITE
+ * @def CAMYKS_MODE_SITE
  */
 define('CAMYKS_MODE_SITE',      0);
 
 /**
- * \def CAMYKS_MODE_ADMIN
+ * @def CAMYKS_MODE_ADMIN
  */
 define('CAMYKS_MODE_ADMIN',     1);
 
 /**
- * \def CAMYKS_MODE_REQUEST
+ * @def CAMYKS_MODE_REQUEST
  */
 define('CAMYKS_MODE_REQUEST',   2);
 
 /**
- * \def CAMYKS_MODE_MANAGER
+ * @def CAMYKS_MODE_MANAGER
  */
 define('CAMYKS_MODE_MANAGER',   3);
 
 /**
- * \def CAMYKS_MODE_INSTALL
+ * @def CAMYKS_MODE_INSTALL
  */
 define('CAMYKS_MODE_INSTALL',   4);
 
 /**
- * \def CAMYKS_NAME
+ * @def CAMYKS_NAME
  */
 define('CAMYKS_NAME',           'CaMykS');
 
