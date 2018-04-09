@@ -1,23 +1,46 @@
 <?php
 /**
- * CaMykS - CaMykS CMS master class
- * Engine / Main Object
- * @link https://www.camyks.net CaMykS website
- * @link https://github.com/Dj1b/CaMykS/ CaMykS GitHub repository
+ * CaMykS CMS master class
+ * @details Engine / Main Object
+ * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @copyright 2005 - 2018 JB Lebrun
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License
+ * @version 1.0
+ * @date Jun 2005
+ * @date Dec 2014
+ * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed in the hope that it will be useful - WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/* constants */
+/**
+ * \def CAMYKS_MODE_SITE
+ */
 define('CAMYKS_MODE_SITE',      0);
+
+/**
+ * \def CAMYKS_MODE_ADMIN
+ */
 define('CAMYKS_MODE_ADMIN',     1);
+
+/**
+ * \def CAMYKS_MODE_REQUEST
+ */
 define('CAMYKS_MODE_REQUEST',   2);
+
+/**
+ * \def CAMYKS_MODE_MANAGER
+ */
 define('CAMYKS_MODE_MANAGER',   3);
+
+/**
+ * \def CAMYKS_MODE_INSTALL
+ */
 define('CAMYKS_MODE_INSTALL',   4);
+
+/**
+ * \def CAMYKS_NAME
+ */
 define('CAMYKS_NAME',           'CaMykS');
 
 /**
@@ -616,6 +639,7 @@ final class Camyks {
     
     /**
      * Check security.
+     * @param string $mode
      * @return void
      */
     private function check_security($mode) {
@@ -905,7 +929,7 @@ final class Camyks {
     }
     
     /**
-     * return SQL value for encoding.
+     * Return SQL value for encoding.
      * @return string
      */
     public function get_mysqlEncodingValue() {
@@ -1083,6 +1107,7 @@ final class Camyks {
     
     /**
      * Return module object.
+     * @param string $moduleName
      * @return Module
      */
     public function &get_module($moduleName) {
@@ -1093,6 +1118,7 @@ final class Camyks {
     
     /**
      * Return theme object.
+     * @param string $themeName
      * @return Theme
      */
     public function &get_theme($themeName) {
@@ -1103,6 +1129,7 @@ final class Camyks {
     
     /**
      * return template object.
+     * @param string $templateName
      * @return Template
      */
     public function &get_template($templateName) {
@@ -1113,6 +1140,7 @@ final class Camyks {
     
     /**
      * return input object.
+     * @param string $inputName
      * @return Input 
      */
     public function &get_input($inputName) {
@@ -1545,6 +1573,7 @@ final class Camyks {
     
     /**
      * Get variable from session or header
+     * @param string $name
      * @return mixed
      */
     public function get_executionVariable($name) {
@@ -1559,6 +1588,8 @@ final class Camyks {
     
     /**
      * Set variable to session
+     * @param string $name
+     * @param mixed $value
      * @return void
      */
     public function set_executionVariable($name, $value) {
