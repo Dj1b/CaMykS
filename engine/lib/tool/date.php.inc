@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Date related methods
+ * @brief Date specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/date.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>

@@ -1,25 +1,23 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jul 2007
- * Last Modif Date  : Apr 2018
- *
- * mail relative
- * TO DO : add values for antispam from lists 
- * 
+/**
+ * @brief Mail specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/mail.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2005
+ * @date Modification: Apr 2018
+ * @copyright 2015 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * Encode email to be used with engine/data/js/tool/mail.js scripts
+/**
+ * Encode email to be used with engine/data/js/tool/mail.js scripts.
  * @param string $email the email to encode
  * @return string
  */
-function mail_encode ($email) {
+function mail_encode($email) {
     $parts = explode('@', $email);
     if (count($parts) == 2) {
         return  "javascript:mail_to('".$parts[1]."', 'contact', '".$parts[0]."', '@hotmail.com');";
@@ -27,24 +25,31 @@ function mail_encode ($email) {
     return '';
 }
 
-/* 
- * Check if email is valid
+/**
+ * Check if email is valid.
  * @param string $email the email to check
  * @return boolean
  */
-function mail_isValidEmail ($email='') {
+function mail_isValidEmail($email='') {
     $regex = '/^((\"[^\"\f\n\r\t\v\b]+\")|([\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+(\.[\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+)*))@((\[(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))\])|(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))|((([A-Za-z0-9\-])+\.)+[A-Za-z\-]+))$/';
     if (preg_match($regex, $email))
         return true;
     return false;
 }
 
-/*
- * Send a mail
+/**
+ * Send a mail.
  * @param array $params email parameters
+ * @parblock - Available parameters are <br />
+ * \e array headers <br />
+ * \e string to <br />
+ * \e string recipients <br />
+ * \e string subject <br />
+ * \e string content <br />
+ * @endparblock
  * @return mixed
  */
-function mail_send($params) {
+function mail_send($params=array()) {
     global $camyks;
     
     /* check header values */
@@ -77,12 +82,20 @@ function mail_send($params) {
     }
 }
 
-/*
- * Send a html mail
- * @param array $params email parameters
+/**
+ * Send a html mail.
+ * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e array headers <br />
+ * \e string to <br />
+ * \e string recipients <br />
+ * \e string Cc <br />
+ * \e string subject <br />
+ * \e string content <br />
+ * @endparblock
  * @return mixed
  */
-function mail_sendHTMLMail($params) {
+function mail_sendHTMLMail($params=array()) {
     global $camyks;
     
     if (isset($params['headers'])) {
@@ -128,12 +141,11 @@ function mail_sendHTMLMail($params) {
     return mail_send($params);
 }
 
-/*
- * Send mail using built-in php mail engine
- * @param mixed $to email recipient(s)
- * @param mixed $headers email header(s)
- * @param mixed $body email body
- * @return mixed
+/**
+ * Send mail using built-in php mail engine.
+ * @param array $params
+ * @return boolean
+ * @private
  */
 function mail_sendPHPMail ($params) {
     if (is_array($params['to'])) {
@@ -149,18 +161,16 @@ function mail_sendPHPMail ($params) {
     return mail($params['to'], $params['subject'], $params['content'], $headers_);
 }
 
-/*
- * Send mail using PEAR (http://pear.php.net) mail engine
- * @param mixed $to email recipient(s)
- * @param mixed $headers email header(s)
- * @param mixed $body email body
- * @return mixed
- * @access private
+/**
+ * Send mail using PEAR (http://pear.php.net) mail engine.
+ * @param array $params
+ * @return boolean
+ * @private
  */
 function mail_sendPEARMail ($params) {
     global $camyks;
     include_once 'Mail.php';
-     include_once 'Mail/mime.php';
+    include_once 'Mail/mime.php';
     
     /* add subject to headers */
     $params['headers']['Subject'] = $params['subject'];
@@ -230,10 +240,12 @@ function mail_sendPEARMail ($params) {
 
 /*** DEPRECATED METHODS ***/
 
-/* 
+/**
  * Alias to 'mail_isValidEmail' function
+ * @see mail_isValidEmail
  * @param string $email The mail to check
  * @return boolean
+ * @deprecated Use mail_isValidEmail instead.
  */
 function email_isValidEmail ($email='') {
     return mail_isValidEmail($email);

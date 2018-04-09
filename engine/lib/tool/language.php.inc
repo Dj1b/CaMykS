@@ -1,22 +1,36 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jun 2005
- * Last Modif Date  : Apr 2018
- *
- * Language static methods
+/**
+ * @brief Language specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/language.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2015 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+global $languages;
 
+/**
+ * @def LANG_ICON_PATH
+ */
 define("LANG_ICON_PATH",        "");
+
+/**
+ * @def LANG_ICON_EXTENSION
+ */
 define("LANG_ICON_EXTENSION",   ".gif");
+
+/**
+ * @def LANG_ICON_DEFAULT
+ */
 define("LANG_ICON_DEFAULT",     "default");
 
-global $languages;
+/**
+ * @var array $languages
+ */
 $languages = array(
     'en' => array(
         'title'     => 'English',
@@ -68,8 +82,8 @@ $languages = array(
    ),
 );
 
-/* 
- * return available languages
+/**
+ * Return available languages.
  * @return array
  */
 function language_getAvailableLanguages() {
@@ -77,8 +91,8 @@ function language_getAvailableLanguages() {
     return $languages;
 }
 
-/*
- * check if language is available
+/**
+ * Check if language is available.
  * @param string $lg
  * @return boolean
  */
@@ -87,8 +101,8 @@ function language_isKnownlanguage($lg) {
     return (isset($languages[$lg]));
 }
 
-/*
- * get language title
+/**
+ * Return language title.
  * @param string $lg
  * @return string
  */
@@ -103,8 +117,8 @@ function language_getTitle($lg) {
 
 /****************** ICONS *********************/
 
-/*
- * return html flag url
+/**
+ * Return html flag url.
  * @param string $short
  * @param boolean $full
  * @return string
@@ -122,8 +136,8 @@ function language_getIcon($short, $full=true) {
 
 /************************ LOCALE *****************************/
 
-/*
- * return locale value from given language/country
+/**
+ * Return locale value from given language/country.
  * @param string $short_name
  * @param string $encodage
  * @return string
@@ -140,8 +154,8 @@ function language_getLocale($short_name, $encodage='') {
 
 /************************ OTHERS *****************************/
 
-/*
- * return file size unit
+/**
+ * Return file size unit.
  * @return char
  */
 function language_getFileUnit () {
@@ -155,8 +169,8 @@ function language_getFileUnit () {
     }
 }
 
-/*
- * return number formatting case of current language
+/**
+ * Return number formatting case of current language.
  * @param float $number
  * @param integer $floats
  * @return string

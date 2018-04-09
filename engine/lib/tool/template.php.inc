@@ -1,19 +1,19 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jun 2005
- * Last Modif Date  : Apr 2018
- *
- * Template static methods
+/**
+ * @brief Templates specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/template.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * load template
+/**
+ * Load template.
  * @param string $name
  * @param string $path_type
  * @return Template object
@@ -26,8 +26,8 @@ function template_get($name, $path_type=false) {
     return plugin_get('template', $name, 'site');
 }
 
-/*
- * load complete template list from path
+/**
+ * Load complete template list from path.
  * @param string $path
  * @param string $path_type
  * @return array

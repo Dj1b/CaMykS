@@ -1,19 +1,19 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jul 2005
- * Last Modif Date  : Apr 2018
- *
- * All methods related to file system folders
+ /**
+ * @brief Folder specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/folder.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * create all folder from root folder needed to complete path
+/**
+ * Create all folder from root folder needed to complete path.
  * @param string $path
  * @param string $root
  * @param string $rights
@@ -38,8 +38,8 @@ function folder_createPath($path, $root, $rights=0771) {
     return true;
 }
 
-/*
- * create all folder needed to complete path
+/**
+ * Create all folder needed to complete path.
  * @param string $path
  * @param string $rights
  * @return boolean
@@ -67,7 +67,7 @@ function folder_completePath($path, $rights=0771) {
 }
 
 /* 
- * delete folder object
+ * Delete folder object.
  * @param string $folder
  * @param boolean $recursive
  * @return boolean
@@ -98,9 +98,9 @@ function folder_delete($folder, $recursive=false) {
     return false;
 }
 
-/*
- * copy a folder and its content to another location
- * @param string $folder
+/**
+ * Copy a folder and its content to another location.
+ * @param string $source
  * @param string $target
  * @return boolean
  */
@@ -128,10 +128,10 @@ function folder_copy($source, $target) {
     return false;
 }
 
-/*
- * move a 'source' folder to a 'target' one
- * @param string $source, the full source path
- * @param string $target, the target folder path
+/**
+ * Move a source folder to a target one.
+ * @param string $source the full source path
+ * @param string $target the target folder path
  * @return boolean
  */
 function folder_move($source, $target) {
@@ -152,8 +152,8 @@ function folder_move($source, $target) {
 }
 
 
-/*
- * return system temporary folder
+/**
+ * Return system temporary folder.
  * @return mixed
  */
 function folder_getTemporaryFolder() {
@@ -181,8 +181,8 @@ function folder_getTemporaryFolder() {
     return false;
 }
 
-/*
- * list files from a folder
+/**
+ * List files from a folder.
  * @param string $folder
  * @return array
  */
@@ -205,8 +205,8 @@ function folder_listFiles($folder) {
     return array();
 }
 
-/*
- * return folder list inside a given folder
+/**
+ * Return folder list inside a given folder.
  * @param string $folder
  * @return array
  */
@@ -235,8 +235,8 @@ function folder_listFolders($folder) {
     return $folders;
 }
 
-/*
- * return folder list inside a given folder matching 
+/**
+ * Return folder list inside a given folder matching.
  * @param string $folder
  * @param array $matching_folders
  * @return array
@@ -270,8 +270,8 @@ function folder_listMatchingFolders($folder, $matching_folders = array()) {
     return $folders;
 }
 
-/*
- * count all files in given directory and sub directories
+/**
+ * Count all files in given directory and sub directories.
  * @param string $path
  * @param boolean $recursive
  * @return integer
@@ -295,8 +295,8 @@ function folder_countFiles($path, $recursive=true) {
     return $cnt;
 }
 
-/*
- * create a zip archive from given folder
+/**
+ * Create a zip archive from given folder.
  * @param string $source
  * @param string $target
  * @param string $includeRootFolder
@@ -347,8 +347,8 @@ function folder_createZipArchive($source='', $target='',  $includeRootFolder=fal
     return $zip->close();
 }
 
-/*
- * return flat file structure of given folder
+/**
+ * Return flat file structure of given folder.
  * @param string $source
  * @return array
  */

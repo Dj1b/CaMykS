@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Specific methods related to colors
+ * @brief Colors specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/colors.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>

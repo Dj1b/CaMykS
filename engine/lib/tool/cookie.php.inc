@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Cookie related methods
+ * @brief Cookie specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/cookie.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>

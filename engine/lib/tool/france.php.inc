@@ -1,24 +1,23 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Apr 2017
- * Last Modif Date  : Jun 2017
- *
- * Specific methods related to France
- * /!\ This library is not loaded with CaMykS initialisation
+/**
+ * @brief France related methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/france.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @warning This library is not loaded with CaMykS initialisation.
  */
 
-/*
- * check if given number is valid for french phone numbers
+/**
+ * Check if given phone number is valid for french phone numbers.
  * @param string $number
- * @param mixed $value
- * @param boolean $keepKeys
- * @return string
+ * @param array $params
+ * @return boolean
  */
 function france_isValidPhoneNumber($number, $params=array()) {
     /* merge params */
@@ -48,9 +47,15 @@ function france_isValidPhoneNumber($number, $params=array()) {
     return true;
 }
 
-/*
- * return france department list
+/**
+ * Return france department list.
  * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e string language <br />
+ * \e integer corsica - \b 1 : one line "20" / \b 2 : two lines "2A" & "2B" <br />
+ * \e integer monaco - \b 0 : off / \b 1 : on <br />
+ * \e integer domtom - \b 0 : off / \b 1 : on <br />
+ * @endparblock
  * @return array
  */
 function france_getDepartmentList($params=array()) {
@@ -58,10 +63,10 @@ function france_getDepartmentList($params=array()) {
   
     /* build default params list */
     $defaultParams = array(
-        'language'  => $camyks->current_language,
-        'corsica'   => 1, // 1 : one line 20 / 2 : two lines 2A/2B
-        'monaco'    => 0, // 0 : off / 1 : on
-        'domtom'    => 0, // 0 : off / 1 : on
+        'language'  => $camyks->current_language, 
+        'corsica'   => 1,
+        'monaco'    => 0,
+        'domtom'    => 0,
     );
     
     /* merge params */
@@ -114,8 +119,8 @@ function france_getDepartmentList($params=array()) {
     return $list;
 }
 
-/*
- * return france department title
+/**
+ * Return france department title.
  * @param string $deptNum
  * @param string $language
  * @return string

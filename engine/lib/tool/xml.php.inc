@@ -1,20 +1,21 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool library
- * Creation Date    : Oct 2007
- * Last Modif Date  : Apr 2018
- * 
- * XML methods
+/**
+ * @brief XML specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/xml.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Oct 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * serialize PHP var to XML
- * @param mixed $data 
+/**
+ * Serialize PHP var to XML.
+ * @param mixed $data
+ * @param string $name
  * @return string
  */
 function xml_serialize2XML($data, $name='xml') {
@@ -41,8 +42,8 @@ function xml_serialize2XML($data, $name='xml') {
     return $xml;
 }
 
-/*
- * unserialize XML data to array object
+/**
+ * Unserialize XML data to array object.
  * @param string $data
  * @return array
  */
@@ -58,10 +59,12 @@ function xml_unserialize($data) {
 
 /*** DEPRECATED ***/
 
-/*
- * serialize PHP var to XML
+/**
+ * Serialize PHP var to XML.*
+ * @see xml_serialize2XML()
  * @param mixed $data 
  * @return string
+ * @deprecated : Old fashion style, use xml_serialize2XML
  */
 function xml_serializeToXML($data) {
     $type = gettype($data);

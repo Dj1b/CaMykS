@@ -1,21 +1,21 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Oct 2007
- * Last Modif Date  : Apr 2018
- *
- * Some string related methods
+/**
+ * @brief String specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/string.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Oct 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * check if given ip (v4) is valid
+/**
+ * Check if given ip (v4) is valid.
  * @param string $ip the ip address to test
- * @param boolean $allow_mask, allows ip groups like 192.168.*.*
+ * @param boolean $allow_mask allows ip groups like 192.168.*.*
  * @return boolean
  */
 function string_isValidIPv4($ip, $allow_mask=false) {
@@ -31,12 +31,12 @@ function string_isValidIPv4($ip, $allow_mask=false) {
     return false;
 }
 
-/*
- * format number string with current language country format
+/**
+ * Format number string with current language country format.
  * @param string $string
  * @param integer $decimal
+ * @param string $country
  * @return string
- * @access public
  */
 function string_numberFormat($string, $decimal=2, $country=null) {
     global $camyks;
@@ -151,8 +151,8 @@ function string_numberFormat($string, $decimal=2, $country=null) {
     }
 }
 
-/*
- * decode string from html to text
+/**
+ * Decode string from html to text.
  * @param string $string
  * @param string $encoding
  * @return string
@@ -179,8 +179,8 @@ function string_html2Text($string, $encoding=null) {
     return $string;
 }
 
-/*
- * encode string from text to html
+/**
+ * Encode string from text to html.
  * @param string $string
  * @param string $encoding
  * @return string
@@ -204,14 +204,16 @@ function string_text2Html($string, $encoding=null) {
     return htmlentities($string);
 }
 
-/*
- * return unaccentued words list from html
- * @param string string
- * @param array params 
- * - changecase : lower | upper
- * - minlength : (integer)
- * - contenttype : text | html
- * - accents : replace | keep
+/**
+ * Return unaccentued words list from html.
+ * @param string $string
+ * @param array $params 
+ * @parblock - Available parameters are <br />
+ * \e string changecase - \b void / \b lower / \b upper <br />
+ * \e integer minlength <br />
+ * \e string contenttype - \b text / \b html <br />
+ * \e string accents - \b replace / \b keep <br />
+ * @endparblock
  * @return array
  */
 function string_text2Words($string, $params=array()) {
@@ -265,13 +267,15 @@ function string_text2Words($string, $params=array()) {
     return $array;
 }
 
-/*
- * return replace entity char by unaccentued chars
+/**
+ * Return replace entity char by unaccentued chars.
  * @param string $string
  * @param array $params
- * - pattern : (string) or (array) containing patterns to complete built-in list
- * - replace : (string) or (array) containing replacement values to complete built-in list
- * - lastreplace : (string) all last entities are replaced by this value (empty string for no replacement)
+ * @parblock - Available parameters are <br />
+ * \e string/array pattern - containing patterns to complete built-in list <br />
+ * \e string/array replace - containing replacement values to complete built-in list<br />
+ * \e string lastreplace - all last entities are replaced by this value (empty string for no replacement) <br />
+ * @endparblock
  * @return string
  */
 function string_replaceEntityChars($string, $params=array()) {
@@ -330,11 +334,13 @@ function string_replaceEntityChars($string, $params=array()) {
     return preg_replace($pattern, $replace, $string);
 }
 
-/*
- * return accentued chars list
+/**
+ * Return accentued chars list.
  * @param array $params
- * - listmode : array | string
- * - charmode : text | html
+ * @parblock - Available parameters are <br />
+ * \e string listmode - \b array / \b string <br />
+ * \e string charmode - \b text / \b html <br />
+ * @endparblock
  * @return mixed
  */
 function string_getAccentuedChars($params=array()) {
@@ -368,10 +374,14 @@ function string_getAccentuedChars($params=array()) {
     return $accentChars;
 }
 
-/*
- * return parsed string, accentued chars are replaced by their unaccentued equivalent
+/**
+ * Return parsed string, accentued chars are replaced by their unaccentued equivalent.
  * @param string $string
  * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e string/array pattern <br />
+ * \e string/array replace <br />
+ * @endparblock
  * @return string
  */
 function string_parseSpecialChars($string, $params=array()) {
@@ -385,8 +395,8 @@ function string_parseSpecialChars($string, $params=array()) {
     return string_replaceEntityChars(string_text2Html($string), array('pattern'=>$params['pattern'], 'replace'=>$params['replace'], 'lastreplace'=>''));
 }
 
-/*
- * return limited version of given sentence
+/**
+ * Return limited version of given sentence.
  * @param string $string
  * @param integer $length
  * @return string
@@ -401,20 +411,20 @@ function string_getShortenedSentence($string='', $length=64) {
     return $string;
 }
 
-/*
- * delete php tags from item value
+/**
+ * Delete php tags from item value.
  * @param string $value
  * @param string $replace
  * @return string
  */
-function string_parsePHPTags ($value,$replace='') {
+function string_parsePHPTags ($value, $replace='') {
     $tags = array();
     $tags[] = '/<\?[^\?'.'>]*\?'.'>/';
     $tags[] = '/<\?/';
     return preg_replace ($tags, $replace, $value);
 }
 
-/*
+/**
  * evolved strip_tags method, may replace tags by another string
  * @param string $value
  * @param string $replace
@@ -426,8 +436,8 @@ function string_stripTags ($value, $replace='') {
     return preg_replace('/<([^>]+)>/i', $replace, $value);
 }
 
-/*
- * check if given string is UTF8
+/**
+ * Check if given string is UTF8.
  * @param string $string
  * @return boolean
  */
@@ -444,8 +454,8 @@ function string_isUTF8($string) {
     );
 }
 
-/*
- * check if given string is html
+/**
+ * Check if given string is html.
  * @param string $string
  * @return boolean
  */
@@ -453,8 +463,8 @@ function string_isHTML($string) {
     return (strip_tags($string) != $string or preg_match('/&[^ ]+;/', $string));
 }
 
-/*
- * check if given string is an URL
+/**
+ * Check if given string is an URL.
  * @param string $string
  * @return boolean
  */
@@ -462,10 +472,11 @@ function string_isURL($string) {
     return preg_match('#^https?://#i', $string);
 }
 
-/*
- * check if given string starts with other string
+/**
+ * Check if given string starts with other string.
  * @param string $haystack
  * @param mixed $needle
+ * @param boolean $caseSensitive
  * @return boolean result
  */
 function string_startsWith($haystack, $needle, $caseSensitive=false) {
@@ -482,8 +493,8 @@ function string_startsWith($haystack, $needle, $caseSensitive=false) {
     }
 }
 
-/*
- * check if given string ends with other string
+/**
+ * Check if given string ends with other string.
  * @param string $haystack
  * @param mixed $needle
  * @param boolean $caseSensitive
@@ -503,8 +514,8 @@ function string_endsWith($haystack, $needle, $caseSensitive=false) {
     }
 }
 
-/*
- * return given string base url 
+/**
+ * Return given string base url.
  * @param string $url
  * @return string
  */
@@ -516,8 +527,8 @@ function string_getBaseURL($url='') {
     return $s;
 }
 
-/* 
- * return symbolic name (url compliant) from given string
+/**
+ * Return symbolic name (url compliant) from given string.
  * @param string $text
  * @param array $params
  * @return string
@@ -552,8 +563,8 @@ function string_getSymbolicName($text='', $params=array()) {
     return $text;
 }
 
-/*
- * encode string to html
+/**
+ * Encode string to html.
  * @param string $text
  * @param int $flags
  * @param string $encoding
@@ -580,8 +591,8 @@ function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=
     return preg_replace($pattern, $replace, $text);
 }
 
-/*
- * format given phone number
+/**
+ * Format given phone number.
  * @param string $number
  * @param string $prefix
  * @return string
@@ -622,8 +633,8 @@ function string_formatIntlPhoneNumber($number, $prefix='') {
     return '+'.$prefix.$number;
 }
 
-/*
- * return string all lowercase, including accentuated characters
+/**
+ * Return string all lowercase, including accentuated characters.
  * @param string $string
  * @return string
  */
@@ -633,11 +644,10 @@ function string_toLower($string='') {
     return strtolower($string);
 }
 
-/*
- * return string all uppercase, including accentuated characters
+/**
+ * Return string all uppercase, including accentuated characters.
  * @param string $string
  * @return string
- * @access public
  */
 function string_toUpper($string='') {
     if (string_isUTF8($string))
@@ -645,8 +655,8 @@ function string_toUpper($string='') {
     return strtoupper($string);
 }
 
-/*
- * return similar strings begining
+/**
+ * Return similar strings begining.
  * @param string $s1
  * @param string $s2
  * @return string
@@ -667,10 +677,12 @@ function string_getSimilarBeginning($s1, $s2) {
     return $result;
 }
 
-/*
- * return string without non-letter chars, string_replaceEntityChars is now and often more accurate
+/**
+ * Return string without non-letter chars.
+ * @see string_replaceEntityChars()
  * @param string $string
  * @return string
+ * @deprecated string_replaceEntityChars is now and often more accurate
  */
 function string_parseNonLetterChars($string) {
     $parsed = '';

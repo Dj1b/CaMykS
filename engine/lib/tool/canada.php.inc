@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Specific methods related to Canada
+ * @brief Canada related methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/canada.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>

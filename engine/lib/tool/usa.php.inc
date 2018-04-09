@@ -1,21 +1,21 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jul 2017
- * Last Modif Date  : Apr 2018
- *
- * Specific methods related to USA
- * /!\ This library is not loaded with CaMykS initialisation
+/**
+ * @brief USA related methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/usa.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @warning This library is not loaded with CaMykS initialisation.
  */
- 
-/* 
- * load USA states locales
- * @param string language
+
+/**
+ * Load USA states locales.
+ * @param string $language
  * @return void
  */
 function usa_getStatesLocales($language='') {
@@ -28,8 +28,8 @@ function usa_getStatesLocales($language='') {
     $camyks->add_generic_translation('usastates', $language);
 }
 
-/*
- * return USA states code list
+/**
+ * Return USA states code list.
  * @return array
  */
 function usa_getStatesCodeList() {
@@ -39,8 +39,8 @@ function usa_getStatesCodeList() {
         'vt', 'va', 'wv', 'wa', 'wi', 'wy');
 }
 
-/*
- * return USA states list
+/**
+ * Return USA states list.
  * @param array $params
  * @return array
  */
@@ -72,8 +72,8 @@ function usa_getStatesList($params=array()) {
     return $list;
 }
 
-/*
- * return USA state title
+/**
+ * Return USA state title.
  * @param string $state
  * @param string $language
  * @return string

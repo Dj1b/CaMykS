@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Client related methods
+ * @brief Client specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>

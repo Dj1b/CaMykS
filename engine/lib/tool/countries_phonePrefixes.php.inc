@@ -13,6 +13,9 @@
  */
 global $__phonePrefixes;
 
+/**
+ * @var array $__phonePrefixes
+ */
 $__phonePrefixes = array(
     'af' => '93',
     'za' => '27',

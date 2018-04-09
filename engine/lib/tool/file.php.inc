@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief File related methods
+ * @brief File specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
@@ -569,7 +569,7 @@ function file_readfile($filename, $retbytes=true) {
  * @param string $file_path
  * @param string $desc
  * @param array $datas
- * return boolean success
+ * @return boolean success
  */
 function file_writeConfFile($file_path, $desc, $datas) {
     $file_content = file_getPHPFileHeader($desc);
