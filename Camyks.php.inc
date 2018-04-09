@@ -5,12 +5,11 @@
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
- * @date Jun 2005
- * @date Dec 2014
+ * @date Creation: Jun 2005
+ * @date Modification: Dec 2014
  * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed in the hope that it will be useful - WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE.
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
