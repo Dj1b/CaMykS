@@ -4,10 +4,10 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0.5
+ * Object Version   : 1.0.6
  * Object Type      : Engine / Tool Library
  * Creation Date    : Jun 2007
- * Last Modif Date  : Mar 2018
+ * Last Modif Date  : Apr 2018
  *
  * client user methods
  */
@@ -275,9 +275,7 @@ function client_getUAInfos($ua=false) {
             'IncredibleS'   => array('platform_model' => 'Incredible S'),
             'D820u'         => array('platform_model' => 'Desire 820 Dual SIM'),
         );
-
         $model = preg_replace('/_/', ' ', $matches[1]);
-
         $infos = array_merge($infos, array(
             'platform_company'  => 'HTC',
             'platform_model'    => $model,
@@ -286,7 +284,25 @@ function client_getUAInfos($ua=false) {
             ),
             isset($rep[$matches[1]])?$rep[$matches[1]]:array()
         );
-    }
+    } elseif (preg_match('/HTC([A-Za-z0-9]+)/', $ua, $matches)) {
+        $rep = array(
+            'T329t'         => array('platform_model' => 'Proto', 'browser_title' => 'Android browser',),
+        );
+        $model = preg_replace('/_/', ' ', $matches[1]);
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'HTC',
+            'platform_model'    => $model,
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld'
+            ),
+            isset($rep[$matches[1]])?$rep[$matches[1]]:array()
+        );
+    } elseif (preg_match('/2PYB2/', $ua, $matches))
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'HTC',
+            'platform_model'    => 'Bolt',
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld',));
 
     /* check LG */
     elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches))
@@ -1219,17 +1235,18 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Coolpad devices */
-    elseif (preg_match('/CP(8298_I00) Build/', $ua, $matches)) {
+    elseif (preg_match('/(CP|Coolpad )([A-Z0-9_\-]+) Build/', $ua, $matches)) {
         $rep = array(
-            '8298_I00'=> array('platform_model' => 'Note Lite 3', 'platform_type'     => 'handheld', 'platform_format'   => 'handheld'),
+            '8298_I00'  => array('platform_model' => 'Note Lite 3'),
+            'Y82-520'   => array('platform_model' => 'Fengshang Y82-520'),
         );
         $infos = array_merge($infos, array(
             'platform_company'  => 'Coolpad',
-            'platform_model'    => $matches[1],
+            'platform_model'    => $matches[2],
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld'
             ),
-            isset($rep[$matches[1]])?$rep[$matches[1]]:array()
+            isset($rep[$matches[2]])?$rep[$matches[2]]:array()
         );
     }
 
@@ -6100,6 +6117,16 @@ function client_getKnownBots() {
         'engine_url'        => '',
     );
     
+    /* Auto Spider - unknown bot */
+    $knownBots['auto spider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Auto Spider (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+    
     /* return bot list */
     return $knownBots;
 }
@@ -8046,7 +8073,7 @@ function _client_getUAPropertiesMaxVersions() {
             'Chromium'          => '75',                    // current is 67
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
-            'Opera'             => '55',                    // current is 51
+            'Opera'             => '56',                    // current is 52
             'Safari'            => '15',                    // current is 11
         ),
     );
