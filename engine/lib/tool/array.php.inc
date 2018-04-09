@@ -1,6 +1,6 @@
 <?php
 /**
- * Array related methods
+ * @brief Array related methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/array.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
