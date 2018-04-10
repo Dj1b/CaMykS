@@ -24,3 +24,8 @@ global $camyks;
     <?=$camyks->theme->get_boxContent1Footer();?>
     <?=$camyks->theme->get_boxFooter();?>
 </div>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

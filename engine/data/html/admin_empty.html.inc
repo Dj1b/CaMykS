@@ -16,3 +16,8 @@
 <div>
     &nbsp;
 </div>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

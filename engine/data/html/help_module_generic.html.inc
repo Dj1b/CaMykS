@@ -74,3 +74,8 @@
 <?php if (isset($this->help['main']['html'])) : ?>
     <?php $this->load_file('help/'.$camyks->current_language.'/'.$this->help['main']['html']);?>
 <?php endif; ?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

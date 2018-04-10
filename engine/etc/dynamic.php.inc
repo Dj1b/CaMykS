@@ -14,7 +14,7 @@
  */
  
 /**
- * @var array $this->_conf CMS configuration
+ * @var array $this->_conf
  * @brief CaMykS Configuration
  * @brief Available parameters are <br />
  * @brief \e string server_encoding - Default 'utf8'. <br />

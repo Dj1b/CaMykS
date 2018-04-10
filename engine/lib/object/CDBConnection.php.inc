@@ -19,7 +19,7 @@
  */
 abstract class CDBConnection {
     /**
-     * @var boolean $action
+     * @var boolean $active
      * @brief CDBConnection status.
      */
     protected $active = false;
@@ -56,6 +56,7 @@ abstract class CDBConnection {
      * @param string $host
      * @param string $login
      * @param string $pwd
+     * @param string $driver
      * @return boolean success
      */
     abstract public function connect_server($host='localhost', $login='', $pwd='', $driver='');
@@ -252,7 +253,6 @@ abstract class CDBConnection {
     /**
      * Return automatic ressource name.
      * @return string
-     * @access protected
      */
     protected function get_resName() {
         $c = count($this->queryRes)+1;

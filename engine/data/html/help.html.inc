@@ -47,3 +47,8 @@
         </td>
     </tr>
 </table>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

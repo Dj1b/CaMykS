@@ -71,3 +71,8 @@ global $camyks;
         </div>
     </body>
 </html>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

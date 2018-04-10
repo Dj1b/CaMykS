@@ -40,7 +40,7 @@ final class CMail {
     /* public methods */
 
     /**
-     * initialise object 
+     * Initialise object.
      * @return void
      */
     public function initialise() { 
@@ -236,7 +236,7 @@ final class CMail {
     }
 
     /**
-     * Add attached files
+     * Add attached files.
      * @param array $files
      * @return void
      */
