@@ -49,230 +49,236 @@ define('CAMYKS_NAME',           'CaMykS');
 final class Camyks {
     
     /**
-     * \var string $name
-     * \brief CaMykS object name.
+     * @var string $name
+     * @brief CaMykS object name.
      */
     public $name = CAMYKS_NAME;
     
     /**
-     * \var string $object_type
-     * \brief CaMykS object type.
+     * @var string $title
+     * @brief CaMykS object title.
+     */
+    public $title = CAMYKS_NAME;
+    
+    /**
+     * @var string $object_type
+     * @brief CaMykS object type.
      */
     public $object_type = CAMYKS_NAME;
     
     /**
-     * \var string $version
-     * \brief CaMykS current version.
+     * @var string $version
+     * @brief CaMykS current version.
      */
     public $version;
     
     /**
-     * \var integer $last_modification_date
-     * \brief CaMykS last modification date.
+     * @var integer $last_modification_date
+     * @brief CaMykS last modification date.
      */
     public $last_modification_date;
     
     /**
-     * \var string $site_name
-     * \brief CaMykS current site name.
+     * @var string $site_name
+     * @brief CaMykS current site name.
      */
     public $site_name;
     
     /**
-     * \var string $mode
-     * \brief CaMykS running mode (admin / site / manager / install).
+     * @var string $mode
+     * @brief CaMykS running mode (admin / site / manager / install).
      */
     public $mode;
     
     /**
-     * \var array $trads
-     * \brief CaMykS merged locales.
+     * @var array $trads
+     * @brief CaMykS merged locales.
      */
     public $trads = array();
     
     /**
-     * \var string $camyks_path
-     * \brief CaMykS path.
+     * @var string $camyks_path
+     * @brief CaMykS path.
      */
     public $camyks_path;
     
     /**
-     * \var string $camyks_plugin_path
-     * \brief CaMykS plugins path.
+     * @var string $camyks_plugin_path
+     * @brief CaMykS plugins path.
      */
     public $camyks_plugin_path;
     
     /**
-     * \var string $camyks_plugin_url
-     * \brief CaMykS plugins base url.
+     * @var string $camyks_plugin_url
+     * @brief CaMykS plugins base url.
      */
     public $camyks_plugin_url;
     
     /**
-     * \var string $camyks_engine_path
-     * \brief CaMykS libraries path.
+     * @var string $camyks_engine_path
+     * @brief CaMykS libraries path.
      */
     public $camyks_engine_path;
     
     /**
-     * \var string $site_path
-     * \brief Current site path.
+     * @var string $site_path
+     * @brief Current site path.
      */
     public $site_path;
     
     /**
-     * \var string $site_plugin_path
-     * \brief Current site plugins path.
+     * @var string $site_plugin_path
+     * @brief Current site plugins path.
      */
     public $site_plugin_path;
     
     /**
-     * \var string $site_plugin_url
-     * \brief Current site plugins base url.
+     * @var string $site_plugin_url
+     * @brief Current site plugins base url.
      */
     public $site_plugin_url;
     
     /**
-     * \var string $site_cache_path
-     * \brief Current site cache path.
+     * @var string $site_cache_path
+     * @brief Current site cache path.
      */
     public $site_cache_path;
     
     /**
-     * \var string $site_data_url
-     * \brief Current site data folder base url.
+     * @var string $site_data_url
+     * @brief Current site data folder base url.
      */
     public $site_data_url;
     
     /**
-     * \var string $site_base_url
-     * \brief Current site base url.
+     * @var string $site_base_url
+     * @brief Current site base url.
      */
     public $site_base_url;
     
     /**
-     * \var string $db_table_prefix
-     * \brief Database tables prefix.
+     * @var string $db_table_prefix
+     * @brief Database tables prefix.
      */
     public $db_table_prefix;
     
     /**
-     * \var Database_connection $db_conn
-     * \brief Main database connection
+     * @var Database_connection $db_conn
+     * @brief Main database connection
      */
     public $db_conn;
     
     /**
-     * \var string $file_extension
-     * \brief Files extension.
+     * @var string $file_extension
+     * @brief Files extension.
      */
     public $file_extension;
     
     /**
-     * \var array $modules
-     * \brief CaMykS modules.
+     * @var array $modules
+     * @brief CaMykS modules.
      */
     public $modules;
     
     /**
-     * \var array $templates
-     * \brief CaMykS templates.
+     * @var array $templates
+     * @brief CaMykS templates.
      */
     public $templates;
     
     /**
-     * \var array $themes
-     * \brief CaMykS themes.
+     * @var array $themes
+     * @brief CaMykS themes.
      */
     public $themes;
     
     /**
-     * \var array $inputs
-     * \brief CaMykS inputs.
+     * @var array $inputs
+     * @brief CaMykS inputs.
      */
     public $inputs;
     
     /**
-     * \var Theme $theme
-     * \brief CaMykS current theme.
+     * @var Theme $theme
+     * @brief CaMykS current theme.
      */
     public $theme;
     
     /**
-     * \var string $current_language
-     * \brief CaMykS current language.
+     * @var string $current_language
+     * @brief CaMykS current language.
      */
     public $current_language;
     
     /**
-     * \var array $cache
-     * \brief CaMykS cache
+     * @var array $cache
+     * @brief CaMykS cache
      */
     public $cache = array();
     
     /**
-     * \var array $shared_data
-     * \brief CaMykS shared data.
+     * @var array $shared_data
+     * @brief CaMykS shared data.
      */
     public $shared_data = array();
     
     /**
-     * \var array $sharedObjects
-     * \brief CaMykS shared objects.
+     * @var array $sharedObjects
+     * @brief CaMykS shared objects.
      */
     public $sharedObjects = array();
     
     /**
-     * \var array $plugin_extensions
-     * \brief CaMykS plugins extensions.
+     * @var array $plugin_extensions
+     * @brief CaMykS plugins extensions.
      */
     public $plugin_extensions = array();
     
     /**
-     * \var HTMLPage $HTMLPage
-     * \brief CaMykS HTML page
+     * @var HTMLPage $HTMLPage
+     * @brief CaMykS HTML page
      */
     public $HTMLPage;
     
     /**
-     * \var ContentPage $contentPage
-     * \brief CaMykS content page.
+     * @var ContentPage $contentPage
+     * @brief CaMykS content page.
      */
     public $contentPage;
     
     /**
-     * \var string $previewMode
-     * \brief CaMykS current preview mode.
+     * @var string $previewMode
+     * @brief CaMykS current preview mode.
      */
     public $previewMode;
     
     /**
-     * \var string $deviceMode
-     * \brief CaMykS current device mode.
+     * @var string $deviceMode
+     * @brief CaMykS current device mode.
      */
     public $deviceMode;
     
     /**
-     * \var array $openedDBonnections
-     * \brief CaMykS opened database connections.
+     * @var array $openedDBonnections
+     * @brief CaMykS opened database connections.
      */
     private $openedDBonnections = array();
     
     /**
-     * \var array $eventsHandlers
-     * \brief CaMykS event handlers.
+     * @var array $eventsHandlers
+     * @brief CaMykS event handlers.
      */
     private $eventsHandlers;
     
     /**
-     * \var boolean $falseRef
-     * \brief CaMykS false value as reference
+     * @var boolean $falseRef
+     * @brief CaMykS false value as reference
      */
      private $falseRef = false;
      
      /**
-      * \var mixed $adminUser
-      * \brief Current logged admin user
+      * @var mixed $adminUser
+      * @brief Current logged admin user
       */
      public $adminUser = false;
 
