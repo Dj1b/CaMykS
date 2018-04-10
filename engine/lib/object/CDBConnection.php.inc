@@ -1,262 +1,256 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Creation Date    : Sep 2014
- * Last Modif Date  : Apr 2018
- *
- * CaMykS Generic Database connection object
- * to be extended by specific database connection objects
+/**
+ * @brief CaMykS Generic Database connection object
+ * <br /> To be extended by specific database connection objects
+ * @details Engine / Object Library
+ * @file engine/lib/object/CDBConnection.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2014
+ * @date Modification: Apr 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * CDBConnection class.
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ */
 abstract class CDBConnection {
+    /**
+     * @var boolean $action
+     * @brief CDBConnection status.
+     */
+    protected $active = false;
     
-    protected $active;
-    protected $connection;
-    protected $queryRes;
-    protected $dbName;
+    /**
+     * @var Ressource $connection
+     * @brief CDBConnection database ressource.
+     */
+    protected $connection = null;
+    
+    /**
+     * @var array $queryRes
+     * @brief Query ressources.
+     */
+    protected $queryRes = array();
+    
+    /**
+     * @var string $dbName
+     * @brief Name of the database.
+     */
+    protected $dbName = null;
 
-    /*
-     * Class constructor
+    /**
+     * Class constructor.
      * @return void
-     * @access private
      */
     public function __construct() {
-        $this->active = false;
-        $this->connection = null;
-        $this->queryRes = array();
-        $this->dbName = null;
     }
 
     /* server related methods */
-  
-    /*
-     * connect to server
+
+    /**
+     * Connect to server.
      * @param string $host
      * @param string $login
      * @param string $pwd
      * @return boolean success
-     * @access private
      */
     abstract public function connect_server($host='localhost', $login='', $pwd='', $driver='');
-  
-    /*
-     * close server connection
+
+    /**
+     * Close server connection.
      * @return boolean success
-     * @access private
      */
     abstract public function disconnect_server();
-  
-    /*
-     * check if connection is active
+
+    /**
+     * Check if connection is active.
      * @return boolean success
-     * @access private
      */
     public function is_connectionActive() {
         return $this->active;
     }
-  
-    /*
-     * check database status
+
+    /**
+     * Check database status.
      * @param string $name
      * @return array
-     * @access public
      */
     public function check_status($name) {
         if (!$this->is_connectionActive())
             return array('ServerConnected'=>false, 'DatabaseExists'=>false);
-    
+
         if ($this->dbName == null)
             $db = $this->database_exists($name);
         else
             $db = true;
-    
+
         return array('ServerConnected'=>$this->is_connectionActive(), 'DatabaseExists'=>$db);
     }
-  
-    /*
-     * return version 
+
+    /**
+     * Return database engine version.
      * @return string
-     * @access public
      */
     abstract public function get_serverVersion();
-    
+
     /* database related methods */
-    
-    /*
-     * select table
-     * @param string $name the database name
+
+    /**
+     * Select database.
+     * @param string $name
      * @return boolean
-     * @access public
      */
     abstract public function select_database($name);
-    
-    /* 
-     * create a database
+
+    /**
+     * Create a database.
      * @param string $name
      * @param string $charset
      * @return boolean
-     * @access public
      */
     abstract public function create_database($name, $charset='utf8');
-    
-    /*
-     * check if a base exits
+
+    /**
+     * Check if a base exits.
      * @param string $name
      * @return boolean
-     * @access public
      */
     abstract public function database_exists($name);
-    
-    /*
-     * dump database
+
+    /**
+     * Dump database.
      * @param mixed $file
      * @return mixed
-     * @access public
      */
     abstract public function dump_database($file=false);
-    
-    /*
-     * return database size
+
+    /**
+     * Return database size.
      * @return integer
-     * @access public
      */
     abstract public function get_databaseSize();
-    
-    /*
-     * return database summary
+
+    /**
+     * Return database summary.
      * @return array
-     * @access public
      */
     abstract public function get_databaseSummary();
-    
+
     /* table related methods */
-    
-    /*
-     * return available table list
+
+    /**
+     * Return available table list.
      * @return array
-     * @access public
      */
     abstract public function get_tableList();
-    
-    /*
-     * create a table in the database
+
+    /**
+     * Create a table in the database.
      * @param string $name
      * @param array $fields
      * @param string $charset
      * @param boolean $autoId
      * @param array $primaryKeys
      * @return boolean success
-     * @access private
      */
     abstract public function create_table($name, $fields, $charset='utf8', $autoId=true, $primaryKeys=array('id'));
-    
+
     /* query related methods */
-    
-    /*
-     * execute query
+
+    /**
+     * Execute query.
      * @param string $sql
      * @param string $resName
      * @return boolean success
-     * @access public
      */
     abstract public function execute_query($sql='', $resName='defaultRes');
-    
-    /*
-     * return id generated by last query
+
+    /**
+     * Return id generated by last query.
      * @param string $resName
      * @return integer
-     * @access public
      */
     abstract public function get_queryGeneratedId($resName='defaultRes');
-    
-    /*
-     * return next query data line
+
+    /**
+     * Return next query data line.
      * @param string $resName
      * @return array
-     * @access public
      */
     abstract public function get_queryDataLine($resName='defaultRes');
-    
-    /*
-     * return next query data line with numeric indexes
+
+    /**
+     * Return next query data line with numeric indexes.
      * @param string $resName
      * @return array
-     * @access public
      */
     abstract public function get_queryNumDataLine($resName='defaultRes');
-    
-    /*
-     * return latest query error
+
+    /**
+     * Return latest query error.
      * @param string $resName
      * @return string
-     * @access public
      */
     abstract public function get_queryError($resName='defaultRes');
-    
-    /*
-     * return latest query affected rows
+
+    /**
+     * Return latest query affected rows.
      * @param string $resName
      * @return integer
-     * @access public
      */
     abstract public function get_queryAffectedRows($resName='defaultRes');
-    
-    /*
-     * return latest query field count
+
+    /**
+     * Return latest query field count.
      * @param string $resName
      * @return integer 
-     * @access public
      */
     abstract public function get_queryFieldCount($resName='defaultRes');
-    
-    /*
-     * return latest query field type
+
+    /**
+     * Return latest query field type.
      * @param integer $fIndex
      * @param string $resName
      * @return string
-     * @access public
     */
     abstract public function get_queryFieldType($fIndex=0, $resName='defaultRes');
-    
-    /*
-     * close ressource
+
+    /**
+     * Close ressource.
      * @param string $resName
      * @return boolean result
-     * @access public
      */
     abstract public function close_ressource($resName='defaultRes');
-    
+
     /* data related methods */
-    
-    /*
-     * return escaped string
+
+    /**
+     * Return escaped string.
      * @param string $string
      * @return string
-     * @access public
      */
     public function escape_string($string) {
         return addslashes($string);
     }
-    
+
     /* special methods */
-    
-    /*
-     * return specific insert extra from driver
+
+    /**
+     * Return specific insert extra from driver.
      * @return string
-     * @access public
      */
     public function get_insertExtra() {
         return '';
     }
-    
+
     /* internal methods */
-    
-    /*
-     * return automatic ressource name
+
+    /**
+     * Return automatic ressource name.
      * @return string
      * @access protected
      */
