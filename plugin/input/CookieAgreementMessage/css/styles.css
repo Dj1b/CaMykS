@@ -1,4 +1,4 @@
-/*                                                                                                                 
+/*
  * CaMykS Engine
  * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
@@ -7,8 +7,8 @@
  * Object Type      : Plugin / Input CSS Styles
  * Creation Date	: May 2017
  * Last Modif Date	: May 2017
- *                                                                                                                 
- * CookieAgreementMessage input CSS style file                                                                           
+ *
+ * CookieAgreementMessage input CSS style file
 */
 
 .cookieAgreementMessage {background:black; padding:4px; position:fixed; opacity:0.7;}
@@ -33,3 +33,8 @@
 .cookieAgreementMessage.bottom-left .buttons {padding:8px 0;}
 .cookieAgreementMessage.bottom-right {width:400px; text-align:center; bottom:10px; right:10px;}
 .cookieAgreementMessage.bottom-right .buttons {padding:8px 0;}
+
+/* mobile adaptation */
+@media (max-width: 400px) {
+    .cookieAgreementMessage {max-width:100%; left:0; right:0;}
+}
