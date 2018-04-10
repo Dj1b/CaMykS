@@ -689,8 +689,9 @@ function client_getUAInfos($ua=false) {
             isset($rep[$model])?$rep[$model]:array()
         );
     }
-    elseif (preg_match('/SOV33/', $ua, $matches)) {
+    elseif (preg_match('/SOV3[0-9]/', $ua, $matches)) {
         $rep = array(
+            'SOV32' => array('platform_model' => 'Xperia Z5'),
             'SOV33' => array('platform_model' => 'Xperia X Performance'),
         );
         $model = trim($matches[0]);
@@ -886,6 +887,7 @@ function client_getUAInfos($ua=false) {
             'Z00ED'     => array('platform_model' => 'Zenfon 2'),
             'Z00LD'     => array('platform_model' => 'Zenfon 2 Laser'),
             'X00DD'     => array('platform_model' => 'Zenfon 3 Max'),
+            'X008D'     => array('platform_model' => 'Zenfon 3 Max'),
         );
         $model = trim($matches[1]);
         $infos = array_merge($infos, array(
@@ -1572,14 +1574,19 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Oppo mobiles */
-    elseif (preg_match('/(1201|A37fw) Build/', $ua, $matches)) {
+    elseif (preg_match('/(1201|A37fw|F1f) Build/', $ua, $matches)) {
+        $rep = array(
+            'F1f'   => array('platform_model' => 'F1',),
+        );
         $model = trim($matches[1]);
         $infos = array_merge($infos, array(
             'platform_company'  => 'Oppo',
             'platform_model'    => $model,
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
-        ));
+            ),
+            isset($rep[$model])?$rep[$model]:array()
+        );
     } elseif (preg_match('/OPPO ([^.]+) Build/', $ua, $matches)) {
         $model = trim($matches[1]);
         $infos = array_merge($infos, array(
@@ -1830,8 +1837,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
             'browser_version'   => isset($matches[2])?$matches[2]:'',
