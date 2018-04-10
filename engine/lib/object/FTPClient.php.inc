@@ -1,108 +1,109 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Object
- * Creation Date    : Mar 2018
- * Last Modif Date  : Mar 2018
- *
- * FTP Client Object
+/**
+ * @brief FTP client object library
+ * @details Engine / Object Library
+ * @file engine/lib/object/FTPCiient.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Mar 2018
+ * @date Modification: Apr 2018
+ * @copyright 2018 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * FSFile class.
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ */
 final class FTPClient {
+    /**
+     * @var Resource $connection
+     * @brief Connection to server.
+     */
+    private $connection;
 
-  /* define variables */
-  private $connection;
+    /**
+     * Class constructor.
+     * @return void
+     */
+    public function __construct() {
+        $this->connection = null;
+    }
 
-  /*
-   * object constructor
-   * @param array $params
-   * @return void
-   * @access public
-   */
-  public function __construct() {
-    $this->connection = null;
-  }
-  
-  /* 
-   * object destructor
-   * @return void
-   * @access public
-   */
-  public function __destruct() {
-    if ($this->connection !== null)
-      $this->close();
-  }
-  
-  /*
-   * use of magic method to catch all ftp commands from php
-   * @param string $method
-   * @param array $arguments
-   * @return mixed
-   */
-  public function __call($method, $arguments) {
-    /* add php method prefix */
-    $function = 'ftp_' . $method;
-    if (function_exists($function)) {
-      /* adds connection as first argument */
-      array_unshift($arguments, $this->connection);
-      
-      /* execute function */
-      return call_user_func_array($function, $arguments);
+    /**
+     * Class destructor.
+     * @return void
+     */
+    public function __destruct() {
+        if ($this->connection !== null)
+            $this->close();
     }
-    
-    /* php function doesn't exist, return false */
-    return false;
-  }
-  
-  /*
-   * explicitly define connect method to get connection object
-   * @param string $host
-   * @param boolean $ssl
-   * @param integer $port
-   * @param integer $timeout
-   * @return boolean success
-   */
-  public function connect($host, $ssl=false, $port=21, $timeout=60) {
-    /* check if ftp is available */
-    if (!extension_loaded('ftp'))
-      return false;
-  
-    if ($ssl) {
-        $this->connection = ftp_ssl_connect($host, $port, $timeout);
-    } else {
-        $this->connection = ftp_connect($host, $port, $timeout);
+
+    /**
+     * Magic method to catch all FTP commands from PHP.
+     * @param string $method
+     * @param array $arguments
+     * @return mixed
+     */
+    public function __call($method, $arguments) {
+        /* add php method prefix */
+        $function = 'ftp_' . $method;
+        if (function_exists($function)) {
+            /* adds connection as first argument */
+            array_unshift($arguments, $this->connection);
+            /* execute function */
+            return call_user_func_array($function, $arguments);
+        }
+        /* php function doesn't exist, return false */
+        return false;
     }
-    return ($this->connection !== false);
-  }
-  
-  /*
-   * explicitly define ssl_connect method
-   * @param string $host
-   * @param integer $port
-   * @param integer $timeout
-   * @return boolean success
-   */
-  public function ssl_connect($host, $port=21, $timeout=60) {
-    return $this->connect($host, true, $port, $timeout);
-  }
-    
-  /* specific methods */
-  
-  /*
-   * write a file to the server directly from given content
-   * @param string $remoteFilePath
-   * @param string $content
-   * @return boolean success
-   */
-  public function write_content($remoteFilePath, $content) {
-    $temp = fopen('php://temp', 'w');
-    fwrite($temp, $content);
-    rewind($temp);
-    return $this->fput($remoteFilePath, $temp, FTP_BINARY);
-  }
+
+    /**
+     * Explicitly define connect method to get connection object.
+     * @param string $host
+     * @param boolean $ssl
+     * @param integer $port
+     * @param integer $timeout
+     * @return boolean success
+     */
+    public function connect($host, $ssl=false, $port=21, $timeout=60) {
+        /* check if ftp is available */
+        if (!extension_loaded('ftp'))
+            return false;
+
+        if ($ssl) {
+            $this->connection = ftp_ssl_connect($host, $port, $timeout);
+        } else {
+            $this->connection = ftp_connect($host, $port, $timeout);
+        }
+        return ($this->connection !== false);
+    }
+
+    /**
+     * Explicitly define ssl_connect method.
+     * @param string $host
+     * @param integer $port
+     * @param integer $timeout
+     * @return boolean success
+     */
+    public function ssl_connect($host, $port=21, $timeout=60) {
+        return $this->connect($host, true, $port, $timeout);
+    }
+
+    /* specific methods */
+
+    /**
+     * Write a file to the server directly from given content.
+     * @param string $remoteFilePath
+     * @param string $content
+     * @return boolean success
+     */
+    public function write_content($remoteFilePath, $content) {
+        $temp = fopen('php://temp', 'w');
+        fwrite($temp, $content);
+        rewind($temp);
+        return $this->fput($remoteFilePath, $temp, FTP_BINARY);
+    }
 }
 ?>
