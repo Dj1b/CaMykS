@@ -131,7 +131,7 @@ function countries_loadLocales($language=null) {
 function countries_getTranslation($country='') {
     global $camyks;
     if ($country == '') return '';
-    return $camyks->get_translation('country_'.$country;
+    return $camyks->get_translation('country_'.$country);
 }
 
 /**
