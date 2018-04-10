@@ -1,48 +1,53 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Engine / Configuration File
- * Creation Date	: Jun 2005
- * Last Modif Date	: Oct 2017
- * History :
- * 05-06-xx : Initial file
- * 08-01-07 : Update with new templates & themes names
- *
- * CaMykS Engine mandatory plugin list
- * Included in CaMykS object
-*/
+/**
+ * @brief CaMykS required plugins configuration
+ * @brief Automatically loaded by CaMykS object.
+ * @details Engine / Configuration file
+ * @file engine/etc/neededPlugins.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-/* Modules */
-$this->neededModules = array();
-$this->neededModules['Tool_Login'] = array('name'=>'Tool_Login', 'version'=>'1.0');
-$this->neededModules['Tool_ControlPanel'] = array('name'=>'Tool_ControlPanel', 'version'=>'1.0');
-$this->neededModules['Tool_InfoBar'] = array('name'=>'Tool_InfoBar', 'version'=>'1.0');
-$this->neededModules['Tool_Disconnect'] = array('name'=>'Tool_Disconnect', 'version'=>'1.0');
+/**
+ * @var array $this->neededModules
+ * @brief CaMykS required module list
+ */
+$this->neededModules = array(
+    'Tool_Login'            => array('name'=>'Tool_Login', 'version'=>'1.0'),
+    'Tool_ControlPanel'     => array('name'=>'Tool_ControlPanel', 'version'=>'1.0'),
+    'Tool_InfoBar'          => array('name'=>'Tool_InfoBar', 'version'=>'1.0'),
+    'Tool_Disconnect'       => array('name'=>'Tool_Disconnect', 'version'=>'1.0'),
+    'Admin_User'            => array('name'=>'Admin_User', 'version'=>'1.0'),
+    'Admin_Group'           => array('name'=>'Admin_Group', 'version'=>'1.0'),
+    'Admin_Site'            => array('name'=>'Admin_Site', 'version'=>'1.0'),
+    'Admin_ContentPage'     => array('name'=>'Admin_ContentPage', 'version'=>'1.0'),
+    'Admin_PluginManager'   => array('name'=>'Admin_PluginManager', 'version'=>'1.0'),
+);
 
-
-$this->neededModules['Admin_User'] = array('name'=>'Admin_User', 'version'=>'1.0');
-$this->neededModules['Admin_Group'] = array('name'=>'Admin_Group', 'version'=>'1.0');
-$this->neededModules['Admin_Site'] = array('name'=>'Admin_Site', 'version'=>'1.0');
-$this->neededModules['Admin_ContentPage'] = array('name'=>'Admin_ContentPage', 'version'=>'1.0');
-$this->neededModules['Admin_PluginManager'] = array('name'=>'Admin_PluginManager', 'version'=>'1.0');
-//$this->neededModules['Dummy'] = array('name'=>'Dummy', 'version'=>'1.0');
-
-/* Inputs */
+/**
+ * @var array $this->neededInputs
+ * @brief CaMykS required input list
+ */
 $this->neededInputs = array();
-//$this->neededInputs['TabBuilder'] = array('name'=>'TabBuilder', 'version'=>'1.0');
 
-/* Templates */
-$this->neededTemplates = array();
-$this->neededTemplates['AdminPage'] = array('name'=>'AdminPage', 'version'=>'1.0');
-//$this->neededTemplates['DefaultPage'] = array('name'=>'DefaultPage', 'version'=>'1.0');
+/**
+ * @var array $this->neededTemplates
+ * @brief CaMykS required template list
+ */
+$this->neededTemplates = array(
+    'AdminPage'             => array('name'=>'AdminPage', 'version'=>'1.0'),
+);
 
-/* Themes */
+/**
+ * @var array $this->neededThemes
+ * @brief CaMykS required theme list
+ */
 $this->neededThemes = array();
-//$this->neededThemes['GreyStyle'] = array('name'=>'GreyStyle', 'version'=>'1.0');
 
 /* add site configuration plugins */
 if ($this->get_confValue('admin_default_theme') != '')
