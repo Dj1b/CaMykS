@@ -1,20 +1,30 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jul 2017
- * Last Modif Date  : Apr 2018
- *
- * HTTP methods
+/**
+ * @brief HTTP specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/http.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * get contents over HTTP
+/**
+ * Return contents over HTTP.
  * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e string url <br />
+ * \e string engine - \b php / \b curl <br />
+ * \e string method - \b GET / \b POST <br />
+ * \e array values <br />
+ * \e boolean SSL_VerifyPeer (curl only) <br />
+ * \e string user_agent <br />
+ * \e string referer <br />
+ * \e integer timeout <br />
+ * @endparblock
  * @return string
  */
 function http_getContents($params=array()) {
@@ -43,9 +53,17 @@ function http_getContents($params=array()) {
     return http_getContentsUsingPHP($params);
 }
 
-/*
- * get contents over HTTP using php functions
+/**
+ * Return contents over HTTP using php functions.
  * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e string url <br />
+ * \e string method - \b GET / \b POST <br />
+ * \e array values <br />
+ * \e string user_agent <br />
+ * \e string referer <br />
+ * \e integer timeout <br />
+ * @endparblock
  * @return false on failure, string on success
  */
 function http_getContentsUsingPHP($params=array()) {
@@ -84,9 +102,18 @@ function http_getContentsUsingPHP($params=array()) {
     return @file_get_contents($params['url'], false, $context);
 }
 
-/* 
- * get contents over HTTP using CURL functions
+/**
+ * Return contents over HTTP using CURL functions.
  * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e string url <br />
+ * \e string method - \b GET / \b POST <br />
+ * \e array values <br />
+ * \e boolean SSL_VerifyPeer <br />
+ * \e string user_agent <br />
+ * \e string referer <br />
+ * \e integer timeout <br />
+ * @endparblock
  * @return false on failure, string on success
  */
 function http_getContentsUsingCURL($params=array()) {

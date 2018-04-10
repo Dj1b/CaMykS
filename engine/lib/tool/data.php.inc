@@ -1,19 +1,19 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jul 2005
- * Last Modif Date  : Apr 2018
- *
- * Tool methods to manage data, vars, etc...
-*/
+/**
+ * @brief Tool methods to manage data, vars, etc...
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/data.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-/*
- * encode properties
+/**
+ * Encode properties.
  * @param array $properties
  * @param string $separator
  * @return string
@@ -31,8 +31,8 @@ function data_encode_properties($properties, $separator='"') {
     return $data;
 }
 
-/*
- * decode properties
+/**
+ * Decode properties.
  * @param string $data
  * @param string $separator
  * @return array
@@ -50,10 +50,11 @@ function data_decode_properties($data, $separator='"') {
 
 /*** DEPRECATED METHODS ***/
 
-/*
- * serialize data
+/**
+ * Serialize data.
  * @param mixed $data
  * @return string
+ * @deprecated
  */
 function data_serialize($data) {
     switch (gettype($data)) {
@@ -75,13 +76,23 @@ function data_serialize($data) {
     }
 }
 
-// serialize given object data
+/**
+ * Serialize object data.
+ * @param mixed $data
+ * @return string
+ * @deprecated
+ */
 function data_serializeObject($data) {
     /* TO DO */
     return 'object';
 }
 
-// serialize given array data
+/**
+ * Serialize array data.
+ * @param mixed $data
+ * @return string
+ * @deprecated
+ */
 function data_serializeArray($data) {
     if (count($data))
         return 'array()';
@@ -96,7 +107,12 @@ function data_serializeArray($data) {
     return $str;
 }
 
-// unserialize given data
+/**
+ * Unserialize object data.
+ * @param mixed $data
+ * @return string
+ * @deprecated
+ */
 function data_unserialize($data) {
     return eval ($data);
 }

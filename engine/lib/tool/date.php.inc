@@ -1,25 +1,28 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Oct 2005
- * Last Modif Date  : Apr 2018
- *
- * Date methods
+/**
+ * @brief Date specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/date.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Oct 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /************ CONSTANTS **************************************/
 
+/** 
+ * @def TODAY
+ */
 define('TODAY',    time());
 
 /************ DATE DISPLAY ***********************************/
 
-/*
- * display long textual representation of day, date and hour
+/**
+ * Display long textual representation of day, date and hour.
  * @param date $date
  * @return string
  */
@@ -38,8 +41,8 @@ function date_displayLongDayDateHour($date=TODAY) {
     }
 }
 
-/*
- * display long textual representation of date and hour
+/**
+ * Display long textual representation of date and hour.
  * @param date $date
  * @return string
  */
@@ -58,8 +61,8 @@ function date_displayLongDateHour($date=TODAY) {
     }
 }
 
-/* 
- * display long textual representation of day and date
+/**
+ * Display long textual representation of day and date.
  * @param date $date
  * @return string
  */
@@ -78,8 +81,8 @@ function date_displayLongDayDate($date=TODAY) {
     }
 }
 
-/*
- * display long textual representation of date
+/**
+ * Display long textual representation of date.
  * @param date $date
  * @return string
  */
@@ -98,8 +101,8 @@ function date_displayLongDate($date=TODAY) {
     }
 }
 
-/*
- * display short textual representation of day, date and hour
+/**
+ * Display short textual representation of day, date and hour.
  * @param date $date
  * @return string
  */
@@ -116,8 +119,8 @@ function date_displayShortDayDateHour($date=TODAY) {
     }
 }
 
-/*
- * display short textual representation of date and hour
+/**
+ * Display short textual representation of date and hour.
  * @param date $date
  * @return string
  */
@@ -134,8 +137,8 @@ function date_displayShortDateHour($date=TODAY) {
     }
 }
 
-/*
- * display short textual representation of day and date
+/**
+ * Display short textual representation of day and date.
  * @param date $date
  * @return string
  */
@@ -152,8 +155,8 @@ function date_displayShortDayDate($date=TODAY) {
     }
 }
 
-/*
- * display short textual representation of date
+/**
+ * Display short textual representation of date.
  * @param date $date
  * @return string
  */
@@ -170,9 +173,10 @@ function date_displayShortDate($date=TODAY) {
     }
 }
 
-/*
- * display short textual representation of date interval
- * @param date $date
+/**
+ * Display short textual representation of date interval.
+ * @param date $date1
+ * @param date $date2
  * @return string
  */
 function date_displayShortDateInterval($date1=TODAY, $date2=TODAY) {
@@ -199,8 +203,8 @@ function date_displayShortDateInterval($date1=TODAY, $date2=TODAY) {
 }
 
 
-/*
- * display numeric representation of date and hour
+/**
+ * Display numeric representation of date and hour.
  * @param date $date
  * @return string
  */
@@ -217,8 +221,8 @@ function date_displayNumericDateHour($date=TODAY) {
     }
 }
 
-/*
- * display numeric representation of date
+/**
+ * Display numeric representation of date.
  * @param date $date
  * @return string
  */
@@ -235,8 +239,8 @@ function date_displayNumericDate($date=TODAY) {
     }
 }
 
-/*
- * display time
+/**
+ * Display time.
  * @param date $date
  * @return string
  */
@@ -249,18 +253,9 @@ function date_displayTime($date=TODAY) {
     }
 }
 
-/*
- * alias to display time
- * @param date $date
- * @return string
- */
-function date_displayHour($date=TODAY) {
-    return date_displayTime($date);
-}
-
-/*
- * display day
- * @param date or week day $date
+/**
+ * Display day.
+ * @param date $date can be a week day
  * @return string
  */
 function date_displayDay($date=TODAY) {
@@ -269,9 +264,10 @@ function date_displayDay($date=TODAY) {
     return strftime('%A', $date);
 }
 
-/*
- * alias to date_displayLongDayDateHour
- * display long textual representation of day, date and hour
+/**
+ * Alias to date_displayLongDayDateHour
+ * Display long textual representation of day, date and hour
+ * @see date_displayLongDayDateHour()
  * @param date $date
  * @return string
  */
@@ -281,8 +277,8 @@ function date_display($date=TODAY) {
 
 /************ DATE TESTS *************************************/
 
-/*
- * return same day test value
+/**
+ * Check if dates are the same day.
  * @param date $date1
  * @param date $date2
  * @return boolean
@@ -292,8 +288,8 @@ function date_isSameDay($date1=TODAY, $date2=TODAY) {
         mktime(0, 0, 0, date('m', $date2), date('d', $date2), date('Y', $date2));
 }
 
-/*
- * return same month test value
+/**
+ * Check if dates are the same month.
  * @param date $date1
  * @param date $date2
  * @return boolean
@@ -303,8 +299,8 @@ function date_isSameMonth($date1=TODAY, $date2=TODAY) {
         mktime(0, 0, 0, date('m', $date2), 1, date('Y', $date2));
 }
 
-/*
- * return same year test value
+/**
+ * Check if dates are the same year.
  * @param date $date1
  * @param date $date2
  * @return boolean
@@ -313,8 +309,8 @@ function date_isSameYear($date1=TODAY, $date2=TODAY) {
     return date('Y', $date1) == date('Y', $date2);
 }
 
-/*
- * check if provided date is today
+/**
+ * Check if date is today.
  * @param date $date
  * @return boolean
  */
@@ -322,8 +318,8 @@ function date_isToday($date=TODAY) {
     return date_isSameDay($date);
 }
 
-/*
- * check if provided date is tomorrow
+/**
+ * Check if date is tomorrow.
  * @param date $date
  * @return boolean
  */
@@ -331,8 +327,8 @@ function date_isTomorrow($date=TODAY) {
     return mktime(0, 0, 0, date('m', $date), date('d', $date), date('Y', $date)) == date_getTomorrowValue();
 }
 
-/*
- * check if provided date is yesterday
+/**
+ * Check if provided date is yesterday.
  * @param date $date
  * @return boolean
  */
@@ -342,32 +338,32 @@ function date_isYesterday($date=TODAY) {
 
 /******************** USEFULL DATE QUERIES *****************/
 
-/*
- * return today at 0h0m value
+/**
+ * Return today at 0h0m value.
  * @return date
  */
 function date_getTodayValue() {
     return mktime(0, 0, 0, date('m'), date('d'), date('Y'));
 }
 
-/*
- * return tomorrow at 0h0m value
+/**
+ * Return tomorrow at 0h0m value.
  * @return date
  */
 function date_getTomorrowValue() {
     return mktime(0, 0, 0, date('m'), date('d')+1, date('Y'));
 }
 
-/*
- * return yesterday at 0h0m value
+/**
+ * Return yesterday at 0h0m value.
  * @return date
  */
 function date_getYesterdayValue() {
     return mktime(0, 0, 0, date('m'), date('d')-1, date('Y'));
 }
 
-/*
- * return first day of current week at 0h0m value
+/**
+ * Return first day of current week at 0h0m value.
  * @return date
  */
 function date_getThisWeekValue() {
@@ -376,8 +372,8 @@ function date_getThisWeekValue() {
     return mktime(0, 0, 0, date('m'), date('d')-date('w')+1, date('Y'));
 }
 
-/*
- * return first day of next week at 0h0m value
+/**
+ * Return first day of next week at 0h0m value.
  * @return date
  */
 function date_getNextWeekValue() {
@@ -386,8 +382,8 @@ function date_getNextWeekValue() {
     return mktime(0, 0, 0, date('m'), date('d')+-date('w')+7, date('Y'));
 }
 
-/*
- * return first day of last week at 0h0m value
+/**
+ * Return first day of last week at 0h0m value.
  * @return date
  */
 function date_getLastWeekValue() {
@@ -396,60 +392,60 @@ function date_getLastWeekValue() {
     return mktime(0, 0, 0, date('m'), date('d')-date('w')-6, date('Y'));
 }
 
-/*
- * return first day of current month at 0h0m value
+/**
+ * Return first day of current month at 0h0m value.
  * @return date
  */
 function date_getThisMonthValue() {
     return mktime(0, 0, 0, date('m'), 1, date('Y'));
 }
 
-/*
- * return first day of next month at 0h0m value
+/**
+ * Return first day of next month at 0h0m value.
  * @return date
  */
 function date_getNextMonthValue() {
     return mktime(0, 0, 0, date('m')+1, 1, date('Y'));
 }
 
-/*
- * return first day of last month at 0h0m value
+/**
+ * Return first day of last month at 0h0m value.
  * @return date
  */
 function date_getLastMonthValue() {
     return mktime(0, 0, 0, date('m')-1, 1, date('Y'));
 }
 
-/*
- * return first day of current month at 0h0m value
+/**
+ * Return first day of current month at 0h0m value.
  * @return date
  */
 function date_getThisYearValue() {
     return mktime(0, 0, 0, 1, 1, date('Y'));
 }
 
-/*
- * return first day of next month at 0h0m value
+/**
+ * Return first day of next month at 0h0m value.
  * @return date
  */
 function date_getNextYearValue() {
     return mktime(0, 0, 0, 1, 1, date('Y')+1);
 }
 
-/*
- * return first day of last month at 0h0m value
+/**
+ * Return first day of last month at 0h0m value.
  * @return date
  */
 function date_getLastYearValue() {
     return mktime(0, 0, 0, 1, 1, date('Y')-1);
 }
 
-/*
- * return ordinal suffix for dates
+/**
+ * Return ordinal suffix for date.
  * @param int $date
  * @return string
  */
-function date_getOrdinalSuffix($date=0){
+function date_getOrdinalSuffix($date=0) {
     global $camyks;
     
     /* return empty string for all non-english languages */
@@ -473,8 +469,8 @@ function date_getOrdinalSuffix($date=0){
     return 'th';
 }
 
-/*
- * return string formatted date to timestamp
+/**
+ * Return string formatted date to timestamp.
  * @param string $date
  * @return int
  */
@@ -490,21 +486,23 @@ function date_stringToTimestamp($date) {
 
 
 /************ DEPRECATED *******************/
-/*
- * return valid language
- * param string $language
- * return string
+/**
+ * Return valid language.
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_getLanguage($language=null) {
     global $camyks;
     return isset ($language) ? $language : $camyks->current_language; 
 }
 
-/* 
- * return date display with complete day and month name
- * param date $date
- * param string $language
- * return string 
+/**
+ * Return date display with complete day and month name.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayLongFormat($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -516,11 +514,12 @@ function date_displayLongFormat($date = TODAY, $language=null) {
     }
 }
 
-/* 
- * return short date display
- * param date $date
- * param string $language
- * return string
+/**
+ * Return short date display.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayShortFormat($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -532,11 +531,12 @@ function date_displayShortFormat($date = TODAY, $language=null) {
     }
 }
 
-/* 
- * return short date display
- * param date $date
- * param string $language
- * return string
+/**
+ * Return short date display.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayQuickFormat($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -548,11 +548,12 @@ function date_displayQuickFormat($date = TODAY, $language=null) {
     }
 }
 
-/* 
- * return date year display
- * param date $date
- * param string $language
- * return string
+/**
+ * Return date year display.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayYear($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -565,11 +566,12 @@ function date_displayYear($date = TODAY, $language=null) {
     }
 }
 
-/* 
- * return date year & month display
- * param date $date 
- * param string $language
- * return string
+/**
+ * Return date year & month display.
+ * @param date $date 
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayMonthAndYear($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -584,11 +586,12 @@ function date_displayMonthAndYear($date = TODAY, $language=null) {
     }
 }
 
-/*
- * return date display
- * param date $date
- * param string $language
- * return string
+/**
+ * Return date display.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayDate($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -601,11 +604,12 @@ function date_displayDate($date = TODAY, $language=null) {
     }
 }
 
-/* 
- * return date display excepting year
- * param date $date
- * param string $language
- * return string
+/**
+ * Return date display excepting year.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayDayMonthAndHour($date = TODAY, $language=null) {
     $language = date_getLanguage ($language);
@@ -617,11 +621,12 @@ function date_displayDayMonthAndHour($date = TODAY, $language=null) {
     }
 }
 
-/*
- * return date day & hour display
- * param date $date
- * param string $language
- * return string
+/**
+ * Return date day & hour display.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayDayAndHour($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -633,11 +638,12 @@ function date_displayDayAndHour($date = TODAY, $language=null) {
     }
 }
 
-/* 
- * return abbreviate date display
- * param date $date
- * param string $language
- * return string
+/**
+ * Return abbreviate date display.
+ * @param date $date
+ * @param string $language
+ * @return string
+ * @deprecated
  */
 function date_displayQuickDate($date = TODAY, $language=null) {
     $language = date_getLanguage($language);
@@ -647,5 +653,16 @@ function date_displayQuickDate($date = TODAY, $language=null) {
         default:
             return strftime('%d %b. %y', $date);
     }
+}
+
+/**
+ * Alias to display time.
+ * @see date_displayTime()
+ * @param date $date
+ * @return string
+ * @deprecated
+ */
+function date_displayHour($date=TODAY) {
+    return date_displayTime($date);
 }
 ?>

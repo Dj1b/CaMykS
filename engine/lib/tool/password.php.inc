@@ -1,26 +1,33 @@
 <?php
+/**
+ * @brief Password specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/password.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 /*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jun 2005
- * Last Modif Date  : Apr 2018
- *
- * Password static methods
-*/
+ * @def PWD_TYPE_MD5
+ */
 define("PWD_TYPE_MD5",     0);
+
+/*
+ * @def PWD_TYPE_DEFAULT
+ */
 define("PWD_TYPE_DEFAULT", PWD_TYPE_MD5);
 
 /*
- * encode password
+ * Encode password.
  * @param string $str
  * @param string $type
  * @return string
  */
-function password_encode($str, $type = "") {
+function password_encode($str, $type="") {
     switch ($type) {
         case PWD_TYPE_MD5:
             return password_md5Encode($str);
@@ -29,10 +36,8 @@ function password_encode($str, $type = "") {
     }
 }
 
-
-
 /*
- * md5 encoding
+ * Encode password with MD5.
  * @param string $str
  * @return string
  */

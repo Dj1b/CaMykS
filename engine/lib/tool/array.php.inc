@@ -1,19 +1,19 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by       : camyks.net
- * Author             : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version     : 1.0
- * Object Version     : 1.0.1
- * Object Type        : Engine / Tool Library
- * Creation Date      : Jan 2010
- * Last Modif Date    : Apr 2018
- *
- * Array related methods
+/**
+ * @brief Array specific methods
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/array.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2010
+ * @date Modification: Apr 2018
+ * @copyright 2010 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * drop given value from array
+/**
+ * Drop given value from array.
  * @param array $array
  * @param mixed $value
  * @param boolean $keepKeys
@@ -37,8 +37,8 @@ function array_dropValue($array=array(), $value=null, $keepKeys=true) {
     return array_values($parsed);
 }
 
-/*
- * merge arrays
+/**
+ * Merge arrays.
  * @param array $array1
  * @param array $array2
  * @return array
@@ -69,8 +69,8 @@ function array_recursiveMerge($array1=array(), $array2=array()) {
     return $array1;
 }
 
-/*
- * check if all elements are numerics or numeric strings
+/**
+ * Check if all elements are numerics or numeric strings.
  * @param array $array
  * @return boolean result
  */
@@ -78,8 +78,8 @@ function array_checkNumeric($array=array()) {
     return (count($array) === count(array_filter($array, 'is_numeric')));
 }
 
-/*
- * check if all elements are integers (strict)
+/**
+ * Check if all elements are integers (strict).
  * @param array $array
  * @return boolean result
  */
@@ -87,8 +87,8 @@ function array_checkInteger($array=array()) {
     return (count($array) === count(array_filter($array, 'is_integer')));
 }
 
-/*
- * return array with all abs values
+/**
+ * Return array with all abs values.
  * @param array $array
  * @return array
  */

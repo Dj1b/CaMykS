@@ -1,20 +1,20 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Sep 2007
- * Last Modif Date  : Apr 2018
- *
- * Countries static methods
- * Country codes define by ISO 3166-2 list
+/**
+ * @brief Countries specific methods
+ * @brief Country codes define by ISO 3166-2 list
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/countries.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
  
-/*
- * return countries code list
+/**
+ * Return countries code list.
  * @param array $params
  * @return array
  */
@@ -80,8 +80,8 @@ function countries_getCodeList($params=array()) {
     return $list;
 }
 
-/*
- * return generic country list
+/**
+ * Return generic country list.
  * @return array
  */
 function countries_getList() {
@@ -92,8 +92,8 @@ function countries_getList() {
     return $list;
 }
 
-/*
- * return custom country list
+/**
+ * Return custom country list.
  * @param array $params
  * @return array
  */
@@ -113,8 +113,8 @@ function countries_getTitleList($params=array()) {
     return $list;
 }
 
-/*
- * load countries locales
+/**
+ * Load countries locales.
  * @param string $language
  * @return void
  */
@@ -123,22 +123,22 @@ function countries_loadLocales($language=null) {
     $camyks->add_generic_translation('countries', $language);
 }
 
-/*
- * return country localised name
- * @params string $c
+/**
+ * Return country localised name.
+ * @param string $country
  * @return string
  */
-function countries_getTranslation($c) {
+function countries_getTranslation($country='') {
     global $camyks;
-    if ($c == '') return '';
-    return $camyks->get_translation('country_'.$c);
+    if ($country == '') return '';
+    return $camyks->get_translation('country_'.$country;
 }
 
-/*
- * get country code from name
- * @param unknown $c
+/**
+ * Return country code from name.
+ * @param string $lang
+ * @param string $key
  * @return string on success, false on error
- * @access public
  */
 function countries_getCode($lang='', $key=''){
     global $camyks;
@@ -157,8 +157,8 @@ function countries_getCode($lang='', $key=''){
     return false;
 }
 
-/*
- * return country phone prefixes list
+/**
+ * Return country phone prefixes list.
  * @return array
  */
 function countries_getPhonePrefixes() {
@@ -167,8 +167,9 @@ function countries_getPhonePrefixes() {
     return $__phonePrefixes;
 }
 
-/*
- * return phone prefix value for given country
+/**
+ * Return phone prefix value for given country.
+ * @param string $country
  * @return string
  */
 function countries_getPhonePrefix($country) {

@@ -1,20 +1,20 @@
 <?php
-/*
- * CaMyks Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * Object Version   : 1.0
- * CaMykS Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Apr 2010
- * Last Modif Date  : Apr 2018
- * 
- * Salesforce (http://www.salesforce.com) tools
- * /!\ This library is not loaded with CaMykS initialisation
+/**
+ * @brief Salesforce (http://www.salesforce.com) tools
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/salesforce.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2010
+ * @date Modification: Apr 2018
+ * @copyright 2010 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @warning This library is not loaded with CaMykS initialisation.
  */
 
-/*
- * submit web-to-lead request
+/**
+ * Submit web-to-lead request.
  * @param array $params
  * @return boolean success
  */

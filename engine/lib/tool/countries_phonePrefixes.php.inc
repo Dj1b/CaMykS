@@ -1,18 +1,21 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Engine / Tool Library
- * Creation Date    : Jan 2016
- * Last Modif Date  : Apr 2018
- *
- * Countries phone prefix list
+/**
+ * @brief Countries phone prefix list
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/countries_phonePrefixes.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2016
+ * @date Modification: Apr 2018
+ * @copyright 2016 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $__phonePrefixes;
 
+/**
+ * @var array $__phonePrefixes
+ */
 $__phonePrefixes = array(
     'af' => '93',
     'za' => '27',
