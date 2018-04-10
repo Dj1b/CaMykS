@@ -17,6 +17,9 @@
  * Check if given phone number is valid for french phone numbers.
  * @param string $number
  * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e boolean mobileOnly <br />
+ * @endparblock
  * @return boolean
  */
 function france_isValidPhoneNumber($number, $params=array()) {
