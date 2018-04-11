@@ -22,7 +22,7 @@ final class SQLite3DBConnection extends CDBConnection {
      * @var string $dbPath
      * @brief Database file path.
      */
-    private $dbPath = $camyks->site_var_path.'/databases/';
+    private $dbPath;
 
     /**
      * @var string $dbExtension
@@ -41,7 +41,10 @@ final class SQLite3DBConnection extends CDBConnection {
      * @return void
      */
     public function __construct() {
+        global $camyks;
         parent::__construct();
+        /* defing database path */
+        $this->dbPath = $camyks->site_var_path.'/databases/';
         /* define connection object */
         $this->connection = null;
     }
