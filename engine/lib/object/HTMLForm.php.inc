@@ -83,7 +83,7 @@ final class HTMLForm {
     private $object = null;
 
     /**
-     * @var Module $Parent
+     * @var Module $parent
      * @brief Parent module.
      */
     private $parent = null;
@@ -98,7 +98,7 @@ final class HTMLForm {
      * @var integer $inputsLimit
      * @brief Form input limit.
      */
-    private $inputsLimit = ini_get('max_input_vars');
+    private $inputsLimit;
 
     /**
      * @var array $inputsLimitUniques
@@ -125,6 +125,9 @@ final class HTMLForm {
         $this->action = $action;
         $this->onSubmit = $onSubmit;
         $this->target = $target;
+        
+        /* set up inputs limit */
+        $this->inputsLimit = ini_get('max_input_vars');
 
         /* check for method type */
         switch ($method) {
@@ -168,7 +171,7 @@ final class HTMLForm {
 
     /**
      * Update parent value.
-     * @param Module $module
+     * @param Module $parent
      * @return void
      */
     public function set_parent($parent=null) {
@@ -215,13 +218,14 @@ final class HTMLForm {
      * Create an hidden value.
      * @param string $name the hidden value name
      * @param string $value the hidden value content
+     * @param string $id the hidden value id
      * @return void
      */
     public function add_hidden($name, $value=null, $id='') {
         if ($value == null and isset($this->object) and isset($this->object->vars[$name]))
             $value = $this->object->vars[$name];
         if ($value !== null)
-            $this->hiddens[] = new HTMLForm_hidden ($name, $value, $id);
+            $this->hiddens[] = new HTMLForm_hidden($name, $value, $id);
     }
 
     /**
@@ -537,8 +541,8 @@ final class HTMLForm {
 
     /**
      * Display file input form item.
-     * @param string $name the form item name
-     * @param string $actual the actual value
+     * @param string $file the form item name
+     * @param string $default the default value
      * @param array $buttons the button descriptions to add
      * @return string
      */
@@ -981,9 +985,9 @@ final class HTMLForm {
     }
 
     /**
-     * build and return text input
+     * Build and return text input.
      * @param mixed $input
-     * @param string default
+     * @param string $default
      * @return string
      */
     public function display_textInput($input, $default=null) {
@@ -1065,7 +1069,7 @@ final class HTMLForm {
     /**
      * Build and return textarea input.
      * @param mixed $input
-     * @param string default
+     * @param string $default
      * @return string
      */
     public function display_textareaInput($input, $default=null) {
@@ -1130,7 +1134,7 @@ final class HTMLForm {
     /**
      * Build and return password input.
      * @param mixed $input
-     * @param string default
+     * @param string $default
      * @return string
      */
     public function display_passwordInput($input, $default=null) {
@@ -1201,7 +1205,7 @@ final class HTMLForm {
     /**
      * Build and return checkbox input.
      * @param mixed $input
-     * @param string default
+     * @param string $default
      * @return string
      */
     public function display_checkboxInput($input, $default=null) {
@@ -1283,7 +1287,7 @@ final class HTMLForm {
     /**
      * Build and return radio input.
      * @param mixed $input
-     * @param string default
+     * @param string $default
      * @return string
      */
     public function display_radioInput($input, $default=null) {
@@ -1360,7 +1364,7 @@ final class HTMLForm {
     /**
      * Build and return hidden input.
      * @param mixed $input
-     * @param string default
+     * @param string $default
      * @return string
      */
     public function display_hiddenInput($input, $default=null) {
@@ -1464,7 +1468,6 @@ final class HTMLForm {
      * @param integer $items
      * @param integer $name
      * @return boolean result
-     * @access private
      */
     private function check_inputsLimit($items=1, $name=false) {
         global $camyks;

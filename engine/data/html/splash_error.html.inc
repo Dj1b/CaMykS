@@ -2,7 +2,7 @@
 /**
  * @brief Splash error full HTML5 page
  * @details Engine / Generic Layout
- * @file engine/data/html/spash_error.html.inc
+ * @file engine/data/html/splash_error.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Jan 2008

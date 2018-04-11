@@ -2,7 +2,7 @@
 /**
  * @brief FTP client object library
  * @details Engine / Object Library
- * @file engine/lib/object/FTPCiient.php.inc
+ * @file engine/lib/object/FTPClient.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Mar 2018

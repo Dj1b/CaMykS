@@ -46,8 +46,7 @@ abstract class CDBConnection {
      * Class constructor.
      * @return void
      */
-    public function __construct() {
-    }
+    public function __construct() {}
 
     /* server related methods */
 
@@ -116,7 +115,7 @@ abstract class CDBConnection {
     abstract public function create_database($name, $charset='utf8');
 
     /**
-     * Check if a base exits.
+     * Check if a base exists.
      * @param string $name
      * @return boolean
      */
@@ -136,7 +135,7 @@ abstract class CDBConnection {
     abstract public function get_databaseSize();
 
     /**
-     * Return database summary.
+     * Return database information summary.
      * @return array
      */
     abstract public function get_databaseSummary();
