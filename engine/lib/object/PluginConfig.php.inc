@@ -1,239 +1,261 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type	    : Engine / Object Lib
- * Creation Date	: Nov 2017
- * Last Modif Date  : Nov 2017
- *
- * Plugin Config Generic Object
+/**
+ * @brief PluginConfig library.
+ * @details Engine / Object Library
+ * @file engine/lib/object/PluginConfig.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Oct 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * PluginConfig class.
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ */
 abstract class PluginConfig {
-
-  /* vars */
-  /* global type */
-  public $object_type;
-  /* main name */
-  public $_libName;
-  /* parent module */
-  public $_libParent;
-  /* content */
-  public $_libItems;
-  /* library description */
-  public $_libDesc;
-  /* error management */
-  public $_libError;
-  /* object name */
-  public $name;
-  /* exported vars */
-  public $vars;
+    /**
+     * @var string $object_type
+     * @brief Object type description.
+     */
+    public $object_type = 'PluginConfig';
+    
+    /**
+     * @var string $_libName
+     * @brief PluginConfig name.
+     */
+    public $_libName;
+    
+    /**
+     * @var Object $_libParent
+     * @brief Object parent plugin.
+     */
+    public $_libParent;
+    
+    /**
+     * @var array $_libItems
+     * @brief Object item list.
+     */
+    public $_libItems = array();
+    
+    /**
+     * @var string $_libDesc
+     * @brief Object description.
+     */
+    public $_libDesc;
+    
+    /**
+     * @var string $_libFolder
+     * @brief Folder where object are stored.
+     */
+    private $_libFolder;
+    
+    /**
+     * @var string $_libFile
+     * @brief Stored file for object.
+     */
+    private $_libFile;
+    
+    /**
+     * @var string $_libError
+     * @brief Object last error.
+     */
+    public $_libError = ''; 
+    
+    /**
+     * @var string $name
+     * @brief Object name.
+     */ 
+    public $name;
+    
+    /**
+     * @var array $vars
+     * @brief Object values.
+     */
+    public $vars = null;
   
-  /*
-   * constructor
-   * @param string $name
-   * @param Plugin $plugin
-   */
-  public function __construct($name, &$plugin) {
-    global $camyks;
-    $this->object_type = 'PluginConfig';
-    $this->name = $name;
-    $this->_libParent = $plugin;
-    $this->_libItems = array();
-    $this->_libName = get_class($this);
-    $this->_libDesc = ucwords($plugin->plugin_type).':'.$this->_libParent->name.' Lib:'.$this->_libName;
-    $this->_libFolder = $this->_libParent->plugin_var_path.'/'.$this->_libName; 
-    $this->_libFile = $this->_libFolder.'/'.$this->name.'.php.inc';
-    $this->vars = null;
-  }
-
-  /* methods */
-
-  /*
-   * install config object
-   * @return boolean
-   * @access public
-   */
-  public function install() {
-    return $this->initialise() and $this->save();
-  }
-
-
-  /*
-   * uninstall config object
-   * @return boolean
-   * @access public
-   */
-  public function uninstall() {
-    // return $this->delete();
-    return true;
-  }
-
-
-  
-  /* 
-   * finish config object initialisation
-   * @return void
-   * @access public
-   */
-  public function init_config() {
-  }
-
-  /* 
-   * insert a new item in object
-   * @param string $name
-   * @param string $type
-   * @param string $default
-   * @return boolean
-   * @access public
-   */
-  public function add_newItem ( $name, $type, $default=null ) {
-    global $camyks;
-    /* check item name */
-    if ( isset ( $this->_libItems[$name] ) ) {
-      $camyks->log_internalerror($this,
-				 'Plugin Config Item Definition Error',
-				 'Item with name "'.$name.'" already exists in this module config');
-      return false;
+    /*
+     * Class constructor.
+     * @param string $name
+     * @param Plugin $plugin
+     */
+    public function __construct($name, &$plugin) {
+        $this->name = $name;
+        $this->_libName = get_class($this);
+        $this->_libParent = $plugin;
+        $this->_libDesc = ucwords($plugin->plugin_type).':'.$this->_libParent->name.' Lib:'.$this->_libName;
+        $this->_libFolder = $this->_libParent->plugin_var_path.'/'.$this->_libName; 
+        $this->_libFile = $this->_libFolder.'/'.$this->name.'.php.inc';
     }
-    $this->_libItems[$name] = new PluginConfigItem( $name, $type, $default );
-    return true;
-  }
 
-
-  /*
-   * initialise object
-   * @return boolean
-   * @access public
-   */
-  public function initialise() {
-    foreach ( $this->_libItems as $name => $item ) {
-      $this->vars[$name] = $item->initialise();
+    /*
+     * Install object.
+     * @return boolean
+     */
+    public function install() {
+        return $this->initialise() and $this->save();
     }
-    return true;
-  }
 
-  /*
-   * get object from file
-   * @return boolean
-   * @access public
-   */
-  public function get() {
-    if (file_exists($this->_libFile)) {
+    /*
+     * Uninstall object.
+     * @return boolean
+     */
+    public function uninstall() {
+        return true;
+    }
+
+    /* 
+     * Finish config object initialisation.
+     * @return void
+     */
+    public function init_config() {
+    }
+
+    /* 
+     * Insert a new item in object.
+     * @param string $name
+     * @param string $type
+     * @param string $default
+     * @return boolean
+     */
+    public function add_newItem($name, $type, $default=null) {
+        global $camyks;
+        /* check item name */
+        if (isset ($this->_libItems[$name])) {
+            $camyks->log_internalerror(
+                $this,
+                'Plugin Config Item Definition Error',
+                'Item with name "'.$name.'" already exists in this module config'
+            );
+            return false;
+        }
+        $this->_libItems[$name] = new PluginConfigItem($name, $type, $default);
+        return true;
+    }
+    
+    /*
+     * Initialise object with default values.
+     * @return boolean
+     */
+    public function initialise() {
+        foreach ($this->_libItems as $name => $item) {
+            $this->vars[$name] = $item->initialise();
+        }
+        return true;
+    }
+
+    /*
+     * Load object from file.
+     * @return boolean
+     */
+    public function get() {
+        if (file_exists($this->_libFile)) {
+            /* get file "vars" value */
+            require $this->_libFile; 
+      
+            /* check if vars value list exists */
+            if (!isset($this->vars))
+                return $this->initialise();
+      
+            /* complete items */
+            foreach ($this->_libItems as $name => $item) {
+                if (!isset($this->vars[$name]))
+                    $this->vars[$name] = $item->initialise();
+                else
+                    $this->vars[$name] = $item->check_value($this->vars[$name]);
+            }
+            return true;
+        } else {
+            return $this->initialise();
+        }
+        return true;
+    }
+
+    /*
+     * Save object to file.
+     * @return boolean
+     */
+    public function save() {
+        if (isset($this->vars) and $this->check_data()) {
+            /* build config content */
+            $content = file_getPHPFileHeader($this->name . ' '. $this->_libName.' file', '1.0');
+            $content .= '$this->vars = ' . var_export($this->vars, true) . ';';
+            $content .= file_getPHPFileFooter();
         
-      /* get file "vars" value */
-      require $this->_libFile; 
+            /* create folder */
+            if (!file_exists($this->_libFolder))
+                folder_completePath($this->_libFolder);
       
-      /* check if vars value list exists */
-      if ( !isset( $this->vars ))
-	    return $this->initialise();
-      
-      /* complete items */
-      foreach ( $this->_libItems as $name => $item ) {
-	    if (!isset( $this->vars[$name]))
-	        $this->vars[$name] = $item->initialise();
-	    else
-	        $this->vars[$name] = $item->check_value($this->vars[$name]);
-      }
-      return true;
-    } else {
-      return $this->initialise();
+            /* write file */
+            if (file_write($this->_libFile, $content, true))
+                return true;
+        }
+        return false;
     }
-    return true;
-  }
-
-  /*
-   * save object to file
-   * @return boolean
-   * @access public
-   */
-  public function save() {
-    if (isset($this->vars) and $this->check_data()) {
-      /* build config content */
-      $content = file_getPHPFileHeader($this->name . ' '. $this->_libName.' file', '1.0');
-      $content .= '$this->vars = ' . var_export($this->vars, true) . ';';
-      $content .= file_getPHPFileFooter();
-      
-      /* create folder */
-      if (!file_exists($this->_libFolder)) {
-	    folder_completePath($this->_libFolder);
-      }
-      
-      /* write file */
-      if (file_write($this->_libFile, $content, true))
-	    return true;
+  
+    /*
+     * Delete object file.
+     * @return boolean
+     */
+    public function delete() {
+        if (file_exists($this->_libFile)) 
+            return unlink($this->_libFile);
+        return true;
     }
-    return false;
-  }
-  
-  /*
-   * delete object file
-   * @return boolean
-   * @access public
-   */
-  public function delete() {
-    if (file_exists($this->_libFile)) 
-      return unlink($this->_libFile);
-    return true;
-  }
 
-  /*
-   * reset object into file
-   * @return boolean success
-   * @access public
-   */
-  public function reset() {
-    $this->initialise();
-    return $this->save();
-  }
-  
-  /*
-   * check object items values
-   * @return boolean
-   * @access public
-   */
-  public function check_data() {
-    return true;
-  }
-
-  /*
-   * get object items values from header
-   * @return void
-   * @access public
-   */
-  public function get_fromHeader() {
-    foreach ($this->_libItems as $item) {
-      $this->vars[$item->_name] = $item->get_fromHeader();
+    /*
+     * Reset object into file.
+     * @return boolean success
+     */
+    public function reset() {
+        $this->initialise();
+        return $this->save();
     }
-  }
   
-  /* get value 
-   * @param string $param
-   * @param mixed $default
-   * @return mixed
-   * @access public
-   */
-  public function get_value($param='', $default=false) {
-    if ($this->vars == null) $this->get();
-    if (!isset($this->vars[$param]))
-      return $default;
-    return $this->_libItems[$param]->check_value($this->vars[$param]);
-  }
+    /*
+     * Check object items values.
+     * @return boolean
+    */
+    public function check_data() {
+        return true;
+    }
 
-  /* tool methods */
+    /*
+     * Load object items values from header.
+     * @return void
+     */
+    public function get_fromHeader() {
+        foreach ($this->_libItems as $item) {
+            $this->vars[$item->_name] = $item->get_fromHeader();
+        }
+    }
+  
+    /**
+     * Return value.
+     * @param string $param
+     * @param mixed $default
+     * @return mixed
+     */
+    public function get_value($param='', $default=false) {
+        if ($this->vars == null) $this->get();
+        if (!isset($this->vars[$param]))
+            return $default;
+        return $this->_libItems[$param]->check_value($this->vars[$param]);
+    }
 
-  /*
-   * return locale (to be updated for themes and templates)
-   * @param string $str
-   * @param mixed $args
-   * @return string
-   * @access public
-   */
-  public function get_translation($str, $args=null) {
-    return $this->_libParent->get_translation($str, $args);
-  }
+    /* tool methods */
+
+    /*
+     * Return locale
+     * @param string $str
+     * @param mixed $args
+     * @return string
+     */
+    public function get_translation($str, $args=null) {
+        return $this->_libParent->get_translation($str, $args);
+    }
 }
 ?>

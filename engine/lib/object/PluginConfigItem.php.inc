@@ -1,153 +1,169 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type	    : Engine / Object Library
- * Creation Date	: Oct 2007
- * Last Modif Date  : Nov 2017
- *	
- * Plugin Config Item Generic Object
+/**
+ * @brief Configuration item for PluginConfig library.
+ * @details Engine / Object Library
+ * @file engine/lib/object/PluginConfigItem.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Oct 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * PushNotification class.
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ */
 final class PluginConfigItem {
-  /* vars */
-  public $_name;
-  public $_type;
-  private $_default;
+    /**
+     * @var string $_name
+     * @brief Item name.
+     */
+    public $_name;
 
-  /*
-   * constructor
-   * @param string $name
-   * @param string $type
-   * @param mixed $default
-   */
-  function __construct($name, $type, $default=null) {
-    $this->_name = $name;
-    $this->_type = $type;
-    $this->_default = isset($default) ? $this->update_type($default) : $this->get_default();
-  }
+    /**
+     * @var string $_type
+     * @brief Item type.
+     */
+    public $_type;
 
-  /*
-   * initialise object
-   * @return void
-   * @access public
-   */
-  function initialise() {
-    return $this->_default;
-  }
-  
-  /*
-   * return checked value case of object type
-   * @return mixed
-   * @access public
-   */
-  function check_value($value) {
-    switch ($this->_type) {
-    case 'string':
-      return stripslashes($value);
-    case 'int':
-    case 'integer':
-    case 'float':
-    case 'boolean':
-    case 'array':
-    default:
-      return $value;
-    }
-  }
+    /**
+     * @var string $_default
+     * @brief Item default value.
+     */
+    private $_default;
 
-  /*
-   * get object value from header
-   * @return mixed
-   * @access public
-   */
-  function get_fromHeader() {
-    switch ($this->_type) {
-    case 'array':
-      $value = array();
-      if (isset($_REQUEST[$this->_name.'_count_'])) {
-	    for ($i=0; $i < $_REQUEST[$this->_name.'_count_']; $i++)
-	      if (isset($_REQUEST[$this->_name.'_'.$i]))
-	        $value[$i] = $_REQUEST[$this->_name.'_'.$i];
-      } else {
-	    $s = 0;
-	    while (isset($_REQUEST[$this->_name.'_'.$s])) {
-	      $value[$s] = $_REQUEST[$this->_name.'_'.$s];
-	      $s++;
-	    }
-      }
-      return $value;
-    case 'date':
-      $name = $this->_name;
-      if ( isset ( $_REQUEST[$name] ) ) {
-        return $_REQUEST[$name] == -1 ? $this->default : $_REQUEST[$name];
-      } else if ( !isset ( $_REQUEST[$name.'_year']) ) {
-        return $this->default;
-      } else if ( $_REQUEST[$name.'_year'] == 0 ) {
-        return 0;
-      } else {
-        return  mktime(isset($_REQUEST[$name.'_hours'] ) ? $_REQUEST[$name.'_hours'] : 1,
-		       isset($_REQUEST[$name.'_minutes'] ) ? $_REQUEST[$name.'_minutes'] : 0,
-		       isset($_REQUEST[$name.'_seconds'] ) ? $_REQUEST[$name.'_seconds'] : 0,
-		       isset($_REQUEST[$name.'_month'] ) ? $_REQUEST[$name.'_month'] : 1,
-		       isset($_REQUEST[$name.'_day'] ) ? $_REQUEST[$name.'_day'] : 1,
-		       isset($_REQUEST[$name.'_year'] ) ? $_REQUEST[$name.'_year']:date('Y'));
-      }
-    case 'string':
-    case 'int':
-    case 'integer':
-    case 'float':
-    case 'boolean':
-    default:
-      return isset($_REQUEST[$this->_name])?$this->update_type($_REQUEST[$this->_name]):$this->_default;
+    /**
+     * Class constructor.
+     * @param string $name
+     * @param string $type
+     * @param mixed $default
+     * @return void
+     */
+    public function __construct($name, $type, $default=null) {
+        $this->_name = $name;
+        $this->_type = $type;
+        $this->_default = isset($default) ? $this->update_type($default) : $this->get_default();
     }
-  }
 
-  /*
-   * get default value case of object type
-   * @return mixed
-   * @access public
-   */
-  function get_default() {
-    switch ($this->_type) {
-    case 'string':
-      return '';
-    case 'int':
-    case 'integer':
-    case 'float':
-    case 'date':
-      return 0;
-    case 'boolean':
-      return false;
-    case 'array':
-      return array();
-    default:
-      return null;
+    /**
+     * Initialise object with default value.
+     * @return void
+     */
+    public function initialise() {
+        return $this->_default;
     }
-  }
-  
-  /*
-   * update value type
-   * @param mixed $value
-   * @return mixed
-   * @access public
-   */
-  function update_type ( $value ) {
-    switch ( $this->_type ) {
-    case 'string':
-      return (string)$value;
-    case 'int':
-    case 'integer':
-      return (int)$value;
-    case 'float':
-      return preg_replace('/,/', '.', (float)preg_replace('/,/', '.', $value));
-    case 'boolean':
-      return (bool)$value;
-    default:
-      return $value;
+
+    /**
+     * Return checked value case of object type.
+     * @param mixed $value
+     * @return mixed
+     */
+    public function check_value($value) {
+        switch ($this->_type) {
+            case 'string':
+                return stripslashes($value);
+            case 'int':
+            case 'integer':
+            case 'float':
+            case 'boolean':
+            case 'array':
+            default:
+                return $value;
+        }
     }
-  }
+
+    /**
+     * Load object value from header.
+     * @return mixed
+     */
+    public function get_fromHeader() {
+        switch ($this->_type) {
+        case 'array':
+            $value = array();
+            if (isset($_REQUEST[$this->_name.'_count_'])) {
+                for ($i=0; $i < $_REQUEST[$this->_name.'_count_']; $i++)
+                    if (isset($_REQUEST[$this->_name.'_'.$i]))
+                        $value[$i] = $_REQUEST[$this->_name.'_'.$i];
+            } else {
+                $s = 0;
+                while (isset($_REQUEST[$this->_name.'_'.$s])) {
+                    $value[$s] = $_REQUEST[$this->_name.'_'.$s];
+                    $s++;
+                }
+            }
+            return $value;
+        case 'date':
+            $name = $this->_name;
+            if (isset ($_REQUEST[$name])) {
+                return $_REQUEST[$name] == -1 ? $this->default : $_REQUEST[$name];
+            } else if (!isset ($_REQUEST[$name.'_year'])) {
+                return $this->default;
+            } else if ($_REQUEST[$name.'_year'] == 0) {
+                return 0;
+            } else {
+                return  mktime(
+                    isset($_REQUEST[$name.'_hours']) ? $_REQUEST[$name.'_hours'] : 1,
+                    isset($_REQUEST[$name.'_minutes']) ? $_REQUEST[$name.'_minutes'] : 0,
+                    isset($_REQUEST[$name.'_seconds']) ? $_REQUEST[$name.'_seconds'] : 0,
+                    isset($_REQUEST[$name.'_month']) ? $_REQUEST[$name.'_month'] : 1,
+                    isset($_REQUEST[$name.'_day']) ? $_REQUEST[$name.'_day'] : 1,
+                    isset($_REQUEST[$name.'_year']) ? $_REQUEST[$name.'_year']:date('Y')
+                );
+            }
+        case 'string':
+        case 'int':
+        case 'integer':
+        case 'float':
+        case 'boolean':
+            default:
+                return isset($_REQUEST[$this->_name])?$this->update_type($_REQUEST[$this->_name]):$this->_default;
+        }
+    }
+
+    /**
+     * Load default value case of object type
+     * @return mixed
+     */
+    public function get_default() {
+        switch ($this->_type) {
+            case 'string':
+                return '';
+            case 'int':
+            case 'integer':
+            case 'float':
+            case 'date':
+                return 0;
+            case 'boolean':
+                return false;
+            case 'array':
+                return array();
+            default:
+                return null;
+        }
+    }
+
+    /**
+     * Update value type
+     * @param mixed $value
+     * @return mixed
+     */
+    public function update_type($value) {
+        switch ($this->_type) {
+            case 'string':
+                return (string)$value;
+            case 'int':
+            case 'integer':
+                return (int)$value;
+            case 'float':
+                return preg_replace('/,/', '.', (float)preg_replace('/,/', '.', $value));
+            case 'boolean':
+                return (bool)$value;
+            default:
+                return $value;
+        }
+    }
 }
 ?>
