@@ -28,7 +28,7 @@ class Input extends Plugin {
      * @var array $params
      * @brief Input parameters.
      */
-    public $params;
+    public $params = array();
     
     /**
      * @var string $selected_layout
@@ -91,15 +91,6 @@ class Input extends Plugin {
     }
 
     /* locales related methods */
-  
-    /**
-     * Load correct language file.
-     * @return void
-     */
-    public function add_translation() {
-        global $camyks;
-        $camyks->add_translation($this->plugin_path.'/locale');
-    }
 
     /**
      * Get locale value.

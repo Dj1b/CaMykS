@@ -209,7 +209,6 @@ final class SQLite3DBConnection extends CDBConnection {
      * @param boolean $autoId
      * @param array $primaryKeys
      * @return boolean success
-     * @access private
      */
     public function create_table($name, $fields, $charset='utf8', $autoId=true, $primaryKeys=array('id')) {
         global $camyks;

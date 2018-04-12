@@ -25,12 +25,13 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
     private $_initParams = array(
         'item1' => 'item1',
         'item2' => 'item2',
-   );
+    );
 
     /**
      * Class constructor.
-     * @param integer $id
      * @param Module $module
+     * @param array $params
+     * @return void
      */
     function __construct(&$module, $params=array()) {
         parent::__construct(0, $module);

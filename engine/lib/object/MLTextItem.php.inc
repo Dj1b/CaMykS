@@ -83,8 +83,8 @@ class MLTextItem extends ModuleLibraryItem {
 
     /**
      * Save text as file.
-     * @param integer $_libObjId, the parent object id
-     * @param string $_libName, the file header title
+     * @param integer $_libObjId the parent object id
+     * @param string $_libName the file header title
      * @return boolean
      */
     public function save($_libObjId, $_libName='Generic Content') {

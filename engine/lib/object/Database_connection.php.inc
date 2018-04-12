@@ -54,7 +54,7 @@ final class Database_connection {
     private $reportQueries;
 
     /*
-     * object constructor
+     * Class constructor.
      * @param string $host the datebase host name
      * @param string $login the database login value
      * @param string $pwd the database password for the given login

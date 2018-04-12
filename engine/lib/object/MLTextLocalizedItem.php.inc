@@ -66,8 +66,8 @@ final class MLTextLocalizedItem extends MLTextItem {
 
     /**
      * Save text files.
-     * @param integer $_libObjId, the parent object id
-     * @param string $_libName, the file header title
+     * @param integer $_libObjId the parent object id
+     * @param string $_libName the file header title
      * @return boolean
      */
     public function save($_libObjId, $_libName='Generic Content') {
@@ -96,7 +96,7 @@ final class MLTextLocalizedItem extends MLTextItem {
 
     /**
      * Load object value from header.
-     * @param strin $prefix
+     * @param string $prefix
      * @return void
      */
     public function get_fromHeader($prefix='') {
