@@ -16,7 +16,7 @@
  * ModuleLibraryItem class.
  * @author CaMykS Team <camyks.contact@gmail.com>
  */
-abstract class Module extends Plugin {
+class Module extends Plugin {
     /**
      * @var string $type
      * @brief Module type, can be \b admin or \b content.
