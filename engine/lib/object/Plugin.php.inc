@@ -31,6 +31,12 @@ abstract class Plugin {
     public $version;
 
     /**
+     * @var boolean $active
+     * @brief Plugin installation status.
+     */
+    public $active = false;
+
+    /**
      * @var string $plugin_package
      * @brief Plugin package.
      */

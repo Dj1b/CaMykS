@@ -277,7 +277,7 @@ abstract class ModuleLibrary {
             /* get complete object, but available in only one language */
             if ($language === true) {
                 $languages = $camyks->get_confValue('editing_languages');
-                $language = $language[0];
+                $language = $languages[0];
             }
             return $this->get_allDatabaseItems($language)
                 and $this->get_textItems($language)
@@ -1222,9 +1222,9 @@ abstract class ModuleLibrary {
 
         if ($language === false) {
             return $this->get_quickObjectList ($where, $limit, $count, $order, $sens);
-        } else if ($language === true and count ($this->_libItemTypes['dbl']) == 0) {
+        } else if ($language === true and count($this->_libItemTypes['dbl']) == 0) {
             return $this->get_unlocalisedObjectList ($where, $limit, $count, $order, $sens);
-        } else if ($language === true and count ($camyks->get_confValue('editing_languages')) > 1) {
+        } else if ($language === true and count($camyks->get_confValue('editing_languages')) > 1) {
             return $this->get_completeObjectList($where, $limit, $count, $order, $sens);
         } else {
             if ($language === true) {
@@ -1590,7 +1590,6 @@ abstract class ModuleLibrary {
 
             /* add sorting condition */
             $sql .= ' order by '.$element;
-
 
             /* execute sql query */
             if ($this->execute_DBQuery($sql, __LINE__)) {
