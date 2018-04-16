@@ -681,8 +681,8 @@ function client_getUAInfos($ua=false) {
         );
         $model = trim($matches[0]);
         $infos = array_merge($infos, array(
-            'platform_company'=>'Sony',
-            'platform_model'=>$model,
+            'platform_company'  => 'Sony',
+            'platform_model'    => $model,
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld'
             ),
@@ -691,13 +691,18 @@ function client_getUAInfos($ua=false) {
     }
     elseif (preg_match('/SOV3[0-9]/', $ua, $matches)) {
         $rep = array(
+            'SOV31' => array('platform_model' => 'Xperia Z4'),
             'SOV32' => array('platform_model' => 'Xperia Z5'),
             'SOV33' => array('platform_model' => 'Xperia X Performance'),
+            'SOV34' => array('platform_model' => 'Xperia XZ'),
+            'SOV35' => array('platform_model' => 'Xperia XZs'),
+            'SOV36' => array('platform_model' => 'Xperia XZ1'),
+            'SOV37' => array('platform_model' => 'Xperia XZ2'),
         );
         $model = trim($matches[0]);
         $infos = array_merge($infos, array(
-            'platform_company'=>'Sony',
-            'platform_model'=>$model,
+            'platform_company'  => 'Sony',
+            'platform_model'    => $model,
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
             ),
@@ -725,8 +730,11 @@ function client_getUAInfos($ua=false) {
             'NXT-L29'   => array('platform_model' => 'Mate 8'),
             'MHA-L09'   => array('platform_model' => 'Mate 8'),
             'RNE-L21'   => array('platform_model' => 'Mate 10 Lite'),
+            'BLA-L29'   => array('platform_model' => 'Mate 10 Pro'),
+            'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro'),
             'CRR-L09'   => array('platform_model' => 'Mate S'),
-            'KIW-L21'   => array('platform_model' => 'Honor 5X'),
+            'CRR-L09'   => array('platform_model' => 'Mate S'),
+            'NEM-L51'   => array('platform_model' => 'Honor 5C'),
             'BLN-L21'   => array('platform_model' => 'Honor 6X'),
             'PLK-L01'   => array('platform_model' => 'Honor 7'),
             'FRD-L09'   => array('platform_model' => 'Honor 8'),
@@ -1384,6 +1392,21 @@ function client_getUAInfos($ua=false) {
 
     /* check Iris Sat mobiles */
     elseif (preg_match('/(I-S[0-9])/', $ua, $matches)) {
+        $rep = array();
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Iris Sat',
+            'platform_model'    => $model,
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld',
+            ),
+            isset($rep[$model])?$rep[$model]:array()
+        );
+    }
+    elseif (preg_match('/(VOX POP plus)/', $ua, $matches)) {
+        $rep = array(
+            'VOX POP plus' => array('platform_model' => 'Vox Pop Plus',),
+        );
         $model = trim($matches[1]);
         $infos = array_merge($infos, array(
             'platform_company'  => 'Iris Sat',
@@ -5911,7 +5934,17 @@ function client_getKnownBots() {
         'engine_url'        => 'https://domaincheck.io',
     );
     
-    /* unknown bot */
+    /* Datanyze */
+    $knownBots['datanyze'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Datanyze',
+        'engine_url'        => 'https://www.datanyze.com',
+    );
+    
+    /* unknown bots */
     
     /* SEOBulls - unknown bot */
     $knownBots['seo bulls'] = array(
@@ -6118,6 +6151,16 @@ function client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Auto Spider (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+    
+    /* VelenPublicWebCrawler - unknown bot */
+    $knownBots['velenpublicwebcrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'VelenPublicWebCrawler (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
