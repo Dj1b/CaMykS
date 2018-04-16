@@ -332,7 +332,7 @@ final class MySQLDBConnection extends CDBConnection {
             }
             $sql .= $s.',';
         }
-        $sql .= ' PRIMARY KEY('.implode(',', $primaryKeys).'))';
+        $sql .= ' PRIMARY KEY(`'.implode('`,`', $primaryKeys).'`))';
         $sql .= ' CHARACTER SET '.$charset.'';
 
         /* return result of sql query execution */

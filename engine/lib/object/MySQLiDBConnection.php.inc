@@ -337,9 +337,9 @@ final class MySQLiDBConnection extends CDBConnection {
             }
             $sql .= $s.',';
         }
-        $sql .= ' PRIMARY KEY('.implode(',', $primaryKeys).'))';
+        $sql .= ' PRIMARY KEY(`'.implode('`,`', $primaryKeys).'`))';
         $sql .= ' CHARACTER SET '.$charset.'';
-
+    
         /* return result of sql query execution */
         return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
