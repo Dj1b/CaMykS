@@ -107,7 +107,7 @@ class Module extends Plugin {
         parent::__construct($name, 'module', $path_type);
 
         /* load language : needed to have title & description */
-        $this->add_translation ();
+        $this->add_translation();
 
         /* get localized title from translation file */
         $this->title = $this->get_translation('title');
@@ -121,7 +121,7 @@ class Module extends Plugin {
      * @return boolean
      */
     public function is_installed() {
-        return true;
+        return null;
     }
 
     /**
