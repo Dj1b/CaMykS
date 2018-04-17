@@ -156,7 +156,7 @@ abstract class Theme extends Plugin {
      * Initialise theme object in admin mode.
      * @return void
      */
-    private function initialise_adminMode() {
+    public function initialise_adminMode() {
         global $camyks;
 
         if ($this->isAdminResponsive) {
