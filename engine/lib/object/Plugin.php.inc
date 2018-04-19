@@ -568,6 +568,14 @@ abstract class Plugin {
         global $camyks;
         return $camyks->get_translation(strtolower($this->name).'_'.$value, $data);
     }
+    
+    /**
+     * Load available language files for the plugin
+     * @return void
+     */
+    public function get_languages() {
+        $this->languages = language_getDictionnaryList($this->plugin_path.'/locale');
+    }
 
     /* dependencies management methods */
 

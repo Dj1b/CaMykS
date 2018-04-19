@@ -124,22 +124,6 @@ class Module extends Plugin {
         return null;
     }
 
-    /**
-     * Load available language files for the module
-     * @return void
-     */
-    public function get_languages () {
-        global $camyks;
-        $path = $this->plugin_path.'/locale';
-        $this->languages = array();
-        $locales_files = folder_listFiles ($path);
-        foreach ($locales_files as $f) {
-            if (substr ($f, 0, 12) == 'translation_' and substr ($f , strlen ($f) - strlen ($camyks->file_extension), strlen ($camyks->file_extension)) == $camyks->file_extension) {
-                $this->languages[] = substr ($f, 12, strlen ($f) - 12 - strlen ($camyks->file_extension));
-            }
-        }
-    }
-
     /***************** HELP **********************/
   
     /**
