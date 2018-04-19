@@ -179,4 +179,27 @@ function language_numberFormat($number, $floats=2) {
     global $camyks;
     return string_numberFormat($number, $floats, $camyks->current_language);
 }
+
+/**
+ * Return available dictionnaries for a given folder
+ * @param string $folder
+ * @return array
+ */
+function language_getDictionnaryList($folder='') {
+    global $camyks;
+    
+    /* initialise result */
+    $result = array();
+    
+    /* load files in folder */
+    $files = folder_listFiles($folder);
+    
+    /* check files */
+    foreach ($files as $file) {
+        if (substr($file, 0, 12) == 'translation_' and substr($file , strlen($file) - strlen($camyks->file_extension), strlen($camyks->file_extension)) == $camyks->file_extension) {
+            $result[] = substr($file, 12, strlen($file) - 12 - strlen($camyks->file_extension));
+        }
+    }
+    return $result;
+}
 ?>
