@@ -1,36 +1,31 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type  	: Skeleton site / site index
- * Creation Date	: Jun 2005
- * Last Modif Date	: Mar 2007
- *
- * Visite site index
+/**
+ * @brief Visitor site entry point
+ * @details Skeleton site / Site index
+ * @file engine/skeleton_site/index.php
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 /* session start */
 session_start();
 
-/* get site direct conf : site name */
-if ( file_exists('./etc/site.php.inc') ){
-  require_once ('./etc/site.php.inc');
-} else {
-  die ('Configuration file not found.');
+/* load site configuration */
+if ((@include_once('./etc/site.php.inc')) === false) {
+    exit('Fatal Error : Website configuration not found.');
 }
 
-/* get CaMykS */
-if ( file_exists ( $conf['engine_path'].'/Camyks.php.inc' ) ) {
-  require_once( $conf['engine_path'].'/Camyks.php.inc' );
-} else {
-  die ('CaMykS engine not found, check your site configuration file !!!');
-}
+/* load CaMykS */
+if ((@include_once($conf['engine_path'].'/Camyks.php.inc')) === false)
+    exit('Fatal Error : CaMykS folder not found.');
 
-/* build CaMykS engine object */
-$camyks = new Camyks ( $conf, CAMYKS_MODE_SITE );
+/* create CaMykS engine object */
+$camyks = new CaMykS($conf, CAMYKS_MODE_SITE);
+
 /* execute CaMykS engine */
 $camyks->execute();
 ?>
