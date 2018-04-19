@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Dictionnary
- * Creation Date    : Jun 2017
- * Last Modif Date  : Jun 2017
- *
- * French departments portuguese dictionnary
-*/
+/**
+ * @brief French departments portuguese dictionnary
+ * @details Engine / Dictionnary
+ * @file engine/locale/frenchdepartments/translation_pt.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 $this->trads['frenchdepartment_01'] = 'Ain';
 $this->trads['frenchdepartment_02'] = 'Aisne';
@@ -122,4 +122,3 @@ $this->trads['frenchdepartment_986'] = 'Wallis e Futuna';
 $this->trads['frenchdepartment_987'] = 'Polin&eacute;sia Francesa';
 $this->trads['frenchdepartment_988'] = 'Nova Caled&ocirc;nia';
 ?>
-
