@@ -27,7 +27,7 @@ class Admin_LanguageChecker extends Module {
    * constructor
    * @param string $path_type
    */
-  function Admin_LanguageChecker ( $path_type ) {
+  function Admin_LanguageChecker ($path_type) {
     parent::Module('Admin_LanguageChecker', $path_type);
     /* set module type */
     $this->type = 'admin';
@@ -55,7 +55,7 @@ class Admin_LanguageChecker extends Module {
    * @return void
    * @access private
    */
-  function get_rights ( ) {
+  function get_rights () {
     global $camyks;
     $this->rights[0] = array('name'=>'read',
 			     'title'=>$camyks->get_translation('read'),
@@ -69,13 +69,13 @@ class Admin_LanguageChecker extends Module {
    */
   function init_admin () {
     /* check access right */
-    if ( $this->check_right(0) === false ) {
+    if ($this->check_right(0) === false) {
       return $this->init_admin_accessDenied();
     }
 
     /* check action to execute */
-    $this->action = ( isset($_REQUEST['action'])?$_REQUEST['action']:'list');
-    switch ( $this->action ) {
+    $this->action = (isset($_REQUEST['action'])?$_REQUEST['action']:'list');
+    switch ($this->action) {
     case 'checker' : 
       $this->init_admin_checker();
       break;
@@ -85,15 +85,6 @@ class Admin_LanguageChecker extends Module {
       break;
     }
     parent::init_admin();
-  }
-  
-  /*
-   * display module object in admin mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
   }
 
   /* specific mode methods */
@@ -110,32 +101,46 @@ class Admin_LanguageChecker extends Module {
     $type = $_REQUEST['type'];
     $this->items = array();
     
-    foreach ( $camyks->site_conf['editing_languages'] as $l ) {
-      $this->locales[$l] = new Admin_LanguageCheckerEngine ( $type, $view, $l );
+    /* load folder */
+    if ($type == 'engine' and $view == 'camyks') {
+        $folder = $camyks->camyks_engine_path.'/locale';
+    } else if ($type == 'engine') {
+        $folder = $camyks->camyks_engine_path.'/locale/'.$view;
+    } else if ($type == 'module') {
+        $folder = $camyks->modules[$view]->plugin_path.'/locale';
+    } else if ($type == 'input') {
+        $folder = $camyks->inputs[$view]->plugin_path.'/locale';
+    }
+    
+    /* load available languages for folder */
+    $languages = array_merge($camyks->get_confValue('editing_languages'), language_getDictionnaryList($folder));
+        
+    foreach ($languages as $language) {
+      $this->locales[$language] = new Admin_LanguageCheckerEngine ($folder, $language);
       
       /* get all items */
-      foreach ( $this->locales[$l]->trads as $item => $value ) {
-	if ( !in_array( $item, $this->items ) ) {
-	  $this->items[] = $item;
-	}
+      foreach ($this->locales[$language]->trads as $item => $value) {
+	    if (!in_array($item, $this->items)) {
+	        $this->items[] = $item;
+	    }
       }
     }
     
     /* sort items */
-    sort( $this->items );
+    sort($this->items);
     
     /* get prefix */
-    foreach ( $this->items as $i ) {
+    foreach ($this->items as $i) {
       $this->prefix = $i;
       break;
     }
-    foreach ( $this->items as $i ) {
-      $this->prefix = string_getSimilarBeginning($i, $this->prefix );
+    foreach ($this->items as $i) {
+      $this->prefix = string_getSimilarBeginning($i, $this->prefix);
     }
     
     /* get default tab */
     $this->defaultTab = '';
-    foreach ( $this->locales as $l=>$v ) {
+    foreach ($this->locales as $l=>$v) {
       $this->defaultTab = 'lang'.$l;
       break;
     }
@@ -151,14 +156,14 @@ class Admin_LanguageChecker extends Module {
     
     /* get tabs */
     $this->tabs = array();
-    foreach ( $this->locales as $l => $v ) {
+    foreach ($this->locales as $l => $v) {
       $this->tabs[] = array ('name' => 'lang'.$l,
 			     'title' => language_getIcon($l));
     }
 
     /* get buttons */
     $this->buttons =  array(array('title'=>$camyks->get_translation('back'),
-				  'link'=>$camyks->get_adminLink($this->name)));
+				  'link'=>$this->get_adminLink()));
 
     /* update layout */
     $this->selected_layout = 'checker.html.inc';
@@ -172,16 +177,22 @@ class Admin_LanguageChecker extends Module {
   function init_admin_list () {
     global $camyks;
     $this->list = array();
-    /* add camyks */
+    
+    /* add camyks global locales */
     $this->list['camyks'] = array('type'=>'engine', 'title' => 'CaMykS');
+    
+    /* add camyks dedicated locales */
+    $folders = folder_listFolders($camyks->camyks_engine_path.'/locale');
+    foreach ($folders as $folder)
+      $this->list[$folder] = array('type'=>'engine', 'title' => ' / '.$folder);
 
     /* add modules */
-    foreach ( $camyks->modules as $m ) {
+    foreach ($camyks->modules as $m) {
       $this->list[$m->name] = array('type'=>'module', 'title' => $m->title);
     }
 
     /* add inputs */
-    foreach ( $camyks->inputs as $m ) {
+    foreach ($camyks->inputs as $m) {
       $this->list[$m->name] = array('type'=>'input', 'title' => $m->name);
     }
 
