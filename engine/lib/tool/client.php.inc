@@ -487,6 +487,7 @@ function client_getUAInfos($ua=false) {
             'SM-E700H'  => array('platform_model' => 'Galaxy E7', ),
             'SM-J100H'  => array('platform_model' => 'Galaxy J1', ),
             'SM-J110H'  => array('platform_model' => 'Galaxy J1 (2015)', ),
+            'SM-J120F'  => array('platform_model' => 'Galaxy J1 (2016)', ),
             'SM-J120FN' => array('platform_model' => 'Galaxy J1 (2016)', ),
             'SM-J120H'  => array('platform_model' => 'Galaxy J1 (2016)', ),
             'SM-J200F'  => array('platform_model' => 'Galaxy J2', ),
@@ -509,6 +510,7 @@ function client_getUAInfos($ua=false) {
             'SM-J510M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
             'SM-J510Y'  => array('platform_model' => 'Galaxy J5 (2016)', ),
             'SM-J530F'  => array('platform_model' => 'Galaxy J5 (2017)', ),
+            'SM-J7008'  => array('platform_model' => 'Galaxy J7 (2015)', ),
             'SM-G610F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
             'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
             'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
@@ -558,6 +560,7 @@ function client_getUAInfos($ua=false) {
             'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo', ),
             'SM-N910A'  => array('platform_model' => 'Galaxy Note 4', ),
             'SM-N910F'  => array('platform_model' => 'Galaxy Note 4', ),
+            'SM-N920C'  => array('platform_model' => 'Galaxy Note 5', ),
             'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
             'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
             'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
@@ -5942,6 +5945,16 @@ function client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Datanyze',
         'engine_url'        => 'https://www.datanyze.com',
+    );
+    
+    /* eright */
+    $knownBots['eright'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'eRight bot',
+        'bot_url'           => 'mailto:bot@eright.com',
+        'engine_title'      => 'eRight',
+        'engine_url'        => 'https://www.eright.com',
     );
     
     /* unknown bots */
