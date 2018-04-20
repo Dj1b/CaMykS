@@ -10,6 +10,7 @@
  * @copyright 2008 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
  */
 global $global_theme_picts_items;
 
@@ -157,3 +158,8 @@ $cols = count($this->params['listcolumns']);
     <?php $cnt ++ ;?>
     <?php endforeach; ?>
 </table>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

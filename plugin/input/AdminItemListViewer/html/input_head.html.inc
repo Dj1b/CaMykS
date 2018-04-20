@@ -10,6 +10,7 @@
  * @copyright 2008 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
  */
 if ($this->selectorForm !== false) {
     echo $this->selectorForm->display_header();
@@ -67,4 +68,9 @@ if ($this->selectorForm !== false) {
     echo '<input type="submit" style="display:none" />';
     echo $this->selectorForm->display_footer();
 }
+?>
+<?php 
+/**
+ * @endcond Exclude
+ */
 ?>

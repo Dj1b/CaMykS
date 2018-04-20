@@ -13,6 +13,10 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * AdminItemListViewer Input class.
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ */
 final class AdminItemListViewer extends Input {
     /**
      * var boolean $valide

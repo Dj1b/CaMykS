@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief PDF creator object extending FDPF object
+ * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
  * @file engine/lib/object/CPDF.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
@@ -13,9 +13,6 @@
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
-/**
- * @include Original FPDF library
- */
 require_once('FPDF/fpdf.php');
 
 /**
@@ -35,7 +32,7 @@ class CPDF extends FPDF {
         global $camyks;
 
         /* Generic FPDF Init */
-        parent::FPDF($orientation, $unit, $format);
+        parent::__construct($orientation, $unit, $format);
         $this->unit = $unit;
 
         /* Check encoding */
