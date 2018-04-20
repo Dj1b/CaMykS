@@ -1,22 +1,18 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type		: Engine / JS Object Lib
- * Create Date		: Dec 2007
- * Last Modif Date	: Dec 2007
- * History :
- * * 07-12-07 : Initial File
- * * 07-12-10 : Update compatibility with Mozilla Firefox
- * * 08-02-15 : Clean & compatibility update
- *
- * AJAX Engine object
+/**
+ * @brief Client side scripts to manage ajax requests.
+ * @details Engine / Javascript object library
+ * @file engine/data/js/object/cajaxrequest.js
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Dec 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/* CAjaxRequest Object
- * @access public
+/* 
+ * Class constructor.
  * @param string name
  */
 function CAjaxRequest(name) {
