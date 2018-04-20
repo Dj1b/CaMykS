@@ -1,34 +1,35 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Library
- * Create Date		: May 2007
- * Last Modif Date	: May 2007
- * 
- * ColorPicker config library : reds
-*/
+/**
+ * @brief ColorPicker Input reds configuration.
+ * @details Plugin / Input Library
+ * @file plugin/input/ColorPicker/config/reds.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Mar 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-$this->config = array();
-$this->config['more'] = true;
-$this->config['width'] = 12;
-$this->config['height'] = 12;
-$this->config['maxcols'] = 16;
-$this->config['maxrows'] = 8;
-$this->config['colors'] = array();
+$this->config = array(
+    'more'      => true,
+    'width'     => 12,
+    'height'    => 12,
+    'maxcols'   => 16,
+    'maxrows'   => 8,
+    'colors'    => array(),
+);
 
-for( $i=63; $i >= 0; $i-- ) {
-  $v = dechex($i*4);
-  $v = str_pad($v, 2, '0', STR_PAD_LEFT );
-  $this->config['colors'][] = 'FF'.$v.$v; 
+for ($i=63; $i >= 0; $i--) {
+    $v = dechex($i*4);
+    $v = str_pad($v, 2, '0', STR_PAD_LEFT);
+    $this->config['colors'][] = 'FF'.$v.$v; 
 }
 
-for( $i=63; $i >= 0; $i-- ) {
-  $v = dechex($i*4);
-  $v = str_pad($v, 2, '0', STR_PAD_LEFT );
-  $this->config['colors'][] = $v.'0000'; 
+for ($i=63; $i >= 0; $i--) {
+    $v = dechex($i*4);
+    $v = str_pad($v, 2, '0', STR_PAD_LEFT);
+    $this->config['colors'][] = $v.'0000'; 
 }
 ?>

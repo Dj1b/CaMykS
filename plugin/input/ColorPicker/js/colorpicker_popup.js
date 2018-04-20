@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Javascript Library
- * Creation Date	: May 2007
- * Last Modif Date	: May 2007
- * 
- * ColorPicker Javascript
-*/
+/**
+ * @brief ColorPicker Input popup client side scripts.
+ * @details Plugin / Input Javascript
+ * @file plugin/input/ColorPicker/js/colorpicker_popup.js
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Mar 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 function colorpicker_cancel() {
     window.close();
@@ -24,7 +24,7 @@ function colorpicker_valid() {
     opener.focus();
 }
 
-function colorpicker_select( obj, color ) {
+function colorpicker_select(obj, color) {
     c = document.getElementById('colorpicker_'+obj+'_'+color);
     o = document.getElementById('colorpicker_'+obj+'_newobj');
     t = document.getElementById('colorpicker_'+obj+'_newtxt');
@@ -34,7 +34,7 @@ function colorpicker_select( obj, color ) {
 
 }
 
-function colorpicker_unselect( obj, color ) {
+function colorpicker_unselect(obj, color) {
     c = document.getElementById('colorpicker_'+obj+'_'+color);
     o = document.getElementById('colorpicker_'+obj+'_newobj');
     t = document.getElementById('colorpicker_'+obj+'_newtxt');
@@ -43,7 +43,7 @@ function colorpicker_unselect( obj, color ) {
     t.innerHTML="#"+inputcolor; 
 }
 
-function colorpicker_update ( obj, color ) {
+function colorpicker_update (obj, color) {
     c = document.getElementById('colorpicker_'+obj+'_'+color);
     o = document.getElementById('colorpicker_'+obj+'_newobj');
     t = document.getElementById('colorpicker_'+obj+'_newtxt');
