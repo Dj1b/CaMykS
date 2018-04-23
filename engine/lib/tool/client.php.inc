@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Jun 2007
  * @date Modification: Apr 2018
  * @copyright 2017 - 2018 CaMykS Team
@@ -659,7 +659,7 @@ function client_getUAInfos($ua=false) {
         ));
     
     /* check Sony mobiles and tablets */
-    elseif (preg_match('/ (C|D|E|F|G)([0-9]{4}) /', $ua, $matches)) {
+    elseif (preg_match('/ ([C-H])([0-9]{4}) /', $ua, $matches)) {
         $rep = array(
             'C1505' => array('platform_model' => 'Xperia E'),
             'C2105' => array('platform_model' => 'Xperia L'),
@@ -675,12 +675,14 @@ function client_getUAInfos($ua=false) {
             'D5503' => array('platform_model' => 'Xperia Z1 Compact'),
             'D5803' => array('platform_model' => 'Xperia Z3 Compact'),
             'D6603' => array('platform_model' => 'Xperia Z3'),
+            'D6683' => array('platform_model' => 'Xperia Z3 Dual Sim'),
             'E6653' => array('platform_model' => 'Xperia Z5'),
             'E5823' => array('platform_model' => 'Xperia Z5 Compact'),
             'F3111' => array('platform_model' => 'Xperia XA'),
             'F5121' => array('platform_model' => 'Xperia X'),
             'F8331' => array('platform_model' => 'Xperia XZ'),
             'G8141' => array('platform_model' => 'Xperia XZ Premium'),
+            'H3311' => array('platform_model' => 'Xperia L2'),
         );
         $model = trim($matches[0]);
         $infos = array_merge($infos, array(
@@ -5955,6 +5957,16 @@ function client_getKnownBots() {
         'bot_url'           => 'mailto:bot@eright.com',
         'engine_title'      => 'eRight',
         'engine_url'        => 'https://www.eright.com',
+    );
+    
+    /* NetTrack */
+    $knownBots['nettrack'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'NetTrack',
+        'engine_url'        => 'https://nettrack.info/',
     );
     
     /* unknown bots */
