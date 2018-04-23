@@ -659,43 +659,13 @@ function _file_getMimeFromFinfo($file) {
     if (!class_exists('finfo'))
         return false;
 
-    /* build magic file source list */
-    $magicSource = array(
-        '/usr/lib/file/magic.mgc',
-        '/usr/share/file/magic.mgc',
-        '/usr/share/file/magic.mime',
-        '/usr/share/misc/magic.mgc',
-        '/usr/share/misc/magic.mime',
-        '/usr/share/misc/file/magic.mgc',
-        '/usr/share/misc/file/magic.mime',
-    );
-
-    $source = '';
-    foreach ($magicSource as $s) {
-        if (file_exists($s) and is_readable($s)) {
-            $source = $s;
-            break;
-        }
-    }
-
-    /* check source */
-    if ($source == '')
-        return false;
-
     /* load finfo */
-    try {
-        $finfo = @new finfo(FILEINFO_MIME, $source);
-    } catch(Exception $e) {
-        return false;
-    }
+    $finfo = @new finfo(FILEINFO_MIME);
     if (!$finfo) return false;
 
     /* check result */
     $mime = $finfo->file($file);
     $mime = explode(';', $mime);
-
-    /* close finfo */
-    $finfo->close();
 
     /* return result */
     if ($mime[0] == '')
