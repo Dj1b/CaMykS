@@ -18,12 +18,6 @@
  */
 class MLFileItem extends ModuleLibraryItem {
     /**
-     * @var string $name
-     * @brief Item name.
-     */
-    public $name;
-
-    /**
      * @var string $folder
      * @brief Folder repository for files.
      */
@@ -40,13 +34,7 @@ class MLFileItem extends ModuleLibraryItem {
      * @brief Folder url for files.
      */
     public $url;
-
-    /**
-     * @var mixed $value
-     * @brief Item current value.
-     */
-    public $value = '';
-
+    
     /**
      * @var boolean $upload
      * @brief Is file in upload process.

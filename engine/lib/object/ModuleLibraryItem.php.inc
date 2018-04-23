@@ -19,6 +19,25 @@
  */
 abstract class ModuleLibraryItem {
     /**
+     * @var string $name
+     * @brief Item name.
+     */
+    public $name;
+
+    /**
+     * @var mixed $default
+     * @brief Item default value.
+     */
+    public $default;
+
+    /**
+     * @var mixed $value
+     * @brief Item current value.
+     */
+    public $value;
+
+    
+    /**
      * Load value from array.
      * @param array $data
      * @return void

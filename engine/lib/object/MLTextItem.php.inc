@@ -18,12 +18,6 @@
  */
 class MLTextItem extends ModuleLibraryItem {
     /**
-     * @var string $name
-     * @brief Item name.
-     */
-    public $name;
-
-    /**
      * @var string $folder
      * @brief Folder repository for files.
      */
@@ -34,18 +28,6 @@ class MLTextItem extends ModuleLibraryItem {
      * @brief Folder path for files.
      */
     public $path;
-
-    /**
-     * @var mixed $default
-     * @brief Item default value.
-     */
-    public $default;
-
-    /**
-     * @var mixed $value
-     * @brief Item current value.
-     */
-    public $value = '';
 
     /**
      * Class constructor.

@@ -18,28 +18,10 @@
  */
 final class MLTemporaryItem extends ModuleLibraryItem {
     /**
-     * @var string $name
-     * @brief Item name.
-     */
-    public $name;
-
-    /**
-     * @var mixed $default
-     * @brief Item default value.
-     */
-    public $default;
-
-    /**
      * @var string $type
      * @brief Item type.
      */
     public $type;
-
-    /**
-     * @var mixed $value
-     * @brief Item current value.
-     */
-    public $value;
 
     /**
      * Class constructor.

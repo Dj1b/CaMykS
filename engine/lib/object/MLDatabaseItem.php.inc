@@ -18,12 +18,6 @@
  */
 class MLDatabaseItem extends ModuleLibraryItem {
     /**
-     * @var string $name
-     * @brief Item name.
-     */
-    public $name;
-
-    /**
      * @var string $datatype
      * @brief Item data type, can be \b text / \b etext / \b int / \b float / \b date / \b password / \b list.
      */
@@ -40,19 +34,7 @@ class MLDatabaseItem extends ModuleLibraryItem {
      * @brief Secondary information of item data description.
      */
     public $datadesc2;
-
-    /**
-     * @var mixed $default
-     * @brief Item default value.
-     */
-    public $default;
-
-    /**
-     * @var mixed $value
-     * @brief Item current value.
-     */
-    public $value;
-
+    
     /**
      * Class constructor.
      * @param string $name
