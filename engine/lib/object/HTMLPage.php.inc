@@ -497,7 +497,7 @@ final class HTMLPage {
         );
 
         /* check config */
-        if ($config === false)
+        if ($config == false)
             $config = $defaultConfig;
         else
             $config = array_merge($defaultConfig, $config);
