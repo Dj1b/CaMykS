@@ -28,13 +28,13 @@ final class AdminItemListViewer extends Input {
      * @var array $selectionValues
      * @brief Store current selection values.
      */
-    protected $selectionValues = array();
+    public $selectionValues = array();
 
     /**
      * var array $selectionValues
      * @brief Store current selection values.
      */
-    protected $sortValues = array('column'=>'id', 'way'=>'');
+    public $sortValues = array('column'=>'id', 'way'=>'');
 
     /**
      * var array $preRenders
