@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
  * @date Modification: Apr 2018
  * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo complete file type, extension, and mime list
  */
@@ -20,17 +20,16 @@ define('FILE_ICON_EXTENSION', 'gif');
 
 /**
  * Write given file with given content.
- * @param string $file_path 
+ * @param string $file_path
  * @param string $content
  * @param boolean $deleteCache
  * @return boolean success
  */
 function file_write($file_path, $content, $deleteCache=false) {
     if (@file_put_contents($file_path, $content, LOCK_EX) !== false) {
-        
         /* remove cache from OPCache */
-        if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate($file_path);  
-        
+        if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate($file_path);
+
         /* return sucess */
         return true;
     } else {
@@ -112,18 +111,18 @@ function file_getContent($file) {
 function file_download($file, $path) {
     /* open file to be written */
     $ff = fopen($path, "w");
-    
+
     /* init curl object */
     $dl = curl_init();
-    
+
     /* fill curl object info */
     curl_setopt($dl, CURLOPT_URL, $file);
     curl_setopt($dl, CURLOPT_FILE, $ff);
     curl_setopt($dl, CURLOPT_HEADER, 0);
-    
+
     /* download file */
     curl_exec($dl);
-    
+
     /* end download */
     curl_close ($dl);
     fclose ($ff);
@@ -137,7 +136,7 @@ function file_download($file, $path) {
  */
 function file_getMimeIconURL($mime='', $size=32) {
     global $camyks;
-    
+
     /* get file extension from mime */
     switch ($mime) {
         /* pictures */
@@ -163,7 +162,7 @@ function file_getMimeIconURL($mime='', $size=32) {
             $ext = 'css'; break;
         /* rich text */
         case 'text/richtext': case 'application/rtf':  case 'application/x-rtf':
-        case 'text/vnd.rn-realtext': 
+        case 'text/vnd.rn-realtext':
             $ext = 'richtext'; break;
         /* sgml */
         case 'text/sgml': case 'text/x-sgml':
@@ -173,7 +172,7 @@ function file_getMimeIconURL($mime='', $size=32) {
         case 'video/x-msvideo': case 'video/mpeg': case 'video/x-mpeg':
         case 'video/x-mpeg2a': case 'video/x-ms-asf': case 'video/x-dv':
         case 'video/x-motion-jpeg': case 'video/quicktime':
-            $ext = 'video'; break; 
+            $ext = 'video'; break;
         /* compressed file */
         case 'application/x-rar-compressed': case 'application/x-zip-compressed':
         case 'application/x-ace-compressed': case 'application/x-zip':
@@ -182,9 +181,9 @@ function file_getMimeIconURL($mime='', $size=32) {
         case 'application/binhex4': case 'application/mac-binhex': case 'application/mac-binhex40':
         case 'application/x-binhex40': case 'application/x-mac-binhex40': case 'multipart/x-gzip':
         case 'application/x-compressed': case 'application/x-gzip': case 'application/x-bzip':
-        case 'application/x-bzip2': case 'application/mac-compactpro': 
+        case 'application/x-bzip2': case 'application/mac-compactpro':
         case 'application/x-compactpro': case 'application/x-cpt':
-            $ext = 'archive'; break; 
+            $ext = 'archive'; break;
         /* source file */
         case 'text/x-java-source': case 'application/x-javascript': case 'text/x-pascal':
         case 'text/pascal': case 'text/x-script.perl': case 'text/x-script.python':
@@ -196,11 +195,11 @@ function file_getMimeIconURL($mime='', $size=32) {
             $ext = 'xml'; break;
         /* disk image */
         case 'application/x-apple-diskimage':
-            $ext = 'applediskimage'; break; 
+            $ext = 'applediskimage'; break;
         /* mac binary */
         case 'application/mac-binary': case 'application/macbinary':
         case 'application/x-binary': case 'application/x-macbinary':
-            $ext = 'macbinary'; break; 
+            $ext = 'macbinary'; break;
         /* director */
         case 'application/x-director':
             $ext = 'director'; break;
@@ -241,17 +240,17 @@ function file_getMimeIconURL($mime='', $size=32) {
         default:
             $ext = 'generic';
     }
-  
+
     /* check size */
     if (!in_array($size, array(16, 32, 64, 128))) {
         $size = 32;
     }
-  
-    /* check if mime icon exists */ 
-    if (!file_exists($camyks->camyks_engine_path.'/data/img/mime/'.$ext.$size.'.'.FILE_ICON_EXTENSION)) {    
+
+    /* check if mime icon exists */
+    if (!file_exists($camyks->camyks_engine_path.'/data/img/mime/'.$ext.$size.'.'.FILE_ICON_EXTENSION)) {
         $ext = 'generic';
     }
-  
+
     return $camyks->site_data_url.'/img/mime/'.$ext.$size.'.'.FILE_ICON_EXTENSION;
 }
 
@@ -265,7 +264,7 @@ function file_getMimeIconURL($mime='', $size=32) {
 function file_getMimeIcon($mime='', $size=32, $styles='') {
     /* get icon */
     $icon = file_getMimeIconURL ($mime, $size);
-    
+
     /* return icon */
     return '<img src="'.$icon.'"'.' width="'.$size.'" height="'.$size.'" alt="" style="'.$styles.'" border="0" />';
 }
@@ -283,7 +282,7 @@ function file_getTypeDescription($mime='', $ext=null) {
         $ext = explode ('/', $mime);
         $ext = $ext[count($ext)-1];
     }
-    
+
     switch ($mime) {
         /* folder */
         case 'folder':
@@ -320,7 +319,7 @@ function file_getTypeDescription($mime='', $ext=null) {
         case 'audio/x-pn-realaudio-plugin':
         case 'audio/x-realaudio':
         case 'audio/x-pn-realaudio':
-            return $camyks->get_translation('file_audiofile', 'Real');    
+            return $camyks->get_translation('file_audiofile', 'Real');
         /* text */
         case 'text/plain':
         case 'text/html':
@@ -462,13 +461,13 @@ function file_getMimeDescription($mime='') {
 function file_getFileSize($size) {
     $t = language_getFileUnit();
     $l = array('', 'K', 'M', 'G', 'T', 'P');
-    $s = 0; 
+    $s = 0;
     while ($size > 1024) {
         $s++;
         $size /= 1024.00;
     }
     $size = ((int)($size*10)/10);
-    
+
     if ($s == 0)
         return $size.' '.($t='o'?'octets':'bytes');
     return $size.' '.$l[$s].$t;
@@ -484,15 +483,15 @@ function file_getMime($file, $ext=null)  {
     /* check file */
     if (!file_exists($file))
         return '';
-    
+
     /* try to get file info from finfo methods */
     if (($mime = _file_getMimeFromFinfo($file)) !== false)
         return $mime;
-    
+
     /* try to get file info from mime content type method */
     if (($mime = _file_getMimeFromMimeContentType($file)) !== false)
         return $mime;
-    
+
     /* try to get file info from internal method */
     return _file_getMimeFromExtension($file, $ext);
 }
@@ -534,13 +533,13 @@ function file_readfile($filename, $retbytes=true) {
     /* load file size */
     $s = stat($filename);
     $s = (int)($s['size']/1024/1024);
-    
+
     /* check PHP version and file size *
     if (preg_match('/(5.0.[0-4])/', phpversion(), $result) == 0 or $s < 80) {
         readfile($filename, $retbytes);
     }
-    */  
-    
+    */
+
     $chunksize = 1*(1024*1024);
     $buffer = '';
     $cnt =0;
@@ -551,15 +550,15 @@ function file_readfile($filename, $retbytes=true) {
     while (!feof($handle)) {
         $buffer = fread($handle, $chunksize);
         echo $buffer;
-        ob_flush(); 
-        flush(); 
+        ob_flush();
+        flush();
         if ($retbytes) {
             $cnt += strlen($buffer);
         }
     }
     $status = fclose($handle);
     if ($retbytes && $status) {
-        return $cnt; 
+        return $cnt;
     }
     return $status;
 }
@@ -585,7 +584,7 @@ function file_writeConfFile($file_path, $desc, $datas) {
         }
         $str2 .= $data_name.' = '.data_serialize($data_content['value']).';'."\n";
     }
-  
+
     if ( $str!= '') {
         $file_content .= 'global '.substr($str, 0, strlen($str)-2).";\n\n";
     }
@@ -618,36 +617,36 @@ function file_search($pattern='*', $rootPath='./', $globFlags=0) {
  */
 function file_md5($file, $contextParams=array()) {
     global $camyks;
-    
+
     /* check default md5_file method */
     if (($v = @md5_file($file)) !== false)
         return $v;
-    
+
     /* check if function exists */
     if (!function_exists('error_get_last'))
         return false;
-    
+
     /* get error from md5_file method */
     $error = error_get_last();
-    
+
     /* check operation failed error */
     if (preg_match('/operation failed/', $error['message']))
         return false;
-    
+
     /* check HTTP 404 error : file not found */
     if (preg_match('/HTTP\/1.1 404/', $error['message']))
         return false;
-    
+
     /* check HTTP 403 error : forbidden */
     if (preg_match('/HTTP\/1.1 403/', $error['message'])) {
         if (($v = http_getContents(array_merge($contextParams, array('url'=> $file)))) !== false)
             return md5($v);
     }
-    
+
     /* send default result */
     return false;
 }
- 
+
 /* private mime gathering methods */
 
 /**
@@ -659,7 +658,7 @@ function file_md5($file, $contextParams=array()) {
 function _file_getMimeFromFinfo($file) {
     if (!class_exists('finfo'))
         return false;
-                
+
     /* build magic file source list */
     $magicSource = array(
         '/usr/lib/file/magic.mgc',
@@ -671,41 +670,40 @@ function _file_getMimeFromFinfo($file) {
         '/usr/share/misc/file/magic.mime',
     );
 
-    /* check correct magic file source */
-    if (preg_match('/armv/', php_uname('m')))
-          $source = null;
-    else {
-        $source = '';
-        foreach ($magicSource as $s) {
-            if (file_exists($s) and is_readable($s)) {
-                $source = $s;
-                break;
-            }
+    $source = '';
+    foreach ($magicSource as $s) {
+        if (file_exists($s) and is_readable($s)) {
+            $source = $s;
+            break;
         }
     }
-    
-    /* check source */    
+
+    /* check source */
     if ($source == '')
         return false;
-    
+
     /* load finfo */
-    $finfo = @new finfo(FILEINFO_MIME, $source);
+    try {
+        $finfo = @new finfo(FILEINFO_MIME, $source);
+    } catch(Exception $e) {
+        return false;
+    }
     if (!$finfo) return false;
-    
+
     /* check result */
     $mime = $finfo->file($file);
     $mime = explode(';', $mime);
-    
+
     /* close finfo */
     $finfo->close();
-    
+
     /* return result */
     if ($mime[0] == '')
       return false;
     return $mime[0];
 }
 
-/* 
+/**
  * Return file mime from content_mime_type method.
  * @param string $file
  * @return string
@@ -729,9 +727,9 @@ function _file_getMimeFromMimeContentType($file) {
  */
 function _file_getMimeFromExtension($file, $ext=null) {
     /* try to get mime from extension */
-    if (!isset($ext) and preg_match('/.*\.([^\.]*)/', $file, $ext)) 
+    if (!isset($ext) and preg_match('/.*\.([^\.]*)/', $file, $ext))
         $ext = $ext[1];
-    
+
     /* get mime from extension */
     switch ($ext) {
         /* image */
