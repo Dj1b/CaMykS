@@ -71,9 +71,9 @@ $this->trads['mod_admin_site_formitem_databaselogin'] = 'Login : ';
 $this->trads['mod_admin_site_formitem_databasesize'] = 'Database size: ';
 $this->trads['mod_admin_site_formitem_tables'] = 'Tables: ';
 $this->trads['mod_admin_site_formitem_lines'] = 'Lines: ';
-$this->trads['mod_admin_site_formitem_connections'] = 'Connections : ';
+$this->trads['mod_admin_site_formitem_connections'] = 'Connections: ';
 $this->trads['mod_admin_site_formtitle_status'] = 'Status';
-$this->trads['mod_admin_site_formitem_tablesok'] = 'Good wealth status: ';
+$this->trads['mod_admin_site_formitem_tablesok'] = 'Good health status: ';
 $this->trads['mod_admin_site_formitem_tablesnotok'] = 'Requiring repair: ';
 $this->trads['mod_admin_site_formtitle_error'] = 'Errors';
 $this->trads['mod_admin_site_formtitle_info'] = 'Information';
@@ -105,7 +105,7 @@ $this->trads['mod_admin_site_stats_nonef'] = 'Aucune';
 $this->trads['mod_admin_site_stats_enabled'] = 'Enabled';
 $this->trads['mod_admin_site_stats_disabled'] = 'Disabled';
 $this->trads['mod_admin_site_formtitle_handheld'] = 'Mobile';
-$this->trads['mod_admin_site_formitem_responsive'] = 'Responsive design: '; 	
+$this->trads['mod_admin_site_formitem_responsive'] = 'Responsive design: ';
 $this->trads['mod_admin_site_formitem_declination'] = 'Mobile declination: ';
 
 /* server conf texts */
