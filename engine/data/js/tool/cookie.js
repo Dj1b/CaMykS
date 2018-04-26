@@ -2,7 +2,7 @@
  * @brief Client side scripts related to cookies.
  * @details Engine / Javascript tool library
  * @file engine/data/js/tool/cookies.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Apr 2008
  * @date Modification: Apr 2018

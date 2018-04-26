@@ -2,7 +2,7 @@
  * @brief Client side scripts to handle inline popups.
  * @details Engine / Javascript tool library
  * @file engine/data/js/tool/popup.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Sep 2010
  * @date Modification: Apr 2018
@@ -30,7 +30,7 @@ function popup_openModal(myobject, params) {
     else {
         for (var i in dParams) {
             if (!params[i])
-	params[i] = dParams[i];
+                params[i] = dParams[i];
         }
     }
 

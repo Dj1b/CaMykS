@@ -2,7 +2,7 @@
  * @brief Client side scripts to perform visual transition between objects.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/ctransition.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Jul 2008
  * @date Modification: Apr 2018

@@ -2,7 +2,7 @@
  * @brief Client side scripts to manage drag'n drop.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/cdragndrop.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Sep 2013
  * @date Modification: Apr 2018

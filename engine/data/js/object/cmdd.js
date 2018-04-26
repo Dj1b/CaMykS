@@ -2,7 +2,7 @@
  * @brief Client side scripts to manage multi div swapper.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/cmdd.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Feb 2007
  * @date Modification: Apr 2018

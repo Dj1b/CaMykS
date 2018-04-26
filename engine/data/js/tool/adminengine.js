@@ -2,7 +2,7 @@
  * @brief Client side scripts used for admin section.
  * @details Engine / Javascript tool library
  * @file engine/data/js/tool/adminengine.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Jun 2007
  * @date Modification: Apr 2018

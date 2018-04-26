@@ -2,7 +2,7 @@
  * @brief Client side scripts to manage tabs.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/ctab.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Nov 2006
  * @date Modification: Apr 2018

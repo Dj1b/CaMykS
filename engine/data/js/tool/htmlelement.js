@@ -2,7 +2,7 @@
  * @brief Client side scripts related to html elements.
  * @details Engine / Javascript tool library
  * @file engine/data/js/tool/htmlelements.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Jun 2006
  * @date Modification: Apr 2018

@@ -2,7 +2,7 @@
  * @brief Client side scripts to manage layered menus.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/cmenu.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Jun 2006
  * @date Modification: Apr 2018

@@ -2,7 +2,7 @@
  * @brief Client side scripts related client environment.
  * @details Engine / Javascript tool library
  * @file engine/data/js/tool/clientenv.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Mar 2005
  * @date Modification: Apr 2018

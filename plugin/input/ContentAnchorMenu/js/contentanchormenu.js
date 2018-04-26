@@ -2,7 +2,7 @@
  * @brief ContentAnchorMenu Input client side scripts
  * @details Plugin / Input Javascript
  * @file plugin/input/ContentAnchorMenu/js/ContentAnchorMenu.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Feb 2010
  * @date Modification: Apr 2018

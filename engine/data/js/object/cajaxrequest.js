@@ -2,7 +2,7 @@
  * @brief Client side scripts to manage ajax requests.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/cajaxrequest.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Dec 2007
  * @date Modification: Apr 2018

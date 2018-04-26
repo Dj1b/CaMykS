@@ -2,7 +2,7 @@
  * @brief Client side library to be extended on object libraries.
  * @details Engine / Javascript object library
  * @file engine/data/js/object/clibrary.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Sep 2011
  * @date Modification: Apr 2018

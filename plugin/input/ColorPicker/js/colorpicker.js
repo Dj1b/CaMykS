@@ -2,7 +2,7 @@
  * @brief ColorPicker Input client side scripts.
  * @details Plugin / Input Javascript
  * @file plugin/input/ColorPicker/js/colorpicker.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Mar 2007
  * @date Modification: Apr 2018

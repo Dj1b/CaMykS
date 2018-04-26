@@ -2,7 +2,7 @@
  * @brief Client side scripts related to html.
  * @details Engine / Javascript tool library
  * @file engine/data/js/tool/html.js
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * @author CaMykS Team
  * @version 1.0
  * @date Creation: Dec 2007
  * @date Modification: Apr 2018
