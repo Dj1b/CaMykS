@@ -1,18 +1,18 @@
-/*
- * CaMykS Engine
- * Developed by	   	: camyks.net
- * Author	       		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Javascript Library
- * Creation Date		: Apr 2011
- * Last Modif Date	: Apr 2011
- *
- * MultiSelectionList Javascript object
+/**
+ * @brief MultiSelectionList Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/MultiSelectionList/js/MultiSelectionList.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Apr 2011
+ * @date Modification: Apr 2018
+ * @copyright 2011 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* constructor */
-function MultiSelectionList (name) {
+function MultiSelectionList(name) {
   this.name = name;
   this.params = {};
   this.locales = {};
