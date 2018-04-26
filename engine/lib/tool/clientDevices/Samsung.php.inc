@@ -20,7 +20,7 @@
  */
 function get_SamsungClientDevice($deviceCode='') {
     $deviceList = array(
-        /* check samsung tablets */
+        /* Samsung tablets */
         'GT-P1000'  => array('platform_model' => 'Galaxy Tab',          'platform_type' => 'tablet',    'platform_format' => 'tablet'),
         'GT-P3100'  => array('platform_model' => 'Galaxy Tab 2',        'platform_type' => 'tablet',    'platform_format' => 'tablet'),
         'GT-P3110'  => array('platform_model' => 'Galaxy Tab 2',        'platform_type' => 'tablet',    'platform_format' => 'tablet'),
@@ -48,7 +48,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T810'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet'),
         'SM-T813'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet'),
 
-        /* check samsung phones */
+        /* Samsung phones */
         'GT-S3800W' => array('platform_model' => 'REX 70', ),
         'GT-I9000'  => array('platform_model' => 'Galaxy S', ),
         'GT-S7562'  => array('platform_model' => 'Galaxy S Duo', ),
