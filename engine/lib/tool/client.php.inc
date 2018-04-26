@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Jun 2007
  * @date Modification: Apr 2018
  * @copyright 2017 - 2018 CaMykS Team
@@ -375,6 +375,7 @@ function client_getUAInfos($ua=false) {
             'XT720'     => array('platform_model' => 'Milestone XT720', ),
             'XT1022'    => array('platform_model' => 'Moto E', ),
             'XT1032'    => array('platform_model' => 'Moto G', ),
+            'XT1033'    => array('platform_model' => 'Moto G', ),
             'XT1039'    => array('platform_model' => 'Moto 4G', ),
             'XT1072'    => array('platform_model' => 'Moto G 4G (2nd Gen)', ),
             'XT1092'    => array('platform_model' => 'Moto X (2nd Gen)', ),
@@ -392,203 +393,16 @@ function client_getUAInfos($ua=false) {
     /* check palm */
     elseif (preg_match('/(Pre|Pixi)\/[0-9\.]*$/', $ua, $matches))
         $infos = array_merge($infos, array(
-            'platform_company'=>'Palm',
-            'platform_model'=>$matches[1],
+            'platform_company'  => 'Palm',
+            'platform_model'    => $matches[1],
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
 
     /* check samsung devices */
     elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
-        $rep = array(
-            /* check samsung tablets */
-            'GT-P1000'  => array('platform_model' => 'Galaxy Tab', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P3100'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P3110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P5100'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P5110'  => array('platform_model' => 'Galaxy Tab 2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P5200'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P5210'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P5220'  => array('platform_model' => 'Galaxy Tab 3', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'GT-P7300'  => array('platform_model' => 'Galaxy Tab 8.9', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T110'   => array('platform_model' => 'Galaxy Tab 3 Lite', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T113'   => array('platform_model' => 'Galaxy Tab 3 Lite (2015)', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T310'   => array('platform_model' => 'Galaxy Tab 3', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T116NU' => array('platform_model' => 'Galaxy Tab 3 V', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T320'   => array('platform_model' => 'Galaxy Tab Pro', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T230'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T530'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T531'   => array('platform_model' => 'Galaxy Tab 4 (3G)', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T533'   => array('platform_model' => 'Galaxy Tab 4', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T535'   => array('platform_model' => 'Galaxy Tab 4 (4G)', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T550'   => array('platform_model' => 'Galaxy Tab A', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-P550'   => array('platform_model' => 'Galaxy Tab A', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T560'   => array('platform_model' => 'Galaxy Tab E', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T800'   => array('platform_model' => 'Galaxy Tab S', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T715'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T810'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'SM-T813'   => array('platform_model' => 'Galaxy Tab S2', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-
-            /* check samsung phones */
-            'GT-S3800W' => array('platform_model' => 'REX 70', ),
-            'GT-I9000'  => array('platform_model' => 'Galaxy S', ),
-            'GT-S7562'  => array('platform_model' => 'Galaxy S Duo', ),
-            'GT-I9100'  => array('platform_model' => 'Galaxy S2', ),
-            'GT-I9195'  => array('platform_model' => 'Galaxy S4 Mini', ),
-            'GT-I9295'  => array('platform_model' => 'Galaxy S4 Active', ),
-            'GT-I9300'  => array('platform_model' => 'Galaxy S3', ),
-            'GT-I9305'  => array('platform_model' => 'Galaxy S3 (4G)', ),
-            'GT-I9301I' => array('platform_model' => 'Galaxy S3 Neo', ),
-            'GT-I8190'  => array('platform_model' => 'Galaxy S3 Mini', ),
-            'GT-I9500'  => array('platform_model' => 'Galaxy S4', ),
-            'GT-I9505'  => array('platform_model' => 'Galaxy S4', ),
-            'GT-I9506'  => array('platform_model' => 'Galaxy S4', ),
-            'GT-I9195I' => array('platform_model' => 'Galaxy S4 Mini', ),
-            'GT-I9192'  => array('platform_model' => 'Galaxy S4 Mini Duos', ),
-            'SM-G900A'  => array('platform_model' => 'Galaxy S5', ),
-            'SM-G900F'  => array('platform_model' => 'Galaxy S5', ),
-            'SM-G903F'  => array('platform_model' => 'Galaxy S5', ),
-            'SM-G901F'  => array('platform_model' => 'Galaxy S5+', ),
-            'SM-G800F'  => array('platform_model' => 'Galaxy S5 Mini', ),
-            'SM-G920F'  => array('platform_model' => 'Galaxy S6'),
-            'SM-G920I'  => array('platform_model' => 'Galaxy S6'),
-            'SM-G920P'  => array('platform_model' => 'Galaxy S6'),
-            'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge'),
-            'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge'),
-            'SM-G928C'  => array('platform_model' => 'Galaxy S6 Edge+'),
-            'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+'),
-            'SM-G930'   => array('platform_model' => 'Galaxy S7'),
-            'SM-G930F'  => array('platform_model' => 'Galaxy S7'),
-            'SM-G930V'  => array('platform_model' => 'Galaxy S7'),
-            'SM-G935'   => array('platform_model' => 'Galaxy S7 Edge'),
-            'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge'),
-            'SM-T580'   => array('platform_model' => 'Galaxy S8'),
-            'SM-G950'   => array('platform_model' => 'Galaxy S8'),
-            'SM-G950F'  => array('platform_model' => 'Galaxy S8'),
-            'SM-G955F'  => array('platform_model' => 'Galaxy S8+'),
-            'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active'),
-            'SM-G313HZ' => array('platform_model' => 'Galaxy V', ),
-            'SM-A300F'  => array('platform_model' => 'Galaxy A3', ),
-            'SM-A300FU' => array('platform_model' => 'Galaxy A3', ),
-            'SM-A310F'  => array('platform_model' => 'Galaxy A3', ),
-            'SM-A300M'  => array('platform_model' => 'Galaxy A3', ),
-            'SM-A320L'  => array('platform_model' => 'Galaxy A3 (2017)', ),
-            'SM-A320FL' => array('platform_model' => 'Galaxy A3 (2017)', ),
-            'SM-A500FU' => array('platform_model' => 'Galaxy A5', ),
-            'SM-A510'   => array('platform_model' => 'Galaxy A5 (2016)', ),
-            'SM-A510F'  => array('platform_model' => 'Galaxy A5 (2016)', ),
-            'SM-A5100'  => array('platform_model' => 'Galaxy A5 (2016)', ),
-            'SM-A520F'  => array('platform_model' => 'Galaxy A5 (2017)', ),
-            'SM-A700L'  => array('platform_model' => 'Galaxy A7', ),
-            'SM-E500F'  => array('platform_model' => 'Galaxy E5 (2015)', ),
-            'SM-E500H'  => array('platform_model' => 'Galaxy E5 (2015)', ),
-            'SM-E500HQ' => array('platform_model' => 'Galaxy E5 (2015)', ),
-            'SM-E500M'  => array('platform_model' => 'Galaxy E5 (2015)', ),
-            'SM-E700H'  => array('platform_model' => 'Galaxy E7', ),
-            'SM-J100H'  => array('platform_model' => 'Galaxy J1', ),
-            'SM-J110H'  => array('platform_model' => 'Galaxy J1 (2015)', ),
-            'SM-J120F'  => array('platform_model' => 'Galaxy J1 (2016)', ),
-            'SM-J120FN' => array('platform_model' => 'Galaxy J1 (2016)', ),
-            'SM-J120H'  => array('platform_model' => 'Galaxy J1 (2016)', ),
-            'SM-J200F'  => array('platform_model' => 'Galaxy J2', ),
-            'SM-J310'   => array('platform_model' => 'Galaxy J3 (2016)', ),
-            'SM-J320FN' => array('platform_model' => 'Galaxy J3', ),
-            'SM-J320F'  => array('platform_model' => 'Galaxy J3 (2016)', ),
-            'SM-J330G'  => array('platform_model' => 'Galaxy J3 Pro (2017)', ),
-            'SM-J500'   => array('platform_model' => 'Galaxy J5', ),
-            'SM-J500F'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J500FN' => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J500G'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J500Y'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J500M'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J500H'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J5007'  => array('platform_model' => 'Galaxy J5 (2015)', ),
-            'SM-J500M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
-            'SM-J510F'  => array('platform_model' => 'Galaxy J5 (2016)', ),
-            'SM-J510FN' => array('platform_model' => 'Galaxy J5 (2016)', ),
-            'SM-J510G'  => array('platform_model' => 'Galaxy J5 (2016)', ),
-            'SM-J510M'  => array('platform_model' => 'Galaxy J5 (2016)', ),
-            'SM-J510Y'  => array('platform_model' => 'Galaxy J5 (2016)', ),
-            'SM-J530F'  => array('platform_model' => 'Galaxy J5 (2017)', ),
-            'SM-J7008'  => array('platform_model' => 'Galaxy J7 (2015)', ),
-            'SM-G610F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
-            'SM-J710F'  => array('platform_model' => 'Galaxy J7 (2016)', ),
-            'SM-J710MN' => array('platform_model' => 'Galaxy J7 (2016)', ),
-            'SM-J710GN' => array('platform_model' => 'Galaxy J7 Duos (2016)', ),
-            'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime (2016)', ),
-            'SM-J730F'  => array('platform_model' => 'Galaxy J7 (2017)', ),
-            'GT-S5360'  => array('platform_model' => 'Galaxy Y', ),
-            'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos', ),
-            'GT-S7582'  => array('platform_model' => 'Galaxy S Duos', ),
-            'GT-I8750'  => array('platform_model' => 'Ativ S', ),
-            'GT-S5830'  => array('platform_model' => 'Galaxy Ace', ),
-            'GT-S5839'  => array('platform_model' => 'Galaxy Ace Plus', ),
-            'GT-S5839I' => array('platform_model' => 'Galaxy Ace Plus', ),
-            'SM-G357FZ' => array('platform_model' => 'Galaxy Ace 4', ),
-            'SM-G850F'  => array('platform_model' => 'Galaxy Alpha', ),
-            'SM-G850W'  => array('platform_model' => 'Galaxy Alpha', ),
-            'GT-S6812'  => array('platform_model' => 'Galaxy Fame Duos'),
-            'SM-G355HN' => array('platform_model' => 'Galaxy Core 2'),
-            'SM-G360F'  => array('platform_model' => 'Galaxy Core Prime', ),
-            'SM-G361F'  => array('platform_model' => 'Galaxy Core Prime', ),
-            'SM-G386F'  => array('platform_model' => 'Galaxy Core 4G'),
-            'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime', ),
-            'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime', ),
-            'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime', ),
-            'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime', ),
-            'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus', ),
-            'GT-I9082L' => array('platform_model' => 'Galaxy Grand', ),
-            'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus', ),
-            'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos', ),
-            'SM-G550FY' => array('platform_model' => 'Galaxy On5', ),
-            'GT-N5110'  => array('platform_model' => 'Galaxy Note', ),
-            'GT-N7000'  => array('platform_model' => 'Galaxy Note (3G)', ),
-            'GT-N7003'  => array('platform_model' => 'Galaxy Note (4G)', ),
-            'GT-N7005'  => array('platform_model' => 'Galaxy Note (4G)', ),
-            'GT-N8000'  => array('platform_model' => 'Galaxy Note 10.1 (3G)', ),
-            'GT-N8010'  => array('platform_model' => 'Galaxy Note 10.1', ),
-            'GT-N7100'  => array('platform_model' => 'Galaxy Note II (3G)', ),
-            'GT-N7105'  => array('platform_model' => 'Galaxy Note II', ),
-            'SHV-E250S' => array('platform_model' => 'Galaxy Note II', ),
-            'SM-N900W8' => array('platform_model' => 'Galaxy Note 3', ),
-            'GT-N9005'  => array('platform_model' => 'Galaxy Note 3', ),
-            'SM-N900P'  => array('platform_model' => 'Galaxy Note 3', ),
-            'SM-N900A'  => array('platform_model' => 'Galaxy Note 3', ),
-            'SM-N900'   => array('platform_model' => 'Galaxy Note 3 (3G)', ),
-            'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)', ),
-            'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)', ),
-            'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo', ),
-            'SM-N910A'  => array('platform_model' => 'Galaxy Note 4', ),
-            'SM-N910F'  => array('platform_model' => 'Galaxy Note 4', ),
-            'SM-N920C'  => array('platform_model' => 'Galaxy Note 5', ),
-            'SM-N920V'  => array('platform_model' => 'Galaxy Note 5', ),
-            'SM-N930T'  => array('platform_model' => 'Galaxy Note 7', ),
-            'SM-N950'   => array('platform_model' => 'Galaxy Note 8', ),
-            'SM-N950F'  => array('platform_model' => 'Galaxy Note 8', ),
-            'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313 (2014)', ),
-            'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
-            'SM-G130E'  => array('platform_model' => 'Galaxy Star 2 Plus', ),
-            'SGH-I527'  => array('platform_model' => 'Galaxy Mega', ),
-            'GT-S7392'  => array('platform_model' => 'Galaxy Trend', ),
-            'GT-S7560'  => array('platform_model' => 'Galaxy Trend', ),
-            'GT-S7580'  => array('platform_model' => 'Galaxy Trend+ (2013)', ),
-            'SM-G318H'  => array('platform_model' => 'Galaxy Trend 2 lite (2015)', ),
-            'GT-S5660'  => array('platform_model' => 'Galaxy Gio', ),
-            'GT-S5660M' => array('platform_model' => 'Galaxy Gio', ),
-            'GT-S8500'  => array('platform_model' => 'Galaxy Wave', ),
-            'GT-I8552'  => array('platform_model' => 'Galaxy Win Duos', ),
-            'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3', ),
-            'SM-G130H'  => array('platform_model' => 'Galaxy Young 2', ),
-            'SM-G130HN' => array('platform_model' => 'Galaxy Young 2', ),
-        );
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Samsung',
-            'platform_model'    => $matches[0],
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-            ),
-            isset($rep[$matches[0]])?$rep[$matches[0]]:array()
-        );
+        include ('clientDevices/Samsung.php.inc');
+        $infos = array_merge($infos, get_SamsungClientDevice($matches[0]));
 
     } elseif (preg_match('/SAMSUNG\-(?:SGH\-|)([^\/]+)/', $ua, $matches))
         $infos = array_merge($infos, array(
@@ -747,6 +561,7 @@ function client_getUAInfos($ua=false) {
             'Y635-L01'  => array('platform_model' => 'Y635'),
             'Y520-U22'  => array('platform_model' => 'Ascend'),
             'Y600-U151' => array('platform_model' => 'Ascend'),
+            'Y360-U03'  => array('platform_model' => 'Y3'),
             'CUN-L21'   => array('platform_model' => 'Y5'),
             'LYO-L01'   => array('platform_model' => 'Y6 II Compact'),
             'NMO-L31'   => array('platform_model' => 'GT3'),
@@ -868,9 +683,9 @@ function client_getUAInfos($ua=false) {
     /* check Asus mobiles and tablets */
     elseif (preg_match('/(K|ME)([0-9]{2})([A-Z0-9]{1,2}) /', $ua, $matches)) {
         $rep = array(
-            'K007'      => array('platform_model' => 'MeMO Pad 7', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'K01E'      => array('platform_model' => 'MeMO Pad', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-            'ME173X'    => array('platform_model' => 'MeMO Pad HD 7', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
+            'K007'      => array('platform_model' => 'MeMO Pad 7',      'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
+            'K01E'      => array('platform_model' => 'MeMO Pad',        'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
+            'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',   'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
         );
         $model = trim($matches[0]);
         $infos = array_merge($infos, array(
@@ -1674,6 +1489,17 @@ function client_getUAInfos($ua=false) {
         $model = trim($matches[1]);
         $infos = array_merge($infos, array(
             'platform_company'  => 'Vernee',
+            'platform_model'    => $model,
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld',
+        ));
+    }
+
+    /* check eBest mobiles */
+    elseif (preg_match('/EBEST ([^.]*) Build/', $ua, $matches)) {
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'eBest',
             'platform_model'    => $model,
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
@@ -7177,6 +7003,16 @@ function client_getKnownTools() {
         'engine_url'        => 'http://www.spidersoft.com',
     );
     
+    /* Newspaper */
+    $knownTools['newspaper'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Newspaper',
+        'tool_url'          => 'https://github.com/codelucas/newspaper',
+        'engine_title'      => 'Lucas Lee Ou-Yang',
+        'engine_url'        => 'https://codelucas.com',
+    );
+    
     /* return list */
     return $knownTools;
 }
@@ -8093,7 +7929,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
 function _client_mergeUAInfos($req, $infos) {
     if ($req === true)
         $req = array(
-            'platform_company', 'platform_model', 'platform_type', 'platform_format',
+            'platform_company', 'platform_model', 'platform_type', 'platform_format', 'platform_year',
             'system_title', 'system_version',
             'browser_title', 'browser_version'
         );
