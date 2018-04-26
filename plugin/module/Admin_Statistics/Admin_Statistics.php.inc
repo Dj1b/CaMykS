@@ -1,8 +1,8 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
+ * Developed by        : camyks.net
+ * Author            : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
  * Object Version   : 1.0
  * Object Type      : Plugin / Module Engine
@@ -82,9 +82,9 @@ class Admin_Statistics extends Module {
    */
   function install ( ) {
     if ( $this->statobject->install()
-	 and $this->statdata->install()
-	 and $this->statconfig->install()
-	 and $this->settings->install()) {
+     and $this->statdata->install()
+     and $this->statconfig->install()
+     and $this->settings->install()) {
       return parent::install();
     }
     return false;
@@ -119,11 +119,11 @@ class Admin_Statistics extends Module {
   function get_rights ( ) {
     global $camyks;
     $this->rights[0] = array('name'=>'read',
-			     'title'=> $camyks->get_translation('read'),
-			     'default'=> false);
+                 'title'=> $camyks->get_translation('read'),
+                 'default'=> false);
     $this->rights[1] = array('name'=>'configuration',
-			     'title'=> $this->get_translation('rights_configuration'),
-			     'default'=> false);
+                 'title'=> $this->get_translation('rights_configuration'),
+                 'default'=> false);
   }
 
   /*
@@ -138,16 +138,16 @@ class Admin_Statistics extends Module {
     case 'webbots':
       /* type == webbots */
       foreach ( $data as $bot ) {
-	if (($botTitle = $this->botDetector->get_botTitle($bot)) != null )
-	  $data[$bot] = $botTitle;
+    if (($botTitle = $this->botDetector->get_botTitle($bot)) != null )
+      $data[$bot] = $botTitle;
       }
       return $data;
       break;
     case 'webtools':
       /* type == webtools */
       foreach ( $data as $tool ) {
-	if (($toolTitle = $this->toolDetector->get_toolTitle($tool)) != null )
-	  $data[$tool] = $toolTitle;
+    if (($toolTitle = $this->toolDetector->get_toolTitle($tool)) != null )
+      $data[$tool] = $toolTitle;
       }
       return $data;
       break;
@@ -185,43 +185,43 @@ class Admin_Statistics extends Module {
     
     /* build buttons list */
     $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link' =>$camyks->get_adminLink()));
+                 'link' =>$camyks->get_adminLink()));
     
     if ( isset ( $_REQUEST['object'] ) ) {
       $object = $_REQUEST['object'];
       
       if ( $object == '_settings' and $this->check_right(1) ) {
-	$mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
-	if ( $mode == 'save' )
-	  $this->init_admin_saveSettings();
-	else
-	  $this->init_admin_editSettings();
+    $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
+    if ( $mode == 'save' )
+      $this->init_admin_saveSettings();
+    else
+      $this->init_admin_editSettings();
       } else if (isset($this->registered_stats[$object])) {
-	$this->statobject = $this->registered_stats[$object];
-	$this->adminTitle .= $camyks->get_translation('formitem_separator');
-	$this->adminTitle .= $this->statobject->vars['title'];
-	
-	switch ( $this->statobject->vars['type'] ) {
-	case 'single':
-	  $this->init_admin_singleObject();
-	  break;
-	case 'mixed':
-	  $this->init_admin_mixedObject();
-	  break;	  
-	case 'dated':
-	  $this->init_admin_datedObject();
-	  break;	  
-	case 'detail':
-	  $this->init_admin_detailObject();
-	  break;	  
-	case 'total':
-	  $this->init_admin_totalObject();
-	  break;
-	}
+    $this->statobject = $this->registered_stats[$object];
+    $this->adminTitle .= $camyks->get_translation('formitem_separator');
+    $this->adminTitle .= $this->statobject->vars['title'];
+    
+    switch ( $this->statobject->vars['type'] ) {
+    case 'single':
+      $this->init_admin_singleObject();
+      break;
+    case 'mixed':
+      $this->init_admin_mixedObject();
+      break;      
+    case 'dated':
+      $this->init_admin_datedObject();
+      break;      
+    case 'detail':
+      $this->init_admin_detailObject();
+      break;      
+    case 'total':
+      $this->init_admin_totalObject();
+      break;
+    }
 
-	if (isset($this->form))
-	  $this->buttons[] = array('title'=>$this->get_translation('computeagain'),
-				   'link'=>$this->form->get_HTMLSubmitLink());
+    if (isset($this->form))
+      $this->buttons[] = array('title'=>$this->get_translation('computeagain'),
+                   'link'=>$this->form->get_HTMLSubmitLink());
       }
     }
     
@@ -258,10 +258,10 @@ class Admin_Statistics extends Module {
 
     /* build form */
     $this->form = new HTMLForm('editsettings',
-			       $camyks->get_adminLink($this->name,
-						      array('object'=>'_settings',
-							    'mode'=>'save')),
-			       'POST');
+                   $camyks->get_adminLink($this->name,
+                              array('object'=>'_settings',
+                                'mode'=>'save')),
+                   'POST');
     $this->form->set_object($this->settings);
     $this->form->add_hidden('stat_filteredips_count_', count($this->settings->vars['stat_filteredips']));
 
@@ -278,9 +278,9 @@ class Admin_Statistics extends Module {
 
     /* build buttons list */
     $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link' =>$camyks->get_adminLink()),
-			   array('title'=>$camyks->get_translation('valid'),
-				 'link'=>$this->form->get_HTMLSubmitLink()));
+                 'link' =>$camyks->get_adminLink()),
+               array('title'=>$camyks->get_translation('valid'),
+                 'link'=>$this->form->get_HTMLSubmitLink()));
   }
   
   /*
@@ -451,8 +451,8 @@ class Admin_Statistics extends Module {
     if ( $name == '' ) {
       /* log error */
       $camyks->log_executionerror ($this,
-				   'Could not save statistic : null name',
-				   'Module:'.$plugin.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
+                   'Could not save statistic : null name',
+                   'Module:'.$plugin.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
       return;
     }
 
@@ -460,8 +460,8 @@ class Admin_Statistics extends Module {
     if ( $plugin == '' or !isset($camyks->modules[$plugin]) ) {
       /* log error */
       $camyks->log_executionerror ( $this,
-				    'Could not save statistic : null or inexistant plugin',
-				    'Name:'.$name.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
+                    'Could not save statistic : null or inexistant plugin',
+                    'Name:'.$name.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
       
       return;
     }
@@ -470,8 +470,8 @@ class Admin_Statistics extends Module {
     if ( $type == '' or !in_array($type, $this->stattypes )) {
       /* log error */
       $camyks->log_executionerror ( $this,
-				    'Could not save statistic : null or inexistant type',
-				    'Module:'.$plugin.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
+                    'Could not save statistic : null or inexistant type',
+                    'Module:'.$plugin.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
       
       return;
     }
@@ -484,14 +484,14 @@ class Admin_Statistics extends Module {
       /* object exists, check if objectt is the same */
       $s = &$this->registered_stats[$name];
       if ( $s->vars['plugin'] == $plugin
-	   and $s->vars['type'] == $type ) {
-	    $s->update_statistic( $main, $data1, $data2 );
+       and $s->vars['type'] == $type ) {
+        $s->update_statistic( $main, $data1, $data2 );
       } else {
-	    /* log error */
-	    $camyks->log_executionerror ( $this,
-				      'Could not save statistic : stat with same name already exists',
-				      'Name:'.$name.' - Module:'.$plugin.' - type:'.$type );
-	    return;
+        /* log error */
+        $camyks->log_executionerror ( $this,
+                      'Could not save statistic : stat with same name already exists',
+                      'Name:'.$name.' - Module:'.$plugin.' - type:'.$type );
+        return;
       }
     } else {
       /* create stat object */
@@ -502,7 +502,7 @@ class Admin_Statistics extends Module {
       $this->statobject->_libItems['register_date']->value = time();
       $this->statobject->save();
       $camyks->log_information($this,
-			       'New '.$type.' statistic named '.$name.' registered by module '.$plugin);
+                   'New '.$type.' statistic named '.$name.' registered by module '.$plugin);
       /* update data */
       $this->statobject->update_statistic( $main, $data1, $data2 ); 
     }
@@ -525,8 +525,8 @@ class Admin_Statistics extends Module {
     $this->registered_stats = array();
     foreach ( $list as $s ) {
       if (isset($camyks->modules[$s->vars['plugin']])) {
-	$s->get_statisticTitle();
-	$this->registered_stats[$s->vars['name']] = $s;
+    $s->get_statisticTitle();
+    $this->registered_stats[$s->vars['name']] = $s;
       }
     }
     $list = null;
@@ -543,16 +543,16 @@ class Admin_Statistics extends Module {
     /* tab list for tabs bar */
     $this->tabObject = 'admin_statistics_tabObject';
     $this->tabs = array(array('name'=>'display',
-			      'title'=>$this->get_translation('tabdisplay')),
-			array('name'=>'options',
-			      'title'=>$this->get_translation('taboptions'))); 
+                  'title'=>$this->get_translation('tabdisplay')),
+            array('name'=>'options',
+                  'title'=>$this->get_translation('taboptions'))); 
     /* add javascript files and scripts */
     $this->add_JSEngineFile('object/ctab.js');
     $this->add_JSScript($this->tabObject.' = new CTab();');
     $this->add_JSScript($this->tabObject.'.init("display", "'
-			.$camyks->theme->parts['boxTabCSSStandart'].'","'
-			.$camyks->theme->parts['boxTabCSSSelected'].'","'
-			.$camyks->theme->parts['boxTabCSSRollover'].'");');
+            .$camyks->theme->parts['boxTabCSSStandart'].'","'
+            .$camyks->theme->parts['boxTabCSSSelected'].'","'
+            .$camyks->theme->parts['boxTabCSSRollover'].'");');
 
   }
 
@@ -566,18 +566,18 @@ class Admin_Statistics extends Module {
     /* tab list for tabs bar */
     $this->tabObject = 'admin_statistics_tabObject';
     $this->tabs = array(array('name'=>'display',
-			      'title'=>$this->get_translation('tabdisplay')),
-			array('name'=>'detail',
-			      'title'=>$this->get_translation('tabdetail')),
-			array('name'=>'options',
-			      'title'=>$this->get_translation('taboptions'))); 
+                  'title'=>$this->get_translation('tabdisplay')),
+            array('name'=>'detail',
+                  'title'=>$this->get_translation('tabdetail')),
+            array('name'=>'options',
+                  'title'=>$this->get_translation('taboptions'))); 
     /* add javascript files and scripts */
     $this->add_JSEngineFile('object/ctab.js');
     $this->add_JSScript($this->tabObject.' = new CTab();');
     $this->add_JSScript($this->tabObject.'.init("display", "'
-			.$camyks->theme->parts['boxTabCSSStandart'].'","'
-			.$camyks->theme->parts['boxTabCSSSelected'].'","'
-			.$camyks->theme->parts['boxTabCSSRollover'].'");');
+            .$camyks->theme->parts['boxTabCSSStandart'].'","'
+            .$camyks->theme->parts['boxTabCSSSelected'].'","'
+            .$camyks->theme->parts['boxTabCSSRollover'].'");');
     $this->openTab = isset($_REQUEST['openTab']) ? $_REQUEST['openTab'] : 'display'; 
     if ( $this->openTab != 'display' ) {
       $this->add_JSLoadScript($this->tabObject.'.mouseclick("'.$this->openTab.'");');
@@ -593,8 +593,8 @@ class Admin_Statistics extends Module {
     global $camyks;
     /* build form object */
     $this->form = new HTMLForm('admin_statistics_form',
-			       $this->get_adminLink(),
-			       'POST');
+                   $this->get_adminLink(),
+                   'POST');
     /* add hiddens */
     $this->form->add_hidden('update_config', 1 );
     $this->form->add_hidden('object', $this->statobject->vars['name'] );
@@ -643,10 +643,10 @@ class Admin_Statistics extends Module {
       $this->config->get();
       $savedconfigs = $this->statconfig->get_configs ( $this->statobject->vars['name'] );
       if ( isset ( $savedconfigs['colors'] ) ) {
-	$this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
+    $this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
       }
       if ( isset ( $savedconfigs[$this->statobject->vars['name']] ) ) {
-	$this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
+    $this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
       }
     }
     $this->config->get_fromItems();
@@ -665,16 +665,16 @@ class Admin_Statistics extends Module {
     $this->statsdesc = $config['desc'];
     /* get statistics list */
     $this->statslist = $this->statdata->get_objectList(false,
-						       $config['where'],
-						       0,
-						       $config['limit'],
-						       'statdate',
-						       'desc');
+                               $config['where'],
+                               0,
+                               $config['limit'],
+                               'statdate',
+                               'desc');
     /* get titles */
     $list = array();
     foreach ( $this->statslist as $stat )
       if ( !isset ( $list[$stat->vars['main']] ) )
-	$list[$stat->vars['main']] = $stat->vars['main'];
+    $list[$stat->vars['main']] = $stat->vars['main'];
     
     $this->maintitles = $camyks->modules[$this->statobject->vars['plugin']]->get_adminStatisticsValueTitles ( $list, $this->statobject->vars['name'] );
   }
@@ -707,10 +707,10 @@ class Admin_Statistics extends Module {
       $this->config->get();
       $savedconfigs = $this->statconfig->get_configs ( $this->statobject->vars['name'] );
       if ( isset ( $savedconfigs['colors'] ) ) {
-	$this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
+    $this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
       }
       if ( isset ( $savedconfigs[$this->statobject->vars['name']] ) ) {
-	$this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
+    $this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
       }
     }
     $this->config->get_fromItems();
@@ -744,10 +744,10 @@ class Admin_Statistics extends Module {
       $this->config->get();
       $savedconfigs = $this->statconfig->get_configs ( $this->statobject->vars['name'] );
       if ( isset ( $savedconfigs['colors'] ) ) {
-	$this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
+    $this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
       }
       if ( isset ( $savedconfigs[$this->statobject->vars['name']] ) ) {
-	$this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
+    $this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
       }
     }
     $this->config->get_fromItems();
@@ -781,10 +781,10 @@ class Admin_Statistics extends Module {
       $this->config->get();
       $savedconfigs = $this->statconfig->get_configs ( $this->statobject->vars['name'] );
       if ( isset ( $savedconfigs['colors'] ) ) {
-	$this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
+    $this->config->get_colorsFromProperties( $savedconfigs['colors']->vars['value'] );
       }
       if ( isset ( $savedconfigs[$this->statobject->vars['name']] ) ) {
-	$this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
+    $this->config->get_valuesFromProperties( $savedconfigs[$this->statobject->vars['name']]->vars['value'] );
       }
     }
     $this->config->get_fromItems();
@@ -825,18 +825,18 @@ class Admin_Statistics extends Module {
     if ( $this->statsdetailtotal > 0 ) { 
       /* get detail tab statistics list */
       $this->statsdetaillist = $this->statdata->get_mixedStatisticList( $this->c_config['detailwhere'],
-									$this->c_config['detaillimit']);
+                                    $this->c_config['detaillimit']);
       /* get detail tab statistics max value */
       foreach ( $this->statsdetaillist as $stat ) {
-	$this->statsdetailmax = $stat;
-	break;
+    $this->statsdetailmax = $stat;
+    break;
       }
       
       /* get combined titles */
       $list = array();
       foreach ( $this->statsdetaillist as $stat=>$value )
-	if ( !isset ( $list[$stat] ) )
-	  $list[$stat] = $stat;
+    if ( !isset ( $list[$stat] ) )
+      $list[$stat] = $stat;
       
       $this->detailtitles = $camyks->modules[$this->statobject->vars['plugin']]->get_adminStatisticsValueTitles ( $list, $this->statobject->vars['name'] );
     } else {
@@ -850,18 +850,18 @@ class Admin_Statistics extends Module {
    * @return void
    * @access private
    */
-  function update_siteStatistics ( ) {
+  function update_siteStatistics() {
     global $camyks;    
 
     /* load settings */
     $this->settings->get();
 
     /* check filtered ip */
-    if ( $this->check_filteredIp(client_getIP()))
+    if ($this->check_filteredIp(client_getIP()))
       return;
    
     /* check contected admin */
-    if ( $camyks->check_adminUser() )
+    if ($camyks->check_adminUser())
       return;
       
     /* build update params */
@@ -870,24 +870,24 @@ class Admin_Statistics extends Module {
     /* check web bots */
     if ( ( $bot = $this->botDetector->detect() )!==false ) {
       if ( $this->settings->vars['stat_webbots'] == 1 ) {
-	    $this->update_statistic('webbots', 
-				$this->name,
-				'mixed',
-				$bot,
-				'',
-				'',
-				$params);
+        $this->update_statistic('webbots', 
+                $this->name,
+                'mixed',
+                $bot,
+                '',
+                '',
+                $params);
       }
       return;
     } elseif ( ($tool = $this->toolDetector->detect() )!==false ) {
       if ( $this->settings->vars['stat_webtools'] == 1 ) {
-	    $this->update_statistic('webtools', 
-				$this->name,
-				'mixed',
-				$tool,
-				'',
-				'',
-				$params);
+        $this->update_statistic('webtools', 
+                $this->name,
+                'mixed',
+                $tool,
+                '',
+                '',
+                $params);
       }
       return;
     }
@@ -895,69 +895,42 @@ class Admin_Statistics extends Module {
     /* update current page */
     if ( $this->settings->vars['stat_sitepage'] == 2 ) {
       $this->update_statistic('sitepage', 
-			      'Admin_ContentPage',
-			      'mixed',
-			      $camyks->contentPage->id,
-			      $camyks->contentPage->params_,
-			      $camyks->current_language,
-			      $params);
-    } else if ( $this->settings->vars['stat_sitepage'] == 1  ){
+                  'Admin_ContentPage',
+                  'mixed',
+                  $camyks->contentPage->id,
+                  $camyks->contentPage->params_,
+                  $camyks->current_language,
+                  $params);
+    } else if ( $this->settings->vars['stat_sitepage'] == 1 ){
       $this->update_statistic('sitepage', 
-			      'Admin_ContentPage',
-			      'mixed',
-			      $camyks->contentPage->id,
-			      '',
-			      '',
-			      $params);
+                  'Admin_ContentPage',
+                  'mixed',
+                  $camyks->contentPage->id,
+                  '',
+                  '',
+                  $params);
     }
     if ( $camyks->get_sessionValue('mysession') != 1 ) {
       /* new visit */
-      if ( $this->settings->vars['stat_visits'] == 1  ){
-	$this->update_statistic('visits', 
-				'Admin_ContentPage',
-				'dated',
-				'',
-				'',
-				'',
-				$params);
+      if ($this->settings->vars['stat_visits'] == 1)
+            $this->update_statistic('visits', 'Admin_ContentPage', 'dated', '', '', '', $params);
+
+      /* referer : (remove http:// from url, and compare to current site url) */
+      if ($this->settings->vars['stat_referer'] == 1) {
+        $rsite = trim(client_getRefererSite());
+        if ($rsite != '' and !url_areInSameDomain(array($rsite, $camyks->get_confValue('url')), true)) {
+            $rsite = parse_url($rsite);
+            if (!in_array($rsite['scheme'], array('http', 'https')))
+                $domain = $rsite['host'].' ('.$rsite['scheme'].')';
+            else
+                $domain = $rsite['host'];
+            $this->update_statistic('referer', 'Admin_ContentPage', 'detail', $domain, '', '', $params);
+        }
       }
-      /* referer : ( remove http:// from url, and compare to current site url ) */
-      if ($this->settings->vars['stat_referer'] == 1 ) {
-	    $rsite = client_getRefererSite();
-	    if ($rsite != '') {
-	      $csite = $camyks->_conf['url'];
-	  $find = '@^(?:https?://)?([^/]+)@i';
-	  if ( preg_match( $find, $rsite, $result )  )
-	    $rsite = $result[1];
-	  if ( preg_match( $find, $csite, $result )  )
-	    $csite = $result[1];
-	  $_rsite = array_reverse(explode('.', $rsite ), false);
-	  $_csite = array_reverse(explode('.', $csite ), false);
-	  
-	  $same = true;
-	  for ( $i=0; $i<min(count($_rsite), count($_csite)); $i++ ) {
-	    if ( $_rsite[$i] != $_csite[$i] ) {
-	      $this->update_statistic('referer',
-				      'Admin_ContentPage',
-				      'detail',
-				      $rsite,
-				      '',
-				      '',
-				      $params);
-	      break;
-	    }
-	  }
-	}
-      }
+      
       /* first page */
-      if ($this->settings->vars['stat_firstpage'] == 1 ) {
-	    $this->update_statistic('firstpage', 
-				'Admin_ContentPage',
-				'detail',
-				$camyks->contentPage->id,
-				$camyks->contentPage->params_,
-				$camyks->current_language,
-				$params);
+      if ($this->settings->vars['stat_firstpage'] == 1) {
+        $this->update_statistic('firstpage', 'Admin_ContentPage', 'detail', $camyks->contentPage->id, $camyks->contentPage->params_, $camyks->current_language, $params);
       }
       /* geo ip */
       /* TO DO */
@@ -978,10 +951,10 @@ class Admin_Statistics extends Module {
       $color = $this->config->vars[$name];
       /* check if color picker is available */
       if ($this->colorPicker !== false) {
-	    $this->colorPicker->display( $name, $color);
+        $this->colorPicker->display( $name, $color);
       } else {
-	    $this->colorPickerValue = $color;
-	    $this->load_file('html/admin_colorpicker.html.inc');
+        $this->colorPickerValue = $color;
+        $this->load_file('html/admin_colorpicker.html.inc');
       }
     }
   }
@@ -993,7 +966,7 @@ class Admin_Statistics extends Module {
    */
   function get_settingsStatusList() {
     return array(0 => $this->get_translation('status_disabled'),
-		 1 => $this->get_translation('status_enabled'));
+         1 => $this->get_translation('status_enabled'));
   }
 
   /*
