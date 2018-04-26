@@ -4,10 +4,10 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Module Layout
  * Creation Date    : Mar 2018
- * Last Modif Date  : Mar 2018
+ * Last Modif Date  : Apr 2018
  *
  * Admin_MonitoringUserAgentChecker Module Admin Layout : view record details
 */
@@ -27,6 +27,9 @@
     </td>
     <td class="eTableLine0 eContent1">
         <?= array_key_exists('platform_model', $this->uaInfos) ? $this->uaInfos['platform_model'] : '';?>
+        <?php if (array_key_exists('platform_year', $this->uaInfos) and $this->uaInfos['platform_year'] != '') : ?>
+            (<?=$this->uaInfos['platform_year'];?>)
+        <?php endif; ?>
     </td>
 </tr>
 
