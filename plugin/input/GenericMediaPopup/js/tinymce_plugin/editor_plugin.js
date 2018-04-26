@@ -1,15 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b1
- * Object Version	: 1.0
- * Object Type      : Plugin / Javacript
- * Creation Date   	: Jan 2011
- * Last Modif Date	: Jan 2011
- *
- * GenericMediaPopup external plugin for TinyMCE
- * Plugin main scripts
+/**
+ * @brief GenericMediaPopup Input extension scripts for TinyMCEv3
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/GenericMediaPopup/js/tinymce_plugin/editor_plugin.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jan 2013
+ * @date Modification: Apr 2018
+ * @copyright 201 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 (function() {
 

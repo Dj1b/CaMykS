@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Dictionnary
- * Creation Date    : Mar 2018
- * Last Modif Date  : Mar 2018
- *
- * GenericMediaPopup language dictionnary : English 
+/**
+ * @brief GenericMediaPopup Input english dictionnary
+ * @details Plugin / Input Dictionnary
+ * @file plugin/input/GenericMediaPopup/locale/translation_en.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Mar 2018
+ * @date Modification: Apr 2018
+ * @copyright 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* insertion values */
