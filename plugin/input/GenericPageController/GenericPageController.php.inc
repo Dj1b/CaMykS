@@ -136,7 +136,8 @@ final class GenericPageController extends Input {
 
         /* return generic page link */
         return $camyks->get_siteLink(
-            $this->params['pageParams'][0],'',
+            $this->params['pageParams'][0],
+            '',
             $this->params['pageParams'][1],
             array_merge($this->params['pageParams'][2], array($this->params['pageParam']=>$page))
         );

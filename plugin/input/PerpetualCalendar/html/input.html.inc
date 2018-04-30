@@ -10,7 +10,10 @@
  * Last Modif Date	: Apr 2010
  * 
  * PerpetualCalendar layout
-*/
+ */
+/**
+ * @cond Exclude
+ */
 $cnt = 0;
 $line = 0;
 
@@ -106,3 +109,8 @@ if ($this->params['enableHighlight']==1) {
 <?php endif; ?>
 </tbody>
 </table>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

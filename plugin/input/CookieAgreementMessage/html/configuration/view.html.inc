@@ -15,7 +15,7 @@
 global $camyks;
 $flags = array();
 $lgs = $camyks->get_confValue('editing_languages');
-if ( count($lgs) == 1) {
+if (count($lgs) == 1) {
     $flags[$lgs[0]] = '';
 } else {
     foreach ($lgs as $l)

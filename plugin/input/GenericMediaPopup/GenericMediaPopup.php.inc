@@ -1,7 +1,7 @@
 <?php
 /**
  * @brief GenericMediaPopup Input
- * <br /> Inline popup creator automatically managing content to display
+ * <br /> Inline popup creator automatically managing content to display.
  * @details Plugin / Input Engine
  * @file plugin/input/GenericMediaPopup/GenericMediaPopup.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
@@ -11,7 +11,7 @@
  * @copyright 2011 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * @details Supported format : 
+ * @details Supported format :
  * <br />- Picture : Gif, Jpg, PNG
  * <br />- Video : FLV
  * <br />- Animation : SWF
@@ -29,6 +29,29 @@ final class GenericMediaPopup extends Input {
      * @brief Input configuration.
      */
     protected $config;
+
+    /**
+     * var array $params
+     * @brief Input parameters.
+     */
+    public $params = array(
+        'objectName'            => 'mp',
+        'styleSource'           => 'plugin',
+        'styleFile'             => '',
+        'clickBkgdToClose'      => 1,
+        'enableKeyboard'        => 1,
+        'enableFlash'           => 1,
+        'enableCloseButton'     => 1,
+        'flvControlerColor'     => '1F1F1F',
+        'flvControlerAlpha'     => 0.85,
+        'flvControlerHeight'    => 20,
+        'enableDiaporama'       => 1,
+        'diaporamaButtonsShift' => 0,
+        'maxWidth'              => 0,
+        'directOpenOnMobile'    => 0,
+        'isMobile'              => -1, // -1 : undefined / 0 : not mobile / 1 : is mobile //
+        'buttonPictures'        => array(),
+    );
 
     /**
      * var boolean $loaded
@@ -50,42 +73,52 @@ final class GenericMediaPopup extends Input {
     function __construct($path_type) {
         global $camyks;
         parent::__construct('GenericMediaPopup', $path_type);
-        
+
         /* set plugin version */
         $this->version = '1.0';
-        
+
         /* set plugin package */
         $this->plugin_package = 'Generic';
-        
+
         /* set plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'http://www.camyks.net';
-        
+
         /* register plugin as TinyMCE extension */
         if ($camyks->mode == CAMYKS_MODE_ADMIN)
             $this->register_asExtension('TinyMCEv3');
-        
+
         /* register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
-            
-        /* plugin variables */ 
+
+        /* plugin variables */
         $this->loaded = false;
         $this->diaporamaPictures = array();
-        
+
         /* load configuration library */
         $this->load_library('GenericMediaPopupConfig');
-        
+
         /* load config */
         $this->config = new GenericMediaPopupConfig('config', $this);
         $this->config->get();
-        
+
         /* check for automatique adding */
         if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['insertion'] == 1) {
             $this->register_asCaMykSEventHandler('onPageLoad');
         }
+        
+        /* update parameters with picture file URLs */
+        $this->params['buttonPictures'] = array(
+            'close'     => $this->get_fileURL('img/close.gif'),
+            'closeOver' => $this->get_fileURL('img/close_r.gif'),
+            'left'      => $this->get_fileURL('img/left.gif'),
+            'leftOver'  => $this->get_fileURL('img/left_r.gif'),
+            'right'     => $this->get_fileURL('img/right.gif'),
+            'rightOver' => $this->get_fileURL('img/right_r.gif'),
+        );
     }
-    
+
     /* overwrite input methods */
 
     /**
@@ -95,35 +128,10 @@ final class GenericMediaPopup extends Input {
      */
     public function initialise ($params=array()) {
         global $camyks;
-        
-        /* build default params */
-        $defaultParams = array(
-                'objectName'            => 'mp',
-                'styleSource'           => 'plugin',
-                'styleFile'             => '',
-                'clickBkgdToClose'      => 1,
-                'enableKeyboard'        => 1,
-                'enableFlash'           => 1,
-                'enableCloseButton'     => 1,
-                'flvControlerColor'     => '1F1F1F',
-                'flvControlerAlpha'     => 0.85,
-                'flvControlerHeight'    => 20,
-                'enableDiaporama'       => 1,
-                'diaporamaButtonsShift' => 0,
-                'maxWidth'              => 0,
-                'directOpenOnMobile'    => 0,
-                'isMobile'              => -1, // -1 : undefined / 0 : not mobile / 1 : is mobile //
-                'buttonPictures'        => array(
-                    'close'     => $this->get_fileURL('img/close.gif'),
-                    'closeOver' => $this->get_fileURL('img/close_r.gif'),
-                    'left'      => $this->get_fileURL('img/left.gif'),
-                    'leftOver'  => $this->get_fileURL('img/left_r.gif'),
-                    'right'     => $this->get_fileURL('img/right.gif'),
-                    'rightOver' => $this->get_fileURL('img/right_r.gif'),
-                ),
-        );
-        $this->params = array_merge($defaultParams, $this->config->vars, $params);
-        
+
+        /* build params */
+        $this->params = array_merge($this->params, $this->config->vars, $params);
+
         /* insert style file */
         if ($this->params['styleSource'] == 'theme') {
             /* insert style file from theme */
@@ -141,10 +149,10 @@ final class GenericMediaPopup extends Input {
             else
                 $this->add_styleFile('mediapopup.css');
         }
-        
+
         /* add scripts */
         $name = $this->params['objectName'];
-        
+
         $this->add_JSFile('mediapopup.js');
         $this->add_JSScript('var '.$name.' = new MediaPopup("'.$name.'");');
         if ( $this->params['enableFlash'] == 1 ) {
@@ -175,17 +183,17 @@ final class GenericMediaPopup extends Input {
             $this->add_JSScript($name.'.set_param("diaporamaButtonsShift", '.$this->params['diaporamaButtonsShift'].');');
         }
         $this->add_JSScript($name.'.set_param("baseURL", "'.$camyks->get_confValue('url').'");');
-        $cnt = 0;        
-        foreach ($this->diaporamaPictures as $picture) 
+        $cnt = 0;
+        foreach ($this->diaporamaPictures as $picture)
             $this->add_JSScript($name.'.set_param("diaporama", '.$cnt++.', {picture:"'.$picture['url'].'", title:"'.$picture['title'].'"});');
-                
+
         $this->add_JSScript('var __myMediaPopupObject = '.$name.';');
         $this->add_JSLoadScript($name.'.initialise();');
         $this->add_JSWindowEventScript('resize', $name.'.refresh_position();');
-    
+
         $this->loaded = true;
     }
-        
+
     /**
      * Execute handler on body closing.
      * @return void
@@ -193,9 +201,9 @@ final class GenericMediaPopup extends Input {
     public function execute_onCaMykSPageLoad() {
         $this->initialise();
     }
-    
+
     /* specific tool methods */
-    
+
     /**
      * Add picture to diaporama.
      * @param string $url
@@ -207,9 +215,9 @@ final class GenericMediaPopup extends Input {
         if ($this->loaded)
             $this->add_JSScript($this->params['objectName'].'.set_param("diaporama", '.(count($this->diaporamaPictures)-1).', {picture:"'.$url.'", title:"'.$title.'"});');
     }
-    
+
     /* TinyMCE extension methods */
-    
+
     /**
      * Return TinyMCE plugin params.
      * @return array
@@ -223,15 +231,15 @@ final class GenericMediaPopup extends Input {
             'buttons'   => array('insertMediaPopupLink'),
         );
     }
-    
+
     /* Admin_Site extension configuration methods */
-    
+
     /**
      * Initialise object in Admin_Site / view configuration mode.
      * @return void
      */
     public function initialise_configDisplay() {}
-    
+
     /**
      * Display object in Admin_Site / view configuration mode.
      * @return void
@@ -239,7 +247,7 @@ final class GenericMediaPopup extends Input {
     public function display_configDisplay() {
         $this->load_file('html/configuration/view.html.inc');
     }
-    
+
     /**
      * Initialise object in Admin_Site / edit configuration mode.
      * @param Object $form
@@ -250,7 +258,7 @@ final class GenericMediaPopup extends Input {
         $this->form = &$form;
         $this->form->set_object($this->config);
     }
-    
+
     /**
      * Display object in Admin_Site / edit configuration mode.
      * @return void
@@ -258,7 +266,7 @@ final class GenericMediaPopup extends Input {
     public function display_configEdition() {
         $this->load_file('html/configuration/edit.html.inc');
     }
-        
+
     /**
      * Execute object in Admin_Site / save configuration mode.
      * @return void

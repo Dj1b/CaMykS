@@ -14,7 +14,7 @@
  */
 
 /**
- * MultiSelectionList Input class.
+ * PageChooser Input class.
  * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PageChooser extends Input {

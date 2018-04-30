@@ -41,6 +41,7 @@ class GenericVCardHandler_vCard30 {
       $content .= 'KIND:'.$this->params['kind'].'\n';
     if ($this->params['source'] != '')
       $content .= 'SOURCE:'.$this->params['source'].'\n';
+    */
     
     /* add formatted name */
     if(isset($this->params['full_name']) && $this->params['full_name'] != '')
@@ -71,7 +72,7 @@ class GenericVCardHandler_vCard30 {
         // if (($v = @file_get_contents( $this->params['photo_url'])) !== false) {
         /* to complete 
         $content .= 'PHOTO;ENCODING=BASE64;TYPE=';
-        /* write type */
+        * write type */
        
         /* write file content *
         $content .= ':'.base64_encode($v)."\n";
@@ -174,7 +175,7 @@ class GenericVCardHandler_vCard30 {
          if (($v = @file_get_contents( $this->params['logo_url'])) !== false) {
         /* to complete 
         $content .= 'LOGO;ENCODING=BASE64;TYPE=';
-        /* write type */
+        * write type */
        
         /* write file content *
         $content .= ':'.base64_encode($v)."\n";
@@ -547,9 +548,8 @@ class GenericVCardHandler_vCard30 {
   /**
    * Enlever les characteres d'echappement du text
    *
-   * @TODO je ne sais pas si cette methode existe deja qq part, a verifier
-   * @access private
-   * @param string Text to prepare.
+   * @todo je ne sais pas si cette methode existe deja qq part, a verifier
+   * @param string $Text to prepare.
    * @return string Resulting text.
    */
   private static function Unescape($Text){

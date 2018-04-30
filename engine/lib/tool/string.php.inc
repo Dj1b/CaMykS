@@ -677,12 +677,14 @@ function string_getSimilarBeginning($s1, $s2) {
     return $result;
 }
 
+/* deprecated methods */
+
 /**
  * Return string without non-letter chars.
  * @see string_replaceEntityChars()
  * @param string $string
  * @return string
- * @deprecated string_replaceEntityChars is now and often more accurate
+ * @deprecated string_replaceEntityChars is now and often more accurate.
  */
 function string_parseNonLetterChars($string) {
     $parsed = '';

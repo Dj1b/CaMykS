@@ -286,11 +286,11 @@ class PayPalExpressCheckout extends Input {
 
     /*
     if (SANDBOX_FLAG){
-	    $merchantID=PP_USER_SANDBOX;  /* Use Sandbox merchant id when testing in Sandbox *
+	    $merchantID=PP_USER_SANDBOX;  * Use Sandbox merchant id when testing in Sandbox *
 	    $env= 'sandbox';
     }
     else {
-	    $merchantID=PP_USER;  /* Use Live merchant ID for production environment *
+	    $merchantID=PP_USER;  * Use Live merchant ID for production environment *
     	$env='production';
     }
     */

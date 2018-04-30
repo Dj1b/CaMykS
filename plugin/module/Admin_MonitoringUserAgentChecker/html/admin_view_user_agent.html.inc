@@ -49,20 +49,20 @@ global $camyks;
 <?=$this->get_translation('formitem_platform_type')?>
 </td>
 <td class="eTableLine0 eContent1">
-	<?= $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']); ?>
-	<?php if ($this->uaInfos['platform_type'] != '' and $this->recordItem->vars['platform_type'] != $this->uaInfos['platform_type']) : ?>
-	(<?=$this->get_translation('platform_type_' . $this->uaInfos['platform_type']);?> *)
-	<?php endif; ?>
+    <?= $this->get_translation('platform_type_' . $this->recordItem->vars['platform_type']); ?>
+    <?php if ($this->uaInfos['platform_type'] != '' and $this->recordItem->vars['platform_type'] != $this->uaInfos['platform_type']) : ?>
+    (<?=$this->get_translation('platform_type_' . $this->uaInfos['platform_type']);?> *)
+    <?php endif; ?>
 </td>
 </tr>
 
 <?php
 switch($this->recordItem->vars['platform_type']) {
-	case 'bot': $this->load_file('html/admin_view_user_agent_bot_details.html.inc'); break;
-	case 'tool': $this->load_file('html/admin_view_user_agent_tool_details.html.inc'); break;
-	case 'fake': $this->load_file('html/admin_view_user_agent_fake_details.html.inc'); break;
-	case 'hack': $this->load_file('html/admin_view_user_agent_hack_details.html.inc'); break;
-	default: $this->load_file('html/admin_view_user_agent_generic_details.html.inc'); break;
+    case 'bot': $this->load_file('html/admin_view_user_agent_bot_details.html.inc'); break;
+    case 'tool': $this->load_file('html/admin_view_user_agent_tool_details.html.inc'); break;
+    case 'fake': $this->load_file('html/admin_view_user_agent_fake_details.html.inc'); break;
+    case 'hack': $this->load_file('html/admin_view_user_agent_hack_details.html.inc'); break;
+    default: $this->load_file('html/admin_view_user_agent_generic_details.html.inc'); break;
 }
 ?>
 

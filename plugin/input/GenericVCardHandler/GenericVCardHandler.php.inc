@@ -1,7 +1,7 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by      : camyks.net
+ * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0b
  * Object Version   : 1.0
@@ -453,8 +453,8 @@ class GenericVCardHandler extends Input {
   /*
    * Check if the given content is a genuine vCard
    * @param unknown $content
-   * @TODO add support for xCard, jCard, hCard
-   * @TODO Check for mandatory attributes (BEGIN,END, etc...)
+   * @todo add support for xCard, jCard, hCard
+   * @todo Check for mandatory attributes (BEGIN,END, etc...)
    * @return vCard version
    */
   function check_vCardVersion($content){
@@ -535,12 +535,11 @@ class GenericVCardHandler extends Input {
   /**
    * Unescape text
    *
-   * @TODO verify this method doesnt exist somewhere else
-     * @TODO refactor it, put it somewhere higher
-     * @access private
-     * @param string Text to prepare.
-     * @return string Resulting text.
-     */
+   * @todo verify this method doesnt exist somewhere else
+   * @todo refactor it, put it somewhere higher
+   * @param string $Text to prepare.
+   * @return string Resulting text.
+   */
    private static function Unescape($Text) {
      return str_replace(array('\:', '\;', '\,', "\n" , "\r", "\r\n"), array(':', ';', ',', '', '', ''), $Text);
    }  

@@ -77,7 +77,7 @@ final class Tool_Installer extends Module {
     $this->add_styleScript("\n".'body{ background-repeat:no-repeat; background-position:50% 0; background-image:url("'.$bkgdPicture->get_base64Data().'");}');
 
     /* installer execution */
-    switch ( $mode ) {
+    switch ($mode) {
       case 'install':
         /* mode == install */
         $this->init_admin_install();

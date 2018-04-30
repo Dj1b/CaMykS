@@ -14,7 +14,7 @@
  */
 
 /**
- * GenericPageController Input class.
+ * GenericRSSFeed Input class.
  * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class GenericRSSFeed extends Input {
@@ -38,7 +38,6 @@ final class GenericRSSFeed extends Input {
         'lastBuildDate' => '',
         'generator'     => '',
         'image'         => null,
-
     );
 
     /**

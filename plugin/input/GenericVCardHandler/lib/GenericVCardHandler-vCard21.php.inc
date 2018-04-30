@@ -41,6 +41,7 @@ class GenericVCardHandler_vCard21 {
       $content .= 'KIND:'.$this->params['kind'].'\n';
     if ($this->params['source'] != '')
       $content .= 'SOURCE:'.$this->params['source'].'\n';
+      */
     
     /* add formatted name */
     if(isset($this->params['full_name']) && $this->params['full_name'] != '')
@@ -63,7 +64,7 @@ class GenericVCardHandler_vCard21 {
     }
     
     /* add photo */
-    // @TODO need some testing
+    // @todo need some testing
     if ( $this->params['photo_url'] != '') {
       if (strtoupper($this->params['photo_mode']) == 'URL') 
         $content .= 'PHOTO;:'.$this->params['photo_url']."\n";
@@ -72,7 +73,7 @@ class GenericVCardHandler_vCard21 {
         // if (($v = @file_get_contents( $this->params['photo_url'])) !== false) {
         /* to complete 
         $content .= 'PHOTO;ENCODING=BASE64;TYPE=';
-        /* write type */
+        * write type */
        
         /* write file content *
         $content .= ':'.base64_encode($v)."\n";
@@ -217,7 +218,7 @@ class GenericVCardHandler_vCard21 {
          if (($v = @file_get_contents( $this->params['logo_url'])) !== false) {
         /* to complete 
         $content .= 'LOGO;ENCODING=BASE64;TYPE=';
-        /* write type */
+        * write type */
        
         /* write file content *
         $content .= ':'.base64_encode($v)."\n";
@@ -244,7 +245,7 @@ class GenericVCardHandler_vCard21 {
   
   /*
    * import vCard
-   * @TODO add multiple contacts per file support
+   * @todo add multiple contacts per file support
    * @return mixed
    * @access private
    */
@@ -503,9 +504,8 @@ class GenericVCardHandler_vCard21 {
   /**
    * Enlever les characteres d'echappement du text
    *
-   * @TODO je ne sais pas si cette methode existe deja qq part, a verifier
-   * @access private
-   * @param string Text to prepare.
+   * @todo je ne sais pas si cette methode existe deja qq part, a verifier
+   * @param string $Text to prepare.
    * @return string Resulting text.
    */
   private static function Unescape($Text){
@@ -534,68 +534,5 @@ class GenericVCardHandler_vCard21 {
       return $this->params['nickname'];
     return 'Unknown';
   }
-  
-  
-  /*
-   * return formatted phone line
-   * @param array $phoneData
-   * @return string
-   * @access private
-   */
-//   function get_formattedPhoneContent($phoneData) {
-//     $dData = array('phone_type'=>'', 'phone_number'=>'', 'phone_location'=>'', 'phone_pref');
-//     $phoneData = array_merge($dData, $phoneData);
-    
-//     $data = array('TEL');
-//     /* check is prefered */
-//     if ($phoneData['phone_pref'] != '')
-//       $data[] = 'PREF';
-      
-//     /* check phone type */
-//     if (is_array($phoneData['phone_type']))
-//       $data = array_merge($data, $phoneData['phone_type']);
-//     elseif ($phoneData['phone_type'] != '')
-//       $data[] = $phoneData['phone_type'];
-      
-//     /* check phone location */
-//     if (is_array($phoneData['phone_location']))
-//       $data = array_merge($data, $phoneData['phone_location']);
-//     elseif ($phoneData['phone_location'] != '')
-//       $data[] = $phoneData['phone_location'];   
-    
-//     return strtoupper(implode(';', $data)).':'.$phoneData['phone_number'];
-//   }
-  
-  /*
-   * return formatted email line
-   * @param array $emailData
-   * @return string
-   * @access private
-   */
-//   function get_formattedEmailContent($emailData) {
-//     $dData = array('email_type'=>'', 'email'=>'', 'email_location'=>'', 'email_pref');
-//     $emailData = array_merge($dData, $emailData);
-    
-//     $data = array('EMAIL');
-//     /* check is prefered */
-//     if (isset($emailData['email_pref']) && $emailData['email_pref'] != '')
-//       $data[] = 'PREF';
-      
-//     /* check email type *
-//     if (is_array($emailData['email_type']))
-//       $data = array_merge($data, $emailData['email_type']);
-//     elseif ($emailData['email_type'] != '')
-//       $data[] = $emailData['email_type'];
-      
-//     /* check email location *
-//     if (is_array($emailData['email_location']))
-//       $data = array_merge($data, $emailData['email_location']);
-//     elseif ($emailData['email_location'] != '')
-//       $data[] = $emailData['email_location'];   
-//     */
-    
-//     return strtoupper(implode(';', $data)).':'.$emailData['email'];
-//   }
-
 }
 ?>
