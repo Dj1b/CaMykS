@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Javascript Library
- * Create Date		: Jul 2007
- * Last Modif Date	: Jul 2007
- *
- * PageChooser javascripts methods
+/**
+ * @brief PageChooser Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/PageChooser/js/PageChooser.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jul 2007
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 function PageChooser ( mode, callback, popurl ) {
