@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2018
  * @date Modification: Apr 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -20,8 +20,8 @@
  */
 function get_ArchosClientDevice($deviceCode='') {
     $deviceList = array(
-        '45BHE'=> array('platform_model' => 'Helium 45b'),
-        '50BHE'=> array('platform_model' => 'Helium 50b'),
+        '45BHE'=> array('platform_model' => 'Helium 45b',   'plateform_year' => 2015),
+        '50BHE'=> array('platform_model' => 'Helium 50b',   'plateform_year' => 2015),
     );
 
     /* Check for returning list */

@@ -20,8 +20,8 @@
  */
 function get_LyfClientDevice($deviceCode='') {
     $deviceList = array(
-        'LYF/F61F'  => array('platform_model' => 'JioPhone F61F',),
-        'LYF/F90M'  => array('platform_model' => 'JioPhone F90M',),
+        'LYF/F61F'  => array('platform_model' => 'JioPhone F61F',   'plateform_year' => 2017),
+        'LYF/F90M'  => array('platform_model' => 'JioPhone F90M',   'plateform_year' => 2017),
     );
 
     /* Check for returning list */

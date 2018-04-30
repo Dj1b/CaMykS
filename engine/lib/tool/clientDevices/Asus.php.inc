@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2018
  * @date Modification: Apr 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -21,17 +21,17 @@
 function get_AsusClientDevice($deviceCode='') {
     $deviceList = array(
         /* Asus tablets */
-        'K007'      => array('platform_model' => 'MeMO Pad 7',      'platform_type' => 'tablet',    'platform_format' => 'tablet'),
-        'K01E'      => array('platform_model' => 'MeMO Pad',        'platform_type' => 'tablet',    'platform_format' => 'tablet'),
-        'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',   'platform_type' => 'tablet',    'platform_format' => 'tablet'),
-        'P01MA'     => array('platform_model' => 'Zen Pad 8',       'platform_type' => 'tablet',    'platform_format' => 'tablet'),
-        
+        'K007'      => array('platform_model' => 'MeMO Pad 7',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2015),
+        'K01E'      => array('platform_model' => 'MeMO Pad',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2014),
+        'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2013),
+        'P01MA'     => array('platform_model' => 'Zen Pad 8',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2015),
+
         /* Asus phones */
-        'Z00ED'     => array('platform_model' => 'Zenfon 2'),
-        'Z00ED'     => array('platform_model' => 'Zenfon 2'),
-        'Z00LD'     => array('platform_model' => 'Zenfon 2 Laser'),
-        'X00DD'     => array('platform_model' => 'Zenfon 3 Max'),
-        'X008D'     => array('platform_model' => 'Zenfon 3 Max'),
+        'Z00ED'     => array('platform_model' => 'Zenfon 2',        'plateform_year' => 2015),
+        'Z00ED'     => array('platform_model' => 'Zenfon 2',        'plateform_year' => 2015),
+        'Z00LD'     => array('platform_model' => 'Zenfon 2 Laser',  'plateform_year' => 2015),
+        'X00DD'     => array('platform_model' => 'Zenfon 3 Max',    'plateform_year' => 2016),
+        'X008D'     => array('platform_model' => 'Zenfon 3 Max',    'plateform_year' => 2016),
     );
 
     /* Check for returning list */
