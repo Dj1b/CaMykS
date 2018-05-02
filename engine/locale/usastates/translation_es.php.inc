@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Dictionnary
- * Creation Date    : Jul 2017
- * Last Modif Date  : Jul 2017
- *
- * USA states spainish dictionnary
-*/
+/**
+ * @brief USA states spanish dictionnary
+ * @details Engine / Dictionnary
+ * @file engine/locale/usastates/translation_es.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 $this->trads['usastate_al'] = 'Alabama';
 $this->trads['usastate_ak'] = 'Alaska';
@@ -62,3 +62,4 @@ $this->trads['usastate_wv'] = 'Virginia Occidental';
 $this->trads['usastate_wa'] = 'Washington';
 $this->trads['usastate_wi'] = 'Wisconsin';
 $this->trads['usastate_wy'] = 'Wyoming';
+?>

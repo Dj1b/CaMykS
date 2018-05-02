@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Dictionnary
- * Creation Date    : Jul 2017
- * Last Modif Date  : Jul 2017
- *
- * Canadian states german dictionnary
-*/
+/**
+ * @brief Canadian states german dictionnary
+ * @details Engine / Dictionnary
+ * @file engine/locale/canadianstates/translation_de.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jul 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 $this->trads['canadianstate_ab'] = 'Alberta';
 $this->trads['canadianstate_bc'] = 'British Columbia';
@@ -25,3 +25,4 @@ $this->trads['canadianstate_nl'] = 'Neufundland und Labrador';
 $this->trads['canadianstate_nu'] = 'Nuvanut';
 $this->trads['canadianstate_nt'] = 'Nordwest-Territorien';
 $this->trads['canadianstate_yt'] = 'Yukon';
+?>

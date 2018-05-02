@@ -1,19 +1,21 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type		: Engine / JS Lib
- * Create Date		: Feb 2007
- * Last Modif Date	: Feb 2007
- * Dependencies		: none
- *
- * Camyks Multi Div Displayer Object        
-*/
+/**
+ * @brief Client side scripts to manage multi div swapper.
+ * @details Engine / Javascript object library
+ * @file engine/data/js/object/cmdd.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Feb 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-/* constructor */
-function Cmdd () {
+/**
+ * Class constructor.
+ * @param string name
+ */
+function Cmdd() {
     /* vars */
     var prefix;
     var selected;

@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	    	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Global Dictionnary
- * Creation Date    : Dec 2010
- * Last Modif Date  : Feb 2018
- *
- * CaMykS engine german dictionnary
+/**
+ * @brief CaMykS global german dictionnary
+ * @details Engine / Global Dictionnary
+ * @file engine/locale/translation_de.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Dec 2010
+ * @date Modification: Apr 2018
+ * @copyright 2010 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 $this->trads['yes'] = 'Ja';

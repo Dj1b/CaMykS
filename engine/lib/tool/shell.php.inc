@@ -1,80 +1,74 @@
 <?php
-/*
- * CaMyks Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Engine / Tool Library
- * Creation Date	: Jun 2005
- * Last Modif Date	: Jun 2005
- * 
- * Shell methods
+/**
+ * @brief Some shell actions
+ * @details Engine / Tool Library
+ * @file engine/lib/tool/shell.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Apr 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
- * execute mv shell command
+/**
+ * Execute mv shell command.
  * @param string $from
  * @param string $to
  * @return mixed
- * @access public
  */
-function shell_mv ( $from, $to ) {
-  return shell_exec ( 'mv '.$from.' '.$to );
+function shell_mv($from, $to) {
+    return shell_exec('mv '.$from.' '.$to);
 }
 
-/*
- * execute cp shell command
+/**
+ * Execute cp shell command.
  * @param string $from
  * @param string $to
  * @return mixed
- * @access public
  */
-function shell_cp ( $from, $to ) {
-  return shell_exec ( 'cp -R '.$from.' '.$to );
+function shell_cp($from, $to) {
+    return shell_exec('cp -R '.$from.' '.$to);
 }
 
-/*
- * execute chmod shell command
+/**
+ * Execute chmod shell command.
  * @param string $file
  * @param string $rights
  * @return mixed
- * @access public
  */
-function shell_chmod ( $file, $rights ) {
-  return shell_exec ( 'chmod -R '.$rights.' '.$file );
+function shell_chmod($file, $rights) {
+    return shell_exec('chmod -R '.$rights.' '.$file);
 }
 
-/*
- * execute chgrp shell command
+/**
+ * Execute chgrp shell command.
  * @param string $file
  * @param string $grp
  * @return mixed
- * @access public
  */
-function shell_chgrp ( $file, $grp ) {
-  return shell_exec ( 'chgrp -R '.$grp.' '.$file );
+function shell_chgrp($file, $grp) {
+    return shell_exec('chgrp -R '.$grp.' '.$file);
 }
 
-/*
- * execute chown shell command
+/**
+ * Execute chown shell command.
  * @param string $file
  * @param string $user
  * @return mixed
- * @access public
  */
-function shell_chown ( $file, $user ) {
-  return shell_exec ( 'chown -R '.$user.' '.$file );
+function shell_chown($file, $user) {
+    return shell_exec('chown -R '.$user.' '.$file);
 }
 
-/*
- * execute ln shell command
+/**
+ * Execute ln shell command.
  * @param string $link
  * @param string $file
  * @return mixed
- * @access public
  */
-function shell_ln ( $link, $file ) {
-  return shell_exec ( 'ln -s '.$link.' '.$file );
+function shell_ln($link, $file) {
+    return shell_exec('ln -s '.$link.' '.$file);
 }
 ?>

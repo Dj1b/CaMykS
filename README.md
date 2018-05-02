@@ -11,16 +11,20 @@ CaMykS is made to be the more flexible and ergonomic as possible into the two ma
 
 CaMykS have several features that makes it powerful. It is multi-site, multilingual, collaborative and plugin-based to allow easy customisation. Management interface ergonomics has been a key-point during development. CaMykS is using the latest technologies such as Wysiwyg edition, RSS feeds, AJAX and many more.
 
-[Read more, in french](http://www.camyks.net/benefits.htm)
+[Read more, in french](https://www.camyks.net/benefits.htm)
 
 ## Requirements
 
 CaMykS is working on LAMP (Linux/Apache/MySQL/PHP) or MAMP (Mac OS X/Apache/MySQL/PHP) systems.
 
 We advise to suit the following versions:
-* Apache 2.0+ (+ Module Rewrite)
+* Apache 2.0+, with Rewrite module (Header module advised)
+* PHP 5+ (version 5.6 or 7 advised), with curl, gd, mbstring, xml modules
 * MySQL 5.5+
-* PHP 5+ (version 5.6 advised, version 7 is currently untested)
+
+SQLite3 and PostgreSQL drivers are currently available in beta. They are working but incomplete, and may have some issues we haven't found yet.
+Feel free to share your experience, and help us to finalise them.
+
 
 ## Getting started with CaMykS
 
@@ -51,16 +55,22 @@ And if you want to login to the container to look around
  docker exec -it camyks  /bin/bash
 ``
 
+## Links
+
+* [CaMykS Website (french)](https://www.camyks.net)
+* [CaMykS in GitHub](https://github.com/Dj1b/CaMykS)
+* [CaMykS Documentation](https://doc.camyks.net/v1/)
+
 ## License
 
 CaMykS is available under [GNU GPL](http://www.gnu.org/licenses/licenses.en.html) licence.
 
 ## Contacts
 
-CaMykS is now maintained and hosted by [Ideogram Design](http://www.ideogram-design.fr)
+CaMykS is now maintained and hosted by [Ideogram Design](https://www.ideogram-design.fr)
 
 You can contact us using : 
-* [Ideogram Design website](http://www.ideogram-design.fr)
+* [Ideogram Design website](https://www.ideogram-design.fr)
 * [Github](https://github.com/Dj1b/CaMykS)
 
 ## Acknowlegments

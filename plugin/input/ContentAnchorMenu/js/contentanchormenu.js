@@ -1,15 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	        : CaMykS Team
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Javascripts
- * Creation Date    : Feb 2010
- * Last Modif Date  : Feb 2018
- *
- * ContentAnchorMenu JS Engine
- *
+/**
+ * @brief ContentAnchorMenu Input client side scripts
+ * @details Plugin / Input Javascript
+ * @file plugin/input/ContentAnchorMenu/js/ContentAnchorMenu.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Feb 2010
+ * @date Modification: Apr 2018
+ * @copyright 2010 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 function ContentAnchorMenu(name) {

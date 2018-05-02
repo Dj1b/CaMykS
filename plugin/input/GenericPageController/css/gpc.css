@@ -1,15 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		  : camyks.net
- * Author			      : CaMykS Team
- * CaMykS Version	  : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Input CSS Styles
- * Create Date		  : Jan 2010
- * Last Modif Date  : Jan 2010
- *
- * GenericPageController CSS style file
- *
+/**
+ * @brief GenericPageController Input default CSS styles
+ * @details Plugin / Input CSS styles
+ * @file plugin/input/GenericPageController/css/gpc.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jan 2010
+ * @date Modification: Apr 2018
+ * @copyright 2010 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 .genericPageEmptyController { border-bottom:solid 1px #888888; font-size:4px; height: 4px; }

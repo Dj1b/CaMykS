@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Dictionnary
- * Creation Date    : July 2017
- * Last Modif Date  : July 2017
- *
- * Color italian dictionnary
-*/
+/**
+ * @brief Color italian dictionnary
+ * @details Engine / Dictionnary
+ * @file engine/locale/colors/translation_it.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jul 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 $this->trads['color_blue'] = 'Blu';
 $this->trads['color_white'] = 'Bianco';
@@ -81,6 +81,4 @@ $this->trads['color_sepia'] = 'Nero di seppia';
 $this->trads['color_topaz'] = 'Topazio';
 $this->trads['color_turquoise'] = 'Turchese';
 $this->trads['color_vermilion'] = 'Vermiglio';
-
 ?>
-

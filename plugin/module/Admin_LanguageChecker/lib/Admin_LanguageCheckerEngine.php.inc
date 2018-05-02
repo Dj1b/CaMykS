@@ -23,25 +23,17 @@ class Admin_LanguageCheckerEngine {
    * @param string $item
    * @param string $locale
    */
-  function Admin_LanguageCheckerEngine ( $type, $item, $locale  ) {
+  function Admin_LanguageCheckerEngine ($folder, $locale) {
     global $camyks;
-    /* check type */
-    if ( $type == 'engine' and $item == 'camyks' ) {
-      $path = $camyks->camyks_engine_path; 
-    } else if ( $type == 'module' ) {
-      $path = $camyks->modules[ $item ]->plugin_path;
-    } else if ( $type == 'input' ) {
-      $path = $camyks->inputs[ $item ]->plugin_path;
-    }
-
-    /* get file path */
-    $file = $path.'/locale/translation_'.$locale.$camyks->file_extension;
     
+    /* build file full path */
+    $file = $folder.'/translation_'.$locale.$camyks->file_extension;
+
     /* load trad */
     $this->trads = array();
-    if ( file_exists ( $file ) ) {
+    if (file_exists ($file)) {
       $this->hasfile = true;
-      require ( $file );
+      require ($file);
     } else {
       $this->hasfile = false;
     }

@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Engine / Dictionnary
- * Creation Date    : July 2017
- * Last Modif Date  : July 2017
- *
- * Color portuguese dictionnary
-*/
+/**
+ * @brief Color portuguese dictionnary
+ * @details Engine / Dictionnary
+ * @file engine/locale/colors/translation_pt.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jul 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
 $this->trads['color_blue'] = 'Azul';
 $this->trads['color_white'] = 'Branco';
 $this->trads['color_red'] = 'Vermelho';
@@ -81,4 +82,3 @@ $this->trads['color_topaz'] = 'Top&aacute;zio';
 $this->trads['color_turquoise'] = 'Turquesa';
 $this->trads['color_vermilion'] = 'Vermelh&atilde;o';
 ?>
-

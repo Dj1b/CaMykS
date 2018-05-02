@@ -248,7 +248,6 @@ class AdminUser {
         array('name'=>'webmaster', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
         array('name'=>'address', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
         array('name'=>'rights', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
-        array('name'=>'content', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
    );
     
     if ($camyks->db_conn->create_table('admin_user', $fields, $camyks->get_mysqlencodingvalue(), false, array('login'))) {    
