@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/OnePlus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2018
- * @date Modification: Apr 2018
+ * @date Modification: May 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,10 +20,10 @@
  */
 function get_OnePlusClientDevice($deviceCode='') {
     $deviceList = array(
-        'A3003' => array('platform_model' => '3T'),
-        'A3010' => array('platform_model' => '3T'),
-        'A5000' => array('platform_model' => '5'),
-        'E1003' => array('platform_model' => 'X'),
+        'A3003' => array('platform_model' => '3T',  'platform_year' => 2016),
+        'A3010' => array('platform_model' => '3T',  'platform_year' => 2016),
+        'A5000' => array('platform_model' => '5',   'platform_year' => 2017),
+        'E1003' => array('platform_model' => 'X',   'platform_year' => 2015),
     );
 
     /* Check for returning list */
