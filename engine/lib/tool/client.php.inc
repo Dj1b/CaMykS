@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Jun 2007
- * @date Modification: Apr 2018
+ * @date Modification: May 2018
  * @copyright 2017 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -431,9 +431,9 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Archos */
-    elseif (preg_match('/AC([A-Z0-9\-]{3,}) Build/', $ua, $matches)) {
+    elseif (preg_match('/(AC|Archos )([A-Za-z0-9\- ]{3,}) Build/', $ua, $matches)) {
         include ('clientDevices/Archos.php.inc');
-        $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[1])));
+        $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[2])));
     } elseif (preg_match('/A40Ti/', $ua, $matches))
         $infos = array_merge($infos, array(
             'platform_company'  => 'Archos',
