@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Jun 2007
  * @date Modification: May 2018
  * @copyright 2017 - 2018 CaMykS Team
@@ -871,29 +871,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Xiaomi mobiles */
-    elseif (preg_match('/MI ?([A-Za-z0-9]{1,} )Build/i', $ua, $matches)) {
-        $rep = array(
-            'PAD'=> array('platform_model' => 'MI PAD', 'platform_type'     => 'tablet', 'platform_format'   => 'tablet'),
-        );
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Xiaomi',
-            'platform_model'    => 'Mi '.$matches[1],
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-            ),
-            isset($rep[$matches[1]])?$rep[$matches[1]]:array()
-        );
+    elseif (preg_match('/(Redmi|MI) ?([A-Za-z0-9 ]{1,}) Build/i', $ua, $matches)) {
+        include ('clientDevices/Xiaomi.php.inc');
+        $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].' '.$matches[2]));
     } elseif (preg_match('/HM NOTE 1LTE/', $ua, $matches))
         $infos = array_merge($infos, array(
             'platform_company'  => 'Xiaomi',
             'platform_model'    => 'Redmi Note 3',
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
-    elseif (preg_match('/(Redmi [A-Za-z0-9 ]{1,}) Build/', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Xiaomi',
-            'platform_model'    => $matches[1],
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));

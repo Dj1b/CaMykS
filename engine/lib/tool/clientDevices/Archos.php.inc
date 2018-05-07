@@ -20,9 +20,9 @@
  */
 function get_ArchosClientDevice($deviceCode='') {
     $deviceList = array(
-        '45BHE'=> array('platform_model' => 'Helium 45b',   'platform_year' => 2015),
-        '50BHE'=> array('platform_model' => 'Helium 50b',   'platform_year' => 2015),
-        '50e Neon'=> array('platform_model' => '50e Neon',  'platform_year' => 2016),
+        '45BHE'     => array('platform_model' => 'Helium 45b',  'platform_year' => 2015),
+        '50BHE'     => array('platform_model' => 'Helium 50b',  'platform_year' => 2015),
+        '50e Neon'  => array('platform_model' => '50e Neon',    'platform_year' => 2016),
     );
 
     /* Check for returning list */
