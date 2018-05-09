@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: Jun 2007
  * @date Modification: May 2018
- * @copyright 2017 - 2018 CaMykS Team
+ * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -374,7 +374,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check OnePlus - to be inserted before Sony */
-    elseif (preg_match('/ (ONE|ONEPLUS) (A|E)([0-9]{4}) Build/i', $ua, $matches)) {
+    elseif (preg_match('/( ONE| ONEPLUS)? (A|E)([0-9]{4}) Build/i', $ua, $matches)) {
         include ('clientDevices/OnePlus.php.inc');
         $infos = array_merge($infos, get_OnePlusClientDevice($matches[2].$matches[3]));
     }
