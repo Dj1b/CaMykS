@@ -11,6 +11,10 @@
  * 
  * Admin_GenericBlogsManager Module Admin Layout
 */
+
+/**
+ * @cond Exclude
+ */
 global $camyks;
 
 $view = $this->theme->get_pictURL('view', 12, 'std' );
@@ -434,3 +438,8 @@ onmouseout="this.src='<?=$cross?>';" />
 <?=$this->theme->get_boxContent2Footer(); ?>
 <?=$this->theme->get_boxButtonsBar($this->buttons); ?>
 <?=$this->theme->get_boxFooter(); ?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

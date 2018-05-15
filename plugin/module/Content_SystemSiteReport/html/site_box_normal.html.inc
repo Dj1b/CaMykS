@@ -11,6 +11,10 @@
  *
  * Content_SystemSiteReport Module Site Layout : normal box layout
  */
+ 
+/**
+ * @cond Exclude
+ */
 global $camyks;
 ?>
 <?=$this->theme->get_boxHeader('width:100%;');?>
@@ -88,3 +92,8 @@ global $camyks;
 <?=$this->theme->get_boxButtonsBar( array( array('title'=>$this->get_translation('send'),
 'link'=> $this->form->get_HTMLSubmitLink())), false); ?>
 <?=$this->theme->get_boxFooter(); ?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>
