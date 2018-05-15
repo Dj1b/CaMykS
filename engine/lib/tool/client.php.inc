@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Jun 2007
  * @date Modification: May 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -352,14 +352,10 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
-    elseif (preg_match('/(Galaxy)/', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Samsung',
-            'platform_model'    => $matches[1],
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
-    elseif (preg_match('/(klte)/', $ua, $matches))
+    elseif (preg_match('/(Galaxy|E[0-9]) Build/', $ua, $matches)) {
+        include ('clientDevices/Samsung.php.inc');
+        $infos = array_merge($infos, get_SamsungClientDevice($matches[1]));
+    } elseif (preg_match('/(klte)/', $ua, $matches))
         $infos = array_merge($infos, array(
             'platform_company'  => 'Samsung',
             'platform_model'    => 'Galaxy S5',
@@ -525,7 +521,16 @@ function client_getUAInfos($ua=false) {
             'browser_title'     => 'Kindle browser',
             'browser_version'   => $matches[1],
         ));
-
+    elseif (preg_match('/KFFOWI/', $ua, $matches))
+        /* build info */
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Amazon',
+            'platform_model'    => 'Kindle Fire (5th Gen)',
+            'platform_type'     => 'tablet',
+            'platform_format'   => 'tablet',
+            'platform_year'     => 2015,
+        ));
+        
     /* check Macintosh */
     elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
         /* check version */
@@ -791,21 +796,21 @@ function client_getUAInfos($ua=false) {
     /* check Hewlett Packard OEM computers */
     elseif (preg_match('/HPCMHP|HPNTDF|HPNTDFJS|HPDTDF|HPDTDFJS/', $ua, $matches)) {
         $infos = array_merge($infos, array(
-            'platform_company'  =>'Hewlett Packard (PC)',
+            'platform_company'  => 'Hewlett Packard (PC)',
         ));
     }
 
     /* check Dell OEM computers */
     elseif (preg_match('/MDDR|MDDRJS|MDDC|MDDCJS|MDDS|MDDSJS/', $ua, $matches)) {
         $infos = array_merge($infos, array(
-            'platform_company'=>'Dell (PC)',
+            'platform_company'  => 'Dell (PC)',
         ));
     }
 
     /* check Toshiba OEM computers */
     elseif (preg_match('/MATM|MATMJS|MATB|MATBJS|MATP|MATPJS|TNJB|TAJB/', $ua, $matches)) {
         $infos = array_merge($infos, array(
-            'platform_company   '=>'Toshiba (PC)',
+            'platform_company'  => 'Toshiba (PC)',
         ));
     }
 
@@ -1141,6 +1146,24 @@ function client_getUAInfos($ua=false) {
         ));
     }
 
+    /* check Vivo mobiles */
+    elseif (preg_match('/ vivo ([0-9]{4}) Build/', $ua, $matches)) {
+        include ('clientDevices/Vivo.php.inc');
+        $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
+    }
+
+    /* check Sharp mobiles */
+    elseif (preg_match('/(SH\-[0-9]{2}[A-Z]) Build/', $ua, $matches)) {
+        include ('clientDevices/Sharp.php.inc');
+        $infos = array_merge($infos, get_SharpClientDevice($matches[1]));
+    }
+    
+    /* check Crosscall mobiles */
+    elseif (preg_match('/(Action|Trekker|Odyssey)(\-|_| )([0-9\ A-Z]+) Build/i', $ua, $matches)) {
+        include ('clientDevices/Crosscall.php.inc');
+        $infos = array_merge($infos, get_CrosscallClientDevice(strtolower($matches[1].'-'.$matches[3])));
+    }
+
     /*** check operating system ***/
 
     if (!isset($infos['system_title'])) {
@@ -1264,7 +1287,7 @@ function client_getUAInfos($ua=false) {
             /* check fake version */
             if (in_array($v, $wf))
                 return $fake;
-
+                        
             $infos = array_merge(array(
                 'platform_company'  => 'PC',
                 'platform_model'    => '',
@@ -1327,7 +1350,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1336,7 +1359,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check no version written browser */
-    elseif (preg_match('/(HeadlessChrome|Iron|Advanced Browser)/', $ua, $matches)) {
+    elseif (preg_match('/(HeadlessChrome|Iron|Advanced Browser|Magic Browser)/', $ua, $matches)) {
         $rep = array();
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -5441,6 +5464,46 @@ function client_getKnownBots() {
         'engine_url'        => 'https://nettrack.info/',
     );
     
+    /* bitlybot */
+    $knownBots['bitlybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'bitlybot',
+        'bot_url'           => '',
+        'engine_title'      => 'Bit.ly',
+        'engine_url'        => 'http://bit.ly/',
+    );
+    
+    /* e.ventures Investment Crawler (eventures.vc)  */
+    $knownBots['e.venture'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'e.ventures Investment Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'e.ventures Investment',
+        'engine_url'        => 'https://eventures.vc',
+    );
+    
+    /* tracemyfile  */
+    $knownBots['tracemyfile'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'tracemyfile Bot',
+        'bot_url'           => 'mailto:bot@tracemyfile.com',
+        'engine_title'      => 'tracemyfile',
+        'engine_url'        => 'https://tracemyfile.com',
+    );
+    
+    /* bitlybot */
+    $knownBots['bitlybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'bitlybot',
+        'bot_url'           => '',
+        'engine_title'      => 'Bit.ly',
+        'engine_url'        => 'http://bit.ly/',
+    );
+    
     /* unknown bots */
     
     /* SEOBulls - unknown bot */
@@ -5658,6 +5721,16 @@ function client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'VelenPublicWebCrawler (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+    
+    /* The Knowledge AI  - unknown bot */
+    $knownBots['the knowledge ai'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'The Knowledge AI (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
@@ -7339,64 +7412,9 @@ function client_getHackInfosFromUserAgent($ua='') {
  * @return array
  */
 function client_getKnownHacks() {
-    $knownHacks = array();
     
-    /* Joomla Exploit */
-    $knownHacks['jdatabasedrivermysqli'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Joomla Exploit',
-    );
-    
-    /* Joomla Exploit */
-    $knownHacks['bot/0.1 (bot for jce)'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Joomla JCE Exploit',
-    );
-    
-    /* Bash Exploit */
-    $knownHacks['() { foo;};echo; /bin/bash'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Bash Exploit',
-    );
-    
-    /* Bash Exploit */
-    $knownHacks['() { :; }; echo'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Bash Exploit',
-    );
-    
-    /* Bash Exploit */
-    $knownHacks['() { :;};'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Bash Exploit',
-    );
-    
-    /* Drupal Fckeditor exploit */
-    $knownHacks['webfuck v2.1 t0phackteam www.t0p.xyz'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Drupal Fckeditor exploit',
-    );
-    
-    /* betaBot : should be in bot list with a trustee level to "unwanted" */
-    $knownHacks['betabot'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'Unwanted bot',
-    );
-    
-    /* PHP Exploit */
-    $knownHacks['php system'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'PHP Exploit',
-    );
-    
-    /* the beast malware */
-    $knownHacks['the beast'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'the beast malware',
-    );
-    
-    /* return list */
-    return $knownHacks;
+    include ('clientBots/Hacks.php.inc');
+    return _client_getKnownHacks();
 }
 
 /**
@@ -7543,6 +7561,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     /* bad msie/msid request */
     if (preg_match('#^Mozilla/4.0 \(compatible; MSID [0-9\.]+; Windows NT [0-9\.]+\)$#i', $ua))
         return $fake;
+        
+    /* bad msie/msid request */
+    if (preg_match('#^Mozilla/5.3$#i', $ua))
+        return $fake;
 
     /* not a fake but Apple using a bad user agent */
     if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
@@ -7601,7 +7623,7 @@ function _client_getUAPropertiesMaxVersions() {
             'Android'           => '10',                    // current is 8.x.x
         ),
         'browser' => array(
-            'Firefox'           => '64',                    // current is 59
+            'Firefox'           => '64',                    // current is 60
             'Chrome'            => '75',                    // current is 67
             'Chromium'          => '75',                    // current is 67
             'Internet Explorer' => '11.0.50',               // latest

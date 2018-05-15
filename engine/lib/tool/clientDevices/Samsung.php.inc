@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2018
- * @date Modification: Apr 2018
+ * @date Modification: May 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -199,6 +199,9 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3',             'platform_year' => 2015),
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
         'SM-G130HN' => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
+        
+        'Galaxy'    => array('platform_model' => 'Galaxy'),
+        'E7'        => array('platform_model' => 'Galaxy E7',                   'platform_year' => 2016),
     );
 
     /* Check for returning list */

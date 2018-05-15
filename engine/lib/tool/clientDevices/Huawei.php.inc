@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
  * @date Modification: May 2018
  * @copyright 2018 CaMykS Team
@@ -46,6 +46,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'Y600-U151' => array('platform_model' => 'Ascend',          'platform_year' => 2014),
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
         'CUN-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2016),
+        'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
         'NMO-L31'   => array('platform_model' => 'GT3',             'platform_year' => 2016),
