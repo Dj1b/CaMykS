@@ -123,7 +123,7 @@ final class GenericPageController extends Input {
      * @param integer $page
      * @return string
      */
-    protected function get_pageURL($page) {
+    public function get_pageURL($page) {
         global $camyks;
 
         /* check for first page link */
@@ -147,7 +147,7 @@ final class GenericPageController extends Input {
      * Return previous page URL.
      * @return string
      */
-    protected function get_previousPageURL() {
+    public function get_previousPageURL() {
         if ($this->params['pageCurrent'] == 0)
             return '';
         return $this->get_pageURL($this->params['pageCurrent']-1);
@@ -157,7 +157,7 @@ final class GenericPageController extends Input {
      * Return next page URL.
      * @return string
      */
-    protected function get_nextPageURL() {
+    public function get_nextPageURL() {
         if ($this->params['pageCount'] == 0
                 or $this->params['pageCurrent'] == $this->params['pageCount']-1)
             return '';
