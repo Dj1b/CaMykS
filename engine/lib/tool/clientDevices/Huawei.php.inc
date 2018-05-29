@@ -41,6 +41,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'PLK-L01'   => array('platform_model' => 'Honor 7',         'platform_year' => 2015),
         'FRD-L09'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
         'FRD-L19'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
+        'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend',          'platform_year' => 2014),

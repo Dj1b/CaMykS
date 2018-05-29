@@ -463,7 +463,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Asus mobiles and tablets */
-    elseif (preg_match('/(K|ME|P)([0-9]{2})([A-Z0-9]{1,2}) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (K|ME|P)([0-9]{2})([A-Z0-9]{1,2}) Build/', $ua, $matches)) {
         include_once ('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1].$matches[2].$matches[3])));
     } elseif (preg_match('/ASUS_([A-Z0-9]+) Build/', $ua, $matches)) {
@@ -1163,6 +1163,18 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/(Action|Trekker|Odyssey)(\-|_| )([0-9\ A-Z]+) Build/i', $ua, $matches)) {
         include_once ('clientDevices/Crosscall.php.inc');
         $infos = array_merge($infos, get_CrosscallClientDevice(strtolower($matches[1].'-'.$matches[3])));
+    }
+    
+    /* check ZTE mobiles */
+    elseif (preg_match('/ ZTE ([a-zA-Z0-9 ]*) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/ZTE.php.inc');
+        $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
+    }
+    
+    /* check VKWorld mobiles */
+    elseif (preg_match('/ VK([0-9]{3}) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/VKWorld.php.inc');
+        $infos = array_merge($infos, get_VKWorldClientDevice($matches[1]));
     }
 
     /*** check operating system ***/
