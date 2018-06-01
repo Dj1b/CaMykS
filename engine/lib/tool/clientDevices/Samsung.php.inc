@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Apr 2018
+ * @date Modification: May 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -85,6 +85,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G950'   => array('platform_model' => 'Galaxy S8',                   'plateform_year' => 2017),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8',                   'plateform_year' => 2017),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+',                  'plateform_year' => 2017),
+        'SM-G955U'  => array('platform_model' => 'Galaxy S8+',                  'plateform_year' => 2017),
         'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active',            'plateform_year' => 2017),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V',                    'plateform_year' => 2014),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3',                   'plateform_year' => 2014),
@@ -99,6 +100,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A5100'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2016),
         'SM-A520F'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2017),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
+        'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',               'platform_year' => 2016),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
         'SM-E500H'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
         'SM-E500HQ' => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
@@ -114,6 +116,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J320FN' => array('platform_model' => 'Galaxy J3',                   'platform_year' => 2016),
         'SM-J320F'  => array('platform_model' => 'Galaxy J3',                   'platform_year' => 2016),
         'SM-J330G'  => array('platform_model' => 'Galaxy J3 Pro',               'platform_year' => 2016),
+        'SM-J330FN' => array('platform_model' => 'Galaxy J3',                   'platform_year' => 2017),
         'SM-J500'   => array('platform_model' => 'Galaxy J5',                   'platform_year' => 2015),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5',                   'platform_year' => 2015),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5',                   'platform_year' => 2015),
@@ -151,6 +154,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G360F'  => array('platform_model' => 'Galaxy Core Prime',           'platform_year' => 2015),
         'SM-G361F'  => array('platform_model' => 'Galaxy Core Prime',           'platform_year' => 2015),
         'SM-G386F'  => array('platform_model' => 'Galaxy Core 4G',              'platform_year' => 2014),
+        'SM-G386W'  => array('platform_model' => 'Galaxy Core',                 'platform_year' => 2014),
         'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime',          'platform_year' => 2014),
         'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime',          'platform_year' => 2015),
         'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime',          'platform_year' => 2014),
@@ -199,6 +203,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3',             'platform_year' => 2015),
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
         'SM-G130HN' => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
+        'SGH-I547'  => array('platform_model' => 'Galaxy Rugby Pro',            'platform_year' => 2012),
+        
+        'Galaxy'    => array('platform_model' => 'Galaxy'),
+        'E7'        => array('platform_model' => 'Galaxy E7',                   'platform_year' => 2016),
     );
 
     /* Check for returning list */

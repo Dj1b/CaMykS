@@ -56,7 +56,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
     $secode = $_REQUEST['secode'];
     
     
-    /* set secure code 
+    / set secure code 
     if( $this->id == 0 ) { 
       if ( $secode !=  substr(session_id(), 1, 8))
         return false;

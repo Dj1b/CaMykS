@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/salesforce.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2010
- * @date Modification: Apr 2018
+ * @date Modification: May 2018
  * @copyright 2010 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -51,6 +51,6 @@ function salesforce_submitWeb2Lead($params=array()) {
     $context = stream_context_create($options);
     
     /* send request */
-    return file_get_contents('http://www.salesforce.com/servlet/servlet.WebToLead', false, $context);  
+    return file_get_contents('https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8', false, $context);  
 }
 ?>

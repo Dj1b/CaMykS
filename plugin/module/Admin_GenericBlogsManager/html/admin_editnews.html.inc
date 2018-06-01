@@ -2,7 +2,7 @@
 /*
  * CaMykS Engine
  * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
+ * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0a
  * Object Version	: 1.0
  * Object Type	        : Plugin / Module Layout
@@ -12,6 +12,9 @@
  * Admin_GenericBlogsManager Module Admin Layout : edit news
 */
 global $camyks;
+/**
+ * @cond Exclude
+ */
 
 /* get some theme buttons */
 $plus = $this->theme->get_pictURL('plus', 12, 'std');
@@ -161,3 +164,8 @@ onmouseover="this.src='<?=$plus_?>';" onmouseout="this.src='<?=$plus?>';" />
 <?=$this->theme->get_boxContent2Footer(); ?>
 <?=$this->theme->get_boxButtonsBar($this->buttons); ?>
 <?=$this->theme->get_boxFooter(); ?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

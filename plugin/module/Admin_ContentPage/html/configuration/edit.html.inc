@@ -11,6 +11,10 @@
  * 
  * Admin_ContactPage Module Admin Layout : edit configuration
 */
+
+/**
+ * @cond Exclude
+ */
 global $camyks;
 
 $file = $camyks->theme->get_pictURL('file', 12, 'std');
@@ -340,4 +344,9 @@ $minus_ = $camyks->theme->get_pictURL('minus', 12, 'ovr');
 <?=$camyks->theme->get_boxContent2Footer();?>
 
 <?php endif; ?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>
 

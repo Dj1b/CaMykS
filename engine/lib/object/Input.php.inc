@@ -65,11 +65,10 @@ class Input extends Plugin {
 
     /**
      * Display input.
-     * @return boolean
+     * @return void
      */
     public function display() {
         $this->load_file('html/'.$this->selected_layout);
-        return true;
     }
     
     /**

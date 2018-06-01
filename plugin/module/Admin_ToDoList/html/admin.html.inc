@@ -12,6 +12,9 @@
  * Admin_ToDoList Module Admin Layout
  *
 */
+/**
+ * @cond Exclude
+ */
 global $camyks;
 
 /* get imgs url */
@@ -291,3 +294,8 @@ onMouseOut="this.src='<?=$del?>';"
 <?=$camyks->theme->get_boxContent2Footer();?>
 <?=$camyks->theme->get_boxButtonsBar( $buttons );?>
 <?=$camyks->theme->get_boxFooter();?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

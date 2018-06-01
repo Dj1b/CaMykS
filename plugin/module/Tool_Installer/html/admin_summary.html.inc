@@ -11,6 +11,9 @@
  * 
  * Installer Module Layout : automatic summary
  */
+/**
+ * @cond Exclude
+ */
 global $camyks;
 
 $isFirst = true;
@@ -65,3 +68,8 @@ $isFirst = true;
 <?=$camyks->theme->get_boxButtonsBar($this->buttons);?>
 <?=$camyks->theme->get_boxFooter();?>
 </div>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

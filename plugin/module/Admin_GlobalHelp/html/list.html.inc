@@ -11,6 +11,10 @@
  *
  * Admin_GlobalHelp Module Layout : list
 */
+
+/**
+ * @cond Exclude
+ */
 global $camyks;
 
 $view = $this->theme->get_pictURL('view', 12, 'std');
@@ -143,3 +147,8 @@ $view_ = $this->theme->get_pictURL('view', 12, 'ovr');
 <?=$this->theme->get_boxContent2Footer();?>
 <?=$this->theme->get_boxButtonsBar($this->buttons);?>
 <?=$this->theme->get_boxFooter( );?>
+<?php 
+/**
+ * @endcond Exclude
+ */
+?>

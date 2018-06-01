@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2018
- * @date Modification: Apr 2018
+ * @date Modification: May 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,13 +20,14 @@
  */
 function get_MotorolaClientDevice($deviceCode='') {
     $deviceList = array(
-        'XT720'     => array('platform_model' => 'Milestone XT720', ),
-        'XT1022'    => array('platform_model' => 'Moto E', ),
-        'XT1032'    => array('platform_model' => 'Moto G', ),
-        'XT1033'    => array('platform_model' => 'Moto G', ),
-        'XT1039'    => array('platform_model' => 'Moto 4G', ),
-        'XT1072'    => array('platform_model' => 'Moto G 4G (2nd Gen)', ),
-        'XT1092'    => array('platform_model' => 'Moto X (2nd Gen)', ),
+        'XT720'     => array('platform_model' => 'Milestone XT720',     'platform_year' => 2010),
+        'XT1022'    => array('platform_model' => 'Moto E',              'platform_year' => 2015),
+        'XT1031'    => array('platform_model' => 'Moto G',              'platform_year' => 2013),
+        'XT1032'    => array('platform_model' => 'Moto G',              'platform_year' => 2013),
+        'XT1033'    => array('platform_model' => 'Moto G',              'platform_year' => 2013),
+        'XT1039'    => array('platform_model' => 'Moto 4G',             'platform_year' => 2013),
+        'XT1072'    => array('platform_model' => 'Moto G 4G (2nd Gen)', 'platform_year' => 2013),
+        'XT1092'    => array('platform_model' => 'Moto X (2nd Gen)',    'platform_year' => 2014),
     );
 
     /* Check for returning list */

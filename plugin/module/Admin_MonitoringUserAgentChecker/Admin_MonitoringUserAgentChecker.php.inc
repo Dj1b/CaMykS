@@ -270,8 +270,9 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         global $camyks;
 
         /* get record item */
-        $this->recordItem->id = isset($_REQUEST['record_id'])?(int)$_REQUEST['record_id']:0;;
-        $this->recordItem->get();
+        $this->recordItem->id = isset($_REQUEST['record_id'])?(int)$_REQUEST['record_id']:0;
+        if ($this->recordItem->id == 0 or !$this->recordItem->get())
+           return $this->init_admin_main();
         $this->recordItem->get_fromItems();
 
         /* load user agent information from client library */
@@ -335,7 +336,8 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
         /* get record item */
         $this->recordItem->id = isset($_REQUEST['record_id'])?(int)$_REQUEST['record_id']:0;
-        $this->recordItem->get();
+        if (!$this->recordItem->get())
+           return $this->init_admin_main();
         $this->recordItem->get_fromItems();
 
         /* get form */
@@ -398,7 +400,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $_REQUEST['platform_type'] = 'other';
         if (isset($_REQUEST['user_agent']) && $_REQUEST['user_agent'] != '') {
             $uaInfos = client_getUAInfos($_REQUEST['user_agent']);
-            if(isset($uaInfos['platform_type']) && $uaInfos['platform_type'] != '')
+            if (isset($uaInfos['platform_type']) && $uaInfos['platform_type'] != '')
                 $_REQUEST['platform_type'] = $uaInfos['platform_type'];
         }
 
@@ -423,12 +425,15 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                 $this->text = $this->get_translation('record_saved');
             else
                 $this->text = $this->get_translation('record_notsaved');
-        } else
+            $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
+        } else {
             $this->text = $this->get_translation('record_duplicated');
+            $this->set_redirect($this->get_adminLink());
+        }
 
         /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
-        $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
+        
     }
 
     /*
