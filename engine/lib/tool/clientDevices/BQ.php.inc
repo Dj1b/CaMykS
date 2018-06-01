@@ -1,8 +1,8 @@
 <?php
 /**
- * @brief ZTE client devices specific methods
+ * @brief BQ client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/ZTE.php.inc
+ * @file engine/lib/tool/clientDevices/BQ.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: May 2018
@@ -14,13 +14,13 @@
  */
 
 /**
- * Return ZTE client device information from a known list.
+ * Return BQ client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_ZTEClientDevice($deviceCode='') {
+function get_BQClientDevice($deviceCode='') {
     $deviceList = array(
-        'BLADE V7 LITE' => array('platform_model' => 'Blade V7 Lite',   'platform_year' => 2016),
+        'Aquaris E5' => array('platform_model' =>  'Aquaris E5',   'platform_year' => 2014),
     );
 
     /* Check for returning list */
@@ -29,7 +29,7 @@ function get_ZTEClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'ZTE',
+        'platform_company'  => 'BQ',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

@@ -341,6 +341,12 @@ function client_getUAInfos($ua=false) {
             'platform_format'   => 'handheld',
         ));
 
+    /* check BQ devices, before Samsung */
+    elseif (preg_match('/(Aquaris) (E[0-9]) Build/', $ua, $matches)) {
+        include_once ('clientDevices/BQ.php.inc');
+        $infos = array_merge($infos, get_BQClientDevice($matches[1].' '.$matches[2]));
+    }
+
     /* check samsung devices */
     elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
         include_once ('clientDevices/Samsung.php.inc');
@@ -466,6 +472,9 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (K|ME|P)([0-9]{2})([A-Z0-9]{1,2}) Build/', $ua, $matches)) {
         include_once ('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1].$matches[2].$matches[3])));
+    } elseif (preg_match('/ (Z?[A-Z][0-9]{3}[C|K|T]{1}L) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Asus.php.inc');
+        $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
     } elseif (preg_match('/ASUS_([A-Z0-9]+) Build/', $ua, $matches)) {
         include_once ('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
@@ -1322,6 +1331,21 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ), $infos);
+    
+    /* check opera */
+    elseif (preg_match('/Opera(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+        if (preg_match('/Version\/([0-9\.]*)/', $ua, $matches2)) {
+             $infos = array_merge(array(
+                'browser_title'     => 'Opera',
+                'browser_version'   => $matches2[1],
+            ), $infos);
+        } else {
+            $infos = array_merge(array(
+                'browser_title'     => 'Opera',
+                'browser_version'   => $matches[1],
+            ), $infos);
+        }
+    }
 
     /* check unsmartly written browser, case sensitive */
     elseif (preg_match('/(SE )(?:\/| )?([a-z0-9\._]*)?/', $ua, $matches)) {

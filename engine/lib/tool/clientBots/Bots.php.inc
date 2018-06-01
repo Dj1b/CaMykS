@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2018
  * @date Modification: May 2018
  * @copyright 2018 CaMykS Team
@@ -3822,6 +3822,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Bit.ly',
         'engine_url'        => 'http://bit.ly/',
+    );
+    
+    /* 3w24bot */
+    $knownBots['3w24bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '3w24bot',
+        'bot_url'           => 'https://3w24.com/bot/',
+        'engine_title'      => '3W24',
+        'engine_url'        => 'https://3w24.com',
     );
     
     /* unknown bots */
