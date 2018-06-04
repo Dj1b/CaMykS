@@ -3834,6 +3834,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://3w24.com',
     );
     
+    /* trendictionbot */
+    $knownBots['trendictionbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'trendictionbot0',
+        'bot_url'           => 'http://www.trendiction.de/bot',
+        'engine_title'      => 'trendiction.de',
+        'engine_url'        => 'http://www.trendiction.de',
+    );
+    
     /* unknown bots */
     
     /* SEOBulls - unknown bot */

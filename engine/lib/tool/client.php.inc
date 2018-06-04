@@ -1185,6 +1185,19 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/VKWorld.php.inc');
         $infos = array_merge($infos, get_VKWorldClientDevice($matches[1]));
     }
+    
+    /* check Karbonn mobiles */
+    elseif (preg_match('/ Karbonn( |_)([A-Z][0-9]{2}) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/Karbonn.php.inc');
+        $infos = array_merge($infos, get_KarbonnClientDevice($matches[2]));
+    }
+    
+    /* check Ampe mobiles */
+    elseif (preg_match('/ (A[0-9]{2}) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/Ampe.php.inc');
+        $infos = array_merge($infos, get_AmpeClientDevice($matches[1]));
+    }
+    
 
     /*** check operating system ***/
 
@@ -1216,16 +1229,21 @@ function client_getUAInfos($ua=false) {
         }
 
         /* check determined linux os */
-        elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux)/i', $ua, $matches)) {
-            $w = array('CrOS'=>'Chrome OS');
+        elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux|Sailfish)/i', $ua, $matches)) {
+            $rep = array(
+                'CrOS'      => array('system_title'     => 'Chrome OS (Linux)',),
+                'Sailfish'  => array('platform_company' => '',  'system_title' => 'Sailfish OS (Linux)',    'platform_type' => 'handheld', 'platform_format'   => 'handheld',),
+            );
             $infos = array_merge(array(
                 'platform_company'  => 'PC',
                 'platform_model'    => '',
                 'platform_type'     => 'computer',
                 'platform_format'   => 'desktop',
-                'system_title'      => isset($w[$matches[1]])?$w[$matches[1]]:ucwords($matches[1]).' (Linux)',
+                'system_title'      => ucwords($matches[1]).' (Linux)',
                 'system_version'    => '',
-            ), $infos);
+                ), 
+                isset($rep[$matches[1]])?$rep[$matches[1]]:array()
+            );
         }
         
         /* check mobile gen os with notified version */
@@ -1254,8 +1272,8 @@ function client_getUAInfos($ua=false) {
         /* check gen os without notified version */
         elseif (preg_match('/(Linux|FreeBSD|SunOS|OpenBSD|SymbOS|OS\/2|BeOS|NetBSD|OpenSolaris|PalmSource)[^\.]/', $ua, $matches)) {
             $rep = array(
-                'SymbOS'    => array('platform_company' => '', 'system_title' => 'SymbianOS', 'platform_type'     => 'handheld', 'platform_format'   => 'handheld',),
-                'PalmSource'    => array('platform_company' => 'Palm', 'system_title' => 'PalmOS', 'platform_type'     => 'handheld', 'platform_format'   => 'handheld',),
+                'SymbOS'        => array('platform_company' => '',      'system_title' => 'SymbianOS',      'platform_type' => 'handheld', 'platform_format'   => 'handheld',),
+                'PalmSource'    => array('platform_company' => 'Palm',  'system_title' => 'PalmOS',         'platform_type' => 'handheld', 'platform_format'   => 'handheld',),
             );
 
             $model = trim($matches[1]);
@@ -1387,8 +1405,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat', 'SailfishBrowser' => 'Sailfish Browser');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
             'browser_version'   => isset($matches[2])?$matches[2]:'',
