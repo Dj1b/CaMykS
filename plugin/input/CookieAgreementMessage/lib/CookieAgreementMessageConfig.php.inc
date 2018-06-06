@@ -17,7 +17,7 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class CookieAgreementMessageConfig extends PluginConfig {
-    /*
+    /**
      * Class constructor.
      * @param string $name
      * @param Module $parent
@@ -39,7 +39,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
 
     /* overwrite pluginConfig methods */
 
-    /*
+    /**
      * Get object items values from header.
      * @return void
      */
@@ -56,7 +56,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
 
     /* specific tool methods */
 
-    /*
+    /**
      * Return insertion value list.
      * @return array
      */
@@ -67,7 +67,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         );
     }
 
-    /*
+    /**
      * Return insertion value title.
      * @return string
      */
@@ -76,7 +76,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         return $l[$this->vars['insertion']];
     }
 
-    /*
+    /**
      * Return style source value list.
      * @return array
      */
@@ -87,7 +87,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         );
     }
 
-    /*
+    /**
      * Return style source value title.
      * @return string
      */
@@ -96,7 +96,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         return $l[$this->vars['styleSource']];
     }
 
-    /*
+    /**
      * Return location value list.
      * @return array
      */
@@ -111,7 +111,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         );
     }
 
-    /*
+    /**
      * Return location value title.
      * @return string
      */

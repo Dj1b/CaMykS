@@ -1,6 +1,6 @@
 /**
  * @brief AdminItemListViewer Input client side scripts
- * @details Plugin / Input Layout
+ * @details Plugin / Input Scripts
  * @file plugin/input/AdminItemListViewer/js/AdminItemListViewer.html.inc
  * @author CaMykS Team
  * @version 1.0
@@ -11,7 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-/*
+/**
  * Class constructor.
  * @param string $name
  */
