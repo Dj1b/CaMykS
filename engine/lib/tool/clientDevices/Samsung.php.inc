@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2018
- * @date Modification: May 2018
+ * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -183,6 +183,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo',           'platform_year' => 2014),
         'SM-N910A'  => array('platform_model' => 'Galaxy Note 4',               'platform_year' => 2014),
         'SM-N910F'  => array('platform_model' => 'Galaxy Note 4',               'platform_year' => 2014),
+        'SM-N910H'  => array('platform_model' => 'Galaxy Note 4',               'platform_year' => 2014),
         'SM-N920C'  => array('platform_model' => 'Galaxy Note 5',               'platform_year' => 2015),
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5',               'platform_year' => 2015),
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7',               'platform_year' => 2016),
