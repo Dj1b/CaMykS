@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Module Layout
- * Create Date		: Jun 2005
- * Last Modif Date	: Oct 2017
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Jun 2018
  * 
  * Admin_User Module Admin Layout : view user
 */
@@ -90,7 +90,7 @@ global $camyks;
 	      <input type="checkbox" name="<?=$right['name']?>" value="0" disabled="disabled" <?= $this->user->get_right($m->name, $ridx) ? ' checked="checked"':''; ?> />
         </td>
 	    <td class="eTableLine<?=$alt?> eContent1" style="width:<?=$this->layout_cellwidth?>;">
-	      <?= $right['title'] ?>
+	      <?= $right['title']; ?>
 	    </td>
 	  <?php $rightcount++; ?>
 	    <?php if ( ++$linecount == $this->layout_itemsByLine ) : ?>
