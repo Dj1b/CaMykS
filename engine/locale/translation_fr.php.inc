@@ -4,9 +4,9 @@
  * @details Engine / Global Dictionnary
  * @file engine/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Jun 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -70,6 +70,7 @@ $this->trads['site'] = 'Site';
 $this->trads['module_generic_help'] = 'Informations';
 $this->trads['read'] = 'Lecture';
 $this->trads['write'] = 'Ecriture';
+$this->trads['configuration'] = 'Configuration';
 $this->trads['shared'] = 'Partag&eacute;';
 $this->trads['dedicated'] = 'D&eacute;di&eacute;';
 $this->trads['type'] = 'Type';
@@ -111,6 +112,7 @@ $this->trads['reset'] = 'R&eacute;initialiser';
 $this->trads['search'] = 'Rechercher';
 $this->trads['display'] = 'Afficher';
 $this->trads['listen'] = 'Ecouter';
+$this->trads['configure'] = 'Configurer';
 
 
 /* module messages */

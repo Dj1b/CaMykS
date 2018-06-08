@@ -4,9 +4,9 @@
  * @details Engine / Global Dictionnary
  * @file engine/locale/translation_de.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Dec 2010
- * @date Modification: Apr 2018
+ * @date Modification: Jun 2018
  * @copyright 2010 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -70,6 +70,7 @@ $this->trads['site'] = 'Webseite';
 $this->trads['module_generic_help'] = 'Info';
 $this->trads['read'] = 'Lesen';
 $this->trads['write'] = 'Schreiben';
+$this->trads['configuration'] = 'Configuration';
 $this->trads['shared'] = 'Teilen';
 $this->trads['dedicated'] = 'Zuweisen';
 $this->trads['type'] = 'Typ';
@@ -111,6 +112,7 @@ $this->trads['reset'] = 'Neustart';
 $this->trads['search'] = 'Suchen';
 $this->trads['display'] = 'Anzeigen';
 $this->trads['listen'] = 'H&ouml;ren';
+$this->trads['configure'] = 'Konfigurieren';
 
 /* module messages */
 $this->trads['module_can_t_be_uninstalled'] = 'Dieses Modul kann nicht deinstalliert warden.';
