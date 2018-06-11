@@ -43,7 +43,7 @@ input[type=radio]:checked + label {color:#6a798b;}
 input[type="checkbox"] + label {margin:0 20px 0 8px; display:inline-block;}
 .inputHeight {height:20px;}
 .img{font-size:0}
-pre {font-family: monospace; white-space: pre; line-height:6px; font-size:10px;}
+pre {font-family: monospace; white-space: pre; line-height:10px; font-size:10px;}
 
 strong {font-weight:bold; font-size:inherit; color:inherit; font-style:inherit;}
 em {font-style:italic; font-size:inherit; color:inherit; font-weight:inherit;}
