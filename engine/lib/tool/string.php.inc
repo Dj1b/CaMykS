@@ -687,6 +687,15 @@ function string_getSimilarBeginning($s1, $s2) {
     return $result;
 }
 
+/**
+ * Return string escaped for regex
+ * @param string $string
+ * @return string
+ */
+function string_escape4Regex($string='') {
+  return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,)/', '\\\$1', $string);
+}
+
 /* deprecated methods */
 
 /**
