@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: May 2018
+ * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,9 +21,10 @@
 function get_LenovoClientDevice($deviceCode='') {
     $deviceList = array(
         /* Lenovo tablets */
-        'A2107A-H'  => array('platform_model' => 'IdeaTab A2107A-H',    'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2013),
-        'B8000-F'   => array('platform_model' => 'Yoga',                'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2013),
-        'YB1-X90F'  => array('platform_model' => 'Yoga Book',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2016),
+        'A2107A-H'      => array('platform_model' => 'IdeaTab A2107A-H',    'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2013),
+        'B8000-F'       => array('platform_model' => 'Yoga',                'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2013),
+        'YB1-X90F'      => array('platform_model' => 'Yoga Book',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2016),
+        'Tablet 2-830F' => array('platform_model' => 'Yoga Tab 2',          'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'plateform_year' => 2014),
 
         /* Lenovo phones */
         'P70-A'     => array('platform_model' => 'P70',                 'plateform_year' => 2015),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2018
- * @date Modification: May 2018
+ * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,6 +32,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'NXT-L29'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'MHA-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2016),
+        'MHA-L29'   => array('platform_model' => 'Mate 9',          'platform_year' => 2016),
         'RNE-L21'   => array('platform_model' => 'Mate 10 Lite',    'platform_year' => 2017),
         'BLA-L29'   => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),

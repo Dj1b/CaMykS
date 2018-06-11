@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Jun 2007
- * @date Modification: May 2018
+ * @date Modification: Jun 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -444,7 +444,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check Lenovo */
-    elseif (preg_match('/(IdeaTab|Lenovo)[ |_]([A-Z0-9\-]{3,})/i', $ua, $matches)) {
+    elseif (preg_match('/(IdeaTab|Yoga|Lenovo)[ |_]([A-Z0-9\- ]{3,}) Build/i', $ua, $matches)) {
         include_once ('clientDevices/Lenovo.php.inc');
         $infos = array_merge($infos, get_LenovoClientDevice(trim($matches[2])));
     }
@@ -1942,7 +1942,7 @@ function client_getHackInfosFromUserAgent($ua='') {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownHacks));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = preg_replace ('/(\/|\(|\)|\.|\?|\$)/', '\\\$1', $detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
@@ -1982,7 +1982,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla-1.1$#i', $ua))
         return $fake;
 
-    if (preg_match('#^Mozilla/[0-9][.|,]0$#i', $ua))
+    if (preg_match('#^Mozilla/[0-9][.|,][0-9]$#i', $ua))
         return $fake;
 
     if (preg_match('#^Mozilla/%2F[0-9][.|,]0$#i', $ua))
@@ -2108,6 +2108,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     /* bad msie/msid request */
     if (preg_match('#^Mozilla/5.3$#i', $ua))
         return $fake;
+        
+    /* 2 letters UA like "lp" */
+    if (preg_match('#^[a-zA-Z0-9]{2}$#i', $ua))
+        return $fake;
 
     /* not a fake but Apple using a bad user agent */
     if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
@@ -2167,8 +2171,8 @@ function _client_getUAPropertiesMaxVersions() {
         ),
         'browser' => array(
             'Firefox'           => '64',                    // current is 60
-            'Chrome'            => '75',                    // current is 66
-            'Chromium'          => '75',                    // current is 66
+            'Chrome'            => '75',                    // current is 67
+            'Chromium'          => '75',                    // current is 67
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
             'Opera'             => '56',                    // current is 52
