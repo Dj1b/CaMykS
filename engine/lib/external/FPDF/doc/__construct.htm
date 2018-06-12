@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>FPDF</title>
+<title>__construct</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
 <body>
-<h1>FPDF</h1>
-<code>FPDF([<b>string</b> orientation [, <b>string</b> unit [, <b>mixed</b> format]]])</code>
+<h1>__construct</h1>
+<code>__construct([<b>string</b> orientation [, <b>string</b> unit [, <b>mixed</b> size]]])</code>
 <h2>Description</h2>
 Il s'agit du constructeur de la classe. Il permet de fixer le format des pages, leur
 orientation par défaut ainsi que l'unité de mesure utilisée dans toutes les méthodes (sauf
@@ -40,7 +40,7 @@ Un pouce vaut 2,54 centimètres.
 <br>
 La valeur par défaut est <code>mm</code>.
 </dd>
-<dt><code>format</code></dt>
+<dt><code>size</code></dt>
 <dd>
 Le format utilisé pour les pages. Il peut s'agir d'une des valeurs ci-dessous (indépendamment
 de la casse) :
@@ -60,7 +60,7 @@ La valeur par défaut est <code>A4</code>.
 <h2>Exemple</h2>
 Exemple avec un format personnalisé de 100x150 mm :
 <div class="doc-source">
-<pre><code>$pdf = new FPDF('P', 'mm', array(100,150));</code></pre>
+<pre><code>$pdf = new FPDF('P','mm',array(100,150));</code></pre>
 </div>
 <hr style="margin-top:1.5em">
 <div style="text-align:center"><a href="index.htm">Index</a></div>
