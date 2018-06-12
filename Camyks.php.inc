@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Dec 2014
+ * @date Modification: Jun 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -2199,13 +2199,19 @@ final class Camyks {
     function get_requestPageContent() {
         $plugin = false;
         
-        /* get plugin */
+        /* Load plugin. */
         if (isset($_GET['module'])) {
             if (($plugin = module_get($_GET['module'], 'site')) === false)
-            $plugin = module_get($_GET['module'], 'camyks');
+                $plugin = module_get($_GET['module'], 'camyks');
         } elseif (isset($_GET['input'])) {
             if (($plugin = input_get($_GET['input'], 'site')) === false)
-            $plugin = input_get($_GET['input'], 'camyks');
+                $plugin = input_get($_GET['input'], 'camyks');
+        } elseif (isset($_GET['theme'])) {
+            if (($plugin = theme_get($_GET['theme'], 'site')) === false)
+                $plugin = theme_get($_GET['theme'], 'camyks');
+        } elseif (isset($_GET['template'])) {
+            if (($plugin = template_get($_GET['template'], 'site')) === false)
+                $plugin = template_get($_GET['template'], 'camyks');
         }
         /* get plugin init & display */
         if ($plugin !== false) {
