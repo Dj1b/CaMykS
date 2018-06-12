@@ -236,8 +236,8 @@ final class FSFile {
         header('Content-Description: File Transfer');
         header('Content-Length: '.$this->size);
         if (isset($title)) {
-        if (!preg_match('/\.'.$this->ext.'$/', $title))
-            $title .= '.'.$this->ext;
+            if (pathinfo($title, PATHINFO_EXTENSION) === '')
+                $title .= '.'.$this->ext;
         } else {
             $title  = $this->filename;
         }
@@ -253,7 +253,7 @@ final class FSFile {
     public function send($title=null) {
         header('Content-Type: '.$this->mime.'');
         if (isset($title)) {
-            if (!preg_match('/\.'.$this->ext.'$/', $title))
+            if (pathinfo($title, PATHINFO_EXTENSION) === '')
                 $title .= '.'.$this->ext;
         } else {
             $title  = $this->filename;
