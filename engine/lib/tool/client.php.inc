@@ -1707,7 +1707,7 @@ function client_checkIsBot($ua=false) {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownBots));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
     
     /* start detection and return result */
@@ -1740,7 +1740,7 @@ function client_getBotInfosFromUserAgent($ua='') {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownBots));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.|\+)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
     
     /* start detection and return result */
@@ -1772,7 +1772,7 @@ function client_checkIsTool($ua=false) {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownTools));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
@@ -1804,7 +1804,7 @@ function client_getToolInfosFromUserAgent($ua='') {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownTools));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
@@ -1838,7 +1838,7 @@ function client_checkIsGeneric($ua=false) {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownGenerics));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
@@ -1876,7 +1876,7 @@ function client_getGenericInfosFromUserAgent($ua='') {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownGenerics));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
@@ -1910,7 +1910,7 @@ function client_checkIsHack($ua=false) {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownHacks));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
     
     /* start detection and return result */
@@ -1942,7 +1942,7 @@ function client_getHackInfosFromUserAgent($ua='') {
     
     /* build detection pattern */
     $detectionPattern = implode('|', array_keys($knownHacks));
-    $detectionPattern = preg_replace ('/(\/|\(|\)|\.|\?|\$)/', '\\\$1', $detectionPattern);
+    $detectionPattern = string_escape4Regex($detectionPattern);
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
