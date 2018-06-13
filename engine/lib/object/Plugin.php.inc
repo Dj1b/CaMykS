@@ -319,8 +319,7 @@ abstract class Plugin {
         if (file_exists ($this->plugin_var_path.'/'.$file)) {
             return $this->plugin_var_path.'/'.$file ;
         } else {
-            return $this->plugin_var_path;
-
+            return $this->plugin_var_path.'/';
         }
     }
 
