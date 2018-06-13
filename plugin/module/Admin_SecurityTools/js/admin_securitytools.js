@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Scripts
- * Create Date	       	: Oct 2007
- * Last Modif Date	: Oct 2007
- * 
- * Admin_SecurityTools Module Javascripts
+/**
+ * @brief Admin_SecurityTools Module client side scripts
+ * @details Plugin / Module javascripts
+ * @file plugin/module/Admin_SecurityTools/js/admin_securitytools.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Oct 2007
+ * @date Modification: Jun 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /*
