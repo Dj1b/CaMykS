@@ -4,7 +4,7 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_SystemLogManager/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2018
  * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
@@ -41,14 +41,18 @@ global $camyks;
         
             <?= $this->theme->get_button(array('title'=>$this->get_translation('refresh'), 'url'=>$this->get_adminLink(), 'style'=>'font-size:10px; padding:4px 6px 3px;')); ?>
             
-            <?= $this->theme->get_button(array('title'=>$this->get_translation('download'), 'url'=>$this->get_requestLink(array('mode'=>'downloadLogFile')), 'style'=>'font-size:10px; padding:4px 6px 3px;')); ?>
+            <?php if ($this->currentFileContent !== null) : ?>
             
-            &#124;
+                <?= $this->theme->get_button(array('title'=>$this->get_translation('download'), 'url'=>$this->get_requestLink(array('mode'=>'downloadLogFile')), 'style'=>'font-size:10px; padding:4px 6px 3px;')); ?>
             
-            <?= $this->logForm->display_textInput(array('name'=>'filter', 'default'=>$this->selection['filter'], 'maxlength'=>32, 'placeholder'=>$this->get_translation('filter'), 'onchange'=>'LogViewer.onFilterChange();')); ?>
-            <a href="javascript:LogViewer.resetFilter();" class="img">
-                <?= $this->theme->get_pictHTMLTag(array('pict'=>'cross', 'addMouseover'=>true, 'alt'=>$this->get_translation('reset_filter'), 'style'=>'vertical-align:-3px;')); ?>
-            </a>
+                &#124;
+            
+                <?= $this->logForm->display_textInput(array('name'=>'filter', 'default'=>$this->selection['filter'], 'maxlength'=>32, 'placeholder'=>$this->get_translation('filter'), 'onchange'=>'LogViewer.onFilterChange();')); ?>
+                <a href="javascript:LogViewer.resetFilter();" class="img">
+                    <?= $this->theme->get_pictHTMLTag(array('pict'=>'cross', 'addMouseover'=>true, 'alt'=>$this->get_translation('reset_filter'), 'style'=>'vertical-align:-3px;')); ?>
+                </a>
+            
+            <?php endif; ?>
             
         </div>
         <div class="fileDisplay">
