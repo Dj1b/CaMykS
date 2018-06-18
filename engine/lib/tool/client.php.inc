@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Jun 2007
  * @date Modification: Jun 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -2180,12 +2180,12 @@ function _client_getUAPropertiesMaxVersions() {
         ),
         'browser' => array(
             'Firefox'           => '64',                    // current is 60
-            'Chrome'            => '75',                    // current is 67
-            'Chromium'          => '75',                    // current is 67
+            'Chrome'            => '71',                    // current is 67
+            'Chromium'          => '71',                    // current is 67
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
-            'Opera'             => '56',                    // current is 52
-            'Safari'            => '15',                    // current is 11
+            'Opera'             => '56',                    // current is 53
+            'Safari'            => '14',                    // current is 11
         ),
     );
 }
