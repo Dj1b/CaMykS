@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2018
  * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
@@ -3851,7 +3851,17 @@ function _client_getKnownBots() {
         'bot_title'         => 'Quick-Crawler',
         'bot_url'           => '',
         'engine_title'      => 'ScrapingHub',
-        'engine_url'        => 'https://www.scrapinghub.com/)',
+        'engine_url'        => 'https://www.scrapinghub.com/',
+    );
+    
+    /* A6-Indexer */
+    $knownBots['a6-indexer'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'A6-Indexer',
+        'bot_url'           => '',
+        'engine_title'      => 'A6Corp',
+        'engine_url'        => 'http://www.a6corp.com',
     );
     
     /* unknown bots */

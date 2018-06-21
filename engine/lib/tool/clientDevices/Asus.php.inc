@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2018
- * @date Modification: Apr 2018
+ * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,12 +21,13 @@
 function get_AsusClientDevice($deviceCode='') {
     $deviceList = array(
         /* Asus tablets */
-        'K007'      => array('platform_model' => 'MeMO Pad 7',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2015),
-        'K01E'      => array('platform_model' => 'MeMO Pad',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2014),
-        'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2013),
-        'P01M'      => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2015),
-        'P01MA'     => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2015),
-        'P023'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'plateform_year' => 2015),
+        'K007'      => array('platform_model' => 'MeMO Pad 7',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'K01E'      => array('platform_model' => 'MeMO Pad',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'P01M'      => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'P01MA'     => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'P023'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'P00C'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
 
         /* Asus phones */
         'A500KL'    => array('platform_model' => 'ZenFone 5\'',             'platform_year' => 2014),
@@ -37,6 +38,7 @@ function get_AsusClientDevice($deviceCode='') {
         'Z00LD'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
         'X00DD'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'X008D'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
+        'X007D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2017),
         'Z01GS'     => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
         'Z01MDA'    => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
         
