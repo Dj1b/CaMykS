@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: Jun 2007
  * @date Modification: Jun 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -205,7 +205,11 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
-
+    elseif (preg_match('/(TA\-[0-9]{4}) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Nokia.php.inc');
+        $infos = array_merge($infos, get_NokiaClientDevice($matches[1]));
+    }
+    
     /* check iphone / ipod / ipad */
     elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version)\/([0-9\.]*)/', $ua, $matches)) {
         /* check version */
