@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Jun 2007
  * @date Modification: Jun 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -412,7 +412,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check Huawei */
-    elseif (preg_match('/Build\/(HONOR|HUAWEI)([A-Z0-9\-]{7,})/i', $ua, $matches)) {
+    elseif (preg_match('/Build\/(HONOR|HUAWEI)([A-Z0-9\-]{6,})/i', $ua, $matches)) {
         include_once ('clientDevices/Huawei.php.inc');
         $infos = array_merge($infos, get_HuaweiClientDevice(trim($matches[2])));
     }
@@ -962,9 +962,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Condor mobiles */
-    elseif (preg_match('/P(GN|HQ)([0-9]{3}) Build/', $ua, $matches)) {
-        include_once ('clientDevices/Condor.php.inc');
-        $infos = array_merge($infos, get_CondorClientDevice('P'.$matches[1].$matches[2]));
+    elseif (preg_match('/(PGN|PHQ|SP|PAM|PFS|TCV|TGW)?\-([0-9]{3}?G) Build/', $ua, $matches)) {
+        include_once('clientDevices/Condor.php.inc');
+        $infos = array_merge($infos, get_CondorClientDevice($matches[1].$matches[2]));
+    }
+    elseif (preg_match('/(Griffe|Allure) ([A-Za-z0-9 ]{2,}) Build/', $ua, $matches)) {
+        include_once('clientDevices/Condor.php.inc');
+        $infos = array_merge($infos, get_CondorClientDevice($matches[1].' '.$matches[2]));
     }
 
     /* check Smartisan mobiles */
@@ -2183,7 +2187,7 @@ function _client_getUAPropertiesMaxVersions() {
             'Android'           => '10',                    // current is 8.x.x
         ),
         'browser' => array(
-            'Firefox'           => '64',                    // current is 60
+            'Firefox'           => '64',                    // current is 61
             'Chrome'            => '71',                    // current is 67
             'Chromium'          => '71',                    // current is 67
             'Internet Explorer' => '11.0.50',               // latest
