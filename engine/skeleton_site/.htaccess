@@ -29,6 +29,7 @@ Options +FollowSymlinks
   RewriteRule ^(.*)?\.inc$ / [L]
 
   # admin, request (.php files)
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^([^\.]*).php$ $1.php?%{QUERY_STRING} [L]
   
   # CaMykS assets 
