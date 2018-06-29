@@ -77,7 +77,7 @@ abstract class PluginConfig {
      */
     public $vars = null;
   
-    /*
+    /**
      * Class constructor.
      * @param string $name
      * @param Plugin $plugin
@@ -91,7 +91,7 @@ abstract class PluginConfig {
         $this->_libFile = $this->_libFolder.'/'.$this->name.'.php.inc';
     }
 
-    /*
+    /**
      * Install object.
      * @return boolean
      */
@@ -99,7 +99,7 @@ abstract class PluginConfig {
         return $this->initialise() and $this->save();
     }
 
-    /*
+    /**
      * Uninstall object.
      * @return boolean
      */
@@ -136,7 +136,7 @@ abstract class PluginConfig {
         return true;
     }
     
-    /*
+    /**
      * Initialise object with default values.
      * @return boolean
      */
@@ -147,7 +147,7 @@ abstract class PluginConfig {
         return true;
     }
 
-    /*
+    /**
      * Load object from file.
      * @return boolean
      */
@@ -174,7 +174,7 @@ abstract class PluginConfig {
         return true;
     }
 
-    /*
+    /**
      * Save object to file.
      * @return boolean
      */
@@ -196,7 +196,7 @@ abstract class PluginConfig {
         return false;
     }
   
-    /*
+    /**
      * Delete object file.
      * @return boolean
      */
@@ -206,7 +206,7 @@ abstract class PluginConfig {
         return true;
     }
 
-    /*
+    /**
      * Reset object into file.
      * @return boolean success
      */
@@ -215,7 +215,7 @@ abstract class PluginConfig {
         return $this->save();
     }
   
-    /*
+    /**
      * Check object items values.
      * @return boolean
     */
@@ -223,7 +223,7 @@ abstract class PluginConfig {
         return true;
     }
 
-    /*
+    /**
      * Load object items values from header.
      * @return void
      */
@@ -248,7 +248,7 @@ abstract class PluginConfig {
 
     /* tool methods */
 
-    /*
+    /**
      * Return locale
      * @param string $str
      * @param mixed $args
