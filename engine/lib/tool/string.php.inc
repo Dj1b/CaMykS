@@ -688,7 +688,7 @@ function string_getSimilarBeginning($s1, $s2) {
 }
 
 /**
- * Return string escaped for regex
+ * Return string escaped for regular expression.
  * @param string $string
  * @return string
  */

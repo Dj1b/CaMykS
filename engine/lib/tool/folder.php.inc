@@ -29,7 +29,7 @@ function folder_createPath($path, $root, $rights=0771) {
         $folder .= '/'.$dir;
         if (is_file($folder) or $dir == '') {
             return false;
-        } else if (! is_dir ($folder)) {
+        } else if (!is_dir ($folder)) {
             if (!mkdir ($folder, $rights)) {
                 return false;
             }
@@ -57,7 +57,7 @@ function folder_completePath($path, $rights=0771) {
             $folder .= '/'.$dir;
         if (is_file($folder) or $dir == '') {
             return false;
-        } else if (! is_dir ($folder)) {
+        } else if (!is_dir($folder)) {
             if (!@mkdir ($folder, $rights)) {
                 return false;
             }
@@ -169,7 +169,7 @@ function folder_getTemporaryFolder() {
         } else if (isset($_ENV['TMPDIR'])) {
             return realpath($_ENV['TMPDIR']);
         } else {
-            /* to write a temp file and get his path */
+            /* to write a temp file and get its path */
             $tfile = tempnam(md5(uniqid(rand(), TRUE)), '');
             if ($tfile) {
                 $tdir = realpath(dirname($tfile));
@@ -195,7 +195,7 @@ function folder_listFiles($folder) {
     /* start listing folders */
     if ($dir = opendir($folder)) {
         $files = array();
-        while (($file = readdir ($dir)) !== false) {
+        while (($file = readdir($dir)) !== false) {
             if (is_file($folder.'/'.$file)) {
                 $files[] = $file;
             }
