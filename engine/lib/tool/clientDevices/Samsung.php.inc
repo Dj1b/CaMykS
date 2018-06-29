@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Apr 2018
  * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
@@ -109,6 +109,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-E500HQ' => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
         'SM-E500M'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
         'SM-E700H'  => array('platform_model' => 'Galaxy E7',                   'platform_year' => 2015),
+        'SM-J100F'  => array('platform_model' => 'Galaxy J1',                   'platform_year' => 2015),
         'SM-J100H'  => array('platform_model' => 'Galaxy J1',                   'platform_year' => 2015),
         'SM-J110H'  => array('platform_model' => 'Galaxy J1',                   'platform_year' => 2015),
         'SM-J120F'  => array('platform_model' => 'Galaxy J1',                   'platform_year' => 2016),

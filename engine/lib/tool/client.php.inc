@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Jun 2007
  * @date Modification: Jun 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -209,6 +209,19 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/Nokia.php.inc');
         $infos = array_merge($infos, get_NokiaClientDevice($matches[1]));
     }
+    
+    /* check Archos - before iOS */
+    elseif (preg_match('/(AC|Archos )([A-Za-z0-9\- ]{3,}) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Archos.php.inc');
+        $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[2])));
+    } elseif (preg_match('/Archos; ([A-Za-z0-9\- ]{3,})\)/i', $ua, $matches)) {
+        include_once ('clientDevices/Archos.php.inc');
+        $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[1])));
+    } elseif (preg_match('/A40Ti/', $ua, $matches))
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Archos',
+            'platform_model'    => 'A40Ti',
+        ));
     
     /* check iphone / ipod / ipad */
     elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version)\/([0-9\.]*)/', $ua, $matches)) {
@@ -436,16 +449,6 @@ function client_getUAInfos($ua=false) {
             isset($rep[$model])?$rep[$model]:array()
         );
     }
-
-    /* check Archos */
-    elseif (preg_match('/(AC|Archos )([A-Za-z0-9\- ]{3,}) Build/', $ua, $matches)) {
-        include_once ('clientDevices/Archos.php.inc');
-        $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[2])));
-    } elseif (preg_match('/A40Ti/', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Archos',
-            'platform_model'    => 'A40Ti',
-        ));
 
     /* check Lenovo */
     elseif (preg_match('/(IdeaTab|Yoga|Lenovo)[ |_]([A-Z0-9\- ]{3,}) Build/i', $ua, $matches)) {

@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: May 2018
  * @date Modification: Jun 2018
  * @copyright 2018 CaMykS Team
@@ -3864,6 +3864,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://www.a6corp.com',
     );
     
+    /* VelenPublicWebCrawler */
+    $knownBots['velenpublicwebcrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Velen Crawler',
+        'bot_url'           => 'https://velen.io',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+    
     /* unknown bots */
     
     /* SEOBulls - unknown bot */
@@ -4071,16 +4081,6 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Auto Spider (Unknown bot)',
-        'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-    
-    /* VelenPublicWebCrawler - unknown bot */
-    $knownBots['velenpublicwebcrawler'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'VelenPublicWebCrawler (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
