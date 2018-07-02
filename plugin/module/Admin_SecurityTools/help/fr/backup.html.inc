@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Help File
- * Create Date	       	: Nov 2007
- * Last Modif Date	: Mar 2009
- *
- * Admin_SecurityTools Module Help HTML File
+/**
+ * @brief Admin_SecurityTools Module admin help file for backup
+ * @details Plugin / Module Help Layout
+ * @file plugin/module/Admin_SecurityTools/help/fr/backup.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Nov 2007
+ * @date Modification: Jun 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 ?>
 <h2 class="eTitle2">

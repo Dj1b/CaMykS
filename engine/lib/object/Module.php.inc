@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Module.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2007
- * @date Modification: Apr 2018
+ * @date Modification: Jun 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -431,17 +431,7 @@ class Module extends Plugin {
     public function display_site() {
         $this->get_siteLayout();
     }
-
-    /***************** REQUEST METHODS ************************/
-
-    /**
-     * Execute module in request mode.
-     * @return void
-     */
-    public function execute_request() {
-        echo 'This plugin doesn\'t support requests.';
-    }
-
+    
     /***************** LAYOUT MANAGEMENT **************/
 
     /**

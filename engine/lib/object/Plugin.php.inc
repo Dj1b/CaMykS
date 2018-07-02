@@ -5,9 +5,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Jun 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -301,7 +301,7 @@ abstract class Plugin {
      * @param string $file
      * @return string
      */
-    public function get_filePath ($file='') {
+    public function get_filePath($file='') {
         if (file_exists($this->plugin_site_path.'/'.$file)) {
             return $this->plugin_site_path.'/'.$file ;
         } else if (file_exists ($this->plugin_path.'/'.$file)) {
@@ -315,12 +315,11 @@ abstract class Plugin {
      * @param string $file
      * @return string
      */
-    public function get_varFilePath ($file='') {
+    public function get_varFilePath($file='') {
         if (file_exists ($this->plugin_var_path.'/'.$file)) {
             return $this->plugin_var_path.'/'.$file ;
         } else {
-            return $this->plugin_var_path;
-
+            return $this->plugin_var_path.'/';
         }
     }
 
@@ -686,6 +685,50 @@ abstract class Plugin {
      * @return void
      */
     public function execute_onCaMykSTerminate() {}
+    
+    /* Request mode methods */
+    
+    /**
+     * Return HTML request mode link.
+     * @param array $params
+     * @return string
+     */
+    public function get_requestLink($params=array()) {
+        global $camyks;
+
+        $params = array_merge(array($this->plugin_type=>$this->name), $params);
+        return $camyks->get_requestLink($params);
+    }
+    
+    /**
+     * Return JavaScript request mode link.
+     * @param array $params
+     * @return string
+     */
+    public function get_requestJSLink($params=array()) {
+        global $camyks;
+
+        $params = array_merge(array($this->plugin_type=>$this->name), $params);
+        return $camyks->get_requestJSLink($params);
+    }
+
+    /**
+     * Execute module in request mode.
+     * @return void
+     */
+    public function execute_request() {
+        global $camyks;
+
+        /* throw a fatal error, if not overwritten */
+        $camyks->add_generic_translation();
+        $camyks->throwFatalError(array(
+            'title'         => $camyks->get_translation('error_fatalerror'),
+            'description'   => $camyks->get_translation('error_plugin_doesnt_support_requests_desc'),
+            'content1'      => $camyks->get_translation('error_plugin_doesnt_support_requests_content'),
+            'back_title'    => $camyks->get_translation('error_plugin_doesnt_support_requests_back_title'),
+            'back_link'     => $camyks->get_confValue('url'),
+        ));
+    }
 
     /* Deprecated methods */
 

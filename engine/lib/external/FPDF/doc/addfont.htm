@@ -9,8 +9,8 @@
 <h1>AddFont</h1>
 <code>AddFont(<b>string</b> family [, <b>string</b> style [, <b>string</b> file]])</code>
 <h2>Description</h2>
-Importe une police TrueType ou Type1 et la rend disponible. Il faut au préalable avoir généré un
-fichier de définition de police avec l'utilitaire makefont.php.
+Importe une police TrueType, OpenType ou Type1 et la rend disponible. Il faut au préalable avoir généré
+un fichier de définition de police avec l'utilitaire MakeFont.
 <br>
 Le fichier de définition (ainsi que le fichier de police en cas d'incorporation) doit être présent
 dans le répertoire des polices. S'il n'est pas trouvé, l'erreur "Could not include font definition file"
@@ -50,7 +50,7 @@ est équivalent à :
 <pre><code>$pdf-&gt;AddFont('Comic','I','comici.php');</code></pre>
 </div>
 <h2>Voir</h2>
-<a href="setfont.htm">SetFont()</a>.
+<a href="setfont.htm">SetFont</a>
 <hr style="margin-top:1.5em">
 <div style="text-align:center"><a href="index.htm">Index</a></div>
 </body>

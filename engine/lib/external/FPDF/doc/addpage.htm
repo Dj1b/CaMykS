@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>AddPage</h1>
-<code>AddPage([<b>string</b> orientation ,[ <b>mixed</b> format]])</code>
+<code>AddPage([<b>string</b> orientation [, <b>mixed</b> size [, <b>int</b> rotation]]])</code>
 <h2>Description</h2>
 Ajoute une nouvelle page au document. Si une page était en cours, la méthode Footer() est
 appelée pour traiter le pied de page. Puis la page est ajoutée, la position courante
@@ -31,7 +31,7 @@ Orientation de la page. Les valeurs possibles sont (indépendamment de la casse) 
 </ul>
 La valeur par défaut est celle indiquée dans le constructeur.
 </dd>
-<dt><code>format</code></dt>
+<dt><code>size</code></dt>
 <dd>
 Format de la page. Il peut s'agir d'une des valeurs ci-dessous (indépendamment de la casse) :
 <ul>
@@ -45,12 +45,17 @@ ou bien d'un tableau contenant la largeur et la hauteur (exprimées en unité util
 <br>
 La valeur par défaut est celle indiquée dans le constructeur.
 </dd>
+<dt><code>rotation</code></dt>
+<dd>
+Angle de rotation de la page. La valeur doit être un multiple de 90 ; la rotation se fait
+dans le sens horaire. La valeur par défaut est <code>0</code>.
+</dd>
 </dl>
 <h2>Voir</h2>
-<a href="fpdf.htm">FPDF()</a>,
-<a href="header.htm">Header()</a>,
-<a href="footer.htm">Footer()</a>,
-<a href="setmargins.htm">SetMargins()</a>.
+<a href="__construct.htm">__construct</a>,
+<a href="header.htm">Header</a>,
+<a href="footer.htm">Footer</a>,
+<a href="setmargins.htm">SetMargins</a>
 <hr style="margin-top:1.5em">
 <div style="text-align:center"><a href="index.htm">Index</a></div>
 </body>

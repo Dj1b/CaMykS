@@ -272,7 +272,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* get record item */
         $this->recordItem->id = isset($_REQUEST['record_id'])?(int)$_REQUEST['record_id']:0;
         if ($this->recordItem->id == 0 or !$this->recordItem->get())
-           return $this->init_admin_main();
+            return $this->init_admin_main();
         $this->recordItem->get_fromItems();
 
         /* load user agent information from client library */

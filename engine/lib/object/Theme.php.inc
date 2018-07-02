@@ -346,6 +346,33 @@ abstract class Theme extends Plugin {
     public function get_pictURLWithName($pict) {
         return $this->get_fileURL('img/picts/'.$pict);
     }
+    
+    /**
+     * Return img full tag related to pict.
+     * @param array $params
+     * @return string
+     */
+     public function get_pictHTMLTag($params=array()) {
+        /* check params */
+        $defaultParams = array('pict'=>'', 'size'=>12, 'position'=>'std', 'addMouseover'=>false, 'alt'=>'', 'style'=>'');
+        $params = array_merge($defaultParams, $params);
+        
+        /* load main picture */
+        $url = $this->get_pictURL($params['pict'], $params['size'], $params['position']);
+        
+        /* build HTML tag */
+        $result = '<img src="'.$url.'" alt="'.$params['alt'].'"';
+        if ($params['addMouseover'] == true) {
+            $result .= ' onmouseover="this.src=\''.$this->get_pictURL($params['pict'], $params['size'], $params['position']=='std'?'ovr':'std').'\';"';
+            $result .= ' onmouseout="this.src=\''.$url.'\';"';
+        }
+        if ($params['style'] != '')
+          $result .= ' style="'.$params['style'].'"';
+        $result .= ' />';
+        
+        /* return result */
+        return $result;
+     }
 
     /************* PART : SIMPLE BAR ************/
 

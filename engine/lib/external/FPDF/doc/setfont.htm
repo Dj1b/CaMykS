@@ -19,24 +19,23 @@ AddFont(). Les polices standard utilisent l'encodage Windows cp1252 (Europe de l
 La méthode peut être appelée avant que la première page ne soit créée et la police est
 conservée de page en page.
 <br>
-Si vous souhaitez juste changer la taille courante, il est plus simple d'appeler
-SetFontSize().
+Si vous souhaitez juste changer la taille courante, il est plus simple d'appeler SetFontSize().
 <br>
 <br>
-<strong>Note :</strong> il est nécessaire que les fichiers de métrique soient accessibles. Il sont
+<strong>Note :</strong> il est nécessaire que les fichiers de définition soient accessibles. Il sont
 recherchés successivement dans :
 <ul>
 <li>Le répertoire défini par la constante <code>FPDF_FONTPATH</code> (si cette constante est définie)</li>
 <li>Le répertoire <code>font</code> situé dans le répertoire de <code>fpdf.php</code> (s'il existe)</li>
 <li>Les répertoires accessibles par <code>include()</code></li>
 </ul>
-Exemple d'utilisation de <code>FPDF_FONTPATH</code> (notez le slash final obligatoire) :
+Exemple d'utilisation de <code>FPDF_FONTPATH</code>:
 <div class="doc-source">
-<pre><code>define('FPDF_FONTPATH','/home/www/font/');
+<pre><code>define('FPDF_FONTPATH','/home/www/font');
 require('fpdf.php');</code></pre>
 </div>
 Si le fichier correspondant à la police demandée n'est pas trouvé, l'erreur "Could not include
-font metric file" est générée.
+font definition file" est générée.
 <h2>Paramètres</h2>
 <dl class="param">
 <dt><code>family</code></dt>
@@ -77,21 +76,21 @@ depuis le début du document, la valeur prise est 12.
 </dl>
 <h2>Exemple</h2>
 <div class="doc-source">
-<pre><code>//Times normal 12
+<pre><code>// Times normal 12
 $pdf-&gt;SetFont('Times');
-//Arial gras 14
+// Arial gras 14
 $pdf-&gt;SetFont('Arial','B',14);
-//Enlève le gras
+// Enlève le gras
 $pdf-&gt;SetFont('');
-//Times gras, italique et souligné 14
+// Times gras, italique et souligné 14
 $pdf-&gt;SetFont('Times','BIU');</code></pre>
 </div>
 <h2>Voir</h2>
-<a href="addfont.htm">AddFont()</a>,
-<a href="setfontsize.htm">SetFontSize()</a>,
-<a href="cell.htm">Cell()</a>,
-<a href="multicell.htm">MultiCell()</a>,
-<a href="write.htm">Write()</a>.
+<a href="addfont.htm">AddFont</a>,
+<a href="setfontsize.htm">SetFontSize</a>,
+<a href="cell.htm">Cell</a>,
+<a href="multicell.htm">MultiCell</a>,
+<a href="write.htm">Write</a>
 <hr style="margin-top:1.5em">
 <div style="text-align:center"><a href="index.htm">Index</a></div>
 </body>

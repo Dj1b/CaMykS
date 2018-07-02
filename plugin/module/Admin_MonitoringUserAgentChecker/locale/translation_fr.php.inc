@@ -4,10 +4,10 @@
 * Developed by      : camyks.net
 * Author            : CaMykS Team <camyks.contact@gmail.com>
 * CaMykS Version    : 1.0
-* Object Version    : 1.0
+* Object Version    : 1.0.1
 * Object Type       : Plugin / Module Dictionnary
 * Creation Date     : Dec 2014
-* Last Modif Date   : Feb 2018
+* Last Modif Date   : Jun 2018
 *
 * Admin_MonitoringUserAgentChecker french dictionnary
 */
@@ -27,7 +27,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tool'] = 'Outil
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_hack'] = 'Hack';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_fake'] = 'Fausse visite';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_other'] = 'Autre';
-$this->trads['mod_admin_monitoringuseragentchecker_platform_type_undefined'] = 'Autre';
+$this->trads['mod_admin_monitoringuseragentchecker_platform_type_undefined'] = 'Ind&eacute;termin&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_all'] = 'Tous';
 
 $this->trads['mod_admin_monitoringuseragentchecker_platform_format_handheld'] = 'Mobile';
@@ -42,7 +42,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_recordstatus_verified'] = 'V&
 $this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_notverified'] = 'Non v&eacute;rifi&eacute;s';
 $this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_verified'] = 'V&eacute;rifi&eacute;s';
 
-/* filtres */
+/* filters */
 $this->trads['mod_admin_monitoringuseragentchecker_tabrecords'] = 'Agents utilisateurs';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_platform_type'] = 'Type : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_search'] = 'Recherche : ';

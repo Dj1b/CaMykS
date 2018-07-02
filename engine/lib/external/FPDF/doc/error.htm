@@ -9,10 +9,11 @@
 <h1>Error</h1>
 <code>Error(<b>string</b> msg)</code>
 <h2>Description</h2>
-Cette méthode est appelée automatiquement en cas d'erreur fatale; elle se contente d'afficher
-le message et de mettre fin à l'exécution du script. Une classe dérivée peut la redéfinir afin
-de personnaliser le traitement des erreurs, mais doit impérativement arrêter l'exécution du
-script, sinon le fichier PDF résultant serait probablement invalide.
+Cette méthode est appelée automatiquement en cas d'erreur fatale ; elle se contente de lancer
+une exception avec le message fourni.<br>
+Une classe dérivée peut redéfinir la méthode afin de personnaliser le traitement des erreurs,
+mais elle doit impérativement interrompre le traitement, sinon le fichier PDF résultant serait
+probablement invalide.
 <h2>Paramètres</h2>
 <dl class="param">
 <dt><code>msg</code></dt>

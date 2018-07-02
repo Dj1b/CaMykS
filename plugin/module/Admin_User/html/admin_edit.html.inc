@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Module Layout
- * Create Date		: Jun 2005
- * Last Modif Date	: Mar 2018
+ * Creation Date    : Jun 2005
+ * Last Modif Date  : Jun 2018
  * 
  * Admin_User Module Admin Layout : edit user
 */
@@ -157,7 +157,7 @@ global $camyks;
       <?php $rightcount = 0; ?>
       <?php $linecount = 0; ?>
       <?php foreach ( $m->rights as $ridx => $right ) : ?>
-      <td class="eTableLine<?=$alt?>" style="width:12px;">
+      <td class="eTableLine<?=$alt?> eTableIconCell">
       <?php if ( $camyks->adminUser->get_right( $m->name, $ridx ) == 0 or $camyks->adminUser->login == $this->user->login ) : ?>
       <input type="checkbox" name="__" value="1" <?= $this->user->get_right( $m->name, $ridx) ? ' checked="checked"':''; ?> disabled="disabled"  />
       <input type="hidden" name="adminuser_<?=$m->name?>_<?=$ridx?>" value="<?= $this->user->get_right( $m->name, $ridx ) ? 1 : 0; ?>"/>
@@ -166,9 +166,7 @@ global $camyks;
       <?php endif; ?>
       </td>
       <td class="eTableLine<?=$alt?> eContent1" style="width:<?=$this->layout_cellwidth?>;">
-      <label for="adminuser_<?=$m->name?>_<?=$ridx?>">
-      <?= $right['title'] ?>
-      </label>
+      <label for="adminuser_<?=$m->name?>_<?=$ridx?>"><?= $right['title'] ?></label>
       </td>
       <?php $rightcount++; ?>
       <?php if ( ++$linecount == $this->layout_itemsByLine ) : ?>

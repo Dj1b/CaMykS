@@ -21,6 +21,7 @@
 function get_MicromaxClientDevice($deviceCode='') {
     $deviceList = array(
         'A62'   => array('platform_model' => 'Bolt A62',            'platform_year' => 2013),
+        'A96'   => array('platform_model' => 'Canvas Power A96',    'platform_year' => 2014),
         'Q335'  => array('platform_model' => 'Bolt Q335',           'platform_year' => 2015),
         'Q350'  => array('platform_model' => 'Canvas Spark Q350',   'platform_year' => 2016),
         'Q380'  => array('platform_model' => 'Canvas Spark Q380',   'platform_year' => 2015),

@@ -286,6 +286,9 @@ final class Admin_PluginManagerItem {
     /* add where statement */
     if ($where != '')
       $sql .= ' where '.$where;
+    
+    /* add order statement */
+    $sql .= ' order by type asc, plugin asc';
 
     /* execute sql query */
     if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__))

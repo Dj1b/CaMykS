@@ -4,10 +4,10 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Module Library
  * Creation Date    : Dec 2014
- * Last Modif Date  : Mar 2018
+ * Last Modif Date  : Jun 2018
  *
  * Admin_MonitoringUserAgentCheckerRecord object for Admin_MonitoringUserAgentChecker Module
  */
@@ -103,7 +103,7 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
             'hack'      => $this->get_translation('platform_type_hack'),
             'fake'      => $this->get_translation('platform_type_fake'),
             'other'     => $this->get_translation('platform_type_other'),
-            'undefined' => $this->get_translation('platform_type_other'),
+            'undefined' => $this->get_translation('platform_type_undefined'),
         );
 
         /* check for all value */

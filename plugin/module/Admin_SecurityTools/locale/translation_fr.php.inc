@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Oct 2007
- * Last Modif Date	: Nov 2007
- *
- * Admin_SecurityTools french dictionnary 
+/**
+ * @brief Admin_SecurityTools Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @file plugin/module/Admin_SecurityTools/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Oct 2007
+ * @date Modification: Jun 2018
+ * @copyright 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+ 
 $this->trads['mod_admin_securitytools_title'] = 'Outils S&eacute;curit&eacute;';
 $this->trads['mod_admin_securitytools_desc'] = 'Filtre IP, Sauvegarde, ... ';
 
@@ -39,7 +40,8 @@ $this->trads['mod_admin_securitytools_ipfilter_unauthorizedip'] = 'Adresses IP n
 $this->trads['mod_admin_securitytools_ipfilter_authorizedip'] = 'Adresses IP autoris&eacute;es';
 $this->trads['mod_admin_securitytools_ipfilter_norule'] = 'Aucune r&egrave;gle';
 
-$this->trads['mod_admin_securitytools_ipfilter_editruleid'] = 'Edition de la r&egrave;gle n&deg; %s';
+$this->trads['mod_admin_securitytools_ipfilter_rulenew'] = 'Nouvelle r&egrave;gle';
+$this->trads['mod_admin_securitytools_ipfilter_ruleid'] = 'R&egrave;gle n&deg;%s';
 $this->trads['mod_admin_securitytools_ipfilter_active'] = 'Active : ';
 $this->trads['mod_admin_securitytools_ipfilter_active1'] = 'Active';
 $this->trads['mod_admin_securitytools_ipfilter_active0'] = 'Inactive';

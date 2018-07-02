@@ -63,7 +63,7 @@ class Tool_ControlPanel extends Module {
    * @return void
    * @access private
    */
-  function init_admin () {
+  function init_admin() {
     global $camyks;
     /* list all modules to display */
     foreach ( $camyks->modules as $mod_name => $mod ) {

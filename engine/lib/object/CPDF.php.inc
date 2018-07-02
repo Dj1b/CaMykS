@@ -4,11 +4,11 @@
  * @details Engine / Object Library
  * @file engine/lib/object/CPDF.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2010
- * @date Modification: Apr 2018
+ * @date Modification: Jun 2018
  * @copyright 2010 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -19,7 +19,7 @@ require_once('FPDF/fpdf.php');
  * CPDF class.
  * @author CaMykS Team <camyks.contact@gmail.com>
  */
-class CPDF extends FPDF { 
+class CPDF extends FPDF {
 
     /**
      * Class constructor.
@@ -329,7 +329,7 @@ class CPDF extends FPDF {
             $this->HREF='';
         if ($tag=='OL')
             $this->olIndex = 1;
- 
+
         if ($tag=='FONT') {
             if ($this->issetcolor==true) {
                 $this->set_textColor('');

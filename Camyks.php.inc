@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Dec 2014
+ * @date Modification: Jun 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1284,9 +1284,10 @@ final class Camyks {
      */
     public function set_cache($title, $content, $desc = '') {
         $file_path = $this->site_cache_path.'/'.$title.$this->file_extension;
+        
         /* try to open file & write inside */
         if ($file = fopen($file_path, "w")) {
-        /* update content */
+            /* update content */
             $file_content = file_getPHPFileHeader($desc);
             $file_content .= file_getSerializedVar($title, $content);
             $file_content .= file_getPHPFileEnder();
@@ -1320,9 +1321,15 @@ final class Camyks {
         } else {
             $ua = client_getUAInfos();
             
-            /* check for hacks or fakes */
-            if ($this->get_confValue('site_disableFake') == 1 and in_array($ua['platform_type'], array('hack', 'fake'))) {
+            $refused = array('hack');
+            /* check for disabling fakes also */
+            if ($this->get_confValue('site_disableFake') == 1)
+                $refused[] = 'fake';
+            
+            /* disabled unwanted connections */
+            if (in_array($ua['platform_type'], $refused)) {
                 header('HTTP/1.1 403 Forbidden');
+                $this->log('Security', 'Connection refused', 'Bad user agent ('.$ua['platform_type'].')');
                 die();
             }
             
@@ -1370,6 +1377,18 @@ final class Camyks {
     /******************** LOGS ***************************/
     
     /**
+     * Log message in log manager module.
+     * @param string $object
+     * @param string $action
+     * @param string $message
+     */
+    public function log($object, $action, $message='') {
+        if (isset($this->modules['Admin_SystemLogManager']))
+            return $this->modules['Admin_SystemLogManager']->write_log($object, $action, $message);
+        return false;
+    }
+
+    /**
      * Log event in system report module.
      * @param string $type
      * @param Object $object
@@ -1387,7 +1406,7 @@ final class Camyks {
         /* always return false */
         return false;
     }
-    
+
     /**
      * Log sql error in system report module.
      * @param Object $object
@@ -1399,7 +1418,7 @@ final class Camyks {
     public function log_sqlerror(&$object, $sqlquery='', $file='', $line=0) {
         return $this->log_event('SQL Error', $object, $sqlquery, $this->db_conn->get_queryError(), $file, $line);
     }
-    
+
     /**
      * Log internal error in system report module.
      * @param object $object
@@ -1412,7 +1431,7 @@ final class Camyks {
     public function log_internalerror(&$object, $desc1='', $desc2='', $file='', $line=0) {
         return $this->log_event('Internal Error', $object, $desc1, $desc2, $file, $line);
     }
-    
+
     /**
      * Log information in system report module.
      * @param object $object
@@ -1760,7 +1779,7 @@ final class Camyks {
     private function run_eventHandlers($event) {
         foreach ($this->eventsHandlers[$event] as $plugin) {
             switch ($event) {
-                case 'onInitialise' :     $plugin->execute_onCaMykSInitialise(); break;
+                case 'onInitialise' :       $plugin->execute_onCaMykSInitialise(); break;
                 case 'onPageLoad' :         $plugin->execute_onCaMykSPageLoad(); break;
                 case 'onBodyOpen' :         $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyOpen()); break;
                 case 'onBodyClose' :        $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyClose()); break;
@@ -2199,13 +2218,19 @@ final class Camyks {
     function get_requestPageContent() {
         $plugin = false;
         
-        /* get plugin */
+        /* Load plugin. */
         if (isset($_GET['module'])) {
             if (($plugin = module_get($_GET['module'], 'site')) === false)
-            $plugin = module_get($_GET['module'], 'camyks');
+                $plugin = module_get($_GET['module'], 'camyks');
         } elseif (isset($_GET['input'])) {
             if (($plugin = input_get($_GET['input'], 'site')) === false)
-            $plugin = input_get($_GET['input'], 'camyks');
+                $plugin = input_get($_GET['input'], 'camyks');
+        } elseif (isset($_GET['theme'])) {
+            if (($plugin = theme_get($_GET['theme'], 'site')) === false)
+                $plugin = theme_get($_GET['theme'], 'camyks');
+        } elseif (isset($_GET['template'])) {
+            if (($plugin = template_get($_GET['template'], 'site')) === false)
+                $plugin = template_get($_GET['template'], 'camyks');
         }
         /* get plugin init & display */
         if ($plugin !== false) {

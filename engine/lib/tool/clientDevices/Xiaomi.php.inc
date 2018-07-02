@@ -27,6 +27,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'Mi 2'          => array('platform_model' => 'Mi 2',            'platform_year' => 2012),
         'Mi 5'          => array('platform_model' => 'Mi 5',            'platform_year' => 2016),
         'Mi A1'         => array('platform_model' => 'Mi A1',           'platform_year' => 2017),
+        'MI NOTE Pro'   => array('platform_model' => 'Mi Note Pro',     'platform_year' => 2015),
         'Redmi 4X'      => array('platform_model' => 'Redmi 4X',        'platform_year' => 2017),
         'Redmi 3S'      => array('platform_model' => 'Redmi 3S',        'platform_year' => 2016),
         'Redmi Note 3'  => array('platform_model' => 'Redmi Note 3',    'platform_year' => 2015),
