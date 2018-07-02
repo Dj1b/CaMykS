@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Jun 2007
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -224,7 +224,7 @@ function client_getUAInfos($ua=false) {
         ));
     
     /* check iphone / ipod / ipad */
-    elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)?.*(Version)\/([0-9\.]*)/', $ua, $matches)) {
+    elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches)) {
         /* check version */
         $version = str_replace('_', '.', $matches[3]);
         if (version_compare($version, $maxVersions['system']['iOS']) > 0)
@@ -237,15 +237,22 @@ function client_getUAInfos($ua=false) {
             'platform_format'   => $matches[1]=='iPad'? 'tablet': 'handheld',
             'system_title'      => 'iOS',
             'system_version'    => $version,
-            'browser_title'     => 'Safari Mobile',
-            'browser_version'   => $matches[5],
-        ));
-    } elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches)) {
+        )); 
+        
+        /* check for safari mobile version */
+        if (preg_match('/Version\/([0-9\.]*)/', $ua, $matches)) {
+            $infos = array_merge($infos, array(
+                'browser_title'     => 'Safari Mobile',
+                'browser_version'   => $matches[1],
+            ));
+        }
+        
+    } elseif (preg_match('/(iPhone|iPod|iPad)\/([0-9\.]*) hw\/(iPhone|iPod|iPad)([0-9_]{3,})/i', $ua, $matches)) {
         /* check version */
-        $version = str_replace('_', '.', $matches[3]);
+        $version = str_replace('_', '.', $matches[2]);
         if (version_compare($version, $maxVersions['system']['iOS']) > 0)
             return $fake;
-
+            
         $infos = array_merge($infos, array(
             'platform_company'  => 'Apple',
             'platform_model'    => $matches[1],
@@ -254,7 +261,10 @@ function client_getUAInfos($ua=false) {
             'system_title'      => 'iOS',
             'system_version'    => $version,
         ));
-    } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches))
+        include_once('clientDevices/Apple.php.inc');
+        $infos = array_merge($infos, get_AppleClientDevice($matches[3].$matches[4]));
+
+    } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches)) {
         $infos = array_merge($infos, array(
             'platform_company'  => 'Apple',
             'platform_model'    => $matches[1],
@@ -262,7 +272,8 @@ function client_getUAInfos($ua=false) {
             'platform_format'   => $matches[1]=='iPad'? 'tablet': 'handheld',
             'system_title'      => 'iOS',
         ));
-
+    }
+    
     /* check Google */
     elseif (preg_match('/(Nexus( [^ \/;]+)?|Pixel) Build/', $ua, $matches))
         $infos = array_merge($infos, array(
@@ -325,7 +336,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     elseif (preg_match('/LG-([A-Z][0-9]{3}[A-Z]?)/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*)/', $ua, $matches)) {
-        include_once ('clientDevices/LG.php.inc');
+        include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
     }
 
@@ -345,7 +356,7 @@ function client_getUAInfos($ua=false) {
             'platform_format'   => 'handheld',
         ));
     elseif (preg_match('/XT([0-9]{3,})/', $ua, $matches)) {
-        include_once ('clientDevices/Motorola.php.inc');
+        include_once('clientDevices/Motorola.php.inc');
         $infos = array_merge($infos, get_MotorolaClientDevice($matches[0]));
     }
 
