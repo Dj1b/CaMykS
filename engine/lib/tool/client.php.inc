@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Jun 2007
  * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -341,21 +341,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Motorola */
-    elseif (preg_match('/mot(?:-|orola |o|\-moto)([^ \/;]+)/i', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  =>'Motorola',
-            'platform_model'    =>$matches[1],
-            'platform_type'     =>'handheld',
-            'platform_format'   =>'handheld',
-        ));
-    elseif (preg_match('/ (Droid|MB200|RAZR HD|Moto G)/', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Motorola',
-            'platform_model'    => $matches[1],
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
-    elseif (preg_match('/XT([0-9]{3,})/', $ua, $matches)) {
+    elseif (preg_match('/mot(?:-|orola |o|\-moto)([^ \/;]+)/i', $ua, $matches)) {
+        include_once('clientDevices/Motorola.php.inc');
+        $infos = array_merge($infos, get_MotorolaClientDevice($matches[1]));
+    } elseif (preg_match('/ (Droid|MB200|RAZR HD|Moto G)/', $ua, $matches)) {
+        include_once('clientDevices/Motorola.php.inc');
+        $infos = array_merge($infos, get_MotorolaClientDevice($matches[1]));
+    } elseif (preg_match('/XT([0-9]{3,})/', $ua, $matches)) {
         include_once('clientDevices/Motorola.php.inc');
         $infos = array_merge($infos, get_MotorolaClientDevice($matches[0]));
     }

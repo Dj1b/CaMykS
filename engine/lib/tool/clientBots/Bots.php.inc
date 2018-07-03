@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: May 2018
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3872,6 +3872,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://velen.io',
         'engine_title'      => '',
         'engine_url'        => '',
+    );
+    
+    /* 1001FirmsBot */
+    $knownBots['1001firmsbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '1001FirmsBot',
+        'bot_url'           => 'https://www.1001firms.com/robot.php',
+        'engine_title'      => '1001 Firms',
+        'engine_url'        => 'https://www.1001firms.com/',
     );
     
     /* unknown bots */
