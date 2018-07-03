@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1375,6 +1375,14 @@ final class Camyks {
     }
 
     /******************** LOGS ***************************/
+    
+    /**
+     * Check is log manager module is available
+     * @return boolean result.
+     */
+    public function are_logsAvailable() {
+        return (isset($this->modules['Admin_SystemLogManager']));
+    }
     
     /**
      * Log message in log manager module.
