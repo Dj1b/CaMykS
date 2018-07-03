@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/mail.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2005
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2015 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -73,13 +73,23 @@ function mail_send($params=array()) {
     /* check subject */
     if (!isset($params['subject']))
         $params['subject'] = '';
-    
+        
     /* if pear mail library is available, use this */
     if (file_exists($camyks->camyks_engine_path.'/lib/external/PEAR/Mail.php')) {
-        return mail_sendPEARMail($params);
+        $success = mail_sendPEARMail($params);
     } else {
-        return mail_sendPHPMail($params);
+        $success = mail_sendPHPMail($params);
     }
+    
+    /* directly return result if logs are not available */
+    if ($camyks->are_logsAvailable() === false)
+        return $success;
+
+    /* log result */
+    $camyks->log('Emails', 'Send to '.(is_array($params['to'])?implode(', ', $params['to']):$params['to']), ($success?'Success':'Failure'));
+   
+    /* return result */
+    return $success;
 }
 
 /**
@@ -127,10 +137,14 @@ function mail_sendHTMLMail($params=array()) {
             $params['headers']['To'] = $params['to'];
         
         /* check from param */
-        if (isset($params['From']))
+        if (isset($params['From'])) {
             $params['headers']['From'] = $params['From'];
-        elseif(isset($params['from']))
+            unset($params['From']);
+        }
+        elseif(isset($params['from'])) {
             $params['headers']['From'] = $params['from'];
+            unset($params['from']);
+        }
         
         /* check Cc param */
         if (isset($params['Cc'])) {
