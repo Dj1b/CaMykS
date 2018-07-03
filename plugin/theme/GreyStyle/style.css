@@ -214,7 +214,7 @@ a.listheader:hover {
 .adminControlPanelItem {}
 .adminControlPanelItem .pluginTitle {margin-left:36px; padding:4px 4px;}
 .adminControlPanelItem .pluginDesc {margin-left:36px; padding:0 4px;}
-.adminEditorModule {margin:0 auto;}
+.adminEditorModule {margin:0 auto; width:700px; max-width:100%;}
 .adminPopupFrame {}
 .eTableIconCell { width:12px; padding-left:3px !important; padding-right:3px !important; }
 
