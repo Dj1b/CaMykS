@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
+ * CaMykS Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Module Layout
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Jul 2018
  * 
  * Admin_GenericMediaLibraryManager Module Admin Layout : edit_pictureGallery
 */
@@ -21,7 +21,7 @@ else
 	foreach ($camyks->get_confValue('editing_languages') as $l)
 		$flags[$l] = '';
 ?>
-<?=$this->theme->get_boxHeader('width:800px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header( )?>
@@ -77,7 +77,7 @@ else
 </div>
 
 <div id="itemPictures" style="display:<?=$this->tabBuilder->get_tabDisplay('Pictures');?>;" class="adminContentPanel">
-<div style="float:right; width:<?=$this->previewWidth + 2;?>px; margin:27px 0 0 8px;">
+<div style="float:right; width:<?=$this->previewWidth + 2;?>px; margin:27px 0 0 8px;" class="hiddenOnMobile">
   <div id="picturePreview" style="border:solid 1px #6a798b; font-size:0;">
     <img src="<?=$this->get_fileURL('img/preview.jpg');?>" alt="" style="max-width:<?=$this->previewWidth;?>px;" />
   </div>
@@ -85,7 +85,7 @@ else
     <?=$this->get_translation('photo_preview');?>
   </div>
 </div>
-<div style="margin-right:<?=$this->previewWidth+10;?>px;">
+<div class="fullWidthOnMobile" style="margin-right:<?=$this->previewWidth+10;?>px;">
   <?=$this->pictureList->display('head');?>
   <?=$this->pictureList->display('list');?>
 </div>

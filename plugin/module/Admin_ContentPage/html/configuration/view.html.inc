@@ -4,10 +4,10 @@
  * Developed by		: camyks.net
  * Author			: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Module Layout
  * Creation Date    : Dec 2014
- * Last Modif Date	: Feb 2018
+ * Last Modif Date	: Jul 2018
  * 
  * Admin_ContentPage Module Admin Layout : view configuration
 */
@@ -20,10 +20,8 @@ global $camyks;
 
 <?php endif; ?>
 
-<table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
-
-  <tr>
-    <td style="width:49%; vertical-align:top;">
+<div class="adminContentContainer">
+    <div class="half">
   
       <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
@@ -103,13 +101,9 @@ global $camyks;
       <?php endforeach; ?>
       <?php endif; ?>
     </table>
-    
-  </td>
-  <td style="width:2%;">
-    &nbsp;
-  </td>
-  <td style="width:49%; vertical-align:top;">
-    
+  </div>
+
+  <div class="half">
     <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
       <tr>
         <td class="eTableHeader" colspan="2">
@@ -184,11 +178,8 @@ global $camyks;
       </tr>
       <?php endif; ?>
     </table>  
-  
-  </td>
-</tr>
-</table>
-
+  </div>
+</div>
 <?php if (isset($this->isConfig) and $this->isConfig) :?>
 
 </div>

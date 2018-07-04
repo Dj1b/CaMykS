@@ -3,11 +3,11 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
+ * CaMykS Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Module Engine
  * Create Date		: Oct 2014
- * Last Modif Date	: Oct 2014
+ * Last Modif Date	: Jul 2018
  *
  * Admin_SystemReportItem object for Admin_SystemReport module
  */
@@ -40,7 +40,7 @@ $this->reportListParams['sort'] = array('allowed'=>false, 'default'=>'_date', 'd
 $this->reportListParams['listcolumns'] = array('selection'=>array('title'=>'', 'columntype'=>'checkbox'),
                          'status'=>array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
 						 '_date'=>array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric', 'style'=>'width:60px;'),
-                         'type'=>array('title'=>$camyks->get_translation('type'), 'columntype'=>'text'),
+                         'type'=>array('title'=>$camyks->get_translation('type'), 'columntype'=>'text', 'class'=>'hiddenOnMobile'),
 						 'objectname'=>array('title'=>$camyks->get_translation('object'), 'columntype'=>'text', 'maxlength'=>'64'),
 						 /*'view'=>array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->previewReportLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('previewreport'), 'url_target'=>'_blank')*/);
 						 

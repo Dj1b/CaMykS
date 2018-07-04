@@ -4,10 +4,10 @@
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type      : Plugin / Module Layout
  * Create Date		: Jun 2005
- * Last Modif Date	: Oct 2017
+ * Last Modif Date	: Jul 2018
  * 
  * Admin_User layout for admin user list
 */
@@ -25,7 +25,7 @@ $valid = $camyks->theme->get_pictURL('valid', 12, 'std');
 $empty = $camyks->theme->get_pictURL('empty', 12, 'std');
 
 ?>
-<?=$camyks->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:600px;margin:0 auto;'));?>
+<?=$camyks->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$camyks->theme->get_boxTitleBar($this->title);?>
 <?=$camyks->theme->get_boxContent2Header();?>
 <div class="adminContentPanel">
@@ -33,23 +33,24 @@ $empty = $camyks->theme->get_pictURL('empty', 12, 'std');
   <?=$this->listForm->display_header(); ?>
   <?=$this->listForm->display_hiddens(); ?>
   
-  <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
-  <tr>
-    <td style="width:150px;" class="eTableLine0 eContent2">
-      <?=$camyks->get_translation('formitem_status'); ?>
-    </td>
-    <td class="eTableLine0">
-        <?=$this->listForm->display_selectInput(array('name'=>'status', 'values'=>$this->usersStatusList, 'onchange'=>$this->listForm->get_JSSubmitLink())); ?>
-    </td>
-    <td style="width:150px;" class="eTableLine0 eContent2">
-      <?=$this->get_translation('formitem_search'); ?>
-    </td>
-    <td class="eTableLine0">
-        <?=$this->listForm->display_textInput(array('name'=>'search', 'onchange'=>$this->listForm->get_JSSubmitLink())); ?>
-    </td>
-  </tr>
-
-  </table>
+  <div class="AdminItemListViewer">
+    <div class="selector">
+        <div class="label eTableLine0 eContent2">
+            <?=$camyks->get_translation('formitem_status'); ?>
+        </div>
+        <div class="input eTableLine0 eContent2">
+            <?=$this->listForm->display_selectInput(array('name'=>'status', 'values'=>$this->usersStatusList, 'onchange'=>$this->listForm->get_JSSubmitLink())); ?>
+        </div>
+    </div>  
+    <div class="selector">
+        <div class="label eTableLine0 eContent2">
+            <?=$this->get_translation('formitem_search'); ?>
+        </div>
+        <div class="input eTableLine0 eContent2">
+            <?=$this->listForm->display_textInput(array('name'=>'search', 'onchange'=>$this->listForm->get_JSSubmitLink())); ?>
+        </div>
+    </div>
+  </div>
 
   <?=$this->listForm->display_footer(); ?>
 

@@ -4,16 +4,16 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
+ * Object Version   : 1.0.2
  * Object Type      : Plugin / Module Layout
  * Creation Date    : Jun 2005
- * Last Modif Date  : Jun 2018
+ * Last Modif Date  : Jul 2018
  * 
  * Admin_User Module Admin Layout : view user
 */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule', 'style'=>'width:800px;margin:0 auto;'));?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->get_translation('user').$camyks->get_translation('formitem_separator').$this->user->login );?>
 <?=$this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams);?>
 <?=$this->theme->get_boxContent2Header()?>

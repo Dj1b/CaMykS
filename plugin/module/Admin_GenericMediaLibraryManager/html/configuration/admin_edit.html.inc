@@ -3,17 +3,17 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
+ * CaMykS Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Module Layout
  * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
+ * Last Modif Date	: Jul 2018
  * 
  * Admin_GenericMediaLibraryManager Module Admin Layout : edit_config
 */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:800px; margin:0 auto;');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->adminTitle);?>
 <?=$this->theme->get_boxContent2Header( )?>
 
@@ -43,22 +43,25 @@ global $camyks;
   <td class="eTableLine1 eContent1">
     <?=$this->configform->display_selectInput(array('name'=>'picture_resizeMode', 'values'=>$this->get_configResizeModeList()));?>
   </td>
-  <td class="eTableLine1 eContent2" style="width:200px;">
+</tr>
+<tr>
+  <td class="eTableLine0 eContent2" style="width:200px;">
     <?=$this->get_translation('formitem_backgroundcolor');?>
   </td>
-  <td class="eTableLine1 eContent1">
+  <td class="eTableLine0 eContent1">
     <?=$this->configform->display_textInput(array('name'=>'picture_backgroundColor', 'maxlength'=>7, 'class'=>'vsinputs'));?>
   </td>
 </tr>
 
 <tr>
-  <td class="eTableLine0 eContent2">
+  <td class="eTableLine1 eContent2">
     <?=$this->get_translation('formitem_filetype');?>
   </td>
-  <td class="eTableLine0 eContent1">
+  <td class="eTableLine1 eContent1">
     <?=$this->configform->display_selectInput(array('name'=>'picture_fileType', 'values'=>$this->get_configFileTypeList()));?>
   </td>
-
+</tr>
+<tr>
   <td class="eTableLine0 eContent2">
     <?=$this->get_translation('formitem_quality');?>
   </td>
@@ -74,23 +77,25 @@ global $camyks;
   <td class="eTableLine1 eContent1">
     <?=$this->configform->display_textInput(array('name'=>'picture_pictureWidth', 'maxlength'=>6, 'class'=>'vsinputs'));?> px
   </td>
-  
-  <td class="eTableLine1 eContent2">
+</tr>
+<tr>
+  <td class="eTableLine0 eContent2">
     <?=$this->get_translation('formitem_pictureheight');?>
   </td>
-  <td class="eTableLine1 eContent1">
+  <td class="eTableLine0 eContent1">
     <?=$this->configform->display_textInput(array('name'=>'picture_pictureHeight', 'maxlength'=>6, 'class'=>'vsinputs'));?> px
   </td>
 </tr>
 
 <tr>
-  <td class="eTableLine0 eContent2">
+  <td class="eTableLine1 eContent2">
     <?=$this->get_translation('formitem_thumbwidth');?>
   </td>
-  <td class="eTableLine0 eContent1">
+  <td class="eTableLine1 eContent1">
     <?=$this->configform->display_textInput(array('name'=>'picture_thumbWidth', 'maxlength'=>6, 'class'=>'vsinputs'));?> px
   </td>
-  
+</tr>
+<tr>
   <td class="eTableLine0 eContent2">
     <?=$this->get_translation('formitem_thumbheight');?>
   </td>

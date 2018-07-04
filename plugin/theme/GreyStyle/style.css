@@ -3,10 +3,10 @@
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type      : Plugin / Theme Main CSS Styles
  * Creation Date	: Jun 2005
- * Last Modif Date  : Apr 2017
+ * Last Modif Date  : Jul 2018
  *
  * Main CSS styles for Grey Style Theme
  */
@@ -228,4 +228,6 @@ a.listheader:hover {
 .AdminItemListViewer .selector div {display:inline-block;}
 .AdminItemListViewer .selector div.label {width:150px; max-width:50%;}
 
+.adminContentContainer {font-size:0;}
+.adminContentContainer .half {width:50%; display:inline-block; vertical-align:top; padding-right:8px;}
 
