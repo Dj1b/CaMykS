@@ -19,14 +19,14 @@ global $camyks;
 <?=$this->theme->get_boxContent2Header();?>
 
 <div id="itemProperties" style="display:<?=$this->tabBuilder->get_tabDisplay('Properties')?>;" class="adminContentPanel">
-<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+<table cellspacing="0" cellpadding="0" border="0" style="width:100%; table-layout: fixed;">
 
 <tr>
   <td class="eTableLine0 eContent2" style="width:150px">
     <?=$this->get_translation('formitem_user_agent')?>
   </td>
   <td class="">
-    <div style="width:620px; overflow:auto; padding:8px;">
+    <div style="overflow:auto; padding:8px; max-width:100%;">
       <?=$this->recordItem->get_adminValue();?>
     </div>
   </td>
