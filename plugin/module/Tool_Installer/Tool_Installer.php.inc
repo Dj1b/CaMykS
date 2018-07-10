@@ -4,7 +4,7 @@
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 2.0
+ * Object Version	: 2.0.1
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Aug 2007
  * Last Modif Date  : Nov 2017
@@ -32,7 +32,7 @@ final class Tool_Installer extends Module {
     /* set module type */
     $this->type = 'tool';
     /* set plugin version */
-    $this->version = '1.0';
+    $this->version = '2.0';
     /* set plugin package */
     $this->plugin_package = 'System';
     /* set plugin author */
@@ -558,9 +558,6 @@ final class Tool_Installer extends Module {
 		'value' => ''
     );
 			     
-    /* get mandatory plugin for CaMykS */
-    $camyks->get_neededPlugins();
-
     /* check modules */
     foreach ($camyks->neededModules as $p) {
       $message = array(
