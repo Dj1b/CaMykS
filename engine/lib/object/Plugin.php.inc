@@ -5,9 +5,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -542,6 +542,32 @@ abstract class Plugin {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Add content to .htaccess file
+     * @param string $content
+     * @return boolean success
+     */
+    protected function add_toHtaccess($content='') {
+        $hta = file_get_contents('.htaccess');
+
+        /* check for $ vars */
+        $content = preg_replace('/(\$[0-9]+)/', '\\\\$1', $content);
+
+        /* add header and footer to content */
+        $content = "### ".$this->name." ###\n".$content."\n### ".$this->name." ###";
+
+        if (preg_match('/### '.$this->name.' ###([\s\S]*)### '.$this->name.' ###/s', $hta)) {
+            /* Replace existing content */
+            $hta = preg_replace('/### '.$this->name.' ###([\s\S]*)### '.$this->name.' ###/s', $content, $hta);
+        } else {
+            /* Add new content */
+            $content .= "\n\n  # site page";
+            $hta = preg_replace('/  # site page/', $content, $hta);
+        }
+
+        return file_write('.htaccess', $hta);
     }
 
     /* locales related methods */
