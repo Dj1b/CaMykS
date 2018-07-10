@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2005
  * @date Modification: Jul 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -1180,19 +1180,19 @@ final class Camyks {
                 
         /* load modules */
         foreach ($this->neededModules as $module) 
-            $this->modules[$module['name']] = module_get($module['name']);
+            if (($p = module_get($module['name'])) !== false) $this->modules[$module['name']] = $p;
             
         /* load themes */
         foreach ($this->neededThemes as $theme) 
-            $this->themes[$theme['name']] = theme_get($theme['name']);
+            if (($p = theme_get($theme['name'])) !== false) $this->themes[$theme['name']] = $p;
         
         /* load templates */
         foreach ($this->neededTemplates as $template) 
-            $this->templates[$template['name']] = template_get($template['name']);
+            if (($p = template_get($template['name'])) !== false) $this->templates[$template['name']] = $p;
         
         /* load inputs */
         foreach ($this->neededInputs as $input) 
-            $this->inputs[$input['name']] = input_get($input['name']);
+            if (($p = input_get($input['name'])) !== false) $this->inputs[$input['name']] = $p;
     }
 
     /**
