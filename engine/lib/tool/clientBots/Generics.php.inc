@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: May 2018
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -179,6 +179,16 @@ function _client_getKnownGenerics() {
         'tool_url'          => '',
         'engine_title'      => 'Apache Software Foundation',
         'engine_url'        => 'https://hc.apache.org',
+    );
+    
+    /* AHC */
+    $knownGenerics['ahc/'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'AHC',
+        'tool_url'          => '',
+        'engine_title'      => 'AsyncHttpClient',
+        'engine_url'        => 'https://github.com/AsyncHttpClient/async-http-client',
     );
     
     /* Apache synapse library (before Synapse) */

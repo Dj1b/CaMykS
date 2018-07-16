@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Jun 2007
  * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -1212,6 +1212,12 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ IMO_([a-zA-Z0-9]*) Build/', $ua, $matches)) {
         include_once ('clientDevices/IMO.php.inc');
         $infos = array_merge($infos, get_IMOClientDevice($matches[1]));
+    }
+    
+    /* check Blackview mobiles */
+    elseif (preg_match('/ BV([a-zA-Z0-9\-]*) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Blackview.php.inc');
+        $infos = array_merge($infos, get_BlackviewClientDevice($matches[1]));
     }
 
     /*** check operating system ***/

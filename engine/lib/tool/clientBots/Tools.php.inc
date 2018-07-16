@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -962,13 +962,23 @@ function _client_getKnownTools() {
     );
 
     /* AppleSyndication  */
-    $knowntools['applesyndication'] = array(
+    $knownTools['applesyndication'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'Apple Syndication (RSS Reader)',
         'tool_url'          => '',
         'engine_title'      => 'Apple',
         'engine_url'        => 'https://www.apple.com',
+    );
+
+    /* HTTPing  */
+    $knownTools['httping'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'HTTPing',
+        'tool_url'          => 'https://www.vanheusden.com/httping/',
+        'engine_title'      => 'vanheusden.com',
+        'engine_url'        => 'https://www.vanheusden.com',
     );
 
     /* return list */

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -102,6 +102,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A510F'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2016),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2016),
         'SM-A520F'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2017),
+        'SM-A700F'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',               'platform_year' => 2016),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
