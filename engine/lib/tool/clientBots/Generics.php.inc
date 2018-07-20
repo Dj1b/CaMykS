@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -20,7 +20,7 @@
  */
 function _client_getKnownGenerics() {
     $knownGenerics = array();
-    
+
     /* CaMykS */
     $knownGenerics['camyksrequest'] = array(
         'platform_type'     => 'bot',
@@ -30,7 +30,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'CaMykS',
         'engine_url'        => 'https://www.camyks.net',
     );
-    
+
     /* NING */
     $knownGenerics['ning'] = array(
         'platform_type'     => 'bot',
@@ -40,7 +40,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* heritrix */
     $knownGenerics['heritrix'] = array(
         'platform_type'     => 'bot',
@@ -50,7 +50,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Nutch */
     $knownGenerics['nutch'] = array(
         'platform_type'     => 'bot',
@@ -60,7 +60,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Voltron */
     $knownGenerics['voltron'] = array(
         'platform_type'     => 'bot',
@@ -70,7 +70,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Scrapy */
     $knownGenerics['scrapy'] = array(
         'platform_type'     => 'bot',
@@ -80,7 +80,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Scrapy.org',
         'engine_url'        => 'http://scrapy.org',
     );
-    
+
     /* WWW-Mechanize */
     $knownBots['www-mechanize'] = array(
         'platform_type'     => 'tool',
@@ -90,7 +90,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'CPAN',
         'engine_url'        => 'http://search.cpan.org/~ether/',
     );
-    
+
     /* Fetcher */
     $knownBots['compatible; fetcher/'] = array(
         'platform_type'     => 'tool',
@@ -100,7 +100,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Apple',
         'engine_url'        => 'http://www.apple.com',
     );
-    
+
     /* Pcore-HTTP    */
     $knownGenerics['pcore-http'] = array(
         'platform_type'     => 'tool',
@@ -110,7 +110,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Mechanize (before Ruby) */
     $knownGenerics['mechanize'] = array(
         'platform_type'     => 'tool',
@@ -120,7 +120,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Wget linux library */
     $knownGenerics['wget'] = array(
         'platform_type'     => 'tool',
@@ -130,7 +130,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* gettor */
     $knownGenerics['gettor'] = array(
         'platform_type'     => 'tool',
@@ -140,7 +140,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Python library */
     $knownGenerics['python-urllib'] = array(
         'platform_type'     => 'tool',
@@ -150,7 +150,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Python Request library */
     $knownGenerics['python-requests'] = array(
         'platform_type'     => 'tool',
@@ -160,7 +160,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Apache-HttpClient library (before Java) */
     $knownGenerics['apache-httpclient'] = array(
         'platform_type'     => 'tool',
@@ -170,7 +170,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Apache Software Foundation',
         'engine_url'        => 'https://hc.apache.org',
     );
-    
+
     /* Apache-HttpAsyncClient library (before Java) */
     $knownGenerics['apache-httpasyncclient'] = array(
         'platform_type'     => 'tool',
@@ -180,7 +180,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Apache Software Foundation',
         'engine_url'        => 'https://hc.apache.org',
     );
-    
+
     /* AHC */
     $knownGenerics['ahc/'] = array(
         'platform_type'     => 'tool',
@@ -190,7 +190,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'AsyncHttpClient',
         'engine_url'        => 'https://github.com/AsyncHttpClient/async-http-client',
     );
-    
+
     /* Apache synapse library (before Synapse) */
     $knownGenerics['synapse-httpcomponent'] = array(
         'platform_type'     => 'tool',
@@ -200,7 +200,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Apache Software Foundation',
         'engine_url'        => 'https://hc.apache.org',
     );
-    
+
     /* Jakarta Commons-HttpClient */
     $knownGenerics['jakarta commons-httpclient'] = array(
         'platform_type'     => 'tool',
@@ -210,7 +210,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Apache Software Foundation',
         'engine_url'        => 'https://hc.apache.org',
     );
-    
+
     /* Ararat Synapse */
     $knownGenerics['synapse'] = array(
         'platform_type'     => 'tool',
@@ -220,7 +220,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Ararat Synapse',
         'engine_url'        => 'http://synapse.ararat.cz/doku.php',
     );
-    
+
     /* java library */
     $knownGenerics['java/'] = array(
         'platform_type'     => 'tool',
@@ -230,7 +230,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Perl library */
     $knownGenerics['libwww-perl'] = array(
         'platform_type'     => 'tool',
@@ -240,7 +240,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* WinHttpRequest */
     $knownGenerics['winhttp'] = array(
         'platform_type'     => 'tool',
@@ -250,7 +250,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Microsoft',
         'engine_url'        => '',
     );
-    
+
     /* Ruby */
     $knownGenerics['ruby'] = array(
         'platform_type'     => 'tool',
@@ -260,7 +260,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* GuzzleHttp (before curl) */
     $knownGenerics['guzzle'] = array(
         'platform_type'     => 'tool',
@@ -270,7 +270,17 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
+    /* PHP-Curl-Class (before PHP and Curl) */
+    $knownGenerics['php-curl-class'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'PHP-Curl-Class Library',
+        'tool_url'          => 'https://github.com/php-curl-class/php-curl-class',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
     /* cURL */
     $knownGenerics['libcurl'] = array(
         'platform_type'     => 'tool',
@@ -280,7 +290,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* cURL */
     $knownGenerics['curl/'] = array(
         'platform_type'     => 'tool',
@@ -290,7 +300,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* pycurl */
     $knownGenerics['pycurl'] = array(
         'platform_type'     => 'tool',
@@ -300,7 +310,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* PHP */
     $knownGenerics['php/5'] = array(
         'platform_type'     => 'tool',
@@ -310,7 +320,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Go-http-client */
     $knownGenerics['go-http-client'] = array(
         'platform_type'     => 'tool',
@@ -320,7 +330,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Typhoeus */
     $knownGenerics['typhoeus'] = array(
         'platform_type'     => 'tool',
@@ -330,7 +340,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Chilkat */
     $knownGenerics['chilkat'] = array(
         'platform_type'     => 'tool',
@@ -340,7 +350,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Chilkat Software',
         'engine_url'        => 'http://www.chilkatsoft.com',
     );
-    
+
     /* SEOstats */
     $knownGenerics['seostats'] = array(
         'platform_type'     => 'tool',
@@ -350,7 +360,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* MLIB_NetWorkLibrary */
     $knownGenerics['mlib_networklibrary'] = array(
         'platform_type'     => 'tool',
@@ -360,7 +370,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* MLIB_NetWorkBot */
     $knownGenerics['mlib_networkbot'] = array(
         'platform_type'     => 'tool',
@@ -370,7 +380,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Mojolicious */
     $knownGenerics['mojolicious'] = array(
         'platform_type'     => 'tool',
@@ -380,7 +390,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Mojolicious',
         'engine_url'        => 'http://mojolicious.org',
     );
-    
+
     /* httpunit */
     $knownGenerics['httpunit'] = array(
         'platform_type'     => 'tool',
@@ -390,7 +400,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* aria2 */
     $knownGenerics['aria2'] = array(
         'platform_type'     => 'tool',
@@ -400,7 +410,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Google-Apps-Script */
     $knownGenerics['google-apps-script'] = array(
         'platform_type'     => 'tool',
@@ -410,7 +420,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Google Apps Script',
         'engine_url'        => 'https://www.google.com/script/start/',
     );
-    
+
     /* zgrab */
     $knownGenerics['zgrab'] = array(
         'platform_type'     => 'tool',
@@ -420,7 +430,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Dispatch */
     $knownGenerics['dispatch'] = array(
         'platform_type'     => 'tool',
@@ -430,7 +440,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Jersey */
     $knownGenerics['jersey'] = array(
         'platform_type'     => 'tool',
@@ -440,7 +450,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* aiohttp */
     $knownGenerics['aiohttp'] = array(
         'platform_type'     => 'tool',
@@ -450,7 +460,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* okhttp */
     $knownGenerics['okhttp'] = array(
         'platform_type'     => 'tool',
@@ -460,7 +470,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* MS Web Services Client Protocol */
     $knownGenerics['ms web services client protocol'] = array(
         'platform_type'     => 'tool',
@@ -470,7 +480,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Faraday */
     $knownGenerics['faraday'] = array(
         'platform_type'     => 'tool',
@@ -480,7 +490,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Indy Library */
     $knownGenerics['indy library'] = array(
         'platform_type'     => 'tool',
@@ -490,7 +500,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* AnyEvent-HTTP */
     $knownGenerics['anyevent-http'] = array(
         'platform_type'     => 'tool',
@@ -500,7 +510,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Schmorpforge Software',
         'engine_url'        => 'http://software.schmorp.de',
     );
-    
+
     /* Splashr */
     $knownGenerics['splash'] = array(
         'platform_type'     => 'tool',
@@ -510,7 +520,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* .NET Framework Test Client    */
     $knownGenerics['.net framework'] = array(
         'platform_type'     => 'tool',
@@ -520,7 +530,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* scalaj-http    */
     $knownGenerics['scalaj-http'] = array(
         'platform_type'     => 'tool',
@@ -530,7 +540,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* zombie.js */
     $knownGenerics['zombie.js'] = array(
         'platform_type'     => 'tool',
@@ -540,7 +550,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'Zombie.js',
         'engine_url'        => 'http://zombie.js.org',
     );
-    
+
     /* axios */
     $knownGenerics['axios'] = array(
         'platform_type'     => 'tool',
@@ -550,7 +560,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* jsoup */
     $knownGenerics['jsoup'] = array(
         'platform_type'     => 'tool',
@@ -560,7 +570,17 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
+    /* lua-resty-http */
+    $knownGenerics['ua-resty-http'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'ua-resty-http Library',
+        'tool_url'          => 'https://github.com/pintsized/lua-resty-http',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
     /* raynette_httprequest */
     $knownGenerics['raynette_httprequest'] = array(
         'platform_type'     => 'tool',
@@ -570,7 +590,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* obot */
     $knownGenerics[' obot'] = array(
         'platform_type'     => 'bot',
@@ -580,7 +600,7 @@ function _client_getKnownGenerics() {
         'engine_title'      => 'IBM Germany Research & Development GmbH',
         'engine_url'        => '',
     );
-    
+
     /* return list */
     return $knownGenerics;
 }
