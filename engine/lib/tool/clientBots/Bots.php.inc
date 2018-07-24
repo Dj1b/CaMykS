@@ -4,11 +4,11 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -357,7 +357,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Exalead',
         'engine_url'        => 'http://www.exalead.com',
     );
-    
+
     /* Exabot-Thumbnails */
     $knownBots['exabot-thumbnails'] = array(
         'platform_type'     => 'bot',
@@ -367,7 +367,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Exalead',
         'engine_url'        => 'http://www.exalead.com',
     );
-    
+
     /* Baidu mobile bot */
     $knownBots['mobile safari/10600.6.3 (compatible; baiduspider'] = array(
         'platform_type'     => 'bot',
@@ -377,7 +377,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Baidu',
         'engine_url'        => 'http://www.baidu.com',
     );
-    
+
     /* Baidu bot : Baiduspider */
     $knownBots['baiduspider'] = array(
         'platform_type'     => 'bot',
@@ -387,7 +387,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Baidu',
         'engine_url'        => 'http://www.baidu.com',
     );
-    
+
     /* old baidu bot */
     $knownBots['baidu.com'] = array(
         'platform_type'     => 'bot',
@@ -397,7 +397,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Baidu',
         'engine_url'        => 'http://www.baidu.com',
     );
-    
+
     /* Baidu bot : BaiduImagespider */
     $knownBots['baiduimagespider'] = array(
         'platform_type'     => 'bot',
@@ -407,7 +407,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Baidu',
         'engine_url'        => 'http://www.baidu.com',
     );
-    
+
     /* Gigablast bot : Gigabot */
     $knownBots['gigablast.com'] = array(
         'platform_type'     => 'bot',
@@ -417,7 +417,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Gigablast',
         'engine_url'        => 'http://www.gigablast.com',
     );
-    
+
     /* Gigablast bot : Gigabot */
     $knownBots['gigabot'] = array(
         'platform_type'     => 'bot',
@@ -427,7 +427,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Gigablast',
         'engine_url'        => 'http://www.gigablast.com',
     );
-    
+
     /* GigablastOpensource : Gigabot */
     $knownBots['gigablastopensource'] = array(
         'platform_type'     => 'bot',
@@ -437,7 +437,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Gigablast',
         'engine_url'        => 'http://www.gigablast.com',
     );
-    
+
     /* GigablastOpensource : Gigabot */
     $knownBots['g-i-g-a-b-o-t'] = array(
         'platform_type'     => 'bot',
@@ -447,7 +447,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Gigablast',
         'engine_url'        => 'http://www.gigablast.com',
     );
-    
+
     /* Amfibi bot : Cabot/Nutch */
     $knownBots['amfibi.com'] = array(
         'platform_type'     => 'bot',
@@ -457,7 +457,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Amfibi',
         'engine_url'        => 'http://www.amfibi.com',
     );
-    
+
     /* Healthline bot : NimbleCrawler */
     $knownBots['healthline.com'] = array(
         'platform_type'     => 'bot',
@@ -467,7 +467,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'HealthLine',
         'engine_url'        => 'http://www.healthline.com',
     );
-    
+
     /* Ask bot : Ask Jeeves/Teoma */
     $knownBots['ask.com'] = array(
         'platform_type'     => 'bot',
@@ -477,7 +477,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Ask.com',
         'engine_url'        => 'http://www.ask.com',
     );
-    
+
     /* FAST bot : FAST Enterprise Crawler */
     $knownBots['fast.no'] = array(
         'platform_type'     => 'bot',
@@ -487,7 +487,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Fast',
         'engine_url'        => 'http://www.fast.no',
     );
-    
+
     /* entireweb bot : Seedy Spider */
     $knownBots['entireweb.com'] = array(
         'platform_type'     => 'bot',
@@ -497,7 +497,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Entire Web',
         'engine_url'        => 'http://www.entireweb.com',
     );
-    
+
     /* Naver bot : Yeti */
     $knownBots['naver.com'] = array(
         'platform_type'     => 'bot',
@@ -507,7 +507,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Naver (cn)',
         'engine_url'        => 'http://www.naver.com',
     );
-    
+
     /* Naver bot : Yeti */
     $knownBots['naver.me'] = array(
         'platform_type'     => 'bot',
@@ -517,7 +517,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Naver (cn)',
         'engine_url'        => 'http://www.naver.com',
     );
-    
+
     /* CommonCrawl bot : CCBot */
     $knownBots['commoncrawl.org'] = array(
         'platform_type'     => 'bot',
@@ -527,7 +527,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'CommonCrawl',
         'engine_url'        => 'http://www.commoncrawl.org',
     );
-    
+
     /* Acoon bot : Acoon-Robot */
     $knownBots['acoon.de'] = array(
         'platform_type'     => 'bot',
@@ -537,7 +537,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Acoon',
         'engine_url'        => 'http://www.acoon.de',
     );
-    
+
     /* Whois bot : SurveyBot */
     $knownBots['whois.sc'] = array(
         'platform_type'     => 'bot',
@@ -547,7 +547,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Whois',
         'engine_url'        => 'http://www.whois.sc',
     );
-    
+
     /* Wauuu bot : wauuu engine */
     $knownBots['wauuu.com'] = array(
         'platform_type'     => 'bot',
@@ -557,7 +557,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Wauuu',
         'engine_url'        => 'http://www.wauuu.com',
     );
-    
+
     /* Searchme bot : Charlotte */
     $knownBots['searchme.com'] = array(
         'platform_type'     => 'bot',
@@ -567,7 +567,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Searchme',
         'engine_url'        => 'http://www.searchme.com',
     );
-    
+
     /* WebAlta bot : WebAlta Crawler */
     $knownBots['webalta.net'] = array(
         'platform_type'     => 'bot',
@@ -577,7 +577,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'WebAlta',
         'engine_url'        => 'http://www.webalta.net',
     );
-    
+
     /* Gais bot : Gaisbot */
     $knownBots['gais.cs.ccu.edu.tw'] = array(
         'platform_type'     => 'bot',
@@ -587,7 +587,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Global Area Information Servers',
         'engine_url'        => 'http://gais.cs.ccu.edu.tw',
     );
-    
+
     /* ScoutJet bot */
     $knownBots['scoutjet.com'] = array(
         'platform_type'     => 'bot',
@@ -597,7 +597,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Discovery engine bot : discobot */
     $knownBots['discoveryengine.com'] = array(
         'platform_type'     => 'bot',
@@ -607,7 +607,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Discovery Engine',
         'engine_url'        => 'http://discoveryengine.com',
     );
-    
+
     /* Touche bot */
     $knownBots['touche.com.ve'] = array(
         'platform_type'     => 'bot',
@@ -617,7 +617,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Touch&eacute;',
         'engine_url'        => 'http://www.touche.com.ve',
     );
-    
+
     /* Morfeo bot : holmes */
     $knownBots['morfeo.centrum.cz'] = array(
         'platform_type'     => 'bot',
@@ -627,7 +627,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Morfeo',
         'engine_url'        => 'http://morfeo.centrum.cz',
     );
-    
+
     /* Mail.ru bot */
     $knownBots['mail.ru'] = array(
         'platform_type'     => 'bot',
@@ -637,7 +637,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Mail.ru',
         'engine_url'        => 'http://www.mail.ru',
     );
-    
+
     /* Rankiva bot : rankivabot */
     $knownBots['rankiva.com'] = array(
         'platform_type'     => 'bot',
@@ -647,7 +647,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Rankiva',
         'engine_url'        => 'http://www.rankiva.com',
     );
-    
+
     /* iearthworm bot */
     $knownBots['iearthworm'] = array(
         'platform_type'     => 'bot',
@@ -657,7 +657,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Alexa bot : ia_archiver */
     $knownBots['ia_archiver'] = array(
         'platform_type'     => 'bot',
@@ -667,7 +667,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Alexa',
         'engine_url'        => 'http://www.alexa.com',
     );
-    
+
     /* Alexa site audit */
     $knownBots['alexa site audit'] = array(
         'platform_type'     => 'bot',
@@ -677,7 +677,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Alexa',
         'engine_url'        => 'http://www.alexa.com',
     );
-    
+
     /* Mirago bot : Henri */
     $knownBots['mirago.co.uk'] = array(
         'platform_type'     => 'bot',
@@ -687,7 +687,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Mirago',
         'engine_url'        => 'http://www.mirago.co.uk',
     );
-    
+
     /* Cote d'azur bot : SunIndexer */
     $knownBots['cote.azur.fr'] = array(
         'platform_type'     => 'bot',
@@ -697,7 +697,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'C&ocirc;te d\'Azur',
         'engine_url'        => 'http://www.cote.azur.fr',
     );
-    
+
     /* MSR-ISRCCrawler */
     $knownBots['MSR-ISRCCrawler'] = array(
         'platform_type'     => 'bot',
@@ -707,7 +707,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* DeepIndex bot */
     $knownBots['deepindex'] = array(
         'platform_type'     => 'bot',
@@ -717,7 +717,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DeepIndex',
         'engine_url'        => 'http://www.deepindex.fr',
     );
-    
+
     /* Powerset bot */
     $knownBots['powerset.com'] = array(
         'platform_type'     => 'bot',
@@ -727,7 +727,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Powerset',
         'engine_url'        => 'http://www.powerset.com',
     );
-    
+
     /* Zippp bot */
     $knownBots['zippp.com'] = array(
         'platform_type'     => 'bot',
@@ -737,7 +737,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Zippp',
         'engine_url'        => 'http://www.zippp.com',
     );
-    
+
     /* insynchro.net bot */
     $knownBots['insynchro.net'] = array(
         'platform_type'     => 'bot',
@@ -747,7 +747,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'insynchro',
         'engine_url'        => 'http://www.insynchro.net',
     );
-    
+
     /* yandex bot */
     $knownBots['yandex'] = array(
         'platform_type'     => 'bot',
@@ -757,7 +757,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
     );
-    
+
     /* feedoo bot */
     $knownBots['feedoo'] = array(
         'platform_type'     => 'bot',
@@ -767,7 +767,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* guruji bot */
     $knownBots['gurujibot'] = array(
         'platform_type'     => 'bot',
@@ -777,7 +777,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Guruji',
         'engine_url'        => 'http://www.guruji.com',
     );
-    
+
     /* Sogou Spider bot */
     $knownBots['sogou'] = array(
         'platform_type'     => 'bot',
@@ -787,7 +787,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Sogou',
         'engine_url'        => 'http://www.sogou.com',
     );
-    
+
     /* CamontSpider bot */
     $knownBots['camontspider'] = array(
         'platform_type'     => 'bot',
@@ -797,7 +797,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Chen-Li bot */
     $knownBots['chen li'] = array(
         'platform_type'     => 'bot',
@@ -807,7 +807,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* ICC-Crawler bot */
     $knownBots['icc-crawler'] = array(
         'platform_type'     => 'bot',
@@ -817,7 +817,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Knowledge Clustered Group',
         'engine_url'        => '',
     );
-    
+
     /* KIT webcrawler bot */
     $knownBots['kit webcrawler'] = array(
         'platform_type'     => 'bot',
@@ -827,7 +827,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Linguee Bot */
     $knownBots['linguee bot'] = array(
         'platform_type'     => 'bot',
@@ -837,7 +837,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linguee',
         'engine_url'        => 'http://www.linguee.com',
     );
-    
+
     /* MLBot Bot */
     $knownBots['mlbot'] = array(
         'platform_type'     => 'bot',
@@ -847,7 +847,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'metadata labs',
         'engine_url'        => 'http://www.metadatalabs.com',
     );
-    
+
     /* DotBot */
     $knownBots['dotbot'] = array(
         'platform_type'     => 'bot',
@@ -857,7 +857,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DotNetDotCom',
         'engine_url'        => 'http://www.dotnetdotcom.org',
     );
-    
+
     /* KaloogaBot */
     $knownBots['kaloogabot'] = array(
         'platform_type'     => 'bot',
@@ -867,7 +867,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Kalooga',
         'engine_url'        => 'http://www.kalooga.com',
     );
-    
+
     /* Majestic 12 Bot */
     $knownBots['mj12bot'] = array(
         'platform_type'     => 'bot',
@@ -877,7 +877,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Majestic 12',
         'engine_url'        => 'http://www.majestic12.co.uk/',
     );
-    
+
     /* Netcraft Survey Agent */
     $knownBots['netcraftsurveyagent'] = array(
         'platform_type'     => 'bot',
@@ -887,7 +887,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Netcraft',
         'engine_url'        => 'http://news.netcraft.com',
     );
-    
+
     /* Netcraft Survey Agent */
     $knownBots['netcraft ssl server survey'] = array(
         'platform_type'     => 'bot',
@@ -897,7 +897,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Netcraft',
         'engine_url'        => 'http://news.netcraft.com',
     );
-    
+
     /* Pure search bot */
     $knownBots['purebot'] = array(
         'platform_type'     => 'bot',
@@ -907,7 +907,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Pure Search',
         'engine_url'        => 'http://www.puritysearch.net',
     );
-    
+
     /* Suchbaer Bot */
     $knownBots['suchbaerbot'] = array(
         'platform_type'     => 'bot',
@@ -917,7 +917,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Suchbaer',
         'engine_url'        => 'http://www.suchbaer.de',
     );
-    
+
     /* Tagoo Bot */
     $knownBots['tagoobot'] = array(
         'platform_type'     => 'bot',
@@ -927,7 +927,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Tagoo',
         'engine_url'        => 'http://www.tagoo.ru',
     );
-    
+
     /* youdao bot */
     $knownBots['youdaobot'] = array(
         'platform_type'     => 'bot',
@@ -937,7 +937,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Youdao',
         'engine_url'        => 'http://www.youdao.com',
     );
-    
+
     /* aihit bot */
     $knownBots['aihitbot'] = array(
         'platform_type'     => 'bot',
@@ -947,7 +947,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'aiHit',
         'engine_url'        => 'http://www.aihit.com',
     );
-    
+
     /* sbider bot */
     $knownBots['sbider'] = array(
         'platform_type'     => 'bot',
@@ -957,7 +957,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SiteSell',
         'engine_url'        => 'http://www.sitesell.com',
     );
-    
+
     /* Sosospider bot */
     $knownBots['sosospider'] = array(
         'platform_type'     => 'bot',
@@ -967,7 +967,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Soso',
         'engine_url'        => 'http://www.soso.com',
     );
-    
+
     /* turnitin bot */
     $knownBots['turnitinbot'] = array(
         'platform_type'     => 'bot',
@@ -977,7 +977,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Turnitin',
         'engine_url'        => 'http://www.turnitin.com',
     );
-    
+
     /* SiteExplorer bot */
     $knownBots['siteexplorer'] = array(
         'platform_type'     => 'bot',
@@ -987,7 +987,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SiteExplorer',
         'engine_url'        => 'http://siteexplorer.info/',
     );
-    
+
     /* envolk bot */
     $knownBots['envolk'] = array(
         'platform_type'     => 'bot',
@@ -997,7 +997,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'envolk',
         'engine_url'        => 'http://www.envolk.com',
     );
-    
+
     /* findlinks bot */
     $knownBots['findlinks'] = array(
         'platform_type'     => 'bot',
@@ -1007,7 +1007,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'FindLinks',
         'engine_url'        => '',
     );
-    
+
     /* magpie bot */
     $knownBots['magpie-crawler'] = array(
         'platform_type'     => 'bot',
@@ -1017,7 +1017,7 @@ function _client_getKnownBots() {
          'engine_title'      => 'BrandWatch',
          'engine_url'        => 'http://www.brandwatch.net',
     );
-    
+
     /* taptu bot */
     $knownBots['taptubot'] = array(
         'platform_type'     => 'bot',
@@ -1027,7 +1027,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Taptu',
         'engine_url'        => 'http://www.taptu.com',
     );
-    
+
     /* kosmix bot */
     $knownBots['voyager'] = array(
         'platform_type'     => 'bot',
@@ -1037,7 +1037,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Kosmix',
         'engine_url'        => 'http://www.kosmix.com',
     );
-    
+
     /* SiteBot bot */
     $knownBots['sitebot'] = array(
         'platform_type'     => 'bot',
@@ -1047,7 +1047,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SiteBot',
         'engine_url'        => 'http://www.sitebot.org',
     );
-    
+
     /* MnoGoSearch bot */
     $knownBots['mnogosearch'] = array(
         'platform_type'     => 'bot',
@@ -1057,7 +1057,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'MnoGoSearch',
         'engine_url'        => 'http://www.mnogosearch.org/',
     );
-    
+
     /* Ezooms bot */
     $knownBots['ezooms'] = array(
         'platform_type'     => 'bot',
@@ -1067,7 +1067,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Ezooms',
         'engine_url'        => 'http://www.ezooms.com/',
     );
-    
+
     /* Quirina Hurdler */
     $knownBots['quirina'] = array(
         'platform_type'     => 'bot',
@@ -1077,7 +1077,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Qirina',
         'engine_url'        => 'http://www.qirina.com/',
     );
-    
+
     /* AboutUs bot */
     $knownBots['aboutus'] = array(
         'platform_type'     => 'bot',
@@ -1087,7 +1087,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'AboutUs',
         'engine_url'        => 'http://www.aboutus.org/',
     );
-    
+
     /* Bixo labs bot */
     $knownBots['bixolabs.com'] = array(
         'platform_type'     => 'bot',
@@ -1097,7 +1097,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Bixo labs',
         'engine_url'        => 'http://bixolabs.com/',
     );
-    
+
     /* Birubot */
     $knownBots['birubot'] = array(
         'platform_type'     => 'bot',
@@ -1107,7 +1107,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* unwindfetchor */
     $knownBots['unwindfetchor'] = array(
         'platform_type'     => 'bot',
@@ -1117,7 +1117,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Gnip',
         'engine_url'        => 'http://www.gnip.com/',
     );
-    
+
     /* Crystal Semantics Bot */
     $knownBots['crystalsemanticsbot'] = array(
         'platform_type'     => 'bot',
@@ -1127,7 +1127,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Crystal Semantics',
         'engine_url'        => 'http://www.crystalsemantics.com/',
     );
-    
+
     /* PaperLiBot */
     $knownBots['paperlibot'] = array(
         'platform_type'     => 'bot',
@@ -1137,7 +1137,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Amazon',
         'engine_url'        => 'http://aws.amazon.com/',
     );
-    
+
     /* Suggy Bot */
     $knownBots['suggybot'] = array(
         'platform_type'     => 'bot',
@@ -1147,7 +1147,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Suggy',
         'engine_url'        => 'http://blog.suggy.com/',
     );
-    
+
     /* NjuiceBot */
     $knownBots['njuicebot'] = array(
         'platform_type'     => 'bot',
@@ -1157,7 +1157,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* OrangeAsk Bot */
     $knownBots['orangeaskbot'] = array(
         'platform_type'     => 'bot',
@@ -1167,7 +1167,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'OrangeAsk',
         'engine_url'        => 'http://www.orangeask.com/',
     );
-    
+
     /* regios Bot */
     $knownBots['regios.com'] = array(
         'platform_type'     => 'bot',
@@ -1177,7 +1177,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Regios',
         'engine_url'        => 'http://www.regios.org/',
     );
-    
+
     /* gravitext Bot : iudex */
     $knownBots['iudex'] = array(
         'platform_type'     => 'bot',
@@ -1187,7 +1187,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* crawl-e bot */
     $knownBots['crawl-e'] = array(
         'platform_type'     => 'bot',
@@ -1197,7 +1197,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Cligoo bot */
     $knownBots['cligoorobot'] = array(
         'platform_type'     => 'bot',
@@ -1207,7 +1207,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Cligoo',
         'engine_url'        => 'http://www.cligoo.de/',
     );
-    
+
     /* lexxe bot */
     $knownBots['lexxebot'] = array(
         'platform_type'     => 'bot',
@@ -1217,7 +1217,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Lexxe',
         'engine_url'        => 'http://lexxe.com/',
     );
-    
+
     /* worio bot */
     $knownBots['worio.com'] = array(
         'platform_type'     => 'bot',
@@ -1227,7 +1227,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Worio',
         'engine_url'        => 'http://worio.com/',
     );
-    
+
     /* summify bot */
     $knownBots['summify'] = array(
         'platform_type'     => 'bot',
@@ -1237,7 +1237,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Summify',
         'engine_url'        => 'http://summify.com/',
     );
-    
+
     /* cmsworldmap bot */
     $knownBots['cmsworldmap'] = array(
         'platform_type'     => 'bot',
@@ -1247,7 +1247,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'CMS World Map',
         'engine_url'        => 'http://www.cmsworldmap.com/',
     );
-    
+
     /* GeoHasher bot */
     $knownBots['geohasher.gotdns.org'] = array(
         'platform_type'     => 'bot',
@@ -1257,7 +1257,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'GeoHasher',
         'engine_url'        => 'http://geohasher.gotdns.org/',
     );
-    
+
     /* Ahrefs bot */
     $knownBots['ahrefsbot'] = array(
         'platform_type'     => 'bot',
@@ -1267,7 +1267,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Ahrefs',
         'engine_url'        => 'https://ahrefs.com',
     );
-    
+
     /* linkdexbot bot */
     $knownBots['linkdexbot'] = array(
         'platform_type'     => 'bot',
@@ -1277,7 +1277,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linkdex',
         'engine_url'        => 'http://www.linkdex.com',
     );
-    
+
     /* Orange Bot */
     $knownBots['orangebot'] = array(
         'platform_type'     => 'bot',
@@ -1287,7 +1287,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Orange',
         'engine_url'        => '',
     );
-    
+
     /* bulk-retrieval Bot */
     $knownBots['bulk-retrieval'] = array(
         'platform_type'     => 'bot',
@@ -1297,7 +1297,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => 'http://varocarbas.com',
     );
-    
+
     /* surveybot */
     $knownBots['surveybot'] = array(
         'platform_type'     => 'bot',
@@ -1307,7 +1307,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DomainTools',
         'engine_url'        => 'http://www.domaintools.com',
     );
-    
+
     /* Daumoa */
     $knownBots['daumoa'] = array(
         'platform_type'     => 'bot',
@@ -1317,7 +1317,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Daum',
         'engine_url'        => 'http://www.daum.net',
     );
-    
+
     /* Daum */
     $knownBots['daum'] = array(
         'platform_type'     => 'bot',
@@ -1327,7 +1327,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Daum',
         'engine_url'        => 'http://www.daum.net',
     );
-    
+
     /* FRCrawler */
     $knownBots['frcrawler'] = array(
         'platform_type'     => 'bot',
@@ -1337,7 +1337,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* FRCrawler, alternative    */
     $knownBots['fr_crawler'] = array(
         'platform_type'     => 'bot',
@@ -1347,7 +1347,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* IstellaBot */
     $knownBots['istellabot'] = array(
         'platform_type'     => 'bot',
@@ -1357,7 +1357,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Tiscali',
         'engine_url'        => 'http://www.tiscali.it/',
     );
-    
+
     /* SeznamBot */
     $knownBots['seznambot'] = array(
         'platform_type'     => 'bot',
@@ -1367,7 +1367,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Seznam',
         'engine_url'        => 'https://www.seznam.cz',
     );
-    
+
     /* SeznamBot screenshot generator */
     $knownBots['seznam screenshot-generator'] = array(
         'platform_type'     => 'bot',
@@ -1377,7 +1377,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Seznam',
         'engine_url'        => 'https://www.seznam.cz',
     );
-    
+
     /* 360Spider */
     $knownBots['360spider'] = array(
         'platform_type'     => 'bot',
@@ -1387,7 +1387,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* memoryBot */
     $knownBots['memorybot'] = array(
         'platform_type'     => 'bot',
@@ -1397,7 +1397,7 @@ function _client_getKnownBots() {
         'engine_title'      => '[m]ignify',
         'engine_url'        => 'https://mignify.com',
     );
-    
+
     /* Cliqzbot */
     $knownBots['cliqzbot'] = array(
         'platform_type'     => 'bot',
@@ -1407,7 +1407,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Cliqz',
         'engine_url'        => 'https://www.cliqz.com',
     );
-    
+
     /* YioopBot */
     $knownBots['yioopbot'] = array(
         'platform_type'     => 'bot',
@@ -1417,7 +1417,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Yioop!',
         'engine_url'        => 'http://www.yioop.com',
     );
-    
+
     /* Wotbox */
     $knownBots['wotbox'] = array(
         'platform_type'     => 'bot',
@@ -1427,7 +1427,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Wotbox',
         'engine_url'        => 'http://www.wotbox.com',
     );
-    
+
     /* XoviBot */
     $knownBots['xovibot'] = array(
         'platform_type'     => 'bot',
@@ -1437,7 +1437,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* PagesInventory */
     $knownBots['pagesinventory'] = array(
         'platform_type'     => 'bot',
@@ -1447,7 +1447,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* DigExt; DTS Agent */
     $knownBots['digext; dts agent'] = array(
         'platform_type'     => 'bot',
@@ -1457,7 +1457,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* TestCrawler/Nutch */
     $knownBots['testcrawler'] = array(
         'platform_type'     => 'bot',
@@ -1467,7 +1467,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* WebTarantula.com Crawler */
     $knownBots['webtarantula'] = array(
         'platform_type'     => 'bot',
@@ -1477,7 +1477,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'WebTarantula.com',
         'engine_url'        => 'http://webtarantula.com',
     );
-    
+
     /* CMS Crawler */
     $knownBots['cmscrawler'] = array(
         'platform_type'     => 'bot',
@@ -1487,7 +1487,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'CMS Crawler',
         'engine_url'        => 'http://www.cmscrawler.com',
     );
-    
+
     /* cuwhois */
     $knownBots['cuwhois'] = array(
         'platform_type'     => 'bot',
@@ -1497,7 +1497,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'cuwhois.com',
         'engine_url'        => 'http://www.cuwhois.com/',
     );
-    
+
     /* Vagabondo */
     $knownBots['vagabondo'] = array(
         'platform_type'     => 'bot',
@@ -1507,7 +1507,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'WiseGuys',
         'engine_url'        => 'http://www.wise-guys.nl/',
     );
-    
+
     /* Vagabondo */
     $knownBots['vagabondo'] = array(
         'platform_type'     => 'bot',
@@ -1517,7 +1517,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'WiseGuys',
         'engine_url'        => 'http://www.wise-guys.nl/',
     );
-    
+
     /* StatRank */
     $knownBots['statrank'] = array(
         'platform_type'     => 'bot',
@@ -1527,7 +1527,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* spbot */
     $knownBots['spbot'] = array(
         'platform_type'     => 'bot',
@@ -1537,7 +1537,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'OpenLink Profiler',
         'engine_url'        => 'http://www.openlinkprofiler.org',
     );
-    
+
     /* YisouSpider */
     $knownBots['yisouspider'] = array(
         'platform_type'     => 'bot',
@@ -1547,7 +1547,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* DomainAppender */
     $knownBots['domainappender'] = array(
         'platform_type'     => 'bot',
@@ -1557,7 +1557,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Profound Networks',
         'engine_url'        => 'http://www.profound.net',
     );
-    
+
     /* ltx71 - (http://ltx71.com/) */
     $knownBots['ltx71'] = array(
         'platform_type'     => 'bot',
@@ -1567,7 +1567,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* StudioFACA */
     $knownBots['studiofaca'] = array(
         'platform_type'     => 'bot',
@@ -1577,7 +1577,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'StudioFACA',
         'engine_url'        => 'http://www.studiofaca.com/',
     );
-    
+
     /* yacybot */
     $knownBots['yacybot'] = array(
         'platform_type'     => 'bot',
@@ -1587,7 +1587,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Yacy',
         'engine_url'        => 'http://yacy.net/fr/index.html',
     );
-    
+
     /* SISTRIX Crawler */
     $knownBots['sistrix'] = array(
         'platform_type'     => 'bot',
@@ -1597,7 +1597,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SISTRIX',
         'engine_url'        => 'http://www.sistrix.net/',
     );
-    
+
     /* BLEXBot */
     $knownBots['blexbot'] = array(
         'platform_type'     => 'bot',
@@ -1607,7 +1607,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'webmeup',
         'engine_url'        => 'http://webmeup-crawler.com/',
     );
-    
+
     /* Qwantify */
     $knownBots['qwantify'] = array(
         'platform_type'     => 'bot',
@@ -1617,7 +1617,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Qwant',
         'engine_url'        => 'https://www.qwant.com',
     );
-    
+
     /* meanpathbot */
     $knownBots['meanpathbot'] = array(
         'platform_type'     => 'bot',
@@ -1627,7 +1627,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'meanpath',
         'engine_url'        => 'http://www.meanpath.com',
     );
-    
+
     /* Add Catalog */
     $knownBots['add catalog'] = array(
         'platform_type'     => 'bot',
@@ -1637,7 +1637,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SemrushBot */
     $knownBots['semrushbot'] = array(
         'platform_type'     => 'bot',
@@ -1647,7 +1647,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SEMrush',
         'engine_url'        => 'http://www.semrush.com',
     );
-    
+
     /* DuckDuckGo */
     $knownBots['duckduckgo'] = array(
         'platform_type'     => 'bot',
@@ -1657,7 +1657,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DuckDuckGo',
         'engine_url'        => 'http://duckduckgo.com',
     );
-    
+
     /* PageAnalyzer */
     $knownBots['pageanalyzer'] = array(
         'platform_type'     => 'bot',
@@ -1667,7 +1667,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'RANKS NL',
         'engine_url'        => 'http://www.ranks.nl',
     );
-    
+
     /* Superarama.com bot : Tamara */
     $knownBots['superarama.com-tarama-botu'] = array(
         'platform_type'     => 'bot',
@@ -1677,7 +1677,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Superarama.com',
         'engine_url'        => 'http://www.superarama.com',
     );
-    
+
     /* MixrankBot */
     $knownBots['mixrankbot'] = array(
         'platform_type'     => 'bot',
@@ -1687,7 +1687,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Mixrank',
         'engine_url'        => '',
     );
-    
+
     /* finbot */
     $knownBots['finbot'] = array(
         'platform_type'     => 'bot',
@@ -1697,7 +1697,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'findbot.com',
         'engine_url'        => 'http://findbot.com',
     );
-    
+
     /* Babya Discoverer */
     $knownBots['babya discoverer'] = array(
         'platform_type'     => 'bot',
@@ -1707,7 +1707,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* ContextAd Bot */
     $knownBots['contextad bot'] = array(
         'platform_type'     => 'bot',
@@ -1717,7 +1717,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'PulsePoint',
         'engine_url'        => 'http://www.pulsepoint.com',
     );
-    
+
     /* RSSMicro.com */
     $knownBots['rssmicro.com'] = array(
         'platform_type'     => 'bot',
@@ -1727,7 +1727,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'RSS Micro',
         'engine_url'        => 'http://www.rssmicro.com',
     );
-    
+
     /* Sisabot */
     $knownBots['sisabot'] = array(
         'platform_type'     => 'bot',
@@ -1737,7 +1737,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Sisabot',
         'engine_url'        => 'http://www.sisabot.com',
     );
-    
+
     /* go 1 */
     $knownBots['go 1'] = array(
         'platform_type'     => 'bot',
@@ -1747,7 +1747,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SimpleCrawler */
     $knownBots['simplecrawler'] = array(
         'platform_type'     => 'bot',
@@ -1757,7 +1757,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Gluten Free Crawler */
     $knownBots['gluten free crawler'] = array(
         'platform_type'     => 'bot',
@@ -1767,7 +1767,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* netEstate NE Crawler */
     $knownBots['netestate ne crawler'] = array(
         'platform_type'     => 'bot',
@@ -1777,7 +1777,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* idmarch bot */
     $knownBots['idmarch'] = array(
         'platform_type'     => 'bot',
@@ -1787,7 +1787,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'International Digital Media Archive',
         'engine_url'        => 'https://www.idmarch.org',
     );
-    
+
     /* ips-agent */
     $knownBots['ips-agent'] = array(
         'platform_type'     => 'bot',
@@ -1797,7 +1797,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Verisign',
         'engine_url'        => 'http://www.verisign.com',
     );
-    
+
     /* seegnifybot */
     $knownBots['seebot'] = array(
         'platform_type'     => 'bot',
@@ -1807,7 +1807,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Seegnify',
         'engine_url'        => 'http://www.seegnify.com',
     );
-    
+
     /* riddler */
     $knownBots['riddler'] = array(
         'platform_type'     => 'bot',
@@ -1817,7 +1817,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'riddler.io',
         'engine_url'        => 'https://riddler.io',
     );
-    
+
     /* MegaIndex.ru */
     $knownBots['megaindex.ru'] = array(
         'platform_type'     => 'bot',
@@ -1827,7 +1827,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'MegaIndex',
         'engine_url'        => 'https://MegaIndex.ru',
     );
-    
+
     /* PHPCrawl */
     $knownBots['phpcrawl'] = array(
         'platform_type'     => 'bot',
@@ -1837,7 +1837,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* worldwebheritage.org */
     $knownBots['worldwebheritage.org'] = array(
         'platform_type'     => 'bot',
@@ -1847,7 +1847,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* worldwebheritage.org */
     $knownBots['y!j-asr'] = array(
         'platform_type'     => 'bot',
@@ -1857,7 +1857,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Yahoo Japan',
         'engine_url'        => 'http://www.yahoo.co.jp/',
     );
-    
+
     /* SurdotlyBot */
     $knownBots['surdotlybot'] = array(
         'platform_type'     => 'bot',
@@ -1867,7 +1867,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'sur.ly',
         'engine_url'        => 'http://sur.ly',
     );
-    
+
     /* RogerBot */
     $knownBots['rogerbot'] = array(
         'platform_type'     => 'bot',
@@ -1877,7 +1877,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Moz',
         'engine_url'        => 'https://moz.com',
     );
-    
+
     /* NerdyBot */
     $knownBots['nerdybot'] = array(
         'platform_type'     => 'bot',
@@ -1887,7 +1887,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'NerdyData',
         'engine_url'        => 'http://nerdydata.com/',
     );
-    
+
     /* AdnormCrawler */
     $knownBots['adnormcrawler'] = array(
         'platform_type'     => 'bot',
@@ -1897,7 +1897,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Adnorm',
         'engine_url'        => 'http://www.adnorm.com/',
     );
-    
+
     /* Apercite */
     $knownBots['apercite'] = array(
         'platform_type'     => 'bot',
@@ -1907,7 +1907,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Apercite',
         'engine_url'        => 'http://www.apercite.fr/',
     );
-    
+
     /* Lipperhey-Kaus-Australis */
     $knownBots['lipperhey-kaus-australis'] = array(
         'platform_type'     => 'bot',
@@ -1917,7 +1917,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Dataprovider',
         'engine_url'        => 'https://www.dataprovider.com/',
     );
-    
+
     /* Lipperhey SEO Service */
     $knownBots['lipperhey seo'] = array(
         'platform_type'     => 'bot',
@@ -1927,7 +1927,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Dataprovider',
         'engine_url'        => 'https://www.dataprovider.com/',
     );
-    
+
     /* Dataprovider */
     $knownBots['dataprovider'] = array(
         'platform_type'     => 'bot',
@@ -1937,7 +1937,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Dataprovider',
         'engine_url'        => 'https://www.dataprovider.com/',
     );
-    
+
     /* SEOkicks */
     $knownBots['seokicks'] = array(
         'platform_type'     => 'bot',
@@ -1947,7 +1947,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SEOkicks',
         'engine_url'        => 'http://www.seokicks.de/',
     );
-    
+
     /* Focus Spider */
     $knownBots['focus spider'] = array(
         'platform_type'     => 'bot',
@@ -1957,7 +1957,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* zeerch */
     $knownBots['zeerch'] = array(
         'platform_type'     => 'bot',
@@ -1967,7 +1967,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Linkpad */
     $knownBots['linkpad'] = array(
         'platform_type'     => 'bot',
@@ -1977,7 +1977,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linkpad',
         'engine_url'        => 'http://www.linkpad.ru',
     );
-    
+
     /* MixBot */
     $knownBots['mixbot'] = array(
         'platform_type'     => 'bot',
@@ -1987,7 +1987,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'MixData',
         'engine_url'        => 'https://www.mixdata.com',
     );
-    
+
     /* TrueBot */
     $knownBots['truebot'] = array(
         'platform_type'     => 'bot',
@@ -1997,7 +1997,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* NetSeer crawler */
     $knownBots['netseer crawler'] = array(
         'platform_type'     => 'bot',
@@ -2007,7 +2007,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'NetSeer',
         'engine_url'        => 'http://www.netseer.com',
     );
-    
+
     /* AdvBot */
     $knownBots['advbot'] = array(
         'platform_type'     => 'bot',
@@ -2017,7 +2017,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* archive.org_bot */
     $knownBots['archive.org_bot'] = array(
         'platform_type'     => 'bot',
@@ -2027,7 +2027,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'archive.org',
         'engine_url'        => 'https://archive.org',
     );
-    
+
     /* Diffbot */
     $knownBots['diffbot'] = array(
         'platform_type'     => 'bot',
@@ -2037,7 +2037,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* GrapeshotCrawler */
     $knownBots['grapeshotcrawler'] = array(
         'platform_type'     => 'bot',
@@ -2047,7 +2047,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Grapeshot',
         'engine_url'        => 'http://www.grapeshot.co.uk',
     );
-    
+
     /* LSSRocketCrawler */
     $knownBots['lssrocketcrawler'] = array(
         'platform_type'     => 'bot',
@@ -2057,7 +2057,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Lightspeed Systems',
         'engine_url'        => 'http://www.lightspeedsystems.com',
     );
-    
+
     /* DomainMacroCrawler */
     $knownBots['domainmacrocrawler'] = array(
         'platform_type'     => 'bot',
@@ -2067,7 +2067,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DomainMacro',
         'engine_url'        => 'http://domainmacro.com',
     );
-    
+
     /* glindahl-cocrawler */
     $knownBots['glindahl-cocrawler'] = array(
         'platform_type'     => 'bot',
@@ -2077,7 +2077,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Greg Lindahl',
         'engine_url'        => 'http://www.pbm.com/~lindahl/',
     );
-    
+
     /* ocrawler */
     $knownBots['ocrawler'] = array(
         'platform_type'     => 'bot',
@@ -2087,7 +2087,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* WeViKaBot */
     $knownBots['wevikabot'] = array(
         'platform_type'     => 'bot',
@@ -2097,7 +2097,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'WeViKa',
         'engine_url'        => 'http://www.wevika.de',
     );
-    
+
     /* HyperCrawl */
     $knownBots['hypercrawl'] = array(
         'platform_type'     => 'bot',
@@ -2107,7 +2107,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SEO Graph',
         'engine_url'        => 'http://www.seograph.net',
     );
-    
+
     /* psbot */
     $knownBots['psbot'] = array(
         'platform_type'     => 'bot',
@@ -2117,7 +2117,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Picsearch',
         'engine_url'        => 'http://www.picsearch.com',
     );
-    
+
     /* BDCbot */
     $knownBots['bdcbot'] = array(
         'platform_type'     => 'bot',
@@ -2127,7 +2127,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'BigData',
         'engine_url'        => 'http://www.bigdatacorp.info',
     );
-    
+
     /* Thunderstone */
     $knownBots['t-h-u-n-d-e-r-s-t-o-n-e'] = array(
         'platform_type'     => 'bot',
@@ -2137,7 +2137,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Thunderstone',
         'engine_url'        => 'http://search.thunderstone.com',
     );
-    
+
     /* Thunderstone */
     $knownBots['thunderstone'] = array(
         'platform_type'     => 'bot',
@@ -2147,7 +2147,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Thunderstone',
         'engine_url'        => 'http://search.thunderstone.com',
     );
-    
+
     /* Barkrowler - to be placed before Owler */
     $knownBots['barkrowler'] = array(
         'platform_type'     => 'bot',
@@ -2157,7 +2157,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'exenSa',
         'engine_url'        => 'http://www.exensa.com',
     );
-    
+
     /* Owler */
     $knownBots['owler'] = array(
         'platform_type'     => 'bot',
@@ -2167,7 +2167,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* maluuba-crawler */
     $knownBots['maluuba-crawler'] = array(
         'platform_type'     => 'bot',
@@ -2177,7 +2177,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Digincore crawler */
     $knownBots['digincore crawler'] = array(
         'platform_type'     => 'bot',
@@ -2187,7 +2187,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Digincore.com',
         'engine_url'        => 'https://www.digincore.com/index.php',
     );
-    
+
     /* Guardcrwlr */
     $knownBots['guardcrwlr'] = array(
         'platform_type'     => 'bot',
@@ -2197,7 +2197,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Dazoobot */
     $knownBots['dazoobot'] = array(
         'platform_type'     => 'bot',
@@ -2207,7 +2207,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Dazoo',
         'engine_url'        => 'http://dazoo.fr',
     );
-    
+
     /* yelpspider */
     $knownBots['yelpspider'] = array(
         'platform_type'     => 'bot',
@@ -2217,7 +2217,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Yelp',
         'engine_url'        => 'http://yelp.com',
     );
-    
+
     /* SectorPages.com    */
     $knownBots['sectorpages.com'] = array(
         'platform_type'     => 'bot',
@@ -2227,7 +2227,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SectorPages.com',
         'engine_url'        => 'http://sectorpages.com',
     );
-    
+
     /* SEOlyticsCrawler */
     $knownBots['seolyticscrawler'] = array(
         'platform_type'     => 'bot',
@@ -2237,7 +2237,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SEOlytics',
         'engine_url'        => 'http://www.seolytics.com',
     );
-    
+
     /* Robot14 */
     $knownBots['robot14'] = array(
         'platform_type'     => 'bot',
@@ -2247,7 +2247,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Robot14',
         'engine_url'        => 'http://www.robot14.com/',
     );
-    
+
     /* MojeekBot */
     $knownBots['mojeekbot'] = array(
         'platform_type'     => 'bot',
@@ -2257,7 +2257,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Mojeek',
         'engine_url'        => 'https://www.mojeek.com',
     );
-    
+
     /* Findxbot */
     $knownBots['findxbot'] = array(
         'platform_type'     => 'bot',
@@ -2267,7 +2267,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Aloofly */
     $knownBots['aloofly'] = array(
         'platform_type'     => 'bot',
@@ -2277,7 +2277,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Aloofly',
         'engine_url'        => 'http://aloofly.com',
     );
-    
+
     /* QuerySeekerSpider */
     $knownBots['queryseekerspider'] = array(
         'platform_type'     => 'bot',
@@ -2287,7 +2287,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'QuerySeeker',
         'engine_url'        => 'http://queryseeker.com',
     );
-    
+
     /* 007ac9 Crawler */
     $knownBots['007ac9 crawler'] = array(
         'platform_type'     => 'bot',
@@ -2297,7 +2297,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Sistrix',
         'engine_url'        => 'https://www.sistrix.com/',
     );
-    
+
     /* Plukkie */
     $knownBots['plukkie'] = array(
         'platform_type'     => 'bot',
@@ -2307,7 +2307,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Botje',
         'engine_url'        => 'http://www.botje.com',
     );
-    
+
     /* Uptimebot */
     $knownBots['uptimebot'] = array(
         'platform_type'     => 'bot',
@@ -2317,7 +2317,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Uptime',
         'engine_url'        => 'http://www.uptime.com',
     );
-    
+
     /* CheckMarkNetwork */
     $knownBots['checkmarknetwork'] = array(
         'platform_type'     => 'bot',
@@ -2327,7 +2327,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'CheckMark Network',
         'engine_url'        => 'http://www.checkmarknetwork.com/',
     );
-    
+
     /* RukiCrawler */
     $knownBots['rukicrawler'] = array(
         'platform_type'     => 'bot',
@@ -2337,7 +2337,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* electricmonk */
     $knownBots['electricmonk'] = array(
         'platform_type'     => 'bot',
@@ -2347,7 +2347,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DueDil',
         'engine_url'        => 'https://www.duedil.com',
     );
-    
+
     /* DeuSu */
     $knownBots['deusu'] = array(
         'platform_type'     => 'bot',
@@ -2357,7 +2357,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'deusu',
         'engine_url'        => 'https://deusu.de/robot.html',
     );
-    
+
     /* Garlik */
     $knownBots['garlikcrawler'] = array(
         'platform_type'     => 'bot',
@@ -2367,7 +2367,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Garlik',
         'engine_url'        => 'http://garlik.com/',
     );
-    
+
     /* Experibot */
     $knownBots['experibot'] = array(
         'platform_type'     => 'bot',
@@ -2377,7 +2377,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SafeDNSBot */
     $knownBots['safednsbot'] = array(
         'platform_type'     => 'bot',
@@ -2387,7 +2387,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SafeDNS',
         'engine_url'        => 'https://www.safedns.com/',
     );
-    
+
     /* SMTBot mobile */
     $knownBots['mobile/10a5376e safari/8536.25 (compatible; smtbot'] = array(
         'platform_type'     => 'bot',
@@ -2407,7 +2407,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SimilarTech',
         'engine_url'        => 'http://www.similartech.com/',
     );
-    
+
     /* DNSdelve */
     $knownBots['dnsdelve'] = array(
         'platform_type'     => 'bot',
@@ -2417,7 +2417,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DNSdelve',
         'engine_url'        => 'http://www.dnsdelve.net',
     );
-    
+
     /* redback */
     $knownBots['redback'] = array(
         'platform_type'     => 'bot',
@@ -2427,7 +2427,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* seoscanners.net */
     $knownBots['seoscanners.net'] = array(
         'platform_type'     => 'bot',
@@ -2437,7 +2437,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* yoozBot */
     $knownBots['yoozbot'] = array(
         'platform_type'     => 'bot',
@@ -2447,7 +2447,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Yooz',
         'engine_url'        => 'http://yooz.ir',
     );
-    
+
     /* contactbigdatafr */
     $knownBots['contactbigdatafr'] = array(
         'platform_type'     => 'bot',
@@ -2457,7 +2457,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* LinqiaCrawlerBot */
     $knownBots['linqiacrawlerbot'] = array(
         'platform_type'     => 'bot',
@@ -2467,7 +2467,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linqia',
         'engine_url'        => 'http://www.linqia.com',
     );
-    
+
     /* LinqiaRSSBot */
     $knownBots['linqiarssbot'] = array(
         'platform_type'     => 'bot',
@@ -2477,7 +2477,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linqia',
         'engine_url'        => 'http://www.linqia.com',
     );
-    
+
     /* ZoomBot */
     $knownBots['zoombot'] = array(
         'platform_type'     => 'bot',
@@ -2487,7 +2487,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'seozoom',
         'engine_url'        => 'https://www.seozoom.it',
     );
-    
+
     /* eXenSa-DEW - to be added before bubing */
     $knownBots['exensa'] = array(
         'platform_type'     => 'bot',
@@ -2497,7 +2497,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'eXenSa',
         'engine_url'        => 'http://www.exensa.com',
     );
-    
+
     /* BUbiNG */
     $knownBots['bubing'] = array(
         'platform_type'     => 'bot',
@@ -2507,7 +2507,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* CATExplorador */
     $knownBots['catexplorador'] = array(
         'platform_type'     => 'bot',
@@ -2517,7 +2517,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* aisou */
     $knownBots['aisou'] = array(
         'platform_type'     => 'bot',
@@ -2527,7 +2527,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* IDBot */
     $knownBots['idbot'] = array(
         'platform_type'     => 'bot',
@@ -2537,7 +2537,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ID-Search<sup>xyz</sup>',
         'engine_url'        => 'http://www.id-search.xyz',
     );
-    
+
     /* DomainCrawler */
     $knownBots['domaincrawler'] = array(
         'platform_type'     => 'bot',
@@ -2547,7 +2547,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DomainCrawler',
         'engine_url'        => 'http://www.domaincrawler.com',
     );
-    
+
     /* parsijoo-bot */
     $knownBots['parsijoo-bot'] = array(
         'platform_type'     => 'bot',
@@ -2557,7 +2557,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Parsijoo',
         'engine_url'        => 'http://www.parsijoo.ir/',
     );
-    
+
     /* bnf.fr_bot */
     $knownBots['bnf.fr_bot'] = array(
         'platform_type'     => 'bot',
@@ -2567,7 +2567,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Biblioth&egrave;que Nationale de France',
         'engine_url'        => 'http://www.bnf.fr',
     );
-    
+
     /* sSearch Crawler */
     $knownBots['ssearch_bot'] = array(
         'platform_type'     => 'bot',
@@ -2577,7 +2577,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'sSearch',
         'engine_url'        => 'http://www.semantissimo.de',
     );
-    
+
     /* wonderbot/JS */
     $knownBots['wonderbot/js'] = array(
         'platform_type'     => 'bot',
@@ -2587,7 +2587,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SecurityResearch.bot */
     $knownBots['securityresearch.bot'] = array(
         'platform_type'     => 'bot',
@@ -2597,7 +2597,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* deeris */
     $knownBots['deeris'] = array(
         'platform_type'     => 'bot',
@@ -2607,7 +2607,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Searchie */
     $knownBots['searchie'] = array(
         'platform_type'     => 'bot',
@@ -2617,7 +2617,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* AugDiscovery-Bot */
     $knownBots['augdiscovery-bot'] = array(
         'platform_type'     => 'bot',
@@ -2627,7 +2627,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* ToweYandext */
     $knownBots['toweyabot'] = array(
         'platform_type'     => 'bot',
@@ -2637,7 +2637,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Toweya',
         'engine_url'        => 'toweya.com',
     );
-    
+
     /* RSSingBot */
     $knownBots['rssingbot'] = array(
         'platform_type'     => 'bot',
@@ -2647,7 +2647,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'RSSing',
         'engine_url'        => 'http://www.rssing.com',
     );
-    
+
     /* exif-search */
     $knownBots['www.exif-search.com'] = array(
         'platform_type'     => 'bot',
@@ -2657,7 +2657,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Exif Search',
         'engine_url'        => 'https://www.exif-search.com',
     );
-    
+
     /* Digincore bot */
     $knownBots['digincore bot'] = array(
         'platform_type'     => 'bot',
@@ -2667,7 +2667,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Digincore',
         'engine_url'        => 'https://www.digincore.com',
     );
-    
+
     /* Wopabot */
     $knownBots['wopabot'] = array(
         'platform_type'     => 'bot',
@@ -2677,7 +2677,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Wopa',
         'engine_url'        => 'https://www.wopa.fr/',
     );
-    
+
     /* linkapediabot */
     $knownBots['linkapediabot'] = array(
         'platform_type'     => 'bot',
@@ -2687,7 +2687,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linkapedia',
         'engine_url'        => 'http://www.linkapedia.com',
     );
-    
+
     /* WBSearchBot */
     $knownBots['wbsearchbot'] = array(
         'platform_type'     => 'bot',
@@ -2697,7 +2697,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Warebay',
         'engine_url'        => 'http://www.warebay.com',
     );
-    
+
     /* BacklinkCrawler */
     $knownBots['backlinkcrawler'] = array(
         'platform_type'     => 'bot',
@@ -2707,7 +2707,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'backlink test',
         'engine_url'        => 'http://www.backlinktest.com',
     );
-    
+
     /* ParsijooBot */
     $knownBots['parsijoobot'] = array(
         'platform_type'     => 'bot',
@@ -2717,7 +2717,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Parsijoo',
         'engine_url'        => 'http://www.parsijoo.ir',
     );
-    
+
     /* Stratagems Kumo */
     $knownBots['stratagems kumo'] = array(
         'platform_type'     => 'bot',
@@ -2727,7 +2727,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* ExactSeekCrawler */
     $knownBots['exactseekcrawler'] = array(
         'platform_type'     => 'bot',
@@ -2737,7 +2737,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Jaunt */
     $knownBots['jaunt/'] = array(
         'platform_type'     => 'bot',
@@ -2747,7 +2747,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* UXCrawlerBot    */
     $knownBots['uxcrawlerbot'] = array(
         'platform_type'     => 'bot',
@@ -2757,7 +2757,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Zium',
         'engine_url'        => 'http://zium.co',
     );
-    
+
     /* HRCrawlerBot    */
     $knownBots['hrcrawlerbot'] = array(
         'platform_type'     => 'bot',
@@ -2767,7 +2767,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* LinqiaMetadataDownloaderBot    */
     $knownBots['linqiametadatadownloaderbot'] = array(
         'platform_type'     => 'bot',
@@ -2777,7 +2777,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* roboto    */
     $knownBots['roboto'] = array(
         'platform_type'     => 'bot',
@@ -2787,7 +2787,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* 2ADAMbot */
     $knownBots['2adambot'] = array(
         'platform_type'     => 'bot',
@@ -2797,7 +2797,7 @@ function _client_getKnownBots() {
         'engine_title'      => '2adam',
         'engine_url'        => 'http://www.2adam.com',
     );
-    
+
     /* mfibot */
     $knownBots['mfibot'] = array(
         'platform_type'     => 'bot',
@@ -2807,7 +2807,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'mfisoft',
         'engine_url'        => 'http://www.mfisoft.ru/analyst/',
     );
-    
+
     /* FlippyBearBot */
     $knownBots['flippybearbot'] = array(
         'platform_type'     => 'bot',
@@ -2817,7 +2817,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* vebidoobot */
     $knownBots['vebidoobot'] = array(
         'platform_type'     => 'bot',
@@ -2827,7 +2827,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'vebidoo',
         'engine_url'        => 'https://www.vebidoo.de',
     );
-    
+
     /* Xaldon WebSpider */
     $knownBots['xaldon'] = array(
         'platform_type'     => 'bot',
@@ -2837,7 +2837,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Xaldon',
         'engine_url'        => 'http://www.xaldon.de',
     );
-    
+
     /* panscient.com */
     $knownBots['panscient.com'] = array(
         'platform_type'     => 'bot',
@@ -2847,7 +2847,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'panscient.com',
         'engine_url'        => 'http://panscient.com',
     );
-    
+
     /* semanticbot */
     $knownBots['semanticbot'] = array(
         'platform_type'     => 'bot',
@@ -2857,7 +2857,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* LinqiaScrapeBot */
     $knownBots['linqiascrapebot'] = array(
         'platform_type'     => 'bot',
@@ -2867,7 +2867,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Linqia',
         'engine_url'        => 'http://www.linqia.com',
     );
-    
+
     /* focusbot */
     $knownBots['focusbot'] = array(
         'platform_type'     => 'bot',
@@ -2877,7 +2877,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* orbiter */
     $knownBots['orbiter'] = array(
         'platform_type'     => 'bot',
@@ -2887,7 +2887,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DailyOrbit',
         'engine_url'        => 'http://dailyorbit.com',
     );
-    
+
     /* spuhexbot */
     $knownBots['spuhexbot'] = array(
         'platform_type'     => 'bot',
@@ -2897,7 +2897,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Spuhex',
         'engine_url'        => 'http://www.spuhex.com',
     );
-    
+
     /* iZSearch.com    */
     $knownBots['izsearch.com'] = array(
         'platform_type'     => 'bot',
@@ -2907,7 +2907,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'iZSearch.com',
         'engine_url'        => 'http://iZSearch.com',
     );
-    
+
     /* servernfo.com    */
     $knownBots['servernfo.com'] = array(
         'platform_type'     => 'bot',
@@ -2917,7 +2917,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'servernfo.com',
         'engine_url'        => 'http://servernfo.com/',
     );
-    
+
     /* PrivacyAwareBot */
     $knownBots['privacyawarebot'] = array(
         'platform_type'     => 'bot',
@@ -2927,7 +2927,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Privacy Aware',
         'engine_url'        => 'http://www.privacyaware.org',
     );
-    
+
     /* WbSrch */
     $knownBots['wbsrch'] = array(
         'platform_type'     => 'bot',
@@ -2937,7 +2937,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'WbSrch',
         'engine_url'        => 'http://wbsrch.com',
     );
-    
+
     /* Cuasarbot */
     $knownBots['cuasarbot'] = array(
         'platform_type'     => 'bot',
@@ -2947,7 +2947,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Cuasar',
         'engine_url'        => 'http://www.cuasar.com/spider_beta/',
     );
-    
+
     /* Lippershey */
     $knownBots['lippershey'] = array(
         'platform_type'     => 'bot',
@@ -2957,7 +2957,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Lipperhey',
         'engine_url'        => 'https://www.lipperhey.com',
     );
-    
+
     /* ImplisenseBot */
     $knownBots['implisensebot'] = array(
         'platform_type'     => 'bot',
@@ -2967,7 +2967,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Implisense',
         'engine_url'        => 'http://implisense.com',
     );
-    
+
     /* coccoc */
     $knownBots['coccoc'] = array(
         'platform_type'     => 'bot',
@@ -2977,7 +2977,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'coccoc',
         'engine_url'        => 'http://help.coccoc.com/',
     );
-    
+
     /* coccoc */
     $knownBots['coccoc'] = array(
         'platform_type'     => 'bot',
@@ -2987,7 +2987,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'coccoc',
         'engine_url'        => 'http://help.coccoc.com/',
     );
-    
+
     /* ltbot */
     $knownBots['ltbot'] = array(
         'platform_type'     => 'bot',
@@ -2997,7 +2997,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Knowledge Discovery Scientific Literature',
         'engine_url'        => 'http://www.kdsl.tu-darmstadt.de/de/kdsl/research-program/crawling-and-semantic-structuring/',
     );
-    
+
     /* HRCrawler */
     $knownBots['hrcrawler'] = array(
         'platform_type'     => 'bot',
@@ -3007,7 +3007,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Simple crawler */
     $knownBots['simple crawler'] = array(
         'platform_type'     => 'bot',
@@ -3017,7 +3017,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* uMBot */
     $knownBots['umbot'] = array(
         'platform_type'     => 'bot',
@@ -3027,7 +3027,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ubermetrics',
         'engine_url'        => 'http://www.ubermetrics-technologies.com',
     );
-    
+
     /* JobFeed discovery script */
     $knownBots['jobfeed discovery script'] = array(
         'platform_type'     => 'bot',
@@ -3037,7 +3037,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'JobFeed',
         'engine_url'        => 'http://www.jobfeed.com',
     );
-    
+
     /* LinkStats Bot */
     $knownBots['linkstats bot'] = array(
         'platform_type'     => 'bot',
@@ -3047,7 +3047,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Peter Shumacher',
         'engine_url'        => 'http://web-eifel.de',
     );
-    
+
     /* ichiro */
     $knownBots['ichiro'] = array(
         'platform_type'     => 'bot',
@@ -3057,7 +3057,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* archive-fr.com */
     $knownBots['archive-fr.com'] = array(
         'platform_type'     => 'bot',
@@ -3067,7 +3067,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Archive-fr.com',
         'engine_url'        => 'http://archive-fr.com/',
     );
-    
+
     /* serbot */
     $knownBots['serbot'] = array(
         'platform_type'     => 'bot',
@@ -3077,7 +3077,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'serdec',
         'engine_url'        => 'http://www.serdec.com',
     );
-    
+
     /* TWMBot */
     $knownBots['twmbot'] = array(
         'platform_type'     => 'bot',
@@ -3087,7 +3087,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'The Web Miner',
         'engine_url'        => 'https://thewebminer.com',
     );
-    
+
     /* LinkWalker */
     $knownBots['linkwalker'] = array(
         'platform_type'     => 'bot',
@@ -3097,7 +3097,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Brand Protect',
         'engine_url'        => 'http://www.brandprotect.com',
     );
-    
+
     /* SpiderLing */
     $knownBots['spiderling'] = array(
         'platform_type'     => 'bot',
@@ -3107,7 +3107,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'BiWeC',
         'engine_url'        => 'https://nlp.fi.muni.cz/projects/biwec/',
     );
-    
+
     /* SafeSearch microdata crawler */
     $knownBots['safesearch microdata crawler'] = array(
         'platform_type'     => 'bot',
@@ -3117,7 +3117,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Avira',
         'engine_url'        => 'https://www.avira.com/fr/index',
     );
-    
+
     /* Corporama matcher */
     $knownBots['corporama matcher'] = array(
         'platform_type'     => 'bot',
@@ -3127,7 +3127,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* ActiveWorlds */
     $knownBots['activeworlds'] = array(
         'platform_type'     => 'bot',
@@ -3137,7 +3137,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ActiveWorlds',
         'engine_url'        => 'https://www.activeworlds.com/web/index.php',
     );
-    
+
     /* HELLO Crawler */
     $knownBots['hello crawler'] = array(
         'platform_type'     => 'bot',
@@ -3147,7 +3147,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Larbin */
     $knownBots['larbin'] = array(
         'platform_type'     => 'bot',
@@ -3165,7 +3165,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* IpixelY */
     $knownBots['ipixely'] = array(
         'platform_type'     => 'bot',
@@ -3175,7 +3175,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'IpixelY',
         'engine_url'        => 'http://www.ipixely.xyz',
     );
-    
+
     /* JamesBOT */
     $knownBots['james bot'] = array(
         'platform_type'     => 'bot',
@@ -3193,7 +3193,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Congitive SEO',
         'engine_url'        => 'http://cognitiveseo.com',
     );
-    
+
     /* aranea */
     $knownBots['aranea'] = array(
         'platform_type'     => 'bot',
@@ -3203,7 +3203,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Web Corpora &amp; Corpus Linguistics Portal',
         'engine_url'        => 'http://aranea.juls.savba.sk/aranea_about.html',
     );
-    
+
     /* VenusCrawler */
     $knownBots['venuscrawler'] = array(
         'platform_type'     => 'bot',
@@ -3213,7 +3213,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* gobyus */
     $knownBots['gobyus'] = array(
         'platform_type'     => 'bot',
@@ -3223,7 +3223,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'gobyus',
         'engine_url'        => 'http://gobyus.com/en',
     );
-    
+
     /* WP Spydr */
     $knownBots['wp spydr'] = array(
         'platform_type'     => 'bot',
@@ -3233,7 +3233,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Virusdie crawler */
     $knownBots['virusdie crawler'] = array(
         'platform_type'     => 'bot',
@@ -3243,7 +3243,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Virusdie',
         'engine_url'        => 'https://virusdie.com',
     );
-    
+
     /* StumbleUpon crawler */
     $knownBots['stumbleupon'] = array(
         'platform_type'     => 'bot',
@@ -3253,7 +3253,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'StumbleUpon',
         'engine_url'        => 'https://http://www.stumbleupon.com',
     );
-    
+
     /* Vegi bot */
     $knownBots['vegi bot'] = array(
         'platform_type'     => 'bot',
@@ -3263,7 +3263,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* AwarioSmartBot */
     $knownBots['awariosmartbot'] = array(
         'platform_type'     => 'bot',
@@ -3273,7 +3273,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Awario',
         'engine_url'        => 'https://awario.com',
     );
-    
+
     /* 0xff.org */
     $knownBots['0xff.org'] = array(
         'platform_type'     => 'bot',
@@ -3283,7 +3283,7 @@ function _client_getKnownBots() {
         'engine_title'      => '0xff.org',
         'engine_url'        => 'https://0xff.org',
     );
-    
+
     /* YaK from linkfluence.com */
     $knownBots['linkfluence.com'] = array(
         'platform_type'     => 'bot',
@@ -3293,7 +3293,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'linkfluence',
         'engine_url'        => 'http://linkfluence.com/',
     );
-    
+
     /* aboundex */
     $knownBots['aboundex'] = array(
         'platform_type'     => 'bot',
@@ -3303,7 +3303,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Aboundex',
         'engine_url'        => 'http://www.aboundex.com/',
     );
-    
+
     /* KomodiaBot */
     $knownBots['komodiabot'] = array(
         'platform_type'     => 'bot',
@@ -3313,7 +3313,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Komodia',
         'engine_url'        => 'http://www.komodia.com/',
     );
-    
+
     /* spyonweb.com */
     $knownBots['spyonweb.com'] = array(
         'platform_type'     => 'bot',
@@ -3323,7 +3323,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SpyOnWeb',
         'engine_url'        => 'http://spyonweb.com/',
     );
-    
+
     /* ZoominfoBot */
     $knownBots['zoominfobot'] = array(
         'platform_type'     => 'bot',
@@ -3333,7 +3333,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ZoominfoBot',
         'engine_url'        => 'http://www.zoominfo.com/',
     );
-    
+
     /* XilopixBot */
     $knownBots['xilopixbot'] = array(
         'platform_type'     => 'bot',
@@ -3343,7 +3343,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Xilopix',
         'engine_url'        => 'http://pro.xilopix.com',
     );
-    
+
     /* kula.jp/endo */
     $knownBots['kula.jp/endo'] = array(
         'platform_type'     => 'bot',
@@ -3353,7 +3353,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Endo',
         'engine_url'        => 'http://kula.jp/endo',
     );
-    
+
     /* DJEcoBot */
     $knownBots['djecobot'] = array(
         'platform_type'     => 'bot',
@@ -3363,7 +3363,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DemandJump',
         'engine_url'        => 'https://www.demandjump.com',
     );
-    
+
     /* RankingBot2 */
     $knownBots['rankingbot2'] = array(
         'platform_type'     => 'bot',
@@ -3373,7 +3373,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'varocarbas.com',
         'engine_url'        => 'https://varocarbas.com',
     );
-    
+
     /* AliveAdvisorCrawler */
     $knownBots['aliveadvisorcrawler'] = array(
         'platform_type'     => 'bot',
@@ -3383,7 +3383,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'AliveAdvisor',
         'engine_url'        => 'http://search.aliveadvisor.com',
     );
-    
+
     /* http://www.x9o.de */
     $knownBots['www.x9o.de'] = array(
         'platform_type'     => 'bot',
@@ -3393,7 +3393,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'x9o.de',
         'engine_url'        => 'http://www.x9o.de',
     );
-    
+
     /* ExtLinksBot */
     $knownBots['extlinksbot'] = array(
         'platform_type'     => 'bot',
@@ -3403,7 +3403,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ExtLinks',
         'engine_url'        => 'https://extlinks.com/',
     );
-    
+
     /* DomainStatsBot */
     $knownBots['domainstatsbot'] = array(
         'platform_type'     => 'bot',
@@ -3413,7 +3413,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DomainStats.io',
         'engine_url'        => 'http://domainstats.io/',
     );
-    
+
     /* GroupHigh */
     $knownBots['grouphigh'] = array(
         'platform_type'     => 'bot',
@@ -3423,7 +3423,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'GroupHigh',
         'engine_url'        => 'http://www.grouphigh.com/',
     );
-    
+
     /* Melodibot */
     $knownBots['melodibot'] = array(
         'platform_type'     => 'bot',
@@ -3433,7 +3433,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'IRIT',
         'engine_url'        => 'https://www.irit.fr',
     );
-    
+
     /* SnowHaze SearcH */
     $knownBots['snowhaze search'] = array(
         'platform_type'     => 'bot',
@@ -3443,7 +3443,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SnowHaze',
         'engine_url'        => 'https://snowhaze.com/',
     );
-    
+
     /* Scopia Crawler */
     $knownBots['scopia crawler'] = array(
         'platform_type'     => 'bot',
@@ -3453,7 +3453,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Scopia',
         'engine_url'        => 'http://www.scopia.co',
     );
-    
+
     /* Companybook-Crawler */
     $knownBots['companybook-crawler'] = array(
         'platform_type'     => 'bot',
@@ -3463,7 +3463,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Companybook',
         'engine_url'        => 'https://www.companybooknetworking.com',
     );
-    
+
     /* ExperianCrawlUK */
     $knownBots['experiancrawluk'] = array(
         'platform_type'     => 'bot',
@@ -3473,7 +3473,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'PHGroup',
         'engine_url'        => 'http://www.phgroup.com',
     );
-    
+
     /* Zombiebot */
     $knownBots['zombiebot'] = array(
         'platform_type'     => 'bot',
@@ -3483,7 +3483,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ZombieDomain',
         'engine_url'        => 'http://www.zombiedomain.net',
     );
-    
+
     /* AlphaBot */
     $knownBots['alphabot'] = array(
         'platform_type'     => 'bot',
@@ -3493,7 +3493,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Alpha SEO Bot',
         'engine_url'        => 'http://alphaseobot.com/',
     );
-    
+
     /* Gowikibot */
     $knownBots['gowikibot'] = array(
         'platform_type'     => 'bot',
@@ -3503,7 +3503,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'GoWiki',
         'engine_url'        => '',
     );
-    
+
     /* Seobility */
     $knownBots['seobility'] = array(
         'platform_type'     => 'bot',
@@ -3513,7 +3513,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Seobility',
         'engine_url'        => 'https://www.seobility.net/en/',
     );
-    
+
     /* IndeedBot */
     $knownBots['indeedbot'] = array(
         'platform_type'     => 'bot',
@@ -3523,7 +3523,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* looid.com crawler */
     $knownBots['looid.com crawler'] = array(
         'platform_type'     => 'bot',
@@ -3533,7 +3533,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* um-LN */
     $knownBots['um-ln'] = array(
         'platform_type'     => 'bot',
@@ -3543,7 +3543,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'uberMetrics Technologies',
         'engine_url'        => 'https://www.ubermetrics-technologies.com',
     );
-    
+
     /* um-FC */
     $knownBots['um-fc'] = array(
         'platform_type'     => 'bot',
@@ -3553,7 +3553,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'uberMetrics Technologies',
         'engine_url'        => 'https://www.ubermetrics-technologies.com',
     );
-    
+
     /* Grobbot */
     $knownBots['grobbot'] = array(
         'platform_type'     => 'bot',
@@ -3563,7 +3563,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Grob',
         'engine_url'        => 'https://grob.it',
     );
-    
+
     /* Contacts-Crawler */
     $knownBots['contacts-crawler'] = array(
         'platform_type'     => 'bot',
@@ -3573,7 +3573,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Scrapinghub',
         'engine_url'        => 'http://www.scrapinghub.com',
     );
-    
+
     /* GeeGee */
     $knownBots['geegee'] = array(
         'platform_type'     => 'bot',
@@ -3583,7 +3583,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'GeeGee',
         'engine_url'        => 'https://geegee.online/',
     );
-    
+
     /* AplicatiiGalaxy */
     $knownBots['aplicatiigalaxy'] = array(
         'platform_type'     => 'bot',
@@ -3593,7 +3593,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* PiplBot */
     $knownBots['piplbot'] = array(
         'platform_type'     => 'bot',
@@ -3603,7 +3603,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Pipl',
         'engine_url'        => 'http://www.pipl.com',
     );
-    
+
     /* LightspeedSystemsCrawler */
     $knownBots['lightspeedsystemscrawler'] = array(
         'platform_type'     => 'bot',
@@ -3613,7 +3613,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Lightspeed Systems, Inc.',
         'engine_url'        => 'https://www.lightspeedsystems.com',
     );
-    
+
     /* SearchmetricsBot */
     $knownBots['searchmetricsbot'] = array(
         'platform_type'     => 'bot',
@@ -3623,7 +3623,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'SearchMetrics',
         'engine_url'        => 'https://www.searchmetrics.com/',
     );
-    
+
     /* Techlimed */
     $knownBots['techlimed'] = array(
         'platform_type'     => 'bot',
@@ -3633,7 +3633,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Techlimed',
         'engine_url'        => '',
     );
-    
+
     /* pmoz.info */
     $knownBots['pmoz.info'] = array(
         'platform_type'     => 'bot',
@@ -3643,7 +3643,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Dmoz.org',
         'engine_url'        => 'http://www.dmoz.org',
     );
-    
+
     /* ArchiveBot */
     $knownBots['archivebot'] = array(
         'platform_type'     => 'bot',
@@ -3653,7 +3653,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ArchiveTeam',
         'engine_url'        => 'https://www.archiveteam.org',
     );
-    
+
     /* OrgProbe */
     $knownBots['orgprobe'] = array(
         'platform_type'     => 'bot',
@@ -3663,7 +3663,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Blocked!',
         'engine_url'        => 'https://www.blocked.org.uk',
     );
-    
+
     /* RobotsChecker */
     $knownBots['robotschecker'] = array(
         'platform_type'     => 'bot',
@@ -3673,7 +3673,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Blocked!',
         'engine_url'        => 'https://www.blocked.org.uk',
     );
-    
+
     /* Researchscan */
     $knownBots['researchscan'] = array(
         'platform_type'     => 'bot',
@@ -3683,7 +3683,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'RWTH Aachen University',
         'engine_url'        => 'http://www.rwth-aachen.de',
     );
-    
+
     /* Jooblebot */
     $knownBots['jooblebot'] = array(
         'platform_type'     => 'bot',
@@ -3693,7 +3693,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Jooble',
         'engine_url'        => 'https://jooble.org',
     );
-    
+
     /* MBCrawler */
     $knownBots['mbcrawler'] = array(
         'platform_type'     => 'bot',
@@ -3703,7 +3703,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'monitorbacklinks',
         'engine_url'        => 'https://monitorbacklinks.com',
     );
-    
+
     /* DomainSigmaCrawler */
     $knownBots['domainsigmacrawler'] = array(
         'platform_type'     => 'bot',
@@ -3713,7 +3713,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DomainSigma',
         'engine_url'        => 'http://domainsigma.com/',
     );
-    
+
     /* Hstpnetwork.com */
     $knownBots['hstpnetwork.com'] = array(
         'platform_type'     => 'bot',
@@ -3723,7 +3723,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'HSTPNetwork',
         'engine_url'        => 'http://www.hstpnetwork.com',
     );
-    
+
     /* NYU Internet Census */
     $knownBots['nyu internet census'] = array(
         'platform_type'     => 'bot',
@@ -3733,7 +3733,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'NYU Internet Census',
         'engine_url'        => 'https://scan.lol',
     );
-    
+
     /* Streamline3Bot */
     $knownBots['streamline3bot'] = array(
         'platform_type'     => 'bot',
@@ -3743,7 +3743,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'UBT',
         'engine_url'        => 'https://www.ubtsupport.com',
     );
-    
+
     /* DomainCheck.io */
     $knownBots['domaincheck.io'] = array(
         'platform_type'     => 'bot',
@@ -3753,7 +3753,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'DomainCheck.io',
         'engine_url'        => 'https://domaincheck.io',
     );
-    
+
     /* Datanyze */
     $knownBots['datanyze'] = array(
         'platform_type'     => 'bot',
@@ -3763,7 +3763,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Datanyze',
         'engine_url'        => 'https://www.datanyze.com',
     );
-    
+
     /* eright */
     $knownBots['eright'] = array(
         'platform_type'     => 'bot',
@@ -3773,7 +3773,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'eRight',
         'engine_url'        => 'https://www.eright.com',
     );
-    
+
     /* NetTrack */
     $knownBots['nettrack'] = array(
         'platform_type'     => 'bot',
@@ -3783,7 +3783,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'NetTrack',
         'engine_url'        => 'https://nettrack.info/',
     );
-    
+
     /* bitlybot */
     $knownBots['bitlybot'] = array(
         'platform_type'     => 'bot',
@@ -3793,7 +3793,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Bit.ly',
         'engine_url'        => 'http://bit.ly/',
     );
-    
+
     /* e.ventures Investment Crawler (eventures.vc)  */
     $knownBots['e.venture'] = array(
         'platform_type'     => 'bot',
@@ -3803,7 +3803,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'e.ventures Investment',
         'engine_url'        => 'https://eventures.vc',
     );
-    
+
     /* tracemyfile  */
     $knownBots['tracemyfile'] = array(
         'platform_type'     => 'bot',
@@ -3813,7 +3813,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'tracemyfile',
         'engine_url'        => 'https://tracemyfile.com',
     );
-    
+
     /* bitlybot */
     $knownBots['bitlybot'] = array(
         'platform_type'     => 'bot',
@@ -3823,7 +3823,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'Bit.ly',
         'engine_url'        => 'http://bit.ly/',
     );
-    
+
     /* 3w24bot */
     $knownBots['3w24bot'] = array(
         'platform_type'     => 'bot',
@@ -3833,7 +3833,7 @@ function _client_getKnownBots() {
         'engine_title'      => '3W24',
         'engine_url'        => 'https://3w24.com',
     );
-    
+
     /* trendictionbot */
     $knownBots['trendictionbot'] = array(
         'platform_type'     => 'bot',
@@ -3843,7 +3843,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'trendiction.de',
         'engine_url'        => 'http://www.trendiction.de',
     );
-    
+
     /* Quick-Crawler */
     $knownBots['quick-crawler'] = array(
         'platform_type'     => 'bot',
@@ -3853,7 +3853,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'ScrapingHub',
         'engine_url'        => 'https://www.scrapinghub.com/',
     );
-    
+
     /* A6-Indexer */
     $knownBots['a6-indexer'] = array(
         'platform_type'     => 'bot',
@@ -3863,7 +3863,7 @@ function _client_getKnownBots() {
         'engine_title'      => 'A6Corp',
         'engine_url'        => 'http://www.a6corp.com',
     );
-    
+
     /* VelenPublicWebCrawler */
     $knownBots['velenpublicwebcrawler'] = array(
         'platform_type'     => 'bot',
@@ -3873,7 +3873,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* 1001FirmsBot */
     $knownBots['1001firmsbot'] = array(
         'platform_type'     => 'bot',
@@ -3883,9 +3883,19 @@ function _client_getKnownBots() {
         'engine_title'      => '1001 Firms',
         'engine_url'        => 'https://www.1001firms.com/',
     );
-    
+
+    /* nsrbot */
+    $knownBots['nsrbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'nsrbot',
+        'bot_url'           => '',
+        'engine_title'      => 'Net Systems Research',
+        'engine_url'        => 'http://netsystemsresearch.com',
+    );
+
     /* unknown bots */
-    
+
     /* SEOBulls - unknown bot */
     $knownBots['seo bulls'] = array(
         'platform_type'     => 'bot',
@@ -3895,7 +3905,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SEOBulls - unknown bot */
     $knownBots['seobulls'] = array(
         'platform_type'     => 'bot',
@@ -3905,7 +3915,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* unknown bot */
     $knownBots['tmm crawler'] = array(
         'platform_type'     => 'bot',
@@ -3915,7 +3925,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* unknown bot */
     $knownBots['no.indexing@gmail.com'] = array(
         'platform_type'     => 'bot',
@@ -3925,7 +3935,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* unknown bot */
     $knownBots['nbertaupete95(at)gmail.com'] = array(
         'platform_type'     => 'bot',
@@ -3935,7 +3945,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Centurybot9 - unknown bot */
     $knownBots['centurybot9'] = array(
         'platform_type'     => 'bot',
@@ -3945,7 +3955,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* celious search engine - unknown bot */
     $knownBots['celious search engine'] = array(
         'platform_type'     => 'bot',
@@ -3955,7 +3965,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SMURLExpander - unknown bot */
     $knownBots['smurlexpander'] = array(
         'platform_type'     => 'bot',
@@ -3965,7 +3975,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* DnyzBot - unknown bot */
     $knownBots['dnyzbot'] = array(
         'platform_type'     => 'bot',
@@ -3975,7 +3985,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* adscanner - unknown bot */
     $knownBots['adscanner'] = array(
         'platform_type'     => 'bot',
@@ -3985,7 +3995,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* UCmore - unknown bot */
     $knownBots['ucmore'] = array(
         'platform_type'     => 'bot',
@@ -3995,7 +4005,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* BigDataCloud - unknown bot */
     $knownBots['bigdatacloud'] = array(
         'platform_type'     => 'bot',
@@ -4005,7 +4015,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Peopleman - unknown bot */
     $knownBots['peopleman'] = array(
         'platform_type'     => 'bot',
@@ -4015,7 +4025,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* KickFire - unknown bot */
     $knownBots['kickfire'] = array(
         'platform_type'     => 'bot',
@@ -4025,7 +4035,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Microgine Crawler - unknown bot */
     $knownBots['microgine crawler'] = array(
         'platform_type'     => 'bot',
@@ -4035,7 +4045,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Meta_Bot - unknown bot */
     $knownBots['meta_bot'] = array(
         'platform_type'     => 'bot',
@@ -4045,7 +4055,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Your-Website-Sucks - unknown bot */
     $knownBots['your-website-sucks'] = array(
         'platform_type'     => 'bot',
@@ -4055,7 +4065,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* test/0.1 (tester)    - unknown bot */
     $knownBots['tester'] = array(
         'platform_type'     => 'bot',
@@ -4065,7 +4075,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* MauiBot - unknown bot */
     $knownBots['mauibot'] = array(
         'platform_type'     => 'bot',
@@ -4075,7 +4085,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* MauiBot ? crawler (crawler.feedback@gmail.com) - unknown bot */
     $knownBots['crawler.feedback@gmail.com'] = array(
         'platform_type'     => 'bot',
@@ -4085,7 +4095,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* Auto Spider - unknown bot */
     $knownBots['auto spider'] = array(
         'platform_type'     => 'bot',
@@ -4095,7 +4105,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* The Knowledge AI  - unknown bot */
     $knownBots['the knowledge ai'] = array(
         'platform_type'     => 'bot',
@@ -4105,7 +4115,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* CRMNLCrawlAgent  - unknown bot */
     $knownBots['crmnlcrawlagent'] = array(
         'platform_type'     => 'bot',
@@ -4115,7 +4125,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* SOcrawl  - unknown bot */
     $knownBots['socrawl'] = array(
         'platform_type'     => 'bot',
@@ -4125,7 +4135,7 @@ function _client_getKnownBots() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
-    
+
     /* return bot list */
     return $knownBots;
 }

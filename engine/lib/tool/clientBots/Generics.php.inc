@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -577,6 +577,16 @@ function _client_getKnownGenerics() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'ua-resty-http Library',
         'tool_url'          => 'https://github.com/pintsized/lua-resty-http',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* photon */
+    $knownGenerics['photon'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Photon',
+        'tool_url'          => 'https://www.distilnetworks.com/bot-directory/bot/photon1-0/',
         'engine_title'      => '',
         'engine_url'        => '',
     );

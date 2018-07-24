@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.25
+ * @version 1.0.26
  * @date Creation: Jun 2007
  * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -1213,7 +1213,7 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/IMO.php.inc');
         $infos = array_merge($infos, get_IMOClientDevice($matches[1]));
     }
-    
+
     /* check Blackview mobiles */
     elseif (preg_match('/ BV([a-zA-Z0-9\-]*) Build/', $ua, $matches)) {
         include_once ('clientDevices/Blackview.php.inc');
@@ -1452,8 +1452,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check gen computer browsers */
-    elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
-        $rep = array('VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser');
+    elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront)(?:\/| )?([a-z0-9\._]*)/', $ua, $matches)) {
+        $rep = array('VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser', 'NetFront' => 'Access NetFront');
         $infos = array_merge(array(
             'platform_type'     => 'computer',
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],

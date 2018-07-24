@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -50,6 +50,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T813'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
 
         /* Samsung phones */
+        'GT-C3590'  => array('platform_model' => 'C3590',                       'platform_year' => 2013,    'system_title' => 'Symbian'),
         'GT-S3800W' => array('platform_model' => 'REX 70',                      'platform_year' => 2013),
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                    'platform_year' => 2010),
         'GT-S7562'  => array('platform_model' => 'Galaxy S Duo',                'platform_year' => 2012),
@@ -211,7 +212,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
         'SM-G130HN' => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
         'SGH-I547'  => array('platform_model' => 'Galaxy Rugby Pro',            'platform_year' => 2012),
-        
+
         'Galaxy'    => array('platform_model' => 'Galaxy'),
         'E7'        => array('platform_model' => 'Galaxy E7',                   'platform_year' => 2016),
     );
