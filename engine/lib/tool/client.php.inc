@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Jun 2007
  * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -379,7 +379,7 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
-    elseif (preg_match('/(Galaxy|E[0-9]) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (Galaxy|E[0-9]) Build/', $ua, $matches)) {
         include_once ('clientDevices/Samsung.php.inc');
         $infos = array_merge($infos, get_SamsungClientDevice($matches[1]));
     } elseif (preg_match('/(klte)/', $ua, $matches))
@@ -583,13 +583,10 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Wiko */
-    elseif (preg_match('/(DARKSIDE|LENNY|RIDGE 4G|U FEEL LITE|FEVER|JERRY|TOMMY|RAINBOW|SUNSET|PULP 4G)([0-9]*)?/i', $ua, $matches)) {
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Wiko',
-            'platform_model'    => ucwords(strtolower($matches[1])).(isset($matches[2])?' '.$matches[2]:''),
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
+    elseif (preg_match('/ (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
+        $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
+        include_once ('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
     }
 
     /* check SpreadTrum */
@@ -793,7 +790,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Coolpad devices */
-    elseif (preg_match('/(CP|Coolpad )([A-Z0-9_\-]+) Build/', $ua, $matches)) {
+    elseif (preg_match('/(CP[0-9]|Coolpad )([A-Z0-9_\-]+) Build/', $ua, $matches)) {
         include_once ('clientDevices/Coolpad.php.inc');
         $infos = array_merge($infos, get_CoolpadClientDevice($matches[2]));
     }
@@ -1092,27 +1089,12 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Oppo mobiles */
-    elseif (preg_match('/(1201|A37fw|F1f) Build/', $ua, $matches)) {
-        $rep = array(
-            'F1f'   => array('platform_model' => 'F1',),
-        );
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Oppo',
-            'platform_model'    => $model,
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-            ),
-            isset($rep[$model])?$rep[$model]:array()
-        );
+    elseif (preg_match('/(1201|A37fw|F1f|CPH1861) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Oppo.php.inc');
+        $infos = array_merge($infos, get_OppoClientDevice($matches[1]));
     } elseif (preg_match('/OPPO ([^.]+) Build/', $ua, $matches)) {
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Oppo',
-            'platform_model'    => $model,
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
+        include_once ('clientDevices/Oppo.php.inc');
+        $infos = array_merge($infos, get_OppoClientDevice($matches[1]));
     }
 
     /* check Hisense mobiles */
@@ -1387,7 +1369,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check unsmartly written browser, case sensitive */
-    elseif (preg_match('/(SE )(?:\/| )?([a-z0-9\._]*)?/', $ua, $matches)) {
+    elseif (preg_match('/ (SE )(?:\/| )?([a-z0-9\._]*)?/', $ua, $matches)) {
         $rep = array('SE '=>'Sogou Explorer');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
