@@ -5,9 +5,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/GenericPageController/GenericPageController.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jan 2010
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2010 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,6 +31,7 @@ final class GenericPageController extends Input {
         'hideEmpty'     => 0,
         'theme'         => '',
         'buttonSource'  => 'plugin',
+        'buttonFormat'  => 'gif',
         'styleSource'   => 'plugin',
         'styleFile'     => '',
         'jsLink'        => '', /* obj.go_toPage(_page_); */
@@ -184,7 +185,7 @@ final class GenericPageController extends Input {
                     return $this->theme->get_pictURL('empty', 12, 'std');
             }
         }
-        return $this->get_fileURL('img/'.$button.'.gif');
+        return $this->get_fileURL('img/'.$button.'.'.$this->params['buttonFormat']);
     }
 }
 ?>
