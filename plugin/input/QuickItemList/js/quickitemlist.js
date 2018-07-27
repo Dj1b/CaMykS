@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Javascript Library
- * Creation Date       	: Mar 2007
- * Last Modif Date	: Mar 2007
- *
- * QuickItemList object
+/**
+ * @brief QuickItemList Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/QuickItemList/js/QuickItemList.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Mar 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* constructor */
@@ -28,7 +28,7 @@ function QuickItemList ( n ) {
 
   /* separator */
   this.separator = null;
-  
+
   /* html elements */
   this.divElement = document.createElement('div');
   this.tableElement = document.createElement('table');
@@ -61,19 +61,19 @@ QuickItemList.prototype.initialise = function ( ) {
   /* get html list boxes */
   this.fullListBox = document.getElementById ( this.name+'_fullListBox');
   this.editListBox = document.getElementById ( this.name+'_editListBox');
-  
+
   /* get icon elements */
   this.buttonList['plus'] = this.get_buttonElement('plus');
   this.buttonList['minus'] = this.get_buttonElement('minus');
 
   /* get form item */
-  this.formItem = eval ( 'document.'+this.formname+'.'+this.itemname ); 
-  
+  this.formItem = eval ( 'document.'+this.formname+'.'+this.itemname );
+
   /* add full list items */
   for ( var i in this.fullList ) {
     this.add_fullItem ( this.fullList[i] );
   }
-  
+
   /* add edit list items */
   for ( var i in this.editListItems ) {
     this.add_item ( this.editListItems[i] );
@@ -107,18 +107,18 @@ QuickItemList.prototype.add_fullItem = function ( item ) {
   td.appendChild( a );
   tr.appendChild( td );
   table.appendChild ( tr );
-  
+
   /* add element to the list box */
   this.fullListBox.appendChild( table );
 }
 
 /* running value */
 QuickItemList.prototype.add_item = function ( item ) {
-  if ( array_in ( this.editList, item ) ) 
+  if ( array_in ( this.editList, item ) )
     return;
-  
+
   this.editList[this.editList.length] = item;
-  
+
   /* build div item */
   elmt = this.divElement.cloneNode(true);
   elmt.setAttribute ('id', this.name+'_'+item);
@@ -147,10 +147,10 @@ QuickItemList.prototype.add_item = function ( item ) {
   tr.appendChild( td );
   table.appendChild ( tr );
   elmt.appendChild ( table );
-  
+
   /* add element to the list box */
-  this.editListBox.appendChild( elmt );    
-  
+  this.editListBox.appendChild( elmt );
+
   /* update list */
   this.update_formList();
 }
@@ -196,7 +196,7 @@ QuickItemList.prototype.get_buttonElement = function(button) {
   elmt.setAttribute('src', this.iconList[button]);
   elmt.setAttribute('border', 0);
   elmt.setAttribute('alt', '');
-  
+
   if (this.iconList[button+'_over']) {
     elmt.setAttribute('onmouseover', 'this.src="'+this.iconList[button+'_over']+'";');
     elmt.setAttribute('onmouseout', 'this.src="'+this.iconList[button]+'";');
