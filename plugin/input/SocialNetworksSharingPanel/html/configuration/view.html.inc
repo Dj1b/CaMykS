@@ -4,11 +4,11 @@
  * Developed by		: camyks.net
  * Author			: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Input Layout
  * Creation Date    : Jan 2018
- * Last Modif Date	: Jan 2018
- * 
+ * Last Modif Date	: Jul 2018
+ *
  * SocialNetworksSharingPanel special layout : view configuration
 */
 global $camyks;
@@ -17,13 +17,39 @@ global $camyks;
 <?=$camyks->theme->get_boxContent2Header();?>
 <div id="itemShare" style="display:<?=$this->tabBuilder->get_tabDisplay('Share')?>;"  class="adminContentPanel">
 <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
-  
+   <tr>
+      <td class="eTableHeader" colspan="2">
+        <?=$this->get_translation('formdesc_settings'); ?>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="eTableLine0 eContent2">
+        <?=$this->get_translation('formitem_pictureformat');?>
+      </td>
+      <td class="eTableLine0 eContent1">
+        <?=$this->config->get_pictureFormatValue('share'); ?>
+      </td>
+    </tr>
+
+  <tr>
+    <td class="eTableLine0 eContent2" colspan="2">
+      &nbsp;
+    </td>
+  </tr>
+
+  <tr>
+    <td class="eTableHeader" colspan="2">
+      <?=$this->get_translation('formtitle_networks'); ?>
+    </td>
+  </tr>
+
   <tr>
     <td class="eTableLine0 eContent2" colspan="2">
       <?=$this->get_translation('formdesc_share'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2" style="width:160px;">
       &nbsp;
@@ -32,7 +58,7 @@ global $camyks;
       &nbsp;
     </td>
   </tr>
-  
+
   <?php $alt = 0; ?>
   <?php foreach ($this->networks as $network => $data) : ?>
   <?php if ($data['share'] == 1) : ?>
@@ -47,19 +73,19 @@ global $camyks;
   <?php $alt = abs($alt-1); ?>
   <?php endif; ?>
   <?php endforeach; ?>
-    
+
   <tr>
     <td class="eTableLine0 eContent2" colspan="2">
       &nbsp;
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableHeader" colspan="2">
       <?=$this->get_translation('formtitle_like'); ?>
     </td>
   </tr>
-  
+
 
   <tr>
     <td class="eTableLine<?=$alt;?> eContent2">
@@ -75,13 +101,13 @@ global $camyks;
 
 <div id="itemFollow" style="display:<?=$this->tabBuilder->get_tabDisplay('Follow')?>;"  class="adminContentPanel">
   <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
-  
+
     <tr>
       <td class="eTableHeader" colspan="2">
         <?=$this->get_translation('formdesc_settings'); ?>
       </td>
     </tr>
-  
+
     <tr>
     <td class="eTableLine0 eContent2">
       <?=$this->get_translation('formitem_insertion');?>
@@ -90,7 +116,7 @@ global $camyks;
       <?=$this->config->get_followInsertionTitle(); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine1 eContent2">
       <?=$this->get_translation('formitem_stylesource');?>
@@ -99,7 +125,7 @@ global $camyks;
       <?=$this->config->get_followStyleSourceTitle(); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?=$this->get_translation('formitem_location');?>
@@ -108,25 +134,34 @@ global $camyks;
       <?=$this->config->get_followLocationTitle(); ?>
     </td>
   </tr>
-  
+
+  <tr>
+    <td class="eTableLine1 eContent2">
+      <?=$this->get_translation('formitem_pictureformat');?>
+    </td>
+    <td class="eTableLine1 eContent1">
+      <?=$this->config->get_pictureFormatValue('follow'); ?>
+    </td>
+  </tr>
+
   <tr>
     <td class="eTableLine0 eContent2" colspan="2">
       &nbsp;
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableHeader" colspan="2">
       <?=$this->get_translation('formtitle_follownetworks'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2" colspan="2">
       <?=$this->get_translation('formdesc_follow'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2" style="width:160px;">
       &nbsp;
@@ -135,7 +170,7 @@ global $camyks;
       &nbsp;
     </td>
   </tr>
-  
+
   <?php $alt = 0; ?>
   <?php foreach ($this->networks as $network => $data) : ?>
   <?php if ($data['follow'] == 1) : ?>

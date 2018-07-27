@@ -4,11 +4,11 @@
  * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Input Layout
  * Create Date		: Nov 2009
- * Last Modif Date	: Jan 2018
- * 
+ * Last Modif Date	: Jul 2018
+ *
  * SocialNetworksSharingPanel input layout - share mode
 */
 $n = $this->dparams['networks'][1];
@@ -25,7 +25,7 @@ $n = $this->dparams['networks'][1];
 <?php foreach ($this->networks as $name => $network ) : ?>
 <?php if ($network['share'] == 1 and $this->config->vars['share_'.$name] == 1) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> class="img" target="_blank" rel="noopener">
-<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>" 
+<img src="<?=$this->get_networkIconURL($name, 'share');?>"
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:0 2px; border:0;" />
 </a>
 <?php if (--$n > 0 ) : ?>
@@ -77,7 +77,7 @@ $n = $this->dparams['networks'][1];
 <?php foreach ($this->networks as $name => $network) : ?>
 <?php if ($network['share'] == 1 and $this->config->vars['share_'.$network] == 2) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank" rel="noopener">
-<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>" 
+<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>"
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:4px; border:0;" />
 </a>
 <?php endif; ?>

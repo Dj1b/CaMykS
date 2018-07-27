@@ -3,13 +3,13 @@
  * CaMykS Engine
  * Developed by	    : camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0a
- * Object Version   : 1.0
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Input Dictionnary
  * Create Date		: Feb 2012
- * Last Modif Date	: Jan 2018
+ * Last Modif Date	: Jul 2018
  *
- * SocialNetworksSharingPanel language dictionnary : english 
+ * SocialNetworksSharingPanel language dictionnary : english
  */
 
 /* default share by email values */
@@ -21,6 +21,8 @@ $this->trads['input_socialnetworkssharingpanel_followuson'] = 'Follow us on %s';
 
 /* configuration */
 $this->trads['input_socialnetworkssharingpanel_tabshare'] = 'Share';
+$this->trads['input_socialnetworkssharingpanel_formitem_pictureformat'] = 'Icon format: ';
+$this->trads['input_socialnetworkssharingpanel_formtitle_networks'] = 'Social networks';
 $this->trads['input_socialnetworkssharingpanel_formdesc_share'] = 'Indicate social networks your visitors will be able to share your pages, articles, ...';
 $this->trads['input_socialnetworkssharingpanel_formtitle_like'] = 'Links "Like"';
 $this->trads['input_socialnetworkssharingpanel_formitem_layout'] = 'Layout: ';
@@ -51,7 +53,7 @@ $this->trads['input_socialnetworkssharingpanel_followstylesource_theme'] = 'Them
 
 $this->trads['input_socialnetworkssharingpanel_followlocation_fixedleft'] = 'Fixed to the left';
 $this->trads['input_socialnetworkssharingpanel_followlocation_fixedright'] = 'Fixed to the right';
- 
+
 $this->trads['input_socialnetworkssharingpanel_formtitle_follownetworks'] = 'Your pages to follow';
 
 ?>

@@ -4,13 +4,11 @@
  * Developed by	   	: camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version 	: 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Input Engine
  * Creation Date	: Nov 2009
- * Last Modif Date	: Nov 2009
- * History : 
- * * 09-11-18 : Initial files
- * 
+ * Last Modif Date	: Jul 2018
+ *
  * Display all social network sharing links
  */
 
@@ -22,7 +20,7 @@ class SocialNetworksSharingPanel extends Input {
   /* current index for multiple display */
   var $currentIndex;
 
-  /* 
+  /*
    * constructor
    * @param string $path_type
    */
@@ -30,36 +28,36 @@ class SocialNetworksSharingPanel extends Input {
     global $camyks;
     parent::Input('SocialNetworksSharingPanel', $path_type);
     /* set plugin version */
-    $this->version = '1.0';
-    
+    $this->version = '1.0.1';
+
     /* set plugin package */
     $this->plugin_package = 'Default';
-    
+
     /* set plugin author */
     $this->author_name = 'CaMykS Team';
     $this->author_mail = 'camyks.contact@gmail.com';
     $this->author_group = 'camyks.net';
-    
+
     /* load networks */
     $this->initialise_networkList();
-    
+
     /* load configuration library */
     $this->load_library('SocialNetworksSharingPanelConfig');
-    
+
     /* register plugin as Admin_Site extension */
     $this->register_asExtension('Admin_Site');
-    
+
     /* load config */
     $this->config = new SocialNetworksSharingPanelConfig('config', $this);
     $this->config->get();
-    
+
     /* check for automatique adding */
     if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['follow_insertion'] == 1) {
       $this->register_asCaMykSEventHandler('onPageLoad');
       $this->register_asCaMykSEventHandler('onBodyClose');
     }
   }
-  
+
   /* overwrite input methods */
 
   /*
@@ -70,7 +68,7 @@ class SocialNetworksSharingPanel extends Input {
    * @access public
    */
   function initialise($params=array(), $mode='share') {
-    
+
     /* check mode to execute */
     switch ($mode) {
       case 'share': return $this->initialise_sharePanel($params);
@@ -86,19 +84,19 @@ class SocialNetworksSharingPanel extends Input {
    * @access public
    */
   function display($params=array(), $mode='share') {
-        
+
     /* check mode to execute */
     switch ($mode) {
       case 'share': $this->display_sharePanel($params); break;
       case 'follow' : $this->display_followPanel($params); break;
     }
-    
+
     /* generic display */
     parent::display();
   }
-  
-  
-  
+
+
+
   /*
    * execute handler on body closing
    * @return string
@@ -107,7 +105,7 @@ class SocialNetworksSharingPanel extends Input {
   public function execute_onCaMykSPageLoad() {
     $this->initialise(array(), 'follow');
   }
-  
+
   /*
    * execute handler on body opening
    * @return string
@@ -115,9 +113,9 @@ class SocialNetworksSharingPanel extends Input {
    */
   public function execute_onCaMykSBodyOpen() {
     global $languages, $camyks;
-        
+
     $l = $languages[$camyks->current_language]['locale'][''][0];
-     
+
     return "<div id=\"fb-root\"></div>\n
             <script>(function(d, s, id) {\n
             var js, fjs = d.getElementsByTagName(s)[0];\n
@@ -127,7 +125,7 @@ class SocialNetworksSharingPanel extends Input {
             fjs.parentNode.insertBefore(js, fjs);\n
             }(document, 'script', 'facebook-jssdk'));</script>";
   }
-  
+
   /*
    * execute handler on body closing
    * @return string
@@ -137,9 +135,9 @@ class SocialNetworksSharingPanel extends Input {
     $this->display(array(), 'follow');
     return '';
   }
-  
+
   /* specific initialise mode methods */
-  
+
   /*
    * initialise input in share mode
    * @param array $params
@@ -148,10 +146,10 @@ class SocialNetworksSharingPanel extends Input {
    */
   function initialise_sharePanel($params) {
     global $camyks;
-    
+
     /* initialise index */
     $this->currentIndex = 0;
-    
+
     /* set initial params */
     $this->iparams = array('text'=>'',
 			   'block_class'=>'SNSP share',
@@ -169,10 +167,10 @@ class SocialNetworksSharingPanel extends Input {
 			   'include_ogmetas'=>0,
 			   'networks'=>array(0, 0, 0),
 			   'locale'=>$camyks->current_language);
-    
+
     /* merge params */
     $this->iparams = array_merge($this->iparams, $params);
-    
+
     /* clean title & description */
     if (string_isHTML($this->iparams['title']))
       $this->iparams['title'] = string_html2text($this->iparams['title']);
@@ -186,7 +184,7 @@ class SocialNetworksSharingPanel extends Input {
     $this->add_JSScript('var snsp = new SNSPanel("snsp");');
     $this->add_JSEngineFile('tool/htmlelement.js');
     $this->add_JSLoadScript('snsp.initialise();');
-    
+
     /* prepare specific facebook like integration */
     if ($this->config->vars['like_facebook'] == 1 ) {
       $this->register_asCaMykSEventHandler('onBodyOpen');
@@ -194,7 +192,7 @@ class SocialNetworksSharingPanel extends Input {
 
     /* set theme */
     $this->theme = &$camyks->themes[$this->iparams['theme']];
-    
+
     /* add og metas to header */
     if ($this->iparams['include_ogmetas'] == 1) {
       $camyks->HTMLPage->add_meta('og:locale', $this->iparams['locale'], 'property');
@@ -206,7 +204,7 @@ class SocialNetworksSharingPanel extends Input {
       if ($this->iparams['type'] != '') $camyks->HTMLPage->add_meta('og:type', $this->iparams['type'], 'property');
     }
   }
-  
+
   /*
    * initialise input in follow mode
    * @param array $params
@@ -214,18 +212,18 @@ class SocialNetworksSharingPanel extends Input {
    * @access private
    */
   function initialise_followPanel($params) {
-    
+
     /* merge params */
     $this->params = array_merge($this->config->vars, $params);
-    
+
     /* check for styles loading */
     if ($this->params['follow_insertion'] == 1 and $this->params['follow_styleSource'] == 'plugin') {
       $this->add_styleFile('css/styles.css');
     }
   }
-  
+
   /* specific display mode methods */
-  
+
   /*
    * display input in share mode
    * @param array $params
@@ -233,18 +231,18 @@ class SocialNetworksSharingPanel extends Input {
    * @access private
    */
   function display_sharePanel($params=array()) {
-    
+
     /* update index */
     $this->currentIndex++;
 
     /* merge new params */
     $this->dparams = array_merge($this->iparams, $params);
     $this->count_displayedNetworks();
-    
+
     /* update selected layout */
     $this->selected_layout = 'input.html.inc';
   }
-  
+
   /*
    * display input in share mode
    * @param array $params
@@ -271,7 +269,7 @@ class SocialNetworksSharingPanel extends Input {
       return '';
     return 'href="'.$this->get_networkURL($network, 'link').'"';
   }
-  
+
   /*
    * return given network href link
    * @param string $network
@@ -285,7 +283,7 @@ class SocialNetworksSharingPanel extends Input {
       return '';
     return 'onclick="'.$this->get_networkURL($network, 'clic').'"';
   }
-  
+
   /*
    * return given network URL
    * @param string $network
@@ -300,7 +298,7 @@ class SocialNetworksSharingPanel extends Input {
             $link = $this->dparams['shortlink'];
           else
             $link = $this->dparams['link'];
-          
+
           $txtLength = 143 - strlen($link);
           $title = string_getShortenedSentence(urlencode($this->dparams['title']), $txtLength);
           return vsprintf($this->networks[$network][$mode], $title.'+'.$link);
@@ -312,7 +310,17 @@ class SocialNetworksSharingPanel extends Input {
 				      2=>urlencode($this->dparams['title']),
 				      3=>urlencode($this->dparams['summary'])));
   }
-  
+
+  /*
+   * return given network icon url
+   * @param string $network
+   * @param string $mode
+   * @return string
+   */
+  public function get_networkIconURL($network='', $mode='') {
+    return $this->get_fileURL('img/'.$mode.'Icons/'.$network.'.'.$this->get_configValue($mode.'_pictureFormat'));
+  }
+
   /*
    * count enabled networks
    * @return void
@@ -323,7 +331,7 @@ class SocialNetworksSharingPanel extends Input {
       if ($network['share'] == 1)
         $this->dparams['networks'][$this->config->vars['share_'.$name]]++;
   }
-  
+
   /*
    * initialise network list
    * @return void
@@ -331,7 +339,7 @@ class SocialNetworksSharingPanel extends Input {
    */
   function initialise_networkList() {
   	global $camyks;
-  	
+
     $this->networks = array(
         /* add facebook */
         'facebook' => array(
@@ -342,7 +350,7 @@ class SocialNetworksSharingPanel extends Input {
 			'follow'    => 1,
 			'like'      => 1,
 		),
-		
+
 		/* add twitter */
         'twitter' => array(
             'title'     => 'Twitter',
@@ -351,7 +359,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 		),
-		
+
 		/* add google+ */
         'gplus' => array(
             'title'     => 'Google +',
@@ -360,7 +368,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 		),
-    
+
         /* add linkedin */
         'linkedin' => array(
             'title'     => 'LinkedIn',
@@ -369,7 +377,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 	    ),
-    
+
         /* add instagram */
         'instagram' => array(
             'title'     => 'Instagram',
@@ -378,7 +386,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 0,
 			'follow'    => 1,
 	    ),
-    
+
         /* add Youtube */
         'youtube' => array(
             'title'     => 'Youtube',
@@ -387,7 +395,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 0,
 			'follow'    => 1,
 	    ),
-    
+
         /* add DailyMotion */
         'dailymotion' => array(
             'title'     => 'DailyMotion',
@@ -405,11 +413,11 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 		),
-    
+
         /* add digg */
         'digg' => array(
             'title'     => 'Digg',
-			'link'      => 'http://digg.com/submit?url=%1$s&title=%2$s&bodytext=%3$s', 
+			'link'      => 'http://digg.com/submit?url=%1$s&title=%2$s&bodytext=%3$s',
 			'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
@@ -423,7 +431,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 		),
-    
+
         /* add technorati */
         'technorati' => array(
             'title'     => 'Technorati',
@@ -441,7 +449,7 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 		),
-		
+
         /* add stumbleupon */
         'stumbleupon' => array(
             'title'     => 'StumbleUpon',
@@ -450,79 +458,79 @@ class SocialNetworksSharingPanel extends Input {
 			'share'     => 1,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add viadeo */
 	    'viadeo' => array(
-	        'title'     => 'Viadeo', 
+	        'title'     => 'Viadeo',
 		    'link'      => 'http://www.viadeo.com/shareit/share/?url=%1$s&title=%2$s&urllanguage='.$camyks->current_language,
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add pinterest */
 	    'pinterest' => array(
-	        'title'     => 'Pinterest', 
+	        'title'     => 'Pinterest',
 		    'link'      => 'https://www.pinterest.com/pin/create/button/?url=%1$s&Description=%2$s',
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add tumbler */
 	    'tumblr' => array(
-	        'title'     => 'Tumblr', 
+	        'title'     => 'Tumblr',
 		    'link'      => 'http://tumblr.com/widgets/share/tool?canonicalUrl=%1$s',
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add vimeo */
 	    'vimeo' => array(
-	        'title'     => 'Vimeo', 
+	        'title'     => 'Vimeo',
 		    'link'      => '',
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add flickr */
 	    'flickr' => array(
-	        'title'     => 'Flickr', 
+	        'title'     => 'Flickr',
 		    'link'      => '',
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add blogger */
 	    'blogger' => array(
-	        'title'     => 'Blogger', 
+	        'title'     => 'Blogger',
 		    'link'      => 'https://www.blogger.com/blog_this.pyra?t&u=%1$s&n=%2$s',
     	    'clic'      => '',
 			'share'     => 1,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add DeviantArt */
 	    'deviantart' => array(
-	        'title'     => 'DeviantArt', 
+	        'title'     => 'DeviantArt',
 		    'link'      => '',
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
 		),
-				    
+
 	    /* add SnapShat */
 	    'snapchat' => array(
-	        'title'     => 'Snapshat', 
+	        'title'     => 'Snapshat',
 		    'link'      => '',
     	    'clic'      => '',
 			'share'     => 0,
 			'follow'    => 1,
 		),
-   
+
         /* add email */
         'email' => array(
             'title'     => 'E-mail',
@@ -533,9 +541,18 @@ class SocialNetworksSharingPanel extends Input {
 		),
 	);
   }
-  
+
+  /*
+   * Return configuration value
+   * @param string $item
+   * @return mixed
+   */
+  private function get_configValue($item) {
+    return $this->config->get_value($item);
+  }
+
   /* Admin_Site extension configuration methods */
-  
+
   /*
    * initialise object in Admin_Site / view configuration mode
    * @return void
@@ -543,10 +560,10 @@ class SocialNetworksSharingPanel extends Input {
    */
   public function initialise_configDisplay() {
     global $camyks;
-    
+
     /* prepare tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
-    
+
     /* add tabs */
     $this->tabBuilder->add_tabs(array(
         array(
@@ -558,11 +575,11 @@ class SocialNetworksSharingPanel extends Input {
 		    'title' => $this->get_translation('tabfollow'),
 		),
     ));
-			      
+
     /* initialise tabs */
     $this->tabBuilder->initialise(array('default'=>'Share'));
   }
-  
+
   /*
    * display object in Admin_Site / view configuration mode
    * @return void
@@ -571,7 +588,7 @@ class SocialNetworksSharingPanel extends Input {
   public function display_configDisplay() {
     $this->load_file('html/configuration/view.html.inc');
   }
-  
+
   /*
    * initialise object in Admin_Site / edit configuration mode
    * @param Object $form
@@ -580,18 +597,18 @@ class SocialNetworksSharingPanel extends Input {
    */
   public function initialise_configEdition($form) {
     global $camyks;
-    
+
     /* update form */
     $this->form = &$form;
     $this->form->set_object($this->config);
-    
+
     /* load data */
     $this->sharingValues = $this->config->get_sharingNetworkList();
     $this->likeValues = $this->config->get_networkLikeList();
-    
+
     /* prepare tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
-    
+
     /* add tabs */
     $this->tabBuilder->add_tabs(array(
         array(
@@ -603,11 +620,11 @@ class SocialNetworksSharingPanel extends Input {
 		    'title' => $this->get_translation('tabfollow'),
 		),
     ));
-			      
+
     /* initialise tabs */
     $this->tabBuilder->initialise(array('default'=>'Share'));
   }
-  
+
   /*
    * display object in Admin_Site / edit configuration mode
    * @return void
@@ -616,7 +633,7 @@ class SocialNetworksSharingPanel extends Input {
   public function display_configEdition() {
     $this->load_file('html/configuration/edit.html.inc');
   }
-    
+
   /*
    * execute object in Admin_Site / save configuration mode
    * @return void
