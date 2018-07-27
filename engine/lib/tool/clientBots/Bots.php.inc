@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -3891,7 +3891,17 @@ function _client_getKnownBots() {
         'bot_title'         => 'nsrbot',
         'bot_url'           => '',
         'engine_title'      => 'Net Systems Research',
-        'engine_url'        => 'http://netsystemsresearch.com',
+        'engine_url'        => 'http://netsystemsresearch.com/',
+    );
+
+    /* proximic */
+    $knownBots['proximic'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'proximic',
+        'bot_url'           => 'https://www.comscore.com/Web-Crawler',
+        'engine_title'      => 'comScore',
+        'engine_url'        => 'https://www.comscore.com/',
     );
 
     /* unknown bots */

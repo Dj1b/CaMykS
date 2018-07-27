@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -24,16 +24,19 @@ function get_WikoClientDevice($deviceCode='') {
         'birdy'             => array('platform_model' => 'Birdy',           'platform_year' => 2014),
         'bloom'             => array('platform_model' => 'Bloom',           'platform_year' => 2014),
         'bloom2'            => array('platform_model' => 'Bloom 2',         'platform_year' => 2015),
+        's8030(2g)'         => array('platform_model' => 'Cink',            'platform_year' => 2012),
         'cink king'         => array('platform_model' => 'Cink King',       'platform_year' => 2012),
         'cink five'         => array('platform_model' => 'Cink Five',       'platform_year' => 2013),
         'cink peax'         => array('platform_model' => 'Cink Peax',       'platform_year' => 2013),
         'cink_peax_2'       => array('platform_model' => 'Cink Peax 2',     'platform_year' => 2013),
         'darkfull'          => array('platform_model' => 'Darkfull',        'platform_year' => 2013),
+        's9203'             => array('platform_model' => 'Darknight',       'platform_year' => 2014),
         'darkmoon'          => array('platform_model' => 'Darkmoon',        'platform_year' => 2013),
         'darkside'          => array('platform_model' => 'Darkside',        'platform_year' => 2013),
         'fever'             => array('platform_model' => 'Fever',           'platform_year' => 2015),
         'fizz'              => array('platform_model' => 'Fizz',            'platform_year' => 2014),
         'freddy'            => array('platform_model' => 'Freddy',          'platform_year' => 2016),
+        'v3903'             => array('platform_model' => 'Freddy 4G',       'platform_year' => 2016),
         'getaway'           => array('platform_model' => 'Getaway',         'platform_year' => 2014),
         'goa'               => array('platform_model' => 'Goa',             'platform_year' => 2014),
         'harry'             => array('platform_model' => 'Harry',           'platform_year' => 2017),
@@ -47,6 +50,7 @@ function get_WikoClientDevice($deviceCode='') {
         'jerry'             => array('platform_model' => 'Jerry',           'platform_year' => 2016),
         'jerry2'            => array('platform_model' => 'Jerry 2',         'platform_year' => 2017),
         'jerry max'         => array('platform_model' => 'Jerry Max',       'platform_year' => 2017),
+        'v2800an'           => array('platform_model' => 'K Kool',          'platform_year' => 2016),
         'jimmy'             => array('platform_model' => 'Jimmy',           'platform_year' => 2014),
         'kenny'             => array('platform_model' => 'Kenny',           'platform_year' => 2017),
         'kite'              => array('platform_model' => 'Kite',            'platform_year' => 2014),
@@ -91,6 +95,7 @@ function get_WikoClientDevice($deviceCode='') {
         'tommy'             => array('platform_model' => 'Tommy',           'platform_year' => 2016),
         'tommy2'            => array('platform_model' => 'Tommy 2',         'platform_year' => 2017),
         'tommy2 plus'       => array('platform_model' => 'Tommy 2 Plus',    'platform_year' => 2017),
+        'w_k600'            => array('platform_model' => 'Tommy 3',         'platform_year' => 2018),
         'u feel'            => array('platform_model' => 'U Feel',          'platform_year' => 2016),
         'u feel 4g'         => array('platform_model' => 'U Feel 4g',       'platform_year' => 2016),
         'u feel fab'        => array('platform_model' => 'U Feel Fab',      'platform_year' => 2016),

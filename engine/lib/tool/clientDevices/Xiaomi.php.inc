@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -22,7 +22,7 @@ function get_XiaomiClientDevice($deviceCode='') {
     $deviceList = array(
         /* tablets */
         'mi pad'        => array('platform_model' => 'MI PAD',          'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2014),
-        
+
         /* phones */
         'mi 2'          => array('platform_model' => 'Mi 2',            'platform_year' => 2012),
         'mi 5'          => array('platform_model' => 'Mi 5',            'platform_year' => 2016),
@@ -32,6 +32,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi 3s'      => array('platform_model' => 'Redmi 3S',        'platform_year' => 2016),
         'redmi note 3'  => array('platform_model' => 'Redmi Note 3',    'platform_year' => 2015),
         'redmi note 4'  => array('platform_model' => 'Redmi Note 4',    'platform_year' => 2016),
+        'redmi 5a'      => array('platform_model' => 'Redmi 5A',        'platform_year' => 2017),
         'redmi 5 plus'  => array('platform_model' => 'Redmi 5 Plus',    'platform_year' => 2018),
     );
 

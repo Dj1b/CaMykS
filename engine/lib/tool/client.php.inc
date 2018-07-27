@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: Jun 2007
  * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -585,6 +585,11 @@ function client_getUAInfos($ua=false) {
     /* check Wiko */
     elseif (preg_match('/ (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
+        include_once ('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
+    }
+    elseif (preg_match('/ (W_K600|[S|V][0-9]{2}[A-Za-z0-9\(\)]*)?( Build|\))/i', $ua, $matches)) {
+        $model = trim(strtolower($matches[1]));
         include_once ('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
     }
@@ -2113,11 +2118,15 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
 
     /* bad msie/msid request */
-    if (preg_match('#^Mozilla/5.[0-9]$#i', $ua))
+    if (preg_match('#^Mozilla/5.[0-9](...)?$#i', $ua))
         return $fake;
 
     /* 2 letters UA like "lp" */
     if (preg_match('#^[a-zA-Z0-9]{2}$#i', $ua))
+        return $fake;
+
+    /* check for user agent where spaces are replaced by plus signs */
+    if (($chars = count_chars($ua, 1)) and isset($chars[ord('+')]) and $chars[ord('+')] >= 10 and (!isset($chars[ord(' ')])))
         return $fake;
 
     /* not a fake but Apple using a bad user agent */
@@ -2178,11 +2187,11 @@ function _client_getUAPropertiesMaxVersions() {
         ),
         'browser' => array(
             'Firefox'           => '64',                    // current is 61
-            'Chrome'            => '71',                    // current is 67
-            'Chromium'          => '71',                    // current is 67
+            'Chrome'            => '71',                    // current is 68
+            'Chromium'          => '71',                    // current is 68
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
-            'Opera'             => '56',                    // current is 53
+            'Opera'             => '57',                    // current is 54
             'Safari'            => '14',                    // current is 11
         ),
     );
