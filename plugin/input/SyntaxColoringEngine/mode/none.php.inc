@@ -1,31 +1,29 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Library
- * Create Date		: May 2007
- * Last Modif Date	: May 2007
- * 
- * SyntaxColoringEngine mode library : no colorisation
-*/
+/**
+ * @brief SyntaxColoringEngine Input colourisation mode.
+ * @details Plugin / Input Library
+ * @file plugin/input/SyntaxColoringEngine/mode/none.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: May 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-class SyntaxColoringEngine_none {
-
-  /* constructor */
-  function SyntaxColoringEngine_none () {
-  }
-
-  /*
-   * execute colorisation
-   * @param string $text
-   * @return string
-   * @access private
-   */
-  function execute( $text ) {
-    return nl2br($text);
-  }
+/**
+ * SyntaxColoringEngine_none class.
+ */
+final class SyntaxColoringEngine_none {
+    /*
+     * Execute colourisation.
+     * @param string $text
+     * @param array $params
+     * @return string
+     */
+    public function execute($text, $params) {
+        return nl2br($text);
+    }
 }
 ?>

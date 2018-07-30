@@ -1,112 +1,124 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Engine
- * Create Date		: Mar 2007
- * Last Modif Date	: Dec 2017
- *
- * Generic Text Syntax Coloring Engine
+/**
+ * @brief SyntaxColoringEngine Input
+ * <br /> Colourise given text following syntax in given mode.
+ * @details Plugin / Input Engine
+ * @file plugin/input/SyntaxColoringEngine/SyntaxColoringEngine.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Mar 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * SyntaxColoringEngine Input class.
+ */
 final class SyntaxColoringEngine extends Input {
-  /* public variables */
-  public $mode;
-  public $content;
- 
-  /* private variables */
-  private $text;
-  private $modes;
-  private $loaded;
+    /**
+     * var string $mode
+     * @brief Current syntax colouring mode.
+     */
+    public $mode = 'none';
 
-  /*
-   * constructor
-   * @param sting path_type
-   */
-  public function __construct($path_type) {
-    parent::Input('SyntaxColoringEngine', $path_type);
-    
-    /* set plugin version */
-    $this->version = '1.0';
-    
-    /* set plugin package */
-    $this->plugin_package = 'Default';
-    
-    /* set plugin author */
-    $this->author_name = 'CaMykS Team';
-    $this->author_mail = 'camyks.contact@gmail.com';
-    $this->author_group = 'camyks.net';
-    
-    /* initialise plugin variables */
-    $this->modes = array('none', 'javascript', 'css');
-  }
-  
-  /* overwrite input methods */
+    /**
+     * var string $content
+     * @brief Content to colourise.
+     */
+    public $content = '';
 
-  /*
-   * initialise input
-   * @param string $text
-   * @param string $mode
-   * @return void
-   * @access public
-   */
-  public function initialise($text=null, $mode=null) {
-    global $camyks;    
-    $this->content='';
-    $this->loaded = array();
-    
-    /* colorise text */
-    if ( isset($text) and isset($mode)) {
-      $this->execute ($text, $mode);
+    /**
+     * var array $modes
+     * @brief Available syntax colouring modes.
+     */
+    private $modes = array('none', 'javascript', 'css');
+
+    /**
+     * var array $loaded
+     * @brief Loaded modes.
+     */
+    private $loaded = array();
+
+    /**
+     * Class constructor.
+     * @param string $path_type
+     * @return void
+     */
+    public function __construct($path_type) {
+        parent::__construct('SyntaxColoringEngine', $path_type);
+
+       /* overwrite Plugin information */
+        $this->version = '1.0';
+        $this->plugin_package = 'Default';
+
+        /* author information */
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
     }
-    
-    /* Input generic initialisation */
-    parent::initialise();
-  }
-  
-  /*
-   * display input
-   * @param string $text
-   * @param string $mode
-   * @return void
-   * @access public
-   */
-  public function display($text='', $mode='') {
-    /* update data */
-    echo $this->execute ($text, $mode);
-    
-    /* Input generic display */
-    parent::display();
-  }
 
-  /* specific methods */
-  /*
-   * execute colorisation
-   * @param string $text
-   * @param string $mode
-   * @return string
-   * @access public
-   */
-  public function execute($text='', $mode='', $params=array()) {
-    if (in_array($mode, $this->modes)) {
-      /* load mode engine if needed */
-      if (!in_array($mode, $this->loaded)) {
-	    $this->load_file('mode/'.$mode.'.php.inc');
-	    $this->loaded[] = $mode;
-	  }
-	  /* set mode */
-	  eval('$this->mode = new SyntaxColoringEngine_'.$mode.'();');
-	    
-	  /* color */
-	  $this->content = $this->mode->execute($text, $params);
-    } else
-      $this->content = $text;
-    
-    /* return content */
-    return $this->content;
-  }
+    /* overwrite input methods */
+
+    /**
+     * Initialise input.
+     * @param string $text
+     * @param string $mode
+     * @return void
+     */
+    public function initialise($text=null, $mode=null) {
+        global $camyks;
+
+        /* colorise text */
+        if (isset($text) and isset($mode)) {
+            $this->execute($text, $mode);
+        }
+
+        /* Input generic initialisation */
+        parent::initialise();
+    }
+
+    /**
+     * Display input.
+     * @param string $text
+     * @param string $mode
+     * @return void
+     */
+    public function display($text='', $mode='') {
+        /* update data */
+        echo $this->execute($text, $mode);
+
+        /* Input generic display */
+        parent::display();
+    }
+
+    /* specific methods */
+
+    /**
+     * Execute colorisation.
+     * @param string $text
+     * @param string $mode
+     * @param array $params
+     * @return string
+     */
+    public function execute($text='', $mode='', $params=array()) {
+        if (in_array($mode, $this->modes)) {
+            /* load mode engine if needed */
+            if (!in_array($mode, $this->loaded)) {
+                $this->load_file('mode/'.$mode.'.php.inc');
+                $this->loaded[] = $mode;
+            }
+            /* set mode */
+            eval('$this->mode = new SyntaxColoringEngine_'.$mode.'();');
+
+            /* run colourisation */
+            $this->content = $this->mode->execute($text, $params);
+        } else
+            $this->content = $text;
+
+        /* return content */
+        return $this->content;
+    }
 }
 ?>
