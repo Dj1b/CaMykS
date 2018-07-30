@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Styles
- * Creation Date    : Nov 2017
- * Last Modif Date  : Dec 2017
- * 
- * SiteMonitoringToolbar custom styles
+/**
+ * @brief SiteMonitoringToolbar Input default CSS styles
+ * @details Plugin / Input CSS styles
+ * @file plugin/input/SiteMonitoringToolbar/css/styles.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Nov 2017
+ * @date Modification: Apr 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* toolbar */
@@ -16,7 +16,7 @@
 #SiteMonitoringToolbar.left {border-right:solid 1px white;}
 #SiteMonitoringToolbar.right {border-left:solid 1px white;}
 #SiteMonitoringToolbar .masterButton {cursor:pointer; height:42px; font-size:0; filter: grayscale(1); transition:all 0.25s;}
-#SiteMonitoringToolbar .masterButton:hover {filter: grayscale(0);} 
+#SiteMonitoringToolbar .masterButton:hover {filter: grayscale(0);}
 #SiteMonitoringToolbar .button {cursor:pointer; font-size:0;}
 #SiteMonitoringToolbar .separator {font-size:0; height:0; margin:6px 0;}
 
@@ -36,7 +36,7 @@
 #SiteMonitoringToolbarDataPanel .contentBox .formLine .formInput input,
 #SiteMonitoringToolbarDataPanel .contentBox .formLine .formInput select {width:100%;}
 #SiteMonitoringToolbarDataPanel .contentBox .buttonLine {font-size:0; text-align:right; padding:4px 0;}
-#SiteMonitoringToolbarDataPanel .contentBox .buttonLine .button {display:inline-block; margin-left:4px; padding:4px 16px; cursor:pointer;} 
+#SiteMonitoringToolbarDataPanel .contentBox .buttonLine .button {display:inline-block; margin-left:4px; padding:4px 16px; cursor:pointer;}
 
 /* dark theme */
 #SiteMonitoringToolbar.dark {background:url(../img/Dark_bkgd.png) repeat-y 0 0; }

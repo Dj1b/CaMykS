@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Javascript
- * Creation Date    : Nov 2017
- * Last Modif Date  : Dec 2017
- * 
- * SiteMonitoringToolbar french locales
+/**
+ * @brief SiteMonitoringToolbar Input french locales for javascripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/SiteMonitoringToolbar/js/locale/locales.fr.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Nov 2017
+ * @date Modification: Jul 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* toolbar buttons */
