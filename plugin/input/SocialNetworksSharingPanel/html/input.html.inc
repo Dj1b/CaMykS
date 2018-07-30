@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Plugin / Input Layout
- * Create Date		: Nov 2009
- * Last Modif Date	: Jul 2018
- *
- * SocialNetworksSharingPanel input layout - share mode
-*/
+/**
+ * @brief SocialNetworksSharingPanel Input share mode layout
+ * @details Plugin / Input layout
+ * @file plugin/input/SocialNetworksSharingPanel/html/input.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Nov 2009
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 $n = $this->dparams['networks'][1];
 ?>
 <div class="<?=$this->dparams['block_class']?>">
@@ -89,3 +90,8 @@ $n = $this->dparams['networks'][1];
 <?php else : ?>
 </div>
 <?php endif; ?>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

@@ -1,16 +1,16 @@
-/*
- * CaMykS Engine
- * Developed by    : camyks.net
- * Author          : CaMykS Team
- * CaMykS Version  : 1.0b1
- * Object Version  : 1.0
- * Object Type     : Plugin / Module Engine
- * Create Date     : Nov 2009
- * Last Modif Date : Nov 2009
- * 
- * SocialNetworksSharingPanel scripts
+/**
+ * @brief SocialNetworksSharingPanel Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/SocialNetworksSharingPanel/js/snsp.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Nov 2009
+ * @date Modification: Jul 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
+
 function SNSPanel(name) {
   this.name = name;
   this.opened = 0;
@@ -29,7 +29,7 @@ function SNSPanel(name) {
     else
       this.params[param] = value;
   };
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -53,7 +53,7 @@ function SNSPanel(name) {
   this.initialise = function() {
     if (this.get_param('fblike_allowed') == 1)
       this._load_facebookEngine();
-      
+
     if (this.get_param('gplus_allowed') == 1)
     	this._load_googlePlusEngine();
   };
@@ -67,7 +67,7 @@ function SNSPanel(name) {
     if (document.getElementById('snsPanel'+panelid)) {
       panel = document.getElementById('snsPanel'+panelid);
       panel.style.display='block';
-  
+
       if ( navigator.appName.indexOf("Microsoft")!=-1 ) {
 	panel.style.top = ((document.body.offsetHeight-panel.offsetHeight)/2+document.body.scrollTop)+'px';
 	panel.style.left = ((document.body.offsetWidth-panel.offsetWidth)/2+document.body.scrollLeft)+'px';
@@ -78,7 +78,7 @@ function SNSPanel(name) {
       this.opened = panelid;
     }
   };
-  
+
   this.close_panel = function(panelid) {
     if (document.getElementById('snsPanel'+panelid)) {
       document.getElementById('snsPanel'+panelid).style.display = 'none';
@@ -105,18 +105,18 @@ function SNSPanel(name) {
     document.getElementById('fb-root').appendChild(e);
     }());
   };
-  
+
   /*
-   * load google engine 
+   * load google engine
    * @return void
    * @access private
    */
   this._load_googlePlusEngine = function() {
-	var po = document.createElement('script'); 
-	po.type = 'text/javascript'; 
+	var po = document.createElement('script');
+	po.type = 'text/javascript';
 	po.async = true;
 	po.src = 'https://apis.google.com/js/plusone.js';
-	var s = document.getElementsByTagName('script')[0]; 
+	var s = document.getElementsByTagName('script')[0];
 	s.parentNode.insertBefore(po, s);
 	window.___gcfg = {
 		lang: this.get_param('gplus_language')

@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Plugin / Input Layout
- * Create Date		: Jan 2018
- * Last Modif Date	: Jul 2018
- *
- * SocialNetworksSharingPanel input layout - follow mode
-*/
+/**
+ * @brief SocialNetworksSharingPanel Input follow mode layout
+ * @details Plugin / Input layout
+ * @file plugin/input/SocialNetworksSharingPanel/html/input_follow.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2018
+ * @date Modification: Jul 2018
+ * @copyright 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 ?>
 <div class="SNSP follow<?=($this->params['follow_insertion'] == 1 ? ' '.$this->params['follow_location']:'');?>">
   <?php foreach ($this->networks as $name => $network) : ?>
@@ -21,3 +22,9 @@
     <?php endif; ?>
   <?php endforeach; ?>
 </div>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>
+
