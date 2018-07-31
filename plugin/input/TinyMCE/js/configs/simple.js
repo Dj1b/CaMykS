@@ -1,16 +1,16 @@
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Javascript
- * Create Date		: Dec 2007
- * Last Modif Date	: Jan 2008
- * 
- * TinyMCE input : TinyMCE WebEditor Integration config file
+/**
+ * @brief TinyMCE Input simple configuration scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/TinyMCE/js/configs/simple.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Dec 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 tinyMCE.init({
-  mode : "textareas",
+    mode : "textareas",
     theme : "simple"
-    });
+});
