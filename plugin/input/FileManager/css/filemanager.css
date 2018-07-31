@@ -1,15 +1,15 @@
-/*                                                                                                                 
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Input CSS Styles
- * Creation Date	: Jun 2007
- * Last Modif Date	: Jun 2007
- *                                                                                                                 
- * FileManager input CSS style file                                                                           
-*/
+/**
+ * @brief FileManager Input main CSS styles
+ * @details Plugin / Input CSS styles
+ * @file plugin/input/FileManager/css/filemanager.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 .actionBar {background:#eeeeee; padding:4px;}
 .actionBar div.actionButton {display:inline-block; padding:4px; background:white;}
 .actionBar a.actionButton {display:inline-block; padding:4px;}
@@ -22,10 +22,10 @@
   border-right:solid 1px #eeeeee;
 }
 
-.filemanagerColumnBloc { 
+.filemanagerColumnBloc {
 }
 
-.filemanagerColumnDescTitle { 
+.filemanagerColumnDescTitle {
   font-weight:bold;
   color:black;
   padding: 4px;
@@ -38,11 +38,11 @@
   padding:2px 4px;
 }
 
-.filemanagerColumnItemIcon{ 
+.filemanagerColumnItemIcon{
   float:left; margin-right:2px;
 }
 
-.filemanagerColumnItemName{ 
+.filemanagerColumnItemName{
   width:110px; overflow:hidden; padding:2px 0 0 18px; color:inherit; height:16px;
 }
 
@@ -50,11 +50,11 @@
   width:100%; float:none; cursor:pointer; padding:2px 0px;
 }
 
-.filemanagerListArrow{ 
+.filemanagerListArrow{
   width:12px; padding:0px;
 }
 
-.filemanagerListName{ 
+.filemanagerListName{
   overflow:hidden; padding:2px;
 }
 

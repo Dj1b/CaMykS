@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Javascript library
- * Creation Date	: Jun 2007
- * Last Modif Date	: Jun 2008
- *
- * FileManager javascripts methods
+/**
+ * @brief FileManager Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/FileManager/js/filemanager.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* link opener object */
@@ -27,7 +27,7 @@ FileManager.prototype.openFileManager = function ( file ) {
   for ( name in this.params ) {
     this.popurl += '&'+name+'='+this.params[name];
   }
-  
+
   fmw = window.open( this.popurl,
 		     '',
 		     'width=750,height=520,scrollbars=auto,resize=no,toolbar=no,menubar=no,personalbar=no');
@@ -49,11 +49,11 @@ function filemanager_getLastSelectedObject() {
     folder = filemanager_selectedobjects[i];
   }
   return folder;
-} 
+}
 
 
 /* get last selected folder */
-function filemanager_getLastSelectedFolder() {    
+function filemanager_getLastSelectedFolder() {
   return filemanager_selectedfolder;
 }
 
@@ -170,7 +170,7 @@ function filemanager_columnSelectObject( object, level, type ) {
   } else {
     action = 'select';
   }
-  
+
   /* disable all object from this level and all child levels */
   for (var i=level; i<filemanager_maxlevel; i++ ) {
     if ( filemanager_selectedobjects[i] ) {
@@ -187,7 +187,7 @@ function filemanager_columnSelectObject( object, level, type ) {
     document.getElementById('obj'+object).style.display='block';
     document.getElementById('line'+object).className = 'unselectable eTableSubHeader';
     filemanager_selectedobjects[level] = object;
-    if ( type == 1 ) 
+    if ( type == 1 )
       filemanager_selectedfolder = object;
     else if ( level == 0 )
       filemanager_selectedfolder = '';
@@ -222,7 +222,7 @@ function filemanager_listSelectObject( object, level, type ) {
     filemanager_selectedobjects[0] = object;
     document.getElementById('object'+object).style.background = '#DEDEDE';
 
-    if ( type == 1 ) 
+    if ( type == 1 )
       filemanager_selectedfolder = object;
     else if ( level == 0 )
       filemanager_selectedfolder = '';
