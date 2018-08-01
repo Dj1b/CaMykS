@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/CMail.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2012
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2012 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -301,15 +301,32 @@ final class CMail {
     public function send() {
         global $camyks;
 
-        switch($camyks->get_confValue('email_defaultLibrary')) {
+        switch ($camyks->get_confValue('email_defaultLibrary')) {
             /* use PHPMailer */
-            case 'PHPMailer' : return $this->_send_PHPMailerMail();
+            case 'PHPMailer' : 
+                $success = $this->_send_PHPMailerMail();
+                break;
             /* use PEAR/Mail */
             case 'PEAR/Mail' : 
-            default : return $this->_send_PEARMimeMail();
+            default : 
+                $success = $this->_send_PEARMimeMail();
+        }
+        
+        /* directly return result if logs are not available */
+        if ($camyks->are_logsAvailable() === false)
+          return $success;
+        
+        /* prepare recipients */
+        $recipients = $this->get_contactListAsString('To', '(');
+
+        /* log success */
+        if ($success) {
+            $camyks->log('Emails', 'Send to '.$recipients, 'Success');
+            return true;
         }
 
-        /* default result */
+        /* log failure */
+        $camyks->log('Emails', 'Send to '.$recipients, 'Failure: '.$this->get_lastError());
         return false;
     }
 
@@ -321,6 +338,46 @@ final class CMail {
      */
     public function get_lastError() {
         return $this->error;
+    }
+    
+    /**
+     * Return contact list as string
+     * @param string $list
+     * @param string $container
+     * @param string $separator
+     * @return string
+     */
+    public function get_contactListAsString($list='To', $container='<', $separator=', ') {
+        /* build containers */
+        $containers = array(
+            '<' => '>',
+            '(' => ')',
+            '{' => '}',
+            '[' => ']',
+        );
+        
+        /* check list */
+        if (!in_array($list, array('To', 'Cc', 'Bcc', 'ReplyTo')))
+            return '';
+        
+        /* build contact list */
+        $contacts = array();
+        foreach ($this->params[$list] as $contact) {
+            if ($contact['email'] == '')
+                continue;
+
+            if ($contact['name'] != '')
+                $contacts[] = $contact['name'].' '.$container.$contact['email'].(isset($containers[$container])?$containers[$container]:$container);
+            else
+                $contacts[] = $contact['email'];
+        }
+        
+        /* check contacts count */
+        if (count($contacts) == 0)
+            return '';
+        
+        /* return compiled result */
+        return implode($separator, $contacts);        
     }
 
     /* private sending methods */
@@ -373,7 +430,7 @@ final class CMail {
                 continue;
 
             if ($contact['name'] != '')
-                $rto[] = $contact['name']. ' <'.$contact['email'].'>';
+                $rto[] = $contact['name'].' <'.$contact['email'].'>';
             else
                 $rto[] = $contact['email'];
         }
@@ -386,7 +443,7 @@ final class CMail {
                 continue;
 
             if ($contact['name'] != '')
-                $to[] = $contact['name']. ' <'.$contact['email'].'>';
+                $to[] = $contact['name'].' <'.$contact['email'].'>';
             else
                 $to[] = $contact['email'];
         }

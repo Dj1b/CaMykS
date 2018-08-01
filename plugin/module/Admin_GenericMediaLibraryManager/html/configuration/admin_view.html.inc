@@ -3,13 +3,13 @@
  * CaMykS Engine
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
+ * CaMykS Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Module Layout
- * Create Date	    : May 2008
- * Last Modif Date	: Apr 2009
+ * Creation Date    : Jun 2015
+ * Last Modif Date	: Jul 2018
  * 
- * Admin_GenericDownloadManager Module Admin Layout : edit_config
+ * Admin_GenericMediaLibraryManager Module Admin Layout : edit_config
 */
 global $camyks;
 
@@ -37,22 +37,25 @@ global $camyks;
   <td class="eTableLine1 eContent1">
     <?=$this->configResizeModeList[$this->config->vars['picture_resizeMode']];?>
   </td>
-  <td class="eTableLine1 eContent2" style="width:200px;">
+</tr>
+<tr>
+  <td class="eTableLine0 eContent2" style="width:200px;">
     <?=$this->get_translation('formitem_backgroundcolor');?>
   </td>
-  <td class="eTableLine1 eContent1">
+  <td class="eTableLine0 eContent1">
     <?=$this->config->vars['picture_backgroundColor'];?>
   </td>
 </tr>
 
 <tr>
-  <td class="eTableLine0 eContent2">
+  <td class="eTableLine1 eContent2">
     <?=$this->get_translation('formitem_filetype');?>
   </td>
-  <td class="eTableLine0 eContent1">
+  <td class="eTableLine1 eContent1">
     <?=$this->configFileTypeList[$this->config->vars['picture_fileType']];?>
   </td>
-
+</tr>
+<tr>
   <td class="eTableLine0 eContent2">
     <?=$this->get_translation('formitem_quality');?>
   </td>
@@ -68,23 +71,25 @@ global $camyks;
   <td class="eTableLine1 eContent1">
     <?=$this->config->vars['picture_pictureWidth'];?> px
   </td>
-  
-  <td class="eTableLine1 eContent2">
+</tr>
+<tr>
+  <td class="eTableLine0 eContent2">
     <?=$this->get_translation('formitem_pictureheight');?>
   </td>
-  <td class="eTableLine1 eContent1">
+  <td class="eTableLine0 eContent1">
     <?=$this->config->vars['picture_pictureHeight'];?> px
   </td>
 </tr>
 
 <tr>
-  <td class="eTableLine0 eContent2">
+  <td class="eTableLine1 eContent2">
     <?=$this->get_translation('formitem_thumbwidth');?>
   </td>
-  <td class="eTableLine0 eContent1">
+  <td class="eTableLine1 eContent1">
     <?=$this->config->vars['picture_thumbWidth'];?> px
   </td>
-  
+</tr>
+<tr>
   <td class="eTableLine0 eContent2">
     <?=$this->get_translation('formitem_thumbheight');?>
   </td>
@@ -94,13 +99,13 @@ global $camyks;
 </tr>
 
 <tr>
-  <td class="" coslpan="4">
+  <td colspan="2">
     &nbsp;
   </td>
 </tr>
 
 <tr>
-  <td class="" coslpan="4">
+  <td colspan="2">
     <?=$this->theme->get_button(array('url'=>$this->get_adminLink(array('mode'=>'edit_config')), 'title'=>$this->get_translation('edit_config')));?>
   </td>
 </tr>

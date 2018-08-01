@@ -4,10 +4,10 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Module Library
  * Creation Date    : Dec 2014
- * Last Modif Date  : Mar 2018
+ * Last Modif Date  : Jul 2018
  *
  * Admin_MonitoringUserAgentChecker record list parameters
  */
@@ -40,17 +40,17 @@ $this->recordListParams['sort'] = array('allowed'=>false, 'default'=>'lvisit', '
 
 /* build column parameters */
 $this->recordListParams['listcolumns'] = array(
-    'status'        => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
-    'user_agent'    => array('title'=>$this->get_translation('user_agent'),'columntype'=>'method', 'maxlength'=>80, 'method'=>'get_adminValue'),
-    'platform_type' => array('title'=>$this->get_translation('platform_type'),'columntype'=>'list', 'values'=>$this->recordTypeList),
-    'comparaison'   => array('title'=>'' ,'columntype'=>'method', 'method'=>'is_user_agent_correct'),
-    'nvisit'        => array('title'=>$this->get_translation('nvisits'),'columntype'=>'text'),
-    'lvisit'        => array('title'=>$this->get_translation('lvisits'),'columntype'=>'date', 'mode'=>'numeric'),
-    'view'          => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewRecordLink,'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewrecord')),
+    'status'        => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict'),
+    'user_agent'    => array('title'=>$this->get_translation('user_agent'), 'columntype'=>'method', 'maxlength'=>80, 'method'=>'get_adminValue'),
+    'platform_type' => array('title'=>$this->get_translation('platform_type'), 'columntype'=>'list', 'values'=>$this->recordTypeList),
+    'comparaison'   => array('title'=>'' , 'columntype'=>'method', 'method'=>'is_user_agent_correct'),
+    'nvisit'        => array('title'=>$this->get_translation('nvisits'), 'columntype'=>'text', 'class'=>'hiddenOnMobile'),
+    'lvisit'        => array('title'=>$this->get_translation('lvisits'), 'columntype'=>'date', 'mode'=>'numeric', 'class'=>'hiddenOnMobile'),
+    'view'          => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewRecordLink, 'url_title'=>$this->get_translation('viewrecord')),
 );
 
 $this->recordListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewrecord'), 'icon'=>'plus', 'url_value'=>'javascript:adminengine_modalPopupOpen(\'admin_genericuseragentmanager_addpopup\');', 'titlecolumn'=>'user_agent', 'buttoncolumn'=>'edit'));
-$this->recordListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editRecordLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editrecord'));
-$this->recordListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteRecordLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deleterecord'));
+$this->recordListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editRecordLink, 'url_title'=>$this->get_translation('editrecord'));
+$this->recordListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteRecordLink, 'url_title'=>$this->get_translation('deleterecord'));
 
 ?>

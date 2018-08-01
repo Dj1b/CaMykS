@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Apr 2018
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,15 +23,40 @@ function get_LenovoClientDevice($deviceCode='') {
         /* Lenovo tablets */
         'A2107A-H'              => array('platform_model' => 'IdeaTab A2107A-H',    'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2013),
         'B8000-F'               => array('platform_model' => 'Yoga',                'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2013),
+        'B8080-F'               => array('platform_model' => 'Yoga 10 HD+',         'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'Tablet 2-830F'         => array('platform_model' => 'Yoga Tab 2',          'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'Tablet 2 Pro-1380F'    => array('platform_model' => 'Yoga Tablet 2 Pro',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
+        'A5500'                 => array('platform_model' => 'A8-50',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'PB1-770P'              => array('platform_model' => 'PHAB Plus',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
+        'TAB 2 A10-70LC'        => array('platform_model' => 'Tab 2',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'YB1-X90F'              => array('platform_model' => 'Yoga Book',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
 
         /* Lenovo phones */
+        'A369i'     => array('platform_model' => 'A369i',                   'platform_year' => 2013),
+        'A319'      => array('platform_model' => 'RocStar',                 'platform_year' => 2014),
+        'A806'      => array('platform_model' => 'Golden Warrior A8',       'platform_year' => 2014),
+        'A936'      => array('platform_model' => 'Golden Warrior Note 8',   'platform_year' => 2014),
+        'K30-T'     => array('platform_model' => 'K3',                      'platform_year' => 2014),
+        'K50-T5'    => array('platform_model' => 'K3 Note',                 'platform_year' => 2015),
+        'K51c78'    => array('platform_model' => 'Vibe X3 Lite',            'platform_year' => 2015),
         'P70-A'     => array('platform_model' => 'P70',                     'platform_year' => 2015),
         'A2010-a'   => array('platform_model' => 'A2010',                   'platform_year' => 2015),
+        'K52t38'    => array('platform_model' => 'K5 Note',                 'platform_year' => 2015),
         'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),
+        'A1010a20'  => array('platform_model' => 'A Plus',                  'platform_year' => 2016),
+        'A1000m'    => array('platform_model' => 'Vibe A',                  'platform_year' => 2016),
+        'A2010l36'  => array('platform_model' => 'Vibe K5',                 'platform_year' => 2016),
+        'A6020a46'  => array('platform_model' => 'Vibe K5 Plus',            'platform_year' => 2016),
+        'A7010A48'  => array('platform_model' => 'Vibe K4 Note',            'platform_year' => 2016),
+        'A7020a40'  => array('platform_model' => 'Vibe K5 Note',            'platform_year' => 2016),
+        'A2016a40'  => array('platform_model' => 'Vibe B',                  'platform_year' => 2016),
+        'A2020a40'  => array('platform_model' => 'Vibe C',                  'platform_year' => 2016),
+        'K10A40'    => array('platform_model' => 'Vibe C2',                 'platform_year' => 2016),
+        'K33a42'    => array('platform_model' => 'K6 Power',                'platform_year' => 2016),
+        'K33a48'    => array('platform_model' => 'K6',                      'platform_year' => 2016),
+        'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),
+        'K53b36'    => array('platform_model' => 'K6 Plus',                 'platform_year' => 2016),
+        'K10E70'    => array('platform_model' => 'K10',                     'platform_year' => 2017),
     );
 
     /* Check for returning list */

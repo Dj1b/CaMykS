@@ -1,18 +1,18 @@
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Javascript
- * Creation Date    : Nov 2017
- * Last Modif Date  : Dec 2017
- * 
- * SiteMonitoringToolbar master script
+/**
+ * @brief SiteMonitoringToolbar Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/SiteMonitoringToolbar/js/SiteMonitoringToolbar.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Nov 2017
+ * @date Modification: Jul 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 var SiteMonitoringToolbar = {
-  
+
   /* initialise some variables */
   name: 'SiteMonitoringToolbar',
   params: {},
@@ -32,7 +32,7 @@ var SiteMonitoringToolbar = {
     else
       this.params[param] = value;
   },
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -46,9 +46,9 @@ var SiteMonitoringToolbar = {
       return this.params[param]
     return false;
   },
-  
+
   /*
-   * set locale value 
+   * set locale value
    * @param string name
    * @param string value
    * @return void
@@ -57,9 +57,9 @@ var SiteMonitoringToolbar = {
   set_locale: function(name, value) {
     this.locales[name.toLowerCase()] = value;
   },
-  
+
   /*
-   * get locale value 
+   * get locale value
    * @param string name
    * @return void
    * @access public
@@ -76,26 +76,26 @@ var SiteMonitoringToolbar = {
    * @access public
    */
   initialise: function() {
-  
+
     /* detect navigator type */
     this.navType = navigator.userAgent.toLowerCase().indexOf('msie') ? 'msie':'row';
-  
+
     /* load ajax request engine */
     this.loader = new CAjaxRequest(this.name+'.loader');
     this.loader._initialise(null, 'POST', this.name+'._receiveRequestResult', 'txt', this.name+'._receiveRequestError');
     this.requestQueue = new Array();
-    
+
     /* initialise some params */
     this.set_param('toolbarStatus', 0);
     this.set_param('dataPanelStatus', 'off');
-    
+
     /* load locales */
     this.load_file(this.get_param('pluginURL')+'/js/locale/locales.'+this.get_param('locale')+'.js', 'SiteMonitoringToolbar.start()');
-    
+
     /* set as loaded */
     this.loaded = true;
   },
-  
+
   /*
    * finalise object initialisation
    * @return void
@@ -105,21 +105,21 @@ var SiteMonitoringToolbar = {
     /* post loaded action */
     this.execute_action('loadConfig');
   },
-  
+
   /* toolbar related methods */
-  
+
   /*
    * display toolbar
    * @return void
    * @access private
    */
   display_toolbar: function() {
-    
+
     /* create toolbar */
     pos = this.get_param('buttonLocation');
     if (pos === false) return;
     pos = pos.split(':');
-    
+
     this.toolbar = document.createElement('div');
     this.toolbar.id = 'SiteMonitoringToolbar';
     this.toolbar.className = pos[1]+' '+this.get_param('appliedTheme');
@@ -130,7 +130,7 @@ var SiteMonitoringToolbar = {
     this.toolbar.style.height = '42px';
     this.toolbar.style.background = 'white';
     document.getElementsByTagName('body')[0].appendChild(this.toolbar);
-    
+
     /* create master button */
     button = document.createElement('div');
     button.className = 'masterButton';
@@ -143,12 +143,12 @@ var SiteMonitoringToolbar = {
     }
     button.appendChild(image);
     this.toolbar.appendChild(button);
-    
+
     /* add separator */
     sep = document.createElement('div');
     sep.className = 'separator';
     this.toolbar.appendChild(sep);
-    
+
     /* create PHP stats button */
     button = document.createElement('div');
     button.id = 'PHPStatsButton';
@@ -161,10 +161,10 @@ var SiteMonitoringToolbar = {
 	  image.onclick = new Function('onclick', this.name+'.open_PHPStatsPanel();');
     }
     image.title = this.get_locale('displayphpstats');
-    
+
     button.appendChild(image);
     this.toolbar.appendChild(button);
-    
+
     /* create DB stats button */
     button = document.createElement('div');
     button.id = 'DBStatsButton';
@@ -187,10 +187,10 @@ var SiteMonitoringToolbar = {
       }
       image.title = this.get_locale('displaydbstats');
     }
-    
+
     button.appendChild(image);
     this.toolbar.appendChild(button);
-    
+
     /* create Bench stats button */
     button = document.createElement('div');
     button.id = 'BenchButton';
@@ -215,12 +215,12 @@ var SiteMonitoringToolbar = {
     }
     button.appendChild(image);
     this.toolbar.appendChild(button);
-    
+
     /* add separator */
     sep = document.createElement('div');
     sep.className = 'separator';
     this.toolbar.appendChild(sep);
-    
+
     /* create reload button */
     button = document.createElement('div');
     button.className = 'button';
@@ -234,7 +234,7 @@ var SiteMonitoringToolbar = {
     image.title = this.get_locale('reloadpage');
     button.appendChild(image);
     this.toolbar.appendChild(button);
-    
+
     /* create configuration button */
     if (this.get_param('allowConfiguration')) {
       button = document.createElement('div');
@@ -251,7 +251,7 @@ var SiteMonitoringToolbar = {
       button.appendChild(image);
       this.toolbar.appendChild(button);
     }
-    
+
     /* create disconnect button */
     if (this.get_param('allowLogout')) {
       button = document.createElement('div');
@@ -267,7 +267,7 @@ var SiteMonitoringToolbar = {
       button.appendChild(image);
       this.toolbar.appendChild(button);
     }
-    
+
     /* create data panel */
     this.dataPanel = document.createElement('div');
     this.dataPanel.id = 'SiteMonitoringToolbarDataPanel';
@@ -275,7 +275,7 @@ var SiteMonitoringToolbar = {
     this.dataPanel.style.top = 0;
     this.dataPanel.className = pos[1]+' '+this.get_param('appliedTheme');
     document.getElementsByTagName('body')[0].appendChild(this.dataPanel);
-    
+
     /* create data panel content box */
     div = document.createElement('div');
     div.className = 'contentBox';
@@ -288,34 +288,34 @@ var SiteMonitoringToolbar = {
    * @access public
    */
   swap_toolbarStatus: function() {
-    
+
     if (this.get_param('toolbarStatus') == 0) {
       /* open toolbar */
-      
+
       /* update variable */
       this.set_param('toolbarStatus', 1);
-      
+
       this.toolbar.style.background = null;
-      
+
       /* resize toolbar */
       this.resize_toolbar();
-      
+
     } else {
-          
+
       /* close toolbar */
       this.toolbar.style.height = '42px';
       setTimeout("SiteMonitoringToolbar.toolbar.style.background = 'white';", 300);
-      
+
       /* update variable */
       this.set_param('toolbarStatus', 0);
-      
+
       /* close data panel */
       this.hide_dataPanel();
     }
   },
-  
+
   /*
-   * resize toolbar 
+   * resize toolbar
    * @return void
    * @access public
    */
@@ -323,21 +323,21 @@ var SiteMonitoringToolbar = {
     /* check for closed status */
     if (this.get_param('toolbarStatus') == 0)
       return;
-    
+
     /* detect correct height */
     if (typeof( window.innerWidth ) == 'number') {height = window.innerHeight;}
     else if (document.documentElement && document.documentElement.clientHeight) {height = document.documentElement.clientHeight;}
     else if (document.body && document.body.clientHeight) {height = document.body.clientHeight;}
     else {height = 100;}
-    
+
     /* apply height */
     this.toolbar.style.height = height + 'px';
   },
-  
+
   /* data panel methods */
-  
+
   /*
-   * show and update content of data panel 
+   * show and update content of data panel
    * @param HTMLElement content
    * @param integer top
    * @param integer width
@@ -353,8 +353,8 @@ var SiteMonitoringToolbar = {
     }
     this.dataPanel.style.display = 'block';
   },
-  
-  /* 
+
+  /*
    * hide data panel
    * @return void
    * @access private
@@ -362,20 +362,20 @@ var SiteMonitoringToolbar = {
   hide_dataPanel: function() {
     /* update status */
     this.set_param('dataPanelStatus', 'off');
-    
+
     /* hide HTML element */
     this.dataPanel.style.display = 'none';
   },
-   
+
   /* action methods */
-  
+
   /*
    * open/close PHP stats panel
    * @return void
    * @access private
    */
   open_PHPStatsPanel: function() {
-    
+
     /* close data panel if it's already open on php stats, and stop  */
     if (this.get_param('dataPanelStatus') === 'phpstats')
       return this.hide_dataPanel();
@@ -387,14 +387,14 @@ var SiteMonitoringToolbar = {
     /* execute PHP stats loading */
     this.execute_request({'mode':'displayPHPStats'});
   },
-  
+
   /*
    * open/close DB stats panel
    * @return void
    * @access private
    */
   open_DBStatsPanel: function() {
-    
+
     /* close data panel if it's already open on db stats, and stop  */
     if (this.get_param('dataPanelStatus') === 'dbstats')
       return this.hide_dataPanel();
@@ -406,14 +406,14 @@ var SiteMonitoringToolbar = {
     /* execute db stats loading */
     this.execute_request({'mode':'displayDBStats'});
   },
-  
+
   /*
    * open/close bench panel
    * @return void
    * @access private
    */
   open_benchPanel: function() {
-    
+
     /* close data panel if it's already open on bench, and stop  */
     if (this.get_param('dataPanelStatus') === 'bench')
       return this.hide_dataPanel();
@@ -425,14 +425,14 @@ var SiteMonitoringToolbar = {
     /* execute bench loading */
     this.execute_request({'mode':'displayBench'});
   },
-    
+
   /*
    * open/close configuration panel
    * @return void
    * @access private
    */
   open_configurationPanel: function() {
-    
+
     /* close data panel if it's already open on bench, and stop  */
     if (this.get_param('dataPanelStatus') === 'configuration')
       return this.hide_dataPanel();
@@ -444,14 +444,14 @@ var SiteMonitoringToolbar = {
     /* execute congifuration loading */
     this.execute_request({'mode':'displayConfiguration'});
   },
-  
+
   /*
    * save (and close) configuration panel
    * @return void
    * @access private
    */
   save_configuration: function() {
-    
+
     /* do nothing if current panel is not configuration  */
     if (this.get_param('dataPanelStatus') !== 'configuration')
       return;
@@ -461,14 +461,14 @@ var SiteMonitoringToolbar = {
     params['accessRestriction'] = document.getElementById('ConfigurationAccessRestriction').options[document.getElementById('ConfigurationAccessRestriction').options.selectedIndex].value;
     params['buttonLocation'] = document.getElementById('ConfigurationButtonLocation').options[document.getElementById('ConfigurationButtonLocation').options.selectedIndex].value;
     params['appliedTheme'] = document.getElementById('ConfigurationAppliedTheme').options[document.getElementById('ConfigurationAppliedTheme').options.selectedIndex].value;
-    
+
     /* close panel */
     this.hide_dataPanel();
 
     /* execute bench loading */
     this.execute_request(params);
   },
-  
+
   /*
    * execute action request
    * @param string action
@@ -480,7 +480,7 @@ var SiteMonitoringToolbar = {
   },
 
   /* request methods */
-  
+
   /*
    * send request update
    * @param array urlParams
@@ -491,14 +491,14 @@ var SiteMonitoringToolbar = {
   execute_request: function(urlParams, wait) {
     if (this.loaded === false)
       return;
-    
+
     p = '';
     for (i in urlParams)
       p += '&'+i+'='+urlParams[i];
-    
+
     this._executeRequest(this.get_param('requestBaseURL')+p, wait);
   },
-  
+
   /*
    * execute request
    * @param string url
@@ -509,7 +509,7 @@ var SiteMonitoringToolbar = {
   _executeRequest: function(url, wait) {
     if (!this.loaded)
       return;
-      
+
     /* manage request queue for those browsers */
     if ( this.loader._resultStatus != 'idle' ) {
     	if (wait) this.requestQueue.push(url);
@@ -524,26 +524,26 @@ var SiteMonitoringToolbar = {
    * @return void
    * @access private
    */
-  _receiveRequestResult: function(result) { 
+  _receiveRequestResult: function(result) {
     /* parse result as JSON */
     result = JSON.parse(result);
-  
+
     /* check result */
     if ( result == null )
       return;
-   
+
     /* check action result */
     switch (result['action']) {
       /* configuration actions */
       case 'loadConfig':
         this._receive_loadConfigResult(result);
         break;
-      
+
       /* PHP Stats actions */
       case 'displayPHPStats':
         this._receive_displayPHPStats(result);
         break;
-      
+
       /* DB Stats actions */
       case 'startDBStats':
         this._receive_startDBStats(result);
@@ -554,7 +554,7 @@ var SiteMonitoringToolbar = {
       case 'displayDBStats':
         this._receive_displayDBStats(result);
         break;
-      
+
       /* bench actions */
       case 'startBench':
         this._receive_startBench(result);
@@ -565,12 +565,12 @@ var SiteMonitoringToolbar = {
       case 'displayBench':
         this._receive_displayBench(result);
         break;
-      
+
       /* configuration actions */
       case 'displayConfiguration':
         this._receive_displayConfiguration(result);
         break;
-        
+
       /* tool actions */
       case 'disconnect':
         this._receive_disconnectResult(result);
@@ -596,9 +596,9 @@ var SiteMonitoringToolbar = {
     //alert(e);
     /* define what to do */
   },
-  
+
   /* request reception dedicated methods */
-  
+
   /*
    * receive result after loadConfig request
    * @param Object result
@@ -606,18 +606,18 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_loadConfigResult: function(result) {
-  
+
     /* check config */
     if (!result['config']) return;
-  
+
     /* save config */
     for (i in result['config'])
       this.set_param(i, result['config'][i]);
-        
+
     /* post loaded action */
     this.display_toolbar();
   },
-    
+
   /*
    * receive result after displayPHPStats request
    * @param Object result
@@ -625,61 +625,61 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayPHPStats: function(result) {
-    
+
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('PHPStatsButton'));
-    
+
     /* create container */
     box = document.createElement('div');
-    
+
     /* add title */
     div = document.createElement('div');
     div.className = 'title';
     div.innerHTML = this.get_locale('phpstats_title');
     box.appendChild(div);
-    
+
     /* add memory values */
     div = document.createElement('div');
     div.className = 'subtitle';
     div.innerHTML = this.get_locale('phpstats_title_memory');
     box.appendChild(div);
-    
+
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = this.get_locale('phpstats_item_memoryend') + ' <span class="value">' + result['PHPStats']['memoryEnd']+'</span> <br />';
     div.innerHTML += this.get_locale('phpstats_item_memorypeak') + ' <span class="value">' + result['PHPStats']['memoryPeak']+'</span> <br />';
     div.innerHTML += this.get_locale('phpstats_item_memorylimit') + ' <span class="value">' + result['PHPStats']['memoryLimit']+'</span> <br />';
     box.appendChild(div);
-    
+
     /* add empty line */
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = '&nbsp;';
     box.appendChild(div);
-    
+
     /* add files values */
     div = document.createElement('div');
     div.className = 'subtitle';
     div.innerHTML = this.get_locale('phpstats_title_files');
     box.appendChild(div);
-    
+
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = this.get_locale('phpstats_item_includedfiles') + ' <span class="value">' + result['PHPStats']['includedFiles']+'</span> <br />';
     box.appendChild(div);
-    
+
     /* add empty line */
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = '&nbsp;';
     box.appendChild(div);
-    
+
     /* add request values */
     div = document.createElement('div');
     div.className = 'subtitle';
     div.innerHTML = this.get_locale('phpstats_title_request');
     box.appendChild(div);
-    
+
     div = document.createElement('div');
     if (result['PHPStats']['requestData'].length == 0) {
       div.className = 'description';
@@ -692,19 +692,19 @@ var SiteMonitoringToolbar = {
       }
     }
     box.appendChild(div);
-    
+
     /* add empty line */
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = '&nbsp;';
     box.appendChild(div);
-        
+
     /* add cookie values */
     div = document.createElement('div');
     div.className = 'subtitle';
     div.innerHTML = this.get_locale('phpstats_title_cookie');
     box.appendChild(div);
-    
+
     div = document.createElement('div');
     if (result['PHPStats']['cookieData'].length == 0) {
       div.className = 'description';
@@ -717,19 +717,19 @@ var SiteMonitoringToolbar = {
       }
     }
     box.appendChild(div);
-    
+
     /* add empty line */
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = '&nbsp;';
     box.appendChild(div);
-        
+
     /* add cms shared objects values */
     div = document.createElement('div');
     div.className = 'subtitle';
     div.innerHTML = this.get_locale('phpstats_title_sharedobjects');
     box.appendChild(div);
-    
+
     div = document.createElement('div');
     if (result['PHPStats']['sharedObjects'].length == 0) {
       div.className = 'description';
@@ -742,19 +742,19 @@ var SiteMonitoringToolbar = {
       }
     }
     box.appendChild(div);
-    
+
     /* add empty line */
     div = document.createElement('div');
     div.className = 'content';
     div.innerHTML = '&nbsp;';
     box.appendChild(div);
-        
+
     /* add cms shared data values */
     div = document.createElement('div');
     div.className = 'subtitle';
     div.innerHTML = this.get_locale('phpstats_title_shareddata');
     box.appendChild(div);
-    
+
     div = document.createElement('div');
     if (result['PHPStats']['sharedData'].length == 0) {
       div.className = 'description';
@@ -763,8 +763,8 @@ var SiteMonitoringToolbar = {
       div.className = 'content';
       div.innerHTML = '';
       for (i in result['PHPStats']['sharedData']) {
-        
-        if (Array.isArray(result['PHPStats']['sharedData'][i])) 
+
+        if (Array.isArray(result['PHPStats']['sharedData'][i]))
           div.innerHTML += i + ' : <span class="value"> Array('+result['PHPStats']['sharedData'][i].length +')</span> <br />';
         else if (typeof result['PHPStats']['sharedData'][i] == 'object')
           div.innerHTML += i + ' : <span class="value"> Object </span> <br />';
@@ -773,14 +773,14 @@ var SiteMonitoringToolbar = {
       }
     }
     box.appendChild(div);
-    
+
     /* update status */
     this.set_param('dataPanelStatus', 'phpstats');
- 
-    /* display results */   
+
+    /* display results */
     this.show_dataPanel(box, vTop, 400)
   },
-  
+
   /*
    * receive result after startDBStats request
    * @param Object result
@@ -789,9 +789,9 @@ var SiteMonitoringToolbar = {
    */
   _receive_startDBStats: function(result) {
     /* reload page */
-    location.reload(true); 
+    location.reload(true);
   },
-  
+
   /*
    * receive result after stopDBStats request
    * @param Object result
@@ -801,7 +801,7 @@ var SiteMonitoringToolbar = {
   _receive_stopDBStats: function(result) {
 
   },
-  
+
   /*
    * receive result after displayDBStats request
    * @param Object result
@@ -809,33 +809,33 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayDBStats: function(result) {
-    
+
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('DBStatsButton'));
-    
+
     /* create container */
     box = document.createElement('div');
-    
+
     /* add title */
     div = document.createElement('div');
     div.className = 'title';
     div.innerHTML = this.get_locale('dbstats_title');
     box.appendChild(div);
-    
+
     if (result['DBStats'] === false) {
       div = document.createElement('div');
       div.className = 'description';
       div.innerHTML = this.get_locale('no_result');
       box.appendChild(div);
     } else {
-    
+
       for (db in result['DBStats']) {
         /* add stats subtitle */
         div = document.createElement('div');
         div.className = 'subtitle';
         div.innerHTML = db;
         box.appendChild(div);
-        
+
         /* add stats */
         div = document.createElement('div');
         div.className = 'content';
@@ -845,17 +845,17 @@ var SiteMonitoringToolbar = {
         div.innerHTML += '&nbsp; &#124; &nbsp;';
         div.innerHTML += this.get_locale('dbstats_updatedlines') + ' <span class="value">' + result['DBStats'][db]['updatedLines']+'</span>';
         box.appendChild(div);
-        
+
         /* add queries */
         if (result['DBQueries'][db] != undefined) {
           div = document.createElement('div');
           div.className = 'content';
           div.innerHTML = this.get_locale('dbstats_querylist');
           box.appendChild(div);
-          
+
           ul = document.createElement('ul');
           box.appendChild(ul);
-          
+
           for (i in result['DBQueries'][db]) {
             li = document.createElement('li');
             li.className = 'content';
@@ -863,21 +863,21 @@ var SiteMonitoringToolbar = {
             ul.appendChild(li);
           }
         }
-        
+
         /* add empty line */
         div = document.createElement('div');
         div.className = 'content';
         div.innerHTML = '&nbsp;';
       }
     }
-    
+
     /* update status */
     this.set_param('dataPanelStatus', 'dbstats');
- 
-    /* display results */   
+
+    /* display results */
     this.show_dataPanel(box, vTop, 600)
   },
-  
+
   /*
    * receive result after startBench request
    * @param Object result
@@ -888,7 +888,7 @@ var SiteMonitoringToolbar = {
     /* reload page */
     location.reload(true);
   },
-  
+
   /*
    * receive result after stopBench request
    * @param Object result
@@ -896,9 +896,9 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_stopBench: function(result) {
-  
+
   },
-  
+
   /*
    * receive result after displayBench request
    * @param Object result
@@ -906,19 +906,19 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayBench: function(result) {
-    
+
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('BenchButton'));
-    
+
     /* create container */
     box = document.createElement('div');
-    
+
     /* add title */
     div = document.createElement('div');
     div.className = 'title';
     div.innerHTML = this.get_locale('bench_title');
     box.appendChild(div);
-    
+
     /* check has results */
     if (result['Bench'] === false || result['Bench'].length == 0) {
       div = document.createElement('div');
@@ -933,14 +933,14 @@ var SiteMonitoringToolbar = {
         box.appendChild(div);
       }
     }
-    
+
     /* update status */
     this.set_param('dataPanelStatus', 'bench');
- 
-    /* display results */   
+
+    /* display results */
     this.show_dataPanel(box, vTop, 300);
   },
-    
+
   /*
    * receive result after displayConfiguration request
    * @param Object result
@@ -948,34 +948,34 @@ var SiteMonitoringToolbar = {
    * @access private
    */
   _receive_displayConfiguration: function(result) {
-    
+
     /* compute button position */
     vTop = tool_getObjectPositionY(document.getElementById('ConfigurationButton'));
-    
+
     /* get data */
     configData = result['ConfigurationData'];
-    
+
     /* create container */
     form = document.createElement('form');
     form.setAttribute('method',"get");
     form.setAttribute('action',"javascript:void(0);");
-    
+
     /* add title */
     div = document.createElement('div');
     div.className = 'title';
     div.innerHTML = this.get_locale('configuration_title');
     form.appendChild(div);
-    
+
     /* add access restriction line */
     div = document.createElement('div');
     div.className = 'formLine';
     form.appendChild(div);
-    
+
     label = document.createElement('div');
     label.className = 'formLabel';
     label.innerHTML = this.get_locale('formlabel_accessrestriction');
     div.appendChild(label);
-    
+
     input = document.createElement('div');
     input.className = 'formInput';
     select = document.createElement('select');
@@ -989,17 +989,17 @@ var SiteMonitoringToolbar = {
     select.options[selected].selected = 'selected';
     input.appendChild(select);
     div.appendChild(input);
-    
+
     /* add button location line */
     div = document.createElement('div');
     div.className = 'formLine';
     form.appendChild(div);
-    
+
     label = document.createElement('div');
     label.className = 'formLabel';
     label.innerHTML = this.get_locale('formlabel_buttonlocation');
     div.appendChild(label);
-    
+
     input = document.createElement('div');
     input.className = 'formInput';
     select = document.createElement('select');
@@ -1014,17 +1014,17 @@ var SiteMonitoringToolbar = {
     select.options[selected].selected = 'selected';
     input.appendChild(select);
     div.appendChild(input);
-    
+
     /* add applied theme line */
     div = document.createElement('div');
     div.className = 'formLine';
     form.appendChild(div);
-    
+
     label = document.createElement('div');
     label.className = 'formLabel';
     label.innerHTML = this.get_locale('formlabel_appliedtheme');
     div.appendChild(label);
-    
+
     input = document.createElement('div');
     input.className = 'formInput';
     select = document.createElement('select');
@@ -1038,12 +1038,12 @@ var SiteMonitoringToolbar = {
     select.options[selected].selected = 'selected';
     input.appendChild(select);
     div.appendChild(input);
-    
+
     /* add submit button line */
     div = document.createElement('div');
     div.className = 'buttonLine';
     form.appendChild(div);
-    
+
     button = document.createElement('div');
     button.className = 'button';
     button.innerHTML = this.get_locale('save');
@@ -1053,27 +1053,27 @@ var SiteMonitoringToolbar = {
 	  button.onclick = new Function('onclick', this.name+'.save_configuration()');
     }
     div.appendChild(button);
-    
+
     /* update status */
     this.set_param('dataPanelStatus', 'configuration');
- 
-    /* display results */   
+
+    /* display results */
     this.show_dataPanel(form, vTop, 400);
   },
-  
+
   /*
    * receive result after disconnect request
    * @param Object result
    * @return void
    * @access private
    */
-  _receive_disconnectResult: function(result) {    
+  _receive_disconnectResult: function(result) {
     /* reload page */
     this.reload_page();
   },
-  
+
   /* tool methods */
-  
+
   /*
    * load a JS file
    * @param string fileURL
@@ -1091,7 +1091,7 @@ var SiteMonitoringToolbar = {
     }
     document.getElementsByTagName('head')[0].appendChild(tag);
   },
-  
+
   /*
    * reload page
    * @return void

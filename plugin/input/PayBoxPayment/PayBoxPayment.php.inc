@@ -7,7 +7,7 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Apr 2017
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2017 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -57,22 +57,7 @@ final class PayBoxPayment extends Input {
      * var array $params
      * @brief Input parameters.
      */
-    public $params = array(
-        /* running mode */
-        'mode'              => 'test',    // live / test
-
-        /* paybox keys */
-        'bankKey_Test'      => '',
-        'bankKey_Live'      => '',
-
-        /* paybox config */
-        'site'              => '',
-        'rang'              => '',
-        'identifiant'       => '',
-
-        /* paybox fixed config */
-        'hash'              => 'SHA512',
-    );
+    public $params = array();
 
     /**
      * Class constructor.
@@ -91,6 +76,10 @@ final class PayBoxPayment extends Input {
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
+
+
+        /* register plugin as Admin_Site extension */
+        $this->register_asExtension('Admin_Site');
     }
 
     /* overwrite input methods */
@@ -103,8 +92,11 @@ final class PayBoxPayment extends Input {
     public function initialise($params=array()) {
         global $camyks;
 
+        /* load plugin configuration */
+        $this->load_configuration();
+
         /* define params */
-        $this->params = array_merge($this->params, $params);
+        $this->params = array_merge($this->config->vars, $params);
 
         /* Input generic initialization */
         parent::initialise();
@@ -118,6 +110,7 @@ final class PayBoxPayment extends Input {
      * @return boolean result
      */
     public function prepare_forPayment($params=array()) {
+
         /* update default transaction params */
         $this->transactionParams['date'] = date('c');
 
@@ -146,7 +139,7 @@ final class PayBoxPayment extends Input {
             /* test key */
             $bankKey = $this->params['bankKey_Test'];
         }
-
+        
         /* initialise server to use */
         $serveurOK = "";
         foreach($serveurs as $serveur) {
@@ -280,7 +273,7 @@ final class PayBoxPayment extends Input {
      * Return last error as code.
      * @return integer
      */
-    function get_lastError() {
+    public function get_lastError() {
         return $this->_lastErrorCode;
     }
 
@@ -288,10 +281,74 @@ final class PayBoxPayment extends Input {
      * Return last error as text.
      * @return string
      */
-    function get_lastErrorMessage() {
+    public function get_lastErrorMessage() {
         if ($this->_lastErrorMsg == '')
             return '';
         return $this->_lastErrorMsg;
+    }
+
+    /* tool methods */
+
+    /**
+     * Load plugin configuration
+     * @return void
+     */
+    public function load_configuration() {
+        /* load configuration library */
+        $this->load_library('PayBoxPaymentConfig');
+
+        /* load config */
+        $this->config = new PayBoxPaymentConfig('config', $this);
+        $this->config->get();
+    }
+
+    /* Admin_Site extension configuration methods */
+
+    /**
+     * Initialise object in Admin_Site / view configuration mode.
+     * @return void
+     */
+    public function initialise_configDisplay() {
+        $this->load_configuration();
+    }
+
+    /**
+     * Display object in Admin_Site / view configuration mode.
+     * @return void
+     */
+    public function display_configDisplay() {
+        $this->load_file('html/configuration/view.html.inc');
+    }
+
+    /**
+     * Initialise object in Admin_Site / edit configuration mode.
+     * @param Object $form
+     * @return void
+     */
+    public function initialise_configEdition($form) {
+        $this->load_configuration();
+
+        /* update form */
+        $this->form = &$form;
+        $this->form->set_object($this->config);
+    }
+
+    /**
+     * Display object in Admin_Site / edit configuration mode.
+     * @return void
+     */
+    public function display_configEdition() {
+        $this->load_file('html/configuration/edit.html.inc');
+    }
+
+    /**
+     * Execute object in Admin_Site / save configuration mode.
+     * @return void
+     */
+    public function save_configuration() {
+        $this->load_configuration();
+        $this->config->get_fromHeader();
+        return $this->config->save();
     }
 }
 ?>

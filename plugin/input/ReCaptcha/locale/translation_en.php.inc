@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Plugin / Input Dictionnary
- * Creation Date	: Mar 2016
- * Last Modif Date	: Jun 2018
- *
- * ReCaptcha language english  dictionnary
+/**
+ * @brief ReCaptcha Input english dictionnary
+ * @details Plugin / Input Dictionnary
+ * @file plugin/input/ReCaptcha/locale/translation_en.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Mar 2016
+ * @date Modification: Jul 2018
+ * @copyright 2016 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* errors */

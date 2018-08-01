@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0a
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Layout
- * Creation Date	: Jun 2007
- * Last Modif Date	: Jun 2007
- * 
- * FileManager input columns view layout
-*/
+/**
+ * @brief FileManager Input columns layout
+ * @details Plugin / Input layout
+ * @file plugin/input/FileManager/html/input_columns.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 ?>
 <div id="fm_browser" style="width:680px; overflow:auto;">
 <table cellspacing="0">
@@ -24,3 +25,8 @@
 </tr>
 </table>
 </div>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

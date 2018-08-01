@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Layout
- * Create Date		: Nov 2009
- * Last Modif Date	: Jan 2018
- * 
- * SocialNetworksSharingPanel input layout - share mode
-*/
+/**
+ * @brief SocialNetworksSharingPanel Input share mode layout
+ * @details Plugin / Input layout
+ * @file plugin/input/SocialNetworksSharingPanel/html/input.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Nov 2009
+ * @date Modification: Jul 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 $n = $this->dparams['networks'][1];
 ?>
 <div class="<?=$this->dparams['block_class']?>">
@@ -25,7 +26,7 @@ $n = $this->dparams['networks'][1];
 <?php foreach ($this->networks as $name => $network ) : ?>
 <?php if ($network['share'] == 1 and $this->config->vars['share_'.$name] == 1) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> class="img" target="_blank" rel="noopener">
-<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>" 
+<img src="<?=$this->get_networkIconURL($name, 'share');?>"
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:0 2px; border:0;" />
 </a>
 <?php if (--$n > 0 ) : ?>
@@ -77,7 +78,7 @@ $n = $this->dparams['networks'][1];
 <?php foreach ($this->networks as $name => $network) : ?>
 <?php if ($network['share'] == 1 and $this->config->vars['share_'.$network] == 2) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank" rel="noopener">
-<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>" 
+<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>"
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:4px; border:0;" />
 </a>
 <?php endif; ?>
@@ -89,3 +90,8 @@ $n = $this->dparams['networks'][1];
 <?php else : ?>
 </div>
 <?php endif; ?>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

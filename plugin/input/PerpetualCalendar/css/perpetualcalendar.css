@@ -1,42 +1,38 @@
-/*
- * CaMykS Engine
- * Developed by		  : camyks.net
- * Author			      : CaMykS Team
- * CaMykS Version	  : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Input CSS Styles
- * Creation Date	  : Apr 2010
- * Last Modif Date  : May 2010
- *
- * PerpetualCalendar CSS style file
- *
+/**
+ * @brief PerpetualCalendar Input default CSS styles
+ * @details Plugin / Input CSS styles
+ * @file plugin/input/PerpetualCalendar/css/perpetualcalendar.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Apr 2010
+ * @date Modification: Jul 2018
+ * @copyright 2010 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
-.perpetualCalendar { width:100%; }
-.perpetualCalendar td { padding:2px 0; text-align:center; width:14.3%; }
-.perpetualCalendar a.img{font-size:0;}
-.perpetualCalendar a.textual{font-weight:bold; color:#093960;}
-.perpetualCalendar a.textual:hover{text-decoration:underline;}
+.perpetualCalendar {width:100%;}
+.perpetualCalendar td {padding:2px 0; text-align:center; width:14.3%;}
+.perpetualCalendar a.img {font-size:0;}
+.perpetualCalendar a.textual {font-weight:bold; color:#093960;}
+.perpetualCalendar a.textual:hover {text-decoration:underline;}
 
 /* header cells */
-.perpetualCalendar .cellLink { padding:0; }
-.perpetualCalendar .cellLink a{ background:#C2D1E6; display:block; padding:3px 0; }
-.perpetualCalendar .cellLink a:hover{  background:#093960; color:white; text-decoration:none; }
+.perpetualCalendar .cellLink {padding:0;}
+.perpetualCalendar .cellLink a {background:#C2D1E6; display:block; padding:3px 0;}
+.perpetualCalendar .cellLink a:hover {background:#093960; color:white; text-decoration:none;}
 
-.perpetualCalendar .cellDate { background:#093960; width:71.4%; color:white; border:solid 1px #093960; }
-.perpetualCalendar .cellDay { background:#F6DDBC; color:#093960; border:solid 1px #F6DDBC; font-weight:bold; }
+.perpetualCalendar .cellDate {background:#093960; width:71.4%; color:white; border:solid 1px #093960;}
+.perpetualCalendar .cellDay {background:#F6DDBC; color:#093960; border:solid 1px #F6DDBC; font-weight:bold;}
 
 /* out of displayed month cells */
-.perpetualCalendar .cellOut { background:#DEDEDE; border:solid 1px #DEDEDE; }
+.perpetualCalendar .cellOut {background:#DEDEDE; border:solid 1px #DEDEDE;}
 
 /* day cell types */
-.perpetualCalendar .cell0 { background:#C9C9C9; border:solid 1px #C9C9C9; }
-.perpetualCalendar .cell0Over { background:#C9C9C9; border:solid 1px #C9C9C9; cursor:pointer; }
+.perpetualCalendar .cell0 {background:#C9C9C9; border:solid 1px #C9C9C9;}
+.perpetualCalendar .cell0Over {background:#C9C9C9; border:solid 1px #C9C9C9; cursor:pointer;}
 
-.perpetualCalendar .cell1 { background:#DCE7F7; border:solid 1px #DCE7F7; }
-.perpetualCalendar .cell1Over { background:#DCE7F7; border:solid 1px #C2D1E6; cursor:pointer; }
+.perpetualCalendar .cell1 {background:#DCE7F7; border:solid 1px #DCE7F7;}
+.perpetualCalendar .cell1Over {background:#DCE7F7; border:solid 1px #C2D1E6; cursor:pointer;}
 
-.perpetualCalendar .cell2 { background:#C2D1E6; color:white; border:solid 1px #C2D1E6; }
-.perpetualCalendar .cell2Over { background:#C2D1E6; color:white; border:solid 1px #DCE7F7; cursor:pointer; }
-
-
+.perpetualCalendar .cell2 {background:#C2D1E6; color:white; border:solid 1px #C2D1E6;}
+.perpetualCalendar .cell2Over {background:#C2D1E6; color:white; border:solid 1px #DCE7F7; cursor:pointer;}

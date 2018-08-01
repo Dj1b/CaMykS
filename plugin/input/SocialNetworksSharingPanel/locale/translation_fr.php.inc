@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0a
- * Object Version   : 1.0
- * Object Type      : Plugin / Input Dictionnary
- * Create Date		: Feb 2012
- * Last Modif Date	: Feb 2012
- *
- * SocialNetworksSharingPanel language dictionnary : french 
+/**
+ * @brief SocialNetworksSharingPanel Input french dictionnary
+ * @details Plugin / Input Dictionnary
+ * @file plugin/input/SocialNetworksSharingPanel/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Feb 2012
+ * @date Modification: Jul 2018
+ * @copyright 2012 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* default share by email values */
@@ -21,6 +21,8 @@ $this->trads['input_socialnetworkssharingpanel_followuson'] = 'Suivez nous sur %
 
 /* configuration */
 $this->trads['input_socialnetworkssharingpanel_tabshare'] = 'Partager';
+$this->trads['input_socialnetworkssharingpanel_formitem_pictureformat'] = 'Format des ic&ocirc;nes : ';
+$this->trads['input_socialnetworkssharingpanel_formtitle_networks'] = 'R&eacute;seaux sociaux';
 $this->trads['input_socialnetworkssharingpanel_formdesc_share'] = 'Indiquez ici les r&eacute;seaux sociaux sur lesquels vos visiteurs vont pouvoir partager vos pages, articles, ...';
 $this->trads['input_socialnetworkssharingpanel_formtitle_like'] = 'Liens "Like"';
 $this->trads['input_socialnetworkssharingpanel_formitem_layout'] = 'Disposition : ';
@@ -51,6 +53,6 @@ $this->trads['input_socialnetworkssharingpanel_followstylesource_theme'] = 'Them
 
 $this->trads['input_socialnetworkssharingpanel_followlocation_fixedleft'] = 'Fix&eacute; &agrave; gauche';
 $this->trads['input_socialnetworkssharingpanel_followlocation_fixedright'] = 'Fix&eacute; &agrave; droite';
- 
+
 $this->trads['input_socialnetworkssharingpanel_formtitle_follownetworks'] = 'Vos pages &agrave; suivre';
 ?>

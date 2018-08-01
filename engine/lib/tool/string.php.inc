@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/string.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2007
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -40,18 +40,18 @@ function string_isValidIPv4($ip, $allow_mask=false) {
  */
 function string_numberFormat($string, $decimal=2, $country=null) {
     global $camyks;
-    
+
     /* check decimal value */
     $decimal = (int)$decimal;
-    
+
     /* check country value */
     if ($country == null) $country = $camyks->current_language;
-    
+
     /* check formatting case of country */
     switch ($country) {
         /* special */
         case 'num' : return number_format($string, $decimal, '.', '');
-        
+
         /* countries */
         case 'al':
         case 'at':
@@ -69,21 +69,21 @@ function string_numberFormat($string, $decimal=2, $country=null) {
         case 'hr':
         case 'it':
         case 'no':
-        case 'pe': 
-        case 'po': 
+        case 'pe':
+        case 'po':
         case 'pt':
         case 'ro':
-        case 'rs': 
-        case 'ru': 
+        case 'rs':
+        case 'ru':
         case 'se':
-        case 'sl': 
+        case 'sl':
         case 'sk':
-        case 'ua': 
+        case 'ua':
         case 'xk':
-        case 'za': 
+        case 'za':
             return number_format($string, $decimal, ',', ' ');  // 1 234 567,89
-        case 'ie': 
-        case 'mt': 
+        case 'ie':
+        case 'mt':
             return number_format($string, $decimal, '&#149;', ','); // 1,234,567·89
         case 'ar':
         case 'at':
@@ -107,17 +107,17 @@ function string_numberFormat($string, $decimal=2, $country=null) {
             /* split number to remove decimals */
             $number = (string)string_numberFormat($string, $decimal, 'num');
             $number = explode('.', $number);
-            
+
             /* split number to have the last 3 */
             $a = substr($number[0], -3);
             $b = substr($number[0], 0, -3);
-            
+
             /* split rest of number in 2 */
             if (strlen($b) == 0) {
                 /* do nothing */
             } elseif (strlen($b) < 2)
                 $a = $b.','.$a;
-            elseif (strlen($b) % 2 == 0) 
+            elseif (strlen($b) % 2 == 0)
                 $a = chunk_split($b, 2, ',').$a;
             else
                 $a = substr($b, 0, 1).','.chunk_split(substr($b, 1), 2, ',').$a;
@@ -130,7 +130,7 @@ function string_numberFormat($string, $decimal=2, $country=null) {
         case 'au':
         case 'ca':
         case 'ca':
-        case 'en': 
+        case 'en':
         case 'hk':
         case 'ir':
         case 'il':
@@ -159,14 +159,14 @@ function string_numberFormat($string, $decimal=2, $country=null) {
  */
 function string_html2Text($string, $encoding=null) {
     global $camyks;
-    
+
     /* check encoding */
     if (!isset($encoding))
         $encoding = $camyks->get_confValue('encoding');
-    
+
     /* decode html */
     $string = html_entity_decode($string);
-    
+
     /* encode text */
     switch ($encoding) {
         case 'utf8':
@@ -187,11 +187,11 @@ function string_html2Text($string, $encoding=null) {
  */
 function string_text2Html($string, $encoding=null) {
     global $camyks;
-    
+
     /* check encoding */
     if (!isset($encoding))
         $encoding = $camyks->get_confValue('encoding');
-    
+
     /* encode text */
     switch ($encoding) {
         case 'utf8':
@@ -199,7 +199,7 @@ function string_text2Html($string, $encoding=null) {
         default:
         case '':
     }
-    
+
     /* decode html */
     return htmlentities($string);
 }
@@ -207,7 +207,7 @@ function string_text2Html($string, $encoding=null) {
 /**
  * Return unaccentued words list from html.
  * @param string $string
- * @param array $params 
+ * @param array $params
  * @parblock - Available parameters are <br />
  * \e string changecase - \b void / \b lower / \b upper <br />
  * \e integer minlength <br />
@@ -219,27 +219,27 @@ function string_text2Html($string, $encoding=null) {
 function string_text2Words($string, $params=array()) {
     /* default config */
     $config = array('contenttype'=>'html', 'accents'=>'replace', 'changecase'=>'', 'minlength'=>0);
-    
+
     /* merge config & params */
     $params = array_merge($config, $params);
-    
+
     /* remove html tags */
     $string = string_stripTags($string, ' ');
-    
+
     /* update case */
     if ($params['changecase'] == 'lower')
         $string = strtolower($string);
     else if ($params['changecase'] == 'upper')
         $string = strtoupper($string);
-    
+
     /* check text mode */
     if ($params['contenttype'] == 'text' and $params['accents'] == 'replace')
         $string = string_text2Html($string);
-    
+
     /* check html mode */
     if ($params['contenttype'] == 'html' and $params['accents'] != 'replace')
         $string = string_html2Text($string);
-    
+
     /* parse accents */
     if ($params['accents'] == 'replace') {
         $string = string_replaceEntityChars($string, array('lastreplace'=>' '));
@@ -247,23 +247,23 @@ function string_text2Words($string, $params=array()) {
     } else {
         $accentChars = string_getAccentuedChars(array('listmode'=>'string', 'charmode'=>'text'));
     }
-    
-    /* set min length word regexp modifier */  
+
+    /* set min length word regexp modifier */
     if ($params['minlength']>2)
         $length_modifier = '{'.$params['minlength'].',}';
     else
-        $length_modifier = '+';  
-    
-    /* split on non-letter chars */  
+        $length_modifier = '+';
+
+    /* split on non-letter chars */
     $count = preg_match_all('/\b[\w'.$accentChars.']'.$length_modifier.'\b/', $string, $array);
     $array = $array[0];
-    
+
     /* check html mode */
     if ($params['contenttype'] == 'html' and $params['accents']!='replace')
         foreach ($array as $idx => $value) {
             $array[$idx] = htmlentities($value);
         }
-    
+
     return $array;
 }
 
@@ -281,10 +281,10 @@ function string_text2Words($string, $params=array()) {
 function string_replaceEntityChars($string, $params=array()) {
     /* default config */
     $config = array('pattern'=>null, 'replace'=>null, 'lastreplace'=>null);
-    
+
     /* merge config & params */
     $params = array_merge($config, $params);
-    
+
     /* init pattern array */
     $pattern = array(
         /* add html named entities */
@@ -298,7 +298,7 @@ function string_replaceEntityChars($string, $params=array()) {
         /* add html number entities for special chars */
         '/&amp;/', '/&hellip;/',
     );
-    
+
     /* init replacement array */
     $replace = array(
         /* add html named entities */
@@ -312,7 +312,7 @@ function string_replaceEntityChars($string, $params=array()) {
         /* add html number entities for special chars */
         '', '...',
     );
-    
+
     /* add param patterns and replacements */
     if (isset($params['pattern']) and isset($params['replace'])) {
         if (is_string($params['pattern']) and is_string($params['replace'])) {
@@ -323,13 +323,13 @@ function string_replaceEntityChars($string, $params=array()) {
             $replace = array_merge($replace, $params['replace']);
         }
     }
-    
+
     /* all other entities */
     if (isset($params['lastreplace'])) {
         $pattern[] = '/&[#\w]+;/';
         $replace[] = $params['lastreplace'];
     }
-    
+
     /* execute replacement */
     return preg_replace($pattern, $replace, $string);
 }
@@ -346,13 +346,13 @@ function string_replaceEntityChars($string, $params=array()) {
 function string_getAccentuedChars($params=array()) {
     /* default config */
     $config = array('listmode'=>'array', 'charmode'=>'text');
-    
+
     /* merge config & params */
     $params = array_merge($config, $params);
-    
+
     /* init list */
     $accentChars = array();
-    
+
     /* special array/text optimisation */
     if ($params['listmode'] == 'array' and 'charmode' == 'text') {
         for ($i=192; $i<256; $i++)
@@ -361,7 +361,7 @@ function string_getAccentuedChars($params=array()) {
             $accentChars[] = html_entity_decode('&#'.$i.';');
         return $accentChars;
     }
-    
+
     /* generic  */
     for ($i=192; $i<256; $i++)
         $accentChars[] = '&#'.$i.';';
@@ -387,10 +387,10 @@ function string_getAccentuedChars($params=array()) {
 function string_parseSpecialChars($string, $params=array()) {
     /* default config */
     $config = array('pattern'=>'/[^a-zA-Z]/', 'replace'=>'');
-    
+
     /* merge config & params */
     $params = array_merge($config, $params);
-    
+
     /* execute replacement */
     return string_replaceEntityChars(string_text2Html($string), array('pattern'=>$params['pattern'], 'replace'=>$params['replace'], 'lastreplace'=>''));
 }
@@ -547,7 +547,7 @@ function string_getSymbolicName($text='', $params=array()) {
     /* check params */
     $dParams = array('replacement'=>'_', 'keepSpecialChars'=>false);
     $params = array_merge($dParams, $params);
-    
+
     /* check special chars replacement */
     if ($params['keepSpecialChars']) {
         $pattern = array('/&#178;/', '/&#179;/', '/&rsquo;/', '/&#169;/', '/&#174;/');
@@ -556,20 +556,20 @@ function string_getSymbolicName($text='', $params=array()) {
         $pattern = array();
         $replace = array();
     }
-    
+
     /* replace all special chars */
     $text = string_text2html($text);
     $text = string_replaceEntityChars($text, array('pattern'=>$pattern, 'replace'=>$replace));
-    
+
     /* replace all unwanted chars */
-    $text = preg_replace(array('/([^a-zA-Z0-9()]) {1,}/'), array($params['replacement']), $text);
-    
+    $text = preg_replace(array('/([^a-zA-Z0-9()]){1,}/'), array($params['replacement']), $text);
+
     /* check first & last chars to not be replacement */
     if (substr($text, 0, 1) == $params['replacement'])
         $text = substr($text, 1);
     if (substr($text, -1) == $params['replacement'])
         $text = substr($text, 0, -1);
-    
+
     return $text;
 }
 
@@ -584,20 +584,20 @@ function string_getSymbolicName($text='', $params=array()) {
 function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=null) {
     /* apply generic HTML encode method */
     $text = htmlentities($text, $flags, $encoding, $double_encode);
-    
+
     /* build extra character list */
     $pattern = array(
         /* polish characters */
         '/Ą/', '/ą/', '/Ę/', '/ę/', '/Ó/', '/ó/', '/Ć/', '/ć/', '/Ł/', '/ł/', '/Ń/', '/ń/',
         '/Ś/', '/ś/', '/Ź/', '/ź/', '/Ż/', '/ż/',
     );
-    
+
     $replace = array(
         /* polish characters */
         '&#x104;', '&#x105;', '&#x118;', '&#281;', '&#211;', '&#243;', '&#262;','&#263;', '&#321;','&#322;',
         '&#323;', '&#324;', '&#346;', '&#347;', '&#377;', '&#378;', '&#379;', '&#380;',
     );
-    
+
     return preg_replace($pattern, $replace, $text);
 }
 
@@ -608,22 +608,22 @@ function string_encodeToHTML($text, $flags=null, $encoding=null, $double_encode=
  * @return string
  */
 function string_formatIntlPhoneNumber($number, $prefix='') {
-    
+
     /* remove leading + from prefix */
     if (substr($prefix, 0, 1) == '+')
         $prefix = substr($prefix, 1);
-    
+
     /* check for prefix from country */
     if (preg_match('/^[a-z]{2}$/', $prefix))
         $prefix = countries_getPhonePrefix($prefix);
-    
+
     if (preg_match('/^\+([0-9]{2,5}) ?(\(0\))? ([0-9\- ]+)$/', $number, $matches)) {
         /* for intl formatted number */
-        
+
         if ($matches[1] != $prefix) {
             /* given prefix different from existing one */
         }
-        
+
         /* remove all unwanted characters */
         $number = preg_replace ('/[^0-9]/', '', $matches[3]);
     } else {
@@ -631,10 +631,10 @@ function string_formatIntlPhoneNumber($number, $prefix='') {
         if ($prefix == '') {
             $prefix == '33';
         }
-        
+
         /* remove all unwanted */
         $number = preg_replace ('/[^0-9]/', '', $number);
-        
+
         /* remove leading 0 */
         if (substr($number, 0, 1) == 0)
             $number = substr($number, 1);
@@ -682,7 +682,7 @@ function string_getSimilarBeginning($s1, $s2) {
             return $result;
         }
     }
-    
+
     /* text are identical */
     return $result;
 }

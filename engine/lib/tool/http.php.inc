@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/http.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2017
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2017 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,7 @@
  * \e string engine - \b php / \b curl <br />
  * \e string method - \b GET / \b POST <br />
  * \e array values <br />
- * \e boolean SSL_VerifyPeer (curl only) <br />
+ * \e boolean SSL_VerifyPeer <br />
  * \e string user_agent <br />
  * \e string referer <br />
  * \e integer timeout <br />
@@ -36,7 +36,7 @@ function http_getContents($params=array()) {
         'engine'            => 'php', // php | curl 
         'method'            => 'GET', // GET | POST
         'values'            => array(), // fields 
-        'SSL_VerifyPeer'    => true, // curl
+        'SSL_VerifyPeer'    => true,
         'user_agent'        => $camyks->get_confValue('UserAgent'),
         'referer'           => '',
         'timeout'           => 60,
@@ -74,6 +74,7 @@ function http_getContentsUsingPHP($params=array()) {
         'url'           => '', 
         'method'        => 'GET', // GET | POST
         'values'        => array(), // fields
+        'SSL_VerifyPeer'=> true,
         'user_agent'    => $camyks->get_confValue('UserAgent'),
         'referer'       => '',
         'timeout'       => 60,
@@ -90,6 +91,14 @@ function http_getContentsUsingPHP($params=array()) {
             'timeout'       => $params['timeout'],
         ),
     );
+    
+    /* check SSL peer verification */
+    if ($params['SSL_VerifyPeer']) {
+        $opts['ssl'] = array(
+            'verify_peer'       => false,
+            'verify_peer_name'  => false,
+        );
+    }
     
     /* add fields values to context */
     if (count($params['values']) > 0) {

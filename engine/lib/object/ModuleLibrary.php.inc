@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/ModuleLibrary.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Mar 2007
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1199,7 +1199,7 @@ abstract class ModuleLibrary {
      * @param boolean $localeOnly
      * @return string
      */
-    private function check_SQLCondition($where, $localeOnly=false){
+    protected function check_SQLCondition($where, $localeOnly=false){
         if ($localeOnly)
             return preg_replace('#\bid\b#', 'l.objectid', $where);
         return preg_replace('#\bid\b#', 'm.id', $where);

@@ -1,17 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Dictionnary
- * Create Date		: Jun 2007
- * Last Modif Date	: Jun 2008
- *
- * FileManager language dictionnary : English
+/**
+ * @brief FileManager Input english dictionnary
+ * @details Plugin / Input Dictionnary
+ * @file plugin/input/FileManager/locale/translation_en.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2007
+ * @date Modification: Jul 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['input_filemanager_defaultfoldertitle'] = 'Website documents';
 $this->trads['input_filemanager_filesize'] = 'Size';
 $this->trads['input_filemanager_filemodification'] = 'Modified';

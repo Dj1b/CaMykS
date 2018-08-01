@@ -4,10 +4,10 @@
  * Developed by		: camyks.net
  * Author			: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0b
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Dec 2012
- * Last Modif Date	: Dec 2012
+ * Last Modif Date	: Jul 2018
  * 
  * Admin_GenericEmailingManager contact list parameters
  */
@@ -28,10 +28,12 @@ $this->add_JSScript('var deleteContactUrl="'.$this->get_adminJSLink(array('mode'
 $this->contactListParams = array('name'=>'contactList', 'useSession'=>true, 'object'=>&$this->contactItem);
 
 /* build head parameters */
-$this->contactListParams['headselectors'] = array('page'=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-						   'status'=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->contactsStatusList, 'default'=>'-1'),
-						   'group'=> array('title'=>$this->get_translation('formitem_group'), 'itemtype'=>'select', 'values'=>$this->contactGroupList, 'default'=>'_all_'),
-						   'search'=> array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text', 'default'=>''));
+$this->contactListParams['headselectors'] = array(
+    'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+    'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->contactsStatusList, 'default'=>'-1'),
+    'group'     => array('title'=>$this->get_translation('formitem_group'), 'itemtype'=>'select', 'values'=>$this->contactGroupList, 'default'=>'_all_'),
+    'search'    => array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text', 'default'=>''),
+);
 
 $this->contactListParams['headhiddens'] = array('openTab'=>'contacts');
 
@@ -39,14 +41,15 @@ $this->contactListParams['headhiddens'] = array('openTab'=>'contacts');
 $this->contactListParams['sort'] = array('allowed'=>false, 'default'=>'lastname', 'defaultway'=>'asc');
 
 /* build column parameters */
-$this->contactListParams['listcolumns'] = array('status'=>array('title'=>' ', 'columntype'=>'list', 'values'=>$this->contactStatusIconList, 'style'=>'width:12px;'),
-						 'name'=>array('title'=>$camyks->get_translation('name'),'columntype'=>'specialtext', 'text'=>'%s %s', 'vars'=>array('firstname', 'lastname'), 'maxlength'=>'64'),
-						 'email'=>array('title'=>$camyks->get_translation('email'),'columntype'=>'text'),
-						 );
-						 
+$this->contactListParams['listcolumns'] = array(
+    'status'    => array('title'=>' ', 'columntype'=>'list', 'values'=>$this->contactStatusIconList, 'class'=>'eTableIconCell'),
+    'name'      => array('title'=>$camyks->get_translation('name'),'columntype'=>'specialtext', 'text'=>'%s %s', 'vars'=>array('firstname', 'lastname'), 'maxlength'=>'64'),
+    'email'     => array('title'=>$camyks->get_translation('email'),'columntype'=>'text'),
+);
+
 if ($this->check_right(1)==true ) {
   $this->contactListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewcontact'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editContactLink, 0), 'titlecolumn'=>'name', 'buttoncolumn'=>'edit'));
-  $this->contactListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editContactLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editcontact'));
-  $this->contactListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteContactLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletecontact'));
+  $this->contactListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editContactLink, 'url_title'=>$this->get_translation('editcontact'));
+  $this->contactListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteContactLink, 'url_title'=>$this->get_translation('deletecontact'));
 }
 ?>

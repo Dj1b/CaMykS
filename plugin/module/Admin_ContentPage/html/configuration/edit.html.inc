@@ -4,10 +4,10 @@
  * Developed by		: camyks.net
  * Author			: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type	    : Plugin / Module Layout
  * Creation Date    : Dec 2014
- * Last Modif Date	: Feb 2018
+ * Last Modif Date	: Jul 2018
  * 
  * Admin_ContactPage Module Admin Layout : edit configuration
 */
@@ -30,10 +30,8 @@ $minus_ = $camyks->theme->get_pictURL('minus', 12, 'ovr');
 
 <?php endif; ?>
 
-<table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
-
-  <tr>
-    <td style="width:49%; vertical-align:top;">
+<div class="adminContentContainer">
+    <div class="half">
   
       <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
@@ -235,10 +233,8 @@ $minus_ = $camyks->theme->get_pictURL('minus', 12, 'ovr');
       <?=$camyks->theme->get_button(array('title'=>$this->get_translation('add_new_keypage'), 'url'=>'javascript:ConfigEditor.insert_keyPage();')); ?>
     </div>
   </td>
-  <td style="width:2%;">
-    &nbsp;
-  </td>
-  <td style="width:49%; vertical-align:top;">
+  </div>
+    <div class="half">
 
 <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
@@ -333,10 +329,8 @@ $minus_ = $camyks->theme->get_pictURL('minus', 12, 'ovr');
 </tr>
 </table>
 
-
-  </td>
-</tr>
-</table>
+</div>
+</div>
 
 <?php if (isset($this->isConfig) and $this->isConfig) :?>
 

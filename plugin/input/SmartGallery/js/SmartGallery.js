@@ -1,12 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Input Javascript Library
- * Create Date		: Jul 2007
- * Last Modif Date	: Jul 2007
+/**
+ * @brief SmartGallery Input scripts
+ * @details Plugin / Input Javascripts
+ * @file plugin/input/SmartGallery/js/SmartGallery.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jul 2007
+ * @date Modification: Jul 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /*
@@ -80,7 +82,7 @@ SmartGallery.prototype.set_imageConfig = function ( width, height, title, desc )
 }
 
 /*
- * Update Smart Gallery object config with thumb values 
+ * Update Smart Gallery object config with thumb values
  */
 SmartGallery.prototype.set_thumbConfig = function ( width, height, count ) {
   this.selSize = count;
@@ -89,7 +91,7 @@ SmartGallery.prototype.set_thumbConfig = function ( width, height, count ) {
 }
 
 /*
- * Update Smart Gallery object config with sliding values 
+ * Update Smart Gallery object config with sliding values
  */
 SmartGallery.prototype.set_slidingConfig = function ( method, accel, speed, interval ) {
   this.slidingMethod = method;
@@ -104,7 +106,7 @@ SmartGallery.prototype.set_slidingConfig = function ( method, accel, speed, inte
 SmartGallery.prototype.initGallery = function () {
   /* set theme */
   this.initGalleryTheme();
-  
+
   /* build HTML for each item */
   for ( var i=0; i<this.items.length; i++ ) {
     this.items[i].buildHTML();
@@ -112,7 +114,7 @@ SmartGallery.prototype.initGallery = function () {
 
   /* get page count */
   this.countPage = Math.ceil(this.items.length/this.selSize);
-  
+
   /* if not defined, randomly choose a currentItem */
   if ( this.currentItem == 0 ) {
     this.currentItem = parseInt(Math.random()*this.items.length);
@@ -125,14 +127,14 @@ SmartGallery.prototype.initGallery = function () {
     this.addItem({id:i});
     this.items[i].buildEmptyHTML();
   }
-  
+
   /*  build gallery HTML and select item */
   if ( this.buildHTML() )
     this.selectItem( this.currentItem );
 }
 
 /*
- * Initialise Smart Gallery theme 
+ * Initialise Smart Gallery theme
  */
 SmartGallery.prototype.initGalleryTheme = function() {
   /* theme elements */
@@ -218,7 +220,7 @@ SmartGallery.prototype.buildHTML = function () {
   panel.className = 'sg_panel';
   panel.style.width = ((this.thumbWidth+20)*this.selSize+100) + 'px';
   bottom.appendChild( panel );
-  
+
   /* left arrow */
   var leftarrowdiv = htmlDiv.cloneNode(true);
   leftarrowdiv.className = 'sg_navarrow';
@@ -232,7 +234,7 @@ SmartGallery.prototype.buildHTML = function () {
     leftarrowimg.setAttribute('border', 0 );
     leftarrowimg.style.position = 'relative';
     leftarrowimg.style.top = this.thumbHeight/2 + 'px';
-    
+
     if ( this.slidingMethod == 'one' ) {
       /* M$ IE bug specific code */
       if ( navigator.appName.indexOf("Microsoft")!=-1 ) {
@@ -268,7 +270,7 @@ SmartGallery.prototype.buildHTML = function () {
     myitem.style.left = ( i-begin )*(this.thumbWidth+20)+'px';
     sel.appendChild ( myitem );
   }
-  
+
   panel.appendChild( sel );
   /* right arrow  */
   var rightarrowdiv = htmlDiv.cloneNode(true);
@@ -283,7 +285,7 @@ SmartGallery.prototype.buildHTML = function () {
     rightarrowimg.setAttribute('border', 0 );
     rightarrowimg.style.position = 'relative';
     rightarrowimg.style.top = this.thumbHeight/2 + 'px';
-    
+
     if ( this.slidingMethod == 'one' ) {
       /* M$ IE bug specific code */
       if ( navigator.appName.indexOf("Microsoft")!=-1 ) {
@@ -317,15 +319,15 @@ SmartGallery.prototype.addItem = function ( attr ) {
    this.items[this.items.length] = sgi;
 }
 
-/* 
+/*
  * Select Smart Gallery item
  * int : item id/index in item list
  */
 SmartGallery.prototype.selectItem = function ( itemid ) {
-  
+
   /* update current item */
   this.currentItem = itemid;
-  
+
   main = document.getElementById('sg_main_'+this.name);
   img = main.getElementsByTagName('img');
   if ( img.length > 0 ) {
@@ -339,12 +341,12 @@ SmartGallery.prototype.selectItem = function ( itemid ) {
       img.setAttribute('width', this.imageWidth );
     if ( this.imageHeight > 0 )
       img.setAttribute('height', this.imageHeight );
-    
+
     img.setAttribute('border', 0);
     /* add current item main image */
     document.getElementById('sg_main_'+this.name).appendChild ( img );
   }
-  
+
   /* update title */
   if ( this.imageTitle ) {
     document.getElementById('sg_title_'+this.name).innerHTML = this.items[itemid].title;
@@ -427,7 +429,7 @@ SmartGallery.prototype.movePreviousPage = function ( ) {
   myitem = this.items[i].divObj;
   myitem.style.left = -(this.thumbWidth+20)+'px';
   sel.appendChild ( myitem );
-  
+
   /* create sliding interval */
   this.sInterval = window.setInterval( this.name+'.moveLeft()', this.slidingInterval );
 }
@@ -465,7 +467,7 @@ SmartGallery.prototype.moveRight = function () {
     }
     /* delete useless item */
     sel.removeChild( ts[0] );
-    
+
     /* generic stop */
     this.moveStop();
     return;
@@ -496,11 +498,11 @@ SmartGallery.prototype.moveRight = function () {
   if ( this.sSpeed < this.slidingSpeed ) {
     this.sSpeed += this.slidingAccel;
   }
-  
+
   /* move all items */
   for ( var i = 0; i<ts.length; i++ ) {
     html_updateLeftStylePosition( ts[i], -1*(this.sSpeed) );
-  }  
+  }
 
 
 }
@@ -524,7 +526,7 @@ SmartGallery.prototype.moveLeft = function ( ) {
     }
     /* delete useless item */
     sel.removeChild( ts[this.selSize] );
-    
+
     /* generic stop */
     this.moveStop();
     return;
@@ -555,7 +557,7 @@ SmartGallery.prototype.moveLeft = function ( ) {
   if ( this.sSpeed < this.slidingSpeed ) {
     this.sSpeed += this.slidingAccel;
   }
-  
+
   /* move all items */
   for ( var i = 0; i<ts.length; i++ ) {
     html_updateLeftStylePosition( ts[i], this.sSpeed );
@@ -579,14 +581,14 @@ SmartGallery.prototype.moveStop = function ( ) {
   this.slidingRun = false;
 }
 
-/* 
+/*
  * Sort Smart gallery thumbs by left position
  */
 SmartGallery.prototype.sortDivs = function ( divs ) {
   var ts = new Array();
   var pos = ts.length;
   var l = 0;
-  
+
   for ( var i=0; i<divs.length; i++ ) {
     l = html_getLeftStylePosition( divs[i] );
     pos = ts.length;
@@ -599,7 +601,7 @@ SmartGallery.prototype.sortDivs = function ( divs ) {
     for ( var j=ts.length-1; j>=pos; j-- ) {
       ts[j+1] = ts[j];
     }
-    
+
     ts[pos] = divs[i];
   }
   return ts;
@@ -613,11 +615,11 @@ SmartGallery.prototype.updatePager = function ( ) {
   /* get pager and pages items */
   pager = document.getElementById('sg_pager_'+this.name);
   pages = pager.getElementsByTagName('img');
-  
+
   /* check page value validity */
   if ( page < 0 || page > pages.length )
     return;
-  
+
   /* update all pages before selected one */
   for ( var i=0; i<page; i++ ) {
     pages[i].setAttribute('src', this.emptyDot );
@@ -629,7 +631,7 @@ SmartGallery.prototype.updatePager = function ( ) {
     }
     pages[i].className = 'sg_pagerfree';
   }
-  
+
   /* update selected page */
   pages[i].setAttribute('src', this.coloredDot );
   if ( navigator.appName.indexOf("Microsoft")!=-1 ) {
@@ -638,7 +640,7 @@ SmartGallery.prototype.updatePager = function ( ) {
     pages[i].setAttribute('onClick', 'void(0);');
   }
   pages[i].className = 'sg_pagerselected';
-  
+
   /* update all pages after selected one */
   for ( var i=page+1; i<pages.length; i++ ) {
     pages[i].setAttribute('src', this.emptyDot );

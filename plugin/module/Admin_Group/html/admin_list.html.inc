@@ -1,13 +1,13 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version       : 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Mar 2007
- * Last Modif Date	: Mar 2009
+ * Developed by     : camyks.net
+ * Author           : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version   : 1.0
+ * Object Version   : 1.0.1
+ * Object Type      : Plugin / Module Layout
+ * Creation Date    : Mar 2007
+ * Last Modif Date  : Jul 2018
  * 
  * Admin_Group Module Admin Layout : list
  *
@@ -23,7 +23,7 @@ $del_ = $camyks->theme->get_pictURL('cross', 12, 'ovr');
 $plus = $camyks->theme->get_pictURL('plus', 12, 'std');
 $plus_ = $camyks->theme->get_pictURL('plus', 12, 'ovr');
 ?>
-<?=$this->theme->get_boxHeader('width:600px;margin:0 auto;');?>
+<?=$this->theme->get_boxHeader(array('class'=>'adminEditorModule'));?>
 <?=$this->theme->get_boxTitleBar($this->title);?>
 <?=$this->theme->get_boxContent2Header();?>
 <div class="adminContentPanel">

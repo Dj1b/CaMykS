@@ -4,9 +4,9 @@
  * @details Plugin / Input Layout
  * @file plugin/input/AdminItemListViewer/html/input_list.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Oct 2008
- * @date Modification: Apr 2018
+ * @date Modification: Jul 2018
  * @copyright 2008 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,6 +17,7 @@ global $global_theme_picts_items;
 /* get columns count */
 $cols = count($this->params['listcolumns']);
 ?>
+<div class="AdminItemListViewer">
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
     <?php /* build list head links */ ?>
     <?php $alt=1; ?>
@@ -87,7 +88,7 @@ $cols = count($this->params['listcolumns']);
                     <?php $c .= ' '.$column['class'];?>
                 <?php endif; ?>
 
-                <td class="eTableHeader<?=($c != ' '?' class='.$c:'');?>"<?=(isset($column['style'])?' style="'.$column['style'].'"':'')?>>
+                <td class="eTableHeader<?=($c != ' '?$c:'');?>"<?=(isset($column['style'])?' style="'.$column['style'].'"':'')?>>
                     <?php if ($column['columntype'] == 'checkbox') : ?>
                         <input type="checkbox" name="<?=$name?>_all" id="<?=$name?>_all" value="1" onchange="<?=$this->params['name'];?>.update_allCheckboxes('<?=$name?>');" />
                     <?php elseif ($column['title']!= '' and $this->is_columnSortable($name)) : ?>
@@ -116,7 +117,7 @@ $cols = count($this->params['listcolumns']);
         <?php endforeach; ?>
     <?php else : ?>
         <?php foreach($this->params['listcolumns'] as $name => $column) : ?>
-            <?php $c = ' '; ?>
+            <?php $c = ''; ?>
             <?php if (in_array($column['columntype'], array('button', 'checkbox', 'boolean', 'icon'))) : ?>
                 <?php $c .= ' eTableIconCell'; ?>
             <?php endif; ?>
@@ -124,7 +125,7 @@ $cols = count($this->params['listcolumns']);
                 <?php $c .= ' '.$column['class'];?>
             <?php endif; ?>
 
-            <td class="eTableHeader<?=($c != ' '?' class='.$c:'');?>"<?=(isset($column['style'])?' style="'.$column['style'].'"':'');?>>
+            <td class="eTableHeader<?=($c != ' '?$c:'');?>"<?=(isset($column['style'])?' style="'.$column['style'].'"':'');?>>
                 <?php if ($column['columntype'] == 'checkbox') : ?>
                     <input type="checkbox" name="<?=$name?>_all" id="<?=$name?>_all" value="1" onchange="<?=$this->params['name']?>.update_allCheckboxes('<?=$name?>');" />
                 <?php else : ?>
@@ -158,6 +159,7 @@ $cols = count($this->params['listcolumns']);
     <?php $cnt ++ ;?>
     <?php endforeach; ?>
 </table>
+</div>
 <?php 
 /**
  * @endcond Exclude

@@ -1,17 +1,18 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type	    : Plugin / Input Layout
- * Creation Date    : Jan 2018
- * Last Modif Date	: Jan 2018
- * 
- * ReCaptcha special layout : view configuration
-*/
-global $camyks;
+/**
+ * @brief ReCaptcha Input configuration view layout
+ * @details Plugin / Input layout
+ * @file plugin/input/ReCaptcha/html/configuration/view.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jan 2018
+ * @date Modification: Jul 2018
+ * @copyright 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
+  global $camyks;
 ?>
 <?=$camyks->theme->get_boxContent2Header();?>
 <div class="adminContentPanel">
@@ -37,3 +38,8 @@ global $camyks;
 </table>
 </div>
 <?=$camyks->theme->get_boxContent2Footer();?>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

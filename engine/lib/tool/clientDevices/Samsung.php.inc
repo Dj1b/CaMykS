@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.11
  * @date Creation: Apr 2018
- * @date Modification: Jun 2018
+ * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -50,6 +50,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T813'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
 
         /* Samsung phones */
+        'GT-C3590'  => array('platform_model' => 'C3590',                       'platform_year' => 2013,    'system_title' => 'Symbian'),
         'GT-S3800W' => array('platform_model' => 'REX 70',                      'platform_year' => 2013),
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                    'platform_year' => 2010),
         'GT-S7562'  => array('platform_model' => 'Galaxy S Duo',                'platform_year' => 2012),
@@ -85,6 +86,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge',              'platform_year' => 2016),
         'SM-G950'   => array('platform_model' => 'Galaxy S8',                   'platform_year' => 2017),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8',                   'platform_year' => 2017),
+        'SM-G950W'  => array('platform_model' => 'Galaxy S8',                   'platform_year' => 2017),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+',                  'platform_year' => 2017),
         'SM-G955U'  => array('platform_model' => 'Galaxy S8+',                  'platform_year' => 2017),
         'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active',            'platform_year' => 2017),
@@ -102,6 +104,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A510F'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2016),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2016),
         'SM-A520F'  => array('platform_model' => 'Galaxy A5',                   'platform_year' => 2017),
+        'SM-A700F'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',               'platform_year' => 2016),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
@@ -210,7 +213,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
         'SM-G130HN' => array('platform_model' => 'Galaxy Young 2',              'platform_year' => 2014),
         'SGH-I547'  => array('platform_model' => 'Galaxy Rugby Pro',            'platform_year' => 2012),
-        
+
         'Galaxy'    => array('platform_model' => 'Galaxy'),
         'E7'        => array('platform_model' => 'Galaxy E7',                   'platform_year' => 2016),
     );
