@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: May 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -3904,6 +3904,26 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://www.comscore.com/',
     );
 
+    /* Mappy */
+    $knownBots['mappy'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Mappy Crawler',
+        'bot_url'           => 'http://mappydata.net/bot/',
+        'engine_title'      => 'Mappy',
+        'engine_url'        => 'https://www.mappy.com',
+    );
+
+    /* techleadzbot */
+    $knownBots['techleadzbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'techleadzbot',
+        'bot_url'           => '',
+        'engine_title'      => 'WiredWith',
+        'engine_url'        => 'https://wiredwith.com',
+    );
+
     /* unknown bots */
 
     /* SEOBulls - unknown bot */
@@ -4142,6 +4162,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'SOcrawl (Unknown bot)',
         'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Kerrigan  - unknown bot */
+    $knownBots['kerrigan'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Kerrigan (Unknown bot)',
+        'bot_url'           => 'mailto:kerrigan@mashable.com',
         'engine_title'      => '',
         'engine_url'        => '',
     );

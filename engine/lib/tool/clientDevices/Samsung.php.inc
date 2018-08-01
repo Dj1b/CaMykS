@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Apr 2018
  * @date Modification: Jul 2018
  * @copyright 2018 CaMykS Team
@@ -86,6 +86,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge',              'platform_year' => 2016),
         'SM-G950'   => array('platform_model' => 'Galaxy S8',                   'platform_year' => 2017),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8',                   'platform_year' => 2017),
+        'SM-G950W'  => array('platform_model' => 'Galaxy S8',                   'platform_year' => 2017),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+',                  'platform_year' => 2017),
         'SM-G955U'  => array('platform_model' => 'Galaxy S8+',                  'platform_year' => 2017),
         'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active',            'platform_year' => 2017),
