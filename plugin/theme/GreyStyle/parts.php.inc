@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme HTML Parts
- * Create Date		: Jun 2005
- * Last Modif Date      : Mar 2007
- *
- * HTML parts for Grey Style theme
+/**
+ * @brief GreyStyle Theme parts.
+ * @details Plugin / Theme Parts
+ * @file plugin/theme/GreyStyle/parts.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jun 2005
+ * @date Modification: Aug 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* bar parts */
@@ -26,7 +26,7 @@ $this->parts['barRight'] = '
 ';
 
 $this->parts['barButton'] = '
-<div id="%s" class="greystyleBarButton" 
+<div id="%s" class="greystyleBarButton"
 onmouseover="this.className=\'greystyleBarButtonOver\'"
 onmouseout="this.className=\'greystyleBarButton\'"
 >

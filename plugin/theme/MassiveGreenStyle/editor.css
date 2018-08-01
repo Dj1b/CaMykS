@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Editor CSS Styles
- * Create Date		: Jan 2009
- * Last Modif Date      : Jan 2009
- *
- * Massive Green theme CSS styles
-*/
+/**
+ * @brief MassiveGreenStyle Theme editor CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/MassiveGreenStyle/editor.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jan 2009
+ * @date Modification: Aug 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* generic styles */
 .eTitle1 {
@@ -36,7 +36,7 @@
   padding: 4px 0px;
 }
 
-.eTitle4 { 
+.eTitle4 {
   display:block;
   font-style:italic;
   color:#62bb68;
@@ -59,7 +59,7 @@
   font-style: italic;
 }
 
-.eContent4 { 
+.eContent4 {
   font-size:9px;
   text-align: justify;
   font-style: italic;
@@ -93,7 +93,7 @@ a.eLink2 {
 
 a.eLink1:hover, a.eLink2:hover {border-bottom:dotted 1px #297b2e;}
 
-table.eTable{ 
+table.eTable{
   border-collapse:collapse;
   border-bottom:solid 1px #244b23;
   border-right:solid 1px #244b23;

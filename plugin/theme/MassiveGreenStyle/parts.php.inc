@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme HTML Parts
- * Create Date		: Jan 2009
- * Last Modif Date      : Jan 2009
- *
- * Blue Box theme HTML parts
+/**
+ * @brief MassiveGreenStyle Theme parts.
+ * @details Plugin / Theme Parts
+ * @file plugin/theme/MassiveGreenStyle/parts.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Jan 2009
+ * @date Modification: Aug 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* bar parts */

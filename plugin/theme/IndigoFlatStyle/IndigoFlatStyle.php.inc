@@ -1,38 +1,45 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: Ideogram Design
- * Author			: JB Lebrun <jb.lebrun@ideogram-design.fr>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Theme 
- * Creation Date	: Oct 2014
- * Last Modif Date  : Apr 2017
+/**
+ * @brief IndigoFlatStyle Theme.
+ * <br /> Main admin CaMykS theme.
+ * @details Plugin / Theme Engine
+ * @file plugin/theme/IndigoFlatStyle/IndigoFlatStyle.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Oct 2014
+ * @date Modification: Aug 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class IndigoFlatStyle extends Theme {
-  /* constructor */
-  function IndigoFlatStyle( $path_type ) {
-    parent::Theme('IndigoFlatStyle', $path_type);
-    /* set theme title */
-    $this->title = 'Indigo Flat Style';
-    /* set plugin version */
-    $this->version = '1.0';
-    /* set plugin package */
-    $this->plugin_package = 'Default';
-    /* set plugin author */
-    $this->author_name = '';
-    $this->author_mail = 'jb.lebrun@ideogram-design.fr';
-    $this->author_group = 'Ideogram Design';
-    
-    /* update useEnhanceSelectInputs value */
-    $this->useEnhancedSelectInputs = false;
-    
-    /* check for responsive admin mode */
-    $this->isAdminResponsive = true;
-  }
-  
-  /* additional parts methods */
-  
+/**
+ * IndigoFlatStyle Theme class.
+ */
+final class IndigoFlatStyle extends Theme {
+    /**
+     * Class constructor.
+     * @param string $path_type
+     * @return void
+     */
+    public function __construct($path_type) {
+        parent::__construct('IndigoFlatStyle', $path_type);
+
+        /* overwrite Plugin information */
+        $this->title = 'Indigo Flat';
+        $this->version = '1.0';
+        $this->plugin_package = 'Default';
+
+        /* author information */
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
+
+        /* update useEnhanceSelectInputs value */
+        $this->useEnhancedSelectInputs = false;
+
+        /* check for responsive admin mode */
+        $this->isAdminResponsive = true;
+    }
 }
 ?>

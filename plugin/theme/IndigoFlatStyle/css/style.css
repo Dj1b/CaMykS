@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by     : Ideogram Design
- * Author           : JB Lebrun
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Theme Main CSS Styles
- * Creation Date    : Oct 2014
- * Last Modif Date  : Apr 2017
- *
- * Indigo Flat Theme Main CSS styles
+/**
+ * @brief IndigoFlatStyle Theme main CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/IndigoFlatStyle/css/style.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Oct 2014
+ * @date Modification: Aug 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* global */
@@ -53,7 +53,7 @@ sup, sub{font-size:9px; color:inherit;}
 img.icon{ float:left; margin-right:4px; max-width:80px; }
 
 .unselectable {
-  -webkit-user-select: none; /* Chrome/Safari */        
+  -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
   -o-user-select: none;
@@ -62,7 +62,7 @@ img.icon{ float:left; margin-right:4px; max-width:80px; }
 }
 
 /* error */
-.error { 
+.error {
   font-size:12px;
   font-weight:bold;
   color:#CC3333;

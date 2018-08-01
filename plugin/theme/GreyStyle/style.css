@@ -1,18 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0.1
- * Object Type      : Plugin / Theme Main CSS Styles
- * Creation Date	: Jun 2005
- * Last Modif Date  : Jul 2018
- *
- * Main CSS styles for Grey Style Theme
+/**
+ * @brief GreyStyle Theme main CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/GreyStyle/style.css
+ * @author CaMykS Team
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Aug 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
-/* global */
-
 body {
   background:white;
 }
@@ -41,7 +38,7 @@ form{margin:0;}
 
 /* inputs */
 textarea {resize: none;}
-.inputs {width:200px;} 
+.inputs {width:200px;}
 .linputs {width:400px;}
 .vlinputs {width:100%;}
 .sinputs {width:100px;}
@@ -50,7 +47,7 @@ option.separator {color:#ababab; padding:0 4px; font-size:1px; height:4px; borde
 div.inputs, div.linputs, div.vlinputs, div.sinputs, div.vsinputs{display:inline-block}
 
 /* error */
-.error { 
+.error {
   font-size:12px;
   font-weight:bold;
   color:#CC3333;
@@ -84,7 +81,7 @@ div.inputs, div.linputs, div.vlinputs, div.sinputs, div.vsinputs{display:inline-
   padding:2px 0px;
 }
 
-.title4 { 
+.title4 {
   font-style:italic;
   color:#444444;
   padding:2px 0px;
@@ -108,7 +105,7 @@ div.inputs, div.linputs, div.vlinputs, div.sinputs, div.vsinputs{display:inline-
 
 }
 
-.simple1 { 
+.simple1 {
   font-weight:bold;
   color:#888888;
   padding:2px;
@@ -123,13 +120,13 @@ div.inputs, div.linputs, div.vlinputs, div.sinputs, div.vsinputs{display:inline-
 }
 /* link */
 
-.link1 { 
+.link1 {
   font-weight:bold;
   color:#444444;
 }
 
-.link2 { 
-  
+.link2 {
+
 }
 
 td.button1 {
@@ -147,16 +144,16 @@ a.button1:hover {
   letter-spacing:2px;
 }
 
-td.button2 { 
+td.button2 {
 
 }
 
-a.button2 { 
+a.button2 {
 
 }
 
 /* list css */
-.listheader { 
+.listheader {
   background:#888888;
   padding:4px;
   font-weight:bold;
@@ -165,12 +162,12 @@ a.button2 {
   border-bottom:solid 1px #AAAAAA ;
 }
 
-a.listheader { 
+a.listheader {
   color:white;
   font-weight:bold;
 }
 
-a.listheader:hover { 
+a.listheader:hover {
   letter-spacing:2px;
 }
 
@@ -185,7 +182,7 @@ a.listheader:hover {
 }
 
 /* some admin styles */
-.adminMain { 
+.adminMain {
   padding:0px 0px 4px 0px;
   vertical-align:top;
   height:100%;

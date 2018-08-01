@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by     : Ideogram Design
- * Author           : JB Lebrun
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Plugin / Theme Main CSS Styles
- * Creation Date    : Apr 2017
- * Last Modif Date  : Jul 2018
- *
- * Indigo Flat Theme admin CSS styles
+/**
+ * @brief IndigoFlatStyle Theme admin CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/IndigoFlatStyle/css/admin.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Apr 2017
+ * @date Modification: Aug 2018
+ * @copyright 2017 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 * {
@@ -100,32 +100,32 @@ a.smallButton {padding:3px 4px 2px !important; font-size:9px important;}
   #pageHeader > div:nth-child(1) {height:auto !important; padding:4px;}
   /* #pageHeaderBar {padding: 0 !important;}*/
   #pageHeader #pageHeaderTitle {font-size:16px; padding:12px 0 !important;}
-  
+
   #pageContent {margin:0 4px 40px !important; min-height:250px !important;}
-  
+
   .adminLoginBox {padding:40px 20px 20px !important;}
   .adminControlPanelItem {display:inline-block !important; width:100% !important;}
   .adminControlPanelItem:empty {display:none !important;}
   .adminContentPanel {min-height:250px !important; width:100%; overflow-x:auto;}
-  
+
   .adminEditorModule > .eTitle2 {padding: 8px 4px 2px; font-size:16px;}
-  
+
   .AdminItemListViewer .selector {width:100%;}
   .AdminItemListViewer .selector div.input input {max-width:160px;}
   .AdminItemListViewer .selector div.input select {max-width:160px;}
   .AdminItemListViewer * {font-size:10px;}
-  
+
   .adminContentContainer .half {width:100%; display:inline-block; vertical-align:top; padding-right:0; padding-bottom:16px;}
 
-  
+
   div.indigoFlatStyleBoxContent {padding: 8px 4px !important;}
   .indigoFlatStyleBoxTab, .indigoFlatStyleBoxTabS, .indigoFlatStyleBoxTabO {font-size:11px !important; line-height:17px; display:inline-block; letter-spacing:0 !important; padding:5px 6px 4px !important;}
   a.indigoFlatStyleBoxButton {padding:6px 10px 5px !important; font-size:11px !important;}
-  
+
   .eTableHeader {font-size:10px !important; padding:4px !important;}
   .eTableLine0, .eTableLine1 {padding: 3px 2px !important;}
   .eTableIconCell {padding-left:2px !important; padding-right:2px !important;}
-  
+
   .hiddenOnMobile {display:none;}
   td.hiddenOnMobile {display:table-cell; width:0 !important; max-width:0px; padding:0 !important; overflow:hidden; visibility:hidden;}
   .fullWidthOnMobile {width:100% !important;}

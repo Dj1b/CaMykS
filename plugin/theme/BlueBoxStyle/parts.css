@@ -1,18 +1,18 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Part CSS Styles
- * Create Date		: Dec 2008
- * Last Modif Date      : Dec 2008
- *
- * Blue Box theme CSS parts
-*/
+/**
+ * @brief BlueBoxStyle Theme parts CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/BlueBoxStyle/parts.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Dec 2008
+ * @date Modification: Aug 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* box part */
-div.blueboxBox { 
+div.blueboxBox {
   border:solid 1px #000000;
 }
 
@@ -210,7 +210,7 @@ a.blueboxLayeredMenuItem:hover{
   color:#f0effe;
 }
 
-div.blueboxLayeredMenuItem{ 
+div.blueboxLayeredMenuItem{
   padding:3px 20px 3px 4px;
   clear:both;
   color:#7468ec;

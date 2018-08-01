@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by            : camyks.net
- * Author                  : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version          : 1.0a
- * Object Version          : 1.0
- * Object Type             : Plugin / Theme Editor CSS styles
- * Creation Date           : Jun 2007
- * Last Modif Date         : Jun 2007
- *
- * Editor CSS styles for Basic Theme
-*/
+/**
+ * @brief Basic Theme editor CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/Basic/editor.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2007
+ * @date Modification: Aug 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* generic styles */
 .eTitle1 {
@@ -34,7 +34,7 @@
   color:#9B9F84;
 }
 
-.eTitle4 { 
+.eTitle4 {
   font-size:12px;
   font-style:italic;
   color:#444444;
@@ -60,7 +60,7 @@
   padding: 2px;
 }
 
-.eContent4 { 
+.eContent4 {
   font-size: 10px;
   text-align: justify;
   font-style: italic;
@@ -71,7 +71,7 @@ a.eLink1 { color:#9B9F84; text-decoration:underline; }
 
 a.eLink2 { font-weight:bold; color:#9B9F84; text-decoration:underline; }
 
-th.eTableHeader, td.eTableHeader { 
+th.eTableHeader, td.eTableHeader {
   background:#888888;
   padding:4px;
   font-weight:bold;

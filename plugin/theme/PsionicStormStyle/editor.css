@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Editor CSS Styles
- * Create Date		: Jun 2008
- * Last Modif Date      : Jun 2008
- *
- * Editor CSS styles for Psionic Storm Style Theme
-*/
+/**
+ * @brief PsionicStormStyle Theme editor CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/PsionicStormStyle/editor.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2008
+ * @date Modification: Aug 2018
+ * @copyright 2008- 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* generic styles */
 .eTitle1 {
@@ -33,12 +33,12 @@
   padding: 4px 0;
 }
 
-.eTitle4 { 
+.eTitle4 {
   font-style:italic;
   font-weight:bold;
   color:#6479d5;
   background:url(img/title4.gif) 0% 5px no-repeat;
-  padding: 2px 12px; 
+  padding: 2px 12px;
 }
 
 .eContent1 {
@@ -62,7 +62,7 @@ p.eContent1, p.eContent2, p.eContent3, p.eContent4 {
   font-style: italic;
 }
 
-.eContent4 { 
+.eContent4 {
   font-size: 11px;
   text-align: justify;
   font-style: italic;
@@ -79,7 +79,7 @@ a.eLink1:hover{
 
 a.eLink2 {
   color:#6479d5;
-  font-weight:bold;  
+  font-weight:bold;
 }
 
 a.eLink2:hover{
@@ -89,7 +89,7 @@ a.eLink2:hover{
 
 table.eTable{}
 
-th.eTableHeader, td.eTableHeader { 
+th.eTableHeader, td.eTableHeader {
   background:url(img/menuLink.gif) 0 100% repeat-x #1126a3;
   padding:4px;
   font-weight:bold;

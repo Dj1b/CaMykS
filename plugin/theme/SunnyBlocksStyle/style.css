@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Main CSS Styles
- * Create Date		: Jun 2005
- * Last Modif Date      : May 2008
- *
- * Main CSS styles for Sunny Blocks Style Theme
+/**
+ * @brief SunnyBlocksStyle Theme main CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/SunnyBlocksStyle/style.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jul 2008
+ * @date Modification: Aug 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* global */
@@ -39,7 +39,7 @@ form {margin:0;}
 img.icon{ float:left; margin-right:4px; }
 
 /* error */
-.error { 
+.error {
   font-size:12px;
   font-weight:bold;
   color:#CC3333;
@@ -77,7 +77,7 @@ a.title2 {
   padding:4px 0;
 }
 
-.title4 { 
+.title4 {
   display:block;
   font-style:italic;
   color:#df6900;
@@ -103,7 +103,7 @@ a.title2 {
 
 }
 
-.content4 { 
+.content4 {
   font-size: 10px;
   text-align: justify;
   font-style: italic;
@@ -112,13 +112,13 @@ a.title2 {
 }
 
 /* link */
-.link1 { 
+.link1 {
   color:#df6900;
 }
 
 .link2 {
   color:#df6900;
-  font-weight:bold;  
+  font-weight:bold;
 }
 
 .link1:hover, .link2:hover {
@@ -126,19 +126,19 @@ a.title2 {
 }
 
 /* list css */
-.listheader { 
+.listheader {
   background:#ff9600;
   padding:4px;
   font-weight:bold;
   color: white;
 }
 
-a.listheader { 
+a.listheader {
   color:white;
   font-weight:bold;
 }
 
-a.listheader:hover { 
+a.listheader:hover {
   color:#6479d5;
 }
 
