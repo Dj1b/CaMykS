@@ -218,7 +218,7 @@ abstract class PluginConfig {
     /**
      * Check object items values.
      * @return boolean
-    */
+     */
     public function check_data() {
         return true;
     }

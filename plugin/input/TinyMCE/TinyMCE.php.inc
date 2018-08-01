@@ -131,7 +131,7 @@ final class TinyMCE extends Input {
      * @param string $ta_name
      * @return void
      */
-    public function display ($ta_name='') {
+    public function display($ta_name='') {
         /* display with new name */
         if ($ta_name != '') {
             $this->ta_name = $ta_name;
@@ -148,7 +148,7 @@ final class TinyMCE extends Input {
      * @param string $contentValue
      * @return void
      */
-    public function set_contentInfos ($contentType='text', $contentValue='') {
+    public function set_contentInfos($contentType='text', $contentValue='') {
         $this->contentType = $contentType;
         $this->contentValue = $contentValue;
 
@@ -165,7 +165,7 @@ final class TinyMCE extends Input {
      * @param string $configValue
      * @return void
      */
-    public function set_configInfos ($configType='default', $configValue='') {
+    public function set_configInfos($configType='default', $configValue='') {
         $this->configType = $configType;
         $this->configValue = $configValue;
     }
