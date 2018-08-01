@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type		: Plugin / Template CSS Styles
- * Creation Date	: Mar 2007
- * Last Modif Date	: Jan 2018
- *
- * AdminPage CSS styles
+/**
+ * @brief AdminPage Template default CSS styles
+ * @details Plugin / Template CSS styles
+ * @file plugin/template/AdminPage/style.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Mar 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 #pageHeader{width:700px; margin:0 auto;}
 #pageHeaderTitle{padding:32px 0 16px !important; text-align:center !important; height:80px !important; margin:0px !important; box-sizing:border-box;}
@@ -27,7 +27,7 @@ a.img{font-size:0px;}
 
 /* handheld adaptations */
 @media screen and (max-width: 670px) {
-  #pageFooterEngine{text-align:left; padding:12px 5px; margin: 0; width:50%;}
-  #pageFooterEngine img {max-width:100%;}
-  #pageFooterVersion{float:right; padding: 15px 5px; text-align:right; color:#9f9bb0; width:50%; font-size: 10px;}
+    #pageFooterEngine{text-align:left; padding:12px 5px; margin: 0; width:50%;}
+    #pageFooterEngine img {max-width:100%;}
+    #pageFooterVersion{float:right; padding: 15px 5px; text-align:right; color:#9f9bb0; width:50%; font-size: 10px;}
 }

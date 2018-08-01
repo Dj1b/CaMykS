@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by            : camyks.net
- * Author                  : CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version          : 1.0a
- * Object Version          : 1.0
- * Object Type             : Plugin / Template Thumb
- * Creation Date           : Oct 2005
- * Last Modif Date         : Jan 2008
- *      
- * Admin Template Thumb HTML
-*/
+/**
+ * @brief AdminPage Template thumb layout
+ * @details Plugin / Template thumb
+ * @file plugin/template/AdminPage/thumb.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Oct 2005
+ * @date Modification: Aug 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 ?>
 <table cellspacing="0" cellpadding="0" border="1"  style="width:200px; height:120px;">
   <tr>
@@ -29,3 +30,8 @@
     </td>
   </tr>
 </table>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>
