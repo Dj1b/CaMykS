@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: May 2018
- * @date Modification: Jul 2018
+ * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -35,10 +35,10 @@ function _client_getKnownTools() {
     $knownTools['validator.nu/lv'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
-        'tool_title'        => 'W3C Validator',
-        'tool_url'          => 'http://validator.w3.org',
+        'tool_title'        => 'validator.nu',
+        'tool_url'          => 'http://validator.nu',
         'engine_title'      => 'World Wide Web Consortium',
-        'engine_url'        => 'http://www.w3.org',
+        'engine_url'        => 'http://validator.w3.org/services',
     );
 
     /* google translation */
@@ -87,6 +87,16 @@ function _client_getKnownTools() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Google Feedfetcher',
         'tool_url'          => 'http://www.google.com/feedfetcher.html',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* Google Google-Youtube-Links */
+    $knownTools['google-youtube-links'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Google-Youtube-Links',
+        'tool_url'          => '',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
     );
@@ -979,6 +989,56 @@ function _client_getKnownTools() {
         'tool_url'          => 'https://www.vanheusden.com/httping/',
         'engine_title'      => 'vanheusden.com',
         'engine_url'        => 'https://www.vanheusden.com',
+    );
+
+    /* PocketParser  */
+    $knownTools['pocketparser'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'PocketParser',
+        'tool_url'          => 'https://getpocket.com/pocketparser_ua',
+        'engine_title'      => 'Pocket',
+        'engine_url'        => 'https://getpocket.com',
+    );
+
+    /* DemandbasePublisherAnalyzer  */
+    $knownTools['demandbasepublisheranalyzer'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'DemandbasePublisherAnalyzer',
+        'tool_url'          => '',
+        'engine_title'      => 'DemandeBase',
+        'engine_url'        => 'https://www.demandbase.com',
+    );
+
+    /* MagpieRSS  */
+    $knownTools['magpierss'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'MagpieRSS',
+        'engine_url'        => 'http://magpierss.sf.net',
+    );
+
+    /* Re-re Studio  */
+    $knownTools['re-re studio'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Re-re Studio',
+        'engine_url'        => 'http://re-re.ru/',
+    );
+
+    /* InetURL  */
+    $knownTools['ineturl'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'InetURL',
+        'tool_url'          => '',
+        'engine_title'      => 'IVM',
+        'engine_url'        => 'https://www.nch.com.au/ivm/plugins.html',
     );
 
     /* return list */

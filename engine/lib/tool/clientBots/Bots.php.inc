@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: May 2018
- * @date Modification: Jul 2018
+ * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -632,8 +632,8 @@ function _client_getKnownBots() {
     $knownBots['mail.ru'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => '',
-        'bot_url'           => '',
+        'bot_title'         => 'Mail.RU_Bot',
+        'bot_url'           => 'http://go.mail.ru/help/robots',
         'engine_title'      => 'Mail.ru',
         'engine_url'        => 'http://www.mail.ru',
     );
@@ -1542,6 +1542,16 @@ function _client_getKnownBots() {
     $knownBots['yisouspider'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
+        'bot_title'         => 'YisouSpider',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* YisouSpider Mobile */
+    $knownBots['mobile/14e5239e yisouspider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'handheld',
         'bot_title'         => 'YisouSpider',
         'bot_url'           => '',
         'engine_title'      => '',
@@ -3409,9 +3419,9 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'DomainStatsBot',
-        'bot_url'           => 'http://domainstats.io/our-bot',
-        'engine_title'      => 'DomainStats.io',
-        'engine_url'        => 'http://domainstats.io/',
+        'bot_url'           => 'https://domainstats.com/pages/our-bot',
+        'engine_title'      => 'DomainStats',
+        'engine_url'        => 'https://domainstats.com/',
     );
 
     /* GroupHigh */
@@ -3914,6 +3924,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://www.mappy.com',
     );
 
+    /* Nimbostratus-Bot */
+    $knownBots['nimbostratus-bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Nimbostratus-Bot',
+        'bot_url'           => '',
+        'engine_title'      => 'Cloud System Networks',
+        'engine_url'        => 'http://cloudsystemnetworks.com',
+    );
+
     /* techleadzbot */
     $knownBots['techleadzbot'] = array(
         'platform_type'     => 'bot',
@@ -3922,6 +3942,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'WiredWith',
         'engine_url'        => 'https://wiredwith.com',
+    );
+
+    /* Yooo! */
+    $knownBots['yooo!'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Yooo! Search Engine Bot',
+        'bot_url'           => 'http://yooo.nl/about.php',
+        'engine_title'      => 'Yooo!',
+        'engine_url'        => 'http://yooo.nl/',
     );
 
     /* unknown bots */
@@ -4172,6 +4202,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'Kerrigan (Unknown bot)',
         'bot_url'           => 'mailto:kerrigan@mashable.com',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* dcrawl  - unknown bot */
+    $knownBots['dcrawl'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'dcrawl (Unknown bot)',
+        'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
     );

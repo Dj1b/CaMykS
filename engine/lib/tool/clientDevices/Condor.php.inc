@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Condor.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Jun 2018
+ * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -26,8 +26,8 @@ function get_CondorClientDevice($deviceCode='') {
         'TGW706'            => array('platform_model' => 'Tab TGW-706',     'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2015),
         'TFX708G'           => array('platform_model' => 'Tab TFX-708G',    'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2015),
         'TGW710G'           => array('platform_model' => 'Tab TGW-710G',    'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2016),
-    
-    
+
+
         /* Condor phone */
         'PGN521'            => array('platform_model' => 'Griffe G4 Plus',  'platform_year' => 2015),
         'PHQ520'            => array('platform_model' => 'Griffe G5',       'platform_year' => 2016),
@@ -41,8 +41,9 @@ function get_CondorClientDevice($deviceCode='') {
         'PGN611'            => array('platform_model' => 'Allure A8',       'platform_year' => 2016),
         'PGN612'            => array('platform_model' => 'Allure A8 Plus',  'platform_year' => 2017),
         'PGN613'            => array('platform_model' => 'Allure A55 Plus', 'platform_year' => 2017),
+        'PGN507'            => array('platform_model' => 'Allure A9',       'platform_year' => 2015),
         'SP413'             => array('platform_model' => 'Griffe T1',       'platform_year' => 2017),
-        
+
         'Allure M1'         => array('platform_model' => 'Allure M1 Plus',  'platform_year' => 2017),
         'Allure M1 Plus'    => array('platform_model' => 'Allure M1',       'platform_year' => 2017),
         'Griffe T2'         => array('platform_model' => 'Griffe T2',       'platform_year' => 2017),
@@ -63,7 +64,7 @@ function get_CondorClientDevice($deviceCode='') {
     /* Check if device is a known device. */
     if (!array_key_exists($deviceCode, $deviceList))
         return $result;
-    
+
     /* Return result. */
     return array_merge($result, $deviceList[$deviceCode]);
 }
