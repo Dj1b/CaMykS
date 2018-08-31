@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Apr 2018
  * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
@@ -46,6 +46,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'NXT-L29'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),

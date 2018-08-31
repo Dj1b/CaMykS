@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Apr 2018
  * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
@@ -42,6 +42,7 @@ function get_AsusClientDevice($deviceCode='') {
         'X007D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2017),
         'X00LD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
         'Z012D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
+        'Z017D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'Z01GS'     => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
         'Z01MDA'    => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
 

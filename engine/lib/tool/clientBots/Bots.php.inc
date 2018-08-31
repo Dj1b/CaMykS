@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: May 2018
  * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
@@ -4211,6 +4211,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'dcrawl (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* BUFF library  - unknown bot */
+    $knownBots['buff library'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'BUFF library (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
