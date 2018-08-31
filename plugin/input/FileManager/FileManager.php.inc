@@ -32,9 +32,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/FileManager/FileManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2007
- * @date Modification: Jul 2018
+ * @date Modification: Aug 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -174,7 +174,7 @@ final class FileManager extends Input {
         parent::__construct('FileManager', $path_type);
 
         /* overwrite Plugin information */
-        $this->version = '1.0';
+        $this->version = '1.0.1';
         $this->plugin_package = 'Default';
 
         /* author information */
@@ -369,7 +369,7 @@ final class FileManager extends Input {
         global $camyks;
         /* check theme */
         if (!isset($this->theme)) {
-            $this->theme = $camyks->site_conf['admin_default_theme'];
+            $this->theme = $camyks->get_confValue('admin_default_theme');
         }
         if (is_string($this->theme)) {
             $theme = $this->theme;
@@ -385,7 +385,7 @@ final class FileManager extends Input {
         }
 
         /* check folder values */
-        if ($this->folder_path === null or $this->folder_url === null) {
+        if (($this->folder_path === null or $this->folder_url === null) or !folder_isInPath($this->folder_path, './var')) {
             $this->folder_path = $this->plugin_var_path;
             $this->folder_url = $this->plugin_var_url;
             $this->folder_title = $this->get_translation('defaultfoldertitle');
@@ -441,6 +441,14 @@ final class FileManager extends Input {
         if (isset($_REQUEST['fm_browser_path'])) {
             $this->browser_path = $_REQUEST['fm_browser_path'];
         }
+
+        /* check full path to be in website */
+        if (!folder_isInPath($this->folder_path.'/'.$this->browser_path, './var')) {
+            $this->browser_path = 'nofile';
+            /* cancel action */
+            $this->engine_action = '';
+        }
+
         /* check for file url values */
         if (strpos($this->browser_path, $this->folder_url) === 0) {
             $this->browser_path = substr($this->browser_path, strlen($this->folder_url)+1);
@@ -575,22 +583,22 @@ final class FileManager extends Input {
             case 'folder':
                 $this->initialise_folder_execute();
                 break;
-        case 'file':
+            case 'file':
                 $this->initialise_file_execute();
                 break;
-        case 'trash':
+            case 'trash':
                 $this->initialise_trash_execute();
                 break;
-        case 'change_view':
+            case 'change_view':
                 $this->initialise_change_view_execute();
                 break;
-        case 'rename':
+            case 'rename':
                 $this->initialise_rename_execute();
                 break;
-        case 'download':
+            case 'download':
                 $this->initialise_download_execute();
                 break;
-        case 'reload':
+            case 'reload':
         default:
                 break;
         }
@@ -883,7 +891,7 @@ final class FileManager extends Input {
         $object = $this->folder_path.'/'.$this->browser_path;
         if (file_exists($object)) {
             if (is_file ($object)) {
-                unlink($object);
+                file_delete($object);
             } else if (is_dir($object)) {
                 folder_delete($object, true);
             }

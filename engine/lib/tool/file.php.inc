@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Aug 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -26,6 +26,11 @@ define('FILE_ICON_EXTENSION', 'gif');
  * @return boolean success
  */
 function file_write($file_path, $content, $deleteCache=false) {
+    /* check path to file to be in website */
+    if (!file_isInPath($file_path))
+        return false;
+
+    /* write file */
     if (@file_put_contents($file_path, $content, LOCK_EX) !== false) {
         /* remove cache from OPCache */
         if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate($file_path);
@@ -92,6 +97,11 @@ function file_getHTAccessFileEnder() {
  * @return string
  */
 function file_getContent($file) {
+    /* check path to file to be in website */
+    if (!file_isInPath($file))
+        return '';
+
+    /* check file */
     if (!file_exists($file)) {
         return '';
     }
@@ -109,6 +119,10 @@ function file_getContent($file) {
  * @return void
  */
 function file_download($file, $path) {
+    /* check path to file to be in website */
+    if (!file_isInPath($path))
+        return;
+
     /* open file to be written */
     $ff = fopen($path, "w");
 
@@ -126,6 +140,17 @@ function file_download($file, $path) {
     /* end download */
     curl_close ($dl);
     fclose ($ff);
+}
+
+/*
+ * Delete file.
+ * @param string $file
+ * @return boolean sucesss
+ */
+function file_delete($file) {
+    if (file_isInPath($file))
+      return @unlink($file);
+    return false;
 }
 
 /**
@@ -530,6 +555,10 @@ function file_isImage($file) {
  * @return mixed
  */
 function file_readfile($filename, $retbytes=true) {
+    /* check path to file to be in website */
+    if (!file_isInPath($filename))
+        return;
+
     /* load file size */
     $s = stat($filename);
     $s = (int)($s['size']/1024/1024);
@@ -601,6 +630,11 @@ function file_writeConfFile($file_path, $desc, $datas) {
  * @return array
  */
 function file_search($pattern='*', $rootPath='./', $globFlags=0) {
+    /* check path to file to be in website */
+    if (!folder_isInPath($rootPath))
+        return;
+
+    /* do the search */
     $paths = glob($rootPath.'*', GLOB_MARK|GLOB_ONLYDIR|GLOB_NOSORT);
     $files = glob($rootPath.$pattern, $globFlags);
     foreach ($paths as $path) {
@@ -645,6 +679,18 @@ function file_md5($file, $contextParams=array()) {
 
     /* send default result */
     return false;
+}
+
+/**
+ * Check if folder is in path
+ * @param string $file
+ * @param string $path
+ * @return boolean result
+ */
+function file_isInPath($file='', $path='') {
+    if (file_exists($file))
+        return folder_isInPath($file, $path);
+    return folder_isInPath(dirname($file).'/', $path);
 }
 
 /* private mime gathering methods */
@@ -873,6 +919,7 @@ function _file_getMimeFromExtension($file, $ext=null) {
     }
     return '';
 }
+
 
 /* deprecated methods */
 
