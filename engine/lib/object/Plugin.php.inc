@@ -182,7 +182,7 @@ abstract class Plugin {
         if (file_exists($this->plugin_site_path.'/'.$file)) {
             require($this->plugin_site_path.'/'.$file);
             return true;
-        } else if (file_exists ($this->plugin_path.'/'.$file)) {
+        } else if (file_exists($this->plugin_path.'/'.$file)) {
             require($this->plugin_path.'/'.$file);
             return true;
         }
@@ -255,7 +255,7 @@ abstract class Plugin {
      * @param string $default
      * @return string
      */
-    public function get_fileURL ($file='', $path=null, $default='') {
+    public function get_fileURL($file='', $path=null, $default='') {
         global $camyks;
 
         switch ($path) {
@@ -281,7 +281,7 @@ abstract class Plugin {
      * @param string $default
      * @return string
      */
-    public function get_varFileURL ($file='', $path=false, $default='') {
+    public function get_varFileURL($file='', $path=false, $default='') {
         global $camyks;
 
         switch ($path) {
@@ -533,6 +533,8 @@ abstract class Plugin {
 
     /**
      * Update plugin.
+     * @param string $version
+     * @param string $more
      * @return boolean
      */
     public function update($version, $more='') {
@@ -593,7 +595,7 @@ abstract class Plugin {
         global $camyks;
         return $camyks->get_translation(strtolower($this->name).'_'.$value, $data);
     }
-    
+
     /**
      * Load available language files for the plugin
      * @return void
@@ -711,9 +713,9 @@ abstract class Plugin {
      * @return void
      */
     public function execute_onCaMykSTerminate() {}
-    
+
     /* Request mode methods */
-    
+
     /**
      * Return HTML request mode link.
      * @param array $params
@@ -725,7 +727,7 @@ abstract class Plugin {
         $params = array_merge(array($this->plugin_type=>$this->name), $params);
         return $camyks->get_requestLink($params);
     }
-    
+
     /**
      * Return JavaScript request mode link.
      * @param array $params

@@ -2,7 +2,7 @@
 /**
  * @brief Blackberry client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Blackberry.php.inc
+ * @file engine/lib/tool/clientDevices/BlackBerry.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Aug 2018
