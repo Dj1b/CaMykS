@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/array.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.1
  * @date Creation: Jan 2010
- * @date Modification: Apr 2018
+ * @date Modification: Aug 2018
  * @copyright 2010 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -23,14 +23,14 @@ function array_dropValue($array=array(), $value=null, $keepKeys=true) {
     /* check array */
     if (!is_array($array))
         return array();
-    
+
     /* check value */
     if ($value == null)
         return $array;
-    
+
     /* get parsed array */
     $parsed = preg_grep("/{$value}/i", $array, PREG_GREP_INVERT);
-    
+
     /* return result */
     if ($keepKeys)
         return $parsed;
@@ -51,7 +51,7 @@ function array_recursiveMerge($array1=array(), $array2=array()) {
         return $array2;
     if (!is_array($array2))
         return $array1;
-    
+
     /* merge arrays */
     foreach ($array2 as $key => $value) {
         if (!isset($array1[$key]))
@@ -64,7 +64,7 @@ function array_recursiveMerge($array1=array(), $array2=array()) {
             /* merge other values */
             $array1[$key] = $value;
     }
-    
+
     /* return merged array */
     return $array1;
 }
@@ -103,5 +103,15 @@ function array_abs($array=array()) {
             $result[$i] = $v;
     }
     return $result;
+}
+
+/**
+ * Apply the same value on every key then return it.
+ * @param array $array
+ * @param mixed $value
+ * @return array
+ */
+function array_applySameValue($array, $value=null) {
+    return array_fill_keys(array_keys($array), $value);
 }
 ?>
