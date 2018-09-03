@@ -1,18 +1,18 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Part CSS Styles
- * Create Date		: Jun 2008
- * Last Modif Date      : Jun 2008
- *
- * Parts CSS styles for Psionic Storm Style Theme
-*/
+/**
+ * @brief PsionicStormStyle Theme parts CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/PsionicStormStyle/parts.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2008
+ * @date Modification: Aug 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* box part */
-div.psionicstormBox { 
+div.psionicstormBox {
   border:solid 1px #1126a3;
   background:url(img/boxHeader.gif) 0% 0% repeat-x black;
 }
@@ -75,7 +75,7 @@ div.psionicstormBoxButtonItem {
 }
 
 a.psionicstormBoxButton {
-  display:block;  
+  display:block;
   font-weight:bold;
   font-size:11px;
   color:#6479d5;
@@ -89,7 +89,7 @@ a.psionicstormBoxButton:hover{
 }
 
 div.psionicstormBoxButton {
-  display:block;  
+  display:block;
   font-weight:bold;
   font-size:11px;
   color:#1126a3;
@@ -127,7 +127,7 @@ div.psionicstormBoxTab, div.psionicstormBoxTabS, div.psionicstormBoxTabO {
   border-bottom:solid 1px #1126a3;
   background:#050c2f;
   color:#6479d5;
-  
+
 }
 
 .psionicstormBoxTabS {
@@ -247,7 +247,7 @@ a.psionicstormLayeredMenuItem:hover{
   background: url(img/menuLink.gif) repeat-x;
 }
 
-div.psionicstormLayeredMenuItem{ 
+div.psionicstormLayeredMenuItem{
   padding:3px 20px 3px 4px;
   clear:both;
   color:#6479d5;

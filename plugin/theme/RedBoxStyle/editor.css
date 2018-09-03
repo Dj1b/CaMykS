@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Editor CSS Styles
- * Create Date		: Jan 2009
- * Last Modif Date      : Jan 2009
- *
- * Red Box theme CSS styles
-*/
+/**
+ * @brief RedBoxStyle Theme editor CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/RedBoxStyle/editor.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jan 2009
+ * @date Modification: Aug 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* generic styles */
 .eTitle1 {
@@ -35,7 +35,7 @@
   padding: 4px 0px;
 }
 
-.eTitle4 { 
+.eTitle4 {
   display:block;
   font-style:italic;
   color:#CC3333;
@@ -58,7 +58,7 @@
   font-style: italic;
 }
 
-.eContent4 { 
+.eContent4 {
   font-size:9px;
   text-align: justify;
   font-style: italic;
@@ -86,7 +86,7 @@ a.eLink1:hover{
 
 a.eLink2 {
   color:#ab0000;
-  font-weight:bold;  
+  font-weight:bold;
 }
 
 a.eLink2:hover{
@@ -105,5 +105,5 @@ th.eTableHeader, td.eTableHeader {
 .eTableLine0 { background:#FFFFFF; padding:3px 4px; }
 .eTableLine1 { background:#fff0f0; padding:3px 4px; }
 
-table.eTable .eTableLine0 { border:solid 1px #ab0000; } 
-table.eTable .eTableLine1 { border:solid 1px #ab0000; } 
+table.eTable .eTableLine0 { border:solid 1px #ab0000; }
+table.eTable .eTableLine1 { border:solid 1px #ab0000; }

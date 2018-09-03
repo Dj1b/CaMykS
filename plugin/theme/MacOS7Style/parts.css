@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Part CSS Styles
- * Create Date		: Dec 2008
- * Last Modif Date      : Jan 2009
- *
- * MacOS7Style parts css styles
-*/
+/**
+ * @brief MacOS7Style Theme parts CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/MacOS7Style/parts.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Dec 2008
+ * @date Modification: Aug 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* bar parts */
 .macos7styleBarOuterBox{
@@ -98,7 +98,7 @@ td.macos7styleBoxTitleBarText {
 td.macos7styleBoxTitleBarText span {
   font-family: Krungthep, Silom, Arial;
   letter-spacing: 1px;
-  background:#eeeeee; 
+  background:#eeeeee;
   padding:0 6px;
 }
 
@@ -140,7 +140,7 @@ table.macos7styleBoxTabsBar {
   cursor:pointer;
 }
 
-div.macos7styleBoxButtonsBarLine { 
+div.macos7styleBoxButtonsBarLine {
 }
 
 div.macos7styleBoxItem, a.macos7styleBoxButton {
@@ -188,7 +188,7 @@ div.macos7styleBoxFooter{
 /* button part */
 td.macos7styleButtonOuterBox{
   border:solid 1px #9E9E9E;
-  background-color: #EFEFEF; 
+  background-color: #EFEFEF;
   padding:2px;
 }
 
@@ -246,7 +246,7 @@ a.macos7styleLayeredMenuItem:hover {
   padding:2px 20px 2px 4px;
 }
 
-div.macos7styleLayeredMenuItem{ 
+div.macos7styleLayeredMenuItem{
   background: #CCCCCC;
   padding:2px 20px 2px 4px;
   clear:both;

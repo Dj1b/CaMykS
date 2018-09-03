@@ -1,18 +1,18 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Part CSS Styles
- * Create Date		: Jul 2008
- * Last Modif Date      : Jul 2008
- *
- * Parts CSS styles for Sunny Blocks Style Theme
-*/
+/**
+ * @brief SunnyBlocksStyle Theme parts CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/SunnyBlocksStyle/parts.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jul 2008
+ * @date Modification: Aug 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* box part */
-div.sunnyblocksBox { 
+div.sunnyblocksBox {
   border:solid 1px #ff9600;
   background:#fde669;
 
@@ -28,7 +28,7 @@ div.sunnyblocksBoxTitleInnerBar{
   border-top:solid 1px #fde669;
   border-right:solid 1px #df6900;
   border-bottom:solid 1px #df6900;
-  border-left:solid 1px #fde669; 
+  border-left:solid 1px #fde669;
   background:#ff9600;
   padding:3px 18px;
 }
@@ -82,7 +82,7 @@ div.sunnyblocksBoxButtonInnerBar{
   border-top:solid 1px #fde669;
   border-right:solid 1px #df6900;
   border-bottom:solid 1px #df6900;
-  border-left:solid 1px #fde669; 
+  border-left:solid 1px #fde669;
   background:#ff9600;
   text-align:center;
 }
@@ -200,7 +200,7 @@ div.sunnyblocksBarInner{
   border-top:solid 1px #fde669;
   border-right:solid 1px #df6900;
   border-bottom:solid 1px #df6900;
-  border-left:solid 1px #fde669; 
+  border-left:solid 1px #fde669;
   background:#ff9600;
   padding:3px 18px;
 }
@@ -269,7 +269,7 @@ a.sunnyblocksLayeredMenuItem:hover{
   color:white;
 }
 
-div.sunnyblocksLayeredMenuItem{ 
+div.sunnyblocksLayeredMenuItem{
   padding:3px 20px 3px 4px;
   clear:both;
   color:#df6900;

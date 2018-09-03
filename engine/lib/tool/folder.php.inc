@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/folder.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2005
- * @date Modification: Apr 2018
+ * @date Modification: Aug 2018
  * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -66,14 +66,14 @@ function folder_completePath($path, $rights=0771) {
     return true;
 }
 
-/* 
+/*
  * Delete folder object.
  * @param string $folder
  * @param boolean $recursive
  * @return boolean
  */
 function folder_delete($folder, $recursive=false) {
-    if (file_exists($folder) and is_dir ($folder)) {
+    if (file_exists($folder) and is_dir($folder) and folder_isInPath($folder)) {
         if ($dir = opendir($folder)) {
             $files = array();
             while (($file = readdir ($dir)) !== false) {
@@ -93,7 +93,7 @@ function folder_delete($folder, $recursive=false) {
                 }
             }
         }
-        return rmdir($folder); 
+        return rmdir($folder);
     }
     return false;
 }
@@ -119,7 +119,7 @@ function folder_copy($source, $target) {
             } else {
                 copy($sourceitem, $targetitem);
             }
-        } 
+        }
         $folder->close();
         return true;
     } else {
@@ -191,7 +191,7 @@ function folder_listFiles($folder) {
     if (!is_dir($folder)) {
         return array();
     }
-    
+
     /* start listing folders */
     if ($dir = opendir($folder)) {
         $files = array();
@@ -215,22 +215,22 @@ function folder_listFolders($folder) {
     if (!is_dir($folder)) {
         return array();
     }
-    
+
     /* initialise result */
     $folders = array();
-    
+
     /* load folder's elements */
     $elements = scandir($folder);
-    
+
     /* sort them */
     sort($elements);
-    
+
     /* keep all folders */
     foreach ($elements as $element) {
         if (($element != '.') and ($element != '..') and (is_dir($folder.'/'.$element)))
             $folders[] = $element;
     }
-    
+
     /* send result */
     return $folders;
 }
@@ -245,27 +245,27 @@ function folder_listMatchingFolders($folder, $matching_folders = array()) {
     /* check for matching folders */
     if (!is_array($matching_folders) or $matching_folders == array())
         return array();
-    
+
     /* check for given folder */
     if (!is_dir($folder)) {
         return array();
     }
-    
+
     /* initialise result */
     $folders = array();
-    
+
     /* load folder's elements */
     $elements = scandir($folder);
-    
+
     /* sort them */
     sort($elements);
-    
+
     /* keep all folders */
     foreach ($elements as $element) {
         if (($element != '.') and ($element != '..') and (is_dir($folder.'/'.$element)) and (in_array($element, $matching_folders)))
             $folders[] = $element;
     }
-    
+
     /* send result */
     return $folders;
 }
@@ -306,15 +306,15 @@ function folder_createZipArchive($source='', $target='',  $includeRootFolder=fal
     /* check source is a folder */
     if (!is_dir($source))
         return false;
-    
+
     /* create folder path */
     folder_completePath(dirname($target));
-    
+
     /* initialize archive object */
     $zip = new ZipArchive();
     if (!$zip->open($target, ZipArchive::CREATE))
         return false;
-    
+
     /* get real path for our folder */
     if ($includeRootFolder) {
         $rootFolder = basename($source);
@@ -325,14 +325,14 @@ function folder_createZipArchive($source='', $target='',  $includeRootFolder=fal
         $rootFolder = '';
         $rootPath = $source.'/';
     }
-    
+
     /* get files and folders as flat structure */
     $struct = folder_getFlatStructure($source);
-    
+
     /* add files and folders to the zip file */
     foreach ($struct as $item) {
         $itemPath = substr ($item['path'], strlen($rootPath));
-        
+
         if ($item['type'] == 'folder') {
             /* add folder */
             //$zip->addEmptyDir($itemPath);
@@ -342,7 +342,7 @@ function folder_createZipArchive($source='', $target='',  $includeRootFolder=fal
             $zip->addFromString($itemPath, $content);
         }
     }
-    
+
     /* Zip archive will be created only after closing object */
     return $zip->close();
 }
@@ -354,18 +354,18 @@ function folder_createZipArchive($source='', $target='',  $includeRootFolder=fal
  */
 function folder_getFlatStructure($source='') {
     $struct = array();
-    
+
     if (!is_dir($source))
         return $struct;
-    
+
     $folder = dir($source);
     while (($item = $folder->read()) !== false) {
         if ($item == '.' || $item == '..') {
             continue;
         }
-        
+
         $fitem = $source.'/'.$item;
-        
+
         if (is_dir($fitem)) {
             $struct[] = array('type'=>'folder', 'path'=> $fitem);
             $struct = array_merge($struct, folder_getFlatStructure($fitem));
@@ -374,5 +374,26 @@ function folder_getFlatStructure($source='') {
         }
     }
     return $struct;
+}
+
+/**
+ * Check if folder is in path
+ * @param string $folder
+ * @param string $path
+ * @return boolean result
+ */
+function folder_isInPath($folder='', $path='') {
+    global $camyks;
+
+
+    if (!is_dir($path) or $path == '')
+        $path = $camyks->site_path;
+    $path = realpath($path).'/';
+
+    if (!file_exists($folder))
+        return false;
+    $folder = realpath($folder);
+
+    return preg_match('#^'.$path.'#', $folder);
 }
 ?>

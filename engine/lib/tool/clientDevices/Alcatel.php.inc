@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.
+ * @version 1.0.1
  * @date Creation: Apr 2018
- * @date Modification: May 2018
+ * @date Modification: Aug 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -101,6 +101,7 @@ function get_AlcatelClientDevice($deviceCode='') {
         '7047D' => array('platform_model' => 'OneTouch Pop C9',         'platform_year' => 2014),
         '7048X' => array('platform_model' => 'OneTouch Go Play',        'platform_year' => 2015),
         '7050Y' => array('platform_model' => 'OneTouch Pop S9',         'platform_year' => 2014),
+        '7070X' => array('platform_model' => 'Pop 4',                   'platform_year' => 2016),
         '8000D' => array('platform_model' => 'OneTouch Scribe',         'platform_year' => 2013),
         '8008D' => array('platform_model' => 'OneTouch Scribe HD',      'platform_year' => 2013),
         '8020D' => array('platform_model' => 'OneTouch Hero',           'platform_year' => 2013),

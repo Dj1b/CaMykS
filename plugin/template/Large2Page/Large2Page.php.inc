@@ -1,36 +1,42 @@
 <?php
-/*
- * Camyks Engine
- * Developed by            : camyks.net
- * Author                  : CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version          : 1.0a
- * Object Version          : 1.0
- * Object Type             : Plugin / Template Description
- * Create Date             : Nov 2007
- * Last Modif Date         : Jan 2008
- * History :
- * * 07-11-28 : Initial file
- * * 08-01-07 : Rebuild template as an object
- *
- * Large2Page Template Informations
+/**
+ * @brief Large2Page Template.
+ * <br /> Template designed for dual modules websites.
+ * @details Plugin / Template Engine
+ * @file plugin/template/Large2Page/Large2Page.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Nov 2007
+ * @date Modification: Aug 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Large2Page extends Template {
-  /* constructor */
-  function Large2Page( $path_type ) {
-    parent::Template('Large2Page', $path_type);
-    /* set template title */
-    $this->title = '2Large';
-    /* set plugin version */
-    $this->version = '1.0';
-    /* set plugin package */
-    $this->plugin_package ='Default';
-    /* set plugin author */
-    $this->author_name = 'CaMykS Team';
-    $this->author_mail = 'camyks.contact@gmail.com';
-    $this->author_group = 'camyks.net';
-    /* initialise template variables */
-    $this->modules = 2;
-  }
+/**
+ * Large2Page Template class.
+ */
+final class Large2Page extends Template {
+    /**
+     * Class constructor
+     * @param string $path_type
+     * @return void
+     */
+    public function __construct($path_type) {
+        parent::__construct('Large2Page', $path_type);
+
+        /* overwrite Plugin information */
+        $this->version = '1.0';
+        $this->plugin_package = 'Default';
+
+        /* overwrite Template information */
+        $this->title = '2Large';
+        $this->modules = 2;
+
+        /* author information */
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
+    }
 }
 ?>

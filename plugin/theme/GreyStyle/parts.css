@@ -1,15 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Part CSS Styles
- * Create Date		: Jun 2005
- * Last Modif Date      : Mar 2007
- *
- * Parts CSS styles for Grey Style Theme
-*/
+/**
+ * @brief GreyStyle Theme parts CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/GreyStyle/parts.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2005
+ * @date Modification: Aug 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
 /* bar parts */
 td.greystyleBarLeft {
@@ -61,7 +61,7 @@ a.greystyleBarButton {
 }
 
 /* box part */
-table.greystyleBox { 
+table.greystyleBox {
   border:solid 1px #9E9E9E;
   background-color: #EFEFEF;
   text-align:left;
@@ -76,7 +76,7 @@ table.greystyleBoxTitleBar {
   width:100%;
 }
 
-td.greystyleBoxTitleBar { 
+td.greystyleBoxTitleBar {
   font-size:13px;
   font-weight:bold;
   background:#666666;
@@ -95,7 +95,7 @@ table.greystyleBoxTabsBarLine {
   width:100%;
 }
 
-td.greystyleBoxTabsBar { 
+td.greystyleBoxTabsBar {
   background:url(./img/9E9E9E.gif) 0% 100% repeat-x;
 }
 
@@ -111,7 +111,7 @@ td.greystyleBoxTab {
   color: #444444;
 }
 
-td.greystyleBoxTabS { 
+td.greystyleBoxTabS {
   padding : 4px 8px;
   border : solid 1px #9E9E9E;
   border-bottom : solid 1px white;
@@ -120,7 +120,7 @@ td.greystyleBoxTabS {
   color: #444444;
 }
 
-td.greystyleBoxTabO { 
+td.greystyleBoxTabO {
   padding : 4px 8px;
   border : solid 1px #9E9E9E;
   background : white;
@@ -128,7 +128,7 @@ td.greystyleBoxTabO {
   cursor:pointer;
 }
 
-td.greystyleBoxButtonsBarLine { 
+td.greystyleBoxButtonsBarLine {
   padding:4px;
   height:18px;
 }
@@ -195,7 +195,7 @@ td.greystyleBoxContent2{
 /* button part */
 td.greystyleButtonOuterBox{
   border:solid 1px #9E9E9E;
-  background-color: #EFEFEF; 
+  background-color: #EFEFEF;
   padding:2px;
 }
 
@@ -256,7 +256,7 @@ a.greystyleLayeredMenuItem:hover{
   background-color: #6A6A6A;
 }
 
-div.greystyleLayeredMenuItem{ 
+div.greystyleLayeredMenuItem{
   background-color: #8C8C8C;
   padding:3px 20px 3px 4px;
   clear:both;

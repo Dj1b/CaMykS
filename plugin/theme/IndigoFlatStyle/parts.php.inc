@@ -1,25 +1,23 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: Ideogram Design
- * Author			: JB Lebrun <jb.lebrun@ideogram-design.fr>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Theme HTML Parts
- * Create Date		: Oct 2014
- * Last Modif Date  : Oct 2014
- *
- * Indigo Flat Theme HTML parts
+/**
+ * @brief IndigoFlatStyle Theme parts.
+ * @details Plugin / Theme Parts
+ * @file plugin/theme/IndigoFlatStyle/parts.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Oct 2014
+ * @date Modification: Aug 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
-/* button parts */
 
+/* button parts */
 $this->parts['button'] = '
 <a class="unselectable indigoFlatStyleButton %5$s" style="%1$s" %4$s href="%2$s" target="%6$s">
 %3$s
 </a>
 ';
-
 
 /* bar parts */
 $this->parts['barLeft'] = '
@@ -41,7 +39,6 @@ $this->parts['barItem'] = '
 %s
 </div>
 ';
-
 
 /* box Parts */
 

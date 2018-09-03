@@ -1,39 +1,42 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by            : camyks.net
- * Author                  : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version          : 1.0a
- * Object Version          : 1.0
- * Object Type             : Plugin / Template
- * Create Date             : Dec 2007
- * Last Modif Date         : Jan 2008
- * History :
- * * 07-12-14 : Initial file
- * * 08-01-07 : Rebuild template as an object
- *
- * WebPageExtended template object
+/**
+ * @brief WebPageExtended Template.
+ * <br /> Template designed 5-modules websites.
+ * @details Plugin / Template Engine
+ * @file plugin/template/WebPageExtended/WebPageExtended.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Dec 2007
+ * @date Modification: Aug 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class WebPageExtended extends Template {
-  /*
-   * constructor
-   * @param string $path_type
-   */
-  function WebPageExtended( $path_type ) {
-    parent::Template('WebPageExtended', $path_type );
-    /* set template title */
-    $this->title = 'WebPage Extended';
-    /* set plugin version */
-    $this->version = '1.0';
-    /* set plugin package */
-    $this->plugin_package = 'Default';
-    /* set plugin author */
-    $this->author_name = 'CaMykS Team';
-    $this->author_mail = 'camyks.contact@gmail.com';
-    $this->author_group = 'camyks.net';
-    /* initialise template variables */
-    $this->modules = 5;
-  }
+/**
+ * WebPageExtended Template class.
+ */
+final class WebPageExtended extends Template {
+    /**
+     * Class constructor.
+     * @param string $path_type
+     * @return void
+     */
+    public function __construct($path_type) {
+        parent::__construct('WebPageExtended', $path_type);
+
+        /* overwrite Plugin information */
+        $this->version = '1.0';
+        $this->plugin_package = 'Default';
+
+        /* overwrite Template information */
+        $this->title = 'WebPage Extended';
+        $this->modules = 5;
+
+        /* author information */
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
+    }
 }
 ?>

@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Theme Main CSS Styles
- * Create Date		: Jan 2009
- * Last Modif Date      : Jan 2009
- *
- * Red Box theme CSS styles
+/**
+ * @brief RedBoxStyle Theme main CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/RedBoxStyle/style.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jan 2009
+ * @date Modification: Aug 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* global */
@@ -39,7 +39,7 @@ form {margin:0;}
 img.icon{ float:left; margin-right:4px; }
 
 /* error */
-.error { 
+.error {
   font-size:12px;
   font-weight:bold;
   color:#CC3333;

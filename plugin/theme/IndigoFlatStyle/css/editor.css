@@ -1,17 +1,17 @@
-/*
- * CaMykS Engine
- * Developed by		: Ideogram Design
- * Author			: JB Lebrun
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Theme Editor CSS Styles
- * Creation Date	: Oct 2014
- * Last Modif Date  : Feb 2018
- *
- * Indigo Flat Theme Editor CSS style
-*/
+/**
+ * @brief IndigoFlatStyle Theme editor CSS styles
+ * @details Plugin / Theme CSS styles
+ * @file plugin/theme/IndigoFlatStyle/css/editor.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Oct 2014
+ * @date Modification: Aug 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-* {font-family: Arial; font-size: 11px; font-weight:normal; 
+* {font-family: Arial; font-size: 11px; font-weight:normal;
     font-style:normal; color:#5C5C5C;}
 
 /* generic styles */

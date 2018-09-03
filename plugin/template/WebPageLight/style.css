@@ -1,20 +1,20 @@
-/*
- * Camyks Engine
- * Company                 : camyks.net
- * Author                  : CaMykS Team <camyks.contact@gmail.com> 
- * Camyks Version          : 1.0a
- * Object Version          : 1.0
- * Object Type             : Plugin / Template style
- * Creation Date           : Dec 2007
- * Last Modif Date         : Dec 2007 
- *      
- * WebPage Light Template main layout applied styles
+/**
+ * @brief WebPageLight Template default CSS styles
+ * @details Plugin / Template CSS styles
+ * @file plugin/template/WebPageLight/style.css
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Nov 2007
+ * @date Modification: Apr 2018
+ * @copyright 2007 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-#pageMain { width:800px;margin:20px auto; }
-#pageObject {  }
-#pageHeader {  }
-#pageLeft{ width:150px; float:left; }
-#pageContent{ width:650px; float:right; }
-#pageCaMykSBox{ margin:2px; text-align:center; clear:both; }
-#pageCaMykSLink{ font-weight:normal; font-family:arial, verdana; font-style:italic; color:#666666; }
+#pageMain {width:800px;margin:20px auto;}
+#pageObject {}
+#pageHeader {}
+#pageLeft {width:150px; float:left;}
+#pageContent {width:650px;}
+#pageCaMykSBox {margin:2px; text-align:center; clear:both;}
+#pageCaMykSLink {font-weight:normal; font-family:arial, verdana; font-style:italic; color:#666666;}
