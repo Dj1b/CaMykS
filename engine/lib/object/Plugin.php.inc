@@ -5,9 +5,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Jul 2018
+ * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -529,6 +529,14 @@ abstract class Plugin {
     public function uninstall() {
         $camyks->log_information($this, 'Uninstall Successfull', '');
         return true;
+    }
+
+    /**
+     * Check if plugin is installed.
+     * @return boolean
+     */
+    public function is_installed() {
+        return false;
     }
 
     /**
