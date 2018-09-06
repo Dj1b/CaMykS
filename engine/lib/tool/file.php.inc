@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2005
  * @date Modification: Aug 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -532,6 +532,28 @@ function file_getImageSize($file) {
         return array('width'=>$d[0], 'height'=>$d[1]);
     }
     return array();
+}
+
+/**
+ * Return image type
+ * @param string $file
+ * @return string
+ */
+function file_getImageType($file) {
+    /* return image type from EXIF */
+    if (($type = @exif_imagetype($file)) !== false) {
+        switch ($type) {
+            case 1: return 'gif';
+            case 2: return 'jpg';
+            case 3: return 'png';
+            case 5: return 'psd';
+            case 6: return 'bmp';
+        }
+    }
+
+    /* by default return type from its extension */
+    preg_match('/.([^.]{1,4})$/', $file, $ext);
+    return strtolower($ext[1]);
 }
 
 /**
