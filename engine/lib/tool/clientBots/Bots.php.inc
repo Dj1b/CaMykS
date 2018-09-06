@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: May 2018
- * @date Modification: Aug 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3952,6 +3952,26 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://yooo.nl/about.php',
         'engine_title'      => 'Yooo!',
         'engine_url'        => 'http://yooo.nl/',
+    );
+
+    /* Elefent */
+    $knownBots['elefent'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Elefent crawler',
+        'bot_url'           => 'https://crawler.elefent.net',
+        'engine_title'      => 'Elefent',
+        'engine_url'        => 'https://www.elefent.net',
+    );
+
+    /* Seekport Crawler */
+    $knownBots['seekport crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Seekport Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'Seekport',
+        'engine_url'        => 'http://www.seekport.com',
     );
 
     /* unknown bots */
