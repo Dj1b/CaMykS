@@ -4,11 +4,11 @@
  * Developed by		: camyks.net
  * Author		    : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version	: 1.0
- * Object Version	: 1.0
+ * Object Version	: 1.0.1
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Oct 2017
- * Last Modif Date  : Oct 2017
- * 
+ * Last Modif Date  : Sep 2018
+ *
  * Installer Module Layout : configuration form layout
  */
 global $camyks;
@@ -30,7 +30,7 @@ global $camyks;
 
 <div id="itemWebsite" class="adminContentPanel" style="display:none;">
 <table cellspacing="0" cellpadding="0" style="width:100%;">
-  
+
   <tr>
     <td class="eTableLine0 eContent2" style="width:150px;">
       <?= $this->get_translation('formitem_title'); ?>
@@ -48,7 +48,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('version'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_encoding'); ?>
@@ -66,7 +66,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('site_author'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_company'); ?>
@@ -75,7 +75,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('site_company'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td colspan="2" class="eTableLine0">
       &nbsp;
@@ -113,7 +113,7 @@ global $camyks;
       <?=$this->configForm->display_selectInput(array('name'=>'admin_default_language', 'values'=>$this->languages)); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_editing_languages'); ?>
@@ -144,7 +144,7 @@ global $camyks;
       <?= $this->configForm->display_selectInput(array('name'=>'admin_ssl', 'values'=>$this->SSLModeList)); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td colspan="2" class="eTableLine0">
       &nbsp;
@@ -209,7 +209,7 @@ global $camyks;
       <?= $this->configForm->display_selectInput(array('name'=>'site_ssl', 'values'=>$this->SSLModeList)); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine1 eContent2">
       <?= $this->get_translation('formitem_maxmodules'); ?>
@@ -218,13 +218,13 @@ global $camyks;
       <?= $this->configForm->display_textInput('page_maxmodules'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td colspan="2" class="eTableLine0">
       &nbsp;
     </td>
   </tr>
-  
+
 </table>
 </div>
 
@@ -252,7 +252,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('database_host'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_name'); ?>
@@ -261,7 +261,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('database_name'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine1 eContent2">
       <?= $this->get_translation('formitem_login'); ?>
@@ -270,7 +270,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('database_login'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_password'); ?>
@@ -279,7 +279,7 @@ global $camyks;
       <?= $this->configForm->display_passwordInput('database_pwd'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td colspan="2" class="eTableLine0">
       &nbsp;
@@ -301,7 +301,7 @@ global $camyks;
       <?=$this->get_translation('formdesc_webmaster'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine1 eContent2" style="width:150px;">
       <?= $this->get_translation('formitem_login'); ?>
@@ -310,7 +310,7 @@ global $camyks;
       <?= $this->configForm->display_textInput('webmaster_login'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_password'); ?>
@@ -319,7 +319,7 @@ global $camyks;
       <?= $this->configForm->display_passwordInput('webmaster_password'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td class="eTableLine1 eContent2">
       <?= $camyks->get_translation('formitem_email'); ?>
@@ -328,13 +328,13 @@ global $camyks;
       <?= $this->configForm->display_textInput('webmaster_email'); ?>
     </td>
   </tr>
-  
+
   <tr>
     <td colspan="2" class="eTableLine0">
       &nbsp;
     </td>
   </tr>
-  
+
 </table>
 </div>
 
@@ -344,21 +344,6 @@ global $camyks;
 
 <div id="itemOptions" class="adminContentPanel" style="display:none;">
 <table cellspacing="0" cellpadding="0" style="width:100%;">
-  <tr>
-    <td class="eTableLine1 eContent2" style="width:150px;">
-      <?= $this->get_translation('formitem_googleanalytics'); ?>
-    </td>
-    <td class="eTableLine1">
-      <?= $this->configForm->display_textInput('google_analytics'); ?>
-    </td>
-    <td class="eTableLine1 eContent2" style="width:150px;">
-      <?= $this->get_translation('formitem_domain'); ?>
-    </td>
-    <td class="eTableLine1">
-      <?= $this->configForm->display_textInput(array('name'=>'google_analytics_domain', 'placeholder'=>$this->get_translation('formdesc_domain'))); ?>
-    </td>
-  </tr>
-  
   <tr>
     <td class="eTableLine0 eContent2">
       <?= $this->get_translation('formitem_mobilemode'); ?>
