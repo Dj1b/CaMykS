@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Jun 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -30,6 +30,7 @@ function get_LGClientDevice($deviceCode='') {
         'D722'  => array('platform_model' => 'G3 S',            'platform_year' => 2014),
         'D802'  => array('platform_model' => 'Nexus 5',         'platform_year' => 2013),
         'D821'  => array('platform_model' => 'G2',              'platform_year' => 2013),
+        'D852'  => array('platform_model' => 'G3',              'platform_year' => 2014),
         'D855'  => array('platform_model' => 'G3',              'platform_year' => 2014),
         'D855'  => array('platform_model' => 'G Flex',          'platform_year' => 2014),
         'E410'  => array('platform_model' => 'Optimus L1 II',   'platform_year' => 2013),

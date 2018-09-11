@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: May 2018
  * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
@@ -3972,6 +3972,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Seekport',
         'engine_url'        => 'http://www.seekport.com',
+    );
+
+    /* Qirina Hurdler */
+    $knownBots['qirina hurdler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Qirina Hurdler',
+        'bot_url'           => 'http://www.qirina.com/hurdler.html',
+        'engine_title'      => 'Qirina',
+        'engine_url'        => 'http://www.qirina.com/',
     );
 
     /* unknown bots */
