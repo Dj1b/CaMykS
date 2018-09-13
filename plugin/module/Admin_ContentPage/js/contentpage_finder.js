@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Engine
- * Creation Date	: Sep 2005
- * Last Modif Date  : Feb 2018
- *
- * ContentPage object javascript
+/**
+ * @brief Admin_ContentPage module finder scripts
+ * @details Plugin / Module Scripts
+ * @file plugin/module/Admin_ContentPage/js/contentpage_finder.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Sep 2005
+ * @date Modification: Sep 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 var contentPage_pageitem = null;
@@ -168,7 +168,7 @@ function contentPage_modelActionDelete() {
  *
  */
 function contentPage_requestSelectPage() {
-  
+
   pc_item = 0;
   pc_value = 0;
   /* check if 'id' item exists */

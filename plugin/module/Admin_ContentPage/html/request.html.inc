@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Engine
- * Creation Date	: Oct 2005
- * Last Modif Date  : Jul 2008
- *
- * Admin_ContentPage Module Layout : page browser
-*/
+/**
+ * @brief Admin_ContentPage Module page browser layout
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_ContentPage/html/request.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Oct 2005
+ * @date Modification: Sep 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 ?>
 <div class="adminPopupFrame">
 <?=$this->theme->get_boxHeader('height:100%; width:100%;');?>
@@ -46,3 +47,8 @@
 <?=$this->theme->get_boxButtonsBar( $this->buttons );?>
 <?=$this->theme->get_boxFooter();?>
 </div>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

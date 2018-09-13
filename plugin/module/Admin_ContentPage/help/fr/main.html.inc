@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Help File
- * Creation Date	: May 2008
- * Last Modif Date	: May 2008
- *
- * Admin_ContentPage module help
-*/
+/**
+ * @brief Admin_ContentPage Module help french page
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_ContentPage/help/fr/main.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: May 2008
+ * @date Modification: Sep 2018
+ * @copyright 2008 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 ?>
 <p class="eContent1">
   Permet de cr&eacute;er, modifier, supprimer des pages de votre site.
@@ -20,9 +21,15 @@
 </p>
 <ul>
   <li>
-    L'architecture des pages du site
+    L&apos;architecture des pages du site
   </li>
   <li>
-    L'&eacute;dition d'une page
+    L&apos;&eacute;dition d&apos;une page
   </li>
 </ul>
+
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

@@ -1,21 +1,21 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
- * Create Date		: Sep 2005
- * Last Modif Date      : Sep 2007
- *
- * ContentPage object javascript : tree object
+/**
+ * @brief Admin_ContentPage module page tree scripts
+ * @details Plugin / Module Scripts
+ * @file plugin/module/Admin_ContentPage/js/contentpagetree.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Sep 2005
+ * @date Modification: Sep 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* main construtor */
 function ContentPageTree ( levels ) {
   /* init */
   this.levels = levels;
-  
+
   /* vars */
   this.openedsheet = -1;
   this.opened = new Array();
@@ -31,7 +31,7 @@ ContentPageTree.prototype.initialise = function ( first, overcss, stdcss, selcss
   /* init first line */
   this.opened[0] = first;
   this.lines[0] = new Array();
-  
+
   /* init all other lines */
   for ( var i=1; i<this.levels; i++ ) {
     this.opened[i] = -1;
@@ -53,12 +53,12 @@ ContentPageTree.prototype.buildline = function ( line, id, path, name, url  ) {
 
 /* close same level and children item and open selected one */
 ContentPageTree.prototype.openitem = function ( line, path ) {
-  
+
   index = -1;
   /* check if line line exists */
   if ( line >= this.lines.length ) {
     return;
-  } 
+  }
   /* check if 'id' item exists in 'line' line */
   for ( var i = 0; i< this.lines[line].length; i++ ) {
     if ( this.items[this.lines[line][i]].path == path ) {
@@ -71,12 +71,12 @@ ContentPageTree.prototype.openitem = function ( line, path ) {
     /* alert ( 'error : item not found' ); */
     return;
   }
-  
+
   /* check if already open */
   if ( this.opened[line] == path ) {
-    
+
   }
-  
+
   /* close item and all children */
   for ( var i=line; i<this.levels; i++ ) {
     if ( this.opened[i] != -1 ) {
@@ -99,7 +99,7 @@ ContentPageTree.prototype.rolloveritem = function ( level, itemid ) {
 
 /* rollover */
 ContentPageTree.prototype.rolloutitem = function ( level, itemid ) {
-  if ( this.opened[level] == itemid ) 
+  if ( this.opened[level] == itemid )
     document.getElementById ( 'td_'+itemid ).className = this.selectedcss;
   else
     document.getElementById ( 'td_'+itemid ).className = this.standartcss;
