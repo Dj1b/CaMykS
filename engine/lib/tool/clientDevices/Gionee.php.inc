@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief ZTE client devices specific methods
+ * @brief Gionee client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/ZTE.php.inc
+ * @file engine/lib/tool/clientDevices/Gionee.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
- * @date Creation: May 2018
+ * @version 1.0
+ * @date Creation: Sep 2018
  * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
@@ -14,15 +14,13 @@
  */
 
 /**
- * Return ZTE client device information from a known list.
+ * Return Gionee client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_ZTEClientDevice($deviceCode='') {
+function get_GioneeClientDevice($deviceCode='') {
     $deviceList = array(
-        'BLADE V7 LITE' => array('platform_model' => 'Blade V7 Lite',   'platform_year' => 2016),
-
-        'Z833'          => array('platform_model' => 'Avid Trio',       'platform_year' => 2016),
+        'P8W' => array('platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -31,7 +29,7 @@ function get_ZTEClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'ZTE',
+        'platform_company'  => 'Gionee',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

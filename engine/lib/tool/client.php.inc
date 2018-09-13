@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: Jun 2007
  * @date Modification: Sep 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -876,6 +876,13 @@ function client_getUAInfos($ua=false) {
         );
     }
 
+    /* check Doogee mobiles, to be inserted before Xiaomi */
+    elseif (preg_match('/ (MIX Lite) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Doogee.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_DoogeeClientDevice($model));
+    }
+
     /* check Xiaomi mobiles */
     elseif (preg_match('/(Redmi|MI) ?([A-Za-z0-9 ]{1,}) Build/i', $ua, $matches)) {
         include_once ('clientDevices/Xiaomi.php.inc');
@@ -1138,6 +1145,10 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
     }
+    elseif (preg_match('/ (Z[0-9]{3}) Build/', $ua, $matches)) {
+        include_once ('clientDevices/ZTE.php.inc');
+        $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
+    }
 
     /* check VKWorld mobiles */
     elseif (preg_match('/ VK([0-9]{3}) Build/i', $ua, $matches)) {
@@ -1207,6 +1218,13 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/Symphony.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_SymphonyClientDevice($model));
+    }
+
+    /* check Gionee mobiles */
+    elseif (preg_match('/ (P8W) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/Gionee.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_GioneeClientDevice($model));
     }
 
     /*** check operating system ***/
