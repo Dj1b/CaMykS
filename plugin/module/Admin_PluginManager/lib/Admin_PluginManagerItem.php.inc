@@ -4,10 +4,10 @@
  * Developed by     : camyks.net
  * Author           : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
+ * Object Version   : 1.0.2
  * Object Type      : Plugin / Module Library
  * Creation Date    : Oct 2008
- * Last Modif Date  : Nov 2017
+ * Last Modif Date  : Sep 2018
  *
  * Admin_PluginManagerItem library
  */
@@ -212,7 +212,7 @@ final class Admin_PluginManagerItem {
       break;
     }
 
-    if ($plugin->is_installed()===false and $plugin->install()===false) {
+    if ($plugin->is_installed()!==true and $plugin->install()===false) {
       return false;
     }
 

@@ -5,7 +5,7 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jun 2005
  * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -536,7 +536,7 @@ abstract class Plugin {
      * @return boolean
      */
     public function is_installed() {
-        return true;
+        return null;
     }
 
     /**
