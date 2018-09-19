@@ -5,7 +5,7 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jun 2005
  * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -573,8 +573,8 @@ abstract class Plugin {
             $hta = preg_replace('/### '.$this->name.' ###([\s\S]*)### '.$this->name.' ###/s', $content, $hta);
         } else {
             /* Add new content */
-            $content .= "\n\n  # site page";
-            $hta = preg_replace('/  # site page/', $content, $hta);
+            $content .= "\n\n$1# site page";
+            $hta = preg_replace('/([ ]{0,2})# site page/', $content, $hta);
         }
 
         return file_write('.htaccess', $hta);
