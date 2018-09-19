@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,7 +27,7 @@ define('HTMLFORM_METHOD_GET',   1);
  * HTMLForm class.
  * @author CaMykS Team <camyks.contact@gmail.com>
  */
-final class HTMLForm {
+class HTMLForm {
     /**
      * @var string $name
      * @brief Form name.
@@ -119,13 +119,14 @@ final class HTMLForm {
      * @param mixed $method
      * @param string $onSubmit
      * @param string $target
+     * @return void
      */
     public function __construct($name='', $action='./', $method=null, $onSubmit='', $target='') {
         $this->name = $name;
         $this->action = $action;
         $this->onSubmit = $onSubmit;
         $this->target = $target;
-        
+
         /* set up inputs limit */
         $this->inputsLimit = ini_get('max_input_vars');
 
@@ -368,7 +369,7 @@ final class HTMLForm {
             $default = $params['default'] === '' ? '' : date('Y', $params['default']);
             if ($params['yearAsSelect'] == true and $params['yearRange']['from'] > 0 and $params['yearRange']['to'] > 0) {
                 $y = array();
-                for ($i=$params['yearRange']['from']; $i<=$params['yearRange']['to']; $i++) 
+                for ($i=$params['yearRange']['from']; $i<=$params['yearRange']['to']; $i++)
                     $y[$i] = $i;
                 $html .= $this->display_selectInput(array(
                     'name'      => $params['name'].'_year',
@@ -492,7 +493,7 @@ final class HTMLForm {
                 }
                 $html .= '</a> ';
             }
-            
+
             /* add "reset date" button */
             if (isset ($params['buttons']['reset'])) {
                 /* add space */
@@ -848,7 +849,7 @@ final class HTMLForm {
      */
     public function display_phonePrefixSelectInput($select=array(), $default=null) {
         global $camyks;
-        
+
         /* build param list */
         $params = array('name'=>'phonePrefix', 'default'=>'', 'highlighted'=>array(), 'shortList'=>array(), 'territories'=>1, 'highlight_separator'=>'', 'language'=>'', 'hasEmptyFirstOption'=>false, 'display_country'=>false, 'display_plus'=>false, 'display_zero'=>false, 'value'=>'countryCode', 'class'=>'sinputs');
 
@@ -1529,13 +1530,13 @@ final class HTMLForm_hidden {
      * @brief Hidden input name.
      */
     public $name;
-    
+
     /**
      * @var mixed $value
      * @brief Hidden input value.
      */
     public $value;
-    
+
     /**
      * @var string $id
      * @brief Hidden input id.
