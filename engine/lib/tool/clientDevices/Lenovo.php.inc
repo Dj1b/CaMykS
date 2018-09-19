@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Apr 2018
- * @date Modification: Jul 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -57,6 +57,8 @@ function get_LenovoClientDevice($deviceCode='') {
         'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),
         'K53b36'    => array('platform_model' => 'K6 Plus',                 'platform_year' => 2016),
         'K10E70'    => array('platform_model' => 'K10',                     'platform_year' => 2017),
+
+        'Z2 Plus'   => array('platform_year' => 2017),
     );
 
     /* Check for returning list */

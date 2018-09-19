@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
  * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
@@ -21,11 +21,12 @@
 function get_HuaweiClientDevice($deviceCode='') {
     $deviceList = array(
         /* Huawei tablets */
-        'M2-A01W'       => array('platform_model' => 'MediaPad M2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'GEM-703LT'     => array('platform_model' => 'MediaPad X2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'BEETHOVEN-W09' => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
-        'AGS-W09'       => array('platform_model' => 'MediaPad T3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
-        'CMR-W09'       => array('platform_model' => 'MediaPad M5', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'M2-A01W'           => array('platform_model' => 'MediaPad M2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'GEM-703LT'         => array('platform_model' => 'MediaPad X2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'BEETHOVEN-W09'     => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'BEETHOVEN-DL09'    => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'AGS-W09'           => array('platform_model' => 'MediaPad T3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'CMR-W09'           => array('platform_model' => 'MediaPad M5', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
 
 
         /* Huawei phones */
@@ -83,6 +84,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
+        'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),

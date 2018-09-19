@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2018
  * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
@@ -48,6 +48,8 @@ function get_LGClientDevice($deviceCode='') {
         'P875'  => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'LS996' => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
         'H955'  => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
+
+        'VS986' => array('platform_model' => 'G4',              'platform_year' => 2015),
     );
 
     /* Check for returning list */
