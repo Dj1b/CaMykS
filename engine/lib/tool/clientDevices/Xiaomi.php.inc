@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: May 2018
  * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
@@ -29,6 +29,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 5x'         => array('platform_model' => 'Mi 5X',           'platform_year' => 2017),
         'mi a1'         => array('platform_model' => 'Mi A1',           'platform_year' => 2017),
         'mi note pro'   => array('platform_model' => 'Mi Note Pro',     'platform_year' => 2015),
+        'redmi 4'       => array('platform_model' => 'Redmi 4',         'platform_year' => 2016),
         'redmi 4x'      => array('platform_model' => 'Redmi 4X',        'platform_year' => 2017),
         'redmi 3s'      => array('platform_model' => 'Redmi 3S',        'platform_year' => 2016),
         'redmi note 3'  => array('platform_model' => 'Redmi Note 3',    'platform_year' => 2015),
