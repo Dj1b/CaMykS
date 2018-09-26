@@ -1,7 +1,7 @@
 /**
  * @brief AdminItemListViewer Input client side scripts
  * @details Plugin / Input Scripts
- * @file plugin/input/AdminItemListViewer/js/AdminItemListViewer.html.inc
+ * @file plugin/input/AdminItemListViewer/js/AdminItemListViewer.js
  * @author CaMykS Team
  * @version 1.0
  * @date Creation: Oct 2008
