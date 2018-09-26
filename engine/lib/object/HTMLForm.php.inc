@@ -4,7 +4,7 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
  * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -1041,6 +1041,85 @@ class HTMLForm {
             $html .= ' class="'.$params['class'].'"';
         if ($params['style'] != '')
             $html .= ' style="'.$params['style'].'"';
+        if ($params['onchange'] != '')
+            $html .= ' onchange="'.$params['onchange'].'"';
+        if ($params['onkeydown'] != '')
+            $html .= ' onkeydown="'.$params['onkeydown'].'"';
+        if ($params['onfocus'] != '')
+            $html .= ' onfocus="'.$params['onfocus'].'"';
+        if ($params['onblur'] != '')
+            $html .= ' onblur="'.$params['onblur'].'"';
+        if ($params['oninput'] != '')
+            $html .= ' oninput="'.$params['oninput'].'"';
+        if ($params['disabled'] != '')
+            $html .= ' disabled="disabled"';
+        if ($params['readonly'] == 'readonly' or $params['readonly'] == true)
+            $html .= ' readonly="readonly"';
+        if ($params['list'] != '')
+            $html .= ' list="'.$params['list'].'"';
+        if ($params['placeholder'] != '')
+            $html .= ' placeholder="'.$params['placeholder'].'"';
+        if ($params['autocomplete'] != '')
+            $html .= ' autocomplete="'.$params['autocomplete'].'"';
+        if ($this->tabIndex>-1 or $params['tabIndex'] != -1)
+            $html .= ' '.$this->get_tabIndex(true, $params['tabIndex']);
+        $html .= ' />';
+        return $html;
+    }
+
+    /**
+     * Build and return number input.
+     * @param mixed $input
+     * @param string $default
+     * @return string
+     */
+    public function display_numberInput($input, $default=null) {
+        /* build param list */
+        $params = array('id'=>'', 'name'=>'', 'default'=>'', 'min'=>'', 'max'=>'', 'step'=>'', 'class'=>'vsinputs', 'style'=>'', 'onchange'=>'', 'onfocus'=>'', 'onblur'=>'', 'oninput'=>'',  'disabled'=>'', 'readonly'=>'', 'maxlength'=>0, 'size'=>0, 'language'=>'', 'onkeydown'=>'', 'list'=>'', 'autocomplete'=>'', 'placeholder'=>'', 'tabIndex'=>-1);
+
+        /* check header params */
+        if (is_array($input)) {
+            $params = array_merge($params, $input);
+        } else {
+            $params['name'] = $input;
+            if (isset($default))
+                $params['default'] = $default;
+        }
+
+        /* check limit */
+        $this->check_inputsLimit();
+
+        /* check object params */
+        if (isset($this->object)) {
+            /* check default value */
+            if ($params['default'] === '') {
+                $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
+                $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+            }
+        }
+
+        /* build input */
+        $html = '<input type="number"';
+        if ($params['language'] == '')
+            $html .= ' name="'.$params['name'].'"';
+        else
+            $html .= ' name="'.$params['name'].'_'.$params['language'].'"';
+        $html .= ' value="'.(int)$params['default'].'"';
+        $html .= ' maxlength="'.$params['maxlength'].'"';
+        if ($params['size'] > 0)
+            $html .= ' size="'.$params['size'].'"';
+        if ($params['id'] != '')
+            $html .= ' id="'.$params['id'].'"';
+        if ($params['class'] != '')
+            $html .= ' class="'.$params['class'].'"';
+        if ($params['style'] != '')
+            $html .= ' style="'.$params['style'].'"';
+        if ($params['min'] != '')
+            $html .= ' min="'.$params['min'].'"';
+        if ($params['max'] != '')
+            $html .= ' max="'.$params['max'].'"';
+        if ($params['step'] != '')
+            $html .= ' step="'.$params['step'].'"';
         if ($params['onchange'] != '')
             $html .= ' onchange="'.$params['onchange'].'"';
         if ($params['onkeydown'] != '')
