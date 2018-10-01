@@ -3,18 +3,18 @@
  * @details Plugin / Module CSS styles
  * @file plugin/Module/Admin_SystemLogManager/css/styles.css
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2018
- * @date Modification: Jun 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
+
 #itemLogs .menu {width:180px; float:left; border-right:solid 1px #CDCDCD;}
 #itemLogs .menu .logSelection {height:40px; background:#efefef; text-align:center; padding:8px; border-bottom:solid 1px #CDCDCD;}
 #itemLogs .menu .logSelection select {width:160px;}
-#itemLogs .menu .fileSelection {height:412px;}
+#itemLogs .menu .fileSelection {height:412px; overflow:auto;}
 #itemLogs .menu .fileSelection .file {padding:8px; border-bottom:solid 1px #CDCDCD; transition:background 0.3s;}
 #itemLogs .menu .fileSelection .file:hover {background:#efefef; cursor:pointer;}
 #itemLogs .menu .fileSelection .file.selected {font-weight:bold;}

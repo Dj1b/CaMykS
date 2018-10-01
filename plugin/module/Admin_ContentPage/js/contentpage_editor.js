@@ -1,14 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Scripts
- * Creation Date	: Oct 2009
- * Last Modif Date  : Feb 2018
- *
- * AdminContentPageEditor object javascript
+/**
+ * @brief Admin_ContentPage module page editor scripts
+ * @details Plugin / Module Scripts
+ * @file plugin/module/Admin_ContentPage/js/contentpage_editor.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Oct 2009
+ * @date Modification: Sep 2018
+ * @copyright 2009 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 function AdminContentPageEditor(name) {
@@ -16,11 +16,11 @@ function AdminContentPageEditor(name) {
   this._form = null;
   this._params = [];
   this._locales = [];
-  
+
   this._isLoaded = false;
 
   /* pre-initialisation params */
-  
+
   /*
    * add params
    * @param string name
@@ -43,7 +43,7 @@ function AdminContentPageEditor(name) {
   this.add_arrayParam = function(name, key, value) {
     this._params[name][key] = value;
   }
-  
+
   /*
    * add locale
    * @param string name
@@ -54,7 +54,7 @@ function AdminContentPageEditor(name) {
   this.add_locale = function(name, value) {
     this._locales[name] = value;
   }
-  
+
   /* initialisation methods */
 
   /*
@@ -65,9 +65,9 @@ function AdminContentPageEditor(name) {
   this.initialise = function() {
     /* initialise values */
     this._form = eval('document.'+this._params['form']);
-    
+
     this._isLoaded = true;
-    
+
     /* execute actions */
     this.update_templatePanel();
     this.update_modulePanels();
@@ -88,9 +88,9 @@ function AdminContentPageEditor(name) {
     this.unlock_content();
     this._form.submit();
   }
-  
+
   /* event methods */
-  
+
   /*
    * template selector onchange event
    * @return void
@@ -100,7 +100,7 @@ function AdminContentPageEditor(name) {
     this.update_templatePanel();
     this.check_usedModel();
   }
-  
+
   /*
    * main theme selector onchange event
    * @return void
@@ -109,7 +109,7 @@ function AdminContentPageEditor(name) {
   this.onThemeChange = function() {
     this.check_usedModel();
   }
-  
+
   /*
    * page model selector on change event
    * @return void
@@ -119,7 +119,7 @@ function AdminContentPageEditor(name) {
     this.update_pageFromModel();
   }
 
-  
+
   /*
    * module selector onchange event
    * @param integer block
@@ -130,7 +130,7 @@ function AdminContentPageEditor(name) {
     this.update_modulePanel( block );
     this.check_usedModel();
   }
-   
+
   /*
    * content selector onchange event
    * @param integer block
@@ -150,9 +150,9 @@ function AdminContentPageEditor(name) {
   this.onBlockThemeChange = function(block) {
     this.check_usedModel();
   }
- 
+
   /* panel updating methods */
-  
+
   /*
    * update page info from selected model
    * @return void
@@ -161,26 +161,26 @@ function AdminContentPageEditor(name) {
   this.update_pageFromModel = function() {
     /* get model value */
     model = this._form.model[this._form.model.selectedIndex].value;
-    
+
     /* check model value */
     if ( model > 0  && this._params['models'][model] )
       model = this._params['models'][model];
     else
       return this.unlock_content();
-    
+
     /* select template */
     this.update_selectedValue('template', model["template"] );
     this.update_templatePanel();
-    
+
     /* select theme */
     this.update_selectedValue('theme', model["theme"] );
-    
+
     /* select modules */
     for (var i=0; i<this._params['maxModules']; i++) {
       if ( model["m"+i+"_name"] != '' ) {
 	    this.update_selectedValue('m'+i+'_name',  model["m"+i+"_name"] );
 	    this.update_modulePanel( i );
-	if ( model["m"+i+"_content"] != "" 
+	if ( model["m"+i+"_content"] != ""
 	     && model["m"+i+"_content"] != "0" ) {
 	  this.update_selectedValue('m'+i+'_content', model["m"+i+"_content"]);
 	}
@@ -200,38 +200,38 @@ function AdminContentPageEditor(name) {
     /* unselect actual template */
     if ( i = document.getElementById('template_'+this._params['selectedTemplate']))
       i.style.display='none';
-    
+
     /* update selected template value */
     this._params['selectedTemplate'] = this._form.template.options[this._form.template.selectedIndex].value;
-    
+
     if (this._params['selectedTemplate'] == '' ) {
       this._params['selectedTemplate'] = this._params['defaultTemplate'];
-    } 
-    
+    }
+
     /* select new template */
     if ( i = document.getElementById('template_'+this._params['selectedTemplate']))
       i.style.display='block';
-    
+
     /* active modules */
     m = this._params['templateBlocks'][this._params['selectedTemplate']];
     for ( var i=0; i<m; i++ ) {
       if ( document.getElementById('module'+i) )
 	document.getElementById('module'+i).style.display = 'block';
     }
-    
+
     /* unactive useless modules */
     for ( var i=m; i<this._params['maxModules']; i++ ) {
       if ( document.getElementById('module'+i) )
 	document.getElementById('module'+i).style.display = 'none';
     }
-    
+
     /* safari hack */
     if ( navigator.userAgent.toLowerCase().indexOf('applewebkit') != -1  ) {
       window.innerWidth++;
       window.innerWidth--;
     }
   }
-  
+
   /*
    * update module panel
    * @param integer block
@@ -242,30 +242,30 @@ function AdminContentPageEditor(name) {
     /* get form values */
     myform_name = eval('this._form.m'+block+'_name' );
     myform_content = eval('this._form.m'+block+'_content');
-    
+
     /* get module name value */
     module_name = myform_name.options[myform_name.selectedIndex].value;
-    
+
     /* update module content select */
     myform_content.options.length = 0;
-    
-    if (  this._params['moduleContents'][module_name] 
+
+    if (  this._params['moduleContents'][module_name]
 	  && this._params['moduleContents'][module_name] != -1 ) {
-      if (  this._params['moduleEditable'][module_name] 
+      if (  this._params['moduleEditable'][module_name]
 	    && this._params['moduleEditable'][module_name] == 1 ) {
-	
-	/* add "new content" item */ 
+
+	/* add "new content" item */
 	myform_content.options[myform_content.options.length] = new Option ( this._locales['new_content'], 0 );
-	
+
 	/* add separator item */
 	sep = new Option ( '', '' );
 	sep.className = 'separator';
 	sep.disabled = 'disabled';
 	myform_content.options[myform_content.options.length] = sep;
-	
+
 	/* show edit content button */
 	document.getElementById('module_editbutton'+block).style.display = 'block';
-      } else if (  this._params['moduleEditable'][module_name] 
+      } else if (  this._params['moduleEditable'][module_name]
 	    && this._params['moduleEditable'][module_name] == 2 ) {
 	    /* show edit content button */
 	document.getElementById('module_editbutton'+block).style.display = 'block';
@@ -282,7 +282,7 @@ function AdminContentPageEditor(name) {
       document.getElementById('module_editbutton'+block).style.display = 'none';
     }
   }
-  
+
   /*
    * update all module panels
    * @return void
@@ -295,7 +295,7 @@ function AdminContentPageEditor(name) {
     }
     this.check_usedModel();
   }
-  
+
   /*
    * update selected option into given block content selector
    * @param integer block
@@ -305,7 +305,7 @@ function AdminContentPageEditor(name) {
   this.update_contentSelection = function (block) {
     /* get form element */
     myform_content = eval ('this._form.m'+block+'_content');
-    
+
     /* get selectedIndex */
     for ( var i=0; i<myform_content.options.length; i++ ) {
       if ( myform_content.options[i].value == this._params['selectedContents'][block] ) {
@@ -314,7 +314,7 @@ function AdminContentPageEditor(name) {
       }
     }
   }
-  
+
   /*
    * start page saving and go to the given item editor
    * @param integer block
@@ -322,20 +322,20 @@ function AdminContentPageEditor(name) {
    * @access public
    */
   this.edit_moduleContent = function (block) {
-    
+
     /* get values */
     module_name = eval ('this._form.m'+block+'_name' ).value;
     module_content = eval('this._form.m'+block+'_content');
-    
+
     /* check content */
-    if ( module_name!= '' 
-	 && module_content.disabled==false 
+    if ( module_name!= ''
+	 && module_content.disabled==false
 	 && this._params['moduleContents'][module_name] != -1 ) {
       this._form.next.value = block;
       this.valid_page();
     }
   }
-  
+
   /*
    * update select object with selected value
    * @param string select
@@ -344,52 +344,52 @@ function AdminContentPageEditor(name) {
    * @access private
    */
   this.update_selectedValue = function(select, value){
-    
+
     /* get select element */
     myselect = eval('this._form.'+select);
-    
+
     /* check select element */
-    if ( !myselect ) 
+    if ( !myselect )
       return;
-    
-    for ( var i=0; i<myselect.length; i++ ) {     
+
+    for ( var i=0; i<myselect.length; i++ ) {
       if ( myselect.options[i].value == value ) {
-	    myselect.selectedIndex = i;	    
+	    myselect.selectedIndex = i;
 	    return;
       }
     }
   }
-  
+
   /*
    * check if current content correspond to a model
    * @return void
    * @access private
    */
   this.check_usedModel = function() {
-    if ( this._params['models'].length == 0 ) 
+    if ( this._params['models'].length == 0 )
       return;
-    
+
     /* init vars */
     selected = '';
     selsimvalue = 0;
-    
+
     for ( var j in this._params['models'] ) {
       simvalue = 0;
       model = this._params['models'][j];
-      
+
       /* check template */
       if ( this._form.template.options[this._form.template.selectedIndex].value != model['template'] )
 	continue;
-      
+
       /* check theme */
       if ( this._form.theme.options[this._form.theme.selectedIndex].value != model['theme'] )
 	continue;
-      
+
       /* check modules and their contents */
       for (var i=0; i<this._params['maxModules']; i++) {
 	if ( !model["m"+i+"_name"] || model["m"+i+"_name"] == '' )
 	  continue;
-	
+
 	/* check module name */
 	myselect = eval('this._form.m'+i+'_name');
 	if ( myselect.options[myselect.selectedIndex].value == model['m'+i+'_name'] ) {
@@ -398,9 +398,9 @@ function AdminContentPageEditor(name) {
 	  simvalue=-1;
 	  break;
 	}
-	
+
 	/* check module content */
-	if ( model["m"+i+"_content"] != "" 
+	if ( model["m"+i+"_content"] != ""
 	     && model["m"+i+"_content"] != "0" ) {
 	  myselect = eval('this._form.m'+i+'_content');
 	  if (myselect.selectedIndex &&
@@ -412,7 +412,7 @@ function AdminContentPageEditor(name) {
 	    break;
 	  }
 	}
-	
+
 	/* check module theme */
 	if ( this._params['allowThemeChange']) {
 	  myselect = eval('this._form.m'+i+'_theme');
@@ -424,7 +424,7 @@ function AdminContentPageEditor(name) {
 	  }
 	}
       }
-      
+
       /* update selected item */
       if ( simvalue == -1 )
 	continue;
@@ -433,7 +433,7 @@ function AdminContentPageEditor(name) {
 	selsimvalue = simvalue;
       }
     }
-    
+
     /* update model selector */
     for ( var i=0; i<this._form.model.length; i++ ) {
       if ( this._form.model.options[i].value == selected ) {
@@ -442,7 +442,7 @@ function AdminContentPageEditor(name) {
       }
     }
   }
-  
+
   /*
    * lock model content
    */
@@ -450,14 +450,14 @@ function AdminContentPageEditor(name) {
     /* check user mode */
     if ( this._params['modelMode'] == 'admin' )
       return;
-    
+
     /* check model value */
     model = this._form.model[this._form.model.selectedIndex].value;
     if ( model > 0  && this._params['models'][model] )
       model = this._params['models'][model];
     else
       return this.unlock_content();
-    
+
     /* lock item for non admin users */
     this._form.template.disabled=true;
     this._form.theme.disabled=true;
@@ -474,12 +474,12 @@ function AdminContentPageEditor(name) {
       } else {
 	eval('this._form.m'+i+'_name').disabled=false;
 	if (this._params['allowThemeChange'])
-	  eval('this._form.m'+i+'_theme').disabled=false;     
+	  eval('this._form.m'+i+'_theme').disabled=false;
 	eval('this._form.m'+i+'_content').disabled=false;
       }
     }
   }
-  
+
   /*
    * unlock model content
    * @return void

@@ -7,7 +7,7 @@
  * @version 1.0
  * @date Creation: Feb 2016
  * @date Modification: Jul 2018
- * @copyright 2018 CaMykS Team
+ * @copyright 2016 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude

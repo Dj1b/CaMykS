@@ -1,16 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0.1
- * Object Type	    : Plugin / Module Layout
- * Creation Date    : Dec 2014
- * Last Modif Date	: Jul 2018
- * 
- * Admin_ContentPage Module Admin Layout : view configuration
-*/
+/**
+ * @brief Admin_ContentPage Module configuration view layout
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_ContentPage/html/configuration/view.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0
+ * @date Creation: Dec 2014
+ * @date Modification: Sep 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 global $camyks;
 ?>
 <?php if (isset($this->isConfig) and $this->isConfig) : ?>
@@ -22,7 +23,7 @@ global $camyks;
 
 <div class="adminContentContainer">
     <div class="half">
-  
+
       <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
       <tr>
@@ -66,7 +67,7 @@ global $camyks;
         <td class="eTableLine0 eContent1">
           <?=(isset($this->pages[$page]) ? $this->pages[$page]->name : $this->get_translation('page_notfound')); ?>
         </td>
-      </tr>         
+      </tr>
       <?php endforeach; ?>
       <?php endif; ?>
 
@@ -97,7 +98,7 @@ global $camyks;
         <td class="eTableLine0 eContent1">
           <?=(isset($this->pages[$page]) ? $this->pages[$page]->name : $this->get_translation('page_notfound')); ?>
         </td>
-      </tr>         
+      </tr>
       <?php endforeach; ?>
       <?php endif; ?>
     </table>
@@ -177,7 +178,7 @@ global $camyks;
         </td>
       </tr>
       <?php endif; ?>
-    </table>  
+    </table>
   </div>
 </div>
 <?php if (isset($this->isConfig) and $this->isConfig) :?>
@@ -186,3 +187,8 @@ global $camyks;
 <?=$camyks->theme->get_boxContent2Footer();?>
 
 <?php endif; ?>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

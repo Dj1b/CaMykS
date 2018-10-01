@@ -1,18 +1,17 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Scripts
- * Create Date		: Jun 2005
- * Last Modif Date      : Feb 2008
- *
- * ContentPage object javascript
+/**
+ * @brief Admin_ContentPage module modifying page scripts
+ * @details Plugin / Module Scripts
+ * @file plugin/module/Admin_ContentPage/js/contentpage_modify.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jun 2005
+ * @date Modification: Sep 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 contentpage_selTemplate = "";
-
 
 /*
  * call by template selector
@@ -40,7 +39,7 @@ function contentpage_updateTemplatePanel() {
 
     if ( contentpage_selTemplate == '' ) {
 	contentpage_selTemplate = site_default_template;
-    } 
+    }
     /* select new template */
     if ( i = document.getElementById('template_'+contentpage_selTemplate) ) {
 	i.style.display='block';
@@ -63,7 +62,7 @@ function contentpage_updateTemplatePanel() {
     if ( navigator.userAgent.toLowerCase().indexOf('applewebkit') != -1  ) {
 	window.innerWidth++;
 	window.innerWidth--;
-    } 
+    }
 }
 
 /*
@@ -87,7 +86,7 @@ function contentpage_updateModulePanel( idx ) {
 
     /* get module name value */
     module_name = myform_name.options[myform_name.selectedIndex].value;
-    
+
     /* update module content select */
     myform_content.options.length = 0;
 
@@ -140,7 +139,7 @@ function contentpage_updateContentSelection ( idx ) {
 
     /* get form element */
     myform_content = eval ( 'myform.m'+idx+'_content');
-    
+
     /* get selectedIndex */
     for ( var i=0; i<myform_content.options.length; i++ ) {
 	if ( myform_content.options[i].value == contentpage_selcontents[idx] ) {
@@ -211,7 +210,7 @@ function contentpage_updateSelectedValue( select, value ) {
   myselect = eval('myform.'+select);
 
   /* check select element */
-  if ( !myselect ) 
+  if ( !myselect )
     return;
 
   for ( var i=0; i<myselect.length; i++ ) {
@@ -226,7 +225,7 @@ function contentpage_updateSelectedValue( select, value ) {
  * check if current content correspond to a model
  */
 function contentpage_checkUsedModel() {
-  if ( contentpage_models.length == 0 ) 
+  if ( contentpage_models.length == 0 )
     return;
 
   /* get form */
@@ -257,7 +256,7 @@ function contentpage_checkUsedModel() {
 	simvalue=-1;
 	break;
       }
-   
+
       /* check module content */
       if ( model["m"+i+"_content"] != "" && model["m"+i+"_content"] != "0" ) {
 	myselect = eval('myform.m'+i+'_content');
@@ -281,7 +280,7 @@ function contentpage_checkUsedModel() {
 	  break;
 	}
       }
-    } 
+    }
 
     /* update selected item */
     if ( simvalue == -1 )
@@ -348,7 +347,7 @@ function contentpage_lockContent() {
     } else {
       eval( 'myform.m'+i+'_name').disabled=false;
       if (contentpage_allowThemeChange)
-	eval( 'myform.m'+i+'_theme').disabled=false;     
+	eval( 'myform.m'+i+'_theme').disabled=false;
       eval( 'myform.m'+i+'_content').disabled=false;
     }
   }

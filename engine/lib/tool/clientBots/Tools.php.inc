@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.6
  * @date Creation: May 2018
- * @date Modification: Aug 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1039,6 +1039,36 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'IVM',
         'engine_url'        => 'https://www.nch.com.au/ivm/plugins.html',
+    );
+
+    /* htmlyse  */
+    $knownTools['htmlyse'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'htmlyse',
+        'engine_url'        => 'https://www.htmlyse.com/',
+    );
+
+    /* Mr.4x3 Powered   */
+    $knownTools['mr.4x3 powered'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Mr.4x3 Powered',
+        'tool_url'          => '',
+        'engine_title'      => 'CrushUs.com',
+        'engine_url'        => 'https://crushus.com',
+    );
+
+    /* Goose   */
+    $knownTools['goose'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Goose',
+        'engine_url'        => 'https://pypi.org/project/goose3/',
     );
 
     /* return list */

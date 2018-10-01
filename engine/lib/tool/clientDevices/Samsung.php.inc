@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.15
  * @date Creation: Apr 2018
- * @date Modification: Aug 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -94,6 +94,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G955U'  => array('platform_model' => 'Galaxy S8+',                  'platform_year' => 2017),
         'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active',            'platform_year' => 2017),
         'SM-G960F'  => array('platform_model' => 'Galaxy S9',                   'platform_year' => 2018),
+        'SM-G960U1' => array('platform_model' => 'Galaxy S9',                   'platform_year' => 2018),
         'SM-G965F'  => array('platform_model' => 'Galaxy S9+',                  'platform_year' => 2018),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V',                    'platform_year' => 2014),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3',                   'platform_year' => 2014),
@@ -110,6 +111,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A700F'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                   'platform_year' => 2015),
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                   'platform_year' => 2018),
+        'SM-A530W'  => array('platform_model' => 'Galaxy A8',                   'platform_year' => 2018),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',               'platform_year' => 2016),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),
         'SM-E500H'  => array('platform_model' => 'Galaxy E5',                   'platform_year' => 2015),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Aug 2018
- * @date Modification: Aug 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_HTCClientDevice($deviceCode='') {
         'One M8'        => array('platform_model' => 'One (M8)',            'platform_year' => 2014),
         'D820u'         => array('platform_model' => 'Desire 820 Dual SIM', 'platform_year' => 2014),
         '2PYB2'         => array('platform_model' => 'Bolt',                'platform_year' => 2016),
+        'Desire 626'    => array('platform_model' => 'Desire 626',          'platform_year' => 2015),
     );
 
     /* Check for returning list */

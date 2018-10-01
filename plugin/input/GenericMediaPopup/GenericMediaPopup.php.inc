@@ -107,7 +107,7 @@ final class GenericMediaPopup extends Input {
         if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['insertion'] == 1) {
             $this->register_asCaMykSEventHandler('onPageLoad');
         }
-        
+
         /* update parameters with picture file URLs */
         $this->params['buttonPictures'] = array(
             'close'     => $this->get_fileURL('img/close.gif'),
@@ -195,7 +195,7 @@ final class GenericMediaPopup extends Input {
     }
 
     /**
-     * Execute handler on body closing.
+     * Execute handler on page loading.
      * @return void
      */
     public function execute_onCaMykSPageLoad() {

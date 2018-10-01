@@ -4,11 +4,11 @@
  * @details Engine / Object Library
  * @file engine/lib/object/FSFile.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2007
- * @date Modification: Apr 2018
+ * @date Modification: Sep 2018
  * @copyright 2007 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -22,85 +22,85 @@ final class FSFile {
      * @brief File name.
      */
     public $filename;
-  
+
     /**
      * @var string $path
      * @brief File path.
      */
-    public $path; 
-  
+    public $path;
+
     /**
      * @var string $fullpath
      * @brief Full file path with file name.
      */
     public $fullpath;
-  
+
     /**
      * @var boolean $exists
      * @brief File exists.
      */
     public $exists;
-  
+
     /**
      * @var integer $size
      * @brief File size in octet/byte.
      */
     public $size;
-  
+
     /**
      * @var string $hsize
      * @brief Human readable file size.
      */
     public $hsize;
-  
+
     /**
      * @var string $mime
      * @brief File mime.
      */
     public $mime;
-  
+
     /**
      * @var string $type
      * @brief File type, first part of mime value.
      */
     public $type;
-  
+
     /**
      * @var string $ext
      * @brief File extension.
      */
     public $ext;
-  
+
     /**
      * @var integer $atime
      * @brief File last opening time.
      */
     public $atime;
-  
+
     /**
      * @var integer $mtime
      * @brief File last modification time.
      */
     public $mtime;
-  
+
     /**
      * @var integer $ctime
      * @brief File inode change time.
      */
     public $ctime;
-  
+
     /**
      * @var string $mimedesc
      * @brief File mime description.
      */
     public $mimedesc;
-  
+
     /**
      * @var string $typedesc
      * @brief File type description.
      */
     public $typedesc;
-  
+
     /**
      * @var array $moreinfos
      * @brief File additional information.
@@ -115,10 +115,14 @@ final class FSFile {
      */
     public function __construct($path='', $file=null) {
         if (isset($file)) {
+            $f = explode('?', $file);
+            $file = $f[0];
             $this->filename = $file;
             $this->path = $path;
             $this->fullpath = $path.'/'.$file;
         } else {
+            $f = explode('?', $path);
+            $path = $f[0];
             $this->fullpath = $path;
             $p = explode('/', $path);
             $this->filename = array_pop($p);
@@ -140,7 +144,7 @@ final class FSFile {
             return;
         }
         /* get file extension */
-        if (preg_match('/.*\.([^\.]*)/', $this->filename, $ext)) 
+        if (preg_match('/.*\.([^\.]*)/', $this->filename, $ext))
             $this->ext = $ext[1];
         else
             $this->ext = '';
@@ -165,7 +169,7 @@ final class FSFile {
         $this->type = $t[0];
     }
 
-    /* 
+    /*
      * Load file stats.
      * @return void
      */
@@ -230,7 +234,7 @@ final class FSFile {
      * @param string title overwrite title value
      * @return void
      */
-    public function download($title=null) {  
+    public function download($title=null) {
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Content-Type: application/octet-stream');
         header('Content-Description: File Transfer');

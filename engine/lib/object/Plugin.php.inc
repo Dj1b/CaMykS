@@ -5,9 +5,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.7
  * @date Creation: Jun 2005
- * @date Modification: Jul 2018
+ * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -224,7 +224,7 @@ abstract class Plugin {
      * \e 1 Absolute <br />
      * \e 2 Relative <br />
      * @endparblock
-     * @return void
+     * @return string
      */
     public function get_engineFileURL($file='', $path=false) {
         global $camyks;
@@ -258,18 +258,25 @@ abstract class Plugin {
     public function get_fileURL($file='', $path=null, $default='') {
         global $camyks;
 
+        /* check for query string on file */
+        $f = explode('?', $file);
+        $f = $f[0];
+
+        /* check base url */
         switch ($path) {
             case 2: $baseURL = ''; break;
             case true: case 1: $baseURL = $camyks->get_rootBaseURL('absolute');  break;
             case 0: default : $baseURL = $camyks->get_rootBaseURL($path); break;
         }
 
-        /* get file url in site plugin folder */
-        if (file_exists ($this->plugin_site_path.'/'.$file))
+        /* return file url from site plugin folder */
+        if (file_exists ($this->plugin_site_path.'/'.$f))
             return $baseURL.$this->plugin_site_url.'/'.$file;
-        /* get file url in plugin folder */
-        if (file_exists ($this->plugin_path.'/'.$file))
+
+        /* return file url from plugin folder */
+        if (file_exists ($this->plugin_path.'/'.$f))
             return $baseURL.$this->plugin_url.'/'.$file;
+
         /* get default file url */
         return $default;
     }
@@ -302,11 +309,19 @@ abstract class Plugin {
      * @return string
      */
     public function get_filePath($file='') {
-        if (file_exists($this->plugin_site_path.'/'.$file)) {
-            return $this->plugin_site_path.'/'.$file ;
-        } else if (file_exists ($this->plugin_path.'/'.$file)) {
-            return $this->plugin_path.'/'.$file ;
-        }
+        /* check for query string on file */
+        $f = explode('?', $file);
+        $f = $f[0];
+
+        /* return file path from site plugin folder */
+        if (file_exists($this->plugin_site_path.'/'.$f))
+            return $this->plugin_site_path.'/'.$file;
+
+        /* return file path from camyks plugin folder */
+        if (file_exists($this->plugin_path.'/'.$f))
+            return $this->plugin_path.'/'.$file;
+
+        /* return default result */
         return '';
     }
 
@@ -532,6 +547,14 @@ abstract class Plugin {
     }
 
     /**
+     * Check if plugin is installed.
+     * @return boolean
+     */
+    public function is_installed() {
+        return null;
+    }
+
+    /**
      * Update plugin.
      * @param string $version
      * @param string $more
@@ -565,8 +588,8 @@ abstract class Plugin {
             $hta = preg_replace('/### '.$this->name.' ###([\s\S]*)### '.$this->name.' ###/s', $content, $hta);
         } else {
             /* Add new content */
-            $content .= "\n\n  # site page";
-            $hta = preg_replace('/  # site page/', $content, $hta);
+            $content .= "\n\n$1# site page";
+            $hta = preg_replace('/([ ]{0,2})# site page/', $content, $hta);
         }
 
         return file_write('.htaccess', $hta);

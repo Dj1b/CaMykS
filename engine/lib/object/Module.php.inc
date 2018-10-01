@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Module.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2007
- * @date Modification: Jun 2018
+ * @date Modification: Sep 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,67 +22,67 @@ class Module extends Plugin {
      * @brief Module type, can be \b admin or \b content.
      */
     public $type;
-    
+
     /**
      * @var string $title
      * @brief Module title.
      */
     public $title;
-    
+
     /**
      * @var string $libdesc
      * @brief Module library description.
      */
     public $libdesc;
-    
+
     /**
      * @var array $libs
      * @brief Module libraries to load.
      */
     protected $libs = array();
-    
+
     /**
      * @var Theme $theme
      * @brief Theme applied to the Module.
      */
     public $theme;
-    
+
     /**
      * @var array $languages
      * @brief Module available locale files.
      */
     public $languages;
-    
+
     /**
      * @var array $rights
      * @brief Module permissions.
      */
     public $rights = array();
-    
+
     /**
      * @var string $selected_layout
      * @brief Module layout to use.
      */
     public $selected_layout = '';
-    
+
     /**
      * @var string $selected_layout_location
      * @brief Module layout location, can be \b module or \b camyks.
      */
     public $selected_layout_location = 'module';
-    
+
     /**
      * @var array $help
      * @brief Module help files.
      */
     public $help = null;
-    
+
     /**
      * @var boolean $is_editable
      * @brief Module has editable content.
      */
     public $is_editable = true;
-    
+
     /**
      * @var string $text
      * @brief Module admin message.
@@ -97,7 +97,7 @@ class Module extends Plugin {
     public function __construct($name, $path_type) {
         $this->Module($name, $path_type);
     }
-  
+
     /**
      * Old style constructor.
      * @param string $name the module name
@@ -116,16 +116,8 @@ class Module extends Plugin {
         $this->libdesc = 'Module:'.$this->name;
     }
 
-    /**
-     * Check if module is installed.
-     * @return boolean
-     */
-    public function is_installed() {
-        return null;
-    }
-
     /***************** HELP **********************/
-  
+
     /**
      * Load help files.
      * @return void
@@ -289,7 +281,7 @@ class Module extends Plugin {
      */
     protected function init_admin_pageAccessDenied() {
         global $camyks;
-        
+
         /* disable admin menu */
         $this->disable_adminEngineMenus();
 
@@ -431,7 +423,7 @@ class Module extends Plugin {
     public function display_site() {
         $this->get_siteLayout();
     }
-    
+
     /***************** LAYOUT MANAGEMENT **************/
 
     /**
@@ -479,7 +471,7 @@ class Module extends Plugin {
     }
 
     /**************** ADMIN ENGINE MANAGEMENT *********/
-  
+
     /**
      * Return admin menus to register : always displayed.
      * @return array
@@ -711,9 +703,9 @@ class Module extends Plugin {
         /* update page information with object id for new content */
         return $camyks->modules['Admin_ContentPage']->page->static_update_singleModuleContent($pageId, $moduleIndex, $contentId);
     }
-  
+
     /* deprecated methods */
-  
+
     /**
      * Load PHP libraries.
      * @return void
@@ -727,7 +719,7 @@ class Module extends Plugin {
             }
         }
     }
-    
+
     /**
      * Generic module initialisation.
      * @return boolean

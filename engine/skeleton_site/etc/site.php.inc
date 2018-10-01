@@ -4,11 +4,11 @@
  * @details Skeleton site / Site Configuration
  * @file engine/skeleton_site/etc/site.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Sep 2018
  * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -56,7 +56,7 @@ $conf['database_pwd'] = '';
 $conf['admin_ssl'] = 'default';
 /* site admin default language : fr, en */
 $conf['admin_default_language'] = 'fr';
-/* site admin available languages, set at least one language */ 
+/* site admin available languages, set at least one language */
 $conf['admin_languages'] = array('fr');
 /* site admin theme : IndigoFlatStyle as default */
 $conf['admin_default_theme'] = 'IndigoFlatStyle';
@@ -74,9 +74,6 @@ $conf['site_default_language'] = 'fr';
 $conf['editing_languages'] = array('fr');
 /* site maximum module by page : can't be raise later, 5 is a classic value, 8 is security */
 $conf['page_maxmodules'] = 8;
-/* site google analytics code */
-$conf['google_analytics'] = '';
-$conf['google_analytics_domain'] = '';
 /* cache settings */
 $conf['cache_server_side'] = ''; // currently not compatible with responsive design
 $conf['cache_client_side'] = '';

@@ -1,18 +1,18 @@
 <?php
 /*
  * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Engine
- * Creation Date	: Jun 2005
- * Last Modif Date	: Nov 2017
+ * Developed by        : camyks.net
+ * Author            : CaMykS Team <camyks.contact@gmail.com>
+ * CaMykS Version    : 1.0
+ * Object Version    : 1.0
+ * Object Type        : Plugin / Module Engine
+ * Creation Date    : Jun 2005
+ * Last Modif Date    : Nov 2017
  * History :
  * * 05-06-xx : Initial files
  * * 08-05-21 : Rewrite online help (french)
  * * 08-05-28 : Disable admin menu for data I/O modes
- * 
+ *
  * Admin_PluginManager module
  * Active and install plugin into the current website
  *
@@ -26,7 +26,7 @@
 final class Admin_PluginManager extends Module {
   /* vars */
   private $mode;
-  
+
   /* list vars */
   protected $modules;
   protected $templates;
@@ -34,13 +34,13 @@ final class Admin_PluginManager extends Module {
   protected $inputs;
   private $pluginsinfo;
   protected $installedTables;
-  
+
   /* action vars */
   protected $pluginItem;
   protected $unfound;
-  protected $text;  
+  protected $text;
 
-  /* 
+  /*
    * constructor
    * @param string $path_type
    */
@@ -60,16 +60,16 @@ final class Admin_PluginManager extends Module {
     /* load libraries */
     $this->libs[] = 'Admin_PluginManagerItem.php.inc';
     $this->get_PHPLibs();
-    
+
     /* init library */
     $this->pluginItem = new Admin_PluginManagerItem(0, $this);
-    
+
     /* init running vars */
     $this->installedTables = null;
   }
-  
+
   /* overwrite Module methods */
-  
+
   /*
    * install module object
    * @return boolean success
@@ -105,7 +105,7 @@ final class Admin_PluginManager extends Module {
   public function get_adminEngineSpecificMenus() {
     if ($this->check_right(1)===true) {
       return array(array('name'=>'pluginmanager',
-			 'title'=>$this->get_translation('title')));
+             'title'=>$this->get_translation('title')));
     }
     return array();
   }
@@ -119,10 +119,10 @@ final class Admin_PluginManager extends Module {
     global $camyks;
     if ($this->check_right(1)===true) {
       return array(array('name'=>'cleandatabase',
-			 'title'=>$this->get_translation('cleandatabase'),
-			 'icon'=>$this->get_fileURL('img/clean12.gif'),
-			 'menu'=>'pluginmanager',
-			 'url'=> $camyks->get_adminLink ($this->name, array('mode'=>'cleandb'))));
+             'title'=>$this->get_translation('cleandatabase'),
+             'icon'=>$this->get_fileURL('img/clean12.gif'),
+             'menu'=>'pluginmanager',
+             'url'=> $camyks->get_adminLink ($this->name, array('mode'=>'cleandb'))));
     }
     return array();
   }
@@ -130,7 +130,7 @@ final class Admin_PluginManager extends Module {
   /*
    * init object when in admin mode
    * @return void
-   * @access public 
+   * @access public
    */
   public function init_admin () {
     global $camyks;
@@ -145,7 +145,7 @@ final class Admin_PluginManager extends Module {
 
     /* build unfound module list */
     $this->unfound = array();
-    
+
     /* execute mode */
     switch ($this->mode) {
     case 'activate':
@@ -190,21 +190,21 @@ final class Admin_PluginManager extends Module {
 
     /* disable admin menus */
     $this->disable_adminEngineMenus();
-    
+
     $this->pluginItem->get_fromHeader();
     $this->pluginItem->activevalue = 1;
     if ($this->pluginItem->active_plugin())
-      $this->text = $this->get_translation ('activationdone', $this->pluginItem->pluginvalue);
+      $this->text = $this->get_translation('activationdone', $this->pluginItem->pluginvalue);
     else
-      $this->text = $this->get_translation ('activationfailed', $this->pluginItem->pluginvalue);
+      $this->text = $this->get_translation('activationfailed', $this->pluginItem->pluginvalue);
 
     /* add page redirection */
     $this->set_redirect($this->get_adminLink(array(
-        'mode'      => 'list', 
-		'openTab'   => ucwords($this->pluginItem->typevalue).'s',
-	)));
-	
-	/* update layout */
+        'mode'      => 'list',
+        'openTab'   => ucwords($this->pluginItem->typevalue).'s',
+    )));
+
+    /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
   }
@@ -220,14 +220,14 @@ final class Admin_PluginManager extends Module {
     /* check admin rights */
     if ($this->check_right(1)===false)
       return $this->init_admin_actionNotAllowed();
-  
+
     /* disable admin menus */
     $this->disable_adminEngineMenus();
 
     /* disabled plugin item */
     $this->pluginItem->get_fromHeader();
     $this->pluginItem->activevalue = 0;
-    
+
     if ($this->pluginItem->save_toDatabase())
       $this->text = $this->get_translation ('desactivationdone', $this->pluginItem->pluginvalue);
     else
@@ -235,10 +235,10 @@ final class Admin_PluginManager extends Module {
 
     /* add page redirection */
     $this->set_redirect($this->get_adminLink(array(
-        'mode'      => 'list', 
+        'mode'      => 'list',
         'openTab'   => ucwords($this->pluginItem->typevalue).'s',
    )));
-    
+
     /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
@@ -258,9 +258,9 @@ final class Admin_PluginManager extends Module {
 
     /* disable admin menus */
     $this->disable_adminEngineMenus();
-    
+
     $cMode = isset($_REQUEST['cMode'])?$_REQUEST['cMode']:'site';
-        
+
     $this->pluginItem->get_fromHeader();
     if ($this->pluginItem->set_asDefault($cMode))
       $this->text = $this->get_translation('configurationupdated');
@@ -269,16 +269,16 @@ final class Admin_PluginManager extends Module {
 
     /* add page redirection */
     $this->set_redirect($this->get_adminLink(array(
-        'mode'      => 'list', 
-		'openTab'   => ucwords($this->pluginItem->typevalue).'s',
-	)));
-	
-	/* update layout */
+        'mode'      => 'list',
+        'openTab'   => ucwords($this->pluginItem->typevalue).'s',
+    )));
+
+    /* update layout */
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
   }
 
-  /* 
+  /*
    * init module object in admin/cleandb mode
    * @return void
    * @access private
@@ -288,9 +288,9 @@ final class Admin_PluginManager extends Module {
 
     /* check rights */
     if ($this->check_right(1)===false) {
-      return $this->init_admin_actionNotAllowed(); 
+      return $this->init_admin_actionNotAllowed();
     }
-    
+
     /* disable admin menus */
     $this->disable_adminEngineMenus();
 
@@ -304,9 +304,9 @@ final class Admin_PluginManager extends Module {
     $this->check_pluginsinfo();
     if (count ($this->unfound) > 0) {
       foreach ($this->unfound as $p) {
-	    $this->pluginItem->delete_fromDatabase($p);
+        $this->pluginItem->delete_fromDatabase($p);
       }
-	  $this->text = $this->get_translation ('cleaningdone');
+      $this->text = $this->get_translation ('cleaningdone');
     } else {
       $this->text = $this->get_translation ('nocleaningneeded');
     }
@@ -314,7 +314,7 @@ final class Admin_PluginManager extends Module {
     $this->selected_layout_location = 'camyks';
     $this->set_redirect($this->get_adminLink(array('mode'=>'list')));
   }
-  
+
   /*
    * init module object admin/list mode
    * @return void
@@ -334,59 +334,59 @@ final class Admin_PluginManager extends Module {
 
     /* get help */
     $this->get_help();
-    
+
     /* build tabs */
     if (!isset($camyks->inputs['TabBuilder']))
       $this->tabBuilder = input_get('TabBuilder', 'camyks');
     else
       $this->tabBuilder = &$camyks->inputs['TabBuilder'];
-    
+
     /* check if TabBuilder plugin is available */
     if ($this->tabBuilder === false)
       $camyks->throwFatalError(array(
         'title'         => $camyks->get_translation('error_pluginmissing_title'),
         'description'   => $camyks->get_translation('error_pluginmissing_desc', 'TabBuilder'),
      ));
-    
+
     $this->tabBuilder->add_tabs(array(
         array(
             'name'  => 'Modules',
-			'title' => $this->get_translation('tabmodules'),
-	   ),
-		array(
-		    'name'  => 'Themes',
-			'title' => $this->get_translation('tabthemes'),
-		),
-		array(
-		    'name'  => 'Templates',
+            'title' => $this->get_translation('tabmodules'),
+       ),
+        array(
+            'name'  => 'Themes',
+            'title' => $this->get_translation('tabthemes'),
+        ),
+        array(
+            'name'  => 'Templates',
             'title' => $this->get_translation('tabtemplates'),
        ),
-		array(
-		    'name'  => 'Inputs',
-			'title' => $this->get_translation('tabinputs'),
-		),
-	));
-	
-	if ($this->help != null)
-	 	$this->tabBuilder->add_tab(array('name'=>'help',
-				     'title'=>$camyks->get_translation('help')));
-	
+        array(
+            'name'  => 'Inputs',
+            'title' => $this->get_translation('tabinputs'),
+        ),
+    ));
+
+    if ($this->help != null)
+         $this->tabBuilder->add_tab(array('name'=>'help',
+                     'title'=>$camyks->get_translation('help')));
+
     $this->tabBuilder->initialise(array('default'=>'Modules'));
-       
+
     /* load scripts */
     $this->add_JSEngineFile('tool/htmlelement.js');
     $this->add_JSEngineFile('tool/clientenv.js');
     $this->add_JSEngineFile('object/cmenu.js');
     $this->add_JSScript('var themeActionMenu = new CMenu("themeActionMenu", null, null, "left");');
     $this->add_JSScript('globalCMenu.registerMenu(themeActionMenu);');
-    
+
     $this->add_JSScript('var templateActionMenu = new CMenu("templateActionMenu", null, null, "left");');
     $this->add_JSScript('globalCMenu.registerMenu(templateActionMenu);');
 
     $this->add_JSFile('PluginList.js');
     $this->add_JSScript('var pl = new PluginList("pl");');
     $this->add_JSLoadScript('pl.initialise();');
-    
+
     /* prepare action menus */
     $this->themeActionMenu = array(
       array(
@@ -400,9 +400,9 @@ final class Admin_PluginManager extends Module {
         'title' => $this->get_translation('applyasadmindefaulttheme'),
         'icon'  => $this->theme->get_pictURL('valid', 12, 'std'),
         'url'   => 'javascript:pl.execute_action(\'setAdminDefaultTheme\');',
-     ),      
+     ),
    );
-    
+
     $this->templateActionMenu = array(
       array(
         'name'  => 'setSiteDefault',
@@ -411,7 +411,7 @@ final class Admin_PluginManager extends Module {
         'url'   => 'javascript:pl.execute_action(\'setSiteDefaultTemplate\');',
      ),
    );
-    
+
     $this->add_JSLoadScript('pl.set_param("actionURLs", "setSiteDefaultTheme", "'.$this->get_adminJSLink(array('mode'=>'setAsDefault', 'cMode'=>'site', 'type'=>'theme', 'plugin'=>'__PNAME__')).'");');
     $this->add_JSLoadScript('pl.set_param("actionURLs", "setAdminDefaultTheme", "'.$this->get_adminJSLink(array('mode'=>'setAsDefault', 'cMode'=>'admin', 'type'=>'theme', 'plugin'=>'__PNAME__')).'");');
     $this->add_JSLoadScript('pl.set_param("actionURLs", "setSiteDefaultTemplate", "'.$this->get_adminJSLink(array('mode'=>'setAsDefault', 'cMode'=>'site', 'type'=>'template', 'plugin'=>'__PNAME__')).'");');
@@ -420,10 +420,10 @@ final class Admin_PluginManager extends Module {
     /* button list for buttons bars */
     $this->buttons = array(array(
         'title' => $camyks->get_translation('back'),
-		'link'  => $camyks->get_adminLink(),
-	));
+        'link'  => $camyks->get_adminLink(),
+    ));
   }
-  
+
   /* specific tool methods */
 
   /*
@@ -460,10 +460,10 @@ final class Admin_PluginManager extends Module {
     global $camyks;
     $this->modules = array_merge(
         module_getList($camyks->camyks_plugin_path, 'camyks'),
-		module_getList($camyks->site_plugin_path, 'site')
-	);
+        module_getList($camyks->site_plugin_path, 'site')
+    );
   }
-  
+
   /*
    * get templates list
    * @return array
@@ -473,10 +473,10 @@ final class Admin_PluginManager extends Module {
     global $camyks;
     $this->templates = array_merge(
         template_getList($camyks->camyks_plugin_path, 'camyks'),
-		template_getList($camyks->site_plugin_path, 'site')
-	);
+        template_getList($camyks->site_plugin_path, 'site')
+    );
   }
-  
+
   /*
    * get themes list
    * @return array
@@ -486,8 +486,8 @@ final class Admin_PluginManager extends Module {
     global $camyks;
     $this->themes = array_merge(
         theme_getList($camyks->camyks_plugin_path, 'camyks'),
-		theme_getList($camyks->site_plugin_path, 'site')
-	);
+        theme_getList($camyks->site_plugin_path, 'site')
+    );
   }
 
   /*
@@ -499,8 +499,8 @@ final class Admin_PluginManager extends Module {
     global $camyks;
     $this->inputs = array_merge(
         input_getList($camyks->camyks_plugin_path, 'camyks'),
-		input_getList($camyks->site_plugin_path, 'site')
-	);
+        input_getList($camyks->site_plugin_path, 'site')
+    );
   }
 
   /*
@@ -513,39 +513,39 @@ final class Admin_PluginManager extends Module {
       /* get active value (while checking if plugin folder exists) */
       switch ($p['type']) {
         case 'module':
-	      if (isset($this->modules[$p['plugin']])) {
-	        $this->modules[$p['plugin']]->active = $p['active'];
-	      } else {
-	        $this->unfound[] = $p;
-	      }
-	      break;
+          if (isset($this->modules[$p['plugin']])) {
+            $this->modules[$p['plugin']]->active = $p['active'];
+          } else {
+            $this->unfound[] = $p;
+          }
+          break;
         case 'theme':
-	      if (isset($this->themes[$p['plugin']])) {
-	        $this->themes[$p['plugin']]->active = $p['active'];
-	      } else {
-	        $this->unfound[] = $p;
-	      }
-    	  break;
+          if (isset($this->themes[$p['plugin']])) {
+            $this->themes[$p['plugin']]->active = $p['active'];
+          } else {
+            $this->unfound[] = $p;
+          }
+          break;
         case 'template':
-	      if (isset($this->templates[$p['plugin']])) {
-	        $this->templates[$p['plugin']]->active = $p['active'];
-	      } else {
-	        $this->unfound[] = $p;
-	      }
-	      break;
+          if (isset($this->templates[$p['plugin']])) {
+            $this->templates[$p['plugin']]->active = $p['active'];
+          } else {
+            $this->unfound[] = $p;
+          }
+          break;
         case 'input':
-	      if (isset($this->inputs[$p['plugin']])) {
-	        $this->inputs[$p['plugin']]->active = $p['active'];
-	      } else {
-	        $this->unfound[] = $p;
-	      }
-	      break;
+          if (isset($this->inputs[$p['plugin']])) {
+            $this->inputs[$p['plugin']]->active = $p['active'];
+          } else {
+            $this->unfound[] = $p;
+          }
+          break;
       }
     }
   }
-  
+
   /* specific i/o methods */
-  
+
   /*
    * return plugin list
    * @param array $params
@@ -564,7 +564,7 @@ final class Admin_PluginManager extends Module {
   private function get_pluginsFromDatabase() {
     $this->pluginsinfo = $this->pluginItem->get_objectList();
   }
-  
+
   /*
    * load installed database
    * @return boolean success
@@ -572,12 +572,12 @@ final class Admin_PluginManager extends Module {
    */
   private function load_installedTables() {
     global $camyks;
-    
+
     $this->installedTables = $camyks->db_conn->get_tableList();
-        
+
     return true;
   }
-  
+
   /*
    * return installed table list
    * @return array
@@ -588,9 +588,9 @@ final class Admin_PluginManager extends Module {
       $this->load_installedTables();
     return $this->installedTables;
   }
-  
+
   /*
-   * check if table is installed 
+   * check if table is installed
    * @param string $tableName
    * @return boolean result
    * @access public
@@ -598,7 +598,7 @@ final class Admin_PluginManager extends Module {
   public function check_tableExists($tableName='') {
     if ($this->installedTables === null)
       $this->load_installedTables();
-    return (in_array($tableName, $this->installedTables));     
+    return (in_array($tableName, $this->installedTables));
   }
 
   /* static methods */
@@ -615,25 +615,25 @@ final class Admin_PluginManager extends Module {
     $sql = 'select * ';
     $sql .= ' from admin_pluginmanager';
     $sql .= ' where active = 1';
-        
+
     /* execute sql query */
-    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) { 
+    if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
       /* get data from database */
       while ($data = $camyks->db_conn->get_queryDataLine()) {
-	    switch ($data['type']) {
-	    case 'module':
-	      $camyks->modules[$data['plugin']] = module_get($data['plugin'], $data['location']);
-	      break;
-	    case 'theme':
-	      $camyks->themes[$data['plugin']] = theme_get($data['plugin'], $data['location']);
-	      break;
-	    case 'template':
-	      $camyks->templates[$data['plugin']] = template_get($data['plugin'], $data['location']);
-	      break;
-	    case 'template':
-	      $camyks->inputs[$data['plugin']] = input_get($data['plugin'], $data['location']);
-	      break;
-	    }
+        switch ($data['type']) {
+        case 'module':
+          $camyks->modules[$data['plugin']] = module_get($data['plugin'], $data['location']);
+          break;
+        case 'theme':
+          $camyks->themes[$data['plugin']] = theme_get($data['plugin'], $data['location']);
+          break;
+        case 'template':
+          $camyks->templates[$data['plugin']] = template_get($data['plugin'], $data['location']);
+          break;
+        case 'template':
+          $camyks->inputs[$data['plugin']] = input_get($data['plugin'], $data['location']);
+          break;
+        }
       }
     }
   }

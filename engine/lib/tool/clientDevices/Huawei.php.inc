@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.14
  * @date Creation: Apr 2018
- * @date Modification: Aug 2018
+ * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,11 +21,12 @@
 function get_HuaweiClientDevice($deviceCode='') {
     $deviceList = array(
         /* Huawei tablets */
-        'M2-A01W'       => array('platform_model' => 'MediaPad M2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'GEM-703LT'     => array('platform_model' => 'MediaPad X2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'BEETHOVEN-W09' => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
-        'AGS-W09'       => array('platform_model' => 'MediaPad T3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
-        'CMR-W09'       => array('platform_model' => 'MediaPad M5', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'M2-A01W'           => array('platform_model' => 'MediaPad M2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'GEM-703LT'         => array('platform_model' => 'MediaPad X2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'BEETHOVEN-W09'     => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'BEETHOVEN-DL09'    => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'AGS-W09'           => array('platform_model' => 'MediaPad T3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'CMR-W09'           => array('platform_model' => 'MediaPad M5', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
 
 
         /* Huawei phones */
@@ -69,6 +70,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'DUK-L09'   => array('platform_model' => 'Honor 8 Pro',     'platform_year' => 2017),
         'STF-L09'   => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
+        'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
@@ -77,10 +79,12 @@ function get_HuaweiClientDevice($deviceCode='') {
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
+        'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'CUN-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2016),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
+        'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
