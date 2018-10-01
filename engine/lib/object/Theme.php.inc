@@ -118,7 +118,7 @@ abstract class Theme extends Plugin {
     public function __construct($name, $path_type) {
         parent::__construct($name, 'theme', $path_type);
     }
-    
+
     /*
      * Alias to constructor.
      * @param string $name
@@ -299,7 +299,7 @@ abstract class Theme extends Plugin {
             }
         */
         }
-        
+
 
         /* return default value */
         return '';
@@ -346,7 +346,7 @@ abstract class Theme extends Plugin {
     public function get_pictURLWithName($pict) {
         return $this->get_fileURL('img/picts/'.$pict);
     }
-    
+
     /**
      * Return img full tag related to pict.
      * @param array $params
@@ -356,10 +356,10 @@ abstract class Theme extends Plugin {
         /* check params */
         $defaultParams = array('pict'=>'', 'size'=>12, 'position'=>'std', 'addMouseover'=>false, 'alt'=>'', 'style'=>'');
         $params = array_merge($defaultParams, $params);
-        
+
         /* load main picture */
         $url = $this->get_pictURL($params['pict'], $params['size'], $params['position']);
-        
+
         /* build HTML tag */
         $result = '<img src="'.$url.'" alt="'.$params['alt'].'"';
         if ($params['addMouseover'] == true) {
@@ -369,7 +369,7 @@ abstract class Theme extends Plugin {
         if ($params['style'] != '')
           $result .= ' style="'.$params['style'].'"';
         $result .= ' />';
-        
+
         /* return result */
         return $result;
      }

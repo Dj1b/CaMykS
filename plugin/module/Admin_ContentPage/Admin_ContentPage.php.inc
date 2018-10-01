@@ -1007,7 +1007,7 @@ final class Admin_ContentPage extends Module {
      * Return key page link.
      * @param string $key
      * @param string $lg
-     * @param array $param
+     * @param array $params
      * @return string
      */
     public function get_siteKeyPageLink($key='', $lg='', $params=array()) {
