@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.1.1
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1318,7 +1318,7 @@ class HTMLForm {
      */
     public function display_checkboxInput($input, $default=null) {
         /* build param list */
-        $params = array('size'=>0, 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
+        $params = array('class'=>'', 'size'=>0, 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
 
         /* check header params */
         if (is_array($input)) {
@@ -1355,6 +1355,7 @@ class HTMLForm {
             $html .= ' name="'.$params['name'].'_'.$params['language'];
         if ($params['multiValues']===true)
             $html .= '[]';
+        $html .= '"';
         $html .= ' value="'.$params['value'].'"';
 
         /* avoid name to be rewritten in generic attributes */
@@ -1389,7 +1390,7 @@ class HTMLForm {
      */
     public function display_radioInput($input, $default=null) {
         /* build param list */
-        $params = array('value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
+        $params = array('class'=>'', 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
 
         /* check header params */
         if (is_array($input)) {
