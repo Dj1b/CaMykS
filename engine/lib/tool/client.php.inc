@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.37
  * @date Creation: Jun 2007
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -251,6 +251,13 @@ function client_getUAInfos($ua=false) {
             ));
         }
 
+        /* check for device model */
+        if (preg_match('/(iPhone|iPod|iPad)([0-9_\,]{3,})/i', $ua, $matches)) {
+            include_once('clientDevices/Apple.php.inc');
+            $model = $matches[1].str_replace(array('_', ','), '.', $matches[2]);
+            $infos = array_merge($infos, get_AppleClientDevice($model));
+        }
+
     } elseif (preg_match('/(iPhone|iPod|iPad)\/([0-9\.]*) hw\/(iPhone|iPod|iPad)([0-9_]{3,})/i', $ua, $matches)) {
         /* check version */
         $version = str_replace('_', '.', $matches[2]);
@@ -266,7 +273,8 @@ function client_getUAInfos($ua=false) {
             'system_version'    => $version,
         ));
         include_once('clientDevices/Apple.php.inc');
-        $infos = array_merge($infos, get_AppleClientDevice($matches[3].$matches[4]));
+        $model = $matches[3].str_replace(array('_', ','), '.', $matches[4]);
+        $infos = array_merge($infos, get_AppleClientDevice($model));
 
     } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches)) {
         $infos = array_merge($infos, array(
@@ -534,37 +542,6 @@ function client_getUAInfos($ua=false) {
             'platform_format'   => 'tablet',
             'platform_year'     => 2015,
         ));
-
-    /* check Macintosh */
-    elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
-        /* check version */
-        $version = ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):'';
-        if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
-         return $fake;
-
-        /* build info */
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Apple',
-            'platform_model'    => 'Macintosh',
-            'platform_type'     => 'computer',
-            'platform_format'   => 'desktop',
-            'system_title'      => version_compare ($version, '10.12') >= 0 ? 'macOS' : 'Mac OS X',
-            'system_version'    => $version
-        ));
-    }
-
-    /* check Classic Macintosh */
-    elseif (preg_match('/Mac_PowerPC|Macintosh/i', $ua, $matches)) {
-        /* build info */
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Apple',
-            'platform_model'    => 'Macintosh',
-            'platform_type'     => 'computer',
-            'platform_format'   => 'desktop',
-            'system_title'      => 'Mac OS Classic',
-            'system_version'    => '',
-        ));
-    }
 
     /* check Wiko */
     elseif (preg_match('/ (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
@@ -1250,6 +1227,51 @@ function client_getUAInfos($ua=false) {
             );
         }
 
+        /* check Haiku (before macintosh) */
+        elseif (preg_match('/Haiku( |\/)(R[0-9])/i', $ua, $matches)) {
+
+            /* build info */
+            $infos = array_merge($infos, array(
+                'platform_company'  => 'PC',
+                'platform_model'    => '',
+                'platform_type'     => 'computer',
+                'platform_format'   => 'desktop',
+                'system_title'      => 'Haiku',
+                'system_version'    => $matches[2],
+            ));
+        }
+
+        /* check Macintosh */
+        elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
+            /* check version */
+            $version = ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):'';
+            if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
+                return $fake;
+
+            /* build info */
+            $infos = array_merge($infos, array(
+                'platform_company'  => 'Apple',
+                'platform_model'    => 'Macintosh',
+                'platform_type'     => 'computer',
+                'platform_format'   => 'desktop',
+                'system_title'      => version_compare ($version, '10.12') >= 0 ? 'macOS' : 'Mac OS X',
+                'system_version'    => $version
+            ));
+        }
+
+        /* check Classic Macintosh */
+        elseif (preg_match('/Mac_PowerPC|Macintosh/i', $ua, $matches)) {
+            /* build info */
+            $infos = array_merge($infos, array(
+                'platform_company'  => 'Apple',
+                'platform_model'    => 'Macintosh',
+                'platform_type'     => 'computer',
+                'platform_format'   => 'desktop',
+                'system_title'      => 'Mac OS Classic',
+                'system_version'    => '',
+            ));
+        }
+
         /* check determined linux os */
         elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux|Sailfish)/', $ua, $matches)) {
             $rep = array(
@@ -1427,7 +1449,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -2199,8 +2221,8 @@ function _client_mergeUAInfos($req, $infos) {
 function _client_getUAPropertiesMaxVersions() {
     return array(
         'system' => array(
-            'Mac OS X'          => '10.15.0',               // current is 10.13.x
-            'iOS'               => '14',                    // current is 12.x (beta)
+            'Mac OS X'          => '10.16.0',               // current is 10.14.x
+            'iOS'               => '14',                    // current is 12.x
             'Android'           => '11',                    // current is 9.x.x
         ),
         'browser' => array(
@@ -2209,8 +2231,8 @@ function _client_getUAPropertiesMaxVersions() {
             'Chromium'          => '72',                    // current is 69
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
-            'Opera'             => '58',                    // current is 55
-            'Safari'            => '15',                    // current is 12 (beta)
+            'Opera'             => '59',                    // current is 56
+            'Safari'            => '15',                    // current is 12
         ),
     );
 }

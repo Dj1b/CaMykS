@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: May 2018
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1021,7 +1021,7 @@ function _client_getKnownTools() {
         'engine_url'        => 'http://magpierss.sf.net',
     );
 
-    /* Re-re Studio  */
+    /* Re-re Studio */
     $knownTools['re-re studio'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
@@ -1031,7 +1031,7 @@ function _client_getKnownTools() {
         'engine_url'        => 'http://re-re.ru/',
     );
 
-    /* InetURL  */
+    /* InetURL */
     $knownTools['ineturl'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
@@ -1041,7 +1041,7 @@ function _client_getKnownTools() {
         'engine_url'        => 'https://www.nch.com.au/ivm/plugins.html',
     );
 
-    /* htmlyse  */
+    /* htmlyse */
     $knownTools['htmlyse'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
@@ -1051,7 +1051,7 @@ function _client_getKnownTools() {
         'engine_url'        => 'https://www.htmlyse.com/',
     );
 
-    /* Mr.4x3 Powered   */
+    /* Mr.4x3 Powered */
     $knownTools['mr.4x3 powered'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
@@ -1061,7 +1061,7 @@ function _client_getKnownTools() {
         'engine_url'        => 'https://crushus.com',
     );
 
-    /* Goose   */
+    /* Goose */
     $knownTools['goose'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
@@ -1069,6 +1069,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Goose',
         'engine_url'        => 'https://pypi.org/project/goose3/',
+    );
+
+    /* Slackbot-LinkExpanding */
+    $knownTools['slackbot-linkexpanding'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Slackbot-LinkExpanding',
+        'tool_url'          => 'https://api.slack.com/robots',
+        'engine_title'      => 'Slack',
+        'engine_url'        => 'https://slack.com/',
     );
 
     /* return list */

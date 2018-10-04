@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: May 2018
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,6 +38,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 5'  => array('platform_model' => 'Redmi Note 5',    'platform_year' => 2018),
         'redmi 5a'      => array('platform_model' => 'Redmi 5A',        'platform_year' => 2017),
         'redmi 5 plus'  => array('platform_model' => 'Redmi 5 Plus',    'platform_year' => 2018),
+        'redmi 6a'      => array('platform_model' => 'Redmi 6A',        'platform_year' => 2018),
     );
 
     /* Check for returning list */
