@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/CImage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Nov 2011
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2011 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -389,9 +389,9 @@ final class CImage {
 
         /* add background color */
         if ($bgColor == '#transp' or $this->_gd_is_transparencyEnabled()) {
-            imageColorTransparent($newSrc, imageColorAllocateAlpha($newSrc, 0, 0, 0, 127));
             imageAlphaBlending($newSrc, false);
             imageSaveAlpha($newSrc, true);
+            imageFilledRectangle($newSrc, 0, 0, $width, $height, imageColorAllocateAlpha($newSrc, 255, 255, 255, 127));
         } else {
             imageFill($newSrc, 0, 0, $this->_gd_getAllocatedColor($bgColor, $newSrc));
         }
