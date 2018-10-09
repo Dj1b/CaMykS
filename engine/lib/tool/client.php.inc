@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.37
+ * @version 1.0.38
  * @date Creation: Jun 2007
  * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -549,6 +549,11 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
     }
+    elseif (preg_match('/ (W_[A-Z][0-9]{3}) Build/i', $ua, $matches)) {
+        $model = trim(strtolower($matches[1]));
+        include_once ('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
+    }
     elseif (preg_match('/ (W_K600|[S|V][0-9]{2}[A-Za-z0-9\(\)]*)?( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1]));
         include_once ('clientDevices/Wiko.php.inc');
@@ -1060,9 +1065,10 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check HiSense mobiles */
-    elseif (preg_match('/Hisense ([A-Z][0-9]{2,3} [A-Za-z]*) Build/', $ua, $matches)) {
+    elseif (preg_match('/ Hisense ([A-Z][0-9]{2,3})( [A-Za-z]*)? Build/', $ua, $matches)) {
         include_once ('clientDevices/HiSense.php.inc');
-        $infos = array_merge($infos, get_HiSenseClientDevice($matches[1]));
+        $model = $matches[1].(isset($matches[2]) ? $matches[2] : '');
+        $infos = array_merge($infos, get_HiSenseClientDevice($model));
     }
 
     /* check Yotaphone mobiles */

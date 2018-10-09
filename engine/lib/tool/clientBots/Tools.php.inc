@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: May 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -279,6 +279,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => '',
         'engine_url'        => '',
+    );
+
+    /* WeChatShareExtension, before CFNetwork */
+    $knownTools['wechatshareextension'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'WeChat Share Extension',
+        'tool_url'          => 'https://www.wechat.com',
+        'engine_title'      => 'Tencent Holdings',
+        'engine_url'        => 'https://www.tencent.com/en-us/',
     );
 
     /* CFNetwork */

@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: May 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -2383,7 +2383,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Experibot',
-        'bot_url'           => '',
+        'bot_url'           => 'https://amirkr.wixsite.com/experibot',
         'engine_title'      => '',
         'engine_url'        => '',
     );

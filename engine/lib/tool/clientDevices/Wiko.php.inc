@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2018
- * @date Modification: Jul 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -111,6 +111,8 @@ function get_WikoClientDevice($deviceCode='') {
         'wax'               => array('platform_model' => 'Wax',             'platform_year' => 2014),
         'wim'               => array('platform_model' => 'Wim',             'platform_year' => 2017),
         'wim lite'          => array('platform_model' => 'Wim Lite',        'platform_year' => 2017),
+
+        'w_c800'            => array('platform_model' => 'View 2',          'platform_year' => 2018),
     );
 
     /* Check for returning list */
