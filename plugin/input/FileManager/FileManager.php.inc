@@ -32,9 +32,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/FileManager/FileManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2007
- * @date Modification: Aug 2018
+ * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -394,6 +394,18 @@ final class FileManager extends Input {
             $this->folder_default = true;
         }
 
+        /* check path value overwrite in header */
+        if (isset($_REQUEST['fm_browser_path'])) {
+            $this->browser_path = $_REQUEST['fm_browser_path'];
+        }
+
+        /* check full path to be in website */
+        if (!folder_isInPath($this->browser_path, './var')) {
+            $this->browser_path = 'nofile';
+            /* cancel action */
+            $this->engine_action = '';
+        }
+
         /* check engine values */
         if ($this->engine_url == null) {
             $this->engine_url = $camyks->site_conf['url'].$_SERVER['REQUEST_URI'];
@@ -436,18 +448,6 @@ final class FileManager extends Input {
             $this->browser_maxfilesize = isset($camyks->_conf['maxfilesize']) ? $camyks->_conf['maxfilesize'] : 2;
         }
         $this->browser_maxfilesize = $this->browser_maxfilesize*1024*1024;
-
-        /* check path value overwrite in header */
-        if (isset($_REQUEST['fm_browser_path'])) {
-            $this->browser_path = $_REQUEST['fm_browser_path'];
-        }
-
-        /* check full path to be in website */
-        if (!folder_isInPath($this->folder_path.'/'.$this->browser_path, './var')) {
-            $this->browser_path = 'nofile';
-            /* cancel action */
-            $this->engine_action = '';
-        }
 
         /* check for file url values */
         if (strpos($this->browser_path, $this->folder_url) === 0) {
