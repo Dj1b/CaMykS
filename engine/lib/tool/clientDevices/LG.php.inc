@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Apr 2018
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,13 +42,14 @@ function get_LGClientDevice($deviceCode='') {
         'H812'  => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H815'  => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H870D' => array('platform_model' => 'G6',              'platform_year' => 2018),
+        'H955'  => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
         'L160L' => array('platform_model' => 'Optimus LTE2',    'platform_year' => 2018),
+        'LS996' => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
+        'K371'  => array('platform_model' => 'Phoenix 2',       'platform_year' => 2016),
         'M700'  => array('platform_model' => 'Q6 Alpha',        'platform_year' => 2017),
         'M160'  => array('platform_model' => 'K4',              'platform_year' => 2017),
         'P715'  => array('platform_model' => 'Optimus L7 II',   'platform_year' => 2013),
         'P875'  => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
-        'LS996' => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
-        'H955'  => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
 
         'VS986' => array('platform_model' => 'G4',              'platform_year' => 2015),
     );

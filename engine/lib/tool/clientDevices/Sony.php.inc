@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Apr 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -20,6 +20,10 @@
  */
 function get_SonyClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Sony tablets */
+        'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+
+        /* Sony phones */
         'C1505'     => array('platform_model' => 'Xperia E',                'platform_year' => 2013),
         'C2105'     => array('platform_model' => 'Xperia L',                'platform_year' => 2013),
         'C5303'     => array('platform_model' => 'Xperia SP',               'platform_year' => 2013),
@@ -36,6 +40,7 @@ function get_SonyClientDevice($deviceCode='') {
         'D6603'     => array('platform_model' => 'Xperia Z3',               'platform_year' => 2014),
         'D6683'     => array('platform_model' => 'Xperia Z3 Dual Sim',      'platform_year' => 2015),
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
+        'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5823'     => array('platform_model' => 'Xperia Z5 Compact',       'platform_year' => 2015),
         'E6653'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
         'E6683'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),

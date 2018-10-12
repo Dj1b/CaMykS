@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Apr 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -48,6 +48,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'NXT-L29'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
@@ -87,6 +88,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
+        'MYA-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
