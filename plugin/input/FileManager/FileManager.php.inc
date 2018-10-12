@@ -32,7 +32,7 @@
  * @details Plugin / Input Engine
  * @file plugin/input/FileManager/FileManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2007
  * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -394,13 +394,14 @@ final class FileManager extends Input {
             $this->folder_default = true;
         }
 
+
         /* check path value overwrite in header */
         if (isset($_REQUEST['fm_browser_path'])) {
             $this->browser_path = $_REQUEST['fm_browser_path'];
         }
 
         /* check full path to be in website */
-        if (!folder_isInPath($this->browser_path, './var')) {
+        if (!folder_isInPath($this->folder_path.'/'.$this->browser_path, './var')) {
             $this->browser_path = 'nofile';
             /* cancel action */
             $this->engine_action = '';
