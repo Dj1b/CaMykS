@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/CPDF.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: May 2010
- * @date Modification: Jun 2018
+ * @date Modification: Oct 2018
  * @copyright 2010 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14,6 +14,7 @@
  */
 
 require_once('FPDF/fpdf.php');
+require_once('colors.php.inc');
 
 /**
  * CPDF class.
@@ -61,6 +62,126 @@ class CPDF extends FPDF {
      */
     public function CPDF($orientation=null, $unit=null, $format=null) {
         $this->__construct($orientation, $unit, $format);
+    }
+
+    /* Override FPDF methods */
+
+    /**
+     * Write multiple lines at once
+     * @param int $w
+     * @param int $h
+     * @param string $txt
+     * @param mixed $border
+     * @param string $align
+     * @param boolean $fill
+     * @param integer $maxLines
+     * @return string
+     */
+    public function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false, $maxLines=0) {
+        if ($maxLines == 0) {
+            parent::MultiCell($w, $h, $txt, $border, $align, $fill=false);
+            return '';
+        }
+
+        $cw = &$this->CurrentFont['cw'];
+        if ($w==0)
+            $w = $this->w-$this->rMargin-$this->x;
+        $wmax = ($w-2*$this->cMargin)*1000/$this->FontSize;
+        $s = str_replace("\r",'',$txt);
+        $nb = strlen($s);
+        if ($nb>0 && $s[$nb-1]=="\n")
+            $nb--;
+        $b=0;
+        if ($border) {
+            if ($border==1) {
+                $border='LTRB';
+                $b='LRT';
+                $b2='LR';
+            } else {
+                $b2='';
+                if (is_int(strpos($border,'L')))
+                    $b2 .= 'L';
+                if (is_int(strpos($border,'R')))
+                    $b2 .= 'R';
+                $b = is_int(strpos($border,'T')) ? $b2.'T' : $b2;
+            }
+        }
+        $sep = -1;
+        $i = 0;
+        $j = 0;
+        $l = 0;
+        $ns = 0;
+        $nl = 1;
+        while ($i<$nb) {
+            $c = $s[$i];
+            if ($c=="\n") {
+                if ($this->ws>0) {
+                    $this->ws = 0;
+                    $this->_out('0 Tw');
+                }
+                $this->Cell($w, $h, substr($s, $j, $i-$j), $b, 2, $align, $fill);
+                $i++;
+                $sep = -1;
+                $j = $i;
+                $l = 0;
+                $ns = 0;
+                $nl++;
+                if ($border && $nl==2)
+                    $b=$b2;
+                if ($maxLines && $nl>$maxLines)
+                    return substr($s,$i);
+                continue;
+            }
+            if ($c == ' ') {
+                $sep = $i;
+                $ls = $l;
+                $ns++;
+            }
+            $l += $cw[$c];
+            if ($l > $wmax) {
+                if ($sep==-1) {
+                    if ($i == $j)
+                        $i++;
+                    if ($this->ws > 0) {
+                        $this->ws = 0;
+                        $this->_out('0 Tw');
+                    }
+                    $this->Cell($w, $h, substr($s, $j, $i-$j), $b, 2, $align, $fill);
+                } else {
+                    if ($align=='J') {
+                        $this->ws = ($ns > 1) ? ($wmax-$ls)/1000*$this->FontSize/($ns-1) : 0;
+                        $this->_out(sprintf('%.3F Tw', $this->ws*$this->k));
+                    }
+                    $this->Cell($w, $h, substr($s, $j, $sep-$j), $b, 2, $align, $fill);
+                    $i = $sep+1;
+                }
+                $sep = -1;
+                $j = $i;
+                $l = 0;
+                $ns = 0;
+                $nl++;
+                if ($border && $nl==2)
+                    $b=$b2;
+                if ($maxLines && $nl>$maxLines) {
+                    if ($this->ws > 0) {
+                        $this->ws = 0;
+                        $this->_out('0 Tw');
+                    }
+                    return substr($s, $i);
+                }
+            }
+            else
+                $i++;
+        }
+        if ($this->ws>0) {
+            $this->ws = 0;
+            $this->_out('0 Tw');
+        }
+        if ($border && is_int(strpos($border,'B')))
+            $b .= 'B';
+        $this->Cell($w, $h, substr($s, $j, $i-$j), $b, 2, $align, $fill);
+        $this->x = $this->lMargin;
+        return '';
     }
 
     /* specific methods */
@@ -148,7 +269,7 @@ class CPDF extends FPDF {
      * @return string
      */
     public function decode_text($text) {
-        if ($this->serverEncoding == 'utf8')
+        if (string_isUTF8($text))
             return utf8_decode($text);
         return $text;
     }
@@ -179,15 +300,15 @@ class CPDF extends FPDF {
      * @param mixed $color
      * @return string
      */
-    public function set_textColor($color) {
+    public function set_textColor($color='') {
         /* color as hexa string */
         if (is_string($color)) {
             if ($color == '')
                 return $this->set_textColor($this->htmlParams['defaultTextColor']);
             if (strlen($color) == 6)
-                return $this->set_textColor(hex2dec($color));
+                return $this->set_textColor(color_hex2rgb($color));
             if (strlen($color) == 7)
-                return $this->set_textColor(hex2dec(substr($color, 1)));
+                return $this->set_textColor(color_hex2rgb(substr($color, 1)));
         }
 
         /* color as array */
