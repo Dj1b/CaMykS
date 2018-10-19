@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.39
+ * @version 1.0.40
  * @date Creation: Jun 2007
  * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -188,19 +188,9 @@ function client_getUAInfos($ua=false) {
             'system_title'      => 'Maemo',
             'system_version'    => 5,
         ));
-    elseif (preg_match('/Nokia(?: |_|\-|\/|)([^ _\-\/]+)/', $ua, $matches)) {
-        $rep = array(
-            'X2DS'  => array('platform_model' => 'X2 (Dual Sim)'),
-        );
-
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Nokia',
-            'platform_model'    => $matches[1],
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-            ),
-            isset($rep[$matches[1]])?$rep[$matches[1]]:array()
-        );
+    elseif (preg_match('/Nokia(?: |_|\-|\/|)([^_\-\/]+) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Nokia.php.inc');
+        $infos = array_merge($infos, get_NokiaClientDevice(trim($matches[1])));
     }
     elseif (preg_match('/Lumia ([a-zA-Z0-9]*)/', $ua, $matches))
         $infos = array_merge($infos, array(
@@ -424,7 +414,7 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/Huawei.php.inc');
         $infos = array_merge($infos, get_HuaweiClientDevice(trim($matches[2])));
     }
-    elseif (preg_match('/(SCL\-L01) Build/', $ua, $matches)) {
+    elseif (preg_match('/ ([A-Z][A-Z0-9]{2,3}\-[A-Z][A-Z0-9]{2,3})( Build|\))/', $ua, $matches)) {
         include_once ('clientDevices/Huawei.php.inc');
         $infos = array_merge($infos, get_HuaweiClientDevice(trim($matches[1])));
     }
@@ -1104,7 +1094,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Vivo mobiles */
-    elseif (preg_match('/ vivo ([0-9]{4}) Build/', $ua, $matches)) {
+    elseif (preg_match('/ vivo ([0-9A-Z]{4}) Build/', $ua, $matches)) {
         include_once ('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
     }
@@ -1211,6 +1201,20 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/Gionee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_GioneeClientDevice($model));
+    }
+
+    /* check Konrow mobiles */
+    elseif (preg_match('/ (BIGCOOL) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/Konrow.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_KonrowClientDevice($model));
+    }
+
+    /* check HomTom mobiles */
+    elseif (preg_match('/ (HT[0-9]{2}) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/HomTom.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_HomTomClientDevice($model));
     }
 
     /*** check operating system ***/
@@ -2184,6 +2188,14 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (($chars = count_chars($ua, 1)) and isset($chars[ord('+')]) and $chars[ord('+')] >= 10 and (!isset($chars[ord(' ')])))
         return $fake;
 
+    /* fake google bot user agent */
+    if (preg_match('#^Mozilla/6.0 \(compatible; Googlebot/2.1; \+http\://www.google.com/bot.html\)$#i', $ua))
+        return $fake;
+
+    /* badly set user agent */
+    if (preg_match('#Connection: closern$#i', $ua))
+        return $fake;
+
     /* not a fake but Apple using a bad user agent */
     if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
         return array(
@@ -2194,10 +2206,6 @@ function client_getFakeInfosFromUserAgent($ua='') {
             'engine_title'      => 'Apple',
             'engine_url'        => 'http://www.apple.com',
         );
-
-    /* badly set user agent */
-    if (preg_match('#Connection: closern$#i', $ua))
-        return $fake;
 
     /* default result */
     return false;
@@ -2247,7 +2255,7 @@ function _client_getUAPropertiesMaxVersions() {
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
             'Opera'             => '59',                    // current is 56
-            'Safari'            => '15',                    // current is 12
+            'Safari'            => '15',                    // current is 12.0.1
         ),
     );
 }

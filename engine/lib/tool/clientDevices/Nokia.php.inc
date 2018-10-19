@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Nokia.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2018
- * @date Modification: Jun 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -20,7 +20,9 @@
  */
 function get_NokiaClientDevice($deviceCode='') {
     $deviceList = array(
-        'TA-1053'   => array('platform_model' => '5',   'platform_year' => 2017),
+        'X2DS'      => array('platform_model' => 'X2 (Dual Sim)',   'platform_year' => 2014),
+        'TA-1053'   => array('platform_model' => '5',               'platform_year' => 2017),
+        '7 plus'    => array('platform_model' => '7 Plus',          'platform_year' => 2018),
     );
 
     /* Check for returning list */

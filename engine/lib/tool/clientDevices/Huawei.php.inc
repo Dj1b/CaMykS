@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Apr 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -62,6 +62,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
         'BND-L34'   => array('platform_model' => 'Mate SE',         'platform_year' => 2016),
+        'LYO-L21'   => array('platform_model' => 'Honor 5A',        'platform_year' => 2016),
         'NEM-L51'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'KIW-L21'   => array('platform_model' => 'Honor 5X',        'platform_year' => 2015),
         'JMM-L22'   => array('platform_model' => 'Honor 6C Pro',    'platform_year' => 2017),
@@ -88,9 +89,12 @@ function get_HuaweiClientDevice($deviceCode='') {
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
+        'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
         'MYA-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
-        'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
+        'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-L53'   => array('platform_model' => 'Y7\'',            'platform_year' => 2018),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Apr 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -57,6 +57,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                        'platform_year' => 2010),
         'GT-S7562'  => array('platform_model' => 'Galaxy S Duo',                    'platform_year' => 2012),
         'GT-I9100'  => array('platform_model' => 'Galaxy S2',                       'platform_year' => 2011),
+        'GT-I9105P' => array('platform_model' => 'Galaxy S2 Plus',                  'platform_year' => 2013),
         'GT-I9195'  => array('platform_model' => 'Galaxy S4 Mini',                  'platform_year' => 2013),
         'GT-I9295'  => array('platform_model' => 'Galaxy S4 Active',                'platform_year' => 2013),
         'GT-I9300'  => array('platform_model' => 'Galaxy S3',                       'platform_year' => 2012),
@@ -111,6 +112,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A510F'  => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2016),
         'SM-A5100'  => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2016),
         'SM-A520F'  => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2017),
+        'SM-A605FN' => array('platform_model' => 'Galaxy A6+',                      'platform_year' => 2018),
         'SM-A700F'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
@@ -180,6 +182,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-I9082L' => array('platform_model' => 'Galaxy Grand',                    'platform_year' => 2012),
         'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus',               'platform_year' => 2014),
         'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos',               'platform_year' => 2013),
+        'GT-I8552'  => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
+        'GT-I8552B' => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
         'SM-G550FY' => array('platform_model' => 'Galaxy On5',                      'platform_year' => 2016),
         'GT-N5110'  => array('platform_model' => 'Galaxy Note',                     'platform_year' => 2013),
         'GT-N7000'  => array('platform_model' => 'Galaxy Note (3G)',                'platform_year' => 2011),
