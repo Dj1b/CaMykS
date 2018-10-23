@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jun 2005
- * @date Modification: Jul 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -507,7 +507,9 @@ final class Camyks {
         require_once ($this->camyks_path.'/engine/etc/static.php.inc');
 
         /* merge engine and site configs */
-        $this->_conf = array_merge($this->_conf, $this->site_conf);
+        foreach ($this->site_conf as $name => $value)
+            if (!isset($this->_conf[$name]) or trim($value) != '')
+                $this->_conf[$name] = $value;
     }
 
     /**
