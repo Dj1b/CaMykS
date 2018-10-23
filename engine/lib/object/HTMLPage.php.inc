@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -704,7 +704,8 @@ final class HTMLPage {
                 folder_completePath ($camyks->site_var_path.'/ServerCache/scripts');
                 $mf = fopen($masterScript, 'a+');
                 foreach ($cachedJS as $js) {
-                    $content = file_get_contents($js);
+                    $file = new FSFile($js);
+                    $content = $file->get_contents();
                     $content = preg_replace('/(\r\n){1,}/', "\n", $content);
                     fwrite($mf, $content."\n\n");
                 }
@@ -823,10 +824,9 @@ final class HTMLPage {
                     folder_completePath ($camyks->site_var_path.'/ServerCache/styles');
                     $mf = fopen($masterStyles, 'a+');
                     foreach ($cachedCSS as $f) {
-                        $file= new FSFile($f['file']);
+                        $file = new FSFile($f['file']);
                         $p = $file->path;
-
-                        $content = file_get_contents($f['file']);
+                        $content = $file->get_contents();
                         $content = preg_replace('/url\(/i', 'url(../../../'.$p.'/', $content);
                         $content = preg_replace('/(\r\n){1,}/', "\n", $content);
 
