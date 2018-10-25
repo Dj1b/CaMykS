@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/MLDatabaseItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2007
- * @date Modification: Apr 2018
+ * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -34,7 +34,7 @@ class MLDatabaseItem extends ModuleLibraryItem {
      * @brief Secondary information of item data description.
      */
     public $datadesc2;
-    
+
     /**
      * Class constructor.
      * @param string $name
@@ -89,6 +89,11 @@ class MLDatabaseItem extends ModuleLibraryItem {
                 break;
             case 'float':
                 $this->value = preg_replace('/,/', '.', (float)preg_replace('/,/', '.', $this->get_valueFromHeader($name)));
+                break;
+            case 'list':
+                $this->value = $this->get_valueFromHeader($name);
+                if (is_string($this->value))
+                    $this->value = explode(',', $this->value);
                 break;
             default:
                 $this->value = $this->get_valueFromHeader($name);
