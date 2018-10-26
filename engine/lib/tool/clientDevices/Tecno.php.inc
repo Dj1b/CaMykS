@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Acer client devices specific methods
+ * @brief Tecno client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Acer.php.inc
+ * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Apr 2018
+ * @version 1.0
+ * @date Creation: Oct 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
@@ -14,16 +14,14 @@
  */
 
 /**
- * Return Acer client device information from a known list.
+ * Return Tecno client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_AcerClientDevice($deviceCode='') {
+function get_TecnoClientDevice($deviceCode='') {
     $deviceList = array(
-        'Z130'  => array('platform_model' => 'Liquid Z3',           'platform_year' => 2013),
-        'T03'   => array('platform_model' => 'Liquid Z630',         'platform_year' => 2015),
-        'T04'   => array('platform_model' => 'Liquid Z630S',        'platform_year' => 2016),
-        'T08'   => array('platform_model' => 'Liquid Zest Plus',    'platform_year' => 2016),
+        'K7' => array('platform_model' => 'Spark',      'platform_year' => 2017),
+        'K9' => array('platform_model' => 'Spark Plus', 'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -32,7 +30,7 @@ function get_AcerClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Acer',
+        'platform_company'  => 'Tecno',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
