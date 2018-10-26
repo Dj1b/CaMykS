@@ -4,9 +4,9 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_ContentPage/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2009
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2009 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -68,9 +68,13 @@ $this->trads['mod_admin_contentpage_config_w3cvalidator_disabled'] = 'Disabled';
 $this->trads['mod_admin_contentpage_config_w3cvalidator_enabled'] = 'Enabled';
 
 /* configuration - site */
-$this->trads['mod_admin_contentpage_formtitle_ogmeta'] = 'Open Graph metas';
+$this->trads['mod_admin_contentpage_formtitle_sitetags'] = 'Header tags';
+$this->trads['mod_admin_contentpage_formitem_ogmeta'] = 'Open Graph metas: ';
 $this->trads['mod_admin_contentpage_config_ogmeta_disabled'] = 'Disabled';
 $this->trads['mod_admin_contentpage_config_ogmeta_enabled'] = 'Enabled';
+$this->trads['mod_admin_contentpage_formitem_hreflang'] = 'Hreflang metas: ';
+$this->trads['mod_admin_contentpage_config_hreflang_disabled'] = 'Disabled';
+$this->trads['mod_admin_contentpage_config_hreflang_enabled'] = 'Enabled';
 
 /* finder page */
 $this->trads['mod_admin_contentpage_is_homepage'] = 'Homepage';

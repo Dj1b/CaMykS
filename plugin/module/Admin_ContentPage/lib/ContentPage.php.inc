@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1165,7 +1165,7 @@ final class ContentPage {
      * @return void
      */
     public function init_site() {
-        global $camyks;
+        global $camyks, $languages;
 
         /* parse params */
         if (strpos($this->params_, '-')==0 or strpos($this->params_, '/')==0) {
@@ -1187,6 +1187,12 @@ final class ContentPage {
             $camyks->HTMLPage->add_meta('og:url', $camyks->get_confValue('url').'/'.$camyks->get_siteCurrentLink(), 'property');
             $camyks->HTMLPage->add_meta('og:description', string_text2HTML($this->description), 'property');
             $camyks->HTMLPage->add_meta('og:image', '', 'property');
+        }
+
+        if ($this->get_configValue('site_hreflang') == 1 and count($camyks->get_confValue('site_languages'))) {
+            foreach ($camyks->get_confValue('site_languages') as $l)
+                if ($l != $camyks->current_language)
+                    $camyks->HTMLPage->add_link('alternate', $camyks->get_confValue('url').'/'.$this->get_siteLink($this->params, $l), array('hreflang'=>$languages[$l]['extend']));
         }
 
         /* init template */
@@ -1293,6 +1299,7 @@ final class ContentPage {
 
         /* add name */
         $link = $this->name;
+
 
         /* add params */
         if (count($params) > 0) {
