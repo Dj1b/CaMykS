@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Jun 2005
  * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -862,16 +862,17 @@ final class Camyks {
           $list = array();
 
         /* load language from header */
-        if ($type == 'admin') {
-            $newlg = (isset($_REQUEST['_clg_']) ? $_REQUEST['_clg_'] : '');
-        } elseif (isset($_REQUEST['_clg_'])) {
-            if (strlen($_REQUEST['_clg_']) == 3)
+        $newlg = '';
+        if (isset($_REQUEST['_clg_'])) {
+            if ($type == 'admin')
+                $newlg =  $_REQUEST['_clg_'];
+            elseif (strlen($_REQUEST['_clg_']) == 3)
                 $newlg = substr($_REQUEST['_clg_'], 1, 3);
             else
                 $newlg = $_REQUEST['_clg_'];
         }
 
-        if (count($list) == 0 or $newlg == '' or !in_array ($newlg, $list)) {
+        if (count($list) == 0 or $newlg == '' or !in_array($newlg, $list)) {
             if ($this->get_sessionValue($type.'language') != null) {
                 $l = $this->get_sessionValue($type.'language');
             } else if ($type == 'admin' and ($lc = cookie_get('adminlanguage')) != null) {
@@ -890,7 +891,7 @@ final class Camyks {
             cookie_save('adminlanguage', $l, 90);
         $this->set_sessionValue($type.'language', $l);
         $this->current_language = $l;
-        $loc = setlocale (LC_ALL, language_getLocale($l, $this->get_confValue('encoding')));
+        $loc = setlocale(LC_ALL, language_getLocale($l, $this->get_confValue('encoding')));
     }
 
     /******************** ENCODING **********************/
