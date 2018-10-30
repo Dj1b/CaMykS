@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/string.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Oct 2007
  * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -172,9 +172,11 @@ function string_html2Text($string, $encoding=null) {
         case 'utf8':
             if ($camyks->get_confValue('server_encoding') != 'utf8')
                 return utf8_encode($string);
+            break;
         case 'ISO-8859-1':
             if (string_isUTF8($string))
                 return utf8_decode($string);
+            break;
         default:
         case '':
             return $string;
