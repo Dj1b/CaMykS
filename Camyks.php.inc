@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jun 2005
  * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -864,8 +864,11 @@ final class Camyks {
         /* load language from header */
         if ($type == 'admin') {
             $newlg = (isset($_REQUEST['_clg_']) ? $_REQUEST['_clg_'] : '');
-        } else {
-            $newlg = (isset($_REQUEST['_clg_']) ? substr($_REQUEST['_clg_'], 1, 3) : '');
+        } elseif (isset($_REQUEST['_clg_'])) {
+            if (strlen($_REQUEST['_clg_']) == 3)
+                $newlg = substr($_REQUEST['_clg_'], 1, 3);
+            else
+                $newlg = $_REQUEST['_clg_'];
         }
 
         if (count($list) == 0 or $newlg == '' or !in_array ($newlg, $list)) {

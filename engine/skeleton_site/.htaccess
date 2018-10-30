@@ -14,7 +14,7 @@ Options +FollowSymlinks
   #Header always set Strict-Transport-Security "max-age=300; includeSubDomains; preload"
 </IfModule>
 
-# Set up default expire	value
+# Set up default expire value
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 month"
@@ -46,5 +46,5 @@ Options +FollowSymlinks
   #RewriteRule ^([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$1&params=$2&_clg_=$3&ext=$4&%{QUERY_STRING} [L,NS]
 
   # Modern url rewriting with language as leading folder
-  #RewriteRule ^([a-z]{2}/)?([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$1&ext=$4&%{QUERY_STRING} [L,NS]
+  # RewriteRule ^([a-z]{2})?/?([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$1&ext=$4&%{QUERY_STRING} [L,NS]
 </IfModule>
