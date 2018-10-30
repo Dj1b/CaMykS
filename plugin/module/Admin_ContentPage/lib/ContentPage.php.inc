@@ -4,7 +4,7 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
  * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -1303,8 +1303,8 @@ final class ContentPage {
 
         /* add params */
         if (count($params) > 0) {
-            if ($camyks->get_confValue('friendlyurls') == 'modern')
-                $link .= '/'.urlencode(data_encode_properties($params, '-'));
+            if ($camyks->get_confValue('friendlyurls') == 'modern' or $camyks->get_confValue('friendlyurls') == 'modern2')
+                $link .= '/'.urlencode(data_encode_properties($params, '-', true));
             else {
                 $link .= '-'.data_encode_properties($params, '-');
 
@@ -1314,14 +1314,17 @@ final class ContentPage {
         }
 
         /* add language    */
-        if ($lg != '') {
-            if (in_array($lg, $camyks->site_conf['site_languages'])) {
-                $link .= '.'.$lg;
-            } else {
-                $link .= '.'.$camyks->current_language;
-            }
+        if (!in_array($lg, $camyks->site_conf['site_languages'])) {
+            $lg = $camyks->current_language;
         } else if (count($camyks->site_conf['site_languages'])>1) {
-            $link .= '.'.$camyks->current_language;
+            $lg = $camyks->current_language;
+        } else
+            $lg = '';
+        if ($lg != '') {
+            if ($camyks->get_confValue('friendlyurls') == 'modern2')
+                $link = $lg.'/'.$link;
+            else
+                $link .= '.'.$lg;
         }
 
         /* add extension */

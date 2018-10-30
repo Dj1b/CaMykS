@@ -4,7 +4,7 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
  * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -615,7 +615,7 @@ final class HTMLPage {
             echo "<html lang=\"".$this->language."\">\n<head>\n";
 
         /* add base url for modern urls */
-        if ($camyks->get_confValue('friendlyurls') == 'modern' and $camyks->mode != CAMYKS_MODE_ADMIN)
+        if (($camyks->get_confValue('friendlyurls') == 'modern' or $camyks->get_confValue('friendlyurls') == 'modern2') and $camyks->mode != CAMYKS_MODE_ADMIN)
             echo "<base href=\"".$camyks->get_rootBaseURL('absolute_long')."\" />\n";
     }
 

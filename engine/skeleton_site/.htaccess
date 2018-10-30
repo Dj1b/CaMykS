@@ -8,7 +8,7 @@ Options +FollowSymlinks
   Header set X-XSS-Protection "1; mode=block"
   # MIME-Type sniffing protection
   Header always set X-Content-Type-Options "nosniff"
-  # Cookie protection - Enable "secure" for HTTPS 
+  # Cookie protection - Enable "secure" for HTTPS
   Header edit Set-Cookie ^(.*)$ $1;HttpOnly;#Secure
   # Enable HSTS to force use secure connections - Enable only if HTTPS is forced on both website sides
   #Header always set Strict-Transport-Security "max-age=300; includeSubDomains; preload"
@@ -31,17 +31,20 @@ Options +FollowSymlinks
   # admin, request (.php files)
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^([^\.]*).php$ $1.php?%{QUERY_STRING} [L]
-  
-  # CaMykS assets 
+
+  # CaMykS assets
   # RewriteRule ^cdata/(.*)$ request.php?CaMykSAsset=$1 [L,NS,QSA]
   # RewriteRule ^cplugin/(.*)$ request.php?PluginAsset=$1 [L,NS,QSA]
 
   # site page ( .htm, .html, .xhtml, no extension )
   RewriteCond %{REQUEST_FILENAME} !-s
-  
+
   # Legacy url rewriting
   RewriteRule ^([_0-9a-zA-Z/]*/)?([_0-9a-zA-Z]*)([-_0-9a-zA-Z+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$4&&ext=$5&%{QUERY_STRING} [L,NS]
 
   # Modern url rewriting
   #RewriteRule ^([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$1&params=$2&_clg_=$3&ext=$4&%{QUERY_STRING} [L,NS]
+
+  # Modern url rewriting with language as leading folder
+  #RewriteRule ^([a-z]{2}/)?([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$1&ext=$4&%{QUERY_STRING} [L,NS]
 </IfModule>
