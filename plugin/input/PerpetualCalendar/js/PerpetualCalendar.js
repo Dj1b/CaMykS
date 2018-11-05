@@ -89,30 +89,27 @@ function PerpetualCalendar(name) {
       return;
     }
 
-
     /* add item to item list */
     if (!this.items[my])
-      this.items[my] = new Array();
+        this.items[my] = new Array();
 
     if (!this.items[my][day])
-     		this.items[my][day] = new Array();
+        this.items[my][day] = new Array();
 
     this.items[my][day][this.items[my][day].length] = item;
-
 
     /* check if master object is loaded */
     if (this.loaded == false)
       return;
 
     /* check if day is in displayed month */
-    if (date.getMonth() != this.get_param('date').getMonth()
-      || date.getFullYear() != this.get_param('date').getFullYear())
+    if (date.getMonth() != this.get_param('date').getMonth() || date.getFullYear() != this.get_param('date').getFullYear())
       return;
 
     /* update cell */
     cell = document.getElementById(this.name + 'Cell' + day);
     if (this.items[my][day].length > 1 && this.get_param('multiItem')['enabled'] == 1)
-    	this._set_cellProperties(cell, this.get_param('multiItem'), day);
+        this._set_cellProperties(cell, this.get_param('multiItem'), day);
     else
         this._set_cellProperties(cell, item, day);
   };
@@ -125,12 +122,12 @@ function PerpetualCalendar(name) {
    * @access public
    */
   this.remove_items = function(date, day) {
-  	my = date.getFullYear()+'-'+date.getMonth();
+      my = date.getFullYear()+'-'+date.getMonth();
 
-  	if (day == undefined)
-  		this.items[my] = new Array();
-  	else
-  		this.items[my][day] = new Array();
+      if (day == undefined)
+          this.items[my] = new Array();
+      else
+          this.items[my][day] = new Array();
   }
 
   /*
@@ -338,10 +335,10 @@ function PerpetualCalendar(name) {
 
       /* check item list */
       if (items != false ) {
-      	if (items.length > 1 && this.get_param('multiItem')['enabled'] == 1)
-      		this._set_cellProperties(c, this.get_param('multiItem'), day);
-      	else
-        	this._set_cellProperties(c, items[0], day);
+          if (items.length > 1 && this.get_param('multiItem')['enabled'] == 1)
+              this._set_cellProperties(c, this.get_param('multiItem'), day);
+          else
+            this._set_cellProperties(c, items[0], day);
       } else {
         this._set_cellProperties(c, this.get_param('defaultItem'), day);
       }
