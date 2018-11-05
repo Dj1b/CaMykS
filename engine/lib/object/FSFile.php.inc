@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/FSFile.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2007
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14,7 +14,6 @@
 
 /**
  * FSFile class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class FSFile {
     /**
@@ -107,7 +106,7 @@ final class FSFile {
      */
     public $moreinfos;
 
-    /*
+    /**
      * Class constructor.
      * @param string $path the path to the file
      * @param string $file the file name
@@ -135,7 +134,7 @@ final class FSFile {
 
     /* methods */
 
-    /*
+    /**
      * Load file description.
      * @return void
      */
@@ -159,7 +158,7 @@ final class FSFile {
         $this->get_moreInfos();
     }
 
-    /*
+    /**
      * Load file mime.
      * @return void
      */
@@ -169,7 +168,7 @@ final class FSFile {
         $this->type = $t[0];
     }
 
-    /*
+    /**
      * Load file stats.
      * @return void
      */
@@ -182,7 +181,7 @@ final class FSFile {
         $this->inode = $stat['ino'];
     }
 
-    /*
+    /**
      * Load file description.
      * @return void
      */
@@ -192,7 +191,7 @@ final class FSFile {
         $this->hsize = file_getFileSize($this->size);
     }
 
-    /*
+    /**
      * Load more information from file.
      * @return void
      */
@@ -202,7 +201,7 @@ final class FSFile {
         }
     }
 
-    /*
+    /**
      * Load more information from image file.
      * @return void
      */
@@ -210,7 +209,7 @@ final class FSFile {
         $this->moreinfos = array_merge($this->moreinfos, file_getImageSize($this->fullpath));
     }
 
-    /*
+    /**
      * Return mime relative icon.
      * @param int $size
      * @param string $styles
@@ -220,7 +219,7 @@ final class FSFile {
         return file_getMimeIcon($this->mime, $size, $styles);
     }
 
-    /*
+    /**
      * Return mime relative icon URL.
      * @param int $size
      * @return string
@@ -229,9 +228,9 @@ final class FSFile {
         return file_getMimeIconURL($this->mime, $size);
     }
 
-    /*
+    /**
      * Download file to client browser.
-     * @param string title overwrite title value
+     * @param string $title
      * @return void
      */
     public function download($title=null) {
@@ -249,7 +248,7 @@ final class FSFile {
         file_readfile($this->fullpath);
     }
 
-    /*
+    /**
      * Send file to client browser.
      * @param string $title
      * @return void
@@ -266,7 +265,7 @@ final class FSFile {
         file_readfile($this->fullpath);
     }
 
-    /*
+    /**
      * Return MD5 checksum of the file.
      * @param boolean $raw_output
      * @return string
@@ -275,8 +274,16 @@ final class FSFile {
         return md5_file($this->fullpath, $raw_output);
     }
 
-    /*
-     * Return file as base64 data.
+    /**
+     * Return file content.
+     * @return string
+     */
+    public function get_contents() {
+        return file_get_contents($this->fullpath);
+    }
+
+    /**
+     * Return file content as base64 data.
      * @return string
      */
     public function get_base64Data() {

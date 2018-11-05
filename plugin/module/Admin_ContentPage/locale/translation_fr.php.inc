@@ -4,9 +4,9 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_ContentPage/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -69,9 +69,13 @@ $this->trads['mod_admin_contentpage_config_w3cvalidator_disabled'] = 'D&eacute;s
 $this->trads['mod_admin_contentpage_config_w3cvalidator_enabled'] = 'Activ&eacute;e';
 
 /* configuration - site */
-$this->trads['mod_admin_contentpage_formtitle_ogmeta'] = 'Metas Open Graph';
-$this->trads['mod_admin_contentpage_config_ogmeta_disabled'] = 'D&eacute;sactiv&eacute;s';
-$this->trads['mod_admin_contentpage_config_ogmeta_enabled'] = 'Activ&eacute;s';
+$this->trads['mod_admin_contentpage_formtitle_sitetags'] = 'Balises d\'en-t&ecirc;te';
+$this->trads['mod_admin_contentpage_formitem_ogmeta'] = 'Balises Open Graph : ';
+$this->trads['mod_admin_contentpage_config_ogmeta_disabled'] = 'D&eacute;sactiv&eacute;es';
+$this->trads['mod_admin_contentpage_config_ogmeta_enabled'] = 'Activ&eacute;es';
+$this->trads['mod_admin_contentpage_formitem_hreflang'] = 'Balises hreflang : ';
+$this->trads['mod_admin_contentpage_config_hreflang_disabled'] = 'D&eacute;sactiv&eacute;es';
+$this->trads['mod_admin_contentpage_config_hreflang_enabled'] = 'Activ&eacute;es';
 
 /* finder page */
 $this->trads['mod_admin_contentpage_is_homepage'] = 'Page d\'accueil';

@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.1.2
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -582,7 +582,7 @@ class HTMLForm {
         global $camyks;
 
         /* build param list */
-        $params = array('buttons'=>null, 'accept'=>'', 'allowMultiple'=>false);
+        $params = array('class'=>'', 'buttons'=>null, 'accept'=>'', 'allowMultiple'=>false);
 
         /* check limit */
         $this->check_inputsLimit(2);
@@ -601,6 +601,10 @@ class HTMLForm {
 
         /* check object params */
         $n = $params['name'].($params['language']?'_'.$params['language']:'');
+        $params['name'] = $n;
+        if ($params['allowMultiple'] == true)
+            $params['name'] .= '[]';
+
         if ($params['default'] === '' and isset($this->object)) {
             $params['default'] = isset($this->object->vars[$n])?$this->object->vars[$n]:'';
         }
@@ -614,15 +618,12 @@ class HTMLForm {
         }
 
         /* build file input element */
-        $html = '<input type="file" name="'.$n.''.($params['allowMultiple']?'[]" multiple="':'').'"';
-        if ($this->tabIndex>-1 or $params['tabIndex'] != -1)
-            $html .= ' '.$this->get_tabIndex(true, $params['tabIndex']);
-        if ($params['class'] != '')
-            $html .= ' class="'.$params['class'].'"';
-        if ($params['onchange'] != '')
-            $html .= ' onchange="'.$params['onchange'].'"';
+        $html = '<input type="file"';
+        $html .= $this->build_inputGenericAttributes($params);
         if ($params['accept'] != '')
             $html .= ' accept="'.$params['accept'].'"';
+        if ($params['allowMultiple'] == true)
+            $html .= ' multiple=""';
         $html .= ' /> ';
         $html .= '<input type="hidden" name="'.$n.'_deletefile" value="0" />';
 
@@ -1318,7 +1319,7 @@ class HTMLForm {
      */
     public function display_checkboxInput($input, $default=null) {
         /* build param list */
-        $params = array('size'=>0, 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
+        $params = array('class'=>'', 'size'=>0, 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
 
         /* check header params */
         if (is_array($input)) {
@@ -1355,6 +1356,7 @@ class HTMLForm {
             $html .= ' name="'.$params['name'].'_'.$params['language'];
         if ($params['multiValues']===true)
             $html .= '[]';
+        $html .= '"';
         $html .= ' value="'.$params['value'].'"';
 
         /* avoid name to be rewritten in generic attributes */
@@ -1389,7 +1391,7 @@ class HTMLForm {
      */
     public function display_radioInput($input, $default=null) {
         /* build param list */
-        $params = array('value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
+        $params = array('class'=>'', 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
 
         /* check header params */
         if (is_array($input)) {

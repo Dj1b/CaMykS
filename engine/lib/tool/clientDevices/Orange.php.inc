@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Orange.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2018
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,6 +22,7 @@ function get_OrangeClientDevice($deviceCode='') {
     $deviceList = array(
         'Nura'      => array('platform_year' => 2015),
         'Nura 2'    => array('platform_year' => 2016),
+        'Neva 80'   => array('platform_year' => 2016),
     );
 
     /* Check for returning list */

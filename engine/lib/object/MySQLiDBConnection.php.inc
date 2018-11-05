@@ -18,7 +18,7 @@
  */
 final class MySQLiDBConnection extends CDBConnection {
     /* server related methods */
-  
+
     /**
      * Connect to server.
      * @param string $host
@@ -30,12 +30,12 @@ final class MySQLiDBConnection extends CDBConnection {
     public function connect_server($host='localhost', $login='', $pwd='', $driver='') {
         /* database server connection */
         $this->connection = @(new MySQLi($host, $login, $pwd, ''));
-   
+
         /* check if connection is made successfully */
         $this->active = ($this->connection->connect_errno === 0);
         return $this->active;
     }
-  
+
     /**
      * Close server connection.
      * @return boolean success
@@ -44,11 +44,11 @@ final class MySQLiDBConnection extends CDBConnection {
         if ($this->is_connectionActive())
             if ($this->connection->close())
                 $this->active = false;
-            else 
+            else
                 return false;
         return true;
     }
-  
+
     /**
      * Return database engine version.
      * @return string
@@ -58,9 +58,9 @@ final class MySQLiDBConnection extends CDBConnection {
             return $this->connection->server_info;
         return '';
     }
-  
+
     /* database related methods */
-  
+
     /**
      * Select database.
      * @param string $name the database name
@@ -73,7 +73,7 @@ final class MySQLiDBConnection extends CDBConnection {
         $this->dbName = $name;
         return $this->connection->select_db($name);
     }
-  
+
     /**
      * Create a database.
      * @param string $name
@@ -92,7 +92,7 @@ final class MySQLiDBConnection extends CDBConnection {
     public function database_exists($name) {
         return $this->connection->select_db($name);
     }
-  
+
     /**
      * Dump database.
    * @param mixed $file
@@ -170,9 +170,9 @@ final class MySQLiDBConnection extends CDBConnection {
     public function get_databaseSize() {
         /* init size */
         $size = 0;
-    
+
         /* get infos from database */
-        if ($this->execute_query('show table status')) {      
+        if ($this->execute_query('show table status')) {
             /* set size with infos */
             while ($data = $this->get_queryDataLine()) {
                 $size += $data["Data_length"] + $data["Index_length"];
@@ -181,7 +181,7 @@ final class MySQLiDBConnection extends CDBConnection {
         }
         return 0;
     }
-  
+
     /**
      * Return database information summary.
      * @return array
@@ -339,13 +339,13 @@ final class MySQLiDBConnection extends CDBConnection {
         }
         $sql .= ' PRIMARY KEY(`'.implode('`,`', $primaryKeys).'`))';
         $sql .= ' CHARACTER SET '.$charset.'';
-    
+
         /* return result of sql query execution */
         return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
-  
+
     /* query related methods */
-    
+
     /**
      * Execute query.
      * @param string $sql
@@ -376,7 +376,7 @@ final class MySQLiDBConnection extends CDBConnection {
             return $this->queryRes[$resName]->fetch_assoc();
         return false;
     }
-  
+
     /**
      * Return next query data line with numeric indexes.
      * @param string $resName
@@ -405,18 +405,18 @@ final class MySQLiDBConnection extends CDBConnection {
     public function get_queryAffectedRows($resName='defaultRes') {
         return $this->connection->affected_rows;
     }
-  
+
     /**
      * Return latest query field count.
      * @param string $resName
-     * @return integer 
+     * @return integer
      */
     public function get_queryFieldCount($resName='defaultRes') {
         if (isset($this->queryRes[$resName]))
             return $this->queryRes[$resName]->field_count;
         return '';
     }
-  
+
     /**
      * Return latest query field type.
      * @param integer $fIndex
@@ -430,7 +430,7 @@ final class MySQLiDBConnection extends CDBConnection {
         }
         return false;
     }
-  
+
     /**
      * Close ressource.
      * @param string $resName
@@ -441,9 +441,9 @@ final class MySQLiDBConnection extends CDBConnection {
             return $this->queryRes[$resName]->close();
         return true;
     }
-  
+
     /* data related methods */
-  
+
     /**
      * Return escaped string.
      * @param string $string
@@ -452,7 +452,7 @@ final class MySQLiDBConnection extends CDBConnection {
     public function escape_string($string) {
         return mysqli_real_escape_string($this->connection, $string);
     }
-  
+
     /**
      * Return mysql compatible type from given type.
      * @param integer $type
@@ -462,20 +462,20 @@ final class MySQLiDBConnection extends CDBConnection {
         switch ($type) {
             /* int */
             case 1 /* tinyint */: case 2 /* smallint */: case 3 /* int */:  case 8 /* bigint */: case 9 /* mediumint */: case 16 /* bit */: return 'int';
-      
+
             /* float */
             case 4 /* float */: case 5 /* double */: case 246 /* decimal*/: return 'real';
-      
+
             /* date & time */
             case 7: return 'timestamp';
             case 10: return 'date';
             case 11: return 'time';
             case 12: return 'datetime';
             case 13: return 'year';
-      
+
             /* blobs */
             case 252: return 'blob';
-      
+
             /* texts */
             case 253 /* varchar */ : case 254 /* char */: return 'string';
         }

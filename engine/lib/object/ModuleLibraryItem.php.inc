@@ -36,7 +36,7 @@ abstract class ModuleLibraryItem {
      */
     public $value;
 
-    
+
     /**
      * Load value from array.
      * @param array $data

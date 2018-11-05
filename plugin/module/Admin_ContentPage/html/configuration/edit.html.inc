@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_ContentPage/html/configuration/edit.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Dec 2014
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -258,16 +258,25 @@ $minus_ = $camyks->theme->get_pictURL('minus', 12, 'ovr');
 
 <tr>
   <td class="eTableHeader" colspan="2">
-    <?=$this->get_translation('formtitle_ogmeta'); ?>
+    <?=$this->get_translation('formtitle_sitetags'); ?>
   </td>
 </tr>
 
 <tr>
     <td class="eTableLine0 eContent2">
-        <?=$camyks->get_translation('formitem_status');?>
+        <?=$this->get_translation('formitem_ogmeta');?>
     </td>
     <td class="eTableLine0 eContent1">
         <?=$this->editform->display_selectInput(array('name'=>'site_ogmeta', 'values'=>$this->OGMetaStatus));?>
+    </td>
+</tr>
+
+<tr>
+    <td class="eTableLine1 eContent2">
+        <?=$this->get_translation('formitem_hreflang');?>
+    </td>
+    <td class="eTableLine1 eContent1">
+        <?=$this->editform->display_selectInput(array('name'=>'site_hreflang', 'values'=>$this->HrefLangStatus));?>
     </td>
 </tr>
 

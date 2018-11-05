@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/language.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
+ * @date Modification: Oct 2018
  * @copyright 2015 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $languages;
@@ -32,54 +32,61 @@ define("LANG_ICON_DEFAULT",     "default");
  * @var array $languages
  */
 $languages = array(
-    'en' => array(
+    'en'    => array(
         'title'     => 'English',
+        'extend'    => 'en-gb',
         'locale'    => array(
             ''      => array('en_GB'),
-       ),
-   ),
+        ),
+    ),
     'fr'    => array(
         'title'     => 'Fran&ccedil;ais',
+        'extend'    => 'fr-fr',
         'locale'    => array(
             ''          => array('fr_FR', 'french', 'france', 'fr_FR@euro'),
             'utf8'      => array('fr_FR.utf8', 'fr_FR.UTF-8', 'fr_FR.UTF8', 'fr_FR', 'french', 'france', 'fr_FR@euro'),
             'iso88591'  => array('fr_FR.iso88591', 'fr_FR.iso885915@euro', 'fr_FR.8859-1', 'fr_FR.88591', 'fr_FR.ISO8859-1', 'fr_FR', 'french', 'france', 'fr_FR@euro'),
-       ),
-   ),
+        ),
+    ),
     'de'    => array(
-        'title'     => 'Deutsch', 
+        'title'     => 'Deutsch',
+        'extend'    => 'de-de',
         'locale'    => array(
             ''      => array('de_DE'),
             'utf8'  => array('de_DE.utf8', 'de_DE.UTF8', 'de_DE.UTF-8'),
-       ),
-   ),
+        ),
+    ),
     'it'    => array(
         'title'     => 'Italiano',
+        'extend'    => 'it-it',
         'locale'    => array(
             ''      => array('it_IT'),
-       ),
-   ),
+        ),
+    ),
     'es'    => array(
-        'title'     => 'Espa&ntilde;ol', 
+        'title'     => 'Espa&ntilde;ol',
+        'extend'    => 'es-es',
         'locale'    => array(
             ''      => array('es_ES'),
             'utf8'  => array('es_ES.utf8', 'es_ES.UTF8', 'es_ES.UTF-8'),
-       ),
-   ),
+        ),
+    ),
     'pt'    => array(
-        'title'     => 'Portugu&ecirc;s', 
+        'title'     => 'Portugu&ecirc;s',
+        'extend'    => 'pt-pt',
         'locale'    => array(
             ''      => array('pt_PT'),
            'utf8'   => array('pt_PT.utf8', 'pt_PT.UTF8', 'pt_PT.UTF-8'),
-       ),
-   ),
+        ),
+    ),
     'br'    => array(
         'title'     => 'Brasileiro',
+        'extend'    => 'pt-br',
         'locale'    => array(
             ''      => array('pt_BR'),
             'utf8'  => array('pt_BR.utf8', 'pt_BT.UTF8', 'pt_BR.UTF-8')
-       ),
-   ),
+        ),
+    ),
 );
 
 /**
@@ -125,9 +132,9 @@ function language_getTitle($lg) {
  */
 function language_getIcon($short, $full=true) {
     global $camyks;
-    
+
     $flag = $camyks->get_dataFileURL('img/flag/'.$short.LANG_ICON_EXTENSION);
-    
+
     if ($full)
         return '<img src="'.$flag.'" alt="'.$short.'" style="border:0" />';
     return $flag;
@@ -187,13 +194,13 @@ function language_numberFormat($number, $floats=2) {
  */
 function language_getDictionnaryList($folder='') {
     global $camyks;
-    
+
     /* initialise result */
     $result = array();
-    
+
     /* load files in folder */
     $files = folder_listFiles($folder);
-    
+
     /* check files */
     foreach ($files as $file) {
         if (substr($file, 0, 12) == 'translation_' and substr($file , strlen($file) - strlen($camyks->file_extension), strlen($camyks->file_extension)) == $camyks->file_extension) {

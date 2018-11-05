@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_ContentPage/html/configuration/view.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Dec 2014
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -129,16 +129,25 @@ global $camyks;
 
       <tr>
         <td class="eTableHeader" colspan="2">
-          <?=$this->get_translation('formtitle_ogmeta'); ?>
+          <?=$this->get_translation('formtitle_sitetags'); ?>
         </td>
       </tr>
 
       <tr>
         <td class="eTableLine0 eContent2">
-          <?=$camyks->get_translation('formitem_status');?>
+          <?=$this->get_translation('formitem_ogmeta');?>
         </td>
         <td class="eTableLine0 eContent1">
           <?=$this->config->get_ogMetaStatusTitle(); ?>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="eTableLine1 eContent2">
+          <?=$this->get_translation('formitem_hreflang');?>
+        </td>
+        <td class="eTableLine1 eContent1">
+          <?=$this->config->get_hrefLangStatusTitle(); ?>
         </td>
       </tr>
 
@@ -170,10 +179,10 @@ global $camyks;
 
       <?php if (substr($this->config->vars['page_404FallBack'], -7, 7) == 'display'): ?>
       <tr>
-        <td class="eTableLine0 eContent2">
+        <td class="eTableLine1 eContent2">
           <?=$this->get_translation('formitem_send404header');?>
         </td>
-        <td class="eTableLine0 eContent1">
+        <td class="eTableLine1 eContent1">
           <?=$camyks->get_translation($this->config->vars['page_404SendHeader']?'yes':'no');?>
         </td>
       </tr>

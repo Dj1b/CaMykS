@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.18
  * @date Creation: May 2018
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,7 +31,7 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://www.ideogram-design.fr/',
     );
 
-    /* import.io crawler bot (to be inserted before GoogleBot, use GoogleBot in user agent)    */
+    /* import.io crawler bot (to be inserted before GoogleBot, use GoogleBot in user agent) */
     $knownBots['googlebot/2.1; +http://import.io'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -2383,7 +2383,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Experibot',
-        'bot_url'           => '',
+        'bot_url'           => 'https://amirkr.wixsite.com/experibot',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -3469,7 +3469,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Companybook-Crawler',
-        'bot_url'           => '',
+        'bot_url'           => 'http://support.companybooknetworking.com/knowledgebase/articles/1163176-companybook-crawler',
         'engine_title'      => 'Companybook',
         'engine_url'        => 'https://www.companybooknetworking.com',
     );
@@ -3984,6 +3984,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://www.qirina.com/',
     );
 
+    /* spuhex.com bot */
+    $knownBots['spuhex.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'spuhex',
+        'engine_url'        => 'http://spuhex.com/',
+    );
+
     /* unknown bots */
 
     /* SEOBulls - unknown bot */
@@ -4251,6 +4261,26 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'BUFF library (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* WordupinfoSearch  - unknown bot */
+    $knownBots['wordupinfosearch'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'WordupinfoSearch (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Who.is Bot  - unknown bot */
+    $knownBots['who.is bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Who.is Bot (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

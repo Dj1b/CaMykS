@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HiSense.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2018
- * @date Modification: Jul 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +20,7 @@
  */
 function get_HiSenseClientDevice($deviceCode='') {
     $deviceList = array(
+        'L675'      => array('platform_model' => 'L675',                'platform_year' => 2016),
         'L678'      => array('platform_model' => 'Staraddict 5',        'platform_year' => 2016),
         'F17 Pro'   => array('platform_model' => 'Infinity F17 Pro',    'platform_year' => 2018),
     );
@@ -30,7 +31,7 @@ function get_HiSenseClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'HiSense',
+        'platform_company'  => 'Hisense',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

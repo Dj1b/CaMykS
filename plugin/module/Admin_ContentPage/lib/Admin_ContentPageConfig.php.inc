@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/Admin_ContentPageConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2014
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -44,6 +44,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
 
         /* site parameters values */
         $this->add_newItem('site_ogmeta', 'boolean', 0);
+        $this->add_newItem('site_hreflang', 'boolean', 1);
 
         /* generic initialisation */
         parent::init_config();
@@ -132,8 +133,8 @@ final class Admin_ContentPageConfig extends PluginConfig {
      */
     public function get_w3cValidatorList() {
         return array(
-                0 => $this->get_translation('config_w3cvalidator_disabled'),
-                1 => $this->get_translation('config_w3cvalidator_enabled'),
+            0 => $this->get_translation('config_w3cvalidator_disabled'),
+            1 => $this->get_translation('config_w3cvalidator_enabled'),
         );
     }
 
@@ -154,8 +155,8 @@ final class Admin_ContentPageConfig extends PluginConfig {
      */
     public function get_ogMetaStatusList() {
         return array(
-                0 => $this->get_translation('config_ogmeta_disabled'),
-                1 => $this->get_translation('config_ogmeta_enabled'),
+            0 => $this->get_translation('config_ogmeta_disabled'),
+            1 => $this->get_translation('config_ogmeta_enabled'),
         );
     }
 
@@ -167,6 +168,28 @@ final class Admin_ContentPageConfig extends PluginConfig {
         $l = $this->get_ogMetaStatusList();
         if (isset($l[$this->vars['site_ogmeta']]))
             return $l[$this->vars['site_ogmeta']];
+        return '';
+    }
+
+    /**
+     * Return hreflang status list.
+     * @return array
+     */
+    public function get_hrefLangStatusList() {
+        return array(
+            0 => $this->get_translation('config_hreflang_disabled'),
+            1 => $this->get_translation('config_hreflang_enabled'),
+        );
+    }
+
+    /**
+     * Return hreflang status title.
+     * @return array
+     */
+    public function get_hrefLangStatusTitle() {
+        $l = $this->get_hrefLangStatusList();
+        if (isset($l[$this->vars['site_hreflang']]))
+            return $l[$this->vars['site_hreflang']];
         return '';
     }
 

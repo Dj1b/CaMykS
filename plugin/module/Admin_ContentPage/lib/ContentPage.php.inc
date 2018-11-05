@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -632,7 +632,7 @@ final class ContentPage {
 
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
             $this->id = $camyks->db_conn->get_queryGeneratedId();
-            return $this->update_languages ();
+            return $this->update_languages();
         }
         return false;
     }
@@ -785,7 +785,7 @@ final class ContentPage {
             array('name'=>'theme', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
             array('name'=>'homepage', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
             array('name'=>'metas', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
-        );
+       );
         for ($i=0; $i< $this->maxmodules; $i++) {
             $fields[] = array('name'=>'m'.$i.'_name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
             $fields[] = array('name'=>'m'.$i.'_content', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
@@ -803,7 +803,7 @@ final class ContentPage {
             array('name'=>'shorttitle', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
             array('name'=>'keywords', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
             array('name'=>'description', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
-        );
+       );
 
         if (!$camyks->db_conn->create_table('admin_contentpagelocale', $fields, $camyks->get_mysqlencodingvalue(), true, array('id', 'wf_version', 'language')))
             return false;
@@ -1138,7 +1138,7 @@ final class ContentPage {
                         'content'   => $meta[1],
                         'language'  => $meta[2],
                         'method'    => $meta[3]
-                    );
+                   );
             }
         } else {
             $this->metas = array();
@@ -1165,7 +1165,7 @@ final class ContentPage {
      * @return void
      */
     public function init_site() {
-        global $camyks;
+        global $camyks, $languages;
 
         /* parse params */
         if (strpos($this->params_, '-')==0 or strpos($this->params_, '/')==0) {
@@ -1187,6 +1187,12 @@ final class ContentPage {
             $camyks->HTMLPage->add_meta('og:url', $camyks->get_confValue('url').'/'.$camyks->get_siteCurrentLink(), 'property');
             $camyks->HTMLPage->add_meta('og:description', string_text2HTML($this->description), 'property');
             $camyks->HTMLPage->add_meta('og:image', '', 'property');
+        }
+
+        if ($this->get_configValue('site_hreflang') == 1 and count($camyks->get_confValue('site_languages'))) {
+            foreach ($camyks->get_confValue('site_languages') as $l)
+                if ($l != $camyks->current_language)
+                    $camyks->HTMLPage->add_link('alternate', $camyks->get_confValue('url').'/'.$this->get_siteLink($this->params, $l), array('hreflang'=>$languages[$l]['extend']));
         }
 
         /* init template */
@@ -1227,7 +1233,7 @@ final class ContentPage {
                 $m[$i] = new Module('Empty', 'camyks');
             }
             /* theme */
-            if ($this->modules[$i]['theme'] != '' ) {
+            if ($this->modules[$i]['theme'] != '') {
                 $m[$i]->set_theme($this->modules[$i]['theme']);
             } else {
                 $m[$i]->set_theme($this->theme->name);
@@ -1291,13 +1297,14 @@ final class ContentPage {
     public function get_siteLink($params=array(), $lg='') {
         global $camyks;
 
+
         /* add name */
         $link = $this->name;
 
         /* add params */
         if (count($params) > 0) {
-            if ($camyks->get_confValue('friendlyurls') == 'modern')
-                $link .= '/'.urlencode(data_encode_properties($params, '-'));
+            if ($camyks->get_confValue('friendlyurls') == 'modern' or $camyks->get_confValue('friendlyurls') == 'modern2')
+                $link .= '/'.urlencode(data_encode_properties($params, '-', true));
             else {
                 $link .= '-'.data_encode_properties($params, '-');
 
@@ -1306,15 +1313,17 @@ final class ContentPage {
             }
         }
 
-        /* add language    */
+        /* add language */
+        if ($lg != '' or count($camyks->get_confValue('site_languages'))>1) {
+            if (!in_array($lg, $camyks->get_confValue('site_languages')))
+                $lg = $camyks->current_language;
+        }
+
         if ($lg != '') {
-            if (in_array($lg, $camyks->site_conf['site_languages'])) {
+            if ($camyks->get_confValue('friendlyurls') == 'modern2')
+                $link = $lg.'/'.$link;
+            else
                 $link .= '.'.$lg;
-            } else {
-                $link .= '.'.$camyks->current_language;
-            }
-        } else if (count($camyks->site_conf['site_languages'])>1) {
-            $link .= '.'.$camyks->current_language;
         }
 
         /* add extension */
@@ -1689,7 +1698,7 @@ final class ContentPage {
     }
 
     /**
-     * Return page basic info (id, title(current_language) ) from name.
+     * Return page basic info (id, title(current_language)) from name.
      * @param string $name
      * @return ContentPage Object
      * @deprecated
@@ -1719,7 +1728,7 @@ final class ContentPage {
     }
 
     /**
-     * Return pages basic info (id, title(current_language) ) from names.
+     * Return pages basic info (id, title(current_language)) from names.
      * @param array $names
      * @return array
      * @deprecated

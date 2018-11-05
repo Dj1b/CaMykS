@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.18
  * @date Creation: Apr 2018
- * @date Modification: Sep 2018
+ * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,6 +48,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'NXT-L29'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
@@ -56,11 +57,14 @@ function get_HuaweiClientDevice($deviceCode='') {
         'RNE-L21'   => array('platform_model' => 'Mate 10 Lite',    'platform_year' => 2017),
         'BLA-A09'   => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-AL00'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
+        'BLA-L09S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-L29'   => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
         'BND-L34'   => array('platform_model' => 'Mate SE',         'platform_year' => 2016),
+        'LYO-L21'   => array('platform_model' => 'Honor 5A',        'platform_year' => 2016),
         'NEM-L51'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
+        'KIW-L21'   => array('platform_model' => 'Honor 5X',        'platform_year' => 2015),
         'JMM-L22'   => array('platform_model' => 'Honor 6C Pro',    'platform_year' => 2017),
         'BLN-L21'   => array('platform_model' => 'Honor 6X',        'platform_year' => 2017),
         'PLK-L01'   => array('platform_model' => 'Honor 7',         'platform_year' => 2015),
@@ -68,10 +72,12 @@ function get_HuaweiClientDevice($deviceCode='') {
         'FRD-L19'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
         'PRA-TL10'  => array('platform_model' => 'Honor 8 Lite',    'platform_year' => 2016),
         'DUK-L09'   => array('platform_model' => 'Honor 8 Pro',     'platform_year' => 2017),
+        'JSN-L21'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
         'STF-L09'   => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
+        'AUM-L29'   => array('platform_model' => 'Honor 7A Pro',    'platform_year' => 2018),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend',          'platform_year' => 2014),
@@ -84,8 +90,12 @@ function get_HuaweiClientDevice($deviceCode='') {
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2015),
-        'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
+        'MYA-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
+        'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
+        'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-L53'   => array('platform_model' => 'Y7\'',            'platform_year' => 2018),
