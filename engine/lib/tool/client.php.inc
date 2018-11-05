@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.42
  * @date Creation: Jun 2007
  * @date Modification: Oct 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -527,15 +527,10 @@ function client_getUAInfos($ua=false) {
             'browser_title'     => 'Kindle browser',
             'browser_version'   => $matches[1],
         ));
-    elseif (preg_match('/KFFOWI/', $ua, $matches))
-        /* build info */
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Amazon',
-            'platform_model'    => 'Kindle Fire (5th Gen)',
-            'platform_type'     => 'tablet',
-            'platform_format'   => 'tablet',
-            'platform_year'     => 2015,
-        ));
+    elseif (preg_match('/ (KF[A-Z]{4}) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Amazon.php.inc');
+        $infos = array_merge($infos, get_AmazonClientDevice($matches[1]));
+    }
 
     /* check Wiko */
     elseif (preg_match('/ (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
@@ -844,7 +839,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Xiaomi mobiles */
-    elseif (preg_match('/(Redmi|MI) ?([A-Za-z0-9 ]{1,}) Build/i', $ua, $matches)) {
+    elseif (preg_match('/(Redmi|MI) ?([A-Za-z0-9 ]{1,})( Build|\))/i', $ua, $matches)) {
         include_once ('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].' '.$matches[2]));
     } elseif (preg_match('/HM NOTE 1LTE/', $ua, $matches))

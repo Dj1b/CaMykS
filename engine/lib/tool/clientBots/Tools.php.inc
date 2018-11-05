@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: May 2018
  * @date Modification: Oct 2018
  * @copyright 2018 CaMykS Team
@@ -1089,6 +1089,16 @@ function _client_getKnownTools() {
         'tool_url'          => 'https://api.slack.com/robots',
         'engine_title'      => 'Slack',
         'engine_url'        => 'https://slack.com/',
+    );
+
+    /* Siteliner */
+    $knownTools['siteliner'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Siteliner bot',
+        'tool_url'          => 'http://www.siteliner.com/bot',
+        'engine_title'      => 'Siteliner',
+        'engine_url'        => 'http://www.siteliner.com',
     );
 
     /* return list */
