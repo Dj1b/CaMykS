@@ -16,6 +16,7 @@
  * Encode properties.
  * @param array $properties
  * @param string $separator
+ * @param boolean $disableEmpty
  * @return string
  */
 function data_encode_properties($properties, $separator='"', $disableEmpty=false) {
