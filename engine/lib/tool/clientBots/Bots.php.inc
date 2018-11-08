@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: May 2018
- * @date Modification: Oct 2018
+ * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3992,6 +3992,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'spuhex',
         'engine_url'        => 'http://spuhex.com/',
+    );
+
+    /* TelegramBot */
+    $knownBots['telegrambot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TelegramBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Telegram',
+        'engine_url'        => 'https://telegram.org',
     );
 
     /* unknown bots */

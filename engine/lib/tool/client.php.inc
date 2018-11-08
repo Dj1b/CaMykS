@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.42
+ * @version 1.0.43
  * @date Creation: Jun 2007
- * @date Modification: Oct 2018
+ * @date Modification: Nov 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -595,7 +595,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Tecno mobiles */
-    elseif (preg_match('/Tecno ?([^;| ]*) Build/i', $ua, $matches)) {
+    elseif (preg_match('/Tecno ?([^;]*) Build/i', $ua, $matches)) {
         include_once ('clientDevices/Tecno.php.inc');
         $infos = array_merge($infos, get_TecnoClientDevice($matches[1]));
     }
@@ -1216,7 +1216,7 @@ function client_getUAInfos($ua=false) {
             );
 
         /* check Android */
-        elseif (preg_match('/(?:Android|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
+        elseif (preg_match('/(?:Android;?|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
             /* check version */
             $version = isset($matches[1])?$matches[1]:'';
             if ($version != '' and version_compare($version, $maxVersions['system']['Android']) > 0)
@@ -2251,7 +2251,7 @@ function _client_getUAPropertiesMaxVersions() {
  * @private
  */
 function _client_isOnePlusDevice($ua='') {
-    if (preg_match('/( ONE| ONEPLUS)? (A|E)([0-9]{4}) Build/i', $ua, $matches)) {
+    if (preg_match('/( ONE| ONEPLUS)? (A|E)([0-9]{4})( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[2].$matches[3]))
           return $matches;
