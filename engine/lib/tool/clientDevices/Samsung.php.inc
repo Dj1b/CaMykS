@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Apr 2018
  * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
@@ -199,6 +199,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-N7005'  => array('platform_model' => 'Galaxy Note (4G)',                'platform_year' => 2011),
         'GT-N8000'  => array('platform_model' => 'Galaxy Note 10.1 (3G)',           'platform_year' => 2012),
         'GT-N8010'  => array('platform_model' => 'Galaxy Note 10.1',                'platform_year' => 2012),
+        'GT-N8013'  => array('platform_model' => 'Galaxy Note 10.1',                'platform_year' => 2012),
         'SM-P600'   => array('platform_model' => 'Galaxy Note 10.1 2014 Edition',   'platform_year' => 2013),
         'GT-N7100'  => array('platform_model' => 'Galaxy Note II (3G)',             'platform_year' => 2012),
         'GT-N7105'  => array('platform_model' => 'Galaxy Note II',                  'platform_year' => 2012),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Apr 2018
  * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
@@ -57,6 +57,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'RNE-L21'   => array('platform_model' => 'Mate 10 Lite',    'platform_year' => 2017),
         'BLA-A09'   => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-AL00'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
+        'BLA-L09'   => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-L09S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-L29'   => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),

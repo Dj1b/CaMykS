@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: Jun 2007
  * @date Modification: Nov 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -287,7 +287,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/HTC;([A-Za-z0-9 ]*)/', $ua, $matches)) {
         include_once('clientDevices/HTC.php.inc');
         $infos = array_merge($infos, get_HTCClientDevice($matches[1]));
-    } elseif (preg_match('/HTC[ |_]([^\/\-]*)( Build|\-)/', $ua, $matches)) {
+    } elseif (preg_match('/HTC[ |_]([^\/\-]*)( Build|\-|\))/', $ua, $matches)) {
         include_once('clientDevices/HTC.php.inc');
         $model = preg_replace('/_/', ' ', $matches[1]);
         $infos = array_merge($infos, get_HTCClientDevice($model));
@@ -409,6 +409,22 @@ function client_getUAInfos($ua=false) {
             'platform_company'  =>'Sony (PC)',
         ));
 
+    /* check Lenovo - before Hawei */
+    elseif (preg_match('/(IdeaTab|Yoga|Lenovo)[ |_]([A-Z0-9\- ]{3,})( Build|\))/i', $ua, $matches)) {
+        include_once ('clientDevices/Lenovo.php.inc');
+        $infos = array_merge($infos, get_LenovoClientDevice(trim($matches[2])));
+    }
+    elseif (preg_match('/ (Z2 Plus) Build/i', $ua, $matches)) {
+        include_once ('clientDevices/Lenovo.php.inc');
+        $infos = array_merge($infos, get_LenovoClientDevice(trim($matches[1])));
+    }
+
+    /* check Lenovo PCs */
+    elseif (preg_match('/MALC|MALCJS|MALN|MALNJS|LCJB|LEN2/', $ua, $matches))
+        $infos = array_merge($infos, array(
+            'platform_company'  =>'Lenovo (PC)',
+        ));
+
     /* check Huawei */
     elseif (preg_match('/Build\/(HONOR|HUAWEI)([A-Z0-9\-]{6,})/i', $ua, $matches)) {
         include_once ('clientDevices/Huawei.php.inc');
@@ -434,22 +450,6 @@ function client_getUAInfos($ua=false) {
             isset($rep[$model])?$rep[$model]:array()
         );
     }
-
-    /* check Lenovo */
-    elseif (preg_match('/(IdeaTab|Yoga|Lenovo)[ |_]([A-Z0-9\- ]{3,}) Build/i', $ua, $matches)) {
-        include_once ('clientDevices/Lenovo.php.inc');
-        $infos = array_merge($infos, get_LenovoClientDevice(trim($matches[2])));
-    }
-    elseif (preg_match('/ (Z2 Plus) Build/i', $ua, $matches)) {
-        include_once ('clientDevices/Lenovo.php.inc');
-        $infos = array_merge($infos, get_LenovoClientDevice(trim($matches[1])));
-    }
-
-    /* check Lenovo PCs */
-    elseif (preg_match('/MALC|MALCJS|MALN|MALNJS|LCJB|LEN2/', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  =>'Lenovo (PC)',
-        ));
 
     /* check Outikel mobiles */
     elseif (preg_match('/(K6000 Pro) Build/', $ua, $matches)) {
