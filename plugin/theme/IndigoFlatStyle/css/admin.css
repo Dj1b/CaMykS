@@ -3,9 +3,9 @@
  * @details Plugin / Theme CSS styles
  * @file plugin/theme/IndigoFlatStyle/css/admin.css
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2017
- * @date Modification: Aug 2018
+ * @date Modification: Nov 2018
  * @copyright 2017 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -62,8 +62,8 @@ a.smallButton {padding:3px 4px 2px !important; font-size:9px important;}
 .adminLoginBox .inputs {font-size:16px; text-align:center; text-align-last: center; font-weight:normal; width:400px; max-width:100%; background:white;}
 .adminLoginBox input.inputs[name=login] { margin: 16px 0 8px; padding:8px 16px;}
 .adminLoginBox input.inputs[name=pwd] { margin: 8px 0; padding:8px 16px;}
-.adminLoginBox select.inputs[name=_clg_] { margin: 8px 0; width:400px; -webkit-appearance: none; -moz-appearance: none; height:32px; padding:0;}
-.adminLoginBox select.inputs[name=_clg_] option {font-size:16px; font-weight:normal; padding: 8px 16px; text-align:center; }
+.adminLoginBox select.inputs[name=_clg_] {margin: 8px 0; width:400px; -webkit-appearance: none; -moz-appearance: none; height:32px; padding:0 16px; text-align:center; text-align-last:center;}
+.adminLoginBox select.inputs[name=_clg_] option {font-size:16px; font-weight:normal; padding: 8px 16px;}
 .adminLoginBox .buttons {margin: 8px 0; text-align:center;}
 .adminLoginBox .buttons .indigoFlatStyleButton {font-size:14px; padding: 12px 32px;}
 
@@ -84,11 +84,6 @@ a.smallButton {padding:3px 4px 2px !important; font-size:9px important;}
 /* AdminItemListViewer for popup */
 @media screen and (max-width: 600px) {
   .AdminItemListViewer .selector {width:100%;}
-}
-
-
-@media screen and (-webkit-min-device-pixel-ratio:0)  {
-  .adminLoginBox select.inputs[name=_clg_] {text-indent:16px;}
 }
 
 /* handheld adaptations */
