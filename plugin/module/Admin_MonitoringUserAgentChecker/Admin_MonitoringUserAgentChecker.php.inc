@@ -1,55 +1,63 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Engine
- * Creation Date    : Dec 2014
- * Last Modif Date  : Mar 2018
- *
- * Admin_MonitoringUserAgentChecker
+/**
+ * @brief Admin_MonitoringUserAgentChecker Module
+ * <br /> Monitor and check user agent of visitors and bots.
+ * @details Plugin, Module Engine
+ * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Dec 2014
+ * @date Modification: Nov 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * Admin_MonitoringUserAgentChecker class.
  */
 final class Admin_MonitoringUserAgentChecker extends Module {
-    /* variables */
+    /**
+     * var Object $recordItem
+     * @brief Record object.
+     */
     public $recordItem;
-    public $recordList;
 
-    /*
-     * constructor
+    /**
+     * var array $recordList
+     * @brief Record list.
+     */
+    public $recordList = null;
+
+    /**
+     * Class constructor.
      * @param string $path_type
      * @return void
-     * @access public
      */
     public function __construct($path_type) {
         global $camyks;
         parent::__construct('Admin_MonitoringUserAgentChecker', $path_type);
-        /* set module type */
+
+        /* Override Plugin variables */
+        $this->plugin_package = 'Monitoring';
+        $this->version = '1.0';
+
+        /* Override Module variables */
         $this->type = 'admin';
         $this->admin_type = 'monitoring';
 
-        /* set plugin version */
-        $this->version = '1.0';
-
-        /* set plugin package */
-        $this->plugin_package = 'Monitoring';
-
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load plugin libraries */
+        /* Load plugin libraries */
         $this->load_library('Admin_MonitoringUserAgentCheckerRecord');
 
-        /* initialise plugin libraries */
+        /* Initialise plugin libraries */
         $this->recordItem = new Admin_MonitoringUserAgentCheckerRecord(0, $this);
 
-        /* initialise plugin variables */
-        $this->recordList = null;
-
-        /* save user agent */
+        /* Save user agent */
         if ($camyks->mode == CAMYKS_MODE_SITE and $camyks->get_sessionValue('UAChecker', 0) == 0) {
             $this->save_visit();
             $camyks->set_sessionValue('UAChecker', 1);
@@ -58,37 +66,33 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
     /* overwrite Module methods */
 
-    /*
-     * install module
+    /**
+     * Install module.
      * @return boolean success
-     * @access public
      */
-    public function install () {
+    public function install() {
         return ($this->recordItem->install() and parent::install());
     }
 
-    /*
-     * unintall module
+    /**
+     * Unintall module.
      * @return boolean success
-     * @access public
      */
-    public function uninstall () {
+    public function uninstall() {
         return parent::uninstall();
     }
 
-    /*
-     * check module installation
+    /**
+     * Check module installation.
      * @return boolean result
-     * @access public
      */
-    public function is_installed () {
+    public function is_installed() {
         return $this->recordItem->is_installed();
     }
 
-    /*
-     * get module rights
+    /**
+     * Return module permissions.
      * @return void
-     * @access public
      */
     public function get_rights() {
         global $camyks;
@@ -99,12 +103,11 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         );
     }
 
-    /*
-     * update description in control panel
+    /**
+     * Update description in control panel.
      * @return void
-     * @access public
      */
-    public function get_adminControlPanelAction () {
+    public function get_adminControlPanelAction() {
         global $camyks;
         $n = $this->count_records(array('status'=>0));
         if ($n == 1)
@@ -113,10 +116,9 @@ final class Admin_MonitoringUserAgentChecker extends Module {
             $camyks->trads['mod_admin_monitoringuseragentchecker_desc'] = $this->get_translation('descx', $n);
     }
 
-    /*
-     * return notified items for module
+    /**
+     * Return notified items for module.
      * @return Array
-     * @access public
      */
     public function get_adminInternalNotifications() {
         /* load reports count */
@@ -140,12 +142,11 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         return $result;
     }
 
-    /*
-     * init module object in admin mode
+    /**
+     * Initialise module object in admin mode.
      * @return void
-     * @access public
      */
-    public function init_admin () {
+    public function init_admin() {
         global $camyks;
 
         /* check user rights */
@@ -218,10 +219,9 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
     /* specific admin mode methods */
 
-    /*
-     * init module object in admin/main mode
+    /**
+     * Initialise module object in admin/main mode.
      * @return void
-     * @access private
      */
     private function init_admin_main() {
         global $camyks;
@@ -249,7 +249,10 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
         /* add help tab */
         if ($this->help != null)
-            $this->tabBuilder(array('name'  => 'help', 'title' => $camyks->get_translation('help')));
+            $this->tabBuilder(array(
+                'name'  => 'help',
+                'title' => $camyks->get_translation('help'),
+            ));
 
         /* initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Records'));
@@ -261,16 +264,15 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         ));
     }
 
-    /*
-     * init module object in admin/view record mode
+    /**
+     * Initialise module object in admin/view record mode.
      * @return void
-     * @access private
      */
     private function init_admin_view_record() {
         global $camyks;
 
         /* get record item */
-        $this->recordItem->id = isset($_REQUEST['record_id'])?(int)$_REQUEST['record_id']:0;
+        $this->recordItem->id = isset($_REQUEST['record_id']) ? (int)$_REQUEST['record_id'] : 0;
         if ($this->recordItem->id == 0 or !$this->recordItem->get())
             return $this->init_admin_main();
         $this->recordItem->get_fromItems();
@@ -289,7 +291,10 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
         /* add help tab */
         if ($this->help != null)
-            $this->tabBuilder->add_tab(array('name'=>'help', 'title'=>$camyks->get_translation('help')));
+            $this->tabBuilder->add_tab(array(
+                'name'=>'help',
+                'title'=>$camyks->get_translation('help'),
+            ));
 
         /* initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Properties'));
@@ -326,26 +331,21 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->set_selectedLayout('admin_view_user_agent.html.inc');
     }
 
-    /*
-     * init module object in admin/edit_record mode
+    /**
+     * Initialise module object in admin/edit_record mode.
      * @return void
-     * @access private
      */
     private function init_admin_edit_record() {
         global $camyks;
 
         /* get record item */
-        $this->recordItem->id = isset($_REQUEST['record_id'])?(int)$_REQUEST['record_id']:0;
+        $this->recordItem->id = isset($_REQUEST['record_id']) ? (int)$_REQUEST['record_id'] : 0;
         if (!$this->recordItem->get())
-           return $this->init_admin_main();
+            return $this->init_admin_main();
         $this->recordItem->get_fromItems();
 
         /* get form */
-        $this->editform = new HTMLForm(
-            'edit_record',
-            $this->get_adminlink(array('mode'=>'save_record')),
-            'POST'
-        );
+        $this->editform = new HTMLForm('edit_record', $this->get_adminlink(array('mode'=>'save_record')), 'POST');
         $this->editform->set_object($this->recordItem);
         $this->editform->add_hidden('record_id', $this->recordItem->id);
 
@@ -389,10 +389,9 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->set_selectedLayout('admin_edit_user_agent.html.inc');
     }
 
-    /*
-     * init module object in admin/save_record mode
+    /**
+     * Initialise module object in admin/save_record mode.
      * @return void
-     * @access private
      */
     private function init_admin_save_record() {
         global $camyks;
@@ -433,20 +432,19 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
         /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
-        
+
     }
 
-    /*
-     * init module object in admin/delete_record mode
+    /**
+     * Initialise module object in admin/delete_record mode.
      * @return void
-     * @access private
      */
     private function init_admin_delete_record() {
         global $camyks;
 
         /* check user rights */
         if ($this->check_right(2) === false)
-            return $this->init_admin_actionNotAllowed () ;
+            return $this->init_admin_actionNotAllowed() ;
 
         /* check record id */
         if (!isset($_REQUEST['record_id']))
@@ -467,10 +465,9 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /*
-     * init module object in admin/update_recordType mode
+    /**
+     * Initialise module object in admin/update_recordType mode.
      * @return void
-     * @access private
      */
     private function init_admin_update_recordType() {
         global $camyks;
@@ -498,10 +495,9 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
     }
 
-    /*
-     * init module object in admin/mark_recordAsVerified mode
+    /**
+     * Initialise module object in admin/mark_recordAsVerified mode.
      * @return void
-     * @access private
      */
     private function init_admin_mark_recordAsVerified() {
         global $camyks;
@@ -531,11 +527,10 @@ final class Admin_MonitoringUserAgentChecker extends Module {
 
     /* specific tool methods */
 
-    /*
-     * update record with given user agent
+    /**
+     * Update record with given user agent.
      * @param string $ua
      * @return boolean success
-     * @access private
      */
     private function save_visit($ua=null) {
         /* define params */
@@ -558,59 +553,51 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         return $this->recordItem->save();
     }
 
-    /*
-     * return records platform type list
-     * @param boolean $full
+    /**
+     * Return records platform type list.
      * @return array
-     * @access public
      */
     public function get_multiPlatformTypesList() {
         return $this->recordItem->get_platformTypesList(true);
     }
 
-    /*
-     * return record plateform type list
-     * @param boolean $full
+    /**
+     * Return record plateform type list/
      * @return array
-     * @access public
      */
     public function get_singlePlatformTypesList() {
         return $this->recordItem->get_platformTypesList(false);
     }
 
-    /*
-     * return record status list
+    /**
+     * Return record status list.
      * @return array
-     * @access public
      */
     public function get_recordStatusList() {
         return $this->recordItem->get_statusList();
     }
 
-    /*
-     * return record platform format list
+    /**
+     * Return record platform format list.
      * @return array
-     * @access public
      */
     public function get_recordPlatformFormatList() {
         return $this->recordItem->get_platformFormatList();
     }
 
-    /*
-     * return record count
+    /**
+     * Return record count.
      * @param array $params
      * @return array
-     * @access public
      */
     public function count_records($params=array()) {
         return $this->recordItem->count($params);
     }
 
-    /*
-     * return record list
+    /**
+     * Return record list.
      * @param array $params
      * @return array
-     * @access public
      */
     public function list_records($params=array()) {
         return $this->recordItem->get_list($params);

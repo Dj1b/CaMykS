@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
-* Developed by      : camyks.net
-* Author            : CaMykS Team <camyks.contact@gmail.com>
-* CaMykS Version    : 1.0
-* Object Version    : 1.0.1
-* Object Type       : Plugin / Module Dictionnary
-* Creation Date     : Dec 2014
-* Last Modif Date   : Jun 2018
-*
-* Admin_MonitoringUserAgentChecker french dictionnary
-*/
+/**
+ * @brief Admin_MonitoringUserAgentChecker Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @file plugin/module/Admin_MonitoringUserAgentChecker/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Dec 2014
+ * @date Modification: Oct 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_monitoringuseragentchecker_title'] = 'Agents Utilisateurs';
 $this->trads['mod_admin_monitoringuseragentchecker_desc'] = 'Gestion des agents utilisateurs';
 

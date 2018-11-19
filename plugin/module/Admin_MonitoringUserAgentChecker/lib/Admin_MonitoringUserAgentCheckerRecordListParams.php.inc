@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Plugin / Module Library
- * Creation Date    : Dec 2014
- * Last Modif Date  : Jul 2018
- *
- * Admin_MonitoringUserAgentChecker record list parameters
+/**
+ * @brief Admin_MonitoringUserAgentChecker Module record list parameters
+ * @details Plugin, Module Library
+ * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecordListParams.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Dec 2014
+ * @date Modification: Nov 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
@@ -41,11 +41,11 @@ $this->recordListParams['sort'] = array('allowed'=>false, 'default'=>'lvisit', '
 /* build column parameters */
 $this->recordListParams['listcolumns'] = array(
     'status'        => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict'),
-    'user_agent'    => array('title'=>$this->get_translation('user_agent'), 'columntype'=>'method', 'maxlength'=>80, 'method'=>'get_adminValue'),
-    'platform_type' => array('title'=>$this->get_translation('platform_type'), 'columntype'=>'list', 'values'=>$this->recordTypeList),
+    'user_agent'    => array('title'=>$this->get_translation('user_agent'), 'columntype'=>'method', 'maxlength'=>72, 'method'=>'get_adminValue'),
+    'platform_type' => array('title'=>$this->get_translation('platform_type'), 'columntype'=>'list', 'values'=>$this->recordTypeList, 'style'=>'width:85px;'),
     'comparaison'   => array('title'=>'' , 'columntype'=>'method', 'method'=>'is_user_agent_correct'),
     'nvisit'        => array('title'=>$this->get_translation('nvisits'), 'columntype'=>'text', 'class'=>'hiddenOnMobile'),
-    'lvisit'        => array('title'=>$this->get_translation('lvisits'), 'columntype'=>'date', 'mode'=>'numeric', 'class'=>'hiddenOnMobile'),
+    'lvisit'        => array('title'=>$this->get_translation('lvisits'), 'columntype'=>'date', 'style'=>'width:100px;', 'mode'=>'numeric', 'class'=>'hiddenOnMobile'),
     'view'          => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewRecordLink, 'url_title'=>$this->get_translation('viewrecord')),
 );
 
