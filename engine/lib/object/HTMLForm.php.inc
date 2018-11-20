@@ -4,7 +4,7 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.3
+ * @version 1.1.4
  * @date Creation: Jun 2005
  * @date Modification: Nov 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -133,8 +133,8 @@ class HTMLForm {
         'data'          => array(),
         'tabIndex'      => -1,
         'placeholder'   => '',
-        'maxlength'     => -1,
-        'minlength'     => -1,
+        'maxlength'     => 0,
+        'minlength'     => 0,
         'pattern'       => '',
         'readonly'      => '',
         'list'          => '',
@@ -1039,6 +1039,8 @@ class HTMLForm {
                 $params['maxlength'] = 32;
         }
 
+
+
         /* build input */
         $html = '<input type="text"';
         $html .= ' value="'.htmlentities($params['default'], ENT_COMPAT, 'UTF-8').'"';
@@ -1495,9 +1497,9 @@ class HTMLForm {
             $params['name'] .= '[]';
         if ($params['id'] != '')
             $html .= ' id="'.$params['id'].'"';
-        if ($params['maxlength'] > -1)
+        if ($params['maxlength'] > 0)
             $html .= ' maxlength="'.$params['maxlength'].'"';
-        if ($params['minlength'] > -1)
+        if ($params['minlength'] > 0)
             $html .= ' minlength="'.$params['minlength'].'"';
         if ($params['class'] != '')
             $html .= ' class="'.$params['class'].'"';
