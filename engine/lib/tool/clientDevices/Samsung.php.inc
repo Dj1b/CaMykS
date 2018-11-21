@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Apr 2018
  * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
@@ -52,6 +52,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T810'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T713'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T813'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'SM-T820'   => array('platform_model' => 'Galaxy Tab S3',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
 
         /* Samsung phones */
         'GT-C3590'  => array('platform_model' => 'C3590',                           'platform_year' => 2013,    'system_title' => 'Symbian'),
@@ -227,6 +228,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-S7392'  => array('platform_model' => 'Galaxy Trend',                    'platform_year' => 2014),
         'GT-S7560'  => array('platform_model' => 'Galaxy Trend',                    'platform_year' => 2013),
         'GT-S7580'  => array('platform_model' => 'Galaxy Trend+',                   'platform_year' => 2013),
+        'GT-S7390'  => array('platform_model' => 'Galaxy Trend lite',               'platform_year' => 2013),
+        'GT-S7390G' => array('platform_model' => 'Galaxy Trend lite',               'platform_year' => 2013),
         'SM-G318H'  => array('platform_model' => 'Galaxy Trend 2 lite',             'platform_year' => 2015),
         'GT-S5660'  => array('platform_model' => 'Galaxy Gio',                      'platform_year' => 2011),
         'GT-S5660M' => array('platform_model' => 'Galaxy Gio',                      'platform_year' => 2011),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Blackview.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2018
- * @date Modification: Aug 2018
+ * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,8 +20,10 @@
  */
 function get_BlackviewClientDevice($deviceCode='') {
     $deviceList = array(
-        '9000Pro-F' => array('platform_model' => 'BV9000Pro F', 'platform_year' => 2017),
-        '8000Pro'   => array('platform_model' => 'BV8000Pro',   'platform_year' => 2017),
+        '9000Pro-F' => array('platform_model' => '9000Pro F',   'platform_year' => 2017),
+        '8000Pro'   => array('platform_model' => '8000Pro',     'platform_year' => 2017),
+        '9500'      => array('platform_model' => '9500',        'platform_year' => 2018),
+        '9500Pro'   => array('platform_model' => '9500Pro',     'platform_year' => 2018),
     );
 
     /* Check for returning list */
