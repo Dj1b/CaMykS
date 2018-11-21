@@ -5,7 +5,7 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2014
  * @date Modification: Nov 2018
  * @copyright 2014 - 2018 CaMykS Team
@@ -97,10 +97,55 @@ final class Admin_MonitoringUserAgentChecker extends Module {
     public function get_rights() {
         global $camyks;
         $this->rights[0] = array(
-            'name'      =>'read',
+            'name'      => 'read',
             'title'     => $camyks->get_translation('read'),
-            'default'   =>false,
+            'default'   => false,
         );
+    }
+
+    /**
+     * Register a menu in admin interface.
+     * @return array
+     */
+    function get_adminEngineSpecificMenus() {
+
+        /* Load mode from header */
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
+
+        /* Return menus */
+        if ($this->mode == 'main') {
+            return array(
+                array(
+                    'name'  => 'useragentchecker',
+                    'title' => $this->get_translation('title'),
+                ),
+            );
+        }
+
+        /* Return default result */
+        return array();
+    }
+
+    /**
+     * Register menu items in admin interface.
+     * @return array
+     */
+    function get_adminEngineSpecificMenuItems() {
+        global $camyks;
+
+        /* Return menu items */
+        if ($this->mode == 'main') {
+            return array(
+                array(
+                    'name'  => 'markselected',
+                    'title' => $this->get_translation('markitemsasverified'),
+                    'icon'  => $this->theme->get_pictURL('valid', 12, 'std'),
+                    'menu'  => 'useragentchecker',
+                    'url'   => 'javascript:UARecordList.mark_recordsAsVerified();',
+                ),
+            );
+        }
+        return array();
     }
 
     /**
@@ -162,26 +207,6 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* get informations */
         $this->mode = isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
 
-        /* build form */
-        $this->addform = new HTMLForm(
-            'edit_record',
-            $this->get_adminlink(array('mode'=>'save_record')),
-            'POST'
-        );
-        $this->addform->add_hidden('record_id', 0);
-
-        /* build popup buttons */
-        $this->popupbuttons = array(
-            array(
-                'title' => $camyks->get_translation('close'),
-                'link'  => 'javascript:adminengine_modalPopupClose(\'admin_genericuseragentmanager_addpopup\')',
-            ),
-            array(
-                'title' => $camyks->get_translation('add'),
-                'link'  => $this->addform->get_HTMLSubmitLink(),
-            ),
-        );
-
         switch ($this->mode) {
             case 'view_record':
                 /* mode == view_record */
@@ -206,6 +231,10 @@ final class Admin_MonitoringUserAgentChecker extends Module {
             case 'mark_recordAsVerified':
                 /* mode == mark_recordAsVerified */
                 $this->init_admin_mark_recordAsVerified();
+                break;
+            case 'mark_recordsAsVerified':
+                /* mode == mark_recordsAsVerified */
+                $this->init_admin_mark_recordsAsVerified();
                 break;
             case 'main':
             default:
@@ -257,11 +286,38 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Records'));
 
+        /* build multi selection form */
+        $this->selectionForm = new HTMLForm('recordSelection', $this->get_adminLink(), 'POST');
+        $this->selectionForm->add_hidden('mode', 'main');
+        $this->selectionForm->add_hidden('ids', '');
+
+        /* add scripts */
+        $this->add_JSFIle('UARecordList.js');
+        $this->add_JSLoadScript('UARecordList.set_param("form", "'.$this->selectionForm->name.'");');
+        $this->add_JSLoadScript('UARecordList.set_locale("confirm_message", "'.string_html2Text($this->get_translation('validaterecordsmessage')).'");');
+        $this->add_JSLoadScript('UARecordList.initialise();');
+
         /* get buttons */
         $this->buttons = array(array(
             'link'  => $camyks->get_adminLink(),
             'title' => $camyks->get_translation('back'),
         ));
+
+        /* build record insertion form */
+        $this->addform = new HTMLForm('edit_record', $this->get_adminlink(array('mode'=>'save_record')), 'POST');
+        $this->addform->add_hidden('record_id', 0);
+
+        /* build popup buttons */
+        $this->popupbuttons = array(
+            array(
+                'title' => $camyks->get_translation('close'),
+                'link'  => 'javascript:adminengine_modalPopupClose(\'admin_genericuseragentmanager_addpopup\')',
+            ),
+            array(
+                'title' => $camyks->get_translation('add'),
+                'link'  => $this->addform->get_HTMLSubmitLink(),
+            ),
+        );
     }
 
     /**
@@ -442,10 +498,6 @@ final class Admin_MonitoringUserAgentChecker extends Module {
     private function init_admin_delete_record() {
         global $camyks;
 
-        /* check user rights */
-        if ($this->check_right(2) === false)
-            return $this->init_admin_actionNotAllowed() ;
-
         /* check record id */
         if (!isset($_REQUEST['record_id']))
             return $this->init_admin_main();
@@ -471,10 +523,6 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      */
     private function init_admin_update_recordType() {
         global $camyks;
-
-        /* check user rights */
-        if ($this->check_right(2) === false)
-            return $this->init_admin_actionNotAllowed();
 
         /* check record id */
         if (!isset($_REQUEST['record_id']))
@@ -502,10 +550,6 @@ final class Admin_MonitoringUserAgentChecker extends Module {
     private function init_admin_mark_recordAsVerified() {
         global $camyks;
 
-        /* check user rights */
-        if ($this->check_right(2) === false)
-            return $this->init_admin_actionNotAllowed();
-
         /* check record id */
         if (!isset($_REQUEST['record_id']))
             return $this->init_admin_main();
@@ -523,6 +567,28 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
+    }
+
+    /**
+     * Initialise module object in admin/mark_recordsAsVerified mode.
+     * @return void
+     */
+    private function init_admin_mark_recordsAsVerified() {
+        global $camyks;
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* load and update record */
+        $list = $this->get_selectedItems();
+        if ($this->recordItem->mark_recordsAsVerified($list))
+            $this->text = $this->get_translation('records_updated');
+        else
+            $this->text = $this->get_translation('records_notupdated');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink());
     }
 
     /* specific tool methods */
@@ -551,6 +617,25 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         else
             $this->recordItem->_libItems['platform_type']->value = 'undefined';
         return $this->recordItem->save();
+    }
+
+    /**
+     * Return selected item list.
+     * @return array
+     */
+    private function get_selecteditems() {
+        $list = array();
+
+        $ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : '';
+
+        if ($ids == '')
+            return $list;
+
+        $list = explode(',', $ids);
+        foreach ($list as $id)
+            $id = (int)$id;
+
+        return $list;
     }
 
     /**

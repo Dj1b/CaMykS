@@ -4,9 +4,9 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_MonitoringUserAgentChecker/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2014
- * @date Modification: Oct 2018
+ * @date Modification: Nov 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,6 +42,10 @@ $this->trads['mod_admin_monitoringuseragentchecker_recordstatus_verified'] = 'V&
 $this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_notverified'] = 'Non v&eacute;rifi&eacute;s';
 $this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_verified'] = 'V&eacute;rifi&eacute;s';
 
+/* menus */
+$this->trads['mod_admin_monitoringuseragentchecker_markitemsasverified'] = 'Marquer les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s comme v&eacute;rifi&eacute;s';
+$this->trads['mod_admin_monitoringuseragentchecker_validaterecordsmessage'] = 'Etes-vous s&ucirc;r de vouloir marquer ces agents utilisateurs comme v&eacute;rifi&eacute;s ?';
+
 /* filters */
 $this->trads['mod_admin_monitoringuseragentchecker_tabrecords'] = 'Agents utilisateurs';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_platform_type'] = 'Type : ';
@@ -59,6 +63,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_nvisits'] = 'Visites';
 $this->trads['mod_admin_monitoringuseragentchecker_lvisits'] = 'Dern. Visite';
 
 /* view record */
+$this->trads['mod_admin_monitoringuseragentchecker_tabproperties'] = 'Propri&eacute;t&eacute;s';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_user_agent'] = 'Agent utilisateur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_platform_type'] = 'Type : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_nvisits'] = 'Nb. Visites : ';
@@ -89,7 +94,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_formitem_info'] = 'Informatio
 $this->trads['mod_admin_monitoringuseragentchecker_viewrecord'] = 'Voir cet agent utilisateur';
 $this->trads['mod_admin_monitoringuseragentchecker_editrecord'] = 'Editer cet agent utilisateur';
 $this->trads['mod_admin_monitoringuseragentchecker_deleterecord'] = 'Supprimer cet agent utilisateur';
-$this->trads['mod_admin_monitoringuseragentchecker_deleterecordmessage'] = 'Etes-vous s&ucirc;r de vouloir supprimer cet agent utilisateur? Cette action est irr&eacute;versible.';
+$this->trads['mod_admin_monitoringuseragentchecker_deleterecordmessage'] = 'Etes-vous s&ucirc;r de vouloir supprimer cet agent utilisateur ? Cette action est irr&eacute;versible.';
 
 /* messsages */
 $this->trads['mod_admin_monitoringuseragentchecker_recordnew'] = 'Nouvel agent utilisateur';
@@ -97,9 +102,10 @@ $this->trads['mod_admin_monitoringuseragentchecker_recordid'] = 'Agent utilisate
 $this->trads['mod_admin_monitoringuseragentchecker_record_saved'] = 'Agent utilisateur enregistr&eacute;.';
 $this->trads['mod_admin_monitoringuseragentchecker_record_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de cet agent utilisateur.';
 $this->trads['mod_admin_monitoringuseragentchecker_record_updated'] = 'Agent utilisateur mis &agrave; jour.';
-$this->trads['mod_admin_monitoringuseragentchecker_record_notsaved'] = 'Une erreur est survenue lors de la mise &agrave; jour de cet agent utilisateur.';
+$this->trads['mod_admin_monitoringuseragentchecker_record_notupdated'] = 'Une erreur est survenue lors de la mise &agrave; jour de cet agent utilisateur.';
 $this->trads['mod_admin_monitoringuseragentchecker_record_duplicated'] = 'Cet agent utilisateur existe d&eacute;j&agrave;.';
 $this->trads['mod_admin_monitoringuseragentchecker_record_deleted'] = 'Agent utilisateur supprim&eacute;.';
 $this->trads['mod_admin_monitoringuseragentchecker_record_notdeleted'] = 'Une erreur est survenue lors de la suppression de cet agent utilisateur.';
-$this->trads['mod_admin_monitoringuseragentchecker_tabproperties'] = 'Propri&eacute;t&eacute;s';
+$this->trads['mod_admin_monitoringuseragentchecker_records_updated'] = 'Agents utilisateurs mis &agrave; jour.';
+$this->trads['mod_admin_monitoringuseragentchecker_records_notupdated'] = 'Une erreur est survenue lors de la mise &agrave; jour de ces agents utilisateurs.';
 ?>

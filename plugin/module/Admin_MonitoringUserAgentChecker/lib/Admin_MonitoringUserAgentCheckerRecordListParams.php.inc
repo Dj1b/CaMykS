@@ -4,7 +4,7 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecordListParams.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2014
  * @date Modification: Nov 2018
  * @copyright 2014 - 2018 CaMykS Team
@@ -40,6 +40,7 @@ $this->recordListParams['sort'] = array('allowed'=>false, 'default'=>'lvisit', '
 
 /* build column parameters */
 $this->recordListParams['listcolumns'] = array(
+    'selection'     => array('title'=>'', 'columntype'=>'checkbox'),
     'status'        => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict'),
     'user_agent'    => array('title'=>$this->get_translation('user_agent'), 'columntype'=>'method', 'maxlength'=>72, 'method'=>'get_adminValue'),
     'platform_type' => array('title'=>$this->get_translation('platform_type'), 'columntype'=>'list', 'values'=>$this->recordTypeList, 'style'=>'width:85px;'),

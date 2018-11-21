@@ -4,7 +4,7 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_MonitoringUserAgentChecker/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2014
  * @date Modification: Nov 2018
  * @copyright 2014 - 2018 CaMykS Team
@@ -14,6 +14,10 @@
  */
 global $camyks;
 ?>
+<?= $this->selectionForm->display_header(); ?>
+<?= $this->selectionForm->display_hiddens(); ?>
+<?= $this->selectionForm->display_footer(); ?>
+
 <?= $this->theme->get_boxHeader(array('class'=>'adminEditorModule')); ?>
 <?= $this->theme->get_boxTitleBar($this->title) ?>
 <?= $this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams); ?>

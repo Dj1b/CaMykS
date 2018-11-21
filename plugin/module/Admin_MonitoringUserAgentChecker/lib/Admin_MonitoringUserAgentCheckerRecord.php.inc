@@ -4,7 +4,7 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2014
  * @date Modification: Nov 2018
  * @copyright 2014 - 2018 CaMykS Team
@@ -250,6 +250,28 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
         /* save object */
         return $this->update_databaseSpecificItems(array('status'));
+    }
+
+    /**
+     * Mark records as verified.
+     * @param array $ids
+     * @return boolean success
+     */
+    public function mark_recordsAsVerified($ids) {
+        /* Check ids count */
+        if (count($ids) == 0)
+            return true;
+
+        /* build SQL query */
+        $sql = 'update '.$this->_libSQLTable;
+        $sql .= ' set status = 1';
+        if (count($ids) == 1)
+            $sql .= ' where id = '. $ids[0];
+        else
+            $sql .= ' where id in ('.implode(',', $ids).')';
+
+        /* execute sql query */
+        return ($this->execute_DBQuery($sql, __LINE__));
     }
 
     /**
