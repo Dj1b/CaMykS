@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.45
+ * @version 1.0.46
  * @date Creation: Jun 2007
  * @date Modification: Nov 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -17,7 +17,19 @@
  * @return string
  */
 function client_getIp() {
-    return (isset($_SERVER['HTTP_PC_REMOTE_ADDR'])?$_SERVER['HTTP_PC_REMOTE_ADDR']:$_SERVER['REMOTE_ADDR']);
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        return $_SERVER['HTTP_CLIENT_IP'];
+    elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    elseif(!empty($_SERVER['HTTP_X_FORWARDED']))
+        return $_SERVER['HTTP_X_FORWARDED'];
+    elseif(!empty($_SERVER['HTTP_FORWARDED_FOR']))
+        return $_SERVER['HTTP_FORWARDED_FOR'];
+    elseif(!empty($_SERVER['HTTP_FORWARDED']))
+        return $_SERVER['HTTP_FORWARDED'];
+    elseif(!empty($_SERVER['REMOTE_ADDR']))
+        return $_SERVER['REMOTE_ADDR'];
+    return '';
 }
 
 /**
