@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.47
+ * @version 1.0.48
  * @date Creation: Jun 2007
  * @date Modification: Nov 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -294,7 +294,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Google */
-    elseif (preg_match('/ (Nexus|Pixel)( [^ \/;]+)? Build/', $ua, $matches)) {
+    elseif (preg_match('/ (Nexus|Pixel)( [^\/;]+)?( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Google.php.inc');
         $model = $matches[1].(isset($matches[2])?$matches[2]:'');
         $infos = array_merge($infos, get_GoogleClientDevice($model));
@@ -337,10 +337,10 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Motorola */
-    elseif (preg_match('/mot(?:-|orola |o|\-moto)([^ \/;]+)/i', $ua, $matches)) {
+    elseif (preg_match('/mot(?:-|orola|o|\-moto)([^\/;]+)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Motorola.php.inc');
-        $infos = array_merge($infos, get_MotorolaClientDevice($matches[1]));
-    } elseif (preg_match('/ (Droid|MB200|RAZR HD|Moto G)/', $ua, $matches)) {
+        $infos = array_merge($infos, get_MotorolaClientDevice(trim($matches[1])));
+    } elseif (preg_match('/ (Droid|MB200|RAZR HD)/', $ua, $matches)) {
         include_once('clientDevices/Motorola.php.inc');
         $infos = array_merge($infos, get_MotorolaClientDevice($matches[1]));
     } elseif (preg_match('/XT([0-9]{3,})/', $ua, $matches)) {
@@ -488,7 +488,7 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/ (Z?[A-Z][0-9]{3}[C|K|T]{1}L) Build/', $ua, $matches)) {
         include_once ('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
-    } elseif (preg_match('/ASUS_([A-Z0-9]+) Build/', $ua, $matches)) {
+    } elseif (preg_match('/ASUS_([A-Z0-9]+)( Build|\))/', $ua, $matches)) {
         include_once ('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
     }
@@ -1108,7 +1108,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Crosscall mobiles */
-    elseif (preg_match('/(Action|Trekker|Odyssey)(\-|_| )([0-9\ A-Z]+) Build/i', $ua, $matches)) {
+    elseif (preg_match('/(Action|Trekker|Odyssey)(\-|_| )([0-9\ A-Z]+)( Build|\))/i', $ua, $matches)) {
         include_once ('clientDevices/Crosscall.php.inc');
         $infos = array_merge($infos, get_CrosscallClientDevice(strtolower($matches[1].'-'.$matches[3])));
     }
