@@ -5,7 +5,7 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_Site/Admin_Site.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
  * @date Modification: Nov 2018
  * @copyright 2005 - 2018 CaMykS Team
@@ -25,6 +25,7 @@ final class Admin_Site extends Module {
     private $conf_elements = array(
         'cms', /* CaMykS */
         'cms_version', /* CaMykS version */
+        'cms_hideSignature', /* Hide CaMykS Signature */
         'engine_path', /* CaMykS path */
         'site_name', /* site name ( folder name ) */
         'site_title', /* site title */
@@ -371,6 +372,8 @@ final class Admin_Site extends Module {
         global $camyks;
 
         switch ($confName) {
+            case 'cms_hideSignature':
+                return 0;
             case 'site_title':
                 return '';
             case 'url':
