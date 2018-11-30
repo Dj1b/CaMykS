@@ -2079,23 +2079,22 @@ final class Camyks {
         if ($this->benchMode!==false) $this->benchMode->start('CaMykS page loading');
 
         switch ($this->mode) {
-        case CAMYKS_MODE_SITE:
-            $this->get_sitePageContent();
-            break;
-        case CAMYKS_MODE_ADMIN:
-            $this->get_adminPageContent();
-            break;
-        case CAMYKS_MODE_REQUEST:
-            $this->get_requestPageContent();
-            break;
-        case CAMYKS_MODE_MANAGER:
-            $this->get_managerPageContent();
-            break;
-        case CAMYKS_MODE_INSTALL:
-            $this->get_installPageContent();
-            break;
+            case CAMYKS_MODE_SITE:
+                $this->get_sitePageContent();
+                break;
+            case CAMYKS_MODE_ADMIN:
+                $this->get_adminPageContent();
+                break;
+            case CAMYKS_MODE_REQUEST:
+                $this->get_requestPageContent();
+                break;
+            case CAMYKS_MODE_MANAGER:
+                $this->get_managerPageContent();
+                break;
+            case CAMYKS_MODE_INSTALL:
+                $this->get_installPageContent();
+                break;
         }
-
     }
 
     /**
@@ -2122,12 +2121,7 @@ final class Camyks {
         $this->run_eventHandlers('onPageLoad');
 
         /* get internal locales */
-        $this->HTMLPage->set_pageInformations(
-            $this->contentPage->title,
-            $this->contentPage->description,
-            $this->contentPage->keywords,
-            $this->current_language
-        );
+        $this->HTMLPage->set_pageInformations($this->contentPage->title, $this->contentPage->description, $this->contentPage->keywords, $this->current_language);
         $this->HTMLPage->set_robotInformations();
 
         /* set mobile configuration values */
