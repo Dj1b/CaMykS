@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date	: Feb 2013
- * Last Modif Date  : Jan 2018
- *
- * Admin_Site english dictionnary
- *
+/**
+ * @brief Admin_Site Module english dictionnary.
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_Site/locale/translation_en.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Feb 2013
+ * @date Modification: Nov 2018
+ * @copyright 2013 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_site_title'] = 'Website configuration';
 $this->trads['mod_admin_site_desc'] = 'Check website configuration';
@@ -36,6 +35,11 @@ $this->trads['mod_admin_site_cache_enabled'] = 'Enabled';
 /* camyks installation values */
 $this->trads['mod_admin_site_camyksinstallation_dedicated'] = 'Dedicated';
 $this->trads['mod_admin_site_camyksinstallation_shared'] = 'Shared';
+
+/* camyks friendly urls mode values */
+$this->trads['mod_admin_site_friendlyurls_legacy'] = 'Legacy mode';
+$this->trads['mod_admin_site_friendlyurls_modern'] = 'Modern mode';
+$this->trads['mod_admin_site_friendlyurls_modern2'] = 'Modern mode (with languages as folder)';
 
 /* generic conf texts */
 $this->trads['mod_admin_site_formtitle_general'] = 'General';
@@ -111,7 +115,7 @@ $this->trads['mod_admin_site_formitem_declination'] = 'Mobile declination: ';
 /* server conf texts */
 $this->trads['mod_admin_site_tabserver'] = 'Server';
 $this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Operating system';
-$this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
+$this->trads['mod_admin_site_formtitle_httpserver'] = 'HTTP Server';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
 
 /* plugins conf texts */

@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.21
  * @date Creation: May 2018
- * @date Modification: Oct 2018
+ * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3994,6 +3994,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://spuhex.com/',
     );
 
+    /* TelegramBot */
+    $knownBots['telegrambot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TelegramBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Telegram',
+        'engine_url'        => 'https://telegram.org',
+    );
+
     /* unknown bots */
 
     /* SEOBulls - unknown bot */
@@ -4206,7 +4216,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* The Knowledge AI  - unknown bot */
+    /* The Knowledge AI - unknown bot */
     $knownBots['the knowledge ai'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4216,7 +4226,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* CRMNLCrawlAgent  - unknown bot */
+    /* CRMNLCrawlAgent - unknown bot */
     $knownBots['crmnlcrawlagent'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4226,7 +4236,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* SOcrawl  - unknown bot */
+    /* SOcrawl - unknown bot */
     $knownBots['socrawl'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4236,7 +4246,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* Kerrigan  - unknown bot */
+    /* Kerrigan - unknown bot */
     $knownBots['kerrigan'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4246,7 +4256,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* dcrawl  - unknown bot */
+    /* dcrawl - unknown bot */
     $knownBots['dcrawl'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4256,7 +4266,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* BUFF library  - unknown bot */
+    /* BUFF library - unknown bot */
     $knownBots['buff library'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4266,7 +4276,7 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* WordupinfoSearch  - unknown bot */
+    /* WordupinfoSearch - unknown bot */
     $knownBots['wordupinfosearch'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4276,12 +4286,42 @@ function _client_getKnownBots() {
         'engine_url'        => '',
     );
 
-    /* Who.is Bot  - unknown bot */
+    /* Who.is Bot - unknown bot */
     $knownBots['who.is bot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Who.is Bot (Unknown bot)',
         'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* HoneyBee Bot - unknown bot */
+    $knownBots['honeybee'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'HoneyBee (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Blackboard Safeassign Bot - unknown bot */
+    $knownBots['blackboard safeassign'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Blackboard Safeassign (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* SIMON SMITH Bot - unknown bot */
+    $knownBots['simon smith'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Simon Smith (Unknown bot)',
+        'bot_url'           => 'forensic@evestigator.com.au',
         'engine_title'      => '',
         'engine_url'        => '',
     );

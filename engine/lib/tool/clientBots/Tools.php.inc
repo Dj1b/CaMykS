@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.11
  * @date Creation: May 2018
- * @date Modification: Oct 2018
+ * @date Modification: Nov 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1099,6 +1099,26 @@ function _client_getKnownTools() {
         'tool_url'          => 'http://www.siteliner.com/bot',
         'engine_title'      => 'Siteliner',
         'engine_url'        => 'http://www.siteliner.com',
+    );
+
+    /* Discordbot */
+    $knownTools['discordbot'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Discordbot',
+        'tool_url'          => '',
+        'engine_title'      => 'Discord',
+        'engine_url'        => 'https://discordapp.com',
+    );
+
+    /* Google + snippet */
+    $knownTools['+https://developers.google.com/+/web/snippet/'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Google + preview/snippet',
+        'tool_url'          => '',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'https://www.google.com',
     );
 
     /* return list */

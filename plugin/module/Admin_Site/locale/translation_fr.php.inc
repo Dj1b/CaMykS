@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date	: Jun 2005
- * Last Modif Date  : Jan 2018
- *
- * Admin_Site language dictionnary : French 
-*/
+/**
+ * @brief Admin_Site Module french dictionnary.
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_Site/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2005
+ * @date Modification: Nov 2018
+ * @copyright 2005 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_site_title'] = 'Configuration du site';
 $this->trads['mod_admin_site_desc'] = 'Gestion de tous les param&egrave;tres du site';
 
@@ -35,6 +35,11 @@ $this->trads['mod_admin_site_cache_enabled'] = 'Activ&eacute;';
 /* camyks installation values */
 $this->trads['mod_admin_site_camyksinstallation_dedicated'] = 'D&eacute;di&eacute;e';
 $this->trads['mod_admin_site_camyksinstallation_shared'] = 'Partag&eacute;e';
+
+/* camyks friendly urls mode values */
+$this->trads['mod_admin_site_friendlyurls_legacy'] = 'Mode Legacy';
+$this->trads['mod_admin_site_friendlyurls_modern'] = 'Mode Moderne';
+$this->trads['mod_admin_site_friendlyurls_modern2'] = 'Mode Moderne (avec langue en tant que dossier)';
 
 /* generic conf texts */
 $this->trads['mod_admin_site_formtitle_general'] = 'G&eacute;n&eacute;ral';
@@ -104,13 +109,13 @@ $this->trads['mod_admin_site_stats_nonef'] = 'Aucune';
 $this->trads['mod_admin_site_stats_enabled'] = 'Activ&eacute;es';
 $this->trads['mod_admin_site_stats_disabled'] = 'D&eacute;sactiv&eacute;es';
 $this->trads['mod_admin_site_formtitle_handheld'] = 'Mobile';
-$this->trads['mod_admin_site_formitem_responsive'] = 'Site adaptatif : '; 	
+$this->trads['mod_admin_site_formitem_responsive'] = 'Site adaptatif : ';
 $this->trads['mod_admin_site_formitem_declination'] = 'D&eacute;clinaison mobile : ';
 
 /* server conf texts */
 $this->trads['mod_admin_site_tabserver'] = 'Serveur';
 $this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Syst&egrave;me d\'exploitation';
-$this->trads['mod_admin_site_formtitle_apache'] = 'Apache';
+$this->trads['mod_admin_site_formtitle_httpserver'] = 'Serveur HTTP';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
 
 /* plugins conf texts */

@@ -8,9 +8,9 @@
  * @details Plugin / Module Engine
  * @file plugin/module/Admin_SecurityTools/Admin_SecurityTools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2007
- * @date Modification: Jun 2018
+ * @date Modification: Nov 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -33,17 +33,17 @@ final class Admin_SecurityTools extends Module {
     public function __construct($path_type) {
         global $camyks;
         parent::__construct('Admin_SecurityTools', $path_type);
-        
+
         /* set module type */
         $this->type = 'admin';
         $this->admin_type = 'configuration';
-        
+
         /* set plugin version */
         $this->version = '1.0.1';
-        
+
         /* set plugin package */
         $this->plugin_package = 'Default';
-        
+
         /* set plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
@@ -71,7 +71,7 @@ final class Admin_SecurityTools extends Module {
         /* list tools */
         $this->tools = array('ipfilter', 'backup');
     }
-    
+
     /* overwrite Module Methods */
 
     /**
@@ -81,7 +81,7 @@ final class Admin_SecurityTools extends Module {
     public function install() {
         return $this->ipfilterrule->install() and $this->backupfile->install() and parent::install();
     }
-    
+
     /**
      * Uninstall module object
      * @return boolean success
@@ -125,7 +125,7 @@ final class Admin_SecurityTools extends Module {
             'default'   => false,
        );
     }
-    
+
     /**
      * Execute handler on CaMykS initialise.
      * @return void
@@ -140,15 +140,17 @@ final class Admin_SecurityTools extends Module {
      */
     public function init_admin() {
         global $camyks;
-        
+
         /* check read rights */
         if ($this->check_right(0) === false) {
             return $this->init_admin_accessDenied();
         }
-        
+
         /* check dependancies */
         if (!isset($camyks->inputs['TabBuilder']))
             return $this->init_admin_missingPlugin('Input', 'TabBuilder');
+        if (!isset($camyks->inputs['AdminItemListViewer']))
+            return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
 
         /* load mode */
         $this->mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'main';
@@ -195,49 +197,83 @@ final class Admin_SecurityTools extends Module {
                 /* mode == main */
                 $this->init_admin_main();
                 break;
-            }
-            /* generic initialisation */
-            parent::init_admin();
+        }
+        /* generic initialisation */
+        parent::init_admin();
+    }
+
+    /**
+     * Execute module object in request mode.
+     * @return void
+     */
+    public function execute_request() {
+        global $camyks;
+
+        /* initialise camyks */
+        $camyks->get_adminInit();
+
+        /* prepare answer */
+        $this->answer = new CRequestAnswer();
+
+        /* get action to execute */
+        $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
+
+        /* execute action */
+        switch ($mode) {
+            case 'checkIPAddress':
+                $this->execute_request_checkIPAddress();
+                break;
         }
 
-        /* specific admin mode methods */
+        /* no valid action found, return failure */
+        $this->answer->send_asJSON(array('status'=>'failure'));
+    }
 
-        /*
-         * Initialise module object in admin/main mode
-         * @return void
-         */
-        private function init_admin_main() {
-            global $camyks;
+    /* Specific admin mode methods */
 
-            /* add needed JS */
-            $this->add_JSFile('admin_securitytools.js');
-        
-            /* get tabs */
-            $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+    /*
+     * Initialise module object in admin/main mode
+     * @return void
+     */
+    private function init_admin_main() {
+        global $camyks;
+
+        /* add needed JS */
+        $this->add_JSEngineFile('object/cajaxrequest.js');
+        $this->add_JSFile('SecurityTools.js');
+        $this->add_JSLoadScript('SecurityTools.set_param("baseURL", "'.$camyks->get_fileURL('request.php?module='.$this->name, 'absolute').'");');
+        $this->add_JSLoadScript('SecurityTools.set_param("pictures", new Array());');
+        $this->add_JSLoadScript('SecurityTools.initialise();');
+
+        /* get tabs */
+        $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+        $this->tabBuilder->add_tab(array(
+            'name'  => 'Configuration',
+            'title' => $this->get_translation('tabmain'),
+        ));
+        if ($this->help != null)
             $this->tabBuilder->add_tab(array(
-                'name'  => 'Configuration',
-                'title' => $this->get_translation('tabmain'),
-            ));
-            if ($this->help != null)
-                $this->tabBuilder->add_tab(array(
-                    'name'  => 'help',
-                    'title' => $camyks->get_translation('help'),
+                'name'  => 'help',
+                'title' => $camyks->get_translation('help'),
             ));
 
-            /* check for available tools */
-            if ($this->config->vars['ipfilter']) {
-                /* add tab */
-                $this->tabBuilder->add_tab(array(
-                    'name'  => 'IPFilter',
-                    'title' => $this->get_translation('tool_ipfilter')
-                ));
-                                
-                /* add needed JS for ipfilter tool */
-                $this->add_JSScript('deletefiprmessage="'.string_HTML2Text($this->get_translation('deletefilteriprule')).'";');
-                $this->add_JSScript('deletefiprurl="'.$this->get_adminJSLink(array('mode'=>'delete_ipfilter', 'ruleid'=>'')).'";');
-            
-            /* get filter ip rules */
-            $this->get_IPFilterRules();
+        /* check for available tools */
+        if ($this->config->vars['ipfilter']) {
+            /* add tab */
+            $this->tabBuilder->add_tab(array(
+                'name'  => 'IPFilter',
+                'title' => $this->get_translation('tool_ipfilter')
+            ));
+
+            /* build newsletter tab */
+            $this->load_library('Admin_SecurityIPFilterRuleListParams');
+            $this->ipFilterRuleList = $camyks->get_input('AdminItemListViewer');
+            $this->ipFilterRuleList->set_params($this->ipFilterRuleListParams);
+            $this->ipFilterRuleList->initialise();
+
+            /* Add scripts */
+            $this->add_JSLoadScript('SecurityTools.set_param("pictures", "ip_allow", "'.$this->get_fileURL('img/enabled.gif').'");');
+            $this->add_JSLoadScript('SecurityTools.set_param("pictures", "ip_deny", "'.$this->get_fileURL('img/disabled.gif').'");');
         }
 
         if ($this->config->vars['backup'] and $this->check_right(3)) {
@@ -246,15 +282,15 @@ final class Admin_SecurityTools extends Module {
                 'name'    => 'Backup',
                 'title' => $this->get_translation('tool_backup')
            ));
-            
+
             /* add needed JS for ipfilter tool */
             $this->add_JSScript('deletebackupmessage="'.string_HTML2Text($this->get_translation('backup_deletebackup')).'";');
             $this->add_JSScript('deletebackupurl="'.$this->get_adminJSLink(array('mode'=>'delete_backupfile', 'backup_id'=>'')).'";');
-            
+
             /* get backup files */
             $this->get_backUpFiles();
         }
-        
+
         /* Initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Configuration'));
 
@@ -280,16 +316,16 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_editIPFilter() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(2) === false)
             return $this->init_admin_actionNotAllowed();
-        
+
         /* load object */
         $this->ipfilterrule->id = isset($_REQUEST['ruleid']) ? (int)$_REQUEST['ruleid'] : 0;
         $this->ipfilterrule->get();
         $this->ipfilterrule->get_fromItems();
-        
+
         /* get form */
         $this->init_admin_editIPFilterForm();
     }
@@ -300,14 +336,12 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_editIPFilterForm() {
         global $camyks;
-        
+
         /* build form */
-        $this->form = new HTMLForm(
-            'edit_ipfilter',
-            $this->get_adminLink(array('mode'=>'save_ipfilter')),
-            'POST');
+        $this->form = new HTMLForm('edit_ipfilter', $this->get_adminLink(array('mode'=>'save_ipfilter')), 'POST');
+        $this->form->set_object($this->ipfilterrule);
         $this->form->add_hidden('ruleid', $this->ipfilterrule->id);
-        
+
         /* build interface title */
         $this->adminTitle = $this->title.$camyks->get_translation('formitem_separator');
         if ($this->ipfilterrule->id == 0)
@@ -326,7 +360,7 @@ final class Admin_SecurityTools extends Module {
                 'title' => $camyks->get_translation('valid'),
             )
        );
-    
+
         /* update layout */
         $this->set_selectedLayout('admin_editipfilter.html.inc');
     }
@@ -337,7 +371,7 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_saveIPFilter() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(2) === false)
             return $this->init_admin_actionNotAllowed();
@@ -364,7 +398,7 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_deleteIPFilter() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(2) === false)
             return $this->init_admin_actionNotAllowed();
@@ -389,7 +423,7 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_updateConfig() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(1) === false)
             return $this->init_admin_actionNotAllowed();
@@ -409,7 +443,7 @@ final class Admin_SecurityTools extends Module {
         } else {
             $this->text = $this->get_translation('config_notsaved');
         }
-        
+
         /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink());
@@ -421,20 +455,20 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_editBackUpConfig() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(3) === false)
             return $this->init_admin_actionNotAllowed();
-        
+
         /* get values lists for backup tool */
         $this->get_backUpValues();
-        
+
         /* get form */
         $this->form = new HTMLForm(
             'edit_backupconfig',
             $this->get_adminLink(array('mode'=>'save_backupconfig')),
             'POST');
-        
+
         /* get buttons */
         $this->buttons = array(
             array(
@@ -446,37 +480,37 @@ final class Admin_SecurityTools extends Module {
                 'title' => $camyks->get_translation('valid'),
             )
         );
-        
+
         /* update layout */
         $this->set_selectedLayout('admin_editbackupconfig.html.inc');
     }
-    
+
     /**
      * Initialise module object in admin/save_backupconfig mode.
      * @return void
      */
     private function init_admin_saveBackUpConfig() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(3) === false)
             return $this->init_admin_actionNotAllowed();
 
         /* disable admin menu */
         $this->disable_adminEngineMenus();
-        
+
         /* get values lists for backup tool */
         $this->get_backUpValues();
-        
+
         /* get method value */
         $this->config->vars['backup_method'] = (isset($_REQUEST['backup_method']) and isset($this->backup_methods[$_REQUEST['backup_method']])) ? $_REQUEST['backup_method']:'manual';
-        
+
         /* get compression value */
         $this->config->vars['backup_compression'] = (isset($_REQUEST['backup_compression']) and isset($this->backup_compressions[$_REQUEST['backup_compression']])) ? $_REQUEST['backup_compression']:'tar';
-        
+
         /* get type value */
         $this->config->vars['backup_type'] = (isset($_REQUEST['backup_type']) and isset($this->backup_types[$_REQUEST['backup_type']]))? $_REQUEST['backup_type']:'complete';
-        
+
         /* get temp folder value */
         $this->config->vars['backup_temp'] = (isset($_REQUEST['backup_temp']) ? $_REQUEST['backup_temp'] : '');
 
@@ -484,7 +518,7 @@ final class Admin_SecurityTools extends Module {
         switch ($this->config->vars['backup_method']) {
             case 'daily':
                 $this->config->vars['backup_nextdate'] = mktime(0, 0, 0, date('m'), date('d')+1, date('Y'));
-                break; 
+                break;
             case 'weekly':
                 if (date('w') == 0) {
                     $d = 6;
@@ -500,7 +534,7 @@ final class Admin_SecurityTools extends Module {
                 $this->config->vars['backup_nextdate'] = 0;
                 break;
         }
-     
+
         /* save config file */
         if ($this->config->save()) {
             $this->text = $this->get_translation('config_saved');
@@ -517,11 +551,11 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_deleteBackUpFile() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(3) === false)
             return $this->init_admin_actionNotAllowed();
-        
+
         /* disable admin menu */
         $this->disable_adminEngineMenus();
 
@@ -529,11 +563,11 @@ final class Admin_SecurityTools extends Module {
         $this->backupfile->id = isset($_REQUEST['backup_id'])?(int)$_REQUEST['backup_id']:0;
         if ($bid > 0 and $this->backupfile->get()) {
             $this->backupfile->get_fromItems();
-            
+
             /* try to delete file */
             if (file_exists($this->plugin_var_path.'/'.$this->backupfile->backupdir.'/'.$this->backupfile->vars['name']))
                 unlink($this->plugin_var_path.'/'.$this->backupfile->backupdir.'/'.$this->backupfile->vars['name']);
-                
+
             /* delete database informations */
             $this->backupfile->delete();
             $this->text = $this->get_translation('backup_deleted');
@@ -550,20 +584,20 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_editNewBackUpFile() {
         global $camyks;
-        
+
         /* check rights */
-        if ($this->check_right(3) === false) 
+        if ($this->check_right(3) === false)
             return $this->init_admin_actionNotAllowed();
-        
+
         /* get values lists for backup tool */
         $this->get_backUpValues();
-        
+
         /* get form */
         $this->form = new HTMLForm(
                 'edit_newbackupfile',
                 $this->get_adminLink(array('mode'=>'save_newbackupfile')),
                 'POST');
-        
+
         /* get buttons */
         $this->buttons = array(
             array(
@@ -575,7 +609,7 @@ final class Admin_SecurityTools extends Module {
                 'title' => $this->get_translation('backup_createbackup'),
             ),
        );
-        
+
         /* update layout */
         $this->set_selectedLayout('admin_editnewbackupfile.html.inc');
     }
@@ -586,7 +620,7 @@ final class Admin_SecurityTools extends Module {
      */
     private function init_admin_saveNewBackUpFile() {
         global $camyks;
-        
+
         /* check rights */
         if ($this->check_right(3) === false)
             return $this->init_admin_actionNotAllowed();
@@ -604,6 +638,32 @@ final class Admin_SecurityTools extends Module {
         }
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Backup')));
+    }
+
+    /* Specific request mode methods */
+
+    /**
+     * Execute module object in request mode / add article.
+     * @return void
+     */
+    private function execute_request_checkIPAddress() {
+        global $camyks;
+
+        /* check header parameters */
+        if (!isset($_REQUEST['ip']))
+            return false;
+        if (!isset($_REQUEST['section']))
+            return false;
+
+        /* get parameters */
+        $ip = trim($_REQUEST['ip']);
+        $section = (int)$_REQUEST['section'];
+
+        /* load result */
+        $result = $this->ipfilterrule->check_IPAddress($ip, $section);
+
+        /* send default error result */
+        $this->answer->send_asJSON(array('status'=>'success', 'action'=>'checkIPAddress', 'result'=>$result));
     }
 
     /* specific tool methods */
@@ -630,6 +690,58 @@ final class Admin_SecurityTools extends Module {
         }
     }
 
+    /* IP Filter rule related methods */
+
+    /**
+     * Return IP Filter rule status list
+     * @return array
+     */
+    public function get_ipFilterRuleStatusList() {
+        return $this->ipfilterrule->get_statusList();
+    }
+
+    /**
+     * Return IP Filter rules status list
+     * @param array $params
+     * @return array
+     */
+    public function get_ipFilterRulesStatusList($params=array()) {
+        return $this->ipfilterrule->get_multiStatusList($params);
+    }
+
+    /**
+     * Return IP Filter rule permission list
+     * @return array
+     */
+    public function get_ipFilterRulePermissionList() {
+        return $this->ipfilterrule->get_permissionList();
+    }
+
+    /**
+     * Return IP Filter rules permission list
+     * @param array $params
+     * @return array
+     */
+    public function get_ipFilterRulesPermissionList($params=array()) {
+        return $this->ipfilterrule->get_multiPermissionList($params);
+    }
+
+    /**
+     * Return IP Filter rule permission icon list
+     * @return array
+     */
+    public function get_ipFilterRulePermissionIconList() {
+        return $this->ipfilterrule->get_permissionIconList();
+    }
+
+    /**
+     * Return IP Filter rule site mode list
+     * @return array
+     */
+    public function get_ipFilterRulePSideModeList() {
+        return $this->ipfilterrule->get_siteModeList();
+    }
+
     /**
      * Load IP Filter rules
      * @return void
@@ -637,6 +749,8 @@ final class Admin_SecurityTools extends Module {
     private function get_IPFilterRules() {
         $this->ipfilterrules = $this->ipfilterrule->get_objectList();
     }
+
+    /* Backup related methods */
 
     /**
      * Load back up files.
@@ -704,15 +818,15 @@ final class Admin_SecurityTools extends Module {
  */
 function _Admin_Securitytools_execute_backup() {
     global $camyks;
-    
+
     /* get Admin_SecurityTool module */
     $_this = $camyks->modules['Admin_SecurityTools'];
-    
+
     /* update next backup date */
     switch ($_this->config->vars['backup_method']) {
         case 'daily':
             $_this->config->vars['backup_nextdate'] = mktime(0, 0, 0, date('m'), date('d')+1, date('Y'));
-            break; 
+            break;
         case 'weekly':
             if (date('w') == 0) {
                 $d = 6;
@@ -729,7 +843,7 @@ function _Admin_Securitytools_execute_backup() {
             break;
     }
     $_this->config->save();
-    
+
     /* backup */
     return $_this->backupfile->backup();
 }

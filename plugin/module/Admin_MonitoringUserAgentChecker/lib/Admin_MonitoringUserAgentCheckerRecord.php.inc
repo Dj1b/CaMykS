@@ -1,25 +1,29 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0.1
- * Object Type      : Plugin / Module Library
- * Creation Date    : Dec 2014
- * Last Modif Date  : Jun 2018
- *
- * Admin_MonitoringUserAgentCheckerRecord object for Admin_MonitoringUserAgentChecker Module
+/**
+ * @brief Admin_MonitoringUserAgentChecker Module record library
+ * @details Plugin, Module Library
+ * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.2
+ * @date Creation: Dec 2014
+ * @date Modification: Nov 2018
+ * @copyright 2014 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * Admin_MonitoringUserAgentCheckerRecord class.
+ */
 final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
-    /*
-     * constructor
+    /**
+     * Class constructor.
      * @param integer $id
      * @param Module $module
+     * @return void
      */
     public function __construct($id, &$module) {
-        parent::ModuleLibrary($id, $module);
+        parent::__construct($id, $module);
         /* content items */
         $this->add_newItem('status', 'db', 'int', 'tinyint unsigned', '', 0);
         $this->add_newItem('cdate', 'db', 'date', 'bigint unsigned', '', time());
@@ -35,11 +39,10 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
     /* overwrite ModuleLibrary method */
 
-    /*
-     * build sql condition for lists
+    /**
+     * Build sql condition for lists.
      * @param array $params
      * @return string
-     * @access public
      */
     public function build_SQLCondition($params) {
         $search = array();
@@ -60,10 +63,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /*
-     * check object data before saving it
+    /**
+     * Check object data before saving it.
      * @return boolean result
-     * @access public
      */
     public function check_data() {
         if ($this->id > 0) {
@@ -85,11 +87,10 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
     /* specific tool methods */
 
-    /*
-     * return single record platform list
+    /**
+     * Return single record platform list.
      * @param boolean $all
      * @return array
-     * @access public
      */
     public function get_platformTypesList($all=false) {
         /* build default list */
@@ -114,10 +115,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return $list;
     }
 
-    /*
-     * return single record status list
+    /**
+     * Return single record status list.
      * @return array
-     * @access public
      */
     public function get_statusList() {
         return array(
@@ -127,10 +127,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         );
     }
 
-    /*
-     * return signe object format list
+    /**
+     * Return signe object format list
      * @return array
-     * @access public
      */
     public function get_platformFormatList() {
         return array(
@@ -140,11 +139,10 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         );
     }
 
-    /*
-     * get from user agent value
+    /**
+     * Load from user agent value.
      * @param string $ua
      * @return boolean result
-     * @access public
      */
     public function get_fromUserAgent($ua) {
         /* build sql query */
@@ -164,11 +162,10 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return false;
     }
 
-    /*
-     * build where statement from params
+    /**
+     * Build where statement from params.
      * @param array $params
      * @return string
-     * @access private
      */
     private function build_whereStatement($params=array()) {
         $w = array();
@@ -188,11 +185,10 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return implode(' and ', $w);
     }
 
-    /*
-     * return record count with given params
-     * @params array $params
+    /**
+     * Return record count with given params.
+     * @param array $params
      * @return int
-     * @access public
      */
     public function count($params=array()) {
         $p = array('user_agent'=>'', 'platform_type'=>'', 'status'=>-1);
@@ -200,11 +196,10 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return $this->get_objectCount($this->build_whereStatement($params));
     }
 
-    /*
-     * return record list
+    /**
+     * Return record list.
      * @param array $params
      * @return array
-     * @access public
      */
     public function get_list($params=array()) {
         global $camyks;
@@ -219,10 +214,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return $this->get_objectList(false, $w, $params['limit'], $params['count'], $params['order'], $params['orderway']);
     }
 
-    /*
-     * return encoded user agent value
+    /**
+     * Return encoded user agent value.
      * @return string
-     * @access public
      */
     public function get_adminValue() {
         return string_text2Html($this->vars['user_agent']);
@@ -230,10 +224,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
     /* single object update methods */
 
-    /*
-     * update record type
+    /**
+     * Update record type.
      * @return boolean success
-     * @access public
      */
     public function update_type() {
         /* load values */
@@ -247,10 +240,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return $this->update_databaseSpecificItems(array('platform_type'));
     }
 
-    /*
-     * mark record as verified
+    /**
+     * Mark record as verified.
      * @return boolean success
-     * @access public
      */
     public function mark_asVerified() {
         /* update status */
@@ -260,10 +252,31 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return $this->update_databaseSpecificItems(array('status'));
     }
 
-    /*
-     * update visit count
+    /**
+     * Mark records as verified.
+     * @param array $ids
      * @return boolean success
-     * @access public
+     */
+    public function mark_recordsAsVerified($ids) {
+        /* Check ids count */
+        if (count($ids) == 0)
+            return true;
+
+        /* build SQL query */
+        $sql = 'update '.$this->_libSQLTable;
+        $sql .= ' set status = 1';
+        if (count($ids) == 1)
+            $sql .= ' where id = '. $ids[0];
+        else
+            $sql .= ' where id in ('.implode(',', $ids).')';
+
+        /* execute sql query */
+        return ($this->execute_DBQuery($sql, __LINE__));
+    }
+
+    /**
+     * Update visit count.
+     * @return boolean success
      */
     public function update_visitCount() {
         /* update visit values */

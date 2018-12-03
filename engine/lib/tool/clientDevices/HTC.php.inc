@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Aug 2018
  * @date Modification: Sep 2018
  * @copyright 2018 CaMykS Team
@@ -20,14 +20,15 @@
  */
 function get_HTCClientDevice($deviceCode='') {
     $deviceList = array(
-        'IncredibleS'   => array('platform_model' => 'Incredible S',        'platform_year' => 2011),
-        'T329t'         => array('platform_model' => 'Proto',               'platform_year' => 2012 , 'browser_title' => 'Android browser',),
-        '8088;'         => array('platform_model' => 'One Max',             'platform_year' => 2013),
-        'M8Sx'          => array('platform_model' => 'One (E8)',            'platform_year' => 2014),
-        'One M8'        => array('platform_model' => 'One (M8)',            'platform_year' => 2014),
-        'D820u'         => array('platform_model' => 'Desire 820 Dual SIM', 'platform_year' => 2014),
-        '2PYB2'         => array('platform_model' => 'Bolt',                'platform_year' => 2016),
-        'Desire 626'    => array('platform_model' => 'Desire 626',          'platform_year' => 2015),
+        'IncredibleS'           => array('platform_model' => 'Incredible S',        'platform_year' => 2011),
+        'T329t'                 => array('platform_model' => 'Proto',               'platform_year' => 2012 , 'browser_title' => 'Android browser',),
+        '8088;'                 => array('platform_model' => 'One Max',             'platform_year' => 2013),
+        'M8Sx'                  => array('platform_model' => 'One (E8)',            'platform_year' => 2014),
+        'One M8'                => array('platform_model' => 'One (M8)',            'platform_year' => 2014),
+        'D820u'                 => array('platform_model' => 'Desire 820 Dual SIM', 'platform_year' => 2014),
+        'Desire 626'            => array('platform_model' => 'Desire 626',          'platform_year' => 2015),
+        '2PYB2'                 => array('platform_model' => 'Bolt',                'platform_year' => 2016),
+        'Desire 628 dual sim'   => array('platform_model' => 'Desire 628 Dual SIM', 'platform_year' => 2016),
     );
 
     /* Check for returning list */
