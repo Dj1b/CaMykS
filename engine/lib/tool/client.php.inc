@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.48
+ * @version 1.0.49
  * @date Creation: Jun 2007
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1061,7 +1061,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check HiSense mobiles */
-    elseif (preg_match('/ Hisense ([A-Z][0-9]{2,3})( [A-Za-z]*)? Build/', $ua, $matches)) {
+    elseif (preg_match('/( Hisense |HS-)([A-Z][0-9]{2,3})( [A-Za-z]*)? Build/', $ua, $matches)) {
         include_once ('clientDevices/HiSense.php.inc');
         $model = $matches[1].(isset($matches[2]) ? $matches[2] : '');
         $infos = array_merge($infos, get_HiSenseClientDevice($model));
@@ -2186,6 +2186,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^[a-zA-Z0-9]{2}$#i', $ua))
         return $fake;
 
+    /* Bad chrome version */
+    if (preg_match('#Chrome/0.A.B.C#i', $ua))
+        return $fake;
+
     /* check for user agent where spaces are replaced by plus signs */
     if (($chars = count_chars($ua, 1)) and isset($chars[ord('+')]) and $chars[ord('+')] >= 10 and (!isset($chars[ord(' ')])))
         return $fake;
@@ -2251,9 +2255,9 @@ function _client_getUAPropertiesMaxVersions() {
             'Android'           => '11',                    // current is 9.x.x
         ),
         'browser' => array(
-            'Firefox'           => '65',                    // current is 62
-            'Chrome'            => '73',                    // current is 70
-            'Chromium'          => '73',                    // current is 70
+            'Firefox'           => '66',                    // current is 63
+            'Chrome'            => '74',                    // current is 71
+            'Chromium'          => '74',                    // current is 71
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '45',                    // current is 40
             'Opera'             => '59',                    // current is 56

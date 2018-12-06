@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: May 2018
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -619,6 +619,26 @@ function _client_getKnownGenerics() {
         'bot_url'           => '',
         'engine_title'      => 'Microsoft',
         'engine_url'        => 'https://www.microsoft.com/',
+    );
+
+    /* 4D HTTP Client */
+    $knownGenerics['4d_http_client'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '4D HTTP Client',
+        'bot_url'           => '',
+        'engine_title'      => '4D',
+        'engine_url'        => 'http://www.4d.com',
+    );
+
+    /* node-fetch */
+    $knownGenerics['node-fetch'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'node-fetch',
+        'bot_url'           => 'https://github.com/bitinn/node-fetch',
+        'engine_title'      => '',
+        'engine_url'        => '',
     );
 
     /* obot */

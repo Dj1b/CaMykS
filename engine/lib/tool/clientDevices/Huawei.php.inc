@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Apr 2018
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -51,6 +51,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
+        'INE-LX1'   => array('platform_model' => 'P Smart+',        'platform_year' => 2018),
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
         'BND-L34'   => array('platform_model' => 'Mate SE',         'platform_year' => 2016),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
@@ -104,6 +105,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-L53'   => array('platform_model' => 'Y7\'',            'platform_year' => 2018),
+        'LDN-L21'   => array('platform_model' => 'Y7 Prime',        'platform_year' => 2018),
         'FLA-LX2'   => array('platform_model' => 'Y9',              'platform_year' => 2018),
         'NMO-L31'   => array('platform_model' => 'GT3',             'platform_year' => 2016),
         'BLL-L22'   => array('platform_model' => 'GR5',             'platform_year' => 2017),
