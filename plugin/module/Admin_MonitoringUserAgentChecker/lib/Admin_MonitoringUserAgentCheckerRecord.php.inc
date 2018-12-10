@@ -4,9 +4,9 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Dec 2014
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -247,6 +247,18 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
     public function mark_asVerified() {
         /* update status */
         $this->_libItems['status']->value = 1;
+
+        /* save object */
+        return $this->update_databaseSpecificItems(array('status'));
+    }
+
+    /**
+     * Mark record as unverified.
+     * @return boolean success
+     */
+    public function mark_asUnverified() {
+        /* update status */
+        $this->_libItems['status']->value = 0;
 
         /* save object */
         return $this->update_databaseSpecificItems(array('status'));

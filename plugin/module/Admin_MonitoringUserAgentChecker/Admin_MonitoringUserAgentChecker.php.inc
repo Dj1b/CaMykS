@@ -5,9 +5,9 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Dec 2014
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -232,6 +232,10 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                 /* mode == mark_recordAsVerified */
                 $this->init_admin_mark_recordAsVerified();
                 break;
+            case 'mark_recordAsUnverified':
+                /* mode == mark_recordAsUnverified */
+                $this->init_admin_mark_recordAsUnverified();
+                break;
             case 'mark_recordsAsVerified':
                 /* mode == mark_recordsAsVerified */
                 $this->init_admin_mark_recordsAsVerified();
@@ -381,6 +385,11 @@ final class Admin_MonitoringUserAgentChecker extends Module {
             $this->buttons[] = array(
                 'link'  => $this->get_adminLink(array('mode'=>'mark_recordAsVerified', 'record_id'=>$this->recordItem->id)),
                 'title' => $this->get_translation('markasverified'),
+            );
+        else
+            $this->buttons[] = array(
+                'link'  => $this->get_adminLink(array('mode'=>'mark_recordAsUnverified', 'record_id'=>$this->recordItem->id)),
+                'title' => $this->get_translation('markasunverified'),
             );
 
         /* update layout */
@@ -560,6 +569,32 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* load and update record */
         $this->recordItem->id = (int)$_REQUEST['record_id'];
         if ($this->recordItem->get() and $this->recordItem->mark_asVerified())
+            $this->text = $this->get_translation('record_updated');
+        else
+            $this->text = $this->get_translation('record_notupdated');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
+    }
+
+    /**
+     * Initialise module object in admin/mark_recordAsUnverified mode.
+     * @return void
+     */
+    private function init_admin_mark_recordAsUnverified() {
+        global $camyks;
+
+        /* check record id */
+        if (!isset($_REQUEST['record_id']))
+            return $this->init_admin_main();
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* load and update record */
+        $this->recordItem->id = (int)$_REQUEST['record_id'];
+        if ($this->recordItem->get() and $this->recordItem->mark_asUnverified())
             $this->text = $this->get_translation('record_updated');
         else
             $this->text = $this->get_translation('record_notupdated');
