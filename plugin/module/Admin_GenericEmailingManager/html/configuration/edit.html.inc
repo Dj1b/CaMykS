@@ -4,7 +4,7 @@
  * @details Plugin, Module Layout
  * @file plugin/module/Admin_GenericEmailingManager/html/configuration/edit.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2012
  * @date Modification: Dec 2018
  * @copyright 2012 - 2018 CaMykS Team
@@ -13,9 +13,16 @@
  */
 global $camyks;
 
-$file = $this->theme->get_pictURL('file', 12, 'std');
-$file_ = $this->theme->get_pictURL('file', 12, 'ovr');
+$file = $camyks->theme->get_pictURL('file', 12, 'std');
+$file_ = $camyks->theme->get_pictURL('file', 12, 'ovr');
 ?>
+
+<?php if (isset($this->isConfig) and $this->isConfig) :?>
+
+<?=$camyks->theme->get_boxContent2Header();?>
+<div class="adminContentPanel">
+
+<?php endif; ?>
 
 <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
 
@@ -44,3 +51,10 @@ $file_ = $this->theme->get_pictURL('file', 12, 'ovr');
 </tr>
 
 </table>
+
+<?php if (isset($this->isConfig) and $this->isConfig) :?>
+
+</div>
+<?=$camyks->theme->get_boxContent2Footer();?>
+
+<?php endif; ?>

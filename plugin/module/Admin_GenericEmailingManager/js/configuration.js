@@ -3,7 +3,7 @@
  * @details Plugin, Module Javascripts
  * @file plugin/module/Admin_GenericEmailingManager/js/configuration.js
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jan 2013
  * @date Modification: Dec 2018
  * @copyright 2013 - 2018 CaMykS Team
@@ -19,7 +19,13 @@ var so = null;
  */
 function open_pageChooser(object) {
     so = object;
-    v = eval('document.edit_config.'+object+'.value');
+    if (document.getElementById('edit_config'))
+        form = document.getElementById('edit_config')
+    else if (document.getElementById('edit_pluginConfiguration'))
+        form = document.getElementById('edit_pluginConfiguration')
+    else
+        return;
+    v = form[object].value;
     pc.openPageChooser(v);
 }
 
@@ -29,8 +35,15 @@ function open_pageChooser(object) {
  * @access public
  */
 function update_selectedPage(page) {
-    if ( so != null) {
-        eval('document.edit_config.'+so+'.value = page');
+    if (document.getElementById('edit_config'))
+        form = document.getElementById('edit_config')
+    else if (document.getElementById('edit_pluginConfiguration'))
+        form = document.getElementById('edit_pluginConfiguration')
+    else
+        return;
+
+    if (so != null) {
+        form[so].value = page;
         so = null;
     }
 }

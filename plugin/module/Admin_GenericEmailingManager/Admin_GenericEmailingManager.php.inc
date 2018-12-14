@@ -5,7 +5,7 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_GenericEmailingManager/Admin_GenericEmailingManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2012
  * @date Modification: Dec 2018
  * @copyright 2012 - 2018 CaMykS Team
@@ -80,7 +80,7 @@ final class Admin_GenericEmailingManager extends Module {
         parent::__construct('Admin_GenericEmailingManager', $path_type);
 
         /* Overrides Plugin variables */
-        $this->version = '1.0';
+        $this->version = '1.0.1';
         $this->plugin_package = 'Generic';
 
         /* Overrides Module variables */
@@ -105,6 +105,9 @@ final class Admin_GenericEmailingManager extends Module {
         $this->contactItem = new Admin_GenericEmailingManagerContact(0, $this);
         $this->emailingItem = new Admin_GenericEmailingManagerEmailing(0, $this);
         $this->emailItem = new Admin_GenericEmailingManagerEmail(0, $this);
+
+        /* register plugin as Admin_Site extension */
+        $this->register_asExtension('Admin_Site');
     }
 
     /* Overrides Module methods */
@@ -115,7 +118,8 @@ final class Admin_GenericEmailingManager extends Module {
      */
     public function install() {
         return ($this->contactItem->install() and $this->emailingItem->install()
-            and $this->emailItem->install() and parent::install());
+            and $this->emailItem->install() and $this->install_htaccessRules()
+            and parent::install());
     }
 
     /**
@@ -132,6 +136,19 @@ final class Admin_GenericEmailingManager extends Module {
      */
     public function is_installed() {
         return $this->emailingItem->is_installed();
+    }
+
+    /**
+     * Update plugin.
+     * @return boolean
+     */
+    public function update($version, $more='') {
+        global $camyks;
+
+        if (version_compare($version, '1.0.1', '<'))
+            if (!$this->update_toVersion1_0_1()) return false;
+
+        parent::update($version, $more);
     }
 
     /**
@@ -2186,6 +2203,17 @@ final class Admin_GenericEmailingManager extends Module {
     }
 
     /**
+     * Add contact information.
+     * @param array $params
+     * @return boolean success
+     */
+    public function add_contact($params=array()) {
+        return $this->contactItem->add_object($params);
+    }
+
+    /* Specific tool methods */
+
+    /**
      * Load extensions list.
      * @return void
      */
@@ -2196,12 +2224,85 @@ final class Admin_GenericEmailingManager extends Module {
     }
 
     /**
-     * Add contact information.
-     * @param array $params
+     * Install .htaccess rules.
      * @return boolean success
      */
-    public function add_contact($params=array()) {
-        return $this->contactItem->add_object($params);
+    private function install_htaccessRules() {
+        return $this->add_toHtaccess("RewriteRule ^emailing-([^\.]*)([0-9a-zA-Z\-]*).gnl?$ request.php?module=".$this->name."&mode=email_action&params=$1&%{QUERY_STRING} [L]\n"
+            ."RewriteRule ^emailing-([0-9]*).email$ request.php?module=".$this->name."&mode=preview_emailing&emailing_id=$1 [L]");
+    }
+
+    /* Admin_Site extension configuration methods */
+
+    /**
+     * Initialise object in Admin_Site, view configuration mode.
+     * @return void
+     */
+    public function initialise_configDisplay() {
+        $this->isConfig = true;
+    }
+
+    /**
+     * Display object in Admin_Site, view configuration mode.
+     * @return void
+     */
+    public function display_configDisplay() {
+        $this->load_file('html/configuration/view.html.inc');
+    }
+
+    /**
+     * Initialise object in Admin_Site, edit configuration mode.
+     * @param Object $form
+     * @return void
+     */
+    public function initialise_configEdition($form) {
+        global $camyks;
+
+        $this->isConfig = true;
+
+        /* update form */
+        $this->editform = &$form;
+        $this->editform->set_object($this->config);
+
+        /* Load configuration form */
+        $this->editform = new HTMLForm('edit_config', $this->get_adminlink(array('mode'=>'save_config')), 'POST');
+        $this->editform->set_object($this->config);
+
+        /* Load page chooser input */
+        $this->add_JSFile('configuration.js');
+        if (isset($camyks->inputs['PageChooser'])) {
+            $this->pc = true;
+            $camyks->inputs['PageChooser']->initialise("pagename", null, "update_selectedPage");
+        } else {
+            $this->pc = false;
+        }
+    }
+
+    /**
+     * Display object in Admin_Site, edit configuration mode
+     * @return void
+     */
+    public function display_configEdition() {
+        $this->load_file('html/configuration/edit.html.inc');
+    }
+
+    /**
+     * Execute object in Admin_Site, save configuration mode
+     * @return void
+     */
+    public function save_configuration() {
+        $this->config->get_fromHeader();
+        return $this->config->save();
+    }
+
+    /* Updates methods */
+
+    /**
+     * Apply version 1.0.1 update.
+     * @return boolean success
+     */
+    private function update_toVersion1_0_1() {
+        return ($this->install_htaccessRules());
     }
 }
 ?>
