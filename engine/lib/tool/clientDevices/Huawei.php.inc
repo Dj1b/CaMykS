@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Apr 2018
  * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
@@ -46,6 +46,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'VTR-L29'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'WAS-LX1A'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
+        'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
@@ -73,6 +74,8 @@ function get_HuaweiClientDevice($deviceCode='') {
         'JMM-L22'   => array('platform_model' => 'Honor 6C Pro',    'platform_year' => 2017),
         'BLN-L21'   => array('platform_model' => 'Honor 6X',        'platform_year' => 2017),
         'PLK-L01'   => array('platform_model' => 'Honor 7',         'platform_year' => 2015),
+        'DUA-L22'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),
+        'DUA-LX2'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),
         'FRD-L09'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
         'FRD-L19'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
         'PRA-TL10'  => array('platform_model' => 'Honor 8 Lite',    'platform_year' => 2016),

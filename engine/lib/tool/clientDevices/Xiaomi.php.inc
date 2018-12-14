@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: May 2018
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,27 +21,31 @@
 function get_XiaomiClientDevice($deviceCode='') {
     $deviceList = array(
         /* tablets */
-        'mi pad'        => array('platform_model' => 'MI PAD',          'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2014),
+        'mi pad'        => array('platform_model'     => 'MI PAD',          'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2014),
 
         /* phones */
-        'mi 2'          => array('platform_model' => 'Mi 2',            'platform_year' => 2012),
-        'mi 5'          => array('platform_model' => 'Mi 5',            'platform_year' => 2016),
-        'mi 5s'         => array('platform_model' => 'Mi 5S',           'platform_year' => 2016),
-        'mi 5x'         => array('platform_model' => 'Mi 5X',           'platform_year' => 2017),
-        'mi a1'         => array('platform_model' => 'Mi A1',           'platform_year' => 2017),
-        'mi note pro'   => array('platform_model' => 'Mi Note Pro',     'platform_year' => 2015),
-        'redmi 4'       => array('platform_model' => 'Redmi 4',         'platform_year' => 2016),
-        'redmi 4x'      => array('platform_model' => 'Redmi 4X',        'platform_year' => 2017),
-        'redmi 3s'      => array('platform_model' => 'Redmi 3S',        'platform_year' => 2016),
-        'redmi note 3'  => array('platform_model' => 'Redmi Note 3',    'platform_year' => 2015),
-        'redmi note 4'  => array('platform_model' => 'Redmi Note 4',    'platform_year' => 2016),
-        'redmi note 4x' => array('platform_model' => 'Redmi Note 4X',   'platform_year' => 2017),
-        'redmi note 5'  => array('platform_model' => 'Redmi Note 5',    'platform_year' => 2018),
-        'redmi 5a'      => array('platform_model' => 'Redmi 5A',        'platform_year' => 2017),
-        'redmi 5 plus'  => array('platform_model' => 'Redmi 5 Plus',    'platform_year' => 2018),
-        'redmi 6a'      => array('platform_model' => 'Redmi 6A',        'platform_year' => 2018),
+        'mi 2'              => array('platform_model' => 'Mi 2',                'platform_year' => 2012),
+        'mi 4s'             => array('platform_model' => 'Mi 4S',               'platform_year' => 2016),
+        'mi 5'              => array('platform_model' => 'Mi 5',                'platform_year' => 2016),
+        'mi 5s'             => array('platform_model' => 'Mi 5S',               'platform_year' => 2016),
+        'mi 5x'             => array('platform_model' => 'Mi 5X',               'platform_year' => 2017),
+        'mi a1'             => array('platform_model' => 'Mi A1',               'platform_year' => 2017),
+        'mi 6'              => array('platform_model' => 'Mi 6',                'platform_year' => 2017),
+        'mi a2 lite'        => array('platform_model' => 'Mi A2 Lite',          'platform_year' => 2018),
+        'mi note pro'       => array('platform_model' => 'Mi Note Pro',         'platform_year' => 2015),
+        'redmi 4'           => array('platform_model' => 'Redmi 4',             'platform_year' => 2016),
+        'redmi 4x'          => array('platform_model' => 'Redmi 4X',            'platform_year' => 2017),
+        'redmi 3s'          => array('platform_model' => 'Redmi 3S',            'platform_year' => 2016),
+        'redmi note 3'      => array('platform_model' => 'Redmi Note 3',        'platform_year' => 2015),
+        'redmi note 4'      => array('platform_model' => 'Redmi Note 4',        'platform_year' => 2016),
+        'redmi note 4x'     => array('platform_model' => 'Redmi Note 4X',       'platform_year' => 2017),
+        'redmi note 5'      => array('platform_model' => 'Redmi Note 5',        'platform_year' => 2018),
+        'redmi note 6 pro'  => array('platform_model' => 'Redmi Note 6 Pro',    'platform_year' => 2018),
+        'redmi 5a'          => array('platform_model' => 'Redmi 5A',            'platform_year' => 2017),
+        'redmi 5 plus'      => array('platform_model' => 'Redmi 5 Plus',        'platform_year' => 2018),
+        'redmi 6a'          => array('platform_model' => 'Redmi 6A',            'platform_year' => 2018),
 
-        'pocophone f1'  => array('platform_model' => 'Pocophone F1',    'platform_year' => 2018),
+        'pocophone f1'      => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
     );
 
     /* Check for returning list */

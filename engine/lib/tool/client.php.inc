@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.49
+ * @version 1.0.50
  * @date Creation: Jun 2007
  * @date Modification: Dec 2018
  * @copyright 2007 - 2018 CaMykS Team
@@ -222,7 +222,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Archos - before iOS */
-    elseif (preg_match('/(AC|Archos )([A-Za-z0-9\- ]{3,}) Build/', $ua, $matches)) {
+    elseif (preg_match('/(AC|Archos )([A-Za-z0-9\- ]{3,})( Build|\))/', $ua, $matches)) {
         include_once ('clientDevices/Archos.php.inc');
         $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[2])));
     } elseif (preg_match('/Archos; ([A-Za-z0-9\- ]{3,})\)/i', $ua, $matches)) {
@@ -549,6 +549,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_AmazonClientDevice($matches[1]));
     }
 
+    /* check Caterpillar mobiles - before Wiko */
+    elseif (preg_match('/ (S60)( Build|\))/', $ua, $matches)) {
+        $model = $matches[1];
+        include_once ('clientDevices/Cat.php.inc');
+        $infos = array_merge($infos, get_CatClientDevice($model));
+    }
+
     /* check Wiko */
     elseif (preg_match('/ (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
@@ -849,7 +856,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Doogee mobiles, to be inserted before Xiaomi */
-    elseif (preg_match('/ (MIX Lite) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (MIX Lite|BL5000) Build/', $ua, $matches)) {
         include_once ('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -1071,17 +1078,6 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/(YD20[0-9]) Build/', $ua, $matches)) {
         include_once ('clientDevices/Yotaphone.php.inc');
         $infos = array_merge($infos, get_YotaphoneClientDevice($matches[1]));
-    }
-
-    /* check Caterpillar mobiles */
-    elseif (preg_match('/(S60) Build/', $ua, $matches)) {
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Caterpillar CAT',
-            'platform_model'    => $model,
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
     }
 
     /* check eBest mobiles */
@@ -1492,6 +1488,15 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
             'browser_version'   => '',
+        ));
+    }
+
+    /* check ecosia browser */
+    elseif (preg_match('/\(Ecosia[^@]*@([0-9\.]*)\)/i', $ua, $matches)) {
+        $rep = array('TencentTraveler'=>'TT Explorer');
+        $infos = array_merge($infos, array(
+            'browser_title'     => 'Ecosia',
+            'browser_version'   => isset($matches[1]) ? $matches[1] : '',
         ));
     }
 

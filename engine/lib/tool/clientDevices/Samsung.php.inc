@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Apr 2018
  * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
@@ -162,9 +162,11 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J510M'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J530F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2017),
+        'SM-J600FN' => array('platform_model' => 'Galaxy J6',                       'platform_year' => 2018),
         'SM-J610FN' => array('platform_model' => 'Galaxy J6+',                      'platform_year' => 2018),
         'SM-J7008'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2015),
         'SM-G610F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
+        'SM-J700H'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
         'SM-J710F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
         'SM-J710MN' => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
         'SM-J710GN' => array('platform_model' => 'Galaxy J7 Duos',                  'platform_year' => 2016),
