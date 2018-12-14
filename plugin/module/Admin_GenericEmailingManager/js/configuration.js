@@ -1,16 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version   : 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Javascripts
- * Create Date		: Jan 2013
- * Last Modif Date	: Jan 2013
- *
- * Admin_GenericEmailingManager module scripts
-*/
-
+/**
+ * @brief Admin_GenericEmailingManager Module client side script to edit configuration
+ * @details Plugin, Module Javascripts
+ * @file plugin/module/Admin_GenericEmailingManager/js/configuration.js
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2013
+ * @date Modification: Dec 2018
+ * @copyright 2013 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 var so = null;
 
 /*
@@ -25,7 +24,7 @@ function open_pageChooser(object) {
 }
 
 /*
- * update selected page value 
+ * update selected page value
  * @return void
  * @access public
  */

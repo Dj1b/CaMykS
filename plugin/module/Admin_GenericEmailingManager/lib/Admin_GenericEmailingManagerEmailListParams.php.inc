@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Engine
- * Creation Date	: Dec 2012
- * Last Modif Date	: Dec 2012
- * 
- * Admin_GenericEmailingManager email list parameters
+/**
+ * @brief Admin_GenericEmailingManager Module email list parameters
+ * @details Plugin, Module Library
+ * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerEmailListParams.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Dec 2012
+ * @date Modification: Dec 2018
+ * @copyright 2012 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
@@ -27,6 +27,7 @@ $this->emailListParams['headselectors'] = array(
     'search'    => array('title'=>$this->get_translation('formitem_search'), 'itemtype'=>'text', 'default'=>''),
 );
 
+/* build hidden parameters */
 $this->emailListParams['headhiddens'] = array('openTab'=>'emails');
 
 /* build sort parameters */
@@ -35,16 +36,16 @@ $this->emailListParams['sort'] = array('allowed'=>true, 'default'=>'id', 'defaul
 /* build column parameters */
 $this->emailListParams['listcolumns'] = array(
     'status'            => array('title'=>' ', 'columntype'=>'method', 'method'=>'get_statusIcon', 'style'=>'width:12px;'),
-	'title'             => array('title'=>$this->get_translation('contact'),'columntype'=>'text', 'maxlength'=>'64'),
-	'sent_date'         => array('title'=>$this->get_translation('sending'),'columntype'=>'method', 'method'=>'get_sentDateValue'),
-	'opened_date'       => array('title'=>$this->get_translation('opening'),'columntype'=>'method', 'method'=>'get_openedDateValue'),
-	'firstclick_date'   => array('title'=>$this->get_translation('firstclick'),'columntype'=>'method', 'method'=>'get_firstClickDateValue'),
+    'title'             => array('title'=>$this->get_translation('contact'),'columntype'=>'text', 'maxlength'=>'64'),
+    'sent_date'         => array('title'=>$this->get_translation('sending'),'columntype'=>'method', 'method'=>'get_sentDateValue'),
+    'opened_date'       => array('title'=>$this->get_translation('opening'),'columntype'=>'method', 'method'=>'get_openedDateValue'),
+    'firstclick_date'   => array('title'=>$this->get_translation('firstclick'),'columntype'=>'method', 'method'=>'get_firstClickDateValue'),
     'click_count'       => array('title'=>$this->get_translation('clicks'),'columntype'=>'text'),
 );
 
 /* add delete email result button */
 if ($this->check_right(4)==true ) {
-  $this->emailListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteEmailLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deleteemail'));
-  $this->emailListParams['listcolumns']['mark'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'minus', 'url_value'=>$this->markEmailLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('markemailasinvalid'));
+    $this->emailListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteEmailLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deleteemail'));
+    $this->emailListParams['listcolumns']['mark'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'minus', 'url_value'=>$this->markEmailLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('markemailasinvalid'));
 }
 ?>

@@ -1,17 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Javascript
- * Creation Date	: Dec 2012
- * Last Modif Date  : Dec 2012
- * 
- * Emailing javascript object
- * step 1 : build email list
- * step 2 : send email
- * step 3 : finalise sending
+/**
+ * @brief Admin_GenericEmailingManager Module client side script to configure contact importation
+ * @details Plugin, Module Javascripts
+ * @file plugin/module/Admin_GenericEmailingManager/js/importcontactcnfigure.js
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2013
+ * @date Modification: Dec 2018
+ * @copyright 2013 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 function ImportContactConfiguration(name) {
@@ -19,7 +16,7 @@ function ImportContactConfiguration(name) {
   this.params = {};
   this.locales = {};
   this.loaded = false;
-  
+
    /*
    * add parameter
    * @param string name
@@ -33,7 +30,7 @@ function ImportContactConfiguration(name) {
     else
       this.params[param] = value;
   };
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -44,14 +41,14 @@ function ImportContactConfiguration(name) {
     if (value != undefined)
       if (this.params[param][value])
         return this.params[param][value];
-		
+
     if (this.params[param] != undefined)
       return this.params[param];
     return false;
   };
-  
+
   /*
-   * set locale value 
+   * set locale value
    * @param string name
    * @param string value
    * @return void
@@ -60,9 +57,9 @@ function ImportContactConfiguration(name) {
   this.set_locale = function(name, value) {
     this.locales[name.toLowerCase()] = value;
   };
-  
+
   /*
-   * get locale value 
+   * get locale value
    * @param string name
    * @param option args
    * @return void
@@ -72,24 +69,24 @@ function ImportContactConfiguration(name) {
   	name = name.toLowerCase();
     if (!this.locales[name])
     	return name;
-    
+
     locale = this.locales[name];
     for(i=1; i<arguments.length; i++)
     	locale = locale.replace('__$'+i+'__', arguments[i]);
-    
+
 		return locale;
   };
 
-  /* 
+  /*
    * initialise object
    * @return void
    * @access public
    */
   this.initialise = function() {
     this.set_param('form', document.getElementById(this.get_param('form')));
-    
+
   };
-  
+
   /*
    * show parameters for selected field
    * @param integer line
@@ -99,9 +96,9 @@ function ImportContactConfiguration(name) {
   this.show_fieldParameters = function(line) {
     fieldSelect = eval('this.get_param("form").col'+line+'_field');
     field = fieldSelect.options[fieldSelect.options.selectedIndex].value;
-    
+
     for (i in fieldSelect.options) {
-        if ((f = fieldSelect.options[i].value) == field) {           
+        if ((f = fieldSelect.options[i].value) == field) {
           if (document.getElementById('col'+line+'_'+f+'Params'))
             document.getElementById('col'+line+'_'+f+'Params').style.display='block';
         } else {

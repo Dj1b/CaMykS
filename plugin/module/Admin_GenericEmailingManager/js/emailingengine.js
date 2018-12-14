@@ -1,25 +1,26 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Javascript
- * Creation Date	: Dec 2012
- * Last Modif Date  : Dec 2012
- * 
- * Emailing javascript object
+/**
+ * @brief Admin_GenericEmailingManager Module client side script to import contacts
+ * @details Plugin, Module Javascripts
+ * @file plugin/module/Admin_GenericEmailingManager/js/importcontactengine.js
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jan 2013
+ * @date Modification: Dec 2018
+ * @copyright 2013 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @info
  * step 1 : build email list
  * step 2 : send email
  * step 3 : finalise sending
  */
 
 function EmailingEngine(name) {
-  this.name = name;
-	this.params = {};
-	this.locales = {};
-	this.loaded = false;
-  
+    this.name = name;
+    this.params = {};
+    this.locales = {};
+    this.loaded = false;
+
    /*
    * add parameter
    * @param string name
@@ -33,7 +34,7 @@ function EmailingEngine(name) {
     else
       this.params[param] = value;
   };
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -44,14 +45,14 @@ function EmailingEngine(name) {
     if (value != undefined)
       if (this.params[param][value])
         return this.params[param][value];
-		
+
     if (this.params[param] != undefined)
       return this.params[param];
     return false;
   };
-  
+
   /*
-   * set locale value 
+   * set locale value
    * @param string name
    * @param string value
    * @return void
@@ -60,69 +61,69 @@ function EmailingEngine(name) {
   this.set_locale = function(name, value) {
     this.locales[name.toLowerCase()] = value;
   };
-  
+
   /*
-   * get locale value 
+   * get locale value
    * @param string name
    * @param option args
    * @return void
    * @access public
    */
   this.get_locale = function(name) {
-  	name = name.toLowerCase();
+      name = name.toLowerCase();
     if (!this.locales[name])
-    	return name;
-    
+        return name;
+
     locale = this.locales[name];
     for(i=1; i<arguments.length; i++)
-    	locale = locale.replace('__$'+i+'__', arguments[i]);
-    
-		return locale;
+        locale = locale.replace('__$'+i+'__', arguments[i]);
+
+        return locale;
   };
 
-	/* 
-	 * initialise object
-	 * @return void
-	 * @access public
-	 */
+    /*
+     * initialise object
+     * @return void
+     * @access public
+     */
   this.initialise = function() {
-    
+
     /* initialise loader */
     this.loader = new CAjaxRequest(this.name+'.loader');
     this.loader._initialise(null, 'POST', this.name+'._receiveStepResult', 'xml', this.name+'._receiveError');
 
-		/* get content box */
-		if(!document.getElementById('updatecontentbox'))
-			return;
+        /* get content box */
+        if(!document.getElementById('updatecontentbox'))
+            return;
     this.set_param('contentBox', document.getElementById('updatecontentbox'));
-    
+
     /* initialise current step */
     this.set_param('step', 0);
-    
+
     /* check interval */
     if (this.get_param('sendingInterval') < 100)
       this.set_param('sendingInterval', 100);
-    
-    
+
+
     /* finalise engine initialisation */
     this.loaded = true;
-   
+
     /* check what to do */
     if (this.get_param('startAt') == -1) {
       this.import_index = 0;
       this.import_count = 0;
       this._executeStep1();
     } else if (this.get_param('startAt') > this.get_param('emailCount')) {
-    	this.import_index = this.get_param('startAt');
+        this.import_index = this.get_param('startAt');
       this.import_count = this.get_param('emailCount');
-    	this._executeStep3();
+        this._executeStep3();
     } else {
       this.import_index = this.get_param('startAt');
       this.import_count = this.get_param('emailCount');
       this._initLoopStep();
     }
   };
-  
+
   /*
    * initialise generator continuation
    * @return void
@@ -135,7 +136,7 @@ function EmailingEngine(name) {
     this.get_param('contentBox').appendChild (div);
     this._executeStep2();
   };
-  
+
   /*
    * initialise step 1
    * @return void
@@ -150,7 +151,7 @@ function EmailingEngine(name) {
     //alert(this.get_param('requestBaseURL')+'&mode=send_emailingInitialise');
     this.loader._execute(this.get_param('requestBaseURL')+'&mode=send_emailingInitialise');
   };
-  
+
   /*
    * initialise step 2
    * @return void
@@ -165,7 +166,7 @@ function EmailingEngine(name) {
     //alert(this.get_param('requestBaseURL')+'&mode=send_emailingExecute&obj='+this.import_index);
     this.loader._execute(this.get_param('requestBaseURL')+'&mode=send_emailingExecute&obj='+this.import_index);
   };
-  
+
   /*
    * execute step 3
    * @return void
@@ -188,12 +189,12 @@ function EmailingEngine(name) {
    */
   this._receiveStepResult = function( result ) {
      result = xml_serializeObject( result );
-          
+
      if ( result == null )
         return this._executeErrorReception();
-     
+
      switch ( result['step']) {
-        case 1 : 
+        case 1 :
             this._executeStep1Result(result);
             break;
         case 2 :
@@ -205,7 +206,7 @@ function EmailingEngine(name) {
      }
      document.getElementById('updatebox').scrollTop = document.getElementById('updatecontentbox').offsetHeight;
   };
-  
+
   /*
    * http request failed reception
    * @return void
@@ -214,27 +215,27 @@ function EmailingEngine(name) {
   this._receiveError = function (result) {
     return;
   };
-  
+
   /*
    * finalise step 1
    * @return void
    * @access private
    */
   this._executeStep1Result = function ( result ) {
-  
+
     document.getElementById('InitBox').innerHTML = result['message'];
-    
+
     div = document.createElement('div').cloneNode(true);
     div.className = 'eContent4';
     div.innerHTML = result['message2'];
     this.get_param('contentBox').appendChild (div);
-  
+
     if ( result['result'] == 'success' ) {
       this.import_count = parseInt(result['count']);
       setTimeout(this._executeStep2(), 4);
     }
   };
-  
+
   /*
    * finalise step 2
    * @return void
@@ -255,14 +256,14 @@ function EmailingEngine(name) {
     }
     return this._go2NextObject();
   };
-  
+
   /*
    * finalise step 3
    * @return void
    * @access private
    */
   this._executeStep3Result = function (result) {
-    
+
     document.getElementById('step3').innerHTML = result['message'];
     if ( result['message2'] != null ) {
       div = document.createElement('div').cloneNode(true);
@@ -271,7 +272,7 @@ function EmailingEngine(name) {
       this.get_param('contentBox').appendChild (div);
     }
   };
-  
+
   /*
    * continue loop to next object
    * @return void
@@ -282,7 +283,7 @@ function EmailingEngine(name) {
       return this._executeStep3();
     return setTimeout(this.name+'._executeStep2();', this.get_param('sendingInterval'));
   };
-  
+
   this._executeErrorReception = function ( ) {
     div = document.createElement('div').cloneNode(true);
     div.className = 'eContent2';
