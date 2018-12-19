@@ -5,7 +5,7 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_GenericEmailingManager/Admin_GenericEmailingManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Dec 2012
  * @date Modification: Dec 2018
  * @copyright 2012 - 2018 CaMykS Team
@@ -1738,6 +1738,12 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Set mail recipient */
         $mail->add_recipient($this->contactItem->vars['email'], $this->contactItem->get_fullName());
+
+        /* Set cc recipients */
+        foreach ($this->contactItem->vars['cc'] as $cc) {
+            if (is_array($cc) and isset($cc['email']) and isset($cc['name']))
+                $mail->add_ccRecipient($cc['email'], $cc['name']);
+        }
 
         /* Set mail content */
         $mail->set_subject(utf8_decode($this->emailingItem->vars['email_title']));

@@ -4,7 +4,7 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerContact.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2012
  * @date Modification: Dec 2018
  * @copyright 2012 - 2018 CaMykS Team
@@ -35,6 +35,7 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
 
         $this->add_newItem('old_email', 'temp', 'text', '', '', '');
         $this->add_newItem('extra', 'temp', 'array', '', '', array());
+        $this->add_newItem('cc', 'temp', 'array', '', '', array());
 
         /* Generic initialisation */
         $this->init_library();
