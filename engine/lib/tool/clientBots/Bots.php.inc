@@ -4025,7 +4025,7 @@ function _client_getKnownBots() {
     );
 
     /* commonscan.org bot */
-    $knownBots['crawler.crawler.commonscan.org'] = array(
+    $knownBots['crawler.commonscan.org'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'commonscan.org crawler',
