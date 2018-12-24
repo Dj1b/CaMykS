@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Yotaphone.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2018
- * @date Modification: May 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -21,7 +21,8 @@
 function get_YotaphoneClientDevice($deviceCode='') {
     $deviceList = array(
         'YD201' => array('platform_model' => '2',   'platform_year' => 2014),
-        'YD206' => array('platform_model' => '2',   'platform_year' => 2015),
+        'YD206' => array('platform_model' => '2',   'platform_year' => 2014),
+        '3'     => array('platform_model' => '3',   'platform_year' => 2017),
     );
 
     /* Check for returning list */

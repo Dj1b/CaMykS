@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: May 2018
  * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
@@ -4012,6 +4012,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Annuaire Fran&ccedil;ais',
         'engine_url'        => 'http://annuairefrancais.fr',
+    );
+
+    /* Toweya.com bot */
+    $knownBots['toweya.com bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Toweya.com bot',
+        'bot_url'           => '',
+        'engine_title'      => 'Toweya',
+        'engine_url'        => 'https://toweya.com',
+    );
+
+    /* commonscan.org bot */
+    $knownBots['crawler.crawler.commonscan.org'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'commonscan.org crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'commonscan.org',
+        'engine_url'        => 'https://commonscan.org',
     );
 
     /* unknown bots */

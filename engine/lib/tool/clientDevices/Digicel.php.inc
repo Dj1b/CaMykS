@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Digiciel client devices specific methods
+ * @brief Digicel client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Digiciel.php.inc
+ * @file engine/lib/tool/clientDevices/Digicel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2018
- * @date Modification: Sep 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14,13 +14,22 @@
  */
 
 /**
- * Return Digiciel client device information from a known list.
+ * Return Digicel client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_DigicielClientDevice($deviceCode='') {
+function get_DigicelClientDevice($deviceCode='') {
     $deviceList = array(
-        'DL750' => array('platform_year' => 2014),
+        'DL750'     => array('platform_year' => 2014),
+        'DL755'     => array('platform_year' => 2014),
+        'DL800'     => array('platform_year' => 2014),
+        'DL810'     => array('platform_year' => 2014),
+        'DL900'     => array('platform_year' => 2014),
+        'DL910'     => array('platform_year' => 2015),
+        'DL1000'    => array('platform_year' => 2015),
+        'DL1'       => array('platform_year' => 2016),
+        'DL1plus'   => array('platform_model' => 'DL1 Plus',    'platform_year' => 2016),
+        'DL 1 lite' => array('platform_model' => 'DL1 Lite',    'platform_year' => 2016),
     );
 
     /* Check for returning list */
@@ -29,7 +38,7 @@ function get_DigicielClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Digiciel',
+        'platform_company'  => 'Digicel',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

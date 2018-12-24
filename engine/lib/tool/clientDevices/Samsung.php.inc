@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.25
+ * @version 1.0.26
  * @date Creation: Apr 2018
  * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
@@ -82,6 +82,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G920F'  => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
         'SM-G920I'  => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
         'SM-G920P'  => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
+        'SM-G920V'  => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
         'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925P'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
