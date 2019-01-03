@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Apr 2018
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -30,15 +30,16 @@ function get_MotorolaClientDevice($deviceCode='') {
         'XT1092'        => array('platform_model' => 'Moto X (2nd Gen)',    'platform_year' => 2014),
         'XT1650'        => array('platform_model' => 'Moto Z',              'platform_year' => 2016),
 
-        'E2(4G-LTE)'    => array('platform_model' => 'Moto E (2nd Gen)',    'platform_year' => 2015),
+        'Droid'         => array('platform_model' => 'Droid',               'platform_year' => 2009),
+        'MB200'         => array('platform_model' => 'Dext',                'platform_year' => 2009),
+        'RAZR HD'       => array('platform_model' => 'Droid Razr HD',       'platform_year' => 2012),
         'Moto G'        => array('platform_model' => 'Moto G',              'platform_year' => 2013),
+        'E2(4G-LTE)'    => array('platform_model' => 'Moto E (2nd Gen)',    'platform_year' => 2015),
         'G3'            => array('platform_model' => 'Moto G (3rd Gen)',    'platform_year' => 2015),
         'G (4)'         => array('platform_model' => 'Moto G (4th Gen)',    'platform_year' => 2016),
         'G (5S)'        => array('platform_model' => 'Moto G5S',            'platform_year' => 2017),
         'x4'            => array('platform_model' => 'Moto X4',             'platform_year' => 2017),
-        'RAZR HD'       => array('platform_model' => 'Droid Razr HD',       'platform_year' => 2012),
-        'Droid'         => array('platform_model' => 'Droid',               'platform_year' => 2009),
-        'MB200'         => array('platform_model' => 'Dext',                'platform_year' => 2009),
+        'C Plus'        => array('platform_model' => 'Moto C Plus',         'platform_year' => 2017),
     );
 
     /* Check for returning list */

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -35,39 +35,39 @@ function get_AsusClientDevice($deviceCode='') {
         'Z00ED'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
         'Z00ED'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
         'Z00LD'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
-        'X00DD'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
-        'X008D'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
-        'Z012D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
-        'Z017D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
-        'X007D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2017),
-        'A002'      => array('platform_model' => 'ZenFone AR',              'platform_year' => 2017),
-        'A007'      => array('platform_model' => 'ZenFone Live',            'platform_year' => 2017),
-        'X00LD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
-        'X00HD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
-        'X00ID'     => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
-        'Z01GS'     => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
-        'Z01MDA'    => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
-
+        'ZD551KL'   => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'ZB500KL'   => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'ZB552KL'   => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'ZC520TL'   => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'ZC550KL'   => array('platform_model' => 'ZenFone Max',             'platform_year' => 2016),
         'ZC553KL'   => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
-        'ZD551KL'   => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'ZE520KL'   => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'ZE552KL'   => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
-        'ZE553KL'   => array('platform_model' => 'ZenFone Zoom S',          'platform_year' => 2017),
+        'Z012D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
+        'Z017D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'ZS570KL'   => array('platform_model' => 'ZenFone 3 Deluxe',        'platform_year' => 2016),
         'ZU680KL'   => array('platform_model' => 'ZenFone 3 Ultra',         'platform_year' => 2016),
+        'X00DD'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
+        'X008D'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
+        'X007D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2017),
+        'ZE554KL'   => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
+        'X00LD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
+        'X00HD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
+        'X00ID'     => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
         'ZC520KL'   => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
         'ZS551KL'   => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
-        'ZD552KL'   => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
+        'Z01GS'     => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
         'ZD553KL'   => array('platform_model' => 'ZenFone 4 Selfie',        'platform_year' => 2017),
+        'ZD552KL'   => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
         'Z01MD'     => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
-        'ZE554KL'   => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
+        'Z01MDA'    => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),
+        'A002'      => array('platform_model' => 'ZenFone AR',              'platform_year' => 2017),
         'ZB501KL'   => array('platform_model' => 'ZenFone Live',            'platform_year' => 2017),
+        'A007'      => array('platform_model' => 'ZenFone Live',            'platform_year' => 2017),
         'ZS620KL'   => array('platform_model' => 'ZenFone 5Z',              'platform_year' => 2017),
         'ZS620KL'   => array('platform_model' => 'ZenFone 5Z',              'platform_year' => 2017),
+        'ZE553KL'   => array('platform_model' => 'ZenFone Zoom S',          'platform_year' => 2017),
+        'X018D'     => array('platform_model' => 'Zenfone Max Plus M1',     'platform_year' => 2017),
     );
 
     /* Check for returning list */

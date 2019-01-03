@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: May 2018
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1119,6 +1119,26 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Google',
         'engine_url'        => 'https://www.google.com',
+    );
+
+    /* DownUpTime */
+    $knownTools['konqueror/4.0; microsoft windows) khtml/4.0.80'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'DownUpTime',
+        'engine_url'        => 'https://downuptime.net',
+    );
+
+    /* Let's Encrypt validation server */
+    $knownTools['let\'s encrypt validation server'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Let\'s Encrypt',
+        'engine_url'        => 'https://letsencrypt.org',
     );
 
     /* return list */

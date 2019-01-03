@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2005
- * @date Modification: Oct 2018
+ * @date Modification: Nov 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -359,7 +359,7 @@ final class ContentPage {
         $this->name = trim($this->name);
 
         /* parse invalid chars */
-        if ($camyks->get_confValue('friendlyurls') == 'modern')
+        if (in_array($camyks->get_confValue('friendlyurls'), array('modern', 'modern2')))
             $this->name = preg_replace(array('/^([^a-zA-Z0-9]+)/', '/([^_a-zA-Z0-9\-]+)/', '/([^a-zA-Z0-9]+)$/'), array('', '-', ''), $this->name);
         else
             $this->name = preg_replace(array('/^([^a-zA-Z0-9]+)/', '/([^_a-zA-Z0-9]+)/', '/([^a-zA-Z0-9]+)$/'), array('', '_', ''), $this->name);

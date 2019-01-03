@@ -7,8 +7,8 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.6
  * @date Creation: Sep 2005
- * @date Modification: Dec 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -23,7 +23,7 @@ $this->website = 'https://www.camyks.net';
  * @var string $this->version
  * @brief CaMykS full version
  */
-$this->version = '1.0-20181201';
+$this->version = '1.0-20190101';
 
 /**
  * @var string $this->mversion
@@ -35,13 +35,13 @@ $this->mversion = '1.0';
  * @var string $this->nversion
  * @brief CaMykS minor version
  */
-$this->nversion = '20181201';
+$this->nversion = '20190101';
 
 /**
  * @var integer $this->last_modification_date
  * @brief CaMykS last modification date
  */
-$this->last_modification_date = mktime(0, 0, 0, 12, 1, 2018);
+$this->last_modification_date = mktime(0, 0, 0, 1, 1, 2019);
 
 /**
  * @var string $this->engine_folder

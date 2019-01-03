@@ -4,9 +4,9 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_MonitoringUserAgentChecker/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Dec 2014
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2014 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -83,6 +83,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_formitem_system_version'] = '
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_browser_title'] = 'Navigateur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_browser_version'] = 'Version du Navigateur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_markasverified'] = 'Marquer comme v&eacute;rifi&eacute;';
+$this->trads['mod_admin_monitoringuseragentchecker_markasunverified'] = 'Marquer comme non-v&eacute;rifi&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_title'] = 'Nom du robot : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_tool_title'] = 'Nom de l\'outil : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_url'] = 'URL : ';

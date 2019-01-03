@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : Ideogram Design
- * Author           : JB Lebrun <jb.lebrun@ideogram-design.fr>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.1
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date    : Dec 2012
- * Last Modif Date  : Dec 2012
- *
- * Admin_GenericEmailingManager french dictionnary
-*/
+/**
+ * @brief Admin_GenericEmailingManager Module french dictionnary
+ * @details Plugin, Module Dictionnary
+ * @file plugin/module/Admin_GenericEmailingManager/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Dec 2012
+ * @date Modification: Dec 2018
+ * @copyright 2012 - 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_genericemailingmanager_title'] = 'E-mailings';
 $this->trads['mod_admin_genericemailingmanager_desc'] = 'Gestion des contacts et envois';
 

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Doogee.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2018
- * @date Modification: Sep 2018
+ * @date Modification: Dec 2018
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,8 @@
  */
 function get_DoogeeClientDevice($deviceCode='') {
     $deviceList = array(
-        'MIX Lite' => array('platform_model' => 'Mix Lite',     'platform_year' => 2017),
+        'MIX Lite'  => array('platform_model' => 'Mix Lite',    'platform_year' => 2017),
+        'BL5000'    => array('platform_model' => 'BL5000',      'platform_year' => 2017),
     );
 
     /* Check for returning list */

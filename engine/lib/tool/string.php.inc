@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/string.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Oct 2007
- * @date Modification: Oct 2018
+ * @date Modification: Dec 2018
  * @copyright 2007 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -240,7 +240,7 @@ function string_text2Words($string, $params=array()) {
         $string = strtoupper($string);
 
     /* check text mode */
-    if ($params['contenttype'] == 'text' and $params['accents'] == 'replace')
+    if ($params['contenttype'] == 'text')
         $string = string_text2Html($string);
 
     /* check html mode */
@@ -266,11 +266,15 @@ function string_text2Words($string, $params=array()) {
     $array = $array[0];
 
     /* check html mode */
-    if ($params['contenttype'] == 'html' and $params['accents']!='replace')
+    if ($params['contenttype'] == 'html' and $params['accents'] != 'replace') {
         foreach ($array as $idx => $value) {
             $array[$idx] = htmlentities($value);
         }
-
+    } elseif ($params['contenttype'] == 'text') {
+        foreach ($array as $idx => $value) {
+            $array[$idx] = string_html2Text($value);
+        }
+    }
     return $array;
 }
 

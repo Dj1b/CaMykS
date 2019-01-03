@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2005
- * @date Modification: Nov 2018
+ * @date Modification: Dec 2018
  * @copyright 2005 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -163,10 +163,16 @@ final class HTMLPage {
     private $header_extras = '';
 
     /**
-     * @var array $header_extras
-     * @brief Page extra headers.
+     * @var string $favicon
+     * @brief URL of personalised favicon.
      */
     private $favicon = '';
+
+    /**
+     * @var string $bodyClass
+     * @brief HTML body tag to apply.
+     */
+    private $bodyClass = '';
 
     /**
      * Class constructor.
@@ -293,6 +299,15 @@ final class HTMLPage {
             $this->charset = $charset;
             $this->add_meta('Content-Type', 'text/html; charset='.$this->charset.'', 'http-equiv');
         }
+    }
+
+    /**
+     * Define body class.
+     * @param string $class
+     * @return void
+     */
+    public function set_bodyClass($class='') {
+        $this->bodyClass = $class;
     }
 
     /**
@@ -907,7 +922,10 @@ final class HTMLPage {
      * @return void
      */
     public function get_body () {
-        echo "</head>\n<body>\n";
+        echo "</head>\n<body";
+        if ($this->bodyClass != "")
+            echo " class=\"".$this->bodyClass."\"";
+        echo ">\n";
         if ($this->google_analytics['code'] != '') {
             /* add google analytics */
             $str = "<script>\n";
