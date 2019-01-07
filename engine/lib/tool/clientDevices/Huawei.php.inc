@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +25,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'GEM-703LT'         => array('platform_model' => 'MediaPad X2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'BEETHOVEN-W09'     => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'BEETHOVEN-DL09'    => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'BTV-DL09'          => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'AGS-W09'           => array('platform_model' => 'MediaPad T3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-W09'           => array('platform_model' => 'MediaPad M5', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
 
@@ -48,6 +49,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'ANE-LX2'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
@@ -125,7 +127,9 @@ function get_HuaweiClientDevice($deviceCode='') {
         'BAC-L23'   => array('platform_model' => 'Nova 2 Plus',     'platform_year' => 2017),
         'BAC-TL00'  => array('platform_model' => 'Nova 2 Plus',     'platform_year' => 2017),
         'LDN-LX2'   => array('platform_model' => 'Nova 2 Lite',     'platform_year' => 2018),
+        'PAR-AL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'ALE-L23'   => array('platform_model' => 'G Elite',         'platform_year' => 2015),
+        'DUB-AL00'  => array('platform_model' => 'Enjoy 9',         'platform_year' => 2018),
     );
 
     /* Check for returning list */

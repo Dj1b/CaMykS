@@ -4,10 +4,10 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.23
+ * @version 1.0.24
  * @date Creation: May 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -4032,6 +4032,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'commonscan.org',
         'engine_url'        => 'https://commonscan.org',
+    );
+
+    /* BrandVerity */
+    $knownBots['brandverity'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'BrandVerity',
+        'bot_url'           => 'https://www.brandverity.com/why-is-brandverity-visiting-me',
+        'engine_title'      => 'BrandVerity',
+        'engine_url'        => 'https://www.brandverity.com',
     );
 
     /* unknown bots */

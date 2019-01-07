@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.51
+ * @version 1.0.52
  * @date Creation: Jun 2007
- * @date Modification: Dec 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -283,7 +283,7 @@ function client_getUAInfos($ua=false) {
         $model = $matches[3].str_replace(array('_', ','), '.', $matches[4]);
         $infos = array_merge($infos, get_AppleClientDevice($model));
 
-    } elseif (preg_match('/(iPod|iPhone|iPad)/', $ua, $matches)) {
+    } elseif (preg_match('/(iPod|iPhone|iPad)([0-9_\,\.]{3,})?/', $ua, $matches)) {
         $infos = array_merge($infos, array(
             'platform_company'  => 'Apple',
             'platform_model'    => $matches[1],
@@ -291,6 +291,18 @@ function client_getUAInfos($ua=false) {
             'platform_format'   => $matches[1]=='iPad'? 'tablet': 'handheld',
             'system_title'      => 'iOS',
         ));
+
+        /* Check for device model */
+        if (isset($matches[2])) {
+            include_once('clientDevices/Apple.php.inc');
+            $model = $matches[1].str_replace(array('_', ','), '.', $matches[2]);
+            $infos = array_merge($infos, get_AppleClientDevice($model));
+        }
+
+        /* Check for iOS version */
+        if (preg_match('/iOS ([0-9_\,\.]{3,})/', $ua, $matches)) {
+            $infos['system_version'] = str_replace(array('_', ','), '.', $matches[1]);
+        }
     }
 
     /* check Google */
@@ -472,20 +484,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Outikel mobiles */
-    elseif (preg_match('/(K6000 Pro) Build/', $ua, $matches)) {
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Oukitel',
-            'platform_model'    => $model,
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-            ),
-            isset($rep[$model])?$rep[$model]:array()
-        );
+    elseif (preg_match('/ (K[0-9]{4,} [A-zA-Z]*)( Build|\))/', $ua, $matches)) {
+        include_once ('clientDevices/Oukitel.php.inc');
+        $infos = array_merge($infos, get_OukitelClientDevice(trim($matches[1])));
     }
 
     /* check Asus mobiles and tablets */
-    elseif (preg_match('/ (K|ME|P)([0-9]{2})([A-Z0-9]{1,2}) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (K|ME|P)([0-9]{2})([A-Z0-9]{1,2})( Build|\))/', $ua, $matches)) {
         include_once ('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1].$matches[2].$matches[3])));
     } elseif (preg_match('/ (Z?[A-Z][0-9]{3}[C|K|T]{1}L) Build/', $ua, $matches)) {
@@ -537,7 +542,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check Amazon Kindle */
-    elseif (preg_match('/Kindle([0-9\.]*)/', $ua, $matches))
+    elseif (preg_match('/ Kindle\/?([0-9\.]*)/', $ua, $matches))
         /* build info */
         $infos = array_merge($infos, array(
             'platform_company'  => 'Amazon',
@@ -725,19 +730,9 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check Carrefour */
-    elseif (preg_match('/CMB([0-9]{3})/', $ua, $matches)) {
-        $rep = array(
-            '510'=> array('platform_model' => 'Smart 5'),
-        );
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Carrefour',
-            'platform_model'    => $model,
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld'
-            ),
-            isset($rep[$model])?$rep[$model]:array()
-        );
+    elseif (preg_match('/ (C[M|T][A-Z0-9]{4}) Build/', $ua, $matches)) {
+        include_once ('clientDevices/Carrefour.php.inc');
+        $infos = array_merge($infos, get_CarrefourClientDevice($matches[1]));
     }
 
     /* check Orange */
@@ -1244,9 +1239,9 @@ function client_getUAInfos($ua=false) {
             );
 
         /* check Android */
-        elseif (preg_match('/(?:Android;?|Adr)[ \/]?([^;\) ]*)/', $ua, $matches)) {
+        elseif (preg_match('/(Android|Adr)[; \/]*([0-9\.]*)?/', $ua, $matches)) {
             /* check version */
-            $version = isset($matches[1])?$matches[1]:'';
+            $version = isset($matches[2])?$matches[2]:'';
             if ($version != '' and version_compare($version, $maxVersions['system']['Android']) > 0)
                 return $fake;
 
@@ -1481,8 +1476,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
             'browser_version'   => isset($matches[2])?$matches[2]:'',
@@ -1490,7 +1485,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check no version written browser */
-    elseif (preg_match('/(HeadlessChrome|Iron|Advanced Browser|Magic Browser|Pinterest)/', $ua, $matches)) {
+    elseif (preg_match('/(HeadlessChrome|Iron|Advanced Browser|Magic Browser|Pinterest|Sunrise)/', $ua, $matches)) {
         $rep = array();
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1516,7 +1511,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check gen computer browsers */
-    elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront|WhatsApp|Dalvik)(?:\/| )?([a-z0-9\._]*)/i', $ua, $matches)) {
+    elseif (preg_match('/(Chromium|Netscape|Camino|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront|WhatsApp|Dalvik|Snapchat)(?:\/| )?([a-z0-9\._]*)/i', $ua, $matches)) {
         $rep = array('VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser', 'NetFront' => 'Access NetFront');
         $infos = array_merge(array(
             'platform_type'     => 'computer',
@@ -2279,7 +2274,7 @@ function _client_getUAPropertiesMaxVersions() {
             'Chrome'            => '74',                    // current is 71
             'Chromium'          => '74',                    // current is 71
             'Internet Explorer' => '11.0.50',               // latest
-            'Edge'              => '45',                    // current is 40
+            'Edge'              => '45',                    // current is 42
             'Opera'             => '59',                    // current is 56
             'Safari'            => '15',                    // current is 12.0.2
         ),

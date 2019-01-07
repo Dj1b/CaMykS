@@ -1,32 +1,30 @@
 <?php
 /**
- * @brief Nokia client devices specific methods
+ * @brief Carrefour client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Nokia.php.inc
+ * @file engine/lib/tool/clientDevices/Carrefour.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Jun 2018
+ * @version 1.0.0
+ * @date Creation: Jan 2019
  * @date Modification: Jan 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Nokia client device information from a known list.
+ * Return Carrefour client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_NokiaClientDevice($deviceCode='') {
+function get_CarrefourClientDevice($deviceCode='') {
     $deviceList = array(
-        'Lumia 920' => array('platform_model' => 'Lumia 920',       'platform_year' => 2012),
-        'Lumia 535' => array('platform_model' => 'Lumia 535',       'platform_year' => 2014),
-        'Lumia 830' => array('platform_model' => 'Lumia 830',       'platform_year' => 2014),
+        /* Carrefour tablets */
+        'CT1010'    => array('platform_model' => 'CT 1010', 'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2012),
 
-        'X2DS'      => array('platform_model' => 'X2 (Dual Sim)',   'platform_year' => 2014),
-        'TA-1053'   => array('platform_model' => '5',               'platform_year' => 2017),
-        '7 plus'    => array('platform_model' => '7 Plus',          'platform_year' => 2018),
+        /* Carrefour mobiles */
+        'CMB510'    => array('platform_model' => 'Smart 5', 'platform_year' => 2015),
     );
 
     /* Check for returning list */
@@ -35,7 +33,7 @@ function get_NokiaClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Nokia',
+        'platform_company'  => 'Carrefour',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

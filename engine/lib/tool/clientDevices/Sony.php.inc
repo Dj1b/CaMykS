@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -47,6 +47,7 @@ function get_SonyClientDevice($deviceCode='') {
         'F5121'     => array('platform_model' => 'Xperia X',                'platform_year' => 2016),
         'F5122'     => array('platform_model' => 'Xperia X',                'platform_year' => 2016),
         'F3111'     => array('platform_model' => 'Xperia XA',               'platform_year' => 2016),
+        'F3211'     => array('platform_model' => 'Xperia XA Ultra',         'platform_year' => 2016),
         'F3311'     => array('platform_model' => 'Xperia E5',               'platform_year' => 2016),
         'F5121'     => array('platform_model' => 'Xperia X',                'platform_year' => 2016),
         'F5321'     => array('platform_model' => 'Xperia X Compact',        'platform_year' => 2016),
@@ -62,6 +63,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H4113'     => array('platform_model' => 'Xperia XA2',              'platform_year' => 2018),
         'H8216'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8314'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
+        'H3413'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
 
         'SOV31'     => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),
         'SOV32'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),

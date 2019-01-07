@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -95,7 +95,11 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G930V'  => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
         'SM-G930W8' => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
         'SM-G935'   => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
+        'SM-G9350'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
+        'SM-G935A'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
+        'SM-G935P'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
+        'SM-G935V'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G950'   => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G950W'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
@@ -141,7 +145,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J120FN' => array('platform_model' => 'Galaxy J1',                       'platform_year' => 2016),
         'SM-J120H'  => array('platform_model' => 'Galaxy J1',                       'platform_year' => 2016),
         'SM-J106H'  => array('platform_model' => 'Galaxy J1 Mini Prime',            'platform_year' => 2016),
-        'SM-J200F'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2016),
+        'SM-J200F'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
+        'SM-J200H'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J310'   => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320F'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
@@ -166,6 +171,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J600FN' => array('platform_model' => 'Galaxy J6',                       'platform_year' => 2018),
         'SM-J610FN' => array('platform_model' => 'Galaxy J6+',                      'platform_year' => 2018),
         'SM-J7008'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2015),
+        'SM-J700F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2015),
         'SM-G610F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
         'SM-J700H'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
         'SM-J710F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),

@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/OnePlus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +25,7 @@ function get_OnePlusClientDevices() {
         'A2003' => array('platform_model' => '2',   'platform_year' => 2015),
         'A2005' => array('platform_model' => '2',   'platform_year' => 2015),
         'E1003' => array('platform_model' => 'X',   'platform_year' => 2015),
+        'A3000' => array('platform_model' => '3',   'platform_year' => 2016),
         'A3003' => array('platform_model' => '3T',  'platform_year' => 2016),
         'A3010' => array('platform_model' => '3T',  'platform_year' => 2016),
         'A5000' => array('platform_model' => '5',   'platform_year' => 2017),
@@ -32,6 +33,7 @@ function get_OnePlusClientDevices() {
         'A6000' => array('platform_model' => '6',   'platform_year' => 2018),
         'A6003' => array('platform_model' => '6',   'platform_year' => 2018),
         'A6010' => array('platform_model' => '6T',  'platform_year' => 2018),
+        'A6013' => array('platform_model' => '6T',  'platform_year' => 2018),
     );
 }
 

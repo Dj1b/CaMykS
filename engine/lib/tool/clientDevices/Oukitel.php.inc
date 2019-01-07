@@ -1,32 +1,27 @@
 <?php
 /**
- * @brief Nokia client devices specific methods
+ * @brief Oukitel client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Nokia.php.inc
+ * @file engine/lib/tool/clientDevices/Oukitel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Jun 2018
+ * @version 1.0.0
+ * @date Creation: Jan 2019
  * @date Modification: Jan 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Nokia client device information from a known list.
+ * Return Oukitel client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_NokiaClientDevice($deviceCode='') {
+function get_OukitelClientDevice($deviceCode='') {
     $deviceList = array(
-        'Lumia 920' => array('platform_model' => 'Lumia 920',       'platform_year' => 2012),
-        'Lumia 535' => array('platform_model' => 'Lumia 535',       'platform_year' => 2014),
-        'Lumia 830' => array('platform_model' => 'Lumia 830',       'platform_year' => 2014),
-
-        'X2DS'      => array('platform_model' => 'X2 (Dual Sim)',   'platform_year' => 2014),
-        'TA-1053'   => array('platform_model' => '5',               'platform_year' => 2017),
-        '7 plus'    => array('platform_model' => '7 Plus',          'platform_year' => 2018),
+        'K6000 Pro'     => array('platform_model' => 'K6000 Pro',   'platform_year' => 2016),
+        'K10000 Max'    => array('platform_model' => 'K10000 Max',  'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -35,7 +30,7 @@ function get_NokiaClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Nokia',
+        'platform_company'  => 'Oukitel',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
