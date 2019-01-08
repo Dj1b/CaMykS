@@ -124,7 +124,7 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
 
     /**
      * Return object count.
-     * @params array $params
+     * @param array $params
      * @return array
      */
     public function count($params=array()) {
@@ -135,9 +135,8 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
     }
 
     /**
-     * return default parameters
-     * @param array
-     * @access private
+     * Return default parameters.
+     * @return array
      */
     private function get_defaultParams() {
         return array(
