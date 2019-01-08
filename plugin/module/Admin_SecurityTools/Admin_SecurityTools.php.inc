@@ -8,7 +8,7 @@
  * @details Plugin / Module Engine
  * @file plugin/module/Admin_SecurityTools/Admin_SecurityTools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.2
  * @date Creation: Oct 2007
  * @date Modification: Jan 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -53,7 +53,12 @@ final class Admin_SecurityTools extends Module {
      * var array tools
      * @brief Security tools list.
      */
-    protected $tools = array('ipfilter', 'urlfilter', 'backup');
+    protected $tools = array(
+        'ipfilter'  => array('configure' => false),
+        'urlfilter' => array('configure' => false),
+        'uafilter'  => array('configure' => true),
+        'backup'    => array('configure' => true),
+    );
 
     /**
      * Class constructor.
@@ -65,7 +70,7 @@ final class Admin_SecurityTools extends Module {
         parent::__construct('Admin_SecurityTools', $path_type);
 
         /* Override Plugin variables */
-        $this->version = '1.1';
+        $this->version = '1.2';
         $this->plugin_package = 'Default';
 
         /* Override Module variables */
@@ -81,12 +86,14 @@ final class Admin_SecurityTools extends Module {
         $this->load_library('Admin_SecurityToolsConfig');
         $this->load_library('Admin_SecurityIPFilterRule');
         $this->load_library('Admin_SecurityURLFilterRule');
+        $this->load_library('Admin_SecurityUAFilterConfig');
         $this->load_library('Admin_SecurityBackUpFile');
 
         /* Load library objects */
         $this->config = new Admin_SecurityToolsConfig('config', $this);
         $this->ipfilterrule = new Admin_SecurityIPFilterRule(0, $this);
         $this->urlFilterRule = new Admin_SecurityURLFilterRule(0, $this);
+        $this->uaFilterConfig = new Admin_SecurityUAFilterConfig('config', $this);
         $this->backupfile = new Admin_SecurityBackUpFile(0, $this);
 
         /* Load configuration */
@@ -231,6 +238,14 @@ final class Admin_SecurityTools extends Module {
             case 'delete_urlFilterRule':
                 /* mode == delete_urlFilterRule */
                 $this->init_admin_deleteURLFilterRule();
+                break;
+            case 'edit_uafilterconfig':
+                /* mode == edit_uafilterconfig */
+                $this->init_admin_editUAFilterConfig();
+                break;
+            case 'save_uafilterconfig':
+                /* mode == save_uafilterconfig */
+                $this->init_admin_saveUAFilterConfig();
                 break;
             case 'edit_backupconfig':
                 /* mode == edit_backupconfig */
@@ -382,6 +397,38 @@ final class Admin_SecurityTools extends Module {
             'link'  => $camyks->get_adminLink(),
             'title' => $camyks->get_translation('back')
        ));
+    }
+
+    /*
+     * Initialise module object in admin/update_config mode.
+     * @return void
+     */
+    private function init_admin_updateConfig() {
+        global $camyks;
+
+        /* check rights */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* get update values */
+        if (isset($_REQUEST['action']) and in_array($_REQUEST['action'], array('enable', 'disable'))
+                and isset($_REQUEST['item']) and isset($this->config->vars[$_REQUEST['item']])) {
+            $this->config->vars[$_REQUEST['item']] = ($_REQUEST['action'] == 'enable');
+            if ($this->config->save()) {
+                $this->text = $this->get_translation('config_saved');
+            } else {
+                $this->text = $this->get_translation('config_notsaved');
+            }
+        } else {
+            $this->text = $this->get_translation('config_notsaved');
+        }
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink());
     }
 
     /**
@@ -599,10 +646,44 @@ final class Admin_SecurityTools extends Module {
     }
 
     /*
-     * Initialise module object in admin/update_config mode.
+     * Initialise module object in admin/edit_uafilterconfig mode
      * @return void
      */
-    private function init_admin_updateConfig() {
+    private function init_admin_editUAFilterConfig() {
+        global $camyks;
+
+        /* check rights */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* load configuration */
+        $this->uaFilterConfig->get();
+
+        /* get form */
+        $this->form = new HTMLForm('edit_backupconfig', $this->get_adminLink(array('mode'=>'save_uafilterconfig')), 'POST');
+        $this->form->set_object($this->uaFilterConfig);
+
+        /* get buttons */
+        $this->buttons = array(
+            array(
+                'link'  => $this->get_adminLink(),
+                'title' => $camyks->get_translation('back'),
+            ),
+            array(
+                'link'  => $this->form->get_HTMLSubmitLink(),
+                'title' => $camyks->get_translation('valid'),
+            )
+        );
+
+        /* update layout */
+        $this->set_selectedLayout('admin_edit_uaFilterConfig.html.inc');
+    }
+
+    /**
+     * Initialise module object in admin/save_uafilterconfig mode.
+     * @return void
+     */
+    private function init_admin_saveUAFilterConfig() {
         global $camyks;
 
         /* check rights */
@@ -612,20 +693,13 @@ final class Admin_SecurityTools extends Module {
         /* disable admin menu */
         $this->disable_adminEngineMenus();
 
-        /* get update values */
-        if (isset($_REQUEST['action']) and in_array($_REQUEST['action'], array('enable', 'disable'))
-                and isset($_REQUEST['item']) and isset($this->config->vars[$_REQUEST['item']])) {
-            $this->config->vars[$_REQUEST['item']] = ($_REQUEST['action'] == 'enable');
-            if ($this->config->save()) {
-                $this->text = $this->get_translation('config_saved');
-            } else {
-                $this->text = $this->get_translation('config_notsaved');
-            }
+        /* save config file */
+        $this->uaFilterConfig->get_fromHeader();
+        if ($this->uaFilterConfig->save()) {
+            $this->text = $this->get_translation('config_saved');
         } else {
             $this->text = $this->get_translation('config_notsaved');
         }
-
-        /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink());
     }
@@ -653,7 +727,7 @@ final class Admin_SecurityTools extends Module {
         /* get buttons */
         $this->buttons = array(
             array(
-                'link'  => $camyks->get_adminLink($this->name, array('openTab'=>'Backup')),
+                'link'  => $this->get_adminLink(array('openTab'=>'Backup')),
                 'title' => $camyks->get_translation('back'),
             ),
             array(
@@ -782,7 +856,7 @@ final class Admin_SecurityTools extends Module {
         /* get buttons */
         $this->buttons = array(
             array(
-                'link'  => $camyks->get_adminLink($this->name, array('openTab'=>'Backup')),
+                'link'  => $this->get_adminLink(array('openTab'=>'Backup')),
                 'title' => $camyks->get_translation('back'),
             ),
             array(
@@ -863,6 +937,13 @@ final class Admin_SecurityTools extends Module {
         /* URL Filter */
         if ($this->config->vars['urlfilter'])
             $this->urlFilterRule->check_security();
+
+        /* UA Filter */
+        if ($this->config->vars['uafilter']) {
+            $this->uaFilterConfig->get();
+            $this->uaFilterConfig->check_security();
+        }
+
 
         /* BackUp */
         if ($this->config->vars['backup']) {

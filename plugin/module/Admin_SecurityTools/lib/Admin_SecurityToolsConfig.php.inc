@@ -4,7 +4,7 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_SecurityTools/lib/Admin_SecurityToolsConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2007
  * @date Modification: Jan 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -29,6 +29,7 @@ final class Admin_SecurityToolsConfig extends PluginConfig {
         /* object items */
         $this->add_newItem('ipfilter', 'boolean', false);
         $this->add_newItem('urlfilter', 'boolean', false);
+        $this->add_newItem('uafilter', 'boolean', false);
         $this->add_newItem('backup', 'boolean', false);
         $this->add_newItem('backup_method', 'string', 'manual');
         $this->add_newItem('backup_compression', 'string', 'tgz');

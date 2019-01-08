@@ -71,7 +71,7 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
     /* specific tool methods */
 
     /**
-     * Check IP Filter security.
+     * Check URL Filter security.
      * @return boolean result
      */
     public function check_security() {
@@ -83,7 +83,7 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
         /* Load current URL */
         $url = $_SERVER['REQUEST_URI'];
 
-        /* Check if IP match a rule */
+        /* Check if URL match a rule */
         foreach ($rules as $rule) {
             if (preg_match('/'.$rule->vars['pattern'].'/i', $url)) {
                 $camyks->log('Security', 'Connection refused', 'Black listed URL ('.$rule->vars['comment'].': "'. $url .'")');

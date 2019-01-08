@@ -4,7 +4,7 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_SecurityTools/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Oct 2007
  * @date Modification: Jan 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -13,7 +13,7 @@
  */
 
 $this->trads['mod_admin_securitytools_title'] = 'Outils S&eacute;curit&eacute;';
-$this->trads['mod_admin_securitytools_desc'] = 'Filtre IP, Sauvegarde, ... ';
+$this->trads['mod_admin_securitytools_desc'] = 'Filtres, Sauvegarde, ... ';
 
 /* Objects */
 $this->trads['mod_admin_securitytools_ipfilterrule'] = 'R&egrave;gle du filtre IP';
@@ -65,10 +65,12 @@ $this->trads['mod_admin_securitytools_urlfilterrulesstatus_enabled'] = 'Activ&ea
 $this->trads['mod_admin_securitytools_tabmain'] = 'S&eacute;curit&eacute;';
 $this->trads['mod_admin_securitytools_disable'] = 'D&eacute;sactiver';
 $this->trads['mod_admin_securitytools_enable'] = 'Activer';
+$this->trads['mod_admin_securitytools_configure'] = 'Configurer';
 
 $this->trads['mod_admin_securitytools_availabletools'] = 'Outils disponibles : ';
 $this->trads['mod_admin_securitytools_tool_ipfilter'] = 'Filtre IP';
 $this->trads['mod_admin_securitytools_tool_urlfilter'] = 'Filtre URL';
+$this->trads['mod_admin_securitytools_tool_uafilter'] = 'Filtre Agent Utilisateur';
 $this->trads['mod_admin_securitytools_tool_backup'] = 'Sauvegarde';
 
 /* main: ip filter tab */
@@ -107,6 +109,11 @@ $this->trads['mod_admin_securitytools_urlfilter_rulenew'] = 'Nouvelle r&egrave;g
 $this->trads['mod_admin_securitytools_urlfilter_ruleid'] = 'R&egrave;gle n&deg;%s';
 $this->trads['mod_admin_securitytools_formitem_pattern'] = 'Masque : ';
 $this->trads['mod_admin_securitytools_ipfilter_permission'] = 'Permission : ';
+
+/* edit ua filter configuration */
+$this->trads['mod_admin_securitytools_uafilter_configuration'] = 'Configuration du filter Agent Utilisateur';
+$this->trads['mod_admin_securitytools_formitem_blockhacks'] = 'Bloquer les hacks : ';
+$this->trads['mod_admin_securitytools_formitem_blockfakes'] = 'Bloquer les fausses visites : ';
 
 /* edit/view backup */
 $this->trads['mod_admin_securitytools_backup_configuration'] = 'Configuration : ' ;
