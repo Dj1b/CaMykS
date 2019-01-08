@@ -14,11 +14,10 @@
 
 /**
  * Admin_SecurityIPFilterRule ModuleLibrary class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class Admin_SecurityIPFilterRule extends ModuleLibrary {
-    /*
-     * Class Constructor
+    /**
+     * Class constructor.
      * @param integer $id
      * @param Module $parent
      * @return void

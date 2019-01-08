@@ -4,10 +4,10 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_SecurityTools/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2007
- * @date Modification: Nov 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,13 +20,18 @@ $this->trads['mod_admin_securitytools_ipfilterrule'] = 'R&egrave;gle du filtre I
 $this->trads['mod_admin_securitytools_ipfilterrules'] = 'R&egrave;gles du filtre IP';
 $this->trads['mod_admin_securitytools_ipfilterrules_all'] = 'Toutes';
 
+$this->trads['mod_admin_securitytools_urlfilterrule'] = 'R&egrave;gle du filtre URL';
+$this->trads['mod_admin_securitytools_urlfilterrules'] = 'R&egrave;gles du filtre URL';
+$this->trads['mod_admin_securitytools_urlfilterrules_all'] = 'Toutes';
+
 $this->trads['mod_admin_securitytools_backup'] = 'Sauvegarde';
 $this->trads['mod_admin_securitytools_backups'] = 'Sauvegardes';
 $this->trads['mod_admin_securitytools_backups_all'] = 'Toutes';
 
 /* rights */
 $this->trads['mod_admin_securitytools_right_config'] = 'Configuration';
-$this->trads['mod_admin_securitytools_right_ipfilter'] = 'R&egrave;gle du filtre IP';
+$this->trads['mod_admin_securitytools_right_ipfilter'] = 'R&egrave;gles du filtre IP';
+$this->trads['mod_admin_securitytools_right_urlfilter'] = 'R&egrave;gles du filtre URL';
 $this->trads['mod_admin_securitytools_right_backup'] = 'Sauvegarde';
 
 /* IP Filter rule status values */
@@ -48,27 +53,42 @@ $this->trads['mod_admin_securitytools_ipfilterrulesitemode_visit'] = 'Visite seu
 $this->trads['mod_admin_securitytools_ipfilterrulesite_admin'] = 'Admin.';
 $this->trads['mod_admin_securitytools_ipfilterrulesite_visit'] = 'Visite';
 
-/* tabs */
-$this->trads['mod_admin_securitytools_tabmain'] = 'S&eacute;curit&eacute;';
+/* URL Filter rule status values */
+$this->trads['mod_admin_securitytools_urlfilterrulestatus_disabled'] = 'D&eacute;sactiv&eacute;e';
+$this->trads['mod_admin_securitytools_urlfilterrulestatus_enabled'] = 'Activ&eacute;e';
 
-/* main */
+/* URL Filter rules status values */
+$this->trads['mod_admin_securitytools_urlfilterrulesstatus_disabled'] = 'D&eacute;sactiv&eacute;es';
+$this->trads['mod_admin_securitytools_urlfilterrulesstatus_enabled'] = 'Activ&eacute;es';
+
+/* main: settings tab */
+$this->trads['mod_admin_securitytools_tabmain'] = 'S&eacute;curit&eacute;';
 $this->trads['mod_admin_securitytools_disable'] = 'D&eacute;sactiver';
 $this->trads['mod_admin_securitytools_enable'] = 'Activer';
 
 $this->trads['mod_admin_securitytools_availabletools'] = 'Outils disponibles : ';
 $this->trads['mod_admin_securitytools_tool_ipfilter'] = 'Filtre IP';
+$this->trads['mod_admin_securitytools_tool_urlfilter'] = 'Filtre URL';
 $this->trads['mod_admin_securitytools_tool_backup'] = 'Sauvegarde';
 
-/* ip filter tab */
+/* main: ip filter tab */
 $this->trads['mod_admin_securitytools_verify_ipaddress'] = 'V&eacute;rifier l\'adresse IP';
 $this->trads['mod_admin_securitytools_addnewipfilterrule'] = 'Ajouter une r&egrave;gle de filtre IP';
 $this->trads['mod_admin_securitytools_ipfilter_editrule'] = 'Editer cette r&egrave;gle';
 $this->trads['mod_admin_securitytools_ipfilter_deleterule'] = 'Supprimer cette r&egrave;gle';
+$this->trads['mod_admin_securitytools_deletefilteriprule'] = 'Etes vous sur de vouloir supprimer cette r&egrave;gle ? Cette action est irr&eacute;versible.';
 $this->trads['mod_admin_securitytools_ipaddress'] = 'Adresse IP';
 $this->trads['mod_admin_securitytools_sitemode'] = 'Espace';
 $this->trads['mod_admin_securitytools_comment'] = 'Commentaire';
 
-/* backup tab */
+/* main: url filter tab */
+$this->trads['mod_admin_securitytools_addnewurlfilterrule'] = 'Ajouter une r&egrave;gle de filtre URL';
+$this->trads['mod_admin_securitytools_urlfilter_editrule'] = 'Editer cette r&egrave;gle';
+$this->trads['mod_admin_securitytools_urlfilter_deleterule'] = 'Supprimer cette r&egrave;gle';
+$this->trads['mod_admin_securitytools_deletefilteriprule'] = 'Etes vous sur de vouloir supprimer cette r&egrave;gle ? Cette action est irr&eacute;versible.';
+$this->trads['mod_admin_securitytools_pattern'] = 'Masque';
+
+/* main: backup tab */
 $this->trads['mod_admin_securitytools_ipfilter_unauthorizedip'] = 'Adresses IP non-autoris&eacute;es';
 $this->trads['mod_admin_securitytools_ipfilter_authorizedip'] = 'Adresses IP autoris&eacute;es';
 
@@ -81,7 +101,12 @@ $this->trads['mod_admin_securitytools_ipfilter_mode'] = 'Mode : ';
 $this->trads['mod_admin_securitytools_ipfilter_comment'] = 'Commentaire : ';
 
 $this->trads['mod_admin_securitytools_error_nonvalidipaddress'] = 'L\'adresse IP donn&eacute;e n\'est pas valide.';
-$this->trads['mod_admin_securitytools_deletefilteriprule'] = 'Etes vous sur de vouloir supprimer cette r&egrave;gle ? Cette action est irr&eacute;versible.';
+
+/* edit/view url filter rules */
+$this->trads['mod_admin_securitytools_urlfilter_rulenew'] = 'Nouvelle r&egrave;gle';
+$this->trads['mod_admin_securitytools_urlfilter_ruleid'] = 'R&egrave;gle n&deg;%s';
+$this->trads['mod_admin_securitytools_formitem_pattern'] = 'Masque : ';
+$this->trads['mod_admin_securitytools_ipfilter_permission'] = 'Permission : ';
 
 /* edit/view backup */
 $this->trads['mod_admin_securitytools_backup_configuration'] = 'Configuration : ' ;

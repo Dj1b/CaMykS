@@ -8,10 +8,10 @@
  * @details Plugin / Module Engine
  * @file plugin/module/Admin_SecurityTools/Admin_SecurityTools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.1
  * @date Creation: Oct 2007
- * @date Modification: Nov 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo - remove cdata & cplugin folders sym links from "complete" backup
@@ -26,7 +26,37 @@
  */
 final class Admin_SecurityTools extends Module {
     /**
-     * Class constructor
+     * var Object $config
+     * @brief Configuration object.
+     */
+    protected $config;
+
+    /**
+     * var Object $ipfilterrule
+     * @brief IP filter rule object.
+     */
+    protected $ipfilterrule;
+
+    /**
+     * var Object urlFilterRule
+     * @brief URL filter rule object.
+     */
+    protected $urlFilterRule;
+
+    /**
+     * var Object backupfile
+     * @brief Backup file object.
+     */
+    protected $backupfile;
+
+    /**
+     * var array tools
+     * @brief Security tools list.
+     */
+    protected $tools = array('ipfilter', 'urlfilter', 'backup');
+
+    /**
+     * Class constructor.
      * @param string $path_type
      * @return void
      */
@@ -34,64 +64,76 @@ final class Admin_SecurityTools extends Module {
         global $camyks;
         parent::__construct('Admin_SecurityTools', $path_type);
 
-        /* set module type */
+        /* Override Plugin variables */
+        $this->version = '1.1';
+        $this->plugin_package = 'Default';
+
+        /* Override Module variables */
         $this->type = 'admin';
         $this->admin_type = 'configuration';
 
-        /* set plugin version */
-        $this->version = '1.0.1';
-
-        /* set plugin package */
-        $this->plugin_package = 'Default';
-
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* get module libs */
+        /* Load module libraries */
         $this->load_library('Admin_SecurityToolsConfig');
         $this->load_library('Admin_SecurityIPFilterRule');
+        $this->load_library('Admin_SecurityURLFilterRule');
         $this->load_library('Admin_SecurityBackUpFile');
 
-        /* get lib objects */
+        /* Load library objects */
         $this->config = new Admin_SecurityToolsConfig('config', $this);
         $this->ipfilterrule = new Admin_SecurityIPFilterRule(0, $this);
+        $this->urlFilterRule = new Admin_SecurityURLFilterRule(0, $this);
         $this->backupfile = new Admin_SecurityBackUpFile(0, $this);
 
-        /* load config */
+        /* Load configuration */
         $this->config->get();
 
-        /* check security */
+        /* Ceck security */
         if ($camyks->mode == CAMYKS_MODE_ADMIN)
             $this->check_security();
         else
             $this->register_asCaMykSEventHandler('onInitialise');
-
-        /* list tools */
-        $this->tools = array('ipfilter', 'backup');
     }
 
-    /* overwrite Module Methods */
+    /* Override Module methods */
 
     /**
-     * Install module object
+     * Install module object.
      * @return boolean success
      */
     public function install() {
-        return $this->ipfilterrule->install() and $this->backupfile->install() and parent::install();
+        return $this->ipfilterrule->install() and $this->urlFilterRule->install()
+            and $this->backupfile->install() and parent::install();
     }
 
     /**
-     * Uninstall module object
+     * Uninstall module object.
      * @return boolean success
      */
     public function uninstall() {
-        return $this->ipfilterrule->uninstall() and $this->backupfile->uninstall() and parent::uninstall();
+        return $this->ipfilterrule->uninstall() and $this->urlFilterRule->uninstall()
+            and $this->backupfile->uninstall() and parent::uninstall();
     }
 
     /**
-     * Check module installation
+     * Update plugin.
+     * @return boolean
+     */
+    public function update($version, $more='') {
+        global $camyks;
+
+        if (version_compare($version, '1.1', '<'))
+            if (!$this->update_toVersion1_1()) return false;
+
+        parent::update($version, $more);
+    }
+
+    /**
+     * Check module installation.
      * @return boolean result
      */
     public function is_installed() {
@@ -99,7 +141,7 @@ final class Admin_SecurityTools extends Module {
     }
 
     /**
-     * Returns available permissions
+     * Returns available permissions.
      * @return void
      */
     public function get_rights() {
@@ -108,22 +150,27 @@ final class Admin_SecurityTools extends Module {
             'name'      => 'read',
             'title'     => $camyks->get_translation('read'),
             'default'   => false,
-       );
+        );
         $this->rights[1] = array(
             'name'      => 'config',
             'title'     => $this->get_translation('right_config'),
             'default'   => false,
-       );
+        );
         $this->rights[2] = array(
             'name'      => 'ipfilter',
             'title'     => $this->get_translation('right_ipfilter'),
             'default'   => false,
-       );
+        );
+        $this->rights[4] = array(
+            'name'      => 'urlfilter',
+            'title'     => $this->get_translation('right_urlfilter'),
+            'default'   => false,
+        );
         $this->rights[3] = array(
             'name'      => 'backup',
             'title'     => $this->get_translation('right_backup'),
             'default'   => false,
-       );
+        );
     }
 
     /**
@@ -172,6 +219,18 @@ final class Admin_SecurityTools extends Module {
             case 'delete_ipfilter':
                 /* mode == delete_ipfilter */
                 $this->init_admin_deleteIPFilter();
+                break;
+            case 'edit_urlFilterRule':
+                /* mode == edit_urlFilterRule */
+                $this->init_admin_editURLFilterRule();
+                break;
+            case 'save_urlFilterRule':
+                /* mode == save_urlFilterRule */
+                $this->init_admin_saveURLFilterRule();
+                break;
+            case 'delete_urlFilterRule':
+                /* mode == delete_urlFilterRule */
+                $this->init_admin_deleteURLFilterRule();
                 break;
             case 'edit_backupconfig':
                 /* mode == edit_backupconfig */
@@ -257,7 +316,7 @@ final class Admin_SecurityTools extends Module {
                 'title' => $camyks->get_translation('help'),
             ));
 
-        /* check for available tools */
+        /* check for IP filter availability */
         if ($this->config->vars['ipfilter']) {
             /* add tab */
             $this->tabBuilder->add_tab(array(
@@ -274,6 +333,21 @@ final class Admin_SecurityTools extends Module {
             /* Add scripts */
             $this->add_JSLoadScript('SecurityTools.set_param("pictures", "ip_allow", "'.$this->get_fileURL('img/enabled.gif').'");');
             $this->add_JSLoadScript('SecurityTools.set_param("pictures", "ip_deny", "'.$this->get_fileURL('img/disabled.gif').'");');
+        }
+
+        /* check for URL filter availability */
+        if ($this->config->vars['urlfilter']) {
+            /* add tab */
+            $this->tabBuilder->add_tab(array(
+                'name'  => 'URLFilter',
+                'title' => $this->get_translation('tool_urlfilter')
+            ));
+
+            /* build newsletter tab */
+            $this->load_library('Admin_SecurityURLFilterRuleListParams');
+            $this->urlFilterRuleList = new AdminItemListViewer('camyks');
+            $this->urlFilterRuleList->set_params($this->urlFilterRuleListParams);
+            $this->urlFilterRuleList->initialise();
         }
 
         if ($this->config->vars['backup'] and $this->check_right(3)) {
@@ -415,6 +489,113 @@ final class Admin_SecurityTools extends Module {
         }
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('openTab'=>'IPFilter')));
+    }
+
+    /**
+     * Initialise module object in admin/edit_urlfilter mode.
+     * @return void
+     */
+    private function init_admin_editURLFilterRule() {
+        global $camyks;
+
+        /* check rights */
+        if ($this->check_right(2) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* load object */
+        $this->urlFilterRule->id = isset($_REQUEST['ruleId']) ? (int)$_REQUEST['ruleId'] : 0;
+        $this->urlFilterRule->get();
+        $this->urlFilterRule->get_fromItems();
+
+        /* get form */
+        $this->init_admin_editURLFilterRuleForm();
+    }
+
+    /*
+     * Complete module object init in admin/edit_urlfilter
+     * @return void
+     */
+    private function init_admin_editURLFilterRuleForm() {
+        global $camyks;
+
+        /* build form */
+        $this->form = new HTMLForm('edit_urlfilter', $this->get_adminLink(array('mode'=>'save_urlFilterRule')), 'POST');
+        $this->form->set_object($this->urlFilterRule);
+        $this->form->add_hidden('ruleId', $this->urlFilterRule->id);
+
+        /* build interface title */
+        $this->adminTitle = $this->title.$camyks->get_translation('formitem_separator');
+        if ($this->urlFilterRule->id == 0)
+            $this->adminTitle .= $this->get_translation('urlfilter_rulenew');
+        else
+            $this->adminTitle .= $this->get_translation('urlfilter_ruleid', $this->urlFilterRule->id);
+
+        /* build buttons */
+        $this->buttons = array(
+            array(
+                'link'  => $this->get_adminLink(array('openTab'=>'URLFilter')),
+                'title' => $camyks->get_translation('back'),
+               ),
+            array(
+                'link'  => $this->form->get_HTMLSubmitLink(),
+                'title' => $camyks->get_translation('valid'),
+            )
+       );
+
+        /* update layout */
+        $this->set_selectedLayout('admin_edit_urlFilterRule.html.inc');
+    }
+
+    /*
+     * Initialise module object in admin/save_urlFilterRule mode.
+     * @return void
+     */
+    private function init_admin_saveURLFilterRule() {
+        global $camyks;
+
+        /* check rights */
+        if ($this->check_right(2) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* save rule */
+        $this->urlFilterRule->id = isset($_REQUEST['ruleId']) ? (int)$_REQUEST['ruleId'] : 0;
+        $this->urlFilterRule->get_fromHeader();
+        if ($this->urlFilterRule->save()) {
+            $this->text = $this->get_translation('rule_saved');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink(array('openTab'=>'URLFilter')));
+        } else {
+            $this->urlFilterRule->get_fromItems();
+            $this->init_admin_editURLFilterForm();
+        }
+    }
+
+    /*
+     * Initialise module object in admin/delete_urlFilterRule mode.
+     * @return void
+     */
+    private function init_admin_deleteURLFilterRule() {
+        global $camyks;
+
+        /* check rights */
+        if ($this->check_right(2) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* delete rule */
+        $this->urlFilterRule->id = isset($_REQUEST['ruleId']) ? (int)$_REQUEST['ruleId'] : 0;
+        if ($this->urlFilterRule->delete()) {
+            $this->text = $this->get_translation('rule_deleted');
+        } else {
+            $this->text = $this->get_translation('rule_notdeleted');
+        }
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('openTab'=>'URLFilter')));
     }
 
     /*
@@ -679,6 +860,10 @@ final class Admin_SecurityTools extends Module {
         if ($this->config->vars['ipfilter'])
             $this->ipfilterrule->check_security();
 
+        /* URL Filter */
+        if ($this->config->vars['urlfilter'])
+            $this->urlFilterRule->check_security();
+
         /* BackUp */
         if ($this->config->vars['backup']) {
             if ($camyks->mode == CAMYKS_MODE_ADMIN
@@ -750,6 +935,25 @@ final class Admin_SecurityTools extends Module {
         $this->ipfilterrules = $this->ipfilterrule->get_objectList();
     }
 
+    /* URL Filter rule related methods */
+
+    /**
+     * Return URL Filter rule status list
+     * @return array
+     */
+    public function get_urlFilterRuleStatusList() {
+        return $this->urlFilterRule->get_statusList();
+    }
+
+    /**
+     * Return URL Filter rules status list
+     * @param array $params
+     * @return array
+     */
+    public function get_urlFilterRulesStatusList($params=array()) {
+        return $this->urlFilterRule->get_multiStatusList($params);
+    }
+
     /* Backup related methods */
 
     /**
@@ -806,6 +1010,16 @@ final class Admin_SecurityTools extends Module {
         $list['data'] = $this->get_translation('backup_type_data');
         $list['file'] = $this->get_translation('backup_type_file');
         return $list;
+    }
+
+    /* Updates methods */
+
+    /**
+     * Apply version 1.1 update.
+     * @return boolean success
+     */
+    private function update_toVersion1_1() {
+        return ($this->urlFilterRule->install());
     }
 }
 
