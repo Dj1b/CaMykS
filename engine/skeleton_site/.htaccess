@@ -36,15 +36,15 @@ Options +FollowSymlinks
   # RewriteRule ^cdata/(.*)$ request.php?CaMykSAsset=$1 [L,NS,QSA]
   # RewriteRule ^cplugin/(.*)$ request.php?PluginAsset=$1 [L,NS,QSA]
 
-  # site page ( .htm, .html, .xhtml, no extension )
+  # site page
   RewriteCond %{REQUEST_FILENAME} !-s
 
   # Legacy url rewriting
-  RewriteRule ^([_0-9a-zA-Z/]*/)?([_0-9a-zA-Z]*)([-_0-9a-zA-Z+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$4&&ext=$5&%{QUERY_STRING} [L,NS]
+  RewriteRule ^([_0-9a-zA-Z/]*/)?([_0-9a-zA-Z]*)([-_0-9a-zA-Z+]*)?(\.[a-z]{2})?(\.[a-zA-Z0]*)?$ index.php?page=$2&params=$3&_clg_=$4&&ext=$5&%{QUERY_STRING} [L,NS]
 
   # Modern url rewriting
-  #RewriteRule ^([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.htm|\.html|\.xhtml)?$ index.php?page=$1&params=$2&_clg_=$3&ext=$4&%{QUERY_STRING} [L,NS]
+  #RewriteRule ^([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-z]{2})?(\.[a-zA-Z0]*)?$ index.php?page=$1&params=$2&_clg_=$3&ext=$4&%{QUERY_STRING} [L,NS]
 
   # Modern url rewriting with language as leading folder
-  # RewriteRule ^([a-z]{2})?/?([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.htm|\.html|\.xhtml)?$ index.php?page=$2&params=$3&_clg_=$1&ext=$4&%{QUERY_STRING} [L,NS]
+  # RewriteRule ^([a-z]{2})?/?([0-9a-zA-Z\-_]+)(/?[-_0-9a-zA-Z\(\)+]*)?(\.[a-zA-Z0]*)?$ index.php?page=$2&params=$3&_clg_=$1&ext=$4&%{QUERY_STRING} [L,NS]
 </IfModule>
