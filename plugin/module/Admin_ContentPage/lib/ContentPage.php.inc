@@ -4,10 +4,10 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jun 2005
- * @date Modification: Nov 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -256,15 +256,20 @@ final class ContentPage {
     public function load_asFrontPage($page) {
         global $camyks;
 
-        /* check page : prevent from url injection    */
+        /* check page : prevent from url injection */
         if (preg_match('/[^a-zA-Z0-9_\-]/', $page))
-             $page=0;
+             $page = 0;
 
         /* try to load page */
         if ($page == '' and $this->get_homeFromDatabase())
             return true;
         if ($this->get_fromDatabase($page))
             return true;
+
+        /* page not found */
+
+        /* log URL */
+        $camyks->log('Error404', 'Page not found', '"'. $_SERVER['REQUEST_URI'] .'"');
 
         /* check for 404 header sending */
         if ($this->get_configValue('page_404SendHeader') == 1)
