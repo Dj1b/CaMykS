@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Theme.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -748,6 +748,17 @@ abstract class Theme extends Plugin {
      */
     public function get_layeredMenuFooter() {
         return $this->get_part('layeredMenuFooter');
+    }
+
+    /**
+     * Return main icon url from touch icons.
+     * @return string
+     */
+    public function get_mainIcon() {
+        foreach ($this->touchIcons as $icon)
+            if ($icon['name'] === 'icon')
+                return $this->get_fileURL('img/touchIcons/'.$icon['url']);
+        return false;
     }
 }
 ?>

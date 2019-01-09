@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Jun 2005
  * @date Modification: Jan 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -2117,13 +2117,11 @@ final class Camyks {
         /* set google analytics informations */
         $this->HTMLPage->set_googleInformations($this->get_confValue('google_analytics', ''), $this->get_confValue('google_analytics_domain', ''));
 
-        /* add favicon */
-        if (($f = $this->get_confValue('favicon', false)) !== false) {
-            $this->HTMLPage->set_favicon($f);
-        } else {
-            $this->HTMLPage->set_favicon();
-        }
+        /* initialise page */
         $this->contentPage->init_site();
+
+        /* add favicon */
+        $this->HTMLPage->set_favicon();
 
         /* update statistics */
         $this->update_siteStatistics();
@@ -2191,11 +2189,9 @@ final class Camyks {
             $this->current_language
         );
         $this->HTMLPage->set_robotInformations(false, false);
-        if ($this->get_confValue('favicon', '') != '') {
-            $this->HTMLPage->set_favicon($this->get_confValue('favicon', ''));
-        } else {
-            $this->HTMLPage->set_favicon();
-        }
+
+        /* add favicon */
+        $this->HTMLPage->set_favicon();
 
         /* display html header */
         $this->HTMLPage->add_HTMLHeader();

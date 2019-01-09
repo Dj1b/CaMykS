@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jun 2005
- * @date Modification: Dec 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Try to set up output page parts as private, as they should be only called by add_HTMLHeader().
@@ -282,11 +282,38 @@ final class HTMLPage {
      */
     public function set_favicon($favicon=null) {
         global $camyks;
+
+        /* Define base url */
         $root = $camyks->get_rootBaseURL('absolute_long');
+
+        /* Check for given favicon */
         if (isset($favicon) and file_exists($favicon))
             $this->add_link('icon', $root.$favicon);
+
+        /* Check favicon from config */
+        else if (($icon = $camyks->get_confValue('favicon', false)) !== false)
+            $this->add_link('icon', $root.$icon);
+
+        /* Search for favicon in root folder */
         else if (count($f = glob('favicon.*'))>0)
             $this->add_link('icon', $root.basename($f[0]));
+
+        else {
+            /* Check for existing icon */
+            foreach($this->links as $link)
+                if ($link['rel'] == 'icon')
+                    return;
+
+            /* Try to load icon from site mode theme */
+            $theme = $camyks->get_theme($camyks->get_confValue('site_default_theme'));
+            if ($theme !== false and ($icon = $theme->get_mainIcon()) !== false) {
+                $this->add_link('icon', $root.$icon);
+                return;
+            }
+
+            /* Last solution, display empty PNG */
+            $this->add_link('icon', 'data:image/png;base64,iVBORw0KGgo=');
+        }
     }
 
     /**
