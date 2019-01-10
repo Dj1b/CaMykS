@@ -4,7 +4,7 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_SecurityTools/lib/Admin_SecurityURLFilterRuleListParams.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jan 2019
  * @date Modification: Jan 2019
  * @copyright 2019 CaMykS Team
@@ -24,7 +24,7 @@ $this->add_JSScript('var deleteURLFilterRuleMessage="'.string_html2Text($this->g
 $this->add_JSScript('var deleteURLFilterRuleUrl="'.$this->get_adminJSLink(array('mode'=>'delete_urlFilterRule', 'ruleId'=>'')).'";');
 
 /* build main parameters */
-$this->urlFilterRuleListParams = array('name'=>'ipFilterRuleList', 'useSession'=>true, 'object'=>&$this->urlFilterRule);
+$this->urlFilterRuleListParams = array('name'=>'urlFilterRuleList', 'useSession'=>true, 'object'=>&$this->urlFilterRule);
 
 /* build head parameters */
 $this->urlFilterRuleListParams['headselectors'] = array(
