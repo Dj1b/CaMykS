@@ -3,10 +3,10 @@
  * @details Plugin / Module Scripts
  * @file plugin/module/Admin_MonitoringUserAgentChecker/js/UARecordList.js
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Nov 2018
- * @date Modification: Nov 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -78,18 +78,35 @@ var UARecordList = {
     /* Action methods */
 
     /**
-     * check selected 404 Fallback value
+     * Open link to mark records as verified.
      * @return void
      */
     mark_recordsAsVerified: function() {
         if (!this.loaded)
             return false;
 
-        if (!confirm(this.get_locale('confirm_message')))
+        if (!confirm(this.get_locale('confirmvalidate_message')))
             return;
 
         ids = recordList.get_checkedBoxes('selection');
         this.get_param('form').mode.value = 'mark_recordsAsVerified';
+        this.get_param('form').ids.value = ids.join(',');
+        this.get_param('form').submit();
+    },
+
+    /**
+     * Open link to mark records as inspected.
+     * @return void
+     */
+    mark_recordsAsInspected: function() {
+        if (!this.loaded)
+            return false;
+
+        if (!confirm(this.get_locale('confirminspect_message')))
+            return;
+
+        ids = recordList.get_checkedBoxes('selection');
+        this.get_param('form').mode.value = 'mark_recordsAsInspected';
         this.get_param('form').ids.value = ids.join(',');
         this.get_param('form').submit();
     },

@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Dec 2014
- * @date Modification: Dec 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -143,6 +143,13 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                     'menu'  => 'useragentchecker',
                     'url'   => 'javascript:UARecordList.mark_recordsAsVerified();',
                 ),
+                array(
+                    'name'  => 'markinspected',
+                    'title' => $this->get_translation('markitemsasinspected'),
+                    'icon'  => $this->theme->get_pictURL('target', 12, 'std'),
+                    'menu'  => 'useragentchecker',
+                    'url'   => 'javascript:UARecordList.mark_recordsAsInspected();',
+                ),
             );
         }
         return array();
@@ -236,9 +243,17 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                 /* mode == mark_recordAsUnverified */
                 $this->init_admin_mark_recordAsUnverified();
                 break;
+            case 'mark_recordAsInspected':
+                /* mode == mark_recordAsInspected */
+                $this->init_admin_mark_recordAsInspected();
+                break;
             case 'mark_recordsAsVerified':
                 /* mode == mark_recordsAsVerified */
                 $this->init_admin_mark_recordsAsVerified();
+                break;
+            case 'mark_recordsAsInspected':
+                /* mode == mark_recordsAsInspected */
+                $this->init_admin_mark_recordsAsInspected();
                 break;
             case 'main':
             default:
@@ -298,7 +313,8 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* add scripts */
         $this->add_JSFIle('UARecordList.js');
         $this->add_JSLoadScript('UARecordList.set_param("form", "'.$this->selectionForm->name.'");');
-        $this->add_JSLoadScript('UARecordList.set_locale("confirm_message", "'.string_html2Text($this->get_translation('validaterecordsmessage')).'");');
+        $this->add_JSLoadScript('UARecordList.set_locale("confirmvalidate_message", "'.string_html2Text($this->get_translation('validaterecordsmessage')).'");');
+        $this->add_JSLoadScript('UARecordList.set_locale("confirminspect_message", "'.string_html2Text($this->get_translation('inspectrecordsmessage')).'");');
         $this->add_JSLoadScript('UARecordList.initialise();');
 
         /* get buttons */
@@ -381,16 +397,22 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                 'title' => $camyks->get_translation('update'),
             ),
         );
-        if ($this->recordItem->vars['status'] == 0)
-            $this->buttons[] = array(
-                'link'  => $this->get_adminLink(array('mode'=>'mark_recordAsVerified', 'record_id'=>$this->recordItem->id)),
-                'title' => $this->get_translation('markasverified'),
-            );
-        else
+        if ($this->recordItem->vars['status'] == 1)
             $this->buttons[] = array(
                 'link'  => $this->get_adminLink(array('mode'=>'mark_recordAsUnverified', 'record_id'=>$this->recordItem->id)),
                 'title' => $this->get_translation('markasunverified'),
             );
+        else {
+            $this->buttons[] = array(
+                'link'  => $this->get_adminLink(array('mode'=>'mark_recordAsVerified', 'record_id'=>$this->recordItem->id)),
+                'title' => $this->get_translation('markasverified'),
+            );
+            if ($this->recordItem->vars['status'] == 0)
+                $this->buttons[] = array(
+                    'link'  => $this->get_adminLink(array('mode'=>'mark_recordAsInspected', 'record_id'=>$this->recordItem->id)),
+                    'title' => $this->get_translation('inspect'),
+                );
+        }
 
         /* update layout */
         $this->set_selectedLayout('admin_view_user_agent.html.inc');
@@ -605,6 +627,32 @@ final class Admin_MonitoringUserAgentChecker extends Module {
     }
 
     /**
+     * Initialise module object in admin/mark_recordAsInspected mode.
+     * @return void
+     */
+    private function init_admin_mark_recordAsInspected() {
+        global $camyks;
+
+        /* check record id */
+        if (!isset($_REQUEST['record_id']))
+            return $this->init_admin_main();
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* load and update record */
+        $this->recordItem->id = (int)$_REQUEST['record_id'];
+        if ($this->recordItem->get() and $this->recordItem->mark_asInspected())
+            $this->text = $this->get_translation('record_updated');
+        else
+            $this->text = $this->get_translation('record_notupdated');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('mode'=>'view_record', 'record_id'=>$this->recordItem->id)));
+    }
+
+    /**
      * Initialise module object in admin/mark_recordsAsVerified mode.
      * @return void
      */
@@ -617,6 +665,28 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* load and update record */
         $list = $this->get_selectedItems();
         if ($this->recordItem->mark_recordsAsVerified($list))
+            $this->text = $this->get_translation('records_updated');
+        else
+            $this->text = $this->get_translation('records_notupdated');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink());
+    }
+
+    /**
+     * Initialise module object in admin/mark_recordsAsInspected mode.
+     * @return void
+     */
+    private function init_admin_mark_recordsAsInspected() {
+        global $camyks;
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* load and update record */
+        $list = $this->get_selectedItems();
+        if ($this->recordItem->mark_recordsAsInspected($list))
             $this->text = $this->get_translation('records_updated');
         else
             $this->text = $this->get_translation('records_notupdated');
@@ -695,6 +765,14 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      */
     public function get_recordStatusList() {
         return $this->recordItem->get_statusList();
+    }
+
+    /**
+     * Return record status icon list.
+     * @return array
+     */
+    public function get_recordStatusIconList() {
+        return $this->recordItem->get_statusIconList();
     }
 
     /**

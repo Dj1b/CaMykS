@@ -4,7 +4,7 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_SecurityTools/lib/Admin_SecurityURLFilterRule.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jan 2019
  * @date Modification: Jan 2019
  * @copyright 2019 CaMykS Team
@@ -85,7 +85,8 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
 
         /* Check if URL match a rule */
         foreach ($rules as $rule) {
-            if (preg_match('/'.$rule->vars['pattern'].'/i', $url)) {
+            $pattern = string_escape4Regex($rule->vars['pattern']);
+            if (preg_match('/'.$pattern.'/i', $url)) {
                 $camyks->log('Security', 'Connection refused', 'Black listed URL ('.$rule->vars['comment'].': "'. $url .'")');
                 $error = array(
                     'title'         => 'Security: Access denied',
