@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: Apr 2018
  * @date Modification: Jan 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -147,6 +147,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J106H'  => array('platform_model' => 'Galaxy J1 Mini Prime',            'platform_year' => 2016),
         'SM-J200F'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J200H'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
+        'SM-J250Y'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2018),
         'SM-J310'   => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320F'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
@@ -219,12 +220,13 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-N7100'  => array('platform_model' => 'Galaxy Note II (3G)',             'platform_year' => 2012),
         'GT-N7105'  => array('platform_model' => 'Galaxy Note II',                  'platform_year' => 2012),
         'SHV-E250S' => array('platform_model' => 'Galaxy Note II',                  'platform_year' => 2012),
+        'SM-N900'   => array('platform_model' => 'Galaxy Note 3 (3G)',              'platform_year' => 2013),
         'SM-N900W8' => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
         'GT-N9005'  => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
-        'SM-N900P'  => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
+        'SM-N9009'  => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
         'SM-N900A'  => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
+        'SM-N900P'  => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
         'SM-N900T'  => array('platform_model' => 'Galaxy Note 3',                   'platform_year' => 2013),
-        'SM-N900'   => array('platform_model' => 'Galaxy Note 3 (3G)',              'platform_year' => 2013),
         'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)',        'platform_year' => 2013),
         'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)',              'platform_year' => 2013),
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo',               'platform_year' => 2014),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.52
+ * @version 1.0.53
  * @date Creation: Jun 2007
  * @date Modification: Jan 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -303,6 +303,23 @@ function client_getUAInfos($ua=false) {
         if (preg_match('/iOS ([0-9_\,\.]{3,})/', $ua, $matches)) {
             $infos['system_version'] = str_replace(array('_', ','), '.', $matches[1]);
         }
+    } elseif (preg_match('/ Darwin\/([0-9\.]*)(?!.*\(x86_64\))/i', $ua, $matches)) {
+        /* check version */
+        $version = $matches[1];
+        $version = explode('.', $version);
+        $version = (int)$version[0]-7;
+        if (version_compare($version, $maxVersions['system']['iOS']) > 0)
+            return $fake;
+
+        /* build info */
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Apple',
+            'platform_model'    => 'iPhone/iPad/iPod',
+            'platform_type'     => 'handheld',
+            'platform_format'   => 'handheld',
+            'system_title'      => 'iOS',
+            'system_version'    => $version
+        ));
     }
 
     /* check Google */
@@ -997,7 +1014,7 @@ function client_getUAInfos($ua=false) {
         );
     }
 
-    /* check Infinix  mobiles */
+    /* check Infinix mobiles */
     elseif (preg_match('/(X559)/', $ua, $matches)) {
         $rep = array(
             'X559'  => array('platform_model' => 'Hot 5 Lite',),
@@ -1165,12 +1182,6 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_EssentialClientDevice($matches[1]));
     }
 
-    /* check Essential mobiles */
-    elseif (preg_match('/ (PH-1) Build/', $ua, $matches)) {
-        include_once ('clientDevices/Essential.php.inc');
-        $infos = array_merge($infos, get_EssentialClientDevice($matches[1]));
-    }
-
     /* check Kyocera mobiles */
     elseif (preg_match('/ (KC-[A-Za-z0-9]*) Build/', $ua, $matches)) {
         include_once ('clientDevices/Kyocera.php.inc');
@@ -1223,6 +1234,13 @@ function client_getUAInfos($ua=false) {
         include_once ('clientDevices/HomTom.php.inc');
         $model = $matches[1].trim($matches[2]);
         $infos = array_merge($infos, get_HomTomClientDevice($model));
+    }
+
+    /* check Vernee mobiles */
+    elseif (preg_match('/ (Apollo|Thor)( [A-Za-z0-9]*)( Build|\))/i', $ua, $matches)) {
+        include_once ('clientDevices/Vernee.php.inc');
+        $model = $matches[1].$matches[2];
+        $infos = array_merge($infos, get_VerneeClientDevice($model));
     }
 
     /*** check operating system ***/
@@ -1284,7 +1302,25 @@ function client_getUAInfos($ua=false) {
                 'system_title'      => version_compare ($version, '10.12') >= 0 ? 'macOS' : 'Mac OS X',
                 'system_version'    => $version
             ));
+        } elseif (preg_match('/ Darwin\/([0-9\.]*) \(x86_64\)/i', $ua, $matches)) {
+            /* check version */
+            $version = $matches[1];
+            $version = explode('.', $version);
+            $version = '10.'.((int)$version[0]-4); //.'.'.$version[1];
+            if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
+                return $fake;
+
+            /* build info */
+            $infos = array_merge($infos, array(
+                'platform_company'  => 'Apple',
+                'platform_model'    => 'Macintosh',
+                'platform_type'     => 'computer',
+                'platform_format'   => 'desktop',
+                'system_title'      => version_compare ($version, '10.12') >= 0 ? 'macOS' : 'Mac OS X',
+                'system_version'    => $version
+            ));
         }
+
 
         /* check Classic Macintosh */
         elseif (preg_match('/Mac_PowerPC|Macintosh/i', $ua, $matches)) {
@@ -1579,6 +1615,16 @@ function client_getUAInfos($ua=false) {
             'browser_version'   => '',
             ), $infos
         );
+
+    /* check Apple software over CFNetwork */
+    elseif (preg_match('/^([A-Za-z]*)\/[0-9\.]* CFNetwork\//', $ua, $matches)) {
+        $app = array('MobileSafari' => 'Safari');
+        $infos = array_merge(array(
+            'browser_title'     => isset($app[$matches[1]]) ? $app[$matches[1]] : $matches[1],
+            'browser_version'   => '',
+            ), $infos
+        );
+    }
 
     /* check undeterminated safari version */
     elseif (preg_match('/(Safari|AppleWebKit)/', $ua, $matches)) {
@@ -2217,6 +2263,16 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#Connection: closern$#i', $ua))
         return $fake;
 
+    /* Fake visits from AWS */
+    if (preg_match('#^Mozilla/5.0 Firefox/33.0$#i', $ua))
+        return $fake;
+    if (preg_match('#^Mozilla/5.0 \(Macintosh; Intel Mac OS X x.y; rv:42.0\) #i', $ua))
+        return $fake;
+    if (preg_match('#^Mozilla/5.0 \(Windows NT 6.1; Win64; x64; rv:47.0\) #i', $ua))
+        return $fake;
+    if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64\) (.*)(Trident/5.0|Firefox/42.0|OPR/38.0.2220.41|Gecko/20100101 Safari/602.1|AppleWebKit/537.36 \(KHTML, like Gecko\) Safari/602.1)#i', $ua))
+        return $fake;
+
     /* not a fake but Apple using a bad user agent */
     if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
         return array(
@@ -2270,12 +2326,12 @@ function _client_getUAPropertiesMaxVersions() {
             'Android'           => '11',                    // current is 9.x.x
         ),
         'browser' => array(
-            'Firefox'           => '66',                    // current is 63
+            'Firefox'           => '67',                    // current is 64
             'Chrome'            => '74',                    // current is 71
             'Chromium'          => '74',                    // current is 71
             'Internet Explorer' => '11.0.50',               // latest
-            'Edge'              => '45',                    // current is 42
-            'Opera'             => '59',                    // current is 56
+            'Edge'              => '47',                    // current is 44
+            'Opera'             => '60',                    // current is 57
             'Safari'            => '15',                    // current is 12.0.2
         ),
     );

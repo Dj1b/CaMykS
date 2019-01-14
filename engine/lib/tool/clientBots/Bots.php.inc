@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: May 2018
  * @date Modification: Jan 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4044,6 +4044,26 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://www.brandverity.com',
     );
 
+    /* 7Siters */
+    $knownBots['7siters'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '7Siters',
+        'bot_url'           => 'http://7ooo.ru/siters/',
+        'engine_title'      => '7ooo',
+        'engine_url'        => 'http://7ooo.ru',
+    );
+
+    /* Bidtellect */
+    $knownBots['bidtellect'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Bidtellect',
+        'engine_url'        => 'https://bidtellect.com',
+    );
+
     /* unknown bots */
 
     /* SEOBulls - unknown bot */
@@ -4362,6 +4382,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'Simon Smith (Unknown bot)',
         'bot_url'           => 'forensic@evestigator.com.au',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* YunSecurityBot - unknown bot */
+    $knownBots['yunsecuritybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'YunSecurityBot (Unknown bot)',
+        'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
     );
