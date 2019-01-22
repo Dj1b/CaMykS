@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Amazon.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Oct 2018
- * @date Modification: Oct 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 9
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -20,8 +20,9 @@
  */
 function get_AmazonClientDevice($deviceCode='') {
     $deviceList = array(
-        'KFTHWI'    => array('platform_model'    => 'Kindle Fire HDX 7',        'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2013,),
-        'KFFOWI'    => array('platform_model'    => 'Kindle Fire (5th Gen)',    'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2015,),
+        'KFTHWI'    => array('platform_model'    => 'Kindle Fire HDX 7',        'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2013),
+        'KFFOWI'    => array('platform_model'    => 'Kindle Fire (5th Gen)',    'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2015),
+        'KFKAWI'    => array('platform_model'    => 'Kindle Fire HD 8',         'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2018),
     );
 
     /* Check for returning list */

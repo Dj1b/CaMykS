@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: Apr 2018
  * @date Modification: Jan 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -121,6 +121,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A320L'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2017),
         'SM-A320F'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2017),
         'SM-A320FL' => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2017),
+        'SM-A500W'  => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2014),
         'SM-A500FU' => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2015),
         'SM-A510'   => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2016),
         'SM-A510F'  => array('platform_model' => 'Galaxy A5',                       'platform_year' => 2016),
@@ -154,6 +155,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J330G'  => array('platform_model' => 'Galaxy J3 Pro',                   'platform_year' => 2016),
         'SM-J330FN' => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2017),
         'SM-J327W'  => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
+        'SM-J400F'  => array('platform_model' => 'Galaxy J4',                       'platform_year' => 2018),
         'SM-J500'   => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
@@ -168,6 +170,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J510G'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510M'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
+        'SM-G570F'  => array('platform_model' => 'Galaxy J5 Prime',                 'platform_year' => 2016),
         'SM-J530F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2017),
         'SM-J600FN' => array('platform_model' => 'Galaxy J6',                       'platform_year' => 2018),
         'SM-J610FN' => array('platform_model' => 'Galaxy J6+',                      'platform_year' => 2018),

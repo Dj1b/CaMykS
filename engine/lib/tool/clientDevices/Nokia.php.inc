@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Nokia.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2018
  * @date Modification: Jan 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -24,8 +24,10 @@ function get_NokiaClientDevice($deviceCode='') {
         'Lumia 535' => array('platform_model' => 'Lumia 535',       'platform_year' => 2014),
         'Lumia 830' => array('platform_model' => 'Lumia 830',       'platform_year' => 2014),
 
-        'X2DS'      => array('platform_model' => 'X2 (Dual Sim)',   'platform_year' => 2014),
         'TA-1053'   => array('platform_model' => '5',               'platform_year' => 2017),
+        'TA-1021'   => array('platform_model' => '6',               'platform_year' => 2017),
+
+        'X2DS'      => array('platform_model' => 'X2 (Dual Sim)',   'platform_year' => 2014),
         '7 plus'    => array('platform_model' => '7 Plus',          'platform_year' => 2018),
     );
 
