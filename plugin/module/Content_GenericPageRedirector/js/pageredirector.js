@@ -1,20 +1,19 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author	      	: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version	: 1.0b
- * Object Version	: 1.0
- * Object Type		: Plugin / Module Javascripts
- * Creation Date	: Sep 2009
- * Last Modif Date	: Apr 2010
- *
- * Content_GenericPageRedirector module scripts
-*/
+/**
+ * @brief Content_GenericPageRedirector module page redirector edition scripts
+ * @details Plugin / Module Scripts
+ * @file plugin/module/Content_GenericPageRedirector/js/pageredirector.js
+ * @author CaMykS Team
+ * @version 1.0.1
+ * @date Creation: Sep 2009
+ * @date Modification: Jan 2019
+ * @copyright 2009 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-/*
- * open page chooser with actual value
+/**
+ * Open page chooser with actual value.
  * @return void
- * @access public
  */
 function open_pageChooser() {
     v = document.edit_form.url.value;
@@ -22,22 +21,20 @@ function open_pageChooser() {
 }
 
 /*
- * update selected page value 
+ * Update selected page value.
  * @return void
- * @access public
  */
 function update_selectedPage(page) {
     document.edit_form.url.value = page;
 }
 
 /*
- * update form item case of method value
+ * Update form item case of method value.
  * @return void
- * @access public
  */
 function update_formFromMethod() {
   m = document.edit_form.method.options[document.edit_form.method.options.selectedIndex].value;
-  if( m == 3)
+  if (m == 3)
     document.getElementById('delay_block').style.display = 'none';
   else
     document.getElementById('delay_block').style.display = 'block';

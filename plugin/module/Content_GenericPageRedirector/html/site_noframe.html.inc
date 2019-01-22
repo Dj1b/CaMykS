@@ -1,24 +1,24 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
- * Object Version	: 1.0
- * Object Type		: Plugin / Module Layout
- * Create Date		: Sep 2009
- * Last Modif Date	: Sep 2009
- *
- * Content_GenericPageRedirector Module site layout : no frame
-*/
+/**
+ * @brief Content_GenericPageRedirector Module site, no frame, layout.
+ * @details Plugin / Module layout
+ * @file plugin/module/Content_GenericPageRedirector/html/site_noframe.html.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2009
+ * @date Modification: Jan 2019
+ * @copyright 2009 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 global $camyks;
 
-if ( $this->pritem->vars['delay'] > 0 ) {
+if ($this->pritem->vars['delay'] > 0) {
   echo '<h1 class="eTitle1">'."\n";
-  echo $camyks->contentPage->title."\n";
+  echo $camyks->contentPage->get_longTitleDisplay()."\n";
   echo '</h1>'."\n\n";
 
-  if (file_exists( $this->pritem->vars['message']))
-    include ( $this->pritem->vars['message'] );
+  if (file_exists($this->pritem->vars['message']))
+    include($this->pritem->vars['message']);
 }
 ?>
