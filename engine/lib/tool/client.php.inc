@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.54
+ * @version 1.0.55
  * @date Creation: Jun 2007
  * @date Modification: Jan 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -1332,7 +1332,6 @@ function client_getUAInfos($ua=false) {
             ));
         }
 
-
         /* check Classic Macintosh */
         elseif (preg_match('/Mac_PowerPC|Macintosh/i', $ua, $matches)) {
             /* build info */
@@ -1510,6 +1509,14 @@ function client_getUAInfos($ua=false) {
         ));
     }
 
+    /* check Waterfox */
+    elseif (preg_match('/ Waterfox\) Gecko\/([0-9]{8}) Firefox\/([0-9a-zA-z\.]+)/', $ua, $matches)) {
+        $infos = array_merge($infos, array(
+            'browser_title'     => 'Waterfox',
+            'browser_version'   => isset($matches[2])?$matches[2]:'',
+        ));
+    }
+
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, with specific details */
     elseif (preg_match('/(Viera)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array(
@@ -1523,7 +1530,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|AVG|Station|OPT)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|AVG|Station|OPT|Waterfox)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1628,10 +1635,10 @@ function client_getUAInfos($ua=false) {
         );
 
     /* check Apple software over CFNetwork */
-    elseif (preg_match('/^([A-Za-z]*)\/[0-9\.]* CFNetwork\//', $ua, $matches)) {
+    elseif (preg_match('/^([A-Za-z0-9%]*)\/[0-9\.]* CFNetwork\//', $ua, $matches)) {
         $app = array('MobileSafari' => 'Safari');
         $infos = array_merge(array(
-            'browser_title'     => isset($app[$matches[1]]) ? $app[$matches[1]] : $matches[1],
+            'browser_title'     => isset($app[$matches[1]]) ? $app[$matches[1]] : urldecode($matches[1]),
             'browser_version'   => '',
             ), $infos
         );
@@ -2336,7 +2343,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64\) (.*)(Trident/5.0|Firefox/42.0|OPR/38.0.2220.41|Gecko/20100101 Safari/602.1|AppleWebKit/537.36 \(KHTML, like Gecko\) Safari/602.1)#i', $ua))
         return $fake;
 
-    /* Mispelled Firefox user agent, exepting BrandVerity which is using a badly set user agent */
+    /* Mispelled Firefox user agent, exepting BrandVerity which is using a badly set user agent *
     if (preg_match('#^Mozilla/5.0 \(([^\)]*) rv:([0-9a-zA-Z\.]*)\) ([^\)]*) Firefox/([0-9a-zA-Z\.]*)((?!BrandVerity).)*$#i', $ua, $matches) and ($matches[2] != $matches[4]) and (version_compare($matches[4], 5, '>=')))
         return $fake;
 

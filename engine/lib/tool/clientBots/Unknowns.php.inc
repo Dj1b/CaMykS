@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jan 2019
  * @date Modification: Jan 2019
  * @copyright 2019 CaMykS Team
@@ -20,7 +20,7 @@
  */
 function _client_getKnownUnknowns() {
     /* SEOBulls */
-    $knownBots['seo bulls'] = array(
+    $unknownBots['seo bulls'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'SEO Bulls (Unknown bot)',
@@ -30,7 +30,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* SEOBulls */
-    $knownBots['seobulls'] = array(
+    $unknownBots['seobulls'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'SEO Bulls (Unknown bot)',
@@ -40,7 +40,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* unknown bot */
-    $knownBots['tmm crawler'] = array(
+    $unknownBots['tmm crawler'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'TMM Crawler (Unknown bot)',
@@ -50,7 +50,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* unknown bot */
-    $knownBots['no.indexing@gmail.com'] = array(
+    $unknownBots['no.indexing@gmail.com'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Unknown bot',
@@ -60,7 +60,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* unknown bot */
-    $knownBots['nbertaupete95(at)gmail.com'] = array(
+    $unknownBots['nbertaupete95(at)gmail.com'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Unknown bot',
@@ -70,7 +70,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Centurybot9 */
-    $knownBots['centurybot9'] = array(
+    $unknownBots['centurybot9'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Centurybot9 (Unknown bot)',
@@ -80,7 +80,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* celious search engine */
-    $knownBots['celious search engine'] = array(
+    $unknownBots['celious search engine'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Celious Search Engine (Unknown bot)',
@@ -90,7 +90,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* SMURLExpander */
-    $knownBots['smurlexpander'] = array(
+    $unknownBots['smurlexpander'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'SMURLExpander (Unknown bot)',
@@ -100,7 +100,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* DnyzBot */
-    $knownBots['dnyzbot'] = array(
+    $unknownBots['dnyzbot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'DnyzBot (Unknown bot)',
@@ -110,7 +110,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* adscanner */
-    $knownBots['adscanner'] = array(
+    $unknownBots['adscanner'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'adscanner (Unknown bot)',
@@ -120,7 +120,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* UCmore */
-    $knownBots['ucmore'] = array(
+    $unknownBots['ucmore'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'UCmore (Unknown bot)',
@@ -130,7 +130,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* BigDataCloud */
-    $knownBots['bigdatacloud'] = array(
+    $unknownBots['bigdatacloud'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'BigDataCloud (Unknown bot)',
@@ -140,7 +140,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Peopleman */
-    $knownBots['peopleman'] = array(
+    $unknownBots['peopleman'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Peopleman (Unknown bot)',
@@ -150,7 +150,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* KickFire */
-    $knownBots['kickfire'] = array(
+    $unknownBots['kickfire'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'KickFire (Unknown bot)',
@@ -160,7 +160,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Microgine Crawler */
-    $knownBots['microgine crawler'] = array(
+    $unknownBots['microgine crawler'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Microgine Crawler (Unknown bot)',
@@ -170,7 +170,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Meta_Bot */
-    $knownBots['meta_bot'] = array(
+    $unknownBots['meta_bot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Meta_Bot (Unknown bot)',
@@ -180,7 +180,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Your-Website-Sucks */
-    $knownBots['your-website-sucks'] = array(
+    $unknownBots['your-website-sucks'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Your-Website-Sucks (Unknown bot)',
@@ -190,7 +190,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* test/0.1 (tester)    */
-    $knownBots['(tester)'] = array(
+    $unknownBots['(tester)'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'test (Unknown bot)',
@@ -200,7 +200,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* MauiBot */
-    $knownBots['mauibot'] = array(
+    $unknownBots['mauibot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'MauiBot',
@@ -210,7 +210,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* MauiBot ? crawler (crawler.feedback@gmail.com) */
-    $knownBots['crawler.feedback@gmail.com'] = array(
+    $unknownBots['crawler.feedback@gmail.com'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'crawler (crawler.feedback@gmail.com) (Unknown bot)',
@@ -220,7 +220,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Auto Spider */
-    $knownBots['auto spider'] = array(
+    $unknownBots['auto spider'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Auto Spider (Unknown bot)',
@@ -230,7 +230,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* The Knowledge AI */
-    $knownBots['the knowledge ai'] = array(
+    $unknownBots['the knowledge ai'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'The Knowledge AI (Unknown bot)',
@@ -240,7 +240,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* CRMNLCrawlAgent */
-    $knownBots['crmnlcrawlagent'] = array(
+    $unknownBots['crmnlcrawlagent'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'CRMNLCrawlAgent (Unknown bot)',
@@ -250,7 +250,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* SOcrawl */
-    $knownBots['socrawl'] = array(
+    $unknownBots['socrawl'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'SOcrawl (Unknown bot)',
@@ -260,7 +260,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Kerrigan */
-    $knownBots['kerrigan'] = array(
+    $unknownBots['kerrigan'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Kerrigan (Unknown bot)',
@@ -270,7 +270,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* dcrawl */
-    $knownBots['dcrawl'] = array(
+    $unknownBots['dcrawl'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'dcrawl (Unknown bot)',
@@ -280,7 +280,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* BUFF library */
-    $knownBots['buff library'] = array(
+    $unknownBots['buff library'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'BUFF library (Unknown bot)',
@@ -290,7 +290,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* WordupinfoSearch */
-    $knownBots['wordupinfosearch'] = array(
+    $unknownBots['wordupinfosearch'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'WordupinfoSearch (Unknown bot)',
@@ -300,7 +300,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Who.is Bot */
-    $knownBots['who.is bot'] = array(
+    $unknownBots['who.is bot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Who.is Bot (Unknown bot)',
@@ -310,7 +310,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* HoneyBee Bot */
-    $knownBots['honeybee'] = array(
+    $unknownBots['honeybee'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'HoneyBee (Unknown bot)',
@@ -320,7 +320,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* Blackboard Safeassign Bot */
-    $knownBots['blackboard safeassign'] = array(
+    $unknownBots['blackboard safeassign'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Blackboard Safeassign (Unknown bot)',
@@ -330,7 +330,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* SIMON SMITH Bot */
-    $knownBots['simon smith'] = array(
+    $unknownBots['simon smith'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Simon Smith (Unknown bot)',
@@ -340,7 +340,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* YunSecurityBot */
-    $knownBots['yunsecuritybot'] = array(
+    $unknownBots['yunsecuritybot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'YunSecurityBot (Unknown bot)',
@@ -350,7 +350,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* NETCOMplete */
-    $knownBots['netcomplete'] = array(
+    $unknownBots['netcomplete'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'NETCOMplete (Unknown bot)',
@@ -360,7 +360,7 @@ function _client_getKnownUnknowns() {
     );
 
     /* PocketImageCache - PocketParser (https://getpocket.com) bot ? */
-    $knownBots['pocketimagecache'] = array(
+    $unknownBots['pocketimagecache'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'PocketImageCache (Unknown bot)',
@@ -369,6 +369,16 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
+    /* Honeso */
+    $unknownBots['honeso'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Honeso (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
     /* return bot list */
-    return $knownBots;
+    return $unknownBots;
 }
