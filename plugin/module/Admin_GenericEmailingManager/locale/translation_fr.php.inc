@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module french dictionnary
+ * @brief Admin_GenericEmailingManager Module french dictionnary.
  * @details Plugin, Module Dictionnary
  * @file plugin/module/Admin_GenericEmailingManager/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>

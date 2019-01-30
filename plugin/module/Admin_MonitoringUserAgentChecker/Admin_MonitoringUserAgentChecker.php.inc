@@ -469,7 +469,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
             array(
                 'link'  => $this->editform->get_HTMLSubmitLink(),
                 'title' => $camyks->get_translation('valid'),
-            )
+            ),
         );
 
         /* update layout */

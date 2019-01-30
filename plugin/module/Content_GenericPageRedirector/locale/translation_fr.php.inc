@@ -1,7 +1,7 @@
 <?php
 /**
  * @brief Content_GenericPageRedirector Module french dictionnary.
- * @details Plugin / Module layout
+ * @details Plugin, Module Dictionnary
  * @file plugin/module/Content_GenericPageRedirector/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.1

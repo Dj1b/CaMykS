@@ -93,12 +93,7 @@ final class MySQLiDBConnection extends CDBConnection {
         return $this->connection->select_db($name);
     }
 
-    /**
-     * Dump database.
-   * @param mixed $file
-   * @return mixed
-   */
-  /**
+   /**
      * Dump database.
      * @param mixed $file
      * @return mixed

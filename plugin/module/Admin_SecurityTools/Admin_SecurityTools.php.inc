@@ -22,7 +22,6 @@
 
 /**
  * Admin_SecurityTools Module class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class Admin_SecurityTools extends Module {
     /**
