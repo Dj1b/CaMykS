@@ -1,17 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Dictionnary
- * Create Date		: Jun 2008
- * Last Modif Date	: Jun 2008
- *
- * Admin_MyShortcuts module english dictionnary
+/**
+ * @brief Admin_MyShortcuts Module english dictionnary.
+ * @details Plugin / Module Dictionnary
+ * @file plugin/module/Admin_MyShortcuts/locale/translation_en.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2008
+ * @date Modification: Jan 2019
+ * @copyright 2008 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_myshortcuts_title'] = 'My shortcuts';
 $this->trads['mod_admin_myshortcuts_desc'] = 'Edit my shortcuts';
 
@@ -25,11 +24,17 @@ $this->trads['mod_admin_myshortcuts_addpopuptitle'] = 'Add a shortcuts';
 $this->trads['mod_admin_myshortcuts_addpopupname'] = 'Shortcut\'s name: ';
 
 /* admin js message */
-$this->trads['mod_admin_myshortcuts_js_deletemessage'] = 'Are you sure to want to delete this shortcut?';
+$this->trads['mod_admin_myshortcuts_deleteshortcutmessage'] = 'Are you sure to want to delete this shortcut? This action can\'t be undone.';
 
-/* main */
+/* admin main */
 $this->trads['mod_admin_myshortcuts_adddate'] = 'Added on ';
-$this->trads['mod_admin_myshortcuts_edit_shortcut'] = 'Edit this shortcut';
-$this->trads['mod_admin_myshortcuts_open_shortcut'] = 'Open this shortcut';
-$this->trads['mod_admin_myshortcuts_delete_shortcut'] = 'Delete this shortcut';
+$this->trads['mod_admin_myshortcuts_editshortcut'] = 'Edit this shortcut';
+$this->trads['mod_admin_myshortcuts_openshortcut'] = 'Open this shortcut';
+$this->trads['mod_admin_myshortcuts_deleteshortcut'] = 'Delete this shortcut';
+
+/* admin edit shortcut */
+$this->trads['mod_admin_myshortcuts_formitem_url'] = 'URL : ';
+
+/* admin error */
+$this->trads['mod_admin_myshortcuts_accessdenied'] = 'Access denied. You can only edit your own shortcuts.';
 ?>

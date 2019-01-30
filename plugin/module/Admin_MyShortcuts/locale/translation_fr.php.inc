@@ -1,17 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Dictionnary
- * Create Date		: May 2007
- * Last Modif Date	: May 2007
- *
- * Admin_MyShortcuts module french dictionnary
+/**
+ * @brief Admin_MyShortcuts Module french dictionnary.
+ * @details Plugin / Module Dictionnary
+ * @file plugin/module/Admin_MyShortcuts/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2007
+ * @date Modification: Jan 2019
+ * @copyright 2007 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_myshortcuts_title'] = 'Mes Raccourcis';
 $this->trads['mod_admin_myshortcuts_desc'] = 'Editer mes raccourcis';
 
@@ -25,11 +24,17 @@ $this->trads['mod_admin_myshortcuts_addpopuptitle'] = 'Ajouter un raccourci';
 $this->trads['mod_admin_myshortcuts_addpopupname'] = 'Nom du raccourci : ';
 
 /* admin js message */
-$this->trads['mod_admin_myshortcuts_js_deletemessage'] = 'Etes vous s&ucirc;r de vouloir supprimer ce raccourci?';
+$this->trads['mod_admin_myshortcuts_deleteshortcutmessage'] = 'Etes vous s&ucirc;r de vouloir supprimer ce raccourci ? Cette action est irr&eacute;versible.';
 
-/* main */
+/* admin main */
 $this->trads['mod_admin_myshortcuts_adddate'] = 'Ajout&eacute; le';
-$this->trads['mod_admin_myshortcuts_edit_shortcut'] = 'Editer ce raccourci';
-$this->trads['mod_admin_myshortcuts_open_shortcut'] = 'Ouvrir ce raccourci';
-$this->trads['mod_admin_myshortcuts_delete_shortcut'] = 'Supprimer ce raccourci';
+$this->trads['mod_admin_myshortcuts_editshortcut'] = 'Editer ce raccourci';
+$this->trads['mod_admin_myshortcuts_openshortcut'] = 'Ouvrir ce raccourci';
+$this->trads['mod_admin_myshortcuts_deleteshortcut'] = 'Supprimer ce raccourci';
+
+/* admin edit shortcut */
+$this->trads['mod_admin_myshortcuts_formitem_url'] = 'URL : ';
+
+/* admin error */
+$this->trads['mod_admin_myshortcuts_accessdenied'] = 'Acc&egrave;s refus&eacute;. <br /> Vous ne pouvez &eacute;diter que vos propres raccourcis.';
 ?>
