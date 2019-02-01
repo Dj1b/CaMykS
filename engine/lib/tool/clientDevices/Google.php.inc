@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Google.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Aug 2018
- * @date Modification: Nov 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -20,7 +20,12 @@
  */
 function get_GoogleClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Google tablets */
+        'Nexus 7'       => array('platform_year' => 2013, 'platform_type' => 'tablet', 'platform_format' => 'tablet',),
+
+        /* Google mobiles */
         'Nexus'         => array('platform_year' => 2010),
+        'Nexus One'     => array('platform_year' => 2010),
         'Nexus 4'       => array('platform_year' => 2012),
         'Nexus 5'       => array('platform_year' => 2013),
         'Nexus 5X'      => array('platform_year' => 2015),

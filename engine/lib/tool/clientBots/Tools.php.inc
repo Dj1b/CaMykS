@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.14
  * @date Creation: May 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -289,16 +289,6 @@ function _client_getKnownTools() {
         'tool_url'          => 'https://www.wechat.com',
         'engine_title'      => 'Tencent Holdings',
         'engine_url'        => 'https://www.tencent.com/en-us/',
-    );
-
-    /* CFNetwork */
-    $knownTools['cfnetwork'] = array(
-        'platform_type'     => 'tool',
-        'platform_format'   => 'desktop',
-        'tool_title'        => 'OS X / iOS',
-        'tool_url'          => '',
-        'engine_title'      => 'Apple',
-        'engine_url'        => '',
     );
 
     /* wkhtmltoimage */
@@ -1139,6 +1129,26 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Let\'s Encrypt',
         'engine_url'        => 'https://letsencrypt.org',
+    );
+
+    /* XenForo */
+    $knownTools['xenforo'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'XenForo',
+        'engine_url'        => 'https://xenforo.com',
+    );
+
+    /* Site-Shot */
+    $knownTools['site-shot'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Site-Shot',
+        'engine_url'        => 'https://www.site-shot.com',
     );
 
     /* return list */

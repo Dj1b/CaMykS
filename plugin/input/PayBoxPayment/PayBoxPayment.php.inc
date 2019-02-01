@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/PayBoxPayment/PayBoxPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2017
- * @date Modification: Jul 2018
- * @copyright 2017 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2017 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -58,6 +58,12 @@ final class PayBoxPayment extends Input {
      * @brief Input parameters.
      */
     public $params = array();
+
+    /**
+     * var array $confirmationData
+     * @brief Confirmation data received from Paybox instant notifications.
+     */
+    private $confirmationData = null;
 
     /**
      * Class constructor.
@@ -139,7 +145,7 @@ final class PayBoxPayment extends Input {
             /* test key */
             $bankKey = $this->params['bankKey_Test'];
         }
-        
+
         /* initialise server to use */
         $serveurOK = "";
         foreach($serveurs as $serveur) {
@@ -226,15 +232,66 @@ final class PayBoxPayment extends Input {
     /* data query methods */
 
     /**
+     * Load confirmation data PayBox instant notification.
+     * @return void
+     */
+    public function load_paymentConfirmation() {
+        $this->confirmationData = $_REQUEST;
+    }
+
+    /**
+     * Check if payment is confirmed.
+     * @return boolean result
+     */
+    public function is_paymentConfirmed() {
+        if ($this->confirmationData === null)
+            $this->load_paymentConfirmation();
+
+        if (!isset($this->confirmationData['Erreur']))
+            return false;
+
+        if ($this->confirmationData['Erreur'] === '00000')
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Check if payment is cancelled.
+     * @return boolean result
+     */
+    public function is_paymentCancelled() {
+        if ($this->confirmationData === null)
+            $this->load_paymentConfirmation();
+
+        if (!isset($this->confirmationData['Erreur']))
+            return false;
+
+        if ($this->confirmationData['Erreur'] === '00017')
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Return response data from confirmation request.
+     * @return array
+     */
+    public function get_paymentConfirmationData() {
+        $data = array();
+        $data['uniqueId'] = isset($this->confirmationData['Reference']) ? $this->confirmationData['Reference'] : '';
+        $data['transaction'] = isset($this->confirmationData['Transaction']) ? $this->confirmationData['Transaction'] : '';
+        $data['response'] = isset($this->confirmationData['Erreur']) ? $this->confirmationData['Erreur'] : '';
+        return $data;
+    }
+
+    /**
      * Return response data from confirmation request.
      * @return array
      */
     public function get_paymentConfirmation() {
-        $responseData = array();
-        $responseData['uniqueId'] = isset($_REQUEST['Reference'])?$_REQUEST['Reference']:'';
-        $responseData['transaction'] = isset($_REQUEST['Transaction'])?$_REQUEST['Transaction']:'';
-        $responseData['response'] = isset($_REQUEST['Erreur'])?$_REQUEST['Erreur']:'';
-        return $responseData;
+        $this->load_paymentConfirmation();
+        return $this->get_paymentConfirmationData();
     }
 
     /**

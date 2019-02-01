@@ -2,3 +2,4 @@
 ._*
 *~
 *.local.php.inc
+engine/lib/external/*

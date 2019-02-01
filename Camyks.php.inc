@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief CaMykS CMS master class
+ * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.9
  * @date Creation: Jun 2005
- * @date Modification: Oct 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -44,7 +44,6 @@ define('CAMYKS_NAME',           'CaMykS');
 
 /**
  * CaMykS master class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class Camyks {
 
@@ -1326,19 +1325,6 @@ final class Camyks {
             return;
         } else {
             $ua = client_getUAInfos();
-
-            $refused = array('hack');
-            /* check for disabling fakes also */
-            if ($this->get_confValue('site_disableFake') == 1)
-                $refused[] = 'fake';
-
-            /* disabled unwanted connections */
-            if (in_array($ua['platform_type'], $refused)) {
-                header('HTTP/1.1 403 Forbidden');
-                $this->log('Security', 'Connection refused', 'Bad user agent ('.$ua['platform_type'].')');
-                die();
-            }
-
             /* define define/format */
             $device = isset($ua['platform_format'])?$ua['platform_format']:'desktop';
             $deviceStatus = 'auto';
@@ -2131,13 +2117,11 @@ final class Camyks {
         /* set google analytics informations */
         $this->HTMLPage->set_googleInformations($this->get_confValue('google_analytics', ''), $this->get_confValue('google_analytics_domain', ''));
 
-        /* add favicon */
-        if (($f = $this->get_confValue('favicon', false)) !== false) {
-            $this->HTMLPage->set_favicon($f);
-        } else {
-            $this->HTMLPage->set_favicon();
-        }
+        /* initialise page */
         $this->contentPage->init_site();
+
+        /* add favicon */
+        $this->HTMLPage->set_favicon();
 
         /* update statistics */
         $this->update_siteStatistics();
@@ -2205,11 +2189,9 @@ final class Camyks {
             $this->current_language
         );
         $this->HTMLPage->set_robotInformations(false, false);
-        if ($this->get_confValue('favicon', '') != '') {
-            $this->HTMLPage->set_favicon($this->get_confValue('favicon', ''));
-        } else {
-            $this->HTMLPage->set_favicon();
-        }
+
+        /* add favicon */
+        $this->HTMLPage->set_favicon();
 
         /* display html header */
         $this->HTMLPage->add_HTMLHeader();

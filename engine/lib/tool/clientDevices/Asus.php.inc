@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -68,6 +68,7 @@ function get_AsusClientDevice($deviceCode='') {
         'ZS620KL'   => array('platform_model' => 'ZenFone 5Z',              'platform_year' => 2017),
         'ZE553KL'   => array('platform_model' => 'ZenFone Zoom S',          'platform_year' => 2017),
         'X018D'     => array('platform_model' => 'Zenfone Max Plus M1',     'platform_year' => 2017),
+        'X00TD'     => array('platform_model' => 'Zenfone Max Pro M1',      'platform_year' => 2018),
     );
 
     /* Check for returning list */

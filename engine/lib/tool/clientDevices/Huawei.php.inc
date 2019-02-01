@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.27
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Feb 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +25,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'GEM-703LT'         => array('platform_model' => 'MediaPad X2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'BEETHOVEN-W09'     => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'BEETHOVEN-DL09'    => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'BTV-DL09'          => array('platform_model' => 'MediaPad M3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'AGS-W09'           => array('platform_model' => 'MediaPad T3', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-W09'           => array('platform_model' => 'MediaPad M5', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
 
@@ -40,6 +41,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'VNS-L31'   => array('platform_model' => 'P9 Lite',         'platform_year' => 2016),
         'VNS-L53'   => array('platform_model' => 'P9 Lite',         'platform_year' => 2016),
         'PRA-LX3'   => array('platform_model' => 'P9 Lite',         'platform_year' => 2017),
+        'SLA-L22'   => array('platform_model' => 'P9 Lite Mini',    'platform_year' => 2017),
         'VIE-L29'   => array('platform_model' => 'P9 Plus',         'platform_year' => 2016),
         'VTR-L09'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'VTR-L29'   => array('platform_model' => 'P10',             'platform_year' => 2017),
@@ -48,6 +50,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'ANE-LX2'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
@@ -68,13 +71,16 @@ function get_HuaweiClientDevice($deviceCode='') {
         'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'SNE-L21'   => array('platform_model' => 'Mate 20 Lite',    'platform_year' => 2018),
         'SNE-LX1'   => array('platform_model' => 'Mate 20 Lite',    'platform_year' => 2018),
+        'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYO-L21'   => array('platform_model' => 'Honor 5A',        'platform_year' => 2016),
         'NEM-L51'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'NEM-UL10'  => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'KIW-L21'   => array('platform_model' => 'Honor 5X',        'platform_year' => 2015),
+        'DIG-L21HN' => array('platform_model' => 'Honor 6C',        'platform_year' => 2017),
         'JMM-L22'   => array('platform_model' => 'Honor 6C Pro',    'platform_year' => 2017),
         'BLN-L21'   => array('platform_model' => 'Honor 6X',        'platform_year' => 2017),
         'PLK-L01'   => array('platform_model' => 'Honor 7',         'platform_year' => 2015),
+        'BND-L21'   => array('platform_model' => 'Honor 7X',        'platform_year' => 2017),
         'DUA-L22'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),
         'DUA-LX2'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),
         'FRD-L09'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
@@ -125,7 +131,9 @@ function get_HuaweiClientDevice($deviceCode='') {
         'BAC-L23'   => array('platform_model' => 'Nova 2 Plus',     'platform_year' => 2017),
         'BAC-TL00'  => array('platform_model' => 'Nova 2 Plus',     'platform_year' => 2017),
         'LDN-LX2'   => array('platform_model' => 'Nova 2 Lite',     'platform_year' => 2018),
+        'PAR-AL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'ALE-L23'   => array('platform_model' => 'G Elite',         'platform_year' => 2015),
+        'DUB-AL00'  => array('platform_model' => 'Enjoy 9',         'platform_year' => 2018),
     );
 
     /* Check for returning list */

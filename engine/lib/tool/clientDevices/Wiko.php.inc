@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jul 2018
- * @date Modification: Oct 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -95,7 +95,6 @@ function get_WikoClientDevice($deviceCode='') {
         'tommy'             => array('platform_model' => 'Tommy',           'platform_year' => 2016),
         'tommy2'            => array('platform_model' => 'Tommy 2',         'platform_year' => 2017),
         'tommy2 plus'       => array('platform_model' => 'Tommy 2 Plus',    'platform_year' => 2017),
-        'w_k600'            => array('platform_model' => 'Tommy 3',         'platform_year' => 2018),
         'u feel'            => array('platform_model' => 'U Feel',          'platform_year' => 2016),
         'u feel 4g'         => array('platform_model' => 'U Feel 4g',       'platform_year' => 2016),
         'u feel fab'        => array('platform_model' => 'U Feel Fab',      'platform_year' => 2016),
@@ -112,7 +111,9 @@ function get_WikoClientDevice($deviceCode='') {
         'wim'               => array('platform_model' => 'Wim',             'platform_year' => 2017),
         'wim lite'          => array('platform_model' => 'Wim Lite',        'platform_year' => 2017),
 
+        'w_k600'            => array('platform_model' => 'Tommy 3',         'platform_year' => 2018),
         'w_c800'            => array('platform_model' => 'View 2',          'platform_year' => 2018),
+        'w-v600'            => array('platform_model' => 'Harry 2',         'platform_year' => 2018),
     );
 
     /* Check for returning list */

@@ -4,10 +4,10 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_MonitoringUserAgentChecker/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Dec 2014
- * @date Modification: Dec 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -38,13 +38,17 @@ $this->trads['mod_admin_monitoringuseragentchecker_platform_format_desktop'] = '
 $this->trads['mod_admin_monitoringuseragentchecker_record_all'] = 'Tous';
 $this->trads['mod_admin_monitoringuseragentchecker_recordstatus_notverified'] = 'Non v&eacute;rifi&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_recordstatus_verified'] = 'V&eacute;rifi&eacute;';
+$this->trads['mod_admin_monitoringuseragentchecker_recordstatus_inspected'] = 'Surveill&eacute;';
 
 $this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_notverified'] = 'Non v&eacute;rifi&eacute;s';
 $this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_verified'] = 'V&eacute;rifi&eacute;s';
+$this->trads['mod_admin_monitoringuseragentchecker_recordsstatus_inspected'] = 'Surveill&eacute;s';
 
 /* menus */
 $this->trads['mod_admin_monitoringuseragentchecker_markitemsasverified'] = 'Marquer les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s comme v&eacute;rifi&eacute;s';
 $this->trads['mod_admin_monitoringuseragentchecker_validaterecordsmessage'] = 'Etes-vous s&ucirc;r de vouloir marquer ces agents utilisateurs comme v&eacute;rifi&eacute;s ?';
+$this->trads['mod_admin_monitoringuseragentchecker_markitemsasinspected'] = 'Surveiller les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s';
+$this->trads['mod_admin_monitoringuseragentchecker_inspectrecordsmessage'] = 'Etes-vous s&ucirc;r de vouloir surveiller ces agents utilisateurs ?';
 
 /* filters */
 $this->trads['mod_admin_monitoringuseragentchecker_tabrecords'] = 'Agents utilisateurs';
@@ -84,6 +88,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_formitem_browser_title'] = 'N
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_browser_version'] = 'Version du Navigateur : ';
 $this->trads['mod_admin_monitoringuseragentchecker_markasverified'] = 'Marquer comme v&eacute;rifi&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_markasunverified'] = 'Marquer comme non-v&eacute;rifi&eacute;';
+$this->trads['mod_admin_monitoringuseragentchecker_inspect'] = 'Surveiller';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_title'] = 'Nom du robot : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_tool_title'] = 'Nom de l\'outil : ';
 $this->trads['mod_admin_monitoringuseragentchecker_formitem_bot_url'] = 'URL : ';

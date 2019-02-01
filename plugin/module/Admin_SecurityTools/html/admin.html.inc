@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_SecurityTools/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.4
  * @date Creation: Oct 2007
- * @date Modification: Jun 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -45,21 +45,25 @@ $empty = $this->theme->get_pictURL('empty', 12, 'std');
             </td>
         </tr>
 
-        <?php foreach ($this->tools as $tool) : ?>
+        <?php foreach ($this->tools as $tool => $params) : ?>
         <tr>
             <td class="eTableLine0 eContent1" style="width:12px;">
                 &nbsp;
             </td>
             <td class="eTableLine0 eContent1">
-                <img src="<?= $this->get_fileURL('img/'.($this->config->vars[$tool]?'enabled':'disabled').'.gif'); ?>" alt="" border="0" />
+                <img src="<?= $this->get_fileURL('img/'.($this->config->vars[$tool] ? 'enabled' : 'disabled').'.gif'); ?>" alt="" border="0" />
             </td>
             <td class="eTableLine0 eContent1" style="padding:0 8px;">
                 <?= $this->get_translation('tool_'.$tool); ?>
             </td>
             <td class="eTableLine0 eContent1">
                 <?php if ($this->check_right(1)) : ?>
-                    <?php $action = $this->config->vars[$tool]?'disable':'enable'; ?>
-                    <?= $this->theme->get_button(array('title'=>$this->get_translation($action), 'url'=>$camyks->get_adminLink($this->name, array('mode'=>'update_config','action'=>$action, 'item'=>$tool)))); ?>
+                    <?php $action = $this->config->vars[$tool] ? 'disable' : 'enable'; ?>
+                    <?= $this->theme->get_button(array('title'=>$this->get_translation($action), 'url'=>$this->get_adminLink(array('mode'=>'update_config', 'action'=>$action, 'item'=>$tool)))); ?>
+                    <?php if ($action == 'disable' and $params['configure'] == true) : ?>
+                        &nbsp;
+                        <?= $this->theme->get_button(array('title'=>$this->get_translation('configure'), 'url'=>$this->get_adminLink(array('mode'=>'edit_'.$tool.'config')))); ?>
+                    <?php endif; ?>
                 <?php endif; ?>
             </td>
         </tr>
@@ -85,6 +89,13 @@ $empty = $this->theme->get_pictURL('empty', 12, 'std');
 
         <?= $this->ipFilterRuleList->display('head'); ?>
         <?= $this->ipFilterRuleList->display('list'); ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($this->config->vars['urlfilter']) : ?>
+    <div id="itemURLFilter" style="display:<?= $this->tabBuilder->get_tabDisplay('URLFilter'); ?>;" class="adminContentPanel">
+        <?= $this->urlFilterRuleList->display('head'); ?>
+        <?= $this->urlFilterRuleList->display('list'); ?>
     </div>
 <?php endif; ?>
 

@@ -4,10 +4,10 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Dec 2014
- * @date Modification: Dec 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -124,6 +124,19 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
             '-1'    => $this->get_translation('record_all'),
             '0'     => $this->get_translation('recordstatus_notverified'),
             '1'     => $this->get_translation('recordstatus_verified'),
+            '2'     => $this->get_translation('recordstatus_inspected'),
+        );
+    }
+
+    /**
+     * Return single record status icon list.
+     * @return array
+     */
+    public function get_statusIconList() {
+        return array(
+            0   => $this->_libParent->theme->get_pictHTMLTag(array('pict'=>'empty')),
+            1   => $this->_libParent->theme->get_pictHTMLTag(array('pict'=>'valid')),
+            2   => $this->_libParent->theme->get_pictHTMLTag(array('pict'=>'target')),
         );
     }
 
@@ -265,6 +278,18 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
     }
 
     /**
+     * Mark record as inspected.
+     * @return boolean success
+     */
+    public function mark_asInspected() {
+        /* update status */
+        $this->_libItems['status']->value = 2;
+
+        /* save object */
+        return $this->update_databaseSpecificItems(array('status'));
+    }
+
+    /**
      * Mark records as verified.
      * @param array $ids
      * @return boolean success
@@ -277,6 +302,28 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         /* build SQL query */
         $sql = 'update '.$this->_libSQLTable;
         $sql .= ' set status = 1';
+        if (count($ids) == 1)
+            $sql .= ' where id = '. $ids[0];
+        else
+            $sql .= ' where id in ('.implode(',', $ids).')';
+
+        /* execute sql query */
+        return ($this->execute_DBQuery($sql, __LINE__));
+    }
+
+    /**
+     * Mark records as verified.
+     * @param array $ids
+     * @return boolean success
+     */
+    public function mark_recordsAsInspected($ids) {
+        /* Check ids count */
+        if (count($ids) == 0)
+            return true;
+
+        /* build SQL query */
+        $sql = 'update '.$this->_libSQLTable;
+        $sql .= ' set status = 2';
         if (count($ids) == 1)
             $sql .= ' where id = '. $ids[0];
         else

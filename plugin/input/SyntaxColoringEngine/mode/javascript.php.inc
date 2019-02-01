@@ -4,10 +4,10 @@
  * @details Plugin / Input Library
  * @file plugin/input/SyntaxColoringEngine/mode/css.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2007
- * @date Modification: Jul 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -22,9 +22,9 @@ final class SyntaxColoringEngine_javascript {
      */
     private $styles = array(
         'comments'  => 'color:#CC3333',
-        'keywords'  => 'color:#0000FF;font-weight:bold;',
+        'keywords'  => 'color:#0000FF; font-weight:bold;',
         'string'    => 'color:#888888',
-        'indent'    => 'padding-left:8px',
+        'indent'    => 'padding-left:16px',
     );
 
     /**
@@ -75,9 +75,10 @@ final class SyntaxColoringEngine_javascript {
      * @return string
      */
     public function execute($text, $params) {
-
         $defaultParams = array('autoBreakLine'=>true);
         $params = array_merge($defaultParams, $params);
+
+        $text = $text . "\n";
 
         /* replace DOS breakline by unix brealines */
         $search = '/\r\n/';
@@ -101,10 +102,10 @@ final class SyntaxColoringEngine_javascript {
         /* remove existing colored element from comments */
         $search = '/\/\*(.+?)\*\//s';
         $text = preg_replace_callback($search,
-                function($match) {
-                        return preg_replace('/<([^>]*)>/', '', $match[0]);
-                },
-                $text
+            function($match) {
+                return preg_replace('/<([^>]*)>/', '', $match[0]);
+            },
+            $text
         );
 
         /* colorise multiline comments */
@@ -115,10 +116,10 @@ final class SyntaxColoringEngine_javascript {
         /* remove existing colored element from comments */
         $search = '/\/\/(.*)/';
         $text = preg_replace_callback($search,
-                function($match) {
-                        return preg_replace('/<([^>]*)>/', '', $match[0]);
-                },
-                $text
+            function($match) {
+                return preg_replace('/<([^>]*)>/', '', $match[0]);
+            },
+            $text
         );
 
         /* colorize single line comment */
@@ -127,20 +128,22 @@ final class SyntaxColoringEngine_javascript {
         $text = preg_replace ($search, $replace, $text);
 
         /* text indentation : with {} */
-        $search = '/({[\s]*\n)/';
-        $replace = '{<div style="'.$this->styles['indent'].'">';
-        $text = preg_replace($search, $replace, $text);
-
-        $search = '/(\n}[\s]*[\n]?)/';
-        $replace = '</div>}'."\n";
-        $text = preg_replace($search, $replace, $text);
+        $c = count_chars($text, 1);
+        if (isset($c[ord('{')]) and isset($c[ord('}')]) and $c[ord('{')] === $c[ord('}')]) {
+            $text = preg_replace(array('/{\n?/', '/}/'), array('{<div style="padding-left:16px;">', '</div>}'), $text);
+        }
 
         /* text indentation : without {} */
-        foreach ( $this->ikeywords as $value ) {
+        foreach ($this->ikeywords as $value ) {
             $search = '/(\b'.$value.'\b[^{\n]*)\n([^\n]*)\n/';
             $replace = '\\1<div style="'.$this->styles['indent'].'">\\2</div>';
             $text = preg_replace ($search, $replace, $text);
         }
+
+        /* remove multiple line breaks */
+        $search = array('/[\n]{2+}/', '/[\n]+$/');
+        $replace = array("\n\n", "\n");
+        $text = preg_replace ($search, $replace, $text);
 
         /* check autobreakline params */
         if ($params['autoBreakLine'])

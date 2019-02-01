@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Nov 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -43,6 +43,7 @@ function get_AlcatelClientDevice($deviceCode='') {
         '5015D' => array('platform_model' => 'OneTouch Pop 3',          'platform_year' => 2015),
         '5015X' => array('platform_model' => 'OneTouch Pop 3',          'platform_year' => 2015),
         '5020X' => array('platform_model' => 'OneTouch M\'Pop',         'platform_year' => 2013),
+        '5023F' => array('platform_model' => 'PIxi 4 Plus Power',       'platform_year' => 2016),
         '5026D' => array('platform_model' => '3C',                      'platform_year' => 2018),
         '5035D' => array('platform_model' => 'OneTouch X\'Pop',         'platform_year' => 2013),
         '5036D' => array('platform_model' => 'OneTouch Pop C5',         'platform_year' => 2013),

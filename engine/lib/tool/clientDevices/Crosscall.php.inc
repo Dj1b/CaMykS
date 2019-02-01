@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Crosscall.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2018
- * @date Modification: May 2018
- * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -24,8 +24,9 @@ function get_CrosscallClientDevice($deviceCode='') {
         'trekker-m1 core'   => array('platform_model' => 'Trekker-M1 Core', 'platform_year' => 2017),
         'trekker-m1'        => array('platform_model' => 'Trekker-M1',      'platform_year' => 2016),
         'trekker-s1'        => array('platform_model' => 'Trekker-S1',      'platform_year' => 2016),
-        'trekker-x3'        => array('platform_model' => 'Trekker-X3',      'platform_year' => 2017),
         'trekker-x2'        => array('platform_model' => 'Trekker-X2',      'platform_year' => 2015),
+        'trekker-x3'        => array('platform_model' => 'Trekker-X3',      'platform_year' => 2017),
+        'trekker-x4'        => array('platform_model' => 'Trekker-X4',      'platform_year' => 2018),
         'trekker-x1'        => array('platform_model' => 'Trekker-X1',      'platform_year' => 2015),
         'odyssey-plus'      => array('platform_model' => 'Odyssey Plus',    'platform_year' => 2014),
         'odyssey-s1'        => array('platform_model' => 'Odyssey S1',      'platform_year' => 2016),
