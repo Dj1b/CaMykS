@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_GenericEmailingManager/Admin_GenericEmailingManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2012 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -2147,7 +2147,7 @@ final class Admin_GenericEmailingManager extends Module {
      * @param boolean $other
      * @return array
      */
-    protected function get_contactGroupList($all=false, $other=false) {
+    public function get_contactGroupList($all=false, $other=false) {
         return $this->contactItem->get_groupList($all, $other);
     }
 
