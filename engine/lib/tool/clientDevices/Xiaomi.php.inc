@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: May 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -59,6 +59,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 7'                  => array('platform_model' => 'Mi 7',                'platform_year' => 2018),
         'mi 8'                  => array('platform_model' => 'Mi 8',                'platform_year' => 2018),
         'mi a2 lite'            => array('platform_model' => 'Mi A2 Lite',          'platform_year' => 2018),
+        'mi mix 3'              => array('platform_model' => 'Mi Mix 3',            'platform_year' => 2019),
 
         'redmi note 2'          => array('platform_model' => 'Redmi Note 2',        'platform_year' => 2015),
         'redmi note 2 prime'    => array('platform_model' => 'Redmi Note 2 Prime',  'platform_year' => 2015),

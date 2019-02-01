@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.30
  * @date Creation: Apr 2018
  * @date Modification: Jan 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -134,6 +134,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
         'SM-A530W'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
+        'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),
         'SM-E500F'  => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
         'SM-E500H'  => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
         'SM-E500HQ' => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
@@ -182,6 +183,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J710MN' => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2016),
         'SM-J710GN' => array('platform_model' => 'Galaxy J7 Duos',                  'platform_year' => 2016),
         'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime',                 'platform_year' => 2016),
+        'SM-J701F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'SM-J730F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y',                        'platform_year' => 2011),
         'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos',                   'platform_year' => 2012),

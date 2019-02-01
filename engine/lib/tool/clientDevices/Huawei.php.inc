@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Apr 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -71,13 +71,16 @@ function get_HuaweiClientDevice($deviceCode='') {
         'BLA-L29S'  => array('platform_model' => 'Mate 10 Pro',     'platform_year' => 2017),
         'SNE-L21'   => array('platform_model' => 'Mate 20 Lite',    'platform_year' => 2018),
         'SNE-LX1'   => array('platform_model' => 'Mate 20 Lite',    'platform_year' => 2018),
+        'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYO-L21'   => array('platform_model' => 'Honor 5A',        'platform_year' => 2016),
         'NEM-L51'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'NEM-UL10'  => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'KIW-L21'   => array('platform_model' => 'Honor 5X',        'platform_year' => 2015),
+        'DIG-L21HN' => array('platform_model' => 'Honor 6C',        'platform_year' => 2017),
         'JMM-L22'   => array('platform_model' => 'Honor 6C Pro',    'platform_year' => 2017),
         'BLN-L21'   => array('platform_model' => 'Honor 6X',        'platform_year' => 2017),
         'PLK-L01'   => array('platform_model' => 'Honor 7',         'platform_year' => 2015),
+        'BND-L21'   => array('platform_model' => 'Honor 7X',        'platform_year' => 2017),
         'DUA-L22'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),
         'DUA-LX2'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),
         'FRD-L09'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),

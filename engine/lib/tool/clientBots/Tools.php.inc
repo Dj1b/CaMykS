@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: May 2018
  * @date Modification: Jan 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -1139,6 +1139,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'XenForo',
         'engine_url'        => 'https://xenforo.com',
+    );
+
+    /* Site-Shot */
+    $knownTools['site-shot'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Site-Shot',
+        'engine_url'        => 'https://www.site-shot.com',
     );
 
     /* return list */
