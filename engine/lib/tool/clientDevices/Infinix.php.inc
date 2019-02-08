@@ -1,28 +1,28 @@
 <?php
 /**
- * @brief Lyf client devices specific methods
+ * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Lyf.php.inc
+ * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Apr 2018
+ * @version 1.0.0
+ * @date Creation: Feb 2019
  * @date Modification: Feb 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Lyf client device information from a known list.
+ * Return Infinix client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_LyfClientDevice($deviceCode='') {
+function get_InfinixClientDevice($deviceCode='') {
     $deviceList = array(
-        'LYF/F61F'  => array('platform_model' => 'JioPhone F61F',   'platform_year' => 2017),
-        'LYF/F90M'  => array('platform_model' => 'JioPhone F90M',   'platform_year' => 2017),
-        'LYF/F120B' => array('platform_model' => 'JioPhone F120B',  'platform_year' => 2017),
+        'X551'      => array('platform_model' => 'Hot Note',    'platform_year' => 2015),
+        'X559'      => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
+        'X559C'     => array('platform_model' => 'Hot 5',       'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -31,7 +31,7 @@ function get_LyfClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Lyf',
+        'platform_company'  => 'Infinix',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

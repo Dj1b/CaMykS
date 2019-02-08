@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: May 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -58,6 +58,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi note 3'             => array('platform_model' => 'Mi Note 3',           'platform_year' => 2017),
         'mi 7'                  => array('platform_model' => 'Mi 7',                'platform_year' => 2018),
         'mi 8'                  => array('platform_model' => 'Mi 8',                'platform_year' => 2018),
+        'mi a2'                 => array('platform_model' => 'Mi A2',               'platform_year' => 2018),
         'mi a2 lite'            => array('platform_model' => 'Mi A2 Lite',          'platform_year' => 2018),
         'mi mix 3'              => array('platform_model' => 'Mi Mix 3',            'platform_year' => 2019),
 

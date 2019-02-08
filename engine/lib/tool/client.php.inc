@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.56
+ * @version 1.0.57
  * @date Creation: Jun 2007
  * @date Modification: Feb 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -808,7 +808,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Acer mobiles */
-    elseif (preg_match('/ (Z130|T0[0-9]) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (Z130|T0[0-9]|B3-A40)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Acer.php.inc');
         $infos = array_merge($infos, get_AcerClientDevice($matches[1]));
     }
@@ -994,7 +994,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Lyf mobiles */
-    elseif (preg_match('/(LYF\/F[0-9]{2}[A-Z])\//', $ua, $matches)) {
+    elseif (preg_match('/(LYF\/F[0-9]{2,3}[A-Z])\//', $ua, $matches)) {
         include_once('clientDevices/Lyf.php.inc');
         $infos = array_merge($infos, get_LyfClientDevice($matches[1]));
     }
@@ -1013,19 +1013,9 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Infinix mobiles */
-    elseif (preg_match('/(X559)/', $ua, $matches)) {
-        $rep = array(
-            'X559'  => array('platform_model' => 'Hot 5 Lite',),
-        );
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Infinix',
-            'platform_model'    => $model,
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-            ),
-            isset($rep[$model])?$rep[$model]:array()
-        );
+    elseif (preg_match('/ Infinix[ |-](X[^\) ]*)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Infinix.php.inc');
+        $infos = array_merge($infos, get_InfinixClientDevice($matches[1]));
     }
 
     /* check Digital Alpha servers */
@@ -1248,6 +1238,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_KenXinDaClientDevice($model));
     }
 
+    /* check Qilive mobiles */
+    elseif (preg_match('/ (Q8S55IN4G2)/i', $ua, $matches)) {
+        include_once('clientDevices/Qilive.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_QiliveClientDevice($model));
+    }
+
     /*** check operating system ***/
 
     if (!isset($infos['system_title'])) {
@@ -1261,6 +1258,22 @@ function client_getUAInfos($ua=false) {
                 ), $infos
             );
 
+        /* check gen os with notified version (before Android/Macintosh) */
+        elseif (preg_match('/(SymbianOS|webOS|KAIOS|Bada|Haiku)(?:\/| )?(R?[0-9][a-z0-9\._]*)/i', $ua, $matches)) {
+            $rep = array(
+                'SymbianOS' => array('platform_type' => 'handheld', 'platform_format' => 'handheld',),
+                'KAIOS'     => array('system_title' => 'KaiOS', 'platform_type' => 'handheld', 'platform_format' => 'handheld'),
+                'Bada'      => array('platform_company' => 'Samsung', 'platform_type' => 'handheld', 'platform_format' => 'handheld',),
+                'Haiku'     => array('platform_company' => 'PC', 'platform_type' => 'computer', 'platform_format' => 'desktop'),
+            );
+            $infos = array_merge($infos, array(
+                    'system_title'      => $matches[1],
+                    'system_version'    => isset($matches[2]) ? $matches[2] : '',
+                ),
+                isset($rep[$matches[1]]) ? $rep[$matches[1]] : array()
+            );
+        }
+
         /* check Android */
         elseif (preg_match('/(Android|Adr)[; \/]*([0-9\.]*)?/', $ua, $matches)) {
             /* check version */
@@ -1273,22 +1286,9 @@ function client_getUAInfos($ua=false) {
                 'platform_format'   => (preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
                 'system_title'      => 'Android',
                 'system_version'    => $version,
-                ), $infos
+                ),
+                $infos
             );
-        }
-
-        /* check Haiku (before macintosh) */
-        elseif (preg_match('/Haiku( |\/)(R[0-9])/i', $ua, $matches)) {
-
-            /* build info */
-            $infos = array_merge($infos, array(
-                'platform_company'  => 'PC',
-                'platform_model'    => '',
-                'platform_type'     => 'computer',
-                'platform_format'   => 'desktop',
-                'system_title'      => 'Haiku',
-                'system_version'    => $matches[2],
-            ));
         }
 
         /* check Macintosh */
@@ -1355,18 +1355,6 @@ function client_getUAInfos($ua=false) {
                 ),
                 isset($rep[$matches[1]])?$rep[$matches[1]]:array()
             );
-        }
-
-        /* check mobile gen os with notified version */
-        elseif (preg_match('/(SymbianOS|webOS|KAIOS|Bada)(?:\/| )?([0-9][a-z0-9\._]*)/i', $ua, $matches)){
-            $infos = array_merge(array(
-                'platform_company'  => 'PC',
-                'platform_model'    => '',
-                'platform_type'     => 'handheld',
-                'platform_format'   => 'handheld',
-                'system_title'      => $matches[1],
-                'system_version'    => isset($matches[2])?$matches[2]:''
-            ), $infos);
         }
 
         /* check gen os with notified version */

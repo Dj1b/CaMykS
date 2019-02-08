@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: Apr 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -94,6 +94,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'BKL-L09'   => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'AUM-L29'   => array('platform_model' => 'Honor 7A Pro',    'platform_year' => 2018),
+        'COR-L29'   => array('platform_model' => 'Honor Play',      'platform_year' => 2018),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend',          'platform_year' => 2014),

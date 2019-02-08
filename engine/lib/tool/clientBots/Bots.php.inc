@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: May 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -748,6 +748,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://www.insynchro.net',
     );
 
+    /* YandexImages bot : before Yandex */
+    $knownBots['yandeximages'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'YandexImages',
+        'bot_url'           => '',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'http://www.yandex.ru',
+    );
+
     /* yandex bot */
     $knownBots['yandex'] = array(
         'platform_type'     => 'bot',
@@ -830,6 +840,16 @@ function _client_getKnownBots() {
 
     /* Linguee Bot */
     $knownBots['linguee bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Linguee Bot',
+        'bot_url'           => 'http://www.linguee.com/bot',
+        'engine_title'      => 'Linguee',
+        'engine_url'        => 'http://www.linguee.com',
+    );
+
+    /* Linguee Bot */
+    $knownBots['linguee-bot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Linguee Bot',
@@ -4062,6 +4082,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Bidtellect',
         'engine_url'        => 'https://bidtellect.com',
+    );
+
+    /* PleskBot */
+    $knownBots['pleskbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'PleskBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Plesk',
+        'engine_url'        => 'https://www.plesk.com',
+    );
+
+    /* HubSpot Website Grader */
+    $knownBots['hubspot website grader'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'HubSpot Website Grader',
+        'bot_url'           => 'https://website.grader.com',
+        'engine_title'      => 'HubSpot',
+        'engine_url'        => 'https://www.hubspot.com',
     );
 
     /* return bot list */
