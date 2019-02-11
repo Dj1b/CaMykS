@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/folder.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jul 2005
- * @date Modification: Aug 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Feb 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -385,14 +385,13 @@ function folder_getFlatStructure($source='') {
 function folder_isInPath($folder='', $path='') {
     global $camyks;
 
-
     if (!is_dir($path) or $path == '')
         $path = $camyks->site_path;
     $path = realpath($path).'/';
 
     if (!file_exists($folder))
         return false;
-    $folder = realpath($folder);
+    $folder = realpath($folder).'/';
 
     return preg_match('#^'.$path.'#', $folder);
 }
