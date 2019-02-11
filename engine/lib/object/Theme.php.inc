@@ -4,7 +4,7 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Theme.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
  * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -18,7 +18,7 @@ global $global_theme_picts_items, $global_theme_media_types;
  * @brief Define available picts items
  */
 $global_theme_picts_items = array(
-    '12'    => array(
+    '12' => array(
         'items' => array(
             'empty',
             'cross',
@@ -38,12 +38,12 @@ $global_theme_picts_items = array(
             'valid',
             'view',
             'action',
-       ),
+        ),
         'positions' => array(
             'std',
             'ovr'
-       ),
-   ),
+        ),
+    ),
 );
 
 /**
@@ -657,7 +657,6 @@ abstract class Theme extends Plugin {
         $params = array_merge($dParams, $params);
 
         /* check id */
-        print_r(substr($params['id'], 0, 3));
         if ($params['id'] !== '' and substr($params['id'], 0, 3) !== 'id=')
             $params['id'] = 'id="'.$params['id'].'"';
         return $this->get_part('button', array($params['style'], $params['url'], $params['title'], $params['id'], $params['class'], $params['target']));
