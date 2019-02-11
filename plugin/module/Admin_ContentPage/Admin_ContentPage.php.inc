@@ -5,7 +5,7 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_ContentPage/Admin_ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.1.1
  * @date Creation: Jun 2005
  * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -1606,16 +1606,17 @@ final class Admin_ContentPage extends Module {
             if ($page->active == 1 and $page->robotIndex == 1) {
                 $url = array();
 
-                /* Add main url */
-                $url['loc'] = $camyks->get_fileURL($this->get_sitePageLink($page->id, $camyks->get_confValue('site_default_language')), 'absolute');
-
-                /* Add alternative urls */
                 if (count($camyks->get_confValue('site_languages')) > 1) {
+                    /* Add main url */
+                    $url['loc'] = $camyks->get_fileURL($this->get_sitePageLink($page->id, $camyks->get_confValue('site_default_language')), 'absolute');
+
+                    /* Add alternative urls */
                     $url['alt'] = array();
                     foreach($camyks->get_confValue('site_languages') as $l) {
                         $url['alt'][$l] =  $camyks->get_fileURL($this->get_sitePageLink($page->id, $l), 'absolute');
                     }
-                }
+                } else
+                    $url['loc'] = $camyks->get_fileURL($this->get_sitePageLink($page->id, ''), 'absolute');
 
                 /* Add priority depending on page level */
                 if ($page->homepage == 1)

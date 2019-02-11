@@ -52,7 +52,7 @@ final class ContentPage {
      */
     public $type = 'page';
 
-/**
+    /**
      * var boolean $active
      * @brief Page status.
      */
