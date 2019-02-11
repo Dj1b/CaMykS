@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_ContentPage/html/modify.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Feb 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -63,16 +63,16 @@ global $camyks;
 
         <tr>
           <td class="eTableLine0 eContent2" style="width:150px;">
-        <?= $camyks->get_translation('formitem_name'); ?>
+            <?= $camyks->get_translation('formitem_name'); ?>
           </td>
           <td class="eTableLine0 eContent1">
-        <?= $this->page->name; ?>
+            <?= $this->page->name; ?>
           </td>
         </tr>
 
         <tr>
           <td class="eTableLine1 eContent2">
-        <?= $this->get_translation('formitem_actived'); ?>
+            <?= $this->get_translation('formitem_actived'); ?>
           </td>
           <td class="eTableLine1 eContent1">
             <?= $this->form->display_booleanSelectInput(array('name'=>'active', 'default'=>$this->page->active)); ?>
@@ -90,9 +90,45 @@ global $camyks;
         <?php endif; ?>
 
         <tr>
-          <td colspan="2" class="eTableLine1">
-        &nbsp;
+            <td class="eTableLine0" colspan="2">
+                &nbsp;
+            </td>
+        </tr>
+
+        <tr>
+            <td class="eTableHeader" colspan="2">
+                <?= $this->get_translation('formtitle_searchenginebot'); ?>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="eTableLine0 eContent2">
+                <?= $this->get_translation('formitem_contentindexing'); ?>
+            </td>
+            <td class="eTableLine0 eContent1">
+                <?= $this->form->display_booleanSelectInput(array('name'=>'robotIndex', 'default'=>$this->page->robotIndex)); ?>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_linkfollowup'); ?>
+            </td>
+            <td class="eTableLine1 eContent1">
+                <?= $this->form->display_booleanSelectInput(array('name'=>'robotFollow', 'default'=>$this->page->robotFollow)); ?>
+            </td>
+        </tr>
+
+        <tr>
+          <td colspan="2" class="eTableLine0">
+                &nbsp;
           </td>
+        </tr>
+
+        <tr>
+            <td class="eTableHeader" colspan="2">
+                <?= $this->get_translation('formtitle_admindata'); ?>
+            </td>
         </tr>
 
         <?php if ($this->allow_rights_edition) : ?>
@@ -193,6 +229,7 @@ global $camyks;
         <?=date_displayLongDayDateHour($this->page->wf_mdate); ?>
           </td>
         </tr>
+
         <?php if ($this->page->type == 'model') : ?>
       </table>
     </div>

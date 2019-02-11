@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.1
  * @date Creation: Jun 2005
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -451,6 +451,8 @@ final class ContentPage {
         $this->theme = '';
         $this->template = '';
         $this->homepage = 0;
+        $this->robotIndex = 1;
+        $this->robotFollow = 1;
 
         foreach ($camyks->get_confValue('editing_languages') as $l) {
             $this->locales[$l] = array('title'=>'', 'shorttitle'=>'', 'description'=>'', 'keywords'=>'');
@@ -604,35 +606,39 @@ final class ContentPage {
             $sql .= ', `m'.$i.'_content`';
             $sql .= ', `m'.$i.'_theme`';
         }
+        $sql .= ', `robotIndex`';
+        $sql .= ', `robotfollow`';
         $sql .= ') VALUES (';
-        $sql .= ''.$this->parent_id.'';
-        $sql .= ', '.$this->position.'';
-        $sql .= ', "'.$this->type.'"';
-        $sql .= ', "'.$this->name.'"';
-        $sql .= ', '.$this->active.'';
-        $sql .= ', '.$this->secured.'';
-        $sql .= ', '.$this->wf_version.'';
+        $sql .= ''.(int)$this->parent_id.'';
+        $sql .= ', '.(int)$this->position.'';
+        $sql .= ', "'.addslashes($this->type).'"';
+        $sql .= ', "'.addslashes($this->name).'"';
+        $sql .= ', '.(int)$this->active.'';
+        $sql .= ', '.(int)$this->secured.'';
+        $sql .= ', '.(int)$this->wf_version.'';
         $sql .= ', "'.($camyks->site_conf['workflow'] == 0 ? 'inline' : 'edition').'"';
         $sql .= ', '.time().'';
         $sql .= ', '.time().'';
-        $sql .= ', "'.$this->wf_owner.'"';
-        $sql .= ', "'.$this->wf_editor.'"';
-        $sql .= ', "'.$this->wf_validator.'"';
-        $sql .= ', "'.$this->template.'"';
-        $sql .= ', "'.$this->theme.'"';
-        $sql .= ', '.$this->homepage.'';
+        $sql .= ', "'.addslashes($this->wf_owner).'"';
+        $sql .= ', "'.addslashes($this->wf_editor).'"';
+        $sql .= ', "'.addslashes($this->wf_validator).'"';
+        $sql .= ', "'.addslashes($this->template).'"';
+        $sql .= ', "'.addslashes($this->theme).'"';
+        $sql .= ', '.(int)$this->homepage.'';
         $sql .= ', "'.addslashes($this->metas_).'"';
         for ($i=0; $i<$this->maxmodules; $i++) {
             if (isset ($this->modules[$i])) {
-            $sql .= ', "'.$this->modules[$i]['name'].'"';
-            $sql .= ', "'.$this->modules[$i]['content'].'"';
-            $sql .= ', "'.$this->modules[$i]['theme'].'"';
+                $sql .= ', "'.addSlashes($this->modules[$i]['name']).'"';
+                $sql .= ', "'.addSlashes($this->modules[$i]['content']).'"';
+                $sql .= ', "'.addSlashes($this->modules[$i]['theme']).'"';
             } else {
-            $sql .= ', ""';
-            $sql .= ', ""';
-            $sql .= ', ""';
+                $sql .= ', ""';
+                $sql .= ', ""';
+                $sql .= ', ""';
             }
         }
+        $sql .= ', '.(int)$this->robotIndex.'';
+        $sql .= ', '.(int)$this->robotfollow.'';
         $sql .= ')';
 
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
@@ -678,18 +684,20 @@ final class ContentPage {
      * @return string the sql query part
      */
     private function update_contentQuery() {
-        $sql = ' `name`="'.$this->name.'"';
-        $sql .= ', `active`='.$this->active;
-        $sql .= ', `secured`='.$this->secured;
-        $sql .= ', `template`="'.$this->template.'"';
-        $sql .= ', `theme`="'.$this->theme.'"';
-        $sql .= ', `homepage`='.$this->homepage;
+        $sql = ' `name`="'.addSlashes($this->name).'"';
+        $sql .= ', `active`='.(int)$this->active;
+        $sql .= ', `secured`='.(int)$this->secured;
+        $sql .= ', `template`="'.addSlashes($this->template).'"';
+        $sql .= ', `theme`="'.addSlashes($this->theme).'"';
+        $sql .= ', `homepage`='.(int)$this->homepage;
         $sql .= ', `metas`="'.addslashes($this->metas_).'"';
         for ($i=0; $i< $this->maxmodules; $i++) {
-            $sql .= ', `m'.$i.'_name`="'.$this->modules[$i]['name'].'"';
-            $sql .= ', `m'.$i.'_content`="'.$this->modules[$i]['content'].'"';
-            $sql .= ', `m'.$i.'_theme`="'.$this->modules[$i]['theme'].'"';
+            $sql .= ', `m'.$i.'_name`="'.addSlashes($this->modules[$i]['name']).'"';
+            $sql .= ', `m'.$i.'_content`="'.addSlashes($this->modules[$i]['content']).'"';
+            $sql .= ', `m'.$i.'_theme`="'.addSlashes($this->modules[$i]['theme']).'"';
         }
+        $sql .= ', `robotIndex`='.(int)$this->robotIndex;
+        $sql .= ', `robotfollow`='.(int)$this->robotFollow;
         return $sql;
     }
 
@@ -727,7 +735,7 @@ final class ContentPage {
         $sql .= ') values ';
 
         foreach ($this->locales as $lang => $l) {
-            $sql .= '('.$this->id.', '.$this->wf_version.', "'.$lang.'"';
+            $sql .= '('.(int)$this->id.', '.(int)$this->wf_version.', "'.addSlashes($lang).'"';
             $sql .= ', "'.$camyks->encode_value($l['title']).'"';
             $sql .= ', "'.$camyks->encode_value($l['shorttitle']).'"';
             $sql .= ', "'.$camyks->encode_value($l['keywords']).'"';
@@ -736,7 +744,7 @@ final class ContentPage {
         }
 
         $sql = substr($sql, 0, strlen($sql)-2);
-        return    $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__);
+        return $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__);
     }
 
     /**
@@ -790,6 +798,8 @@ final class ContentPage {
             array('name'=>'theme', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>''),
             array('name'=>'homepage', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
             array('name'=>'metas', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+            array('name'=>'robotIndex', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>1),
+            array('name'=>'robotFollow', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>1),
        );
         for ($i=0; $i< $this->maxmodules; $i++) {
             $fields[] = array('name'=>'m'.$i.'_name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
@@ -833,8 +843,11 @@ final class ContentPage {
         $this->homepage = 1;
         $this->metas_ = '';
 
+        $this->robotIndex = 1;
+        $this->robotFollow = 1;
+
         $this->locales = array();
-        foreach ($camyks->site_conf['editing_languages'] as $l) {
+        foreach ($camyks->get_confValue('editing_languages') as $l) {
             $this->locales[$l] = array('title'=>'', 'shorttitle'=>'', 'keywords'=>'', 'description'=>'');
         }
         return $this->create_toDatabase();
@@ -925,17 +938,21 @@ final class ContentPage {
             $this->template = $_REQUEST['template'];
             $this->theme = $_REQUEST['theme'];
             $this->homepage = isset ($_REQUEST['homepage']) ? (int)$_REQUEST['homepage'] : 0;
+            $this->robotIndex = isset ($_REQUEST['robotIndex']) ? (int)$_REQUEST['robotIndex'] : 0;
+            $this->robotFollow = isset ($_REQUEST['robotFollow']) ? (int)$_REQUEST['robotFollow'] : 0;
 
             /* get metas lines */
             $this->metas = array();
             $meta_count = isset($_REQUEST['meta_count'])?(int)$_REQUEST['meta_count']:0;
             for ($i=0; $i<$meta_count; $i++) {
-            if (isset($_REQUEST['meta_name'.$i]) and $_REQUEST['meta_name'.$i]!= '') {
-            $this->metas[] = array($_REQUEST['meta_name'.$i],
-                 isset($_REQUEST['meta_content'.$i])?$_REQUEST['meta_content'.$i]:'',
-                 isset($_REQUEST['meta_language'.$i])?$_REQUEST['meta_language'.$i]:'',
-                 isset($_REQUEST['meta_method'.$i])?$_REQUEST['meta_method'.$i]:'');
-            }
+                if (isset($_REQUEST['meta_name'.$i]) and $_REQUEST['meta_name'.$i]!= '') {
+                    $this->metas[] = array(
+                        $_REQUEST['meta_name'.$i],
+                        isset($_REQUEST['meta_content'.$i])?$_REQUEST['meta_content'.$i]:'',
+                        isset($_REQUEST['meta_language'.$i])?$_REQUEST['meta_language'.$i]:'',
+                        isset($_REQUEST['meta_method'.$i])?$_REQUEST['meta_method'.$i]:'',
+                    );
+                }
             }
 
             /* get modules */
@@ -1086,6 +1103,8 @@ final class ContentPage {
             $m['theme'] = $data['m'.$i.'_theme'];
             $this->modules[$i] = $m;
         }
+        $this->robotIndex = $data['robotIndex'];
+        $this->robotFollow = $data['robotFollow'];
     }
 
     /**
@@ -1200,22 +1219,25 @@ final class ContentPage {
                     $camyks->HTMLPage->add_link('alternate', $camyks->get_confValue('url').'/'.$this->get_siteLink($this->params, $l), array('hreflang'=>$languages[$l]['extend']));
         }
 
+        /* add robot rules */
+        $camyks->HTMLPage->set_robotInformations($this->robotIndex, $this->robotFollow);
+
         /* init template */
         if ($this->template == '') {
-            $this->template = $camyks->site_conf['site_default_template'];
+            $this->template = $camyks->get_confValue('site_default_template');
         } else if (!isset($camyks->templates[$this->template])) {
             $camyks->log_event('Page Error', $this, 'Template not found :'.$this->template);
-            $this->template = $camyks->site_conf['site_default_template'];
+            $this->template = $camyks->get_confValue('site_default_template');
         }
         $this->template = &$camyks->templates[$this->template];
         $this->template->initialise();
 
         /* init theme - check for default theme */
         if ($this->theme == ''){
-            $this->theme = $camyks->site_conf['site_default_theme'];
+            $this->theme = $camyks->get_confValue('site_default_theme');
         } else if (! isset ($camyks->themes[$this->theme])) {
             $camyks->log_event('Page Error', $this, 'Theme not found :'.$this->theme);
-            $this->theme = $camyks->site_conf['site_default_theme'];
+            $this->theme = $camyks->get_confValue('site_default_theme');
         }
         $this->theme = &$camyks->themes[$this->theme];
         $this->theme->initialise();
@@ -1245,7 +1267,7 @@ final class ContentPage {
             }
 
             /* init module object */
-            if ($camyks->benchMode!==false) $camyks->benchMode->start('Initialise module '.$i);
+            if ($camyks->benchMode !== false) $camyks->benchMode->start('Initialise module '.$i);
             $m[$i]->init_site($this->modules[$i]['content'], $this->params, $i);
         }
         $this->modules = $m;
@@ -1382,7 +1404,7 @@ final class ContentPage {
         /* init values */
         $pages = array();
         /* build sql query */
-        $sql = 'select id, active, type, parent_id, position, name, homepage, wf_owner, wf_editor';
+        $sql = 'select id, active, type, parent_id, position, name, homepage, wf_owner, wf_editor, robotIndex, robotFollow';
         $sql .= ' from admin_contentpage';
         $sql .= ' where type="page"';
         $sql .= ' order by parent_id, position';
@@ -1406,6 +1428,8 @@ final class ContentPage {
                 $page->wf_owner = $data['wf_owner'];
                 $page->wf_editor = $data['wf_editor'];
                 $page->wf_status = 'edition';
+                $page->robotIndex = $data['robotIndex'];
+                $page->robotFollow = $data['robotFollow'];
                 $pages[$data['id']] = $page;
             }
 
@@ -1558,6 +1582,23 @@ final class ContentPage {
      */
     public function get_configValue($param='', $default=false) {
         return $this->_libParent->get_configValue($param, $default);
+    }
+
+    /* Update methods */
+
+    /**
+     * Execute version 1.1 update.
+     * @return boolean success
+     */
+    public function update_toVersion1_1() {
+        global $camyks;
+
+        $sql = 'alter table `admin_contentpage` add column robotIndex tinyint unsigned default 1;';
+        if (!$camyks->db_conn->execute_query($sql))
+            return false;
+
+        $sql = 'alter table `admin_contentpage` add column robotFollow tinyint unsigned default 1;';
+        return (!$camyks->db_conn->execute_query($sql));
     }
 
     /******************** STATIC METHODS ********************/

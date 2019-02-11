@@ -1,14 +1,14 @@
 <?php
 /**
- * @brief Admin_ContentPage Module configuration library
+ * @brief Admin_ContentPage Module.
  * <br /> Administration module to manage website pages.
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_ContentPage/Admin_ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.1
  * @date Creation: Jun 2005
- * @date Modification: Oct 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Feb 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo other page type (folder, ...)
@@ -77,7 +77,7 @@ final class Admin_ContentPage extends Module {
         $this->admin_type = 'content';
 
         /* overwrite Plugin values */
-        $this->version = '1.0';
+        $this->version = '1.1';
         $this->plugin_package = 'System';
 
         /* author information */
@@ -99,9 +99,10 @@ final class Admin_ContentPage extends Module {
 
         /* register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('GenericSitemapGenerator');
     }
 
-    /* overwrite module methods */
+    /* Override Module methods */
 
     /**
      * Install module.
@@ -125,6 +126,19 @@ final class Admin_ContentPage extends Module {
      */
     public function is_installed() {
         return $this->page->is_installed();
+    }
+
+    /**
+     * Update plugin.
+     * @return boolean
+     */
+    public function update($version, $more='') {
+        global $camyks;
+
+        if (version_compare($version, '1.1', '<'))
+            if (!$this->update_toVersion1_1()) return false;
+
+        parent::update($version, $more);
     }
 
     /**
@@ -879,7 +893,7 @@ final class Admin_ContentPage extends Module {
     }
 
     /**
-     * Initialisemodule object in admin/edit_config mode.
+     * Initialise module object in admin/edit_config mode.
      * @return void
      */
     private function init_admin_edit_config() {
@@ -932,7 +946,7 @@ final class Admin_ContentPage extends Module {
     }
 
     /**
-     * Initialisemodule object in admin/save_config mode.
+     * Initialise module object in admin/save_config mode.
      * @return void
      */
     private function init_admin_save_config() {
@@ -1471,6 +1485,16 @@ final class Admin_ContentPage extends Module {
         $this->add_JSScript('movePageFailedMessage="'.string_html2Text($this->get_translation('movepagefailedmessage')).'";');
     }
 
+    /* Updates methods */
+
+    /**
+     * Apply version 1.1 update.
+     * @return boolean success
+     */
+    private function update_toVersion1_1() {
+        return ($this->page->update_toVersion1_1());
+    }
+
     /* Admin_Site extension configuration methods */
 
     /**
@@ -1546,6 +1570,68 @@ final class Admin_ContentPage extends Module {
     public function save_configuration() {
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+
+    /* GenericSitemapGenerator extension methods */
+
+    /**
+     * Return links for site map.
+     * @return array
+     */
+    public function get_sitemapLinks() {
+        global $camyks;
+
+        /* Initialise lists */
+        $list = array();
+        $levels = array();
+
+        /* Load pages */
+        $this->get_sitePages();
+
+        /* Add pages to list */
+        foreach ($this->pages as $page) {
+            if (isset($levels[$page->id]))
+                break;
+
+            /* Build page level */
+            if ($page->parent_id == 0)
+                $level = 0;
+            elseif (isset($levels[$page->parent_id]))
+                $level = min($levels[$page->parent_id] + 1, 9);
+            else
+                $level = 9;
+            $levels[$page->id] = $level;
+
+            /* Check for enabled pages only */
+            if ($page->active == 1 and $page->robotIndex == 1) {
+                $url = array();
+
+                /* Add main url */
+                $url['loc'] = $camyks->get_fileURL($this->get_sitePageLink($page->id, $camyks->get_confValue('site_default_language')), 'absolute');
+
+                /* Add alternative urls */
+                if (count($camyks->get_confValue('site_languages')) > 1) {
+                    $url['alt'] = array();
+                    foreach($camyks->get_confValue('site_languages') as $l) {
+                        $url['alt'][$l] =  $camyks->get_fileURL($this->get_sitePageLink($page->id, $l), 'absolute');
+                    }
+                }
+
+                /* Add priority depending on page level */
+                if ($page->homepage == 1)
+                    $priority = 100;
+                else
+                    $priority = 100 - 10*$level;
+
+                $url['priority'] = $priority;
+
+                /* Add page to the list */
+                $list[] = $url;
+            }
+        }
+
+        /* Return finalised list */
+        return $list;
     }
 }
 ?>

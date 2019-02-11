@@ -4,10 +4,10 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_ContentPage/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Sep 2009
- * @date Modification: Oct 2018
- * @copyright 2009 - 2018 CaMykS Team
+ * @date Modification: Feb 2019
+ * @copyright 2009 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -115,6 +115,10 @@ $this->trads['mod_admin_contentpage_type_model'] = 'Model';
 $this->trads['mod_admin_contentpage_formitem_actived'] = 'Actived: ';
 $this->trads['mod_admin_contentpage_formitem_ishomepage'] = 'Website home: ';
 $this->trads['mod_admin_contentpage_defaultfromsite'] = 'Default (site)';
+$this->trads['mod_admin_contentpage_formtitle_searchenginebot'] = 'Search engine bots';
+$this->trads['mod_admin_contentpage_formitem_contentindexing'] = 'Content indexing: ';
+$this->trads['mod_admin_contentpage_formitem_linkfollowup'] = 'Links following: ';
+$this->trads['mod_admin_contentpage_formtitle_admindata'] = 'Admin information';
 $this->trads['mod_admin_contentpage_formitem_owner'] = 'Owner: ';
 $this->trads['mod_admin_contentpage_formitem_editorgroup'] = 'Editing group: ';
 $this->trads['mod_admin_contentpage_formitem_validatorgroup'] = 'Validating group : ';

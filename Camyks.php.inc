@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Jun 2005
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -2108,7 +2108,6 @@ final class Camyks {
 
         /* get internal locales */
         $this->HTMLPage->set_pageInformations($this->contentPage->title, $this->contentPage->description, $this->contentPage->keywords, $this->current_language);
-        $this->HTMLPage->set_robotInformations();
 
         /* set mobile configuration values */
         if ($this->deviceMode == 'handheld')
