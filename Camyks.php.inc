@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Jun 2005
  * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -1481,9 +1481,11 @@ final class Camyks {
         /* update global statistics in site mode only */
         if ($this->mode != CAMYKS_MODE_SITE)
             return;
+
         /* update global statistics for visitors only */
         if ($this->check_adminUser()===true)
             return;
+
         /* update global statistics only if statistic engine is available */
         if (isset($this->modules['Admin_Statistics']))
             $this->modules['Admin_Statistics']->update_siteStatistics();
@@ -2101,9 +2103,7 @@ final class Camyks {
         $this->contentPage = new ContentPage($this->mode, 0, $params);
 
         /* get init from content */
-        if ($this->contentPage->load_asFrontPage($page))
-            /* update statistics */
-            $this->update_siteStatistics();
+        $this->contentPage->load_asFrontPage($page);
 
         /* run onInitialise event handlers */
         $this->run_eventHandlers('onPageLoad');
@@ -2123,9 +2123,6 @@ final class Camyks {
 
         /* add favicon */
         $this->HTMLPage->set_favicon();
-
-        /* update statistics */
-        $this->update_siteStatistics();
 
         /* display html header */
         $this->HTMLPage->add_HTMLHeader();
