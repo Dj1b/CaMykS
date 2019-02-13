@@ -4,7 +4,7 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.1.1
  * @date Creation: Jun 2005
  * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -607,7 +607,7 @@ final class ContentPage {
             $sql .= ', `m'.$i.'_theme`';
         }
         $sql .= ', `robotIndex`';
-        $sql .= ', `robotfollow`';
+        $sql .= ', `robotFollow`';
         $sql .= ') VALUES (';
         $sql .= ''.(int)$this->parent_id.'';
         $sql .= ', '.(int)$this->position.'';
@@ -638,7 +638,7 @@ final class ContentPage {
             }
         }
         $sql .= ', '.(int)$this->robotIndex.'';
-        $sql .= ', '.(int)$this->robotfollow.'';
+        $sql .= ', '.(int)$this->robotFollow.'';
         $sql .= ')';
 
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
@@ -697,7 +697,7 @@ final class ContentPage {
             $sql .= ', `m'.$i.'_theme`="'.addSlashes($this->modules[$i]['theme']).'"';
         }
         $sql .= ', `robotIndex`='.(int)$this->robotIndex;
-        $sql .= ', `robotfollow`='.(int)$this->robotFollow;
+        $sql .= ', `robotFollow`='.(int)$this->robotFollow;
         return $sql;
     }
 
