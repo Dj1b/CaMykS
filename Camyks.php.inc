@@ -2101,7 +2101,9 @@ final class Camyks {
         $this->contentPage = new ContentPage($this->mode, 0, $params);
 
         /* get init from content */
-        $this->contentPage->load_asFrontPage($page);
+        if ($this->contentPage->load_asFrontPage($page))
+            /* update statistics */
+            $this->update_siteStatistics();
 
         /* run onInitialise event handlers */
         $this->run_eventHandlers('onPageLoad');
