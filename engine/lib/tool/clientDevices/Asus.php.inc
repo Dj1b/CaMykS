@@ -6,7 +6,7 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.10
  * @date Creation: Apr 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -53,6 +53,7 @@ function get_AsusClientDevice($deviceCode='') {
         'ZE554KL'   => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
         'X00LD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
         'X00HD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
+        'Z01KDA'    => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
         'X00ID'     => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
         'ZC520KL'   => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
         'ZS551KL'   => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),

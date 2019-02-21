@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: May 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4102,6 +4102,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://website.grader.com',
         'engine_title'      => 'HubSpot',
         'engine_url'        => 'https://www.hubspot.com',
+    );
+
+    /* Tweezler */
+    $knownBots['tweezler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Tweezler',
+        'engine_url'        => 'https://tweezler.com',
     );
 
     /* return bot list */

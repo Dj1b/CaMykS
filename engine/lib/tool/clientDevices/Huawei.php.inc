@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: Apr 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -73,6 +73,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'SNE-LX1'   => array('platform_model' => 'Mate 20 Lite',    'platform_year' => 2018),
         'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYO-L21'   => array('platform_model' => 'Honor 5A',        'platform_year' => 2016),
+        'NEM-L22'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'NEM-L51'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'NEM-UL10'  => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'KIW-L21'   => array('platform_model' => 'Honor 5X',        'platform_year' => 2015),

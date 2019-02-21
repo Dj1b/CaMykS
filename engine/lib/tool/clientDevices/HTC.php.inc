@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Aug 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,6 +23,7 @@ function get_HTCClientDevice($deviceCode='') {
         'Hero'                  => array('platform_model' => 'Hero',                'platform_year' => 2009),
         'TATTOO A3288'          => array('platform_model' => 'Tattoo',              'platform_year' => 2009),
         'IncredibleS'           => array('platform_model' => 'Incredible S',        'platform_year' => 2011),
+        'Explorer A310e'        => array('platform_model' => 'Explorer A310e',      'platform_year' => 2011),
         'T329t'                 => array('platform_model' => 'Proto',               'platform_year' => 2012 , 'browser_title' => 'Android browser',),
         '8088;'                 => array('platform_model' => 'One Max',             'platform_year' => 2013),
         'M8Sx'                  => array('platform_model' => 'One (E8)',            'platform_year' => 2014),

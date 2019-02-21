@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Crosscall.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: May 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,6 +21,7 @@
 function get_CrosscallClientDevice($deviceCode='') {
     $deviceList = array(
         'action-x3'         => array('platform_model' => 'Action-X3',       'platform_year' => 2017),
+        'action-x3 pro'     => array('platform_model' => 'Action-X3 Pro',   'platform_year' => 2017),
         'trekker-m1 core'   => array('platform_model' => 'Trekker-M1 Core', 'platform_year' => 2017),
         'trekker-m1'        => array('platform_model' => 'Trekker-M1',      'platform_year' => 2016),
         'trekker-s1'        => array('platform_model' => 'Trekker-S1',      'platform_year' => 2016),

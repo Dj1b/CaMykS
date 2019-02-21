@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: May 2018
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1149,6 +1149,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Site-Shot',
         'engine_url'        => 'https://www.site-shot.com',
+    );
+
+    /* CloudFlare-AlwaysOnline */
+    $knownTools['cloudflare-alwaysonline'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Cloud Flare Always Online',
+        'tool_url'          => 'https://www.cloudflare.com/always-online/',
+        'engine_title'      => 'Cloud Flare',
+        'engine_url'        => 'https://www.cloudflare.com/',
     );
 
     /* return list */
