@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: May 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4112,6 +4112,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Tweezler',
         'engine_url'        => 'https://tweezler.com',
+    );
+
+    /*  Keybot Translation-Search-Machine  */
+    $knownBots['keybot translation-search-machine'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Keybot Translation-Search-Machine',
+        'bot_url'           => 'https://www.keybot.com',
+        'engine_title'      => 'TTN',
+        'engine_url'        => 'http://www.ttn.ch',
+    );
+
+    /*  MixnodeCache  */
+    $knownBots['mixnodecache'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MixnodeCache',
+        'bot_url'           => 'https://cache.mixnode.com',
+        'engine_title'      => 'Mixnode',
+        'engine_url'        => 'https://www.mixnode.com',
     );
 
     /* return bot list */

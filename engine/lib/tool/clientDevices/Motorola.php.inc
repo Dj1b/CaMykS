@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -32,6 +32,7 @@ function get_MotorolaClientDevice($deviceCode='') {
 
         'Droid'         => array('platform_model' => 'Droid',               'platform_year' => 2009),
         'MB200'         => array('platform_model' => 'Dext',                'platform_year' => 2009),
+        'Milestone'     => array('platform_model' => 'Milestone',           'platform_year' => 2009),
         'RAZR HD'       => array('platform_model' => 'Droid Razr HD',       'platform_year' => 2012),
         'Moto G'        => array('platform_model' => 'Moto G',              'platform_year' => 2013),
         'E2(4G-LTE)'    => array('platform_model' => 'Moto E (2nd Gen)',    'platform_year' => 2015),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Aug 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -20,6 +20,7 @@
  */
 function get_HTCClientDevice($deviceCode='') {
     $deviceList = array(
+        'bahamas'               => array('platform_model' => 'Bahamas',             'platform_year' => 2009),
         'Hero'                  => array('platform_model' => 'Hero',                'platform_year' => 2009),
         'TATTOO A3288'          => array('platform_model' => 'Tattoo',              'platform_year' => 2009),
         'IncredibleS'           => array('platform_model' => 'Incredible S',        'platform_year' => 2011),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Apr 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -165,6 +165,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J327T'  => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
         'SM-J327W'  => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
         'SM-J400F'  => array('platform_model' => 'Galaxy J4',                       'platform_year' => 2018),
+        'SM-J415FN' => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
         'SM-J500'   => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),

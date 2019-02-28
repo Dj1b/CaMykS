@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.30
  * @date Creation: Apr 2018
  * @date Modification: Feb 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -46,6 +46,7 @@ function get_HuaweiClientDevice($deviceCode='') {
         'VTR-L09'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'VTR-L29'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'WAS-LX1A'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
+        'WAS-L03T'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
         'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
