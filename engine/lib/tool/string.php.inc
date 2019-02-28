@@ -164,7 +164,7 @@ function string_html2Text($string, $encoding=null) {
     if (!isset($encoding))
         $encoding = $camyks->get_confValue('encoding');
 
-    /* decode html */
+    /* decode HTML */
     $string = html_entity_decode($string);
 
     /* encode text */

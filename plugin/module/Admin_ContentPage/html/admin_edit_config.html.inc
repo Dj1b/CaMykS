@@ -2,7 +2,7 @@
 /**
  * @brief Admin_ContentPage Module edit configuration layout
  * @details Plugin / Module layout
- * @file plugin/module/Admin_ContentPage/html/edit_config.html.inc
+ * @file plugin/module/Admin_ContentPage/html/admin_edit_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Dec 2014
