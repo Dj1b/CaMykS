@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Theme.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Jan 2019
+ * @date Modification: Feb 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,7 +18,7 @@ global $global_theme_picts_items, $global_theme_media_types;
  * @brief Define available picts items
  */
 $global_theme_picts_items = array(
-    '12'    => array(
+    '12' => array(
         'items' => array(
             'empty',
             'cross',
@@ -38,12 +38,12 @@ $global_theme_picts_items = array(
             'valid',
             'view',
             'action',
-       ),
+        ),
         'positions' => array(
             'std',
             'ovr'
-       ),
-   ),
+        ),
+    ),
 );
 
 /**
@@ -653,8 +653,12 @@ abstract class Theme extends Plugin {
     public function get_button ($params, $url='', $style='') {
         $dParams = array('title'=>'', 'url'=>'', 'id'=>'', 'style'=>'', 'class'=>'', 'target'=>'');
         if (!is_array($params))
-            $params = array('title'=>$params, 'style' => $style, 'url'=>$url);
+            $params = array('title'=>$params, 'style'=>$style, 'url'=>$url);
         $params = array_merge($dParams, $params);
+
+        /* check id */
+        if ($params['id'] !== '' and substr($params['id'], 0, 3) !== 'id=')
+            $params['id'] = 'id="'.$params['id'].'"';
         return $this->get_part('button', array($params['style'], $params['url'], $params['title'], $params['id'], $params['class'], $params['target']));
     }
 
@@ -675,7 +679,7 @@ abstract class Theme extends Plugin {
             } else if ($item['url'] == '') {
                 $html .= $this->get_layeredMenuNoLinkItem($item);
             } else {
-                $html .= $this->get_layeredMenuLinkItem ($item);
+                $html .= $this->get_layeredMenuLinkItem($item);
             }
         }
         $html .= $this->get_layeredMenuFooter();

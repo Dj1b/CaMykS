@@ -1,30 +1,28 @@
 <?php
 /**
- * @brief Tecno client devices specific methods
+ * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Tecno.php.inc
+ * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Oct 2018
+ * @version 1.0.0
+ * @date Creation: Feb 2019
  * @date Modification: Feb 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Tecno client device information from a known list.
+ * Return Infinix client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_TecnoClientDevice($deviceCode='') {
+function get_InfinixClientDevice($deviceCode='') {
     $deviceList = array(
-        'K7'        => array('platform_model' => 'Spark',       'platform_year' => 2017),
-        'K9'        => array('platform_model' => 'Spark Plus',  'platform_year' => 2017),
-        'W3'        => array('platform_model' => 'W3',          'platform_year' => 2017),
-        'KA7'       => array('platform_model' => 'Spark 2',     'platform_year' => 2018),
-        'Camon CX'  => array('platform_year' => 2018),
+        'X551'      => array('platform_model' => 'Hot Note',    'platform_year' => 2015),
+        'X559'      => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
+        'X559C'     => array('platform_model' => 'Hot 5',       'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -33,7 +31,7 @@ function get_TecnoClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Tecno',
+        'platform_company'  => 'Infinix',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

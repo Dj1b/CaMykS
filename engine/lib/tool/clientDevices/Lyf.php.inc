@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lyf.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2018
- * @date Modification: May 2018
- * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Feb 2019
+ * @copyright 2018 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -20,8 +20,9 @@
  */
 function get_LyfClientDevice($deviceCode='') {
     $deviceList = array(
-        'LYF/F61F' => array('platform_model' => 'JioPhone F61F',    'platform_year' => 2017),
-        'LYF/F90M' => array('platform_model' => 'JioPhone F90M',    'platform_year' => 2017),
+        'LYF/F61F'  => array('platform_model' => 'JioPhone F61F',   'platform_year' => 2017),
+        'LYF/F90M'  => array('platform_model' => 'JioPhone F90M',   'platform_year' => 2017),
+        'LYF/F120B' => array('platform_model' => 'JioPhone F120B',  'platform_year' => 2017),
     );
 
     /* Check for returning list */
