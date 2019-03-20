@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2018
- * @date Modification: Jan 2019
+ * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +20,8 @@
  */
 function get_AlcatelClientDevice($deviceCode='') {
     $deviceList = array(
+        'Orange KLIF' => array('system_title' => 'Firefox OS',          'platform_year' => 2015),
+
         '4007X' => array('platform_model' => 'OneTouch Pixi',           'platform_year' => 2013),
         '4009D' => array('platform_model' => 'OneTouch Pixi 3 (3.5\')', 'platform_year' => 2014),
         '4009X' => array('platform_model' => 'OneTouch Pixi 3 (3.5\')', 'platform_year' => 2014),

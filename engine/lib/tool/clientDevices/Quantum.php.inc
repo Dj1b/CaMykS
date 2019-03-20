@@ -1,29 +1,26 @@
 <?php
 /**
- * @brief Lava client devices specific methods
+ * @brief Quantum client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Lava.php.inc
+ * @file engine/lib/tool/clientDevices/Quantum.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
- * @date Creation: Jul 2018
+ * @version 1.0.0
+ * @date Creation: Mar 2019
  * @date Modification: Mar 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Lava client device information from a known list.
+ * Return Quantum client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_LavaClientDevice($deviceCode='') {
+function get_QuantumClientDevice($deviceCode='') {
     $deviceList = array(
-        'iris402'   => array('platform_model' => 'Iris 402',    'platform_year' => 2013),
-        'iris349i'  => array('platform_model' => 'Iris 349i',   'platform_year' => 2014),
-        'iris405+'  => array('platform_model' => 'Iris 405+',   'platform_year' => 2014),
-        'z50'       => array('platform_model' => 'Z50',         'platform_year' => 2018),
+        'You'    => array('platform_model' => 'You', 'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -32,7 +29,7 @@ function get_LavaClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Lava',
+        'platform_company'  => 'Quantum',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Cat.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Dec 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Mar 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -20,6 +20,10 @@
  */
 function get_CatClientDevice($deviceCode='') {
     $deviceList = array(
+        /* CAT Tablets */
+        'helix' => array('platform_model' => 'Helix', 'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2014),
+
+        /* CAT Mobiles */
         'S60'   => array('platform_model' => 'S60',    'platform_year' => 2016),
     );
 
