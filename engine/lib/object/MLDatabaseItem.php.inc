@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/MLDatabaseItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2007
- * @date Modification: Oct 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Mar 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -143,6 +143,16 @@ class MLDatabaseItem extends ModuleLibraryItem {
      * @return mixed
      */
     public function get_databaseDescription() {
+        if ($this->datatype == 'password' and $this->datadesc != 'varchar') {
+            return array(
+                'name'      => $this->name,
+                'type'      => $this->datatype,
+                'desc1'     => 'varchar',
+                'desc2'     => '140',
+                'default'   => $this->default,
+            );
+        }
+
         return array(
             'name'      => $this->name,
             'type'      => $this->datatype,
@@ -169,7 +179,10 @@ class MLDatabaseItem extends ModuleLibraryItem {
             case 'etext':
                 return '"'.$camyks->encode_value($this->value). '"';
             case 'password':
-                return '"'.$this->value.'"';
+                if ($this->datadesc == 'varchar')
+                    return '"'.$this->value.'"';
+                else
+                    return '"'.password_encode($this->value, $this->datadesc, $this->datadesc2).'"';
             case 'list':
                 return '"'.$this->compile_listValue($this->value).'"';
         }
