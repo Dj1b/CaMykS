@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Jun 2005
- * @date Modification: Feb 2019
+ * @date Modification: Mar 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1236,7 +1236,7 @@ final class Camyks {
         /* load current adminUser */
         if (isset($this->modules['Admin_User'])) {
             $this->adminUser = new AdminUser($this->get_sessionValue('admin_user'));
-            $this->adminUser->get_fromDatabase();
+            $this->adminUser->get();
         }
     }
 
