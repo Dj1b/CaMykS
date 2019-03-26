@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.60
+ * @version 1.0.61
  * @date Creation: Jun 2007
  * @date Modification: Mar 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -1244,7 +1244,7 @@ function client_getUAInfos($ua=false) {
         }
 
         /* check determined linux os */
-        elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux|Sailfish)/', $ua, $matches)) {
+        elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux|Sailfish|Raspbian)/', $ua, $matches)) {
             $rep = array(
                 'CrOS'      => array('system_title'     => 'Chrome OS (Linux)',),
                 'Sailfish'  => array('platform_company' => '',  'system_title' => 'Sailfish OS (Linux)', 'platform_type' => 'handheld', 'platform_format' => 'handheld',),

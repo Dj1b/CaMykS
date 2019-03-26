@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: May 2018
  * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -667,6 +667,16 @@ function _client_getKnownGenerics() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'reqwest',
         'bot_url'           => 'https://docs.rs/reqwest/',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* unfurlist */
+    $knownGenerics['unfurlist'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'unfurlist',
+        'bot_url'           => 'https://github.com/Doist/unfurlist',
         'engine_title'      => '',
         'engine_url'        => '',
     );
