@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: Jun 2005
  * @date Modification: Mar 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -1483,7 +1483,7 @@ final class Camyks {
             return;
 
         /* update global statistics for visitors only */
-        if ($this->check_adminUser()===true)
+        if ($this->check_adminUser() === true)
             return;
 
         /* update global statistics only if statistic engine is available */
@@ -2110,6 +2110,9 @@ final class Camyks {
 
         /* get internal locales */
         $this->HTMLPage->set_pageInformations($this->contentPage->title, $this->contentPage->description, $this->contentPage->keywords, $this->current_language);
+
+        /* update statistics */
+        $this->update_siteStatistics();
 
         /* set mobile configuration values */
         if ($this->deviceMode == 'handheld')
