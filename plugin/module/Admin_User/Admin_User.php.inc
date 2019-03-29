@@ -5,7 +5,7 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_User/Admin_User.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.1.1
  * @date Creation: Jun 2005
  * @date Modification: Mar 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -375,7 +375,7 @@ final class Admin_User extends Module {
      */
     public function get_userNameAndEmail($login) {
         $user = new AdminUser($login);
-        $user->get_fromDatabase();
+        $user->get();
         return array(
             'login'     => $user->login,
             'firstname' => $user->firstname,
