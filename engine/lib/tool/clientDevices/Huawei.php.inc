@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Apr 2018
  * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -111,6 +111,7 @@ function get_HuaweiClientDevices() {
         'U9201L'    => array('platform_model' => 'Ascend P1',       'platform_year' => 2012),
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
+        'MT7-L09'   => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'H1611'     => array('platform_model' => 'Ascend XT',       'platform_year' => 2016),
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
         'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),

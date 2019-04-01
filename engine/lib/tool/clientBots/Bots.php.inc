@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.31
  * @date Creation: May 2018
  * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -753,17 +753,27 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'YandexImages',
-        'bot_url'           => '',
+        'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
     );
 
     /* yandex bot */
-    $knownBots['yandex'] = array(
+    $knownBots['yandexbot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Yandex',
-        'bot_url'           => '',
+        'bot_url'           => 'http://yandex.com/bots',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'http://www.yandex.ru',
+    );
+
+    /* yandex mobile bot */
+    $knownBots['yandexmobilebot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Yandex',
+        'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
     );
@@ -4164,7 +4174,7 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://tag-visit.com',
     );
 
-    /* TagVisit */
+    /* PinterestBot */
     $knownBots['pinterestbot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
