@@ -2223,6 +2223,7 @@ final class Camyks {
             if (($plugin = template_get($_GET['template'], 'site')) === false)
                 $plugin = template_get($_GET['template'], 'camyks');
         }
+
         /* get plugin init & display */
         if ($plugin !== false) {
             $plugin->execute_request();
