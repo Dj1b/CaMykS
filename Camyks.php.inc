@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.13
  * @date Creation: Jun 2005
- * @date Modification: Feb 2019
+ * @date Modification: Mar 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1236,7 +1236,7 @@ final class Camyks {
         /* load current adminUser */
         if (isset($this->modules['Admin_User'])) {
             $this->adminUser = new AdminUser($this->get_sessionValue('admin_user'));
-            $this->adminUser->get_fromDatabase();
+            $this->adminUser->get();
         }
     }
 
@@ -1483,7 +1483,7 @@ final class Camyks {
             return;
 
         /* update global statistics for visitors only */
-        if ($this->check_adminUser()===true)
+        if ($this->check_adminUser() === true)
             return;
 
         /* update global statistics only if statistic engine is available */
@@ -2111,6 +2111,9 @@ final class Camyks {
         /* get internal locales */
         $this->HTMLPage->set_pageInformations($this->contentPage->title, $this->contentPage->description, $this->contentPage->keywords, $this->current_language);
 
+        /* update statistics */
+        $this->update_siteStatistics();
+
         /* set mobile configuration values */
         if ($this->deviceMode == 'handheld')
             $this->HTMLPage->set_mobileMeta(true, $this->get_confValue('mobileConfig'));
@@ -2220,6 +2223,7 @@ final class Camyks {
             if (($plugin = template_get($_GET['template'], 'site')) === false)
                 $plugin = template_get($_GET['template'], 'camyks');
         }
+
         /* get plugin init & display */
         if ($plugin !== false) {
             $plugin->execute_request();

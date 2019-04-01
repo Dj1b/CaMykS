@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.17
  * @date Creation: May 2018
- * @date Modification: Feb 2019
+ * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -60,11 +60,13 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 8'                  => array('platform_model' => 'Mi 8',                'platform_year' => 2018),
         'mi a2'                 => array('platform_model' => 'Mi A2',               'platform_year' => 2018),
         'mi a2 lite'            => array('platform_model' => 'Mi A2 Lite',          'platform_year' => 2018),
+        'mi max 3'              => array('platform_model' => 'Mi Max 3',            'platform_year' => 2018),
         'mi mix 3'              => array('platform_model' => 'Mi Mix 3',            'platform_year' => 2019),
 
         'redmi note 2'          => array('platform_model' => 'Redmi Note 2',        'platform_year' => 2015),
         'redmi note 2 prime'    => array('platform_model' => 'Redmi Note 2 Prime',  'platform_year' => 2015),
         'redmi note 3'          => array('platform_model' => 'Redmi Note 3',        'platform_year' => 2015),
+        'hm note 1lte'          => array('platform_model' => 'Redmi Note 3',        'platform_year' => 2015),
         'redmi note 3 pro'      => array('platform_model' => 'Redmi Note 3 Pro',    'platform_year' => 2015),
         'redmi note 4'          => array('platform_model' => 'Redmi Note 4',        'platform_year' => 2016),
         'redmi 3s'              => array('platform_model' => 'Redmi 3S',            'platform_year' => 2016),

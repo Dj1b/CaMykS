@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Acer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2018
- * @date Modification: Feb 2019
+ * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +20,10 @@
  */
 function get_AcerClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Acer tablets */
+        'A500'      => array('platform_model' => 'Iconia Tab A500',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2012),
+
+        /* Acer mobiles */
         'Z130'      => array('platform_model' => 'Liquid Z3',           'platform_year' => 2013),
         'T03'       => array('platform_model' => 'Liquid Z630',         'platform_year' => 2015),
         'T04'       => array('platform_model' => 'Liquid Z630S',        'platform_year' => 2016),

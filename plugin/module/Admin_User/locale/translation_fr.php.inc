@@ -1,17 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module dictionnary
- * Create Date		: Jun 2005
- * Last Modif Date	: Jan 2018
- *
- * Admin_User french dictionnary
-*/
-
+/**
+ * @brief Admin_User Module french dictionnary.
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_User/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: Mar 2019
+ * @copyright 2005 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_user_title'] = 'Utilisateurs';
 $this->trads['mod_admin_user_desc'] = 'Gestion des utilisateurs';
 

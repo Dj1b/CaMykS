@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.10
  * @date Creation: May 2018
- * @date Modification: Jan 2019
+ * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -649,6 +649,36 @@ function _client_getKnownGenerics() {
         'bot_url'           => 'https://nagios-plugins.org/doc/man/check_http.html',
         'engine_title'      => 'Nagios Plugins',
         'engine_url'        => 'https://nagios-plugins.org',
+    );
+
+    /* fasthttp */
+    $knownGenerics['fasthttp'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'fasthttp',
+        'bot_url'           => 'https://github.com/valyala/fasthttp',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* reqwest */
+    $knownGenerics['reqwest'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'reqwest',
+        'bot_url'           => 'https://docs.rs/reqwest/',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* unfurlist */
+    $knownGenerics['unfurlist'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'unfurlist',
+        'bot_url'           => 'https://github.com/Doist/unfurlist',
+        'engine_title'      => '',
+        'engine_url'        => '',
     );
 
     /* obot */

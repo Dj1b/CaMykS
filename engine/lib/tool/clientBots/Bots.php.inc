@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.31
  * @date Creation: May 2018
- * @date Modification: Feb 2019
+ * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -753,17 +753,27 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'YandexImages',
-        'bot_url'           => '',
+        'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
     );
 
     /* yandex bot */
-    $knownBots['yandex'] = array(
+    $knownBots['yandexbot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Yandex',
-        'bot_url'           => '',
+        'bot_url'           => 'http://yandex.com/bots',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'http://www.yandex.ru',
+    );
+
+    /* yandex mobile bot */
+    $knownBots['yandexmobilebot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Yandex',
+        'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
     );
@@ -4114,7 +4124,7 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://tweezler.com',
     );
 
-    /*  Keybot Translation-Search-Machine  */
+    /* Keybot Translation-Search-Machine */
     $knownBots['keybot translation-search-machine'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4124,7 +4134,7 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://www.ttn.ch',
     );
 
-    /*  MixnodeCache  */
+    /* MixnodeCache */
     $knownBots['mixnodecache'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -4132,6 +4142,46 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://cache.mixnode.com',
         'engine_title'      => 'Mixnode',
         'engine_url'        => 'https://www.mixnode.com',
+    );
+
+    /* olbicobot */
+    $knownBots['olbicobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'olbicobot',
+        'bot_url'           => 'https://www.olbi.co/crawling',
+        'engine_title'      => 'Olbico',
+        'engine_url'        => 'https://www.olbi.co',
+    );
+
+    /* Everyonedomainsbot */
+    $knownBots['everyonedomainsbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Everyonedomainsbot',
+        'bot_url'           => '',
+        'engine_title'      => 'Everyone domains',
+        'engine_url'        => 'http://everyone.domains',
+    );
+
+    /* TagVisit */
+    $knownBots['tagvisit'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TagVisit bot',
+        'bot_url'           => '',
+        'engine_title'      => 'TagVisit',
+        'engine_url'        => 'http://tag-visit.com',
+    );
+
+    /* PinterestBot */
+    $knownBots['pinterestbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Pinterestbot',
+        'bot_url'           => 'http://www.pinterest.com/bot.html',
+        'engine_title'      => 'Pinterestbot',
+        'engine_url'        => 'https://www.pinterest.com',
     );
 
     /* return bot list */

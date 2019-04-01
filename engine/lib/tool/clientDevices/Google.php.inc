@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Google.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Aug 2018
- * @date Modification: Jan 2019
+ * @date Modification: Mar 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -33,6 +33,7 @@ function get_GoogleClientDevice($deviceCode='') {
         'Pixel 2'       => array('platform_year' => 2017),
         'Pixel 2 XL'    => array('platform_year' => 2017),
         'Pixel 3'       => array('platform_year' => 2018),
+        'Pixel 3 XL'    => array('platform_year' => 2018),
     );
 
     /* Check for returning list */

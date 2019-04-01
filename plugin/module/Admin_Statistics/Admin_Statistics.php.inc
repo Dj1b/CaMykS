@@ -89,7 +89,7 @@ class Admin_Statistics extends Module {
     }
     return false;
   }
-  
+
   /*
    * uninstall module
    * @return boolean success
@@ -101,7 +101,7 @@ class Admin_Statistics extends Module {
       and $this->statconfig->uninstall()
       and $this->settings->uninstall();
   }
-  
+
   /*
    * check module installation
    * @return boolean result
@@ -110,7 +110,7 @@ class Admin_Statistics extends Module {
   function is_installed ( ) {
     return $this->statconfig->is_installed();
   }
-  
+
   /*
    * get module rights
    * @return void
@@ -155,7 +155,7 @@ class Admin_Statistics extends Module {
       return $data;
     }
   }
-  
+
   /*
    * init module object in admin mode
    * @return void
@@ -167,29 +167,29 @@ class Admin_Statistics extends Module {
     /* check user rights */
     if ( $this->check_right(0) === false )
       return $this->init_admin_accessDenied();
-    
+
     /* get settings */
     $this->settings->get();
-    
+
     /* get registered stats */
     $this->get_registeredStats ( );
-    
+
     /* add statistics styles */
     $this->add_styleFile('admin_statistics.css');
-    
+
     /* add statistics scripts */
     $this->add_JSFile('admin_statistics.js');
 
     /* build admin title */
     $this->adminTitle = $this->title;
-    
+
     /* build buttons list */
     $this->buttons = array(array('title'=>$camyks->get_translation('back'),
                  'link' =>$camyks->get_adminLink()));
-    
+
     if ( isset ( $_REQUEST['object'] ) ) {
       $object = $_REQUEST['object'];
-      
+
       if ( $object == '_settings' and $this->check_right(1) ) {
     $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
     if ( $mode == 'save' )
@@ -200,20 +200,20 @@ class Admin_Statistics extends Module {
     $this->statobject = $this->registered_stats[$object];
     $this->adminTitle .= $camyks->get_translation('formitem_separator');
     $this->adminTitle .= $this->statobject->vars['title'];
-    
+
     switch ( $this->statobject->vars['type'] ) {
     case 'single':
       $this->init_admin_singleObject();
       break;
     case 'mixed':
       $this->init_admin_mixedObject();
-      break;      
+      break;
     case 'dated':
       $this->init_admin_datedObject();
-      break;      
+      break;
     case 'detail':
       $this->init_admin_detailObject();
-      break;      
+      break;
     case 'total':
       $this->init_admin_totalObject();
       break;
@@ -224,11 +224,11 @@ class Admin_Statistics extends Module {
                    'link'=>$this->form->get_HTMLSubmitLink());
       }
     }
-    
+
     /* generic init */
     parent::init_admin();
   }
-  
+
   /*
    * display module object in admin mode
    * @return void
@@ -237,9 +237,9 @@ class Admin_Statistics extends Module {
   function display_admin () {
     parent::display_admin();
   }
-  
+
   /* specific admin mode methods */
-  
+
   /*
    * init module object in admin/edit settings mode
    * @return void
@@ -282,7 +282,7 @@ class Admin_Statistics extends Module {
                array('title'=>$camyks->get_translation('valid'),
                  'link'=>$this->form->get_HTMLSubmitLink()));
   }
-  
+
   /*
    * init module object in admin/save settings mode
    * @return void
@@ -427,26 +427,26 @@ class Admin_Statistics extends Module {
   function update_statistic ( $name='', $plugin='', $type='', $main='', $data1='', $data2='',
     $params = array()) {
     global $camyks;
-        
+
     /* merge params */
     $params = array_merge(array('checkIPFilter'=>1, 'checkAdmin'=>1, 'checkBot'=>1, 'checkTool'=>1), $params);
-    
+
     /* check admin connection */
     if ( $params['checkAdmin'] and $camyks->check_adminUser())
       return;
-          
+
     /* check IP Filter */
     if ( $params['checkIPFilter'] and $this->check_filteredIp(client_getIP()))
       return;
-          
+
     /* check web bots */
     if ( $params['checkBot'] and $this->botDetector->detect() !== false )
       return;
-                
+
     /* check web tool */
     if ( $params['checkTool'] and $this->toolDetector->detect() !== false )
       return;
-          
+
     /* check name */
     if ( $name == '' ) {
       /* log error */
@@ -462,7 +462,7 @@ class Admin_Statistics extends Module {
       $camyks->log_executionerror ( $this,
                     'Could not save statistic : null or inexistant plugin',
                     'Name:'.$name.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
-      
+
       return;
     }
 
@@ -472,7 +472,7 @@ class Admin_Statistics extends Module {
       $camyks->log_executionerror ( $this,
                     'Could not save statistic : null or inexistant type',
                     'Module:'.$plugin.' - type:'.$type.' - data1:'.$data1.' - data2:'.$data2 );
-      
+
       return;
     }
 
@@ -504,14 +504,14 @@ class Admin_Statistics extends Module {
       $camyks->log_information($this,
                    'New '.$type.' statistic named '.$name.' registered by module '.$plugin);
       /* update data */
-      $this->statobject->update_statistic( $main, $data1, $data2 ); 
+      $this->statobject->update_statistic( $main, $data1, $data2 );
     }
   }
 
   /*
    * get registered stats list
    * @return boolean success
-   * @access private 
+   * @access private
    */
   function get_registeredStats( ) {
     global $camyks;
@@ -545,7 +545,7 @@ class Admin_Statistics extends Module {
     $this->tabs = array(array('name'=>'display',
                   'title'=>$this->get_translation('tabdisplay')),
             array('name'=>'options',
-                  'title'=>$this->get_translation('taboptions'))); 
+                  'title'=>$this->get_translation('taboptions')));
     /* add javascript files and scripts */
     $this->add_JSEngineFile('object/ctab.js');
     $this->add_JSScript($this->tabObject.' = new CTab();');
@@ -570,7 +570,7 @@ class Admin_Statistics extends Module {
             array('name'=>'detail',
                   'title'=>$this->get_translation('tabdetail')),
             array('name'=>'options',
-                  'title'=>$this->get_translation('taboptions'))); 
+                  'title'=>$this->get_translation('taboptions')));
     /* add javascript files and scripts */
     $this->add_JSEngineFile('object/ctab.js');
     $this->add_JSScript($this->tabObject.' = new CTab();');
@@ -578,7 +578,7 @@ class Admin_Statistics extends Module {
             .$camyks->theme->parts['boxTabCSSStandart'].'","'
             .$camyks->theme->parts['boxTabCSSSelected'].'","'
             .$camyks->theme->parts['boxTabCSSRollover'].'");');
-    $this->openTab = isset($_REQUEST['openTab']) ? $_REQUEST['openTab'] : 'display'; 
+    $this->openTab = isset($_REQUEST['openTab']) ? $_REQUEST['openTab'] : 'display';
     if ( $this->openTab != 'display' ) {
       $this->add_JSLoadScript($this->tabObject.'.mouseclick("'.$this->openTab.'");');
     }
@@ -675,7 +675,7 @@ class Admin_Statistics extends Module {
     foreach ( $this->statslist as $stat )
       if ( !isset ( $list[$stat->vars['main']] ) )
     $list[$stat->vars['main']] = $stat->vars['main'];
-    
+
     $this->maintitles = $camyks->modules[$this->statobject->vars['plugin']]->get_adminStatisticsValueTitles ( $list, $this->statobject->vars['name'] );
   }
 
@@ -791,8 +791,8 @@ class Admin_Statistics extends Module {
     /* get config */
     $this->c_config = $this->config->build_config($this->statobject->id);
   }
-  
-  
+
+
   /*
    * load value in dated type stats
    * @return void
@@ -818,11 +818,11 @@ class Admin_Statistics extends Module {
     global $camyks;
     /* get detail tab statistics description */
     $this->statsdetaildesc = $this->c_config['detaildesc'];
-    
+
     /* get detail tab statistics total */
     $this->statsdetailtotal = $this->statdata->get_statisticsTotalValue( $this->c_config['detailwhere'] );
-    
-    if ( $this->statsdetailtotal > 0 ) { 
+
+    if ( $this->statsdetailtotal > 0 ) {
       /* get detail tab statistics list */
       $this->statsdetaillist = $this->statdata->get_mixedStatisticList( $this->c_config['detailwhere'],
                                     $this->c_config['detaillimit']);
@@ -831,27 +831,27 @@ class Admin_Statistics extends Module {
     $this->statsdetailmax = $stat;
     break;
       }
-      
+
       /* get combined titles */
       $list = array();
       foreach ( $this->statsdetaillist as $stat=>$value )
     if ( !isset ( $list[$stat] ) )
       $list[$stat] = $stat;
-      
+
       $this->detailtitles = $camyks->modules[$this->statobject->vars['plugin']]->get_adminStatisticsValueTitles ( $list, $this->statobject->vars['name'] );
     } else {
       $this->statsdetaillist = array();
-    } 
+    }
   }
-  
-  
+
+
   /*
    * update site statistics
    * @return void
    * @access private
    */
   function update_siteStatistics() {
-    global $camyks;    
+    global $camyks;
 
     /* load settings */
     $this->settings->get();
@@ -859,18 +859,18 @@ class Admin_Statistics extends Module {
     /* check filtered ip */
     if ($this->check_filteredIp(client_getIP()))
       return;
-   
+
     /* check contected admin */
     if ($camyks->check_adminUser())
       return;
-      
+
     /* build update params */
     $params = array('IPFilter'=>0, 'checkAdmin'=>0, 'checkBot'=>0, 'checkTool'=>0);
-    
+
     /* check web bots */
     if ( ( $bot = $this->botDetector->detect() )!==false ) {
       if ( $this->settings->vars['stat_webbots'] == 1 ) {
-        $this->update_statistic('webbots', 
+        $this->update_statistic('webbots',
                 $this->name,
                 'mixed',
                 $bot,
@@ -881,7 +881,7 @@ class Admin_Statistics extends Module {
       return;
     } elseif ( ($tool = $this->toolDetector->detect() )!==false ) {
       if ( $this->settings->vars['stat_webtools'] == 1 ) {
-        $this->update_statistic('webtools', 
+        $this->update_statistic('webtools',
                 $this->name,
                 'mixed',
                 $tool,
@@ -891,10 +891,10 @@ class Admin_Statistics extends Module {
       }
       return;
     }
-    
+
     /* update current page */
     if ( $this->settings->vars['stat_sitepage'] == 2 ) {
-      $this->update_statistic('sitepage', 
+      $this->update_statistic('sitepage',
                   'Admin_ContentPage',
                   'mixed',
                   $camyks->contentPage->id,
@@ -902,7 +902,7 @@ class Admin_Statistics extends Module {
                   $camyks->current_language,
                   $params);
     } else if ( $this->settings->vars['stat_sitepage'] == 1 ){
-      $this->update_statistic('sitepage', 
+      $this->update_statistic('sitepage',
                   'Admin_ContentPage',
                   'mixed',
                   $camyks->contentPage->id,
@@ -927,7 +927,7 @@ class Admin_Statistics extends Module {
             $this->update_statistic('referer', 'Admin_ContentPage', 'detail', $domain, '', '', $params);
         }
       }
-      
+
       /* first page */
       if ($this->settings->vars['stat_firstpage'] == 1) {
         $this->update_statistic('firstpage', 'Admin_ContentPage', 'detail', $camyks->contentPage->id, $camyks->contentPage->params_, $camyks->current_language, $params);
@@ -947,7 +947,7 @@ class Admin_Statistics extends Module {
    */
   function display_colorPicker($name) {
     /* check config color value */
-    if (isset($this->config->vars[$name])) {      
+    if (isset($this->config->vars[$name])) {
       $color = $this->config->vars[$name];
       /* check if color picker is available */
       if ($this->colorPicker !== false) {
@@ -980,7 +980,7 @@ class Admin_Statistics extends Module {
       $this->settings->get();
     return (in_array($ip, $this->settings->vars['stat_filteredips']));
   }
-  
+
   /*
    * return statistic values
    * @param string $plugin
@@ -990,12 +990,12 @@ class Admin_Statistics extends Module {
    */
   function get_statistics($plugin, $statName, $params=array()) {
     global $camyks;
-        
+
     /* load stat id */
     $statId = $this->statobject->get_idFromPluginAndName($plugin, $statName);
     if ($statId === false)
       return array();
-        
+
     /* load stat data */
     return $this->statdata->get_statistics($statId, $params);
   }
