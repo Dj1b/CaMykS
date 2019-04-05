@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.62
+ * @version 1.0.63
  * @date Creation: Jun 2007
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -431,7 +431,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check Lenovo devices - before Huawei */
-    elseif (preg_match('/(IdeaTab|Yoga|Lenovo|Zuk)[ |_]([A-Z0-9\- ]{3,})( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/ (IdeaTab|Yoga|Lenovo|Zuk)[ |_]([A-Z0-9\- ]{2,})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Lenovo.php.inc');
         $infos = array_merge($infos, get_LenovoClientDevice(trim($matches[2])));
     }
@@ -546,6 +546,16 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'computer',
             'platform_format'   => 'desktop',
         ));
+    /* check Xbox One, icons loader */
+    elseif (preg_match('/\(Windows Phone 10.0; Android 6.0.1\)/', $ua, $matches))
+        $infos = array_merge($infos, array(
+            'platform_company'  => 'Microsoft',
+            'platform_model'    => 'Xbox One',
+            'platform_type'     => 'computer',
+            'platform_format'   => 'desktop',
+            'system_title'      => 'Windows',
+            'system_version'    => '10',
+        ));
 
     /* check Amazon Kindle */
     elseif (preg_match('/ Kindle\/?([0-9\.]*)/', $ua, $matches))
@@ -635,7 +645,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Tecno devices */
-    elseif (preg_match('/ Tecno[ |-]?([^;\)]*)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/ Tecno[ |-]?([^;\-\)]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Tecno.php.inc');
         $device = trim($matches[1]);
         $infos = array_merge($infos, get_TecnoClientDevice($device));
@@ -716,6 +726,9 @@ function client_getUAInfos($ua=false) {
 
     /* check Logicom */
     elseif (preg_match('/L-EMENT_?([0-9]{3})/', $ua, $matches)) {
+        include_once('clientDevices/Logicom.php.inc');
+        $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
+    } elseif (preg_match('/(Le_Hello)/', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
     }
@@ -1153,6 +1166,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Neffos.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_NeffosClientDevice($device));
+    }
+
+    /* check T-Mobile devices */
+    elseif (preg_match('/ T-Mobile ([^\)]*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/T-Mobile.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_TMobileClientDevice($device));
     }
 
     /* check Blackview devices */
@@ -2348,7 +2368,7 @@ function _client_getUAPropertiesMaxVersions() {
  * @private
  */
 function _client_isOnePlusDevice($ua='') {
-    if (preg_match('/ ONE(PLUS)? ?([0-9A-Za-z]*)( Build|\))/i', $ua, $matches)) {
+    if (preg_match('/ ONE(PLUS)? ?([0-9A-Za-z]+)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/OnePlus.php.inc');
         return trim($matches[2]);
     } elseif (preg_match('/ (A|E)([0-9]{4})( Build|\))/i', $ua, $matches)) {

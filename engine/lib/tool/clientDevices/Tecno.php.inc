@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Oct 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +20,7 @@
  */
 function get_TecnoClientDevice($deviceCode='') {
     $deviceList = array(
+        'J8'        => array('platform_model' => 'Boom',            'platform_year' => 2016),
         'K7'        => array('platform_model' => 'Spark',           'platform_year' => 2017),
         'K9'        => array('platform_model' => 'Spark Plus',      'platform_year' => 2017),
         'R6'        => array('platform_model' => 'R6',              'platform_year' => 2017),

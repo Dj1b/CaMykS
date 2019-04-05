@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.32
  * @date Creation: May 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3739,7 +3739,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'MBCrawler',
-        'bot_url'           => '',
+        'bot_url'           => 'https://monitorbacklinks.com/robot',
         'engine_title'      => 'monitorbacklinks',
         'engine_url'        => 'https://monitorbacklinks.com',
     );
