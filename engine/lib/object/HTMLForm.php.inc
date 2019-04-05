@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.4
+ * @version 1.1.5
  * @date Creation: Jun 2005
- * @date Modification: Nov 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Apr 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -1265,10 +1265,9 @@ class HTMLForm {
     /**
      * Build and return password input.
      * @param mixed $input
-     * @param string $default
      * @return string
      */
-    public function display_passwordInput($input, $default=null) {
+    public function display_passwordInput($input) {
         /* build param list */
         $params = array('size'=>0,);
 
@@ -1278,8 +1277,6 @@ class HTMLForm {
         } else {
             $params = array_merge($this->inputDefaultParams, $params);
             $params['name'] = $input;
-            if (isset($default))
-                $params['default'] = $default;
         }
 
         /* check limit */
@@ -1287,16 +1284,11 @@ class HTMLForm {
 
         /* check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] == '') {
-                $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
-                $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
-            }
             /* check maxlength value */
             if ($params['maxlength'] == 0)
                 if (isset($this->object->_libItems[$params['name']]->datatype)
-                        and in_array($this->object->_libItems[$params['name']]->datatype, array('etext', 'text'))
-                        and $this->object->_libItems[$params['name']]->datadesc2 > 0)
+                        and in_array($this->object->_libItems[$params['name']]->datatype, array('password', 'etext', 'text'))
+                        and (int)$this->object->_libItems[$params['name']]->datadesc2 > 0)
                     $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
                 else
                     $params['maxlength'] = 32;
@@ -1305,7 +1297,7 @@ class HTMLForm {
         /* build input */
         $html = '<input type="password"';
         $html .= $this->build_inputGenericAttributes($params);
-        $html .= ' value="'.$params['default'].'"';
+        $html .= ' value=""';
         $html .= ' />';
         return $html;
     }
