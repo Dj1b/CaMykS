@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/GenericPageController/GenericPageController.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jan 2010
- * @date Modification: Jul 2018
- * @copyright 2010 - 2018 CaMykS Team
+ * @date Modification: Apr 2019
+ * @copyright 2010 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -37,6 +37,7 @@ final class GenericPageController extends Input {
         'jsLink'        => '', /* obj.go_toPage(_page_); */
         'jsParentElmt'  => '',
         'jsObjName'     => 'gpc',
+        'hideFirst'     => true,
     );
 
     /**
@@ -128,7 +129,7 @@ final class GenericPageController extends Input {
         global $camyks;
 
         /* check for first page link */
-        if ($page == 0)
+        if ($page == 0 and $this->params['hideFirst'])
             return $camyks->get_siteLink(
                 $this->params['pageParams'][0],'',
                 $this->params['pageParams'][1],
@@ -140,7 +141,7 @@ final class GenericPageController extends Input {
             $this->params['pageParams'][0],
             '',
             $this->params['pageParams'][1],
-            array_merge($this->params['pageParams'][2], array($this->params['pageParam']=>$page))
+            array_merge($this->params['pageParams'][2], array($this->params['pageParam']=>''.$page))
         );
     }
 
