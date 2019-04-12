@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.37
  * @date Creation: Apr 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -54,6 +54,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T700'   => array('platform_model' => 'Galaxy Tab S',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T800'   => array('platform_model' => 'Galaxy Tab S',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T715'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T719'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T810'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T713'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T813'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),

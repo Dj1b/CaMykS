@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.63
+ * @version 1.0.64
  * @date Creation: Jun 2007
  * @date Modification: Apr 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -498,6 +498,12 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_OukitelClientDevice(trim($matches[1])));
     }
 
+    /* check Energizer mobiles - before Asus */
+    elseif (preg_match('/ (P[0-9]{3}S)( Build|\))/U', $ua, $matches)) {
+        include_once('clientDevices/Energizer.php.inc');
+        $infos = array_merge($infos, get_EnergizerClientDevice(trim($matches[1])));
+    }
+
     /* check Asus mobiles and tablets */
     elseif (preg_match('/ (K|ME|P)([0-9]{2})([A-Z0-9]{1,2})( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Asus.php.inc');
@@ -941,9 +947,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Vodafone devices */
-    elseif (preg_match('/ Vodafone ([A-Za-z0-9]{3}N) Build/', $ua, $matches)) {
+    elseif (preg_match('/ Vodafone ([A-Za-z0-9]{3}N)( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Vodafone.php.inc');
         $model = trim($matches[1]);
+        $infos = array_merge($infos, get_VodafoneClientDevice($model));
+    } elseif (preg_match('/ (VF[0-9]{3})( Build|\))/U', $ua, $matches)) {
+        include_once('clientDevices/Vodafone.php.inc');
+        $model = $matches[1];
         $infos = array_merge($infos, get_VodafoneClientDevice($model));
     }
 
@@ -1015,7 +1025,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check ZTE devices */
-    elseif (preg_match('/ ZTE ([a-zA-Z0-9 ]*) Build/i', $ua, $matches)) {
+    elseif (preg_match('/ ZTE ([a-zA-Z0-9 ]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
     } elseif (preg_match('/ (Z[0-9]{3}) Build/', $ua, $matches)) {
@@ -2290,8 +2300,12 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla/5.0 \(([^\)]*) rv:([0-9a-zA-Z\.]*)\) ([^\)]*) Firefox/([0-9a-zA-Z\.]*)((?!BrandVerity).)*$#i', $ua, $matches) and ($matches[2] != $matches[4]) and (version_compare($matches[4], 5, '>=')))
         return $fake;
     */
-    /* Fake firefox user agent */
+    /* Fake Firefox user agent */
     if (preg_match('#^Mozilla/5.0 (.*) Firefox/([0-9A-Z]{4})$#i', $ua, $matches))
+        return $fake;
+
+    /* Fake Firefox (Chrome) user agent */
+    if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64; rv:10.0\) Gecko/20150101 Firefox/[0-9]{2}.0 \(Chrome\)$#i', $ua, $matches))
         return $fake;
 
     /* not a fake but Apple using a bad user agent */

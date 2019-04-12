@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Vodafone client devices specific methods
+ * @brief Energizer client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Vodafone.php.inc
+ * @file engine/lib/tool/clientDevices/Energizer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
- * @date Creation: Mar 2019
+ * @version 1.0.0
+ * @date Creation: Apr 2019
  * @date Modification: Apr 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
@@ -14,15 +14,13 @@
  */
 
 /**
- * Return Vodafone client device information from a known list.
+ * Return Energizer client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_VodafoneClientDevice($deviceCode='') {
+function get_EnergizerClientDevice($deviceCode='') {
     $deviceList = array(
-        '890N'  => array('platform_model' => 'Smart 4 Turbo', 'platform_year' => 2014),
-        'VF685' => array('platform_model' => 'Smart 4 Mini', 'platform_year' => 2014),
-
+        'P550S'    => array('platform_model' => 'Power Max P550S', 'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -31,7 +29,7 @@ function get_VodafoneClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Vodafone',
+        'platform_company'  => 'Energizer',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

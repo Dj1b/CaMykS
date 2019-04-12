@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: May 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4182,6 +4182,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://www.pinterest.com/bot.html',
         'engine_title'      => 'Pinterestbot',
         'engine_url'        => 'https://www.pinterest.com',
+    );
+
+    /* SemanticScholarBot */
+    $knownBots['semanticscholarbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'SemanticScholarBot',
+        'bot_url'           => 'https://www.semanticscholar.org/crawler',
+        'engine_title'      => 'Semantic Scholar',
+        'engine_url'        => 'https://www.semanticscholar.org',
     );
 
     /* return bot list */
