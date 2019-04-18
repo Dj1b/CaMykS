@@ -5,9 +5,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/GenericSitemapGenerator/GenericSitemapGenerator.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Feb 2019
- * @date Modification: Jul 2019
+ * @date Modification: Apr 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -223,6 +223,7 @@ final class GenericSitemapGenerator extends Input {
         $content = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
         $content .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'."\n";
         $content .= 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'."\n";
+        $content .= 'xmlns:xhtml="http://www.w3.org/1999/xhtml"'."\n";
         $content .= 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9'."\n";
         $content .= 'http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'."\n";
 

@@ -3,10 +3,10 @@
  * @details Plugin / Input Scripts
  * @file plugin/input/GenericSitemapGenerator/js/ConfigViewer.js
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.1
  * @date Creation: Feb 2019
- * @date Modification: Feb 2019
- * @copyright 2018 CaMykS Team
+ * @date Modification: Apr 2019
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -75,6 +75,9 @@ var ConfigEditor = {
 
         /* finalise initialisation */
         this.loaded = true;
+
+        /* do check */
+        this.check_updateModeStatus();
     },
 
     /* Action methods */
