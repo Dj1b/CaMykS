@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.37
+ * @version 1.0.38
  * @date Creation: Apr 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -53,7 +53,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T580'   => array('platform_model' => 'Galaxy Tab S8',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T700'   => array('platform_model' => 'Galaxy Tab S',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T800'   => array('platform_model' => 'Galaxy Tab S',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
-        'SM-T715'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T710'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T715'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T719'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T810'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T713'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
@@ -203,6 +204,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime',                 'platform_year' => 2016),
         'SM-J701F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'SM-J730F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
+        'SM-J730GM' => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y',                        'platform_year' => 2011),
         'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos',                   'platform_year' => 2012),
         'GT-S7582'  => array('platform_model' => 'Galaxy S Duos',                   'platform_year' => 2012),

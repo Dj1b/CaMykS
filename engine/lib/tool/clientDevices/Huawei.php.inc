@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: Apr 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -32,6 +32,7 @@ function get_HuaweiClientDevices() {
         'CMR-W09'               => array('platform_model' => 'MediaPad M5',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'AGS2-W09'              => array('platform_model' => 'MediaPad T5',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Huawei phones */
         'ALE-L21'   => array('platform_model' => 'P8 Lite',         'platform_year' => 2015),
@@ -113,6 +114,7 @@ function get_HuaweiClientDevices() {
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
         'MT7-L09'   => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
+        'MT7-TL00'  => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'H1611'     => array('platform_model' => 'Ascend XT',       'platform_year' => 2016),
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
         'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
@@ -127,6 +129,7 @@ function get_HuaweiClientDevices() {
         'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'TRT-LX1'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-L53'   => array('platform_model' => 'Y7\'',            'platform_year' => 2018),

@@ -1,29 +1,26 @@
 <?php
 /**
- * @brief Blackberry client devices specific methods
+ * @brief Isafe client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/BlackBerry.php.inc
+ * @file engine/lib/tool/clientDevices/Isafe.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Aug 2018
+ * @version 1.0.0
+ * @date Creation: Apr 2019
  * @date Modification: Apr 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Blackberry client device information from a known list.
+ * Return Isafe client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_BlackberryClientDevice($deviceCode='') {
+function get_IsafeClientDevice($deviceCode='') {
     $deviceList = array(
-        'STV100-4'  => array('platform_model' => 'Priv',    'platform_year' => 2015),
-        'BBB100-2'  => array('platform_model' => 'KeyOne',  'platform_year' => 2017),
-        'BBF100-1'  => array('platform_model' => 'Key2',    'platform_year' => 2018),
-        'BBE100-4'  => array('platform_model' => 'Key2 LE', 'platform_year' => 2018),
+        'IS520_1'    => array('platform_model' => 'IS520.1', 'platform_year' => 2018),
     );
 
     /* Check for returning list */
@@ -32,7 +29,7 @@ function get_BlackberryClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Blackberry',
+        'platform_company'  => 'i.safe',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
