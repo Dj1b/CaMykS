@@ -5,7 +5,7 @@
  * @details Plugin / Input Engine
  * @file plugin/input/GenericSitemapGenerator/GenericSitemapGenerator.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Feb 2019
  * @date Modification: Apr 2019
  * @copyright 2019 CaMykS Team
@@ -217,7 +217,7 @@ final class GenericSitemapGenerator extends Input {
 
         /* Load links from extension plugins */
         foreach ($extensions as $plugin)
-            $links += $plugin->get_sitemapLinks();
+            $links = array_merge($links, $plugin->get_sitemapLinks());
 
         /* Build content header */
         $content = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
