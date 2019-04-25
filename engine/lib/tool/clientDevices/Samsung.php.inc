@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: Apr 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -124,6 +124,9 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G9600'  => array('platform_model' => 'Galaxy S9',                       'platform_year' => 2018),
         'SM-G965F'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
         'SM-G965U'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
+        'SM-G9700'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
+        'SM-G9730'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
+        'SM-G9750'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V',                        'platform_year' => 2014),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2014),
         'SM-A300FU' => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2014),
@@ -191,6 +194,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J510M'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-G570F'  => array('platform_model' => 'Galaxy J5 Prime',                 'platform_year' => 2016),
+        'SM-G570M'  => array('platform_model' => 'Galaxy J5 Prime',                 'platform_year' => 2016),
         'SM-J530F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2017),
         'SM-J600FN' => array('platform_model' => 'Galaxy J6',                       'platform_year' => 2018),
         'SM-J610FN' => array('platform_model' => 'Galaxy J6+',                      'platform_year' => 2018),

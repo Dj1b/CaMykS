@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: May 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4192,6 +4192,26 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://www.semanticscholar.org/crawler',
         'engine_title'      => 'Semantic Scholar',
         'engine_url'        => 'https://www.semanticscholar.org',
+    );
+
+    /* Cloudflare-AMP */
+    $knownBots['cloudflare-amp'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Cloudflare-AMP',
+        'bot_url'           => 'https://amp.cloudflare.com/doc/fetcher.html',
+        'engine_title'      => 'Cloudflare',
+        'engine_url'        => 'https://www.cloudflare.com',
+    );
+
+    /* ddline.cn */
+    $knownBots['ddline.cn'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'ddline.cn',
+        'engine_url'        => 'http://ddline.cn',
     );
 
     /* return bot list */
