@@ -1,11 +1,11 @@
 <?php
 /**
  * @brief Admin_SystemReport Module
- * <br /> Monitor and check user agent of visitors and bots.
+ * <br /> Monitor and log reports.
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_SystemReport/Admin_SystemReport.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: May 2007
  * @date Modification: Apr 2019
  * @copyright 2007 - 2019 CaMykS Team
