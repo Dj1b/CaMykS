@@ -1,15 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Dictionnary
- * Create Date		: May 2007
- * Last Modif Date	: May 2008
- *
- * Admin_SystemReport french dictionnary
+/**
+ * @brief Admin_SystemReport Module french dictionnary.
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_SystemReport/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2007
+ * @date Modification: Apr 2019
+ * @copyright 2007 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 $this->trads['mod_admin_systemreport_title'] = 'Rapports Internes';
