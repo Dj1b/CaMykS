@@ -38,11 +38,11 @@ final class Admin_SystemReport extends Module {
     public function __construct($path_type) {
         parent::__construct('Admin_SystemReport', $path_type);
 
-        /* Override Plugin methods */
+        /* Override Plugin variables */
         $this->plugin_package = 'System';
         $this->version = '1.0';
 
-        /* Override Module methods */
+        /* Override Module variables */
         $this->type = 'admin';
         $this->admin_type = 'monitoring';
 
