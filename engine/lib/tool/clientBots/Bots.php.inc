@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: May 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4212,6 +4212,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'ddline.cn',
         'engine_url'        => 'http://ddline.cn',
+    );
+
+    /* adrollgroup.com */
+    $knownBots['adrollgroup.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'AdRoll Group',
+        'engine_url'        => 'https://www.adrollgroup.com',
+    );
+
+    /* FemtosearchBot */
+    $knownBots['femtosearchbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'FemtosearchBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Femtosearch',
+        'engine_url'        => 'http://femtosearch.com',
+    );
+
+    /* DaaS.sh research bot */
+    $knownBots['daas.sh'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DaaS.sh research bot',
+        'bot_url'           => '',
+        'engine_title'      => 'DaaS.sh ',
+        'engine_url'        => 'https://DaaS.sh ',
     );
 
     /* return bot list */

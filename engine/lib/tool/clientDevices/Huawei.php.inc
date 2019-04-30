@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.37
  * @date Creation: Apr 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -67,6 +67,7 @@ function get_HuaweiClientDevices() {
         'FIG-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'FIG-LX3'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'INE-LX1'   => array('platform_model' => 'P Smart+',        'platform_year' => 2018),
+        'POT-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2019),
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
         'BND-L34'   => array('platform_model' => 'Mate SE',         'platform_year' => 2016),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
@@ -108,6 +109,7 @@ function get_HuaweiClientDevices() {
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'AUM-L29'   => array('platform_model' => 'Honor 7A Pro',    'platform_year' => 2018),
         'COR-L29'   => array('platform_model' => 'Honor Play',      'platform_year' => 2018),
+        'PCT-L29'   => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend',          'platform_year' => 2014),

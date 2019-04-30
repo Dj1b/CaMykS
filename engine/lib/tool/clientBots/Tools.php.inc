@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: May 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -1169,6 +1169,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Miniature.io',
         'engine_url'        => 'https://miniature.io/',
+    );
+
+    /* Scamadviser-Frontend */
+    $knownTools['scamadviser-frontend'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Scamadviser-Frontend',
+        'tool_url'          => '',
+        'engine_title'      => 'Scamadviser',
+        'engine_url'        => 'https://www.scamadviser.com/',
     );
 
     /* return list */

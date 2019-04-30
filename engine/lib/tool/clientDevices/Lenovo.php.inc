@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
  * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -63,6 +63,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'K53b36'    => array('platform_model' => 'K6 Plus',                 'platform_year' => 2016),
         'K10E70'    => array('platform_model' => 'K10',                     'platform_year' => 2017),
         'Z1'        => array('platform_model' => 'Zuk Z1',                  'platform_year' => 2015),
+        'Z2131'     => array('platform_model' => 'Zuk Z2',                  'platform_year' => 2016),
         'Z2151'     => array('platform_model' => 'Zuk Edge',                'platform_year' => 2017),
 
         'Z2 Plus'   => array('platform_year' => 2017),
