@@ -5,9 +5,9 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_ContentPage/Admin_ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1
+ * @version 1.1.2
  * @date Creation: Jun 2005
- * @date Modification: Feb 2019
+ * @date Modification: Apr 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -380,7 +380,7 @@ final class Admin_ContentPage extends Module {
             die();
         }
         $camyks->adminUser = new AdminUser($camyks->get_sessionValue('admin_user'));
-        if (!$camyks->adminUser->get_fromDatabase()) {
+        if (!$camyks->adminUser->get()) {
             die();
         }
 

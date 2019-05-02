@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Vodafone.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Mar 2019
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,9 @@
  */
 function get_VodafoneClientDevice($deviceCode='') {
     $deviceList = array(
-        '890N' => array('platform_model' => 'Smart 4 Turbo', 'platform_year' => 2014),
+        '890N'  => array('platform_model' => 'Smart 4 Turbo', 'platform_year' => 2014),
+        'VF685' => array('platform_model' => 'Smart 4 Mini', 'platform_year' => 2014),
+
     );
 
     /* Check for returning list */

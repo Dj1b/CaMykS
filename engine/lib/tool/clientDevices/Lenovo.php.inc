@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.14
  * @date Creation: Apr 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,7 +28,8 @@ function get_LenovoClientDevice($deviceCode='') {
         'Tablet 2 Pro-1380F'    => array('platform_model' => 'Yoga Tablet 2 Pro',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'A5500'                 => array('platform_model' => 'A8-50',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'PB1-770P'              => array('platform_model' => 'PHAB Plus',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
-        'TAB 2 A10-70LC'        => array('platform_model' => 'Tab 2',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
+        'Tab2A710F'             => array('platform_model' => 'Tab 2 A7',            'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
+        'TAB 2 A10-70LC'        => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'YB1-X90F'              => array('platform_model' => 'Yoga Book',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'YT3-X50F'              => array('platform_model' => 'Yoga Tab 3',          'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'YT-X703F'              => array('platform_model' => 'Yoga Tab 3 Plus',     'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
@@ -61,6 +62,8 @@ function get_LenovoClientDevice($deviceCode='') {
         'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),
         'K53b36'    => array('platform_model' => 'K6 Plus',                 'platform_year' => 2016),
         'K10E70'    => array('platform_model' => 'K10',                     'platform_year' => 2017),
+        'Z1'        => array('platform_model' => 'Zuk Z1',                  'platform_year' => 2015),
+        'Z2131'     => array('platform_model' => 'Zuk Z2',                  'platform_year' => 2016),
         'Z2151'     => array('platform_model' => 'Zuk Edge',                'platform_year' => 2017),
 
         'Z2 Plus'   => array('platform_year' => 2017),

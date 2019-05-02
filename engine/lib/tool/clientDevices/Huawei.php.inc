@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.37
  * @date Creation: Apr 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,18 +20,20 @@
 function get_HuaweiClientDevices() {
     return array(
         /* Huawei tablets */
-        'MediaPad T1 8.0 Pro'   => array('platform_model' => 'MediaPad T1 8.0 Pro', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
-        'T1-A21L'               => array('platform_model' => 'MediaPad T1 10 Pro',  'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'M2-A01W'               => array('platform_model' => 'MediaPad M2',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'GEM-703LT'             => array('platform_model' => 'MediaPad X2',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'BEETHOVEN-W09'         => array('platform_model' => 'MediaPad M3',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
-        'BEETHOVEN-DL09'        => array('platform_model' => 'MediaPad M3',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
-        'BTV-DL09'              => array('platform_model' => 'MediaPad M3',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
-        'AGS-W09'               => array('platform_model' => 'MediaPad T3',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
-        'BG2-W09'               => array('platform_model' => 'MediaPad T3',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
-        'CMR-W09'               => array('platform_model' => 'MediaPad M5',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
-        'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
-        'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'MediaPad T1 8.0 Pro'   => array('platform_model' => 'MediaPad T1 8.0 Pro',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'T1-A21L'               => array('platform_model' => 'MediaPad T1 10 Pro',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'M2-A01W'               => array('platform_model' => 'MediaPad M2',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'GEM-703LT'             => array('platform_model' => 'MediaPad X2',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'BEETHOVEN-W09'         => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'BEETHOVEN-DL09'        => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'BTV-DL09'              => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'FDR-A01w'              => array('platform_model' => 'MediaPad T2 10.0 Pro',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'AGS-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'BG2-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'CMR-W09'               => array('platform_model' => 'MediaPad M5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'AGS2-W09'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Huawei phones */
         'ALE-L21'   => array('platform_model' => 'P8 Lite',         'platform_year' => 2015),
@@ -51,6 +53,7 @@ function get_HuaweiClientDevices() {
         'VTR-L29'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'WAS-L03T'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-LX1A'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
+        'WAS-LX2'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-TL10'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
         'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
@@ -64,6 +67,7 @@ function get_HuaweiClientDevices() {
         'FIG-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'FIG-LX3'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'INE-LX1'   => array('platform_model' => 'P Smart+',        'platform_year' => 2018),
+        'POT-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2019),
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
         'BND-L34'   => array('platform_model' => 'Mate SE',         'platform_year' => 2016),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
@@ -105,6 +109,7 @@ function get_HuaweiClientDevices() {
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'AUM-L29'   => array('platform_model' => 'Honor 7A Pro',    'platform_year' => 2018),
         'COR-L29'   => array('platform_model' => 'Honor Play',      'platform_year' => 2018),
+        'PCT-L29'   => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend',          'platform_year' => 2014),
@@ -112,6 +117,7 @@ function get_HuaweiClientDevices() {
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
         'MT7-L09'   => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
+        'MT7-TL00'  => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'H1611'     => array('platform_model' => 'Ascend XT',       'platform_year' => 2016),
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
         'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
@@ -126,6 +132,7 @@ function get_HuaweiClientDevices() {
         'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'TRT-LX1'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-L53'   => array('platform_model' => 'Y7\'',            'platform_year' => 2018),

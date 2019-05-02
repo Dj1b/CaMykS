@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.12
  * @date Creation: Apr 2018
- * @date Modification: Feb 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -36,19 +36,22 @@ function get_AsusClientDevice($deviceCode='') {
         'Z00ED'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
         'Z00LD'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
         'ZD551KL'   => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
+        'Z00UD'     => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
+        'Z00UDH'    => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'ZB500KL'   => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'ZB552KL'   => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'ZC520TL'   => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'ZC550KL'   => array('platform_model' => 'ZenFone Max',             'platform_year' => 2016),
-        'ZC553KL'   => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'ZE520KL'   => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'ZE552KL'   => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'Z012D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'Z017D'     => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'ZS570KL'   => array('platform_model' => 'ZenFone 3 Deluxe',        'platform_year' => 2016),
-        'ZU680KL'   => array('platform_model' => 'ZenFone 3 Ultra',         'platform_year' => 2016),
+        'Z01BD'     => array('platform_model' => 'ZenFone 3 Laser',         'platform_year' => 2016),
         'X00DD'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'X008D'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
+        'ZC553KL'   => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
+        'ZU680KL'   => array('platform_model' => 'ZenFone 3 Ultra',         'platform_year' => 2016),
         'X007D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2017),
         'ZE554KL'   => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
         'X00LD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
@@ -70,6 +73,7 @@ function get_AsusClientDevice($deviceCode='') {
         'ZE553KL'   => array('platform_model' => 'ZenFone Zoom S',          'platform_year' => 2017),
         'X018D'     => array('platform_model' => 'Zenfone Max Plus M1',     'platform_year' => 2017),
         'X00TD'     => array('platform_model' => 'Zenfone Max Pro M1',      'platform_year' => 2018),
+        'X00QD'     => array('platform_model' => 'Zenfone 5',               'platform_year' => 2018),
     );
 
     /* Check for returning list */

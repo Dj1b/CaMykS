@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.35
  * @date Creation: May 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3739,7 +3739,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'MBCrawler',
-        'bot_url'           => '',
+        'bot_url'           => 'https://monitorbacklinks.com/robot',
         'engine_title'      => 'monitorbacklinks',
         'engine_url'        => 'https://monitorbacklinks.com',
     );
@@ -4182,6 +4182,66 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://www.pinterest.com/bot.html',
         'engine_title'      => 'Pinterestbot',
         'engine_url'        => 'https://www.pinterest.com',
+    );
+
+    /* SemanticScholarBot */
+    $knownBots['semanticscholarbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'SemanticScholarBot',
+        'bot_url'           => 'https://www.semanticscholar.org/crawler',
+        'engine_title'      => 'Semantic Scholar',
+        'engine_url'        => 'https://www.semanticscholar.org',
+    );
+
+    /* Cloudflare-AMP */
+    $knownBots['cloudflare-amp'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Cloudflare-AMP',
+        'bot_url'           => 'https://amp.cloudflare.com/doc/fetcher.html',
+        'engine_title'      => 'Cloudflare',
+        'engine_url'        => 'https://www.cloudflare.com',
+    );
+
+    /* ddline.cn */
+    $knownBots['ddline.cn'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'ddline.cn',
+        'engine_url'        => 'http://ddline.cn',
+    );
+
+    /* adrollgroup.com */
+    $knownBots['adrollgroup.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'AdRoll Group',
+        'engine_url'        => 'https://www.adrollgroup.com',
+    );
+
+    /* FemtosearchBot */
+    $knownBots['femtosearchbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'FemtosearchBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Femtosearch',
+        'engine_url'        => 'http://femtosearch.com',
+    );
+
+    /* DaaS.sh research bot */
+    $knownBots['daas.sh'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DaaS.sh research bot',
+        'bot_url'           => '',
+        'engine_title'      => 'DaaS.sh ',
+        'engine_url'        => 'https://DaaS.sh ',
     );
 
     /* return bot list */

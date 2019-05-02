@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Logicom.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: May 2018
- * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Apr 2019
+ * @copyright 2018 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -20,9 +20,14 @@
  */
 function get_LogicomClientDevice($deviceCode='') {
     $deviceList = array(
-        '501' => array('platform_model' => 'L-Element 501', 'platform_year' => 2014),
-        '451' => array('platform_model' => 'L-Element 451', 'platform_year' => 2014),
-        '403' => array('platform_model' => 'L-Element 403', 'platform_year' => 2016),
+        /* Logicom tablets */
+        'M bot Tab 103' => array('platform_model' => 'M bot Tab 103',   'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2017),
+
+        /* Logicom mobiles */
+        '501'       => array('platform_model' => 'L-Element 501',   'platform_year' => 2014),
+        '451'       => array('platform_model' => 'L-Element 451',   'platform_year' => 2014),
+        '403'       => array('platform_model' => 'L-Element 403',   'platform_year' => 2016),
+        'Le_Hello'  => array('platform_model' => 'Le Hello',        'platform_year' => 2018),
     );
 
     /* Check for returning list */

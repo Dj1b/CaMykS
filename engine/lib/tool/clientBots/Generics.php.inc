@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: May 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,7 +18,39 @@
  * @return array
  * @private
  */
-function _client_getKnownGenerics() {
+function _client_getKnownGenericsL1() {
+    $knownGenerics = array();
+
+    /* Mechanize - before Ruby */
+    $knownGenerics['mechanize'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Mechanize',
+        'tool_url'          => 'http://github.com/sparklemotion/mechanize/',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* MechanicalSoup - before python request */
+    $knownGenerics['mechanicalsoup'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'MechanicalSoup',
+        'tool_url'          => 'https://mechanicalsoup.readthedocs.io/en/stable/',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* return list */
+    return $knownGenerics;
+}
+
+/**
+ * Return given known web generic library or generic library list.
+ * @return array
+ * @private
+ */
+function _client_getKnownGenericsL2() {
     $knownGenerics = array();
 
     /* CaMykS */
@@ -107,16 +139,6 @@ function _client_getKnownGenerics() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Pcore-HTTP',
         'tool_url'          => 'http://search.cpan.org/dist/Pcore/lib/Pcore/HTTP.pm',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
-    /* Mechanize (before Ruby) */
-    $knownGenerics['mechanize'] = array(
-        'platform_type'     => 'tool',
-        'platform_format'   => 'desktop',
-        'tool_title'        => 'Mechanize',
-        'tool_url'          => 'http://github.com/sparklemotion/mechanize/',
         'engine_title'      => '',
         'engine_url'        => '',
     );

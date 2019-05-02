@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/string.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Oct 2007
- * @date Modification: Dec 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Mar 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -473,6 +473,19 @@ function string_isUTF8($string) {
         |\xF4[\x80-\x8F][\x80-\xBF]{2}      # plane 16
         )+%xs', $string
     );
+}
+
+/**
+ * Check if given string is base64 encoded.
+ * @param string $string
+ * @return boolean
+ */
+function string_isBase64($string) {
+    if (base64_decode($string, true) === false)
+        return false;
+    if (strlen($string) % 4 != 0)
+        return false;
+    return true;
 }
 
 /**

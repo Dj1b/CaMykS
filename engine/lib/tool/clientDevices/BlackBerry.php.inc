@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/BlackBerry.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.3
  * @date Creation: Aug 2018
- * @date Modification: Sep 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Apr 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -20,8 +20,10 @@
  */
 function get_BlackberryClientDevice($deviceCode='') {
     $deviceList = array(
+        'STV100-4'  => array('platform_model' => 'Priv',    'platform_year' => 2015),
         'BBB100-2'  => array('platform_model' => 'KeyOne',  'platform_year' => 2017),
         'BBF100-1'  => array('platform_model' => 'Key2',    'platform_year' => 2018),
+        'BBE100-4'  => array('platform_model' => 'Key2 LE', 'platform_year' => 2018),
     );
 
     /* Check for returning list */

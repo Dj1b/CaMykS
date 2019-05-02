@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.24
  * @date Creation: Apr 2018
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,6 +21,7 @@
 function get_SonyClientDevice($deviceCode='') {
     $deviceList = array(
         /* Sony tablets */
+        'SGP511'    => array('platform_model' => 'Xperia Z2 Tablet',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
 
         /* Sony phones */
@@ -55,12 +56,18 @@ function get_SonyClientDevice($deviceCode='') {
         'F5121'     => array('platform_model' => 'Xperia X',                'platform_year' => 2016),
         'F5321'     => array('platform_model' => 'Xperia X Compact',        'platform_year' => 2016),
         'F8331'     => array('platform_model' => 'Xperia XZ',               'platform_year' => 2016),
+        'F8332'     => array('platform_model' => 'Xperia XZ',               'platform_year' => 2016),
         'G3121'     => array('platform_model' => 'Xperia XA1',              'platform_year' => 2017),
         'G3212'     => array('platform_model' => 'Xperia XA1 Ultra',        'platform_year' => 2017),
         'G3221'     => array('platform_model' => 'Xperia XA1 Ultra',        'platform_year' => 2017),
         'G3311'     => array('platform_model' => 'Xperia L1',               'platform_year' => 2017),
         'G3312'     => array('platform_model' => 'Xperia L1',               'platform_year' => 2017),
+        'G3412'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
+        'G3416'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
+        'G3421'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
+        'G3423'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
         'G8141'     => array('platform_model' => 'Xperia XZ Premium',       'platform_year' => 2017),
+        'G8341'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2017),
         'G8342'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2017),
         'G8343'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2017),
         'H3113'     => array('platform_model' => 'Xperia XA2',              'platform_year' => 2018),

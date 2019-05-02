@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/MLDatabaseItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2007
- * @date Modification: Mar 2019
+ * @date Modification: Apr 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -180,6 +180,8 @@ class MLDatabaseItem extends ModuleLibraryItem {
                 return '"'.$camyks->encode_value($this->value). '"';
             case 'password':
                 if ($this->datadesc == 'varchar')
+                    return '"'.$this->value.'"';
+                elseif (strlen($this->value) >= 32 and string_isBase64($this->value))
                     return '"'.$this->value.'"';
                 else
                     return '"'.password_encode($this->value, $this->datadesc, $this->datadesc2).'"';

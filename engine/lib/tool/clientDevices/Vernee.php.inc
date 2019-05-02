@@ -4,11 +4,11 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Vernee.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2018
- * @date Modification: Jul 2018
- * @copyright 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Apr 2019
+ * @copyright 2018 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
@@ -20,10 +20,14 @@
  */
 function get_VerneeClientDevice($deviceCode='') {
     $deviceList = array(
-        'Apollo Lite'   => array('platform_year' => 2016),
         'Apollo 2'      => array('platform_year' => 2018),
-        'Thor'          => array('platform_year' => 2016),
+        'Apollo X'      => array('platform_year' => 2017),
+        'M5'            => array('platform_year' => 2017),
+        'Mars pro'      => array('platform_model'=> 'Mars Pro', 'platform_year' => 2017),
         'Thor E'        => array('platform_year' => 2017),
+        'Thor Plus'     => array('platform_year' => 2017),
+        'Apollo Lite'   => array('platform_year' => 2016),
+        'Thor'          => array('platform_year' => 2016),
     );
 
     /* Check for returning list */
