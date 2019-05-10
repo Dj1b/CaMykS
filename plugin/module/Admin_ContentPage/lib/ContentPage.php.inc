@@ -185,6 +185,12 @@ final class ContentPage {
     public $maxmodules;
 
     /**
+     * var integer $status
+     * @brief HTTP status of the page.
+     */
+    public $status = 200;
+
+    /**
      * Class constructor.
      * @param integer $mode
      * @param integer $id
@@ -270,6 +276,7 @@ final class ContentPage {
 
         /* log URL */
         $camyks->log('Error404', 'Page not found', '"'. $_SERVER['REQUEST_URI'] .'"');
+        $this->status = 404;
 
         /* check for 404 header sending */
         if ($this->get_configValue('page_404SendHeader') == 1)
