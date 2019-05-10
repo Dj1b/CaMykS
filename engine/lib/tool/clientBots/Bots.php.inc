@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.35
+ * @version 1.0.36
  * @date Creation: May 2018
- * @date Modification: Apr 2019
+ * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4241,7 +4241,17 @@ function _client_getKnownBots() {
         'bot_title'         => 'DaaS.sh research bot',
         'bot_url'           => '',
         'engine_title'      => 'DaaS.sh ',
-        'engine_url'        => 'https://DaaS.sh ',
+        'engine_url'        => 'https://DaaS.sh',
+    );
+
+    /* SemanticJuice */
+    $knownBots['semanticjuice'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'SemanticJuice',
+        'engine_url'        => 'https://www.semanticjuice.com',
     );
 
     /* return bot list */

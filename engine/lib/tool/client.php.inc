@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.67
+ * @version 1.0.68
  * @date Creation: Jun 2007
- * @date Modification: Apr 2019
+ * @date Modification: May 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -236,17 +236,14 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Archos devices - before iOS */
-    elseif (preg_match('/ (AC|Archos )([A-Za-z0-9\- ]{3,})( Build|\))/', $ua, $matches)) {
-        include_once('clientDevices/Archos.php.inc');
-        $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[2])));
-    } elseif (preg_match('/Archos; ([A-Za-z0-9\- ]{3,})\)/i', $ua, $matches)) {
+    elseif (preg_match('/ Archos[;]? ([A-Za-z0-9\- ]{3,})( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Archos.php.inc');
         $infos = array_merge($infos, get_ArchosClientDevice(trim($matches[1])));
-    } elseif (preg_match('/A40Ti/', $ua, $matches))
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Archos',
-            'platform_model'    => 'A40Ti',
-        ));
+    } elseif (preg_match('/ (A[C]?[0-9][05]B?)(HE|TI)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Archos.php.inc');
+        $device = trim($matches[1].$matches[2]);
+        $infos = array_merge($infos, get_ArchosClientDevice($device));
+    }
 
     /* check iphone / ipod / ipad */
     elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches)) {
@@ -405,7 +402,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check samsung devices */
-    elseif (preg_match('/(GT|SM|SGH|SHV)-([A-Z0-9]{4,})/', $ua, $matches)) {
+    elseif (preg_match('/(GT|SM|SGH|SHV|SC)-([A-Z0-9]{3,})/', $ua, $matches)) {
         include_once('clientDevices/Samsung.php.inc');
         $infos = array_merge($infos, get_SamsungClientDevice($matches[0]));
 
@@ -611,7 +608,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Wiko */
-    elseif (preg_match('/ (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/; (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
         include_once('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
@@ -621,7 +618,7 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
     }
-    elseif (preg_match('/ (W_K600|[S|V][0-9]{2}[A-Za-z0-9\(\)]*)?( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/ (W_K600|[S|V][0-9]{2}[A-Za-z0-9\(\)]*)( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1]));
         include_once('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
@@ -650,7 +647,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Lava Iris devices */
-    elseif (preg_match('/ (Iris[A-Z0-9\+]+|Z50)( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/ (Iris[A-Z0-9\+]+|Z50|A48_8GB)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Lava.php.inc');
         $model = strtolower($matches[1]);
         $infos = array_merge($infos, get_LavaClientDevice($model));
@@ -1213,6 +1210,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_IsafeClientDevice($device));
     }
 
+    /* check it works devices */
+    elseif (preg_match('/ (TM[0-9]{3,4})([A-Z]{3})?( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/ItWorks.php.inc');
+        $device = trim($matches[1].$matches[2]);
+        $infos = array_merge($infos, get_ItWorksClientDevice($device));
+    }
+
     /* check Blackview devices */
     elseif (preg_match('/ [BV|P]([a-zA-Z0-9\-_]*)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Blackview.php.inc');
@@ -1512,7 +1516,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|MicroMessenger|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'QwantBrowser'=>'Qwant', 'Blazer'=> 'Palm Blazer', 'MicroMessenger' => 'WeChat', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch', 'chromeframe'=>'Internet Explorer/Chrome Frame', 'UR'=>'UR Browser', 'handyCafeCln'=>'HandyCafe');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -2369,15 +2373,23 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
     */
     /* Fake Firefox user agent */
-    if (preg_match('#^Mozilla/5.0 (.*) Firefox/([0-9A-Z]{4})$#i', $ua, $matches))
+    if (preg_match('#^Mozilla/5.0 (.*) Firefox/([0-9A-Z]{4})$#i', $ua))
         return $fake;
 
     /* Fake Firefox (Chrome) user agent */
-    if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64; rv:10.0\) Gecko/20150101 Firefox/[0-9]{2}.0 \(Chrome\)$#i', $ua, $matches))
+    if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64; rv:10.0\) Gecko/20150101 Firefox/[0-9]{2}.0 \(Chrome\)$#i', $ua))
         return $fake;
 
     /* Spams */
-    if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64; rv:109\)$#i', $ua, $matches))
+    if (preg_match('#^Mozilla/5.0 \(X11; Linux x86_64; rv:109\)$#i', $ua))
+        return $fake;
+
+    /* fake visit */
+    if (preg_match('#UserAgent-Cube$#i', $ua))
+        return $fake;
+
+    /* Fake googlebot */
+    if (preg_match('#User-Agent=Mozilla/5.0 \(compatible;googlebot/2.1\)$#i', $ua))
         return $fake;
 
     /* not a fake but Apple using a bad user agent */
@@ -2391,9 +2403,6 @@ function client_getFakeInfosFromUserAgent($ua='') {
             'engine_url'        => 'http://www.apple.com',
         );
 
-    /* fake visit */
-    if (preg_match('#UserAgent-Cube$#i', $ua))
-        return $fake;
 
     /* default result */
     return false;
@@ -2437,12 +2446,12 @@ function _client_getUAPropertiesMaxVersions() {
             'Android'           => '11',                    // current is 9.x.x
         ),
         'browser' => array(
-            'Firefox'           => '70',                    // current is 65
-            'Chrome'            => '78',                    // current is 73
-            'Chromium'          => '78',                    // current is 73
+            'Firefox'           => '70',                    // current is 66
+            'Chrome'            => '79',                    // current is 74
+            'Chromium'          => '79',                    // current is 74
             'Internet Explorer' => '11.0.50',               // latest
             'Edge'              => '49',                    // current is 44
-            'Opera'             => '64',                    // current is 59
+            'Opera'             => '65',                    // current is 60
             'Safari'            => '16',                    // current is 12.0.2
         ),
     );
