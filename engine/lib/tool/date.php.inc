@@ -4,17 +4,17 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/date.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2005
- * @date Modification: Apr 2018
- * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: May 2019
+ * @copyright 2005 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /************ CONSTANTS **************************************/
 
-/** 
+/**
  * @def TODAY
  */
 define('TODAY',    time());
@@ -102,6 +102,35 @@ function date_displayLongDate($date=TODAY) {
 }
 
 /**
+ * Display long textual representation of date interval.
+ * @param date $date1
+ * @param date $date2
+ * @return string
+ */
+function date_displayLongDateInterval($date1=TODAY, $date2=TODAY) {
+    global $camyks;
+    $l = $camyks->current_language;
+
+    if ($date1 > $date2) {
+        $tmp = $date1;
+        $date1 = $date2;
+        $date2 = $tmp;
+        unset($tmp);
+    }
+
+    if (date_isSameDay($date1, $date2))
+        return date_displayShortDate($date1);
+
+    if (date_isSameMonth($date1, $date2))
+        return strftime('%e', $date1).' - '.ucwords(strftime('%e %B %Y', $date2));
+
+    if (date_isSameYear($date1, $date2))
+        return ucwords(strftime('%e %B', $date1)).' - '.ucwords(strftime('%e %B %Y', $date2));
+
+    return ucwords(strftime('%e %B %Y', $date1)).' - '.ucwords(strftime('%e %B %Y', $date2));
+}
+
+/**
  * Display short textual representation of day, date and hour.
  * @param date $date
  * @return string
@@ -182,26 +211,25 @@ function date_displayShortDate($date=TODAY) {
 function date_displayShortDateInterval($date1=TODAY, $date2=TODAY) {
     global $camyks;
     $l = $camyks->current_language;
-    
+
     if ($date1 > $date2) {
         $tmp = $date1;
         $date1 = $date2;
         $date2 = $tmp;
         unset($tmp);
     }
-    
+
     if (date_isSameDay($date1, $date2))
         return date_displayShortDate($date1);
-    
+
     if (date_isSameMonth($date1, $date2))
         return strftime('%e', $date1).' - '.ucwords(strftime('%e %b %y', $date2));
-    
+
     if (date_isSameYear($date1, $date2))
         return ucwords(strftime('%e %b', $date1)).' - '.ucwords(strftime('%e %b %y', $date2));
-    
+
     return ucwords(strftime('%e %b %y', $date1)).' - '.ucwords(strftime('%e %b %y', $date2));
 }
-
 
 /**
  * Display numeric representation of date and hour.
@@ -284,7 +312,7 @@ function date_display($date=TODAY) {
  * @return boolean
  */
 function date_isSameDay($date1=TODAY, $date2=TODAY) {
-    return mktime(0, 0, 0, date('m', $date1), date('d', $date1), date('Y', $date1)) == 
+    return mktime(0, 0, 0, date('m', $date1), date('d', $date1), date('Y', $date1)) ==
         mktime(0, 0, 0, date('m', $date2), date('d', $date2), date('Y', $date2));
 }
 
@@ -295,7 +323,7 @@ function date_isSameDay($date1=TODAY, $date2=TODAY) {
  * @return boolean
  */
 function date_isSameMonth($date1=TODAY, $date2=TODAY) {
-    return mktime(0, 0, 0, date('m', $date1), 1, date('Y', $date1)) == 
+    return mktime(0, 0, 0, date('m', $date1), 1, date('Y', $date1)) ==
         mktime(0, 0, 0, date('m', $date2), 1, date('Y', $date2));
 }
 
@@ -447,17 +475,17 @@ function date_getLastYearValue() {
  */
 function date_getOrdinalSuffix($date=0) {
     global $camyks;
-    
+
     /* return empty string for all non-english languages */
     if ($camyks->current_language != 'en')
         return '';
-    
+
     /* check date */
     if ($date==0) $date = mktime();
-    
+
     /* get day */
     $num = date('d', $date);
-    
+
     /* check day */
     if ($num < 11 || $num > 13) {
         switch($num % 10){
@@ -477,9 +505,9 @@ function date_getOrdinalSuffix($date=0) {
 function date_stringToTimestamp($date) {
     if (is_int($date))
         return $date;
-  
+
     $date = date_parse($date);
-  
+
     return mktime($date['hour'], $date['minute'], $date['second'], $date['month'], $date['day'], $date['year']);
 }
 
@@ -494,7 +522,7 @@ function date_stringToTimestamp($date) {
  */
 function date_getLanguage($language=null) {
     global $camyks;
-    return isset ($language) ? $language : $camyks->current_language; 
+    return isset ($language) ? $language : $camyks->current_language;
 }
 
 /**
@@ -568,7 +596,7 @@ function date_displayYear($date = TODAY, $language=null) {
 
 /**
  * Return date year & month display.
- * @param date $date 
+ * @param date $date
  * @param string $language
  * @return string
  * @deprecated
@@ -616,7 +644,7 @@ function date_displayDayMonthAndHour($date = TODAY, $language=null) {
     switch ($language) {
         case 'fr':
             return strftime('%A %d %B &agrave; %H:%M', $date);
-        default : 
+        default :
             return strftime('%A %d %B - %H:%M', $date);
     }
 }
@@ -633,7 +661,7 @@ function date_displayDayAndHour($date = TODAY, $language=null) {
     switch ($language) {
         case 'fr':
             return strftime('%A %d &agrave; %H:%M', $date);
-        default : 
+        default :
             return strftime('%A %d - %H:%M', $date);
     }
 }
