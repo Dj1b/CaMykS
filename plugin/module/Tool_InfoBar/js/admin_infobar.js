@@ -23,9 +23,9 @@ function admin_infobarengine_start ( duration, refresh, url ) {
 
   if ( duration > 0 ) {
     infobar_refreshObject = new CAjaxRequest('infobar_refreshObject');
-    infobar_refreshObject._initialise(url, 'GET', 
+    infobar_refreshObject._initialise(url, 'GET',
 				      admin_infobarengine_refreshAdminSession_success,
-				      'xml', 
+				      'xml',
 				      admin_infobarengine_refreshAdminSession_failed );
 
     infobar_sessionInterval = setInterval('admin_infobarengine_refreshAdminSession()', refresh);
@@ -40,7 +40,7 @@ function admin_infobarengine_updateTime ( ) {
     } else {
       return false;
     }
-    
+
     if ( document.getElementById('infobar_pagetime') ) {
     v = parseInt(( d.getTime() - infobar_basetime )/60000)+'m.';
     document.getElementById('infobar_pagetime').innerHTML = v;
@@ -62,13 +62,13 @@ function admin_infobarengine_refreshAdminSession() {
 }
 
 function admin_infobarengine_refreshAdminSession_success() {
-  if ( new Date().getTime() - infobar_loadTime < 2000 ) 
+  if ( new Date().getTime() - infobar_loadTime < 2000 )
     setTimeout(admin_infobarengine_refreshAdminSession_reset, 2000);
   else
     admin_infobarengine_refreshAdminSession_reset();
 }
 
-  
+
 function admin_infobarengine_refreshAdminSession_failed() {
   admin_infobarengine_refreshAdminSession_reset();
 }
