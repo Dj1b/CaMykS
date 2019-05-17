@@ -14,8 +14,7 @@
  */
 
 /**
- * Tool_Login Module class.
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * Tool_Login class.
  */
 final class Tool_Login extends Module {
     /**
@@ -51,23 +50,21 @@ final class Tool_Login extends Module {
         /* get Module generic init */
         parent::__construct('Tool_Login', $path_type);
 
-        /* set module type */
-        $this->type = 'tool';
-
-        /* set plugin version */
+        /* Override Plugin variables */
         $this->version = '1.1';
-
-        /* set plugin package */
         $this->plugin_package = 'System';
 
-        /* set plugin author */
+        /* Override Module variables */
+        $this->type = 'tool';
+
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite Module methods */
-    
+    /* Override Module methods */
+
     /**
      * Return menu item to be registered.
      * @return array
@@ -75,7 +72,7 @@ final class Tool_Login extends Module {
     public function get_adminEngineGenericMenuItems() {
         return array(array(
             'menu'  => 'admin',
-            'name'  => 'logout', 
+            'name'  => 'logout',
             'title' => $this->get_translation('logout'),
             'url'   => $this->get_adminLink(array('mode'=>'logout')),
             'icon'  => $this->get_fileURL('img/icon12.gif'),
@@ -86,16 +83,16 @@ final class Tool_Login extends Module {
      * Initialise module object in admin mode.
      * @return void
      */
-    public function init_admin () {
+    public function init_admin() {
         $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'login';
         switch($mode) {
             case 'logout': return $this->init_admin_logout();
             case 'login': default: return $this->init_admin_login();
         }
     }
-    
+
     /* admin mode methods */
-    
+
     /**
      * Initialise module object in admin / login mode.
      * @return void
@@ -115,7 +112,7 @@ final class Tool_Login extends Module {
             if ($user->can_login($this->pwd)) {
                 $camyks->set_sessionValue('admin_user', $this->login);
                 $camyks->set_sessionValue('admin_time', time());
-                                
+
                  /* add stat */
                  if (!$camyks->log('AdminLogin', 'Login', 'Success ('.$this->login.')'))
                     $camyks->update_statistic('adminlogin', $this->name, 'single', $this->login, client_getIp(), '', array('checkIPFilter'=>0, 'checkAdmin'=>0));
@@ -150,31 +147,31 @@ final class Tool_Login extends Module {
         /* load extension plugins */
         $this->load_extensions();
     }
-    
+
     /**
      * Initialise module object in admin / logout mode.
      * @return void
      */
     private function init_admin_logout() {
         global $camyks;
-        
+
         /* disable admin menus */
         $this->disable_adminEngineMenus();
-        
+
         /* kill admin user session */
         if ($camyks->check_adminUser()) {
             $camyks->kill_session();
             $camyks->log('AdminLogin', 'Logout', 'Success');
         }
-        
+
         /* redirect user to login panel */
         $this->set_redirect($camyks->get_adminLink());
-        
+
         /* build message panel */
         $this->text = $this->get_translation('logout_message');
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
     }
-    
+
     /* specific tool methods */
 
     /**

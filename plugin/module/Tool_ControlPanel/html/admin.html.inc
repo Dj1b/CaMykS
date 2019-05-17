@@ -1,8 +1,8 @@
 <?php
 /**
- * @brief Tool_Login Module main layout
+ * @brief Tool_ControlPanel Module main layout
  * @details Plugin / Module Layout
- * @file plugin/module/Tool_Login/html/admin.html.inc
+ * @file plugin/module/Tool_ControlPanel/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.1
  * @date Creation: Sep 2005

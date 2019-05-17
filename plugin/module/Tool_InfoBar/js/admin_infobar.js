@@ -26,7 +26,7 @@ function admin_infobarengine_start ( duration, refresh, url ) {
     infobar_refreshObject._initialise(url, 'GET',
 				      admin_infobarengine_refreshAdminSession_success,
 				      'xml',
-				      admin_infobarengine_refreshAdminSession_failed );
+				      admin_infobarengine_refreshAdminSession_failed);
 
     infobar_sessionInterval = setInterval('admin_infobarengine_refreshAdminSession()', refresh);
   }
