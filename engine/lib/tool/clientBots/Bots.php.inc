@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.37
  * @date Creation: May 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4252,6 +4252,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'SemanticJuice',
         'engine_url'        => 'https://www.semanticjuice.com',
+    );
+
+    /* vuhuvBot */
+    $knownBots['vuhuvbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'vuhuvBot',
+        'bot_url'           => 'http://vuhuv.com/bot.html',
+        'engine_title'      => 'Vuhuv',
+        'engine_url'        => 'https://vuhuv.com.tr',
     );
 
     /* return bot list */

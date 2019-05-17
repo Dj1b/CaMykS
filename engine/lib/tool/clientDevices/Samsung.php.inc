@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.40
+ * @version 1.0.41
  * @date Creation: Apr 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -127,6 +127,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G965U'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
         'SM-G9700'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G9730'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
+        'SM-G973F'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
         'SM-G9750'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975F'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G313HZ' => array('platform_model' => 'Galaxy V',                        'platform_year' => 2014),
@@ -148,6 +149,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A700F'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A750FN' => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2018),
+        'SM-A750GN' => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2018),
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
         'SM-A530W'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
