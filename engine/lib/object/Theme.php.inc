@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Theme.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2005
- * @date Modification: Feb 2019
+ * @date Modification: May 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -354,7 +354,7 @@ abstract class Theme extends Plugin {
      */
      public function get_pictHTMLTag($params=array()) {
         /* check params */
-        $defaultParams = array('pict'=>'', 'size'=>12, 'position'=>'std', 'addMouseover'=>false, 'alt'=>'', 'style'=>'');
+        $defaultParams = array('pict'=>'', 'size'=>12, 'position'=>'std', 'addMouseover'=>false, 'alt'=>'', 'title'=>'', 'style'=>'',);
         $params = array_merge($defaultParams, $params);
 
         /* load main picture */
@@ -362,12 +362,14 @@ abstract class Theme extends Plugin {
 
         /* build HTML tag */
         $result = '<img src="'.$url.'" alt="'.$params['alt'].'"';
+        if ($params['title'] != '')
+          $result .= ' title="'.$params['title'].'"';
+        if ($params['style'] != '')
+          $result .= ' style="'.$params['style'].'"';
         if ($params['addMouseover'] == true) {
             $result .= ' onmouseover="this.src=\''.$this->get_pictURL($params['pict'], $params['size'], $params['position']=='std'?'ovr':'std').'\';"';
             $result .= ' onmouseout="this.src=\''.$url.'\';"';
         }
-        if ($params['style'] != '')
-          $result .= ' style="'.$params['style'].'"';
         $result .= ' />';
 
         /* return result */
