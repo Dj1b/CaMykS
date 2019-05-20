@@ -4,10 +4,10 @@
  * @details Plugin / Input Layout
  * @file plugin/input/AdminItemListViewer/html/input_head.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Oct 2008
- * @date Modification: Apr 2018
- * @copyright 2008 - 2018 CaMykS Team
+ * @date Modification: May 2019
+ * @copyright 2008 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -57,6 +57,10 @@ if ($this->selectorForm !== false) {
                 /* selector type is a text field */
                 echo $this->selectorForm->display_textInput(array('name'=>$this->params['name'].'_form'.$name, 'maxlength'=>128, 'default'=>$this->selectionValues[$name], 'onblur'=>$this->params['name'].'.update();'));
                 break;
+            case 'date' :
+                /* selector type is a text field */
+                echo $this->selectorForm->display_dateInput(array('name'=>$this->params['name'].'_form'.$name, 'objects'=>(isset($selector['objects'])?$selector['objects']:array('day', 'month', 'year')), 'default'=>$this->selectionValues[$name], 'onblur'=>$this->params['name'].'.update();'));
+                break;
         }
 
         /* end item box */
@@ -69,7 +73,7 @@ if ($this->selectorForm !== false) {
     echo $this->selectorForm->display_footer();
 }
 ?>
-<?php 
+<?php
 /**
  * @endcond Exclude
  */
