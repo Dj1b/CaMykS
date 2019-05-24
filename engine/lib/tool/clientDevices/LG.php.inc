@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -43,6 +43,7 @@ function get_LGClientDevice($deviceCode='') {
         'E460'  => array('platform_model' => 'Optimus L5 II',   'platform_year' => 2013),
         'E610'  => array('platform_model' => 'Optimus L5',      'platform_year' => 2012),
         'E960'  => array('platform_model' => 'Nexus 4',         'platform_year' => 2012),
+        'G710'  => array('platform_model' => 'G7 ThinQ',        'platform_year' => 2018),
         'H812'  => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H815'  => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H831'  => array('platform_model' => 'G5',              'platform_year' => 2016),
@@ -64,6 +65,7 @@ function get_LGClientDevice($deviceCode='') {
         'P920'  => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),
 
         'VS986' => array('platform_model' => 'G4',              'platform_year' => 2015),
+
     );
 
     /* Check for returning list */

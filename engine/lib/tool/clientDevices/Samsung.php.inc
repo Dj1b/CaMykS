@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.42
  * @date Creation: Apr 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -64,9 +64,13 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T825'   => array('platform_model' => 'Galaxy Tab S3',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SM-T830'   => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
-        /* Samsung phones */
+        /* Samsung old phones */
         'GT-C3590'  => array('platform_model' => 'C3590',                           'platform_year' => 2013,    'system_title' => 'Symbian'),
         'GT-S3800W' => array('platform_model' => 'REX 70',                          'platform_year' => 2013),
+        'GT-I8750'  => array('platform_model' => 'Ativ S',                          'platform_year' => 2013),
+        'SM-G313HZ' => array('platform_model' => 'Galaxy V',                        'platform_year' => 2014),
+
+        /* Samsung Galaxy S series */
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                        'platform_year' => 2010),
         'GT-S7562'  => array('platform_model' => 'Galaxy S Duo',                    'platform_year' => 2012),
         'GT-I9100'  => array('platform_model' => 'Galaxy S2',                       'platform_year' => 2011),
@@ -130,7 +134,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G973F'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
         'SM-G9750'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975F'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
-        'SM-G313HZ' => array('platform_model' => 'Galaxy V',                        'platform_year' => 2014),
+
+        /* Samsung Galaxy A series */
         'SM-A300F'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2014),
         'SM-A300FU' => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2014),
         'SM-A310F'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2015),
@@ -152,13 +157,21 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A750GN' => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2018),
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
         'SM-A530W'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
+        'SM-A900F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2016),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
+        'SM-A920F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2018),
+
+        /* Samsung Galaxy C series */
         'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),
+
+        /* Samsung Galaxy E series */
         'SM-E500F'  => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
         'SM-E500H'  => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
         'SM-E500HQ' => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
         'SM-E500M'  => array('platform_model' => 'Galaxy E5',                       'platform_year' => 2015),
         'SM-E700H'  => array('platform_model' => 'Galaxy E7',                       'platform_year' => 2015),
+
+        /* Samsung Galaxy J series */
         'SM-J100F'  => array('platform_model' => 'Galaxy J1',                       'platform_year' => 2015),
         'SM-J100H'  => array('platform_model' => 'Galaxy J1',                       'platform_year' => 2015),
         'SM-J110H'  => array('platform_model' => 'Galaxy J1',                       'platform_year' => 2015),
@@ -169,6 +182,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J200F'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J200H'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J200M'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
+        'SM-J260F'  => array('platform_model' => 'Galaxy J2 Core',                  'platform_year' => 2018),
         'SM-J250F'  => array('platform_model' => 'Galaxy J2 Pro',                   'platform_year' => 2018),
         'SM-J250Y'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2018),
         'SM-J310'   => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
@@ -214,39 +228,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J730F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'SM-J730GM' => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'SM-G615F'  => array('platform_model' => 'Galaxy J7 Max',                   'platform_year' => 2017),
-        'GT-S5360'  => array('platform_model' => 'Galaxy Y',                        'platform_year' => 2011),
-        'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos',                   'platform_year' => 2012),
-        'GT-S7582'  => array('platform_model' => 'Galaxy S Duos',                   'platform_year' => 2012),
-        'GT-I8750'  => array('platform_model' => 'Ativ S',                          'platform_year' => 2013),
-        'GT-S5830'  => array('platform_model' => 'Galaxy Ace',                      'platform_year' => 2011),
-        'GT-S5839'  => array('platform_model' => 'Galaxy Ace Plus',                 'platform_year' => 2011),
-        'GT-S5839I' => array('platform_model' => 'Galaxy Ace Plus',                 'platform_year' => 2011),
-        'SM-G357FZ' => array('platform_model' => 'Galaxy Ace 4',                    'platform_year' => 2014),
-        'SM-G850F'  => array('platform_model' => 'Galaxy Alpha',                    'platform_year' => 2014),
-        'SM-G850W'  => array('platform_model' => 'Galaxy Alpha',                    'platform_year' => 2014),
-        'GT-S6812'  => array('platform_model' => 'Galaxy Fame Duos',                'platform_year' => 2013),
-        'GT-I8262D' => array('platform_model' => 'Galaxy Core Duos',                'platform_year' => 2013),
-        'SM-G355H'  => array('platform_model' => 'Galaxy Core 2',                   'platform_year' => 2014),
-        'SM-G355HN' => array('platform_model' => 'Galaxy Core 2',                   'platform_year' => 2014),
-        'SM-G360F'  => array('platform_model' => 'Galaxy Core Prime',               'platform_year' => 2015),
-        'SM-G361F'  => array('platform_model' => 'Galaxy Core Prime',               'platform_year' => 2015),
-        'SM-G386F'  => array('platform_model' => 'Galaxy Core 4G',                  'platform_year' => 2014),
-        'SM-G386W'  => array('platform_model' => 'Galaxy Core',                     'platform_year' => 2014),
-        'SC-04J'    => array('platform_model' => 'Galaxy Feel',                     'platform_year' => 2017),
-        'SGH-N417'  => array('platform_model' => 'Galaxy Feel',                     'platform_year' => 2017),
-        'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
-        'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2015),
-        'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
-        'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
-        'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus',         'platform_year' => 2014),
-        'GT-I9082L' => array('platform_model' => 'Galaxy Grand',                    'platform_year' => 2012),
-        'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus',               'platform_year' => 2014),
-        'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos',               'platform_year' => 2013),
-        'GT-I8552'  => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
-        'GT-I8552B' => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
-        'SM-G7102'  => array('platform_model' => 'Galaxy Grand 2',                  'platform_year' => 2014),
-        'SGH-I527'  => array('platform_model' => 'Galaxy Mega',                     'platform_year' => 2013),
-        'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313',                'platform_year' => 2017),
+
+        /* Samsung Galaxy Note series */
         'GT-N5110'  => array('platform_model' => 'Galaxy Note',                     'platform_year' => 2013),
         'GT-N7000'  => array('platform_model' => 'Galaxy Note (3G)',                'platform_year' => 2011),
         'GT-N7003'  => array('platform_model' => 'Galaxy Note (4G)',                'platform_year' => 2011),
@@ -278,8 +261,42 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N950F'  => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
         'SM-N9600'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960F'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
+
+        /* Samsung Galaxy other series */
+        'GT-S5830'  => array('platform_model' => 'Galaxy Ace',                      'platform_year' => 2011),
+        'GT-S5839'  => array('platform_model' => 'Galaxy Ace Plus',                 'platform_year' => 2011),
+        'GT-S5839I' => array('platform_model' => 'Galaxy Ace Plus',                 'platform_year' => 2011),
+        'SM-G357FZ' => array('platform_model' => 'Galaxy Ace 4',                    'platform_year' => 2014),
+        'SM-G850F'  => array('platform_model' => 'Galaxy Alpha',                    'platform_year' => 2014),
+        'SM-G850W'  => array('platform_model' => 'Galaxy Alpha',                    'platform_year' => 2014),
+        'GT-I8262D' => array('platform_model' => 'Galaxy Core Duos',                'platform_year' => 2013),
+        'SM-G355H'  => array('platform_model' => 'Galaxy Core 2',                   'platform_year' => 2014),
+        'SM-G355HN' => array('platform_model' => 'Galaxy Core 2',                   'platform_year' => 2014),
+        'SM-G360F'  => array('platform_model' => 'Galaxy Core Prime',               'platform_year' => 2015),
+        'SM-G361F'  => array('platform_model' => 'Galaxy Core Prime',               'platform_year' => 2015),
+        'SM-G386F'  => array('platform_model' => 'Galaxy Core 4G',                  'platform_year' => 2014),
+        'SM-G386W'  => array('platform_model' => 'Galaxy Core',                     'platform_year' => 2014),
+        'GT-S6812'  => array('platform_model' => 'Galaxy Fame Duos',                'platform_year' => 2013),
+        'SC-04J'    => array('platform_model' => 'Galaxy Feel',                     'platform_year' => 2017),
+        'SGH-N417'  => array('platform_model' => 'Galaxy Feel',                     'platform_year' => 2017),
+        'GT-S5660'  => array('platform_model' => 'Galaxy Gio',                      'platform_year' => 2011),
+        'GT-S5660M' => array('platform_model' => 'Galaxy Gio',                      'platform_year' => 2011),
+        'GT-I9082L' => array('platform_model' => 'Galaxy Grand',                    'platform_year' => 2012),
+        'SM-G7102'  => array('platform_model' => 'Galaxy Grand 2',                  'platform_year' => 2014),
+        'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos',               'platform_year' => 2013),
+        'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus',               'platform_year' => 2014),
+        'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
+        'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2015),
+        'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
+        'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
+        'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus',         'platform_year' => 2014),
+        'GT-I8552'  => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
+        'GT-I8552B' => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
+        'SGH-I527'  => array('platform_model' => 'Galaxy Mega',                     'platform_year' => 2013),
+        'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313',                'platform_year' => 2017),
         'SM-G550FY' => array('platform_model' => 'Galaxy On5',                      'platform_year' => 2016),
         'GT-S5302B' => array('platform_model' => 'Galaxy Pocket Duos',              'platform_year' => 2012),
+        'SGH-I547'  => array('platform_model' => 'Galaxy Rugby Pro',                'platform_year' => 2012),
         'SM-G350E'  => array('platform_model' => 'Galaxy Star 2 Plus',              'platform_year' => 2014),
         'SM-G130E'  => array('platform_model' => 'Galaxy Star 2 Plus',              'platform_year' => 2014),
         'GT-S7392'  => array('platform_model' => 'Galaxy Trend',                    'platform_year' => 2014),
@@ -288,15 +305,15 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-S7390'  => array('platform_model' => 'Galaxy Trend lite',               'platform_year' => 2013),
         'GT-S7390G' => array('platform_model' => 'Galaxy Trend lite',               'platform_year' => 2013),
         'SM-G318H'  => array('platform_model' => 'Galaxy Trend 2 lite',             'platform_year' => 2015),
-        'GT-S5660'  => array('platform_model' => 'Galaxy Gio',                      'platform_year' => 2011),
-        'GT-S5660M' => array('platform_model' => 'Galaxy Gio',                      'platform_year' => 2011),
         'GT-S8500'  => array('platform_model' => 'Galaxy Wave',                     'platform_year' => 2010),
         'GT-I8552'  => array('platform_model' => 'Galaxy Win Duos',                 'platform_year' => 2013),
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3',                 'platform_year' => 2015),
+        'SM-G390F'  => array('platform_model' => 'Galaxy Xcover 4',                 'platform_year' => 2017),
+        'GT-S5360'  => array('platform_model' => 'Galaxy Y',                        'platform_year' => 2011),
+        'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos',                   'platform_year' => 2012),
+        'GT-S7582'  => array('platform_model' => 'Galaxy S Duos',                   'platform_year' => 2012),
         'SM-G130H'  => array('platform_model' => 'Galaxy Young 2',                  'platform_year' => 2014),
         'SM-G130HN' => array('platform_model' => 'Galaxy Young 2',                  'platform_year' => 2014),
-        'SGH-I547'  => array('platform_model' => 'Galaxy Rugby Pro',                'platform_year' => 2012),
-        'SM-G390F'  => array('platform_model' => 'Galaxy Xcover 4',                 'platform_year' => 2017),
 
         'Galaxy'    => array('platform_model' => 'Galaxy'),
         'E7'        => array('platform_model' => 'Galaxy E7',                       'platform_year' => 2016),

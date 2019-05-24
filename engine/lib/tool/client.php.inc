@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.69
+ * @version 1.0.70
  * @date Creation: Jun 2007
  * @date Modification: May 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -361,7 +361,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
-    } elseif (preg_match('/LG-([A-Z][0-9]{3}[A-Z]?)/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*)/', $ua, $matches)) {
+    } elseif (preg_match('/L[G|M]-([A-Z][0-9]{3}[A-Z]?)/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*)/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
     }
@@ -600,6 +600,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_CatClientDevice($model));
     }
 
+    /* check Doogee devices, to be inserted before Xiaomi/Wiko */
+    elseif (preg_match('/ (MIX Lite|BL5000|S90)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Doogee.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_DoogeeClientDevice($model));
+    }
+
     /* check SFR (France) mobiles - before wiko */
     elseif (preg_match('/(STARTRAIL7) Build/', $ua, $matches)) {
         include_once('clientDevices/SFR.php.inc');
@@ -779,8 +786,8 @@ function client_getUAInfos($ua=false) {
         ));
     }
 
-    /* check Acer devices */
-    elseif (preg_match('/ (Z130|T0[0-9]|B3-A40|A500)( Build|\))/', $ua, $matches)) {
+    /* check Acer devices : before blackview */
+    elseif (preg_match('/ (Z130|T0[0-9]|B3-A[0-9]0|A500)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Acer.php.inc');
         $infos = array_merge($infos, get_AcerClientDevice($matches[1]));
     }
@@ -832,13 +839,6 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Polaroid.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_PolaroidClientDevice($model));
-    }
-
-    /* check Doogee devices, to be inserted before Xiaomi */
-    elseif (preg_match('/ (MIX Lite|BL5000) Build/', $ua, $matches)) {
-        include_once('clientDevices/Doogee.php.inc');
-        $model = $matches[1];
-        $infos = array_merge($infos, get_DoogeeClientDevice($model));
     }
 
     /* check Umi devices, to be inserted before Xiaomi */
@@ -1047,6 +1047,9 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ Karbonn( |_)([A-Z][0-9]{2}) Build/i', $ua, $matches)) {
         include_once('clientDevices/Karbonn.php.inc');
         $infos = array_merge($infos, get_KarbonnClientDevice($matches[2]));
+    } elseif (preg_match('/ (Aura Champ)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Karbonn.php.inc');
+        $infos = array_merge($infos, get_KarbonnClientDevice($matches[1]));
     }
 
     /* check Ampe devices */
@@ -2404,6 +2407,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
 
     /* Fake googlebot */
     if (preg_match('#User-Agent=Mozilla/5.0 \(compatible;googlebot/2.1\)$#i', $ua))
+        return $fake;
+
+    /* Fake visits, sample : Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko RqIwg8izYw6xskukQQDh */
+    if (preg_match('#([0-9a-zA-Z]{16,24})$#', $ua))
         return $fake;
 
     /* not a fake but Apple using a bad user agent */
