@@ -1,7 +1,7 @@
 <?php
 /**
  * @brief Admin_SystemReport Module report library
- * @details Plugin, Module Library
+ * @details Plugin / Module Library
  * @file plugin/module/Admin_SystemReport/lib/Admin_SystemReportItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.1
@@ -18,6 +18,9 @@
 final class Admin_SystemReportItem extends ModuleLibrary {
     /**
      * Class constructor.
+     * @param integer $id
+     * @param object $module
+     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);

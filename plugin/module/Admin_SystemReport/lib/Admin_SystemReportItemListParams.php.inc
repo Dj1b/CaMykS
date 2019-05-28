@@ -1,7 +1,7 @@
 <?php
 /**
  * @brief Admin_SystemReport Module report list parameters
- * @details Plugin, Module Library
+ * @details Plugin / Module Library
  * @file plugin/module/Admin_SystemReport/lib/Admin_SystemReportItemListParams.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.2

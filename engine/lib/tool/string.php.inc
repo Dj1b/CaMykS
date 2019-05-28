@@ -197,7 +197,7 @@ function string_text2Html($string, $encoding=null) {
     if (!isset($encoding))
         $encoding = $camyks->get_confValue('encoding');
 
-    /* encode text */
+    /* decode text */
     switch ($encoding) {
         case 'utf8':
             return htmlentities($string, null, 'UTF-8');
@@ -206,8 +206,6 @@ function string_text2Html($string, $encoding=null) {
         default:
         case '':
     }
-
-    /* decode html */
     return htmlentities($string);
 }
 
