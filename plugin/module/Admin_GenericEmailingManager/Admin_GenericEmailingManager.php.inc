@@ -5,9 +5,9 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_GenericEmailingManager/Admin_GenericEmailingManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Dec 2012
- * @date Modification: Jan 2019
+ * @date Modification: Apr 2019
  * @copyright 2012 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -2181,7 +2181,7 @@ final class Admin_GenericEmailingManager extends Module {
      * @param array $params
      * @return array
      */
-    private function get_contactIdList($params=array()) {
+    public function get_contactIdList($params=array()) {
         return $this->contactItem->get_idList($params);
     }
 
