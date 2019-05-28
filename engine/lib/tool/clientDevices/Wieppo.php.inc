@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wieppo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: May 2019
  * @date Modification: May 2019
  * @copyright 2019 CaMykS Team
@@ -20,7 +20,9 @@
  */
 function get_WieppoClientDevice($deviceCode='') {
     $deviceList = array(
-        'S5'    => array('platform_model' => 'S5', 'platform_year' => 2017),
+        'S5'        => array('platform_model' => 'S5',      'platform_year' => 2017),
+        'S6'        => array('platform_model' => 'S6',      'platform_year' => 2017),
+        'S6 Lite'   => array('platform_model' => 'S6 Lite', 'platform_year' => 2017),
     );
 
     /* Check for returning list */

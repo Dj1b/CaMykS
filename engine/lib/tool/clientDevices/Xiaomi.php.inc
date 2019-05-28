@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: May 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -95,6 +95,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 7'          => array('platform_model' => 'Redmi Note 7',        'platform_year' => 2019),
 
         'pocophone f1'          => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
+        'poco f1'               => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
     );
 
     /* Check for returning list */

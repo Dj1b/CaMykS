@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Condor.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2018
- * @date Modification: Aug 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: May 2019
+ * @copyright 2018- 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -43,6 +43,7 @@ function get_CondorClientDevice($deviceCode='') {
         'PGN613'            => array('platform_model' => 'Allure A55 Plus', 'platform_year' => 2017),
         'PGN507'            => array('platform_model' => 'Allure A9',       'platform_year' => 2015),
         'SP413'             => array('platform_model' => 'Griffe T1',       'platform_year' => 2017),
+        'PHQ520'            => array('platform_model' => 'Griffe G6',       'platform_year' => 2018),
 
         'Allure M1'         => array('platform_model' => 'Allure M1 Plus',  'platform_year' => 2017),
         'Allure M1 Plus'    => array('platform_model' => 'Allure M1',       'platform_year' => 2017),

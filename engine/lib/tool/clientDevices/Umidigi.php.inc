@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Umidigi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: May 2019
  * @date Modification: May 2019
  * @copyright 2019 CaMykS Team
@@ -20,7 +20,14 @@
  */
 function get_UmidigiClientDevice($deviceCode='') {
     $deviceList = array(
-        'S3_Pro'    => array('platform_model' => 'S3 Pro', 'platform_year' => 2019),
+        'Z'         => array('platform_model' => 'Z',           'platform_year' => 2016),
+        'Z Pro'     => array('platform_model' => 'Z Pro',       'platform_year' => 2016),
+        'Z1 Pro'    => array('platform_model' => 'Z1 Pro',      'platform_year' => 2017),
+        'C Note'    => array('platform_model' => 'C Note',      'platform_year' => 2017),
+        'C Note 2'  => array('platform_model' => 'C Note 2',    'platform_year' => 2017),
+        'A1 Pro'    => array('platform_model' => 'A1 Pro',      'platform_year' => 2018),
+        'S2 Lite'   => array('platform_model' => 'S2 Lite',     'platform_year' => 2018),
+        'S3 Pro'    => array('platform_model' => 'S3 Pro',      'platform_year' => 2019),
     );
 
     /* Check for returning list */

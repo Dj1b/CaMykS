@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: Apr 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -128,6 +128,7 @@ function get_HuaweiClientDevices() {
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
         'SCL-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
+        'CAM-L21'   => array('platform_model' => 'Y6 II',           'platform_year' => 2016),
         'LYO-L01'   => array('platform_model' => 'Y6 II Compact',   'platform_year' => 2016),
         'MYA-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
         'MYA-L41'   => array('platform_model' => 'Y6',              'platform_year' => 2017),
@@ -140,6 +141,7 @@ function get_HuaweiClientDevices() {
         'TRT-L53'   => array('platform_model' => 'Y7\'',            'platform_year' => 2018),
         'LDN-L01'   => array('platform_model' => 'Y7',              'platform_year' => 2018),
         'LDN-L21'   => array('platform_model' => 'Y7 Prime',        'platform_year' => 2018),
+        'DUB-LX1'   => array('platform_model' => 'Y7 Prime',        'platform_year' => 2019),
         'FLA-LX2'   => array('platform_model' => 'Y9',              'platform_year' => 2018),
         'NMO-L31'   => array('platform_model' => 'GT3',             'platform_year' => 2016),
         'BLL-L22'   => array('platform_model' => 'GR5',             'platform_year' => 2017),

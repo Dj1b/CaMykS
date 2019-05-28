@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.42
+ * @version 1.0.43
  * @date Creation: Apr 2018
  * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -119,6 +119,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G9500'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G950W'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
+        'SM-G9550'  => array('platform_model' => 'Galaxy S8+',                      'platform_year' => 2017),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+',                      'platform_year' => 2017),
         'SM-G955U'  => array('platform_model' => 'Galaxy S8+',                      'platform_year' => 2017),
         'SM-G892A'  => array('platform_model' => 'Galaxy S8 Active',                'platform_year' => 2017),
@@ -153,6 +154,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A605FN' => array('platform_model' => 'Galaxy A6+',                      'platform_year' => 2018),
         'SM-A700F'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
+        'SM-A750F'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2018),
         'SM-A750FN' => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2018),
         'SM-A750GN' => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2018),
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
@@ -261,6 +263,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N950F'  => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
         'SM-N9600'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960F'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
+        'SM-N960U'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
 
         /* Samsung Galaxy other series */
         'GT-S5830'  => array('platform_model' => 'Galaxy Ace',                      'platform_year' => 2011),
