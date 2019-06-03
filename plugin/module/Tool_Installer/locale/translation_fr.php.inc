@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date	: Aug 2007
- * Last Modif Date  : Oct 2017
- *
- * Tool_Installer language dictionnary : French
-*/
+/**
+ * @brief Tool_Installer Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @file plugin/module/Tool_InfoBar/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Aug 2007
+ * @date Modification: May 2019
+ * @copyright 2007 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_tool_installer_title'] = 'Installation du site';
 $this->trads['mod_tool_installer_desc'] = 'Installation du site';
 

@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/AdminItemListViewer/AdminItemListViewer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2008
- * @date Modification: Apr 2018
- * @copyright 2008 - 2018 CaMykS Team
+ * @date Modification: May 2019
+ * @copyright 2008 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -192,10 +192,22 @@ final class AdminItemListViewer extends Input {
 
         switch ($params['itemtype']) {
             case 'page' :
+                if (!isset($_REQUEST[$this->params['name'].'_form'.$name])) return false;
                 return (int)$_REQUEST[$this->params['name'].'_form'.$name]-1;
+            case 'date':
+                $name = $this->params['name'].'_form'.$name;
+                if (!isset($_REQUEST[$name.'_month']) and !isset($_REQUEST[$name.'_day']) and !isset($_REQUEST[$name.'_year'])) return false;
+                return mktime(isset($_REQUEST[$name.'_hours']) ? (int)$_REQUEST[$name.'_hours'] : 1,
+                    isset($_REQUEST[$name.'_minutes']) ? (int)$_REQUEST[$name.'_minutes'] : 0,
+                    isset($_REQUEST[$name.'_seconds']) ? (int)$_REQUEST[$name.'_seconds'] : 0,
+                    isset($_REQUEST[$name.'_month']) ? (int)$_REQUEST[$name.'_month'] : 1,
+                    isset($_REQUEST[$name.'_day']) ? (int)$_REQUEST[$name.'_day'] : 1,
+                    isset($_REQUEST[$name.'_year']) ? (int)$_REQUEST[$name.'_year']:date('Y')
+                );
             default :
                 if (!isset($params['datatype']))
                     $params['datatype'] = 'string';
+                if (!isset($_REQUEST[$this->params['name'].'_form'.$name])) return false;
                 switch ($params['datatype']) {
                     case 'int':
                     case 'integer':
@@ -231,6 +243,8 @@ final class AdminItemListViewer extends Input {
                         return 0;
                     case 'string':
                         return '';
+                    case 'date':
+                        return time();
                 }
         }
     }
@@ -304,8 +318,7 @@ final class AdminItemListViewer extends Input {
             $refresh = false;
             foreach ($this->params['headselectors'] as $name => $selector) {
                 /* get value */
-                if (isset($_REQUEST[$this->params['name'].'_form'.$name])) {
-                    $value = $this->get_selectorValue($name, $selector);
+                if (($value = $this->get_selectorValue($name, $selector)) !== false) {
                     if ($this->params['useSession'] == true)
                         $camyks->set_sessionValue($this->params['name'].'_form'.$name, $value);
                     $refresh = true;

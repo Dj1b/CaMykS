@@ -705,7 +705,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      */
     private function save_visit($ua=null) {
         /* define params */
-        $params = array('user_agent'=>isset($ua)?$ua : $_SERVER['HTTP_USER_AGENT']);
+        $params = array('user_agent'=>isset($ua) ? $ua : $_SERVER['HTTP_USER_AGENT']);
 
         /* initialise new object */
         $this->recordItem->initialise();
@@ -728,7 +728,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      * Return selected item list.
      * @return array
      */
-    private function get_selecteditems() {
+    private function get_selectedItems() {
         $list = array();
 
         $ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : '';

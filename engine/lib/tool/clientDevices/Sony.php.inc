@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.27
  * @date Creation: Apr 2018
- * @date Modification: Apr 2019
+ * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,8 +21,10 @@
 function get_SonyClientDevice($deviceCode='') {
     $deviceList = array(
         /* Sony tablets */
-        'SGP511'    => array('platform_model' => 'Xperia Z2 Tablet',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
-        'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SGP321'    => array('platform_model' => 'Xperia Z Tablet',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'SGP511'    => array('platform_model' => 'Xperia Z2 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'SGP621'    => array('platform_model' => 'Xperia Z3 Tablet Compact',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
 
         /* Sony phones */
         'C1505'     => array('platform_model' => 'Xperia E',                'platform_year' => 2013),
@@ -44,6 +46,7 @@ function get_SonyClientDevice($deviceCode='') {
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5823'     => array('platform_model' => 'Xperia Z5 Compact',       'platform_year' => 2015),
+        'E6533'     => array('platform_model' => 'Xperia Z3+',              'platform_year' => 2015),
         'E6633'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
         'E6653'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
         'E6683'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
@@ -57,6 +60,7 @@ function get_SonyClientDevice($deviceCode='') {
         'F5321'     => array('platform_model' => 'Xperia X Compact',        'platform_year' => 2016),
         'F8331'     => array('platform_model' => 'Xperia XZ',               'platform_year' => 2016),
         'F8332'     => array('platform_model' => 'Xperia XZ',               'platform_year' => 2016),
+        'G3112'     => array('platform_model' => 'Xperia XA1',              'platform_year' => 2017),
         'G3121'     => array('platform_model' => 'Xperia XA1',              'platform_year' => 2017),
         'G3212'     => array('platform_model' => 'Xperia XA1 Ultra',        'platform_year' => 2017),
         'G3221'     => array('platform_model' => 'Xperia XA1 Ultra',        'platform_year' => 2017),
@@ -76,7 +80,9 @@ function get_SonyClientDevice($deviceCode='') {
         'H3413'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
         'H4113'     => array('platform_model' => 'Xperia XA2',              'platform_year' => 2018),
         'H4133'     => array('platform_model' => 'Xperia XA2',              'platform_year' => 2018),
+        'H4413'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
         'H8216'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
+        'H8266'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8314'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8324'     => array('platform_model' => 'Xperia XZ2 Compact',      'platform_year' => 2018),
         'H8416'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),

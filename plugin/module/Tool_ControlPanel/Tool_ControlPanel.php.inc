@@ -1,117 +1,117 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version  	: 1.0
- * Object Type          : Plugin / Module Engine
- * Create Date    	: Jun 2005
- * Last Modif Date	: May 2008
- * History : 
- * * 05-06-xx : Initial files
- * * 08-02-xx : English localisation
- * * 08-05-28 : Update menu
- * * 08-07-02 : Rebuild main layout
- * * 08-07-31 : New category : Configuration
- *
- * ControlPanel Module
-*/
+/**
+ * @brief Tool_ControlPanel Module
+ * <br /> Default admin module, hub to website edition.
+ * @details Plugin / Module Engine
+ * @file plugin/module/Tool_ControlPanel/Tool_ControlPanel.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2005
+ * @date Modification: May 2019
+ * @copyright 2005 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-class Tool_ControlPanel extends Module {
-  /* variables */
-  var $admin_modules;
-  var $cols;
+/**
+ * Tool_ControlPanel class.
+ */
+final class Tool_ControlPanel extends Module {
 
-  /*
-   * Constructor
-   * @param string $path_type
-   */
-  function Tool_ControlPanel ( $path_type ) {
-    /* get Module generic init */
-    parent::Module('Tool_ControlPanel', $path_type);
-    /* set module type */
-    $this->type = 'tool';
-    /* set plugin version */
-    $this->version = '1.0';
-    /* set plugin package */
-    $this->plugin_package = 'System';
-    /* set plugin author */
-    $this->author_name = 'CaMykS Team';
-    $this->author_mail = 'camyks.contact@gmail.com';
-    $this->author_group = 'camyks.net';
-    
-    /* initialise plugin variables */
-    $this->admin_modules = array();
-    $this->cols = 2;
+    /**
+     * var int $cols
+     * @brief Displayed columns of modules in main layout.
+     */
+    protected $cols = 2;
 
-    /* create some admin group to order main modules */
-    $this->admin_modules['personal'] = array();
-    $this->admin_modules['content'] = array();
-    $this->admin_modules['users'] = array();
-    $this->admin_modules['configuration'] = array();
-    $this->admin_modules['monitoring'] = array();
-    $this->admin_modules['helpers'] = array();
-    $this->admin_modules['devel'] = array();
-    $this->admin_modules['specific'] = array();
-  }
-  
-  /* overwrite Module methods */
-  
-  /*
-   * init module object in admin mode
-   * @return void
-   * @access private
-   */
-  function init_admin() {
-    global $camyks;
-    /* list all modules to display */
-    foreach ( $camyks->modules as $mod_name => $mod ) {
-      /* get only admin type module */
-      if ( $mod->type == 'admin' ) {
-	/* check if module is installed */
-	if ( $mod->is_installed()!== false ) {
-	  /* check if user is able to view this module */
-	  if ( $mod->check_right ( 0 ) ) {
-	    /* check if an admin type is defined */
-	    if ( !isset ( $mod->admin_type ) ) {
-	      $mod->admin_type = 'other';
-	    }
-	    /* check if group already exists */
-	    if ( !isset ( $this->admin_modules[$mod->admin_type] ) ) {
-	      $this->admin_modules[$mod->admin_type] = array();
-	    }	    
-	    /* add module name in list */
-	    $this->admin_modules[$mod->admin_type][] = $mod_name;
-	    /* get specific init */
-	    $camyks->modules[$mod_name]->get_adminControlPanelAction();
-	  }
-	}
-      }
+    /**
+     * var array $admin_modules
+     * @brief List of available admin modules by groups.
+     */
+    protected $admin_modules = array(
+        'personal'      => array(),
+        'content'       => array(),
+        'users'         => array(),
+        'configuration' => array(),
+        'monitoring'    => array(),
+        'helpers'       => array(),
+        'devel'         => array(),
+        'specific'      => array(),
+    );
+
+    /**
+     * Class constructor.
+     * @param string $path_type
+     * @return void
+     */
+    public function __construct($path_type) {
+        parent::__construct('Tool_ControlPanel', $path_type);
+
+        /* Override Plugin variables */
+        $this->version = '1.0';
+        $this->plugin_package = 'System';
+
+        /* Override Module variables */
+        $this->type = 'tool';
+
+        /* Define plugin author */
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
     }
-  }
-  
-  /*
-   * display module object in admin mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
 
-  /*
-   * return menu item to be registered
-   * @return array
-   * @access private
-   */
-  function get_adminEngineGenericMenuItems ( ) {
-    global $camyks;
-    return array(array('menu' => 'admin',
-		       'name'=>'homepanel', 
-		       'title' => $this->get_translation('adminhome'),
-		       'url' => $camyks->get_adminLink($this->name),
-		       'icon'=>$this->get_fileURL('img/icon12.gif')));
-  }
+    /* Override Module methods */
+
+    /**
+     * Initialise module object in admin mode.
+     * @return void
+     */
+    public function init_admin() {
+        global $camyks;
+
+        /* List all modules to display */
+        foreach ($camyks->modules as $mod_name => $mod) {
+            /* Keep only admin type module */
+            if ($mod->type == 'admin') {
+                /* Check if module is installed */
+                if ($mod->is_installed()!== false) {
+                    /* Check if user is able to view this module */
+                    if ($mod->check_right(0)) {
+                        /* Check if an admin type is defined */
+                        if (!isset($mod->admin_type)) {
+                            $mod->admin_type = 'other';
+                        }
+
+                        /* Check if group already exists */
+                        if (!isset ($this->admin_modules[$mod->admin_type])) {
+                            $this->admin_modules[$mod->admin_type] = array();
+                        }
+
+                        /* Add module name in list */
+                        $this->admin_modules[$mod->admin_type][] = $mod_name;
+
+                        /* Load specific init */
+                        $camyks->modules[$mod_name]->get_adminControlPanelAction();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Return menu items to be registered.
+     * @return array
+     */
+    public function get_adminEngineGenericMenuItems() {
+        return array(
+            array(
+                'menu'  => 'admin',
+                'name'  => 'homepanel',
+                'title' => $this->get_translation('adminhome'),
+                'url'   => $this->get_adminLink(),
+                'icon'  => $this->get_fileURL('img/icon12.gif'),
+            ),
+        );
+    }
 }
 ?>

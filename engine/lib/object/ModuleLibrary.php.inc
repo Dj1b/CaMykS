@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/ModuleLibrary.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Mar 2007
- * @date Modification: Jul 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: May 2019
+ * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details  Use to manage localised (or not) content from database, files or text objects
@@ -441,8 +441,8 @@ abstract class ModuleLibrary {
             $sql .= '`'.$n.'`';
         }
         $sql .= ') VALUES (';
-       $isfirst = true;
-       foreach ($this->_libItemTypes['db'] as $n) {
+        $isfirst = true;
+        foreach ($this->_libItemTypes['db'] as $n) {
             if ($isfirst) {
                 $isfirst = false;
             } else {
@@ -459,6 +459,47 @@ abstract class ModuleLibrary {
             $this->id = $this->get_DBQueryGeneratedId();
             return true;
         }
+        return false;
+    }
+
+    /**
+     * Create multi object instances into database.
+     * @param array $keys
+     * @param array $values
+     * @return boolean success
+     */
+    protected function insert_multiObjectsDatabaseItems($keys, $values) {
+        global $camyks;
+
+        /* Check keys */
+        foreach ($keys as $key)
+            if (!in_array($key, $this->_libItemTypes['db']))
+                return false;
+
+        /* Check objects */
+        $objects = array();
+        foreach ($values as $value) {
+            $v = array();
+            foreach ($keys as $key) {
+                $this->_libItems[$key]->value = $value[$key];
+                $v[] = $this->_libItems[$key]->get_databaseValue();
+            }
+            $objects[] = '('.implode(',', $v).')';
+        }
+        if (count($objects) === 0)
+            return false;
+
+        /* build sql query */
+        $sql = 'insert into `'.$this->_libSQLTable.'` (`';
+        $sql .= implode('`, `', $keys);
+        $sql .= '`) VALUES';
+        $sql .= implode(',', $objects);
+        $sql .= $this->get_DBInsertExtra();
+        $sql .= ';';
+
+        /* return result of sql query execution */
+        if ($this->execute_DBQuery($sql, __LINE__))
+            return true;
         return false;
     }
 

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.19
  * @date Creation: May 2018
- * @date Modification: Apr 2019
+ * @date Modification: May 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -297,6 +297,16 @@ function _client_getKnownTools() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'wkhtmltoimage',
         'tool_url'          => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* khtml2png */
+    $knownTools['khtml2png'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'khtml2png',
+        'tool_url'          => 'https://github.com/xsuchy/khtml2png',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -1179,6 +1189,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Scamadviser',
         'engine_url'        => 'https://www.scamadviser.com/',
+    );
+
+    /* PTST */
+    $knownTools['ptst'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'SpeedCurve Speed Tester',
+        'tool_url'          => '',
+        'engine_title'      => 'SpeedCurve',
+        'engine_url'        => 'https://speedcurve.com',
     );
 
     /* return list */

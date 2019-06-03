@@ -1,16 +1,16 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	    	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type	    : Plugin / Module Dictionnary
- * Creation Date    : Jul 2017
- * Last Modif Date  : Jul 2017
- *
- * Admin_SystemNotifications french dictionnary
-*/
+/**
+ * @brief Admin_SystemNotifications Module french dictionnary.
+ * @details Plugin / Module layout
+ * @file plugin/module/Admin_SystemNotifications/locale/translation_fr.php.inc
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2017
+ * @date Modification: May 2019
+ * @copyright 2017 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_systemnotifications_title'] = 'Notifications Internes';
 $this->trads['mod_admin_systemnotifications_desc'] = 'Rassemble les notifications';
 $this->trads['mod_admin_systemnotifications_descdate'] = 'Derni&egrave;re v&eacute;rification %s';
@@ -42,14 +42,14 @@ $this->trads['mod_admin_systemnotifications_modulemode_master'] = 'Ma&icirc;tre'
 $this->trads['mod_admin_systemnotifications_accessstatus_disabled'] = 'D&eacute;sactiv&eacute;';
 $this->trads['mod_admin_systemnotifications_accessstatus_enabled'] = 'Activ&eacute;';
 
-
 /* admin configuration access authentication values */
 $this->trads['mod_admin_systemnotifications_accessauthentication_none'] = 'Aucune';
 $this->trads['mod_admin_systemnotifications_accessauthentication_credentials'] = 'Identifiants/Mot de passe';
-$this->trads['mod_admin_systemnotifications_accessauthentication_ipaddress'] = 'Addresse IP';
+$this->trads['mod_admin_systemnotifications_accessauthentication_ipaddress'] = 'Adresse IP';
 
 /* admin main : follow up tab */
 $this->trads['mod_admin_systemnotifications_tabfollowup'] = 'Suivi';
+$this->trads['mod_admin_systemnotifications_check_now'] = 'V&eacute;rifier maintenant';
 $this->trads['mod_admin_systemnotifications_lastcheckdate'] = 'Derni&egrave;re v&eacute;rification le %s';
 $this->trads['mod_admin_systemnotifications_nonotifications'] = 'Aucune notification';
 
@@ -83,20 +83,27 @@ $this->trads['mod_admin_systemnotifications_tabproperties'] = 'Propri&eacute;t&e
 $this->trads['mod_admin_systemnotifications_formitem_url'] = 'URL : ';
 $this->trads['mod_admin_systemnotifications_formitem_password'] = 'Mot de passe : ';
 
-/* admin save website messages */
+/* admin save website */
 $this->trads['mod_admin_systemnotifications_website_saved'] = 'Site internet enregistr&eacute;.';
 $this->trads['mod_admin_systemnotifications_website_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de ce site internet.';
 
-/* admin delete website messages */
+/* admin delete website */
 $this->trads['mod_admin_systemnotifications_website_deleted'] = 'Site internet supprim&eacute;.';
 $this->trads['mod_admin_systemnotifications_website_notdeleted'] = 'Une erreur est survenue lors de la suppression de ce site internet.';
+
+/* admin check website */
+$this->trads['mod_admin_systemnotifications_websites_checked'] = 'Sites internet v&eacute;rifi&eacute;s.';
+
+/* admin check website */
+$this->trads['mod_admin_systemnotifications_website_checked'] = 'Site internet v&eacute;rifi&eacute;.';
 
 /* generic request errors */
 $this->trads['mod_admin_systemnotifications_requesterror_requestfailed'] = 'Une erreur est survenue lors de la requ&ecirc;te.';
 $this->trads['mod_admin_systemnotifications_requesterror_undefinedaction'] = 'Aucune action d&eacute;finie.';
 
 /* load notification request errors */
+$this->trads['mod_admin_systemnotifications_requesterror_connectionfailed'] = 'Connexion au site &eacute;chou&eacute;e.';
+$this->trads['mod_admin_systemnotifications_requesterror_nodatasent'] = 'Aucune donn&eacute;e transmise.';
 $this->trads['mod_admin_systemnotifications_requesterror_accessdisabled'] = 'Acc&egrave;s d&eacute;sactiv&eacute;.';
 $this->trads['mod_admin_systemnotifications_requesterror_authenticationfailed'] = 'Authentification &eacute;chou&eacute;e.';
-
 ?>

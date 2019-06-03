@@ -1,16 +1,15 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Scripts
- * Creation Date	: Jul 2017
- * Last Modif Date	: Jul 2017
- * 
- * Admin_SystemNotifications configuration editor script
+/**
+ * @brief Admin_SystemNotifications Module configuration editor scripts
+ * @details Plugin / Module javascripts
+ * @file plugin/module/Admin_SystemNotifications/js/ConfigEditor.js
+ * @author CaMykS Team
+ * @version 1.0
+ * @date Creation: Jul 2017
+ * @date Modification: May 2019
+ * @copyright 2017 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
 function ConfigEditor(name) {
   this.name = name;
   this.params = {};
@@ -30,7 +29,7 @@ function ConfigEditor(name) {
     else
       this.params[param] = value;
   };
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -44,9 +43,9 @@ function ConfigEditor(name) {
       return this.params[param]
     return false;
   };
-  
+
   /*
-   * set locale value 
+   * set locale value
    * @param string name
    * @param string value
    * @return void
@@ -55,9 +54,9 @@ function ConfigEditor(name) {
   this.set_locale = function(name, value) {
     this.locales[name.toLowerCase()] = value;
   };
-  
+
   /*
-   * get locale value 
+   * get locale value
    * @param string name
    * @return void
    * @access public
@@ -67,20 +66,20 @@ function ConfigEditor(name) {
       return this.locales[name.toLowerCase()];
     return name;
   };
-  
-  /* 
+
+  /*
    * initialise object
    * @return void
    * @access public
    */
   this.initialise = function() {
-  
+
     this.set_param('form', document.getElementById(this.get_param('form')));
-  	
+
 	/* finalise initialisation */
     this.loaded = true;
   };
-  
+
   /*
    * on authentication select change handler
    * @return void
@@ -92,13 +91,13 @@ function ConfigEditor(name) {
       document.getElementById('accessCredentials').style.display = 'block';
     else
       document.getElementById('accessCredentials').style.display = 'none';
-    
+
     if (value == 2)
       document.getElementById('accessAddressIP').style.display = 'block';
     else
       document.getElementById('accessAddressIP').style.display = 'none';
   };
-  
+
   /*
    * on module mode select change handler
    * @return void

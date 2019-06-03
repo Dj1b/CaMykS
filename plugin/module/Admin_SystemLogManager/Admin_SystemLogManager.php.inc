@@ -15,7 +15,6 @@
 
 /**
  * Admin_SystemLogManager Module class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class Admin_SystemLogManager extends Module {
     /**
@@ -153,7 +152,7 @@ final class Admin_SystemLogManager extends Module {
 
         parent::init_admin();
     }
-  
+
     /*
      * execute module object in request mode
      * @return void
@@ -167,10 +166,10 @@ final class Admin_SystemLogManager extends Module {
             'title'         => $this->get_translation('requesterror_requestfailed'),
             'description'   => $this->get_translation('requesterror_undefinedaction'),
         );
-    
+
         /* load mode to execute */
         $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
-    
+
         /* execute mode */
         switch ($mode) {
             case 'downloadLogFile':
@@ -251,13 +250,13 @@ final class Admin_SystemLogManager extends Module {
                 $this->selection['file'] = '';
             else {
                 $this->currentFileContent = file_getContent($this->get_varFilePath('logs/'.$this->selection['log'].'/'.$this->selection['file'].'.log.inc'));
-                
+
                 if ($this->selection['filter'] != '') {
-                    
+
                     $filter = string_escape4Regex($this->selection['filter']);
-                    
+
                     preg_match_all('/^.*'.$filter.'.*$/mi', $this->currentFileContent, $matches);
-                    
+
                     $this->currentFileContent = implode("\n", $matches[0]);
                 }
             }
@@ -388,35 +387,35 @@ final class Admin_SystemLogManager extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Configuration')));
     }
-  
+
     /* request mode methods */
-  
+
     /**
      * Execute module object in request/downloadLogFile mode.
      * @return void
      */
     private function execute_request_downloadLogFile() {
         global $camyks;
-    
+
         /* initialise CaMykS in site mode */
         $camyks->get_adminInit();
-        
+
         /* check admin user */
         if ($camyks->check_adminUser() === false)
             return false;
-        
+
         /* check admin user permissions */
         if ($this->check_right(1) === false)
             return false;
-        
+
         /* load file params from session */
         $this->selection = $camyks->get_sessionValue('logManagerSelection', array('log'=>'', 'file'=>'', 'filter'=>''));
-        
+
         /* build file path */
         $file = new FSFile($this->get_varFilePath('logs/'.$this->selection['log'].'/'.$this->selection['file'].'.log.inc'));
         if (!$file->exists)
           return false;
-        
+
         /* Send file to visitor */
         $file->download($this->selection['file'].'.log');
     }

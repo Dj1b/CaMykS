@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.15
  * @date Creation: Jun 2005
- * @date Modification: Mar 2019
+ * @date Modification: May 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -267,7 +267,7 @@ final class Camyks {
      * @var array $eventsHandlers
      * @brief CaMykS event handlers.
      */
-    private $eventsHandlers;
+    private $eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onTerminate'=>array());
 
     /**
      * @var boolean $falseRef
@@ -292,17 +292,16 @@ final class Camyks {
         $this->site_conf = $site_conf;
         $this->site_name = $site_conf['site_name'];
         $this->camyks_path = realpath($site_conf['engine_path']);
-        if (isset($this->site_conf['installed']) and $this->site_conf['installed']==1) {
+        if (isset($this->site_conf['installed']) and $this->site_conf['installed'] == 1) {
             $this->mode = $mode;
         } else {
             $this->mode = CAMYKS_MODE_INSTALL;
         }
-        $this->eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onTerminate'=>array());
 
         /* load request vars */
         $this->benchMode = $this->get_executionVariable('_cBench');
 
-        /* register shutdown function    */
+        /* register shutdown function */
         register_shutdown_function(array($this, 'terminate'));
     }
 
@@ -315,6 +314,7 @@ final class Camyks {
     public function execute() {
         /* init camyks object */
         $this->initialise();
+
         /* build content with CaMykS engine object */
         $this->get_pageContent();
     }
@@ -673,17 +673,22 @@ final class Camyks {
         switch ($value) {
             case 'forced':
                 if ($isSSL) return;
+                header("HTTP/1.1 301 Moved Permanently");
                 header('Location:'.$sslURL.$_SERVER['REQUEST_URI']);
+                die();
                 break;
             case 'none':
                 if (!$isSSL) return;
+                header("HTTP/1.1 301 Moved Permanently");
                 header('Location:http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+                die();
                 break;
             case 'auto':
                 if ($isSSL) return;
                 $test = get_headers('https://'.$_SERVER['HTTP_HOST']);
                 if (preg_match('/200/', $test[0])) {
                     header('Location:'.$sslURL.$_SERVER['REQUEST_URI']);
+                    die();
                 }
                 break;
             case 'default': default:
@@ -1478,15 +1483,19 @@ final class Camyks {
      * @return void
      */
     public function update_siteStatistics() {
-        /* update global statistics in site mode only */
+        /* Update global statistics in site mode only */
         if ($this->mode != CAMYKS_MODE_SITE)
             return;
 
-        /* update global statistics for visitors only */
+        /* Update global statistics for visitors only */
         if ($this->check_adminUser() === true)
             return;
 
-        /* update global statistics only if statistic engine is available */
+        /* Check current page status */
+        if ($this->contentPage->status != 200)
+            return;
+
+        /* Update global statistics only if statistic engine is available */
         if (isset($this->modules['Admin_Statistics']))
             $this->modules['Admin_Statistics']->update_siteStatistics();
     }

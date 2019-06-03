@@ -4,9 +4,9 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Dec 2014
- * @date Modification: Jan 2019
+ * @date Modification: May 2019
  * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -51,7 +51,7 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
             $search[] = '(status ='.$params['status'].')';
 
         if (isset($params['user_agent']) and $params['user_agent'] != '')
-            $search[] = '(user_agent like "%'.$params['user_agent'].'%")';
+            $search[] = '(user_agent like "%'.addslashes($params['user_agent']).'%")';
 
         if (isset($params['platform_type']) and $params['platform_type'] != '-1') {
             if ($params['platform_type'] == 'other')
@@ -189,11 +189,11 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
         /* check user agent */
         if ($params['user_agent'] != '')
-            $w[] = '(user_agent like "%'.$params['user_agent'].'%")';
+            $w[] = '(user_agent like "%'.addslashes($params['user_agent']).'%")';
 
         /* check user agent */
         if ($params['platform_type'] != '')
-            $w[] = '(platform_type = "'.$params['platform_type'].'")';
+            $w[] = '(platform_type = "'.addslashes($params['platform_type']).'")';
 
         return implode(' and ', $w);
     }
@@ -204,8 +204,14 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
      * @return int
      */
     public function count($params=array()) {
-        $p = array('user_agent'=>'', 'platform_type'=>'', 'status'=>-1);
-        $params = array_merge($p, $params);
+
+        /* default params list */
+        $dParams = array('user_agent'=>'', 'platform_type'=>'', 'status'=>-1);
+
+        /* merge params */
+        $params = array_merge($dParams, $params);
+
+        /* return object count */
         return $this->get_objectCount($this->build_whereStatement($params));
     }
 
@@ -215,16 +221,17 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
      * @return array
      */
     public function get_list($params=array()) {
-        global $camyks;
-
         /* default params list */
         $dParams = array('user_agent'=>'', 'platform_type'=>'','status'=>-1, 'limit'=>-1, 'count'=>-1, 'order'=>'lvisit', 'orderway'=>'desc');
+
         /* merge params */
         $params = array_merge($dParams, $params);
+
         /* build where statement */
-        $w = $this->build_whereStatement($params);
+        $where = $this->build_whereStatement($params);
+
         /* return list */
-        return $this->get_objectList(false, $w, $params['limit'], $params['count'], $params['order'], $params['orderway']);
+        return $this->get_objectList(false, $where, $params['limit'], $params['count'], $params['order'], $params['orderway']);
     }
 
     /**

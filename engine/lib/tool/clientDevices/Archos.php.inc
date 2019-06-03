@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Apr 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: May 2019
+ * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -43,9 +43,11 @@ function get_ArchosClientDevice($deviceCode='') {
         '70 Oxygen'                 => array('platform_model' => '70 Oxygen',               'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),
 
         /* Archos phones */
+        'A40TI'                     => array('platform_model' => '40 Titanium',             'platform_year' => 2013),
+        'A50TI'                     => array('platform_model' => '50 Titanium',             'platform_year' => 2013),
         'AC50CE'                    => array('platform_model' => '50 Cesium',               'platform_year' => 2015),
-        '45BHE'                     => array('platform_model' => '45b Helium',              'platform_year' => 2015),
-        '50BHE'                     => array('platform_model' => '50b Helium',              'platform_year' => 2015),
+        'AC45BHE'                   => array('platform_model' => '45b Helium',              'platform_year' => 2015),
+        'AC50BHE'                   => array('platform_model' => '50b Helium',              'platform_year' => 2015),
 
         '50 Oxygen'                 => array('platform_model' => '50 Oxygen',               'platform_year' => 2013),
         '50b Oxygen'                => array('platform_model' => '50b Oxygen',              'platform_year' => 2014),

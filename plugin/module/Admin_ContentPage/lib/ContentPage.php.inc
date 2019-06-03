@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1
+ * @version 1.1.2
  * @date Creation: Jun 2005
- * @date Modification: Feb 2019
+ * @date Modification: May 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -185,6 +185,12 @@ final class ContentPage {
     public $maxmodules;
 
     /**
+     * var integer $status
+     * @brief HTTP status of the page.
+     */
+    public $status = 200;
+
+    /**
      * Class constructor.
      * @param integer $mode
      * @param integer $id
@@ -270,6 +276,7 @@ final class ContentPage {
 
         /* log URL */
         $camyks->log('Error404', 'Page not found', '"'. $_SERVER['REQUEST_URI'] .'"');
+        $this->status = 404;
 
         /* check for 404 header sending */
         if ($this->get_configValue('page_404SendHeader') == 1)
