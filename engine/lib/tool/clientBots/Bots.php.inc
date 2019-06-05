@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.37
+ * @version 1.0.38
  * @date Creation: May 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4262,6 +4262,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://vuhuv.com/bot.html',
         'engine_title'      => 'Vuhuv',
         'engine_url'        => 'https://vuhuv.com.tr',
+    );
+
+    /* grammarly */
+    $knownBots['grammarly'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Grammarly',
+        'engine_url'        => 'https://www.grammarly.com',
     );
 
     /* return bot list */

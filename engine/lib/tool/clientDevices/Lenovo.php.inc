@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Apr 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,14 +25,17 @@ function get_LenovoClientDevice($deviceCode='') {
         'B8000-F'               => array('platform_model' => 'Yoga',                'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2013),
         'B8080-F'               => array('platform_model' => 'Yoga 10 HD+',         'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'Tablet 2-830F'         => array('platform_model' => 'Yoga Tab 2',          'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
+        'Tablet 2-1050F'        => array('platform_model' => 'Yoga Tablet 2 10',    'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'Tablet 2 Pro-1380F'    => array('platform_model' => 'Yoga Tablet 2 Pro',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'A5500'                 => array('platform_model' => 'A8-50',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'PB1-770P'              => array('platform_model' => 'PHAB Plus',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'Tab2A710F'             => array('platform_model' => 'Tab 2 A7',            'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'TAB 2 A10-70LC'        => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
+        'YT3-X90F'              => array('platform_model' => 'Yoga Tab 3 Pro 10',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'YB1-X90F'              => array('platform_model' => 'Yoga Book',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'YT3-X50F'              => array('platform_model' => 'Yoga Tab 3',          'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'YT-X703F'              => array('platform_model' => 'Yoga Tab 3 Plus',     'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
+        'TB3-710F'              => array('platform_model' => 'Tab 3 7\'',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'TB3-850F'              => array('platform_model' => 'Tab 3 8\'',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-X304F'              => array('platform_model' => 'Tab 4',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
 

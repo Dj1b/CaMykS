@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: May 2018
- * @date Modification: Apr 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -627,8 +627,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['akka-http'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'akka-http',
-        'bot_url'           => '',
+        'tool_title'        => 'akka-http',
+        'tool_url'          => '',
         'engine_title'      => 'akka',
         'engine_url'        => 'https://akka.io/',
     );
@@ -637,8 +637,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['microsoft url control'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'Microsoft URL Control',
-        'bot_url'           => '',
+        'tool_title'        => 'Microsoft URL Control',
+        'tool_url'          => '',
         'engine_title'      => 'Microsoft',
         'engine_url'        => 'https://www.microsoft.com/',
     );
@@ -647,8 +647,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['4d_http_client'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => '4D HTTP Client',
-        'bot_url'           => '',
+        'tool_title'        => '4D HTTP Client',
+        'tool_url'          => '',
         'engine_title'      => '4D',
         'engine_url'        => 'http://www.4d.com',
     );
@@ -657,8 +657,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['node-fetch'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'node-fetch',
-        'bot_url'           => 'https://github.com/bitinn/node-fetch',
+        'tool_title'        => 'node-fetch',
+        'tool_url'          => 'https://github.com/bitinn/node-fetch',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -667,8 +667,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['check_http'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'check_http',
-        'bot_url'           => 'https://nagios-plugins.org/doc/man/check_http.html',
+        'tool_title'        => 'check_http',
+        'tool_url'          => 'https://nagios-plugins.org/doc/man/check_http.html',
         'engine_title'      => 'Nagios Plugins',
         'engine_url'        => 'https://nagios-plugins.org',
     );
@@ -677,8 +677,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['fasthttp'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'fasthttp',
-        'bot_url'           => 'https://github.com/valyala/fasthttp',
+        'tool_title'        => 'fasthttp',
+        'tool_url'          => 'https://github.com/valyala/fasthttp',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -687,8 +687,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['reqwest'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'reqwest',
-        'bot_url'           => 'https://docs.rs/reqwest/',
+        'tool_title'        => 'reqwest',
+        'tool_url'          => 'https://docs.rs/reqwest/',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -697,8 +697,18 @@ function _client_getKnownGenericsL2() {
     $knownGenerics['unfurlist'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'unfurlist',
-        'bot_url'           => 'https://github.com/Doist/unfurlist',
+        'tool_title'        => 'unfurlist',
+        'tool_url'          => 'https://github.com/Doist/unfurlist',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* feedfinder2 */
+    $knownGenerics['feedfinder2'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Feedfinder2',
+        'tool_url'          => '',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -707,8 +717,8 @@ function _client_getKnownGenericsL2() {
     $knownGenerics[' obot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'oBot',
-        'bot_url'           => 'http://filterdb.iss.net/crawler/',
+        'tool_title'        => 'oBot',
+        'tool_url'          => 'http://filterdb.iss.net/crawler/',
         'engine_title'      => 'IBM Germany Research & Development GmbH',
         'engine_url'        => '',
     );

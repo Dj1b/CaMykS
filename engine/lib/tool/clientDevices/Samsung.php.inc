@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: Apr 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -118,6 +118,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G950'   => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G9500'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G950F'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
+        'SM-G950U'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G950W'  => array('platform_model' => 'Galaxy S8',                       'platform_year' => 2017),
         'SM-G9550'  => array('platform_model' => 'Galaxy S8+',                      'platform_year' => 2017),
         'SM-G955F'  => array('platform_model' => 'Galaxy S8+',                      'platform_year' => 2017),
@@ -162,6 +163,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A900F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2016),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
         'SM-A920F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2018),
+        'SM-A505F'  => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
 
         /* Samsung Galaxy C series */
         'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),
@@ -182,6 +184,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J120H'  => array('platform_model' => 'Galaxy J1',                       'platform_year' => 2016),
         'SM-J106H'  => array('platform_model' => 'Galaxy J1 Mini Prime',            'platform_year' => 2016),
         'SM-J200F'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
+        'SM-J200G'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J200H'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J200M'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J260F'  => array('platform_model' => 'Galaxy J2 Core',                  'platform_year' => 2018),

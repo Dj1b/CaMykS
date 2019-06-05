@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.39
+ * @version 1.0.40
  * @date Creation: Apr 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,6 +64,7 @@ function get_HuaweiClientDevices() {
         'CLT-L04'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
+        'MAR-LX1A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'FIG-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'FIG-LX3'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'INE-LX1'   => array('platform_model' => 'P Smart+',        'platform_year' => 2018),
@@ -123,7 +124,8 @@ function get_HuaweiClientDevices() {
         'H1611'     => array('platform_model' => 'Ascend XT',       'platform_year' => 2016),
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
         'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
-        'CUN-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2016),
+        'CUN-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2015),
+        'Y560-L01'  => array('platform_model' => 'Y5',              'platform_year' => 2015),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
         'SCL-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
@@ -146,6 +148,7 @@ function get_HuaweiClientDevices() {
         'NMO-L31'   => array('platform_model' => 'GT3',             'platform_year' => 2016),
         'BLL-L22'   => array('platform_model' => 'GR5',             'platform_year' => 2017),
         'CAN-L11'   => array('platform_model' => 'Nova',            'platform_year' => 2016),
+        'MLA-L12'   => array('platform_model' => 'Nova Plus',       'platform_year' => 2016),
         'PRA-LX2'   => array('platform_model' => 'Nova Lite',       'platform_year' => 2017),
         'PIC-AL00'  => array('platform_model' => 'Nova 2',          'platform_year' => 2017),
         'PIC-LX9'   => array('platform_model' => 'Nova 2',          'platform_year' => 2017),
