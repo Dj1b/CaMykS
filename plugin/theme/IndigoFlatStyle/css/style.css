@@ -3,10 +3,10 @@
  * @details Plugin / Theme CSS styles
  * @file plugin/theme/IndigoFlatStyle/css/style.css
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Oct 2014
- * @date Modification: Aug 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jun 2019
+ * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -38,7 +38,7 @@ option.separator {color:#ababab; padding:0 4px; font-size:1px; height:4px; borde
 .vsinputs{width:75px;} select.vsinputs{width:85px;} div.vsinputs{display:inline-block; width:85px; width:83px; background:url(../img/form/selectArrow.gif) 100% 0 no-repeat white; overflow:hidden;}
 .vlinputs {width:98%;} div.vlinputs{display:inline-block;}
 form {margin:0;}
-label {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; cursor:default;}
+label {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; cursor:default; margin-left:8px;}
 input[type=radio]:checked + label {color:#6a798b;}
 input[type="checkbox"] + label {margin:0 20px 0 8px; display:inline-block;}
 .inputHeight {height:20px;}
