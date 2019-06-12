@@ -1,14 +1,14 @@
 <?php
 /**
- * @brief ReCaptcha Input
+ * @brief SocialNetworksSharingPanel Input.
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @file plugin/input/SocialNetworksSharingPanel/SocialNetworksSharingPanel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Nov 2009
- * @date Modification: Jul 2018
- * @copyright 2009 - 2018 CaMykS Team
+ * @date Modification: Jun 2019
+ * @copyright 2009 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,36 +45,36 @@ final class SocialNetworksSharingPanel extends Input {
         global $camyks;
         parent::__construct('SocialNetworksSharingPanel', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load networks */
+        /* Load networks */
         $this->initialise_networkList();
 
-        /* load configuration library */
+        /* Load configuration library */
         $this->load_library('SocialNetworksSharingPanelConfig');
 
-        /* load config */
+        /* Load configuration */
         $this->config = new SocialNetworksSharingPanelConfig('config', $this);
         $this->config->get();
 
-        /* check for automatique adding */
+        /* Check for automatic insertion */
         if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['follow_insertion'] == 1) {
             $this->register_asCaMykSEventHandler('onPageLoad');
             $this->register_asCaMykSEventHandler('onBodyClose');
         }
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Override Input methods */
 
     /**
      * Initialise input.
@@ -108,7 +108,7 @@ final class SocialNetworksSharingPanel extends Input {
         parent::display();
     }
 
-    /* Overwrite Plugin methods */
+    /* Override Plugin methods */
 
     /**
      * Execute handler on body closing.
@@ -146,7 +146,7 @@ final class SocialNetworksSharingPanel extends Input {
         return '';
     }
 
-    /* specific initialise mode methods */
+    /* Specific initialise mode methods */
 
     /**
      * Initialise input in share mode.
@@ -160,22 +160,24 @@ final class SocialNetworksSharingPanel extends Input {
         $this->currentIndex = 0;
 
         /* set initial params */
-        $this->iparams = array('text'=>'',
-                 'block_class'=>'SNSP share',
-                 'text_class'=>'',
-                 'separator'=>'&#124;',
-                 'title'=>'',
-                 'link'=>'',
-                 'shortlink'=>'',
-                 'summary'=>'',
-                 'image'=>'',
-                 'type'=>'',
-                 'sitename'=>$camyks->get_confValue('site_title'),
-                 'enable_poppanel'=>1,
-                 'theme'=>$camyks->get_confValue('site_default_theme'),
-                 'include_ogmetas'=>0,
-                 'networks'=>array(0, 0, 0),
-                 'locale'=>$camyks->current_language);
+        $this->iparams = array(
+            'text'=>'',
+            'block_class'       => 'SNSP share',
+            'text_class'        => '',
+            'separator'         => '&#124;',
+            'title'             => '',
+            'link'              => '',
+            'shortlink'         => '',
+            'summary'           => '',
+            'image'             => '',
+            'type'              => '',
+            'sitename'          => $camyks->get_confValue('site_title'),
+            'enable_poppanel'   => 1,
+            'theme'             => $camyks->get_confValue('site_default_theme'),
+            'include_ogmetas'   => 0,
+            'networks'          => array(0, 0, 0),
+            'locale'            => $camyks->current_language,
+        );
 
         /* merge params */
         $this->iparams = array_merge($this->iparams, $params);
@@ -295,18 +297,18 @@ final class SocialNetworksSharingPanel extends Input {
      * @return string
      */
     protected function get_networkURL($network, $mode) {
-        switch($network) {
-                case 'twitter':
-                    if ($this->dparams['shortlink'] != '')
-                        $link = $this->dparams['shortlink'];
-                    else
-                        $link = $this->dparams['link'];
+        switch ($network) {
+            case 'twitter':
+                if ($this->dparams['shortlink'] != '')
+                    $link = $this->dparams['shortlink'];
+                else
+                    $link = $this->dparams['link'];
 
-                    $txtLength = 143 - strlen($link);
-                    $title = string_getShortenedSentence(urlencode($this->dparams['title']), $txtLength);
-                    return vsprintf($this->networks[$network][$mode], $title.'+'.$link);
-                case 'email':
-                    return preg_replace(array('/_title_/', '/_link_/', '/_ln_/'), array($this->dparams['title'], $this->dparams['link'], '%0d%0a'), $this->networks[$network][$mode]);
+                $txtLength = 143 - strlen($link);
+                $title = string_getShortenedSentence(urlencode($this->dparams['title']), $txtLength);
+                return vsprintf($this->networks[$network][$mode], $title.'+'.$link);
+            case 'email':
+                return preg_replace(array('/_title_/', '/_link_/', '/_ln_/'), array($this->dparams['title'], $this->dparams['link'], '%0d%0a'), $this->networks[$network][$mode]);
         }
         return vsprintf(
             $this->networks[$network][$mode],
@@ -365,7 +367,7 @@ final class SocialNetworksSharingPanel extends Input {
                 'follow'    => 1,
             ),
 
-            /* add google+ */
+            /* add google+ *
             'gplus' => array(
                 'title'     => 'Google +',
                 'link'      => 'https://plus.google.com/share?url=%1$s',
@@ -566,7 +568,7 @@ final class SocialNetworksSharingPanel extends Input {
         global $camyks;
 
         /* prepare tabs */
-        $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+        $this->tabBuilder = $camyks->get_input('TabBuilder');
 
         /* add tabs */
         $this->tabBuilder->add_tabs(array(
@@ -609,7 +611,7 @@ final class SocialNetworksSharingPanel extends Input {
         $this->likeValues = $this->config->get_networkLikeList();
 
         /* prepare tabs */
-        $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+        $this->tabBuilder = $camyks->get_input('TabBuilder');
 
         /* add tabs */
         $this->tabBuilder->add_tabs(array(
