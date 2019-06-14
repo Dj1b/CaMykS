@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.72
+ * @version 1.0.73
  * @date Creation: Jun 2007
  * @date Modification: Jun 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -364,12 +364,10 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
-    } elseif (preg_match('/L[G|M]-([A-Z][0-9]{3}[A-Z]?)/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*)/', $ua, $matches)) {
+    } elseif (preg_match('/L[G|M]-([A-Z]{1,2}[0-9]{3}[A-Z]?)/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*)/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
-    }
-
-    elseif (preg_match('/ (VS[0-9]{3}) Build/', $ua, $matches)) {
+    } elseif (preg_match('/ (VS[0-9]{3}) Build/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
     }
@@ -466,7 +464,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Sony mobiles and tablets */
-    elseif (preg_match('/ ([C-H][0-9]{4})( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ ([C-I][0-9]{4})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Sony.php.inc');
         $infos = array_merge($infos, get_SonyClientDevice($matches[1]));
     }
@@ -475,6 +473,10 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_SonyClientDevice($matches[0]));
     }
     elseif (preg_match('/ (SGP[0-9a-zA-Z]{3,})( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Sony.php.inc');
+        $infos = array_merge($infos, get_SonyClientDevice($matches[1]));
+    }
+    elseif (preg_match('/ (LT28i)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Sony.php.inc');
         $infos = array_merge($infos, get_SonyClientDevice($matches[1]));
     }
@@ -601,7 +603,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Doogee devices, to be inserted before Xiaomi/Wiko */
-    elseif (preg_match('/ (MIX Lite|BL5000|S90)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ (MIX Lite|BL5000|S90|X70)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -661,7 +663,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Lava Iris devices */
-    elseif (preg_match('/ (Iris[A-Z0-9\+]+|Z50|A48_8GB)( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/ (Iris[A-Z0-9\+]+|Z50|A48_8GB|K1plus)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Lava.php.inc');
         $model = strtolower($matches[1]);
         $infos = array_merge($infos, get_LavaClientDevice($model));
@@ -1029,7 +1031,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Crosscall devices */
-    elseif (preg_match('/(Action|Trekker|Odyssey)(\-|_| )([0-9\ A-Z]+)( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/(Action|Trekker|Odyssey|Core)(\-|_| )([0-9\ A-Z]+)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Crosscall.php.inc');
         $infos = array_merge($infos, get_CrosscallClientDevice(strtolower($matches[1].'-'.$matches[3])));
     }
@@ -1511,7 +1513,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check unsmartly written browser, non case sensitive */
-    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LBBROWSER'=>'Liebao', 'LinkedInApp'=>'LinkedIn App');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -2502,11 +2504,11 @@ function _client_getUAPropertiesMaxVersions() {
             'Android'           => '11',                    // current is 9.x.x
         ),
         'browser' => array(
-            'Firefox'           => '70',                    // current is 66
-            'Chrome'            => '79',                    // current is 74
-            'Chromium'          => '79',                    // current is 74
+            'Firefox'           => '71',                    // current is 67
+            'Chrome'            => '80',                    // current is 75
+            'Chromium'          => '80',                    // current is 75
             'Internet Explorer' => '11.0.50',               // latest
-            'Edge'              => '79',                    // current is 74 (following chromium)
+            'Edge'              => '80',                    // current is 75 (following chromium)
             'Opera'             => '65',                    // current is 60
             'Safari'            => '16',                    // current is 12.0.2
         ),
@@ -2526,6 +2528,10 @@ function _client_isOnePlusDevice($ua='') {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[1].$matches[2]))
           return $matches[1].$matches[2];
+    } elseif (preg_match('/ (GM[0-9]{4})( Build|\))/i', $ua, $matches)) {
+        include_once('clientDevices/OnePlus.php.inc');
+        if (is_OnePlusKnownDevice($matches[1]))
+          return $matches[1];
     }
     return false;
 }

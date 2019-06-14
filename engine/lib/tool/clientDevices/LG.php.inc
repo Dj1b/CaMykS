@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: Apr 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -63,6 +63,7 @@ function get_LGClientDevice($deviceCode='') {
         'P715'  => array('platform_model' => 'Optimus L7 II',   'platform_year' => 2013),
         'P875'  => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'P920'  => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),
+        'TP260' => array('platform_model' => 'K20 Plus',        'platform_year' => 2019),
 
         'VS986' => array('platform_model' => 'G4',              'platform_year' => 2015),
 

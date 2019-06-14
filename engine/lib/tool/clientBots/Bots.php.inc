@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: May 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4161,7 +4161,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'Everyonedomainsbot',
         'bot_url'           => '',
         'engine_title'      => 'Everyone domains',
-        'engine_url'        => 'http://everyone.domains',
+        'engine_url'        => 'http://everyone.domains/',
     );
 
     /* TagVisit */
@@ -4171,7 +4171,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'TagVisit bot',
         'bot_url'           => '',
         'engine_title'      => 'TagVisit',
-        'engine_url'        => 'http://tag-visit.com',
+        'engine_url'        => 'http://tag-visit.com/',
     );
 
     /* PinterestBot */
@@ -4181,7 +4181,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'Pinterestbot',
         'bot_url'           => 'http://www.pinterest.com/bot.html',
         'engine_title'      => 'Pinterestbot',
-        'engine_url'        => 'https://www.pinterest.com',
+        'engine_url'        => 'https://www.pinterest.com/',
     );
 
     /* SemanticScholarBot */
@@ -4191,7 +4191,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'SemanticScholarBot',
         'bot_url'           => 'https://www.semanticscholar.org/crawler',
         'engine_title'      => 'Semantic Scholar',
-        'engine_url'        => 'https://www.semanticscholar.org',
+        'engine_url'        => 'https://www.semanticscholar.org/',
     );
 
     /* Cloudflare-AMP */
@@ -4201,7 +4201,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'Cloudflare-AMP',
         'bot_url'           => 'https://amp.cloudflare.com/doc/fetcher.html',
         'engine_title'      => 'Cloudflare',
-        'engine_url'        => 'https://www.cloudflare.com',
+        'engine_url'        => 'https://www.cloudflare.com/',
     );
 
     /* ddline.cn */
@@ -4211,7 +4211,7 @@ function _client_getKnownBots() {
         'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'ddline.cn',
-        'engine_url'        => 'http://ddline.cn',
+        'engine_url'        => 'http://ddline.cn/',
     );
 
     /* adrollgroup.com */
@@ -4221,7 +4221,7 @@ function _client_getKnownBots() {
         'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'AdRoll Group',
-        'engine_url'        => 'https://www.adrollgroup.com',
+        'engine_url'        => 'https://www.adrollgroup.com/',
     );
 
     /* FemtosearchBot */
@@ -4231,7 +4231,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'FemtosearchBot',
         'bot_url'           => '',
         'engine_title'      => 'Femtosearch',
-        'engine_url'        => 'http://femtosearch.com',
+        'engine_url'        => 'http://femtosearch.com/',
     );
 
     /* DaaS.sh research bot */
@@ -4241,7 +4241,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'DaaS.sh research bot',
         'bot_url'           => '',
         'engine_title'      => 'DaaS.sh ',
-        'engine_url'        => 'https://DaaS.sh',
+        'engine_url'        => 'https://DaaS.sh/',
     );
 
     /* SemanticJuice */
@@ -4251,7 +4251,7 @@ function _client_getKnownBots() {
         'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'SemanticJuice',
-        'engine_url'        => 'https://www.semanticjuice.com',
+        'engine_url'        => 'https://www.semanticjuice.com/',
     );
 
     /* vuhuvBot */
@@ -4261,7 +4261,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'vuhuvBot',
         'bot_url'           => 'http://vuhuv.com/bot.html',
         'engine_title'      => 'Vuhuv',
-        'engine_url'        => 'https://vuhuv.com.tr',
+        'engine_url'        => 'https://vuhuv.com.tr/',
     );
 
     /* grammarly */
@@ -4271,7 +4271,37 @@ function _client_getKnownBots() {
         'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'Grammarly',
-        'engine_url'        => 'https://www.grammarly.com',
+        'engine_url'        => 'https://www.grammarly.com/',
+    );
+
+    /* adstxt.com */
+    $knownBots['adstxt.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'adstxt.com',
+        'engine_url'        => 'https://www.adstxt.com/',
+    );
+
+    /* serpstatbot */
+    $knownBots['serpstatbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'serpstatbot',
+        'bot_url'           => 'https://serpstatbot.com',
+        'engine_title'      => 'Serpstat',
+        'engine_url'        => 'https://serpstat.com/',
+    );
+
+    /* WebDataStats */
+    $knownBots['webdatastats'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'WebDataStats',
+        'bot_url'           => 'https://webdatastats.com/policy.html',
+        'engine_title'      => 'WebDataStats',
+        'engine_url'        => 'https://webdatastats.com/',
     );
 
     /* return bot list */

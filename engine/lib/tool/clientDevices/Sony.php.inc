@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: Apr 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,8 @@ function get_SonyClientDevice($deviceCode='') {
         'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
 
         /* Sony phones */
+        'LT28i'     => array('platform_model' => 'Xperia ion',              'platform_year' => 2012),
+
         'C1505'     => array('platform_model' => 'Xperia E',                'platform_year' => 2013),
         'C2105'     => array('platform_model' => 'Xperia L',                'platform_year' => 2013),
         'C5303'     => array('platform_model' => 'Xperia SP',               'platform_year' => 2013),
@@ -45,6 +47,7 @@ function get_SonyClientDevice($deviceCode='') {
         'D6683'     => array('platform_model' => 'Xperia Z3 Dual Sim',      'platform_year' => 2015),
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
+        'E5633'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5823'     => array('platform_model' => 'Xperia Z5 Compact',       'platform_year' => 2015),
         'E6533'     => array('platform_model' => 'Xperia Z3+',              'platform_year' => 2015),
         'E6633'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
@@ -86,6 +89,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H8314'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8324'     => array('platform_model' => 'Xperia XZ2 Compact',      'platform_year' => 2018),
         'H8416'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
+        'I4213'     => array('platform_model' => 'Xperia 10 Plus',          'platform_year' => 2019),
 
         'SOV31'     => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),
         'SOV32'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),

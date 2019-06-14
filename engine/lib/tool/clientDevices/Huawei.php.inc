@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.40
+ * @version 1.0.41
  * @date Creation: Apr 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -60,6 +60,7 @@ function get_HuaweiClientDevices() {
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX2'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'ANE-LX2J'  => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'CLT-L04'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
