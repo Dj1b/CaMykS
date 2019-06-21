@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.42
  * @date Creation: Apr 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -56,6 +56,7 @@ function get_HuaweiClientDevices() {
         'WAS-LX2'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-TL10'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
+        'EML-AL00'  => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L29'   => array('platform_model' => 'P20',             'platform_year' => 2018),
         'ANE-LX1'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
@@ -87,6 +88,7 @@ function get_HuaweiClientDevices() {
         'SNE-LX1'   => array('platform_model' => 'Mate 20 Lite',    'platform_year' => 2018),
         'HMA-L29'   => array('platform_model' => 'Mate 20',         'platform_year' => 2018),
         'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
+        'CHM-U01'   => array('platform_model' => 'Honor 4C',        'platform_year' => 2015),
         'LYO-L21'   => array('platform_model' => 'Honor 5A',        'platform_year' => 2016),
         'NEM-L22'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),
         'NEM-L51'   => array('platform_model' => 'Honor 5C',        'platform_year' => 2016),

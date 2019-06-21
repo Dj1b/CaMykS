@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Karbonn.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,6 +22,7 @@ function get_KarbonnClientDevice($deviceCode='') {
     $deviceList = array(
         'A96'           => array('platform_model' => 'A96',         'platform_year' => 2014),
 
+        'Alfa A18'      => array('platform_model' => 'Alfa A18',    'platform_year' => 2017),
         'Aura Champ'    => array('platform_model' => 'Aura Champ',  'platform_year' => 2019),
     );
 

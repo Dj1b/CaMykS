@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.45
+ * @version 1.0.46
  * @date Creation: Apr 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -64,6 +64,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T820'   => array('platform_model' => 'Galaxy Tab S3',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SM-T825'   => array('platform_model' => 'Galaxy Tab S3',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SM-T830'   => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'SM-T835N'  => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Samsung old phones */
         'GT-C3590'  => array('platform_model' => 'C3590',                           'platform_year' => 2013,    'system_title' => 'Symbian'),
@@ -165,8 +166,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A900F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2016),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
         'SM-A920F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2018),
+        'SM-A205G'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A305F'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A505F'  => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
+        'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
 
         /* Samsung Galaxy C series */
         'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),

@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.39
+ * @version 1.0.40
  * @date Creation: May 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4302,6 +4302,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://webdatastats.com/policy.html',
         'engine_title'      => 'WebDataStats',
         'engine_url'        => 'https://webdatastats.com/',
+    );
+
+    /* Pandalytics */
+    $knownBots['pandalytics'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Pandalytics',
+        'bot_url'           => 'https://domainsbot.com/pandalytics/',
+        'engine_title'      => 'DomainsBot',
+        'engine_url'        => 'https://domainsbot.com/',
     );
 
     /* return bot list */

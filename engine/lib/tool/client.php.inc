@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.73
+ * @version 1.0.74
  * @date Creation: Jun 2007
  * @date Modification: Jun 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -628,13 +628,11 @@ function client_getUAInfos($ua=false) {
         $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
         include_once('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
-    }
-    elseif (preg_match('/ (W[_\-][A-Z][0-9]{3}?[A-Z])( Build|\))/i', $ua, $matches)) {
+    } elseif (preg_match('/ (W[_\-][A-Z][0-9]{3}[A-Z]?)( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1]));
         include_once('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
-    }
-    elseif (preg_match('/ (W_K600|[S|V][0-9]{2}[A-Za-z0-9\(\)]*)( Build|\))/i', $ua, $matches)) {
+    } elseif (preg_match('/ ([S|V][0-9]{2}[A-Za-z0-9\(\)]*)( Build|\))/i', $ua, $matches)) {
         $model = trim(strtolower($matches[1]));
         include_once('clientDevices/Wiko.php.inc');
         $infos = array_merge($infos, get_WikoClientDevice($model));
@@ -657,7 +655,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Alcatel devices */
-    elseif (preg_match('/ (Orange KLIF|[0-9]{4}[A-Z])( Build|\)|;)/', $ua, $matches)) {
+    elseif (preg_match('/ (Orange KLIF|A460G|[0-9]{4}[A-Z])( Build|\)|;)/', $ua, $matches)) {
         include_once('clientDevices/Alcatel.php.inc');
         $infos = array_merge($infos, get_AlcatelClientDevice($matches[1]));
     }
@@ -688,6 +686,15 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Wing.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_WingClientDevice($model));
+    }
+
+    /* check Karbonn devices : before Leagoo */
+    elseif (preg_match('/ Karbonn( |_)([A-Z][0-9]{2}) Build/i', $ua, $matches)) {
+        include_once('clientDevices/Karbonn.php.inc');
+        $infos = array_merge($infos, get_KarbonnClientDevice($matches[2]));
+    } elseif (preg_match('/ (Aura|Alfa) ([A-Z][^\)\/]*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Karbonn.php.inc');
+        $infos = array_merge($infos, get_KarbonnClientDevice($matches[1].' '.$matches[2]));
     }
 
     /* check Leagoo devices */
@@ -1043,15 +1050,6 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/ (Z[0-9]{3}) Build/', $ua, $matches)) {
         include_once('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
-    }
-
-    /* check Karbonn devices */
-    elseif (preg_match('/ Karbonn( |_)([A-Z][0-9]{2}) Build/i', $ua, $matches)) {
-        include_once('clientDevices/Karbonn.php.inc');
-        $infos = array_merge($infos, get_KarbonnClientDevice($matches[2]));
-    } elseif (preg_match('/ (Aura Champ)( Build|\))/Ui', $ua, $matches)) {
-        include_once('clientDevices/Karbonn.php.inc');
-        $infos = array_merge($infos, get_KarbonnClientDevice($matches[1]));
     }
 
     /* check Ampe devices */
@@ -1455,7 +1453,7 @@ function client_getUAInfos($ua=false) {
             );
 
             /* build known windows fake versions */
-            $wf = array('NT 7.0', 'NT 7.1', 'NT 8.0', 'NT 8.1', 'NT 9.0', 'NT 9.1', 'NT 10.1', 'NT 15.0');
+            $wf = array('NT 7.0', 'NT 7.1', 'NT 8.0', 'NT 8.1', 'NT 9.0', 'NT 9.1', 'NT 10.1', 'NT 15.0', 'NT 10.0N');
 
             /* load version */
             $v = $matches[1];
@@ -2448,6 +2446,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
 
     /* Fake visits, sample : Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko RqIwg8izYw6xskukQQDh */
     if (preg_match('#([0-9a-zA-Z]{16,24})$#', $ua))
+        return $fake;
+
+    /* Fake visits, with strange Edge version */
+    if (preg_match('#^Mozilla/5.0 \(Windows NT 10.0; Win64; x64\) AppleWebKit/537.36 \(KHTML, like Gecko\) Chrome/52.0.2743.116 Safari/537.36 Edge/[A-Z0-9]{8}$#', $ua))
         return $fake;
 
     /* not a fake but Apple using a bad user agent */
