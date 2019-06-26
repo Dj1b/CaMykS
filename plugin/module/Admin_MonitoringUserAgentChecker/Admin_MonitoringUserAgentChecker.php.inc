@@ -5,9 +5,9 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Dec 2014
- * @date Modification: Jan 2019
+ * @date Modification: Jun 2019
  * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -354,6 +354,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->recordItem->get_fromItems();
 
         /* load user agent information from client library */
+        countries_loadLocales();
         $this->uaInfos = client_getUAInfos($this->recordItem->vars['user_agent']);
 
         /* load tabs */

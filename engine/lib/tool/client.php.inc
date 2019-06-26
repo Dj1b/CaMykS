@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.74
+ * @version 1.0.75
  * @date Creation: Jun 2007
  * @date Modification: Jun 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -2480,7 +2480,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
 function _client_mergeUAInfos($req, $infos) {
     if ($req === true)
         $req = array(
-            'platform_company', 'platform_model', 'platform_type', 'platform_format', 'platform_year',
+            'platform_company', 'platform_country', 'platform_model', 'platform_type', 'platform_format', 'platform_year',
             'system_title', 'system_version',
             'browser_title', 'browser_version'
         );
