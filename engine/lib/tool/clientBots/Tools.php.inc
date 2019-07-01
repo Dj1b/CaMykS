@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: May 2018
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1198,7 +1198,47 @@ function _client_getKnownTools() {
         'tool_title'        => 'SpeedCurve Speed Tester',
         'tool_url'          => '',
         'engine_title'      => 'SpeedCurve',
-        'engine_url'        => 'https://speedcurve.com',
+        'engine_url'        => 'https://speedcurve.com/',
+    );
+
+    /* Slackbot-LinkExpanding */
+    $knownTools['slackbot-linkexpanding'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Slackbot LinkExpanding',
+        'tool_url'          => 'https://api.slack.com/robots',
+        'engine_title'      => 'Slack',
+        'engine_url'        => 'https://slack.com/',
+    );
+
+    /* Slackbot-LinkExpanding */
+    $knownTools['slackbot-linkexpanding'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Slackbot LinkExpanding',
+        'tool_url'          => 'https://api.slack.com/robots',
+        'engine_title'      => 'Slack',
+        'engine_url'        => 'https://slack.com/',
+    );
+
+    /* Slack-ImgProxy */
+    $knownTools['slack-imgproxy'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Slackbot ImgProxy',
+        'tool_url'          => 'https://api.slack.com/robots',
+        'engine_title'      => 'Slack',
+        'engine_url'        => 'https://slack.com/',
+    );
+
+    /* Slackbot */
+    $knownTools['slackbot'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Slackbot',
+        'tool_url'          => 'https://api.slack.com/robots',
+        'engine_title'      => 'Slack',
+        'engine_url'        => 'https://slack.com/',
     );
 
     /* return list */

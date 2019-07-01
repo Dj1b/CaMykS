@@ -1,26 +1,26 @@
 <?php
 /**
- * @brief Symphony client devices specific methods
+ * @brief SonyEricsson client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Symphony.php.inc
+ * @file engine/lib/tool/clientDevices/SonyEricsson.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.1
- * @date Creation: Sep 2018
+ * @date Creation: Jun 2019
  * @date Modification: Jun 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Symphony client device information from a known list.
+ * Return SonyEricsson client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_SymphonyClientDevice($deviceCode='') {
+function get_SonyEricssonClientDevice($deviceCode='') {
     $deviceList = array(
-        'i10' => array('platform_year' => 2017),
+        'LT15i' => array('platform_model' => 'Experia Arc', 'platform_year' => 2011),
     );
 
     /* Check for returning list */
@@ -29,8 +29,8 @@ function get_SymphonyClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Symphony',
-        'platform_country'  => 'bd',
+        'platform_company'  => 'SonyEricsson',
+        'platform_country'  => 'jp',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

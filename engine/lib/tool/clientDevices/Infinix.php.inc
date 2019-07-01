@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.4
  * @date Creation: Feb 2019
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,6 +25,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X559'      => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
         'X559C'     => array('platform_model' => 'Hot 5',       'platform_year' => 2017),
         'X606D'     => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
+        'X608'      => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
 
         /* Smart serie */
         'X5515'     => array('platform_model' => 'Smart 2',     'platform_year' => 2018),
@@ -37,6 +38,7 @@ function get_InfinixClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Infinix',
+        'platform_country'  => 'hk',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

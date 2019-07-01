@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Crosscall.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.4
  * @date Creation: May 2018
- * @date Modification: Feb 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,6 +31,7 @@ function get_CrosscallClientDevice($deviceCode='') {
         'trekker-x1'        => array('platform_model' => 'Trekker-X1',      'platform_year' => 2015),
         'odyssey-plus'      => array('platform_model' => 'Odyssey Plus',    'platform_year' => 2014),
         'odyssey-s1'        => array('platform_model' => 'Odyssey S1',      'platform_year' => 2016),
+        'core-x3'           => array('platform_model' => 'Core-X3',         'platform_year' => 2018),
     );
 
     /* Check for returning list */
@@ -40,6 +41,7 @@ function get_CrosscallClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Crosscall',
+        'platform_country'  => 'fr',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

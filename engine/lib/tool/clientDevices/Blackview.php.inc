@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Blackview.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.6
  * @date Creation: Jul 2018
- * @date Modification: Mar 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,11 +20,12 @@
  */
 function get_BlackviewClientDevice($deviceCode='') {
     $deviceList = array(
-        '9000Pro F'     => array('platform_model' => '9000Pro F',   'platform_year' => 2017),
-        '8000Pro'       => array('platform_model' => '8000Pro',     'platform_year' => 2017),
-        '9500'          => array('platform_model' => '9500',        'platform_year' => 2018),
-        '9500Pro'       => array('platform_model' => '9500Pro',     'platform_year' => 2018),
-        '10000 Pro'     => array('platform_model' => 'P10000 Pro',  'platform_year' => 2018),
+        'V9000Pro F'    => array('platform_model' => 'BV9000 Pro F',    'platform_year' => 2017),
+        'V8000Pro'      => array('platform_model' => 'BV8000 Pro',      'platform_year' => 2017),
+        'V5800'         => array('platform_model' => 'BV5800',          'platform_year' => 2018),
+        'V9500'         => array('platform_model' => 'BV9500',          'platform_year' => 2018),
+        'V9500Pro'      => array('platform_model' => 'BV9500 Pro',      'platform_year' => 2018),
+        'P10000 Pro'    => array('platform_model' => 'P10000 Pro',      'platform_year' => 2018),
     );
 
     /* Check for returning list */
@@ -34,6 +35,7 @@ function get_BlackviewClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Blackview',
+        'platform_country'  => 'hk',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

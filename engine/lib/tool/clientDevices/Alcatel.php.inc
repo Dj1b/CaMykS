@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.7
  * @date Creation: Apr 2018
- * @date Modification: Apr 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,13 @@
  */
 function get_AlcatelClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Alcatel tablets */
+        '9003X' => array('platform_model' => 'One Touch Pixi 4 7.0',    'platform_year' => 2016, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+
+        /* Alcatel mobiles */
         'Orange KLIF' => array('system_title' => 'Firefox OS',          'platform_year' => 2015),
+
+        'A460G' => array('platform_model' => 'OneTouch Pixi Pulsar',    'platform_year' => 2015),
 
         '4007X' => array('platform_model' => 'OneTouch Pixi',           'platform_year' => 2013),
         '4009D' => array('platform_model' => 'OneTouch Pixi 3 (3.5\')', 'platform_year' => 2014),
@@ -125,6 +131,7 @@ function get_AlcatelClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Alcatel',
+        'platform_country'  => 'fr',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

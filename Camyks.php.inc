@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Jun 2005
- * @date Modification: May 2019
+ * @date Modification: Jun 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -267,7 +267,7 @@ final class Camyks {
      * @var array $eventsHandlers
      * @brief CaMykS event handlers.
      */
-    private $eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onTerminate'=>array());
+    private $eventsHandlers = array('onInitialise'=>array(), 'onPageLoad'=>array(), 'onBodyOpen'=>array(), 'onBodyClose'=>array(), 'onAdminPageLoad'=>array(), 'onAdminBodyOpen'=>array(), 'onAdminBodyClose'=>array(), 'onTerminate'=>array());
 
     /**
      * @var boolean $falseRef
@@ -1386,6 +1386,7 @@ final class Camyks {
      * @param string $object
      * @param string $action
      * @param string $message
+     * @return boolean success
      */
     public function log($object, $action, $message='') {
         if (isset($this->modules['Admin_SystemLogManager']))
@@ -1794,6 +1795,9 @@ final class Camyks {
                 case 'onPageLoad' :         $plugin->execute_onCaMykSPageLoad(); break;
                 case 'onBodyOpen' :         $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyOpen()); break;
                 case 'onBodyClose' :        $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSBodyClose()); break;
+                case 'onAdminPageLoad' :    $plugin->execute_onCaMykSAdminPageLoad(); break;
+                case 'onAdminBodyOpen' :    $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSAdminBodyOpen()); break;
+                case 'onAdminBodyClose' :   $this->HTMLPage->write_HTMLContent($plugin->execute_onCaMykSAdminBodyClose()); break;
                 case 'onTerminate' :        $plugin->execute_onCaMykSTerminate(); break;
             }
         }
@@ -1806,7 +1810,7 @@ final class Camyks {
      * @param string $mode
      * @return string
      */
-    public function get_rootBaseURL($mode = null) {
+    public function get_rootBaseURL($mode=null) {
         if ($mode == null)
             return $this->site_base_url;
         return $this->get_defaultBaseURL($mode);
@@ -1826,7 +1830,7 @@ final class Camyks {
         if ($mode === false)
             $mode = 'relative';
         elseif ($mode === true)
-            $mode ='absolute';
+            $mode = 'absolute';
 
         /* return base url from mode */
         switch ($mode) {
@@ -2190,6 +2194,9 @@ final class Camyks {
         $this->theme->initialise();
         $this->contentPage->init_admin();
 
+        /* run onInitialise event handlers */
+        $this->run_eventHandlers('onAdminPageLoad');
+
         /* update header vars */
         $this->HTMLPage->set_siteInformations($this->get_confValue('site_title'), 'CaMykS Team', '');
         $this->HTMLPage->set_pageInformations(
@@ -2205,8 +2212,16 @@ final class Camyks {
 
         /* display html header */
         $this->HTMLPage->add_HTMLHeader();
+
+        /* run onAdminBodyOpen event handlers */
+        $this->run_eventHandlers('onAdminBodyOpen');
+
         /* display html main content */
         $this->contentPage->display();
+
+        /* run onAdminBodyClose event handlers */
+        $this->run_eventHandlers('onAdminBodyClose');
+
         /* display html footer */
         $this->HTMLPage->add_HTMLFooter();
     }

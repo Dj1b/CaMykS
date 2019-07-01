@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/OnePlus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Jan 2019
+ * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -19,21 +19,25 @@
  */
 function get_OnePlusClientDevices() {
     return array(
-        'A0001' => array('platform_model' => 'One', 'platform_year' => 2014),
-        '2'     => array('platform_model' => '2',   'platform_year' => 2015),
-        'A2001' => array('platform_model' => '2',   'platform_year' => 2015),
-        'A2003' => array('platform_model' => '2',   'platform_year' => 2015),
-        'A2005' => array('platform_model' => '2',   'platform_year' => 2015),
-        'E1003' => array('platform_model' => 'X',   'platform_year' => 2015),
-        'A3000' => array('platform_model' => '3',   'platform_year' => 2016),
-        'A3003' => array('platform_model' => '3T',  'platform_year' => 2016),
-        'A3010' => array('platform_model' => '3T',  'platform_year' => 2016),
-        'A5000' => array('platform_model' => '5',   'platform_year' => 2017),
-        'A5010' => array('platform_model' => '5T',  'platform_year' => 2017),
-        'A6000' => array('platform_model' => '6',   'platform_year' => 2018),
-        'A6003' => array('platform_model' => '6',   'platform_year' => 2018),
-        'A6010' => array('platform_model' => '6T',  'platform_year' => 2018),
-        'A6013' => array('platform_model' => '6T',  'platform_year' => 2018),
+        'A0001'     => array('platform_model' => 'One',     'platform_year' => 2014),
+        '2'         => array('platform_model' => '2',       'platform_year' => 2015),
+        'A2001'     => array('platform_model' => '2',       'platform_year' => 2015),
+        'A2003'     => array('platform_model' => '2',       'platform_year' => 2015),
+        'A2005'     => array('platform_model' => '2',       'platform_year' => 2015),
+        'E1003'     => array('platform_model' => 'X',       'platform_year' => 2015),
+        'A3000'     => array('platform_model' => '3',       'platform_year' => 2016),
+        'A3003'     => array('platform_model' => '3T',      'platform_year' => 2016),
+        'A3010'     => array('platform_model' => '3T',      'platform_year' => 2016),
+        'A5000'     => array('platform_model' => '5',       'platform_year' => 2017),
+        'A5010'     => array('platform_model' => '5T',      'platform_year' => 2017),
+        'A6000'     => array('platform_model' => '6',       'platform_year' => 2018),
+        'A6003'     => array('platform_model' => '6',       'platform_year' => 2018),
+        'A6010'     => array('platform_model' => '6T',      'platform_year' => 2018),
+        'A6013'     => array('platform_model' => '6T',      'platform_year' => 2018),
+        'GM1911'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
+        'GM1913'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
+        'GM1915'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
+        'GM1917'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
     );
 }
 
@@ -52,6 +56,7 @@ function get_OnePlusClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'OnePlus',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

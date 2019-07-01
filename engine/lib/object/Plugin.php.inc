@@ -5,10 +5,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jun 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -730,6 +730,24 @@ abstract class Plugin {
      * @return string
      */
     public function execute_onCaMykSBodyClose() {return '';}
+
+    /**
+     * Execute handler on CaMykS admin page load.
+     * @return void
+     */
+    public function execute_onCaMykSAdminPageLoad() {}
+
+    /**
+     * Execute handler on admin body opening.
+     * @return string
+     */
+    public function execute_onCaMykSAdminBodyOpen() {return '';}
+
+    /**
+     * Execute handler on admin body closing.
+     * @return string
+     */
+    public function execute_onCaMykSAdminBodyClose() {return '';}
 
     /**
      * Execute handler on camyks terminate.
