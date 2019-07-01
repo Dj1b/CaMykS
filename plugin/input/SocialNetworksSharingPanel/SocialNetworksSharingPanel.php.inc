@@ -112,7 +112,7 @@ final class SocialNetworksSharingPanel extends Input {
 
     /**
      * Execute handler on body closing.
-     * @return string
+     * @return void
      */
     public function execute_onCaMykSPageLoad() {
         $this->initialise(array(), 'follow');
