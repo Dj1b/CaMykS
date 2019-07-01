@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Apr 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -76,6 +76,7 @@ function get_LGClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'LG',
+        'platform_country'  => 'kr',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

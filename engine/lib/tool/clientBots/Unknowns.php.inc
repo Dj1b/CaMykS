@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Jan 2019
  * @date Modification: Jun 2019
  * @copyright 2019 CaMykS Team
@@ -454,6 +454,16 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => '8LEGS (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* BacklinkHttpStatus */
+    $unknownBots['backlinkhttpstatus'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'BacklinkHttpStatus (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

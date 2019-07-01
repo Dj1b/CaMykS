@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.42
+ * @version 1.0.43
  * @date Creation: Apr 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -184,6 +184,7 @@ function get_HuaweiClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Huawei',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

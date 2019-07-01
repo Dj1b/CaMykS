@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Oppo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Jul 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -43,6 +43,7 @@ function get_OppoClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Oppo',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

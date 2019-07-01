@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Blackview.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jul 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -35,6 +35,7 @@ function get_BlackviewClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Blackview',
+        'platform_country'  => 'hk',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

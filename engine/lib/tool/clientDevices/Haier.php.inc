@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Haier.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Mar 2019
- * @date Modification: Mar 2019
+ * @date Modification: Jun 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -34,6 +34,7 @@ function get_HaierClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Haier',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

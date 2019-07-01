@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Feb 2019
  * @date Modification: Jun 2019
  * @copyright 2019 CaMykS Team
@@ -38,6 +38,7 @@ function get_InfinixClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Infinix',
+        'platform_country'  => 'hk',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

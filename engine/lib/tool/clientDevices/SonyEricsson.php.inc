@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/SonyEricsson.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jun 2019
  * @date Modification: Jun 2019
  * @copyright 2019 CaMykS Team
@@ -30,6 +30,7 @@ function get_SonyEricssonClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'SonyEricsson',
+        'platform_country'  => 'jp',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Vivo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: May 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -34,6 +34,8 @@ function get_VivoClientDevice($deviceCode='') {
         '1724'          => array('platform_model' => 'Y71',         'platform_year' => 2018),
         '1812'          => array('platform_model' => 'Y81i',        'platform_year' => 2018),
         '1816'          => array('platform_model' => 'Y91i',        'platform_year' => 2019),
+        '1901'          => array('platform_model' => 'X27',         'platform_year' => 2019),
+        '1902'          => array('platform_model' => 'X27 Pro',     'platform_year' => 2019),
 
         'Y11T'          => array('platform_model' => 'Y11T',        'platform_year' => 2013),
         'Y17'           => array('platform_model' => 'Y17',         'platform_year' => 2014),
@@ -109,6 +111,7 @@ function get_VivoClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Vivo',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

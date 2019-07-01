@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: May 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -709,6 +709,26 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Feedfinder2',
         'tool_url'          => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* colly */
+    $knownGenerics['colly'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'colly',
+        'tool_url'          => 'https://github.com/gocolly/colly',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* OkHttp */
+    $knownGenerics['okhttp'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'OkHttp',
+        'tool_url'          => 'https://square.github.io/okhttp/',
         'engine_title'      => '',
         'engine_url'        => '',
     );

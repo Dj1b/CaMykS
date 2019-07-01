@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/OnePlus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -56,6 +56,7 @@ function get_OnePlusClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'OnePlus',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

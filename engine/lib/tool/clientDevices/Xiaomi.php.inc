@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.23
+ * @version 1.0.24
  * @date Creation: May 2018
  * @date Modification: Jun 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -108,6 +108,7 @@ function get_XiaomiClientDevice($deviceCode='') {
     /* Initialise result. */
     $result = array(
         'platform_company'  => 'Xiaomi',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
