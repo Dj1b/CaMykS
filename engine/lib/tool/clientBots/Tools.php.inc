@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: May 2018
- * @date Modification: Jun 2019
+ * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1239,6 +1239,16 @@ function _client_getKnownTools() {
         'tool_url'          => 'https://api.slack.com/robots',
         'engine_title'      => 'Slack',
         'engine_url'        => 'https://slack.com/',
+    );
+
+    /* Cocolyzebot */
+    $knownTools['cocolyzebot'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Cocolyzebot',
+        'tool_url'          => 'https://cocolyze.com/bot',
+        'engine_title'      => 'Cocolyze',
+        'engine_url'        => 'https://cocolyze.com/',
     );
 
     /* return list */

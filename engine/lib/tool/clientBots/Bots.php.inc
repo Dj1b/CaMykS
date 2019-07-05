@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.42
  * @date Creation: May 2018
- * @date Modification: Jun 2019
+ * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4342,6 +4342,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'eContext Classification Engine',
         'engine_url'        => 'https://econtext.ai/',
+    );
+
+    /* TinEye-bot */
+    $knownBots['tineye-bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TinEye-bot',
+        'bot_url'           => 'https://www.tineye.com/crawler.html',
+        'engine_title'      => 'TinEye',
+        'engine_url'        => 'https://www.tineye.com/',
     );
 
     /* return bot list */

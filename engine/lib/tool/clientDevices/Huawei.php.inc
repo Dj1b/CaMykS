@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -66,6 +66,7 @@ function get_HuaweiClientDevices() {
         'CLT-L04'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
+        'ELE-L29'   => array('platform_model' => 'P30',             'platform_year' => 2019),
         'MAR-LX1A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'FIG-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),
         'FIG-LX3'   => array('platform_model' => 'P Smart',         'platform_year' => 2018),

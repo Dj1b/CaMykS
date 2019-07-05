@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.30
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -53,6 +53,7 @@ function get_SonyClientDevice($deviceCode='') {
         'E6633'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
         'E6653'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
         'E6683'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
+        'E6853'     => array('platform_model' => 'Xperia Z5 Premium',       'platform_year' => 2015),
         'F5121'     => array('platform_model' => 'Xperia X',                'platform_year' => 2016),
         'F5122'     => array('platform_model' => 'Xperia X',                'platform_year' => 2016),
         'F3111'     => array('platform_model' => 'Xperia XA',               'platform_year' => 2016),
