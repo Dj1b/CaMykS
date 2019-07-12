@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,7 @@ function get_AsusClientDevice($deviceCode='') {
         'P01MA'     => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P023'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P00C'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'P028'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Asus phones */
         'A500KL'    => array('platform_model' => 'ZenFone 5\'',             'platform_year' => 2014),

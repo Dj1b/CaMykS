@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.44
+ * @version 1.0.45
  * @date Creation: Apr 2018
  * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -29,6 +29,7 @@ function get_HuaweiClientDevices() {
         'BTV-DL09'              => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'FDR-A01w'              => array('platform_model' => 'MediaPad T2 10.0 Pro',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'AGS-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'BG2-U01'               => array('platform_model' => 'MediaPad T3 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-W09'               => array('platform_model' => 'MediaPad M5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
