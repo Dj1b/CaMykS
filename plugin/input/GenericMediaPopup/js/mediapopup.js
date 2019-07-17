@@ -3,10 +3,10 @@
  * @details Plugin / Input Javascripts
  * @file plugin/input/GenericMediaPopup/js/mediapopup.js
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Oct 2011
- * @date Modification: Apr 2018
- * @copyright 2011 - 2018 CaMykS Team
+ * @date Modification: Jul 2019
+ * @copyright 2011 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,7 +32,7 @@ function MediaPopup(name) {
         else
             this.params[param] = value;
     };
-     
+
     /*
      * return param value from name
      * @param mixed param
@@ -46,9 +46,9 @@ function MediaPopup(name) {
             return this.params[param]
         return false;
     };
-    
+
     /*
-     * set locale value 
+     * set locale value
      * @param string name
      * @param string value
      * @return void
@@ -57,9 +57,9 @@ function MediaPopup(name) {
     this.set_locale = function(name, value) {
         this.locales[name.toLowerCase()] = value;
     };
-    
+
     /*
-     * get locale value 
+     * get locale value
      * @param string name
      * @return void
      * @access public
@@ -69,57 +69,57 @@ function MediaPopup(name) {
             return this.locales[name.toLowerCase()];
         return name;
     };
-    
-    /* 
+
+    /*
      * initialise object
      * @return void
      * @access public
      */
     this.initialise = function() {
-    
+
         /* default values */
         this.set_param('isMobile', -1);
-    
+
         /* check navigator type */
         this.set_param('navType',    navigator.appName.indexOf("Microsoft")==-1? 'real':'msie');
-        
+
         /* define body dom element */
         this.set_param('body', document.getElementsByTagName('body')[0]);
-        
+
         /* define current popup */
         this.set_param('currentPopup', false);
-        
+
         /* prepare background dom element */
         this._build_popupBackground();
-                
+
         /* check and add key events */
         if (this.get_param('enableKeyboard') == 1) {
-            if (typeof window.onkeyup == 'function')
-                var oku = window.onkeyup + '(event);';
+            if (typeof document.onkeyup == 'function')
+                var oku = document.onkeyup.toString() + '(event);';
             else
                 var oku = '';
-        eval('window.onkeyup = function(event) {'+oku+''+this.name+'.on_keyPressed(event);};');
+            eval('document.onkeyup = function(event) {'+oku+''+this.name+'.on_keyPressed(event);};');
         }
-        
+
         /* load diaporama controls */
         if ( this.get_param('diaporama').length > 0 ) {
             this._get_diaporamaButtonsSize();
         }
-        
+
         /* finalise initialisation */
         this.loaded = true;
-                
+
         if ( this.get_param('loadMedia') !== false) {
             loadMedia = this.get_param('loadMedia');
             if (!loadMedia['media'])
                 return;
             if ( loadMedia['width'] && loadMedia['height'] )
-                this.open_media( loadMedia['media'], loadMedia['title'], loadMedia['width'], loadMedia['height']);
+                this.open_media(loadMedia['media'], loadMedia['title'], loadMedia['width'], loadMedia['height']);
             else
-                this.open_media( loadMedia['media'], loadMedia['title']);
-        } 
+                this.open_media(loadMedia['media'], loadMedia['title']);
+        }
     };
-    
+
     /*
      * open media popup
      * @param string file
@@ -128,118 +128,118 @@ function MediaPopup(name) {
      * @access private
      */
     this.open_media = function(file, title, width, height) {
-        
+
         /* check for directly open file in a new window */
         if ( this.check_openInANewWindow(width) ) {
             var win = window.open(file, '_blank');
             win.focus();
             return;
         }
-    
+
         /* show popup background */
         this.show_popupBackground();
-        
+
         /* build popup div */
         popup = document.createElement('div').cloneNode(true);
-        
+
         popup.className = 'mediaPopup';
         popup.style.display = 'none';
         this.get_param('body').appendChild(popup);
-        
+
         /* attach close button */
         if (this.get_param('pictures', 'closeButton') !== false)
             popup.appendChild(this._get_closeButton());
-        
+
         /* attach previous and next button bar */
         popup.appendChild(this._get_controlButtonsBar());
-                
+
         /* build media box */
         contentBox = document.createElement('div').cloneNode(true);
         this.set_param('contentBox', contentBox);
         popup.appendChild(contentBox);
         this.set_param('currentPopup', popup);
-        
+
         fileExt = file.split('.').pop().toLowerCase();
         if ( fileExt == 'flv' && swfobject) { // display FLV movie
-                
+
                 /* update height with controller height */
             height += this.get_param('flvControlerHeight');
-        
+
             /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
-            
+
             /* create movie box */
             movieBox = document.createElement('div').cloneNode(true);
             movieBox.id = 'MediaPopupContentBox';
             contentBox.appendChild(movieBox);
-        
+
             /* add flash player video to popup */
             f_vars = {refresh: parseInt(Math.random()*9999), movieURL:this.get_param('baseURL')+'/'+file, controlsURL: this.get_param('baseURL')+'/'+this.get_param('flashControlsURL'), movieWidth:width, movieHeight:height, controlerColor:'0x'+this.get_param('flvControlerColor'), controlerAlpha:this.get_param('flvControlerAlpha')};
          f_params = {allowScriptAccess:"always", menu:true, scale:'noscale', WMode:'Transparent', salign:'tl', align:'t', defer:'defer'};
-            
+
             swfobject.embedSWF(this.get_param('flashMovieURL'), "MediaPopupContentBox", width, height, "9.0.0", false, f_vars, f_params);
 
                 /* display popup div */
              this.show_popup('flash', width, height);
-             
+
      } else if ( fileExt == 'swf' && swfobject) {
-     
+
              /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
-            
+
             /* create movie box */
             movieBox = document.createElement('div').cloneNode(true);
             contentBox.id = 'MediaPopupContentBox';
             contentBox.appendChild(movieBox);
-        
+
             swfobject.embedSWF(file, "MediaPopupContentBox", width, height, "9.0.0", false);
 
                 /* display popup div */
              this.show_popup('flash', width, height);
-             
+
      } else if ( file.match(/https?:\/\/(www\.)?youtu\.be\//) != null ) { // display youtube video
              /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
-            
+
             /* add youtube iframe */
             contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
                     + ' src="https://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
                     + ' frameborder="0" allowfullscreen></iframe>';
-            
+
             /* display popup div */
              this.show_popup('youtube', width, height);
-             
+
      } else if ( file.indexOf('http://www.dailymotion.com/video/') == 0 || file.indexOf('http://dai.ly/') == 0 ) { // display dailymotion video
              /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
-             
+
             video = file.substring(file.lastIndexOf('/'));
             if (video.indexOf('_') > 0)
-                video = video.substring(0, video.indexOf('_'));            
-                        
+                video = video.substring(0, video.indexOf('_'));
+
             /* add dailymotion iframe */
             contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
                     + ' src="https://www.dailymotion.com/embed/video/'+video+'"></iframe>';
-                                
+
             /* display popup div */
              this.show_popup('youtube', width, height);
-     
-     } else if ( fileExt == 'html' || fileExt == 'htm' 
+
+     } else if ( fileExt == 'html' || fileExt == 'htm'
              || file.indexOf('url:') == 0 )    {    // display HTML file
 
                 if (file.indexOf('url:') == 0) {
                         file = file.substring(4);
                 }
-                
+
 
                 /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
-                
+
              /* add html frame to popup */
              if (this.get_param('navType') == 'real') {
                  html = document.createElement('object').cloneNode(true);
@@ -255,33 +255,33 @@ function MediaPopup(name) {
                  html.setAttribute('height', height);
                 }
                 contentBox.appendChild(html);
-                                  
+
              /* display popup div */
              this.show_popup('html', width, height);
      } else if (file.substring(0, 8) == 'content:')    {    // display HTML content
-                
+
                 /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
             contentBox.style.maxWidth = '100%';
-                
+
                 contentBox.innerHTML = file.substring(8);
-                                  
+
              /* display popup div */
-             this.show_popup('html', width, height);     
+             this.show_popup('html', width, height);
      } else if (fileExt == 'mp4' || fileExt == 'm4v') {
-         
+
          /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
-            
+
             /* add video tag */
             contentBox.innerHTML = '<video controls="" width="'+width+'" height="'+height+'" preload="" src="'+file+'">&nbsp;</video>';
-         
+
          /* display popup div */
-         this.show_popup('video', width, height);     
+         this.show_popup('video', width, height);
      } else { // display Image
-                
+
                 /* load image */
                 var mainImage = new Image();
                 mainImage.name = file;
@@ -289,7 +289,7 @@ function MediaPopup(name) {
                 mainImage.onerror = _mediaPopup_imageLoadingFailed;
                 mainImage.src = file;
          }
-        
+
         /* add title to popup */
         if (title != '') {
             ptitle = document.createElement('div').cloneNode(true);
@@ -298,7 +298,7 @@ function MediaPopup(name) {
             popup.appendChild(ptitle);
         }
     };
-    
+
     /*
      * add loaded image to popup
      * @param Image image
@@ -310,7 +310,7 @@ function MediaPopup(name) {
     img = document.createElement('img').cloneNode(true);
     img.src = image.src;
     img.style.border = 'none';
-    
+
     /* check sizes */
     if (this.get_param('maxWidth') === false || image.width < this.get_param('maxWidth')) {
             appliedWidth = image.width;
@@ -320,7 +320,7 @@ function MediaPopup(name) {
             appliedHeight = image.height*appliedWidth/image.width;
             img.style.width = appliedWidth+'px';
     }
-            
+
     /* attach actions */
         if (this.get_param('navType') == 'real') {
             img.setAttribute('onclick', this.name+'.close_media()');
@@ -328,7 +328,7 @@ function MediaPopup(name) {
             img.onclick = new Function('onclick', this.name+'.close_media()');
         }
         this.get_param('contentBox').appendChild(img);
-        
+
         /* check for diaporama */
         if ( this.get_param('diaporama').length > 0 ) {
             diap = this.get_param('diaporama');
@@ -338,7 +338,7 @@ function MediaPopup(name) {
                     this.get_param('diapLeftButton').style.left = (-this.get_param('diaporamaButtonsWidth')+this.get_param('diaporamaButtonsShift')) + 'px';
                     this.get_param('diapLeftButton').style.top = parseInt(img.height/2) + 'px';
                     this.get_param('diapLeftButton').style.display = 'inline';
-                    
+
                     /* display right button */
                     if ( this.get_param('maxWidth') > 0)
                         rPos = Math.min(img.width, this.get_param('maxWidth'));
@@ -347,19 +347,19 @@ function MediaPopup(name) {
                     this.get_param('diapRightButton').style.left = (rPos-this.get_param('diaporamaButtonsWidth')-this.get_param('diaporamaButtonsShift')) + 'px';
                     this.get_param('diapRightButton').style.top = parseInt(img.height/2) + 'px';
                     this.get_param('diapRightButton').style.display = 'inline';
-                
+
                     /* save current displayed image */
                     this.set_param('diaporamaCurrent', i);
-                    
+
                     break;
                 }
             }
         }
-        
+
         /* show popup */
         this.show_popup('image', appliedWidth, appliedHeight);
     };
-    
+
     /*
      * show popup object
      * @param String mediaType
@@ -369,17 +369,17 @@ function MediaPopup(name) {
      * @access public
      */
     this.show_popup = function(mediaType, mediaWidth, mediaHeight) {
-        
+
         this.get_param('body').appendChild(this.get_param('currentPopup'));
-                
+
         this.set_param('mediaType', mediaType);
         this.set_param('mediaWidth', mediaWidth);
         this.set_param('mediaHeight', mediaHeight);
-        
+
         /* show popup with a micro delay : fixing a Webkit bug */
         setTimeout(this.name+'._show_popup()', 10);
     };
-    
+
     /*
      * finalise popup object showing
      * @return void
@@ -389,7 +389,7 @@ function MediaPopup(name) {
         this.get_param('currentPopup').style.display = 'block';
         this.refresh_position();
     };
-    
+
     /*
      * close media popup
      * @return void
@@ -398,33 +398,33 @@ function MediaPopup(name) {
     this.close_media = function() {
         if (!this.get_param('currentPopup'))
             return;
-        
+
         /* hide current popup */
         this.get_param('currentPopup').innerHTML = '';
         this.get_param('currentPopup').style.display = 'none';
-        
+
         /* hide popup background */
         this.hide_popupBackground();
     };
-    
+
     /*
      * refresh popup position
      * @return void
      * @access public
      */
     this.refresh_position = function() {
-        if ( this.get_param('currentPopup') === false 
+        if ( this.get_param('currentPopup') === false
             || this.get_param('currentPopup').style.display == 'none' )
             return;
-        
+
         popup = this.get_param('currentPopup');
         type = this.get_param('mediaType');
         mediaWidth = this.get_param('mediaWidth');
         mediaHeight = this.get_param('mediaHeight');
-        
+
         /* update popup width */
         popup.style.width = Math.max(200, mediaWidth) + 'px';
-        
+
         /* get window properties */
         if ( this.get_param('navType') == 'real' ) {
                 windowWidth = window.innerWidth;
@@ -433,32 +433,32 @@ function MediaPopup(name) {
                 windowWidth = this.get_param('body').offsetWidth;
                 windowHeight = document.documentElement.clientHeight;
         }
-        
-        /* check super size media */        
+
+        /* check super size media */
         if (type == 'image' && (mediaWidth > (windowWidth - 40)
                 || mediaHeight > (windowHeight - 40))) {
 
                 popup.style.position = 'absolute';
-                
+
                 if (mediaWidth > (windowWidth - 40))
                         popup.style.left = '20px';
                 else
                         popup.style.left = ((windowWidth-popup.offsetWidth)/2)+'px';
-                
+
                 if (mediaHeight > (windowHeight - 40))
                         popup.style.top = '20px';
                 else
-                         popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';        
-        } else {        
+                         popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';
+        } else {
                 popup.style.position = 'fixed';
                 popup.style.left = ((windowWidth-popup.offsetWidth)/2)+'px';
             popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';
      }
-     
+
      /* update background */
      this.show_popupBackground();
     };
-    
+
     /*
      * show popup background
      * @return void
@@ -469,7 +469,7 @@ function MediaPopup(name) {
         this.get_param('popupBkgd').style.height = this._get_availableHeight() + 'px';
         this.get_param('popupBkgd').style.display = 'block';
     };
-    
+
     /*
      * hide popup background
      * @return void
@@ -478,7 +478,7 @@ function MediaPopup(name) {
     this.hide_popupBackground = function() {
         this.get_param('popupBkgd').style.display = 'none';
     };
-    
+
     /*
      * open next diaporama picture
      * @return void
@@ -494,7 +494,7 @@ function MediaPopup(name) {
         this.close_media();
         this.open_media(p['picture'], p['title']);
     };
-    
+
     /*
      * open previous diaporama picture
      * @return void
@@ -510,9 +510,9 @@ function MediaPopup(name) {
         this.close_media();
         this.open_media(p['picture'], p['title']);
     };
-    
+
     /* internal methods */
-    
+
     /*
      * build popup background
      * @return void
@@ -522,7 +522,7 @@ function MediaPopup(name) {
         d = document.createElement('div').cloneNode(true);
         d.className = 'mediaPopupBkgd';
         d.style.display = 'none';
-        
+
         /* attach actions */
         if (this.get_param('clickBkgdToClose') == 1) {
             if (this.get_param('navType') == 'real') {
@@ -531,11 +531,11 @@ function MediaPopup(name) {
             d.onclick = new Function('onclick', this.name + '.close_media();');
              }
         }
-        
+
         this.set_param('popupBkgd', d);
         this.get_param('body').appendChild(d);
     };
-    
+
     /*
      * on key pressed handler
      * @param integer keyCode
@@ -546,7 +546,7 @@ function MediaPopup(name) {
         /* check if a popup is opened */
         if (this.get_param('popupBkgd').style.display == 'none')
             return;
-    
+
         switch(event.keyCode) {
         case 27: /* key : escape */
             this.close_media();
@@ -561,7 +561,7 @@ function MediaPopup(name) {
             break;
         }
     };
-    
+
     /*
      * return close button DOM Element
      * @return DOMElement
@@ -571,12 +571,12 @@ function MediaPopup(name) {
         /* add close button box */
         bttnBox = document.createElement('div').cloneNode(true);
         bttnBox.className = 'closeButton';
-        
+
         /* add close button image */
         bttnImg = document.createElement('img').cloneNode(true);
         bttnImg.src = this.get_param('pictures', 'closeButton');
         bttnImg.style.border = 'none';
-        
+
         /* attach actions */
         if (this.get_param('navType') == 'real') {
             bttnImg.setAttribute('onmouseover', 'this.src="'+this.get_param('pictures', 'closeButtonOver')+'";');
@@ -590,7 +590,7 @@ function MediaPopup(name) {
         bttnBox.appendChild(bttnImg);
         return bttnBox;
     };
-    
+
     /*
      * return control buttons bar DOM Element
      * @return DOMElement
@@ -606,9 +606,9 @@ function MediaPopup(name) {
                 diapButtonBar.style.CSSOverflow = 'display';
         }
         diapButtonBar.style.textAlign = 'left';
-        
+
         popup.appendChild(diapButtonBar);
-                
+
         /* attach diaporama left button */
         diapLeftButton = document.createElement('img').cloneNode(true);
         diapLeftButton.src = this.get_param('pictures', 'leftButton');
@@ -627,7 +627,7 @@ function MediaPopup(name) {
         }
         this.set_param('diapLeftButton', diapLeftButton);
         diapButtonBar.appendChild(diapLeftButton);
-        
+
         /* attach diaporama right button */
         diapRightButton = document.createElement('img').cloneNode(true);
         diapRightButton.src = this.get_param('pictures', 'rightButton');
@@ -646,10 +646,10 @@ function MediaPopup(name) {
         }
         this.set_param('diapRightButton', diapRightButton);
         diapButtonBar.appendChild(diapRightButton);
-        
+
         return diapButtonBar;
     };
-    
+
     /*
      * load diaporama button to get there size
      * @return void
@@ -663,7 +663,7 @@ function MediaPopup(name) {
         mainImage.onerror = _mediaPopup_diaporamaButtonLoadingFailed;
         mainImage.src = this.get_param('pictures', 'leftButton');
     };
-    
+
     /*
      * set diaporama buttons size
      * @return void
@@ -673,7 +673,7 @@ function MediaPopup(name) {
         this.set_param('diaporamaButtonsWidth', width);
         this.set_param('diaporamaButtonsHeight', height);
     };
-    
+
     /*
      * get available height
      * @return void
@@ -682,7 +682,7 @@ function MediaPopup(name) {
     this._get_availableHeight = function() {
         return document.documentElement.clientHeight;
     };
-    
+
     /*
      * check file opening on a new window
      * @param width
@@ -690,7 +690,7 @@ function MediaPopup(name) {
      * @access private
      */
     this.check_openInANewWindow = function(width) {
-    
+
         if (this.get_param('directOpenOnMobile') == 0)
             return false;
         if (this.get_param('isMobile') == 0)
