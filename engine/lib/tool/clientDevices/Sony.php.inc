@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.31
  * @date Creation: Apr 2018
  * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -90,6 +90,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H8314'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8324'     => array('platform_model' => 'Xperia XZ2 Compact',      'platform_year' => 2018),
         'H8416'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
+        'H9493'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
         'I4213'     => array('platform_model' => 'Xperia 10 Plus',          'platform_year' => 2019),
 
         'SOV31'     => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),
