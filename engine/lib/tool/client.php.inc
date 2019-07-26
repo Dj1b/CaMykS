@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.79
+ * @version 1.0.80
  * @date Creation: Jun 2007
  * @date Modification: Jul 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -1072,7 +1072,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ ZTE ([a-zA-Z0-9 ]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
-    } elseif (preg_match('/ (Z[0-9]{3}) Build/', $ua, $matches)) {
+    } elseif (preg_match('/ (Z[0-9]{1,3})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
     }
@@ -1298,6 +1298,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Blackview.php.inc');
         $device = preg_replace('/-|_/', ' ', $matches[1]);
         $infos = array_merge($infos, get_BlackviewClientDevice($device));
+    }
+
+    /* check Krüger & Matz devices */
+    elseif (preg_match('/ (FLOW)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/KrugerMatz.php.inc');
+        $device = strtolower($matches[1]);
+        $infos = array_merge($infos, get_KrugerMatzClientDevice($device));
     }
 
     /*** check operating system ***/
@@ -1555,7 +1562,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check L2 Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(Yowser|MQQBrowser|Goanna)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(Yowser|MQQBrowser|Goanna|DingTalk)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('MQQBrowser'=>'Mobile QQBrowser');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
@@ -1595,7 +1602,7 @@ function client_getUAInfos($ua=false) {
 
     /* check Facebook apps */
     elseif (preg_match('#(FBAN|FB_IAB)/([^;]*);([^.]*)(FBAV/[0-9\.]*)?;#i', $ua, $matches)) {
-        $rep = array('FBIOS'=>'Facebook App', 'FB4A'=>'Facebook App', 'MessengerForiOS' => 'Facebook Messenger');
+        $rep = array('FBIOS'=>'Facebook App', 'FB4A'=>'Facebook App', 'MessengerForiOS'=>'Facebook Messenger', 'Orca-Android'=>'Facebook Messenger');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[2]]) ? $rep[$matches[2]] : 'Unknown Facebook App ('.$matches[2].')',
             'browser_version'   => isset($matches[4]) ? substr($matches[4], 5) : '',

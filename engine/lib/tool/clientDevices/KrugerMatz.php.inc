@@ -1,29 +1,26 @@
 <?php
 /**
- * @brief ZTE client devices specific methods
+ * @brief Krüger & Matz client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/ZTE.php.inc
+ * @file engine/lib/tool/clientDevices/KrugerMatz.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
- * @date Creation: May 2018
+ * @version 1.0.0
+ * @date Creation: Jul 2019
  * @date Modification: Jul 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return ZTE client device information from a known list.
+ * Return KrugerMatz client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_ZTEClientDevice($deviceCode='') {
+function get_KrugerMatzClientDevice($deviceCode='') {
     $deviceList = array(
-        'Z7'            => array('platform_model' => 'Nubia 27',        'platform_year' => 2014),
-        'BLADE V7 LITE' => array('platform_model' => 'Blade V7 Lite',   'platform_year' => 2016),
-        'Z833'          => array('platform_model' => 'Avid Trio',       'platform_year' => 2016),
-        'A2017G'        => array('platform_model' => 'Axon 7',          'platform_year' => 2016),
+        'flow'  => array('platform_model' => 'Flow', 'platform_year' => 2015),
     );
 
     /* Check for returning list */
@@ -32,8 +29,8 @@ function get_ZTEClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'ZTE',
-        'platform_country'  => 'cn',
+        'platform_company'  => 'Krüger & Matz',
+        'platform_country'  => 'pl',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Aug 2018
  * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -31,6 +31,7 @@ function get_HTCClientDevice($deviceCode='') {
         '8088;'                 => array('platform_model' => 'One Max',             'platform_year' => 2013),
         'M8Sx'                  => array('platform_model' => 'One (E8)',            'platform_year' => 2014),
         'One M8'                => array('platform_model' => 'One (M8)',            'platform_year' => 2014),
+        'One mini 2'            => array('platform_model' => 'One mini 2',          'platform_year' => 2014),
         'D820u'                 => array('platform_model' => 'Desire 820 Dual SIM', 'platform_year' => 2014),
         'Desire 626'            => array('platform_model' => 'Desire 626',          'platform_year' => 2015),
         'One M9'                => array('platform_model' => 'One M9',              'platform_year' => 2015),
