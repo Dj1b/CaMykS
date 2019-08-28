@@ -4,9 +4,9 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerEmailing.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
+ * @date Modification: Aug 2019
  * @copyright 2012 - 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -332,7 +332,7 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
      * Load config.
      * @return boolean success
      */
-    private function load_config() {
+    public function load_config() {
         if ($this->config != null)
             return;
         $this->config = new Admin_GenericEmailingManagerEmailingConfig('emailing'.$this->id, $this->_libParent);
