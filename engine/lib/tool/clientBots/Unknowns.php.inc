@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.11
  * @date Creation: Jan 2019
- * @date Modification: Jun 2019
+ * @date Modification: Aug 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -464,6 +464,36 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'BacklinkHttpStatus (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Ceatles */
+    $unknownBots['ceatles'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Ceatles (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* backlinkCheck */
+    $unknownBots['backlinkcheckv'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'backlinkCheck (Unknown tool)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* marky */
+    $unknownBots['marky'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Marky (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

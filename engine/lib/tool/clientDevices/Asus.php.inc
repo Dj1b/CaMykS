@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.15
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,8 @@ function get_AsusClientDevice($deviceCode='') {
         'P01MA'     => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P023'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P00C'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'P001'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'P028'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Asus phones */
         'A500KL'    => array('platform_model' => 'ZenFone 5\'',             'platform_year' => 2014),
@@ -72,8 +74,10 @@ function get_AsusClientDevice($deviceCode='') {
         'ZS620KL'   => array('platform_model' => 'ZenFone 5Z',              'platform_year' => 2017),
         'ZE553KL'   => array('platform_model' => 'ZenFone Zoom S',          'platform_year' => 2017),
         'X018D'     => array('platform_model' => 'Zenfone Max Plus M1',     'platform_year' => 2017),
+        'X01AD'     => array('platform_model' => 'Zenfone Max',             'platform_year' => 2018),
         'X00TD'     => array('platform_model' => 'Zenfone Max Pro M1',      'platform_year' => 2018),
         'X00QD'     => array('platform_model' => 'Zenfone 5',               'platform_year' => 2018),
+        'Z01RD'     => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
     );
 
     /* Check for returning list */

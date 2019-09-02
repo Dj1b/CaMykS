@@ -33,7 +33,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
     $this->add_newItem('city', 'db', 'text', 'varchar', 64, '');
     $this->add_newItem('country', 'db', 'text', 'varchar', 3, '');
     $this->add_newItem('birthdate', 'db', 'date', 'bigint', '', time());
-   
+
     /* temp items */
     $this->add_newItem('confirm', 'temp', 'integer', '', '', 0);
 
@@ -49,53 +49,54 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
    * @access public
    */
   function check_data() {
-    
-    /* check security code 
+
+    /* check security code
     if ( !isset($_REQUEST['secode']))
       return false;
     $secode = $_REQUEST['secode'];
-    
-    
-    / set secure code 
-    if( $this->id == 0 ) { 
+
+
+    / set secure code
+    if( $this->id == 0 ) {
       if ( $secode !=  substr(session_id(), 1, 8))
         return false;
     }
-    
+    */
+
     /* check mandatory values */
     $this->_libItems['firstname']->value = trim($this->_libItems['firstname']->value);
     if ($this->_libItems['firstname']->value == '' ) {
       $this->_libError = $this->get_translation('error_firstnamemustbeset');
       return false;
     }
-    
+
     $this->_libItems['lastname']->value = trim($this->_libItems['lastname']->value);
     if ($this->_libItems['lastname']->value == '' ) {
       $this->_libError = $this->get_translation('error_lastnamemustbeset');
       return false;
     }
-    
+
     $this->_libItems['city']->value = trim($this->_libItems['city']->value);
     if ($this->_libItems['city']->value == '' ) {
       $this->_libError = $this->get_translation('error_citymustbeset');
       return false;
     }
-    
+
     $this->_libItems['zipcode']->value = trim($this->_libItems['zipcode']->value);
     if ($this->_libItems['zipcode']->value == '' ) {
       $this->_libError = $this->get_translation('error_zipcodemustbeset');
       return false;
     }
-    
+
     $this->_libItems['email']->value = trim($this->_libItems['email']->value);
     if ($this->_libItems['email']->value == '' ) {
       $this->_libError = $this->get_translation('error_emailmustbeset');
       return false;
     }
-        
+
     if (mail_isValidEmail($this->_libItems['email']->value) == false) {
       $this->_libError = $this->get_translation('error_emailmustbevalid');
-      return false;    
+      return false;
     }
     return true;
   }
@@ -118,7 +119,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
   }
 
   /* specific methods */
-  
+
   /*
    * return categories status list
    * @param boolean $full
@@ -133,7 +134,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
     $list['1'] = $this->get_translation('signaturesstatus_enabled');
     return $list;
   }
-  
+
   /*
    * return single signature status list
    * @return array
@@ -143,7 +144,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
     return array(0 => $this->get_translation('signaturestatus_disabled'),
 		 1 => $this->get_translation('signaturestatus_enabled'));
   }
-  
+
   /*
    * get signature count by petition
    * @param array $petitions
@@ -152,18 +153,18 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
    */
   function count_byPetitions($petitions=null) {
     global $camyks;
-    
+
     $list = array();
     /* check petitions */
     if ( is_array($petitions) and count($petitions) == 0)
       return $list;
-    
+
     /* build sql query */
     $sql = 'select petition,  count(id) as cnt from '.$this->_libSQLTable;
     if (  is_array($petitions) and count($petitions)>0 )
       $sql .= ' where petition in ('.implode(',', $petitions).')';
     $sql .= ' group by petition';
-    
+
     /* execute sql query */
     if ( $req = mysql_query($sql) or $camyks->log_sqlerror( $this, $sql, __FILE__, __LINE__ ) )
       /* get data from database */
@@ -185,8 +186,8 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
     $params = array_merge($p, $params);
     $w = $this->build_whereStatement($params);
     return $this->get_objectList($camyks->current_language, $w, $params['limit'], $params['count'], $params['order'], $params['orderway']);
-  } 
-  
+  }
+
   /*
    * return petition count with given params
    * @params array $params
@@ -199,7 +200,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
     $params = array_merge($p, $params);
     return $this->get_objectCount($this->build_whereStatement($params));
   }
-  
+
   /*
    * build where statement from params
    * @param array $params
@@ -213,7 +214,7 @@ class Admin_GenericPetitionManagerSignature extends ModuleLibrary {
       $w[] = 'status '.$params['status'];
     elseif($params['status'] != -1 )
       $w[] = 'status = '.$params['status'];
-    
+
     /* check petition */
     if ( is_numeric($params['petition']) and $params['petition'] != -1)
       $w[] = 'petition = '.$params['petition'];

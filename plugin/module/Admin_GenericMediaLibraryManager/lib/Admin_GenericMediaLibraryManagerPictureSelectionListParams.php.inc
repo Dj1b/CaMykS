@@ -8,7 +8,7 @@
  * Object Type      : Plugin / Module Engine
  * Creation Date	: Jun 2015
  * Last Modif Date	: Nov 2017
- * 
+ *
  * Admin_GenericMediaLibraryManager picture list parameters
  */
 global $camyks;
@@ -27,10 +27,6 @@ $this->pictureListParams = array('name'=>'pictureList', 'useSession'=>true, 'obj
 
 /* build selector params */
 $this->pictureListParams['headhiddens'] = array('openTab'=>'Pictures', 'gallery'=>$this->pictureGalleryItem->id);
-
-/* build head parameters *
-$this->pictureListParams['headselectors'] = array('page'=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-						   'status'=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->picturesStatusList, 'default'=>'-1'));
 
 /* build sort parameters */
 $this->pictureListParams['sort'] = array('allowed'=>false, 'default'=>'sortPosition', 'defaultway'=>'asc');

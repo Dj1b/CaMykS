@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.26
  * @date Creation: May 2018
- * @date Modification: Jun 2019
+ * @date Modification: Jul 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -90,6 +90,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 5 pro'      => array('platform_model' => 'Redmi Note 5 Pro',    'platform_year' => 2018),
         'redmi note 6 pro'      => array('platform_model' => 'Redmi Note 6 Pro',    'platform_year' => 2018),
         'redmi 5 plus'          => array('platform_model' => 'Redmi 5 Plus',        'platform_year' => 2018),
+        'redmi 6'               => array('platform_model' => 'Redmi 6',             'platform_year' => 2018),
         'redmi 6a'              => array('platform_model' => 'Redmi 6A',            'platform_year' => 2018),
         'redmi 6 pro'           => array('platform_model' => 'Redmi 6 Pro',         'platform_year' => 2018),
         'redmi s2'              => array('platform_model' => 'Redmi S2',            'platform_year' => 2018),
@@ -97,6 +98,8 @@ function get_XiaomiClientDevice($deviceCode='') {
 
         'pocophone f1'          => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
         'poco f1'               => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
+
+        'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),
     );
 
     /* Check for returning list */

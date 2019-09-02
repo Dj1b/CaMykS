@@ -22,6 +22,7 @@ function admin_systemreport_deletelog ( id ) {
     document.location.href = admin_systemreport_deleteloglink+id;
   }
 }
+*/
 
 /*
  * delete logs link width confirmation

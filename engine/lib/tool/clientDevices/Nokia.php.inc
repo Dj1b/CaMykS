@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Nokia.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.16
  * @date Creation: Jun 2018
- * @date Modification: Jun 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,19 +22,25 @@ function get_NokiaClientDevice($deviceCode='') {
     $deviceList = array(
         'Lumia 920'     => array('platform_model' => 'Lumia 920',       'platform_year' => 2012),
         'Lumia 535'     => array('platform_model' => 'Lumia 535',       'platform_year' => 2014),
+        'Lumia 735'     => array('platform_model' => 'Lumia 735',       'platform_year' => 2014),
         'Lumia 830'     => array('platform_model' => 'Lumia 830',       'platform_year' => 2014),
         'Lumia 830'     => array('platform_model' => 'Lumia 830',       'platform_year' => 2014),
         'Lumia 950 XL'  => array('platform_model' => 'Lumia 950 XL',    'platform_year' => 2015),
 
         'TA-1004'       => array('platform_model' => '8',               'platform_year' => 2017),
+        'TA-1005'       => array('platform_model' => '8 Sirocco',       'platform_year' => 2017),
         'TA-1021'       => array('platform_model' => '6',               'platform_year' => 2017),
+        'TA-1033'       => array('platform_model' => '6',               'platform_year' => 2017),
         'TA-1024'       => array('platform_model' => '5',               'platform_year' => 2017),
         'TA-1032'       => array('platform_model' => '3',               'platform_year' => 2017),
         'TA-1053'       => array('platform_model' => '5',               'platform_year' => 2017),
 
         'X2DS'          => array('platform_model' => 'X2 (Dual Sim)',   'platform_year' => 2014),
+        '8 Sirocco'     => array('platform_model' => '8 Sirocco',       'platform_year' => 2017),
         '1'             => array('platform_model' => '1',               'platform_year' => 2018),
+        '2.1'           => array('platform_model' => '2.1',             'platform_year' => 2018),
         '3.1'           => array('platform_model' => '3.1',             'platform_year' => 2018),
+        '5.1 Plus'      => array('platform_model' => '5.1 Plus',        'platform_year' => 2018),
         '6.1'           => array('platform_model' => '6.1',             'platform_year' => 2018),
         '7 plus'        => array('platform_model' => '7 Plus',          'platform_year' => 2018),
         '8.1'           => array('platform_model' => '8.1',             'platform_year' => 2019),

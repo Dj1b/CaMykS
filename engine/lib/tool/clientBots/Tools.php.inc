@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.22
  * @date Creation: May 2018
- * @date Modification: Jun 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1239,6 +1239,46 @@ function _client_getKnownTools() {
         'tool_url'          => 'https://api.slack.com/robots',
         'engine_title'      => 'Slack',
         'engine_url'        => 'https://slack.com/',
+    );
+
+    /* Cocolyzebot */
+    $knownTools['cocolyzebot'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Cocolyzebot',
+        'tool_url'          => 'https://cocolyze.com/bot',
+        'engine_title'      => 'Cocolyze',
+        'engine_url'        => 'https://cocolyze.com/',
+    );
+
+    /* Camo Asset Proxy */
+    $knownTools['camo asset proxy'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Camo Asset Proxy',
+        'engine_url'        => 'https://github.com/atmos/camo',
+    );
+
+    /* Apercite */
+    $knownTools['aprc.it'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Aprc',
+        'tool_url'          => '',
+        'engine_title'      => 'Apercite',
+        'engine_url'        => 'https://apercite.fr',
+    );
+
+    /* EventMachine */
+    $knownTools['eventmachine'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'EventMachine HttpClient',
+        'tool_url'          => 'https://github.com/eventmachine/eventmachine',
+        'engine_title'      => '',
+        'engine_url'        => '',
     );
 
     /* return list */

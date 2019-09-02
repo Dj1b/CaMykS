@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.13
  * @date Creation: Aug 2018
- * @date Modification: Jun 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,6 +31,7 @@ function get_HTCClientDevice($deviceCode='') {
         '8088;'                 => array('platform_model' => 'One Max',             'platform_year' => 2013),
         'M8Sx'                  => array('platform_model' => 'One (E8)',            'platform_year' => 2014),
         'One M8'                => array('platform_model' => 'One (M8)',            'platform_year' => 2014),
+        'One mini 2'            => array('platform_model' => 'One mini 2',          'platform_year' => 2014),
         'D820u'                 => array('platform_model' => 'Desire 820 Dual SIM', 'platform_year' => 2014),
         'Desire 626'            => array('platform_model' => 'Desire 626',          'platform_year' => 2015),
         'One M9'                => array('platform_model' => 'One M9',              'platform_year' => 2015),
@@ -38,8 +39,12 @@ function get_HTCClientDevice($deviceCode='') {
         '2PYB2'                 => array('platform_model' => 'Bolt',                'platform_year' => 2016),
         'Desire 628 dual sim'   => array('platform_model' => 'Desire 628 Dual SIM', 'platform_year' => 2016),
         'D10i'                  => array('platform_model' => 'Desire 10 Pro',       'platform_year' => 2016),
+        'U-3u'                  => array('platform_model' => 'U11',                 'platform_year' => 2017),
+        'U11'                   => array('platform_model' => 'U11+',                'platform_year' => 2017),
         '2Q4D100'               => array('platform_model' => 'U11+',                'platform_year' => 2017),
+        'U Ultra'               => array('platform_model' => 'U Ultra',             'platform_year' => 2017),
         '2Q4R100'               => array('platform_model' => 'U11 Eyes',            'platform_year' => 2018),
+        'U12+'                  => array('platform_model' => 'U12+',                'platform_year' => 2018),
     );
 
     /* Check for returning list */

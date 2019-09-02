@@ -1351,6 +1351,7 @@ final class Admin_ContentPage extends Module {
                 'url'   => 'javascript:alert()',
                 'icon'  => '',
             ),
+            */
             /* delete page */
             array(
                 'name'=>'action_delete',

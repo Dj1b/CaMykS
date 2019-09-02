@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.43
  * @date Creation: May 2018
- * @date Modification: Jun 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -327,6 +327,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Facebook',
         'engine_url'        => 'http://www.facebook.com/',
+    );
+
+    /* Twitter bot : Twitterbot */
+    $knownBots['twitterbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Twitterbot',
+        'bot_url'           => '',
+        'engine_title'      => 'Twitter',
+        'engine_url'        => 'https://twitter.com/',
     );
 
     /* Cuill search engine : Twiceler */
@@ -1163,9 +1173,9 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'PaperLiBot',
-        'bot_url'           => '',
-        'engine_title'      => 'Amazon',
-        'engine_url'        => 'http://aws.amazon.com/',
+        'bot_url'           => 'https://support.paper.li/entries/20023257-what-is-paper-li',
+        'engine_title'      => 'Paper.li',
+        'engine_url'        => 'https://paper.li',
     );
 
     /* Suggy Bot */
@@ -4342,6 +4352,56 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'eContext Classification Engine',
         'engine_url'        => 'https://econtext.ai/',
+    );
+
+    /* TinEye-bot */
+    $knownBots['tineye-bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TinEye-bot',
+        'bot_url'           => 'https://www.tineye.com/crawler.html',
+        'engine_title'      => 'TinEye',
+        'engine_url'        => 'https://www.tineye.com/',
+    );
+
+    /* veu */
+    $knownBots['veu.cat'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'veu.cat',
+        'engine_url'        => 'http://www.veu.cat/',
+    );
+
+    /* Nuzzel */
+    $knownBots['nuzzel'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Nuzzel',
+        'engine_url'        => 'http://nuzzel.com/',
+    );
+
+    /* datagnionbot */
+    $knownBots['datagnionbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'datagnionbot',
+        'bot_url'           => 'https://www.datagnion.com/bot.html',
+        'engine_title'      => 'Datagnion',
+        'engine_url'        => 'https://www.datagnion.com/',
+    );
+
+    /* TrendsmapResolver */
+    $knownBots['trendsmapresolver'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TrendsmapResolver',
+        'bot_url'           => '',
+        'engine_title'      => 'Trendsmap',
+        'engine_url'        => 'https://www.trendsmap.com/',
     );
 
     /* return bot list */
