@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Nokia.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Jun 2018
- * @date Modification: Jul 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,6 +40,7 @@ function get_NokiaClientDevice($deviceCode='') {
         '1'             => array('platform_model' => '1',               'platform_year' => 2018),
         '2.1'           => array('platform_model' => '2.1',             'platform_year' => 2018),
         '3.1'           => array('platform_model' => '3.1',             'platform_year' => 2018),
+        '5.1 Plus'      => array('platform_model' => '5.1 Plus',        'platform_year' => 2018),
         '6.1'           => array('platform_model' => '6.1',             'platform_year' => 2018),
         '7 plus'        => array('platform_model' => '7 Plus',          'platform_year' => 2018),
         '8.1'           => array('platform_model' => '8.1',             'platform_year' => 2019),

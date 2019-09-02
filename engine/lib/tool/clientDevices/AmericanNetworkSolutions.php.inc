@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Haier client devices specific methods
+ * @brief American Network Solutions client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Haier.php.inc
+ * @file engine/lib/tool/clientDevices/AmericanNetworkSolutions.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Mar 2019
- * @date Modification: Aug 2019
+ * @version 1.0.0
+ * @date Creation: Jul 2019
+ * @date Modification: Jul 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14,18 +14,13 @@
  */
 
 /**
- * Return Haier client device information from a known list.
+ * Return American Network Solutions client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_HaierClientDevice($deviceCode='') {
+function get_AmericanNetworkSolutionsClientDevice($deviceCode='') {
     $deviceList = array(
-        /* Haier tablets */
-        'CDP7TAB4C8'    => array('platform_model' => 'CDisplay E701', 'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2014),
-
-        /* Haier mobiles */
-        'G30'           => array('platform_model' => 'Voyage G30', 'platform_year' => 2015),
-        'HM-G552-FL'    => array('platform_model' => 'G7', 'platform_year' => 2017),
+        'UL40'      => array('platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -34,8 +29,8 @@ function get_HaierClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Haier',
-        'platform_country'  => 'cn',
+        'platform_company'  => 'American Network Solutions (ANS)',
+        'platform_country'  => 'us',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

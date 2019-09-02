@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.32
  * @date Creation: Apr 2018
- * @date Modification: Jul 2019
+ * @date Modification: Aug 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -75,6 +75,7 @@ function get_SonyClientDevice($deviceCode='') {
         'G3421'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
         'G3423'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
         'G8141'     => array('platform_model' => 'Xperia XZ Premium',       'platform_year' => 2017),
+        'G8142'     => array('platform_model' => 'Xperia XZ Premium',       'platform_year' => 2017),
         'G8341'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2017),
         'G8342'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2017),
         'G8343'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2017),
@@ -90,6 +91,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H8314'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8324'     => array('platform_model' => 'Xperia XZ2 Compact',      'platform_year' => 2018),
         'H8416'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
+        'H9436'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
         'H9493'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
         'I4213'     => array('platform_model' => 'Xperia 10 Plus',          'platform_year' => 2019),
 
