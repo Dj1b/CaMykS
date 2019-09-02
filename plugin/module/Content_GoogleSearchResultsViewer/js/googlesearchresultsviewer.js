@@ -55,7 +55,7 @@ function googlesearchresultsviewer_importgsr() {
   if ( code.indexOf('<script') == -1 || code.indexOf('</script>') == -1 ) {
     alert( locales['googlesearchresultsviewer_invalidcode'] );
     return;
-  }
+  } */
   /* get width value */
   myReg = new RegExp(/googleSearchFrameWidth = (\d+);/);
   myRegResult = myReg.exec(code);
@@ -65,7 +65,7 @@ function googlesearchresultsviewer_importgsr() {
     alert( locales['googlesearchresultsviewer_invalidcode'] );
     return;
   }
-  
+
   /* get search domain value */
   myReg = new RegExp(/googleSearchDomain = "([^"]+)";/);
 	myRegResult = myReg.exec(code);
@@ -75,7 +75,7 @@ function googlesearchresultsviewer_importgsr() {
 	  alert( locales['googlesearchresultsviewer_invalidcode'] );
 	  return;
 	}
-  
+
    if (typeof(ctransition) != 'undefined') {
      /* execute camyks build-in transition if available */
      transParams = {};

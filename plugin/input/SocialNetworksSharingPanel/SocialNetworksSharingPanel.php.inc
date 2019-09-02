@@ -375,6 +375,7 @@ final class SocialNetworksSharingPanel extends Input {
                 'share'     => 1,
                 'follow'    => 1,
             ),
+            */
 
             /* add linkedin */
             'linkedin' => array(
