@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/CPDF.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2010
- * @date Modification: Oct 2018
- * @copyright 2010 - 2018 CaMykS Team
+ * @date Modification: Sep 2019
+ * @copyright 2010 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -79,7 +79,7 @@ class CPDF extends FPDF {
      */
     public function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false, $maxLines=0) {
         if ($maxLines == 0) {
-            parent::MultiCell($w, $h, $txt, $border, $align, $fill=false);
+            parent::MultiCell($w, $h, $txt, $border, $align, $fill);
             return '';
         }
 
