@@ -8,9 +8,9 @@
  * @details Plugin / Module Engine
  * @file plugin/module/Admin_SecurityTools/Admin_SecurityTools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2
+ * @version 1.2.1
  * @date Creation: Oct 2007
- * @date Modification: Jan 2019
+ * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -98,11 +98,8 @@ final class Admin_SecurityTools extends Module {
         /* Load configuration */
         $this->config->get();
 
-        /* Ceck security */
-        if ($camyks->mode == CAMYKS_MODE_ADMIN)
-            $this->check_security();
-        else
-            $this->register_asCaMykSEventHandler('onInitialise');
+        /* Check security */
+        $this->register_asCaMykSEventHandler('onInitialise');
     }
 
     /* Override Module methods */
@@ -929,6 +926,10 @@ final class Admin_SecurityTools extends Module {
     private function check_security() {
         global $camyks;
 
+        /* Check plugin is installed */
+        if (!$this->is_installed())
+            return;
+
         /* IP Filter */
         if ($this->config->vars['ipfilter'])
             $this->ipfilterrule->check_security();
@@ -942,7 +943,6 @@ final class Admin_SecurityTools extends Module {
             $this->uaFilterConfig->get();
             $this->uaFilterConfig->check_security();
         }
-
 
         /* BackUp */
         if ($this->config->vars['backup']) {
