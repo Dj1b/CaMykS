@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.50
+ * @version 1.0.51
  * @date Creation: Apr 2018
- * @date Modification: Aug 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -77,6 +77,7 @@ function get_SamsungClientDevice($deviceCode='') {
         /* Samsung Galaxy S series */
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                        'platform_year' => 2010),
         'GT-S7562'  => array('platform_model' => 'Galaxy S Duo',                    'platform_year' => 2012),
+        'GT-S7568'  => array('platform_model' => 'Galaxy S Duo',                    'platform_year' => 2012),
         'GT-I9100'  => array('platform_model' => 'Galaxy S2',                       'platform_year' => 2011),
         'GT-I9105P' => array('platform_model' => 'Galaxy S2 Plus',                  'platform_year' => 2013),
         'GT-I9300'  => array('platform_model' => 'Galaxy S3',                       'platform_year' => 2012),
@@ -240,6 +241,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G570F'  => array('platform_model' => 'Galaxy J5 Prime',                 'platform_year' => 2016),
         'SM-G570M'  => array('platform_model' => 'Galaxy J5 Prime',                 'platform_year' => 2016),
         'SM-J530F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2017),
+        'SM-J600F'  => array('platform_model' => 'Galaxy J6',                       'platform_year' => 2018),
         'SM-J600FN' => array('platform_model' => 'Galaxy J6',                       'platform_year' => 2018),
         'SM-J610FN' => array('platform_model' => 'Galaxy J6+',                      'platform_year' => 2018),
         'SM-J7008'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2015),
@@ -325,6 +327,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-I8552'  => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
         'GT-I8552B' => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
         'SGH-I527'  => array('platform_model' => 'Galaxy Mega',                     'platform_year' => 2013),
+        'GT-I9205'  => array('platform_model' => 'Galaxy Mega 6.3',                 'platform_year' => 2013),
         'SM-B313E'  => array('platform_model' => 'Galaxy Metro 313',                'platform_year' => 2017),
         'SM-G550FY' => array('platform_model' => 'Galaxy On5',                      'platform_year' => 2016),
         'GT-S5302B' => array('platform_model' => 'Galaxy Pocket Duos',              'platform_year' => 2012),

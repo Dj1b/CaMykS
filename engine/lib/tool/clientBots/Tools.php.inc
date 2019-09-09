@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: May 2018
- * @date Modification: Aug 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -451,7 +451,7 @@ function _client_getKnownTools() {
         'engine_url'        => 'http://wscheck.com',
     );
 
-    /* MRA */
+    /* MRA
     $knownTools[' mra '] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
@@ -460,6 +460,7 @@ function _client_getKnownTools() {
         'engine_title'      => 'Mail.ru',
         'engine_url'        => 'http://mail.ru',
     );
+    */
 
     /* DowntimeDetector */
     $knownTools['downtimedetector'] = array(

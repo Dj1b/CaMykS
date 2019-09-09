@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.81
+ * @version 1.0.82
  * @date Creation: Jun 2007
- * @date Modification: Aug 2019
+ * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -99,16 +99,16 @@ function client_getUAInfos($ua=false) {
     if (($c = client_getHackInfosFromUserAgent($ua)) !== false)
         return $c;
 
+    /*** check unknown */
+    if (($c = client_getUnknownInfosFromUserAgent($ua)) !== false)
+        return $c;
+
     /*** check tool */
     if (($c = client_getToolInfosFromUserAgent($ua)) !== false)
         return $c;
 
     /*** check bot */
     if (($c = client_getBotInfosFromUserAgent($ua)) !== false)
-        return $c;
-
-    /*** check unknown */
-    if (($c = client_getUnknownInfosFromUserAgent($ua)) !== false)
         return $c;
 
     /*** check generic bot/tool */
@@ -796,10 +796,10 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Logicom */
-    elseif (preg_match('/L-EMENT_?([0-9]{3})/', $ua, $matches)) {
+    elseif (preg_match('/L-EMENT_?([^.]*)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
-    } elseif (preg_match('/ (M bot Tab [0-9]{3})( Build|\))/U', $ua, $matches)) {
+    } elseif (preg_match('/ (M bot Tab [0-9]{3})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
     } elseif (preg_match('/(Le_Hello)/', $ua, $matches)) {
@@ -1059,13 +1059,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Vivo devices */
-    elseif (preg_match('/ ([0-9]{4})( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/; ([0-9]{4})( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
-    } elseif (preg_match('/ vivo (.*) Build/', $ua, $matches)) {
+    } elseif (preg_match('/; vivo (.*) Build/', $ua, $matches)) {
         include_once('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
-    } elseif (preg_match('/ vivo (.*)\)/', $ua, $matches)) {
+    } elseif (preg_match('/; vivo (.*)\)/', $ua, $matches)) {
         include_once('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
     }
@@ -1579,8 +1579,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check unsmartly written browser, non case sensitive */
-    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LBBROWSER'=>'Liebao', 'LinkedInApp'=>'LinkedIn App');
+    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|LBBROWSER|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave|360SE)(?:\/| )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LBBROWSER'=>'Liebao', 'LinkedInApp'=>'LinkedIn App', '360SE'=>'360Safe');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
             'browser_version'   => isset($matches[2])?$matches[2]:'',
@@ -1588,7 +1588,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check L3 Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(MicroMessenger)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(MicroMessenger|ArcticFox)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('MicroMessenger' => 'WeChat',);
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],
@@ -2472,7 +2472,11 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
 
     /* Bad chrome version */
-    if (preg_match('#Chrome/(0.A.B.C|71.0.3578.98)#i', $ua))
+    if (preg_match('#Chrome/0.A.B.C#i', $ua))
+        return $fake;
+
+    /* Fake chrome ua */
+    if (preg_match('#^Chrome/71.0.3578.98$#i', $ua))
         return $fake;
 
     /* check for user agent where spaces are replaced by plus signs */
@@ -2529,8 +2533,8 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla/5.0 \(Windows NT 10.0; Win64; x64\) AppleWebKit/537.36 \(KHTML, like Gecko\) Chrome/[0-9\.]* Safari/537.36 Edge/[A-Z0-9]{8}$#', $ua))
         return $fake;
 
-    /* Fake visits, with dumb ua */
-    if (preg_match('#(Foo|default)$#', $ua))
+    /* Fake visits, with dumb/single word ua */
+    if (preg_match('#(Foo|default|Google)$#', $ua))
         return $fake;
 
     /* Fake visit, with dumb ua */

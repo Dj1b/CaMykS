@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: May 2018
- * @date Modification: Jul 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -739,6 +739,26 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Cortex',
         'tool_url'          => 'https://github.com/TheHive-Project/Cortex',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Microsoft WinInet APIs */
+    $knownGenerics['test certificate info'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Test Certificate Info',
+        'tool_url'          => '',
+        'engine_title'      => 'Microsoft WinInet',
+        'engine_url'        => 'https://www.microsoft.com',
+    );
+
+    /* Web Thumbnailer */
+    $knownGenerics['webthumbnailer'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Web Thumbnailer',
+        'tool_url'          => 'https://github.com/ArthurHoaro/web-thumbnailer',
         'engine_title'      => '',
         'engine_url'        => '',
     );

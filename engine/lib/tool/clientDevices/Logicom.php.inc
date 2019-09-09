@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Logicom.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,6 +21,7 @@
 function get_LogicomClientDevice($deviceCode='') {
     $deviceList = array(
         /* Logicom tablets */
+        'TAB1043'       => array('platform_model' => 'Tab 1043',        'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2016),
         'M bot Tab 103' => array('platform_model' => 'M bot Tab 103',   'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2017),
 
         /* Logicom mobiles */

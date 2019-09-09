@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Orange.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Sep 2018
- * @date Modification: Jun 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,6 +32,7 @@ function get_OrangeClientDevice($deviceCode='') {
         'Dive72'        => array('platform_model' => 'Dive 72', 'platform_year' => 2017),
         'Rise_33'       => array('platform_model' => 'Rise 33', 'platform_year' => 2017),
         'Rise52'        => array('platform_model' => 'Rise 52', 'platform_year' => 2017),
+        'Rise 54'       => array('platform_model' => 'Rise 54', 'platform_year' => 2018),
     );
 
     /* Check for returning list */

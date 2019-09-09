@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Jul 2018
- * @date Modification: Aug 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -107,6 +107,7 @@ function get_WikoClientDevice($deviceCode='') {
         'view'              => array('platform_model' => 'View',            'platform_year' => 2017),
         'view prime'        => array('platform_model' => 'View Prime',      'platform_year' => 2017),
         'view xl'           => array('platform_model' => 'View XL',         'platform_year' => 2017),
+        'view2 go'          => array('platform_model' => 'View 2 Go',       'platform_year' => 2018),
         'violet'            => array('platform_model' => 'Violet',          'platform_year' => 2017),
         'wax'               => array('platform_model' => 'Wax',             'platform_year' => 2014),
         'wim'               => array('platform_model' => 'Wim',             'platform_year' => 2017),

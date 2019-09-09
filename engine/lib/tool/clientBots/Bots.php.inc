@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: May 2018
- * @date Modification: Aug 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1424,8 +1424,8 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => '360Spider',
         'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
+        'engine_title'      => 'Qihoo 360 Technology Co.,Ltd',
+        'engine_url'        => 'https://www.360.cn/',
     );
 
     /* memoryBot */
@@ -4402,6 +4402,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Trendsmap',
         'engine_url'        => 'https://www.trendsmap.com/',
+    );
+
+    /* Netcraft Web Server Survey */
+    $knownBots['netcraft web server survey'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Netcraft Web Server Survey',
+        'bot_url'           => '',
+        'engine_title'      => 'Netcraft Ltd',
+        'engine_url'        => 'https://www.netcraft.com/',
     );
 
     /* return bot list */
