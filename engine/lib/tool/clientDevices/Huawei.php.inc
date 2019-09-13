@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.49
+ * @version 1.0.50
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -31,6 +31,7 @@ function get_HuaweiClientDevices() {
         'AGS-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-U01'               => array('platform_model' => 'MediaPad T3 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'BTV-W09'               => array('platform_model' => 'MediaPad M,',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-W09'               => array('platform_model' => 'MediaPad M5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
@@ -144,6 +145,7 @@ function get_HuaweiClientDevices() {
         'U9201L'    => array('platform_model' => 'Ascend P1',       'platform_year' => 2012),
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
+        'MT7'       => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'MT7-L09'   => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'MT7-TL00'  => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'H1611'     => array('platform_model' => 'Ascend XT',       'platform_year' => 2016),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.51
+ * @version 1.0.52
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -60,7 +60,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T710'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T715'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T719'   => array('platform_model' => 'Galaxy Tab S2 8.0',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'SM-T810'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T810'   => array('platform_model' => 'Galaxy Tab S2 9.7',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T819'   => array('platform_model' => 'Galaxy Tab S2 9.7',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T713'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T813'   => array('platform_model' => 'Galaxy Tab S2',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T820'   => array('platform_model' => 'Galaxy Tab S3',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
@@ -294,6 +295,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N9600'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960F'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960U'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
+        'SM-N975F'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
 
         /* Samsung Galaxy other series */
         'GT-S5830'  => array('platform_model' => 'Galaxy Ace',                      'platform_year' => 2011),

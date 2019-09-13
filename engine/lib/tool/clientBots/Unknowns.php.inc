@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: Jan 2019
  * @date Modification: Sep 2019
  * @copyright 2019 CaMykS Team
@@ -204,7 +204,7 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'MauiBot',
-        'bot_url'           => 'mailto:crawler.feedback+wc@gmail.com',
+        'bot_url'           => 'mailto:crawler.feedback+beta@gmail.com',
         'engine_title'      => '',
         'engine_url'        => '',
     );

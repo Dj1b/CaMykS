@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.44
+ * @version 1.0.45
  * @date Creation: May 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4412,6 +4412,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Netcraft Ltd',
         'engine_url'        => 'https://www.netcraft.com/',
+    );
+
+    /* woorankreview */
+    $knownBots['woorankreview'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'woorankreview',
+        'bot_url'           => '',
+        'engine_title'      => 'WooRank',
+        'engine_url'        => 'https://www.woorank.com',
     );
 
     /* return bot list */

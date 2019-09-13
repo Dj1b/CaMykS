@@ -1,32 +1,26 @@
 <?php
 /**
- * @brief Cat client devices specific methods
+ * @brief Hyundai client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Cat.php.inc
+ * @file engine/lib/tool/clientDevices/Hyundai.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
- * @date Creation: Dec 2018
+ * @version 1.0.0
+ * @date Creation: Sep 2019
  * @date Modification: Sep 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Cat client device information from a known list.
+ * Return Hyundai client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_CatClientDevice($deviceCode='') {
+function get_HyundaiClientDevice($deviceCode='') {
     $deviceList = array(
-        /* CAT Tablets */
-        'helix' => array('platform_model' => 'Helix', 'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2014),
-
-        /* CAT Mobiles */
-        'S30'   => array('platform_model' => 'S30',    'platform_year' => 2015),
-        'S60'   => array('platform_model' => 'S60',    'platform_year' => 2016),
-        'S61'   => array('platform_model' => 'S61',    'platform_year' => 2018),
+        'G25524K'   => array('platform_model' => 'Eternity G24', 'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -35,8 +29,8 @@ function get_CatClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Caterpillar CAT',
-        'platform_country'  => 'us',
+        'platform_company'  => 'Hyundai',
+        'platform_country'  => 'id',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
