@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.45
+ * @version 1.0.46
  * @date Creation: May 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4422,6 +4422,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'WooRank',
         'engine_url'        => 'https://www.woorank.com',
+    );
+
+    /* Wordpress */
+    $knownBots['wordpress'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'WordPress',
+        'engine_url'        => 'https://www.wordpress.com',
     );
 
     /* return bot list */

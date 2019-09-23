@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.50
+ * @version 1.0.51
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -168,6 +168,7 @@ function get_HuaweiClientDevices() {
         'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'MRD-LX1'   => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'MRD-LX1N'  => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'TRT-LX1'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),

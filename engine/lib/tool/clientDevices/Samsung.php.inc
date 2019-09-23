@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.52
+ * @version 1.0.53
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -178,6 +178,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
         'SM-A920F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2018),
         'SM-A105F'  => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
+        'SM-A105FN' => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A205G'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205GN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A305F'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
@@ -225,6 +226,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J400F'  => array('platform_model' => 'Galaxy J4',                       'platform_year' => 2018),
         'SM-J415F'  => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
         'SM-J415FN' => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
+        'SM-J415GN' => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
         'SM-J500'   => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
         'SM-J500F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),
         'SM-J500FN' => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2015),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.83
+ * @version 1.0.84
  * @date Creation: Jun 2007
  * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -595,7 +595,7 @@ function client_getUAInfos($ua=false) {
     /* check Cubot devices : before Acer */
     elseif (preg_match('/ Cubot[ _\-]?([A-Za-z0-9\+ _]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Cubot.php.inc');
-        $model = preg_replace('/_/', ' ', trim($matches[1]));
+        $model = trim(preg_replace('/_/', ' ', $matches[1]));
         $infos = array_merge($infos, get_CubotClientDevice($model));
     } elseif (preg_match('/ (GT90) /', $ua, $matches)) {
         include_once('clientDevices/Cubot.php.inc');
@@ -1060,7 +1060,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Advan devices */
-    elseif (preg_match('/ (50[0-9]{2})( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ (50[0-9]{2}|S5E_NXT)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Advan.php.inc');
         $infos = array_merge($infos, get_AdvanClientDevice($matches[1]));
     }
@@ -1184,7 +1184,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Konrow devices */
-    elseif (preg_match('/ (BIGCOOL) Build/i', $ua, $matches)) {
+    elseif (preg_match('/ (BIGCOOL|Just5) Build/i', $ua, $matches)) {
         include_once('clientDevices/Konrow.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_KonrowClientDevice($model));
@@ -1237,7 +1237,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Ulefone devices */
-    elseif (preg_match('/ (s10_pro)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/ (s10_pro|Armor_6)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Ulefone.php.inc');
         $device = strtolower($matches[1]);
         $infos = array_merge($infos, get_UlefoneClientDevice($device));
@@ -1358,6 +1358,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Dexp.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_DexpClientDevice($device));
+    }
+
+    /* check Vertex devices */
+    elseif (preg_match('/; (Impress_[^.]*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Vertex.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_VertexClientDevice($device));
     }
 
     /* check Phh-Treble generic rom flashed device devices */
@@ -2529,8 +2536,16 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla/5.0 \(([^\)]*) rv:([0-9a-zA-Z\.]*)\) ([^\)]*) Firefox/([0-9a-zA-Z\.]*)((?!BrandVerity).)*$#i', $ua, $matches) and ($matches[2] != $matches[4]) and (version_compare($matches[4], 5, '>=')))
         return $fake;
     */
-    /* Fake Firefox user agent */
+    /* Fake Firefox user agent, with strange version identifier */
     if (preg_match('#^Mozilla/5.0 (.*) Firefox/([0-9A-Z]{4})$#i', $ua))
+        return $fake;
+
+    /* Fake Firefox user agent with fake versions */
+    if (preg_match('#^Mozilla/5.0 (.*) Firefox/(45.62.15|52.53.90)$#i', $ua))
+        return $fake;
+
+    /* Real Firefox user agent used for fake requests */
+    if (preg_match('#^Mozilla/5.0 \(Windows NT 6.1; WOW64; rv:40.0\) Gecko/20100101 Firefox/40.1$#i', $ua))
         return $fake;
 
     /* Fake Firefox (Chrome) user agent */
