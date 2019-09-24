@@ -4,9 +4,9 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_SecurityTools/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Oct 2007
- * @date Modification: Jan 2019
+ * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -67,6 +67,8 @@ $this->trads['mod_admin_securitytools_disable'] = 'D&eacute;sactiver';
 $this->trads['mod_admin_securitytools_enable'] = 'Activer';
 $this->trads['mod_admin_securitytools_configure'] = 'Configurer';
 
+$this->trads['mod_admin_securitytools_availableactions'] = 'V&eacute;rifications : ';
+$this->trads['mod_admin_securitytools_action_checkcamyksintegrity'] = 'V&eacute;rifier l\'int&eacute;grit&eacute; de CaMykS';
 $this->trads['mod_admin_securitytools_availabletools'] = 'Outils disponibles : ';
 $this->trads['mod_admin_securitytools_tool_ipfilter'] = 'Filtre IP';
 $this->trads['mod_admin_securitytools_tool_urlfilter'] = 'Filtre URL';
@@ -146,15 +148,49 @@ $this->trads['mod_admin_securitytools_backup_temp'] = 'Dossier temporaire : ';
 $this->trads['mod_admin_securitytools_backup_systempfolder'] = 'Dossier temporaire syst&egrave;me';
 $this->trads['mod_admin_securitytools_backup_nulltempissystemfolder'] = 'Laissez le champs vide pour utiliser le dossier temporaire syst&egrave;me.';
 
-/* messages */
+/* save configuration */
 $this->trads['mod_admin_securitytools_config_saved'] = 'Configuration sauvegard&eacute;e.';
 $this->trads['mod_admin_securitytools_config_notsaved'] = 'Configuration non sauvegard&eacute;e.';
+
+/* save rule */
 $this->trads['mod_admin_securitytools_rule_saved'] = 'R&egrave;gle sauvegard&eacute;e.';
 $this->trads['mod_admin_securitytools_rule_notsaved'] = 'R&egrave;gle non sauvegard&eacute;e.';
+
+/* delete rule */
 $this->trads['mod_admin_securitytools_rule_deleted'] = 'R&egrave;gle supprim&eacute;e.';
 $this->trads['mod_admin_securitytools_rule_notdeleted'] = 'R&egrave;gle non supprim&eacute;e.';
+
+/* delete backup */
 $this->trads['mod_admin_securitytools_backup_deleted'] = 'Sauvegarde supprim&eacute;e.';
 $this->trads['mod_admin_securitytools_backup_notdeleted'] = 'Sauvegarde non supprim&eacute;e.';
+
+/* save backup */
 $this->trads['mod_admin_securitytools_backup_saved'] = 'Sauvegarde manuelle cr&eacute;&eacute;e.';
 $this->trads['mod_admin_securitytools_backup_failed'] = 'Une erreur est survenue pendant la sauvegarde, consulter les rapports internes pour en voir la cause.';
+
+/* check camyks integrity */
+$this->trads['mod_admin_securitytools_formtitle_checkcamyksintegrity'] = 'V&eacute;rification de l\'int&eacute;grit&eacute; de CaMykS';
+$this->trads['mod_admin_securitytools_formtitle_integritysummary'] = 'R&eacute;sum&eacute;';
+$this->trads['mod_admin_securitytools_formitem_integrityfiledate'] = 'Date du fichier de v&eacute;rification : ';
+$this->trads['mod_admin_securitytools_formitem_lastgitcommit'] = 'Dernier commit Git : ';
+$this->trads['mod_admin_securitytools_formitem_filecountindesc'] = 'Fichiers v&eacute;rifi&eacute;s : ';
+$this->trads['mod_admin_securitytools_formitem_filecountlocal'] = 'Fichiers locaux : ';
+$this->trads['mod_admin_securitytools_formtitle_errors'] = 'Erreurs';
+$this->trads['mod_admin_securitytools_formitem_errorextrafiles'] = 'Erreurs fichiers additionnels : ';
+$this->trads['mod_admin_securitytools_formitem_errormissingfiles'] = 'Erreurs fichiers manquants : ';
+$this->trads['mod_admin_securitytools_formitem_errorchecksum'] = 'Erreurs checksum : ';
+$this->trads['mod_admin_securitytools_formitem_errormime'] = 'Erreur MIME : ';
+$this->trads['mod_admin_securitytools_formitem_errorheader'] = 'Erreurs en-t&ecirc;te : ';
+$this->trads['mod_admin_securitytools_formitem_errorversion'] = 'Erreur Version : ';
+$this->trads['mod_admin_securitytools_formtitle_integritydetails'] = 'D&eacute;tails des erreurs';
+$this->trads['mod_admin_securitytools_formitem_file'] = 'Fichier';
+$this->trads['mod_admin_securitytools_formitem_checkvalue'] = 'Valeur v&eacute;rifi&eacute;e';
+$this->trads['mod_admin_securitytools_formitem_localvalue'] = 'Valeur locale';
+
+$this->trads['mod_admin_securitytools_integrity_error_extra'] = 'Le fichier est pr&eacute;sent dans CaMykS local, mais absent des donn&eacute;es de v&eacute;rification.';
+$this->trads['mod_admin_securitytools_integrity_error_missing'] = 'Le fichier est pr&eacute;sent dans les donn&eacute;s de v&eacute;rification, mais absent du CaMykS local.';
+$this->trads['mod_admin_securitytools_integrity_error_checksum'] = 'Le checksum du fichier diff&egrave;re. <br />Valeur v&eacute;rification : <strong>%s</strong> <br /> Valeur locale : <strong>%s</strong>';
+$this->trads['mod_admin_securitytools_integrity_error_mime'] = 'Le type MIME du fichier diff&egrave;re. Valeur v&eacute;rification : <strong>%s</strong> - Valeur locale : <strong>%s</strong>';
+$this->trads['mod_admin_securitytools_integrity_error_header'] = 'L\'en-t&ecirc;te du fichier diff&egrave;re.';
+$this->trads['mod_admin_securitytools_integrity_error_version'] = 'La version du fichier diff&egrave;re. Valeur v&eacute;rification : <strong>%s</strong> - Valeur locale : <strong>%s</strong>';
 ?>

@@ -8,7 +8,7 @@
  * @details Plugin / Module Engine
  * @file plugin/module/Admin_SecurityTools/Admin_SecurityTools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.1
+ * @version 1.2.2
  * @date Creation: Oct 2007
  * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -263,6 +263,9 @@ final class Admin_SecurityTools extends Module {
                 /* mode == save_newbackupfile */
                 $this->init_admin_saveNewBackUpFile();
                 break;
+            case 'checkCaMykSIntegrity':
+                $this->init_admin_checkCaMykSIntegrity();
+                break;
             case 'main':
                 /* mode == main */
                 $this->init_admin_main();
@@ -286,7 +289,7 @@ final class Admin_SecurityTools extends Module {
         $this->answer = new CRequestAnswer();
 
         /* get action to execute */
-        $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
+        $mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
 
         /* execute action */
         switch ($mode) {
@@ -889,6 +892,129 @@ final class Admin_SecurityTools extends Module {
         }
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Backup')));
+    }
+
+    /**
+     * Initialise object module in admin/checkCaMykSIntegrity mode.
+     * @return void
+     */
+    private function init_admin_checkCaMykSIntegrity() {
+        global $camyks;
+
+        /* Load integrity file */
+        if (!$this->load_library('Admin_SecurityToolsCaMykSIntegrityDescription')) {
+            /* update layout */
+            $this->disable_adminEngineMenus();
+            $this->text = $this->get_translation('camyksintegritydescription_notfound');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink(array('openTab'=>'Plugins')));
+        }
+
+        /* Define some constants */
+        $camyks_normalised_header = "<?php\n/**\n * @brief";
+        $camyks_version_pattern = " \* @version ([0-9\.]{3,})";
+        $camyks_excluded_folders = array('.git', 'external');
+        $camyks_excluded_files = array('.DS_Store', '.gitignore', 'dynamic.php.inc', 'dynamic.local.php.inc', 'Admin_SecurityToolsCaMykSIntegrityDescription.php.inc');
+
+        /* Initialise result */
+        $this->integrityCheckResult = array_merge($this->integrityCheckResult, array(
+            'descriptionFileCount'  => count($this->integrityCheckResult['files']),
+
+            'localFileCount'        => 0,
+
+            'errorsOnExtraFiles'    => 0,
+            'errorsOnMissingFiles'  => 0,
+            'errorsOnChecksum'      => 0,
+            'errorsOnMime'          => 0,
+            'errorsOnHeader'        => 0,
+            'errorsOnVersion'       => 0,
+        ));
+
+        /* Load local files */
+        $files = folder_listFiles($camyks->get_confValue('engine_path'), true, $camyks_excluded_folders, $camyks_excluded_files);
+
+        /* Define local files count in result */
+        $this->integrityCheckResult['localFileCount'] = count($files);
+
+        /* Load files information */
+        foreach ($files as  $file) {
+	    $filePath = $camyks->get_confValue('engine_path').'/'.$file;
+            /* Build file check */
+            $result = array(
+                'status'            => 'checked',
+                'errors'            => array(),
+                'checksumLocal'     => hash_file('sha256', $filePath),
+                'mimeLocal'         => mime_content_type($filePath),
+                'normalisedLocal'   => 0,
+                'versionLocal'      => '',
+            );
+
+            /* Load file beginning */
+            $beginning = file_get_contents($filePath, null, null, null, 500);
+
+            /* Check for normalised file */
+            if (substr($beginning, 0, strlen($camyks_normalised_header)) == $camyks_normalised_header)
+                $result['normalisedLocal'] = 1;
+
+            /* Check for file version */
+            if (preg_match('#'.$camyks_version_pattern.'#', $beginning, $matches))
+                $result['versionLocal'] = $matches[1];
+
+            /* Check if file exists */
+            if (!isset($this->integrityCheckResult['files'][$file])) {
+                $result['status'] = 'error';
+                $result['errors'][] = 'extra';
+                $this->integrityCheckResult['files'][$file] = $result;
+                $this->integrityCheckResult['errorsOnExtraFiles'] ++;
+            } else {
+                $this->integrityCheckResult['files'][$file] = array_merge($result, $this->integrityCheckResult['files'][$file]);
+                $check = $this->integrityCheckResult['files'][$file];
+
+                if ($check['checksumLocal'] != $check['checksum']) {
+                    $this->integrityCheckResult['files'][$file]['status'] = 'error';
+                    $this->integrityCheckResult['files'][$file]['errors'][] = 'checksum';
+                    $this->integrityCheckResult['errorsOnChecksum'] ++;
+                }
+
+                if ($check['mimeLocal'] != $check['mime']) {
+                    $this->integrityCheckResult['files'][$file]['status'] = 'error';
+                    $this->integrityCheckResult['files'][$file]['errors'][] = 'mime';
+                    $this->integrityCheckResult['errorsOnMime'] ++;
+                }
+
+                if ($check['normalisedLocal'] != $check['normalised']) {
+                    $this->integrityCheckResult['files'][$file]['status'] = 'error';
+                    $this->integrityCheckResult['files'][$file]['errors'][] = 'header';
+                    $this->integrityCheckResult['errorsOnHeader'] ++;
+                }
+
+                if ($check['versionLocal'] != $check['version']) {
+                    $this->integrityCheckResult['files'][$file]['status'] = 'error';
+                    $this->integrityCheckResult['files'][$file]['errors'][] = 'version';
+                    $this->integrityCheckResult['errorsOnVersion'] ++;
+                }
+            }
+        }
+
+        /* Search for missing files */
+        foreach ($this->integrityCheckResult['files'] as &$file) {
+            if (!isset($file['status'])) {
+                $file['status'] = 'error';
+                $file['errors'] = array('missing');
+                $this->integrityCheckResult['errorsOnMissingFiles'] ++;
+            }
+        }
+
+        /* button list for buttons bar */
+        $this->buttons = array(
+            array(
+                'title' => $camyks->get_translation('back'),
+                'link'  => $this->get_adminLink(),
+            ),
+        );
+
+        /* update layout */
+        $this->set_selectedLayout('admin_check_CaMykSIntegrity.html.inc');
     }
 
     /* Specific request mode methods */

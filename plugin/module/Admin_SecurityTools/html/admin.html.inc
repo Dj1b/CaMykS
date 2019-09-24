@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_SecurityTools/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Oct 2007
- * @date Modification: Jan 2019
+ * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -39,6 +39,28 @@ $empty = $this->theme->get_pictURL('empty', 12, 'std');
 
 <div id="itemConfiguration" style="display:<?= $this->tabBuilder->get_tabDisplay('Configuration'); ?>;" class="adminContentPanel">
     <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td class="eTitle3" colspan="4">
+                <?= $this->get_translation('availableactions'); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine0 eContent1" style="width:12px;">
+                &nbsp;
+            </td>
+            <td class="eTableLine0 eContent1" colspan="3">
+                <?= $this->theme->get_button(array(
+                    'title' => $this->get_translation('action_checkcamyksintegrity'),
+                    'url'   => $this->get_adminLink(array('mode'=>'checkCaMykSIntegrity'))
+                )); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine0" colspan="4">
+                &nbsp;
+            </td>
+        </tr>
+
         <tr>
             <td class="eTitle3" colspan="4">
                 <?= $this->get_translation('availabletools'); ?>
