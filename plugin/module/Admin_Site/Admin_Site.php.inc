@@ -7,8 +7,8 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Nov 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Sep 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Website configuration edition
@@ -236,6 +236,9 @@ final class Admin_Site extends Module {
         /* get database info */
         $this->dbSummary = $camyks->db_conn->database_getSummary();
 
+        /* Load Security Tools module */
+        $this->securityTools = $camyks->get_module('Admin_SecurityTools');
+
         /* button list for buttons bar */
         $this->buttons = array(array(
             'title' => $camyks->get_translation('back'),
@@ -249,7 +252,7 @@ final class Admin_Site extends Module {
     /**
      * Initialise object module in admin/viewPluginConfig mode.
      * @return void
--     */
+     */
     private function init_admin_viewPluginConfig() {
         global $camyks;
 
@@ -339,6 +342,9 @@ final class Admin_Site extends Module {
         /* check access right */
         if ($this->check_right(3) === false)
             $this->init_admin_accessDenied();
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
 
         /* load extension plugin list */
         $extensions = $this->get_registeredExtensions();
