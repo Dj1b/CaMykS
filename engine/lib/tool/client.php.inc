@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.85
+ * @version 1.0.86
  * @date Creation: Jun 2007
  * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -998,7 +998,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Infinix devices */
-    elseif (preg_match('/ Infinix[ |-](X[^\) ]*)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ Infinix[ |-]([^\)]*)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Infinix.php.inc');
         $infos = array_merge($infos, get_InfinixClientDevice($matches[1]));
     }
@@ -1336,6 +1336,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_AmericanNetworkSolutionsClientDevice($model));
     }
 
+    /* check Intex devices */
+    elseif (preg_match('/; (Aqua 5.5 VR)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Intex.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_IntexClientDevice($device));
+    }
+
     /* check Blackview devices */
     elseif (preg_match('/ [BV|P]([a-zA-Z0-9\-_]*)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Blackview.php.inc');
@@ -1376,6 +1383,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Danew.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_DanewClientDevice($device));
+    }
+
+    /* check Chuwi devices */
+    elseif (preg_match('/; (Hi10 pro)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Chuwi.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_ChuwiClientDevice($device));
     }
 
     /* check Phh-Treble generic rom flashed device devices */
@@ -2654,7 +2668,7 @@ function _client_getUAPropertiesMaxVersions() {
             'Chrome'            => '81',                    // current is 77
             'Internet Explorer' => '11.0.50',               // latest
             'Opera'             => '67',                    // current is 62
-            'Safari'            => '16',                    // current is 12.1.2
+            'Safari'            => '17',                    // current is 13.0.1
         ),
     );
 

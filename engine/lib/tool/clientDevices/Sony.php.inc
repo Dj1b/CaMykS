@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -23,6 +23,7 @@ function get_SonyClientDevice($deviceCode='') {
         /* Sony tablets */
         'SGP321'    => array('platform_model' => 'Xperia Z Tablet',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'SGP511'    => array('platform_model' => 'Xperia Z2 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'SGP512'    => array('platform_model' => 'Xperia Z2 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SGP621'    => array('platform_model' => 'Xperia Z3 Tablet Compact',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
 
@@ -95,6 +96,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H8416'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
         'H9436'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
         'H9493'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
+        'I4113'     => array('platform_model' => 'Xperia 10',               'platform_year' => 2019),
         'I4213'     => array('platform_model' => 'Xperia 10 Plus',          'platform_year' => 2019),
 
         'SOV31'     => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),

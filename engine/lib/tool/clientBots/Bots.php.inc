@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.46
+ * @version 1.0.47
  * @date Creation: May 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4432,6 +4432,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'WordPress',
         'engine_url'        => 'https://www.wordpress.com',
+    );
+
+    /* Clarabot */
+    $knownBots['clarabot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Clarabot',
+        'bot_url'           => 'http://www.clarabot.info/bots',
+        'engine_title'      => 'Clarabot',
+        'engine_url'        => 'https://www.clarabot.com',
+    );
+
+    /* Cocoscan */
+    $knownBots['cocoscan'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Cocoscan',
+        'bot_url'           => 'https://cocoscan.io/bot',
+        'engine_title'      => 'Cocolyze',
+        'engine_url'        => 'https://cocolyze.com',
     );
 
     /* return bot list */

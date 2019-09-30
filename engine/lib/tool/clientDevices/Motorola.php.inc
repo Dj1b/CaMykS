@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -53,6 +53,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'g(6) plus'     => array('platform_model' => 'Moto G6 Plus',        'platform_year' => 2018),
         'g(6) play'     => array('platform_model' => 'Moto G6 Play',        'platform_year' => 2018),
         'g(6) power'    => array('platform_model' => 'Moto G6 Power',       'platform_year' => 2018),
+        'Z3 Play'       => array('platform_model' => 'Moto Z3 Play',        'platform_year' => 2018),
         'g(7)'          => array('platform_model' => 'Moto G7',             'platform_year' => 2019),
         'g(7) plus'     => array('platform_model' => 'Moto G7 Plus',        'platform_year' => 2019),
         'g(7) play'     => array('platform_model' => 'Moto G7 Play',        'platform_year' => 2019),
