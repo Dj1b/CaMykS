@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Qilive client devices specific methods
+ * @brief Danew client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Qilive.php.inc
+ * @file engine/lib/tool/clientDevices/Danew.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Feb 2019
+ * @version 1.0.0
+ * @date Creation: Sep 2019
  * @date Modification: Sep 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
@@ -14,14 +14,17 @@
  */
 
 /**
- * Return Qilive client device information from a known list.
+ * Return Danew client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_QiliveClientDevice($deviceCode='') {
+function get_DanewClientDevice($deviceCode='') {
     $deviceList = array(
-        'Q8S55IN4G2'    => array('platform_model' => 'Q8',     'platform_year' => 2017),
-        'Q10S55IN4G2'   => array('platform_model' => 'Q10',    'platform_year' => 2018),
+        /* Danew tablets */
+        'Dslide1013QC_v2'   => array('platform_model' => 'Dslide 1013QC v2',    'platform_year' => 2016, 'platform_type' => 'tablet', 'platform_format' => 'tablet'),
+
+        /* Danew mobiles */
+        'Konnect_601'       => array('platform_model' => 'Konnect 601',         'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -30,7 +33,7 @@ function get_QiliveClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Qilive',
+        'platform_company'  => 'Danew',
         'platform_country'  => 'fr',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',

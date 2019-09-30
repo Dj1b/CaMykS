@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.84
+ * @version 1.0.85
  * @date Creation: Jun 2007
  * @date Modification: Sep 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -1163,7 +1163,11 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Meizu.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_MeizuClientDevice($model));
-    } elseif (preg_match('/ (M3s|Note9) (Build|\))/', $ua, $matches)) {
+    } elseif (preg_match('/ (M3s|Note9)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Meizu.php.inc');
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, get_MeizuClientDevice($model));
+    } elseif (preg_match('/ (PRO [0-9][.*]*)( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Meizu.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_MeizuClientDevice($model));
@@ -1216,7 +1220,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Qilive devices */
-    elseif (preg_match('/ (Q8S55IN4G2)/i', $ua, $matches)) {
+    elseif (preg_match('/ (Q[0-9]+S[A-Za-z0-9]+)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Qilive.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_QiliveClientDevice($model));
@@ -1365,6 +1369,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Vertex.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_VertexClientDevice($device));
+    }
+
+    /* check Danew devices */
+    elseif (preg_match('/; (Dslide1013QC_v2|Konnect_[0-9]*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Danew.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_DanewClientDevice($device));
     }
 
     /* check Phh-Treble generic rom flashed device devices */
@@ -2580,6 +2591,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla/5.0 \(admin\)$#', $ua))
         return $fake;
 
+    /* Fake visit, without any space at the beginning of Android5.1.1/Oppo A33 device */
+    if (preg_match('#^Mozilla/5.0\(Linux;(U;)?Android#', $ua))
+        return $fake;
+
     /* not a fake but Apple using a bad user agent */
     if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
         return array(
@@ -2664,7 +2679,7 @@ function _client_isOnePlusDevice($ua='') {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[1].$matches[2]))
           return $matches[1].$matches[2];
-    } elseif (preg_match('/ (GM[0-9]{4})( Build|\))/i', $ua, $matches)) {
+    } elseif (preg_match('/; (GM[0-9]{4})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[1]))
           return $matches[1];

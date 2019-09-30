@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.53
+ * @version 1.0.54
  * @date Creation: Apr 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -141,6 +141,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G9600'  => array('platform_model' => 'Galaxy S9',                       'platform_year' => 2018),
         'SM-G965F'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
         'SM-G965U'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
+        'SM-G965U1' => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
+        'SM-G965W'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
         'SM-G9700'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G970F'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G970W'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
@@ -261,6 +263,9 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J727T'  => array('platform_model' => 'Galaxy J7 Prime',                 'platform_year' => 2017),
         'SM-G615F'  => array('platform_model' => 'Galaxy J7 Max',                   'platform_year' => 2017),
         'SM-J810F'  => array('platform_model' => 'Galaxy J8',                       'platform_year' => 2018),
+
+        /* Samsung Galaxy M series */
+        'SM-M205F'  => array('platform_model' => 'Galaxy M20',                      'platform_year' => 2019),
 
         /* Samsung Galaxy Note series */
         'GT-N5110'  => array('platform_model' => 'Galaxy Note',                     'platform_year' => 2013),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Meizu.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Sep 2018
  * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -20,6 +20,7 @@
  */
 function get_MeizuClientDevice($deviceCode='') {
     $deviceList = array(
+        'PRO 5'         => array('platform_model' => 'Pro 5',   'platform_year' => 2015),
         'MZ-PRO 6'      => array('platform_model' => 'Pro 6',   'platform_year' => 2016),
         'M3s'           => array('platform_model' => 'M3s',     'platform_year' => 2016),
         'MZ-MEIZU_M5'   => array('platform_model' => 'M5',      'platform_year' => 2016),
