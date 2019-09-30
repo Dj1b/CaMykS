@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  * @brief Folder specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/folder.php.inc
