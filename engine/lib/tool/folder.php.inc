@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/folder.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: Jul 2005
  * @date Modification: Sep 2019
  * @copyright 2005 - 2019 CaMykS Team
@@ -184,9 +184,9 @@ function folder_getTemporaryFolder() {
 /**
  * List files from a folder.
  * @param string $folder
- * @param $boolean $recursive
- * @param $array $excluded_folders
- * @param $array $excluded_files
+ * @param boolean $recursive
+ * @param array $excluded_folders
+ * @param array $excluded_files
  * @param string $subFolder
  * @return array
  */
