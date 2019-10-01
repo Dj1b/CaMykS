@@ -4,9 +4,9 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.6
+ * @version 1.1.7
  * @date Creation: Jun 2005
- * @date Modification: Jun 2019
+ * @date Modification: Sep 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -312,13 +312,17 @@ class HTMLForm {
         /* check object params */
         if ($params['default'] === '') {
             $n = $params['name'];
-            if (isset($this->object->vars[$n]) and ($this->object->vars[$n] > 3600 or $this->object->vars[$n] < 0))
-                $params['default'] = $this->object->vars[$n];
-            elseif ($params['hasEmptyFirstOption'] === true)
+            if (isset($this->object->vars[$n])) {
+                if ($this->object->vars[$n] > 3600 or $this->object->vars[$n] < 0)
+                    $params['default'] = $this->object->vars[$n];
+                elseif ($params['hasEmptyFirstOption'] === true)
+                    $params['default'] = '';
+                else
+                    $params['default'] = 0;
+            } elseif ($params['hasEmptyFirstOption'] === true)
                 $params['default'] = '';
             else
                 $params['default'] = TODAY;
-
         }
         if ($params['objects'] === null)
             $params['objects'] = array('day','month','year','hours','minutes');

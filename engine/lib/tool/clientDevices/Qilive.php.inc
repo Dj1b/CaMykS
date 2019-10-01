@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Qilive.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Feb 2019
- * @date Modification: Jun 2019
+ * @date Modification: Sep 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,8 @@
  */
 function get_QiliveClientDevice($deviceCode='') {
     $deviceList = array(
-        'Q8S55IN4G2'    => array('platform_model' => 'Q8S55IN4G2',    'platform_year' => 2017),
+        'Q8S55IN4G2'    => array('platform_model' => 'Q8',     'platform_year' => 2017),
+        'Q10S55IN4G2'   => array('platform_model' => 'Q10',    'platform_year' => 2018),
     );
 
     /* Check for returning list */

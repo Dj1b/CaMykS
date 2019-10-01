@@ -1,27 +1,30 @@
 <?php
 /**
- * @brief Konrow client devices specific methods
+ * @brief Danew client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Konrow.php.inc
+ * @file engine/lib/tool/clientDevices/Danew.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Oct 2018
+ * @version 1.0.0
+ * @date Creation: Sep 2019
  * @date Modification: Sep 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Konrow client device information from a known list.
+ * Return Danew client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_KonrowClientDevice($deviceCode='') {
+function get_DanewClientDevice($deviceCode='') {
     $deviceList = array(
-        'BIGCOOL'   => array('platform_model' => 'BigCool', 'platform_year' => 2016),
-        'Just5'     => array('platform_model' => 'Just5',   'platform_year' => 2017),
+        /* Danew tablets */
+        'Dslide1013QC_v2'   => array('platform_model' => 'Dslide 1013QC v2',    'platform_year' => 2016, 'platform_type' => 'tablet', 'platform_format' => 'tablet'),
+
+        /* Danew mobiles */
+        'Konnect_601'       => array('platform_model' => 'Konnect 601',         'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -30,7 +33,7 @@ function get_KonrowClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Konrow',
+        'platform_company'  => 'Danew',
         'platform_country'  => 'fr',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',

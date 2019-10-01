@@ -1,12 +1,12 @@
 <?php
- /**
+/**
  * @brief Folder specific methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/folder.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4.1
  * @date Creation: Jul 2005
- * @date Modification: Feb 2019
+ * @date Modification: Sep 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -184,20 +184,38 @@ function folder_getTemporaryFolder() {
 /**
  * List files from a folder.
  * @param string $folder
+ * @param boolean $recursive
+ * @param array $excluded_folders
+ * @param array $excluded_files
+ * @param string $subFolder
  * @return array
  */
-function folder_listFiles($folder) {
+function folder_listFiles($folder, $recursive=false, $excluded_folders=array(), $excluded_files=array(), $subFolder='') {
+    $folderPath = $folder.($subFolder != '' ? '/'.$subFolder:'');
+
     /* check given path is a folder */
-    if (!is_dir($folder)) {
+    if (!is_dir($folderPath))
         return array();
-    }
 
     /* start listing folders */
-    if ($dir = opendir($folder)) {
+    if ($dir = opendir($folderPath)) {
         $files = array();
-        while (($file = readdir($dir)) !== false) {
-            if (is_file($folder.'/'.$file)) {
-                $files[] = $file;
+        while (($item = readdir($dir)) !== false) {
+
+            $itemPath = ($subFolder != '' ? $subFolder.'/':'').$item;
+
+            if (is_dir($folderPath.'/'.$item)) {
+                if (in_array($item, array('.', '..')))
+                    continue;
+                if ($recursive !== true)
+                    continue;
+                if (in_array($item, $excluded_folders))
+                    continue;
+                $files = array_merge($files, folder_listFiles($folder, $recursive, $excluded_folders, $excluded_files, $itemPath));
+            } elseif (is_file($folderPath.'/'.$item)) {
+                if (in_array($item, $excluded_files))
+                    continue;
+                $files[] = $itemPath;
             }
         }
         return $files;

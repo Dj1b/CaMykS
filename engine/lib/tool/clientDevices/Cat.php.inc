@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Cat.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Dec 2018
- * @date Modification: Jun 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +24,7 @@ function get_CatClientDevice($deviceCode='') {
         'helix' => array('platform_model' => 'Helix', 'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2014),
 
         /* CAT Mobiles */
+        'S30'   => array('platform_model' => 'S30',    'platform_year' => 2015),
         'S60'   => array('platform_model' => 'S60',    'platform_year' => 2016),
         'S61'   => array('platform_model' => 'S61',    'platform_year' => 2018),
     );

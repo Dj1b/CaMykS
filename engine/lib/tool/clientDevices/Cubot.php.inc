@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Cubot.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Mar 2019
- * @date Modification: Jul 2019
+ * @date Modification: Sep 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,10 +18,10 @@
  * @param mixed $deviceCode
  * @return array
  */
-function get_CubotClientDevice($deviceCode='') {
+function get_CubotClientDevice($deviceCode=false) {
     $deviceList = array(
         'C6W'       => array('platform_model' => 'C6W',         'platform_year' => 2013),
-        'C7Plus'    => array('platform_model' => 'C7 Plus',     'platform_year' => 2013),
+        'C7PLUS'    => array('platform_model' => 'C7 Plus',     'platform_year' => 2013),
         'C9+'       => array('platform_model' => 'C9 Plus',     'platform_year' => 2013),
         'C11'       => array('platform_model' => 'C11',         'platform_year' => 2013),
         'GT72E'     => array('platform_model' => 'GT72E',       'platform_year' => 2013),
@@ -45,7 +45,7 @@ function get_CubotClientDevice($deviceCode='') {
         'X18'       => array('platform_model' => 'X18',         'platform_year' => 2017),
         'J3'        => array('platform_model' => 'J3',          'platform_year' => 2018),
         'R11'       => array('platform_model' => 'R11',         'platform_year' => 2018),
-        'X18 Plus'  => array('platform_model' => 'X18 Plus',    'platform_year' => 2018),
+        'X18 PLUS'  => array('platform_model' => 'X18 Plus',    'platform_year' => 2018),
         'X19'       => array('platform_model' => 'X19',         'platform_year' => 2019),
 
         'CHEETAH 2' => array('platform_model' => 'Cheetah 2',   'platform_year' => 2016),
@@ -56,15 +56,14 @@ function get_CubotClientDevice($deviceCode='') {
         'MAGIC'     => array('platform_model' => 'Magic',       'platform_year' => 2017),
         'MANITO'    => array('platform_model' => 'Manito',      'platform_year' => 2016),
         'MAX'       => array('platform_model' => 'Max',         'platform_year' => 2016),
-        'NOTE Plus' => array('platform_model' => 'Note Plus',   'platform_year' => 2017),
+        'NOTE PLUS' => array('platform_model' => 'Note Plus',   'platform_year' => 2017),
         'NOTE S'    => array('platform_model' => 'Note S',      'platform_year' => 2016),
     );
 
     /* Check for returning list */
     if ($deviceCode === false)
         return $deviceList;
-    else
-        $deviceCode = strtoupper($deviceCode);
+    $deviceCode = strtoupper($deviceCode);
 
     /* Initialise result. */
     $result = array(

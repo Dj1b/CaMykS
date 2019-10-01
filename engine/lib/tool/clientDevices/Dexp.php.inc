@@ -1,27 +1,26 @@
 <?php
 /**
- * @brief Konrow client devices specific methods
+ * @brief Dexp client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Konrow.php.inc
+ * @file engine/lib/tool/clientDevices/Dexp.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Oct 2018
+ * @version 1.0.0
+ * @date Creation: Sep 2019
  * @date Modification: Sep 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Konrow client device information from a known list.
+ * Return Dexp client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_KonrowClientDevice($deviceCode='') {
+function get_DexpClientDevice($deviceCode='') {
     $deviceList = array(
-        'BIGCOOL'   => array('platform_model' => 'BigCool', 'platform_year' => 2016),
-        'Just5'     => array('platform_model' => 'Just5',   'platform_year' => 2017),
+        'Ixion EL450'   => array('platform_model' => 'Ixion EL450 Force', 'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -30,8 +29,8 @@ function get_KonrowClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Konrow',
-        'platform_country'  => 'fr',
+        'platform_company'  => 'Dexp',
+        'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

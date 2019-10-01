@@ -3,9 +3,9 @@
  * @details Plugin / Theme CSS styles
  * @file plugin/theme/IndigoFlatStyle/css/style.css
  * @author CaMykS Team
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2014
- * @date Modification: Jun 2019
+ * @date Modification: Sep 2019
  * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -65,7 +65,7 @@ img.icon{ float:left; margin-right:4px; max-width:80px; }
 .error {
   font-size:12px;
   font-weight:bold;
-  color:#CC3333;
+  color:#CC3333 !important;
   padding:4px;
 }
 

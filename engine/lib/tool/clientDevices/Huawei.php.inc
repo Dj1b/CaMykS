@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.48
+ * @version 1.0.51
  * @date Creation: Apr 2018
- * @date Modification: Aug 2019
+ * @date Modification: Sep 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,6 +31,7 @@ function get_HuaweiClientDevices() {
         'AGS-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-U01'               => array('platform_model' => 'MediaPad T3 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'BTV-W09'               => array('platform_model' => 'MediaPad M,',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-W09'               => array('platform_model' => 'MediaPad M5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
@@ -57,6 +58,7 @@ function get_HuaweiClientDevices() {
         'WAS-LX1A'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-LX2'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-TL10'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
+        'VKY-L09'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
         'EML-AL00'  => array('platform_model' => 'P20',             'platform_year' => 2018),
         'EML-L09'   => array('platform_model' => 'P20',             'platform_year' => 2018),
@@ -124,6 +126,9 @@ function get_HuaweiClientDevices() {
         'DUK-L09'   => array('platform_model' => 'Honor 8 Pro',     'platform_year' => 2017),
         'JSN-L21'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
         'JSN-L22'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
+        'STF-AL00'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
+        'STF-AL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
+        'STF-TL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-L09'   => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
@@ -140,6 +145,7 @@ function get_HuaweiClientDevices() {
         'U9201L'    => array('platform_model' => 'Ascend P1',       'platform_year' => 2012),
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
+        'MT7'       => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'MT7-L09'   => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'MT7-TL00'  => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'H1611'     => array('platform_model' => 'Ascend XT',       'platform_year' => 2016),
@@ -162,6 +168,7 @@ function get_HuaweiClientDevices() {
         'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'MRD-LX1'   => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'MRD-LX1N'  => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'TRT-LX1'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),

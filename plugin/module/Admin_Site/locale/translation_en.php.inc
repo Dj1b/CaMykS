@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Feb 2013
- * @date Modification: Nov 2018
- * @copyright 2013 - 2018 CaMykS Team
+ * @date Modification: Sep 2019
+ * @copyright 2013 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -57,6 +57,7 @@ $this->trads['mod_admin_site_formitem_author'] = 'Author: ';
 $this->trads['mod_admin_site_formitem_company'] = 'Company: ';
 $this->trads['mod_admin_site_formitem_installation'] = 'Installation: ';
 $this->trads['mod_admin_site_formitem_path'] = 'Path: ';
+$this->trads['mod_admin_site_action_checkcamyksintegrity'] = 'Check CaMykS integrity';
 $this->trads['mod_admin_site_formtitle_contacts'] = 'Contacts';
 $this->trads['mod_admin_site_formtitle_settings'] = 'Settings';
 $this->trads['mod_admin_site_formitem_encoding'] = 'Encoding: ';

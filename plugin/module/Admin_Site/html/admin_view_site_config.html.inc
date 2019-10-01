@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/html/admin_view_site_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jan 2005
- * @date Modification: Nov 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Sep 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -25,7 +25,7 @@ global $camyks;
 <div id="itemProperties" style="display:<?= $this->tabBuilder->get_tabDisplay('Properties'); ?>;" class="adminContentPanel">
     <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_general'); ?>
             </td>
         </tr>
@@ -34,7 +34,7 @@ global $camyks;
             <td class="eTableLine0 eContent2" style="width:175px;">
                 <?= $this->get_translation('formitem_sitetitle'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= $camyks->get_confValue('site_title'); ?>
             </td>
         </tr>
@@ -42,7 +42,7 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_sitename'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= $camyks->get_confValue('site_name'); ?>
             </td>
         </tr>
@@ -50,7 +50,7 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_url'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= $camyks->get_confValue('url'); ?>
             </td>
         </tr>
@@ -58,18 +58,18 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= $camyks->get_confValue('version'); ?>
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0" colspan="2">
+            <td class="eTableLine0" colspan="3">
                 &nbsp;
             </td>
         </tr>
 
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= CAMYKS_NAME; ?>
             </td>
         </tr>
@@ -79,6 +79,14 @@ global $camyks;
             </td>
             <td class="eTableLine0 eContent1">
                 <?= $camyks->version; ?>
+            </td>
+            <td class="eTableLine0 eContent1" rowspan="3" style="width:250px; vertical-align:top; text-align:center;">
+                <?php if ($this->securityTools !== false and $this->securityTools->check_right(1)) : ?>
+                <?= $this->theme->get_button(array(
+                    'title' => $this->get_translation('action_checkcamyksintegrity'),
+                    'url'   => $this->securityTools->get_adminLink(array('mode'=>'checkCaMykSIntegrity'))
+                )); ?>
+                <?php endif; ?>
             </td>
         </tr>
         <tr>
@@ -98,12 +106,12 @@ global $camyks;
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0" colspan="2">
+            <td class="eTableLine0" colspan="3">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_contacts'); ?>
             </td>
         </tr>
@@ -111,7 +119,7 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_author'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= $camyks->get_confValue('site_author'); ?>
             </td>
         </tr>
@@ -119,17 +127,17 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_company'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= $camyks->get_confValue('site_company'); ?>
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0" colspan="2">
+            <td class="eTableLine0" colspan="3">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_settings'); ?>
             </td>
         </tr>
@@ -137,7 +145,7 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_friendlyurls'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?php if ($camyks->get_confValue('friendlyurls')==1) : ?>
                     <?= $this->get_translation('friendlyurls_legacy'); ?>
                 <?php elseif ($camyks->get_confValue('friendlyurls') == 'modern') : ?>
@@ -153,7 +161,7 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_encoding'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= $camyks->get_confValue('encoding'); ?>
             </td>
         </tr>
@@ -161,17 +169,17 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_htmlversion'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= $camyks->get_confValue('html_version'); ?>
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0" colspan="2">
+            <td class="eTableLine0" colspan="3">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_caches'); ?>
             </td>
         </tr>
@@ -179,7 +187,7 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_serverside'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= $camyks->get_confValue('cache_server_side') == 'enabled' ? $this->get_translation('cache_enabled') : $this->get_translation('cache_none'); ?>
             </td>
         </tr>
@@ -187,7 +195,7 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_clientside'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= $camyks->get_confValue('cache_client_side') == 'disabled' ? $this->get_translation('cache_disabled') : $this->get_translation('cache_default'); ?>
             </td>
         </tr>
