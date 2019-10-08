@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/PerpetualCalendar/PerpetualCalendar.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2010
- * @date Modification: Jul 2018
- * @copyright 2010 - 2018 CaMykS Team
+ * @date Modification: Sep 2019
+ * @copyright 2010 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -105,7 +105,7 @@ final class PerpetualCalendar extends Input {
         $this->calendarLastDay = mktime(23, 59, 59, $this->params['dateMonth']+1, 0, $this->params['dateYear']);
 
         /* load scripts */
-        $this->add_JSFile('perpetualcalendar.js');
+        $this->add_JSFile('PerpetualCalendar.js');
         $this->add_JSScript('var '.$this->params['name'].' = new PerpetualCalendar("'.$this->params['name'].'");');
         $this->add_JSLoadScript($this->params['name'].'.initialise();');
         $this->add_JSScript($this->params['name'].'.set_param("mode", "'.$this->params['mode'].'");');
