@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.51
+ * @version 1.0.52
  * @date Creation: Apr 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,7 +31,7 @@ function get_HuaweiClientDevices() {
         'AGS-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-U01'               => array('platform_model' => 'MediaPad T3 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
-        'BTV-W09'               => array('platform_model' => 'MediaPad M,',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
+        'BTV-W09'               => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-W09'               => array('platform_model' => 'MediaPad M5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
@@ -131,6 +131,7 @@ function get_HuaweiClientDevices() {
         'STF-TL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-L09'   => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
+        'LLD-AL20'  => array('platform_model' => 'Honor 9I',        'platform_year' => 2018),
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'HRY-LX1'   => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
         'AUM-L29'   => array('platform_model' => 'Honor 7A Pro',    'platform_year' => 2018),
@@ -156,6 +157,7 @@ function get_HuaweiClientDevices() {
         'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'CUN-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2015),
         'Y560-L01'  => array('platform_model' => 'Y5',              'platform_year' => 2015),
+        'CUN-L01'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'DRA-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),

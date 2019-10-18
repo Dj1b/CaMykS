@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.47
+ * @version 1.0.48
  * @date Creation: May 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4452,6 +4452,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://cocoscan.io/bot',
         'engine_title'      => 'Cocolyze',
         'engine_url'        => 'https://cocolyze.com',
+    );
+
+    /* arquivo-web-crawler */
+    $knownBots['arquivo-web-crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Arquivo Web Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'Arquivo.pt',
+        'engine_url'        => 'https://arquivo.pt',
     );
 
     /* return bot list */

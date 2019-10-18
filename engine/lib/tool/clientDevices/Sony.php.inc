@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.35
+ * @version 1.0.36
  * @date Creation: Apr 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +24,7 @@ function get_SonyClientDevice($deviceCode='') {
         'SGP321'    => array('platform_model' => 'Xperia Z Tablet',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'SGP511'    => array('platform_model' => 'Xperia Z2 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SGP512'    => array('platform_model' => 'Xperia Z2 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'SGP611'    => array('platform_model' => 'Xperia Z3 Tablet Compact',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SGP621'    => array('platform_model' => 'Xperia Z3 Tablet Compact',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SGP712'    => array('platform_model' => 'Xperia Z4 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
 

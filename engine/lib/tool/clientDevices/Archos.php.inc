@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -85,7 +85,7 @@ function get_ArchosClientDevice($deviceCode='') {
         '50d Neon'                  => array('platform_model' => '50d Neon',                'platform_year' => 2016),
         '50e Neon'                  => array('platform_model' => '50e Neon',                'platform_year' => 2016),
         '50 Diamond'                => array('platform_model' => '50 Diamond',              'platform_year' => 2015),
-        '55 Diamond Selfie'         => array('platform_model' => '55 Diamond Selfie',       'platform_year' => 2016),
+        '55 diamond Selfie'         => array('platform_model' => '55 Diamond Selfie',       'platform_year' => 2016),
         '55 Diamond Selfie Lite'    => array('platform_model' => '55 Diamond Selfie Lite',  'platform_year' => 2016),
         '50 Cobalt'                 => array('platform_model' => '50 Cobalt',               'platform_year' => 2015),
         '55 Cobalt Plus'            => array('platform_model' => '55 Cobalt Plus',          'platform_year' => 2016),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.86
+ * @version 1.0.87
  * @date Creation: Jun 2007
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -640,25 +640,31 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
     }
 
-    /* check SFR (France) mobiles - before wiko */
+    /* check SFR (France) mobiles - before Wiko */
     elseif (preg_match('/(STARTRAIL7) Build/', $ua, $matches)) {
         include_once('clientDevices/SFR.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_SFRClientDevice($model));
     }
 
-    /* check Memup devices - before wiko */
+    /* check Memup devices - before Wiko */
     elseif (preg_match('/; (SP|SlidePad )([^;\-\)]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Memup.php.inc');
         $model = $matches[2];
         $infos = array_merge($infos, get_MemupClientDevice($model));
     }
 
-    /* check Altice devices - before wiko */
+    /* check Altice devices - before Wiko */
     elseif (preg_match('/; (SX41|Star)([0-9 ]*)?( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Altice.php.inc');
         $model = $matches[1].trim($matches[2]);
         $infos = array_merge($infos, get_AlticeClientDevice($model));
+    }
+
+    /* check Advan devices - before Wiko */
+    elseif (preg_match('/ (50[0-9]{2}|S5E_NXT|S50[A-Z])( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Advan.php.inc');
+        $infos = array_merge($infos, get_AdvanClientDevice($matches[1]));
     }
 
     /* check Wiko */
@@ -802,7 +808,7 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/ (M bot Tab [0-9]{3})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
-    } elseif (preg_match('/(Le_Hello)/', $ua, $matches)) {
+    } elseif (preg_match('/(Le_Hello|Le_Hola)/', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
     }
@@ -998,7 +1004,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Infinix devices */
-    elseif (preg_match('/ Infinix[ |-]([^\)]*)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ Infinix[ |-]([^\)]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Infinix.php.inc');
         $infos = array_merge($infos, get_InfinixClientDevice($matches[1]));
     }
@@ -1057,12 +1063,6 @@ function client_getUAInfos($ua=false) {
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
-    }
-
-    /* check Advan devices */
-    elseif (preg_match('/ (50[0-9]{2}|S5E_NXT)( Build|\))/', $ua, $matches)) {
-        include_once('clientDevices/Advan.php.inc');
-        $infos = array_merge($infos, get_AdvanClientDevice($matches[1]));
     }
 
     /* check Vivo devices */
@@ -1137,7 +1137,11 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Kyocera devices */
-    elseif (preg_match('/ (KC-[A-Za-z0-9]*) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (KC-[A-Za-z0-9]*)( Build|\))/i', $ua, $matches)) {
+        include_once('clientDevices/Kyocera.php.inc');
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, get_KyoceraClientDevice($model));
+    } elseif (preg_match('/ ([0-9]{3}KC)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Kyocera.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_KyoceraClientDevice($model));
@@ -1155,7 +1159,7 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Meizu.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_MeizuClientDevice($model));
-    } elseif (preg_match('/ Meizu ([A-Za-z0-9_ ]*)( Build|\))/i', $ua, $matches)) {
+    } elseif (preg_match('/ Meizu[ |_]([A-Za-z0-9_ ]*)( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Meizu.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_MeizuClientDevice($model));
@@ -1163,7 +1167,7 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Meizu.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_MeizuClientDevice($model));
-    } elseif (preg_match('/ (M3s|Note9)( Build|\))/', $ua, $matches)) {
+    } elseif (preg_match('/ (M3s|Note9|m2 note)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Meizu.php.inc');
         $model = trim($matches[1]);
         $infos = array_merge($infos, get_MeizuClientDevice($model));
@@ -1390,6 +1394,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Chuwi.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_ChuwiClientDevice($device));
+    }
+
+    /* check Xtouch devices */
+    elseif (preg_match('/; Xtouch ([^.]*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Xtouch.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_XtouchClientDevice($device));
     }
 
     /* check Phh-Treble generic rom flashed device devices */
@@ -2607,6 +2618,14 @@ function client_getFakeInfosFromUserAgent($ua='') {
 
     /* Fake visit, without any space at the beginning of Android5.1.1/Oppo A33 device */
     if (preg_match('#^Mozilla/5.0\(Linux;(U;)?Android#', $ua))
+        return $fake;
+
+    /* Fake visit, from switzerland */
+    if (preg_match('#like Gecko 4tds562$#', $ua))
+        return $fake;
+
+    /* Fake visit, from finland */
+    if (preg_match('#\- 111512\-1801120036\-1\.44$#', $ua))
         return $fake;
 
     /* not a fake but Apple using a bad user agent */

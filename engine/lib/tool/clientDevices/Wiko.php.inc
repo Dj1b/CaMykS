@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Jul 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -117,7 +117,9 @@ function get_WikoClientDevice($deviceCode='') {
         'w_k600'            => array('platform_model' => 'Tommy 3',         'platform_year' => 2018),
         'w_c800'            => array('platform_model' => 'View 2',          'platform_year' => 2018),
         'w_c800s'           => array('platform_model' => 'View 2',          'platform_year' => 2018),
+        'w_p130'            => array('platform_model' => 'View Go',         'platform_year' => 2018),
         'w-v600'            => array('platform_model' => 'Harry 2',         'platform_year' => 2018),
+        'w-k510-eea'        => array('platform_model' => 'Y60',             'platform_year' => 2018),
         'w-p311-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
     );
 
