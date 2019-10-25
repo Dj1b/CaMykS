@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.52
+ * @version 1.0.53
  * @date Creation: Apr 2018
  * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -55,6 +55,7 @@ function get_HuaweiClientDevices() {
         'VTR-L09'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'VTR-L29'   => array('platform_model' => 'P10',             'platform_year' => 2017),
         'WAS-L03T'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
+        'WAS-LX1'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-LX1A'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-LX2'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-TL10'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),

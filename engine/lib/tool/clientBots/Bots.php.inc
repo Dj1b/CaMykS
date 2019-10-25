@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.48
+ * @version 1.0.49
  * @date Creation: May 2018
  * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -1702,8 +1702,8 @@ function _client_getKnownBots() {
     $knownBots['duckduckgo'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => '',
-        'bot_url'           => '',
+        'bot_title'         => 'DuckDuckBot',
+        'bot_url'           => 'http://duckduckgo.com/duckduckbot.html',
         'engine_title'      => 'DuckDuckGo',
         'engine_url'        => 'http://duckduckgo.com',
     );

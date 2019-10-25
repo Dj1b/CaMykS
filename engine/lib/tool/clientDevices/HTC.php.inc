@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: Aug 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -46,6 +46,7 @@ function get_HTCClientDevice($deviceCode='') {
         'U Ultra'               => array('platform_model' => 'U Ultra',             'platform_year' => 2017),
         '2Q4R100'               => array('platform_model' => 'U11 Eyes',            'platform_year' => 2018),
         'U12+'                  => array('platform_model' => 'U12+',                'platform_year' => 2018),
+        'U12 life'              => array('platform_model' => 'U12 life',            'platform_year' => 2018),
     );
 
     /* Check for returning list */

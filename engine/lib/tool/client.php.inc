@@ -4,13 +4,14 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.87
+ * @version 1.0.88
  * @date Creation: Jun 2007
  * @date Modification: Oct 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+global $softwareProperties;
 
 /**
  * Return client IP address.
@@ -118,7 +119,6 @@ function client_getUAInfos($ua=false) {
     /*** check plateform ***/
 
     /* load max versions to check and default fake value */
-    $maxVersions = _client_getUAPropertiesMaxVersions();
     $fake = array('platform_type'     => 'fake');
 
     /* check Playstation Portable */
@@ -247,8 +247,6 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/(iPod|iPhone|iPad);?.*; CPU ([A-Za-z\ ]*)? ([0-9_]*)/', $ua, $matches)) {
         /* check version */
         $version = str_replace('_', '.', $matches[3]);
-        if (version_compare($version, $maxVersions['system']['iOS']) > 0)
-            return $fake;
 
         $infos = array_merge($infos, array(
             'platform_company'  => 'Apple',
@@ -277,8 +275,6 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/(iPhone|iPod|iPad)\/([0-9\.]*) hw\/(iPhone|iPod|iPad)([0-9_]{3,})/i', $ua, $matches)) {
         /* check version */
         $version = str_replace('_', '.', $matches[2]);
-        if (version_compare($version, $maxVersions['system']['iOS']) > 0)
-            return $fake;
 
         $infos = array_merge($infos, array(
             'platform_company'  => 'Apple',
@@ -317,8 +313,6 @@ function client_getUAInfos($ua=false) {
         $version = $matches[1];
         $version = explode('.', $version);
         $version = (int)$version[0]-7;
-        if (version_compare($version, $maxVersions['system']['iOS']) > 0)
-            return $fake;
 
         /* build info */
         $infos = array_merge($infos, array(
@@ -493,9 +487,9 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Outikel mobiles */
-    elseif (preg_match('/ (K[0-9]{4,} [A-zA-Z]*)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ (K[0-9]{4,})( [A-zA-Z]*)?( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Oukitel.php.inc');
-        $infos = array_merge($infos, get_OukitelClientDevice(trim($matches[1])));
+        $infos = array_merge($infos, get_OukitelClientDevice(trim($matches[1].$matches[2])));
     }
 
     /* check Energizer mobiles - before Asus */
@@ -634,7 +628,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Doogee devices, to be inserted before Xiaomi/Wiko */
-    elseif (preg_match('/ (MIX Lite|BL5000|S90|X70|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (MIX Lite|MIX2|BL5000|S90|X70|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -808,7 +802,7 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/ (M bot Tab [0-9]{3})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
-    } elseif (preg_match('/(Le_Hello|Le_Hola)/', $ua, $matches)) {
+    } elseif (preg_match('/(Le[_| ][^.]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
     }
@@ -1037,7 +1031,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Oppo devices */
-    elseif (preg_match('/ (1201|A37f|A37fw|F1f|CPH[0-9]{4}|RMX[0-9]{4})( Build|\))/U', $ua, $matches)) {
+    elseif (preg_match('/ (1201|A37f|A37fw|A1601|F1f|CPH[0-9]{4}|RMX[0-9]{4})( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Oppo.php.inc');
         $infos = array_merge($infos, get_OppoClientDevice($matches[1]));
     } elseif (preg_match('/OPPO ([^.]+) Build/', $ua, $matches)) {
@@ -1078,7 +1072,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Sharp devices */
-    elseif (preg_match('/(SH\-[0-9]{2}[A-Z]) Build/', $ua, $matches)) {
+    elseif (preg_match('/(SH\-[0-9]{2}[A-Z]|FS8002)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Sharp.php.inc');
         $infos = array_merge($infos, get_SharpClientDevice($matches[1]));
     }
@@ -1403,6 +1397,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_XtouchClientDevice($device));
     }
 
+    /* check MPMan devices */
+    elseif (preg_match('/; (MP[^.]*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/MPMan.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_MPManClientDevice($device));
+    }
+
     /* check Phh-Treble generic rom flashed device devices */
     elseif (preg_match('/ Phh-Treble(.*)( Build|\))/Ui', $ua, $matches)) {
         $infos = array_merge($infos, array(
@@ -1454,8 +1455,6 @@ function client_getUAInfos($ua=false) {
         elseif (preg_match('/(Android|Adr)[; \/]*([0-9\.]*)?/', $ua, $matches)) {
             /* check version */
             $version = isset($matches[2])?$matches[2]:'';
-            if ($version != '' and version_compare($version, $maxVersions['system']['Android']) > 0)
-                return $fake;
 
             $infos = array_merge(array(
                 'platform_type'     => (preg_match('/tablet/i',$ua) ? 'tablet' : 'handheld'),
@@ -1471,8 +1470,6 @@ function client_getUAInfos($ua=false) {
         elseif (preg_match('/(?:Intel |PPC |)Mac OS X( Mach-O| [0-9\._]*|)/i', $ua, $matches)) {
             /* check version */
             $version = ($matches[1]!=' Mach-O')?substr(str_replace('_','.',$matches[1]), 1):'';
-            if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
-                return $fake;
 
             /* build info */
             $infos = array_merge($infos, array(
@@ -1488,8 +1485,6 @@ function client_getUAInfos($ua=false) {
             $version = $matches[1];
             $version = explode('.', $version);
             $version = '10.'.((int)$version[0]-4); //.'.'.$version[1];
-            if (version_compare($version, $maxVersions['system']['Mac OS X']) > 0)
-                return $fake;
 
             /* build info */
             $infos = array_merge($infos, array(
@@ -1591,17 +1586,10 @@ function client_getUAInfos($ua=false) {
                 'NT 10.0'=>'10', '10'=>'10',
             );
 
-            /* build known windows fake versions */
-            $wf = array('NT 7.0', 'NT 7.1', 'NT 8.0', 'NT 8.1', 'NT 9.0', 'NT 9.1', 'NT 10.1', 'NT 15.0', 'NT 10.0N');
-
             /* load version */
             $v = $matches[1];
             if (substr($v, 0, 1) == ' ') $v = trim(substr($v, 0, 7));
-            $version = isset($w[$v])?$w[$v]:'';
-
-            /* check fake version */
-            if (in_array($v, $wf))
-                return $fake;
+            $version = isset($w[$v])?$w[$v]:$v;
 
             $infos = array_merge(array(
                 'platform_company'  => 'PC',
@@ -1613,6 +1601,10 @@ function client_getUAInfos($ua=false) {
                 ), $infos);
         }
     }
+
+    /* check system and version */
+    if (_client_checkSoftwareIsFake('system', $infos['system_title'], $infos['system_version']))
+        return $fake;
 
     /*** check browser ***/
 
@@ -2022,7 +2014,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check browser and version */
-    if (isset($infos['browser_version']) and isset($maxVersions['browser'][$infos['browser_title']]) and version_compare($infos['browser_version'], $maxVersions['browser'][$infos['browser_title']], '>=') > 0)
+    if (_client_checkSoftwareIsFake('browser', $infos['browser_title'], $infos['browser_version']))
         return $fake;
 
     /* return result */
@@ -2670,33 +2662,103 @@ function _client_mergeUAInfos($req, $infos) {
 }
 
 /**
- * Return some max property values to check.
- * @return array
+ * Load some defined properties for softwares.
+ * @return void
  * @private
  */
-function _client_getUAPropertiesMaxVersions() {
+function _client_loadSoftwareProperties() {
+    global $softwareProperties;
+
+    if (isset($softwareProperties))
+        return;
+
     /* Build main list */
-    $versions = array(
+    $softwareProperties = array(
         'system' => array(
-            'Mac OS X'          => '10.16.0',               // current is 10.14.x
-            'iOS'               => '14',                    // current is 12.x
-            'Android'           => '11',                    // current is 9.x.x
+            'Mac OS X'          => array(
+                'MaxVersion'    => '10.12.6',               // final is 10.12.6
+                'FakeVersions'  => array(),
+            ),
+            'macOS'          => array(
+                'MaxVersion'    => '10.17.0',               // current is 10.15.x
+                'FakeVersions'  => array(),
+            ),
+            'Windows'           => array(
+                'MaxVersion'    => '',
+                'FakeVersions'  => array('NT 7.0', 'NT 7.1', 'NT 8.0', 'NT 8.1', 'NT 9.0', 'NT 9.1', 'NT 10.1', 'NT 15.0', 'NT 10.0N', 'NT 6.2.9200.0'),
+            ),
+            'iOS'               => array(
+                'MaxVersion'    => '15',                    // current is 13.x
+                'FakeVersions'  => array(),
+            ),
+            'Android'           => array(
+                'MaxVersion'    => '11',                    // current is 9.x.x
+                'FakeVersions'  => array(),
+            ),
         ),
         'browser' => array(
-            'Firefox'           => '73',                    // current is 69
-            'Chrome'            => '81',                    // current is 77
-            'Internet Explorer' => '11.0.50',               // latest
-            'Opera'             => '67',                    // current is 62
-            'Safari'            => '17',                    // current is 13.0.1
+            'Firefox'           => array(
+                'MaxVersion'    => '74',                    // current is 70
+                'FakeVersions'  => array('27.3'),
+            ),
+            'Chrome'            => array(
+                'MaxVersion'    => '82',                    // current is 78
+                'FakeVersions'  => array(),
+            ),
+            'Internet Explorer' => array(
+                'MaxVersion'    => '11.0.50',               // latest
+                'FakeVersions'  => array(),
+            ),
+            'Opera'             => array(
+                'MaxVersion'    => '68',                    // current is 64
+                'FakeVersions'  => array(),
+            ),
+            'Safari'            => array(
+                'MaxVersion'    => '17',                    // current is 13.0.1
+                'FakeVersions'  => array(),
+            ),
         ),
     );
 
     /* Add duplicate */
-    $versions['browser']['Chromium'] = $versions['browser']['Chrome'];  // Chromium match Chrome last versions
-    $versions['browser']['Edge'] = $versions['browser']['Chrome'];      // Edge now match Chrome last versions
+    $softwareProperties['browser']['Chromium'] = $softwareProperties['browser']['Chrome'];  // Chromium matches Chrome last and fake versions
+    $softwareProperties['browser']['Edge'] = $softwareProperties['browser']['Chrome'];      // Edge now matches Chrome last and fake versions
+}
 
-    /* Return list */
-    return $versions;
+/**
+ * Check if sofware is fake.
+ * @param string $type
+ * @param string $software
+ * @param string $version
+ */
+function _client_checkSoftwareIsFake($type, $software, $version) {
+    global $softwareProperties;
+
+    /* load properties */
+    _client_loadSoftwareProperties();
+
+    /* check type */
+    if (!isset($softwareProperties[$type]))
+        return false;
+
+    /* check software */
+    if (!isset($softwareProperties[$type][$software]))
+        return false;
+
+    /* check version */
+    if ($version === '')
+        return false;
+
+    /* check max version */
+    if ($softwareProperties[$type][$software]['MaxVersion'] != '' and version_compare($version, $softwareProperties[$type][$software]['MaxVersion'], '>=') > 0)
+        return true;
+
+    /* check fake versions */
+    if (in_array($version, $softwareProperties[$type][$software]['FakeVersions']))
+        return true;
+
+    /* Return default result */
+    return false;
 }
 
 /**

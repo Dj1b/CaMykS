@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.55
+ * @version 1.0.56
  * @date Creation: Apr 2018
  * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -187,6 +187,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A205GN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A202F'  => array('platform_model' => 'Galaxy A20e',                     'platform_year' => 2019),
         'SM-A305F'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
+        'SM-A305GT' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A405FN' => array('platform_model' => 'Galaxy A40',                      'platform_year' => 2019),
         'SM-A505F'  => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
         'SM-A505FN' => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
@@ -221,6 +222,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J250F'  => array('platform_model' => 'Galaxy J2 Pro',                   'platform_year' => 2018),
         'SM-J250Y'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2018),
         'SM-J310'   => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
+        'SM-J3119'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320FN' => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320F'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J320H'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
@@ -307,6 +309,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N9600'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960F'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960U'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
+        'SM-N970F'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
         'SM-N975F'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
 
         /* Samsung Galaxy other series */
