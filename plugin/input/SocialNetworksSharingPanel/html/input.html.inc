@@ -4,10 +4,10 @@
  * @details Plugin / Input layout
  * @file plugin/input/SocialNetworksSharingPanel/html/input.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Nov 2009
- * @date Modification: Jul 2018
- * @copyright 2009 - 2018 CaMykS Team
+ * @date Modification: Oct 2019
+ * @copyright 2009 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -78,7 +78,7 @@ $n = $this->dparams['networks'][1];
 <?php foreach ($this->networks as $name => $network) : ?>
 <?php if ($network['share'] == 1 and $this->config->vars['share_'.$network] == 2) : ?>
 <a <?=$this->get_networkHrefLink($name)?> <?=$this->get_networkOnclickLink($name)?> style="font-size:0;" target="_blank" rel="noopener">
-<img src="<?=$this->get_fileURL('img/shareIcons/'.$name.'.gif');?>"
+<img src="<?=$this->get_networkIconURL($name, 'share');?>"
    alt="<?=$network['title']?>" title="<?=$network['title']?>" style="vertical-align:bottom; margin:4px; border:0;" />
 </a>
 <?php endif; ?>
