@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.88
+ * @version 1.0.89
  * @date Creation: Jun 2007
  * @date Modification: Oct 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -89,9 +89,6 @@ function client_getUAInfos($ua=false) {
     /* get user agent */
     if ($ua===false) $ua = client_getUserAgent();
 
-    /* init result value */
-    $infos = array();
-
     /*** check fake visitors */
     if (($c = client_getFakeInfosFromUserAgent($ua)) !== false)
         return $c;
@@ -117,6 +114,9 @@ function client_getUAInfos($ua=false) {
         return $c;
 
     /*** check plateform ***/
+
+    /* init result value */
+    $infos = array();
 
     /* load max versions to check and default fake value */
     $fake = array('platform_type'     => 'fake');
@@ -1603,7 +1603,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check system and version */
-    if (_client_checkSoftwareIsFake('system', $infos['system_title'], $infos['system_version']))
+    if (isset($infos['system_title']) and isset($infos['system_version']) and _client_checkSoftwareIsFake('system', $infos['system_title'], $infos['system_version']))
         return $fake;
 
     /*** check browser ***/
@@ -2014,7 +2014,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check browser and version */
-    if (_client_checkSoftwareIsFake('browser', $infos['browser_title'], $infos['browser_version']))
+    if (isset($infos['browser_title']) and isset($infos['browser_version']) and _client_checkSoftwareIsFake('browser', $infos['browser_title'], $infos['browser_version']))
         return $fake;
 
     /* return result */
