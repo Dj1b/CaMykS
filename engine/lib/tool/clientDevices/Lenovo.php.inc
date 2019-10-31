@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: Apr 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -49,6 +49,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'K51c78'    => array('platform_model' => 'Vibe X3 Lite',            'platform_year' => 2015),
         'P70-A'     => array('platform_model' => 'P70',                     'platform_year' => 2015),
         'A2010-a'   => array('platform_model' => 'A2010',                   'platform_year' => 2015),
+        'A6000'     => array('platform_model' => 'A6000',                   'platform_year' => 2015),
         'A7000-a'   => array('platform_model' => 'A7000',                   'platform_year' => 2015),
         'K52t38'    => array('platform_model' => 'K5 Note',                 'platform_year' => 2015),
         'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),

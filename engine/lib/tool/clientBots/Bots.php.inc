@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.49
+ * @version 1.0.50
  * @date Creation: May 2018
  * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4462,6 +4462,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Arquivo.pt',
         'engine_url'        => 'https://arquivo.pt',
+    );
+
+    /* LivelapBot */
+    $knownBots['livelapbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'LivelapBot',
+        'bot_url'           => 'http://site.livelap.com/crawler.html',
+        'engine_title'      => 'Livelap',
+        'engine_url'        => 'http://site.livelap.com',
     );
 
     /* return bot list */

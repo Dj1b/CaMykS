@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.53
+ * @version 1.0.54
  * @date Creation: Apr 2018
  * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -204,6 +204,7 @@ function get_HuaweiClientDevices() {
         'BLL-L22'   => array('platform_model' => 'GR5',             'platform_year' => 2017),
 
         /* Huawei other models */
+        'FLA-AL20'  => array('platform_model' => 'Enjoy 8 Plus',    'platform_year' => 2018),
         'DUB-AL00'  => array('platform_model' => 'Enjoy 9',         'platform_year' => 2018),
     );
 }

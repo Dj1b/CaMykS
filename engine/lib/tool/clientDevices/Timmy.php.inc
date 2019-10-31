@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Oukitel client devices specific methods
+ * @brief Timmy client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Oukitel.php.inc
+ * @file engine/lib/tool/clientDevices/Timmy.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Jan 2019
+ * @version 1.0.0
+ * @date Creation: Oct 2019
  * @date Modification: Oct 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
@@ -14,16 +14,14 @@
  */
 
 /**
- * Return Oukitel client device information from a known list.
+ * Return Timmy client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_OukitelClientDevice($deviceCode='') {
+function get_TimmyClientDevice($deviceCode='') {
     $deviceList = array(
-        'K6000 Pro'     => array('platform_model' => 'K6000 Pro',   'platform_year' => 2016),
-        'K8000'         => array('platform_model' => 'K8000',       'platform_year' => 2016),
-        'K10000 Max'    => array('platform_model' => 'K10000 Max',  'platform_year' => 2017),
-        'K7'            => array('platform_model' => 'K7',          'platform_year' => 2018),
+        /* Timmy mobiles */
+        'M12'   => array('platform_model' => 'M12',  'platform_year' => 2016),
     );
 
     /* Check for returning list */
@@ -32,7 +30,7 @@ function get_OukitelClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Oukitel',
+        'platform_company'  => 'Timmy',
         'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
