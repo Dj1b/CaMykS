@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.47
+ * @version 1.0.50
  * @date Creation: May 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1702,8 +1702,8 @@ function _client_getKnownBots() {
     $knownBots['duckduckgo'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => '',
-        'bot_url'           => '',
+        'bot_title'         => 'DuckDuckBot',
+        'bot_url'           => 'http://duckduckgo.com/duckduckbot.html',
         'engine_title'      => 'DuckDuckGo',
         'engine_url'        => 'http://duckduckgo.com',
     );
@@ -4452,6 +4452,26 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://cocoscan.io/bot',
         'engine_title'      => 'Cocolyze',
         'engine_url'        => 'https://cocolyze.com',
+    );
+
+    /* arquivo-web-crawler */
+    $knownBots['arquivo-web-crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Arquivo Web Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'Arquivo.pt',
+        'engine_url'        => 'https://arquivo.pt',
+    );
+
+    /* LivelapBot */
+    $knownBots['livelapbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'LivelapBot',
+        'bot_url'           => 'http://site.livelap.com/crawler.html',
+        'engine_title'      => 'Livelap',
+        'engine_url'        => 'http://site.livelap.com',
     );
 
     /* return bot list */

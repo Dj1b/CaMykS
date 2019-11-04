@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: Apr 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -49,6 +49,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'x4'            => array('platform_model' => 'Moto X4',             'platform_year' => 2017),
         'Z (2)'         => array('platform_model' => 'Moto Z2'     ,        'platform_year' => 2017),
         'Z2 Play'       => array('platform_model' => 'Moto Z2 Play',        'platform_year' => 2017),
+        'e5 play'       => array('platform_model' => 'Moto E5 Play',        'platform_year' => 2018),
         'g(6)'          => array('platform_model' => 'Moto G6',             'platform_year' => 2018),
         'g(6) plus'     => array('platform_model' => 'Moto G6 Plus',        'platform_year' => 2018),
         'g(6) play'     => array('platform_model' => 'Moto G6 Play',        'platform_year' => 2018),

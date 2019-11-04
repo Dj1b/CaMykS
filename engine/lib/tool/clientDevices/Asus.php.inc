@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.19
  * @date Creation: Apr 2018
- * @date Modification: Sep 2019
+ * @date Modification: Oct 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,6 +29,7 @@ function get_AsusClientDevice($deviceCode='') {
         'P023'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P00C'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'P001'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'P027'      => array('platform_model' => 'ZenPad 3S 10',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'P028'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Asus phones */
@@ -37,6 +38,7 @@ function get_AsusClientDevice($deviceCode='') {
         'Z00ED'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
         'Z00ED'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
         'Z00LD'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
+        'Z011D'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
         'ZD551KL'   => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'Z00UD'     => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'Z00UDH'    => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
@@ -63,6 +65,7 @@ function get_AsusClientDevice($deviceCode='') {
         'X00ID'     => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
         'ZC520KL'   => array('platform_model' => 'ZenFone 4 Max',           'platform_year' => 2017),
         'ZS551KL'   => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
+        'Z01GD'     => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
         'Z01GS'     => array('platform_model' => 'ZenFone 4 Pro',           'platform_year' => 2017),
         'ZD553KL'   => array('platform_model' => 'ZenFone 4 Selfie',        'platform_year' => 2017),
         'ZD552KL'   => array('platform_model' => 'ZenFone 4 Selfie Pro',    'platform_year' => 2017),

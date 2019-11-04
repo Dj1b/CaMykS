@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Array specific methods
+ * @brief Array related methods
  * @details Engine / Tool Library
  * @file engine/lib/tool/array.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.2
  * @date Creation: Jan 2010
- * @date Modification: Aug 2018
- * @copyright 2010 - 2018 CaMykS Team
+ * @date Modification: Oct 2019
+ * @copyright 2010 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -88,6 +88,18 @@ function array_checkInteger($array=array()) {
 }
 
 /**
+ * Check if all elements are the same and given type.
+ * @param array $array
+ * @param string $type
+ * @return boolean result
+ */
+function array_checkDataType($array=array(), $type='') {
+    if (!function_exists('is_'.$type))
+        return false;
+    return (count($array) === count(array_filter($array, 'is_'.$type)));
+}
+
+/**
  * Return array with all abs values.
  * @param array $array
  * @return array
@@ -113,5 +125,33 @@ function array_abs($array=array()) {
  */
 function array_applySameValue($array, $value=null) {
     return array_fill_keys(array_keys($array), $value);
+}
+
+/**
+ * Check if array is associative.
+ * @param array $array
+ * @return boolean result
+ */
+function array_isAssociative($array) {
+    /* Quick tests */
+    if (count($array) == 0)
+        return true;
+
+    /* Harder test */
+    return array_keys($array) !== range(0, count($array) - 1);
+}
+
+/**
+ * Check if array is sequential.
+ * @param array $array
+ * @return boolean result
+ */
+function array_isSequential($array) {
+    /* Quick tests */
+    if (count($array) == 0)
+        return true;
+
+    /* Harder test */
+    return array_keys($array) === range(0, count($array) - 1);
 }
 ?>

@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_User/html/admin_edit.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Mar 2019
+ * @date Modification: Oct 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -46,7 +46,7 @@ global $camyks;
                 <?= $camyks->get_translation('formitem_login'); ?>
             </td>
             <td class="eTableLine<?= $alt?> eContent1">
-                <input type="hidden" name="adminuser_login" value="<?= $this->user->login?>" />
+                <input type="hidden" name="adminuser_login" value="<?= $this->user->login; ?>" />
                 <?= $this->user->login ?>
             </td>
         </tr>
@@ -108,7 +108,7 @@ global $camyks;
                 <?= $camyks->get_translation('formitem_firstname'); ?>
             </td>
             <td class="eTableLine<?= $alt?> eContent1">
-                <input type="text" name="adminuser_firstname" value="<?= $this->user->firstname?>" maxlength="32" class="inputs" />
+                <input type="text" name="adminuser_firstname" value="<?= $this->user->firstname; ?>" maxlength="32" class="inputs" />
             </td>
         </tr>
 
@@ -118,7 +118,7 @@ global $camyks;
                 <?= $camyks->get_translation('formitem_lastname'); ?>
             </td>
             <td class="eTableLine<?= $alt?> eContent1">
-                <input type="text" name="adminuser_lastname" value="<?= $this->user->lastname?>" maxlength="32" class="inputs" />
+                <input type="text" name="adminuser_lastname" value="<?= $this->user->lastname; ?>" maxlength="32" class="inputs" />
             </td>
         </tr>
 
@@ -128,7 +128,7 @@ global $camyks;
                 <?= $camyks->get_translation('formitem_email'); ?>
             </td>
             <td class="eTableLine<?= $alt?> eContent1">
-                <input type="text" name="adminuser_email" value="<?= $this->user->email?>" maxlength="255" class="inputs" />
+                <input type="text" name="adminuser_email" value="<?= $this->user->email; ?>" maxlength="255" class="inputs" />
             </td>
         </tr>
 
@@ -138,7 +138,7 @@ global $camyks;
                 <?= $camyks->get_translation('formitem_address'); ?>
             </td>
             <td class="eTableLine<?= $alt?> eContent1">
-                <textarea cols="40" rows="6" name="adminuser_address" class="inputs"><?= $this->user->address?></textarea>
+                <textarea cols="40" rows="6" name="adminuser_address" class="inputs"><?= $this->user->address; ?></textarea>
             </td>
         </tr>
     </table>
@@ -159,14 +159,14 @@ global $camyks;
             <?php foreach ($m->rights as $ridx => $right) : ?>
             <td class="eTableLine<?= $alt?> eTableIconCell">
             <?php if ($camyks->adminUser->get_right($m->name, $ridx) == 0 or $camyks->adminUser->login == $this->user->login) : ?>
-            <input type="checkbox" name="__" value="1" <?= $this->user->get_right($m->name, $ridx) ? ' checked="checked"':''; ?> disabled="disabled"    />
+            <input type="checkbox" name="__" value="1" <?= $this->user->get_right($m->name, $ridx) ? ' checked="checked"':''; ?> disabled="disabled" />
             <input type="hidden" name="adminuser_<?= $m->name?>_<?= $ridx?>" value="<?= $this->user->get_right($m->name, $ridx) ? 1 : 0; ?>"/>
             <?php else : ?>
             <input type="checkbox" name="adminuser_<?= $m->name?>_<?= $ridx?>" value="1" id="adminuser_<?= $m->name?>_<?= $ridx?>" <?= $this->user->get_right($m->name, $ridx) ? ' checked="checked"':''; ?> />
             <?php endif; ?>
             </td>
-            <td class="eTableLine<?= $alt?> eContent1" style="width:<?= $this->layout_cellwidth?>;">
-            <label for="adminuser_<?= $m->name?>_<?= $ridx?>"><?= $right['title'] ?></label>
+            <td class="eTableLine<?= $alt?> eContent1" style="width:<?= $this->layout_cellwidth; ?>;">
+            <label for="adminuser_<?= $m->name; ?>_<?= $ridx; ?>"><?= $right['title']; ?></label>
             </td>
             <?php $rightcount++; ?>
             <?php if (++$linecount == $this->layout_itemsByLine) : ?>

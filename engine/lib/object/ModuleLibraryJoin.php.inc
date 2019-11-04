@@ -4,18 +4,17 @@
  * @details Engine / Object Library
  * @file engine/lib/object/ModuleLibraryJoin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2011
- * @date Modification: Apr 2018
- * @copyright 2011 - 2018 CaMykS Team
+ * @date Modification: Oct 2019
+ * @copyright 2011 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Try to set up get_dateFromHeader and parse_PHPTags methods as protected.
  */
 
 /**
- * ModuleLibraryItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * ModuleLibraryJoin class.
  */
 abstract class ModuleLibraryJoin extends ModuleLibrary {
     /**
@@ -33,7 +32,7 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
      * @param array $params
      * @return void
      */
-    function __construct(&$module, $params=array()) {
+    public function __construct(&$module, $params=array()) {
         parent::__construct(0, $module);
 
         /* merge params */
@@ -47,7 +46,7 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* overwrite ModuleLibrary methods */
+    /* Override ModuleLibrary methods */
 
     /**
      * Return a new object.
