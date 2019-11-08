@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.31
  * @date Creation: May 2018
- * @date Modification: Oct 2019
+ * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +24,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi pad'                => array('platform_model' => 'Mi Pad',              'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2014),
         'mi pad 2'              => array('platform_model' => 'Mi Pad 2',            'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2015),
         'mi pad 3'              => array('platform_model' => 'Mi Pad 3',            'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2017),
+        'mi pad 4'              => array('platform_model' => 'Mi Pad 4',            'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2018),
 
         /* Phones, Mi series */
         'mi one'                => array('platform_model' => 'Mi One',              'platform_year' => 2011),
@@ -100,6 +101,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi s2'              => array('platform_model' => 'Redmi S2',            'platform_year' => 2018),
         'redmi 7'               => array('platform_model' => 'Redmi 7',             'platform_year' => 2019),
         'redmi note 7'          => array('platform_model' => 'Redmi Note 7',        'platform_year' => 2019),
+        'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
 
         'pocophone f1'          => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
         'poco f1'               => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),

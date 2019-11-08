@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.56
+ * @version 1.0.57
  * @date Creation: Apr 2018
- * @date Modification: Oct 2019
+ * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -115,6 +115,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G928C'  => array('platform_model' => 'Galaxy S6 Edge+',                 'platform_year' => 2015),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+',                 'platform_year' => 2015),
         'SM-G930'   => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
+        'SM-G930A'  => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
         'SM-G930F'  => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
         'SM-G930U'  => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
         'SM-G930V'  => array('platform_model' => 'Galaxy S7',                       'platform_year' => 2016),
@@ -185,6 +186,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A105FN' => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A205G'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205GN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
+        'SM-A205W'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A202F'  => array('platform_model' => 'Galaxy A20e',                     'platform_year' => 2019),
         'SM-A305F'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A305GT' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
@@ -370,6 +372,9 @@ function get_SamsungClientDevice($deviceCode='') {
 
         'Galaxy'    => array('platform_model' => 'Galaxy'),
         'E7'        => array('platform_model' => 'Galaxy E7',                       'platform_year' => 2016),
+
+        /* Samsung non-Galaxy series */
+        'SM-B350E'  => array('platform_model' => 'Metro B350E',                     'platform_year' => 2015),
     );
 
     /* Check for returning list */
