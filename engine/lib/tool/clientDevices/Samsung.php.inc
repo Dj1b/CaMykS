@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.57
+ * @version 1.0.58
  * @date Creation: Apr 2018
  * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -220,6 +220,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J200H'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-J200M'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-G532G'  => array('platform_model' => 'Galaxy J2 Prime',                 'platform_year' => 2016),
+        'SM-G532M'  => array('platform_model' => 'Galaxy J2 Prime',                 'platform_year' => 2016),
         'SM-J260F'  => array('platform_model' => 'Galaxy J2 Core',                  'platform_year' => 2018),
         'SM-J250F'  => array('platform_model' => 'Galaxy J2 Pro',                   'platform_year' => 2018),
         'SM-J250Y'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2018),
@@ -266,6 +267,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J710GN' => array('platform_model' => 'Galaxy J7 Duos',                  'platform_year' => 2016),
         'SM-G610M'  => array('platform_model' => 'Galaxy J7 Prime',                 'platform_year' => 2016),
         'SM-J701F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
+        'SM-J720F'  => array('platform_model' => 'Galaxy J7 Duo',                   'platform_year' => 2017),
         'SM-J730F'  => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'SM-J730GM' => array('platform_model' => 'Galaxy J7',                       'platform_year' => 2017),
         'SM-J727T'  => array('platform_model' => 'Galaxy J7 Prime',                 'platform_year' => 2017),
@@ -363,6 +365,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-I8552'  => array('platform_model' => 'Galaxy Win Duos',                 'platform_year' => 2013),
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3',                 'platform_year' => 2015),
         'SM-G390F'  => array('platform_model' => 'Galaxy Xcover 4',                 'platform_year' => 2017),
+        'SM-G398FN' => array('platform_model' => 'Galaxy Xcover 5',                 'platform_year' => 2019),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y',                        'platform_year' => 2011),
         'GT-S6102'  => array('platform_model' => 'Galaxy Y Duos',                   'platform_year' => 2012),
         'GT-S7582'  => array('platform_model' => 'Galaxy S Duos',                   'platform_year' => 2012),

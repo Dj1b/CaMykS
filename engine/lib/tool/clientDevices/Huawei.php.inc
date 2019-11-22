@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.55
+ * @version 1.0.56
  * @date Creation: Apr 2018
  * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -70,6 +70,7 @@ function get_HuaweiClientDevices() {
         'ANE-LX2'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX2J'  => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
         'ANE-LX3'   => array('platform_model' => 'P20 Lite',        'platform_year' => 2018),
+        'CLT-AL00'  => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L04'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L09'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
         'CLT-L29'   => array('platform_model' => 'P20 Pro',         'platform_year' => 2018),
@@ -91,6 +92,7 @@ function get_HuaweiClientDevices() {
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'NXT-L29'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'MHA-L09'   => array('platform_model' => 'Mate 8\'',        'platform_year' => 2016),
+        'MHA-AL00'  => array('platform_model' => 'Mate 9',          'platform_year' => 2016),
         'MHA-L29'   => array('platform_model' => 'Mate 9',          'platform_year' => 2016),
         'ALP-L29'   => array('platform_model' => 'Mate 10',         'platform_year' => 2017),
         'RNE-L21'   => array('platform_model' => 'Mate 10 Lite',    'platform_year' => 2017),
@@ -165,11 +167,15 @@ function get_HuaweiClientDevices() {
         'Y360-U03'  => array('platform_model' => 'Y3',              'platform_year' => 2015),
         'Y635-L01'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
         'Y635-L21'  => array('platform_model' => 'Y635',            'platform_year' => 2015),
+        'LUA-L01'   => array('platform_model' => 'Y3 II',           'platform_year' => 2016),
+        'LUA-L02'   => array('platform_model' => 'Y3 II',           'platform_year' => 2016),
+        'LUA-L03'   => array('platform_model' => 'Y3 II',           'platform_year' => 2016),
         'CUN-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2015),
         'Y560-L01'  => array('platform_model' => 'Y5',              'platform_year' => 2015),
         'CUN-L01'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'DRA-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
+        'AMN-LX9'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
         'SCL-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
         'SCL-U31'   => array('platform_model' => 'Y6',              'platform_year' => 2016),

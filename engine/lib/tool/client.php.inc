@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.91
+ * @version 1.0.92
  * @date Creation: Jun 2007
  * @date Modification: Nov 2019
  * @copyright 2007 - 2019 CaMykS Team
@@ -487,7 +487,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Outikel mobiles */
-    elseif (preg_match('/ (K[0-9]|K[0-9]{4,})( [A-zA-Z]*)?( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/; (K[0-9]|K[0-9]{4,})( [A-zA-Z]*)?( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Oukitel.php.inc');
         $infos = array_merge($infos, get_OukitelClientDevice(trim($matches[1].$matches[2])));
     }
@@ -660,26 +660,6 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Advan.php.inc');
         $infos = array_merge($infos, get_AdvanClientDevice($matches[1]));
     }
-
-    /* check Wiko */
-    elseif (preg_match('/; (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
-        $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
-        include_once('clientDevices/Wiko.php.inc');
-        $infos = array_merge($infos, get_WikoClientDevice($model));
-    } elseif (preg_match('/ (W[_\-][A-Z][0-9]{3}[A-Z]?)( Build|\))/i', $ua, $matches)) {
-        $model = trim(strtolower($matches[1]));
-        include_once('clientDevices/Wiko.php.inc');
-        $infos = array_merge($infos, get_WikoClientDevice($model));
-    } elseif (preg_match('/ (W\-[A-Z][0-9]{3}\-[A-Z]{3})( Build|\))/Ui', $ua, $matches)) {
-        $model = trim(strtolower($matches[1]));
-        include_once('clientDevices/Wiko.php.inc');
-        $infos = array_merge($infos, get_WikoClientDevice($model));
-    } elseif (preg_match('/ ([S|V][0-9]{2}[A-Za-z0-9\(\)]*)( Build|\))/i', $ua, $matches)) {
-        $model = trim(strtolower($matches[1]));
-        include_once('clientDevices/Wiko.php.inc');
-        $infos = array_merge($infos, get_WikoClientDevice($model));
-    }
-
     /* check SpreadTrum */
     elseif (preg_match('/SpreadTrum/', $ua, $matches))
         $infos = array_merge($infos, array(
@@ -1063,10 +1043,10 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/; ([0-9]{4})( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
-    } elseif (preg_match('/; vivo (.*) Build/', $ua, $matches)) {
+    } elseif (preg_match('/; vivo (.*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
-    } elseif (preg_match('/; vivo (.*)\)/', $ua, $matches)) {
+    } elseif (preg_match('/; (V1928a)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Vivo.php.inc');
         $infos = array_merge($infos, get_VivoClientDevice($matches[1]));
     }
@@ -1409,6 +1389,46 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Timmy.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_TimmyClientDevice($device));
+    }
+
+    /* check Öwn devices */
+    elseif (preg_match('/; (FUN_VALUE)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Own.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_OwnClientDevice($device));
+    }
+
+    /* check Nvidia devices */
+    elseif (preg_match('/; (SHIELD .*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Nvidia.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_NvidiaClientDevice($device));
+    }
+
+    /* check Fairphone devices */
+    elseif (preg_match('/; (FP[0-9]U?)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Fairphone.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_FairphoneClientDevice($device));
+    }
+
+    /* check Wiko */
+    elseif (preg_match('/; (barry|birdy|bloom|cink|darkfull|darkmoon|darkside|fever|fizz|freddy|getaway|goa|harry|highway|iggy|jerry|jimmy|kenny|kite|lenny|ozzy|pulp|rainbow|ridge|robby|selfy|slide|stairway|star|sublim|sunny|sunset|tommy|u feel|u pulse|view|violet|wax|wim)([A-Za-z0-9 _]*)?( Build|\))/i', $ua, $matches)) {
+        $model = trim(strtolower($matches[1].(isset($matches[2])?$matches[2]:'')));
+        include_once('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
+    } elseif (preg_match('/ (W[_\-][A-Z][0-9]{3}[A-Z]?)( Build|\))/i', $ua, $matches)) {
+        $model = trim(strtolower($matches[1]));
+        include_once('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
+    } elseif (preg_match('/ (W\-[A-Z][0-9]{3}\-[A-Z]{3})( Build|\))/Ui', $ua, $matches)) {
+        $model = trim(strtolower($matches[1]));
+        include_once('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
+    } elseif (preg_match('/ ([S|V][0-9]{2}[A-Za-z0-9\(\)]*)( Build|\))/i', $ua, $matches)) {
+        $model = trim(strtolower($matches[1]));
+        include_once('clientDevices/Wiko.php.inc');
+        $infos = array_merge($infos, get_WikoClientDevice($model));
     }
 
     /* check Phh-Treble generic rom flashed device devices */
