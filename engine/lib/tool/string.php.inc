@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/string.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Oct 2007
- * @date Modification: Mar 2019
+ * @date Modification: Nov 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -413,7 +413,7 @@ function string_parseSpecialChars($string, $params=array()) {
 function string_getShortenedSentence($string='', $length=64) {
     $length = max($length, 4);
     if (strlen($string) > $length) {
-        if (preg_match('/(.) {1,'.($length-3).'} /', $string, $matches))
+        if (preg_match('/^(.) {1,'.($length-3).'} /', $string, $matches))
             return $matches[0].'...';
         return substr($string, 0, $length).'...';
     }
