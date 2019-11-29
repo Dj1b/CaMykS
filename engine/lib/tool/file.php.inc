@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jun 2005
- * @date Modification: Oct 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Nov 2019
+ * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo complete file type, extension, and mime list
@@ -286,7 +286,7 @@ function file_getMimeIconURL($mime='', $size=32) {
  */
 function file_getMimeIcon($mime='', $size=32, $styles='') {
     /* get icon */
-    $icon = file_getMimeIconURL ($mime, $size);
+    $icon = file_getMimeIconURL($mime, $size);
 
     /* return icon */
     return '<img src="'.$icon.'"'.' width="'.$size.'" height="'.$size.'" alt="" style="'.$styles.'" border="0" />';
@@ -483,7 +483,7 @@ function file_getMimeDescription($mime='') {
  */
 function file_getFileSize($size) {
     $t = language_getFileUnit();
-    $l = array('', 'K', 'M', 'G', 'T', 'P');
+    $l = array('', 'K', 'M', 'G', 'T', 'P', 'E', 'Z', 'Y');
     $s = 0;
     while ($size > 1024) {
         $s++;
@@ -492,7 +492,7 @@ function file_getFileSize($size) {
     $size = ((int)($size*10)/10);
 
     if ($s == 0)
-        return $size.' '.($t='o'?'octets':'bytes');
+        return $size.' '.($t=='o'?'octets':'bytes');
     return $size.' '.$l[$s].$t;
 }
 
