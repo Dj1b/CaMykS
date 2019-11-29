@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.56
+ * @version 1.0.57
  * @date Creation: Apr 2018
  * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -212,6 +212,7 @@ function get_HuaweiClientDevices() {
         'LDN-LX2'   => array('platform_model' => 'Nova 2 Lite',     'platform_year' => 2018),
         'PAR-AL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'PAR-TL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
+        'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
 
         /* Huawei G series */
         'ALE-L23'   => array('platform_model' => 'G Elite',         'platform_year' => 2015),
