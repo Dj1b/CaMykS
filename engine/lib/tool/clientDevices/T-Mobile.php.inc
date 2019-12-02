@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/T-Mobile.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2019
- * @date Modification: Jun 2019
+ * @date Modification: Nov 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,8 @@
  */
 function get_TMobileClientDevice($deviceCode='') {
     $deviceList = array(
-        'G1'    => array('platform_model' => 'G1', 'platform_year' => 2008),
+        'G1'        => array('platform_model' => 'G1', 'platform_year' => 2008),
+        'G2_Touch'  => array('platform_model' => 'G2 Touch', 'platform_year' => 2009),
     );
 
     /* Check for returning list */

@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.50
+ * @version 1.0.51
  * @date Creation: May 2018
- * @date Modification: Oct 2019
+ * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4472,6 +4472,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://site.livelap.com/crawler.html',
         'engine_title'      => 'Livelap',
         'engine_url'        => 'http://site.livelap.com',
+    );
+
+    /* FatBoyKimComBot */
+    $knownBots['fatboykimcombot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'FatBoyKimComBot',
+        'bot_url'           => 'mailto:fatboykim@fatboykim.com',
+        'engine_title'      => 'FatBoyKim.com',
+        'engine_url'        => 'http://www.fatboykim.com',
     );
 
     /* return bot list */

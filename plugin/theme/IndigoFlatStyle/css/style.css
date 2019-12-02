@@ -3,9 +3,9 @@
  * @details Plugin / Theme CSS styles
  * @file plugin/theme/IndigoFlatStyle/css/style.css
  * @author CaMykS Team
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Oct 2014
- * @date Modification: Oct 2019
+ * @date Modification: Nov 2019
  * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -43,6 +43,10 @@ input[type="radio"] + label {margin:0 20px 0 8px; display:inline-block;}
 input[type="radio"]:checked + label {color:#6a798b;}
 input[type="checkbox"] + label {margin:0 20px 0 8px; display:inline-block;}
 input[type="checkbox"]:checked + label {color:#6a798b;}
+
+.eTableSubHeader input[type="radio"]:checked + label {color:white;}
+.eTableSubHeader input[type="checkbox"]:checked + label {color:white;}
+
 
 .inputHeight {height:20px;}
 .img{font-size:0}

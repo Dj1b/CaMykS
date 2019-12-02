@@ -7,14 +7,13 @@
  * @version 1.0
  * @date Creation: Mar 2018
  * @date Modification: Apr 2018
- * @copyright 2018 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @copyright 2018 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
- * FSFile class.
- * @author CaMykS Team <camyks.contact@gmail.com>
+ * FTPClient class.
  */
 final class FTPClient {
     /**

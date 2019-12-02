@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: May 2018
- * @date Modification: Sep 2019
+ * @date Modification: Nov 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -761,6 +761,16 @@ function _client_getKnownGenericsL2() {
         'tool_url'          => 'https://github.com/ArthurHoaro/web-thumbnailer',
         'engine_title'      => '',
         'engine_url'        => '',
+    );
+
+    /* SecuTix Whymper */
+    $knownGenerics['secutix whymper_v3'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Whymper V3',
+        'tool_url'          => 'https://confluence.secutix.com/pages/viewpage.action?pageId=41779832',
+        'engine_title'      => 'SecuTix',
+        'engine_url'        => 'https://www.secutix.com',
     );
 
     /* obot */
