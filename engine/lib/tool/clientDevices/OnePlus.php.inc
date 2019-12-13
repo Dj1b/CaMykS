@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/OnePlus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Apr 2018
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,6 +42,7 @@ function get_OnePlusClientDevices() {
         'GM1913'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
         'GM1915'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
         'GM1917'    => array('platform_model' => '7 Pro',   'platform_year' => 2019),
+        'HD1903'    => array('platform_model' => '7T',      'platform_year' => 2019),
     );
 }
 

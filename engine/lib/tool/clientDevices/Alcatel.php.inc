@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Aug 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -70,6 +70,7 @@ function get_AlcatelClientDevice($deviceCode='') {
         '5051X' => array('platform_model' => 'OneTouch Pop 4 (5\')',    'platform_year' => 2016),
         '5054D' => array('platform_model' => 'OneTouch Pop 3 (5.5\')',  'platform_year' => 2016),
         '5056D' => array('platform_model' => 'OneTouch Pop 4 (5.5\')',  'platform_year' => 2016),
+        '5056O' => array('platform_model' => 'OneTouch Allura',         'platform_year' => 2017),
         '5056X' => array('platform_model' => 'OneTouch Pop 4 (5.5\')',  'platform_year' => 2016),
         '5070D' => array('platform_model' => 'OneTouch Pop Star 4G',    'platform_year' => 2015),
         '5070X' => array('platform_model' => 'OneTouch Pop Star 4G',    'platform_year' => 2015),

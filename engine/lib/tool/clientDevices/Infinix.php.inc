@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Feb 2019
- * @date Modification: Nov 2019
+ * @date Modification: Dec 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,12 +23,14 @@ function get_InfinixClientDevice($deviceCode='') {
         /* Note serie */
         'NOTE 3'        => array('platform_model' => 'Note 3',      'platform_year' => 2015),
         'NOTE 3 Pro'    => array('platform_model' => 'Note 3 Pro',  'platform_year' => 2016),
+        'X571'          => array('platform_model' => 'Note 4 Pro',  'platform_year' => 2017),
         'X572'          => array('platform_model' => 'Note 4',      'platform_year' => 2017),
 
         /* Hot serie */
         'X551'          => array('platform_model' => 'Hot Note',    'platform_year' => 2015),
         'X559'          => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
         'X559C'         => array('platform_model' => 'Hot 5',       'platform_year' => 2017),
+        'X573'          => array('platform_model' => 'Hot S3',      'platform_year' => 2018),
         'X606D'         => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
         'X608'          => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
 

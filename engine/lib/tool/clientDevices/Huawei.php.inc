@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.57
+ * @version 1.0.58
  * @date Creation: Apr 2018
- * @date Modification: Nov 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,7 @@ function get_HuaweiClientDevices() {
         'BEETHOVEN-DL09'        => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'BTV-DL09'              => array('platform_model' => 'MediaPad M3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'FDR-A01w'              => array('platform_model' => 'MediaPad T2 10.0 Pro',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'AGS-L09'               => array('platform_model' => 'MediaPad T3 10',          'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'AGS-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-U01'               => array('platform_model' => 'MediaPad T3 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'BG2-W09'               => array('platform_model' => 'MediaPad T3',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
@@ -60,6 +61,7 @@ function get_HuaweiClientDevices() {
         'WAS-LX1'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-LX1A'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-LX2'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
+        'WAS-LX3'   => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'WAS-TL10'  => array('platform_model' => 'P10 Lite',        'platform_year' => 2017),
         'VKY-L09'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
         'VKY-L29'   => array('platform_model' => 'P10 Plus',        'platform_year' => 2017),
@@ -151,6 +153,7 @@ function get_HuaweiClientDevices() {
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'PCT-L29'   => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
         'YAL-L41'   => array('platform_model' => 'Honor 20 Pro',    'platform_year' => 2019),
+        'HRY-LX1T'  => array('platform_model' => 'Honor 20 Lite',   'platform_year' => 2019),
 
         /* Huawei Ascend series */
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),
@@ -254,7 +257,7 @@ function get_HuaweiClientDevice($deviceCode='') {
     return array_merge($result, $deviceList[$deviceCode]);
 }
 
-/*
+/**
  * Check if given device is a Huawei know device
  * @return array
  */
