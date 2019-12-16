@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Statistics/html/admin_single.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.2
  * @date Creation: May 2007
- * @date Modification: Apr 2019
+ * @date Modification: Dec 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -229,9 +229,15 @@ $main_bar_height = 58;
                     <?= $value; ?>
                 </div>
             </td>
-            <td class="eTableLine<?= $alt?> eContent1" title="<?= string_text2html($title); ?>">
-                <?= string_getShortenedSentence($title, 72); ?>
-            </td>
+            <?php if (string_isHTML($title)) : ?>
+                <td class="eTableLine<?= $alt?> eContent1" title="<?= string_stripTags($title); ?>">
+                    <?= $title; ?>
+                </td>
+            <?php else : ?>
+                <td class="eTableLine<?= $alt?> eContent1" title="<?= string_text2html($title); ?>">
+                    <?= string_getShortenedSentence($title, 72); ?>
+                </td>
+            <?php endif; ?>
         </tr>
         <?php $alt = abs($alt-1); ?>
         <?php endforeach; ?>
