@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_SystemReport/lib/Admin_SystemReportItemListParams.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2014
- * @date Modification: Apr 2019
+ * @date Modification: Dec 2019
  * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -47,7 +47,7 @@ $this->reportListParams['listcolumns'] = array(
 );
 
 if ($this->check_right(1) == true) {
-  $this->reportListParams['listcolumns']['view'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewReportLink, 'url_title'=>$this->get_translation('view'));
+  $this->reportListParams['listcolumns']['view'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewReportLink, 'url_title'=>$this->get_translation('viewreport'));
   $this->reportListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteReportLink, 'url_title'=>$this->get_translation('deletereport'));
 }
 ?>
