@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/html/admin_view_site_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jan 2005
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -80,7 +80,7 @@ global $camyks;
             <td class="eTableLine0 eContent1">
                 <?= $camyks->version; ?>
             </td>
-            <td class="eTableLine0 eContent1" rowspan="3" style="width:250px; vertical-align:top; text-align:center;">
+            <td class="eTableLine0 eContent1" rowspan="3" style="width:230px; vertical-align:top; text-align:right;">
                 <?php if ($this->securityTools !== false and $this->securityTools->check_right(1)) : ?>
                 <?= $this->theme->get_button(array(
                     'title' => $this->get_translation('action_checkcamyksintegrity'),
@@ -187,8 +187,16 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_serverside'); ?>
             </td>
-            <td class="eTableLine0 eContent1" colspan="2">
-                <?= $camyks->get_confValue('cache_server_side') == 'enabled' ? $this->get_translation('cache_enabled') : $this->get_translation('cache_none'); ?>
+            <td class="eTableLine0 eContent1">
+                <?= $camyks->get_confValue('cache_server_side') == 'enabled' ? $this->get_translation('cache_enabled') . ' ('.folder_getSize($this->serverCacheFolder, true).')' : $this->get_translation('cache_none'); ?>
+            </td>
+            <td class="eTableLine0 eContent1" style="text-align:right;">
+                <?php if ($camyks->get_confValue('cache_server_side') == 'enabled') : ?>
+                    <?= $this->theme->get_button(array(
+                        'title' => $this->get_translation('action_emptyservercache'),
+                        'url'   => $this->get_adminLink(array('mode'=>'cleanServerCache')),
+                    )); ?>
+                <?php endif; ?>
             </td>
         </tr>
         <tr>

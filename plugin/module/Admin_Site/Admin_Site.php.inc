@@ -5,9 +5,9 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_Site/Admin_Site.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -149,6 +149,9 @@ final class Admin_Site extends Module {
             case 'savePluginConfig':
                 $this->init_admin_savePluginConfig();
                 break;
+            case 'cleanServerCache':
+                $this->init_admin_cleanServerCache();
+                break;
             case 'viewSiteConfig':
             default:
                 $this->init_admin_viewSiteConfig();
@@ -238,6 +241,9 @@ final class Admin_Site extends Module {
 
         /* Load Security Tools module */
         $this->securityTools = $camyks->get_module('Admin_SecurityTools');
+
+        /* Define server cache folder */
+        $this->serverCacheFolder = $camyks->site_var_path.'/ServerCache';
 
         /* button list for buttons bar */
         $this->buttons = array(array(
@@ -364,6 +370,30 @@ final class Admin_Site extends Module {
         /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Plugins')));
+    }
+
+    /**
+     * Initialise object module in admin/cleanServerCache mode.
+     * @return void
+     */
+    private function init_admin_cleanServerCache() {
+        global $camyks;
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* Define server cache folder */
+        $this->serverCacheFolder = $camyks->site_var_path.'/ServerCache';
+
+        /* Try to delete cache folder */
+        if (folder_delete($this->serverCacheFolder, true))
+            $this->text = $this->get_translation('servercache_cleaned');
+        else
+            $this->text = $this->get_translation('servercache_notcleaned');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('openTab'=>'Properties')));
     }
 
     /* specific tool methods */
