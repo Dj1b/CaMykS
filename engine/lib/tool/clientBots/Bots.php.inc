@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.52
+ * @version 1.0.53
  * @date Creation: May 2018
  * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -4502,6 +4502,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Sidetrade',
         'engine_url'        => 'https://www.sidetrade.com',
+    );
+
+    /* ryowl bot  */
+    $knownBots['ryowlengine'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'RyowlEngine ',
+        'bot_url'           => '',
+        'engine_title'      => 'Ryowl',
+        'engine_url'        => 'https://ryowl.org',
+    );
+
+    /* yomins.com bot  */
+    $knownBots['yomins.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => ' ',
+        'bot_url'           => '',
+        'engine_title'      => 'yomins.com',
+        'engine_url'        => 'http://yomins.com/',
     );
 
     /* return bot list */

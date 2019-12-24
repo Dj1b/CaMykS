@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2018
- * @date Modification: Oct 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,6 +23,7 @@ function get_ArchosClientDevice($deviceCode='') {
         /* Archos tablets */
         '101b Copper'               => array('platform_model' => '101b Copper',             'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2015),
         '101c Copper'               => array('platform_model' => '101c Copper',             'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),
+        'Core 101 3G'               => array('platform_model' => 'Core 101 3G',             'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2017),
         '101 Oxygen'                => array('platform_model' => '101 Oxygen',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2014),
         '101b Oxygen'               => array('platform_model' => '101b Oxygen',             'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),
         '133 Oxygen'                => array('platform_model' => '133 Oxygen',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),
@@ -113,6 +114,7 @@ function get_ArchosClientDevice($deviceCode='') {
         'Core 50P'                  => array('platform_model' => 'Core 50P',                'platform_year' => 2017),
         'Core 55 4G'                => array('platform_model' => 'Core 55 4G',              'platform_year' => 2017),
         'Core 55P'                  => array('platform_model' => 'Core 55P',                'platform_year' => 2017),
+        'Oxygen 57'                 => array('platform_model' => 'Oxygen 57',               'platform_year' => 2019),
     );
 
     /* Check for returning list */

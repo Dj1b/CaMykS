@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Apr 2018
  * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -56,6 +56,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'K52t38'    => array('platform_model' => 'K5 Note',                 'platform_year' => 2015),
         'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),
         'A1010a20'  => array('platform_model' => 'A Plus',                  'platform_year' => 2016),
+        'A6600a40'  => array('platform_model' => 'A6600 Plus',              'platform_year' => 2016),
         'A1000m'    => array('platform_model' => 'Vibe A',                  'platform_year' => 2016),
         'A2010l36'  => array('platform_model' => 'Vibe K5',                 'platform_year' => 2016),
         'A6020a46'  => array('platform_model' => 'Vibe K5 Plus',            'platform_year' => 2016),

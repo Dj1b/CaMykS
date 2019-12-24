@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Yezz.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Mar 2019
- * @date Modification: Jun 2019
+ * @date Modification: Dec 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -46,6 +46,7 @@ function get_YezzClientDevice($deviceCode='') {
         '4EI'       => array('platform_model' => 'Andy 4EI',        'platform_year' => 2014),
         '4.5M'      => array('platform_model' => 'Andy 4.5M',       'platform_year' => 2014),
         '5EI'       => array('platform_model' => 'Andy 5EI',        'platform_year' => 2014),
+        '55EI'      => array('platform_model' => 'Andy 5.5EI',      'platform_year' => 2014),
         '5T'        => array('platform_model' => 'Andy 5T',         'platform_year' => 2014),
         '5TL'       => array('platform_model' => 'Andy 5TL',        'platform_year' => 2014),
         '6Q'        => array('platform_model' => 'Andy 6Q',         'platform_year' => 2014),

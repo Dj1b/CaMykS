@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.60
+ * @version 1.0.61
  * @date Creation: Apr 2018
  * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -199,7 +199,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A405FN' => array('platform_model' => 'Galaxy A40',                      'platform_year' => 2019),
         'SM-A505F'  => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
         'SM-A505FN' => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
+        'SM-A505G'  => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
+        'SM-A507FN' => array('platform_model' => 'Galaxy A50s',                     'platform_year' => 2019),
         'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
+        'SM-A7050'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
 
         /* Samsung Galaxy C series */
         'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),
@@ -389,6 +392,11 @@ function get_SamsungClientDevice($deviceCode='') {
 
         /* Samsung non-Galaxy series */
         'SM-B350E'  => array('platform_model' => 'Metro B350E',                     'platform_year' => 2015),
+
+        /* Non-regular model names */
+        'SCV38'     => array('platform_model' => 'Galaxy S9',                       'platform_year' => 2018),
+        'SCV39'     => array('platform_model' => 'Galaxy S9+',                       'platform_year' => 2018),
+
     );
 
     /* Check for returning list */

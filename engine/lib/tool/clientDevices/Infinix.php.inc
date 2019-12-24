@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Feb 2019
  * @date Modification: Dec 2019
  * @copyright 2019 CaMykS Team
@@ -31,6 +31,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X559'          => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
         'X559C'         => array('platform_model' => 'Hot 5',       'platform_year' => 2017),
         'X573'          => array('platform_model' => 'Hot S3',      'platform_year' => 2018),
+        'X606C'         => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
         'X606D'         => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
         'X608'          => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
 
@@ -39,6 +40,10 @@ function get_InfinixClientDevice($deviceCode='') {
 
         /* Zero serie */
         'Zero 4 Plus'   => array('platform_year' => 2017),
+
+        /* S serie */
+        'X626B'         => array('platform_model' => 'S4',          'platform_year' => 2019),
+
     );
 
     /* Check for returning list */

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: May 2018
  * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
@@ -73,6 +73,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 9t pro'             => array('platform_model' => 'Mi 9T Pro',           'platform_year' => 2019),
 
         /* Phones, Redmi series */
+        '2014811'               => array('platform_model' => 'Redmi 2',             'platform_year' => 2014),
         'redmi note 2'          => array('platform_model' => 'Redmi Note 2',        'platform_year' => 2015),
         'redmi note 2 prime'    => array('platform_model' => 'Redmi Note 2 Prime',  'platform_year' => 2015),
         'redmi note 3'          => array('platform_model' => 'Redmi Note 3',        'platform_year' => 2015),

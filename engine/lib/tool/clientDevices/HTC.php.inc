@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Aug 2018
- * @date Modification: Oct 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -41,7 +41,7 @@ function get_HTCClientDevice($deviceCode='') {
         'Desire 628 dual sim'   => array('platform_model' => 'Desire 628 Dual SIM', 'platform_year' => 2016),
         'D10i'                  => array('platform_model' => 'Desire 10 Pro',       'platform_year' => 2016),
         'U-3u'                  => array('platform_model' => 'U11',                 'platform_year' => 2017),
-        'U11'                   => array('platform_model' => 'U11+',                'platform_year' => 2017),
+        'U11'                   => array('platform_model' => 'U11',                 'platform_year' => 2017),
         '2Q4D100'               => array('platform_model' => 'U11+',                'platform_year' => 2017),
         'U Ultra'               => array('platform_model' => 'U Ultra',             'platform_year' => 2017),
         '2Q4R100'               => array('platform_model' => 'U11 Eyes',            'platform_year' => 2018),
