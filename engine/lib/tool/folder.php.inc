@@ -417,6 +417,7 @@ function folder_isInPath($folder='', $path='') {
 /**
  * Return folder size.
  * @param string $folder
+ * @param boolean $humanReadable
  * @return string
  */
 function folder_getSize($folder, $humanReadable=false) {

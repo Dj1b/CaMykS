@@ -362,7 +362,6 @@ final class Admin_SystemReport extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-
     /**
      * Initialise module object in admin/markasreadmulti mode.
      * @return void
