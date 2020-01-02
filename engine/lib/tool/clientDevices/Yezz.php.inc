@@ -1,3 +1,4 @@
+@@ -1,85 +0,0 @@
 <?php
 /**
  * @brief Yezz client devices specific methods
