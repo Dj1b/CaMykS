@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/folder.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.5
  * @date Creation: Jul 2005
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -395,7 +395,7 @@ function folder_getFlatStructure($source='') {
 }
 
 /**
- * Check if folder is in path
+ * Check if folder is in path.
  * @param string $folder
  * @param string $path
  * @return boolean result
@@ -413,4 +413,29 @@ function folder_isInPath($folder='', $path='') {
 
     return preg_match('#^'.$path.'#', $folder);
 }
+
+/**
+ * Return folder size.
+ * @param string $folder
+ * @param boolean $humanReadable
+ * @return string
+ */
+function folder_getSize($folder, $humanReadable=false) {
+    /* Initialise folder size */
+    $s = 0;
+
+    /* Recursively get size of all files */
+    $path = realpath($folder);
+    if ($path !== false && $path != '' && file_exists($path)){
+        foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+            $s += $object->getSize();
+        }
+    }
+
+    /* Check for human readable result */
+    if (!$humanReadable)
+        return $s;
+    return file_getFileSize($s);
+}
+
 ?>

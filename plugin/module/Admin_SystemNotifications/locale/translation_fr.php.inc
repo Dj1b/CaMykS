@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_SystemNotifications/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2017
- * @date Modification: May 2019
+ * @date Modification: Dec 2019
  * @copyright 2017 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -52,6 +52,7 @@ $this->trads['mod_admin_systemnotifications_tabfollowup'] = 'Suivi';
 $this->trads['mod_admin_systemnotifications_check_now'] = 'V&eacute;rifier maintenant';
 $this->trads['mod_admin_systemnotifications_lastcheckdate'] = 'Derni&egrave;re v&eacute;rification le %s';
 $this->trads['mod_admin_systemnotifications_nonotifications'] = 'Aucune notification';
+$this->trads['mod_admin_systemnotifications_check_notifications'] = 'V&eacute;rifier les notifications';
 
 /* admin main : websites */
 $this->trads['mod_admin_systemnotifications_editwebsite'] = 'Editer ce site internet';

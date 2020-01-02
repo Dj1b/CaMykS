@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Coolpad.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Jun 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,8 +20,9 @@
  */
 function get_CoolpadClientDevice($deviceCode='') {
     $deviceList = array(
-        '8298_I00'  => array('platform_model' => 'Note Lite 3',         'plateform_year' => 2015),
-        'Y82-520'   => array('platform_model' => 'Fengshang Y82-520',   'plateform_year' => 2015),
+        '8298_I00'  => array('platform_model' => 'Note Lite 3',         'platform_year' => 2015),
+        'Y82-520'   => array('platform_model' => 'Fengshang Y82-520',   'platform_year' => 2015),
+        '3648A'     => array('platform_model' => '3648A',               'platform_year' => 2019),
     );
 
     /* Check for returning list */

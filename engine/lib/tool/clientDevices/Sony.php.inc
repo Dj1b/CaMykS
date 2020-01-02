@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.37
+ * @version 1.0.38
  * @date Creation: Apr 2018
- * @date Modification: Nov 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -66,6 +66,7 @@ function get_SonyClientDevice($deviceCode='') {
         'F5321'     => array('platform_model' => 'Xperia X Compact',        'platform_year' => 2016),
         'F8331'     => array('platform_model' => 'Xperia XZ',               'platform_year' => 2016),
         'F8332'     => array('platform_model' => 'Xperia XZ',               'platform_year' => 2016),
+        'G2199'     => array('platform_model' => 'Xperia R1',               'platform_year' => 2017),
         'G3112'     => array('platform_model' => 'Xperia XA1',              'platform_year' => 2017),
         'G3121'     => array('platform_model' => 'Xperia XA1',              'platform_year' => 2017),
         'G3212'     => array('platform_model' => 'Xperia XA1 Ultra',        'platform_year' => 2017),

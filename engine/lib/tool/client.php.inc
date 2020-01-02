@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.93
+ * @version 1.0.95
  * @date Creation: Jun 2007
- * @date Modification: Nov 2019
+ * @date Modification: Dec 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -356,7 +356,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
-    } elseif (preg_match('/L[G|M]-([A-Z]{1,2}[0-9]{3}[A-Z]?)/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*)/', $ua, $matches)) {
+    } elseif (preg_match('/L[G|M]-?([A-Z]{1,2}[0-9]{3}[A-Z]{0,})/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*[A-Z]{0,})/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
     } elseif (preg_match('/ (VS[0-9]{3}) Build/', $ua, $matches)) {
@@ -398,15 +398,17 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/(GT|SM|SGH|SHV|SC)-([A-Z0-9]{3,})/', $ua, $matches)) {
         include_once('clientDevices/Samsung.php.inc');
         $infos = array_merge($infos, get_SamsungClientDevice($matches[0]));
-
-    } elseif (preg_match('/SAMSUNG\-(?:SGH\-|)([^\/]+)/', $ua, $matches))
+    } elseif (preg_match('/; (SCV[0-9]{2})( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Samsung.php.inc');
+        $infos = array_merge($infos, get_SamsungClientDevice($matches[1]));
+    } elseif (preg_match('/SAMSUNG\-(?:SGH\-|)([^\/]+)/', $ua, $matches)) {
         $infos = array_merge($infos, array(
             'platform_company'  => 'Samsung',
             'platform_model'    => $matches[1],
             'platform_type'     => 'handheld',
             'platform_format'   => 'handheld',
         ));
-    elseif (preg_match('/ (Galaxy|E[0-9]) Build/', $ua, $matches)) {
+    } elseif (preg_match('/ (Galaxy|E[0-9]) Build/', $ua, $matches)) {
         include_once('clientDevices/Samsung.php.inc');
         $infos = array_merge($infos, get_SamsungClientDevice($matches[1]));
     } elseif (preg_match('/(klte)/', $ua, $matches))
@@ -442,6 +444,11 @@ function client_getUAInfos($ua=false) {
     /* check Huawei - before Sony */
     elseif (($device = _client_isHuaweiDevice($ua)) !== false) {
         $infos = array_merge($infos, get_HuaweiClientDevice($device));
+    }
+
+    /* check Kyocera - before Sony */
+    elseif (($device = _client_isKyoceraDevice($ua)) !== false) {
+        $infos = array_merge($infos, get_KyoceraClientDevice($device));
     }
 
     /* check OnePlus - to be inserted before Sony */
@@ -509,6 +516,9 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
     } elseif (preg_match('/ASUS_([A-Z0-9]+)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Asus.php.inc');
+        $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
+    }elseif (preg_match('/; Transformer ([A-Z0-9]+)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
     }
@@ -680,6 +690,9 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (Orange KLIF|A460G|[0-9]{4}[A-Z])( Build|\)|;)/', $ua, $matches)) {
         include_once('clientDevices/Alcatel.php.inc');
         $infos = array_merge($infos, get_AlcatelClientDevice($matches[1]));
+    } elseif (preg_match('/; Alcatel_(.*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Alcatel.php.inc');
+        $infos = array_merge($infos, get_AlcatelClientDevice($matches[1]));
     }
 
     /* check Lava Iris devices */
@@ -788,9 +801,12 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Coolpad devices */
-    elseif (preg_match('/(CP[0-9]|Coolpad )([A-Z0-9_\-]+) Build/', $ua, $matches)) {
+    elseif (preg_match('/; CP([0-9][A-Z0-9_\-]+)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Coolpad.php.inc');
-        $infos = array_merge($infos, get_CoolpadClientDevice($matches[2]));
+        $infos = array_merge($infos, get_CoolpadClientDevice($matches[1]));
+    } elseif (preg_match('/; Coolpad ([A-Z0-9_\-]+)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Coolpad.php.inc');
+        $infos = array_merge($infos, get_CoolpadClientDevice($matches[1]));
     }
 
     /* check Vestel devices */
@@ -908,7 +924,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (Redmi|MI|Pocophone|Poco|SKR)( |-)?([A-Za-z0-9 ]{1,})( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].' '.$matches[3]));
-    } elseif (preg_match('/(HM NOTE 1LTE)/', $ua, $matches)) {
+    } elseif (preg_match('/(HM NOTE 1LTE|2014811)/', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice(strtolower($matches[1])));
     }
@@ -1074,7 +1090,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/; ?ZTE ([a-zA-Z0-9 ]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
-    } elseif (preg_match('/ (Z[0-9]{1,3})( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/ (Z[0-9]{1,3}[A-Z]{2}?)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/ZTE.php.inc');
         $infos = array_merge($infos, get_ZTEClientDevice($matches[1]));
     }
@@ -1108,17 +1124,6 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (PH-1) Build/', $ua, $matches)) {
         include_once('clientDevices/Essential.php.inc');
         $infos = array_merge($infos, get_EssentialClientDevice($matches[1]));
-    }
-
-    /* check Kyocera devices */
-    elseif (preg_match('/ (KC-[A-Za-z0-9]*)( Build|\))/i', $ua, $matches)) {
-        include_once('clientDevices/Kyocera.php.inc');
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, get_KyoceraClientDevice($model));
-    } elseif (preg_match('/ ([0-9]{3}KC)( Build|\))/i', $ua, $matches)) {
-        include_once('clientDevices/Kyocera.php.inc');
-        $model = trim($matches[1]);
-        $infos = array_merge($infos, get_KyoceraClientDevice($model));
     }
 
     /* check Digicel devices */
@@ -1159,14 +1164,14 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Gionee devices */
-    elseif (preg_match('/ (P8W|M5_lite)( Build|\))/i', $ua, $matches)) {
+    elseif (preg_match('/ (P8W|M5_lite|F103 Pro)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Gionee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_GioneeClientDevice($model));
     }
 
     /* check Konrow devices */
-    elseif (preg_match('/ (BIGCOOL|Just5) Build/i', $ua, $matches)) {
+    elseif (preg_match('/ (BIGCOOL|Just5)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Konrow.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_KonrowClientDevice($model));
@@ -1272,6 +1277,10 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Umidigi.php.inc');
         $model = ucwords(strtolower($matches[2].($matches[3] != '' ? ' '.$matches[3] : '')));
         $infos = array_merge($infos, get_UmidigiClientDevice($model));
+    } elseif (preg_match('/; (Power)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Umidigi.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_UmidigiClientDevice($model));
     }
 
     /* check Mecool devices */
@@ -1319,13 +1328,6 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Intex.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_IntexClientDevice($device));
-    }
-
-    /* check Blackview devices */
-    elseif (preg_match('/; (BV|P)([a-zA-Z0-9\-_]*)( Build|\))/', $ua, $matches)) {
-        include_once('clientDevices/Blackview.php.inc');
-        $device = preg_replace('/-|_/', ' ', $matches[2]);
-        $infos = array_merge($infos, get_BlackviewClientDevice($device));
     }
 
     /* check Krüger & Matz devices */
@@ -1417,6 +1419,41 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Echo.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_EchoClientDevice($device));
+    }
+
+    /* check LeEco devices */
+    elseif (preg_match('/; (LE ?X[0-9]+)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/LeEco.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_LeEcoClientDevice($device));
+    }
+
+    /* check Orbic devices */
+    elseif (preg_match('/; (RC5[0-9]{2}L)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Orbic.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_OrbicClientDevice($device));
+    }
+
+    /* check Palm devices */
+    elseif (preg_match('/; (PVG100)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Palm.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_PalmClientDevice($device));
+    }
+
+    /* check Poptel devices */
+    elseif (preg_match('/; (P9000_MAX)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Poptel.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_PoptelClientDevice($device));
+    }
+
+    /* check Blackview devices */
+    elseif (preg_match('/; (BV|P)([a-zA-Z0-9\-_]*)( Build|\))/', $ua, $matches)) {
+        include_once('clientDevices/Blackview.php.inc');
+        $device = preg_replace('/-|_/', ' ', $matches[2]);
+        $infos = array_merge($infos, get_BlackviewClientDevice($device));
     }
 
     /* check Wiko */
@@ -1751,8 +1788,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|QwantBrowser Firefox|QwantMobile|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|Edg|EdgiOS|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori|HistoryHound|TO-Browser|K-Ninja|Kapiko|Kazehakase|eM Client|Mb2345Browser|LieBaoFast|Whale|ADG|Light)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'QwantBrowser'=>'Qwant', 'QwantBrowser Firefox'=>'Qwant', 'QwantMobile' => 'Qwant', 'Blazer'=> 'Palm Blazer', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'Edg' => 'Edge', 'EdgiOS'=>'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch', 'chromeframe'=>'Internet Explorer/Chrome Frame', 'UR'=>'UR Browser', 'handyCafeCln'=>'HandyCafe', 'TO-Browser'=>'t-online.de Browser', 'K-Ninja'=>'K-Ninja Samourai', 'Mb2345Browser'=>'2345 Browser', 'ADG'=>'AOL Desktop');
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|QwantBrowser Firefox|QwantMobile|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|Edg|EdgiOS|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori|HistoryHound|TO-Browser|K-Ninja|Kapiko|Kazehakase|eM Client|Mb2345Browser|LieBaoFast|Whale|ADG|Light|jp.co.yahoo.ipn.appli)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'QwantBrowser'=>'Qwant', 'QwantBrowser Firefox'=>'Qwant', 'QwantMobile' => 'Qwant', 'Blazer'=> 'Palm Blazer', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'Edg' => 'Edge', 'EdgiOS'=>'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch', 'chromeframe'=>'Internet Explorer/Chrome Frame', 'UR'=>'UR Browser', 'handyCafeCln'=>'HandyCafe', 'TO-Browser'=>'t-online.de Browser', 'K-Ninja'=>'K-Ninja Samourai', 'Mb2345Browser'=>'2345 Browser', 'ADG'=>'AOL Desktop', 'jp.co.yahoo.ipn.appli'=>'Yahoo Japan App');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],
             'browser_version'   => isset($matches[2]) ? $matches[2] : '',
@@ -2667,6 +2704,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^acebookexternalhit#', $ua))
         return $fake;
 
+    /* Fake firefox/opera version */
+    if (preg_match('#Firefox/4.0 Opera 12.14$#', $ua))
+        return $fake;
+
     /* not a fake but Apple using a bad user agent */
     if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
         return array(
@@ -2745,11 +2786,11 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '74',                    // current is 70
+                'MaxVersion'    => '75',                    // current is 71
                 'FakeVersions'  => array('27.3'),
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '82',                    // current is 78
+                'MaxVersion'    => '83',                    // current is 79
                 'FakeVersions'  => array(),
             ),
             'Internet Explorer' => array(
@@ -2757,11 +2798,11 @@ function _client_loadSoftwareProperties() {
                 'FakeVersions'  => array(),
             ),
             'Opera'             => array(
-                'MaxVersion'    => '68',                    // current is 64
+                'MaxVersion'    => '69',                    // current is 65
                 'FakeVersions'  => array(),
             ),
             'Safari'            => array(
-                'MaxVersion'    => '17',                    // current is 13.0.1
+                'MaxVersion'    => '17',                    // current is 13.0
                 'FakeVersions'  => array(),
             ),
         ),
@@ -2821,10 +2862,10 @@ function _client_isOnePlusDevice($ua='') {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[1].$matches[2]))
           return $matches[1].$matches[2];
-    } elseif (preg_match('/; (GM[0-9]{4})( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (GM|HD)([0-9]{4})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/OnePlus.php.inc');
-        if (is_OnePlusKnownDevice($matches[1]))
-          return $matches[1];
+        if (is_OnePlusKnownDevice($matches[1].$matches[2]))
+          return $matches[1].$matches[2];
     }
     return false;
 }
@@ -2853,6 +2894,26 @@ function _client_isHuaweiDevice($ua='') {
     } elseif (preg_match('/ (H[0-9]{4})( Build|\))/i', $ua, $matches)) {
         include_once('clientDevices/Huawei.php.inc');
         if (is_HuaweiKnownDevice($matches[1]))
+          return $matches[1];
+    }
+    return false;
+}
+
+/**
+ * Check if given UA is a Kyocera device
+ * @return boolean result
+ * @private
+ */
+function _client_isKyoceraDevice($ua='') {
+    if (preg_match('/ (KC-[A-Za-z0-9]*)( Build|\))/i', $ua, $matches)) {
+        include_once('clientDevices/Kyocera.php.inc');
+        return trim($matches[1]);
+    } elseif (preg_match('/ ([0-9]{3}KC)( Build|\))/i', $ua, $matches)) {
+        include_once('clientDevices/Kyocera.php.inc');
+        return trim($matches[1]);
+    } elseif (preg_match('/; (E6[0-9]{3}[A-Z]?)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Kyocera.php.inc');
+        if (is_KyoceraKnownDevice($matches[1]))
           return $matches[1];
     }
     return false;

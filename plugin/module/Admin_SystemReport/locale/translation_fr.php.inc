@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_SystemReport/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: May 2007
- * @date Modification: Apr 2019
+ * @date Modification: Dec 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -50,6 +50,7 @@ $this->trads['mod_admin_systemreport_formitem_line'] = 'Ligne : ';
 $this->trads['mod_admin_systemreport_formtitle_validation'] = 'Validation';
 $this->trads['mod_admin_systemreport_formitem_answerby'] = 'Administrateur : ';
 $this->trads['mod_admin_systemreport_formitem_answercomment'] = 'Commentaire : ';
+$this->trads['mod_admin_systemreport_viewreport'] = 'Voir ce rapport';
 $this->trads['mod_admin_systemreport_markasread'] = 'Marquer comme lu';
 $this->trads['mod_admin_systemreport_deletereport'] = 'Supprimer ce rapport';
 

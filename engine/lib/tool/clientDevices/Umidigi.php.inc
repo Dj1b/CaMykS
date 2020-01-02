@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Umidigi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2019
- * @date Modification: Jun 2019
+ * @date Modification: Dec 2019
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,7 @@ function get_UmidigiClientDevice($deviceCode='') {
         'A1 Pro'    => array('platform_model' => 'A1 Pro',      'platform_year' => 2018),
         'S2 Lite'   => array('platform_model' => 'S2 Lite',     'platform_year' => 2018),
         'S3 Pro'    => array('platform_model' => 'S3 Pro',      'platform_year' => 2019),
+        'Power'     => array('platform_model' => 'Power',       'platform_year' => 2019),
     );
 
     /* Check for returning list */

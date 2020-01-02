@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Jun 2005
- * @date Modification: Nov 2019
+ * @date Modification: Dec 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -688,11 +688,11 @@ function file_md5($file, $contextParams=array()) {
         return false;
 
     /* check HTTP 404 error : file not found */
-    if (preg_match('/HTTP\/1.1 404/', $error['message']))
+    if (preg_match('/HTTP\/1.(0|1) 404/', $error['message']))
         return false;
 
-    /* check HTTP 403 error : forbidden */
-    if (preg_match('/HTTP\/1.1 403/', $error['message'])) {
+    /* check HTTP 403 error : forbidden or HTTP 400 error : bad request */
+    if (preg_match('/HTTP\/1.(0|1) 403/', $error['message']) or preg_match('/HTTP\/1.(0|1) 400/', $error['message'])) {
         if (($v = http_getContents(array_merge($contextParams, array('url'=> $file)))) !== false)
             return md5($v);
     }

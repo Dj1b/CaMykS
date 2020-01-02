@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Feb 2013
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2019
  * @copyright 2013 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,6 +64,7 @@ $this->trads['mod_admin_site_formitem_encoding'] = 'Encoding: ';
 $this->trads['mod_admin_site_formitem_htmlversion'] = 'HTML version: ';
 $this->trads['mod_admin_site_formtitle_caches'] = 'Caches';
 $this->trads['mod_admin_site_formitem_serverside'] = 'Server-side: ';
+$this->trads['mod_admin_site_action_emptyservercache'] = 'Delete server cache';
 $this->trads['mod_admin_site_formitem_clientside'] = 'Client-side: ';
 
 /* database conf texts */
@@ -128,4 +129,8 @@ $this->trads['mod_admin_site_formtitle_pluginconfig'] = 'Configuring plugin %s';
 /* save configuration messages */
 $this->trads['mod_admin_site_pluginconfiguration_saved'] = 'Plugin %s configuration saved.';
 $this->trads['mod_admin_site_pluginconfiguration_notsaved'] = 'An error has occured while saving plugin %s configuration.';
+
+/* clean server cache messages */
+$this->trads['mod_admin_site_servercache_cleaned'] = 'Server cache deleted.';
+$this->trads['mod_admin_site_servercache_notcleaned'] = 'An error has occured while deleting server cache.';
 ?>

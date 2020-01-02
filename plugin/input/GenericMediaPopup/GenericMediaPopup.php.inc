@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/GenericMediaPopup/GenericMediaPopup.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Oct 2011
- * @date Modification: Apr 2018
- * @copyright 2011 - 2018 CaMykS Team
+ * @date Modification: Dec 2019
+ * @copyright 2011 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details Supported format :
@@ -173,12 +173,12 @@ final class GenericMediaPopup extends Input {
             $this->add_JSScript($name.'.set_param("maxWidth", '.$this->params['maxWidth'].');');
         if ($this->params['enableCloseButton'] == 1) {
             $this->add_JSScript($name.'.set_param("pictures", "closeButton", "'.$this->params['buttonPictures']['close'].'");');
-                 $this->add_JSScript($name.'.set_param("pictures", "closeButtonOver", "'.$this->params['buttonPictures']['closeOver'].'");');
-             }
-             if ($this->params['enableDiaporama'] == 1) {
+            $this->add_JSScript($name.'.set_param("pictures", "closeButtonOver", "'.$this->params['buttonPictures']['closeOver'].'");');
+        }
+        if ($this->params['enableDiaporama'] == 1) {
             $this->add_JSScript($name.'.set_param("pictures", "leftButton", "'.$this->params['buttonPictures']['left'].'");');
             $this->add_JSScript($name.'.set_param("pictures", "leftButtonOver", "'.$this->params['buttonPictures']['leftOver'].'");');
-                $this->add_JSScript($name.'.set_param("pictures", "rightButton", "'.$this->params['buttonPictures']['right'].'");');
+            $this->add_JSScript($name.'.set_param("pictures", "rightButton", "'.$this->params['buttonPictures']['right'].'");');
             $this->add_JSScript($name.'.set_param("pictures", "rightButtonOver", "'.$this->params['buttonPictures']['rightOver'].'");');
             $this->add_JSScript($name.'.set_param("diaporamaButtonsShift", '.$this->params['diaporamaButtonsShift'].');');
         }

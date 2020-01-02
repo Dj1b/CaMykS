@@ -5,10 +5,10 @@
  * @details Engine / Configuration file
  * @file engine/etc/static.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Sep 2005
- * @date Modification: Dec 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -23,7 +23,7 @@ $this->website = 'https://www.camyks.net';
  * @var string $this->version
  * @brief CaMykS full version
  */
-$this->version = '1.0-20191201';
+$this->version = '1.0-20200101';
 
 /**
  * @var string $this->mversion
@@ -35,13 +35,13 @@ $this->mversion = '1.0';
  * @var string $this->nversion
  * @brief CaMykS minor version
  */
-$this->nversion = '20191201';
+$this->nversion = '20200101';
 
 /**
  * @var integer $this->last_modification_date
  * @brief CaMykS last modification date
  */
-$this->last_modification_date = mktime(0, 0, 0, 1, 12, 2019);
+$this->last_modification_date = mktime(0, 0, 0, 1, 1, 2020);
 
 /**
  * @var string $this->engine_folder

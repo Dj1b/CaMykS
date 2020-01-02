@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.2
+ * @version 1.1.3
  * @date Creation: Jun 2005
- * @date Modification: May 2019
+ * @date Modification: Dec 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1605,7 +1605,7 @@ final class ContentPage {
             return false;
 
         $sql = 'alter table `admin_contentpage` add column robotFollow tinyint unsigned default 1;';
-        return (!$camyks->db_conn->execute_query($sql));
+        return ($camyks->db_conn->execute_query($sql));
     }
 
     /******************** STATIC METHODS ********************/

@@ -5,9 +5,9 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_SystemReport/Admin_SystemReport.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2007
- * @date Modification: Apr 2019
+ * @date Modification: Dec 2019
  * @copyright 2007 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -314,6 +314,8 @@ final class Admin_SystemReport extends Module {
      * @return void
      */
     private function init_admin_deleteSingle() {
+        global $camyks;
+
         /* Check permission */
         if ($this->check_right(1) === false)
             return $this->init_admin_accessDenied();
@@ -359,7 +361,6 @@ final class Admin_SystemReport extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink());
     }
-
 
     /**
      * Initialise module object in admin/markasreadmulti mode.

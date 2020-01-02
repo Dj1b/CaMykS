@@ -4,9 +4,9 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecordListParams.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Dec 2014
- * @date Modification: Aug 2019
+ * @date Modification: Dec 2019
  * @copyright 2014 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -47,7 +47,7 @@ $this->recordListParams['listcolumns'] = array(
     'platform_type' => array('title'=>$this->get_translation('platform_type'), 'columntype'=>'list', 'values'=>$this->recordTypeList, 'style'=>'width:85px;'),
     'comparaison'   => array('title'=>'' , 'columntype'=>'method', 'method'=>'is_user_agent_correct'),
     'nvisit'        => array('title'=>$this->get_translation('nvisits'), 'columntype'=>'text', 'class'=>'hiddenOnMobile'),
-    'lvisit'        => array('title'=>$this->get_translation('lvisits'), 'columntype'=>'date', 'style'=>'width:100px;', 'mode'=>'numeric', 'class'=>'hiddenOnMobile'),
+    'lvisit'        => array('title'=>$this->get_translation('lvisits'), 'columntype'=>'date', 'style'=>'width:100px;', 'mode'=>'numericwithhours', 'class'=>'hiddenOnMobile'),
     'view'          => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewRecordLink, 'url_title'=>$this->get_translation('viewrecord')),
 );
 

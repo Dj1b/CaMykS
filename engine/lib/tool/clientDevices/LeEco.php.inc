@@ -1,28 +1,30 @@
 <?php
 /**
- * @brief Gionee client devices specific methods
+ * @brief LeEco client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Gionee.php.inc
+ * @file engine/lib/tool/clientDevices/LeEco.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Sep 2018
+ * @version 1.0.0
+ * @date Creation: Dec 2019
  * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Gionee client device information from a known list.
+ * Return LeEco client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_GioneeClientDevice($deviceCode='') {
+function get_LeEcoClientDevice($deviceCode='') {
+    /* Update device code */
+    $deviceCode = strtoupper($deviceCode);
+
     $deviceList = array(
-        'M5_lite'   => array('platform_model' => 'M5 Lite', 'platform_year' => 2016),
-        'F103 Pro'  => array('platform_year' => 2016),
-        'P8W'       => array('platform_year' => 2017),
+        /* LeEco mobiles */
+        'LEX722'    => array('platform_model' => 'Le Pro 3',  'platform_year' => 2016),
     );
 
     /* Check for returning list */
@@ -31,7 +33,7 @@ function get_GioneeClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Gionee',
+        'platform_company'  => 'LeEco',
         'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',

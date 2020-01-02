@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jan 2005
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2019
  * @copyright 2005 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,6 +64,7 @@ $this->trads['mod_admin_site_formitem_encoding'] = 'Encodage des caract&egrave;r
 $this->trads['mod_admin_site_formitem_htmlversion'] = 'Version du HTML : ';
 $this->trads['mod_admin_site_formtitle_caches'] = 'Caches';
 $this->trads['mod_admin_site_formitem_serverside'] = 'C&ocirc;t&eacute; serveur : ';
+$this->trads['mod_admin_site_action_emptyservercache'] = 'Vider les caches du serveur';
 $this->trads['mod_admin_site_formitem_clientside'] = 'C&ocirc;t&eacute; client : ';
 
 /* database conf texts */
@@ -128,4 +129,8 @@ $this->trads['mod_admin_site_formtitle_pluginconfig'] = 'Configuration du plugin
 /* save configuration messages */
 $this->trads['mod_admin_site_pluginconfiguration_saved'] = 'Configuration du plugin %s enregistr&eacute;e.';
 $this->trads['mod_admin_site_pluginconfiguration_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de la configuration du plugin %s.';
+
+/* clean server cache messages */
+$this->trads['mod_admin_site_servercache_cleaned'] = 'Caches serveur vid&eacute;s.';
+$this->trads['mod_admin_site_servercache_notcleaned'] = 'Une erreur est survenue lors de la suppression des caches serveur.';
 ?>

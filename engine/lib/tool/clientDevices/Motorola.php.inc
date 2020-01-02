@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Apr 2018
- * @date Modification: Oct 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,8 +29,10 @@ function get_MotorolaClientDevice($deviceCode='') {
         'XT1072'        => array('platform_model' => 'Moto G 4G (2nd Gen)', 'platform_year' => 2013),
         'XT1092'        => array('platform_model' => 'Moto X (2nd Gen)',    'platform_year' => 2014),
         'XT1097'        => array('platform_model' => 'Moto X (2nd Gen)',    'platform_year' => 2014),
+        'XT1526'        => array('platform_model' => 'Moto E (2nd Gen)',    'platform_year' => 2015),
         'XT1580'        => array('platform_model' => 'Moto X Force',        'platform_year' => 2015),
         'XT1650'        => array('platform_model' => 'Moto Z',              'platform_year' => 2016),
+        'XT1710'        => array('platform_model' => 'Moto Z2 Play',        'platform_year' => 2017),
 
         'Droid'         => array('platform_model' => 'Droid',               'platform_year' => 2009),
         'MB200'         => array('platform_model' => 'Dext',                'platform_year' => 2009),
@@ -50,6 +52,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'Z (2)'         => array('platform_model' => 'Moto Z2'     ,        'platform_year' => 2017),
         'Z2 Play'       => array('platform_model' => 'Moto Z2 Play',        'platform_year' => 2017),
         'e5 play'       => array('platform_model' => 'Moto E5 Play',        'platform_year' => 2018),
+        'e5 plus'       => array('platform_model' => 'Moto E5 Plus',        'platform_year' => 2018),
         'g(6)'          => array('platform_model' => 'Moto G6',             'platform_year' => 2018),
         'g(6) plus'     => array('platform_model' => 'Moto G6 Plus',        'platform_year' => 2018),
         'g(6) play'     => array('platform_model' => 'Moto G6 Play',        'platform_year' => 2018),

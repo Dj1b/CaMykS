@@ -3,9 +3,9 @@
  * @details Plugin / Input Javascripts
  * @file plugin/input/GenericMediaPopup/js/mediapopup.js
  * @author CaMykS Team
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2011
- * @date Modification: Jul 2019
+ * @date Modification: Dec 2019
  * @copyright 2011 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,7 +27,7 @@ function MediaPopup(name) {
      * @access public
      */
     this.set_param = function(param, value, subvalue) {
-        if ( subvalue != undefined && this.params[param] )
+        if (subvalue != undefined && this.params[param])
             this.params[param][value] = subvalue;
         else
             this.params[param] = value;
@@ -102,18 +102,18 @@ function MediaPopup(name) {
         }
 
         /* load diaporama controls */
-        if ( this.get_param('diaporama').length > 0 ) {
+        if (this.get_param('diaporama').length > 0) {
             this._get_diaporamaButtonsSize();
         }
 
         /* finalise initialisation */
         this.loaded = true;
 
-        if ( this.get_param('loadMedia') !== false) {
+        if (this.get_param('loadMedia') !== false) {
             loadMedia = this.get_param('loadMedia');
             if (!loadMedia['media'])
                 return;
-            if ( loadMedia['width'] && loadMedia['height'] )
+            if (loadMedia['width'] && loadMedia['height'])
                 this.open_media(loadMedia['media'], loadMedia['title'], loadMedia['width'], loadMedia['height']);
             else
                 this.open_media(loadMedia['media'], loadMedia['title']);
@@ -130,7 +130,7 @@ function MediaPopup(name) {
     this.open_media = function(file, title, width, height) {
 
         /* check for directly open file in a new window */
-        if ( this.check_openInANewWindow(width) ) {
+        if (this.check_openInANewWindow(width)) {
             var win = window.open(file, '_blank');
             win.focus();
             return;
@@ -151,7 +151,8 @@ function MediaPopup(name) {
             popup.appendChild(this._get_closeButton());
 
         /* attach previous and next button bar */
-        popup.appendChild(this._get_controlButtonsBar());
+        if (this.get_param('diaporamaButtonsShift') !== false)
+            popup.appendChild(this._get_controlButtonsBar());
 
         /* build media box */
         contentBox = document.createElement('div').cloneNode(true);
@@ -160,7 +161,7 @@ function MediaPopup(name) {
         this.set_param('currentPopup', popup);
 
         fileExt = file.split('.').pop().toLowerCase();
-        if ( fileExt == 'flv' && swfobject) { // display FLV movie
+        if (fileExt == 'flv' && swfobject) { // display FLV movie
 
                 /* update height with controller height */
             height += this.get_param('flvControlerHeight');
@@ -176,16 +177,16 @@ function MediaPopup(name) {
 
             /* add flash player video to popup */
             f_vars = {refresh: parseInt(Math.random()*9999), movieURL:this.get_param('baseURL')+'/'+file, controlsURL: this.get_param('baseURL')+'/'+this.get_param('flashControlsURL'), movieWidth:width, movieHeight:height, controlerColor:'0x'+this.get_param('flvControlerColor'), controlerAlpha:this.get_param('flvControlerAlpha')};
-         f_params = {allowScriptAccess:"always", menu:true, scale:'noscale', WMode:'Transparent', salign:'tl', align:'t', defer:'defer'};
+            f_params = {allowScriptAccess:"always", menu:true, scale:'noscale', WMode:'Transparent', salign:'tl', align:'t', defer:'defer'};
 
             swfobject.embedSWF(this.get_param('flashMovieURL'), "MediaPopupContentBox", width, height, "9.0.0", false, f_vars, f_params);
 
                 /* display popup div */
              this.show_popup('flash', width, height);
 
-     } else if ( fileExt == 'swf' && swfobject) {
+     } else if (fileExt == 'swf' && swfobject) {
 
-             /* update container div size */
+            /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
 
@@ -199,7 +200,7 @@ function MediaPopup(name) {
                 /* display popup div */
              this.show_popup('flash', width, height);
 
-     } else if ( file.match(/https?:\/\/(www\.)?youtu\.be\//) != null ) { // display youtube video
+     } else if (file.match(/https?:\/\/(www\.)?youtu\.be\//) != null) { // display youtube video
              /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
@@ -212,7 +213,7 @@ function MediaPopup(name) {
             /* display popup div */
              this.show_popup('youtube', width, height);
 
-     } else if ( file.indexOf('http://www.dailymotion.com/video/') == 0 || file.indexOf('http://dai.ly/') == 0 ) { // display dailymotion video
+     } else if (file.indexOf('http://www.dailymotion.com/video/') == 0 || file.indexOf('http://dai.ly/') == 0) { // display dailymotion video
              /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
@@ -228,8 +229,8 @@ function MediaPopup(name) {
             /* display popup div */
              this.show_popup('youtube', width, height);
 
-     } else if ( fileExt == 'html' || fileExt == 'htm'
-             || file.indexOf('url:') == 0 )    {    // display HTML file
+     } else if (fileExt == 'html' || fileExt == 'htm'
+             || file.indexOf('url:') == 0)    {    // display HTML file
 
                 if (file.indexOf('url:') == 0) {
                         file = file.substring(4);
@@ -307,21 +308,21 @@ function MediaPopup(name) {
      */
     this.add_imageToPopup = function(image) {
         /* add image to popup */
-    img = document.createElement('img').cloneNode(true);
-    img.src = image.src;
-    img.style.border = 'none';
+        img = document.createElement('img').cloneNode(true);
+        img.src = image.src;
+        img.style.border = 'none';
 
-    /* check sizes */
-    if (this.get_param('maxWidth') === false || image.width < this.get_param('maxWidth')) {
+        /* check sizes */
+        if (this.get_param('maxWidth') === false || image.width < this.get_param('maxWidth')) {
             appliedWidth = image.width;
             appliedHeight = image.height;
         } else {
             appliedWidth = this.get_param('maxWidth');
             appliedHeight = image.height*appliedWidth/image.width;
             img.style.width = appliedWidth+'px';
-    }
+        }
 
-    /* attach actions */
+        /* attach actions */
         if (this.get_param('navType') == 'real') {
             img.setAttribute('onclick', this.name+'.close_media()');
         } else {
@@ -330,17 +331,17 @@ function MediaPopup(name) {
         this.get_param('contentBox').appendChild(img);
 
         /* check for diaporama */
-        if ( this.get_param('diaporama').length > 0 ) {
+        if (this.get_param('diaporama').length > 0) {
             diap = this.get_param('diaporama');
             for (var i in diap) {
-                if (image.src.indexOf(diap[i]['picture']) > -1 ) {
+                if (image.src.indexOf(diap[i]['picture']) > -1) {
                     /* display left button */
                     this.get_param('diapLeftButton').style.left = (-this.get_param('diaporamaButtonsWidth')+this.get_param('diaporamaButtonsShift')) + 'px';
                     this.get_param('diapLeftButton').style.top = parseInt(img.height/2) + 'px';
                     this.get_param('diapLeftButton').style.display = 'inline';
 
                     /* display right button */
-                    if ( this.get_param('maxWidth') > 0)
+                    if (this.get_param('maxWidth') > 0)
                         rPos = Math.min(img.width, this.get_param('maxWidth'));
                     else
                         rPos = img.width;
@@ -413,8 +414,8 @@ function MediaPopup(name) {
      * @access public
      */
     this.refresh_position = function() {
-        if ( this.get_param('currentPopup') === false
-            || this.get_param('currentPopup').style.display == 'none' )
+        if (this.get_param('currentPopup') === false
+            || this.get_param('currentPopup').style.display == 'none')
             return;
 
         popup = this.get_param('currentPopup');
@@ -426,37 +427,35 @@ function MediaPopup(name) {
         popup.style.width = Math.max(200, mediaWidth) + 'px';
 
         /* get window properties */
-        if ( this.get_param('navType') == 'real' ) {
-                windowWidth = window.innerWidth;
-                windowHeight = window.innerHeight;
+        if (this.get_param('navType') == 'real') {
+            windowWidth = window.innerWidth;
+            windowHeight = window.innerHeight;
         } else {
-                windowWidth = this.get_param('body').offsetWidth;
-                windowHeight = document.documentElement.clientHeight;
+            windowWidth = this.get_param('body').offsetWidth;
+            windowHeight = document.documentElement.clientHeight;
         }
 
         /* check super size media */
-        if (type == 'image' && (mediaWidth > (windowWidth - 40)
-                || mediaHeight > (windowHeight - 40))) {
+        if (type == 'image' && (mediaWidth > (windowWidth - 40)  || mediaHeight > (windowHeight - 40))) {
+            popup.style.position = 'absolute';
 
-                popup.style.position = 'absolute';
-
-                if (mediaWidth > (windowWidth - 40))
-                        popup.style.left = '20px';
-                else
-                        popup.style.left = ((windowWidth-popup.offsetWidth)/2)+'px';
-
-                if (mediaHeight > (windowHeight - 40))
-                        popup.style.top = '20px';
-                else
-                         popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';
-        } else {
-                popup.style.position = 'fixed';
+            if (mediaWidth > (windowWidth - 40))
+                popup.style.left = '20px';
+            else
                 popup.style.left = ((windowWidth-popup.offsetWidth)/2)+'px';
-            popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';
-     }
 
-     /* update background */
-     this.show_popupBackground();
+            if (mediaHeight > (windowHeight - 40))
+                popup.style.top = '20px';
+            else
+                popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';
+        } else {
+            popup.style.position = 'fixed';
+            popup.style.left = ((windowWidth-popup.offsetWidth)/2)+'px';
+            popup.style.top = ((windowHeight-popup.offsetHeight)/2)+'px';
+        }
+
+        /* update background */
+        this.show_popupBackground();
     };
 
     /*
@@ -601,9 +600,9 @@ function MediaPopup(name) {
         diapButtonBar = document.createElement('div').cloneNode(true);
         diapButtonBar.style.height = '1px';
         if (this.get_param('navType') == 'real') {
-            diapButtonBar.style.overflow = 'display';
+            diapButtonBar.style.overflow = 'visible';
         } else {
-                diapButtonBar.style.CSSOverflow = 'display';
+            diapButtonBar.style.CSSOverflow = 'visible';
         }
         diapButtonBar.style.textAlign = 'left';
 
@@ -634,6 +633,7 @@ function MediaPopup(name) {
         diapRightButton.style.position = 'relative';
         diapRightButton.style.display = 'none';
         diapRightButton.style.cursor = 'pointer';
+
         /* attach actions */
         if (this.get_param('navType') == 'real') {
             diapRightButton.setAttribute('onmouseover', 'this.src="'+this.get_param('pictures', 'rightButtonOver')+'";');
@@ -698,7 +698,7 @@ function MediaPopup(name) {
         if (this.get_param('isMobile') == 1)
             return true;
         if (this.get_param('isMobile') == -1) {
-            return ( window.innerWidth < 700 || window.innerWidth < (width+20) );
+            return (window.innerWidth < 700 || window.innerWidth < (width+20));
         }
     };
 }

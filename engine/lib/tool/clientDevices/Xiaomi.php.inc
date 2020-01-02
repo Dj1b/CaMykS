@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.34
  * @date Creation: May 2018
- * @date Modification: Nov 2019
+ * @date Modification: Dec 2019
  * @copyright 2018 - 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -73,6 +73,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 9t pro'             => array('platform_model' => 'Mi 9T Pro',           'platform_year' => 2019),
 
         /* Phones, Redmi series */
+        '2014811'               => array('platform_model' => 'Redmi 2',             'platform_year' => 2014),
         'redmi note 2'          => array('platform_model' => 'Redmi Note 2',        'platform_year' => 2015),
         'redmi note 2 prime'    => array('platform_model' => 'Redmi Note 2 Prime',  'platform_year' => 2015),
         'redmi note 3'          => array('platform_model' => 'Redmi Note 3',        'platform_year' => 2015),
@@ -101,8 +102,10 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi 6 pro'           => array('platform_model' => 'Redmi 6 Pro',         'platform_year' => 2018),
         'redmi s2'              => array('platform_model' => 'Redmi S2',            'platform_year' => 2018),
         'redmi 7'               => array('platform_model' => 'Redmi 7',             'platform_year' => 2019),
+        'redmi 7a'              => array('platform_model' => 'Redmi 7A',            'platform_year' => 2019),
         'redmi note 7'          => array('platform_model' => 'Redmi Note 7',        'platform_year' => 2019),
         'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
+        'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),
 
         'pocophone f1'          => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
         'poco f1'               => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
