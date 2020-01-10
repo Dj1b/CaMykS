@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: May 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -105,6 +105,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi 7a'              => array('platform_model' => 'Redmi 7A',            'platform_year' => 2019),
         'redmi note 7'          => array('platform_model' => 'Redmi Note 7',        'platform_year' => 2019),
         'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
+        'redmi note 8t'         => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
         'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),
 
         'pocophone f1'          => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),

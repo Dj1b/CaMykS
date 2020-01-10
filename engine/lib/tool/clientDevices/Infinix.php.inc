@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Feb 2019
- * @date Modification: Dec 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -42,6 +42,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'Zero 4 Plus'   => array('platform_year' => 2017),
 
         /* S serie */
+        'X626'          => array('platform_model' => 'S4',          'platform_year' => 2019),
         'X626B'         => array('platform_model' => 'S4',          'platform_year' => 2019),
 
     );

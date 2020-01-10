@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.58
+ * @version 1.0.59
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -41,6 +41,7 @@ function get_HuaweiClientDevices() {
 
         /* Huawei P series */
         'P8max'     => array('platform_model' => 'P8 Max',          'platform_year' => 2015),
+        'hi6210sft' => array('platform_model' => 'P8 Lite',         'platform_year' => 2015),
         'ALE-L21'   => array('platform_model' => 'P8 Lite',         'platform_year' => 2015),
         'ALE-CL00'  => array('platform_model' => 'P8 Lite',         'platform_year' => 2015),
         'ALE-L02'   => array('platform_model' => 'P8 Lite',         'platform_year' => 2015),
@@ -154,6 +155,7 @@ function get_HuaweiClientDevices() {
         'PCT-L29'   => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
         'YAL-L41'   => array('platform_model' => 'Honor 20 Pro',    'platform_year' => 2019),
         'HRY-LX1T'  => array('platform_model' => 'Honor 20 Lite',   'platform_year' => 2019),
+        'JAT-L29'   => array('platform_model' => 'Honor Play 8A',   'platform_year' => 2019),
 
         /* Huawei Ascend series */
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),

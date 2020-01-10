@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Umidigi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: May 2019
- * @date Modification: Dec 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -26,6 +26,7 @@ function get_UmidigiClientDevice($deviceCode='') {
         'C Note'    => array('platform_model' => 'C Note',      'platform_year' => 2017),
         'C Note 2'  => array('platform_model' => 'C Note 2',    'platform_year' => 2017),
         'A1 Pro'    => array('platform_model' => 'A1 Pro',      'platform_year' => 2018),
+        'A3 Pro'    => array('platform_model' => 'A3 Pro',      'platform_year' => 2018),
         'S2 Lite'   => array('platform_model' => 'S2 Lite',     'platform_year' => 2018),
         'S3 Pro'    => array('platform_model' => 'S3 Pro',      'platform_year' => 2019),
         'Power'     => array('platform_model' => 'Power',       'platform_year' => 2019),

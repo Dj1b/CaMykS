@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.61
+ * @version 1.0.62
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -50,6 +50,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T280'   => array('platform_model' => 'Galaxy Tab A 7.0',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T285'   => array('platform_model' => 'Galaxy Tab A 7.0',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T510'   => array('platform_model' => 'Galaxy Tab A 10.1',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'SM-P580'   => array('platform_model' => 'Galaxy Tab A 10.1',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
+        'SM-T585'   => array('platform_model' => 'Galaxy Tab A 10.1',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T585'   => array('platform_model' => 'Galaxy Tab A 10.1',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-P585M'  => array('platform_model' => 'Galaxy Tab A 10.1',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-P585Y'  => array('platform_model' => 'Galaxy Tab A 10.1',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
@@ -71,6 +73,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T825'   => array('platform_model' => 'Galaxy Tab S3',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SM-T830'   => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T835N'  => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'SM-T720'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
 
         /* Samsung old phones */
         'GT-C3590'  => array('platform_model' => 'C3590',                           'platform_year' => 2013,    'system_title' => 'Symbian'),
@@ -101,6 +104,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G900F'  => array('platform_model' => 'Galaxy S5',                       'platform_year' => 2014),
         'SM-G900P'  => array('platform_model' => 'Galaxy S5',                       'platform_year' => 2014),
         'SM-G900T'  => array('platform_model' => 'Galaxy S5',                       'platform_year' => 2014),
+        'SM-G900W8' => array('platform_model' => 'Galaxy S5',                       'platform_year' => 2014),
         'SM-G903F'  => array('platform_model' => 'Galaxy S5',                       'platform_year' => 2014),
         'SM-G901F'  => array('platform_model' => 'Galaxy S5+',                      'platform_year' => 2014),
         'SM-G800F'  => array('platform_model' => 'Galaxy S5 Mini',                  'platform_year' => 2014),
@@ -190,6 +194,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A920F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2018),
         'SM-A105F'  => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A105FN' => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
+        'SM-A205F'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205G'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205GN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205W'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
@@ -242,6 +247,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J330FN' => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2017),
         'SM-J330F'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2017),
         'SM-J327T'  => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
+        'SM-J327T1' => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
         'SM-J327W'  => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
         'SM-J400F'  => array('platform_model' => 'Galaxy J4',                       'platform_year' => 2018),
         'SM-J415F'  => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
@@ -311,6 +317,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)',              'platform_year' => 2013),
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo',               'platform_year' => 2014),
         'SM-N910A'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
+        'SM-N910C'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N910F'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N910H'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N9106W' => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
