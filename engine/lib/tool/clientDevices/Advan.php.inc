@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Advan.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Aug 2019
- * @date Modification: Oct 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +25,7 @@ function get_AdvanClientDevice($deviceCode='') {
         '5061'      => array('platform_model' => 'i5C',     'platform_year' => 2017),
         '5062'      => array('platform_model' => 'S5E',     'platform_year' => 2017),
         'S5E_NXT'   => array('platform_model' => 'S5E NXT', 'platform_year' => 2017),
+        'i5K'       => array('platform_model' => 'G1 Pro',  'platform_year' => 2017),
     );
 
     /* Check for returning list */

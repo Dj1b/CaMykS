@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Motorola.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -63,6 +63,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'g(7) play'     => array('platform_model' => 'Moto G7 Play',        'platform_year' => 2019),
         'g(7) power'    => array('platform_model' => 'Moto G7 Power',       'platform_year' => 2019),
         'one'           => array('platform_model' => 'One',                 'platform_year' => 2019),
+        'one vision'    => array('platform_model' => 'One Vision',          'platform_year' => 2019),
     );
 
     /* Check for returning list */

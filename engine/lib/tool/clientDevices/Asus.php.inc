@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Apr 2018
  * @date Modification: Jan 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -60,6 +60,7 @@ function get_AsusClientDevice($deviceCode='') {
         'X008D'     => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'ZC553KL'   => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'ZU680KL'   => array('platform_model' => 'ZenFone 3 Ultra',         'platform_year' => 2016),
+        'X00GD'     => array('platform_model' => 'ZenFone 3s Max',          'platform_year' => 2017),
         'X007D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2017),
         'ZE554KL'   => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),
         'X00LD'     => array('platform_model' => 'ZenFone 4',               'platform_year' => 2017),

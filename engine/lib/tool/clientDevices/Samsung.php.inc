@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.62
+ * @version 1.0.63
  * @date Creation: Apr 2018
  * @date Modification: Jan 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -44,6 +44,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T533'   => array('platform_model' => 'Galaxy Tab 4',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T535'   => array('platform_model' => 'Galaxy Tab 4 (4G)',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T325'   => array('platform_model' => 'Galaxy Tab 8.4',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'SM-T350'   => array('platform_model' => 'Galaxy Tab A 8.0',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T550'   => array('platform_model' => 'Galaxy Tab A',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-P550'   => array('platform_model' => 'Galaxy Tab A',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T555'   => array('platform_model' => 'Galaxy Tab A 9.7',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
@@ -74,6 +75,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T830'   => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T835N'  => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T720'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
+        'SM-T860'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
+        'SM-T865'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
 
         /* Samsung old phones */
         'GT-C3590'  => array('platform_model' => 'C3590',                           'platform_year' => 2013,    'system_title' => 'Symbian'),
@@ -250,6 +253,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J327T1' => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
         'SM-J327W'  => array('platform_model' => 'Galaxy J3 Prime',                 'platform_year' => 2017),
         'SM-J400F'  => array('platform_model' => 'Galaxy J4',                       'platform_year' => 2018),
+        'SM-J410F'  => array('platform_model' => 'Galaxy J4 Core',                  'platform_year' => 2018),
         'SM-J415F'  => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
         'SM-J415FN' => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
         'SM-J415GN' => array('platform_model' => 'Galaxy J4+',                      'platform_year' => 2018),
@@ -385,6 +389,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'GT-S8500'  => array('platform_model' => 'Galaxy Wave',                     'platform_year' => 2010),
         'GT-I8552'  => array('platform_model' => 'Galaxy Win Duos',                 'platform_year' => 2013),
         'SM-G388F'  => array('platform_model' => 'Galaxy Xcover 3',                 'platform_year' => 2015),
+        'SM-G389F'  => array('platform_model' => 'Galaxy Xcover 3',                 'platform_year' => 2015),
         'SM-G390F'  => array('platform_model' => 'Galaxy Xcover 4',                 'platform_year' => 2017),
         'SM-G398FN' => array('platform_model' => 'Galaxy Xcover 5',                 'platform_year' => 2019),
         'GT-S5360'  => array('platform_model' => 'Galaxy Y',                        'platform_year' => 2011),
@@ -402,7 +407,7 @@ function get_SamsungClientDevice($deviceCode='') {
 
         /* Non-regular model names */
         'SCV38'     => array('platform_model' => 'Galaxy S9',                       'platform_year' => 2018),
-        'SCV39'     => array('platform_model' => 'Galaxy S9+',                       'platform_year' => 2018),
+        'SCV39'     => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
 
     );
 

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Feb 2019
  * @date Modification: Jan 2020
  * @copyright 2019 - 2020 CaMykS Team
@@ -34,6 +34,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X606C'         => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
         'X606D'         => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
         'X608'          => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
+        'X623'          => array('platform_model' => 'Hot 6X',      'platform_year' => 2018),
 
         /* Smart serie */
         'X5515'         => array('platform_model' => 'Smart 2',     'platform_year' => 2018),

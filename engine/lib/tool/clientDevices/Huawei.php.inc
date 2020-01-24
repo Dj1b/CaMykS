@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.59
+ * @version 1.0.60
  * @date Creation: Apr 2018
  * @date Modification: Jan 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -145,6 +145,7 @@ function get_HuaweiClientDevices() {
         'STF-TL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-L09'   => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
+        'LLD-AL10'  => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL20'  => array('platform_model' => 'Honor 9I',        'platform_year' => 2018),
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'HRY-LX1'   => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
@@ -203,6 +204,7 @@ function get_HuaweiClientDevices() {
         'FLA-LX2'   => array('platform_model' => 'Y9',              'platform_year' => 2018),
 
         /* Huawei Nova series */
+        'CAN-L01'   => array('platform_model' => 'Nova',            'platform_year' => 2016),
         'CAN-L11'   => array('platform_model' => 'Nova',            'platform_year' => 2016),
         'MLA-L12'   => array('platform_model' => 'Nova Plus',       'platform_year' => 2016),
         'PRA-LX2'   => array('platform_model' => 'Nova Lite',       'platform_year' => 2017),
@@ -218,10 +220,12 @@ function get_HuaweiClientDevices() {
         'PAR-AL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'PAR-TL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
+        'YAL-L21'   => array('platform_model' => 'Nova 5T',         'platform_year' => 2019),
 
         /* Huawei G series */
         'ALE-L23'   => array('platform_model' => 'G Elite',         'platform_year' => 2015),
         'NMO-L31'   => array('platform_model' => 'GT3',             'platform_year' => 2016),
+        'KII-L05'   => array('platform_model' => 'GR5',             'platform_year' => 2016),
         'BLL-L22'   => array('platform_model' => 'GR5',             'platform_year' => 2017),
 
         /* Huawei other models */

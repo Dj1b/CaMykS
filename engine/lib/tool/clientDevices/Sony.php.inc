@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -47,6 +47,7 @@ function get_SonyClientDevice($deviceCode='') {
         'D5803'     => array('platform_model' => 'Xperia Z3 Compact',       'platform_year' => 2014),
         'D6603'     => array('platform_model' => 'Xperia Z3',               'platform_year' => 2014),
         'D6683'     => array('platform_model' => 'Xperia Z3 Dual Sim',      'platform_year' => 2015),
+        'E2003'     => array('platform_model' => 'Xperia E4',               'platform_year' => 2015),
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5633'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),

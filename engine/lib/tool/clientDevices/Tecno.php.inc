@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Oct 2018
- * @date Modification: Oct 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -35,6 +35,7 @@ function get_TecnoClientDevice($deviceCode='') {
         'F1'        => array('platform_year' => 2018),
         'Camon CX'  => array('platform_year' => 2018),
         'KB7j'      => array('platform_model' => 'Spark 3',         'platform_year' => 2019),
+        'AB7'       => array('platform_model' => 'Phantom 9',       'platform_year' => 2019),
     );
 
     /* Check for returning list */
