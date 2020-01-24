@@ -4,10 +4,10 @@
  * @details Plugin / Input Dictionnary
  * @file plugin/input/PayZenPayment/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Dec 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -30,4 +30,5 @@ $this->trads['input_payzenpayment_formitem_hashmode'] = 'Hash: ';
 
 /* site */
 $this->trads['input_payzenpayment_redirectobankmessage'] = 'You will be redirected to the banking service.';
+$this->trads['input_payzenpayment_redirectobankmessage2'] = 'If not, <a href="%s" class="%s">click here</a>.';
 ?>
