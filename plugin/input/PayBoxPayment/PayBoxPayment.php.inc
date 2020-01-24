@@ -5,17 +5,16 @@
  * @details Plugin / Input Engine
  * @file plugin/input/PayBoxPayment/PayBoxPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2017
- * @date Modification: Jan 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * PayBoxPayment Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PayBoxPayment extends Input {
     /**
@@ -219,16 +218,6 @@ final class PayBoxPayment extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /**
-     * Display input.
-     * @return void
-     */
-    public function display() {
-        echo $this->paymentForm->display_header();
-        echo $this->paymentForm->display_hiddens();
-        echo $this->paymentForm->display_footer();
-    }
-
     /* data query methods */
 
     /**
@@ -292,6 +281,14 @@ final class PayBoxPayment extends Input {
     public function get_paymentConfirmation() {
         $this->load_paymentConfirmation();
         return $this->get_paymentConfirmationData();
+    }
+
+    /**
+     * Execute check out.
+     * @return array
+     */
+    public function execute_checkout() {
+        return true;
     }
 
     /**
