@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.97
+ * @version 1.0.98
  * @date Creation: Jun 2007
  * @date Modification: Jan 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -694,7 +694,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (Orange KLIF|A460G|[0-9]{4}[A-Z])( Build|\)|;)/', $ua, $matches)) {
         include_once('clientDevices/Alcatel.php.inc');
         $infos = array_merge($infos, get_AlcatelClientDevice($matches[1]));
-    } elseif (preg_match('/; Alcatel_(.*)( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; Alcatel[_| ](.*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Alcatel.php.inc');
         $infos = array_merge($infos, get_AlcatelClientDevice($matches[1]));
     }
@@ -1031,7 +1031,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Oppo devices */
-    elseif (preg_match('/ (1201|A37f|A37fw|A1601|F1f|CPH[0-9]{4}|RMX[0-9]{4}|PAFM00)( Build|\))/U', $ua, $matches)) {
+    elseif (preg_match('/ (1201|A37f|A37fw|A1601|F1f|PAFM00|CPH[0-9]{4}|RMX[0-9]{4})( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Oppo.php.inc');
         $infos = array_merge($infos, get_OppoClientDevice($matches[1]));
     } elseif (preg_match('/OPPO ([^.]+) Build/', $ua, $matches)) {
@@ -2927,7 +2927,7 @@ function _client_isOnePlusDevice($ua='') {
  * @private
  */
 function _client_isHuaweiDevice($ua='') {
-    if (preg_match('/ ([A-Z][A-Z0-9]{2,3}\-[A-Z][a-zA-Z0-9]{2,3})( Build|\))/', $ua, $matches)) {
+    if (preg_match('/ ([A-Z][A-Z0-9]{2,3}\-[A-Z][a-zA-Z0-9]{2,5})( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Huawei.php.inc');
         return trim($matches[1]);
     } elseif (preg_match('/ (MediaPad [^\)]*)( Build|\))/Ui', $ua, $matches)) {

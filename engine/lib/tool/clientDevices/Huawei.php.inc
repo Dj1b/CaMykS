@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.60
+ * @version 1.0.61
  * @date Creation: Apr 2018
  * @date Modification: Jan 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -111,6 +111,7 @@ function get_HuaweiClientDevices() {
         'LYA-AL00'  => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYA-L09'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
+        'EVR-AL00'  => array('platform_model' => 'Mate 20 X',       'platform_year' => 2018),
 
         /* Huawei Honor series */
         'H60-L01'   => array('platform_model' => 'Honor 6',         'platform_year' => 2014),
