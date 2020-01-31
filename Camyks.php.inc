@@ -2025,7 +2025,7 @@ final class Camyks {
      * @return string
      */
     public function get_siteCurrentLink($lg='', $params=null) {
-        return $this->get_siteLink($this->contentPage->id, $this->contentPage->name, $lg, $params!=null?$params:$this->contentPage->params);
+        return $this->get_siteLink($this->contentPage->id, $this->contentPage->name, $lg, $params!=null ? $params : $this->contentPage->params);
     }
 
     /**
