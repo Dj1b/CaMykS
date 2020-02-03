@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -21,7 +21,8 @@
 function get_AlcatelClientDevice($deviceCode='') {
     $deviceList = array(
         /* Alcatel tablets */
-        '9003X' => array('platform_model' => 'One Touch Pixi 4 7.0',    'platform_year' => 2016, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'ONETOUCH POP 7 LTE'    => array('platform_model' => 'OneTouch Pop 7 LTE',  'platform_year' => 2014, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        '9003X'                 => array('platform_model' => 'OneTouch Pixi 4 7.0', 'platform_year' => 2016, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
 
         /* Alcatel mobiles */
         'Orange KLIF' => array('system_title' => 'Firefox OS',          'platform_year' => 2015),
@@ -82,6 +83,8 @@ function get_AlcatelClientDevice($deviceCode='') {
         '5095K' => array('platform_model' => 'OneTouch Pop 4S',         'platform_year' => 2016),
         '5095Y' => array('platform_model' => 'OneTouch Pop 4S',         'platform_year' => 2016),
         '5099D' => array('platform_model' => '3V',                      'platform_year' => 2018),
+        '5099I' => array('platform_model' => '3V',                      'platform_year' => 2018),
+        '5099Y' => array('platform_model' => '3V',                      'platform_year' => 2018),
         '6010D' => array('platform_model' => 'OneTouch Star',           'platform_year' => 2013),
         '6010X' => array('platform_model' => 'OneTouch Star',           'platform_year' => 2013),
         '6012D' => array('platform_model' => 'OneTouch Idol Mini',      'platform_year' => 2014),

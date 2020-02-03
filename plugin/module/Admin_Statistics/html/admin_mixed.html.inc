@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Statistics/html/admin_single.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2007
- * @date Modification: Dec 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -22,6 +22,7 @@ $update_ = $camyks->theme->get_pictURL('target', 12, 'ovr');
 
 /* detail bar values */
 $detail_bar_width = 100;
+
 /* main bar values */
 $main_bar_width = 30;
 $main_bar_height = 58;
@@ -208,7 +209,7 @@ $main_bar_height = 58;
 
     <table cellspacing="0" style="width:100%">
         <tr>
-            <td class="eTableLine0" style="width:<?= $detail_bar_width+40; ?>px; padding-left:0px;">
+            <td class="eTableLine0" style="width:<?= $detail_bar_width+50; ?>px; padding-left:0px;">
                 <?= $this->get_translation('total'); ?>
             </td>
             <td class="eTableLine0">

@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -42,6 +42,7 @@ function get_LenovoClientDevice($deviceCode='') {
 
         /* Lenovo phones */
         'A369i'     => array('platform_model' => 'A369i',                   'platform_year' => 2013),
+        'P780_ROW'  => array('platform_model' => 'P780',                    'platform_year' => 2013),
         'A319'      => array('platform_model' => 'RocStar',                 'platform_year' => 2014),
         'A806'      => array('platform_model' => 'Golden Warrior A8',       'platform_year' => 2014),
         'A936'      => array('platform_model' => 'Golden Warrior Note 8',   'platform_year' => 2014),

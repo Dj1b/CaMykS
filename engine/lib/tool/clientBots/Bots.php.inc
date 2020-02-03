@@ -4,10 +4,10 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.53
+ * @version 1.0.55
  * @date Creation: May 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -4518,10 +4518,70 @@ function _client_getKnownBots() {
     $knownBots['yomins.com'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => ' ',
+        'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'yomins.com',
         'engine_url'        => 'http://yomins.com/',
+    );
+
+    /* lyticsbot bot  */
+    $knownBots['lyticsbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'lyticsbot',
+        'bot_url'           => '',
+        'engine_title'      => 'Lytics',
+        'engine_url'        => 'https://www.lytics.com',
+    );
+
+    /* MAZBot */
+    $knownBots['mazbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MAZBot',
+        'bot_url'           => '',
+        'engine_title'      => 'MAZ Systems',
+        'engine_url'        => 'https://www.mazsystems.com',
+    );
+
+    /* Twingly */
+    $knownBots['twingly'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Twingly Recon-Klondike',
+        'bot_url'           => '',
+        'engine_title'      => 'Twingly',
+        'engine_url'        => 'https://developer.twingly.com',
+    );
+
+    /* PagePeeker */
+    $knownBots['pagepeeker'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'PagePeeker',
+        'bot_url'           => 'https://pagepeeker.com',
+        'engine_title'      => 'PagePeeker',
+        'engine_url'        => 'https://pagepeeker.com/robots/',
+    );
+
+    /* Onespot-ScraperBot */
+    $knownBots['onespot-scraperbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Onespot-ScraperBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Onespot',
+        'engine_url'        => 'https://www.onespot.com',
+    );
+
+    /* ExoRank */
+    $knownBots['exorank'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'ExoRank',
+        'engine_url'        => 'https://www.exorank.com',
     );
 
     /* return bot list */

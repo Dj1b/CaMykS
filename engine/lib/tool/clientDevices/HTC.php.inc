@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Aug 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -35,6 +35,7 @@ function get_HTCClientDevice($deviceCode='') {
         'One mini 2'            => array('platform_model' => 'One mini 2',          'platform_year' => 2014),
         'D820u'                 => array('platform_model' => 'Desire 820 Dual SIM', 'platform_year' => 2014),
         'Desire 626'            => array('platform_model' => 'Desire 626',          'platform_year' => 2015),
+        '2PQ93'                 => array('platform_model' => 'One A9',              'platform_year' => 2015),
         'One M9'                => array('platform_model' => 'One M9',              'platform_year' => 2015),
         'Desire 530'            => array('platform_model' => 'Desire 530',          'platform_year' => 2016),
         '2PYB2'                 => array('platform_model' => 'Bolt',                'platform_year' => 2016),

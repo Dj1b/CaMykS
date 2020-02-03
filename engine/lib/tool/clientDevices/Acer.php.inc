@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Acer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2018
- * @date Modification: Oct 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -60,6 +60,7 @@ function get_AcerClientDevice($deviceCode='') {
         'Z220'          => array('platform_model' => 'Liquid Z220',         'platform_year' => 2015),
         'Z520'          => array('platform_model' => 'Liquid Z520',         'platform_year' => 2015),
         'T04'           => array('platform_model' => 'Liquid Z630S',        'platform_year' => 2016),
+        'T07'           => array('platform_model' => 'Liquid Zest',         'platform_year' => 2016),
         'T08'           => array('platform_model' => 'Liquid Zest Plus',    'platform_year' => 2016),
     );
 

@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Blackview.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Jul 2018
- * @date Modification: Oct 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -20,14 +20,20 @@
  */
 function get_BlackviewClientDevice($deviceCode='') {
     $deviceList = array(
-        'V6000'         => array('platform_model' => 'BV6000',          'platform_year' => 2016),
-        'V9000Pro F'    => array('platform_model' => 'BV9000 Pro F',    'platform_year' => 2017),
-        'V8000Pro'      => array('platform_model' => 'BV8000 Pro',      'platform_year' => 2017),
-        'V5800'         => array('platform_model' => 'BV5800',          'platform_year' => 2018),
-        'V9500'         => array('platform_model' => 'BV9500',          'platform_year' => 2018),
-        'V9500Pro'      => array('platform_model' => 'BV9500 Pro',      'platform_year' => 2018),
-        'V9600Pro'      => array('platform_model' => 'BV9600 Pro',      'platform_year' => 2018),
+        /* Blackview BV series */
+        'BV6000'        => array('platform_model' => 'BV6000',          'platform_year' => 2016),
+        'BV9000Pro F'   => array('platform_model' => 'BV9000 Pro F',    'platform_year' => 2017),
+        'BV8000Pro'     => array('platform_model' => 'BV8000 Pro',      'platform_year' => 2017),
+        'BV5800'        => array('platform_model' => 'BV5800',          'platform_year' => 2018),
+        'BV9500'        => array('platform_model' => 'BV9500',          'platform_year' => 2018),
+        'BV9500Pro'     => array('platform_model' => 'BV9500 Pro',      'platform_year' => 2018),
+        'BV9600Pro'     => array('platform_model' => 'BV9600 Pro',      'platform_year' => 2018),
+
+        /* Blackview P series */
         'P10000 Pro'    => array('platform_model' => 'P10000 Pro',      'platform_year' => 2018),
+
+        /* Blackview other mobiles */
+        'S8'            => array('platform_model' => 'S8',              'platform_year' => 2016),
     );
 
     /* Check for returning list */

@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -48,9 +48,10 @@ function get_LGClientDevice($deviceCode='') {
         'H815'      => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H831'      => array('platform_model' => 'G5',              'platform_year' => 2016),
         'H850'      => array('platform_model' => 'G5',              'platform_year' => 2016),
-        'H870'      => array('platform_model' => 'G6',              'platform_year' => 2018),
-        'H873'      => array('platform_model' => 'G6',              'platform_year' => 2018),
-        'H870D'     => array('platform_model' => 'G6',              'platform_year' => 2018),
+        'H870'      => array('platform_model' => 'G6',              'platform_year' => 2017),
+        'H870D'     => array('platform_model' => 'G6',              'platform_year' => 2017),
+        'H870DS'    => array('platform_model' => 'G6',              'platform_year' => 2017),
+        'H873'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H930'      => array('platform_model' => 'V30',             'platform_year' => 2017),
         'H955'      => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
         'H990'      => array('platform_model' => 'V20',             'platform_year' => 2016),

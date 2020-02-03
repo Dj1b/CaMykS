@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.40
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -42,11 +42,14 @@ function get_SonyClientDevice($deviceCode='') {
         'D2305'     => array('platform_model' => 'Xperia M2',               'platform_year' => 2014),
         'D2306'     => array('platform_model' => 'Xperia M2',               'platform_year' => 2014),
         'D2403'     => array('platform_model' => 'Xperia M2 Aqua',          'platform_year' => 2014),
+        'D5103'     => array('platform_model' => 'Xperia T3',               'platform_year' => 2014),
+        'D5106'     => array('platform_model' => 'Xperia T3',               'platform_year' => 2014),
         'D5303'     => array('platform_model' => 'Xperia T2 Ultra',         'platform_year' => 2014),
         'D5503'     => array('platform_model' => 'Xperia Z1 Compact',       'platform_year' => 2014),
         'D5803'     => array('platform_model' => 'Xperia Z3 Compact',       'platform_year' => 2014),
         'D6603'     => array('platform_model' => 'Xperia Z3',               'platform_year' => 2014),
         'D6683'     => array('platform_model' => 'Xperia Z3 Dual Sim',      'platform_year' => 2015),
+        'E2003'     => array('platform_model' => 'Xperia E4',               'platform_year' => 2015),
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5633'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
@@ -93,6 +96,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H4413'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
         'H8216'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8266'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
+        'H8296'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8314'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8324'     => array('platform_model' => 'Xperia XZ2 Compact',      'platform_year' => 2018),
         'H8416'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),

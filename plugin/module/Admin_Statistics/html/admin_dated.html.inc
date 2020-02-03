@@ -4,18 +4,15 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Statistics/html/admin_dated.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: May 2007
- * @date Modification: Apr 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jan 2020
+ * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
  */
 global $camyks;
-
-/* detail bar values */
-$detail_bar_width = 100;
 
 /* main bar values */
 $main_bar_width = 30;
