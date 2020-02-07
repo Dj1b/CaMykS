@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: May 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -789,6 +789,16 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'python-httpx',
         'tool_url'          => 'https://www.python-httpx.org',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Boost.Beast */
+    $knownGenerics['boost.beast'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Boost.Beast',
+        'tool_url'          => 'https://github.com/boostorg/beast',
         'engine_title'      => '',
         'engine_url'        => '',
     );

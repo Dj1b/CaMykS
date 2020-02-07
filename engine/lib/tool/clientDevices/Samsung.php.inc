@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.64
+ * @version 1.0.65
  * @date Creation: Apr 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -35,6 +35,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T110'   => array('platform_model' => 'Galaxy Tab 3 Lite',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T113'   => array('platform_model' => 'Galaxy Tab 3 Lite',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T310'   => array('platform_model' => 'Galaxy Tab 3',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'SM-T113NU' => array('platform_model' => 'Galaxy Tab 3 V',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T116NU' => array('platform_model' => 'Galaxy Tab 3 V',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T320'   => array('platform_model' => 'Galaxy Tab Pro',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T520'   => array('platform_model' => 'Galaxy Tab Pro',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),

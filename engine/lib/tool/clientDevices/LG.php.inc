@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Apr 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -68,6 +68,7 @@ function get_LGClientDevice($deviceCode='') {
         'M250'      => array('platform_model' => 'K10',             'platform_year' => 2017),
         'M327'      => array('platform_model' => 'X Charge',        'platform_year' => 2017),
         'M400'      => array('platform_model' => 'Stylus 3',        'platform_year' => 2017),
+        'M470'      => array('platform_model' => 'Stylo 3 Plus',    'platform_year' => 2017),
         'P715'      => array('platform_model' => 'Optimus L7 II',   'platform_year' => 2013),
         'P875'      => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'P920'      => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),

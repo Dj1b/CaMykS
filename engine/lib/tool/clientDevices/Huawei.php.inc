@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.61
+ * @version 1.0.62
  * @date Creation: Apr 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -138,6 +138,7 @@ function get_HuaweiClientDevices() {
         'FRD-L09'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
         'FRD-L19'   => array('platform_model' => 'Honor 8',         'platform_year' => 2016),
         'PRA-TL10'  => array('platform_model' => 'Honor 8 Lite',    'platform_year' => 2016),
+        'EDI-AL10'  => array('platform_model' => 'Honor Note 8',    'platform_year' => 2016),
         'DUK-L09'   => array('platform_model' => 'Honor 8 Pro',     'platform_year' => 2017),
         'JSN-L21'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
         'JSN-L22'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
@@ -182,6 +183,7 @@ function get_HuaweiClientDevices() {
         'CUN-L01'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'DRA-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
+        'AMN-LX1'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'AMN-LX9'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),
         'SCL-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2016),

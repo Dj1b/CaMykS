@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.55
+ * @version 1.0.56
  * @date Creation: May 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4582,6 +4582,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'ExoRank',
         'engine_url'        => 'https://www.exorank.com',
+    );
+
+    /* AffiliateLabz */
+    $knownBots['affiliatelabz'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'AffiliateLabz',
+        'engine_url'        => 'https://affiliatelabz.com',
     );
 
     /* return bot list */
