@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jun 2005
- * @date Modification: Jan 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Try to set up output page parts as private, as they should be only called by add_HTMLHeader().
@@ -173,6 +173,12 @@ final class HTMLPage {
      * @brief HTML body tag to apply.
      */
     private $bodyClass = '';
+
+    /**
+     * @var array $structuredData
+     * @brief JSON structured data for search engines
+     */
+    private $structuredData = array();
 
     /**
      * Class constructor.
@@ -559,6 +565,15 @@ final class HTMLPage {
             $this->doctype = '<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">';
     }
 
+    /**
+     * Add JSON structured data to page.
+     * @param array $data
+     * @return void
+     */
+    public function add_structuredData($data) {
+        $this->structuredData[] = $data;
+    }
+
     /*********** OUTPUT PAGE METHODS *************/
 
     /**
@@ -829,6 +844,13 @@ final class HTMLPage {
         /* close script section */
         $str .= "</script>\n";
         echo $str;
+
+        /* Check for structured data */
+        foreach ($this->structuredData as $data) {
+            echo '<script type="application/ld+json">'."\n";
+            echo json_encode($data)."\n";
+            echo '</script>'."\n";
+        }
     }
 
     /**
