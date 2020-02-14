@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.99
+ * @version 1.0.100
  * @date Creation: Jun 2007
  * @date Modification: Feb 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -2841,7 +2841,7 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '75',                    // current is 71
+                'MaxVersion'    => '77',                    // current is 73
                 'FakeVersions'  => array('27.3'),
             ),
             'Chrome'            => array(

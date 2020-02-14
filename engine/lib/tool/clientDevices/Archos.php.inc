@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Apr 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -114,6 +114,7 @@ function get_ArchosClientDevice($deviceCode='') {
         'Core 50P'                  => array('platform_model' => 'Core 50P',                'platform_year' => 2017),
         'Core 55 4G'                => array('platform_model' => 'Core 55 4G',              'platform_year' => 2017),
         'Core 55P'                  => array('platform_model' => 'Core 55P',                'platform_year' => 2017),
+        'Core 60S'                  => array('platform_model' => 'Core 60S',                'platform_year' => 2018),
         'Oxygen 57'                 => array('platform_model' => 'Oxygen 57',               'platform_year' => 2019),
     );
 
