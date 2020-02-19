@@ -5,7 +5,7 @@
  * @details Plugin / Input Engine
  * @file plugin/input/CookieAgreementMessage/CookieAgreementMessage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2017
  * @date Modification: Feb 2020
  * @copyright 2017 - 2020 CaMykS Team
@@ -176,7 +176,7 @@ final class CookieAgreementMessage extends Input {
 
         if ($this->params['aboutCookie'] === true or $this->params['aboutCookie'] === 'true') {
             if (($u = $camyks->get_siteKeypageLink('LegalMentions')) != '')
-                $this->params['aboutCookie'] = $u;
+                $this->params['aboutCookie'] = $u.'#LM-Cookies';
             else
                 $this->params['aboutCookie'] = $this->get_translation('aboutcookieurl');
         }
