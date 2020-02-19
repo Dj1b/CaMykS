@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/CookieAgreementMessage/CookieAgreementMessage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2017
- * @date Modification: Apr 2018
- * @copyright 2017 - 2018 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -174,7 +174,12 @@ final class CookieAgreementMessage extends Input {
         /* check params */
         if ($this->params['message'] == '') $this->params['message'] = $this->get_translation('defaultmessage');
 
-        if ($this->params['aboutCookie'] === true or $this->params['aboutCookie'] === 'true') $this->params['aboutCookie'] = $this->get_translation('aboutcookieurl');
+        if ($this->params['aboutCookie'] === true or $this->params['aboutCookie'] === 'true') {
+            if (($u = $camyks->get_siteKeypageLink('LegalMentions')) != '')
+                $this->params['aboutCookie'] = $u;
+            else
+                $this->params['aboutCookie'] = $this->get_translation('aboutcookieurl');
+        }
     }
 
     /* Admin_Site extension configuration methods */
