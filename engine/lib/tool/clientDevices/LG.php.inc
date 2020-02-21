@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Apr 2018
  * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -22,6 +22,8 @@ function get_LGClientDevice($deviceCode='') {
     $deviceList = array(
         /* LG Tablets */
         'V500'  => array('platform_model' => 'G Pad 8.3',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2013),
+        'V400'  => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
+        'V410'  => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
 
         /* LG mobiles */
         'D160'      => array('platform_model' => 'L40',             'platform_year' => 2014),

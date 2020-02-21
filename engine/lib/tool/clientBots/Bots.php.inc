@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.56
+ * @version 1.0.57
  * @date Creation: May 2018
  * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -4592,6 +4592,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'AffiliateLabz',
         'engine_url'        => 'https://affiliatelabz.com',
+    );
+
+    /* Paracrawl */
+    $knownBots['paracrawl'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Paracrawl',
+        'bot_url'           => 'http://statmt.org/paracrawl/robots.html',
+        'engine_title'      => 'Statistical Machine Translation',
+        'engine_url'        => 'http://statmt.org',
     );
 
     /* return bot list */

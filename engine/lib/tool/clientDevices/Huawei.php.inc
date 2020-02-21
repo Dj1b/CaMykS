@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.62
+ * @version 1.0.63
  * @date Creation: Apr 2018
  * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -156,6 +156,8 @@ function get_HuaweiClientDevices() {
         'BKL-L09'   => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'PCT-L29'   => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
+        'YAL-AL00'  => array('platform_model' => 'Honor 20',        'platform_year' => 2019),
+        'YAL-TL00'  => array('platform_model' => 'Honor 20',        'platform_year' => 2019),
         'YAL-L41'   => array('platform_model' => 'Honor 20 Pro',    'platform_year' => 2019),
         'HRY-LX1T'  => array('platform_model' => 'Honor 20 Lite',   'platform_year' => 2019),
         'JAT-L29'   => array('platform_model' => 'Honor Play 8A',   'platform_year' => 2019),

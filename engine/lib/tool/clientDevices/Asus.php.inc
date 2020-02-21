@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Apr 2018
  * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -22,9 +22,10 @@ function get_AsusClientDevice($deviceCode='') {
     $deviceList = array(
         /* Asus tablets */
         'TF101'     => array('platform_model' => 'Eee Pad Transformer',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2011),
-        'K007'      => array('platform_model' => 'MeMO Pad 7',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
-        'K01E'      => array('platform_model' => 'MeMO Pad',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
+        'K00F'      => array('platform_model' => 'MeMO Pad 10',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'K01E'      => array('platform_model' => 'MeMO Pad 10',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'K007'      => array('platform_model' => 'MeMO Pad 7',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'P01M'      => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P01MA'     => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P023'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
