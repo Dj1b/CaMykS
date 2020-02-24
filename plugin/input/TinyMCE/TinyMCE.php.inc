@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/TinyMCE/TinyMCE.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Mar 2007
- * @date Modification: Jul 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Includes TinyMCE version 2.1.0 (http://tinymce.moxiecode.com/)
@@ -197,10 +197,10 @@ final class TinyMCE extends Input {
         if (!isset($pageid) and isset($_REQUEST['page_id']))
             $pageid = $pageid;
 
-        if (isset ($pageid)) {
+        if (isset($pageid)) {
             /* get page information */
             $page = new ContentPage($pageid);
-            $page->get_fromDatabase();
+            $page->get();
             $theme = $page->theme;
         }
 
