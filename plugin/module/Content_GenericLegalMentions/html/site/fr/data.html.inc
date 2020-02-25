@@ -3,7 +3,7 @@
  * @brief Content_GenericLegalMentions Module site data, french sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jan 2020
  * @date Modification: Feb 2020
  * @copyright 2020 CaMykS Team
@@ -45,21 +45,46 @@
 
 <ul>
     <li class="eContent1">
-        pour am&eacute;liorer la navigation sur le <span class="eContent2">Site</span> : donn&eacute;es de connexion et d'utilisation
+        <strong>pour am&eacute;liorer la navigation sur le</strong> <span class="eContent2">Site</span>
+        <ul>
+            <li><b>Donn&eacute;es collect&eacute;es</b> : donn&eacute;es de connexion et d'utilisation</li>
+            <li><b>Dur&eacute;e de conservation des donn&eacute;es</b> : Maximum 12 mois.</li>
+        </ul>
     </li>
 
     <li class="eContent1">
-        pour pr&eacute;venir et lutter contre la fraude informatique (spamming, hacking...) : mat&eacute;riel informatique utilis&eacute; pour la navigation et l'adresse IP
+        <strong>pour pr&eacute;venir et lutter contre la fraude informatique (spamming, hacking...)</strong>
+        <ul>
+            <li><b>Donn&eacute;es collect&eacute;es</b> : mat&eacute;riel informatique utilis&eacute; (agent utilisateur) pour la navigation et l'adresse IP</li>
+            <li><b>Dur&eacute;e de conservation des donn&eacute;es</b> : Maximum 12 mois.</li>
+        </ul>
     </li>
 
-    <?php foreach ($this->extraData as $pluginData) : ?>
+    <?php foreach ($this->extraData as $plugin) : ?>
+        <?php foreach ($plugin as $pluginData) : ?>
         <?php foreach ($pluginData as $data) : ?>
             <li class="eContent1">
-                <span class="eContent2"><?= $data['title']; ?></span> <br />
-                <?= $data['description']; ?> <br />
-                <b>Donn&eacute;es collect&eacute;es</b> : <?= $data['data']; ?> <br />
-                <b>Dur&eacute;e de conservation des donn&eacute;es : </b> <?= $data['duration']; ?>
+                <strong><?= $data['title']; ?></strong>
+                <ul>
+                    <?php if ($data['description'] != '') : ?>
+                        <li> <?= $data['description']; ?> </li>
+                    <?php endif; ?>
+                    <?php if ($data['data'] != '') : ?>
+                    <li>
+                        <b>Donn&eacute;es collect&eacute;es</b> : <?= $data['data']; ?>
+                    </li>
+                    <?php endif; ?>
+                    <li>
+                        <b>Dur&eacute;e de conservation des donn&eacute;es : </b>
+                        <?php if ($data['duration'] != '') : ?>
+                            <?= $data['duration']; ?>
+                        <?php else : ?>
+                            Maximum 12 mois.
+                        <?php endif; ?>
+                    </li>
+                </ul>
             </li>
+        <?php endforeach; ?>
         <?php endforeach; ?>
     <?php endforeach; ?>
 </ul>
