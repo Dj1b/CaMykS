@@ -1,95 +1,90 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Engine
- * Creation Date    : Sep 2010
- * Last Modif Date  : Mar 2018
- *
- * Admin_GenericGuestBookManager module
+/**
+ * @brief Admin_GenericGuestBookManager module
+ * @details Plugin / Module Engine
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2010
+ * @date Modification: Feb 2020
+ * @copyright 2010 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+/**
+ * Admin_GenericGuestBookManager class.
+ */
 final class Admin_GenericGuestBookManager extends Module {
-
-    /*
-     * internal variable
+    /**
+     * Internal variable
      */
     public $msgItem;
     public $msgList;
     public $config;
 
-    /*
-     * constructor
+    /**
+     * Class constructor.
      * @param string $path_type
      * @return void
-     * @access public
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericGuestBookManager', $path_type);
 
-        /* set module type */
+        /* Override Plugin variables */
+        $this->version = '1.0';
+        $this->plugin_package = 'Generic';
+
+        /* Override Module variables */
         $this->type = 'admin';
         $this->admin_type = 'content';
 
-        /* set plugin version */
-        $this->version = '1.0';
-
-        /* set plugin package */
-        $this->plugin_package = 'Generic';
-
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load plugin libaries */
+        /* Load plugin libaries */
         $this->load_library('Admin_GenericGuestBookManagerMessage');
         $this->load_library('Admin_GenericGuestBookManagerConfig');
 
-        /* initialise plugin libraries */
+        /* Initialise plugin libraries */
         $this->msgItem = new Admin_GenericGuestBookManagerMessage(0, $this);
         $this->config = new Admin_GenericGuestBookManagerConfig('config', $this);
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('Content_GenericLegalMentions');
     }
 
-    /* overwrite Module methods */
+    /* Override Module methods */
 
-    /*
-     * install module
+    /**
+     * Install module
      * @return boolean success
-     * @access public
      */
     public function install() {
         return ($this->msgItem->install() and $this->config->install() and parent::install());
     }
 
-    /*
+    /**
      * unintall module
      * @return boolean success
-     * @access public
      */
     public function uninstall() {
         return parent::uninstall();
     }
 
-    /*
+    /**
      * check module installation
      * @return boolean result
-     * @access public
      */
     public function is_installed() {
         return $this->msgItem->is_installed();
     }
 
-    /*
+    /**
      * get module rights
      * @return void
-     * @access public
      */
     public function get_rights() {
         global $camyks;
@@ -110,10 +105,9 @@ final class Admin_GenericGuestBookManager extends Module {
         );
     }
 
-    /*
+    /**
      * update control panel description
      * @return void
-     * @access public
      */
     public function get_adminControlPanelAction( ) {
         global $camyks;
@@ -128,10 +122,9 @@ final class Admin_GenericGuestBookManager extends Module {
             $camyks->trads['mod_admin_genericguestbookmanager_desc'] = $this->get_translation('descx', $n);
     }
 
-    /*
-     * return notified items for module
+    /**
+     * Return notified items for module
      * @return Array
-     * @access public
      */
     public function get_adminInternalNotifications() {
 
@@ -156,10 +149,9 @@ final class Admin_GenericGuestBookManager extends Module {
         return $result;
     }
 
-    /*
-     * init module object in admin mode
+    /**
+     * Initialise module object in admin mode
      * @return void
-     * @access public
      */
     public function init_admin() {
         global $camyks;
@@ -218,10 +210,9 @@ final class Admin_GenericGuestBookManager extends Module {
 
     /* specific admin mode methods */
 
-    /*
-     * init module object in admin/main mode
+    /**
+     * Initialise module object in admin/main mode
      * @return void
-     * @access private
      */
     private function init_admin_main() {
         global $camyks;
@@ -266,10 +257,9 @@ final class Admin_GenericGuestBookManager extends Module {
         ));
     }
 
-    /*
-     * init module object in admin/view_msg mode
+    /**
+     * Initialise module object in admin/view_msg mode
      * @return void
-     * @access private
      */
     private function init_admin_viewMsg(){
         global $camyks;
@@ -296,10 +286,9 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->set_selectedLayout('admin_view_msg.html.inc');
     }
 
-    /*
-     * init module object in admin/edit_msg mode
+    /**
+     * Initialise module object in admin/edit_msg mode
      * @return void
-     * @access private
      */
     private function init_admin_editMsg() {
         global $camyks;
@@ -344,10 +333,9 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->set_selectedLayout('admin_edit_msg.html.inc');
     }
 
-    /*
-     * init module object in admin/save_msg mode
+    /**
+     * Initialise module object in admin/save_msg mode
      * @return void
-     * @access private
      */
     private function init_admin_saveMsg() {
         global $camyks;
@@ -377,10 +365,9 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /*
-     * init module object in admin/delete_msg mode
+    /**
+     * Initialise module object in admin/delete_msg mode
      * @return void
-     * @access private
      */
     private function init_admin_deleteMsg() {
         global $camyks;
@@ -409,10 +396,9 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /*
-     * init module object in admin/edit_config mode
+    /**
+     * Initialise module object in admin/edit_config mode
      * @return void
-     * @access private
      */
     private function init_admin_editConfig() {
         global $camyks;
@@ -457,10 +443,9 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->selected_layout = 'admin_edit_config.html.inc';
     }
 
-    /*
-     * init module object in admin/save_config mode
+    /**
+     * Initialise module object in admin/save_config mode
      * @return void
-     * @access private
      */
     private function init_admin_saveConfig() {
         global $camyks;
@@ -486,58 +471,52 @@ final class Admin_GenericGuestBookManager extends Module {
 
     /* message related methods */
 
-    /*
-     * return messages status list
+    /**
+     * Return messages status list
      * @param boolean $full
      * @return array
-     * @access public
      */
     public function get_messagesStatusList($full=false) {
         return $this->msgItem->get_multiStatusList($full);
     }
 
-    /*
-     * return message status list
+    /**
+     * Return message status list
      * @return array
-     * @access public
      */
     public function get_messageStatusList() {
         return $this->msgItem->get_statusList();
     }
 
-    /*
-     * return message status icon list
+    /**
+     * Return message status icon list
      * @return array
-     * @access public
      */
     public function get_messageStatusIconList() {
         return $this->msgItem->get_statusIconList();
     }
 
-    /*
-     * return message list
+    /**
+     * Return message list
      * @param array $params
      * @return array
-     * @access public
      */
     public function get_messageList($params) {
         return $this->msgItem->get_list($params);
     }
 
-    /*
-     * return message count
-     * @param array $param
+    /**
+     * Return message count
+     * @param array $params
      * @return integer
-     * @access public
      */
     public function count_messages($params=array()) {
         return $this->msgItem->count($params);
     }
 
-    /*
+    /**
      * save message from site
      * @return boolean success
-     * @access public
      */
     public function save_siteMessage() {
         $this->msgItem->id = 0;
@@ -552,10 +531,9 @@ final class Admin_GenericGuestBookManager extends Module {
         return false;
     }
 
-    /*
-     * return message object
+    /**
+     * Return message object
      * @return object
-     * @access public
      */
     public function get_messageObject() {
         return $this->msgItem;
@@ -563,12 +541,10 @@ final class Admin_GenericGuestBookManager extends Module {
 
     /* notification related methods */
 
-
-    /*
-     * send notification emails
+    /**
+     * Send notification emails
      * @param string $vEmail
      * @return void
-     * @access private
      */
     private function send_notifications() {
         global $camyks;
@@ -602,10 +578,9 @@ final class Admin_GenericGuestBookManager extends Module {
         }
     }
 
-    /*
-     * return admin email content
+    /**
+     * Return admin email content
      * @return string
-     * @access private
      */
     private function get_notificationContent() {
         global $camyks;
@@ -628,10 +603,9 @@ final class Admin_GenericGuestBookManager extends Module {
 
     /* statistics related methods */
 
-    /*
+    /**
      * update statistics
      * @return boolean success
-     * @access private
      */
     private function update_statistics() {
         global $camyks;
@@ -646,20 +620,18 @@ final class Admin_GenericGuestBookManager extends Module {
 
     /* specific tool methods */
 
-    /*
-     * get config value
+    /**
+     * Return config value.
      * @param string $item
      * @return mixed
-     * @access public
      */
     public function get_configValue($item) {
         return $this->config->get_value($item);
     }
 
-    /*
-     * load additional dictionnary
+    /**
+     * Load additional dictionnary.
      * @return void
-     * @access public
     */
     public function load_additionalDictionnary() {
         $this->add_translation('/data');
@@ -667,10 +639,9 @@ final class Admin_GenericGuestBookManager extends Module {
 
     /* Admin_Site extension configuration methods */
 
-    /*
-     * initialise object in Admin_Site / view configuration mode
+    /**
+     * Initialise object in Admin_Site / view configuration mode
      * @return void
-     * @access public
      */
     public function initialise_configDisplay() {
         $this->isConfig = true;
@@ -679,20 +650,18 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->config->get();
     }
 
-    /*
-     * display object in Admin_Site / view configuration mode
+    /**
+     * Display object in Admin_Site / view configuration mode
      * @return void
-     * @access public
      */
     public function display_configDisplay() {
         $this->load_file('html/configuration/view.html.inc');
     }
 
-    /*
-     * initialise object in Admin_Site / edit configuration mode
+    /**
+     * Initialise object in Admin_Site / edit configuration mode
      * @param Object $form
      * @return void
-     * @access public
      */
     public function initialise_configEdition($form) {
         global $camyks;
@@ -711,23 +680,44 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->configform->add_hidden('notification_recipients_count_', count($this->userList));
     }
 
-    /*
-     * display object in Admin_Site / edit configuration mode
+    /**
+     * Display object in Admin_Site / edit configuration mode
      * @return void
-     * @access public
      */
     public function display_configEdition() {
         $this->load_file('html/configuration/edit.html.inc');
     }
 
-    /*
-     * execute object in Admin_Site / save configuration mode
+    /**
+     * Execute object in Admin_Site / save configuration mode
      * @return void
-     * @access public
      */
     public function save_configuration() {
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+
+    /* Content_GenericLegalMentions extension methods */
+
+    /**
+     * Return legal mentions data.
+     * @return array
+     */
+    public function get_legalMentionsData() {
+        /* Load dictionnary */
+        $this->load_additionalDictionnary();
+
+        /* Return values */
+        return array(
+            $this->name => array(
+                array(
+                    'title'         => $this->get_translation('legalmentions_data_title'),
+                    'description'   => $this->get_translation('legalmentions_data_description'),
+                    'duration'      => $this->get_translation('legalmentions_data_duration'),
+                    'data'          => $this->get_translation('legalmentions_data_items'),
+                ),
+            ),
+        );
     }
 }
 ?>
