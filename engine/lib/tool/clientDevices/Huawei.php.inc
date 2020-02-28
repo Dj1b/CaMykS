@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.63
+ * @version 1.0.64
  * @date Creation: Apr 2018
  * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -185,6 +185,7 @@ function get_HuaweiClientDevices() {
         'CUN-L01'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'DRA-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
+        'DRA-LX3'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
         'AMN-LX1'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'AMN-LX9'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),

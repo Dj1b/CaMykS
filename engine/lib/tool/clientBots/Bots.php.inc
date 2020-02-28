@@ -4604,7 +4604,7 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://statmt.org',
     );
 
-    /* return bot list */
+    /* Return bot list */
     return $knownBots;
 }
 ?>

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.101
+ * @version 1.0.102
  * @date Creation: Jun 2007
  * @date Modification: Feb 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -99,6 +99,10 @@ function client_getUAInfos($ua=false) {
 
     /*** check unknown */
     if (($c = client_getUnknownInfosFromUserAgent($ua)) !== false)
+        return $c;
+
+    /*** check before bots */
+    if (($c = client_getBeforeBotInfosFromUserAgent($ua)) !== false)
         return $c;
 
     /*** check tool */
@@ -601,9 +605,9 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Cubot.php.inc');
         $model = trim(preg_replace('/_/', ' ', $matches[1]));
         $infos = array_merge($infos, get_CubotClientDevice($model));
-    } elseif (preg_match('/ (GT90) /', $ua, $matches)) {
+    } elseif (preg_match('/ (GT90|KING_KONG_3)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Cubot.php.inc');
-        $model = trim($matches[1]);
+        $model = trim(preg_replace('/_/', ' ', $matches[1]));
         $infos = array_merge($infos, get_CubotClientDevice($model));
     }
 
@@ -925,12 +929,18 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Xiaomi devices */
-    elseif (preg_match('/ (Redmi|MI|Pocophone|Poco|SKR)( |-)?([A-Za-z0-9 ]{1,})( Build|\)| MIUI)/i', $ua, $matches)) {
+    elseif (preg_match('/ (Redmi|MI|SKR)( |-)?([A-Za-z0-9 ]{1,})( Build|\)| MIUI)/i', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].' '.$matches[3]));
     } elseif (preg_match('/(HM NOTE 1LTE|2014811)/', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice(strtolower($matches[1])));
+    }
+
+    /* check Pocophone devices */
+     elseif (preg_match('/ (Pocophone|Poco) ([A-Za-z0-9 ]{1,})( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Pocophone.php.inc');
+        $infos = array_merge($infos, get_PocophoneClientDevice($matches[2]));
     }
 
     /* check Iris Sat devices */
@@ -972,7 +982,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/(PGN|PHQ|SP|PAM|PFS|TCV|TGW)\-?([0-9]{3}G?)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Condor.php.inc');
         $infos = array_merge($infos, get_CondorClientDevice($matches[1].$matches[2]));
-    } elseif (preg_match('/(Griffe|Allure) ([A-Za-z0-9 ]{1,})( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/(Griffe|Allure|Plume) ([A-Za-z0-9 ]{1,})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Condor.php.inc');
         $infos = array_merge($infos, get_CondorClientDevice($matches[1].' '.$matches[2]));
     }
@@ -1113,19 +1123,19 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Lemon devices */
-    elseif (preg_match('/ Lemon ([a-zA-Z0-9\- ]*)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ Lemon ([a-zA-Z0-9\- ]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Lemon.php.inc');
         $infos = array_merge($infos, get_LemonClientDevice($matches[1]));
     }
 
     /* check Evertek devices */
-    elseif (preg_match('/ (Ever[a-zA-Z0-9\- ]*)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ (Ever[a-zA-Z0-9\- ]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Evertek.php.inc');
         $infos = array_merge($infos, get_EvertekClientDevice($matches[1]));
     }
 
     /* check Essential devices */
-    elseif (preg_match('/ (PH-1) Build/', $ua, $matches)) {
+    elseif (preg_match('/ (PH-1)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Essential.php.inc');
         $infos = array_merge($infos, get_EssentialClientDevice($matches[1]));
     }
@@ -1753,8 +1763,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check unsmartly written browser, non case sensitive */
-    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave|360SE|liloiosapp)(?:\/| |\-)?([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LinkedInApp'=>'LinkedIn App', '360SE'=>'360Safe', 'liloiosapp'=>'Lilo');
+    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave|360SE|liloiosapp|KAKAOTALK)(?:\/| |\-)?([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LinkedInApp'=>'LinkedIn App', '360SE'=>'360Safe', 'liloiosapp'=>'Lilo', 'KAKAOTALK'=>'KakaoTalk');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]])?$rep[$matches[1]]:$matches[1],
             'browser_version'   => isset($matches[2])?$matches[2]:'',
@@ -2272,6 +2282,73 @@ function client_getKnownTools() {
     return _client_getKnownTools();
 }
 
+/* Before bots methods */
+
+/**
+ * Return bot index if before bot.
+ * @param string $ua
+ * @return mixed
+ */
+function client_checkIsBeforeBot($ua=false) {
+    /* get user agent */
+    if (!$ua) $ua = client_getUserAgent();
+
+    /* load known bots */
+    $knownBots = client_getKnownBeforeBots();
+
+    /* build detection pattern */
+    $detectionPattern = implode('|', array_keys($knownBots));
+    $detectionPattern = string_escape4Regex($detectionPattern);
+    $detectionPattern = '/'.$detectionPattern.'/i';
+
+    /* start detection and return result */
+    if (preg_match($detectionPattern, strtolower($ua), $result))
+        return $result[0];
+    return false;
+}
+
+/**
+ * Return bot info if bot.
+ * @param string $bot
+ * @return mixed
+ */
+function client_getBeforeBotInfos($bot='') {
+    $knownBots = client_getKnownBeforeBots();
+
+    if (isset($knownBots[$bot]))
+        return $knownBots[$bot];
+    return array();
+}
+
+
+/**
+ * Return bot info from user agent.
+ * @param string $ua
+ * @return mixed
+ */
+function client_getBeforeBotInfosFromUserAgent($ua='') {
+    $knownBots = client_getKnownBeforeBots();
+
+    /* build detection pattern */
+    $detectionPattern = implode('|', array_keys($knownBots));
+    $detectionPattern = string_escape4Regex($detectionPattern);
+    $detectionPattern = '/'.$detectionPattern.'/i';
+
+    /* start detection and return result */
+    if ( preg_match ( $detectionPattern, strtolower($ua), $result ) )
+        return $knownBots[$result[0]];
+    return false;
+}
+
+/**
+ * Return known bots list.
+ * @return array
+ */
+function client_getKnownBeforeBots() {
+    include_once('clientBots/Before.php.inc');
+    return _client_getKnownBeforeBots();
+}
+
 /* Unknown bots methods */
 
 /**
@@ -2739,17 +2816,6 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^Mozilla/(?![4|5]\.0)#', $ua))
         return $fake;
 
-    /* not a fake but Apple using a bad user agent */
-    if (preg_match('#Mozilla/5.0 \(Macintosh; Intel Mac OS X 10_11_1\) AppleWebKit/601.2.4 \(KHTML, like Gecko\) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0#', $ua))
-        return array(
-            'platform_type'     => 'tool',
-            'platform_format'   => 'desktop',
-            'tool_title'        => 'Apple iMessages bot',
-            'tool_url'          => '',
-            'engine_title'      => 'Apple',
-            'engine_url'        => 'http://www.apple.com',
-        );
-
     /* default result */
     return false;
 }
@@ -2828,7 +2894,7 @@ function _client_loadSoftwareProperties() {
                 'FakeVersions'  => array('9.11'),
             ),
             'Opera'             => array(
-                'MaxVersion'    => '70',                    // current is 66
+                'MaxVersion'    => '71',                    // current is 67
                 'FakeVersions'  => array(),
             ),
             'Safari'            => array(

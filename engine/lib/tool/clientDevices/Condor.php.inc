@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Condor.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Apr 2018
- * @date Modification: Jul 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -26,7 +26,6 @@ function get_CondorClientDevice($deviceCode='') {
         'TGW706'            => array('platform_model' => 'Tab TGW-706',     'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2015),
         'TFX708G'           => array('platform_model' => 'Tab TFX-708G',    'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2015),
         'TGW710G'           => array('platform_model' => 'Tab TGW-710G',    'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2016),
-
 
         /* Condor phone */
         'PGN521'            => array('platform_model' => 'Griffe G4 Plus',  'platform_year' => 2015),
@@ -49,6 +48,7 @@ function get_CondorClientDevice($deviceCode='') {
         'Allure M1 Plus'    => array('platform_model' => 'Allure M1 Plus',  'platform_year' => 2017),
         'Allure X'          => array('platform_model' => 'Allure X',        'platform_year' => 2019),
         'Griffe T2'         => array('platform_model' => 'Griffe T2',       'platform_year' => 2017),
+        'Plume L2 Pro'      => array('platform_model' => 'Plume L2 Pro',    'platform_year' => 2018),
 
     );
 
