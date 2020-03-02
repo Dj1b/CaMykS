@@ -4,10 +4,10 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.3
+ * @version 1.1.4
  * @date Creation: Jun 2005
- * @date Modification: Dec 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -1204,6 +1204,9 @@ final class ContentPage {
         }
         $this->params = data_decode_properties($this->params_, '-');
 
+        /* add robot rules */
+        $camyks->HTMLPage->set_robotInformations($this->robotIndex, $this->robotFollow);
+
         /* add metas */
         foreach ($this->metas as $meta) {
             if ($meta['method'] != 'hidden' and ($meta['language'] == '' or $meta['language'] == $camyks->current_language))
@@ -1216,8 +1219,9 @@ final class ContentPage {
             $camyks->HTMLPage->add_meta('og:type', 'website', 'property');
             $camyks->HTMLPage->add_meta('og:title', $this->get_longTitleDisplay('html'), 'property');
             $camyks->HTMLPage->add_meta('og:url', $camyks->get_confValue('url').'/'.$camyks->get_siteCurrentLink(), 'property');
-            $camyks->HTMLPage->add_meta('og:description', string_text2HTML($this->description), 'property');
-            $camyks->HTMLPage->add_meta('og:image', '', 'property');
+            if (trim($this->description) != '')
+                $camyks->HTMLPage->add_meta('og:description', string_text2HTML($this->description), 'property');
+            //$camyks->HTMLPage->add_meta('og:image', '', 'property');
         }
 
         if ($this->get_configValue('site_hreflang') == 1 and count($camyks->get_confValue('site_languages'))) {
@@ -1225,9 +1229,6 @@ final class ContentPage {
                 if ($l != $camyks->current_language)
                     $camyks->HTMLPage->add_link('alternate', $camyks->get_confValue('url').'/'.$this->get_siteLink($this->params, $l), array('hreflang'=>$languages[$l]['extend']));
         }
-
-        /* add robot rules */
-        $camyks->HTMLPage->set_robotInformations($this->robotIndex, $this->robotFollow);
 
         /* init template */
         if ($this->template == '') {

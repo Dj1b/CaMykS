@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_GenericEmailingManager/Admin_GenericEmailingManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Dec 2012
- * @date Modification: Sep 2019
- * @copyright 2012 - 2019 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2012 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -108,6 +108,7 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('Content_GenericLegalMentions');
     }
 
     /* Overrides Module methods */
@@ -2230,6 +2231,14 @@ final class Admin_GenericEmailingManager extends Module {
     }
 
     /**
+     * Load additional dictionnary.
+     * @return void
+     */
+    public function load_additionalDictionnary() {
+        $this->add_translation('/data');
+    }
+
+    /**
      * Install .htaccess rules.
      * @return boolean success
      */
@@ -2299,6 +2308,30 @@ final class Admin_GenericEmailingManager extends Module {
     public function save_configuration() {
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+
+    /* Content_GenericLegalMentions extension methods */
+
+    /**
+     * Return legal mentions data.
+     * @return array
+     */
+    public function get_legalMentionsData() {
+
+        /* Load dictionnary */
+        $this->load_additionalDictionnary();
+
+        /* Return values */
+        return array(
+            $this->name => array(
+                array(
+                    'title'         => $this->get_translation('legalmentions_data_title'),
+                    'description'   => $this->get_translation('legalmentions_data_description'),
+                    'duration'      => $this->get_translation('legalmentions_data_duration'),
+                    'data'          => $this->get_translation('legalmentions_data_items'),
+                ),
+            ),
+        );
     }
 
     /* Updates methods */

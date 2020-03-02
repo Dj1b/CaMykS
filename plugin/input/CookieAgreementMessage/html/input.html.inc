@@ -14,28 +14,28 @@
  */
 global $camyks;
 ?>
-<div id="cookieAgreementMessage" class="cookieAgreementMessage <?=$this->params['location'];?>">
+<div id="cookieAgreementMessage" class="cookieAgreementMessage <?= $this->params['location']; ?>">
     <div class="message">
-        <?=$this->params['message']; ?>
+        <?= $this->params['message']; ?>
     </div>
 
     <div class="buttons">
         <?php if ($this->params['styleSource'] == 'plugin') : ?>
             <a href="javascript:CookieAgreementMessage.accept_cookies();void(0);" class="acceptButton">
-                <?=$this->get_translation('accept'); ?>
+                <?= $this->get_translation('accept'); ?>
             </a>
             <?php if ($this->params['aboutCookie'] != '') : ?>
-                <a href="<?=$this->params['aboutCookie'];?>" class="aboutButton" target="_blank" rel="noopener">
-                    <?=$this->get_translation('about'); ?>
+                <a href="<?= $this->params['aboutCookie']; ?>" class="aboutButton" target="_blank" rel="noopener">
+                    <?= $this->get_translation('about'); ?>
                 </a>
             <?php endif; ?>
         <?php else : ?>
-            <?=$camyks->theme->get_button(array(
+            <?= $camyks->theme->get_button(array(
                     'title'     => $this->get_translation('accept'),
                     'link'      => 'javascript:CookieAgreementMessage.accept_cookies();void(0);',
                 )); ?>
             <?php if ($this->params['aboutCookie'] != '') : ?>
-                <?=$camyks->theme->get_button(array(
+                <?= $camyks->theme->get_button(array(
                     'title'     => $this->get_translation('about'),
                     'link'      => $this->params['aboutCookie'],
                     'target'    => '_blank',
@@ -44,7 +44,7 @@ global $camyks;
         <?php endif; ?>
     </div>
 </div>
-<?php 
+<?php
 /**
  * @endcond Exclude
  */

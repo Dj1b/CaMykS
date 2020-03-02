@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.26
  * @date Creation: May 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -97,6 +97,16 @@ function _client_getKnownTools() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Google-Youtube-Links',
         'tool_url'          => '',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* Google-Structured-Data-Testing-Tool */
+    $knownTools['google-structured-data'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Google-Structured-Data-Testing-Tool',
+        'tool_url'          => 'https://search.google.com/structured-data/testing-tool',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
     );
@@ -1290,6 +1300,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Hexometer',
         'engine_url'        => 'https://hexometer.com/',
+    );
+
+    /* AdvancedSiteChecker */
+    $knownTools['advancedsitechecker'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'AdvancedSiteChecker',
+        'engine_url'        => 'https://advanced-site-checker.com/',
     );
 
     /* return list */

@@ -1,16 +1,13 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date    : May 2010
- * Last Modif Date  : May 2010
- *
- * Content_GenericGlossaryViewer french dictionnary
-*/
+/**
+ * @brief Content_GenericGlossaryViewer module, french dictionnary.
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2010
+ * @date Modification: Jan 2020
+ * @copyright 2010 - 2020 Ideogram Design
+ */
 $this->trads['mod_content_genericglossaryviewer_title'] = 'Affichage du lexique';
 $this->trads['mod_content_genericglossaryviewer_desc'] = '';
 

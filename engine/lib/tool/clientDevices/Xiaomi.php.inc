@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.38
  * @date Creation: May 2018
- * @date Modification: Jan 2020
+ * @date Modification: Feb 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -72,6 +72,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 9 lite'             => array('platform_model' => 'Mi 9 Lite',           'platform_year' => 2019),
         'mi 9t'                 => array('platform_model' => 'Mi 9T',               'platform_year' => 2019),
         'mi 9t pro'             => array('platform_model' => 'Mi 9T Pro',           'platform_year' => 2019),
+        'mi note 10'            => array('platform_model' => 'Mi Note 10',          'platform_year' => 2019),
 
         /* Phones, Redmi series */
         '2014811'               => array('platform_model' => 'Redmi 2',             'platform_year' => 2014),
@@ -108,9 +109,6 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
         'redmi note 8t'         => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
         'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),
-
-        'pocophone f1'          => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
-        'poco f1'               => array('platform_model' => 'Pocophone F1',        'platform_year' => 2018),
 
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),
     );

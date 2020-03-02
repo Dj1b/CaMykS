@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by			: camyks.net
- * Author						: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version		: 1.0
- * Object Type      : Plugin / Module Library
- * Creation Date		: May 2010
- * Last Modif Date	: May 2010
- * 
- * Admin_GenericGlossaryManager category list parameters
+/**
+ * @brief Admin_GenericGlossaryManager Module, category list parameters.
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2010
+ * @date Modification: Feb 2020
+ * @copyright 2010 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
@@ -29,8 +28,10 @@ $this->categoryListParams = array('name'=>'categoryList', 'useSession'=>true, 'o
 $this->categoryListParams['headhiddens'] = array('openTab'=>'categories');
 
 /* build head parameters */
-$this->categoryListParams['headselectors'] = array('page'=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-						   'status'=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->categoryStatusList, 'default'=>'-1'));
+$this->categoryListParams['headselectors'] = array(
+    'page'      => array('title' =>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+    'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->categoryStatusList, 'default'=>'-1'),
+);
 
 /* build sort parameters */
 $this->categoryListParams['sort'] = array('allowed'=>false, 'default'=>'title', 'defaultway'=>'');
@@ -38,9 +39,11 @@ $this->categoryListParams['sort'] = array('allowed'=>false, 'default'=>'title', 
 /* build column parameters */
 $this->categoryListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewcategory'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editCategoryLink, 0), 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
 
-$this->categoryListParams['listcolumns'] = array('status'=>array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
-						 'title'=>array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-						 'definitions'=>array('title'=>$this->get_translation('definitions'), 'columntype'=>'text'),
-						 'edit'=>array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editCategoryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editcategory')),
-						 'delete'=>array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteCategoryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletecategory'), 'condition'=>'is_deletable'));
+$this->categoryListParams['listcolumns'] = array(
+    'status'        => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
+    'title'         => array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
+    'definitions'   => array('title'=>$this->get_translation('definitions'), 'columntype'=>'text'),
+    'edit'          => array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editCategoryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editcategory')),
+    'delete'        => array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteCategoryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletecategory'), 'condition'=>'is_deletable'),
+);
 ?>
