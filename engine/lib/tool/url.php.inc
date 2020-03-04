@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/url.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Oct 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Feb 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -78,7 +78,7 @@ function url_getAsComplete($url, $scheme='http') {
  * @return string
  */
 function url_getAsSmart($url) {
-    $url = explode('://', trim($url));
+    $url = explode('://', trim(preg_replace('#/$#', '', $url)));
     if (count($url) == 1)
         return $url[0];
     return $url[1];
