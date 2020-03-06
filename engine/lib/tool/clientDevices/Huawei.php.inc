@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.64
+ * @version 1.0.65
  * @date Creation: Apr 2018
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -85,6 +85,7 @@ function get_HuaweiClientDevices() {
         'FIG-LX3'   => array('platform_model' => 'P Smart',         'platform_year' => 2017),
         'INE-LX1'   => array('platform_model' => 'P Smart+',        'platform_year' => 2018),
         'POT-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2019),
+        'POT-LX1T'  => array('platform_model' => 'P Smart+',        'platform_year' => 2019),
         'STK-L21'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'STK-LX1'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'STK-LX3'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),

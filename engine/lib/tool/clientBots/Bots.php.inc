@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.57
+ * @version 1.0.58
  * @date Creation: May 2018
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4602,6 +4602,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://statmt.org/paracrawl/robots.html',
         'engine_title'      => 'Statistical Machine Translation',
         'engine_url'        => 'http://statmt.org',
+    );
+
+    /* SearchAtlas.com SEO Crawler */
+    $knownBots['searchatlas.com seo crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'SearchAtlas.com SEO Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'Search Atlas',
+        'engine_url'        => 'https://www.searchatlas.com',
     );
 
     /* Return bot list */
