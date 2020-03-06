@@ -4,10 +4,10 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Dec 2014
- * @date Modification: May 2019
- * @copyright 2014 - 2019 CaMykS Team
+ * @date Modification: Mar 2020
+ * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -68,6 +68,9 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
      * @return boolean result
      */
     public function check_data() {
+
+        $this->_libItems['user_agent']->value = trim(preg_replace('/\x\{A0\}/', ' ', $this->_libItems['user_agent']->value));
+
         if ($this->id > 0) {
             /* load previous content */
             $old = $this->get_newObject($this->id);
