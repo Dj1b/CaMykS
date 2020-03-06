@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.102
+ * @version 1.0.103
  * @date Creation: Jun 2007
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -478,6 +478,10 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (SGP[0-9a-zA-Z]{3,})( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Sony.php.inc');
         $infos = array_merge($infos, get_SonyClientDevice($matches[1]));
+    }
+    elseif (preg_match('/; (Xperia)(.*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Sony.php.inc');
+        $infos = array_merge($infos, get_SonyClientDevice($matches[1].$matches[2]));
     }
     elseif (preg_match('/ (LT28i)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Sony.php.inc');

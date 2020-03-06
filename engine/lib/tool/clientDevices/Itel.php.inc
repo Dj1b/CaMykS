@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Itel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jan 2019
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,8 +25,9 @@ function get_ItelClientDevice($deviceCode='') {
         'it1508'        => array('platform_model' => 'IT1508',      'platform_year' => 2016),
         'it1508 Plus'   => array('platform_model' => 'IT1508 Plus', 'platform_year' => 2016),
         'it1701'        => array('platform_model' => 'IT1701',      'platform_year' => 2017),
-        'S11'           => array('platform_year' => 2017),
-        'P32'           => array('platform_year' => 2018),
+        'S11'           => array('platform_model' => 'S11',         'platform_year' => 2017),
+        'S32'           => array('platform_model' => 'S32',         'platform_year' => 2017),
+        'P32'           => array('platform_model' => 'P32',         'platform_year' => 2018),
         'W5504'         => array('platform_model' => 'P33',         'platform_year' => 2019),
     );
 

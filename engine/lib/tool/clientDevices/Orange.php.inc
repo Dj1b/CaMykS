@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Orange.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.4
  * @date Creation: Sep 2018
- * @date Modification: Sep 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Mar 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -28,11 +28,12 @@ function get_OrangeClientDevice($deviceCode='') {
         'Dive 71'       => array('platform_year' => 2016),
         'Nura 2'        => array('platform_year' => 2016),
         'Neva 80'       => array('platform_year' => 2016),
-        'Rise51'        => array('platform_model' => 'Rise 51', 'platform_year' => 2016),
-        'Dive72'        => array('platform_model' => 'Dive 72', 'platform_year' => 2017),
-        'Rise_33'       => array('platform_model' => 'Rise 33', 'platform_year' => 2017),
-        'Rise52'        => array('platform_model' => 'Rise 52', 'platform_year' => 2017),
-        'Rise 54'       => array('platform_model' => 'Rise 54', 'platform_year' => 2018),
+        'Rise51'        => array('platform_model' => 'Rise 51',     'platform_year' => 2016),
+        'Dive72'        => array('platform_model' => 'Dive 72',     'platform_year' => 2017),
+        'Rise_33'       => array('platform_model' => 'Rise 33',     'platform_year' => 2017),
+        'Rise52'        => array('platform_model' => 'Rise 52',     'platform_year' => 2017),
+        'Rise 54'       => array('platform_model' => 'Rise 54',     'platform_year' => 2018),
+        'Neva play'     => array('platform_model' => 'Neva play',   'platform_year' => 2019),
     );
 
     /* Check for returning list */

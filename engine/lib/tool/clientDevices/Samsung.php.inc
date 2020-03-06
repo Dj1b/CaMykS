@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.68
+ * @version 1.0.69
  * @date Creation: Apr 2018
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -77,6 +77,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T830'   => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T835N'  => array('platform_model' => 'Galaxy Tab S4',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T720'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
+        'SM-T725'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T860'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T865'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
 
@@ -327,6 +328,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)',        'platform_year' => 2013),
         'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)',              'platform_year' => 2013),
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo',               'platform_year' => 2014),
+        'SM-N9100'  => array('platform_model' => 'Galaxy Note 4 Duos',              'platform_year' => 2014),
         'SM-N910A'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N910C'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N910F'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
@@ -346,6 +348,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N960U'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960W'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N970F'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
+        'SM-N9750'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
         'SM-N975F'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
 
         /* Samsung Galaxy Fold series */
