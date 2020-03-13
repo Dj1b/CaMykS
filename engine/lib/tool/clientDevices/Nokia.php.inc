@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Nokia.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Jun 2018
- * @date Modification: Dec 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Mar 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -21,6 +21,7 @@
 function get_NokiaClientDevice($deviceCode='') {
     $deviceList = array(
         'Lumia 920'     => array('platform_model' => 'Lumia 920',       'platform_year' => 2012),
+        'Lumia 925'     => array('platform_model' => 'Lumia 925',       'platform_year' => 2013),
         'Lumia 535'     => array('platform_model' => 'Lumia 535',       'platform_year' => 2014),
         'Lumia 735'     => array('platform_model' => 'Lumia 735',       'platform_year' => 2014),
         'Lumia 830'     => array('platform_model' => 'Lumia 830',       'platform_year' => 2014),

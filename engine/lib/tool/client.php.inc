@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.103
+ * @version 1.0.104
  * @date Creation: Jun 2007
  * @date Modification: Mar 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -139,7 +139,7 @@ function client_getUAInfos($ua=false) {
         ));
 
     /* check Playstation 4 / Vita */
-    if (preg_match('/\(PlayStation ([^ ]*) ([0-9\.]*)\)/i', $ua, $matches))
+    if (preg_match('/\(PlayStation (.*);? ([0-9\.]*)\)/Ui', $ua, $matches))
         $infos = array(
             'platform_company'  => 'Sony',
             'platform_model'    => 'Playstation '.$matches[1],
@@ -150,19 +150,6 @@ function client_getUAInfos($ua=false) {
             'browser_title'     => 'PS '.$matches[1].' Browser',
             'browser_version'   => '--',
         );
-
-    /* check Playstation 3 */
-    if (preg_match('/\(PLAYSTATION 3; ([0-9\.]*)\)$/', $ua, $matches))
-        return _client_mergeUAInfos($req, array(
-            'platform_company'  => 'Sony',
-            'platform_model'    => 'Playstation 3',
-            'platform_type'     => 'computer',
-            'platform_format'   => 'desktop',
-            'system_title'      => 'Playstation 3',
-            'system_version'    => $matches[1],
-            'browser_title'     => 'PS3 Browser',
-            'browser_version'   => '--',
-        ));
 
     /* check Black Berry */
     if (preg_match('/BlackBerry([^\/;]{1,})\/([0-9\.]*)/', $ua, $matches))
@@ -1477,6 +1464,20 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_GamePadDigitalClientDevice($device));
     }
 
+    /* check True devices */
+    elseif (preg_match('/; (SMART TAB 4G Speedy .*)?( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/True.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_TrueClientDevice($device));
+    }
+
+    /* check Cherry devices */
+    elseif (preg_match('/; (Flare_J3_Lite)?( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Cherry.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_CherryClientDevice($device));
+    }
+
     /* check Blackview devices : before Umidigi */
     elseif (preg_match('/; (BV|P)([a-zA-Z0-9\-_]*)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Blackview.php.inc');
@@ -1842,7 +1843,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|QwantBrowser Firefox|QwantMobile|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|Edg|EdgiOS|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori|HistoryHound|TO-Browser|K-Ninja|Kapiko|Kazehakase|eM Client|Mb2345Browser|LieBaoFast|Whale|ADG|Light|jp.co.yahoo.ipn.appli|HeyTapBrowser|HuaweiBrowser|OneNote|115Browser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(YaBrowser|OPR|IceDragon|Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|QwantBrowser Firefox|QwantMobile|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|Edg|EdgiOS|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori|HistoryHound|TO-Browser|K-Ninja|Kapiko|Kazehakase|eM Client|Mb2345Browser|LieBaoFast|Whale|ADG|Light|jp.co.yahoo.ipn.appli|HeyTapBrowser|HuaweiBrowser|OneNote|115Browser|Paparazzi!)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Dragon'=>'IceDragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'QwantBrowser'=>'Qwant', 'QwantBrowser Firefox'=>'Qwant', 'QwantMobile' => 'Qwant', 'Blazer'=> 'Palm Blazer', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'Edg' => 'Edge', 'EdgiOS'=>'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch', 'chromeframe'=>'Internet Explorer/Chrome Frame', 'UR'=>'UR Browser', 'handyCafeCln'=>'HandyCafe', 'TO-Browser'=>'t-online.de Browser', 'K-Ninja'=>'K-Ninja Samourai', 'Mb2345Browser'=>'2345 Browser', 'ADG'=>'AOL Desktop', 'jp.co.yahoo.ipn.appli'=>'Yahoo Japan App', 'HeyTapBrowser'=>'HeyTap Browser', 'HuaweiBrowser'=>'Huawei Browser');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],

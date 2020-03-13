@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.65
+ * @version 1.0.66
  * @date Creation: Apr 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -147,6 +147,7 @@ function get_HuaweiClientDevices() {
         'STF-AL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-TL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-L09'   => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
+        'LLD-L21'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL10'  => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL20'  => array('platform_model' => 'Honor 9I',        'platform_year' => 2018),

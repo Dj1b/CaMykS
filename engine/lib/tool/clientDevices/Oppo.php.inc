@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Oppo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Nov 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -42,6 +42,7 @@ function get_OppoClientDevice($deviceCode='') {
         'RMX1825'   => array('platform_model' => 'Realme 3',        'platform_year' => 2019),
         'RMX1971'   => array('platform_model' => 'Realme 5 Pro',    'platform_year' => 2019),
         'CPH1907'   => array('platform_model' => 'Reno 2',          'platform_year' => 2019),
+        'CPH1909'   => array('platform_model' => 'A5s',             'platform_year' => 2019),
         'CPH1917'   => array('platform_model' => 'Reno',            'platform_year' => 2019),
         'CPH1931'   => array('platform_model' => 'A5',              'platform_year' => 2019),
         'CPH1941'   => array('platform_model' => 'A9',              'platform_year' => 2019),

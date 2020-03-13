@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.58
+ * @version 1.0.59
  * @date Creation: May 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -4612,6 +4612,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Search Atlas',
         'engine_url'        => 'https://www.searchatlas.com',
+    );
+
+    /* Cincraw Crawler */
+    $knownBots['cincraw'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Cincraw',
+        'bot_url'           => 'https://cincrawdata.net/bot/',
+        'engine_title'      => 'Cincraw Data',
+        'engine_url'        => 'https://cincrawdata.net',
+    );
+
+    /* DemandbaseSiteAnalyzer */
+    $knownBots['demandbasesiteanalyzer'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DemandbaseSiteAnalyzer',
+        'bot_url'           => 'mailto:info@demandbase.com',
+        'engine_title'      => 'Demandbase',
+        'engine_url'        => 'https://www.demandbase.com',
     );
 
     /* Return bot list */
