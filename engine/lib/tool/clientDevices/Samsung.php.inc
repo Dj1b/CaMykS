@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.69
+ * @version 1.0.70
  * @date Creation: Apr 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -347,6 +347,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N960F'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960U'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N960W'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
+        'SM-N9700'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
         'SM-N970F'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
         'SM-N9750'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
         'SM-N975F'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
