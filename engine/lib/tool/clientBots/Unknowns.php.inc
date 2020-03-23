@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Jan 2019
  * @date Modification: Mar 2020
  * @copyright 2019 - 2020 CaMykS Team
@@ -549,7 +549,7 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
-    /* "spider" */
+    /* "spider" *
     $unknownBots['spider'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
@@ -559,7 +559,7 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
-    /* raisupgraph */
+    / * raisupgraph */
     $unknownBots['raisupgraph'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',

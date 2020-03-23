@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Apr 2018
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -70,6 +70,7 @@ function get_ArchosClientDevice($deviceCode='') {
         '52 Platinum'               => array('platform_model' => '52 Platinum',             'platform_year' => 2015),
         '55 Platinum'               => array('platform_model' => '55 Platinum',             'platform_year' => 2015),
         '55b Platinum'              => array('platform_model' => '55b Platinum',            'platform_year' => 2016),
+        '70 Platinum v3'            => array('platform_model' => '70 Platinum v3',          'platform_year' => 2015),
         '40 Helium'                 => array('platform_model' => '40 Helium',               'platform_year' => 2015),
         '45b Helium'                => array('platform_model' => '40b Helium',              'platform_year' => 2015),
         '50 Helium Plus'            => array('platform_model' => '50 Helium Plus',          'platform_year' => 2015),
@@ -88,6 +89,7 @@ function get_ArchosClientDevice($deviceCode='') {
         '50 Diamond'                => array('platform_model' => '50 Diamond',              'platform_year' => 2015),
         '55 diamond Selfie'         => array('platform_model' => '55 Diamond Selfie',       'platform_year' => 2016),
         '55 Diamond Selfie Lite'    => array('platform_model' => '55 Diamond Selfie Lite',  'platform_year' => 2016),
+        '55 Diamond 2 Plus'         => array('platform_model' => '55 Diamond 2 Plus',       'platform_year' => 2016),
         '50 Cobalt'                 => array('platform_model' => '50 Cobalt',               'platform_year' => 2015),
         '55 Cobalt Plus'            => array('platform_model' => '55 Cobalt Plus',          'platform_year' => 2016),
         '55B Cobalt'                => array('platform_model' => '55B Cobalt',              'platform_year' => 2017),

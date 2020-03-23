@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/ZTE.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: May 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -20,6 +20,7 @@
  */
 function get_ZTEClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Android mobiles */
         'Z7'            => array('platform_model' => 'Nubia 27',        'platform_year' => 2014),
         'BLADE V7 LITE' => array('platform_model' => 'Blade V7 Lite',   'platform_year' => 2016),
         'Z833'          => array('platform_model' => 'Avid Trio',       'platform_year' => 2016),
@@ -28,6 +29,9 @@ function get_ZTEClientDevice($deviceCode='') {
         'BLADE V0820'   => array('platform_model' => 'Blade V8 Lite',   'platform_year' => 2017),
         'BLADE V9'      => array('platform_model' => 'Blade V9',        'platform_year' => 2018),
         'Z559DL'        => array('platform_model' => 'Blade T2',        'platform_year' => 2018),
+
+        /* Firefox OS mobiles */
+        'OPENC'         => array('platform_model' => 'Open C',          'platform_year' => 2014, 'system_title' => 'Firefox OS'),
     );
 
     /* Check for returning list */

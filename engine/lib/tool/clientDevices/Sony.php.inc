@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.42
  * @date Creation: Apr 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -105,6 +105,7 @@ function get_SonyClientDevice($deviceCode='') {
         'I4113'     => array('platform_model' => 'Xperia 10',               'platform_year' => 2019),
         'I4213'     => array('platform_model' => 'Xperia 10 Plus',          'platform_year' => 2019),
         'I4312'     => array('platform_model' => 'Xperia L3',               'platform_year' => 2019),
+        'J9210'     => array('platform_model' => 'Xperia 5',                'platform_year' => 2020),
 
         'SOV31'     => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),
         'SOV32'     => array('platform_model' => 'Xperia Z5',               'platform_year' => 2015),
