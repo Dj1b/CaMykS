@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Apr 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -30,6 +30,7 @@ function get_LGClientDevice($deviceCode='') {
         'D290'      => array('platform_model' => 'L Fino',          'platform_year' => 2014),
         'D315'      => array('platform_model' => 'F70',             'platform_year' => 2014),
         'D320'      => array('platform_model' => 'L70',             'platform_year' => 2014),
+        'D335'      => array('platform_model' => 'L Bello',         'platform_year' => 2014),
         'D405'      => array('platform_model' => 'L90',             'platform_year' => 2014),
         'D505'      => array('platform_model' => 'Optimus F6',      'platform_year' => 2013),
         'D620'      => array('platform_model' => 'G2 Mini',         'platform_year' => 2014),
@@ -81,6 +82,7 @@ function get_LGClientDevice($deviceCode='') {
         'Q720'      => array('platform_model' => 'Stylo 5',         'platform_year' => 2019),
         'V405'      => array('platform_model' => 'V40',             'platform_year' => 2018),
         'VS986'     => array('platform_model' => 'G4',              'platform_year' => 2015),
+        'X210'      => array('platform_model' => 'K7',              'platform_year' => 2016),
         'X410'      => array('platform_model' => 'K30',             'platform_year' => 2018),
 
     );

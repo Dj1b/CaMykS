@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.105
+ * @version 1.0.106
  * @date Creation: Jun 2007
  * @date Modification: Mar 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -920,12 +920,15 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Xiaomi devices */
-    elseif (preg_match('/ (Redmi|MI|SKR)( |-)?([A-Za-z0-9 ]{1,})( Build|\)| MIUI)/i', $ua, $matches)) {
+    elseif (preg_match('/ (Redmi|MI)( |-)?([A-Za-z0-9][A-Za-z0-9 ]{0,})( Build|\)| MIUI)/Ui', $ua, $matches)) {
+        include_once('clientDevices/Xiaomi.php.inc');
+        $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].' '.$matches[3]));
+    } elseif (preg_match('/(SKR|DLT)( |-)?(H0)( Build|\)| MIUI)/Ui', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].' '.$matches[3]));
     } elseif (preg_match('/(HM NOTE 1LTE|2014811)/', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
-        $infos = array_merge($infos, get_XiaomiClientDevice(strtolower($matches[1])));
+        $infos = array_merge($infos, get_XiaomiClientDevice($matches[1]));
     }
 
     /* check Pocophone devices */
@@ -1440,7 +1443,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Poptel devices */
-    elseif (preg_match('/; (P9000_MAX)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (P10|P9000_MAX)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Poptel.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_PoptelClientDevice($device));
@@ -2890,7 +2893,7 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '77',                    // current is 73
+                'MaxVersion'    => '78',                    // current is 74
                 'FakeVersions'  => array('27.3'),
             ),
             'Chrome'            => array(
