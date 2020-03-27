@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: May 2018
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -85,6 +85,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi 3s'              => array('platform_model' => 'Redmi 3S',            'platform_year' => 2016),
         'redmi 3x'              => array('platform_model' => 'Redmi 3X',            'platform_year' => 2016),
         'redmi 4'               => array('platform_model' => 'Redmi 4',             'platform_year' => 2016),
+        'redmi 4a'              => array('platform_model' => 'Redmi 4A',            'platform_year' => 2016),
         'redmi 4 prime'         => array('platform_model' => 'Redmi 4 Prime',       'platform_year' => 2016),
         'redmi pro'             => array('platform_model' => 'Redmi Pro',           'platform_year' => 2016),
         'redmi 4x'              => array('platform_model' => 'Redmi 4X',            'platform_year' => 2017),
@@ -111,13 +112,12 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),
 
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),
+        'dlt h0'                => array('platform_model' => 'Black Shark 2 Pro',   'platform_year' => 2019),
     );
 
     /* Check for returning list */
     if ($deviceCode === false)
         return $deviceList;
-    else
-        $deviceCode = strtolower($deviceCode);
 
     /* Initialise result. */
     $result = array(
@@ -127,6 +127,9 @@ function get_XiaomiClientDevice($deviceCode='') {
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
     );
+
+    /* Normalise device code */
+    $deviceCode = strtolower($deviceCode);
 
     /* Check if device is a known device. */
     if (!array_key_exists($deviceCode, $deviceList))

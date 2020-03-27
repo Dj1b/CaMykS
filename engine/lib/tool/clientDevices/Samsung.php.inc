@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.71
+ * @version 1.0.72
  * @date Creation: Apr 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -133,6 +133,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G9350'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G935A'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G935F'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
+        'SM-G935K'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G935P'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G935U'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
         'SM-G935V'  => array('platform_model' => 'Galaxy S7 Edge',                  'platform_year' => 2016),
@@ -220,6 +221,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A507FN' => array('platform_model' => 'Galaxy A50s',                     'platform_year' => 2019),
         'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A7050'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
+        'SM-A715F'  => array('platform_model' => 'Galaxy A71',                      'platform_year' => 2019),
 
         /* Samsung Galaxy C series */
         'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),

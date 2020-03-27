@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Poptel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Dec 2019
- * @date Modification: Dec 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Mar 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -24,7 +24,8 @@ function get_PoptelClientDevice($deviceCode='') {
 
     $deviceList = array(
         /* Poptel mobiles */
-        'P9000_MAX'    => array('platform_model' => 'P9000 Max',  'platform_year' => 2019),
+        'P10'       => array('platform_model' => 'P10',         'platform_year' => 2018),
+        'P9000_MAX' => array('platform_model' => 'P9000 Max',   'platform_year' => 2019),
     );
 
     /* Check for returning list */
