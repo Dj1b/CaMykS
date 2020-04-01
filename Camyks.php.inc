@@ -4,10 +4,10 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Jun 2005
- * @date Modification: Jun 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Mar 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -685,7 +685,7 @@ final class Camyks {
                 break;
             case 'auto':
                 if ($isSSL) return;
-                $test = get_headers('https://'.$_SERVER['HTTP_HOST']);
+                $test = @get_headers('https://'.$_SERVER['HTTP_HOST']);
                 if (preg_match('/200/', $test[0])) {
                     header('Location:'.$sslURL.$_SERVER['REQUEST_URI']);
                     die();
