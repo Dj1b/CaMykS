@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.106
+ * @version 1.0.107
  * @date Creation: Jun 2007
  * @date Modification: Mar 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -613,8 +613,15 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_CatClientDevice($model));
     }
 
+    /* check Doogee devices, to be inserted before Xiaomi/Wiko/Acer */
+    elseif (preg_match('/; (MIX( Lite)?|MIX2|BL5000|S90|X70|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Doogee.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_DoogeeClientDevice($model));
+    }
+
     /* check Acer devices : before blackview, wiko */
-    elseif (preg_match('/ ([EISVZ][0-9]{3}|[EST][0-9]{2}|B[0-9]-[A0-9][0-9]0[A-Z]*)( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/ ([EISVZ][0-9]{3}|[EST][0-9]{2}|[AB][0-9]-[A0-9][0-9]0[A-Z]*)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Acer.php.inc');
         $infos = array_merge($infos, get_AcerClientDevice($matches[1]));
     } elseif (preg_match('/ acer[_| |-]([A-Z][0-9]{3})( Build|\))/Ui', $ua, $matches)) {
@@ -630,13 +637,6 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Nomu.php.inc');
         $device = strtolower($matches[1]);
         $infos = array_merge($infos, get_NomuClientDevice($device));
-    }
-
-    /* check Doogee devices, to be inserted before Xiaomi/Wiko */
-    elseif (preg_match('/; (MIX( Lite)?|MIX2|BL5000|S90|X70|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
-        include_once('clientDevices/Doogee.php.inc');
-        $model = $matches[1];
-        $infos = array_merge($infos, get_DoogeeClientDevice($model));
     }
 
     /* check SFR (France) mobiles - before Wiko */
@@ -1471,17 +1471,24 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check True devices */
-    elseif (preg_match('/; (SMART TAB 4G Speedy .*)?( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (SMART TAB 4G Speedy .*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/True.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_TrueClientDevice($device));
     }
 
     /* check Cherry devices */
-    elseif (preg_match('/; (Flare_J3_Lite)?( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (Flare.*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Cherry.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_CherryClientDevice($device));
+    }
+
+    /* check Sonim devices */
+    elseif (preg_match('/; (XP[0-9]{4})( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Sonim.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_SonimClientDevice($device));
     }
 
     /* check Blackview devices : before Umidigi */
@@ -1642,7 +1649,7 @@ function client_getUAInfos($ua=false) {
         }
 
         /* check determined linux os */
-        elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux|Sailfish|Raspbian)/', $ua, $matches)) {
+        elseif (preg_match('/(Debian|Ubuntu|DragonFly|SUSE|Slackware|CentOS|Fedora|Kubuntu|Edubuntu|Xubuntu|Gentoo|Red Hat|Mint|Mandriva|CrOS|Arch ?Linux|Caldera Systems OpenLinux|Sailfish|Raspbian|Mageia)/', $ua, $matches)) {
             $rep = array(
                 'CrOS'      => array('system_title'     => 'Chrome OS (Linux)',),
                 'Sailfish'  => array('platform_company' => '',  'system_title' => 'Sailfish OS (Linux)', 'platform_type' => 'handheld', 'platform_format' => 'handheld',),

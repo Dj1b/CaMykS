@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Apr 2018
- * @date Modification: Feb 2020
+ * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -59,11 +59,13 @@ function get_LenovoClientDevice($deviceCode='') {
         'K53a48'    => array('platform_model' => 'K6 Note',                 'platform_year' => 2016),
         'A1010a20'  => array('platform_model' => 'A Plus',                  'platform_year' => 2016),
         'A6600a40'  => array('platform_model' => 'A6600 Plus',              'platform_year' => 2016),
+        'P2a42'     => array('platform_model' => 'P2',                      'platform_year' => 2016),
         'A1000m'    => array('platform_model' => 'Vibe A',                  'platform_year' => 2016),
         'A2010l36'  => array('platform_model' => 'Vibe K5',                 'platform_year' => 2016),
         'A6020a46'  => array('platform_model' => 'Vibe K5 Plus',            'platform_year' => 2016),
         'A7010A48'  => array('platform_model' => 'Vibe K4 Note',            'platform_year' => 2016),
         'A7020a40'  => array('platform_model' => 'Vibe K5 Note',            'platform_year' => 2016),
+        'A2016b30'  => array('platform_model' => 'Vibe B',                  'platform_year' => 2016),
         'A2016a40'  => array('platform_model' => 'Vibe B',                  'platform_year' => 2016),
         'A2020a40'  => array('platform_model' => 'Vibe C',                  'platform_year' => 2016),
         'K10a40'    => array('platform_model' => 'Vibe C2',                 'platform_year' => 2016),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Cherry.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Mar 2020
  * @date Modification: Mar 2020
  * @copyright 2020 CaMykS Team
@@ -21,7 +21,9 @@
 function get_CherryClientDevice($deviceCode='') {
     $deviceList = array(
         /* Cherry mobiles */
-        'Flare_J3_Lite' => array('platform_model' => 'Flare J3 Lite', 'platform_year' => 2017),
+        'Flare P1'      => array('platform_model' => 'Flare P1',        'platform_year' => 2017),
+        'Flare_J3_Lite' => array('platform_model' => 'Flare J3 Lite',   'platform_year' => 2017),
+
     );
 
     /* Check for returning list */
