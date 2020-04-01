@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.72
+ * @version 1.0.73
  * @date Creation: Apr 2018
  * @date Modification: Mar 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -166,11 +166,13 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G970W'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G9730'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
         'SM-G973F'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
+        'SM-G973W'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
         'SM-G9750'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975F'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975U'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G980F'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
         'SM-G981B'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
+        'SM-G986B'  => array('platform_model' => 'Galaxy S20+',                     'platform_year' => 2020),
 
         /* Samsung Galaxy A series */
         'SM-A300F'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2014),
@@ -224,6 +226,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A715F'  => array('platform_model' => 'Galaxy A71',                      'platform_year' => 2019),
 
         /* Samsung Galaxy C series */
+        'SM-C9000'  => array('platform_model' => 'Galaxy C9 Pro',                   'platform_year' => 2016),
         'SM-C701F'  => array('platform_model' => 'Galaxy C7 Pro',                   'platform_year' => 2017),
 
         /* Samsung Galaxy E series */
