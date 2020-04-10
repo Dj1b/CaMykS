@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.73
+ * @version 1.0.74
  * @date Creation: Apr 2018
- * @date Modification: Mar 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -201,6 +201,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A800I'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2015),
         'SM-A530F'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
         'SM-A530W'  => array('platform_model' => 'Galaxy A8',                       'platform_year' => 2018),
+        'SM-A730F'  => array('platform_model' => 'Galaxy A8+',                      'platform_year' => 2018),
         'SM-A900F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2016),
         'SM-A910F'  => array('platform_model' => 'Galaxy A9 Pro',                   'platform_year' => 2016),
         'SM-A920F'  => array('platform_model' => 'Galaxy A9',                       'platform_year' => 2018),
@@ -224,6 +225,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A7050'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A715F'  => array('platform_model' => 'Galaxy A71',                      'platform_year' => 2019),
+        'SM-A015F'  => array('platform_model' => 'Galaxy A01',                      'platform_year' => 2020),
 
         /* Samsung Galaxy C series */
         'SM-C9000'  => array('platform_model' => 'Galaxy C9 Pro',                   'platform_year' => 2016),
@@ -350,6 +352,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N930T'  => array('platform_model' => 'Galaxy Note 7',                   'platform_year' => 2016),
         'SM-N935F'  => array('platform_model' => 'Galaxy Note FE',                  'platform_year' => 2017),
         'SM-N950'   => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
+        'SM-N9500'  => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
         'SM-N950F'  => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
         'SM-N950U1' => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
         'SM-N950W'  => array('platform_model' => 'Galaxy Note 8',                   'platform_year' => 2017),
@@ -359,6 +362,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N960W'  => array('platform_model' => 'Galaxy Note 9',                   'platform_year' => 2018),
         'SM-N9700'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
         'SM-N970F'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
+        'SM-N971N'  => array('platform_model' => 'Galaxy Note 10',                  'platform_year' => 2019),
         'SM-N9750'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
         'SM-N975F'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
 
@@ -426,6 +430,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'E7'        => array('platform_model' => 'Galaxy E7',                       'platform_year' => 2016),
 
         /* Samsung non-Galaxy series */
+        'GT-E2250'  => array('platform_model' => 'Utica',                           'platform_year' => 2012),
         'GT-E1500'  => array('platform_model' => 'E1500 Duos',                      'platform_year' => 2012),
         'GT-C3590'  => array('platform_model' => 'C3590',                           'platform_year' => 2013,    'system_title' => 'Symbian'),
         'GT-S3800W' => array('platform_model' => 'REX 70',                          'platform_year' => 2013),

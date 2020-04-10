@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.25
+ * @version 1.0.26
  * @date Creation: Apr 2018
- * @date Modification: Mar 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,8 +48,10 @@ function get_LGClientDevice($deviceCode='') {
         'E960'      => array('platform_model' => 'Nexus 4',         'platform_year' => 2012),
         'G710'      => array('platform_model' => 'G7 ThinQ',        'platform_year' => 2018),
         'G810'      => array('platform_model' => 'G8s ThinQ',       'platform_year' => 2019),
+        'H340'      => array('platform_model' => 'Leon',            'platform_year' => 2015),
         'H812'      => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H815'      => array('platform_model' => 'G4',              'platform_year' => 2015),
+        'H818'      => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H831'      => array('platform_model' => 'G5',              'platform_year' => 2016),
         'H850'      => array('platform_model' => 'G5',              'platform_year' => 2016),
         'H870'      => array('platform_model' => 'G6',              'platform_year' => 2017),
@@ -82,6 +84,7 @@ function get_LGClientDevice($deviceCode='') {
         'Q720'      => array('platform_model' => 'Stylo 5',         'platform_year' => 2019),
         'V405'      => array('platform_model' => 'V40',             'platform_year' => 2018),
         'VS986'     => array('platform_model' => 'G4',              'platform_year' => 2015),
+        'VS987'     => array('platform_model' => 'G5',              'platform_year' => 2016),
         'X210'      => array('platform_model' => 'K7',              'platform_year' => 2016),
         'X410'      => array('platform_model' => 'K30',             'platform_year' => 2018),
 

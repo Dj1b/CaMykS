@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: May 2018
- * @date Modification: Feb 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -799,6 +799,16 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Boost.Beast',
         'tool_url'          => 'https://github.com/boostorg/beast',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Go http package */
+    $knownGenerics['go http package'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Go http package',
+        'tool_url'          => 'https://golang.org/pkg/net/http/',
         'engine_title'      => '',
         'engine_url'        => '',
     );

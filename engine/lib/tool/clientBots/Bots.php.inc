@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.59
+ * @version 1.0.60
  * @date Creation: May 2018
- * @date Modification: Mar 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4632,6 +4632,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'mailto:info@demandbase.com',
         'engine_title'      => 'Demandbase',
         'engine_url'        => 'https://www.demandbase.com',
+    );
+
+    /* Gather Analyze Provide */
+    $knownBots['gather analyze provide'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Gather Analyze Provide',
+        'bot_url'           => '',
+        'engine_title'      => 'GDNP',
+        'engine_url'        => 'https://gdnplus.com',
     );
 
     /* Return bot list */

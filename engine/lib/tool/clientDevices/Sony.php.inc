@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: Apr 2018
- * @date Modification: Mar 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -51,6 +51,7 @@ function get_SonyClientDevice($deviceCode='') {
         'D6683'     => array('platform_model' => 'Xperia Z3 Dual Sim',      'platform_year' => 2015),
         'E2003'     => array('platform_model' => 'Xperia E4',               'platform_year' => 2015),
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
+        'E5533'     => array('platform_model' => 'Xperia C5 Ultra',         'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5633'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5823'     => array('platform_model' => 'Xperia Z5 Compact',       'platform_year' => 2015),
@@ -117,6 +118,8 @@ function get_SonyClientDevice($deviceCode='') {
         'SOV37'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
 
         'SO-03H'    => array('platform_model' => 'Xperia Z5 Premium',       'platform_year' => 2017),
+
+        '502SO'     => array('platform_model' => 'Xperia X Performace',     'platform_year' => 2016),
 
         /* Named */
         'Xperia XA2 Ultra' => array('platform_year' => 2018),
