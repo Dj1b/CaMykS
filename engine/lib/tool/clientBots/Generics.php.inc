@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: May 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -241,6 +241,16 @@ function _client_getKnownGenericsL2() {
         'tool_url'          => '',
         'engine_title'      => 'Ararat Synapse',
         'engine_url'        => 'http://synapse.ararat.cz/doku.php',
+    );
+
+    /* unirest-java library */
+    $knownGenerics['unirest-java/'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'Unirest Java Library',
+        'tool_url'          => 'http://kong.github.io/unirest-java/',
+        'engine_title'      => '',
+        'engine_url'        => '',
     );
 
     /* java library */

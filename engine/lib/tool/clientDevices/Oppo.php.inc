@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Oppo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.23
+ * @version 1.0.24
  * @date Creation: Nov 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -28,8 +28,9 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1607'   => array('platform_model' => 'R9s',             'platform_year' => 2016),
         'A37f'      => array('platform_model' => 'A37f',            'platform_year' => 2016),
         'A37fw'     => array('platform_model' => 'A37fw',           'platform_year' => 2017),
+        'CPH1727'   => array('platform_model' => 'F5',              'platform_year' => 2017),
+        'CPH1729'   => array('platform_model' => 'A83',             'platform_year' => 2017),
         'CPH1837'   => array('platform_model' => 'A3',              'platform_year' => 2018),
-        'CPH1729'   => array('platform_model' => 'A83',             'platform_year' => 2018),
         'CPH1801'   => array('platform_model' => 'A71',             'platform_year' => 2018),
         'CPH1803'   => array('platform_model' => 'A3s',             'platform_year' => 2018),
         'CPH1819'   => array('platform_model' => 'F7',              'platform_year' => 2018),

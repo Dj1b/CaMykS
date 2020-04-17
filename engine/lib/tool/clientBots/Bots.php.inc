@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.60
+ * @version 1.0.61
  * @date Creation: May 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -4642,6 +4642,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'GDNP',
         'engine_url'        => 'https://gdnplus.com',
+    );
+
+    /* Wayback Machine */
+    $knownBots['wayback_machine'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Wayback Machine',
+        'bot_url'           => '',
+        'engine_title'      => 'Internet Archive',
+        'engine_url'        => 'https://archive.org',
+    );
+
+    /* myseosnapshot */
+    $knownBots['myseosnapshot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'myseosnapshot',
+        'engine_url'        => 'https://myseosnapshot.com',
+    );
+
+    /* Domains Project */
+    $knownBots['domains project'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Domains Project',
+        'engine_url'        => 'https://github.com/tb0hdan/domains',
     );
 
     /* Return bot list */

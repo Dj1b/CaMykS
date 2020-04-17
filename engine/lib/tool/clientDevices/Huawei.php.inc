@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.67
+ * @version 1.0.68
  * @date Creation: Apr 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -80,6 +80,7 @@ function get_HuaweiClientDevices() {
         'ELE-L09'   => array('platform_model' => 'P30',             'platform_year' => 2019),
         'ELE-L29'   => array('platform_model' => 'P30',             'platform_year' => 2019),
         'MAR-LX1A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
+        'MAR-LX3A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'VOG-L29'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'FIG-LA1'   => array('platform_model' => 'P Smart',         'platform_year' => 2017),
         'FIG-LX1'   => array('platform_model' => 'P Smart',         'platform_year' => 2017),
@@ -171,6 +172,7 @@ function get_HuaweiClientDevices() {
         'G7-L01'    => array('platform_model' => 'Ascend G7',       'platform_year' => 2014),
         'U9201L'    => array('platform_model' => 'Ascend P1',       'platform_year' => 2012),
         'Y520-U22'  => array('platform_model' => 'Ascend Y520',     'platform_year' => 2014),
+        'Y530-U00'  => array('platform_model' => 'Ascend Y530',     'platform_year' => 2014),
         'Y600-U151' => array('platform_model' => 'Ascend Y600',     'platform_year' => 2014),
         'MT7'       => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
         'MT7-L09'   => array('platform_model' => 'Ascend Mate 7',   'platform_year' => 2014),
@@ -189,7 +191,8 @@ function get_HuaweiClientDevices() {
         'CUN-L01'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'CUN-L03'   => array('platform_model' => 'Y5 II',           'platform_year' => 2016),
         'DRA-L21'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
-        'DRA-LX3'   => array('platform_model' => 'Y5',              'platform_year' => 2018),
+        'DRA-LX2'   => array('platform_model' => 'Y5 Prime',        'platform_year' => 2018),
+        'DRA-LX3'   => array('platform_model' => 'Y5 Prime',        'platform_year' => 2018),
         'AMN-LX1'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'AMN-LX9'   => array('platform_model' => 'Y5',              'platform_year' => 2019),
         'SCL-L01'   => array('platform_model' => 'Y6',              'platform_year' => 2016),

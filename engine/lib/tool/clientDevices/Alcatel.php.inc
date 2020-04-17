@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Alcatel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Apr 2018
- * @date Modification: Jan 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,6 +23,7 @@ function get_AlcatelClientDevice($deviceCode='') {
         /* Alcatel tablets */
         'ONETOUCH POP 7 LTE'    => array('platform_model' => 'OneTouch Pop 7 LTE',  'platform_year' => 2014, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
         '9003X'                 => array('platform_model' => 'OneTouch Pixi 4 7.0', 'platform_year' => 2016, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        '9009G'                 => array('platform_model' => 'OneTouch 1T 7',       'platform_year' => 2019, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
 
         /* Alcatel mobiles */
         'Orange KLIF' => array('system_title' => 'Firefox OS',          'platform_year' => 2015),

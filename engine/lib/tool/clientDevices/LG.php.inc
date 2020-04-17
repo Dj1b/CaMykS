@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Apr 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -67,6 +67,7 @@ function get_LGClientDevice($deviceCode='') {
         'LS996'     => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
         'K120'      => array('platform_model' => 'Spree',           'platform_year' => 2016),
         'K371'      => array('platform_model' => 'Phoenix 2',       'platform_year' => 2016),
+        'K430'      => array('platform_model' => 'K10',             'platform_year' => 2017),
         'K580'      => array('platform_model' => 'X Cam',           'platform_year' => 2016),
         'M700'      => array('platform_model' => 'Q6 Alpha',        'platform_year' => 2017),
         'MP450'     => array('platform_model' => 'Stylo 3 Plus',    'platform_year' => 2017),
