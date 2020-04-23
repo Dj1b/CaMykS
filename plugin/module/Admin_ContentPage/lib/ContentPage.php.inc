@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.4
+ * @version 1.1.5
  * @date Creation: Jun 2005
- * @date Modification: Feb 2020
+ * @date Modification: Apr 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1218,7 +1218,7 @@ final class ContentPage {
             $camyks->HTMLPage->add_meta('og:site_name', $camyks->get_confValue('site_title'), 'property');
             $camyks->HTMLPage->add_meta('og:type', 'website', 'property');
             $camyks->HTMLPage->add_meta('og:title', $this->get_longTitleDisplay('html'), 'property');
-            $camyks->HTMLPage->add_meta('og:url', $camyks->get_confValue('url').'/'.$camyks->get_siteCurrentLink(), 'property');
+            $camyks->HTMLPage->add_meta('og:url', $camyks->get_rootBaseURL('absolute_long').$camyks->get_siteCurrentLink(), 'property');
             if (trim($this->description) != '')
                 $camyks->HTMLPage->add_meta('og:description', string_text2HTML($this->description), 'property');
             //$camyks->HTMLPage->add_meta('og:image', '', 'property');
