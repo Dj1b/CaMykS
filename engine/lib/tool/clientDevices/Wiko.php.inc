@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Jul 2018
- * @date Modification: Mar 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -90,6 +90,7 @@ function get_WikoClientDevice($deviceCode='') {
         'sunny max'         => array('platform_model' => 'Sunny Max',       'platform_year' => 2016),
         'sunny2'            => array('platform_model' => 'Sunny 2',         'platform_year' => 2017),
         'sunny2 plus'       => array('platform_model' => 'Sunny 2 Plus',    'platform_year' => 2017),
+        'sunny3'            => array('platform_model' => 'Sunny 3',         'platform_year' => 2018),
         'sunset'            => array('platform_model' => 'Sunset',          'platform_year' => 2014),
         'sunset2'           => array('platform_model' => 'Sunset 2',        'platform_year' => 2015),
         'tommy'             => array('platform_model' => 'Tommy',           'platform_year' => 2016),
@@ -120,6 +121,7 @@ function get_WikoClientDevice($deviceCode='') {
         'w_c800s'           => array('platform_model' => 'View 2',          'platform_year' => 2018),
         'w_c860'            => array('platform_model' => 'View 2 Pro',      'platform_year' => 2018),
         'w_p130'            => array('platform_model' => 'View Go',         'platform_year' => 2018),
+        'w_k400'            => array('platform_model' => 'Lenny 5',         'platform_year' => 2018),
         'w-v600'            => array('platform_model' => 'Harry 2',         'platform_year' => 2018),
         'w-k510-eea'        => array('platform_model' => 'Y60',             'platform_year' => 2018),
         'w-k130-eea'        => array('platform_model' => 'Y50',             'platform_year' => 2019),

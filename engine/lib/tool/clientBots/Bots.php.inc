@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.61
+ * @version 1.0.62
  * @date Creation: May 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -215,6 +215,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'Google-AdsBot',
         'bot_url'           => 'http://www.google.com/adsbot.html',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* Google-Read-Aloud */
+    $knownBots['google-read-aloud'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Google-Read-Aloud',
+        'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
     );
@@ -4672,6 +4682,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Domains Project',
         'engine_url'        => 'https://github.com/tb0hdan/domains',
+    );
+
+    /* Quora-Bot */
+    $knownBots['quora-bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Quora-Bot',
+        'bot_url'           => '',
+        'engine_title'      => 'Quora',
+        'engine_url'        => 'https://www.quora.com',
+    );
+
+    /* Royalmedia */
+    $knownBots['royalmedia'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Royalmedia',
+        'engine_url'        => 'https://royalmedia.com',
+    );
+
+    /* EchoboxBot */
+    $knownBots['echoboxbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'EchoboxBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Echobox',
+        'engine_url'        => 'https://www.echobox.com',
     );
 
     /* Return bot list */

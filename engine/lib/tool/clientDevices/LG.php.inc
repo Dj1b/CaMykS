@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: Apr 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -58,6 +58,7 @@ function get_LGClientDevice($deviceCode='') {
         'H870D'     => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H870DS'    => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H873'      => array('platform_model' => 'G6',              'platform_year' => 2017),
+        'H918'      => array('platform_model' => 'V20',             'platform_year' => 2018),
         'H930'      => array('platform_model' => 'V30',             'platform_year' => 2017),
         'H955'      => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
         'H990'      => array('platform_model' => 'V20',             'platform_year' => 2016),
@@ -80,6 +81,7 @@ function get_LGClientDevice($deviceCode='') {
         'P875'      => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'P920'      => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),
         'Q710'      => array('platform_model' => 'Stylo 4',         'platform_year' => 2018),
+        'Q910'      => array('platform_model' => 'G7 One',          'platform_year' => 2018),
         'SP200'     => array('platform_model' => 'Tribute Dynasty', 'platform_year' => 2018),
         'TP260'     => array('platform_model' => 'K20 Plus',        'platform_year' => 2019),
         'Q720'      => array('platform_model' => 'Stylo 5',         'platform_year' => 2019),

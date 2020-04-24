@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Jan 2019
  * @date Modification: Apr 2020
  * @copyright 2019 - 2020 CaMykS Team
@@ -75,6 +75,16 @@ function _client_getKnownUnknowns() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'Centurybot9 (Unknown bot)',
         'bot_url'           => 'mailto:centurybot9@gmail.com',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Centurybot9 */
+    $unknownBots['centuryb.o.t9[at]gmail.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Centurybot9 (Unknown bot)',
+        'bot_url'           => 'mailto:centuryb.o.t9@gmail.com',
         'engine_title'      => '',
         'engine_url'        => '',
     );

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Nokia.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Jun 2018
- * @date Modification: Mar 2020
+ * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -43,8 +43,11 @@ function get_NokiaClientDevice($deviceCode='') {
         '8 Sirocco'     => array('platform_model' => '8 Sirocco',       'platform_year' => 2017),
         '1'             => array('platform_model' => '1',               'platform_year' => 2018),
         '2.1'           => array('platform_model' => '2.1',             'platform_year' => 2018),
+        '2.2'           => array('platform_model' => '2.2',             'platform_year' => 2019),
         '3.1'           => array('platform_model' => '3.1',             'platform_year' => 2018),
+        '3.1 Plus'      => array('platform_model' => '3.1 Plus',        'platform_year' => 2018),
         '3.2'           => array('platform_model' => '3.2',             'platform_year' => 2018),
+        '4.2'           => array('platform_model' => '4.2',             'platform_year' => 2019),
         '5.1 Plus'      => array('platform_model' => '5.1 Plus',        'platform_year' => 2018),
         '6.1'           => array('platform_model' => '6.1',             'platform_year' => 2018),
         '7 plus'        => array('platform_model' => '7 Plus',          'platform_year' => 2018),

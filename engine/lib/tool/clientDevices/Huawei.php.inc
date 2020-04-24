@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.68
+ * @version 1.0.69
  * @date Creation: Apr 2018
  * @date Modification: Apr 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -38,6 +38,7 @@ function get_HuaweiClientDevices() {
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'AGS2-W09'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'AGS2-L03'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
         /* Huawei P series */
         'P8max'     => array('platform_model' => 'P8 Max',          'platform_year' => 2015),
@@ -80,6 +81,8 @@ function get_HuaweiClientDevices() {
         'ELE-L09'   => array('platform_model' => 'P30',             'platform_year' => 2019),
         'ELE-L29'   => array('platform_model' => 'P30',             'platform_year' => 2019),
         'MAR-LX1A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
+        'MAR-LX1M'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
+        'MAR-LX2'   => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX3A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'VOG-L29'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'FIG-LA1'   => array('platform_model' => 'P Smart',         'platform_year' => 2017),
@@ -205,6 +208,7 @@ function get_HuaweiClientDevices() {
         'ATU-L11'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L21'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
         'ATU-L22'   => array('platform_model' => 'Y6',              'platform_year' => 2018),
+        'ATU-L31'   => array('platform_model' => 'Y6 Prime',        'platform_year' => 2018),
         'MRD-LX1'   => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'MRD-LX1N'  => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'TRT-LX1'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
