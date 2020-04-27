@@ -4,13 +4,12 @@
  * @details Engine / Object Library
  * @file engine/lib/object/ModuleLibraryJoin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2011
- * @date Modification: Oct 2019
- * @copyright 2011 - 2019 CaMykS Team
+ * @date Modification: Apr 2020
+ * @copyright 2011 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * @todo Try to set up get_dateFromHeader and parse_PHPTags methods as protected.
  */
 
 /**
@@ -169,7 +168,7 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
         $sql .= ' from '.$this->_libSQLTable.' as l';
         if (count($ids) == 1)
             foreach ($ids as $id)
-                $sql .= ' where l.'.$given.' = '.$ids;
+                $sql .= ' where l.'.$given.' = '.$id;
         else
             $sql .= ' where l.'.$given.' in ('.implode(',', $ids).')';
 
