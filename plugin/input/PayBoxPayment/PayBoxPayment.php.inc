@@ -5,9 +5,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/PayBoxPayment/PayBoxPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2017
- * @date Modification: Jan 2020
+ * @date Modification: May 2020
  * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -288,7 +288,8 @@ final class PayBoxPayment extends Input {
      * @return array
      */
     public function execute_checkout() {
-        return true;
+        $data = $this->get_paymentConfirmation();
+        return ((int)$data['response'] === 0);
     }
 
     /**
