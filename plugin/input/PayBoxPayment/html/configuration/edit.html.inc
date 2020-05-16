@@ -4,10 +4,10 @@
  * @details Plugin / Input layout
  * @file plugin/input/PayBoxPayment/html/configuration/edit.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2018
- * @date Modification: Jul 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: May 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -28,7 +28,7 @@ global $camyks;
             <?=$this->get_translation('formitem_mode');?>
         </td>
         <td class="eTableLine0 eContent1">
-            <?=$this->form->display_selectInput(array('name'=>'mode_', 'default'=>$this->config->vars['mode'], 'values'=>$this->config->get_modeList())); ?>
+            <?=$this->form->display_selectInput(array('name'=>'bankMode', 'values'=>$this->config->get_modeList())); ?>
         </td>
     </tr>
 

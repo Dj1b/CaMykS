@@ -5,7 +5,7 @@
  * @details Plugin / Input Engine
  * @file plugin/input/PayBoxPayment/PayBoxPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2017
  * @date Modification: May 2020
  * @copyright 2017 - 2020 CaMykS Team
@@ -125,7 +125,7 @@ final class PayBoxPayment extends Input {
         /* fix params */
         $this->transactionParams['amount'] = (int)($this->transactionParams['amount']*100);
 
-        if ($this->params['mode'] == 'live') {
+        if ($this->params['bankMode'] == 'live') {
             /* production servers */
             $serveurs = array(
                 'tpeweb.paybox.com', //serveur primaire
@@ -138,7 +138,7 @@ final class PayBoxPayment extends Input {
         } else {
             /* test servers */
             $serveurs = array(
-                    'preprod-tpeweb.paybox.com', // test server
+                'preprod-tpeweb.paybox.com', // test server
             );
 
             /* test key */
