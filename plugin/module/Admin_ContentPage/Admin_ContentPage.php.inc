@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_ContentPage/Admin_ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.2
+ * @version 1.1.3
  * @date Creation: Jun 2005
- * @date Modification: Apr 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: May 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo other page type (folder, ...)
@@ -1470,7 +1470,7 @@ final class Admin_ContentPage extends Module {
                      .','.$page->id
                      .', "'.$page->_path
                      .'", "'.$page->name
-                     .'", "'.$page->get_sitelink(null, $this->language).'");');
+                     .'", "'.$page->get_sitelink(array(), $this->language).'");');
             }
         }
 
