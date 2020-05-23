@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.7
+ * @version 1.1.8
  * @date Creation: Jun 2005
- * @date Modification: Sep 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: May 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -1226,6 +1226,47 @@ class HTMLForm {
         /* build input */
         $html = '<input type="url"';
         $html .= ' value="'.$params['default'].'"';
+        $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' />';
+        return $html;
+    }
+
+    /**
+     * Build and return color input.
+     * @param mixed $input
+     * @param string $default
+     * @return string
+     */
+    public function display_colorInput($input, $default=null) {
+        /* check header params */
+        if (is_array($input)) {
+            $params = array_merge($this->inputDefaultParams, $input);
+        } else {
+            $params = $this->inputDefaultParams;
+            $params['name'] = $input;
+            if (isset($default))
+                $params['default'] = $default;
+        }
+
+        /* check limit */
+        $this->check_inputsLimit();
+
+        /* check object params */
+        if (isset($this->object)) {
+            /* check default value */
+            if ($params['default'] === '') {
+                $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
+                $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+            }
+        }
+
+        /* check color value to add leading hashtag */
+        if (preg_match('/^[0-9a-f]{3,6}$/i', $params['default']))
+            $params['default'] = "#".$params['default'];
+
+        /* build input */
+        $html = '<input type="color"';
+        $html .= ' value="'.htmlentities($params['default'], ENT_COMPAT, 'UTF-8').'"';
         $html .= $this->build_inputGenericAttributes($params);
         $html .= ' />';
         return $html;
