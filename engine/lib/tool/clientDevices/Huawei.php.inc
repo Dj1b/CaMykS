@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.69
+ * @version 1.0.70
  * @date Creation: Apr 2018
- * @date Modification: Apr 2020
+ * @date Modification: May 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -118,6 +118,7 @@ function get_HuaweiClientDevices() {
         'LYA-L09'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'EVR-AL00'  => array('platform_model' => 'Mate 20 X',       'platform_year' => 2018),
+        'NEO-L29'   => array('platform_model' => 'Mate RS',         'platform_year' => 2018),
 
         /* Huawei Honor series */
         'H60-L01'   => array('platform_model' => 'Honor 6',         'platform_year' => 2014),
@@ -168,6 +169,7 @@ function get_HuaweiClientDevices() {
         'YAL-L41'   => array('platform_model' => 'Honor 20 Pro',    'platform_year' => 2019),
         'HRY-LX1T'  => array('platform_model' => 'Honor 20 Lite',   'platform_year' => 2019),
         'JAT-L29'   => array('platform_model' => 'Honor Play 8A',   'platform_year' => 2019),
+        'JAT-L41'   => array('platform_model' => 'Honor Play 8A',   'platform_year' => 2019),
 
         /* Huawei Ascend series */
         'Y520-U22'  => array('platform_model' => 'Ascend',          'platform_year' => 2014),

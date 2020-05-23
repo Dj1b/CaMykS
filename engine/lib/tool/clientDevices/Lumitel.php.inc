@@ -1,29 +1,28 @@
 <?php
 /**
- * @brief Vodafone client devices specific methods
+ * @brief Lumitel client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Vodafone.php.inc
+ * @file engine/lib/tool/clientDevices/Lumitel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
- * @date Creation: Mar 2019
+ * @version 1.0.0
+ * @date Creation: May 2020
  * @date Modification: May 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Vodafone client device information from a known list.
+ * Return Lumitel client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_VodafoneClientDevice($deviceCode='') {
+function get_LumitelClientDevice($deviceCode='') {
     $deviceList = array(
-        '890N'  => array('platform_model' => 'Smart 4 Turbo', 'platform_year' => 2014),
-        'VF685' => array('platform_model' => 'Smart 4 Mini', 'platform_year' => 2014),
-        'VF695' => array('platform_model' => 'Smart first 6', 'platform_year' => 2014),
-
+        /* Lumitel mobiles */
+        'L9502'  => array('platform_model' => 'L9502', 'platform_year' => 2019),
+        'L9503'  => array('platform_model' => 'L9503', 'platform_year' => 2019),
     );
 
     /* Check for returning list */
@@ -32,8 +31,8 @@ function get_VodafoneClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Vodafone',
-        'platform_country'  => 'gb',
+        'platform_company'  => 'Lumitel',
+        'platform_country'  => 'bi',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

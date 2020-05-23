@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: Apr 2018
- * @date Modification: Apr 2020
+ * @date Modification: May 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -30,6 +30,7 @@ function get_LGClientDevice($deviceCode='') {
         'D290'      => array('platform_model' => 'L Fino',          'platform_year' => 2014),
         'D315'      => array('platform_model' => 'F70',             'platform_year' => 2014),
         'D320'      => array('platform_model' => 'L70',             'platform_year' => 2014),
+        'D331'      => array('platform_model' => 'L Bello',         'platform_year' => 2014),
         'D335'      => array('platform_model' => 'L Bello',         'platform_year' => 2014),
         'D405'      => array('platform_model' => 'L90',             'platform_year' => 2014),
         'D505'      => array('platform_model' => 'Optimus F6',      'platform_year' => 2013),

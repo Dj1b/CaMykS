@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.62
+ * @version 1.0.63
  * @date Creation: May 2018
- * @date Modification: Apr 2020
+ * @date Modification: May 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1709,7 +1709,17 @@ function _client_getKnownBots() {
     );
 
     /* DuckDuckGo */
-    $knownBots['duckduckgo'] = array(
+    $knownBots['duckduckbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DuckDuckBot',
+        'bot_url'           => 'http://duckduckgo.com/duckduckbot.html',
+        'engine_title'      => 'DuckDuckGo',
+        'engine_url'        => 'http://duckduckgo.com',
+    );
+
+    /* DuckDuckGo */
+    $knownBots['duckduckgo-favicons-bot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'DuckDuckBot',
@@ -4681,7 +4691,7 @@ function _client_getKnownBots() {
         'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'Domains Project',
-        'engine_url'        => 'https://github.com/tb0hdan/domains',
+        'engine_url'        => 'http://domainsproject.org',
     );
 
     /* Quora-Bot */
