@@ -4,10 +4,10 @@
  * Developed by        : camyks.net
  * Author            : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   : 1.0
- * Object Version   : 1.0
+ * Object Version   : 1.0.1
  * Object Type      : Plugin / Module Engine
  * Creation Date    : May 2007
- * Last Modif Date  : Feb 2018
+ * Last Modif Date  : Jun 2020
  * History :
  * * 07-03-xx : Initial files
  * * 08-05-28 : Check rights for configuration modes
@@ -430,6 +430,10 @@ class Admin_Statistics extends Module {
 
     /* merge params */
     $params = array_merge(array('checkIPFilter'=>1, 'checkAdmin'=>1, 'checkBot'=>1, 'checkTool'=>1), $params);
+
+    /* check variables */
+    $data1 = substr($data1, 0, 64);
+    $data2 = substr($data2, 0, 64);
 
     /* check admin connection */
     if ( $params['checkAdmin'] and $camyks->check_adminUser())
