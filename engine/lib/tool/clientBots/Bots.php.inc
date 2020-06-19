@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.63
+ * @version 1.0.64
  * @date Creation: May 2018
- * @date Modification: May 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4722,6 +4722,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Echobox',
         'engine_url'        => 'https://www.echobox.com',
+    );
+
+    /* Petalbot */
+    $knownBots['petalbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Petalbot',
+        'bot_url'           => 'https://aspiegel.com/petalbot',
+        'engine_title'      => 'Huawei',
+        'engine_url'        => 'https://aspiegel.com',
+    );
+
+    /* SerendeputyBot */
+    $knownBots['serendeputybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'SerendeputyBot',
+        'bot_url'           => 'https://serendeputy.com/about/serendeputy-bot',
+        'engine_title'      => 'Serendeputy',
+        'engine_url'        => 'https://serendeputy.com',
+    );
+
+    /* WoTBoT */
+    $knownBots['wotbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'WoTBoT',
+        'bot_url'           => 'http://wottot.com/WoTBoT.html',
+        'engine_title'      => 'Wot Tot',
+        'engine_url'        => 'http://wottot.com/',
     );
 
     /* Return bot list */
