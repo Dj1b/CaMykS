@@ -4,9 +4,9 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5
+ * @version 1.1.5.1
  * @date Creation: Jun 2005
- * @date Modification: Apr 2020
+ * @date Modification: Jun 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1417,7 +1417,7 @@ final class ContentPage {
         $sql .= ' where type="page"';
         $sql .= ' order by parent_id, position';
         /* execute query */
-        if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)){
+        if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
 
             $page = new ContentPage(0, 0);
             $page->name = '';
@@ -1442,7 +1442,8 @@ final class ContentPage {
             }
 
             foreach ($pages as $p) {
-                $pages[$p->parent_id]->children[] = $p->id;
+                if (isset($pages[$p->parent_id]))
+                    $pages[$p->parent_id]->children[] = $p->id;
             }
 
             /* return values */
