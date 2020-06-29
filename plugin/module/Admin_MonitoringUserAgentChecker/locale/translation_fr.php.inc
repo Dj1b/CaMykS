@@ -4,10 +4,10 @@
  * @details Plugin / Module Dictionnary
  * @file plugin/module/Admin_MonitoringUserAgentChecker/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Dec 2014
- * @date Modification: Jan 2019
- * @copyright 2014 - 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,6 +27,7 @@ $this->trads['mod_admin_monitoringuseragentchecker_platform_type_tool'] = 'Outil
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_hack'] = 'Hack';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_fake'] = 'Fausse visite';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_other'] = 'Autre';
+$this->trads['mod_admin_monitoringuseragentchecker_platform_type_vrheadset'] = 'Casque VR';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_undefined'] = 'Ind&eacute;termin&eacute;';
 $this->trads['mod_admin_monitoringuseragentchecker_platform_type_all'] = 'Tous';
 
