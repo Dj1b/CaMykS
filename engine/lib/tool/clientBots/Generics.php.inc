@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: May 2018
- * @date Modification: Apr 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -280,6 +280,16 @@ function _client_getKnownGenericsL2() {
         'tool_title'        => 'WinHttpRequest',
         'tool_url'          => 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa382925(v=vs.85).aspx',
         'engine_title'      => 'Microsoft',
+        'engine_url'        => '',
+    );
+
+    /* rest-client - before Ruby */
+    $knownGenerics['rest-client'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'rest-client Library',
+        'tool_url'          => 'https://github.com/rest-client/rest-client',
+        'engine_title'      => '',
         'engine_url'        => '',
     );
 
@@ -819,6 +829,16 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'Go http package',
         'tool_url'          => 'https://golang.org/pkg/net/http/',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Got */
+    $knownGenerics['sindresorhus/got'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'got',
+        'tool_url'          => 'https://github.com/sindresorhus/got',
         'engine_title'      => '',
         'engine_url'        => '',
     );

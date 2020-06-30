@@ -1,30 +1,27 @@
 <?php
 /**
- * @brief Ulefone client devices specific methods
+ * @brief Meiigoo client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Ulefone.php.inc
+ * @file engine/lib/tool/clientDevices/Meiigoo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
- * @date Creation: Mar 2019
+ * @version 1.0.0
+ * @date Creation: Jun 2020
  * @date Modification: Jun 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Ulefone client device information from a known list.
+ * Return Meiigoo client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_UlefoneClientDevice($deviceCode='') {
+function get_MeiigooClientDevice($deviceCode='') {
     $deviceList = array(
-        's10_pro'   => array('platform_model' => 'S10 Pro',     'platform_year' => 2018),
-        'armor_x'   => array('platform_model' => 'Armor X',     'platform_year' => 2018),
-        'armor_6'   => array('platform_model' => 'Armor 6',     'platform_year' => 2019),
-        'armor_6s'  => array('platform_model' => 'Armor 6S',    'platform_year' => 2019),
-        'armor x5'  => array('platform_model' => 'Armor X5',    'platform_year' => 2019),
+        /* Meiigoo mobiles */
+        'M1'  => array('platform_model' => 'M1', 'platform_year' => 2017),
     );
 
     /* Check for returning list */
@@ -33,7 +30,7 @@ function get_UlefoneClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Ulefone',
+        'platform_company'  => 'Meiigoo',
         'platform_country'  => 'cn',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',

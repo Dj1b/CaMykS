@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Haier.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Mar 2019
- * @date Modification: Aug 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -26,6 +26,7 @@ function get_HaierClientDevice($deviceCode='') {
         /* Haier mobiles */
         'G30'           => array('platform_model' => 'Voyage G30', 'platform_year' => 2015),
         'HM-G552-FL'    => array('platform_model' => 'G7', 'platform_year' => 2017),
+        'HM-I560-FL'    => array('platform_model' => 'G7s', 'platform_year' => 2017),
     );
 
     /* Check for returning list */

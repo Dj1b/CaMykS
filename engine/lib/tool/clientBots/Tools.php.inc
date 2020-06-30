@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.27
+ * @version 1.0.28
  * @date Creation: May 2018
  * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -161,14 +161,24 @@ function _client_getKnownTools() {
         'engine_url'        => 'https://www.tumblr.com',
     );
 
-    /* builtwith engine */
-    $knownTools['builtwith.com'] = array(
+    /* BuiltWith */
+    $knownTools['builtwith'] = array(
         'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
-        'tool_title'        => 'BuiltWith',
-        'tool_url'          => 'http://builtwith.com/tool.html',
-        'engine_title'      => 'Builtwith',
-        'engine_url'        => 'http://builtwith.com',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'BuiltWith',
+        'engine_url'        => 'https://builtwith.com',
+    );
+
+    /* BuiltWith */
+    $knownTools['compatible; bw/'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'BuiltWith',
+        'engine_url'        => 'https://builtwith.com',
     );
 
     /* bloglines */
@@ -782,26 +792,6 @@ function _client_getKnownTools() {
         'engine_url'        => '',
     );
 
-    /* BuiltWith */
-    $knownTools['builtwith'] = array(
-        'platform_type'     => 'tool',
-        'platform_format'   => 'desktop',
-        'tool_title'        => '',
-        'tool_url'          => '',
-        'engine_title'      => 'BuiltWith',
-        'engine_url'        => 'https://builtwith.com',
-    );
-
-    /* BuiltWith */
-    $knownTools['compatible; bw/'] = array(
-        'platform_type'     => 'tool',
-        'platform_format'   => 'desktop',
-        'tool_title'        => '',
-        'tool_url'          => '',
-        'engine_title'      => 'BuiltWith',
-        'engine_url'        => 'https://builtwith.com',
-    );
-
     /* BlueCoat ProxySG */
     $knownTools['bluecoat proxysg'] = array(
         'platform_type'     => 'tool',
@@ -1320,6 +1310,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'AdvancedSiteChecker',
         'engine_url'        => 'https://advanced-site-checker.com/',
+    );
+
+    /* Sopel */
+    $knownTools['sopel'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'sopel',
+        'engine_url'        => 'https://sopel.chat',
     );
 
     /* return list */

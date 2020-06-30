@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Hacks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: May 2018
- * @date Modification: May 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -99,16 +99,22 @@ function _client_getKnownHacks() {
         'hack_info'     => 'the beast malware',
     );
 
+    /* ua/url exploit  */
+    $knownHacks['("*'] = array(
+        'platform_type' => 'hack',
+        'hack_info'     => 'UA/URL Exploit',
+    );
+
+    /* xss attack */
+    $knownHacks['<script'] = array(
+        'platform_type' => 'hack',
+        'hack_info'     => 'XSS Exploit',
+    );
+
     /* unknown hack */
     $knownHacks['ua.tools.random'] = array(
         'platform_type' => 'hack',
         'hack_info'     => 'Unknown hack',
-    );
-
-    /* unknown hack */
-    $knownHacks['("*'] = array(
-        'platform_type' => 'hack',
-        'hack_info'     => 'UA/URL Exploit',
     );
 
     /* return list */

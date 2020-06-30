@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.45
+ * @version 1.0.46
  * @date Creation: Apr 2018
- * @date Modification: May 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -92,6 +92,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H3311'     => array('platform_model' => 'Xperia L2',               'platform_year' => 2018),
         'H4311'     => array('platform_model' => 'Xperia L2',               'platform_year' => 2018),
         'H3213'     => array('platform_model' => 'Xperia XA2 Ultra',        'platform_year' => 2018),
+        'H3223'     => array('platform_model' => 'Xperia XA2 Ultra',        'platform_year' => 2018),
         'H3413'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
         'H4113'     => array('platform_model' => 'Xperia XA2',              'platform_year' => 2018),
         'H4133'     => array('platform_model' => 'Xperia XA2',              'platform_year' => 2018),
@@ -108,6 +109,7 @@ function get_SonyClientDevice($deviceCode='') {
         'I4113'     => array('platform_model' => 'Xperia 10',               'platform_year' => 2019),
         'I4213'     => array('platform_model' => 'Xperia 10 Plus',          'platform_year' => 2019),
         'I4312'     => array('platform_model' => 'Xperia L3',               'platform_year' => 2019),
+        'J9110'     => array('platform_model' => 'Xperia 1',                'platform_year' => 2019),
         'J9210'     => array('platform_model' => 'Xperia 5',                'platform_year' => 2020),
 
         'SOV31'     => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),

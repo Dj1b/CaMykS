@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.64
+ * @version 1.0.65
  * @date Creation: May 2018
  * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -224,6 +224,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Google-Read-Aloud',
+        'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* Google-Adwords-Instant */
+    $knownBots['google-adwords-instant'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Google-Adwords-Instant',
         'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
@@ -3892,16 +3902,6 @@ function _client_getKnownBots() {
         'bot_url'           => 'mailto:bot@tracemyfile.com',
         'engine_title'      => 'tracemyfile',
         'engine_url'        => 'https://tracemyfile.com',
-    );
-
-    /* bitlybot */
-    $knownBots['bitlybot'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'bitlybot',
-        'bot_url'           => '',
-        'engine_title'      => 'Bit.ly',
-        'engine_url'        => 'http://bit.ly/',
     );
 
     /* 3w24bot */

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: Apr 2018
- * @date Modification: Mar 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -37,6 +37,7 @@ function get_ArchosClientDevice($deviceCode='') {
         '79b Neon'                  => array('platform_model' => '79b Neon',                'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2014),
         '101d Neon'                 => array('platform_model' => '101d Neon',               'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2015),
         '101e Neon'                 => array('platform_model' => '101e Neon',               'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),
+        'Access 101F Neon'          => array('platform_model' => 'Access 101F Neon',        'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2018),
         '101 Xenon Lite'            => array('platform_model' => '101 Xenon Lite',          'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2015),
         '101b Xenon'                => array('platform_model' => '101b Xenon',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2015),
         '101b Xenon v2'             => array('platform_model' => '101b Xenon',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2015),
