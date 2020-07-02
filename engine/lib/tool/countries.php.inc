@@ -5,10 +5,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/countries.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Sep 2007
- * @date Modification: Nov 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -149,7 +149,7 @@ function countries_getCode($lang='', $key=''){
     /* search country */
     foreach ($camyks->trads as $tradK=>$tradV) {
         if (substr($tradK, 0, strlen('country_')) === 'country_' && strtolower($tradV) == strtolower($key))
-            return $tradK;
+            return substr($tradK, strlen('country_'));
     }
 
     /* no country found */

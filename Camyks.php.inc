@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Jun 2005
  * @date Modification: Mar 2020
  * @copyright 2005 - 2020 CaMykS Team
@@ -2035,7 +2035,7 @@ final class Camyks {
      * @param array $params
      * @return string
      */
-    public function get_siteKeypageLink($key='', $lg='', $params=null) {
+    public function get_siteKeypageLink($key='', $lg='', $params=array()) {
         return $this->modules['Admin_ContentPage']->get_siteKeyPageLink($key, $lg, $params);
     }
 

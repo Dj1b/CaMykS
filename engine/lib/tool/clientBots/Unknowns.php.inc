@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Jan 2019
- * @date Modification: Apr 2020
+ * @date Modification: Jun 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -644,6 +644,26 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'ShortLinkTranslate (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* BorneoBot */
+    $unknownBots['borneobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'BorneoBot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Watchville Importer */
+    $unknownBots['watchville importer'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Watchville Importer (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

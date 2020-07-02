@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Ulefone.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Mar 2019
- * @date Modification: Mar 2020
+ * @date Modification: Jun 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,6 +23,7 @@ function get_UlefoneClientDevice($deviceCode='') {
         's10_pro'   => array('platform_model' => 'S10 Pro',     'platform_year' => 2018),
         'armor_x'   => array('platform_model' => 'Armor X',     'platform_year' => 2018),
         'armor_6'   => array('platform_model' => 'Armor 6',     'platform_year' => 2019),
+        'armor_6s'  => array('platform_model' => 'Armor 6S',    'platform_year' => 2019),
         'armor x5'  => array('platform_model' => 'Armor X5',    'platform_year' => 2019),
     );
 

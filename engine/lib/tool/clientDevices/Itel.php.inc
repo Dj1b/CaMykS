@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Itel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jan 2019
- * @date Modification: Mar 2020
+ * @date Modification: Jun 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,6 +29,7 @@ function get_ItelClientDevice($deviceCode='') {
         'S32'           => array('platform_model' => 'S32',         'platform_year' => 2017),
         'P32'           => array('platform_model' => 'P32',         'platform_year' => 2018),
         'W5504'         => array('platform_model' => 'P33',         'platform_year' => 2019),
+        'L6002P'        => array('platform_model' => 'S15 Pro',     'platform_year' => 2020),
     );
 
     /* Check for returning list */

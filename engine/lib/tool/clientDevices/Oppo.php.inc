@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Oppo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.25
+ * @version 1.0.26
  * @date Creation: Nov 2018
- * @date Modification: Apr 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,6 +48,7 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1951'   => array('platform_model' => 'Reno 2 Z',        'platform_year' => 2019),
         'CPH1969'   => array('platform_model' => 'F11 Pro',         'platform_year' => 2019),
         'CPH1979'   => array('platform_model' => 'Reno Z',          'platform_year' => 2019),
+        'CPH2025'   => array('platform_model' => 'X2 Pro',          'platform_year' => 2020),
     );
 
     /* Check for returning list */

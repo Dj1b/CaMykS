@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Meizu.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Sep 2018
- * @date Modification: Oct 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -28,7 +28,9 @@ function get_MeizuClientDevice($deviceCode='') {
         'M5'            => array('platform_model' => 'M5',      'platform_year' => 2016),
         'MX6'           => array('platform_model' => 'MX6',     'platform_year' => 2016),
         'M8 lite'       => array('platform_model' => 'M8 Lite', 'platform_year' => 2018),
+        '16th'          => array('platform_model' => '16th',    'platform_year' => 2018),
         'Note9'         => array('platform_model' => 'Note 9',  'platform_year' => 2019),
+        'C9 pro'        => array('platform_model' => 'C9 Pro',  'platform_year' => 2019),
     );
 
     /* Check for returning list */

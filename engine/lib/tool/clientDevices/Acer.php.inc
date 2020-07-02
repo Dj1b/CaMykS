@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Acer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Apr 2018
- * @date Modification: Mar 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +20,9 @@
  */
 function get_AcerClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Acer Chrombooks */
+        'Chromebook R13'    => array('platform_model' => 'Chromebook R13',  'platform_type' => 'computer',  'platform_format' => 'desktop', 'platform_year' => 2016),
+
         /* Acer tablets */
         'A500'          => array('platform_model' => 'Iconia Tab A500',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2012),
         'A1-810'        => array('platform_model' => 'Iconia A1-810',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),

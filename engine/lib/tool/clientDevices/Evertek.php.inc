@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Evertek.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Feb 2019
- * @date Modification: Jun 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -20,7 +20,8 @@
  */
 function get_EvertekClientDevice($deviceCode='') {
     $deviceList = array(
-        'EverStar Pro' => array('platform_model' => 'EverStar Pro', 'platform_year' => 2016),
+        'EverStar Pro'  => array('platform_model' => 'EverStar Pro', 'platform_year' => 2016),
+        'EverShineII'   => array('platform_model' => 'EverShineII', 'platform_year' => 2016),
     );
 
     /* Check for returning list */

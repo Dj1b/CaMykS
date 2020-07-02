@@ -4,9 +4,9 @@
  * @details Plugin, Module Library
  * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecord.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Dec 2014
- * @date Modification: Mar 2020
+ * @date Modification: Jun 2020
  * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -102,6 +102,7 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
             'tablet'    => $this->get_translation('platform_type_tablet'),
             'computer'  => $this->get_translation('platform_type_computer'),
             'tvset'     => $this->get_translation('platform_type_tvset'),
+            'vrheadset' => $this->get_translation('platform_type_vrheadset'),
             'bot'       => $this->get_translation('platform_type_bot'),
             'tool'      => $this->get_translation('platform_type_tool'),
             'hack'      => $this->get_translation('platform_type_hack'),

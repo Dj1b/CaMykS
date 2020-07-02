@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Logicom.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Apr 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -33,6 +33,7 @@ function get_LogicomClientDevice($deviceCode='') {
         'Le_Hop'        => array('platform_model' => 'Le Hop',          'platform_year' => 2018),
         'Le_Lift'       => array('platform_model' => 'Le Lift',         'platform_year' => 2018),
         'Le_Moov'       => array('platform_model' => 'Le Moov',         'platform_year' => 2018),
+        'Le Up'         => array('platform_model' => 'Le Up',           'platform_year' => 2018),
         'Le_Hola'       => array('platform_model' => 'Le Hola',         'platform_year' => 2019),
         'Le Smooth'     => array('platform_model' => 'Le Smooth',       'platform_year' => 2019),
         'Le_Spark'      => array('platform_model' => 'Le Spark',        'platform_year' => 2019),

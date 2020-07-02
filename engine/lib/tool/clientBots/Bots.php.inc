@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.62
+ * @version 1.0.65
  * @date Creation: May 2018
- * @date Modification: Apr 2020
+ * @date Modification: Jun 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -224,6 +224,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Google-Read-Aloud',
+        'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* Google-Adwords-Instant */
+    $knownBots['google-adwords-instant'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Google-Adwords-Instant',
         'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
@@ -1709,7 +1719,17 @@ function _client_getKnownBots() {
     );
 
     /* DuckDuckGo */
-    $knownBots['duckduckgo'] = array(
+    $knownBots['duckduckbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DuckDuckBot',
+        'bot_url'           => 'http://duckduckgo.com/duckduckbot.html',
+        'engine_title'      => 'DuckDuckGo',
+        'engine_url'        => 'http://duckduckgo.com',
+    );
+
+    /* DuckDuckGo */
+    $knownBots['duckduckgo-favicons-bot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'DuckDuckBot',
@@ -3884,16 +3904,6 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://tracemyfile.com',
     );
 
-    /* bitlybot */
-    $knownBots['bitlybot'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'bitlybot',
-        'bot_url'           => '',
-        'engine_title'      => 'Bit.ly',
-        'engine_url'        => 'http://bit.ly/',
-    );
-
     /* 3w24bot */
     $knownBots['3w24bot'] = array(
         'platform_type'     => 'bot',
@@ -4681,7 +4691,7 @@ function _client_getKnownBots() {
         'bot_title'         => '',
         'bot_url'           => '',
         'engine_title'      => 'Domains Project',
-        'engine_url'        => 'https://github.com/tb0hdan/domains',
+        'engine_url'        => 'http://domainsproject.org',
     );
 
     /* Quora-Bot */
@@ -4712,6 +4722,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Echobox',
         'engine_url'        => 'https://www.echobox.com',
+    );
+
+    /* Petalbot */
+    $knownBots['petalbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Petalbot',
+        'bot_url'           => 'https://aspiegel.com/petalbot',
+        'engine_title'      => 'Huawei',
+        'engine_url'        => 'https://aspiegel.com',
+    );
+
+    /* SerendeputyBot */
+    $knownBots['serendeputybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'SerendeputyBot',
+        'bot_url'           => 'https://serendeputy.com/about/serendeputy-bot',
+        'engine_title'      => 'Serendeputy',
+        'engine_url'        => 'https://serendeputy.com',
+    );
+
+    /* WoTBoT */
+    $knownBots['wotbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'WoTBoT',
+        'bot_url'           => 'http://wottot.com/WoTBoT.html',
+        'engine_title'      => 'Wot Tot',
+        'engine_url'        => 'http://wottot.com/',
     );
 
     /* Return bot list */

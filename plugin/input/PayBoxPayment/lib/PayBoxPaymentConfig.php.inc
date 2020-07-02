@@ -4,9 +4,9 @@
  * @details Plugin / Input Library
  * @file plugin/input/PayBoxPayment/lib/PayBoxPaymentConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2018
- * @date Modification: Jul 2018
+ * @date Modification: May 2020
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,8 +27,8 @@ final class PayBoxPaymentConfig extends PluginConfig {
         parent::__construct($name, $parent);
 
         /* running mode */
-        $this->add_newItem('mode', 'string', 'test');
-        
+        $this->add_newItem('bankMode', 'string', 'test');
+
         /* paybox keys */
         $this->add_newItem('bankKey_Test', 'string', '');
         $this->add_newItem('bankKey_Live', 'string', '');
@@ -44,21 +44,8 @@ final class PayBoxPaymentConfig extends PluginConfig {
         /* generic initialisation */
         parent::init_config();
     }
-    
-    /* overwrite PluginConfig methods */
 
-    /**
-     * Load object items values from header.
-     * @return void
-     */
-    public function get_fromHeader() {
-        parent::get_fromHeader();
-        
-        $mode = $_REQUEST['mode_']?$_REQUEST['mode_']:'test';
-        if (!in_array($mode, array('test', 'live')))
-          $mode = 'test';
-        $this->vars['mode'] = $mode;
-    }
+    /* overwrite PluginConfig methods */
 
     /* specific tool methods */
 
@@ -79,7 +66,7 @@ final class PayBoxPaymentConfig extends PluginConfig {
      */
     public function get_modeTitle() {
         $l = $this->get_modeList();
-        return $l[$this->vars['mode']];
+        return $l[$this->vars['bankMode']];
     }
 }
 ?>
