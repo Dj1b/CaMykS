@@ -28,7 +28,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Predicate.php,v 1.7 2005/05/26 21:30:18 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -46,7 +46,7 @@ class File_Archive_Predicate
      * Indicates whether the current file from the reader should be kept
      *
      * @param File_Archive_Reader $source Reader which will be filtered
-     * @return bool False iif the current file must be filtered out
+     * @return bool False if the current file must be filtered out
      */
     function isTrue(&$source)
     {

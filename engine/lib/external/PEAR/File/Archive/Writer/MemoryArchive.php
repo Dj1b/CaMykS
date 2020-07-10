@@ -26,7 +26,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: MemoryArchive.php,v 1.16 2005/06/02 12:24:43 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -78,7 +78,7 @@ class File_Archive_Writer_MemoryArchive extends File_Archive_Writer_Archive
     /**
      * @see File_Archive_Writer::newFile()
      */
-    function newFile($filename, $stat = array(),
+    function _newFile($filename, $stat = array(),
                      $mime = "application/octet-stream")
     {
         if ($this->nbFiles == 0) {

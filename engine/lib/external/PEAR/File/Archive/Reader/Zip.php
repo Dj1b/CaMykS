@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Zip.php,v 1.26 2005/06/19 20:09:58 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -74,12 +74,10 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
 
     /**
      * Go to next entry in ZIP archive
-     * This function may stop on a folder, so it does not comply to the
-     * File_Archive_Reader::next specs
      *
      * @see File_Archive_Reader::next()
      */
-    function nextWithFolders()
+    function next()
     {
         if ($this->seekToEnd > 0) {
             return false;
@@ -99,6 +97,18 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
 
         //Read the header
         $header = $this->source->getData(4);
+        // Handle PK00PK archives
+        if ($header == "\x50\x4b\x30\x30") { //PK00
+            $header = $this->source->getData(4);
+        }
+        // Sometimes this header is used to tag the data descriptor section
+        if($header == "\x50\x4b\x07\x08") { 
+            // Read out the data descriptor (always 12 bytes)
+            $this->source->getData(12);
+
+            // Get a new header from the file
+            $header = $this->source->getData(4);
+        }
         if (PEAR::isError($header)) {
             return $header;
         }
@@ -168,7 +178,6 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
                             'CRC' => $this->header['CRC'],
                             'CLen' => $this->header['CLen']
                            );
-
             return true;
         } else {
             //Begining of central area
@@ -176,26 +185,6 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             $this->currentFilename = null;
             return false;
         }
-    }
-    /**
-     * Go to next file entry in ZIP archive
-     * This function will not stop on a folder entry
-     * @see File_Archive_Reader::next()
-     */
-    function next()
-    {
-        if (!parent::next()) {
-            return false;
-        }
-
-        do {
-            $result = $this->nextWithFolders();
-            if ($result !== true) {
-                return $result;
-            }
-        } while (substr($this->getFilename(), -1) == '/');
-
-        return true;
     }
 
     /**
@@ -271,7 +260,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             $this->data = bzdecompress($this->data);
         }
 
-        if (crc32($this->data) != $this->header['CRC']) {
+        if (crc32($this->data) != ($this->header['CRC'] & 0xFFFFFFFF)) {
             return PEAR::raiseError("Zip archive: CRC fails on entry ".
                                     $this->currentFilename);
         }
@@ -293,7 +282,7 @@ class File_Archive_Reader_Zip extends File_Archive_Reader_Archive
             array_pop($this->files);
         }
 
-        while (($error = $this->nextWithFolders()) === true) {
+        while (($error = $this->next()) === true) {
             $size = 30 + $this->header['File'] + $this->header['Extra'] + $this->header['CLen'];
             if (substr($this->getFilename(), -1) == '/' || $pred->isTrue($this)) {
                 array_pop($this->files);

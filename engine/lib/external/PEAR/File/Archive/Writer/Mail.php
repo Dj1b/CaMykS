@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Mail.php,v 1.11 2005/06/02 12:24:43 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -146,7 +146,7 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
                         $this->currentMime,
                         $this->currentFilename,
                         false);
-        $this->currentData = "";
+        $this->currentData = '';
         return $error;
     }
     /**
@@ -159,8 +159,12 @@ class File_Archive_Writer_Mail extends File_Archive_Writer
             return $error;
         }
 
-        $this->currentFilename = $filename;
-        $this->currentMime = $mime;
+        if (substr($filename, -1) == '/') {
+            $this->currentFilename = null;
+        } else {
+            $this->currentFilename = $filename;
+            $this->currentMime = $mime;
+        }
     }
     /**
      * @see File_Archive_Writer::newFileNeedsMIME()

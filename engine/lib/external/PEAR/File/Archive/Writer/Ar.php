@@ -150,6 +150,11 @@ class File_Archive_Writer_Ar extends File_Archive_Writer_Archive
     function newFile($filename, $stat = array (),
                      $mime = "application/octet-stream")
     {
+        // ar file format doesn't support folders
+        if (substr($filename, -1) == '/') {
+            return;
+        }
+
         $this->flush();
         /*
          * If the file is empty, there's no reason to have a buffer

@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Concat.php,v 1.17 2005/07/07 15:48:28 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -112,7 +112,6 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
             $sourceData = $this->source->getData(
                 $length==-1 ? -1 : $length - strlen($result)
             );
-
             if (PEAR::isError($sourceData)) {
                 return $sourceData;
             }
@@ -145,6 +144,15 @@ class File_Archive_Reader_Concat extends File_Archive_Reader
             }
             $skipped += $sourceSkipped;
             $filePos += $sourceSkipped;
+            if ($sourceSkipped < $length) {
+                $error = $this->source->next();
+                if (PEAR::isError($error)) {
+                    return $error;
+                }
+                if (!$error) {
+                    return $skipped;
+                }
+            }
         }
         return $skipped;
     }

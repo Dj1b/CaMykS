@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Tar.php,v 1.18 2005/06/02 12:24:43 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -77,8 +77,15 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
                 "$filename is too long to be put in a tar archive"
             );
         } else if (strlen($filename) > 100) {
-            $filePrefix = substr($filename, 0, strlen($filename)-100);
-            $filename = substr($filename, -100);
+            // need a path component of max 155 bytes
+            $pos = strrpos(substr($filename, 0, 155), '/');
+            if(strlen($filename) - $pos > 100) {
+                // filename-component may not exceed 100 bytes
+                return PEAR::raiseError(
+                        "$filename is too long to be put in a tar archive");
+            }
+            $filePrefix = substr($filename, 0, $pos);
+            $filename = substr($filename, $pos+1);
         }
 
         $blockbeg = pack("a100a8a8a8a12a12",
@@ -137,9 +144,11 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
             if ($this->useBuffer) {
                 $this->stats[7] = strlen($this->buffer);
 
-                $this->innerWriter->writeData(
-                    $this->tarHeader($this->filename, $this->stats)
-                );
+                $header = $this->tarHeader($this->filename, $this->stats);
+                if (PEAR::isError($header)) {
+                    return $header;
+                }
+                $this->innerWriter->writeData($header);
                 $this->innerWriter->writeData(
                     $this->buffer
                 );
@@ -151,19 +160,24 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
         $this->buffer = "";
     }
 
-    function newFile($filename, $stats = array(),
+    function _newFile($filename, $stats = array(),
                      $mime = "application/octet-stream")
     {
-        $this->flush();
+        $err = $this->flush();
+        if (PEAR::isError($err)) {
+            return $err;
+        }
 
         $this->useBuffer = !isset($stats[7]);
         $this->filename = $filename;
         $this->stats = $stats;
 
         if (!$this->useBuffer) {
-            return $this->innerWriter->writeData(
-                $this->tarHeader($filename, $stats)
-            );
+            $header = $this->tarHeader($filename, $stats);
+            if (PEAR::isError($header)) {
+                return $header;
+            }
+            return $this->innerWriter->writeData($header);
         }
     }
 
@@ -172,7 +186,10 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
      */
     function close()
     {
-        $this->flush();
+        $err = $this->flush();
+        if (PEAR::isError($err)) {
+            return $err;
+        }
         $this->innerWriter->writeData(pack("a1024", ""));
         parent::close();
     }
@@ -194,6 +211,9 @@ class File_Archive_Writer_Tar extends File_Archive_Writer_Archive
     function writeFile($filename)
     {
         if ($this->useBuffer) {
+            if (!file_exists($filename)) {
+                return PEAR::raiseError("File not found: $filename.");
+            }
             $this->buffer .= file_get_contents($filename);
         } else {
             $this->innerWriter->writeFile($filename);

@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Tar.php,v 1.29 2005/07/11 11:53:53 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -138,76 +138,133 @@ class File_Archive_Reader_Tar extends File_Archive_Reader_Archive
         if ($error !== true) {
             return $error;
         }
+
         if ($this->seekToEnd !== null) {
             return false;
         }
-
-        do
-        {
-            $error = $this->source->skip($this->leftLength + $this->footerLength);
-            if (PEAR::isError($error)) {
-                return $error;
+        
+        while (true) {
+			//Advance $this
+			$header = $this->_nextAdvance();
+			if ((!$header) || PEAR::isError($header)) {
+                return $header;
             }
-            $rawHeader = $this->source->getData(512);
-            if (PEAR::isError($rawHeader)) {
-                return $rawHeader;
+            
+			//Are we looking at a Long Link?
+			if ($header['type'] == 'L') {
+				//This is a filepath too long for the tar format.
+				//So the tar specification puts the name in a special entry just before the real data
+				//This means the filename is the current piece of data.  Grab it.
+				$filename = '';
+				while (($str = $this->getData(256)) !== null) {
+					if (PEAR::isError($str)) {
+                        return $str;
+                    }
+					$filename .= $str;
+				}
+				
+				//The actual file data is the next item.  Advance there and set the filename to what we just made.
+				//Everything about the "next" item is correct except the file name.
+				$header = $this->_nextAdvance();
+				if ((!$header) || PEAR::isError($header)) {
+                    return $header;
+                }
+				$this->currentFilename = $filename;
+			}
+			/**
+             * Note that actions taken above to handle LongLink may have advanced $this and reset some vars.
+             * But that just leaves us in a state to actually handle the thing as if it were a normal file.
+             * So continue as if this never happened...
+             */
+			
+			//Other than the above we only care about regular files.
+			//NOTE: Any non-numeric type codes will == 0
+			//We handle 'L' above, I don't know what others are out there.
+            //5 == directory
+			if ($header['type'] == 0 || $header['type'] == 5) {
+                break;
             }
-            if (strlen($rawHeader)<512 || $rawHeader == pack("a512", "")) {
-                $this->seekToEnd = strlen($rawHeader);
-                $this->currentFilename = null;
-                return false;
-            }
-
-            $header = unpack(
-                "a100filename/a8mode/a8uid/a8gid/a12size/a12mtime/".
-                "a8checksum/a1type/a100linkname/a6magic/a2version/".
-                "a32uname/a32gname/a8devmajor/a8devminor/a155prefix",
-                $rawHeader);
-            $this->currentStat = array(
-                2 => octdec($header['mode']),
-                4 => octdec($header['uid']),
-                5 => octdec($header['gid']),
-                7 => octdec($header['size']),
-                9 => octdec($header['mtime'])
-                );
-            $this->currentStat['mode']  = $this->currentStat[2];
-            $this->currentStat['uid']   = $this->currentStat[4];
-            $this->currentStat['gid']   = $this->currentStat[5];
-            $this->currentStat['size']  = $this->currentStat[7];
-            $this->currentStat['mtime'] = $this->currentStat[9];
-
-            if ($header['magic'] == 'ustar') {
-                $this->currentFilename = $this->getStandardURL(
-                                $header['prefix'] . $header['filename']
-                            );
-            } else {
-                $this->currentFilename = $this->getStandardURL(
-                                $header['filename']
-                            );
-            }
-
-            $this->leftLength = $this->currentStat[7];
-            if ($this->leftLength % 512 == 0) {
-                $this->footerLength = 0;
-            } else {
-                $this->footerLength = 512 - $this->leftLength%512;
-            }
-
-            $checksum = 8*ord(" ");
-            for ($i = 0; $i < 148; $i++) {
-                $checksum += ord($rawHeader{$i});
-            }
-            for ($i = 156; $i < 512; $i++) {
-                $checksum += ord($rawHeader{$i});
-            }
-
-            if (octdec($header['checksum']) != $checksum) {
-                die('Checksum error on entry '.$this->currentFilename);
-            }
-        } while ($header['type'] != 0);
-
+		}
         return true;
     }
+    
+    /**
+	 * Performs the actual advancement to the next item in the underlying structure
+	 * We encapsulate it in a separate function because ot things like @LongLink, where the
+	 * next item is part of the current one.
+     *
+     * @access private
+     * @author Josh Vermette (josh@calydonian.com)
+     */
+	function _nextAdvance() 
+    {
+		$error = $this->source->skip($this->leftLength + $this->footerLength);
+		if (PEAR::isError($error)) {
+			return $error;
+		}
+
+		$rawHeader = $this->source->getData(512);
+		if (PEAR::isError($rawHeader)) {
+			return $rawHeader;
+		}
+
+		if (strlen($rawHeader)<512 || $rawHeader == pack("a512", "")) {
+			$this->seekToEnd = strlen($rawHeader);
+			$this->currentFilename = null;
+			return false;
+		}
+
+		$header = unpack(
+                         "a100filename/a8mode/a8uid/a8gid/a12size/a12mtime/".
+                         "a8checksum/a1type/a100linkname/a6magic/a2version/".
+                         "a32uname/a32gname/a8devmajor/a8devminor/a155prefix",
+                         $rawHeader);
+			
+		$this->currentStat = array(
+                                   2 => octdec($header['mode']),
+                                   4 => octdec($header['uid']),
+                                   5 => octdec($header['gid']),
+                                   7 => octdec($header['size']),
+                                   9 => octdec($header['mtime'])
+                                   );
+		$this->currentStat['mode']  = $this->currentStat[2];
+		$this->currentStat['uid']   = $this->currentStat[4];
+		$this->currentStat['gid']   = $this->currentStat[5];
+		$this->currentStat['size']  = $this->currentStat[7];
+		$this->currentStat['mtime'] = $this->currentStat[9];
+
+		if ($header['magic'] == 'ustar') {
+			$this->currentFilename = $this->getStandardURL(
+                                                           $header['prefix'] . $header['filename']
+                                                           );
+		} else {
+			$this->currentFilename = $this->getStandardURL(
+                                                           $header['filename']
+                                                           );
+		}
+        
+		$this->leftLength = $this->currentStat[7];
+		if ($this->leftLength % 512 == 0) {
+			$this->footerLength = 0;
+		} else {
+			$this->footerLength = 512 - $this->leftLength%512;
+		}
+
+		$checksum = 8*ord(" ");
+		for ($i = 0; $i < 148; $i++) {
+			$checksum += ord($rawHeader{$i});
+		}
+
+		for ($i = 156; $i < 512; $i++) {
+			$checksum += ord($rawHeader{$i});
+		}
+		
+        if (octdec($header['checksum']) != $checksum) {
+			die('Checksum error on entry '.$this->currentFilename);
+		}
+        
+		return $header;
+	}	
 
     /**
      * @see File_Archive_Reader::getData()
