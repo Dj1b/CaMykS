@@ -5,9 +5,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/TinyMCEv3/TinyMCEv3.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2008
- * @date Modification: Feb 2020
+ * @date Modification: Jul 2020
  * @copyright 2008 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,6 +29,12 @@ final class TinyMCEv3 extends Input {
      * @brief Content value.
      */
     protected $contentValue = '';
+
+    /**
+     * var string $contentLg
+     * @brief Content language.
+     */
+    protected $contentLg = '';
 
     /**
      * var string $configType
@@ -68,20 +74,20 @@ final class TinyMCEv3 extends Input {
     public function __construct($path_type) {
         parent::__construct('TinyMCEv3', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin variables */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* recommended configs */
+        /* Recommended configs */
         $this->admin_configs = array('default', 'classic', 'simple', 'flash');
         $this->client_configs = array('classic_cs', 'simple_cs', 'textual');
 
-        /* available configs */
+        /* Available configs */
         $this->specific_configs = array('file', 'text');
         $this->builtin_configs = array_merge(array('advanced'), $this->admin_configs, $this->client_configs);
         $this->configs = array_merge($this->specific_configs, $this->builtin_configs);
