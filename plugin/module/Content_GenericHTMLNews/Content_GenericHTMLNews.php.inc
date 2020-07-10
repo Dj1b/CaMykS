@@ -4,12 +4,12 @@
  * Developed by	       	: camyks.net
  * Author	       	: CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version   	: 1.0a2
- * Object Version       : 1.0
+ * Object Version       : 1.0.1
  * Object Type          : Plugin / Module Engine
  * Create Date		: Dec 2007
- * Last Modif Date	: Apr 2009
+ * Last Modif Date	: Jul 2020
  * History
- * * 07-12-15 : Initial file 
+ * * 07-12-15 : Initial file
  * * 08-01-08 : Add new display layouts
  * * 08-05-18 : Update admin list layout
  * * 08-06-13 : Disable admin menu for data I/O modes
@@ -66,7 +66,7 @@ class Content_GenericHTMLNews extends Module {
     $this->newslist = new Content_GenericHTMLNewsList( 0, $this );
     $this->newsitem = new Content_GenericHTMLNewsItem( 0, $this );
   }
-  
+
   /* overwrite Module methods */
 
   /*
@@ -84,11 +84,11 @@ class Content_GenericHTMLNews extends Module {
    * uninstall module
    * @return boolean success
    * @access private
-   */  
+   */
   function uninstall ( ) {
     return $this->newsitem->uninstall() and $this->newslist->uninstall();
   }
-  
+
   /*
    * check module installation
    * @return boolean success
@@ -97,7 +97,7 @@ class Content_GenericHTMLNews extends Module {
   function is_installed () {
     return $this->newsitem->is_installed();
   }
-  
+
   /*
    * get available content ids as list
    * @return array
@@ -106,7 +106,7 @@ class Content_GenericHTMLNews extends Module {
   function get_contentList ( ) {
     return $this->newslist->get_namelist();
   }
-  
+
   /*
    * init module in admin mode
    * @return void
@@ -121,7 +121,7 @@ class Content_GenericHTMLNews extends Module {
     /* check right for this page */
     if ( $this->check_right( $this->page_id ) === false )
       return $this->init_admin_pageAccessDenied();
-    
+
     /* check dependencies */
     if(!isset($camyks->inputs['TabBuilder']))
       return $this->init_admin_missingPlugin('Input', 'TabBuilder');
@@ -129,10 +129,10 @@ class Content_GenericHTMLNews extends Module {
       return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
     if (!isset($camyks->inputs['TinyMCEv3']) and !isset($camyks->inputs['TinyMCE']))
       return $this->init_admin_missingPlugin('Input', 'TinyMCEv3');
-    
+
     /* get mode */
     $this->mode = isset ($_REQUEST['mode'])?$_REQUEST['mode'] : 'view_list';
-    
+
     /* initialise module with mode */
     switch ( $this->mode ) {
     case 'edit_item' :
@@ -147,7 +147,7 @@ class Content_GenericHTMLNews extends Module {
       /* mode == delete_item */
       $this->init_admin_delete_item();
       break;
-    case 'edit_list': 
+    case 'edit_list':
       /* mode == edit_list */
       $this->init_admin_edit_list();
       break;
@@ -164,7 +164,7 @@ class Content_GenericHTMLNews extends Module {
     /* generic module init */
     parent::init_admin();
   }
-  
+
   /*
    * display module object in admin mode
    * @return void
@@ -173,7 +173,7 @@ class Content_GenericHTMLNews extends Module {
   function display_admin () {
     parent::display_admin();
   }
-  
+
   /*
    * init module object in site mode
    * @param integer $content
@@ -183,13 +183,13 @@ class Content_GenericHTMLNews extends Module {
    */
   function init_site ( $content=1, $params=array(), $mindex=null ) {
     global $camyks;
-    
+
     /* add module css styles */
     $this->add_styleFile('generichtmlnews.css');
 
     /* add email management javascripts */
     $this->add_JSEngineFile('tool/mail.js');
-    
+
     /* get news list to display */
     $this->newslist->id = $content;
     $this->newslist->get();
@@ -210,7 +210,7 @@ class Content_GenericHTMLNews extends Module {
    * display module object in site mode
    * @return void
    * @access private
-   */  
+   */
   function display_site () {
     parent::display_site();
   }
@@ -258,8 +258,8 @@ class Content_GenericHTMLNews extends Module {
       die();
 
     /* get items */
-    $newsitems = $this->newsitem->get_lastItemsList( $this->newslist->id, $camyks->current_language, $count);
-    
+    $newsitems = $this->newsitem->get_lastItemsList($this->newslist->id, $camyks->current_language, $this->newslist->vars['count_list']);
+
     /* build rss config */
     $config = array();
     $config['title'] = $this->get_translation('rss_title');
@@ -283,7 +283,7 @@ class Content_GenericHTMLNews extends Module {
     $rssInput->initialise( $config, $items );
     $rssInput->display();
   }
-  
+
   /* specific admin modes methods */
 
   /*
@@ -331,7 +331,7 @@ class Content_GenericHTMLNews extends Module {
     /* update layout */
     $this->selected_layout = 'admin_view_list.html.inc';
   }
-  
+
   /*
    * init module in admin / edit_list mode
    * @return void
@@ -339,14 +339,14 @@ class Content_GenericHTMLNews extends Module {
    */
   function init_admin_edit_list ( ) {
     global $camyks;
-    
+
     /* get object data */
     $this->newslist->id = $this->id;
     $this->newslist->get();
     $this->newslist->get_fromItems();
     /* check for RSS Input */
     $this->rssAvailable = isset( $camyks->inputs['GenericRSSFeed'] );
-    
+
     /* get form object */
     $this->form = new HTMLForm ('newslist_form',
 				$camyks->get_adminlink( $this->name, array('mode'=>'save_list')),
@@ -355,25 +355,25 @@ class Content_GenericHTMLNews extends Module {
     $this->form->add_hidden('page_id', $this->page_id );
     $this->form->add_hidden('module_index', $this->module_index );
 
-    if ($this->id == 0) 
+    if ($this->id == 0)
       $link = $camyks->get_adminLink('Admin_ContentPage',
 				     array('mode'=>'modify',
 					   'page_id'=> $this->page_id,
 					   'openTab'=>'content'));
     else
       $link = $this->get_adminLink();
-    
+
     /* button interface */
     $this->buttons = array(array('title'=>$camyks->get_translation('back'),
 				 'link'=> $link),
 			   array('title'=>$camyks->get_translation('valid'),
 				 'link'=>$this->form->get_HTMLSubmitLink()));
-    
-    
+
+
     /* update layout */
     $this->selected_layout = 'admin_edit_list.html.inc';
   }
-  
+
   /*
    * init module in admin / save_list mode
    * @return void
@@ -406,7 +406,7 @@ class Content_GenericHTMLNews extends Module {
     $this->selected_layout = 'admin_message.html.inc';
     $this->selected_layout_location = 'camyks';
   }
-  
+
   /*
    * init module in admin / save_item mode
    * @return void
@@ -437,7 +437,7 @@ class Content_GenericHTMLNews extends Module {
     $this->selected_layout_location = 'camyks';
     $this->set_redirect($camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink());
   }
-  
+
   /*
    * init module in admin / edit_item mode
    * @return void
@@ -453,11 +453,11 @@ class Content_GenericHTMLNews extends Module {
     $this->newsitem->id = $id;
     $this->newsitem->get();
     $this->newsitem->get_fromItems();
-    
+
     if ( $this->newsitem->id == 0 ) {
       $this->newsitem->vars['listid'] = $this->id;
     }
-    
+
     /* get form object */
     $this->form = new HTMLForm ( 'newsitem_form',
 				 $camyks->get_adminlink( $this->name, array('mode'=>'save_item')),
@@ -469,7 +469,7 @@ class Content_GenericHTMLNews extends Module {
     $this->form->add_hidden('author', $this->newsitem->vars['author'] );
     $this->form->add_hidden('page_id', $this->page_id );
     $this->form->add_hidden('module_index', $this->module_index );
-    
+
     /* build tabs */
     $this->tabBuilder = &$camyks->inputs['TabBuilder'];
     $this->tabBuilder->add_tabs(array(array('name'=>'properties',
@@ -477,7 +477,7 @@ class Content_GenericHTMLNews extends Module {
 				      array('name'=>'content',
 					    'title'=>$this->get_translation('tabcontent'))));
     $this->tabBuilder->initialise(array('default'=>'newsitems'));
-    
+
     /* get HTML Editor with default config */
     if( isset($camyks->inputs['TinyMCEv3'])) {
       $this->input = &$camyks->inputs['TinyMCEv3'];
@@ -488,17 +488,17 @@ class Content_GenericHTMLNews extends Module {
     $this->input->set_contentInfos('file', $this->newsitem->vars['content'] );
     $this->input->set_textareaInfos('content', '100%', '400px');
     $this->input->initialise();
-    
+
     /* get buttons */
     $this->buttons = array(array('title'=>$camyks->get_translation('back'),
 				 'link'=>$this->get_adminLink()),
 			   array('title'=>$camyks->get_translation('valid'),
 				 'link'=>$this->form->get_HTMLSubmitLink()));
-    
+
     /* layout */
     $this->selected_layout = 'admin_edit_item.html.inc';
   }
-  
+
   /*
    * init module in admin / delete_item mode
    * @return void
@@ -532,7 +532,7 @@ class Content_GenericHTMLNews extends Module {
   /* specific site mode methods */
 
   /*
-   * init module object in site / list mode 
+   * init module object in site / list mode
    * @param array $params
    * @return void
    * @access private
@@ -563,17 +563,17 @@ class Content_GenericHTMLNews extends Module {
 						 $camyks->contentPage->name,
 						 '',
 						 array('newspage'=> $this->newspage+1));
-      else 
+      else
 	$this->nextnews = '';
-      
+
       if ( $this->newspage > 0 )
 	$this->prevnews = $camyks->get_siteLink( $camyks->contentPage->id,
 						 $camyks->contentPage->name,
 						 '',
 						 array('newspage'=> $this->newspage-1));
-      else 
+      else
 	$this->prevnews = '';
-      
+
       /* build buttons list */
       $this->buttons = array(array('title' => $this->get_translation('previousnews'),
 				   'link' => $this->prevnews ),
@@ -582,7 +582,7 @@ class Content_GenericHTMLNews extends Module {
 			     array('title' => $this->get_translation('nextnews'),
 				   'link' => $this->nextnews ));
     }
-    
+
     /* check for RSS Feed link */
     if ( isset( $camyks->inputs['GenericRSSFeed'] ) and ( $this->newslist->vars['enablerss'] == 1 ) ){
       $rssURL = $camyks->_conf['url'].'/request.php?module='.$this->name;
@@ -591,9 +591,9 @@ class Content_GenericHTMLNews extends Module {
       $rssURL .= '&amp;page='.$camyks->contentPage->name;
       $this->set_RSSFeed($rssURL, $this->get_translation('rss_title') );
     }
-    
+
     /* check for social network sharing */
-    if (isset($camyks->inputs['SocialNetworksSharingPanel'])) {     
+    if (isset($camyks->inputs['SocialNetworksSharingPanel'])) {
       /* load input */
       $this->networkInput = &$camyks->inputs['SocialNetworksSharingPanel'];
       $this->networkInput->initialise(array('text'=>$this->get_translation('shareon'), 'separator'=>'', 'block_class'=>'share'));
@@ -603,7 +603,7 @@ class Content_GenericHTMLNews extends Module {
     /* set layout to display */
     $this->selected_layout = 'site_'.$this->newslist->vars['layout_list'].'.html.inc';
   }
-  
+
   /*
    * init module object in site / item mode
    * @param array $params
@@ -612,7 +612,7 @@ class Content_GenericHTMLNews extends Module {
    */
   function init_site_item ( $params ) {
     global $camyks;
-    
+
     /* get news item object */
     $this->newsitem->id = $params['newsitem'];
     if ( $this->newsitem->get()===false )
@@ -621,14 +621,14 @@ class Content_GenericHTMLNews extends Module {
 
     /* update page title */
     $camyks->HTMLPage->page_title .= ' - '. $this->newsitem->vars['title'];
-    
+
     /* check if object is valid */
     if ( ( $this->newsitem->vars['language'] != $camyks->current_language )
-	 or ( $this->newsitem->vars['status'] == 0 ) 
+	 or ( $this->newsitem->vars['status'] == 0 )
 	 or ( $this->newsitem->vars['listid'] != $this->newslist->id ) )
       return $this->init_site_list($params);
-      
-    
+
+
     /* check for social network sharing */
     if (isset($camyks->inputs['SocialNetworksSharingPanel'])) {
       /* load picture to share */
@@ -638,8 +638,8 @@ class Content_GenericHTMLNews extends Module {
           $picture = $camyks->get_confValue('url').'/'.$picture;
       } else {
         $picture = '';
-      }       
-     
+      }
+
       /* load input */
       $this->networkInput = &$camyks->inputs['SocialNetworksSharingPanel'];
       $this->networkInput->initialise(array('text'=>$this->get_translation('shareon'), 'separator'=>'', 'block_class'=>'share',
@@ -651,12 +651,12 @@ class Content_GenericHTMLNews extends Module {
       ));
     } else
       $this->networkInput = false;
-      
+
     /* buttons list */
     $this->buttons = array(array('title' => $this->get_translation('back'),
 				 'link' =>  $camyks->get_siteLink( $camyks->contentPage->id,
 								   $camyks->contentPage->name)));
-    
+
     /* set layout to display */
     $this->selected_layout = 'site_'.$this->newslist->vars['layout_item'].'.html.inc';
   }
@@ -723,7 +723,7 @@ class Content_GenericHTMLNews extends Module {
    */
   function get_singlenewslink ( $id ) {
     global $camyks;
-    return $camyks->get_confValue('url').'/' 
+    return $camyks->get_confValue('url').'/'
       .$camyks->get_siteLink ($camyks->contentPage->id,
 			      $camyks->contentPage->name,
 			      '',
@@ -739,17 +739,17 @@ class Content_GenericHTMLNews extends Module {
    */
   function get_lastNewsList( $listid, $count=null ) {
     global $camyks;
-    
+
     /* get newslist item */
     $this->newslist->id = $listid;
     if ( $this->newslist->get() === false )
       return array();
     $this->newslist->get_fromItems();
-    
+
     /* check count value */
     if ( !isset($count))
       $count = $this->newslist->vars['count_list'];
-    
+
     /* get items */
     return $this->newsitem->get_lastItemsList( $this->newslist->id, $camyks->current_language, $count);
   }
