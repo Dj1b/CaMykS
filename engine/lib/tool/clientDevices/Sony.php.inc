@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.46
+ * @version 1.0.47
  * @date Creation: Apr 2018
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -120,6 +120,7 @@ function get_SonyClientDevice($deviceCode='') {
         'SOV36'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2018),
         'SOV37'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
 
+        'SO-03G'    => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),
         'SO-03H'    => array('platform_model' => 'Xperia Z5 Premium',       'platform_year' => 2017),
 
         '502SO'     => array('platform_model' => 'Xperia X Performace',     'platform_year' => 2016),

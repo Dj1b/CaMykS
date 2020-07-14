@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Amazon.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Oct 2018
- * @date Modification: Jun 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jul 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -27,6 +27,7 @@ function get_AmazonClientDevice($deviceCode='') {
         'KFOT'      => array('platform_model'    => 'Fire 7',                           'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2012, 'system_title'=>'Android'),
 
         /* Amazon tablets - (Kindle) Fire HD series */
+        'KFMAWI'    => array('platform_model'    => 'Fire HD 10',                       'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2019),
         'KFKAWI'    => array('platform_model'    => 'Fire HD 8',                        'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2018),
         'KFSUWI'    => array('platform_model'    => 'Fire HD 10',                       'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2017),
         'KFDOWI'    => array('platform_model'    => 'Fire HD 8',                        'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2017),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.81
+ * @version 1.0.82
  * @date Creation: Apr 2018
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -186,6 +186,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G985F'  => array('platform_model' => 'Galaxy S20+',                     'platform_year' => 2020),
         'SM-G986B'  => array('platform_model' => 'Galaxy S20+',                     'platform_year' => 2020),
         'SM-G988B'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
+        'SM-G988U'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
 
         /* Samsung Galaxy A series */
         'SM-A260F'  => array('platform_model' => 'Galaxy A2 Core',                  'platform_year' => 2019),
@@ -225,6 +226,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A105FN' => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A105G'  => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A102U'  => array('platform_model' => 'Galaxy A10e',                     'platform_year' => 2019),
+        'SM-A102W'  => array('platform_model' => 'Galaxy A10e',                     'platform_year' => 2019),
         'SM-A107F'  => array('platform_model' => 'Galaxy A10S',                     'platform_year' => 2019),
         'SM-A205F'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205FN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
@@ -245,8 +247,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A5070'  => array('platform_model' => 'Galaxy A50s',                     'platform_year' => 2019),
         'SM-A507FN' => array('platform_model' => 'Galaxy A50s',                     'platform_year' => 2019),
         'SM-A515F'  => array('platform_model' => 'Galaxy A51',                      'platform_year' => 2019),
-        'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A7050'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
+        'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
+        'SM-A705MN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
+        'SM-A705W'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A715F'  => array('platform_model' => 'Galaxy A71',                      'platform_year' => 2019),
         'SM-A805F'  => array('platform_model' => 'Galaxy A80',                      'platform_year' => 2019),
         'SM-A015F'  => array('platform_model' => 'Galaxy A01',                      'platform_year' => 2020),
@@ -379,6 +383,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N910V'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N9106W' => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-P900'   => array('platform_model' => 'Galaxy Note Pro 12.2',            'platform_year' => 2014),
+        'SM-N9200'  => array('platform_model' => 'Galaxy Note 5',                   'platform_year' => 2015),
         'SM-N920C'  => array('platform_model' => 'Galaxy Note 5',                   'platform_year' => 2015),
         'SM-N920T'  => array('platform_model' => 'Galaxy Note 5',                   'platform_year' => 2015),
         'SM-N920V'  => array('platform_model' => 'Galaxy Note 5',                   'platform_year' => 2015),

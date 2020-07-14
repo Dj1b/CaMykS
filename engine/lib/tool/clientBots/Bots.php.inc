@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.65
+ * @version 1.0.66
  * @date Creation: May 2018
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -803,6 +803,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Yandex',
+        'bot_url'           => 'http://yandex.com/bots',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'http://www.yandex.ru',
+    );
+
+    /* YandexNews */
+    $knownBots['yandexnews'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'YandexNews',
         'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
@@ -4752,6 +4762,46 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://wottot.com/WoTBoT.html',
         'engine_title'      => 'Wot Tot',
         'engine_url'        => 'http://wottot.com/',
+    );
+
+    /* webtechbot */
+    $knownBots['webtechbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'webtechbot',
+        'bot_url'           => 'https://www.webtechsurvey.com/bot',
+        'engine_title'      => 'Web Tech Survey',
+        'engine_url'        => 'https://www.webtechsurvey.com/',
+    );
+
+    /* ias-va */
+    $knownBots['ias-va'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ias-va',
+        'bot_url'           => 'https://www.admantx.com/service-fetcher.html',
+        'engine_title'      => 'ADmantX',
+        'engine_url'        => 'https://www.admantx.com/',
+    );
+
+    /* CISPA Webcrawler */
+    $knownBots['cispa webcrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'CISPA Webcrawler',
+        'bot_url'           => 'https://vuln-notify-checker.cispa.saarland',
+        'engine_title'      => 'CISPA',
+        'engine_url'        => 'https://cispa.saarland',
+    );
+
+    /* MarfeelMan */
+    $knownBots['marfeelman'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MarfeelMan',
+        'bot_url'           => 'https://atenea.marfeel.com/atn/marfeel-press/content-connectors/content-connector-banned#',
+        'engine_title'      => 'Marfeel Atenea',
+        'engine_url'        => 'https://atenea.marfeel.com/atn',
     );
 
     /* Return bot list */

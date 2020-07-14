@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.30
  * @date Creation: Apr 2018
- * @date Modification: May 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -67,6 +67,7 @@ function get_LGClientDevice($deviceCode='') {
         'L160L'     => array('platform_model' => 'Optimus LTE2',    'platform_year' => 2012),
         'L414DL'    => array('platform_model' => 'Premier Pro',     'platform_year' => 2018),
         'LS996'     => array('platform_model' => 'G Flex 2',        'platform_year' => 2015),
+        'K100'      => array('platform_model' => 'K3',              'platform_year' => 2016),
         'K120'      => array('platform_model' => 'Spree',           'platform_year' => 2016),
         'K371'      => array('platform_model' => 'Phoenix 2',       'platform_year' => 2016),
         'K430'      => array('platform_model' => 'K10',             'platform_year' => 2017),
