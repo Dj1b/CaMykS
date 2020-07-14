@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/france.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2017
- * @date Modification: Mar 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Jul 2020
+ * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -216,7 +216,6 @@ function france_getSocioProfessionalCategoryList($params=array()) {
     return $list;
 }
 
-
 /**
  * Return france socioprofessional category title.
  * @param string $category
@@ -245,5 +244,42 @@ function france_getSocioProfessionalCategoryTitle($category='', $language='') {
 
     /* Return default void result */
     return '';
+}
+
+/**
+ * Return France holiday list for given year.
+ * @param integer $year
+ * @return array
+ */
+function france_getHolidayList($year=null) {
+    /* Check year */
+    if (is_null($year)) $year = date('Y');
+
+    /* Initialise list */
+    $list = array();
+
+    /* Adds New Year's day */
+    $list[] = date_getNewYearsDay($year);
+
+    /* Adds religeous days */
+    $easter = date_getEasterDay($year);
+    $list[] = mktime(0, 0, 0, date('n', $easter), date('j', $easter)+1, $year);
+    $list[] = date_getAscensionDay(null, $easter);
+    $list[] = date_getPentecostDay(null, $easter);
+    $list[] = date_getAssumptionDay($year);
+    $list[] = date_getAllSaintsDay($year);
+    $list[] = date_getChristmasDay($year);
+
+    /* Adds national days */
+    $list[] = mktime(0, 0, 0, 5, 1, $year);
+    $list[] = mktime(0, 0, 0, 5, 8, $year);
+    $list[] = mktime(0, 0, 0, 7, 14, $year);
+    $list[] = mktime(0, 0, 0, 11, 11, $year);
+
+    /* Sort list */
+    sort($list);
+
+    /* Return list */
+    return $list;
 }
 ?>

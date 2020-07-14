@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/date.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2005
- * @date Modification: May 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jul 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -511,6 +511,128 @@ function date_stringToTimestamp($date) {
     return mktime($date['hour'], $date['minute'], $date['second'], $date['month'], $date['day'], $date['year']);
 }
 
+/* Holidays related methods */
+
+/**
+ * Return New Year's day for given year.
+ * @param integer $year
+ * @return int
+ */
+function date_getNewYearsDay($year=null) {
+    /* Check year value */
+    if (is_null($year)) $year = date('Y');
+
+    /* Return computed day */
+    return mktime(0, 0, 0, 1, 1, $year);
+}
+
+/**
+ * Return Easter day for given year.
+ * @param integer $year
+ * @return integer
+ */
+function date_getEasterDay($year=null) {
+    /* Check year value */
+    if (is_null($year)) $year = date('Y');
+
+    $a = $year % 4;
+    $b = $year % 7;
+    $c = $year % 19;
+    $m = 24;
+    $n = 5;
+    $d = (19 * $c + $m ) % 30;
+    $e = (2 * $a + 4 * $b + 6 * $d + $n) % 7;
+
+    $easterdate = 22 + $d + $e;
+
+    if ($easterdate > 31) {
+        $day = $d + $e - 9;
+        $month = 4;
+    } else {
+        $day = 22 + $d + $e;
+        $month = 3;
+    }
+
+    if ($d == 29 && $e == 6) {
+        $day = 10;
+        $month = 04;
+    } elseif ($d == 28 && $e == 6) {
+        $day = 18;
+        $month = 04;
+    }
+
+    /* Return computed day */
+    return mktime(0, 0, 0, $month, $day, $year);
+}
+
+/**
+ * Return Ascension day for given year (or Easter day)
+ * @param integer $year
+ * @param integer $easter
+ * @return integer
+ */
+function date_getAscensionDay($year=null, $easter=null) {
+    if ($easter !== null)
+        $day = $easter;
+    else
+        $day = date_getEasterDay($year);
+
+    return mktime(0, 0, 0, date('n', $day), date('j', $day)+39, date('Y', $day));
+}
+
+/**
+ * Return Pentecost day for given year (or Easter day)
+ * @param integer $year
+ * @param integer $easter
+ * @return integer
+ */
+function date_getPentecostDay($year=null, $easter=null) {
+    if ($easter !== null)
+        $day = $easter;
+    else
+        $day = date_getEasterDay($year);
+
+    return mktime(0, 0, 0, date('n', $day), date('j', $day)+50, date('Y', $day));
+}
+
+/**
+ * Return Assumption day for given year.
+ * @param integer $year
+ * @return integer
+ */
+function date_getAssumptionDay($year=null) {
+    /* Check year value */
+    if (is_null($year)) $year = date('Y');
+
+    /* Return computed day */
+    return mktime(0, 0, 0, 8, 15, $year);
+}
+
+/**
+ * Return All Saints day for given year.
+ * @param integer $year
+ * @return integer
+ */
+function date_getAllSaintsDay($year=null) {
+    /* Check year value */
+    if (is_null($year)) $year = date('Y');
+
+    /* Return computed day */
+    return mktime(0, 0, 0, 11, 1, $year);
+}
+
+/**
+ * Return Christmas day for given year.
+ * @param integer $year
+ * @return integer
+ */
+function date_getChristmasDay($year=null) {
+    /* Check year value */
+    if (is_null($year)) $year = date('Y');
+
+    /* Return computed day */
+    return mktime(0, 0, 0, 12, 25, $year);
+}
 
 
 /************ DEPRECATED *******************/
