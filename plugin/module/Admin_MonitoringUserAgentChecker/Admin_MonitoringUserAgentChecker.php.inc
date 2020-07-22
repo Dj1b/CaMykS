@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: Dec 2014
- * @date Modification: Jun 2019
- * @copyright 2014 - 2019 CaMykS Team
+ * @date Modification: Jul 2020
+ * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -64,7 +64,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         }
     }
 
-    /* overwrite Module methods */
+    /* Override Module methods */
 
     /**
      * Install module.
@@ -706,7 +706,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      */
     private function save_visit($ua=null) {
         /* define params */
-        $params = array('user_agent'=>isset($ua) ? $ua : $_SERVER['HTTP_USER_AGENT']);
+        $params = array('user_agent'=>isset($ua) ? $ua : client_getUserAgent());
 
         /* initialise new object */
         $this->recordItem->initialise();
