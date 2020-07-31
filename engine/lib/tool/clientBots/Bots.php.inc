@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.66
+ * @version 1.0.67
  * @date Creation: May 2018
  * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -4802,6 +4802,26 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://atenea.marfeel.com/atn/marfeel-press/content-connectors/content-connector-banned#',
         'engine_title'      => 'Marfeel Atenea',
         'engine_url'        => 'https://atenea.marfeel.com/atn',
+    );
+
+    /* www.expertsearch.nl/spider */
+    $knownBots['www.expertsearch.nl/spider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ExpertSearch Spider',
+        'bot_url'           => 'http://www.expertsearch.nl/spider',
+        'engine_title'      => 'JobDigger',
+        'engine_url'        => 'https://www.jobdigger.nl',
+    );
+
+    /* Nextcloud Server Crawler */
+    $knownBots['nextcloud server crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Nextcloud Server Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'Nextcloud',
+        'engine_url'        => 'https://nextcloud.com/',
     );
 
     /* Return bot list */

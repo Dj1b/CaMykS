@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Unknowns.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Jan 2019
  * @date Modification: Jul 2020
  * @copyright 2019 - 2020 CaMykS Team
@@ -724,6 +724,36 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'BananaBot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Adsbot */
+    $unknownBots['adsbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Adsbot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* NiueBot */
+    $unknownBots['niuebot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'NiueBot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* Version-IV-1.18-Smart-Agent */
+    $unknownBots['version-iv-'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Version-IV-1.18-Smart-Agent (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

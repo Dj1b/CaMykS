@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Oukitel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jan 2019
- * @date Modification: Apr 2020
+ * @date Modification: Jul 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_OukitelClientDevice($deviceCode='') {
         'K6'            => array('platform_model' => 'K6',          'platform_year' => 2017),
         'K7'            => array('platform_model' => 'K7',          'platform_year' => 2018),
         'WP1'           => array('platform_model' => 'WP1',         'platform_year' => 2018),
+        'K12'           => array('platform_model' => 'K12',         'platform_year' => 2019),
     );
 
     /* Check for returning list */

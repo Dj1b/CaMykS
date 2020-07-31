@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Oct 2018
  * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -34,8 +34,10 @@ function get_TecnoClientDevice($deviceCode='') {
         'AX8'       => array('platform_model' => 'Phantom 8',       'platform_year' => 2018),
         'B1p'       => array('platform_model' => 'Pop 2 Power',     'platform_year' => 2018),
         'F1'        => array('platform_year' => 2018),
+        'F2'        => array('platform_year' => 2018),
         'Camon CX'  => array('platform_year' => 2018),
         'CA7'       => array('platform_model' => 'Camon X',         'platform_year' => 2018),
+        'KB7'       => array('platform_model' => 'Spark 3',         'platform_year' => 2019),
         'KB7j'      => array('platform_model' => 'Spark 3',         'platform_year' => 2019),
         'AB7'       => array('platform_model' => 'Phantom 9',       'platform_year' => 2019),
         'KC6'       => array('platform_model' => 'Spark 4 Air',     'platform_year' => 2019),
