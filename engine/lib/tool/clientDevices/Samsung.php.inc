@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.83
+ * @version 1.0.84
  * @date Creation: Apr 2018
- * @date Modification: Jul 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,6 +48,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T325'   => array('platform_model' => 'Galaxy Tab 8.4',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T900'   => array('platform_model' => 'Galaxy Tab Pro 12.2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'SM-T350'   => array('platform_model' => 'Galaxy Tab A 8.0',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T390'   => array('platform_model' => 'Galaxy Tab Active 2', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'SM-T550'   => array('platform_model' => 'Galaxy Tab A',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-P550'   => array('platform_model' => 'Galaxy Tab A',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T555'   => array('platform_model' => 'Galaxy Tab A 9.7',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
@@ -235,7 +236,9 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A205W'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A202F'  => array('platform_model' => 'Galaxy A20e',                     'platform_year' => 2019),
         'SM-A207F'  => array('platform_model' => 'Galaxy A20s',                     'platform_year' => 2019),
+        'SM-A217F'  => array('platform_model' => 'Galaxy A21s',                     'platform_year' => 2019),
         'SM-A305F'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
+        'SM-A305G'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A305GT' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A307FN' => array('platform_model' => 'Galaxy A30s',                     'platform_year' => 2019),
         'SM-A405FN' => array('platform_model' => 'Galaxy A40',                      'platform_year' => 2019),
@@ -434,11 +437,12 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G7108V' => array('platform_model' => 'Galaxy Grand 2 4G',               'platform_year' => 2014),
         'GT-I9082'  => array('platform_model' => 'Galaxy Grand Duos',               'platform_year' => 2013),
         'GT-I9060I' => array('platform_model' => 'Galaxy Grand Plus',               'platform_year' => 2014),
-        'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
-        'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2015),
-        'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
         'SM-G530FZ' => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
-        'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus',         'platform_year' => 2014),
+        'SM-G530H'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
+        'SM-G530T'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2014),
+        'SM-G531F'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2015),
+        'SM-G531H'  => array('platform_model' => 'Galaxy Grand Prime',              'platform_year' => 2015),
+        'SM-G532F'  => array('platform_model' => 'Galaxy Grand Prime Plus',         'platform_year' => 2015),
         'GT-I8552'  => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
         'GT-I8552B' => array('platform_model' => 'Galaxy Grand Quattro',            'platform_year' => 2013),
         'SGH-I527'  => array('platform_model' => 'Galaxy Mega',                     'platform_year' => 2013),

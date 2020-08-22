@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.74
+ * @version 1.0.75
  * @date Creation: Apr 2018
- * @date Modification: Jul 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -89,6 +89,7 @@ function get_HuaweiClientDevices() {
         'MAR-LX1M'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX2'   => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX3A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
+        'VOG-L04'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'VOG-L09'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'VOG-L29'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'FIG-LA1'   => array('platform_model' => 'P Smart',         'platform_year' => 2017),
@@ -130,6 +131,7 @@ function get_HuaweiClientDevices() {
         'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'EVR-AL00'  => array('platform_model' => 'Mate 20 X',       'platform_year' => 2018),
         'NEO-L29'   => array('platform_model' => 'Mate RS',         'platform_year' => 2018),
+        'LIO-L29'   => array('platform_model' => 'Mate 30 Pro',     'platform_year' => 2019),
 
         /* Huawei Honor series */
         'H60-L01'   => array('platform_model' => 'Honor 6',         'platform_year' => 2014),
@@ -148,6 +150,7 @@ function get_HuaweiClientDevices() {
         'JMM-L22'   => array('platform_model' => 'Honor 6C Pro',    'platform_year' => 2017),
         'BLN-L21'   => array('platform_model' => 'Honor 6X',        'platform_year' => 2017),
         'PLK-L01'   => array('platform_model' => 'Honor 7',         'platform_year' => 2015),
+        'LND-L29'   => array('platform_model' => 'Honor 7C',        'platform_year' => 2018),
         'BND-L21'   => array('platform_model' => 'Honor 7X',        'platform_year' => 2017),
         'BND-L24'   => array('platform_model' => 'Honor 7X',        'platform_year' => 2017),
         'DUA-L22'   => array('platform_model' => 'Honor 7S',        'platform_year' => 2018),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Cubot.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Mar 2019
- * @date Modification: Jul 2020
+ * @date Modification: Aug 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,6 +48,7 @@ function get_CubotClientDevice($deviceCode=false) {
         'R11'           => array('platform_model' => 'R11',         'platform_year' => 2018),
         'X18 PLUS'      => array('platform_model' => 'X18 Plus',    'platform_year' => 2018),
         'X19'           => array('platform_model' => 'X19',         'platform_year' => 2019),
+        'X20 PRO'       => array('platform_model' => 'X20 Pro',     'platform_year' => 2019),
 
         'CHEETAH 2'     => array('platform_model' => 'Cheetah 2',   'platform_year' => 2016),
         'DINOSAUR'      => array('platform_model' => 'Dinosaur',    'platform_year' => 2016),

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Vivo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: May 2018
- * @date Modification: Mar 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,6 +38,7 @@ function get_VivoClientDevice($deviceCode='') {
         '1901'          => array('platform_model' => 'X27',         'platform_year' => 2019),
         '1902'          => array('platform_model' => 'X27 Pro',     'platform_year' => 2019),
         '1904'          => array('platform_model' => 'Y12',         'platform_year' => 2019),
+        '1933'          => array('platform_model' => 'V19',         'platform_year' => 2020),
 
         'Y11T'          => array('platform_model' => 'Y11T',        'platform_year' => 2013),
         'Y17'           => array('platform_model' => 'Y17',         'platform_year' => 2014),
