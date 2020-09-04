@@ -26,7 +26,7 @@ abstract class Template extends Plugin {
     public function __construct($name, $path_type) {
         parent::__construct($name, 'template', $path_type);
     }
-    
+
     /*
      * Alias to constructor.
      * @param string $name
