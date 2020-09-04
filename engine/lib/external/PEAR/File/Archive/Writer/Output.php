@@ -27,7 +27,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Output.php,v 1.8 2005/05/30 15:25:14 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -69,7 +69,7 @@ class File_Archive_Writer_Output extends File_Archive_Writer
             }
 
             header("Content-type: $mime");
-            header("Content-disposition: attachment; filename=$filename");
+            header("Content-disposition: attachment; filename=\"$filename\"");
             $this->sendHeaders = false;
         }
     }

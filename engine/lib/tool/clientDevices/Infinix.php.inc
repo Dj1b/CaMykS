@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Infinix.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.17
  * @date Creation: Feb 2019
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X572'          => array('platform_model' => 'Note 4',      'platform_year' => 2017),
 
         /* Hot serie */
+        'HOT 4'         => array('platform_model' => 'Hot 4',       'platform_year' => 2016),
         'HOT 4 Lite'    => array('platform_model' => 'Hot 4 Lite',  'platform_year' => 2016),
         'X551'          => array('platform_model' => 'Hot Note',    'platform_year' => 2015),
         'X559'          => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
@@ -38,6 +39,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X608'          => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
         'X623'          => array('platform_model' => 'Hot 6X',      'platform_year' => 2018),
         'X650'          => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
+        'X650D'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
 
         /* Smart serie */
         'X5515'         => array('platform_model' => 'Smart 2',     'platform_year' => 2018),
@@ -48,6 +50,7 @@ function get_InfinixClientDevice($deviceCode='') {
         /* S serie */
         'X626'          => array('platform_model' => 'S4',          'platform_year' => 2019),
         'X626B'         => array('platform_model' => 'S4',          'platform_year' => 2019),
+        'X652C'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
 
     );
 

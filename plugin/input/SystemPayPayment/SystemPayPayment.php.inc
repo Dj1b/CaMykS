@@ -5,9 +5,9 @@
  * @details Plugin / Input Engine
  * @file plugin/input/SystemPayPayment/SystemPayPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jun 2020
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -58,7 +58,7 @@ final class SystemPayPayment extends Input {
 
     /**
      * var array $confirmationData
-     * @brief Confirmation data received from Payzen instant notifications.
+     * @brief Confirmation data received from SystemPay instant notifications.
      */
     private $confirmationData = null;
 
@@ -141,7 +141,7 @@ final class SystemPayPayment extends Input {
             $signature = $this->compute_signature($this->transactionParams, $this->config->vars['bankKey_live'], $this->config->vars['hash_mode']);
 
         /* build CB specific form */
-        $this->paymentForm = new HTMLForm('paymentRequest', 'https://secure.payzen.eu/vads-payment/', 'POST');
+        $this->paymentForm = new HTMLForm('paymentRequest', 'https://paiement.systempay.fr/vads-payment/', 'POST');
         $this->paymentForm->add_hidden('signature', $signature);
         foreach ($this->transactionParams as $key => $value)
             $this->paymentForm->add_hidden('vads_'.$key, $value);
@@ -153,7 +153,7 @@ final class SystemPayPayment extends Input {
     /* data query methods */
 
     /**
-     * Load confirmation data Payzen instant notification.
+     * Load confirmation data SystemPay instant notification.
      * @return void
      */
     public function load_paymentConfirmation() {

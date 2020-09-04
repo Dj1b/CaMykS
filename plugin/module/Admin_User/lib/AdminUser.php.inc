@@ -4,10 +4,10 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_User/lib/AdminUser.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Sep 2005
- * @date Modification: Mar 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Aug 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @remark Permissions are defined as an int constructed like :<br />
@@ -469,7 +469,7 @@ final class AdminUser {
 
         /* build sql query */
         $sql = 'select login, pwd from admin_user';
-        $sql .= ' where login="'.$this->login .'"';
+        $sql .= ' where binary login="'.$this->login .'"';
         $sql .= ' and active="1"';
 
         /* execute sql query */

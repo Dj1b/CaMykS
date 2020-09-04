@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Files.php,v 1.21 2005/06/18 23:08:16 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -177,16 +177,23 @@ class File_Archive_Writer_Files extends File_Archive_Writer
         $this->stat = $stat;
         $this->filename = $this->getFilename($filename);
 
-        $pos = strrpos($this->filename, "/");
-        if ($pos !== false) {
-            $error = $this->mkdirr(substr($this->filename, 0, $pos));
+        if (substr($this->filename, -1) == '/') {
+            $error = $this->mkdirr(substr($this->filename, 0, -1));
             if (PEAR::isError($error)) {
                 return $error;
             }
-        }
-        $this->handle = @fopen($this->filename, "w");
-        if (!is_resource($this->handle)) {
-            return PEAR::raiseError("Unable to write to file $filename");
+        } else {
+            $pos = strrpos($this->filename, "/");
+            if ($pos !== false) {
+                $error = $this->mkdirr(substr($this->filename, 0, $pos));
+                if (PEAR::isError($error)) {
+                    return $error;
+                }
+            }
+            $this->handle = @fopen($this->filename, "w");
+            if (!is_resource($this->handle)) {
+                return PEAR::raiseError("Unable to write to file $filename");
+            }
         }
     }
     /**
@@ -220,7 +227,7 @@ class File_Archive_Writer_Files extends File_Archive_Writer
      */
     function close()
     {
-        if ($this->handle !== null) {
+        if (is_resource($this->handle)) {
             fclose($this->handle);
             $this->handle = null;
 
@@ -238,10 +245,12 @@ class File_Archive_Writer_Files extends File_Archive_Writer
                 chmod($this->filename, $this->stat[2]);
             }
             if (isset($this->stat[5])) {
-                chgrp($this->filename, $this->stat[5]);
+                // I will try, but if I dont have permissions, it will fail
+                @chgrp($this->filename, $this->stat[5]);
             }
             if (isset($this->stat[4])) {
-                chown($this->filename, $this->stat[4]);
+                // I will try, but if I dont have permissions, it will fail
+                @chown($this->filename, $this->stat[4]);
             }
         }
     }

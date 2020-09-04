@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: May 2018
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,7 +64,7 @@ function _client_getKnownGenericsL2() {
     );
 
     /* NING */
-    $knownGenerics['ning'] = array(
+    $knownGenerics['ning/1'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'NING',
@@ -793,16 +793,6 @@ function _client_getKnownGenericsL2() {
         'engine_url'        => 'https://www.secutix.com',
     );
 
-    /* webtech */
-    $knownGenerics['webtech'] = array(
-        'platform_type'     => 'tool',
-        'platform_format'   => 'desktop',
-        'tool_title'        => 'webtech',
-        'tool_url'          => 'https://github.com/ShielderSec/webtech',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
     /* python-httpx */
     $knownGenerics['python-httpx'] = array(
         'platform_type'     => 'tool',
@@ -843,12 +833,32 @@ function _client_getKnownGenericsL2() {
         'engine_url'        => '',
     );
 
+    /* PostmanRuntime */
+    $knownGenerics['postmanruntime'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'PostmanRuntime',
+        'tool_url'          => 'https://github.com/postmanlabs/postman-runtime',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* HTMLParser */
+    $knownGenerics['htmlparser'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'HTMLParser',
+        'tool_url'          => 'https://robot-framework.readthedocs.io/en/v3.0.4/_modules/HTMLParser.html',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
     /* obot */
     $knownGenerics[' obot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'tool_title'        => 'oBot',
-        'tool_url'          => 'http://filterdb.iss.net/crawler/',
+        'bot_title'         => 'oBot',
+        'bot_url'           => 'http://www.xforce-security.com/crawler/',
         'engine_title'      => 'IBM Germany Research & Development GmbH',
         'engine_url'        => '',
     );

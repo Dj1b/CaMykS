@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Apple.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jul 2018
- * @date Modification: Jun 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Jul 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -48,10 +48,10 @@ function get_AppleClientDevice($deviceCode='') {
         'iPhone10.5'    => array('platform_model' => 'iPhone 8 Plus',   'platform_year' => 2017),
         'iPhone10.3'    => array('platform_model' => 'iPhone X',        'platform_year' => 2017),
         'iPhone10.6'    => array('platform_model' => 'iPhone X',        'platform_year' => 2017),
-        'iPhone11.2'    => array('platform_model' => 'iPhone XS'        'platform_year' => 2018),
-        'iPhone11.4'    => array('platform_model' => 'iPhone XS Max'    'platform_year' => 2018),
-        'iPhone11.6'    => array('platform_model' => 'iPhone XS Max'    'platform_year' => 2018),
-        'iPhone11.8'    => array('platform_model' => 'iPhone XR'        'platform_year' => 2018),
+        'iPhone11.2'    => array('platform_model' => 'iPhone XS',       'platform_year' => 2018),
+        'iPhone11.4'    => array('platform_model' => 'iPhone XS Max',   'platform_year' => 2018),
+        'iPhone11.6'    => array('platform_model' => 'iPhone XS Max',   'platform_year' => 2018),
+        'iPhone11.8'    => array('platform_model' => 'iPhone XR',       'platform_year' => 2018),
 
         /* iPads */
         'iPad1.1'       => array('platform_model' => 'iPad',                'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2010),

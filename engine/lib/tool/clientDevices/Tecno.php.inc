@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.19
  * @date Creation: Oct 2018
- * @date Modification: Jun 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +24,7 @@ function get_TecnoClientDevice($deviceCode='') {
         'J8'        => array('platform_model' => 'Boom',            'platform_year' => 2016),
         'K7'        => array('platform_model' => 'Spark',           'platform_year' => 2017),
         'K9'        => array('platform_model' => 'Spark Plus',      'platform_year' => 2017),
+        'L9 Plus'	=> array('platform_model' => 'L9 Plus',      	'platform_year' => 2017),
         'R6'        => array('platform_model' => 'R6',              'platform_year' => 2017),
         'W3'        => array('platform_model' => 'W3',              'platform_year' => 2017),
         'CF7'       => array('platform_model' => 'Camon 11',        'platform_year' => 2018),
@@ -34,12 +35,16 @@ function get_TecnoClientDevice($deviceCode='') {
         'AX8'       => array('platform_model' => 'Phantom 8',       'platform_year' => 2018),
         'B1p'       => array('platform_model' => 'Pop 2 Power',     'platform_year' => 2018),
         'F1'        => array('platform_year' => 2018),
+        'F2'        => array('platform_year' => 2018),
         'Camon CX'  => array('platform_year' => 2018),
         'CA7'       => array('platform_model' => 'Camon X',         'platform_year' => 2018),
+        'KB7'       => array('platform_model' => 'Spark 3',         'platform_year' => 2019),
         'KB7j'      => array('platform_model' => 'Spark 3',         'platform_year' => 2019),
         'AB7'       => array('platform_model' => 'Phantom 9',       'platform_year' => 2019),
+        'KC6'       => array('platform_model' => 'Spark 4 Air',     'platform_year' => 2019),
         'KC8'       => array('platform_model' => 'Spark 4',         'platform_year' => 2019),
         'LB7'       => array('platform_model' => 'Pouvoir 3',       'platform_year' => 2019),
+        'CD8j'      => array('platform_model' => 'Camon 15',        'platform_year' => 2019),
     );
 
     /* Check for returning list */

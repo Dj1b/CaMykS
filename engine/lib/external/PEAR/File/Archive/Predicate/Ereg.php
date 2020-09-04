@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Ereg.php,v 1.5 2005/04/21 10:01:46 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -52,7 +52,7 @@ class File_Archive_Predicate_Ereg extends File_Archive_Predicate
      */
     function isTrue(&$source)
     {
-        return ereg($this->ereg, $source->getFilename());
+        return (bool)ereg($this->ereg, $source->getFilename());
     }
 }
 

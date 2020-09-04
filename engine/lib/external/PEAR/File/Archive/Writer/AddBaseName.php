@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: AddBaseName.php,v 1.1 2005/06/02 22:45:58 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -63,7 +63,7 @@ class File_Archive_Writer_AddBaseName
      */
     function newFromTempFile($tmpfile, $filename, $stat = array(), $mime = "application/octet-stream")
     {
-        $this->writer->newFromTempFile($tmpfilen $this->baseName.$filename, $stat, $mime);
+        $this->writer->newFromTempFile($tmpfile, $this->baseName.$filename, $stat, $mime);
     }
 
     /**

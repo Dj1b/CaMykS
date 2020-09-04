@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Archos.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
- * @date Modification: Jun 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -107,6 +107,7 @@ function get_ArchosClientDevice($deviceCode='') {
         'Access 50 Color 3G'        => array('platform_model' => 'Access 50 Color 3G',      'platform_year' => 2017),
         'Access 50 4G'              => array('platform_model' => 'Access 50 4G',            'platform_year' => 2017),
         'Access 55 3G'              => array('platform_model' => 'Access 55 3G',            'platform_year' => 2017),
+        'Access 57 4G'              => array('platform_model' => 'Access 57 4G',            'platform_year' => 2018),
         'Sense 47 X'                => array('platform_model' => 'Sense 47X',               'platform_year' => 2017),
         'Sense 50 DC'               => array('platform_model' => 'Sense 50DC',              'platform_year' => 2017),
         'Sense 50 X'                => array('platform_model' => 'Sense 50X',               'platform_year' => 2017),

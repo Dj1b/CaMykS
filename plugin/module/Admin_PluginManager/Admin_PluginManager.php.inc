@@ -4,10 +4,10 @@
  * Developed by        : camyks.net
  * Author            : CaMykS Team <camyks.contact@gmail.com>
  * CaMykS Version    : 1.0
- * Object Version    : 1.0
+ * Object Version    : 1.0.1
  * Object Type        : Plugin / Module Engine
- * Creation Date    : Jun 2005
- * Last Modif Date    : Nov 2017
+ * Creation Date      : Jun 2005
+ * Last Modif Date    : Jul 2020
  * History :
  * * 05-06-xx : Initial files
  * * 08-05-21 : Rewrite online help (french)
@@ -392,13 +392,13 @@ final class Admin_PluginManager extends Module {
       array(
         'name'  => 'setSiteDefault',
         'title' => $this->get_translation('applyassitedefaulttheme'),
-        'icon'  => $this->theme->get_pictURL('valid', 12, 'std'),
+        'icon'  => $this->theme->get_pictURL('right', 12, 'std'),
         'url'   => 'javascript:pl.execute_action(\'setSiteDefaultTheme\');',
      ),
       array(
         'name'  => 'setAdminDefault',
         'title' => $this->get_translation('applyasadmindefaulttheme'),
-        'icon'  => $this->theme->get_pictURL('valid', 12, 'std'),
+        'icon'  => $this->theme->get_pictURL('right', 12, 'std'),
         'url'   => 'javascript:pl.execute_action(\'setAdminDefaultTheme\');',
      ),
    );
@@ -407,7 +407,7 @@ final class Admin_PluginManager extends Module {
       array(
         'name'  => 'setSiteDefault',
         'title' => $this->get_translation('applyassitedefaulttemplate'),
-        'icon'  => $this->theme->get_pictURL('valid', 12, 'std'),
+        'icon'  => $this->theme->get_pictURL('right', 12, 'std'),
         'url'   => 'javascript:pl.execute_action(\'setSiteDefaultTemplate\');',
      ),
    );

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29.1
  * @date Creation: Apr 2018
- * @date Modification: Apr 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,6 +25,7 @@ function get_AsusClientDevice($deviceCode='') {
         'K00F'      => array('platform_model' => 'MeMO Pad 10',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'K01E'      => array('platform_model' => 'MeMO Pad 10',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'ME173X'    => array('platform_model' => 'MeMO Pad HD 7',           'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'ME302C'    => array('platform_model' => 'MeMO Pad FHD 10',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'K007'      => array('platform_model' => 'MeMO Pad 7',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'P01M'      => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'P01MA'     => array('platform_model' => 'ZenPad 8',                'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
@@ -39,7 +40,7 @@ function get_AsusClientDevice($deviceCode='') {
         'A500KL'    => array('platform_model' => 'ZenFone 5\'',             'platform_year' => 2014),
         'T00K'      => array('platform_model' => 'ZenFone 5\' Lite',        'platform_year' => 2014),
         'Z00AD'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
-        'Z00ED'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
+        'Z00ED'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
         'Z00LD'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
         'Z00MD'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),
         'Z011D'     => array('platform_model' => 'ZenFone 2 Laser',         'platform_year' => 2015),

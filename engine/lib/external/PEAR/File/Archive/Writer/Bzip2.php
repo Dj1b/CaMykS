@@ -25,7 +25,7 @@
  * @author     Vincent Lascaux <vincentlascaux@php.net>
  * @copyright  1997-2005 The PHP Group
  * @license    http://www.gnu.org/copyleft/lesser.html  LGPL
- * @version    CVS: $Id: Bzip2.php,v 1.9 2005/06/02 16:22:47 vincentlascaux Exp $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/File_Archive
  */
 
@@ -36,6 +36,14 @@ require_once "File/Archive/Writer.php";
  */
 class File_Archive_Writer_Bzip2 extends File_Archive_Writer
 {
+
+    /**
+     * compressionLevel 
+     * 
+     * @var integer
+     * @access public
+     * @deprecated
+     */
     var $compressionLevel=9;
     var $bzfile;
     var $tmpName;
@@ -70,10 +78,12 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
     }
 
     /**
-     * Set the compression level
+     * Set the compression level. Do nothing because PHP bz2 ext doesn't
+     * support this.
      *
      * @param int $compressionLevel From 0 (no compression) to 9 (best
      *        compression)
+     * @deprecated
      */
     function setCompressionLevel($compressionLevel)
     {
@@ -95,7 +105,7 @@ class File_Archive_Writer_Bzip2 extends File_Archive_Writer
         $this->nbFiles++;
 
         $this->tmpName = tempnam(File_Archive::getOption('tmpDirectory'), 'far');
-        $this->bzfile = bzopen($this->tmpName, 'w'.$this->compressionLevel);
+        $this->bzfile = bzopen($this->tmpName, 'w');
 
         return true;
     }

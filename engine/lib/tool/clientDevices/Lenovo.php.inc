@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Apr 2018
- * @date Modification: Jun 2020
+ * @date Modification: Jul 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,6 +40,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'YT-X703F'              => array('platform_model' => 'Yoga Tab 3 Plus',     'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'TB3-710F'              => array('platform_model' => 'Tab 3 7\'',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'TB3-850F'              => array('platform_model' => 'Tab 3 8\'',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
+        'TB-8703F'              => array('platform_model' => 'Tab 3 8 Plus',        'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-X304F'              => array('platform_model' => 'Tab 4',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-X605F'              => array('platform_model' => 'Tab M10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2019),
 

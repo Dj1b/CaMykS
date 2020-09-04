@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/ZTE.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: May 2018
- * @date Modification: Mar 2020
+ * @date Modification: Aug 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_ZTEClientDevice($deviceCode='') {
         'A2017G'        => array('platform_model' => 'Axon 7',          'platform_year' => 2016),
         'Blade A452'    => array('platform_model' => 'Blade A452',      'platform_year' => 2016),
         'BLADE V0820'   => array('platform_model' => 'Blade V8 Lite',   'platform_year' => 2017),
+        'NX595J'		=> array('platform_model' => 'Nubia Z17s',   	'platform_year' => 2017),
         'BLADE V9'      => array('platform_model' => 'Blade V9',        'platform_year' => 2018),
         'Z559DL'        => array('platform_model' => 'Blade T2',        'platform_year' => 2018),
 
