@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jan 2005
- * @date Modification: Dec 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -117,8 +117,14 @@ $this->trads['mod_admin_site_formitem_declination'] = 'D&eacute;clinaison mobile
 /* server conf texts */
 $this->trads['mod_admin_site_tabserver'] = 'Serveur';
 $this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Syst&egrave;me d\'exploitation';
+$this->trads['mod_admin_site_formitem_ipaddress'] = 'Adresse IP : ';
 $this->trads['mod_admin_site_formtitle_httpserver'] = 'Serveur HTTP';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
+$this->trads['mod_admin_site_formitem_errordisplay'] = 'Affichage des erreurs : ';
+$this->trads['mod_admin_site_formitem_maxupload'] = 'Taille maximale en upload : ';
+$this->trads['mod_admin_site_formitem_filesmaxupload'] = 'Fichiers : ';
+$this->trads['mod_admin_site_formitem_memorylimit'] = 'Limite m&eacute;moire : ';
+$this->trads['mod_admin_site_formitem_sessionexpiration'] = 'Expiration des sessions : ';
 
 /* plugins conf texts */
 $this->trads['mod_admin_site_tabplugins'] = 'Plugins';

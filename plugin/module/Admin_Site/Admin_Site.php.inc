@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_Site/Admin_Site.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jun 2005
- * @date Modification: Dec 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Sep 2019
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Website configuration edition
@@ -235,6 +235,10 @@ final class Admin_Site extends Module {
             ));
 
         $this->tabBuilder->initialise(array('default'=>'Properties'));
+
+        /* Load required libraries */
+        require_once('units.php.inc');
+        require_once('php.php.inc');
 
         /* get database info */
         $this->dbSummary = $camyks->db_conn->database_getSummary();
