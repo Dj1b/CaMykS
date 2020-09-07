@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/units.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Feb 2019
- * @date Modification: Feb 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -38,7 +38,7 @@ function unit_getTitle($unit='', $language='') {
     global $camyks;
 
     /* load locales */
-    units_loadLocales();
+    units_loadLocales($language);
 
     /* check locale */
     if (isset($camyks->trads['unit_'.$unit]))
