@@ -4,9 +4,9 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: Jun 2005
- * @date Modification: Mar 2020
+ * @date Modification: Sep 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -280,6 +280,12 @@ final class Camyks {
       * @brief Current logged admin user
       */
      public $adminUser = false;
+
+     /**
+      * @var boolean $errorCheck
+      * @brief Error check for logging system.
+      */
+     private $errorCheck = false;
 
     /**
      * CaMykS Constructor.
@@ -1330,7 +1336,7 @@ final class Camyks {
             return;
         } else {
             $ua = client_getUAInfos();
-            /* define define/format */
+            /* define sreen format */
             $device = isset($ua['platform_format'])?$ua['platform_format']:'desktop';
             $deviceStatus = 'auto';
         }
@@ -1405,9 +1411,19 @@ final class Camyks {
      * @return boolean success
      */
     public function log_event($type, &$object, $desc1='', $desc2='', $file='', $line=0) {
+		/* Check looping in error */
+    	if ($this->errorCheck)
+    		return false;
+
+    	/* Enable error check */
+    	$this->errorCheck = true;
+
         /* add log report */
         if (isset($this->modules['Admin_SystemReport']) and $this->modules['Admin_SystemReport']->is_installed()) {
             $this->modules['Admin_SystemReport']->add_newReport($type, $object, $desc1, $desc2, $file, $line);
+
+            /* Disable error check */
+    		$this->errorCheck = false;
         }
         /* always return false */
         return false;
