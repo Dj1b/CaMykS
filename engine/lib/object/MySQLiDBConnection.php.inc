@@ -2,22 +2,20 @@
 /**
  * @brief MySQLi Database connection object
  * @details Engine / Object Library
- * @file engine/lib/object/MySQLiDBConnection.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2014
- * @date Modification: Apr 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MySQLiDBConnection class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class MySQLiDBConnection extends CDBConnection {
-    /* server related methods */
+    /* Server related methods */
 
     /**
      * Connect to server.
@@ -59,7 +57,7 @@ final class MySQLiDBConnection extends CDBConnection {
         return '';
     }
 
-    /* database related methods */
+    /* Database related methods */
 
     /**
      * Select database.
@@ -259,7 +257,7 @@ final class MySQLiDBConnection extends CDBConnection {
         return $summary;
     }
 
-    /* table related methods */
+    /* Table related methods */
 
     /**
      * Return available table list.
@@ -272,7 +270,8 @@ final class MySQLiDBConnection extends CDBConnection {
         $list = array();
 
         /* load list from database */
-        if ($this->execute_query('show tables') or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
+        $sql = 'show tables;';
+        if ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
             while ($data = $this->get_queryNumDataLine()) {
                 $list[] = $data[0];
             }
@@ -339,7 +338,7 @@ final class MySQLiDBConnection extends CDBConnection {
         return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
 
-    /* query related methods */
+    /* Query related methods */
 
     /**
      * Execute query.
@@ -348,7 +347,7 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return boolean success
      */
     public function execute_query($sql='', $resName='defaultRes') {
-        $this->queryRes[$resName] = $this->connection->query($sql);
+        $this->queryRes[$resName] = @$this->connection->query($sql);
         return ($this->queryRes[$resName] !== false);
     }
 
@@ -437,7 +436,7 @@ final class MySQLiDBConnection extends CDBConnection {
         return true;
     }
 
-    /* data related methods */
+    /* Data related methods */
 
     /**
      * Return escaped string.
