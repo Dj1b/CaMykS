@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Altice.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2019
- * @date Modification: Jul 2019
+ * @date Modification: Sep 2020
  * @copyright 2019 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,9 +20,12 @@
  */
 function get_AlticeClientDevice($deviceCode='') {
     $deviceList = array(
+        'starxtrem6'    => array('platform_model' => 'StarXtrem 6',     'platform_year' => 2015),
+        'startrail7'    => array('platform_model' => 'StarTrail 7',     'platform_year' => 2015),
         'sx41'          => array('platform_model' => 'SX41',            'platform_year' => 2017),
-        'staraddict6'   => array('platform_model' => 'Staraddict 6',    'platform_year' => 2017),
-        'starnaute4'     => array('platform_model' => 'Starnaute 4',    'platform_year' => 2017),
+        'staraddict6'   => array('platform_model' => 'StarAddict 6',    'platform_year' => 2017),
+        'starnaute4'    => array('platform_model' => 'StarNaute 4',     'platform_year' => 2017),
+
     );
 
     /* Check for returning list */

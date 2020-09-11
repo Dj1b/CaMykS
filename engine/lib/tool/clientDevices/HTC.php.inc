@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/HTC.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Aug 2018
- * @date Modification: Jul 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,6 +29,7 @@ function get_HTCClientDevice($deviceCode='') {
         'IncredibleS'           => array('platform_model' => 'Incredible S',        'platform_year' => 2011),
         'Explorer A310e'        => array('platform_model' => 'Explorer A310e',      'platform_year' => 2011),
         'T329t'                 => array('platform_model' => 'Proto',               'platform_year' => 2012 , 'browser_title' => 'Android browser',),
+        '6435LVW'               => array('platform_model' => 'Droid DNA',           'platform_year' => 2012),
         '8088;'                 => array('platform_model' => 'One Max',             'platform_year' => 2013),
         'M8Sx'                  => array('platform_model' => 'One (E8)',            'platform_year' => 2014),
         'One M8'                => array('platform_model' => 'One (M8)',            'platform_year' => 2014),

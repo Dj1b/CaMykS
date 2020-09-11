@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29.1
+ * @version 1.0.30
  * @date Creation: Apr 2018
- * @date Modification: Aug 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -95,6 +95,7 @@ function get_AsusClientDevice($deviceCode='') {
         'X00TD'     => array('platform_model' => 'Zenfone Max Pro M1',      'platform_year' => 2018),
         'X01BDA'    => array('platform_model' => 'Zenfone Max Pro M2',      'platform_year' => 2018),
         'X00QD'     => array('platform_model' => 'Zenfone 5',               'platform_year' => 2018),
+        'X00RD'     => array('platform_model' => 'Zenfone Live L1',         'platform_year' => 2018),
         'Z01RD'     => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
         'I01WD'     => array('platform_model' => 'Zenfone 6',               'platform_year' => 2019),
     );

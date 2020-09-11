@@ -4,10 +4,10 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/BlackBerry.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Aug 2018
- * @date Modification: Sep 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -21,6 +21,7 @@
 function get_BlackberryClientDevice($deviceCode='') {
     $deviceList = array(
         'BB Z30'    => array('platform_model' => 'BB Z30',  'platform_year' => 2013),
+        'BB10'      => array('platform_model' => 'BB10',    'platform_year' => 2013),
 
         'STH100-1'  => array('platform_model' => 'DTEK50',  'platform_year' => 2015),
         'STH100-2'  => array('platform_model' => 'DTEK50',  'platform_year' => 2015),

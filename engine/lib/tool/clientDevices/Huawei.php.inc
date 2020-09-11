@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.75
+ * @version 1.0.76
  * @date Creation: Apr 2018
- * @date Modification: Aug 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -243,6 +243,7 @@ function get_HuaweiClientDevices() {
         /* Huawei Nova series */
         'CAN-L01'   => array('platform_model' => 'Nova',            'platform_year' => 2016),
         'CAN-L11'   => array('platform_model' => 'Nova',            'platform_year' => 2016),
+        'MLA-AL10'  => array('platform_model' => 'Nova Plus',       'platform_year' => 2016),
         'MLA-L12'   => array('platform_model' => 'Nova Plus',       'platform_year' => 2016),
         'PRA-LX2'   => array('platform_model' => 'Nova Lite',       'platform_year' => 2017),
         'PIC-AL00'  => array('platform_model' => 'Nova 2',          'platform_year' => 2017),

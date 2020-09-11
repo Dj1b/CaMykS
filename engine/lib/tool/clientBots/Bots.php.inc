@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.67
+ * @version 1.0.68
  * @date Creation: May 2018
- * @date Modification: Jul 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4822,6 +4822,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Nextcloud',
         'engine_url'        => 'https://nextcloud.com/',
+    );
+
+    /* ShowyouBot */
+    $knownBots['showyoubot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ShowyouBot',
+        'bot_url'           => 'http://showyou.com/crawler',
+        'engine_title'      => 'ShowYou',
+        'engine_url'        => 'http://showyou.com/',
     );
 
     /* Return bot list */

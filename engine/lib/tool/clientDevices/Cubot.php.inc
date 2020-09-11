@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Cubot.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Mar 2019
- * @date Modification: Aug 2020
+ * @date Modification: Sep 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -59,6 +59,7 @@ function get_CubotClientDevice($deviceCode=false) {
         'MAGIC'         => array('platform_model' => 'Magic',       'platform_year' => 2017),
         'MANITO'        => array('platform_model' => 'Manito',      'platform_year' => 2016),
         'MAX'           => array('platform_model' => 'Max',         'platform_year' => 2016),
+        'MAX 2'         => array('platform_model' => 'Max 2',       'platform_year' => 2019),
         'NOTE PLUS'     => array('platform_model' => 'Note Plus',   'platform_year' => 2017),
         'NOTE S'        => array('platform_model' => 'Note S',      'platform_year' => 2016),
     );

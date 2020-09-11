@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.42
+ * @version 1.0.43
  * @date Creation: May 2018
- * @date Modification: Jul 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -105,6 +105,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi 6a'              => array('platform_model' => 'Redmi 6A',            'platform_year' => 2018),
         'redmi 6 pro'           => array('platform_model' => 'Redmi 6 Pro',         'platform_year' => 2018),
         'redmi s2'              => array('platform_model' => 'Redmi S2',            'platform_year' => 2018),
+        'redmi y2'              => array('platform_model' => 'Redmi Y2',            'platform_year' => 2018),
         'redmi 7'               => array('platform_model' => 'Redmi 7',             'platform_year' => 2019),
         'redmi 7a'              => array('platform_model' => 'Redmi 7A',            'platform_year' => 2019),
         'redmi k20'             => array('platform_model' => 'Redmi K20',           'platform_year' => 2019),
@@ -112,9 +113,13 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
         'redmi note 8t'         => array('platform_model' => 'Redmi Note 8T',       'platform_year' => 2019),
         'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),
+        'redmi note 9s'         => array('platform_model' => 'Redmi Note 9S',       'platform_year' => 2020),
 
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),
         'dlt h0'                => array('platform_model' => 'Black Shark 2 Pro',   'platform_year' => 2019),
+
+        'm2004j19c'             => array('platform_model' => 'Redmi 9',             'platform_year' => 2020),
+        'm2003j15sc'            => array('platform_model' => 'Redmi Note 9',        'platform_year' => 2020),
     );
 
     /* Check for returning list */

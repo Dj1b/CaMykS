@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/OnePlus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Apr 2018
- * @date Modification: Jun 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -55,6 +55,7 @@ function get_OnePlusClientDevices() {
         'IN2010'    => array('platform_model' => '8',           'platform_year' => 2020),
         'IN2013'    => array('platform_model' => '8',           'platform_year' => 2020),
         'IN2023'    => array('platform_model' => '8 Pro',       'platform_year' => 2020),
+        'AC2003'    => array('platform_model' => 'Nord',        'platform_year' => 2020),
     );
 }
 
