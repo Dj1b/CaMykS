@@ -2,12 +2,11 @@
 /**
  * @brief Admin_SystemNotifications Module website library
  * @details Plugin / Module Library
- * @file plugin/module/Admin_SystemNotifications/lib/Admin_SystemNotificationsWebsite.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2017
- * @date Modification: May 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -117,7 +116,7 @@ final class Admin_SystemNotificationsWebsite extends ModuleLibrary {
         global $camyks;
 
         /* default params list */
-        $dParams = array('status'=>-1, 'language'=>$camyks->current_language, 'limit'=>-1, 'count'=>-1, 'order'=>'sortPosition', 'orderway'=>'asc');
+        $dParams = array('status'=>-1, 'language'=>$camyks->current_language, 'limit'=>-1, 'count'=>-1, 'order'=>'name', 'orderway'=>'asc');
 
         /* merge params */
         $params = array_merge($dParams, $params);
