@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b1
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Sep 2009
- * Last Modif Date	: Nov 2009
- *
- * Admin_Statistics english dictionnary
+/**
+ * @brief Admin_Statistics Module english dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2009
+ * @date Modification: Sep 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 $this->trads['mod_admin_statistics_title'] = 'Website Statistics';
@@ -50,18 +49,18 @@ $this->trads['mod_admin_statistics_stat_webtools_main'] = 'viewed page(s) with I
 /* stat desc */
 $this->trads['mod_admin_statistics_firstrecorddate'] = 'First record on %s';
 
-/* stat type : none */
+/* stat type: none */
 $this->trads['mod_admin_statistics_selectanobjecttoview'] = 'Select statistic to display';
 
-/* stat type : single */
+/* stat type: single */
 $this->trads['mod_admin_statistics_todaysrecords'] = 'Today records';
 $this->trads['mod_admin_statistics_yesterdaysrecords'] = 'Yesterday records';
 $this->trads['mod_admin_statistics_fromxtoyrecords'] = 'Records from %s to %s.';
 $this->trads['mod_admin_statistics_dayxrecords'] = 'Records on %s.';
 $this->trads['mod_admin_statistics_lastxrecords'] = 'Last %s records';
 
-/* stat type : mixed */
-$this->trads['mod_admin_statistics_total'] = 'Total : ';
+/* stat type: mixed */
+$this->trads['mod_admin_statistics_total'] = 'Total: ';
 $this->trads['mod_admin_statistics_view_detail'] = 'Detail';
 $this->trads['mod_admin_statistics_thexlastdays'] = 'Last %s days';
 $this->trads['mod_admin_statistics_thexlastmonths'] = 'Last %s monthes';
@@ -70,10 +69,9 @@ $this->trads['mod_admin_statistics_thexlastyears'] = 'Last %s years';
 /* options */
 $this->trads['mod_admin_statistics_valueselection'] = 'Display results for';
 $this->trads['mod_admin_statistics_thelastxstats'] = 'Last %s records';
-$this->trads['mod_admin_statistics_colorselection'] = 'Colors'; 
-$this->trads['mod_admin_statistics_coloralternate1'] = 'Color 1 : ';
-$this->trads['mod_admin_statistics_coloralternate2'] = 'Color 2 : ';
-$this->trads['mod_admin_statistics_value2selection'] = 'Detail : Display values for';
-$this->trads['mod_admin_statistics_value3selection'] = 'Detail : Display only';
+$this->trads['mod_admin_statistics_colorselection'] = 'Colors';
+$this->trads['mod_admin_statistics_coloralternate1'] = 'Color 1: ';
+$this->trads['mod_admin_statistics_coloralternate2'] = 'Color 2: ';
+$this->trads['mod_admin_statistics_value3selection'] = 'Display only';
 $this->trads['mod_admin_statistics_thefirstxstats'] = 'First %s records';
 ?>

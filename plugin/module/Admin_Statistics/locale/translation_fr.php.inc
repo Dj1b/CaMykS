@@ -1,17 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: May 2007
- * Last Modif Date	: Mar 2008
- *
- * Admin_Statistics french dictionnary
+/**
+ * @brief Admin_Statistics Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2007
+ * @date Modification: Sep 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_statistics_title'] = 'Statistiques du site';
 $this->trads['mod_admin_statistics_desc'] = 'Visiteurs, pages vues, ...';
 
@@ -70,10 +68,9 @@ $this->trads['mod_admin_statistics_thexlastyears'] = 'Les %s derni&egrave;res an
 /* options */
 $this->trads['mod_admin_statistics_valueselection'] = 'Afficher les valeurs pour';
 $this->trads['mod_admin_statistics_thelastxstats'] = 'Les %s derniers enregistrements';
-$this->trads['mod_admin_statistics_colorselection'] = 'Couleurs'; 
+$this->trads['mod_admin_statistics_colorselection'] = 'Couleurs';
 $this->trads['mod_admin_statistics_coloralternate1'] = 'Alternance 1 : ';
 $this->trads['mod_admin_statistics_coloralternate2'] = 'Alternance 2 : ';
-$this->trads['mod_admin_statistics_value2selection'] = 'D&eacute;tail : Afficher les valeurs pour';
-$this->trads['mod_admin_statistics_value3selection'] = 'D&eacute;tail : Afficher seulement';
+$this->trads['mod_admin_statistics_value3selection'] = 'Afficher seulement';
 $this->trads['mod_admin_statistics_thefirstxstats'] = 'Les %s premiers enregistrements';
 ?>

@@ -1,21 +1,24 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a2
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Layout
- * Create Date	    : May 2007
- * Last Modif Date	: Mar 2009
- *
- * Admin_Statistics Module Admin part of Layout : no selected object
-*/
-global $camyks;
+/**
+ * @brief Admin_Statistics Module admin no selected object layout.
+ * @details Plugin / Module layout
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2007
+ * @date Modification: Sep 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
+ */
 ?>
-
-<div class="adminContentPanel" style="margin:8px 0;">
-  <div style="text-align:center;padding:30px;" class="eTitle3">
-    <?= $this->get_translation('selectanobjecttoview'); ?>
-  </div>
+<div class="adminContentPanel statistics_display">
+    <div class="eTitle3 noObject">
+        <?= $this->get_translation('selectanobjecttoview'); ?>
+    </div>
 </div>
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

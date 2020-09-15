@@ -1,68 +1,33 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module CSS Styles
- * Create Date	       	: May 2007
- * Last Modif Date	: May 2007
- *
- * Admin_Statistics Module CSS Styles
+/**
+ * @brief Admin_Statistics Module default CSS styles
+ * @details Plugin / Module CSS styles
+ * @author CaMykS Team
+ * @version 1.0.1
+ * @date Creation: May 2007
+ * @date Modification: Sep 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-td.adminStatisticsByDateTitle {
-  padding-top:4px;
-  border-top:solid 1px #888888;
-  font-size:12px;
-  font-weight:bold;
-}
+div.statistics {font-size:0; display:flex;}
+div.statistics_menu {width:220px;}
+div.statistics_menu .button {float:right; margin:1px 2px 0;}
 
-td.adminStatisticsByDateContent{
-  padding-bottom: 8px;
-}
+div.statistics_display {flex:1; padding-left:8px;}
+div.statistics_display .noObject {text-align:center; padding:30px;}
 
-td.adminStatisticsByDatePreBox {
-  background:url(../img/scale.gif) 0% 100% repeat-x;
-  width:8px;
-  border-right:solid 1px #C8C8C8;
-}
+div.options {font-size:0; display:flex;}
+div.optionsSettings {flex:3; vertical-align:top; margin-right:2%;}
+div.optionsColors {flex:2; vertical-align:top; max-width:40%;}
 
-td.adminStatisticsByDatePostBox {
-  background:url(../img/scale.gif) 0% 100% repeat-x;
-  width:8px;
-}
-
-td.adminStatisticsByDateBox {
-  background:url(../img/scale.gif) 0% 100% repeat-x;
-  width:32px;
-  vertical-align:bottom;
-  text-align:center;
-  padding:0px 1px;
-  font-size:11px;
-  color:#444444;
-}
-
-div.adminStatisticsByDateBox{
-  border:solid 1px black;
-  opacity:1;
-}
-
-div.adminStatisticsByDateBox:hover {
-  border:solid 1px black;
-  cursor:pointer;
-  opacity:0.7;
-}
-
-
-div.adminStatisticsByDateBox2{
-  border:solid 1px black;
-}
-
-td.adminStatisticsByDateTxt { 
-  text-align:center;
-  padding:0px 1px;
-  font-size:11px;
-  color:#444444;
-}
+td.adminStatisticsByDateTitle {padding:12px 0 8px; font-size:13px; font-weight:bold;}
+td.adminStatisticsByDateContent {padding-bottom: 8px;}
+td.adminStatisticsByDatePreBox {background:url(../img/scale.gif) 0% 100% repeat-x; width:8px; border-right:solid 1px #C8C8C8; font-size:0;}
+td.adminStatisticsByDatePostBox {background:url(../img/scale.gif) 0% 100% repeat-x; width:8px; font-size:0;}
+td.adminStatisticsByDateBox {background:url(../img/scale.gif) 0% 100% repeat-x; width:32px; font-size:0; vertical-align:bottom; text-align:center; padding:0px 1px; font-size:11px; color:#666666;}
+div.adminStatisticsByDateBox {border:solid 1px #888888; opacity:1; font-size:0;}
+div.adminStatisticsByDateBox:hover {cursor:pointer; opacity:0.7;}
+div.adminStatisticsByDateBox2 {border:solid 1px #888888; font-size:0;}
+td.adminStatisticsByDateTxt {text-align:center; padding:0px 1px; font-size:11px; color:#666666;}
 
