@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.117
+ * @version 1.0.118
  * @date Creation: Jun 2007
  * @date Modification: Sep 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -2363,7 +2363,7 @@ function client_getBotInfosFromUserAgent($ua='') {
 
     /* start detection and return result */
     if (preg_match ($detectionPattern, strtolower($ua), $result ) )
-        return $knownBots[$result[0]];
+        return array_merge(array('bot_name'=>$result[0]), $knownBots[$result[0]]);
     return false;
 }
 
@@ -2429,7 +2429,7 @@ function client_getToolInfosFromUserAgent($ua='') {
 
     /* start detection and return result */
     if (preg_match($detectionPattern, strtolower($ua), $result))
-        return $knownTools[$result[0]];
+        return array_merge(array('tool_name'=>$result[0]), $knownTools[$result[0]]);
     return false;
 }
 
@@ -2496,7 +2496,7 @@ function client_getBeforeBotInfosFromUserAgent($ua='') {
 
     /* start detection and return result */
     if (preg_match ($detectionPattern, strtolower($ua), $result ) )
-        return $knownBots[$result[0]];
+        return array_merge(array('bot_name'=>$result[0]), $knownBots[$result[0]]);
     return false;
 }
 
@@ -2562,7 +2562,7 @@ function client_getUnknownInfosFromUserAgent($ua='') {
 
     /* start detection and return result */
     if (preg_match($detectionPattern, strtolower($ua), $result))
-        return $knownUnknowns[$result[0]];
+        return array_merge(array('bot_name'=>$result[0]), $knownUnknowns[$result[0]]);
     return false;
 }
 
@@ -2655,8 +2655,10 @@ function client_getGenericInfosFromUserAgent($ua='') {
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
-    if (preg_match ($detectionPattern, strtolower($ua), $result))
-        return $knownGenerics[$result[0]];
+    if (preg_match ($detectionPattern, strtolower($ua), $result)) {
+        $bot = $knownGenerics[$result[0]];
+        return array_merge(array($bot['platform_type'].'_name'=>$result[0]), $bot);
+    }
 
     /* load known generic agents */
     $knownGenerics = _client_getKnownGenericsL2();
@@ -2667,8 +2669,10 @@ function client_getGenericInfosFromUserAgent($ua='') {
     $detectionPattern = '/'.$detectionPattern.'/i';
 
     /* start detection and return result */
-    if (preg_match ($detectionPattern, strtolower($ua), $result))
-        return $knownGenerics[$result[0]];
+    if (preg_match ($detectionPattern, strtolower($ua), $result)){
+        $bot = $knownGenerics[$result[0]];
+        return array_merge(array($bot['platform_type'].'_name'=>$result[0]), $bot);
+    }
     return false;
 }
 

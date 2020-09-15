@@ -4,7 +4,7 @@
  * @details Engine / Main Object
  * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Jun 2005
  * @date Modification: Sep 2020
  * @copyright 2005 - 2020 CaMykS Team
@@ -286,6 +286,12 @@ final class Camyks {
       * @brief Error check for logging system.
       */
      private $errorCheck = false;
+
+     /**
+      * @var array $visitorInfo
+      * @brief Store visitor or bot information.
+      */
+    private $visitorInfo = null;
 
     /**
      * CaMykS Constructor.
@@ -1325,7 +1331,7 @@ final class Camyks {
      * @return void
      */
     public function check_deviceMode($device='') {
-        /* load device value */
+        /* Load device value */
         if ($device != '') {
             $deviceStatus = 'forced';
         } elseif (isset($_REQUEST['_cDevice'])) {
@@ -1335,13 +1341,15 @@ final class Camyks {
             $this->deviceMode = $this->get_sessionValue('deviceMode');
             return;
         } else {
-            $ua = client_getUAInfos();
-            /* define sreen format */
-            $device = isset($ua['platform_format'])?$ua['platform_format']:'desktop';
+            /* Load visitor information */
+            $this->load_visitorInformation();
+
+            /* Define sreen format */
+            $device = isset($this->visitorInfo['platform_format']) ? $this->visitorInfo['platform_format'] : 'desktop';
             $deviceStatus = 'auto';
         }
 
-        /* check device value */
+        /* Check device value */
         if ($device == 'mobile')
             $device = 'handheld';
         elseif (!in_array($device, array('desktop', 'tablet', 'handheld', 'tvset'))) {
@@ -1349,7 +1357,7 @@ final class Camyks {
             $deviceStatus = 'auto';
         }
 
-        /* set device value */
+        /* Set device value */
         $this->deviceMode = $device;
         $this->set_sessionValue('deviceMode', $device);
         $this->set_sessionValue('deviceStatus', $deviceStatus);
@@ -1918,6 +1926,35 @@ final class Camyks {
         /* TO DO */
         /* File not found */
         return '';
+    }
+
+    /******************** VISITOR ************************/
+
+    /**
+     * Load visitor's information.
+     * @return void
+     */
+    private function load_visitorInformation() {
+        if (is_null($this->visitorInfo))
+            $this->visitorInfo = client_getUAInfos();
+    }
+
+    /**
+     * Return visitor's information.
+     * @return array
+     */
+    public function get_visitorInformation() {
+        $this->load_visitorInformation();
+        return $this->visitorInfo;
+    }
+
+    /**
+     * Check if visitor is a human.
+     * @return boolean
+     */
+    public function is_visitorHuman() {
+        $this->load_visitorInformation();
+        return in_array($this->visitorInfo['platform_type'], array('handheld', 'tablet', 'computer', 'tvset', 'vrheadset'));
     }
 
     /******************** ENDING *************************/
