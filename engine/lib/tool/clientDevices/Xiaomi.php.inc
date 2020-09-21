@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: May 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -108,8 +108,11 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi y2'              => array('platform_model' => 'Redmi Y2',            'platform_year' => 2018),
         'redmi 7'               => array('platform_model' => 'Redmi 7',             'platform_year' => 2019),
         'redmi 7a'              => array('platform_model' => 'Redmi 7A',            'platform_year' => 2019),
+        'redmi 8'               => array('platform_model' => 'Redmi 8',             'platform_year' => 2019),
+        'redmi 8a'              => array('platform_model' => 'Redmi 8A',            'platform_year' => 2019),
         'redmi k20'             => array('platform_model' => 'Redmi K20',           'platform_year' => 2019),
         'redmi note 7'          => array('platform_model' => 'Redmi Note 7',        'platform_year' => 2019),
+        'redmi note 7 pro'      => array('platform_model' => 'Redmi Note 7 Pro',    'platform_year' => 2019),
         'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
         'redmi note 8t'         => array('platform_model' => 'Redmi Note 8T',       'platform_year' => 2019),
         'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),

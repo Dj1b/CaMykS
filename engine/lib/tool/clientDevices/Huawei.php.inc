@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.76
+ * @version 1.0.77
  * @date Creation: Apr 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -130,6 +130,7 @@ function get_HuaweiClientDevices() {
         'LYA-L0C'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'LYA-L29'   => array('platform_model' => 'Mate 20 Pro',     'platform_year' => 2018),
         'EVR-AL00'  => array('platform_model' => 'Mate 20 X',       'platform_year' => 2018),
+        'EVR-N29'   => array('platform_model' => 'Mate 20 X 5G',    'platform_year' => 2019),
         'NEO-L29'   => array('platform_model' => 'Mate RS',         'platform_year' => 2018),
         'LIO-L29'   => array('platform_model' => 'Mate 30 Pro',     'platform_year' => 2019),
 
@@ -161,6 +162,7 @@ function get_HuaweiClientDevices() {
         'PRA-TL10'  => array('platform_model' => 'Honor 8 Lite',    'platform_year' => 2016),
         'EDI-AL10'  => array('platform_model' => 'Honor Note 8',    'platform_year' => 2016),
         'DUK-L09'   => array('platform_model' => 'Honor 8 Pro',     'platform_year' => 2017),
+        'BKK-LX2'   => array('platform_model' => 'Honor 8C',        'platform_year' => 2017),
         'JSN-L21'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
         'JSN-L22'   => array('platform_model' => 'Honor 8X',        'platform_year' => 2018),
         'STF-AL00'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
@@ -258,6 +260,7 @@ function get_HuaweiClientDevices() {
         'LDN-LX2'   => array('platform_model' => 'Nova 2 Lite',     'platform_year' => 2018),
         'PAR-AL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'PAR-TL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
+        'INE-LX1r'  => array('platform_model' => 'Nova 3i',         'platform_year' => 2018),
         'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
         'YAL-L21'   => array('platform_model' => 'Nova 5T',         'platform_year' => 2019),
 

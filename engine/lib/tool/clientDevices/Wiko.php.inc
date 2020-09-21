@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16.1
+ * @version 1.0.17
  * @date Creation: Jul 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -126,6 +126,7 @@ function get_WikoClientDevice($deviceCode='') {
         'w-k130-eea'        => array('platform_model' => 'Y50',             'platform_year' => 2019),
         'w-p311-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
         'w-p611-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
+        'w-v800-ope'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
         'w-v720-eea'        => array('platform_model' => 'Y80',             'platform_year' => 2019),
     );
 

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Oct 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -46,6 +46,7 @@ function get_TecnoClientDevice($deviceCode='') {
         'KC8'       => array('platform_model' => 'Spark 4',         'platform_year' => 2019),
         'LB7'       => array('platform_model' => 'Pouvoir 3',       'platform_year' => 2019),
         'CD8j'      => array('platform_model' => 'Camon 15',        'platform_year' => 2019),
+        'KD6'       => array('platform_model' => 'Spark 5 Air',     'platform_year' => 2020),
     );
 
     /* Check for returning list */
