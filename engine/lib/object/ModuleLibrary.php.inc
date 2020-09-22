@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief ModuleLibrary
+ * @brief ModuleLibrary abastract class for module libraries.
  * @details Engine / Object Library
- * @file engine/lib/object/ModuleLibrary.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Mar 2007
- * @date Modification: May 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details  Use to manage localised (or not) content from database, files or text objects
@@ -15,7 +14,6 @@
 
 /**
  * ModuleLibrary class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 abstract class ModuleLibrary {
     /**
@@ -1683,13 +1681,27 @@ abstract class ModuleLibrary {
      * @param string $sql
      * @param integer $line
      * @param integer $file
-      * @param string $resName
+     * @param string $resName
      */
     public function execute_DBQuery($sql='', $line=-1, $file='', $resName=null) {
         global $camyks;
         if ($line == -1) $line = __LINE__;
         if ($file == '') $file = $this->_libParentFile;
         return $this->_libDBConnector->execute_query($sql, $resName) or $camyks->log_sqlerror($this, $sql, $file, $line);
+    }
+
+    /**
+     * Execute multiple database queries at once.
+     * @param string $sql
+     * @param integer $line
+     * @param integer $file
+     * @param string $resName
+     */
+    public function execute_DBMultiQueries($sql='', $line=-1, $file='', $resName=null) {
+        global $camyks;
+        if ($line == -1) $line = __LINE__;
+        if ($file == '') $file = $this->_libParentFile;
+        return $this->_libDBConnector->execute_multiQuery($sql, $resName) or $camyks->log_sqlerror($this, $sql, $file, $line);
     }
 
     /**

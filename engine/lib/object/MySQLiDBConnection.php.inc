@@ -3,7 +3,7 @@
  * @brief MySQLi Database connection object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Sep 2014
  * @date Modification: Sep 2020
  * @copyright 2014 - 2020 CaMykS Team
@@ -348,6 +348,17 @@ final class MySQLiDBConnection extends CDBConnection {
      */
     public function execute_query($sql='', $resName='defaultRes') {
         $this->queryRes[$resName] = @$this->connection->query($sql);
+        return ($this->queryRes[$resName] !== false);
+    }
+
+    /**
+     * Execute multiple queries at once.
+     * @param string $sql
+     * @param string $resName
+     * @return boolean success
+     */
+    public function execute_multiQueries($sql='', $resName='defaultRes') {
+        $this->queryRes[$resName] = @$this->connection->multi_query($sql);
         return ($this->queryRes[$resName] !== false);
     }
 

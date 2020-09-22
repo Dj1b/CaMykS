@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief SQLite3 Database connection object
+ * @brief SQLite3 Database connection object.
  * @details Engine / Object Library
- * @file engine/lib/object/SQLite3DBConnection.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Nov 2017
- * @date Modification: Apr 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Complete dump_database() and get_databaseSummary() methods.
@@ -15,7 +14,6 @@
 
 /**
  * SQLite3DBConnection class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class SQLite3DBConnection extends CDBConnection {
     /**
@@ -266,6 +264,16 @@ final class SQLite3DBConnection extends CDBConnection {
             /* execute a resultless query */
             return $this->connection->exec($sql);
         }
+    }
+
+    /**
+     * Execute multiple queries at once.
+     * @param string $sql
+     * @param string $resName
+     * @return boolean success
+     */
+    public function execute_multiQueries($sql='', $resName='defaultRes') {
+        return $this->execute_query($sql, $resName);
     }
 
     /**

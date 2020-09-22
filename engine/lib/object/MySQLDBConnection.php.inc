@@ -1,9 +1,9 @@
 <?php
 /**
- * @brief MySQL Database connection object
+ * @brief MySQL Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Sep 2014
  * @date Modification: Sep 2020
  * @copyright 2014 - 2020 CaMykS Team
@@ -348,6 +348,17 @@ final class MySQLDBConnection extends CDBConnection {
      */
     public function execute_query($sql='', $resName='defaultRes') {
         $this->queryRes[$resName] = mysql_query($sql);
+        return ($this->queryRes[$resName] !== false);
+    }
+
+    /**
+     * Execute multiple queries at once.
+     * @param string $sql
+     * @param string $resName
+     * @return boolean success
+     */
+    public function execute_multiQueries($sql='', $resName='defaultRes') {
+        $this->queryRes[$resName] = @$this->connection->multi_query($sql);
         return ($this->queryRes[$resName] !== false);
     }
 
