@@ -3,7 +3,7 @@
  * @brief Finance specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2020
  * @date Modification: Sep 2020
  * @copyright 2020 CaMykS Team
@@ -19,7 +19,7 @@
  * @return float
  */
 function finance_getHTFromTTC($TTCPrice, $VATRate) {
-     return $TTCPrice * 100 / (100 + $VATRate);
+     return round($TTCPrice * 100 / (100 + $VATRate), 2);
 }
 
 /**
@@ -29,6 +29,6 @@ function finance_getHTFromTTC($TTCPrice, $VATRate) {
  * @return float
  */
 function finance_getTTCFromHT($HTPrice, $VATRate) {
-     return $HTPrice * (100 + $VATRate) / 100;
+     return round($HTPrice * (100 + $VATRate) / 100, 2);
 }
 ?>
