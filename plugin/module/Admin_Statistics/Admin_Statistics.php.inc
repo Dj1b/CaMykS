@@ -147,7 +147,7 @@ final class Admin_Statistics extends Module {
 
     /**
      * Return statistic titles
-     * @param array $pages
+     * @param array $data
      * @param string $type
      * @return array
      */
@@ -1051,7 +1051,7 @@ final class Admin_Statistics extends Module {
     /**
      * Return bot title
      * @param string $bot
-     * @parma string $type
+     * @param string $type
      * @return string
      */
     private function get_botTitle($bot, $type) {

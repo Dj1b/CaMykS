@@ -18,7 +18,7 @@ final class Admin_StatisticsSettings extends PluginConfig {
     /**
      * Class constructor.
      * @param sting $name
-     * @param &Plugin $parent
+     * @param Plugin $parent
      * @return void
      */
     public function __construct($name, &$parent) {

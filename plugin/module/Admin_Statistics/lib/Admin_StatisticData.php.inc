@@ -18,7 +18,7 @@ final class Admin_StatisticData extends ModuleLibrary {
     /**
      * Clas constructor
      * @param integer $id
-     * @param &Module $module
+     * @param Module $module
      * @return void
      */
     public function __construct($id, &$module) {

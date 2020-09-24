@@ -25,7 +25,7 @@ final class Admin_StatisticDatedOptions extends ModuleLibrary {
     /**
      * Class constructor.
      * @param integer $id
-     * @param &Module $module
+     * @param Module $module
      * @return void
      */
     public function __construct($id, &$module) {
@@ -52,7 +52,7 @@ final class Admin_StatisticDatedOptions extends ModuleLibrary {
 
     /**
      * Return colors from given properties.
-     * @param string properties
+     * @param string $properties
      * @return void
      */
     public function get_colorsFromProperties($properties) {

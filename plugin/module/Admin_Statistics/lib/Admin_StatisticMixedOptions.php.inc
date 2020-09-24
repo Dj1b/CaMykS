@@ -25,7 +25,7 @@ final class Admin_StatisticMixedOptions extends ModuleLibrary {
     /**
      * Class constructor.
      * @param integer $id
-     * @param &Module $module
+     * @param Module $module
      * @return void
      */
     public function __construct($id, &$module) {
