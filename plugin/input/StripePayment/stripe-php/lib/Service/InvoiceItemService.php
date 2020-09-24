@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class InvoiceItemService extends \Stripe\Service\AbstractService
@@ -17,12 +19,13 @@ class InvoiceItemService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/invoiceitems', $params, $opts);
+        return $this->requestCollection('get', '/v1/invoiceitems', $params, $opts);
     }
 
     /**
-     * Creates an item to be added to a draft invoice. If no invoice is specified, the
-     * item will be on the next invoice created for the customer specified.
+     * Creates an item to be added to a draft invoice (up to 250 items per invoice). If
+     * no invoice is specified, the item will be on the next invoice created for the
+     * customer specified.
      *
      * @param null|array $params
      * @param null|array|\Stripe\Util\RequestOptions $opts

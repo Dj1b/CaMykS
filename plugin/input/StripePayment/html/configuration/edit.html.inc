@@ -3,9 +3,9 @@
  * @brief StripePayment Input configuration edit layout
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2020
- * @date Modification: May 2020
+ * @date Modification: Sep 2020
  * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,7 +48,7 @@ global $camyks;
             <?= $this->get_translation('formitem_apikey_public'); ?>
         </td>
         <td class="eTableLine0 eContent1">
-            <?= $this->form->display_textInput(array('name'=>'testAPIKey_public', 'class'=>'linputs', 'maxlength'=>64)); ?>
+            <?= $this->form->display_textInput(array('name'=>'testAPIKey_public', 'class'=>'linputs', 'maxlength'=>255)); ?>
         </td>
     </tr>
 
@@ -57,7 +57,7 @@ global $camyks;
             <?= $this->get_translation('formitem_apikey_private'); ?>
         </td>
         <td class="eTableLine1 eContent1">
-            <?= $this->form->display_textInput(array('name'=>'testAPIKey_private', 'class'=>'linputs', 'maxlength'=>64)); ?>
+            <?= $this->form->display_textInput(array('name'=>'testAPIKey_private', 'class'=>'linputs', 'maxlength'=>255)); ?>
         </td>
     </tr>
 

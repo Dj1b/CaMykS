@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class PlanService extends \Stripe\Service\AbstractService
@@ -16,12 +18,13 @@ class PlanService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/plans', $params, $opts);
+        return $this->requestCollection('get', '/v1/plans', $params, $opts);
     }
 
     /**
-     * You can create plans using the API, or in the Stripe <a
-     * href="https://dashboard.stripe.com/subscriptions/products">Dashboard</a>.
+     * You can now model subscriptions more flexibly using the <a href="#prices">Prices
+     * API</a>. It replaces the Plans API and is backwards compatible to simplify your
+     * migration.
      *
      * @param null|array $params
      * @param null|array|\Stripe\Util\RequestOptions $opts

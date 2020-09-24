@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service\Checkout;
 
 class SessionService extends \Stripe\Service\AbstractService
@@ -16,7 +18,7 @@ class SessionService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/checkout/sessions', $params, $opts);
+        return $this->requestCollection('get', '/v1/checkout/sessions', $params, $opts);
     }
 
     /**
@@ -35,7 +37,7 @@ class SessionService extends \Stripe\Service\AbstractService
      */
     public function allLineItems($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/checkout/sessions/%s/line_items', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/checkout/sessions/%s/line_items', $parentId), $params, $opts);
     }
 
     /**

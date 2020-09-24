@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class CustomerService extends \Stripe\Service\AbstractService
@@ -17,7 +19,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/customers', $params, $opts);
+        return $this->requestCollection('get', '/v1/customers', $params, $opts);
     }
 
     /**
@@ -34,7 +36,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      */
     public function allBalanceTransactions($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/customers/%s/balance_transactions', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/customers/%s/balance_transactions', $parentId), $params, $opts);
     }
 
     /**
@@ -50,7 +52,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      */
     public function allSources($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/customers/%s/sources', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/customers/%s/sources', $parentId), $params, $opts);
     }
 
     /**
@@ -66,7 +68,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      */
     public function allTaxIds($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/customers/%s/tax_ids', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/customers/%s/tax_ids', $parentId), $params, $opts);
     }
 
     /**

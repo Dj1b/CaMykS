@@ -4,13 +4,13 @@
  * <br /> Interface to Stripe payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2020
- * @date Modification: May 2020
+ * @date Modification: Sep 2020
  * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * @note Stripe version 7.34.0
+ * @note Stripe version 7.54.0
  */
 
 /**
@@ -121,26 +121,31 @@ final class StripePayment extends Input {
 
         /* Load API keys */
         if ($this->get_configValue('runningMode') == 'production') {
-            \Stripe\Stripe::setApiKey($this->get_configValue('productionAPIKey_private'));
+            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
             $publicAPIKey = $this->get_configValue('productionAPIKey_public');
         } else {
-            \Stripe\Stripe::setApiKey($this->get_configValue('testAPIKey_private'));
+            $privateAPIKey = $this->get_configValue('testAPIKey_private');
             $publicAPIKey = $this->get_configValue('testAPIKey_public');
         }
 
+        $stripe = new \Stripe\StripeClient(array(
+            'api_key' => $privateAPIKey,
+            'stripe_version' => '2020-08-27',
+        ));
+
         /* Create intent */
-        $intent = \Stripe\PaymentIntent::create([
+        $intent = $stripe->paymentIntents->create(array(
             'amount'    => $data['amount']*100,
             'currency'  => $data['currency'],
             // Verify your integration in this guide by including this parameter
-            'metadata'  => ['integration_check' => 'accept_a_payment'],
-        ]);
+            'metadata'  => array('integration_check' => 'accept_a_payment'),
+        ));
 
         /* Create output */
-        $output = [
+        $output = array(
             'publishableKey'    => $publicAPIKey,
             'clientSecret'      => $intent->client_secret,
-        ];
+        );
 
         /* Output result */
         header('Content-Type: application/json');
@@ -160,20 +165,6 @@ final class StripePayment extends Input {
         $defaultParams = array('amount' => 0, 'currency'=> 'eur', 'orderId' => '', 'backURL_Response' => '', 'backURL_OK' => '');
         $params = array_merge($defaultParams, $params);
 
-                /*
-        print_r($params);
-
-            [amount] => 11,15
-        [orderId] => ab98ba
-        [reference] => ab98ba
-        [email] => jb@ideogram-design.fr
-        [backURL_OK] => http://wired.skymac.org/UPOS/upos_demo2/Commande/action-DisplaySummary.htm
-        [backURL_Cancel] => http://wired.skymac.org/UPOS/upos_demo2/Commande.htm
-        [backURL_Refused] => http://wired.skymac.org/UPOS/upos_demo2/Commande.htm
-        [backURL_Response] => http://wired.skymac.org/UPOS/upos_demo2//PaymentConfirmation.chk
-        */
-
-
         /* Save amount value in session */
         $camyks->set_sessionValue('StripePaymentData', array(
             'amount'    => $params['amount'],
@@ -188,6 +179,7 @@ final class StripePayment extends Input {
             $this->add_JSScript('var stripe = Stripe("'.$this->get_configValue('productionAPIKey_public').'");');
         else
             $this->add_JSScript('var stripe = Stripe("'.$this->get_configValue('testAPIKey_public').'");');
+
         $this->add_JSScript('var elements = stripe.elements();');
 
         /* Add some data */
