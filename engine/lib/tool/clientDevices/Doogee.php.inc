@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Doogee.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Sep 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -29,6 +29,7 @@ function get_DoogeeClientDevice($deviceCode='') {
         'X20L'      => array('platform_model' => 'X20L',        'platform_year' => 2018),
         'X60L'      => array('platform_model' => 'X60L',        'platform_year' => 2018),
         'X70'       => array('platform_model' => 'X70',         'platform_year' => 2018),
+        'S55_Lite'  => array('platform_model' => 'S55 Lite',    'platform_year' => 2018),
         'S60Lite'   => array('platform_model' => 'S60 Lite',    'platform_year' => 2018),
         'S90'       => array('platform_model' => 'S90',         'platform_year' => 2019),
     );

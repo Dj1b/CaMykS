@@ -4,7 +4,7 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.69
+ * @version 1.0.70
  * @date Creation: May 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -4871,7 +4871,7 @@ function _client_getKnownBots() {
         'bot_title'         => 'bitdiscovery',
         'bot_url'           => '',
         'engine_title'      => 'Bit Discovery',
-        'engine_url'        => 'https://bitdiscovery.com',
+        'engine_url'        => 'https://bitdiscovery.com/',
     );
 
     /* IDG/IT */
@@ -4882,6 +4882,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'SpazioDATI',
         'engine_url'        => 'https://spaziodati.eu/en/',
+    );
+
+    /* MatchoryBot */
+    $knownBots['matchorybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MatchoryBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Matchory',
+        'engine_url'        => 'https://www.matchory.com/',
+    );
+
+    /* youdao_inter */
+    $knownBots['youdao_inter'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'youdao_inter',
+        'bot_url'           => '',
+        'engine_title'      => 'Youdao',
+        'engine_url'        => 'http://www.youdao.com/',
     );
 
     /* Return bot list */

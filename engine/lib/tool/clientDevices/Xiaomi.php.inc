@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Xiaomi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.44
+ * @version 1.0.45
  * @date Creation: May 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -117,6 +117,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 8t'         => array('platform_model' => 'Redmi Note 8T',       'platform_year' => 2019),
         'redmi note 8 pro'      => array('platform_model' => 'Redmi Note 8 Pro',    'platform_year' => 2019),
         'redmi note 9s'         => array('platform_model' => 'Redmi Note 9S',       'platform_year' => 2020),
+        'redmi note 9 pro'      => array('platform_model' => 'Redmi Note 9 Pro',    'platform_year' => 2020),
 
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),
         'dlt h0'                => array('platform_model' => 'Black Shark 2 Pro',   'platform_year' => 2019),

@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Samsung.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.86
+ * @version 1.0.87
  * @date Creation: Apr 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -20,7 +20,11 @@
  */
 function get_SamsungClientDevice($deviceCode='') {
     $deviceList = array(
-        /* Samsung tablets */
+
+        /* Samsung Galaxy View series */
+        'SM-T670'   => array('platform_model' => 'Galaxy View',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+
+        /* Samsung Galaxy Tab series */
         'GT-P1000'  => array('platform_model' => 'Galaxy Tab',          'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2010),
         'GT-P1000M' => array('platform_model' => 'Galaxy Tab',          'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2010),
         'GT-P7510'  => array('platform_model' => 'Galaxy Tab 10.1',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2011),

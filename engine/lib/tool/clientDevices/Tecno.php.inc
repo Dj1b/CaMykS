@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Tecno.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Oct 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -20,11 +20,15 @@
  */
 function get_TecnoClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Tecno tablets */
+        'P904'      => array('platform_model' => 'DroiPad 10D',     'platform_year' => 2016, 'platform_type' => 'tablet', 'platform_format' => 'tablet'),
+
+        /* Tecno mobiles */
         'C9'        => array('platform_model' => 'C9',              'platform_year' => 2016),
         'J8'        => array('platform_model' => 'Boom',            'platform_year' => 2016),
         'K7'        => array('platform_model' => 'Spark',           'platform_year' => 2017),
         'K9'        => array('platform_model' => 'Spark Plus',      'platform_year' => 2017),
-        'L9 Plus'	=> array('platform_model' => 'L9 Plus',      	'platform_year' => 2017),
+        'L9 Plus'	=> array('platform_model' => 'L9 Plus',         'platform_year' => 2017),
         'R6'        => array('platform_model' => 'R6',              'platform_year' => 2017),
         'W3'        => array('platform_model' => 'W3',              'platform_year' => 2017),
         'CF7'       => array('platform_model' => 'Camon 11',        'platform_year' => 2018),

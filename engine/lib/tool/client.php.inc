@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/client.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.119
+ * @version 1.0.120
  * @date Creation: Jun 2007
  * @date Modification: Sep 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -502,7 +502,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/; (K[0-9]{1,4})([A-zA-Z]*)?( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Oukitel.php.inc');
         $infos = array_merge($infos, get_OukitelClientDevice(trim($matches[1].$matches[2])));
-    } elseif (preg_match('/; (WP1|C15 Pro)( Build|\))/', $ua, $matches)) {
+    } elseif (preg_match('/; (WP[15]|C15 Pro)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Oukitel.php.inc');
         $infos = array_merge($infos, get_OukitelClientDevice($matches[1]));
     }
@@ -518,13 +518,13 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Asus mobiles and tablets */
-    elseif (preg_match('/ (K|ME|P)([0-9]{2})([A-Z0-9]{1,2})( Build|\))/', $ua, $matches)) {
+    elseif (preg_match('/; (K|ME|P)([0-9]{2})([A-Z0-9]{1,2})( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1].$matches[2].$matches[3])));
-    } elseif (preg_match('/ (Z?[A-Z][0-9]{3}[C|K|T]{1}L) Build/', $ua, $matches)) {
+    } elseif (preg_match('/; (Z?[A-Z][0-9]{3}[C|K|T]{1}L) Build/', $ua, $matches)) {
         include_once('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
-    } elseif (preg_match('/ASUS_([A-Z0-9]+)( Build|\))/', $ua, $matches)) {
+    } elseif (preg_match('/; ASUS_([A-Z0-9]+)( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Asus.php.inc');
         $infos = array_merge($infos, get_AsusClientDevice(trim($matches[1])));
     } elseif (preg_match('/; Transformer ([A-Z0-9]+)( Build|\))/', $ua, $matches)) {
@@ -624,7 +624,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Doogee devices, to be inserted before Xiaomi/Wiko/Acer */
-    elseif (preg_match('/; (MIX(Lite)?|MIX2|BL5000|S90|S60Lite|X[37]0|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (MIX(Lite)?|MIX2|BL5000|S90|S60Lite|S55_Lite|X[37]0|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -2981,6 +2981,14 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#Mediapartners\-Google\) Chrome/\[CHROME_VERSION\] Safari/\[WEBKIT_VERSION\]$#', $ua))
         return $fake;
 
+    /* Fake Chrome UA */
+    if (preg_match('#Chrome/[0-9\.]* Safari/[0-9\.]*/[0-9a-zA-Z]{8}\-[0-9]{2}$#', $ua))
+        return $fake;
+
+    /* Fake IE11 UA : Mozilla/5.0 (csriveraine; Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko */
+    if (preg_match('#^Mozilla/5.0 \(csriveraine;#', $ua))
+        return $fake;
+
     /* default result */
     return false;
 }
@@ -3031,7 +3039,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'macOS'          => array(
-                'MaxVersion'    => '10.17.0',               // current is 10.15.x
+                'MaxVersion'    => '10.19.0',               // current is 10.16.x
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
@@ -3043,7 +3051,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'iOS'               => array(
-                'MaxVersion'    => '16',                    // current is 13.x
+                'MaxVersion'    => '17',                    // current is 14.x
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3057,7 +3065,7 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '88',                    // current is 80, nightly is 86
+                'MaxVersion'    => '89',                    // current is 81, nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
@@ -3075,7 +3083,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '75',                    // current is 70
+                'MaxVersion'    => '76',                    // current is 71
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',

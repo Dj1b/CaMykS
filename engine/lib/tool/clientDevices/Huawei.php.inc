@@ -4,7 +4,7 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.77
+ * @version 1.0.78
  * @date Creation: Apr 2018
  * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -88,6 +88,7 @@ function get_HuaweiClientDevices() {
         'MAR-LX1B'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX1M'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX2'   => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
+        'MAR-LX2J'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX3A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'VOG-L04'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'VOG-L09'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
@@ -261,6 +262,7 @@ function get_HuaweiClientDevices() {
         'PAR-AL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'PAR-TL00'  => array('platform_model' => 'Nova 3',          'platform_year' => 2018),
         'INE-LX1r'  => array('platform_model' => 'Nova 3i',         'platform_year' => 2018),
+        'INE-LX2'   => array('platform_model' => 'Nova 3i',         'platform_year' => 2018),
         'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
         'YAL-L21'   => array('platform_model' => 'Nova 5T',         'platform_year' => 2019),
 
