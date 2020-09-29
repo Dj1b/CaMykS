@@ -1,7 +1,7 @@
 <?php
 /*****************************************************************************
  *
- * "open source" kit for Monetico paiement(TM) 
+ * "open source" kit for Monetico paiement(TM)
  *
  * File "MoneticoPaiement_Ept.inc.php":
  *
@@ -32,14 +32,14 @@ class MoneticoPaiement_Ept {
 	public $sUrlPaiement;	// Url du serveur de paiement - Payment Server URL (Ex : https://p.monetico-services.com/paiement.cgi)
 
 	private $_sCle;		// La cl� - The Key
-	
+
 
 	// ----------------------------------------------------------------------------
 	//
 	// Constructeur / Constructor
 	//
 	// ----------------------------------------------------------------------------
-	
+
 	function __construct($sLangue = "FR") {
 
 		// contr�le de l'existence des constantes de param�trages.
@@ -108,7 +108,7 @@ class MoneticoPaiement_Hmac {
 	// ----------------------------------------------------------------------------
 
 	function __construct($oEpt) {
-		
+
 		$this->_sUsableKey = $this->_getUsableKey($oEpt);
 	}
 
@@ -125,15 +125,15 @@ class MoneticoPaiement_Hmac {
 
 		$hexStrKey  = substr($oEpt->getCle(), 0, 38);
 		$hexFinal   = "" . substr($oEpt->getCle(), 38, 2) . "00";
-    
-		$cca0=ord($hexFinal); 
 
-		if ($cca0>70 && $cca0<97) 
+		$cca0=ord($hexFinal);
+
+		if ($cca0>70 && $cca0<97)
 			$hexStrKey .= chr($cca0-23) . substr($hexFinal, 1, 1);
-		else { 
-			if (substr($hexFinal, 1, 1)=="M") 
-				$hexStrKey .= substr($hexFinal, 0, 1) . "0"; 
-			else 
+		else {
+			if (substr($hexFinal, 1, 1)=="M")
+				$hexStrKey .= substr($hexFinal, 0, 1) . "0";
+			else
 				$hexStrKey .= substr($hexFinal, 0, 2);
 		}
 
@@ -154,7 +154,7 @@ class MoneticoPaiement_Hmac {
 
 		return strtolower(hash_hmac("sha1", $sData, $this->_sUsableKey));
 
-		// If you don't have PHP 5 >= 5.1.2 and PECL hash >= 1.1 
+		// If you don't have PHP 5 >= 5.1.2 and PECL hash >= 1.1
 		// you may use the hmac_sha1 function defined below
 		//return strtolower($this->hmac_sha1($this->_sUsableKey, $sData));
 	}
@@ -174,7 +174,7 @@ class MoneticoPaiement_Hmac {
 	// ----------------------------------------------------------------------------
 
 	public function hmac_sha1 ($key, $data) {
-		
+
 		$length = 64; // block length for SHA1
 		if (strlen($key) > $length) { $key = pack("H*",sha1($key)); }
 		$key  = str_pad($key, $length, chr(0x00));
@@ -189,17 +189,17 @@ class MoneticoPaiement_Hmac {
 }
 
 // ----------------------------------------------------------------------------
-// function getMethode 
+// function getMethode
 //
-// IN: 
+// IN:
 // OUT: Donn�es soumises par GET ou POST / Data sent by GET or POST
 // description: Renvoie le tableau des donn�es / Send back the data array
 // ----------------------------------------------------------------------------
 
 function getMethode()
 {
-    if ($_SERVER["REQUEST_METHOD"] == "GET")  
-        return $_GET; 
+    if ($_SERVER["REQUEST_METHOD"] == "GET")
+        return $_GET;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
 	return $_POST;
@@ -232,8 +232,37 @@ function HtmlEncode ($data)
         }
         else
             $result .= $data{$i};
-            
+
     }
     return $result;
 }
+
+
+function computeHmacSource($source, $oEpt)
+{
+  $anomalies = null;
+  if( array_key_exists('TPE', $source) )
+    $anomalies = $source["TPE"] != $oEpt->sNumero ? ":TPE" : null;
+  if( array_key_exists('version', $source) )
+    $anomalies .= $source["version"] == $oEpt->sVersion ? ":version" : null;
+
+  // sole field to exclude from the MAC computation
+  if( array_key_exists('MAC', $source) )
+    unset($source['MAC']);
+  else
+    $anomalies .= ":MAC";
+
+  if($anomalies != null)
+    return "anomaly_detected" . $anomalies;
+
+  // order by key is mandatory
+  ksort($source);
+  // map entries to "key=value" to match the target format
+  array_walk($source, function(&$a, $b) { $a = "$b=$a"; });
+  // join all entries using asterisk as separator
+  return implode( '*', $source);
+}
+
+
+
 ?>
