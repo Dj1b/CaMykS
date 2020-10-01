@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Wiko.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Jul 2018
- * @date Modification: Apr 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -81,7 +81,6 @@ function get_WikoClientDevice($deviceCode='') {
         'robby'             => array('platform_model' => 'Robby',           'platform_year' => 2016),
         'robby2'            => array('platform_model' => 'Robby2',          'platform_year' => 2017),
         'selfy 4g'          => array('platform_model' => 'Selfie 4G',       'platform_year' => 2015),
-        'selfy 4g'          => array('platform_model' => 'Selfie 4G',       'platform_year' => 2015),
         'slide'             => array('platform_model' => 'Slide',           'platform_year' => 2014),
         'slide2'            => array('platform_model' => 'Slide 2',         'platform_year' => 2015),
         'stairway'          => array('platform_model' => 'Stairway',        'platform_year' => 2013),
@@ -127,6 +126,7 @@ function get_WikoClientDevice($deviceCode='') {
         'w-k130-eea'        => array('platform_model' => 'Y50',             'platform_year' => 2019),
         'w-p311-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
         'w-p611-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
+        'w-v800-ope'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
         'w-v720-eea'        => array('platform_model' => 'Y80',             'platform_year' => 2019),
     );
 

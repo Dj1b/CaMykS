@@ -1,116 +1,117 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		   : camyks.net
- * Author		   : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	   : 1.0a
- * Object Version 	   : 1.0
- * Object Type             : Plugin / Module Library
- * Creation Date	   : May 2007
- * Last Modif Date	   : May 2007
- *
- * Admin_StatisticDatedOptions object for Admin_Statistics Module
+/**
+ * @brief Admin_Statistics Module options for dated type stats library.
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2007
+ * @date Modification: Sep 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Admin_StatisticDatedOptions extends ModuleLibrary {
-  /*
-   * constructor
-   * @param integer $id
-   * @param &Module $module
-   */
-  function Admin_StatisticDatedOptions ( $id, &$module ) {
-    parent::ModuleLibrary ( $id, $module );
-    /* content */
-    $this->add_newItem('coloralternate0', 'temp', 'text', 'varchar', 6, '5b8dcd'); 
-    $this->add_newItem('coloralternate1', 'temp', 'text', 'varchar', 6, 'ffd802'); 
-    $this->add_newItem('mainbydaycount', 'temp', 'int', 'tinyint', '', 12);
-    $this->add_newItem('mainbymonthcount', 'temp', 'int', 'tinyint', '', 12);
-    $this->add_newItem('mainbyyearcount', 'temp', 'int', 'tinyint', '', 6);
+/**
+ * Admin_StatisticDatedOptions class.
+ */
+final class Admin_StatisticDatedOptions extends ModuleLibrary {
 
-    /* generic initialisation */
-    $this->init_library();
-  }
+    /**
+     * var integer $optionSettingsDisplay
+     * @brief Define settings to display in option tab.
+     */
+    public $optionSettingsDisplay = 0;
 
-  /* specific ModuleLibrary methods */
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-  /*
-   * get values from given properties
-   * @param string $properties
-   * @return void
-   * @access private
-   */
-  function get_valuesFromProperties ( $properties ) {
-    $values = data_decode_properties ( $properties  );
-    foreach ( $values as $name=>$value ) {
-      if ( isset ( $this->_libItems[$name] ) ) {
-	$this->_libItems[$name]->value = $value;
-      }
+        /* Define items */
+        $this->add_newItem('coloralternate0', 'temp', 'text', 'varchar', 6, '5b8dcd');
+        $this->add_newItem('coloralternate1', 'temp', 'text', 'varchar', 6, 'ffd802');
+
+        /* generic initialisation */
+        $this->init_library();
     }
-  }
-  
-  /*
-   * get colors from given properties
-   * @param string properties
-   * @return void
-   * @access private
-   */
-  function get_colorsFromProperties ( $properties ) {
-    $colors = data_decode_properties ( $properties  );
-    foreach ( $colors as $name=>$value ) {
-      if ( isset ( $this->_libItems[$name] ) ) {
-	$this->_libItems[$name]->value = $value;
-      }
+
+    /* Specific tool methods */
+
+    /**
+     * Return values from given properties.
+     * @param string $properties
+     * @return void
+     */
+    public function get_valuesFromProperties($properties) {
+        return;
     }
-  }
-  
-  /*
-   * return values as properties
-   * @return string
-   * @access private
-   */
-  function get_valuesAsProperties ( ) {
-    return '';
-  }
-  
-  /*
-   * return colors as properties
-   * @return string
-   * @access private
-   */
-  function get_colorsAsProperties () {
-    return data_encode_properties(array('coloralternate0'=>$this->_libItems['coloralternate0']->value,
-					'coloralternate1'=>$this->_libItems['coloralternate1']->value));
-  }
-  
-  /*
-   * build & return object config
-   * @param integer $objectid
-   * @return array
-   * @access private
-   */
-  function build_config ( $objectid ) {
-    /* build default config */
-    $config = array ('maintotalwhere'=>'statid='.$objectid,
-		     'mainbydaywhere'=>'statid='.$objectid,
-		     'mainbydaydate'=>0,
-		     'mainbymonthwhere'=>'statid='.$objectid,
-		     'mainbymonthdate'=>0,
-		     'mainbyyearwhere'=>'statid='.$objectid,
-		     'mainbyyeardate'=>0);
-		
 
-    /* main tab statistics : by day */
-    $d = mktime(0, 0, 0, date('m'), date('d')-$this->vars['mainbydaycount'], date('Y'));
-    $config['mainbydaywhere'] .= ' and statdate >='. $d;
+    /**
+     * Return colors from given properties.
+     * @param string $properties
+     * @return void
+     */
+    public function get_colorsFromProperties($properties) {
+        $colors = data_decode_properties($properties);
+        foreach ($colors as $name => $value) {
+            if (isset ($this->_libItems[$name])) {
+                $this->_libItems[$name]->value = $value;
+            }
+        }
+    }
 
-    /* main tab statistics : by month */
-    $d = mktime(0, 0, 0, date('m')-$this->vars['mainbymonthcount'], 1, date('Y'));
-    $config['mainbymonthwhere'] .= ' and statdate >='. $d;
+    /**
+     * Return values as properties.
+     * @return string
+     */
+    public function get_valuesAsProperties () {
+        return '';
+    }
 
-    /* main tab statistics : by day */
-    $d = mktime(0, 0, 0, 1, 1, date('Y')-$this->vars['mainbyyearcount']);
-    $config['mainbyyearwhere'] .= ' and statdate >='. $d;
-    return $config;
-  }
+    /**
+     * Return colors as properties.
+     * @return string
+     */
+    function get_colorsAsProperties () {
+        return data_encode_properties(array(
+            'coloralternate0'=>$this->_libItems['coloralternate0']->value,
+            'coloralternate1'=>$this->_libItems['coloralternate1']->value,
+        ));
+    }
+
+    /**
+     * Build and return object configuration.
+     * @param integer $objectid
+     * @return array
+     */
+    public function build_config($objectid) {
+        /* build default config */
+        $config = array(
+            'maintotalwhere'    => 'statid='.$objectid,
+            'mainbydaywhere'    => 'statid='.$objectid,
+            'mainbydaydate'     => 0,
+            'mainbymonthwhere'  => 'statid='.$objectid,
+            'mainbymonthdate'   => 0,
+            'mainbyyearwhere'   => 'statid='.$objectid,
+            'mainbyyeardate'    => 0
+        );
+
+        /* main tab statistics : by day */
+        $d = mktime(0, 0, 0, date('m'), date('d')-$this->_libParent->get_displayItems('day'), date('Y'));
+        $config['mainbydaywhere'] .= ' and statdate >='. $d;
+
+        /* main tab statistics : by month */
+        $d = mktime(0, 0, 0, date('m')-$this->_libParent->get_displayItems('month'), 1, date('Y'));
+        $config['mainbymonthwhere'] .= ' and statdate >='. $d;
+
+        /* main tab statistics : by day */
+        $d = mktime(0, 0, 0, 1, 1, date('Y')-$this->_libParent->get_displayItems('year'));
+        $config['mainbyyearwhere'] .= ' and statdate >='. $d;
+        return $config;
+    }
 }
 ?>

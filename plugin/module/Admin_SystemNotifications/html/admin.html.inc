@@ -2,12 +2,11 @@
 /**
  * @brief Admin_SystemNotifications Module admin main layout
  * @details Plugin / Module layout
- * @file plugin/module/Admin_SystemNotifications/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jul 2017
- * @date Modification: May 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
@@ -37,13 +36,13 @@ global $camyks;
                 <table cellspacing="2" cellpadding="0" border="0" style="width:100%; border: solid 1px white;">
 
                     <tr>
-                        <td colspan="3" class="eTableSubHeader">
+                        <td colspan="3" class="eTableSubHeader" title="<?= $followUp['title']; ?>">
                             <?php if (!isset($followUp['self']) or $followUp['self'] == false) : ?>
                             <a href="<?= $this->get_adminLink(array('mode'=>'check_website', 'website_id'=>$id)); ?>" class="img">
                                 <?= $this->theme->get_pictHTMLTag(array('pict'=>'notify', 'addMouseover'=>true, 'alt'=>$this->get_translation(''), 'title'=>$this->get_translation('check_notifications'), 'style'=>'float:right;')); ?>
                             </a>
                             <?php endif; ?>
-                            <?= string_getShortenedSentence($followUp['title'], 56); ?>
+                            <?= string_getShortenedSentence($followUp['name'], 56); ?>
                         </td>
                     </tr>
 

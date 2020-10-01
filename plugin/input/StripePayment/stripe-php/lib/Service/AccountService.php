@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class AccountService extends \Stripe\Service\AbstractService
@@ -17,7 +19,7 @@ class AccountService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/accounts', $params, $opts);
+        return $this->requestCollection('get', '/v1/accounts', $params, $opts);
     }
 
     /**
@@ -35,7 +37,7 @@ class AccountService extends \Stripe\Service\AbstractService
      */
     public function allCapabilities($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/accounts/%s/capabilities', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/accounts/%s/capabilities', $parentId), $params, $opts);
     }
 
     /**
@@ -51,7 +53,7 @@ class AccountService extends \Stripe\Service\AbstractService
      */
     public function allExternalAccounts($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/accounts/%s/external_accounts', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/accounts/%s/external_accounts', $parentId), $params, $opts);
     }
 
     /**
@@ -69,7 +71,7 @@ class AccountService extends \Stripe\Service\AbstractService
      */
     public function allPersons($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/accounts/%s/persons', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/accounts/%s/persons', $parentId), $params, $opts);
     }
 
     /**
@@ -321,9 +323,10 @@ class AccountService extends \Stripe\Service\AbstractService
      * Updates the metadata, account holder name, and account holder type of a bank
      * account belonging to a <a href="/docs/connect/custom-accounts">Custom
      * account</a>, and optionally sets it as the default for its currency. Other bank
-     * account details are not editable by design.</p> <p>You can re-enable a disabled
-     * bank account by performing an update call without providing any arguments or
-     * changes.
+     * account details are not editable by design.
+     *
+     * You can re-enable a disabled bank account by performing an update call without
+     * providing any arguments or changes.
      *
      * @param string $parentId
      * @param string $id

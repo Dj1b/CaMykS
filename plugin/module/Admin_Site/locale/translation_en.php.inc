@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Feb 2013
- * @date Modification: Dec 2019
- * @copyright 2013 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2013 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -117,8 +117,14 @@ $this->trads['mod_admin_site_formitem_declination'] = 'Mobile declination: ';
 /* server conf texts */
 $this->trads['mod_admin_site_tabserver'] = 'Server';
 $this->trads['mod_admin_site_formtitle_operatingsystem'] = 'Operating system';
+$this->trads['mod_admin_site_formitem_ipaddress'] = 'IP Address: ';
 $this->trads['mod_admin_site_formtitle_httpserver'] = 'HTTP Server';
 $this->trads['mod_admin_site_formtitle_php'] = 'PHP';
+$this->trads['mod_admin_site_formitem_errordisplay'] = 'Error display: ';
+$this->trads['mod_admin_site_formitem_maxupload'] = 'Maximum upload size: ';
+$this->trads['mod_admin_site_formitem_filesmaxupload'] = 'Files: ';
+$this->trads['mod_admin_site_formitem_memorylimit'] = 'Memory limit: ';
+$this->trads['mod_admin_site_formitem_sessionexpiration'] = 'Session timeout: ';
 
 /* plugins conf texts */
 $this->trads['mod_admin_site_tabplugins'] = 'Plugins';

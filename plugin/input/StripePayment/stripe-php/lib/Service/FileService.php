@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class FileService extends \Stripe\Service\AbstractService
@@ -18,7 +20,7 @@ class FileService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/files', $params, $opts);
+        return $this->requestCollection('get', '/v1/files', $params, $opts);
     }
 
     /**

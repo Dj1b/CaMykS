@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class TransferService extends \Stripe\Service\AbstractService
@@ -18,7 +20,7 @@ class TransferService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/transfers', $params, $opts);
+        return $this->requestCollection('get', '/v1/transfers', $params, $opts);
     }
 
     /**
@@ -38,7 +40,7 @@ class TransferService extends \Stripe\Service\AbstractService
      */
     public function allReversals($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/transfers/%s/reversals', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/transfers/%s/reversals', $parentId), $params, $opts);
     }
 
     /**

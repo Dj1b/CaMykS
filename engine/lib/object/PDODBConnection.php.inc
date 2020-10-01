@@ -2,19 +2,17 @@
 /**
  * @brief PDO Database connection object
  * @details Engine / Object Library
- * @file engine/lib/object/PDODBConnection.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2014
- * @date Modification: Apr 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2014 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * PDODBConnection class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PDODBConnection extends CDBConnection {
     /* server related methods */
@@ -362,6 +360,16 @@ final class PDODBConnection extends CDBConnection {
             $this->queryError = $this->connection->errorInfo();
             return ($this->queryRes[$resName] !== false);
         }
+    }
+
+    /**
+     * Execute multiple queries at once.
+     * @param string $sql
+     * @param string $resName
+     * @return boolean success
+     */
+    public function execute_multiQueries($sql='', $resName='defaultRes') {
+        return $this->execute_query($sql, $resName);
     }
 
     /**

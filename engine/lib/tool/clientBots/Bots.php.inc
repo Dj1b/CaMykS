@@ -4,9 +4,9 @@
  * @details Engine / Bot Library
  * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.67
+ * @version 1.0.70
  * @date Creation: May 2018
- * @date Modification: Jul 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4822,6 +4822,86 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Nextcloud',
         'engine_url'        => 'https://nextcloud.com/',
+    );
+
+    /* ShowyouBot */
+    $knownBots['showyoubot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ShowyouBot',
+        'bot_url'           => 'http://showyou.com/crawler',
+        'engine_title'      => 'ShowYou',
+        'engine_url'        => 'http://showyou.com/',
+    );
+
+    /* PimEyes Crawler */
+    $knownBots['pimeyes.com crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'PimEyes Crawler',
+        'bot_url'           => '',
+        'engine_title'      => 'PimEyes',
+        'engine_url'        => 'https://pimeyes.com/',
+    );
+
+    /* NetpeakCheckerBot */
+    $knownBots['netpeakcheckerbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'NetpeakCheckerBot',
+        'bot_url'           => 'https://netpeaksoftware.com/checker',
+        'engine_title'      => 'NetPeak Software',
+        'engine_url'        => 'https://netpeaksoftware.com/',
+    );
+
+    /* PageThing.com */
+    $knownBots['pagething.com'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'PageThing',
+        'engine_url'        => 'https://pagething.com',
+    );
+
+    /* bitdiscovery */
+    $knownBots['bitdiscovery'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'bitdiscovery',
+        'bot_url'           => '',
+        'engine_title'      => 'Bit Discovery',
+        'engine_url'        => 'https://bitdiscovery.com/',
+    );
+
+    /* IDG/IT */
+    $knownBots['idg/it'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'IDG/IT',
+        'bot_url'           => '',
+        'engine_title'      => 'SpazioDATI',
+        'engine_url'        => 'https://spaziodati.eu/en/',
+    );
+
+    /* MatchoryBot */
+    $knownBots['matchorybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MatchoryBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Matchory',
+        'engine_url'        => 'https://www.matchory.com/',
+    );
+
+    /* youdao_inter */
+    $knownBots['youdao_inter'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'youdao_inter',
+        'bot_url'           => '',
+        'engine_title'      => 'Youdao',
+        'engine_url'        => 'http://www.youdao.com/',
     );
 
     /* Return bot list */

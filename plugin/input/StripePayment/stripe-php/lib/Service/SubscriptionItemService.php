@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class SubscriptionItemService extends \Stripe\Service\AbstractService
@@ -16,14 +18,14 @@ class SubscriptionItemService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/subscription_items', $params, $opts);
+        return $this->requestCollection('get', '/v1/subscription_items', $params, $opts);
     }
 
     /**
      * For the specified subscription item, returns a list of summary objects. Each
      * object in the list provides usage information that’s been summarized from
      * multiple usage records and over a subscription billing period (e.g., 15 usage
-     * records in the billing plan’s month of September).
+     * records in the month of September).
      *
      * The list is sorted in reverse-chronological order (newest first). The first list
      * item represents the most current usage period that hasn’t ended yet. Since new
@@ -41,7 +43,7 @@ class SubscriptionItemService extends \Stripe\Service\AbstractService
      */
     public function allUsageRecordSummaries($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/subscription_items/%s/usage_record_summaries', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/subscription_items/%s/usage_record_summaries', $parentId), $params, $opts);
     }
 
     /**
@@ -116,7 +118,7 @@ class SubscriptionItemService extends \Stripe\Service\AbstractService
     }
 
     /**
-     * Retrieves the invoice item with the given ID.
+     * Retrieves the subscription item with the given ID.
      *
      * @param string $id
      * @param null|array $params

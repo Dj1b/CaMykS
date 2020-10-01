@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Meizu.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Sep 2018
- * @date Modification: Jul 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_MeizuClientDevice($deviceCode='') {
         'MZ-MEIZU_M5'   => array('platform_model' => 'M5',      'platform_year' => 2016),
         'M5'            => array('platform_model' => 'M5',      'platform_year' => 2016),
         'MX6'           => array('platform_model' => 'MX6',     'platform_year' => 2016),
+        'MZ-M3X'        => array('platform_model' => 'M3X',     'platform_year' => 2016),
         'U20'           => array('platform_model' => 'U20',     'platform_year' => 2016),
         'M8 lite'       => array('platform_model' => 'M8 Lite', 'platform_year' => 2018),
         '16th'          => array('platform_model' => '16th',    'platform_year' => 2018),

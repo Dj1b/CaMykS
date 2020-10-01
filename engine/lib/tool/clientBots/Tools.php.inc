@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: May 2018
- * @date Modification: Jun 2020
+ * @date Modification: Sep 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -708,7 +708,7 @@ function _client_getKnownTools() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'FreeWebMonitoring SiteChecker',
         'tool_url'          => '',
-        'engine_title'      => 'FreeWebMonitoring SiteChecker',
+        'engine_title'      => 'FreeWebMonitoring',
         'engine_url'        => 'http://www.freewebmonitoring.com',
     );
 
@@ -1320,6 +1320,26 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'sopel',
         'engine_url'        => 'https://sopel.chat',
+    );
+
+    /* webtech */
+    $knownTools['webtech'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'webtech',
+        'tool_url'          => 'https://pypi.org/project/webtech/',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* securitytxt */
+    $knownTools['foudil-securitytxt'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'securitytxt bot',
+        'tool_url'          => 'https://tools.ietf.org/html/draft-foudil-securitytxt',
+        'engine_title'      => 'security.txt',
+        'engine_url'        => 'https://securitytxt.org/',
     );
 
     /* return list */

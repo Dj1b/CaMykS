@@ -107,7 +107,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      * Register a menu in admin interface.
      * @return array
      */
-    function get_adminEngineSpecificMenus() {
+    public function get_adminEngineSpecificMenus() {
 
         /* Load mode from header */
         $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
@@ -130,7 +130,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      * Register menu items in admin interface.
      * @return array
      */
-    function get_adminEngineSpecificMenuItems() {
+    public function get_adminEngineSpecificMenuItems() {
         global $camyks;
 
         /* Return menu items */
@@ -201,11 +201,11 @@ final class Admin_MonitoringUserAgentChecker extends Module {
     public function init_admin() {
         global $camyks;
 
-        /* check user rights */
+        /* Check access permission */
         if ($this->check_right(0) === false)
             return $this->init_admin_accessDenied();
 
-        /* check dependencies */
+        /* Check dependencies */
         if (!isset($camyks->inputs['TabBuilder']))
             return $this->init_admin_missingPlugin('Input', 'TabBuilder');
         if (!isset($camyks->inputs['AdminItemListViewer']))
@@ -261,7 +261,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                 $this->init_admin_main();
         }
 
-        /* generic initialisatin */
+        /* Generic initialisatin */
         parent::init_admin();
     }
 

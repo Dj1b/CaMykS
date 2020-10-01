@@ -4,10 +4,10 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/html/admin_view_site_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jan 2005
- * @date Modification: Dec 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -612,11 +612,19 @@ global $camyks;
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0 eContent2">
+            <td class="eTableLine0 eContent2" style="width:175px;">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
             <td class="eTableLine0 eContent1">
                 <?= php_uname('s').' '.php_uname('r').' ('.php_uname('m').')'; ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_ipaddress'); ?>
+            </td>
+            <td class="eTableLine1 eContent1">
+                <?= $_SERVER['SERVER_ADDR']; ?> (<?= gethostbyaddr($_SERVER['SERVER_ADDR']); ?>)
             </td>
         </tr>
         <tr>
@@ -630,7 +638,7 @@ global $camyks;
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0 eContent2" style="width:175px;">
+            <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
             <td class="eTableLine0 eContent1">
@@ -648,11 +656,43 @@ global $camyks;
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0 eContent2" style="width:175px;">
+            <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
             <td class="eTableLine0 eContent1">
                 <?= phpversion(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_errordisplay'); ?>
+            </td>
+            <td class="eTableLine1 eContent1">
+                <?= ini_get('display_errors') === false ? $camyks->get_translation('no') : $camyks->get_translation('yes').' ('.php_displayErrorReportingLevelAsString().')'; ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine0 eContent2">
+                <?= $this->get_translation('formitem_maxupload'); ?>
+            </td>
+            <td class="eTableLine0 eContent1">
+                <?= file_getFileSize(ini_get('post_max_size')*1024*1024); ?> (<?= $this->get_translation('formitem_filesmaxupload').file_getFileSize(ini_get('upload_max_filesize')*1024*1024); ?>)
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_memorylimit'); ?>
+            </td>
+            <td class="eTableLine1 eContent1">
+                <?= file_getFileSize(ini_get('memory_limit')*1024*1024); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine0 eContent2">
+                <?= $this->get_translation('formitem_sessionexpiration'); ?>
+            </td>
+            <td class="eTableLine0 eContent1">
+                <?= ini_get('session.gc_maxlifetime') / 60; ?> <?= unit_getTitle('minutes'); ?>
             </td>
         </tr>
     </table>

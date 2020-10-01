@@ -1,5 +1,92 @@
 # Changelog
 
+## 7.54.0 - 2020-09-23
+* [#1017](https://github.com/stripe/stripe-php/pull/1017) Updated PHPDoc
+
+## 7.53.1 - 2020-09-22
+* [#1015](https://github.com/stripe/stripe-php/pull/1015) Bugfix: don't error on systems with php_uname in disablefunctions with whitespace
+
+## 7.53.0 - 2020-09-21
+* [#1016](https://github.com/stripe/stripe-php/pull/1016) Updated PHPDocs
+
+## 7.52.0 - 2020-09-08
+* [#1010](https://github.com/stripe/stripe-php/pull/1010) Update PHPDocs
+
+## 7.51.0 - 2020-09-02
+* [#1007](https://github.com/stripe/stripe-php/pull/1007) Multiple API changes
+  * Add support for the Issuing Dispute Submit API
+  * Add constants for `payment_status` on Checkout `Session`
+* [#1003](https://github.com/stripe/stripe-php/pull/1003) Add trim to getSignatures to allow for leading whitespace.
+
+## 7.50.0 - 2020-08-28
+* [#1005](https://github.com/stripe/stripe-php/pull/1005) Updated PHPDocs
+
+## 7.49.0 - 2020-08-19
+* [#998](https://github.com/stripe/stripe-php/pull/998) PHPDocs updated
+
+## 7.48.0 - 2020-08-17
+* [#997](https://github.com/stripe/stripe-php/pull/997) PHPDocs updated
+* [#996](https://github.com/stripe/stripe-php/pull/996) Fixing telemetry
+
+## 7.47.0 - 2020-08-13
+* [#994](https://github.com/stripe/stripe-php/pull/994) Nullable balance_transactions on issuing disputes
+* [#991](https://github.com/stripe/stripe-php/pull/991) Fix invalid return types in OAuthService
+
+## 7.46.1 - 2020-08-07
+* [#990](https://github.com/stripe/stripe-php/pull/990) PHPdoc changes
+
+## 7.46.0 - 2020-08-05
+* [#989](https://github.com/stripe/stripe-php/pull/989) Add support for the `PromotionCode` resource and APIs
+
+## 7.45.0 - 2020-07-28
+* [#981](https://github.com/stripe/stripe-php/pull/981) PHPdoc updates
+
+## 7.44.0 - 2020-07-20
+* [#948](https://github.com/stripe/stripe-php/pull/948) Add `first()` and `last()` functions to `Collection`
+
+## 7.43.0 - 2020-07-17
+* [#975](https://github.com/stripe/stripe-php/pull/975) Add support for `political_exposure` on `Person`
+
+## 7.42.0 - 2020-07-15
+* [#974](https://github.com/stripe/stripe-php/pull/974) Add new constants for `purpose` on `File`
+
+## 7.41.1 - 2020-07-15
+* [#973](https://github.com/stripe/stripe-php/pull/973) Multiple PHPDoc fixes
+
+## 7.41.0 - 2020-07-14
+* [#971](https://github.com/stripe/stripe-php/pull/971) Adds enum values for `billing_address_collection` on Checkout `Session`
+
+## 7.40.0 - 2020-07-06
+* [#964](https://github.com/stripe/stripe-php/pull/964) Add OAuthService
+
+## 7.39.0 - 2020-06-25
+* [#960](https://github.com/stripe/stripe-php/pull/960) Add constants for `payment_behavior` on `Subscription`
+
+## 7.38.0 - 2020-06-24
+* [#959](https://github.com/stripe/stripe-php/pull/959) Add multiple constants missing for `Event`
+
+## 7.37.2 - 2020-06-23
+* [#957](https://github.com/stripe/stripe-php/pull/957) Updated PHPDocs
+
+## 7.37.1 - 2020-06-11
+* [#952](https://github.com/stripe/stripe-php/pull/952) Improve PHPDoc
+
+## 7.37.0 - 2020-06-09
+* [#950](https://github.com/stripe/stripe-php/pull/950) Add support for `id_npwp` and `my_frp` as `type` on `TaxId`
+
+## 7.36.2 - 2020-06-03
+* [#946](https://github.com/stripe/stripe-php/pull/946) Update PHPDoc
+
+## 7.36.1 - 2020-05-28
+* [#938](https://github.com/stripe/stripe-php/pull/938) Remove extra array_keys() call.
+* [#942](https://github.com/stripe/stripe-php/pull/942) fix autopagination for service methods
+
+## 7.36.0 - 2020-05-21
+* [#937](https://github.com/stripe/stripe-php/pull/937) Add support for `ae_trn`, `cl_tin` and `sa_vat` as `type` on `TaxId`
+
+## 7.35.0 - 2020-05-20
+* [#936](https://github.com/stripe/stripe-php/pull/936) Add `anticipation_repayment` as a `type` on `BalanceTransaction`
+
 ## 7.34.0 - 2020-05-18
 * [#934](https://github.com/stripe/stripe-php/pull/934) Add support for `issuing_dispute` as a `type` on `BalanceTransaction`
 
@@ -7,7 +94,7 @@
 * [#933](https://github.com/stripe/stripe-php/pull/933) Services bugfix: convert nested null params to empty strings
 
 ## 7.33.0 - 2020-05-14
-* [#771](https://github.com/stripe/stripe-php/pull/771) Introduce client/services API
+* [#771](https://github.com/stripe/stripe-php/pull/771) Introduce client/services API. The [migration guide](https://github.com/stripe/stripe-php/wiki/Migration-to-StripeClient-and-services-in-7.33.0) contains before & after examples of the backwards-compatible changes.
 
 ## 7.32.1 - 2020-05-13
 * [#932](https://github.com/stripe/stripe-php/pull/932) Fix multiple PHPDoc

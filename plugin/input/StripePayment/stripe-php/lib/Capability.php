@@ -1,13 +1,15 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe;
 
 /**
  * This is an object representing a capability for a Stripe account.
  *
  * Related guide: <a
- * href="https://stripe.com/docs/connect/capabilities-overview">Capabilities
- * Overview</a>.
+ * href="https://stripe.com/docs/connect/account-capabilities">Account
+ * capabilities</a>.
  *
  * @property string $id The identifier for the capability.
  * @property string $object String representing the object's type. Objects of the same type share the same value.

@@ -79,7 +79,6 @@ final class PayZenPayment extends Input {
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-
         /* register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }

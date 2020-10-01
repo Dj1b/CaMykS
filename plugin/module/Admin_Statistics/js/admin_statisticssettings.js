@@ -1,17 +1,16 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team
- * CaMykS Version	: 1.0b1
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Scripts
- * Create Date	       	: Oct 2009
- * Last Modif Date	: Oct 2009
- *
- * Admin_Statistics Settings editor javascript
+/**
+ * @brief Admin_Statistics Settings editor scripts
+ * @details Plugin / Module Scripts
+ * @author CaMykS Team
+ * @version 1.0.1
+ * @date Creation: Oct 2009
+ * @date Modification: Sep 2020
+ * @copyright 2009 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-function StatisticsSettingsEditor (name) {
+function StatisticsSettingsEditor(name) {
   this.name = name;
   this.loaded = false;
   this.form = null;
@@ -59,14 +58,13 @@ function StatisticsSettingsEditor (name) {
   this.add_filteredIp = function() {
     if (!this.loaded)
       return;
-    
+
     line = html_getTrElement();
     line.id = 'filteredipline'+this.ipcount.value;
 
     cell = html_getTdElement();
     line.appendChild(cell);
-    cell.className = 'eTableLine0';
-    cell.style.padding = '6px 4px';
+    cell.className = 'eTableLineAuto';
 
     ip = html_getInputElement();
     ip.setAttribute('type', 'hidden');
@@ -77,10 +75,8 @@ function StatisticsSettingsEditor (name) {
     this.ipadder.value = '';
 
     cell2 = html_getTdElement();
-    cell2.className = 'eTableLine0';
-    cell2.style.width = '12px';
-    cell.style.padding = '6px 4px';
-    
+    cell2.className = 'eTableLineAuto';
+
     img = html_getImgElement();
     img.setAttribute('border', 0);
     img.setAttribute('alt' , '');
@@ -94,7 +90,7 @@ function StatisticsSettingsEditor (name) {
     line.appendChild(cell2);
 
     this.ipbox.appendChild(line);
-  
+
     this.ipcount.value++;
   }
 

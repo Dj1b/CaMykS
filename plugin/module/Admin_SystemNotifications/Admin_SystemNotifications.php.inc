@@ -3,12 +3,11 @@
  * @brief Admin_SystemNotifications Module
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
- * @file plugin/module/Admin_SystemNotifications/Admin_SystemNotifications.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2018
- * @date Modification: May 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Sep 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -239,17 +238,6 @@ final class Admin_SystemNotifications extends Module {
         foreach ($camyks->modules as $module)
             $modules = array_merge($modules, $module->get_adminInternalNotifications());
 
-        /* initialise follow up list with current website */
-        $this->followUpList = array(
-            array(
-                'title'     => $camyks->get_confValue('site_title'),
-                'url'       => $camyks->get_confValue('url'),
-                'modules'   => $modules,
-                'error'     => '',
-                'self'      => true,
-            ),
-        );
-
         /* get tabs */
         $this->tabBuilder = &$camyks->inputs['TabBuilder'];
         $this->tabBuilder->add_tab(array(
@@ -294,6 +282,18 @@ final class Admin_SystemNotifications extends Module {
 
             if ($this->config->vars['running_lastCheck'] + $this->config->vars['module_checkDelay']*60 < time()) {
 
+                /* initialise follow up list with current website */
+                $this->followUpList = array(
+                    array(
+                        'name'      => $camyks->get_confValue('site_title'),
+                        'title'     => $camyks->get_confValue('site_title'),
+                        'url'       => $camyks->get_confValue('url'),
+                        'modules'   => $modules,
+                        'error'     => '',
+                        'self'      => true,
+                    ),
+                );
+
                 /* load full website list */
                 $wsList = $this->get_websiteList(array('status'=>1));
 
@@ -304,13 +304,13 @@ final class Admin_SystemNotifications extends Module {
 
                     /* check request result */
                     if ($result === false) {
-                        $this->followUpList[$website->id] = array('title' => $website->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
+                        $this->followUpList[$website->id] = array('name' => $website->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
                     } else {
                         $result = json_decode($result, true);
                         if (isset($result['data']))
-                            $this->followUpList[$website->id] = $result['data'];
+                            $this->followUpList[$website->id] = array_merge(array('name' => $website->vars['name']), $result['data']);
                         else
-                            $this->followUpList[$website->id] = array('title' => $website->vars['name'], 'error' => $this->get_translation('requesterror_nodatasent'));
+                            $this->followUpList[$website->id] = array('name' => $website->vars['name'], 'error' => $this->get_translation('requesterror_nodatasent'));
                     }
 
                     /* update last check value */
@@ -547,13 +547,13 @@ final class Admin_SystemNotifications extends Module {
 
         /* check request result */
         if ($result === false) {
-            $this->config->vars['running_cache'][$this->websiteItem->id] = array('title' => $this->websiteItem->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
+            $this->config->vars['running_cache'][$this->websiteItem->id] = array('name' => $this->websiteItem->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
         } else {
             $result = json_decode($result, true);
             if (isset($result['data']))
-                $this->config->vars['running_cache'][$this->websiteItem->id] = $result['data'];
+                $this->config->vars['running_cache'][$this->websiteItem->id] = array_merge(array('name' => $this->websiteItem->vars['name']), $result['data']);
             else
-                $this->config->vars['running_cache'][$this->websiteItem->id] = array('title' => $this->websiteItem->vars['name'], 'error' => $this->get_translation('requesterror_nodatasent'));
+                $this->config->vars['running_cache'][$this->websiteItem->id] = array('name' => $this->websiteItem->vars['name'], 'error' => $this->get_translation('requesterror_nodatasent'));
         }
 
         /* update configuration */
@@ -577,6 +577,18 @@ final class Admin_SystemNotifications extends Module {
         /* load all sites data if master mode */
         if ($this->config->vars['module_mode'] == 1) {
 
+            /* initialise follow up list with current website */
+            $this->followUpList = array(
+                array(
+                    'name'      => $camyks->get_confValue('site_title'),
+                    'title'     => $camyks->get_confValue('site_title'),
+                    'url'       => $camyks->get_confValue('url'),
+                    'modules'   => $modules,
+                    'error'     => '',
+                    'self'      => true,
+                ),
+            );
+
             /* load full website list */
             $wsList = $this->get_websiteList(array('status'=>1));
 
@@ -587,13 +599,13 @@ final class Admin_SystemNotifications extends Module {
 
                 /* check request result */
                 if ($result === false) {
-                    $this->followUpList[$website->id] = array('title' => $website->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
+                    $this->followUpList[$website->id] = array('name' => $website->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
                 } else {
                     $result = json_decode($result, true);
                     if (isset($result['data']))
-                        $this->followUpList[$website->id] = $result['data'];
+                        $this->followUpList[$website->id] = array_merge(array('name' => $website->vars['name']), $result['data']);
                     else
-                        $this->followUpList[$website->id] = array('title' => $website->vars['name'], 'error' => $this->get_translation('requesterror_nodatasent'));
+                        $this->followUpList[$website->id] = array('name' => $website->vars['name'], 'error' => $this->get_translation('requesterror_nodatasent'));
                 }
 
                 /* update last check value */

@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Klipad.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Apr 2020
- * @date Modification: Apr 2020
+ * @date Modification: Sep 2020
  * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,7 +21,8 @@
 function get_KlipadClientDevice($deviceCode='') {
     $deviceList = array(
         /* Klipad mobiles */
-        'KL600'  => array('platform_model' => 'KL600', 'platform_year' => 2018),
+        'V356'      => array('platform_model' => 'V356', 'platform_year' => 2018),
+        'KL600'     => array('platform_model' => 'KL600', 'platform_year' => 2018),
     );
 
     /* Check for returning list */

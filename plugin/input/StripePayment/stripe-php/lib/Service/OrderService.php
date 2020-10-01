@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class OrderService extends \Stripe\Service\AbstractService
@@ -17,7 +19,7 @@ class OrderService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/orders', $params, $opts);
+        return $this->requestCollection('get', '/v1/orders', $params, $opts);
     }
 
     /**

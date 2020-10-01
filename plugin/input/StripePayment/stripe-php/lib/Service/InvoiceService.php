@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class InvoiceService extends \Stripe\Service\AbstractService
@@ -18,7 +20,7 @@ class InvoiceService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/invoices', $params, $opts);
+        return $this->requestCollection('get', '/v1/invoices', $params, $opts);
     }
 
     /**
@@ -37,7 +39,7 @@ class InvoiceService extends \Stripe\Service\AbstractService
      */
     public function allLines($parentId, $params = null, $opts = null)
     {
-        return $this->request('get', $this->buildPath('/v1/invoices/%s/lines', $parentId), $params, $opts);
+        return $this->requestCollection('get', $this->buildPath('/v1/invoices/%s/lines', $parentId), $params, $opts);
     }
 
     /**

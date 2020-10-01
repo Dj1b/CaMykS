@@ -1,5 +1,7 @@
 <?php
 
+// File generated from our OpenAPI spec
+
 namespace Stripe\Service;
 
 class SetupIntentService extends \Stripe\Service\AbstractService
@@ -16,13 +18,13 @@ class SetupIntentService extends \Stripe\Service\AbstractService
      */
     public function all($params = null, $opts = null)
     {
-        return $this->request('get', '/v1/setup_intents', $params, $opts);
+        return $this->requestCollection('get', '/v1/setup_intents', $params, $opts);
     }
 
     /**
      * A SetupIntent object can be canceled when it is in one of these statuses:
-     * <code>requires_payment_method</code>, <code>requires_capture</code>,
-     * <code>requires_confirmation</code>, <code>requires_action</code>.
+     * <code>requires_payment_method</code>, <code>requires_confirmation</code>, or
+     * <code>requires_action</code>.
      *
      * Once canceled, setup is abandoned and any operations on the SetupIntent will
      * fail with an error.
