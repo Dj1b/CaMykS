@@ -4,9 +4,9 @@
  * @details Plugin / Module layout
  * @file plugin/module/Admin_Site/html/admin_view_site_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jan 2005
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -676,7 +676,7 @@ global $camyks;
                 <?= $this->get_translation('formitem_maxupload'); ?>
             </td>
             <td class="eTableLine0 eContent1">
-                <?= file_getFileSize(ini_get('post_max_size')*1024*1024); ?> (<?= $this->get_translation('formitem_filesmaxupload').file_getFileSize(ini_get('upload_max_filesize')*1024*1024); ?>)
+                <?= file_getFileSize(((float)ini_get('post_max_size'))*1024*1024); ?> (<?= $this->get_translation('formitem_filesmaxupload').file_getFileSize(((float)ini_get('upload_max_filesize'))*1024*1024); ?>)
             </td>
         </tr>
         <tr>
@@ -684,7 +684,7 @@ global $camyks;
                 <?= $this->get_translation('formitem_memorylimit'); ?>
             </td>
             <td class="eTableLine1 eContent1">
-                <?= file_getFileSize(ini_get('memory_limit')*1024*1024); ?>
+                <?= file_getFileSize(((float)ini_get('memory_limit'))*1024*1024); ?>
             </td>
         </tr>
         <tr>
@@ -692,7 +692,7 @@ global $camyks;
                 <?= $this->get_translation('formitem_sessionexpiration'); ?>
             </td>
             <td class="eTableLine0 eContent1">
-                <?= ini_get('session.gc_maxlifetime') / 60; ?> <?= unit_getTitle('minutes'); ?>
+                <?= ((float)ini_get('session.gc_maxlifetime')) / 60; ?> <?= unit_getTitle('minutes'); ?>
             </td>
         </tr>
     </table>
