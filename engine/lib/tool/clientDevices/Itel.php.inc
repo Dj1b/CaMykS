@@ -3,7 +3,7 @@
  * @brief Itel client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Jan 2019
  * @date Modification: Oct 2020
  * @copyright 2019 - 2020 CaMykS Team
@@ -28,6 +28,7 @@ function get_ItelClientDevice($deviceCode='') {
         'S32'           => array('platform_model' => 'S32',         'platform_year' => 2017),
         'P32'           => array('platform_model' => 'P32',         'platform_year' => 2018),
         'W5001P'        => array('platform_model' => 'A33',         'platform_year' => 2019),
+        'W5005'         => array('platform_model' => 'P15',         'platform_year' => 2019),
         'W5504'         => array('platform_model' => 'P33',         'platform_year' => 2019),
         'A16 Plus'      => array('platform_model' => 'A16 Plus',    'platform_year' => 2019),
         'L6002P'        => array('platform_model' => 'S15 Pro',     'platform_year' => 2020),

@@ -3,7 +3,7 @@
  * @brief Blackview client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Jul 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -39,6 +39,7 @@ function get_BlackviewClientDevice($deviceCode='') {
         /* Blackview other mobiles */
         'S8'            => array('platform_model' => 'S8',              'platform_year' => 2016),
         'A60Pro'        => array('platform_model' => 'A60Pro',          'platform_year' => 2019),
+        'A80Pro'        => array('platform_model' => 'A80Pro',          'platform_year' => 2019),
     );
 
     /* Check for returning list */

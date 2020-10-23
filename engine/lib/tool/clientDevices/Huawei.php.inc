@@ -2,11 +2,10 @@
 /**
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Huawei.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.78
+ * @version 1.0.79
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -242,6 +241,7 @@ function get_HuaweiClientDevices() {
         'DUB-LX1'   => array('platform_model' => 'Y7 Prime',        'platform_year' => 2019),
         'FLA-LX2'   => array('platform_model' => 'Y9',              'platform_year' => 2018),
         'JKM-LX1'   => array('platform_model' => 'Y9',              'platform_year' => 2019),
+        'STK-L22'   => array('platform_model' => 'Y9 Prime',        'platform_year' => 2019),
 
         /* Huawei Nova series */
         'CAN-L01'   => array('platform_model' => 'Nova',            'platform_year' => 2016),
@@ -265,6 +265,7 @@ function get_HuaweiClientDevices() {
         'INE-LX2'   => array('platform_model' => 'Nova 3i',         'platform_year' => 2018),
         'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
         'YAL-L21'   => array('platform_model' => 'Nova 5T',         'platform_year' => 2019),
+        'SEA-AL10'  => array('platform_model' => 'Nova 5 Pro',      'platform_year' => 2019),
 
         /* Huawei G series */
         'ALE-L23'   => array('platform_model' => 'G Elite',         'platform_year' => 2015),

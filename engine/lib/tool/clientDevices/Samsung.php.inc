@@ -3,7 +3,7 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.88
+ * @version 1.0.89
  * @date Creation: Apr 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -93,6 +93,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T725'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T860'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T865'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
+        'SM-T970'   => array('platform_model' => 'Galaxy Tab S7+',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
 
         /* Samsung Galaxy S series */
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                        'platform_year' => 2010),

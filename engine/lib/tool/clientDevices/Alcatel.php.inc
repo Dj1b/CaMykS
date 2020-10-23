@@ -3,7 +3,7 @@
  * @brief Alcatel client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.12
+ * @version 1.0.13
  * @date Creation: Apr 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -49,6 +49,7 @@ function get_AlcatelClientDevice($deviceCode='') {
         '4032X' => array('platform_model' => 'OneTouch Pop C2',         'platform_year' => 2015),
         '4033X' => array('platform_model' => 'OneTouch Pop C3',         'platform_year' => 2013),
         '4034D' => array('platform_model' => 'Pixi 4',                  'platform_year' => 2016),
+        '5003D' => array('platform_model' => 'C1',                      'platform_year' => 2019),
         '5010E' => array('platform_model' => 'Pixi 4',                  'platform_year' => 2016),
         '5015D' => array('platform_model' => 'OneTouch Pop 3',          'platform_year' => 2015),
         '5015X' => array('platform_model' => 'OneTouch Pop 3',          'platform_year' => 2015),
@@ -129,6 +130,7 @@ function get_AlcatelClientDevice($deviceCode='') {
         '9001D' => array('platform_model' => 'Pixi 4',                  'platform_year' => 2016),
         '9001X' => array('platform_model' => 'Pixi 4',                  'platform_year' => 2016),
         '9008D' => array('platform_model' => 'A3 XL',                   'platform_year' => 2017),
+        '9008X' => array('platform_model' => 'A3 XL',                   'platform_year' => 2017),
     );
 
     /* Check for returning list */

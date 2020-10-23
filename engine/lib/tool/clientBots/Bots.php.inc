@@ -3,7 +3,7 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.71
+ * @version 1.0.72
  * @date Creation: May 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -4921,6 +4921,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'IonCrawl',
         'engine_url'        => 'http://www.ioncrawl.com/',
+    );
+
+    /* BublupBot */
+    $knownBots['bublupbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'BublupBot',
+        'bot_url'           => 'https://www.bublup.com/bublup-bot.html',
+        'engine_title'      => 'Bublup',
+        'engine_url'        => 'https://www.bublup.com',
+    );
+
+    /* Swurl */
+    $knownBots['swurl'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Swurl',
+        'engine_url'        => 'https://swurl.com/',
     );
 
     /* Return bot list */
