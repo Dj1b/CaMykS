@@ -3,7 +3,7 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: Apr 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -87,6 +87,8 @@ function get_LGClientDevice($deviceCode='') {
         'P715'      => array('platform_model' => 'Optimus L7 II',   'platform_year' => 2013),
         'P875'      => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'P920'      => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),
+        'Q610'      => array('platform_model' => 'G7',              'platform_year' => 2018),
+        'Q610.FGN'  => array('platform_model' => 'G7+',             'platform_year' => 2018),
         'Q710'      => array('platform_model' => 'Stylo 4',         'platform_year' => 2018),
         'Q910'      => array('platform_model' => 'G7 One',          'platform_year' => 2018),
         'SP200'     => array('platform_model' => 'Tribute Dynasty', 'platform_year' => 2018),

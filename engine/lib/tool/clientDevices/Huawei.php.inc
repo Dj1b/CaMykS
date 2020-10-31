@@ -3,7 +3,7 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.79
+ * @version 1.0.80
  * @date Creation: Apr 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -266,6 +266,7 @@ function get_HuaweiClientDevices() {
         'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
         'YAL-L21'   => array('platform_model' => 'Nova 5T',         'platform_year' => 2019),
         'SEA-AL10'  => array('platform_model' => 'Nova 5 Pro',      'platform_year' => 2019),
+        'CDY-AN00'  => array('platform_model' => 'Nova 7 SE',       'platform_year' => 2020),
 
         /* Huawei G series */
         'ALE-L23'   => array('platform_model' => 'G Elite',         'platform_year' => 2015),

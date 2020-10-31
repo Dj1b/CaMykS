@@ -3,7 +3,7 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.89
+ * @version 1.0.90
  * @date Creation: Apr 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -138,6 +138,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925P'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925W8' => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
+        'SC-04G'    => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G928A'  => array('platform_model' => 'Galaxy S6 Edge+',                 'platform_year' => 2015),
         'SM-G928C'  => array('platform_model' => 'Galaxy S6 Edge+',                 'platform_year' => 2015),
         'SM-G928F'  => array('platform_model' => 'Galaxy S6 Edge+',                 'platform_year' => 2015),
@@ -258,6 +259,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A305GT' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A307FN' => array('platform_model' => 'Galaxy A30s',                     'platform_year' => 2019),
         'SM-A405FN' => array('platform_model' => 'Galaxy A40',                      'platform_year' => 2019),
+        'SM-A3050'  => array('platform_model' => 'Galaxy A40s',                     'platform_year' => 2019),
         'SM-A415F'  => array('platform_model' => 'Galaxy A41',                      'platform_year' => 2020),
         'SM-A505F'  => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),
         'SM-A505FN' => array('platform_model' => 'Galaxy A50',                      'platform_year' => 2019),

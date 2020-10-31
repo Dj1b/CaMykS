@@ -3,7 +3,7 @@
  * @brief Asus client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.32
  * @date Creation: Apr 2018
  * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -35,7 +35,7 @@ function get_AsusClientDevice($deviceCode='') {
         'P00J'      => array('platform_model' => 'ZenPad Z8s',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'P028'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
-        /* Asus phones */
+        /* Asus phones - ZenFone series */
         'A500KL'    => array('platform_model' => 'ZenFone 5\'',             'platform_year' => 2014),
         'T00K'      => array('platform_model' => 'ZenFone 5\' Lite',        'platform_year' => 2014),
         'Z00AD'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
@@ -98,6 +98,10 @@ function get_AsusClientDevice($deviceCode='') {
         'X00RD'     => array('platform_model' => 'Zenfone Live L1',         'platform_year' => 2018),
         'Z01RD'     => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
         'I01WD'     => array('platform_model' => 'Zenfone 6',               'platform_year' => 2019),
+
+        /* Asus phones - ROG Phone series */
+        'I003D'     => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
+        'I003DD'    => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
     );
 
     /* Check for returning list */

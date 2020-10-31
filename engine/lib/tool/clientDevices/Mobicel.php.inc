@@ -1,9 +1,9 @@
 <?php
 /**
- * @brief X-Tigi client devices specific methods
+ * @brief Mobicel client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0
  * @date Creation: Oct 2020
  * @date Modification: Oct 2020
  * @copyright 2020 CaMykS Team
@@ -13,14 +13,14 @@
  */
 
 /**
- * Return X-Tigi client device information from a known list.
+ * Return Mobicel client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_XTigiClientDevice($deviceCode='') {
+function get_MobicelClientDevice($deviceCode='') {
     $deviceList = array(
-        /* X-Tigi tablets */
-        'JOY10 Mate'  => array('platform_model' => 'Joy 10 Mate', 'platform_year' => 2019, 'platform_type' => 'tablet', 'platform_format' => 'tablet',),
+        /* Mobicel mobiles */
+        'ASTRO'  => array('platform_model' => 'Astro', 'platform_year' => 2018),
     );
 
     /* Check for returning list */
@@ -29,8 +29,8 @@ function get_XTigiClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'X-Tigi',
-        'platform_country'  => 'hk',
+        'platform_company'  => 'Mobicel',
+        'platform_country'  => 'za',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',
