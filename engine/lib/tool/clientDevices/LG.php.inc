@@ -2,11 +2,10 @@
 /**
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/LG.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.35
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +23,7 @@ function get_LGClientDevice($deviceCode='') {
         'V500'  => array('platform_model' => 'G Pad 8.3',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2013),
         'V400'  => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'V410'  => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
+        'LK430' => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
 
         /* LG mobiles */
         'D160'      => array('platform_model' => 'L40',             'platform_year' => 2014),
@@ -87,6 +87,8 @@ function get_LGClientDevice($deviceCode='') {
         'P715'      => array('platform_model' => 'Optimus L7 II',   'platform_year' => 2013),
         'P875'      => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'P920'      => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),
+        'Q610'      => array('platform_model' => 'G7',              'platform_year' => 2018),
+        'Q610.FGN'  => array('platform_model' => 'G7+',             'platform_year' => 2018),
         'Q710'      => array('platform_model' => 'Stylo 4',         'platform_year' => 2018),
         'Q910'      => array('platform_model' => 'G7 One',          'platform_year' => 2018),
         'SP200'     => array('platform_model' => 'Tribute Dynasty', 'platform_year' => 2018),

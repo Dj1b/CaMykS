@@ -2,11 +2,10 @@
 /**
  * @brief Asus client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Asus.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.32
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -36,7 +35,7 @@ function get_AsusClientDevice($deviceCode='') {
         'P00J'      => array('platform_model' => 'ZenPad Z8s',              'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'P028'      => array('platform_model' => 'ZenPad 10',               'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
 
-        /* Asus phones */
+        /* Asus phones - ZenFone series */
         'A500KL'    => array('platform_model' => 'ZenFone 5\'',             'platform_year' => 2014),
         'T00K'      => array('platform_model' => 'ZenFone 5\' Lite',        'platform_year' => 2014),
         'Z00AD'     => array('platform_model' => 'ZenFone 2',               'platform_year' => 2015),
@@ -47,6 +46,7 @@ function get_AsusClientDevice($deviceCode='') {
         'ZD551KL'   => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'Z00UD'     => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
         'Z00UDH'    => array('platform_model' => 'ZenFone Selfie',          'platform_year' => 2015),
+        'X014D'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2015),
         'ZB500KL'   => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'ZB552KL'   => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'X00AD'     => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
@@ -98,6 +98,10 @@ function get_AsusClientDevice($deviceCode='') {
         'X00RD'     => array('platform_model' => 'Zenfone Live L1',         'platform_year' => 2018),
         'Z01RD'     => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
         'I01WD'     => array('platform_model' => 'Zenfone 6',               'platform_year' => 2019),
+
+        /* Asus phones - ROG Phone series */
+        'I003D'     => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
+        'I003DD'    => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
     );
 
     /* Check for returning list */

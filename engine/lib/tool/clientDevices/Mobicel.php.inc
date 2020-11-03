@@ -1,33 +1,26 @@
 <?php
 /**
- * @brief Vernee client devices specific methods
+ * @brief Mobicel client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
- * @date Creation: Jul 2018
+ * @version 1.0.0
+ * @date Creation: Oct 2020
  * @date Modification: Oct 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
  */
 
 /**
- * Return Vernee client device information from a known list.
+ * Return Mobicel client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_VerneeClientDevice($deviceCode='') {
+function get_MobicelClientDevice($deviceCode='') {
     $deviceList = array(
-        'Apollo 2'      => array('platform_year' => 2018),
-        'Apollo X'      => array('platform_year' => 2017),
-        'M5'            => array('platform_year' => 2017),
-        'Mars pro'      => array('platform_model'=> 'Mars Pro', 'platform_year' => 2017),
-        'Thor E'        => array('platform_year' => 2017),
-        'Thor Plus'     => array('platform_year' => 2017),
-        'Apollo Lite'   => array('platform_year' => 2016),
-        'Thor'          => array('platform_year' => 2016),
-        'V2 Pro'        => array('platform_year' => 2018),
+        /* Mobicel mobiles */
+        'ASTRO'  => array('platform_model' => 'Astro', 'platform_year' => 2018),
     );
 
     /* Check for returning list */
@@ -36,8 +29,8 @@ function get_VerneeClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => 'Vernee',
-        'platform_country'  => 'cn',
+        'platform_company'  => 'Mobicel',
+        'platform_country'  => 'za',
         'platform_model'    => $deviceCode,
         'platform_type'     => 'handheld',
         'platform_format'   => 'handheld',

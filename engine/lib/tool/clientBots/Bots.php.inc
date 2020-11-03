@@ -2,11 +2,10 @@
 /**
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
- * @file engine/lib/tool/clientBots/Bots.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.70
+ * @version 1.0.72
  * @date Creation: May 2018
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1694,6 +1693,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'Qwantify',
         'bot_url'           => '',
+        'engine_title'      => 'Qwant',
+        'engine_url'        => 'https://www.qwant.com',
+    );
+
+    /* Qwantbot */
+    $knownBots['qwantbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Qwantbot',
+        'bot_url'           => 'https://qwantbot.net/',
         'engine_title'      => 'Qwant',
         'engine_url'        => 'https://www.qwant.com',
     );
@@ -4902,6 +4911,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Youdao',
         'engine_url'        => 'http://www.youdao.com/',
+    );
+
+    /* IonCrawl */
+    $knownBots['ioncrawl'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'IonCrawl',
+        'engine_url'        => 'http://www.ioncrawl.com/',
+    );
+
+    /* BublupBot */
+    $knownBots['bublupbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'BublupBot',
+        'bot_url'           => 'https://www.bublup.com/bublup-bot.html',
+        'engine_title'      => 'Bublup',
+        'engine_url'        => 'https://www.bublup.com',
+    );
+
+    /* Swurl */
+    $knownBots['swurl'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Swurl',
+        'engine_url'        => 'https://swurl.com/',
     );
 
     /* Return bot list */

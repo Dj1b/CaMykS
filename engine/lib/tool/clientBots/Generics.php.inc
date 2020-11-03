@@ -2,11 +2,10 @@
 /**
  * @brief Generic libraries as client bots specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientBots/Generics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.23
+ * @version 1.0.24
  * @date Creation: May 2018
- * @date Modification: Jul 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -849,6 +848,16 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'HTMLParser',
         'tool_url'          => 'https://robot-framework.readthedocs.io/en/v3.0.4/_modules/HTMLParser.html',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* node-fetch */
+    $knownGenerics['node-fetch'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'node-fetch',
+        'tool_url'          => 'https://github.com/bitinn/node-fetch',
         'engine_title'      => '',
         'engine_url'        => '',
     );

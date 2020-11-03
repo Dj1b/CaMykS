@@ -2,12 +2,11 @@
 /**
  * @brief Konrow client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Konrow.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2018
- * @date Modification: Sep 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Oct 2020
+ * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -22,6 +21,7 @@ function get_KonrowClientDevice($deviceCode='') {
     $deviceList = array(
         'BIGCOOL'   => array('platform_model' => 'BigCool', 'platform_year' => 2016),
         'Just5'     => array('platform_model' => 'Just5',   'platform_year' => 2017),
+        'EASY5'     => array('platform_model' => 'Easy5',   'platform_year' => 2019),
     );
 
     /* Check for returning list */

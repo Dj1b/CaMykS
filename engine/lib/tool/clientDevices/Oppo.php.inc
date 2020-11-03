@@ -2,11 +2,10 @@
 /**
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Oppo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.32
  * @date Creation: Nov 2018
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +27,7 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1607'   => array('platform_model' => 'R9s',             'platform_year' => 2016),
         'A37f'      => array('platform_model' => 'A37f',            'platform_year' => 2016),
         'A37fw'     => array('platform_model' => 'A37fw',           'platform_year' => 2017),
+        'CPH1609'   => array('platform_model' => 'F3',              'platform_year' => 2017),
         'CPH1613'   => array('platform_model' => 'F3 Plus',         'platform_year' => 2017),
         'CPH1727'   => array('platform_model' => 'F5',              'platform_year' => 2017),
         'CPH1729'   => array('platform_model' => 'A83',             'platform_year' => 2017),
@@ -44,12 +44,16 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1901'   => array('platform_model' => 'A7',              'platform_year' => 2019),
         'CPH1907'   => array('platform_model' => 'Reno 2',          'platform_year' => 2019),
         'CPH1909'   => array('platform_model' => 'A5s',             'platform_year' => 2019),
+        'CPH1911'   => array('platform_model' => 'F11',             'platform_year' => 2019),
+        'CPH1912'   => array('platform_model' => 'A5s',             'platform_year' => 2019),
         'CPH1917'   => array('platform_model' => 'Reno',            'platform_year' => 2019),
         'CPH1931'   => array('platform_model' => 'A5',              'platform_year' => 2019),
+        'CPH1937'   => array('platform_model' => 'A9',              'platform_year' => 2019),
         'CPH1941'   => array('platform_model' => 'A9',              'platform_year' => 2019),
         'CPH1951'   => array('platform_model' => 'Reno 2 Z',        'platform_year' => 2019),
         'CPH1969'   => array('platform_model' => 'F11 Pro',         'platform_year' => 2019),
         'CPH1979'   => array('platform_model' => 'Reno Z',          'platform_year' => 2019),
+        'CPH2009'   => array('platform_model' => 'Find X2 Pro',     'platform_year' => 2020),
         'CPH2021'   => array('platform_model' => 'A91',             'platform_year' => 2020),
         'CPH2025'   => array('platform_model' => 'X2 Pro',          'platform_year' => 2020),
         'CPH2067'   => array('platform_model' => 'A72',             'platform_year' => 2020),

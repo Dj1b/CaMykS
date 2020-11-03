@@ -2,11 +2,10 @@
 /**
  * @brief Sony client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Sony.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.49
+ * @version 1.0.51
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
+ * @date Modification: Oct 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +19,14 @@
  */
 function get_SonyClientDevice($deviceCode='') {
     $deviceList = array(
+        /* Sony PlayStation */
+        'PlayStation Portable'  => array('platform_model' => 'PlayStation Portable (PSP)',  'platform_year' => 2004),
+        'PlayStation Vita'      => array('platform_model' => 'PlayStation Vita',            'platform_year' => 2011),
+        'PlayStation 3'         => array('platform_model' => 'PlayStation 3',               'platform_year' => 2006,    'platform_type' => 'computer',  'platform_format' => 'desktop'),
+        'PlayStation 4'         => array('platform_model' => 'PlayStation 4',               'platform_year' => 2013,    'platform_type' => 'computer',  'platform_format' => 'desktop'),
+        'PlayStation 5'         => array('platform_model' => 'PlayStation 5',               'platform_year' => 2020,    'platform_type' => 'computer',  'platform_format' => 'desktop'),
+
+
         /* Sony tablets */
         'SGP321'    => array('platform_model' => 'Xperia Z Tablet',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'SGP511'    => array('platform_model' => 'Xperia Z2 Tablet',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
@@ -65,6 +72,7 @@ function get_SonyClientDevice($deviceCode='') {
         'F3111'     => array('platform_model' => 'Xperia XA',               'platform_year' => 2016),
         'F3112'     => array('platform_model' => 'Xperia XA',               'platform_year' => 2016),
         'F3115'     => array('platform_model' => 'Xperia XA',               'platform_year' => 2016),
+        'F3116'     => array('platform_model' => 'Xperia XA',               'platform_year' => 2016),
         'F3211'     => array('platform_model' => 'Xperia XA Ultra',         'platform_year' => 2016),
         'F3311'     => array('platform_model' => 'Xperia E5',               'platform_year' => 2016),
         'F3313'     => array('platform_model' => 'Xperia E5',               'platform_year' => 2016),
