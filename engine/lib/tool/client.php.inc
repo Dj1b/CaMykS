@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.123
+ * @version 1.0.124
  * @date Creation: Jun 2007
  * @date Modification: Oct 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -46,11 +46,11 @@ function client_getUserAgent() {
 }
 
 /**
- * Check if page is loaded in HTTPS(SSL).
+ * Check if page is loaded in HTTPS (SSL).
  * @return boolean result
  */
 function client_isHTTPS() {
-    return (!empty($_SERVER['HTTPS']));
+    return (!empty($_SERVER['HTTPS']) or (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) and $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'));
 }
 
 /**
