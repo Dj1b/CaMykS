@@ -2,11 +2,10 @@
 /**
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
- * @file Camyks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Jun 2005
- * @date Modification: Sep 2020
+ * @date Modification: Nov 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -671,11 +670,8 @@ final class Camyks {
         /* load current status */
         $isSSL = client_isHTTPS();
 
-        /* define SSL URL */
-        if (preg_match('/http:\/\//', $this->get_confValue('url')))
-            $sslURL = preg_replace('/http:\/\//', 'https://', $this->get_confValue('url'));
-        else
-            $sslURL = $this->get_confValue('url');
+        /* define scheme less URL */
+        $schemeLessURL = '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
         /* be sure that conf URL is properly set */
         if ($isSSL and preg_match('/http:\/\//', $this->get_confValue('url')))
@@ -686,20 +682,21 @@ final class Camyks {
             case 'forced':
                 if ($isSSL) return;
                 header("HTTP/1.1 301 Moved Permanently");
-                header('Location:'.$sslURL.$_SERVER['REQUEST_URI']);
+                header('Location:https'.$schemeLessURL);
                 die();
                 break;
             case 'none':
                 if (!$isSSL) return;
                 header("HTTP/1.1 301 Moved Permanently");
-                header('Location:http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+                header('Location:https'.$schemeLessURL);
                 die();
                 break;
             case 'auto':
                 if ($isSSL) return;
                 $test = @get_headers('https://'.$_SERVER['HTTP_HOST']);
                 if (preg_match('/200/', $test[0])) {
-                    header('Location:'.$sslURL.$_SERVER['REQUEST_URI']);
+                    header("HTTP/1.1 301 Moved Permanently");
+                    header('Location:https'.$schemeLessURL);
                     die();
                 }
                 break;
@@ -1860,9 +1857,31 @@ final class Camyks {
         switch ($mode) {
             case 'absolute':
             case 'absolute_long':
-                return $this->get_confValue('url').(substr($this->get_confValue('url'), -1) == '/' ? '' : '/');
+                /* Build base URL */
+                $baseURL = $this->get_confValue('url').(substr($this->get_confValue('url'), -1) == '/' ? '' : '/');
+
+                /* Check CaMykS mode */
+                $cMode = $this->mode == CAMYKS_MODE_ADMIN ? 'admin' : 'site';
+
+                /* Check URL has to be forced in HTTPS */
+                if ($this->get_confValue($cMode.'_ssl') == 'forced')
+                    return preg_replace('#^https?#i', 'https', $baseURL);
+
+                /* Check URL has to be forced in HTTP */
+                if ($this->get_confValue($cMode.'_site_ssl') == 'none')
+                    return preg_replace('#^https?#i', 'http', $baseURL);
+
+                /* Check current connection is HTTPS */
+                if (client_isHTTPS())
+                     return preg_replace('#^https?#i', 'https', $baseURL);
+
+                /* Return unmodified base URL */
+                return $baseURL;
             case 'absolute_short':
-                return '/';
+            case 'absolute_hostless':
+                return parse_url($this->get_confValue('url'), PHP_URL_PATH).'/';
+            case 'absolute_schemeless':
+                return preg_replace('#^https?:#i', '', $this->get_confValue('url')).(substr($this->get_confValue('url'), -1) == '/' ? '' : '/');
             case 'relative':
             default:
                 return '';
@@ -1879,9 +1898,17 @@ final class Camyks {
     public function get_fileURL($file='', $mode=null) {
         if (substr($file, 0, 2) == './')
             $file = substr($file, 2);
+        elseif (preg_match('#^(https?:/)?/#i', $file)) {
+            $parsedFileURL = parse_url($file);
+            $parsedSiteURL = parse_url($this->get_confValue('url'));
+            if (isset($parsedFileURL['host']) and $parsedSiteURL['host'] != $parsedFileURL['host'])
+                return $file;
+            $file = isset($parsedFileURL['path']) ? substr($parsedFileURL['path'], (isset($parsedSiteURL['path']) ? strlen($parsedSiteURL['path']) : 0) + 1) : '';
+            $file .= isset($parsedFileURL['query']) ? '?'. $parsedFileURL['query'] : '';
+            $file .= isset($parsedFileURL['fragment']) ? '#'. $parsedFileURL['fragment'] : '';
+        }
         return $this->get_rootBaseURL($mode).$file;
     }
-
 
     /******************** DATA FILES *********************/
 
@@ -1898,11 +1925,11 @@ final class Camyks {
         $baseURL = $this->get_rootBaseURL($full);
 
         /* get file url from site data folder */
-        if (file_exists ($this->site_engine_url.'/'.$file))
+        if (file_exists($this->site_engine_url.'/'.$file))
             return $baseURL.$this->site_engine_url.'/'.$file;
 
         /* get file url from camyks data folder */
-        if (file_exists ($this->site_data_url.'/'.$file))
+        if (file_exists($this->site_data_url.'/'.$file))
             return $baseURL.$this->site_data_url.'/'.$file;
 
         /* get default file url */
@@ -1914,7 +1941,7 @@ final class Camyks {
      * @param string $file
      * @return string
      */
-    public function get_dataFilePath ($file) {
+    public function get_dataFilePath($file) {
         /* get file from site data folder */
         if (file_exists ($this->site_engine_url.'/'.$file))
             return $this->site_engine_url.'/'.$file;
