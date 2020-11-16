@@ -3,9 +3,9 @@
  * @brief Tecno client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.23
+ * @version 1.0.24
  * @date Creation: Oct 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -30,6 +30,7 @@ function get_TecnoClientDevice($deviceCode='') {
         'L9 Plus'	=> array('platform_model' => 'L9 Plus',         'platform_year' => 2017),
         'R6'        => array('platform_model' => 'R6',              'platform_year' => 2017),
         'W3'        => array('platform_model' => 'W3',              'platform_year' => 2017),
+        'W2'        => array('platform_model' => 'W2',              'platform_year' => 2017),
         'CF7'       => array('platform_model' => 'Camon 11',        'platform_year' => 2018),
         'CF8'       => array('platform_model' => 'Camon 11 Pro',    'platform_year' => 2018),
         'KA7'       => array('platform_model' => 'Spark 2',         'platform_year' => 2018),
@@ -50,6 +51,7 @@ function get_TecnoClientDevice($deviceCode='') {
         'LB7'       => array('platform_model' => 'Pouvoir 3',       'platform_year' => 2019),
         'CC7'       => array('platform_model' => 'Camon 12',        'platform_year' => 2019),
         'CD8j'      => array('platform_model' => 'Camon 15',        'platform_year' => 2019),
+        'BA2'       => array('platform_model' => 'Pop 2 Plus',      'platform_year' => 2019),
         'KD6'       => array('platform_model' => 'Spark 5 Air',     'platform_year' => 2020),
         'BC2'       => array('platform_model' => 'Pop 4',           'platform_year' => 2020),
     );

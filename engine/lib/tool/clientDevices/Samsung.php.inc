@@ -3,9 +3,9 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.90
+ * @version 1.0.91
  * @date Creation: Apr 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -92,8 +92,9 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T720'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T725'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T860'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
-        'SM-T865'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T970'   => array('platform_model' => 'Galaxy Tab S7+',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
+        'SM-P610'   => array('platform_model' => 'Galaxy Tab S6 Light', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
+        'SM-P615'   => array('platform_model' => 'Galaxy Tab S6 Light', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
 
         /* Samsung Galaxy S series */
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                        'platform_year' => 2010),
@@ -134,9 +135,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G920T'  => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
         'SM-G920V'  => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
         'SM-G920W8' => array('platform_model' => 'Galaxy S6',                       'platform_year' => 2015),
-        'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925F'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
+        'SM-G925I'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925P'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
+        'SM-G925T'  => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G925W8' => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SC-04G'    => array('platform_model' => 'Galaxy S6 Edge',                  'platform_year' => 2015),
         'SM-G928A'  => array('platform_model' => 'Galaxy S6 Edge+',                 'platform_year' => 2015),
@@ -434,10 +436,12 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N975W'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
         'SM-N976B'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
         'SM-N770F'  => array('platform_model' => 'Galaxy Note 10 Lite',             'platform_year' => 2020),
+        'SM-N980F'  => array('platform_model' => 'Galaxy Note 20 (Dual-Sim)',       'platform_year' => 2020),
         'SM-N986B'  => array('platform_model' => 'Galaxy Note 20 Ultra',            'platform_year' => 2020),
 
         /* Samsung Galaxy Fold series */
         'SM-F700F'  => array('platform_model' => 'Galaxy Fold',                     'platform_year' => 2019),
+        'SM-F916B'  => array('platform_model' => 'Galaxy Z Fold2',                  'platform_year' => 2020),
 
         /* Samsung Galaxy other series */
         'GT-S5830'  => array('platform_model' => 'Galaxy Ace',                      'platform_year' => 2011),

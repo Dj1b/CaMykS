@@ -3,9 +3,9 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.80
+ * @version 1.0.81
  * @date Creation: Apr 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -104,15 +104,18 @@ function get_HuaweiClientDevices() {
         'STK-LX1'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'STK-LX3'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'JNY-LX1'   => array('platform_model' => 'P40 Lite',        'platform_year' => 2020),
+        'ART-L29N'  => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
 
         /* Huawei Mate series */
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
+        'CRR-UL00'  => array('platform_model' => 'Mate S',          'platform_year' => 2015),
         'BND-L34'   => array('platform_model' => 'Mate SE',         'platform_year' => 2016),
         'NXT-L09'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'NXT-L29'   => array('platform_model' => 'Mate 8',          'platform_year' => 2015),
         'MHA-L09'   => array('platform_model' => 'Mate 8\'',        'platform_year' => 2016),
         'MHA-AL00'  => array('platform_model' => 'Mate 9',          'platform_year' => 2016),
         'MHA-L29'   => array('platform_model' => 'Mate 9',          'platform_year' => 2016),
+        'ALP-L09'   => array('platform_model' => 'Mate 10',         'platform_year' => 2017),
         'ALP-L29'   => array('platform_model' => 'Mate 10',         'platform_year' => 2017),
         'RNE-L01'   => array('platform_model' => 'Mate 10 Lite',    'platform_year' => 2017),
         'RNE-L21'   => array('platform_model' => 'Mate 10 Lite',    'platform_year' => 2017),

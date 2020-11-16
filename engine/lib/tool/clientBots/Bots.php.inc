@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.72
+ * @version 1.0.73
  * @date Creation: May 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4941,6 +4941,16 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Swurl',
         'engine_url'        => 'https://swurl.com/',
+    );
+
+    /* Seekbot */
+    $knownBots['seekbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Seekbot',
+        'engine_url'        => 'http://www.seekbot.net/',
     );
 
     /* Return bot list */

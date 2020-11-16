@@ -3,9 +3,9 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: Feb 2019
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -39,6 +39,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X623'          => array('platform_model' => 'Hot 6X',      'platform_year' => 2018),
         'X650'          => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X650D'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
+        'X680B'         => array('platform_model' => 'Hot 9 Play',  'platform_year' => 2020),
 
         /* Smart serie */
         'X5515'         => array('platform_model' => 'Smart 2',     'platform_year' => 2018),

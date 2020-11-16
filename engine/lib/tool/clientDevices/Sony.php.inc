@@ -3,9 +3,9 @@
  * @brief Sony client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.51
+ * @version 1.0.52
  * @date Creation: Apr 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,7 +25,6 @@ function get_SonyClientDevice($deviceCode='') {
         'PlayStation 3'         => array('platform_model' => 'PlayStation 3',               'platform_year' => 2006,    'platform_type' => 'computer',  'platform_format' => 'desktop'),
         'PlayStation 4'         => array('platform_model' => 'PlayStation 4',               'platform_year' => 2013,    'platform_type' => 'computer',  'platform_format' => 'desktop'),
         'PlayStation 5'         => array('platform_model' => 'PlayStation 5',               'platform_year' => 2020,    'platform_type' => 'computer',  'platform_format' => 'desktop'),
-
 
         /* Sony tablets */
         'SGP321'    => array('platform_model' => 'Xperia Z Tablet',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
@@ -60,6 +59,7 @@ function get_SonyClientDevice($deviceCode='') {
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
         'E5533'     => array('platform_model' => 'Xperia C5 Ultra',         'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
+        'E5606'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5633'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
         'E5823'     => array('platform_model' => 'Xperia Z5 Compact',       'platform_year' => 2015),
         'E6533'     => array('platform_model' => 'Xperia Z3+',              'platform_year' => 2015),
@@ -129,9 +129,14 @@ function get_SonyClientDevice($deviceCode='') {
         'SOV35'     => array('platform_model' => 'Xperia XZs',              'platform_year' => 2017),
         'SOV36'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2018),
         'SOV37'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
+        'SOV42'     => array('platform_model' => 'Xperia 8',                'platform_year' => 2019),
+        'SOV43'     => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
         'SO-03G'    => array('platform_model' => 'Xperia Z4',               'platform_year' => 2015),
         'SO-03H'    => array('platform_model' => 'Xperia Z5 Premium',       'platform_year' => 2017),
+        'SO-41A'    => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
+
+        'XQ-AU52'   => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
         '502SO'     => array('platform_model' => 'Xperia X Performace',     'platform_year' => 2016),
 

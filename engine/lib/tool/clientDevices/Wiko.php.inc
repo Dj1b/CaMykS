@@ -3,9 +3,9 @@
  * @brief Wiko client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.18
+ * @version 1.0.19
  * @date Creation: Jul 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -128,6 +128,8 @@ function get_WikoClientDevice($deviceCode='') {
         'w-p611-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
         'w-v800-ope'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
         'w-v720-eea'        => array('platform_model' => 'Y80',             'platform_year' => 2019),
+        'w-v730-eea'        => array('platform_model' => 'View 3',          'platform_year' => 2019),
+        'w-v830-eea'        => array('platform_model' => 'View 4',          'platform_year' => 2019),
     );
 
     /* Check for returning list */

@@ -2,11 +2,10 @@
 /**
  * @brief Logicom client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Logicom.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2018
- * @date Modification: Jun 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,6 +37,7 @@ function get_LogicomClientDevice($deviceCode='') {
         'Le Smooth'     => array('platform_model' => 'Le Smooth',       'platform_year' => 2019),
         'Le_Spark'      => array('platform_model' => 'Le Spark',        'platform_year' => 2019),
         'Le_Prime'      => array('platform_model' => 'Le Prime',        'platform_year' => 2019),
+        'LeMoov2'       => array('platform_model' => 'Le Moov 2',       'platform_year' => 2019),
     );
 
     /* Check for returning list */

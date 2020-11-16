@@ -3,9 +3,9 @@
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Nov 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -36,6 +36,7 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1803'   => array('platform_model' => 'A3s',             'platform_year' => 2018),
         'CPH1819'   => array('platform_model' => 'F7',              'platform_year' => 2018),
         'CPH1823'   => array('platform_model' => 'F9',              'platform_year' => 2018),
+        'CPH1853'   => array('platform_model' => 'A3s',             'platform_year' => 2018),
         'CPH1861'   => array('platform_model' => 'Realme 1',        'platform_year' => 2018),
         'CPH1877'   => array('platform_model' => 'R17',             'platform_year' => 2018),
         'CPH1893'   => array('platform_model' => 'R17 Neo',         'platform_year' => 2018),
