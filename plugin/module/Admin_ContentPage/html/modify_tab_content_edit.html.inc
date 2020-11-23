@@ -3,7 +3,7 @@
  * @brief Admin_ContentPage Module edit content sub layout for page edition
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Dec 2006
  * @date Modification: Nov 2020
  * @copyright 2006 - 2020 CaMykS Team
@@ -78,15 +78,15 @@ $edit_content = $this->get_fileURL('img/edit_content.gif');
                     </tr>
                     <tr>
                         <td class="eTableLine0">
-                            <div style="width:100%;height:400px;overflow:auto;">
+                            <div style="width:100%; height:400px; overflow:auto;">
                                 <?php $alt=1; ?>
                                 <?php for ($i=0; $i< $this->page->maxmodules; $i++) : ?>
-                                    <?php if (isset($this->page->modules[$i])) : ?>>
+                                    <?php if (isset($this->page->modules[$i])) : ?>
                                         <?php $m = &$this->page->modules[$i]; ?>
                                     <?php else : ?>
                                         <?php $m = array('name'=>''); ?>
                                     <?php endif; ?>
-                                    <div id="module<?= $i?>" style="display:block;padding-bottom:4px;;">
+                                    <div id="module<?= $i; ?>" style="display:block;padding-bottom:4px;">
                                         <table cellspacing="0" cellpadding="0" border="0" width="100%">
                                             <tr>
                                                 <td class="eTableHeader" colspan="2">
