@@ -3,7 +3,7 @@
  * @brief OnePlus client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Apr 2018
  * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -54,6 +54,7 @@ function get_OnePlusClientDevices() {
         'IN2010'    => array('platform_model' => '8',           'platform_year' => 2020),
         'IN2013'    => array('platform_model' => '8',           'platform_year' => 2020),
         'IN2023'    => array('platform_model' => '8 Pro',       'platform_year' => 2020),
+        'KB2003'    => array('platform_model' => '8T',          'platform_year' => 2020),
         'AC2001'    => array('platform_model' => 'Nord',        'platform_year' => 2020),
         'AC2003'    => array('platform_model' => 'Nord',        'platform_year' => 2020),
     );

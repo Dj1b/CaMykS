@@ -3,7 +3,7 @@
  * @brief Sony client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.52
+ * @version 1.0.53
  * @date Creation: Apr 2018
  * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -56,6 +56,7 @@ function get_SonyClientDevice($deviceCode='') {
         'D6603'     => array('platform_model' => 'Xperia Z3',               'platform_year' => 2014),
         'D6683'     => array('platform_model' => 'Xperia Z3 Dual Sim',      'platform_year' => 2015),
         'E2003'     => array('platform_model' => 'Xperia E4',               'platform_year' => 2015),
+        'E2303'     => array('platform_model' => 'Xperia M4 Aqua',          'platform_year' => 2015),
         'E5303'     => array('platform_model' => 'Xperia C4',               'platform_year' => 2015),
         'E5533'     => array('platform_model' => 'Xperia C5 Ultra',         'platform_year' => 2015),
         'E5603'     => array('platform_model' => 'Xperia M5',               'platform_year' => 2015),
@@ -136,6 +137,7 @@ function get_SonyClientDevice($deviceCode='') {
         'SO-03H'    => array('platform_model' => 'Xperia Z5 Premium',       'platform_year' => 2017),
         'SO-41A'    => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
+        'XQ-AD52'   => array('platform_model' => 'Xperia L4',               'platform_year' => 2020),
         'XQ-AU52'   => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
         '502SO'     => array('platform_model' => 'Xperia X Performace',     'platform_year' => 2016),

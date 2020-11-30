@@ -3,9 +3,9 @@
  * @brief Asus client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Apr 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -100,6 +100,7 @@ function get_AsusClientDevice($deviceCode='') {
         'I01WD'     => array('platform_model' => 'Zenfone 6',               'platform_year' => 2019),
 
         /* Asus phones - ROG Phone series */
+        'Z01QD'     => array('platform_model' => 'ROG Phone',               'platform_year' => 2018),
         'I003D'     => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
         'I003DD'    => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
     );

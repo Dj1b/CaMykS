@@ -3,7 +3,7 @@
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: Nov 2018
  * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -54,9 +54,11 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1951'   => array('platform_model' => 'Reno 2 Z',        'platform_year' => 2019),
         'CPH1969'   => array('platform_model' => 'F11 Pro',         'platform_year' => 2019),
         'CPH1979'   => array('platform_model' => 'Reno Z',          'platform_year' => 2019),
+        'CPH2005'   => array('platform_model' => 'Find X2 Lite',    'platform_year' => 2020),
         'CPH2009'   => array('platform_model' => 'Find X2 Pro',     'platform_year' => 2020),
         'CPH2021'   => array('platform_model' => 'A91',             'platform_year' => 2020),
         'CPH2025'   => array('platform_model' => 'X2 Pro',          'platform_year' => 2020),
+        'CPH2059'   => array('platform_model' => 'A92',             'platform_year' => 2020),
         'CPH2067'   => array('platform_model' => 'A72',             'platform_year' => 2020),
     );
 

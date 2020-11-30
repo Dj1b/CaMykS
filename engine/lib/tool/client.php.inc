@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.125
+ * @version 1.0.126
  * @date Creation: Jun 2007
  * @date Modification: Nov 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -627,8 +627,8 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_CatClientDevice($model));
     }
 
-    /* check Doogee devices, to be inserted before Xiaomi/Wiko/Acer */
-    elseif (preg_match('/; (MIX(Lite)?|MIX2|BL5000|S90|S60Lite|S55_Lite|X[37]0|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+    /* check Doogee devices, to be inserted before Xiaomi/Wiko/Acer/Umidigi */
+    elseif (preg_match('/; (MIX(Lite)?|MIX2|BL5000|S90|S60Lite|S88Pro|S55_Lite|X[37]0|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -722,7 +722,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Tecno devices */
-    elseif (preg_match('/ Tecno[ |-]?([^;\-\)]*)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/ Tecno[ |-|_]?([^;\-\)_]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Tecno.php.inc');
         $device = trim($matches[1]);
         $infos = array_merge($infos, get_TecnoClientDevice($device));
@@ -1627,6 +1627,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/RCA.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_RCAClientDevice($device));
+    }
+
+    /* check Teclast devices */
+    elseif (preg_match('/; (TLA002)( Build|\))/U', $ua, $matches)) {
+        include_once('clientDevices/Teclast.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_TeclastClientDevice($device));
     }
 
     /* check Razer devices : before Blackview */
@@ -3049,7 +3056,8 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
 
     /* Fake UA : Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko/q9LVT10o-7 */
-    if (preg_match('#Gecko/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_\-]+)$#', $ua))
+    /* Fake UA : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36/iYA9HebN-7 */
+    if (preg_match('#(Gecko|Safari/537.36)/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_\-]+)$#', $ua))
         return $fake;
 
     /* default result */
@@ -3134,7 +3142,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '91',                    // current is 85
+                'MaxVersion'    => '93',                    // current is 87
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
@@ -3146,13 +3154,13 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '76',                    // current is 71
+                'MaxVersion'    => '78',                    // current is 72
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
             ),
             'Safari'            => array(
-                'MaxVersion'    => '19',                    // current is 14.0
+                'MaxVersion'    => '19',                    // current is 14.0.x
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3224,7 +3232,7 @@ function _client_isOnePlusDevice($ua='') {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[1].$matches[2]))
           return $matches[1].$matches[2];
-    } elseif (preg_match('/; (GM|HD|IN|AC)([0-9]{4})( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (GM|HD|IN|AC|KB)([0-9]{4})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/OnePlus.php.inc');
         if (is_OnePlusKnownDevice($matches[1].$matches[2]))
           return $matches[1].$matches[2];
