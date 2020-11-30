@@ -2,12 +2,11 @@
 /**
  * @brief Admin_GenericEmailingManager Module edit configuration sub layout
  * @details Plugin, Module Layout
- * @file plugin/module/Admin_GenericEmailingManager/html/configuration/edit.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Nov 2020
+ * @copyright 2012 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +18,7 @@ $file_ = $camyks->theme->get_pictURL('file', 12, 'ovr');
 
 <?php if (isset($this->isConfig) and $this->isConfig) :?>
 
-<?=$camyks->theme->get_boxContent2Header();?>
+<?= $camyks->theme->get_boxContent2Header(); ?>
 <div class="adminContentPanel">
 
 <?php endif; ?>
@@ -55,6 +54,6 @@ $file_ = $camyks->theme->get_pictURL('file', 12, 'ovr');
 <?php if (isset($this->isConfig) and $this->isConfig) :?>
 
 </div>
-<?=$camyks->theme->get_boxContent2Footer();?>
+<?= $camyks->theme->get_boxContent2Footer(); ?>
 
 <?php endif; ?>
