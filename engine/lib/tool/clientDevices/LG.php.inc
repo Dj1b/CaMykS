@@ -3,9 +3,9 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.35
+ * @version 1.0.37
  * @date Creation: Apr 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -52,7 +52,9 @@ function get_LGClientDevice($deviceCode='') {
         'F800L'     => array('platform_model' => 'V20',             'platform_year' => 2016),
         'G810'      => array('platform_model' => 'G8s ThinQ',       'platform_year' => 2019),
         'G850'      => array('platform_model' => 'G9X ThinQ',       'platform_year' => 2019),
+        'H320'      => array('platform_model' => 'Leon',            'platform_year' => 2015),
         'H340'      => array('platform_model' => 'Leon',            'platform_year' => 2015),
+        'H631'      => array('platform_model' => 'G Stylo',         'platform_year' => 2015),
         'H812'      => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H815'      => array('platform_model' => 'G4',              'platform_year' => 2015),
         'H818'      => array('platform_model' => 'G4',              'platform_year' => 2015),
@@ -95,6 +97,7 @@ function get_LGClientDevice($deviceCode='') {
         'TP260'     => array('platform_model' => 'K20 Plus',        'platform_year' => 2019),
         'Q720'      => array('platform_model' => 'Stylo 5',         'platform_year' => 2019),
         'V405'      => array('platform_model' => 'V40',             'platform_year' => 2018),
+        'V600'      => array('platform_model' => 'ThinQ 5G',        'platform_year' => 2020),
         'VS986'     => array('platform_model' => 'G4',              'platform_year' => 2015),
         'VS987'     => array('platform_model' => 'G5',              'platform_year' => 2016),
         'X210'      => array('platform_model' => 'K7',              'platform_year' => 2016),

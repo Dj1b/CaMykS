@@ -2,11 +2,10 @@
 /**
  * @brief HTML page object
  * @details Engine / Object Library
- * @file engine/lib/object/HTMLPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Jun 2005
- * @date Modification: JUn 2020
+ * @date Modification: Nov 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -506,7 +505,8 @@ final class HTMLPage {
      * @return void
      */
     public function add_RSSFeed($url='', $title='') {
-        $this->add_link('alternate', $url, array('title'=>$title, 'type'=>'application/rss+xml'));
+        global $camyks;
+        $this->add_link('alternate', $camyks->get_fileURL($url), array('title'=>$title, 'type'=>'application/rss+xml'));
     }
 
     /**
@@ -674,7 +674,7 @@ final class HTMLPage {
 
         /* add base url for modern urls */
         if (($camyks->get_confValue('friendlyurls') == 'modern' or $camyks->get_confValue('friendlyurls') == 'modern2') and $camyks->mode == CAMYKS_MODE_SITE)
-            echo "<base href=\"".$camyks->get_rootBaseURL('absolute_long')."\" />\n";
+            echo "<base href=\"".$camyks->get_rootBaseURL('absolute_schemeless')."\" />\n";
     }
 
     /**

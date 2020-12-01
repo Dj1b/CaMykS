@@ -2,12 +2,11 @@
 /**
  * @brief Admin_GenericEmailingManager Module emailing library
  * @details Plugin, Module Library
- * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerEmailing.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Dec 2012
- * @date Modification: Aug 2019
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Nov 2020
+ * @copyright 2012 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -183,7 +182,6 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
         if ($this->config->name == 'emailing0') {
             $this->config->name = 'emailing'.$this->id;
             $this->config->vars['emailing_id'] = $this->id;
-            $this->config->_libFile = $this->config->_libFolder.'/'.$this->config->name.'.php.inc';
         }
 
         /* save config */

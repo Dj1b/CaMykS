@@ -2,12 +2,11 @@
 /**
  * @brief PluginConfig library.
  * @details Engine / Object Library
- * @file engine/lib/object/PluginConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Oct 2017
- * @date Modification: Apr 2018
- * @copyright 2017 - 2018 CaMykS Team
+ * @date Modification: Nov 2020
+ * @copyright 2017 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -22,61 +21,61 @@ abstract class PluginConfig {
      * @brief Object type description.
      */
     public $object_type = 'PluginConfig';
-    
+
     /**
      * @var string $_libName
      * @brief PluginConfig name.
      */
     public $_libName;
-    
+
     /**
      * @var Object $_libParent
      * @brief Object parent plugin.
      */
     public $_libParent;
-    
+
     /**
      * @var array $_libItems
      * @brief Object item list.
      */
     public $_libItems = array();
-    
+
     /**
      * @var string $_libDesc
      * @brief Object description.
      */
     public $_libDesc;
-    
+
     /**
      * @var string $_libFolder
      * @brief Folder where object are stored.
      */
-    private $_libFolder;
-    
+    protected $_libFolder;
+
     /**
      * @var string $_libFile
      * @brief Stored file for object.
      */
-    private $_libFile;
-    
+    protected $_libFile;
+
     /**
      * @var string $_libError
      * @brief Object last error.
      */
-    public $_libError = ''; 
-    
+    public $_libError = '';
+
     /**
      * @var string $name
      * @brief Object name.
-     */ 
+     */
     public $name;
-    
+
     /**
      * @var array $vars
      * @brief Object values.
      */
     public $vars = null;
-  
+
     /**
      * Class constructor.
      * @param string $name
@@ -87,7 +86,7 @@ abstract class PluginConfig {
         $this->_libName = get_class($this);
         $this->_libParent = $plugin;
         $this->_libDesc = ucwords($plugin->plugin_type).':'.$this->_libParent->name.' Lib:'.$this->_libName;
-        $this->_libFolder = $this->_libParent->plugin_var_path.'/'.$this->_libName; 
+        $this->_libFolder = $this->_libParent->plugin_var_path.'/'.$this->_libName;
         $this->_libFile = $this->_libFolder.'/'.$this->name.'.php.inc';
     }
 
@@ -107,14 +106,14 @@ abstract class PluginConfig {
         return true;
     }
 
-    /* 
+    /*
      * Finish config object initialisation.
      * @return void
      */
     public function init_config() {
     }
 
-    /* 
+    /*
      * Insert a new item in object.
      * @param string $name
      * @param string $type
@@ -135,7 +134,7 @@ abstract class PluginConfig {
         $this->_libItems[$name] = new PluginConfigItem($name, $type, $default);
         return true;
     }
-    
+
     /**
      * Initialise object with default values.
      * @return boolean
@@ -154,12 +153,12 @@ abstract class PluginConfig {
     public function get() {
         if (file_exists($this->_libFile)) {
             /* get file "vars" value */
-            require $this->_libFile; 
-      
+            require $this->_libFile;
+
             /* check if vars value list exists */
             if (!isset($this->vars))
                 return $this->initialise();
-      
+
             /* complete items */
             foreach ($this->_libItems as $name => $item) {
                 if (!isset($this->vars[$name]))
@@ -184,24 +183,24 @@ abstract class PluginConfig {
             $content = file_getPHPFileHeader($this->name . ' '. $this->_libName.' file', '1.0');
             $content .= '$this->vars = ' . var_export($this->vars, true) . ';';
             $content .= file_getPHPFileFooter();
-        
+
             /* create folder */
             if (!file_exists($this->_libFolder))
                 folder_completePath($this->_libFolder);
-      
+
             /* write file */
             if (file_write($this->_libFile, $content, true))
                 return true;
         }
         return false;
     }
-  
+
     /**
      * Delete object file.
      * @return boolean
      */
     public function delete() {
-        if (file_exists($this->_libFile)) 
+        if (file_exists($this->_libFile))
             return unlink($this->_libFile);
         return true;
     }
@@ -214,7 +213,7 @@ abstract class PluginConfig {
         $this->initialise();
         return $this->save();
     }
-  
+
     /**
      * Check object items values.
      * @return boolean
@@ -232,7 +231,7 @@ abstract class PluginConfig {
             $this->vars[$item->_name] = $item->get_fromHeader();
         }
     }
-  
+
     /**
      * Return value.
      * @param string $param

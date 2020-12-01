@@ -2,12 +2,11 @@
 /**
  * @brief Module plugin object
  * @details Engine / Object Library
- * @file engine/lib/object/Module.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jun 2007
- * @date Modification: Sep 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Nov 2020
+ * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -184,7 +183,7 @@ class Module extends Plugin {
      * @param mxed $data the optional inserted data
      * @return string
      */
-    public function get_translation($value, $data=null) {
+    public function get_translation($value, $data=array()) {
         global $camyks;
         return $camyks->get_translation('mod_'.strtolower($this->name).'_'.$value, $data);
     }

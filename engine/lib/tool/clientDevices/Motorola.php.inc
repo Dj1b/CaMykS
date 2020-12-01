@@ -3,9 +3,9 @@
  * @brief Motorola client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.25
+ * @version 1.0.26
  * @date Creation: Apr 2018
- * @date Modification: Oct 2020
+ * @date Modification: Nov 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -66,6 +66,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'g(7) power'    => array('platform_model' => 'Moto G7 Power',       'platform_year' => 2019),
         'one'           => array('platform_model' => 'One',                 'platform_year' => 2019),
         'one vision'    => array('platform_model' => 'One Vision',          'platform_year' => 2019),
+        'e(6) plus'     => array('platform_model' => 'Moto E6 Plus',        'platform_year' => 2019),
         'g(8) plus'     => array('platform_model' => 'Moto G8 Plus',        'platform_year' => 2019),
     );
 

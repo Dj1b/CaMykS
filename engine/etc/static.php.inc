@@ -3,9 +3,8 @@
  * @brief CaMykS static configuration
  * @brief Automatically loaded by CaMykS object.
  * @details Engine / Configuration file
- * @file engine/etc/static.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Sep 2005
  * @date Modification: Nov 2020
  * @copyright 2005 - 2020 CaMykS Team
@@ -23,7 +22,7 @@ $this->website = 'https://www.camyks.net';
  * @var string $this->version
  * @brief CaMykS full version
  */
-$this->version = '1.0-20201101';
+$this->version = '1.0-20201201';
 
 /**
  * @var string $this->mversion
@@ -35,13 +34,13 @@ $this->mversion = '1.0';
  * @var string $this->nversion
  * @brief CaMykS minor version
  */
-$this->nversion = '20201101';
+$this->nversion = '20201201';
 
 /**
  * @var integer $this->last_modification_date
  * @brief CaMykS last modification date
  */
-$this->last_modification_date = mktime(0, 0, 0, 11, 1, 2020);
+$this->last_modification_date = mktime(0, 0, 0, 12, 1, 2020);
 
 /**
  * @var string $this->engine_folder

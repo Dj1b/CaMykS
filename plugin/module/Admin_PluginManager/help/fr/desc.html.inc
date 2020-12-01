@@ -1,19 +1,18 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Help File
- * Creation Date	: Fev 2007
- * Last Modif Date	: Mar 2009
- * 
- * Admin_PluginManager html help file (french)
+/**
+ * @brief Admin_PluginManager Module help french page
+ * @details Plugin / Module layout
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Fev 2007
+ * @date Modification: Nov 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @cond Exclude
  */
-global $camyks;
-?>
 
+?>
 <h3 class="eTitle3">
 Activation / D&eacute;sactivation
 </h2>
@@ -37,3 +36,10 @@ Certain modules n&eacute;cessitent l'installation d'une table dans la base de do
 <p class="eContent1">
 &nbsp;
 </p>
+
+
+<?php
+/**
+ * @endcond Exclude
+ */
+?>

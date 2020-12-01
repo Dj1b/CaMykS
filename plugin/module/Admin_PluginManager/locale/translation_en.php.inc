@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0
- * Object Version	: 1.0
- * Object Type	    : Plugin / Module Dictionnary
- * Creation Date	: Feb 2013
- * Last Modif Date	: Feb 2013
- *
- * Admin_PluginManager module english dictionnary
+/**
+ * @brief Admin_PluginManager Module english dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Feb 2013
+ * @date Modification: Nov 2020
+ * @copyright 2013 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_pluginmanager_title'] = 'Plugin Manager';
 $this->trads['mod_admin_pluginmanager_desc'] = 'Manage available plugins';

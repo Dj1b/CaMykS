@@ -3,11 +3,10 @@
  * @brief Admin_GenericEmailingManager Module
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin, Module Engine
- * @file plugin/module/Admin_GenericEmailingManager/Admin_GenericEmailingManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.7.1
  * @date Creation: Dec 2012
- * @date Modification: Feb 2020
+ * @date Modification: Nov 2020
  * @copyright 2012 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1445,7 +1444,7 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* update contact */
         if ($this->contactItem->update_asUnsubscribed($_REQUEST['email'])) {
-            header('Location:'.$camyks->get_siteLink($this->config->vars['unsubscribe_backpage']));
+            header('Location:'.$camyks->get_siteLink($this->config->get_value('unsubscribe_backpage')));
         } else {
             die('Error');
         }
@@ -2255,6 +2254,9 @@ final class Admin_GenericEmailingManager extends Module {
      */
     public function initialise_configDisplay() {
         $this->isConfig = true;
+
+        /* load configuration */
+        $this->config->get();
     }
 
     /**
@@ -2274,6 +2276,9 @@ final class Admin_GenericEmailingManager extends Module {
         global $camyks;
 
         $this->isConfig = true;
+
+        /* load configuration */
+        $this->config->get();
 
         /* update form */
         $this->editform = &$form;
