@@ -1,17 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version	: 1.0a2
- * Object Version 	: 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date	: Feb 2013
- * Last Modif Date	: Feb 2013
- * 
- * Admin_Group french dictionnary
+/**
+ * @brief Admin_Group Module english dictionnary.
+ * @details Plugin / Module layout
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Feb 2013
+ * @date Modification: Dec 2020
+ * @copyright 2013 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_group_title'] = 'Groups';
 $this->trads['mod_admin_group_desc'] = 'Group management';
 

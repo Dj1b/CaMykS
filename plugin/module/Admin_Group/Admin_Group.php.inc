@@ -1,288 +1,287 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
- * Creation Date	: Mar 2007
- * Last Modif Date	: May 2008
- * History :
- * * 07-03-xx : Initial files
- * * 08-05-28 : Disable admin menu for data I/O modes
- *
- * Admin Groups Management Module
- * Contain 2 default groups : all, none
-*/
+/**
+ * @brief Admin_Group Module
+ * <br /> Manage administration groups.
+ * @details Plugin, Module Engine
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Mar 2007
+ * @date Modification: Dec 2020
+ * @copyright 2007 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-class Admin_Group extends Module {
-  /* variables */
-  var $mode;
-  var $group;
-  var $groups;
+/**
+ * Admin_Group class.
+ */
+final class Admin_Group extends Module {
+    /**
+     * var Object $group
+     * @brief Current group object.
+     */
+    public $group;
 
-  /*
-   * constructor
-   * @param $path_type
-   */
-  function Admin_Group ( $path_type ) {
-    parent::Module('Admin_Group', $path_type);
-    /* set module type */
-    $this->type = 'admin';
-    $this->admin_type = 'users';
-    /* set plugin version */
-    $this->version = '1.0';
-    /* set plugin package */
-    $this->plugin_package = 'System';
-    /* set plugin author */
-    $this->author_name = 'CaMykS Team';
-    $this->author_mail = 'camyks.contact@gmail.com';
-    $this->author_group = 'camyks.net';
-    
-    /* load libs */
-    $this->libs[] = 'AdminGroup.php.inc';
-    $this->get_PHPLibs();
-    $this->group = new AdminGroup('', $this);
-    $this->groups = null;
-  }
-  
-  /* overwrite Module methods */
+    /**
+     * var array $groups
+     * @brief Group list.
+     */
+    public $groups = null;
 
-  /*
-   * install module object
-   * @return boolean success
-   * @access private
-   */
-  function install ( ) {
-    /* install admin group library object */
-    if ( $this->group->install( ) ) {
-      return parent::install();
-    }
-    return false;
-  }
+    /**
+     * CLass constructor.
+     * @param $path_type
+     * @return void
+     */
+    public function __construct($path_type) {
+        parent::__construct('Admin_Group', $path_type);
 
-  /*
-   * unsinstall module object
-   * @return boolean success
-   * @access private
-   */
-  function uninstall ( ) {
-    return false;
-  }
+        /* Override Plugin variables */
+        $this->plugin_package = 'System';
+        $this->version = '1.0';
 
-  /*
-   * check module installation
-   * @return boolean result
-   * @access private
-   */
-  function is_installed ( ) {
-    return $this->group->is_installed();
-  }
+        /* Override Module variables */
+        $this->type = 'admin';
+        $this->admin_type = 'users';
 
-  
-  /*
-   * initialise module object in admin mode
-   * @return void
-   * @access private
-   */
-  function init_admin () {
-    global $camyks;
-    /* check basic rights */
-    if ( $this->check_right(0) === false ) {
-      return $this->init_admin_accessDenied();
+        /* Define plugin author */
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
+
+        /* Load library */
+        $this->load_library('AdminGroup');
+        $this->group = new AdminGroup('', $this);
     }
 
-    /* get module mode */
-    $this->mode = ( isset ( $_REQUEST['mode'] ) ? $_REQUEST['mode'] : 'list' );
+    /* Override Module methods */
 
-    /* get action to execute case of mode */
-    switch ( $this->mode ) {
-    case 'view':
-      /* mode == view */
-      $this->init_admin_view();
-      break;
-    case 'edit':
-      /* mode == edit */
-      $this->init_admin_edit();
-      break;
-    case 'save':
-      /* mode == save */
-      $this->init_admin_save();
-      break;
-    case 'delete':
-      /* mode == delete */
-      $this->init_admin_delete();
-      break;
-    case 'list':
-    default:
-      /* mode == list */
-      $this->init_admin_list();
-      break;
-    }
-    parent::init_admin();
-  }
-
-  /*
-   * initialise module object in display mode
-   * @return void
-   * @access private
-   */
-  function display_admin () {
-    parent::display_admin();
-  }
-
-  /* specific admin mode methods */
-  
-  /*
-   * initialise module object in admin/list mode
-   * @return void
-   * @access private
-   */
-  function init_admin_list ( ) {
-    global $camyks;
-
-    /* get group list */
-    $this->group_list = $this->group->static_getAdminList();
-
-    /* get butotns */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link' =>$camyks->get_adminLink()));
-   
-    /* update layout */
-    $this->selected_layout = 'admin_list.html.inc';
-  }
-
-  /*
-   * initialise module object in admin/edit mode
-   * @return void
-   * @access private
-   */
-  function init_admin_edit ( ) {
-    global $camyks;
-    /* check rights */
-    if ( $this->check_right ( 1 )===false ) 
-      return $this->init_admin_actionNotAllowed();
-    /* check dependencies */
-    if ( ! isset ( $camyks->inputs['QuickItemList'] ) )
-      return $this->init_admin_missingPlugin ( 'input', 'QuickItemList');
-    
-    /* get group to edit */
-    if ( $this->group->name == '' and isset ( $_REQUEST['group'] ) ) {
-      $this->group->name = $_REQUEST['group'];
-      $this->group->get();
+    /**
+     * Install module object.
+     * @return boolean success
+     */
+    public function install() {
+        return $this->group->install() and  parent::install();
     }
 
-    /* get form */
-    $this->form = new HTMLForm('admin_group_form',
-			       $camyks->get_adminLink( $this->name, array('mode'=>'save' )),
-			       'POST');
-    $this->form->add_hidden('is_new', $this->group->is_new);
-    $this->form->add_hidden('users', $this->group->users_);
-    if ( $this->group->is_new == 0 ) {
-      $this->form->add_hidden('name', $this->group->name);
-    }
-    
-    /* get user list */
-    $this->user_list = $camyks->modules['Admin_User']->user->static_getList();
-    
-    /* get list input object */
-    $this->input = $camyks->inputs['QuickItemList'];
-    $this->input->initialise('userchooser',
-			     $this->get_translation('allusers'),
-			     $this->user_list,
-			     $this->get_translation('selusers'),
-			     $this->group->users,
-			     $this->form->name,
-			     'users',
-			     ':');
-
-    /* get buttons */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=> $camyks->get_adminLink($this->name, array('mode'=>'list'))),
-			   array('title'=>$camyks->get_translation('valid'),
-				 'link'=>$this->form->get_HTMLSubmitLink()));
-
-
-    /* update layout */
-    $this->selected_layout = 'admin_edit.html.inc'; 
-  }
-  
-  /*
-   * init module object in admin/view mode
-   * @return void
-   * @access private
-   */
-  function init_admin_view ( ) {
-    global $camyks;
-    /* get group */
-    $n = isset ( $_REQUEST['group'] ) ? $_REQUEST['group'] : '';
-    $this->group = new AdminGroup ( $n, $this );
-    $this->group->get();
-
-    /* get buttons */
-    $this->buttons = array(array('title'=>$camyks->get_translation('back'),
-				 'link'=> $camyks->get_adminLink($this->name, array('mode'=>'list'))));
-    if ($this->check_right(1)===true)
-      $this->buttons[] = array('title'=>$camyks->get_translation('edit'),
-			       'link'=>$camyks->get_adminLink($this->name, array('mode'=>'edit', 'group'=>$this->group->name)));
-
-    /* update layout */
-    $this->selected_layout = 'admin_view.html.inc';
-  }
-
-  /*
-   * init module object in admin/delete mode
-   * @return void
-   * @access private
-   */
-  function init_admin_delete ( ) {
-    /* to do */
-  }
-
-  /* 
-   * init module object in admin/save mode
-   * @return void
-   * @access private
-   */
-  function init_admin_save ( ) {
-    global $camyks;
-    if ( $this->check_right(1) === false ) {
-      /* get 'action not allowed' init */
-      return $this->init_admin_actionNotAllowed();
+    /**
+     * Unsinstall module object.
+     * @return boolean success
+     */
+    public function uninstall() {
+        return false;
     }
 
-    /* disable admin menu */
-    $this->disable_adminEngineMenus();
-
-    /* get group */
-    $n = isset ( $_REQUEST['group'] ) ? $_REQUEST['group'] : '';
-    $this->group = new AdminGroup ( $n, $this );
-    $this->group->get_fromHeader();
-    if ( $this->group->save() ) {
-      /* automatic redirection */
-      $this->set_redirect ( $camyks->get_confValue('ModuleActionDelay'), $this->get_adminLink(array('mode' => 'view',
-									 'group' => $this->group->name )));
-      /* update layout */
-      $this->text = $camyks->get_translation('savedone');
-      $this->selected_layout = 'admin_message.html.inc';
-	$this->selected_layout_location = 'camyks';
-    } else {
-      $this->init_admin_edit();
+    /**
+     * Check module installation.
+     * @return boolean result
+     */
+    function is_installed() {
+        return $this->group->is_installed();
     }
-  }
 
-  /* specific tool methods */
+    /**
+     * Initialise module object in admin mode
+     * @return void
+     */
+    public function init_admin() {
+        global $camyks;
 
-  /*
-   * get all groups
-   * @return array
-   * @access public
-   */
-  function get_groups () {
-    if ( $this->groups == null )
-      $this->groups = $this->group->get_objectList();
-    return $this->groups;
-  }
+        /* Check read permission */
+        if ($this->check_right(0) === false)
+            return $this->init_admin_accessDenied();
+
+        /* Load action to execute */
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'list';
+
+        /* Execute action */
+        switch ($this->mode) {
+            case 'view':
+                /* mode == view */
+                $this->init_admin_view();
+                break;
+            case 'edit':
+                /* mode == edit */
+                $this->init_admin_edit();
+                break;
+            case 'save':
+                /* mode == save */
+                $this->init_admin_save();
+                break;
+            case 'delete':
+                /* mode == delete */
+                $this->init_admin_delete();
+                break;
+            case 'list':
+            default:
+                /* mode == list */
+                $this->init_admin_list();
+                break;
+        }
+
+        /* Execute generic initialisation */
+        parent::init_admin();
+    }
+
+    /* Specific admin mode methods */
+
+    /**
+     * Initialise module object in admin/list mode
+     * @return void
+     */
+    private function init_admin_list() {
+        global $camyks;
+
+        /* Load group list */
+        $this->group_list = $this->group->static_getAdminList();
+
+        /* Build interface buttons */
+        $this->buttons = array(
+            array(
+                'title' => $camyks->get_translation('back'),
+                'link'  => $camyks->get_adminLink(),
+            ),
+        );
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_list.html.inc');
+    }
+
+    /**
+     * Initialise module object in admin/edit mode.
+     * @return void
+     */
+    private function init_admin_edit() {
+        global $camyks;
+
+        /* Check edit group permission */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* Check dependencies */
+        $this->input = $camyks->get_input('QuickItemList');
+        if ($this->input === false)
+            return $this->init_admin_missingPlugin('input', 'QuickItemList');
+
+        /* Load group to edit */
+        if ($this->group->name == '' and isset ($_REQUEST['group'])) {
+            $this->group->name = $_REQUEST['group'];
+            $this->group->get();
+        }
+
+        /* Build edition form */
+        $this->form = new HTMLForm('admin_group_form', $this->get_adminLink(array('mode'=>'save')), 'POST');
+        $this->form->add_hidden('is_new', $this->group->is_new);
+        $this->form->add_hidden('users', $this->group->users_);
+        if ($this->group->is_new == 0) {
+            $this->form->add_hidden('name', $this->group->name);
+        }
+
+        /* Load user list */
+        $this->user_list = $camyks->modules['Admin_User']->user->static_getList();
+
+        /* get list input object */
+        $this->input->initialise('userchooser', $this->get_translation('allusers'), $this->user_list, $this->get_translation('selusers'), $this->group->users, $this->form->name, 'users', ':');
+
+        /* get buttons */
+        $this->buttons = array(
+            array(
+                'title' => $camyks->get_translation('back'),
+                'link'  => $this->get_adminLink(array('mode'=>'list')),
+            ),
+            array(
+                'title' => $camyks->get_translation('valid'),
+                'link'  => $this->form->get_HTMLSubmitLink(),
+            ),
+        );
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_edit.html.inc');
+    }
+
+    /**
+     * Initialise module object in admin/view mode.
+     * @return void
+     */
+    private function init_admin_view() {
+        global $camyks;
+
+        /* Check group */
+        if (!isset($_REQUEST['group']))
+            return $this->set_redirect($this->get_adminLink());
+
+        /* Load group */
+        $this->group = new AdminGroup ($_REQUEST['group'], $this);
+        if (!$this->group->get())
+            return $this->set_redirect($this->get_adminLink());
+
+        /* Load buttons */
+        $this->buttons = array(
+            array(
+                'title' => $camyks->get_translation('back'),
+                'link'  => $this->get_adminLink(array('mode'=>'list')),
+            ),
+        );
+
+        if ($this->check_right(1) === true)
+            $this->buttons[] = array(
+                'title' => $camyks->get_translation('edit'),
+                'link'  => $this->get_adminLink(array('mode'=>'edit', 'group'=>$this->group->name)),
+            );
+
+        /* update layout */
+        $this->set_selectedLayout('admin_view.html.inc');
+    }
+
+    /**
+     * Initialise module object in admin/delete mode.
+     * @return void
+     */
+    private function init_admin_delete() {
+        /* to do */
+    }
+
+    /**
+     * Initialise module object in admin/save mode.
+     * @return void
+     */
+    function init_admin_save() {
+        global $camyks;
+
+        /* Check edit group permission */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* Disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* Load group */
+        $n = isset($_REQUEST['group']) ? $_REQUEST['group'] : '';
+        $this->group = new AdminGroup ($n, $this);
+        $this->group->get_fromHeader();
+
+        /* Save group */
+        if ($this->group->save()) {
+            $this->set_redirect($this->get_adminLink(array('mode' => 'view',  'group' => $this->group->name)));
+
+            /* Update layout */
+            $this->text = $camyks->get_translation('savedone');
+            $this->set_selectedLayout('admin_message.html.inc',  'camyks');
+        } else {
+            $this->init_admin_edit();
+        }
+    }
+
+    /* Specific tool methods */
+
+    /**
+     * Return all groups.
+     * @return array
+     */
+    public function get_groups() {
+        if ($this->groups == null)
+            $this->groups = $this->group->get_objectList();
+        return $this->groups;
+    }
 }
 ?>
