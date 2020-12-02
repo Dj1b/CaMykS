@@ -3,9 +3,9 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.21.1
  * @date Creation: Jun 2005
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -857,9 +857,12 @@ final class Camyks {
      * @return string
      */
     public function get_translation($string, $data=array()) {
-        $string = strtolower ($string);
+        $string = strtolower($string);
         if (isset($this->trads[$string]))
-            return vsprintf($this->trads[$string], $data);
+            if (is_array($data))
+                return vsprintf($this->trads[$string], $data);
+            else
+                return sprintf($this->trads[$string], $data);
         return $string;
     }
 
@@ -890,7 +893,7 @@ final class Camyks {
                 $l = $this->get_sessionValue($type.'language');
             } else if ($type == 'admin' and ($lc = cookie_get('adminlanguage')) != null) {
                 $l = $lc;
-            } else if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) and in_array (($lc = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)), $list)) {
+            } else if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) and in_array(($lc = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)), $list)) {
                 $l = $lc;
             } else {
                 $l = $this->get_confValue($type.'_default_language', 'en');
