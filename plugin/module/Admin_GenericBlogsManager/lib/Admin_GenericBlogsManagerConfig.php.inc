@@ -1,17 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Config
- * Create Date		: Apr 2008
- * Last Modif Date	: Apr 2008
- *
- * Admin_GenericBlogsManager configuration object
- *
- * News editor mode :
+/**
+ * @brief Admin_GenericBlogsManager Module configuration library
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2008
+ * @date Modification: Nov 2020
+ * @copyright 2008 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @note News editor mode :
  * - 0 : Text only
  * - 1 : Limited web editor
  * - 2 : Advanced web editor
@@ -27,65 +25,70 @@
  * - 2 : each user has its own folder into a specific module folder
  */
 
-class Admin_GenericBlogsManagerConfig extends ModuleConfig {
-  /*
-   * constructor
-   * @param string $name
-   * @param Module $parent
-   */
-  function Admin_GenericBlogsManagerConfig ( $name, &$parent ) {
-    global $camyks;
-    parent::ModuleConfig( $name, $parent );
-    /* object link configuration */
-    $this->add_newItem('links_maxcount', 'int', 5);
-    /* object news configuration */
-    $this->add_newItem('news_editormode', 'int', 0);
-    $this->add_newItem('news_allowvideo', 'boolean', false);
-    $this->add_newItem('news_documentmode', 'int', 1);
+/**
+ * Admin_GenericBlogsManagerConfig class.
+ */
+final class Admin_GenericBlogsManagerConfig extends PluginConfig {
+    /**
+     * Class constructor.
+     * @param string $name
+     * @param Module $parent
+     * @return void
+     */
+    public function __construct($name, &$parent) {
+        parent::__construct($name, $parent);
 
-    /* object comment configuration */
-    $this->add_newItem('comments_validationmode', 'int', 1);
+        /* Object link configuration */
+        $this->add_newItem('links_maxcount', 'int', 5);
 
-    /* generic initialisation */
-    parent::init_config();
-  }
+        /* Object news configuration */
+        $this->add_newItem('news_editormode', 'int', 0);
+        $this->add_newItem('news_allowvideo', 'boolean', false);
+        $this->add_newItem('news_documentmode', 'int', 1);
 
-  /* overwrite ModuleConfig methods */
+        /* Object comment configuration */
+        $this->add_newItem('comments_validationmode', 'int', 1);
 
+        /* Generic initialisation */
+        parent::init_config();
+    }
 
-  /* specific methods */
+    /* specific methods */
 
-  /*
-   * return available news editor modes
-   * @return array
-   * @access public
-   */
-  function get_newsEditorModes() {
-    return array(0=>$this->get_translation('config_newseditormode_0'),
-		 1=>$this->get_translation('config_newseditormode_1'),
-		 2=>$this->get_translation('config_newseditormode_2'),
-		 3=>$this->get_translation('config_newseditormode_3'));
-  }
+    /**
+     * Return available news editor modes.
+     * @return array
+     */
+    public function get_newsEditorModes() {
+        return array(
+            0 =>$this->get_translation('config_newseditormode_0'),
+            1 =>$this->get_translation('config_newseditormode_1'),
+            2 =>$this->get_translation('config_newseditormode_2'),
+            3 =>$this->get_translation('config_newseditormode_3'),
+        );
+    }
 
-  /*
-   * return available news document modes
-   * @return array
-   * @access public
-   */
-  function get_newsDocumentModes() {
-    return array(0=>$this->get_translation('config_newsdocumentmode_0'),
-		 1=>$this->get_translation('config_newsdocumentmode_1'),
-		 2=>$this->get_translation('config_newsdocumentmode_2'));
-  }
+    /**
+     * Return available news document modes.
+     * @return array
+     */
+    public function get_newsDocumentModes() {
+        return array(
+            0 => $this->get_translation('config_newsdocumentmode_0'),
+            1 => $this->get_translation('config_newsdocumentmode_1'),
+            2 => $this->get_translation('config_newsdocumentmode_2'),
+        );
+    }
 
-  /*
-   * return available comment validation modes
-   * @return array
-   * @access public
-   */
-  function get_commentsValidationModes() {
-    return array(1=>$this->get_translation('config_commentsvalidationmode_1'),
-		 0=>$this->get_translation('config_commentsvalidationmode_0'));
-  }
+    /**
+     * Return available comment validation modes.
+     * @return array
+     */
+    public function get_commentsValidationModes() {
+        return array(
+            1 => $this->get_translation('config_commentsvalidationmode_1'),
+            0 => $this->get_translation('config_commentsvalidationmode_0'),
+        );
+    }
 }
 ?>

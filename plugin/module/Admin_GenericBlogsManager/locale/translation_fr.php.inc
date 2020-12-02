@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Creation Date	: Apr 2008
- * Last Modif Date	: Jun 2008
- *
- * Admin_GenericBlogsManager french dictionnary
-*/
+/**
+ * @brief Admin_GenericBlogsManager Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2008
+ * @date Modification: Nov 2020
+ * @copyright 2008 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_genericblogsmanager_title'] = 'Blogs';
 $this->trads['mod_admin_genericblogsmanager_desc'] = 'Ajouter des actualit&eacute;s, mod&eacute;rer les commentaires,...';
 $this->trads['mod_admin_genericblogsmanager_desc1'] = '1 commentaire en attente de validation';

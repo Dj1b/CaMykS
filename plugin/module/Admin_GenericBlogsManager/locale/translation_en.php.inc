@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Creation Date	: Jun 2008
- * Last Modif Date	: Jun 2008
- *
- * Admin_GenericBlogsManager english dictionnary 
-*/
+/**
+ * @brief Admin_GenericBlogsManager Module english dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2008
+ * @date Modification: Nov 2020
+ * @copyright 2008 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_genericblogsmanager_title'] = 'Blogs';
 $this->trads['mod_admin_genericblogsmanager_desc'] = 'Create and edit news, moderate comments, ...';
 $this->trads['mod_admin_genericblogsmanager_desc1'] = '1 comment waiting for acceptation';
@@ -125,7 +124,7 @@ $this->trads['mod_admin_genericblogsmanager_editlink_ndate'] = 'Creation date: '
 
 /* edit link messages */
 $this->trads['mod_admin_genericblogsmanager_message_savelink_done'] = 'Link save in progress...';
-$this->trads['mod_admin_genericblogsmanager_message_savelink_failed'] = 'An error has occured while saving the link.'; 
+$this->trads['mod_admin_genericblogsmanager_message_savelink_failed'] = 'An error has occured while saving the link.';
 $this->trads['mod_admin_genericblogsmanager_message_savelink_notdone'] = 'Link save failed';
 
 /* edit news tabs */
