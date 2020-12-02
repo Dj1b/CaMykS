@@ -23,34 +23,44 @@ class Input extends Plugin {
      * @brief Input title.
      */
     public $title;
-    
+
     /**
      * @var array $params
      * @brief Input parameters.
      */
     public $params = array();
-    
+
     /**
      * @var string $selected_layout
      * @brief Input layout to use.
      */
     public $selected_layout = 'input.html.inc';
-  
+
     /**
-     * Class constructor.
+     * Class constructor
+     * @param string $name
+     * @param string $path_type
+     * @return void
+     */
+    public function __construct($name, $path_type) {
+        /* Plugin Init */
+        parent::__construct($name, 'input', $path_type);
+
+        /* define title from name */
+        $this->title = $this->name;
+
+        /* load locales */
+        $this->add_translation();
+    }
+
+    /**
+     * Old style constructor.
      * @param string $name
      * @param string $path_type
      * @return void
      */
     public function Input($name, $path_type) {
-        /* Plugin Init */
-        parent::__construct($name, 'input', $path_type);
-        
-        /* define title from name */
-        $this->title = $this->name;
-        
-        /* load locales */
-        $this->add_translation();
+        $this->__construct($name, $path_type);
     }
 
     /**
@@ -83,9 +93,9 @@ class Input extends Plugin {
         global $camyks;
         return $camyks->get_translation('input_'.strtolower($this->name).'_'.$value, $data);
     }
-  
+
     /* tool methods */
-  
+
     /**
      * Update selected layout.
      * @param string $layout
