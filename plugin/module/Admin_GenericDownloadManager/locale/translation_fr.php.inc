@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by			: camyks.net
- * Author     			: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version		: 1.0b
- * Object Version		: 1.0
- * Object Type			: Plugin / Module Dictionnary
- * Creation Date		: May 2008
- * Last Modif Date	: May 2010
- *
- * Admin_GenericDownloadManager french dictionnary
-*/
+/**
+ * @brief Admin_GenericDownloadManager Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2008
+ * @date Modification: Dec 2020
+ * @copyright 2008 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_genericdownloadmanager_title'] = 'T&eacute;l&eacute;chargements';
 $this->trads['mod_admin_genericdownloadmanager_desc'] = 'Gestion de documents &agrave; t&eacute;l&eacute;charger';
 
@@ -100,5 +99,4 @@ $this->trads['mod_admin_genericdownloadmanager_category_not_deleted'] = 'Une err
 $this->trads['mod_admin_genericdownloadmanager_downloaderrortitle'] = 'Le t&eacute;l&eacute;chargement du fichier a &eacute;chou&eacute;.';
 $this->trads['mod_admin_genericdownloadmanager_downloaderrordesc'] = 'Le fichier demand&eacute; n\'existe pas ou n\'est plus disponible au t&eacute;l&eacute;chargement.';
 $this->trads['mod_admin_genericdownloadmanager_downloaderrorcnt1'] = 'Si le probl&egrave;me persiste, contactez l\'administrateur du site.';
-
 ?>

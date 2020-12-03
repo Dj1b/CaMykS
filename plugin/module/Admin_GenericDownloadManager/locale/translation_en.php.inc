@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author     		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0b
- * Object Version	: 1.0
- * Object Type		: Plugin / Module Dictionnary
- * Creation Date	: Feb 2015
- * Last Modif Date	: Feb 2015
- *
- * Admin_GenericDownloadManager english dictionnary
+/**
+ * @brief Admin_GenericDownloadManager Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Feb 2015
+ * @date Modification: Dec 2020
+ * @copyright 2008 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 $this->trads['mod_admin_genericdownloadmanager_title'] = 'Downloads';
 $this->trads['mod_admin_genericdownloadmanager_desc'] = 'Manage files to download';

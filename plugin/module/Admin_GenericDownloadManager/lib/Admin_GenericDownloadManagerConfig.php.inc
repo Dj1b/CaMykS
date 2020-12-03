@@ -1,33 +1,36 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a2
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Config
- * Create Date		: May 2008
- * Last Modif Date	: Apr 2009
- *
- * Admin_GenericDownloadManagerConfig Object 
+/**
+ * @brief Admin_GenericDownloadManager Module configuration library
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2008
+ * @date Modification: Dec 2020
+ * @copyright 2008 - 2020 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Admin_GenericDownloadManagerConfig extends ModuleConfig {
-  /*
-   * constructor
-   * @param string $name
-   * @param Module $parent
-   */
-  function Admin_GenericDownloadManagerConfig ( $name, &$parent ) {
-    parent::ModuleConfig( $name, $parent );
+/**
+ * Admin_GenericDownloadManagerConfig class.
+ */
+final class Admin_GenericDownloadManagerConfig extends PluginConfig {
+    /**
+     * Class constructor.
+     * @param string $name
+     * @param Module $parent
+     * @return void
+     */
+    public function __construct($name, &$parent) {
+        parent::__construct($name, $parent);
 
-    /* config items */
-    $this->add_newItem('main_stats', 'boolean', false);
-    $this->add_newItem('file_size', 'float', 8 );
-    $this->add_newItem('link_mode', 'integer', 0);
+        /* Define object attributes */
+        $this->add_newItem('main_stats', 'boolean', false);
+        $this->add_newItem('file_size', 'float', 8 );
+        $this->add_newItem('link_mode', 'integer', 0);
 
-    /* generic initialisation */
-    parent::init_config();
-  }
+        /* Generic initialisation */
+        parent::init_config();
+    }
 }
 ?>
