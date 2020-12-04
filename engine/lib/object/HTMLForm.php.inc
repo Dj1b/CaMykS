@@ -2,11 +2,10 @@
 /**
  * @brief HTML form object library
  * @details Engine / Object Library
- * @file engine/lib/object/HTMLForm.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.8
+ * @version 1.1.8.1
  * @date Creation: Jun 2005
- * @date Modification: May 2020
+ * @date Modification: Dec 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -333,6 +332,8 @@ class HTMLForm {
                 $params['buttons'] = $this->parent->get_dateInputButtons();
             elseif (isset($this->object->_libParent))
                 $params['buttons'] = $this->object->_libParent->get_dateInputButtons();
+            else
+                $params['buttons'] = array();
         }
 
         /* start html rendering */
