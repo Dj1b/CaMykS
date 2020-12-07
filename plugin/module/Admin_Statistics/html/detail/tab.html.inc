@@ -3,9 +3,9 @@
  * @brief Admin_Statistics Module admin detail tab sublayout
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2020
- * @date Modification: Sep 2020
+ * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,7 +42,7 @@ $detail_bar_width = 100;
 
             <tr>
                 <td class="eTableLine<?= $alt; ?> eContent1">
-                    <div style="width:<?= (int)($detail_bar_width*$value/$this->statsdetailmax); ?>px; height:14px ;background:#<?= $this->config->vars['coloralternate'.$alt]; ?>; border:solid 1px #888888; float:left; display:inline-block; margin-right: 4px;">
+                    <div style="width:<?= $this->statsdetailmax == 0 ? 0 : (int)($detail_bar_width*$value/$this->statsdetailmax); ?>px; height:14px; background:#<?= $this->config->vars['coloralternate'.$alt]; ?>; border:solid 1px #888888; float:left; display:inline-block; margin-right: 4px;">
                         &nbsp;
                     </div>
                     <div style="display:inline-block;">

@@ -3,9 +3,9 @@
  * @brief Admin_Statistics Module admin dated tab sublayout
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2020
- * @date Modification: Sep 2020
+ * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -54,7 +54,7 @@ $main_bar_height = 60;
                             <?php $myvalue = isset($this->statsmainbyday['values'][$mydate]) ? $this->statsmainbyday['values'][$mydate] : 0; ?>
                             <td class="adminStatisticsByDateBox" style="height:<?= $main_bar_height+20; ?>px;">
                                 <?= $this->get_optimisedValue($myvalue); ?>
-                                <div class="adminStatisticsByDateBox2" style="height:<?= (int)($main_bar_height*$myvalue/$this->statsmainbyday['max']); ?>px;background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;">
+                                <div class="adminStatisticsByDateBox2" style="height:<?= $this->statsmainbyday['max'] == 0 ? 0 : (int)($main_bar_height*$myvalue/$this->statsmainbyday['max']); ?>px;background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;">
                                 </div>
                             </td>
                             <?php $alt = abs($alt-1); ?>
@@ -100,7 +100,7 @@ $main_bar_height = 60;
                             <?php $myvalue = isset($this->statsmainbymonth['values'][$mydate]) ? $this->statsmainbymonth['values'][$mydate] : 0; ?>
                             <td class="adminStatisticsByDateBox" style="height:<?= $main_bar_height+20; ?>px;">
                                 <?= $this->get_optimisedValue($myvalue); ?>
-                                <div class="adminStatisticsByDateBox2" style="height:<?= (int)($main_bar_height*$myvalue/$this->statsmainbymonth['max']); ?>px; background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;">
+                                <div class="adminStatisticsByDateBox2" style="height:<?= $this->statsmainbymonth['max'] == 0 ? 0 : (int)($main_bar_height*$myvalue/$this->statsmainbymonth['max']); ?>px; background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;">
                                 </div>
                             </td>
                             <?php $alt = abs($alt-1); ?>
@@ -146,7 +146,7 @@ $main_bar_height = 60;
                             <?php $myvalue = isset($this->statsmainbyyear['values'][$mydate])? $this->statsmainbyyear['values'][$mydate]:0; ?>
                             <td class="adminStatisticsByDateBox" style="height:<?= $main_bar_height+20?>px;">
                                 <?= $this->get_optimisedValue($myvalue); ?>
-                                <div class="adminStatisticsByDateBox2" style="height:<?= (int)($main_bar_height*$myvalue/$this->statsmainbyyear['max']); ?>px;background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;"></div>
+                                <div class="adminStatisticsByDateBox2" style="height:<?= $this->statsmainbyyear['max'] == 0 ? 0 : (int)($main_bar_height*$myvalue/$this->statsmainbyyear['max']); ?>px;background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;"></div>
                             </td>
                             <?php $alt = abs($alt-1); ?>
                         <?php endfor; ?>
