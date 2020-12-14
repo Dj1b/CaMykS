@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, ipify service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -27,7 +27,7 @@ final class IPGeolocator_Ipify {
 
         /* Build request URL */
         $url = 'https://geo.ipify.org/api/v1?apiKey='.$params['APIKey_Ipify'];
-        $url .= '&ipAddress='.$params['addressIp'];
+        $url .= '&ipAddress='.$params['ipAddress'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));

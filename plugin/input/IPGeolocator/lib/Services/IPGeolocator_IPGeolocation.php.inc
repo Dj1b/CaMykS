@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, IPGeolocation.io service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_IPGeolocation {
             return false;
 
         /* Build request URL */
-        $url = 'https://api.ipgeolocation.io/ipgeo?apiKey='.$params['APIKey_IPGeolocation'].'&ip='.$params['addressIp'];
+        $url = 'https://api.ipgeolocation.io/ipgeo?apiKey='.$params['APIKey_IPGeolocation'].'&ip='.$params['ipAddress'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));

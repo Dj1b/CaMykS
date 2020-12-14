@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, IP2Location service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_IP2Location {
             return false;
 
         /* Check API Key params to build request URL */
-        $url = 'https://api.ip2location.com/v2/?ip='.$params['addressIp'].'&addon=continent,country,region,city,geotargeting&key='.$params['APIKey_IP2Location'];
+        $url = 'https://api.ip2location.com/v2/?ip='.$params['ipAddress'].'&addon=continent,country,region,city,geotargeting&key='.$params['APIKey_IP2Location'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));

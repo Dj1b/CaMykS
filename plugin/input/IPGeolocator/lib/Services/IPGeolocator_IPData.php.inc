@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, ipdata service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_IPData {
             return false;
 
         /* Build request URL */
-        $url = 'https://api.ipdata.co/'.$params['addressIp'];
+        $url = 'https://api.ipdata.co/'.$params['ipAddress'];
         $url .= '?api-key='.$params['APIKey_IPData'];
 
         /* Execute request to IP Geolocation API service */

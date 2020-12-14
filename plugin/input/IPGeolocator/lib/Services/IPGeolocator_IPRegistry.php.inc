@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, ipregistry service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_IPRegistry {
             return false;
 
         /* Check API Key params to build request URL */
-        $url = 'https://api.ipregistry.co/'.$params['addressIp'].'?key='.$params['APIKey_IPRegistry'];
+        $url = 'https://api.ipregistry.co/'.$params['ipAddress'].'?key='.$params['APIKey_IPRegistry'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));

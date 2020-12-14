@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, IPInfoDB service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_IPInfoDB {
             return false;
 
         /* Check API Key params to build request URL */
-        $url = 'http://api.ipinfodb.com/v3/ip-city/?format=json&key='.$params['APIKey_IPInfoDB'].'&ip='.$params['addressIp'];
+        $url = 'http://api.ipinfodb.com/v3/ip-city/?format=json&key='.$params['APIKey_IPInfoDB'].'&ip='.$params['ipAddress'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));

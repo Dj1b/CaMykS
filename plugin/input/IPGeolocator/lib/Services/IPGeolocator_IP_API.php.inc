@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, ip-api service object, library has to be updated with pro service support.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -22,7 +22,7 @@ final class IPGeolocator_IP_API {
      */
     public function execute($params) {
         /* Execute request to IP Geolocation API service */
-        $result = http_getContents(array('url'=>'http://ip-api.com/json/'.$params['addressIp'].'?fields=status,continent,country,countryCode,region,regionName,city,zip,lat,lon'));
+        $result = http_getContents(array('url'=>'http://ip-api.com/json/'.$params['ipAddress'].'?fields=status,continent,country,countryCode,region,regionName,city,zip,lat,lon'));
 
         /* Check result */
         if (strlen($result) == 0)

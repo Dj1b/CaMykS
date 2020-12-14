@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, ipstack service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_IPStack {
             return false;
 
         /* Build request URL */
-        $url = 'http'.($params['APIKey_IPStackPremium'] == 1 ? 's' : '').'://api.ipstack.com/'.$params['addressIp'];
+        $url = 'http'.($params['APIKey_IPStackPremium'] == 1 ? 's' : '').'://api.ipstack.com/'.$params['ipAddress'];
         $url .= '?access_key='.$params['APIKey_IPStack'];
 
         /* Execute request to IP Geolocation API service */

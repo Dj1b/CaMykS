@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, DB_IP service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -26,7 +26,7 @@ final class IPGeolocator_DB_IP {
             return false;
 
         /* Check API Key params to build request URL */
-        $url = 'http://api.db-ip.com/v2/'.$params['APIKey_DB_IP'].'/'.$params['addressIp'];
+        $url = 'http://api.db-ip.com/v2/'.$params['APIKey_DB_IP'].'/'.$params['ipAddress'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));

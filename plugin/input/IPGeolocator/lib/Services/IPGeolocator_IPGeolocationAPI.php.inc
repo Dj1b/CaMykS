@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, IP Geolocation API service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -23,7 +23,7 @@ final class IPGeolocator_IPGeolocationAPI {
      */
     public function execute($params) {
         /* Execute request to IP Geolocation API service */
-        $result = http_getContents(array('url'=>'https://api.ipgeolocationapi.com/geolocate/'.$params['addressIp']));
+        $result = http_getContents(array('url'=>'https://api.ipgeolocationapi.com/geolocate/'.$params['ipAddress']));
 
         /* Check result */
         if (strlen($result) == 0)

@@ -1,10 +1,10 @@
 <?php
 /**
  * @brief IPGeolocator Input
- * <br /> Adds Crisp.chat snippet on page.
+ * <br /> Multi services geolocation tool.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -56,12 +56,12 @@ final class IPGeolocator extends Input {
         $this->load_configuration();
 
         /* Check params */
-        $defaultParams = array('addressIp'=>null, 'service'=>null, 'output'=>'CountryAlpha2');
+        $defaultParams = array('ipAddress'=>null, 'service'=>null, 'output'=>'CountryAlpha2');
         $params = array_merge($this->config->vars, $defaultParams, $params);
 
-        /* Check address ip */
-        if ($params['addressIp'] == null)
-            $params['addressIp'] = client_getIp();
+        /* Check ip address */
+        if ($params['ipAddress'] == null)
+            $params['ipAddress'] = client_getIp();
 
         /* Check service */
         if ($params['service'] == null)
@@ -70,16 +70,15 @@ final class IPGeolocator extends Input {
         /* Load library from source */
         $library = 'IPGeolocator_'.$params['service'];
         $this->load_library('Services/'.$library);
-        if (!class_exists($library)) {
+        if (!class_exists($library))
             return false;
-        }
-        $tool = new $library;
+        $service = new $library;
 
         /* Execute IP geolocation */
-        $result = $tool->execute($params);
+        $result = $service->execute($params);
 
         /* Check result */
-        if ($result == false)
+        if ($result === false)
             return false;
 
         /* Merge result with default answer */

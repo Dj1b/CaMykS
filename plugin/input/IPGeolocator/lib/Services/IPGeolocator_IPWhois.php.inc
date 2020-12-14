@@ -3,7 +3,7 @@
  * @brief IPGeolocator Input, ipwhois.io service object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2020
  * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
@@ -23,9 +23,9 @@ final class IPGeolocator_IPWhois {
     public function execute($params) {
         /* Check API Key params to build request URL */
         if ($params['APIKey_IPWhois'] == '')
-            $url = 'http://ipwhois.app/json/'.$params['addressIp'];
+            $url = 'http://ipwhois.app/json/'.$params['ipAddress'];
         else
-            $url = 'http://ipwhois.pro/json/'.$params['addressIp'].'?key='.$params['APIKey_IPWhois'];
+            $url = 'http://ipwhois.pro/json/'.$params['ipAddress'].'?key='.$params['APIKey_IPWhois'];
 
         /* Execute request to IP Geolocation API service */
         $result = http_getContents(array('url'=>$url));
