@@ -3,9 +3,9 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.82
+ * @version 1.0.83
  * @date Creation: Apr 2018
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -139,6 +139,7 @@ function get_HuaweiClientDevices() {
         'LIO-L29'   => array('platform_model' => 'Mate 30 Pro',     'platform_year' => 2019),
 
         /* Huawei Honor series */
+        'Che2-L11'  => array('platform_model' => 'Honor 4X',        'platform_year' => 2014),
         'H60-L01'   => array('platform_model' => 'Honor 6',         'platform_year' => 2014),
         'H60-L02'   => array('platform_model' => 'Honor 6',         'platform_year' => 2014),
         'H60-L04'   => array('platform_model' => 'Honor 6',         'platform_year' => 2014),
@@ -181,6 +182,7 @@ function get_HuaweiClientDevices() {
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'HRY-LX1'   => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
         'HRY-LX1MEB'=> array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
+        'DNN-LX9'   => array('platform_model' => 'Honor 10X Lite',  'platform_year' => 2018),
         'AUM-L29'   => array('platform_model' => 'Honor 7A Pro',    'platform_year' => 2018),
         'COR-L29'   => array('platform_model' => 'Honor Play',      'platform_year' => 2018),
         'BKL-L09'   => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),

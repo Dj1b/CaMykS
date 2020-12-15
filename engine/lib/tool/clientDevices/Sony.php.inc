@@ -3,9 +3,9 @@
  * @brief Sony client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.53
+ * @version 1.0.54
  * @date Creation: Apr 2018
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -130,6 +130,7 @@ function get_SonyClientDevice($deviceCode='') {
         'SOV35'     => array('platform_model' => 'Xperia XZs',              'platform_year' => 2017),
         'SOV36'     => array('platform_model' => 'Xperia XZ1',              'platform_year' => 2018),
         'SOV37'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
+        'SOV39'     => array('platform_model' => 'Xperia XZ3',              'platform_year' => 2018),
         'SOV42'     => array('platform_model' => 'Xperia 8',                'platform_year' => 2019),
         'SOV43'     => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
@@ -138,6 +139,7 @@ function get_SonyClientDevice($deviceCode='') {
         'SO-41A'    => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
         'XQ-AD52'   => array('platform_model' => 'Xperia L4',               'platform_year' => 2020),
+        'XQ-AS52'   => array('platform_model' => 'Xperia 5 II Dual',        'platform_year' => 2020),
         'XQ-AU52'   => array('platform_model' => 'Xperia X10 II',           'platform_year' => 2020),
 
         '502SO'     => array('platform_model' => 'Xperia X Performace',     'platform_year' => 2016),

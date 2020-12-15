@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.47
+ * @version 1.0.48
  * @date Creation: May 2018
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +24,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi pad 2'              => array('platform_model' => 'Mi Pad 2',            'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2015),
         'mi pad 3'              => array('platform_model' => 'Mi Pad 3',            'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2017),
         'mi pad 4'              => array('platform_model' => 'Mi Pad 4',            'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2018),
+        'mi pad 4 plus'         => array('platform_model' => 'Mi Pad 4 Plus',       'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2018),
 
         /* Phones, Mi series */
         'mi one'                => array('platform_model' => 'Mi One',              'platform_year' => 2011),
@@ -76,6 +77,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 10'                 => array('platform_model' => 'Mi 10',               'platform_year' => 2020),
 
         'm2002j9g'              => array('platform_model' => 'Mi 10 Lite',          'platform_year' => 2020),
+        'm2007j1sc'             => array('platform_model' => 'Mi 10 Ultra 5G',      'platform_year' => 2020),
         'm2007j3sy'             => array('platform_model' => 'Mi 10T 5G',           'platform_year' => 2020),
 
         /* Phones, Redmi series */
@@ -122,7 +124,10 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi note 9s'         => array('platform_model' => 'Redmi Note 9S',       'platform_year' => 2020),
         'redmi note 9 pro'      => array('platform_model' => 'Redmi Note 9 Pro',    'platform_year' => 2020),
 
+        'dandelion'             => array('platform_model' => 'Redmi 9A',            'platform_year' => 2020),
+
         'm2004j19c'             => array('platform_model' => 'Redmi 9',             'platform_year' => 2020),
+        'm2006c3mg'             => array('platform_model' => 'Redmi 9C',            'platform_year' => 2020),
         'm2003j15sc'            => array('platform_model' => 'Redmi Note 9',        'platform_year' => 2020),
 
         /* Phones, Shark series */

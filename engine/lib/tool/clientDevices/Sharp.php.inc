@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Sharp.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: May 2018
- * @date Modification: Mar 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,10 +20,11 @@
  */
 function get_SharpClientDevice($deviceCode='') {
     $deviceList = array(
-        'SH-02H'    => array('platform_model' => 'Aquos Compact',  'platform_year' => 2015),
-        'FS8002'    => array('platform_model' => 'Z2',             'platform_year' => 2016),
-        'SHV39'     => array('platform_model' => 'Aquos R',        'platform_year' => 2017),
-        'FS8032'    => array('platform_model' => 'Aquos S3',       'platform_year' => 2018),
+        'SH-02H'    => array('platform_model' => 'Aquos Compact',   'platform_year' => 2015),
+        'FS8002'    => array('platform_model' => 'Z2',              'platform_year' => 2016),
+        'SHV39'     => array('platform_model' => 'Aquos R',         'platform_year' => 2017),
+        'FS8032'    => array('platform_model' => 'Aquos S3',        'platform_year' => 2018),
+        'SH-D01'    => array('platform_model' => 'Aquos D10',       'platform_year' => 2018),
     );
 
     /* Check for returning list */

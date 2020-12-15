@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.74
+ * @version 1.0.75
  * @date Creation: May 2018
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4971,6 +4971,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://socialprimes.com/bot',
         'engine_title'      => 'SocialPrimes',
         'engine_url'        => 'https://socialprimes.com/',
+    );
+
+    /* Castlebot */
+    $knownBots['castlebot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Castlebot',
+        'bot_url'           => '',
+        'engine_title'      => 'Hive',
+        'engine_url'        => 'https://thehive.ai',
     );
 
     /* Return bot list */

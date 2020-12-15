@@ -3,9 +3,9 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.92
+ * @version 1.0.93
  * @date Creation: Apr 2018
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -73,6 +73,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T590'   => array('platform_model' => 'Galaxy Tab A 10.5',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T595'   => array('platform_model' => 'Galaxy Tab A 10.5',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SM-T560'   => array('platform_model' => 'Galaxy Tab E',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
+        'SM-T560NU' => array('platform_model' => 'Galaxy Tab E',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T561'   => array('platform_model' => 'Galaxy Tab E',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'SM-T580'   => array('platform_model' => 'Galaxy Tab S8',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),
         'SM-T700'   => array('platform_model' => 'Galaxy Tab S',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
@@ -93,9 +94,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-T725'   => array('platform_model' => 'Galaxy Tab S5e',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T860'   => array('platform_model' => 'Galaxy Tab S6',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'SM-T505'   => array('platform_model' => 'Galaxy Tab A7 10.4',  'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
-        'SM-T970'   => array('platform_model' => 'Galaxy Tab S7+',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
         'SM-P610'   => array('platform_model' => 'Galaxy Tab S6 Light', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
         'SM-P615'   => array('platform_model' => 'Galaxy Tab S6 Light', 'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
+        'SM-T875'   => array('platform_model' => 'Galaxy Tab S7',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
+        'SM-T970'   => array('platform_model' => 'Galaxy Tab S7+',      'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2020),
 
         /* Samsung Galaxy S series */
         'GT-I9000'  => array('platform_model' => 'Galaxy S',                        'platform_year' => 2010),
@@ -206,9 +208,11 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G986B'  => array('platform_model' => 'Galaxy S20+',                     'platform_year' => 2020),
         'SM-G9860'  => array('platform_model' => 'Galaxy S20+ 5G',                  'platform_year' => 2020),
         'SM-G986U'  => array('platform_model' => 'Galaxy S20+ 5G',                  'platform_year' => 2020),
+        'SM-G9880'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G988B'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G988U'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G780F'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
+        'SM-G781B'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
 
         /* Samsung Galaxy A series */
         'SM-A260F'  => array('platform_model' => 'Galaxy A2 Core',                  'platform_year' => 2019),

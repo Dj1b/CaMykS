@@ -3,9 +3,9 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.37
+ * @version 1.0.38
  * @date Creation: Apr 2018
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -102,6 +102,7 @@ function get_LGClientDevice($deviceCode='') {
         'VS987'     => array('platform_model' => 'G5',              'platform_year' => 2016),
         'X210'      => array('platform_model' => 'K7',              'platform_year' => 2016),
         'X410'      => array('platform_model' => 'K30',             'platform_year' => 2018),
+        'X410.F'    => array('platform_model' => 'K11+',            'platform_year' => 2018),
         'X420'      => array('platform_model' => 'K40',             'platform_year' => 2019),
         'X525'      => array('platform_model' => 'Q60',             'platform_year' => 2019),
     );
