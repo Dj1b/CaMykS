@@ -2,11 +2,10 @@
 /**
  * @brief Admin_Site Module admin view site configuration layout.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_Site/html/admin_view_site_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Jan 2005
- * @date Modification: Oct 2020
+ * @date Modification: Dec 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -607,7 +606,7 @@ global $camyks;
 <div id="itemServer" style="display:<?= $this->tabBuilder->get_tabDisplay('Server'); ?>;" class="adminContentPanel">
     <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_operatingsystem'); ?>
             </td>
         </tr>
@@ -615,7 +614,7 @@ global $camyks;
             <td class="eTableLine0 eContent2" style="width:175px;">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= php_uname('s').' '.php_uname('r').' ('.php_uname('m').')'; ?>
             </td>
         </tr>
@@ -623,17 +622,17 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_ipaddress'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= $_SERVER['SERVER_ADDR']; ?> (<?= gethostbyaddr($_SERVER['SERVER_ADDR']); ?>)
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0" colspan="2">
+            <td class="eTableLine0" colspan="3">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_httpserver'); ?>
             </td>
         </tr>
@@ -641,17 +640,17 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= $_SERVER['SERVER_SOFTWARE']; ?>
             </td>
         </tr>
         <tr>
-            <td class="eTableLine0" colspan="2">
+            <td class="eTableLine0" colspan="3">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td class="eTableHeader" colspan="2">
+            <td class="eTableHeader" colspan="3">
                 <?= $this->get_translation('formtitle_php'); ?>
             </td>
         </tr>
@@ -659,7 +658,7 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_version'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= phpversion(); ?>
             </td>
         </tr>
@@ -667,7 +666,7 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_errordisplay'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= ini_get('display_errors') === false ? $camyks->get_translation('no') : $camyks->get_translation('yes').' ('.php_displayErrorReportingLevelAsString().')'; ?>
             </td>
         </tr>
@@ -675,7 +674,7 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_maxupload'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= file_getFileSize(((float)ini_get('post_max_size'))*1024*1024); ?> (<?= $this->get_translation('formitem_filesmaxupload').file_getFileSize(((float)ini_get('upload_max_filesize'))*1024*1024); ?>)
             </td>
         </tr>
@@ -683,7 +682,7 @@ global $camyks;
             <td class="eTableLine1 eContent2">
                 <?= $this->get_translation('formitem_memorylimit'); ?>
             </td>
-            <td class="eTableLine1 eContent1">
+            <td class="eTableLine1 eContent1" colspan="2">
                 <?= file_getFileSize(((float)ini_get('memory_limit'))*1024*1024); ?>
             </td>
         </tr>
@@ -691,10 +690,37 @@ global $camyks;
             <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_sessionexpiration'); ?>
             </td>
-            <td class="eTableLine0 eContent1">
+            <td class="eTableLine0 eContent1" colspan="2">
                 <?= ((float)ini_get('session.gc_maxlifetime')) / 60; ?> <?= unit_getTitle('minutes'); ?>
             </td>
         </tr>
+        <?php if (function_exists('opcache_get_status')) : ?>
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_opcache'); ?>
+            </td>
+            <?php if (($v = opcache_get_status()) === false or $v['opcache_enabled'] === false) : ?>
+                <td class="eTableLine1 eContent1" colspan="2">
+                    <?= $this->get_translation('opcache_disabled'); ?>
+                </td>
+            <?php else : ?>
+                <td class="eTableLine1 eContent1">
+                    <?= $this->get_translation('opcache_enabled'); ?>
+                </td>
+                <td class="eTableLine0 eContent1" rowspan="2" style="width:230px; text-align:center; vertical-align:top;">
+                    <?= $this->theme->get_button(array(
+                        'title' => $this->get_translation('action_resetopcache'),
+                        'url'   => $this->get_adminLink(array('mode'=>'resetOpcodeCache')),
+                    )); ?>
+                <?php endif; ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine0 eContent2" colspan="2">
+                &nbsp;
+            </td>
+        </tr>
+        <?php endif; ?>
     </table>
 </div>
 

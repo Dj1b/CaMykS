@@ -2,11 +2,10 @@
 /**
  * @brief Admin_Site Module french dictionnary.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_Site/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jan 2005
- * @date Modification: Sep 2020
+ * @date Modification: Dec 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,6 +39,10 @@ $this->trads['mod_admin_site_camyksinstallation_shared'] = 'Partag&eacute;e';
 $this->trads['mod_admin_site_friendlyurls_legacy'] = 'Mode Legacy';
 $this->trads['mod_admin_site_friendlyurls_modern'] = 'Mode Moderne';
 $this->trads['mod_admin_site_friendlyurls_modern2'] = 'Mode Moderne (avec langue en tant que dossier)';
+
+/* opcode cache values */
+$this->trads['mod_admin_site_opcache_enabled'] = 'Activ&eacute;';
+$this->trads['mod_admin_site_opcache_disabled'] = 'D&eacute;sactiv&eacute;';
 
 /* generic conf texts */
 $this->trads['mod_admin_site_formtitle_general'] = 'G&eacute;n&eacute;ral';
@@ -125,6 +128,8 @@ $this->trads['mod_admin_site_formitem_maxupload'] = 'Taille maximale en upload :
 $this->trads['mod_admin_site_formitem_filesmaxupload'] = 'Fichiers : ';
 $this->trads['mod_admin_site_formitem_memorylimit'] = 'Limite m&eacute;moire : ';
 $this->trads['mod_admin_site_formitem_sessionexpiration'] = 'Expiration des sessions : ';
+$this->trads['mod_admin_site_formitem_opcache'] = 'Cache Opcode : ';
+$this->trads['mod_admin_site_action_resetopcache'] = 'R&eacute;initialiser le cache Opcode';
 
 /* plugins conf texts */
 $this->trads['mod_admin_site_tabplugins'] = 'Plugins';
@@ -139,4 +144,8 @@ $this->trads['mod_admin_site_pluginconfiguration_notsaved'] = 'Une erreur est su
 /* clean server cache messages */
 $this->trads['mod_admin_site_servercache_cleaned'] = 'Caches serveur vid&eacute;s.';
 $this->trads['mod_admin_site_servercache_notcleaned'] = 'Une erreur est survenue lors de la suppression des caches serveur.';
+
+/* Reset Opcode cache messages */
+$this->trads['mod_admin_site_opcodecache_reset'] = 'Cache Opcode r&eacute;initialis&eacute;.';
+$this->trads['mod_admin_site_opcodecache_notreset'] = 'Une erreur est survenue lors de la r&eacute;initialisation des caches Opcode.';
 ?>

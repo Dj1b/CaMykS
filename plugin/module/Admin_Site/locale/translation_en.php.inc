@@ -2,11 +2,10 @@
 /**
  * @brief Admin_Site Module english dictionnary.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_Site/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Feb 2013
- * @date Modification: Sep 2020
+ * @date Modification: Dec 2020
  * @copyright 2013 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,6 +39,10 @@ $this->trads['mod_admin_site_camyksinstallation_shared'] = 'Shared';
 $this->trads['mod_admin_site_friendlyurls_legacy'] = 'Legacy mode';
 $this->trads['mod_admin_site_friendlyurls_modern'] = 'Modern mode';
 $this->trads['mod_admin_site_friendlyurls_modern2'] = 'Modern mode (with languages as folder)';
+
+/* opcode cache values */
+$this->trads['mod_admin_site_opcache_enabled'] = 'Enabled';
+$this->trads['mod_admin_site_opcache_disabled'] = 'Disabled';
 
 /* generic conf texts */
 $this->trads['mod_admin_site_formtitle_general'] = 'General';
@@ -125,6 +128,8 @@ $this->trads['mod_admin_site_formitem_maxupload'] = 'Maximum upload size: ';
 $this->trads['mod_admin_site_formitem_filesmaxupload'] = 'Files: ';
 $this->trads['mod_admin_site_formitem_memorylimit'] = 'Memory limit: ';
 $this->trads['mod_admin_site_formitem_sessionexpiration'] = 'Session timeout: ';
+$this->trads['mod_admin_site_formitem_opcache'] = 'Opcode cache: ';
+$this->trads['mod_admin_site_action_resetopcache'] = 'Reset Opcode cache';
 
 /* plugins conf texts */
 $this->trads['mod_admin_site_tabplugins'] = 'Plugins';
@@ -139,4 +144,8 @@ $this->trads['mod_admin_site_pluginconfiguration_notsaved'] = 'An error has occu
 /* clean server cache messages */
 $this->trads['mod_admin_site_servercache_cleaned'] = 'Server cache deleted.';
 $this->trads['mod_admin_site_servercache_notcleaned'] = 'An error has occured while deleting server cache.';
+
+/* Reset Opcode cache messages */
+$this->trads['mod_admin_site_opcodecache_reset'] = 'Cache Opcode reset.';
+$this->trads['mod_admin_site_opcodecache_notreset'] = 'An error has occured while reseting Opcode cache.';
 ?>

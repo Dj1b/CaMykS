@@ -3,11 +3,10 @@
  * @brief Admin_Site Module
  * <br /> Display website configuration and allows to edit plugin configuration.
  * @details Plugin, Module Engine
- * @file plugin/module/Admin_Site/Admin_Site.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Jun 2005
- * @date Modification: Sep 2019
+ * @date Modification: Dec 2020
  * @copyright 2005 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -151,6 +150,9 @@ final class Admin_Site extends Module {
                 break;
             case 'cleanServerCache':
                 $this->init_admin_cleanServerCache();
+                break;
+            case 'resetOpcodeCache':
+                $this->init_admin_resetOpcodeCache();
                 break;
             case 'viewSiteConfig':
             default:
@@ -394,6 +396,27 @@ final class Admin_Site extends Module {
             $this->text = $this->get_translation('servercache_cleaned');
         else
             $this->text = $this->get_translation('servercache_notcleaned');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('openTab'=>'Properties')));
+    }
+
+    /**
+     * Initialise object module in admin/resetOpcodeCache mode.
+     * @return void
+     */
+    private function init_admin_resetOpcodeCache() {
+        global $camyks;
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* Try to delete cache folder */
+        if (opcache_reset())
+            $this->text = $this->get_translation('opcodecache_reset');
+        else
+            $this->text = $this->get_translation('opcodecache_notreset');
 
         /* update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
