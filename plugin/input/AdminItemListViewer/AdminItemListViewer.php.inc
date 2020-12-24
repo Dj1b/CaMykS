@@ -3,19 +3,17 @@
  * @brief AdminItemListViewer Input
  * <br /> Display customisable admin list of objects.
  * @details Plugin / Input Engine
- * @file plugin/input/AdminItemListViewer/AdminItemListViewer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Sep 2008
- * @date Modification: May 2019
- * @copyright 2008 - 2019 CaMykS Team
+ * @date Modification: Nov 2020
+ * @copyright 2008 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * AdminItemListViewer Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class AdminItemListViewer extends Input {
     /**
@@ -56,19 +54,17 @@ final class AdminItemListViewer extends Input {
     public function __construct($path_type) {
         parent::__construct('AdminItemListViewer', $path_type);
 
-        /* set plugin version */
+        /* Override Plugin variable */
         $this->version = '1.0';
-
-        /* set plugin package */
         $this->plugin_package = 'Default';
 
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite Input methods */
+    /* Override Input methods */
 
     /**
      * Initialise input.

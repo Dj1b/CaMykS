@@ -3,9 +3,9 @@
  * @brief CrispChat Input configuration object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jul 2020
- * @date Modification: Jul 2020
+ * @date Modification: Dec 2020
  * @copyright 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,7 +16,7 @@
  */
 final class CrispChatConfig extends PluginConfig {
 
-    /*
+    /**
      * Class constructor.
      * @param string $name
      * @param Module $parent

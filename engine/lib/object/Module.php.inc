@@ -3,9 +3,9 @@
  * @brief Module plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jun 2007
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2007 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -92,6 +92,7 @@ class Module extends Plugin {
      * Class constructor
      * @param string $name the module name
      * @param string $path_type the module path (camyks or site)
+     * @return void
      */
     public function __construct($name, $path_type) {
         $this->Module($name, $path_type);
@@ -101,6 +102,7 @@ class Module extends Plugin {
      * Old style constructor.
      * @param string $name the module name
      * @param string $path_type the module path (camyks or site)
+     * @return void
      */
     public function Module($name, $path_type) {
         parent::__construct($name, 'module', $path_type);
