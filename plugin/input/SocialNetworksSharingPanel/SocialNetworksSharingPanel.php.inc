@@ -3,12 +3,11 @@
  * @brief SocialNetworksSharingPanel Input.
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
- * @file plugin/input/SocialNetworksSharingPanel/SocialNetworksSharingPanel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Nov 2009
- * @date Modification: Jun 2019
- * @copyright 2009 - 2019 CaMykS Team
+ * @date Modification: Jun 2020
+ * @copyright 2009 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -177,6 +176,7 @@ final class SocialNetworksSharingPanel extends Input {
             'include_ogmetas'   => 0,
             'networks'          => array(0, 0, 0),
             'locale'            => $camyks->current_language,
+            'iconsFolder'       => '',
         );
 
         /* merge params */
@@ -224,7 +224,7 @@ final class SocialNetworksSharingPanel extends Input {
     private function initialise_followPanel($params) {
 
         /* merge params */
-        $this->params = array_merge($this->config->vars, $params);
+        $this->params = array_merge($this->config->vars, array('iconsFolder'=>''), $params);
 
         /* check for styles loading */
         if ($this->params['follow_insertion'] == 1 and $this->params['follow_styleSource'] == 'plugin') {
@@ -258,6 +258,9 @@ final class SocialNetworksSharingPanel extends Input {
      * @return void
      */
     private function display_followPanel($params=array()) {
+        /* merge params */
+        $this->params = array_merge($this->params, $params);
+
         /* update selected layout */
         $this->set_selectedLayout('input_follow.html.inc');
     }
@@ -324,10 +327,11 @@ final class SocialNetworksSharingPanel extends Input {
      * Return given network icon url.
      * @param string $network
      * @param string $mode
+     * @param string $folder
      * @return string
      */
-    public function get_networkIconURL($network='', $mode='') {
-        return $this->get_fileURL('img/'.$mode.'Icons/'.$network.'.'.$this->get_configValue($mode.'_pictureFormat'));
+    public function get_networkIconURL($network='', $mode='', $folder='') {
+        return $this->get_fileURL('img/'.$mode.'Icons/'.($folder != '' ? $folder.'/':'').$network.'.'.$this->get_configValue($mode.'_pictureFormat'));
     }
 
     /**
