@@ -4,9 +4,9 @@
  * @details Engine / Tool Library
  * @file engine/lib/tool/clientDevices/Acer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
+ * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -26,6 +26,7 @@ function get_AcerClientDevice($deviceCode='') {
         /* Acer tablets */
         'A500'          => array('platform_model' => 'Iconia Tab A500',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2012),
         'A1-810'        => array('platform_model' => 'Iconia A1-810',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
+        'A1-830'        => array('platform_model' => 'Iconia A1-830',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),
         'B3-A20'        => array('platform_model' => 'Iconia Tab One 10',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'B1-770'        => array('platform_model' => 'Iconia Tab One 7',    'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2015),
         'A3-A40'        => array('platform_model' => 'Iconia Tab One 10',   'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2016),

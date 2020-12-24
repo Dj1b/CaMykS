@@ -3,7 +3,7 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.83
+ * @version 1.0.84
  * @date Creation: Apr 2018
  * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -187,6 +187,7 @@ function get_HuaweiClientDevices() {
         'COR-L29'   => array('platform_model' => 'Honor Play',      'platform_year' => 2018),
         'BKL-L09'   => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
         'BKL-L09S'  => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
+        'PCT-AL10'  => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
         'PCT-L29'   => array('platform_model' => 'Honor View 20',   'platform_year' => 2019),
         'YAL-AL00'  => array('platform_model' => 'Honor 20',        'platform_year' => 2019),
         'YAL-TL00'  => array('platform_model' => 'Honor 20',        'platform_year' => 2019),

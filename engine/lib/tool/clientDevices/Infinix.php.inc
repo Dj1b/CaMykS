@@ -3,9 +3,9 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Feb 2019
- * @date Modification: Nov 2020
+ * @date Modification: Dec 2020
  * @copyright 2019 - 2020 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,7 @@ function get_InfinixClientDevice($deviceCode='') {
         /* Hot serie */
         'HOT 4'         => array('platform_model' => 'Hot 4',       'platform_year' => 2016),
         'HOT 4 Lite'    => array('platform_model' => 'Hot 4 Lite',  'platform_year' => 2016),
+        'HOT 4 Pro'     => array('platform_model' => 'Hot 4 Pro',   'platform_year' => 2017),
         'X551'          => array('platform_model' => 'Hot Note',    'platform_year' => 2015),
         'X559'          => array('platform_model' => 'Hot 5 Lite',  'platform_year' => 2017),
         'X559C'         => array('platform_model' => 'Hot 5',       'platform_year' => 2017),

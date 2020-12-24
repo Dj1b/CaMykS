@@ -3,7 +3,7 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.93
+ * @version 1.0.94
  * @date Creation: Apr 2018
  * @date Modification: Dec 2020
  * @copyright 2018 - 2020 CaMykS Team
@@ -271,6 +271,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A305G'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A305GT' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A307FN' => array('platform_model' => 'Galaxy A30s',                     'platform_year' => 2019),
+        'SM-A315G'  => array('platform_model' => 'Galaxy A31',                      'platform_year' => 2020),
         'SM-A405FN' => array('platform_model' => 'Galaxy A40',                      'platform_year' => 2019),
         'SM-A3050'  => array('platform_model' => 'Galaxy A40s',                     'platform_year' => 2019),
         'SM-A415F'  => array('platform_model' => 'Galaxy A41',                      'platform_year' => 2020),
@@ -450,6 +451,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N976B'  => array('platform_model' => 'Galaxy Note 10 Plus',             'platform_year' => 2019),
         'SM-N770F'  => array('platform_model' => 'Galaxy Note 10 Lite',             'platform_year' => 2020),
         'SM-N980F'  => array('platform_model' => 'Galaxy Note 20 (Dual-Sim)',       'platform_year' => 2020),
+        'SM-N981B'  => array('platform_model' => 'Galaxy Note 20 5G',               'platform_year' => 2020),
         'SM-N9860'  => array('platform_model' => 'Galaxy Note 20 Ultra',            'platform_year' => 2020),
         'SM-N986B'  => array('platform_model' => 'Galaxy Note 20 Ultra',            'platform_year' => 2020),
 

@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.127
+ * @version 1.0.128
  * @date Creation: Jun 2007
  * @date Modification: Dec 2020
  * @copyright 2007 - 2020 CaMykS Team
@@ -628,7 +628,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Doogee devices, to be inserted before Xiaomi/Wiko/Acer/Umidigi */
-    elseif (preg_match('/; (MIX(Lite)?|MIX2|BL5000|S90|S60Lite|S88Pro|S55_Lite|X[37]0|X[0-9]0L|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (MIX(Lite)?|MIX2|BL5000|S90|S60Lite|S88Pro|S55_Lite|X[37]0|X[0-9]0L|X95|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -817,7 +817,7 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/ (M bot Tab [0-9]{3})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
-    } elseif (preg_match('/; (Le[_| ]?[^.]*)( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (L[a|e][_| ]?[^.]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Logicom.php.inc');
         $infos = array_merge($infos, get_LogicomClientDevice($matches[1]));
     }
@@ -3039,10 +3039,6 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#Mediapartners\-Google\) Chrome/\[CHROME_VERSION\] Safari/\[WEBKIT_VERSION\]$#', $ua))
         return $fake;
 
-    /* Fake Chrome UA */
-    if (preg_match('#Chrome/[0-9\.]* Safari/[0-9\.]*/[0-9a-zA-Z]{8}\-[0-9]{2}$#', $ua))
-        return $fake;
-
     /* Fake IE11 UA : Mozilla/5.0 (csriveraine; Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko */
     if (preg_match('#^Mozilla/5.0 \(csriveraine;#', $ua))
         return $fake;
@@ -3051,9 +3047,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#,411129,&quot;3.674257&quot;$#', $ua))
         return $fake;
 
-    /* Fake UA : Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko/q9LVT10o-7 */
-    /* Fake UA : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36/iYA9HebN-7 */
-    if (preg_match('#(Gecko|Safari/537.36)/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_\-]+)$#', $ua))
+    /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko/q9LVT10o-7 */
+    /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36/iYA9HebN-7 */
+    /* Not Fake UA  : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36/9nlzYpuG-21 */
+    if (preg_match('#(Gecko|Safari/537.36)/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_]+)\-[0-9]$#', $ua))
         return $fake;
 
     /* default result */
