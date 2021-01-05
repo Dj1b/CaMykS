@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Engine
- * Creation Date	: Jun 2015
- * Last Modif Date	: Nov 2017
- * 
- * Admin_GenericMediaLibraryManager picture list parameters
+/**
+ * @brief Admin_GenericMediaLibraryManager Module picture list parameters
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2015
+ * @date Modification: Jan 2021
+ * @copyright 2015 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
@@ -30,26 +29,26 @@ $this->pictureListParams = array('name'=>'pictureList', 'useSession'=>true, 'obj
 $this->pictureListParams['headhiddens'] = array('openTab'=>'Pictures', 'gallery'=>$this->pictureGalleryItem->id);
 
 /* build head parameters */
-$this->pictureListParams['headselectors'] = array('page'=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-						                          'status'=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->picturesStatusList, 'default'=>'-1'));
+$this->pictureListParams['headselectors'] = array(
+	'page'		=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+	'status'	=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->picturesStatusList, 'default'=>'-1'));
 
 /* build sort parameters */
 $this->pictureListParams['sort'] = array('allowed'=>false, 'default'=>'sortPosition', 'defaultway'=>'asc');
 
 /* build column parameters */
-if ($this->check_right(2)==true)
+if ($this->check_right(2))
      $this->pictureListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewpicture'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editPictureLink, 0).'&amp;gallery='.$this->pictureGalleryItem->id, 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
 
 $this->pictureListParams['listcolumns'] = array(
-                         'status'=>array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
-                         'default'=>array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultPictureIcon', 'style'=>'width:12px;'),
-						 'title'=>array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-						 'cdate'=>array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numericwithhours', 'style'=>'width:100px;'),
-						 /* 'infos'=>array('title'=>$this->get_translation('header_infos'), 'columntype'=>'method', 'method'=>'get_fileInfos'),*/
-						 'view'=>array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
+    'status'	=> array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
+	'default'	=> array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultPictureIcon', 'style'=>'width:12px;'),
+	'title'		=> array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
+	'cdate'		=> array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numericwithhours', 'style'=>'width:100px;'),
+	'view'		=> array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
 );
 
-if ($this->check_right(2)==true ) {
+if ($this->check_right(2)) {
   $this->pictureListParams['listcolumns']['movedown'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'down', 'url_value'=>$this->moveDownPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('movedownpicture'), 'condition'=>'is_notLast');
   $this->pictureListParams['listcolumns']['moveup'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'up', 'url_value'=>$this->moveUpPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('moveuppicture'), 'condition'=>'is_notFirst');
   $this->pictureListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editpicture'));
