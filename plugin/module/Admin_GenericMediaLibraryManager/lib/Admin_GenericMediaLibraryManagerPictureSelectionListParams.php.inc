@@ -3,7 +3,7 @@
  * @brief Admin_GenericMediaLibraryManager Module picture selection list parameters
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2015
  * @date Modification: Jan 2021
  * @copyright 2015 - 2021 CaMykS Team
@@ -32,9 +32,9 @@ $this->pictureListParams['sort'] = array('allowed'=>false, 'default'=>'sortPosit
 
 /* build column parameters */
 $this->pictureListParams['listcolumns'] = array(
-	'thumbIcon'	=> array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultIconRadio', 'style'=>'width:20px;'),
-	'title'		=> array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-	'cdate'		=> array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric', 'style'=>'width:80px;'),
-	'view'		=> array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
+    'thumbIcon' => array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultIconRadio', 'style'=>'width:20px;'),
+    'title'     => array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
+    'cdate'     => array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric', 'style'=>'width:80px;'),
+    'view'      => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
 );
 ?>

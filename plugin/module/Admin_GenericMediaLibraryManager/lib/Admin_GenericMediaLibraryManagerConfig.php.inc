@@ -3,7 +3,7 @@
  * @brief Admin_GenericMediaLibraryManager Module configuration library
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2015
  * @date Modification: Jan 2021
  * @copyright 2015 - 2021 CaMykS Team
@@ -47,9 +47,9 @@ final class Admin_GenericMediaLibraryManagerConfig extends PluginConfig {
      */
     public function get_resizeModeList() {
         return array(
-        	0 => $this->get_translation('pictureresizemode_fixedsize'),
-			1 => $this->get_translation('pictureresizemode_maxsize'),
-		);
+            0 => $this->get_translation('pictureresizemode_fixedsize'),
+            1 => $this->get_translation('pictureresizemode_maxsize'),
+        );
     }
 
     /**
@@ -58,11 +58,11 @@ final class Admin_GenericMediaLibraryManagerConfig extends PluginConfig {
      */
     public function get_fileTypeList() {
         return array(
-        	0 => $this->get_translation('imagefiletype_original'),
-			1 => $this->get_translation('imagefiletype_forcedtojpg'),
-			2 => $this->get_translation('imagefiletype_forcedtogif'),
-			3 => $this->get_translation('imagefiletype_forcedtopng'),
-		);
+            0 => $this->get_translation('imagefiletype_original'),
+            1 => $this->get_translation('imagefiletype_forcedtojpg'),
+            2 => $this->get_translation('imagefiletype_forcedtogif'),
+            3 => $this->get_translation('imagefiletype_forcedtopng'),
+        );
     }
 }
 ?>

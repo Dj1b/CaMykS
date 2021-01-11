@@ -4,7 +4,7 @@
  * <br /> Manages sent contact form requests.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2010
  * @date Modification: Jan 2021
  * @copyright 2010 - 2021 CaMykS Team
@@ -623,12 +623,11 @@ final class Admin_GenericContactFormManager extends Module {
 
     /**
      * Return form count.
-     * @param array $param
+     * @param array $params
      * @return integer
      */
     public function count_forms($params=array()) {
         return $this->formItem->count($params);
     }
-
 }
 ?>

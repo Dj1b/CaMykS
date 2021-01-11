@@ -3,7 +3,7 @@
  * @brief Admin_GenericMediaLibraryManager Module picture list parameters
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2015
  * @date Modification: Jan 2021
  * @copyright 2015 - 2021 CaMykS Team
@@ -30,8 +30,8 @@ $this->pictureListParams['headhiddens'] = array('openTab'=>'Pictures', 'gallery'
 
 /* build head parameters */
 $this->pictureListParams['headselectors'] = array(
-	'page'		=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-	'status'	=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->picturesStatusList, 'default'=>'-1'));
+    'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+    'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->picturesStatusList, 'default'=>'-1'));
 
 /* build sort parameters */
 $this->pictureListParams['sort'] = array('allowed'=>false, 'default'=>'sortPosition', 'defaultway'=>'asc');
@@ -41,11 +41,11 @@ if ($this->check_right(2))
      $this->pictureListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewpicture'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editPictureLink, 0).'&amp;gallery='.$this->pictureGalleryItem->id, 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
 
 $this->pictureListParams['listcolumns'] = array(
-    'status'	=> array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
-	'default'	=> array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultPictureIcon', 'style'=>'width:12px;'),
-	'title'		=> array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-	'cdate'		=> array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numericwithhours', 'style'=>'width:100px;'),
-	'view'		=> array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
+    'status'    => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
+    'default'   => array('title'=>' ', 'columntype'=>'method', 'method'=>'get_isDefaultPictureIcon', 'style'=>'width:12px;'),
+    'title'     => array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
+    'cdate'     => array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numericwithhours', 'style'=>'width:100px;'),
+    'view'      => array('title'=>'', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicture')),
 );
 
 if ($this->check_right(2)) {

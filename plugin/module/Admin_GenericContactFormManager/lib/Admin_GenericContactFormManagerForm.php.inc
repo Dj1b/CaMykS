@@ -3,7 +3,7 @@
  * @brief Admin_GenericContactFormManager Module, form library.
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2010
  * @date Modification: Jan 2021
  * @copyright 2010 - 2021 CaMykS Team
@@ -182,7 +182,7 @@ final class Admin_GenericContactFormManagerForm extends ModuleLibrary {
 
     /**
      * Return form list with given params.
-     * @params array $params
+     * @param array $params
      * @return array
      */
     public function get_list($params=array()) {
@@ -195,7 +195,7 @@ final class Admin_GenericContactFormManagerForm extends ModuleLibrary {
 
     /**
      * Return form count with given params.
-     * @params array $params
+     * @param array $params
      * @return array
      */
     public function count($params=array()) {

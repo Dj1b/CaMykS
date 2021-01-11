@@ -3,7 +3,7 @@
  * @brief Admin_GenericMediaLibraryManager Module picture gallery list parameters
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2015
  * @date Modification: Jan 2021
  * @copyright 2015 - 2021 CaMykS Team
@@ -29,8 +29,8 @@ $this->pictureGalleryListParams['headhiddens'] = array('openTab'=>'PictureGaller
 
 /* build head parameters */
 $this->pictureGalleryListParams['headselectors'] = array(
-	'page'		=> array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-	'status'	=> array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->pictureGalleriesStatusList, 'default'=>'-1'),
+    'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
+    'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->pictureGalleriesStatusList, 'default'=>'-1'),
 );
 
 /* build sort parameters */
@@ -40,12 +40,12 @@ $this->pictureGalleryListParams['sort'] = array('allowed'=>false, 'default'=>'cd
 $this->pictureGalleryListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewpicturegallery'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editPictureGalleryLink, 0), 'titlecolumn'=>'title', 'buttoncolumn'=>'view'));
 
 $this->pictureGalleryListParams['listcolumns'] = array(
-	'status'	=> array('title'=>' ', 'columntype'=>'list', 'values'=>$this->pictureGalleryStatusIconList, 'class'=>'eTableIconCell'),
-	'title'		=> array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-	'pictures'	=> array('title'=>$this->get_translation('pictures'), 'columntype'=>'text'),
-	'summary'	=> array('title'=>$this->get_translation('summary'), 'columntype'=>'text', 'maxlength'=>48),
-	'cdate'		=> array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric', 'style'=>'width:50px;'),
-	'view'		=> array('title'=>' ', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureGalleryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicturegallery')),
-	'delete'	=> array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deletePictureGalleryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletepicturegallery')),
+    'status'    => array('title'=>' ', 'columntype'=>'list', 'values'=>$this->pictureGalleryStatusIconList, 'class'=>'eTableIconCell'),
+    'title'     => array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
+    'pictures'  => array('title'=>$this->get_translation('pictures'), 'columntype'=>'text'),
+    'summary'   => array('title'=>$this->get_translation('summary'), 'columntype'=>'text', 'maxlength'=>48),
+    'cdate'     => array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'numeric', 'style'=>'width:50px;'),
+    'view'      => array('title'=>' ', 'columntype'=>'button', 'icon'=>'view', 'url_value'=>$this->viewPictureGalleryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('viewpicturegallery')),
+    'delete'    => array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deletePictureGalleryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletepicturegallery')),
 );
 ?>

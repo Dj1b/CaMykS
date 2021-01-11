@@ -3,7 +3,7 @@
  * @brief Admin_GenericMediaLibraryManager Module picture gallery library
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2015
  * @date Modification: Jan 2021
  * @copyright 2015 - 2021 CaMykS Team
@@ -84,9 +84,9 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
      */
     public function get_statusList() {
         return array(
-        	0 => $this->get_translation('picturegallerystatus_inactive'),
-			1 => $this->get_translation('picturegallerystatus_public'),
-			2 => $this->get_translation('picturegallerystatus_private'),
+            0 => $this->get_translation('picturegallerystatus_inactive'),
+            1 => $this->get_translation('picturegallerystatus_public'),
+            2 => $this->get_translation('picturegallerystatus_private'),
        );
     }
 
@@ -111,9 +111,9 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
      */
     public function get_statusIconList() {
         return array(
-        	0 => '<img src="'.$this->_libParent->theme->get_pictURL('empty', 12, 'std').'" alt="'.$this->get_translation('picturegallerystatus_inactive').'" />',
-			1 => '<img src="'.$this->_libParent->theme->get_pictURL('valid', 12, 'std').'" alt="'.$this->get_translation('picturegallerystatus_public').'" />',
-			2 => '<img src="'.$this->_libParent->theme->get_pictURL('minus', 12, 'std').'" alt="'.$this->get_translation('picturegallerystatus_private').'" />',
+            0 => '<img src="'.$this->_libParent->theme->get_pictURL('empty', 12, 'std').'" alt="'.$this->get_translation('picturegallerystatus_inactive').'" />',
+            1 => '<img src="'.$this->_libParent->theme->get_pictURL('valid', 12, 'std').'" alt="'.$this->get_translation('picturegallerystatus_public').'" />',
+            2 => '<img src="'.$this->_libParent->theme->get_pictURL('minus', 12, 'std').'" alt="'.$this->get_translation('picturegallerystatus_private').'" />',
        );
     }
 
@@ -200,7 +200,7 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
 
     /**
      * Return product count with given params.
-     * @params array $params
+     * @param array $params
      * @return array
      */
     public function count($params=array()) {

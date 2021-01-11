@@ -3,7 +3,7 @@
  * @brief Admin_GenericMediaLibraryManager Module picture library
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2015
  * @date Modification: Jan 2021
  * @copyright 2015 - 2021 CaMykS Team
@@ -63,7 +63,7 @@ final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
                 $obj->get();
                 $obj->get_fromItems();
                 if ($obj->vars['original'] == '') {
-                	$this->_libItems['status']->value = 0;
+                    $this->_libItems['status']->value = 0;
                     $this->autoDisabled = true;
                 }
             }
@@ -82,7 +82,7 @@ final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
      * @return boolean success
      */
     public function save() {
-     	/* Check data validity */
+         /* Check data validity */
         if ($this->check_data()) {
             return $this->save_databaseItems()
                 and $this->save_databaseLocalisedItems()
@@ -125,9 +125,9 @@ final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
      */
     public function get_statusList() {
         return array(
-        	0 => $this->get_translation('picturestatus_inactive'),
-			1 => $this->get_translation('picturestatus_active'),
-     	);
+            0 => $this->get_translation('picturestatus_inactive'),
+            1 => $this->get_translation('picturestatus_active'),
+         );
     }
 
     /**
@@ -396,7 +396,7 @@ final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
 
     /**
      * Return product count with given params.
-     * @params array $params
+     * @param array $params
      * @return array
      */
     public function count($params=array()) {
