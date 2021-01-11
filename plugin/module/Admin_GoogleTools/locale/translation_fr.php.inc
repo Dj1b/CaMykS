@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * Camyks Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Creation Date	: Sep 2007
- * Last Modif Date	: Sep 2007
- *
- * Admin_GoogleTools language dictionnary : French 
-*/
+/**
+ * @brief Admin_GoogleTools Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2007
+ * @date Modification: Jan 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_googletools_title'] = 'Outils Google';
 $this->trads['mod_admin_googletools_desc'] = 'Pages r&eacute;f&eacute;renc&eacute;es, liens, ...';
 
