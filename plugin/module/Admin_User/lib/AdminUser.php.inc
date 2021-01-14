@@ -4,10 +4,10 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_User/lib/AdminUser.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Sep 2005
- * @date Modification: Aug 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @remark Permissions are defined as an int constructed like :<br />
@@ -438,7 +438,7 @@ final class AdminUser {
      * @param string $login
      * @return boolean result
      */
-    private function exists_login($login) {
+    public function exists_login($login) {
         global $camyks;
 
         /* check database connexion and by pass it for check while installing website */
