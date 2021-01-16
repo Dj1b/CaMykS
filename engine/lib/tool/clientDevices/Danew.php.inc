@@ -2,12 +2,11 @@
 /**
  * @brief Danew client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Danew.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Sep 2019
- * @date Modification: Sep 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +24,7 @@ function get_DanewClientDevice($deviceCode='') {
 
         /* Danew mobiles */
         'Konnect_601'       => array('platform_model' => 'Konnect 601',         'platform_year' => 2017),
+        'Konnect_607'       => array('platform_model' => 'Konnect 607',         'platform_year' => 2019),
     );
 
     /* Check for returning list */

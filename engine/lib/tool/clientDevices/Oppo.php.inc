@@ -3,10 +3,10 @@
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: Nov 2018
- * @date Modification: Nov 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -29,6 +29,7 @@ function get_OppoClientDevice($deviceCode='') {
         'A37fw'     => array('platform_model' => 'A37fw',           'platform_year' => 2017),
         'CPH1609'   => array('platform_model' => 'F3',              'platform_year' => 2017),
         'CPH1613'   => array('platform_model' => 'F3 Plus',         'platform_year' => 2017),
+        'CPH1715'   => array('platform_model' => 'A77',             'platform_year' => 2017),
         'CPH1727'   => array('platform_model' => 'F5',              'platform_year' => 2017),
         'CPH1729'   => array('platform_model' => 'A83',             'platform_year' => 2017),
         'CPH1837'   => array('platform_model' => 'A3',              'platform_year' => 2018),

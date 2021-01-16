@@ -2,12 +2,11 @@
 /**
  * @brief Leagoo client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Leagoo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jan 2019
- * @date Modification: Jul 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -47,7 +46,8 @@ function get_LeagooClientDevice($deviceCode='') {
         'Lead 6'        => array('platform_year' => 2015),
         'Lead 7'        => array('platform_year' => 2015),
 
-        'S8_Pro'        => array('platform_model' => 'S8 Pro', 'platform_year' => 2017),
+        'S8_Pro'        => array('platform_model' => 'S8 Pro',  'platform_year' => 2017),
+        'Z6'            => array('platform_model' => 'Z6',      'platform_year' => 2017),
     );
 
     /* Check for returning list */

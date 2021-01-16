@@ -3,10 +3,10 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: Apr 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -98,6 +98,7 @@ function get_LGClientDevice($deviceCode='') {
         'Q720'      => array('platform_model' => 'Stylo 5',         'platform_year' => 2019),
         'V405'      => array('platform_model' => 'V40',             'platform_year' => 2018),
         'V600'      => array('platform_model' => 'ThinQ 5G',        'platform_year' => 2020),
+        'VS985'     => array('platform_model' => 'G3',              'platform_year' => 2014),
         'VS986'     => array('platform_model' => 'G4',              'platform_year' => 2015),
         'VS987'     => array('platform_model' => 'G5',              'platform_year' => 2016),
         'X210'      => array('platform_model' => 'K7',              'platform_year' => 2016),

@@ -3,10 +3,10 @@
  * @brief Generic libraries as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: May 2018
- * @date Modification: Oct 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -858,6 +858,16 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'node-fetch',
         'tool_url'          => 'https://github.com/bitinn/node-fetch',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* GRequests */
+    $knownGenerics['grequests'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'GRequests',
+        'tool_url'          => 'https://pypi.org/project/grequests/',
         'engine_title'      => '',
         'engine_url'        => '',
     );

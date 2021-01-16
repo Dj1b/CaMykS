@@ -3,10 +3,10 @@
  * @brief Tecno client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Oct 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -28,13 +28,14 @@ function get_TecnoClientDevice($deviceCode='') {
         'W4'        => array('platform_model' => 'W4',              'platform_year' => 2016),
         'K7'        => array('platform_model' => 'Spark',           'platform_year' => 2017),
         'K9'        => array('platform_model' => 'Spark Plus',      'platform_year' => 2017),
-        'L9 Plus'	=> array('platform_model' => 'L9 Plus',         'platform_year' => 2017),
+        'L9 Plus'   => array('platform_model' => 'L9 Plus',         'platform_year' => 2017),
         'R6'        => array('platform_model' => 'R6',              'platform_year' => 2017),
         'W3'        => array('platform_model' => 'W3',              'platform_year' => 2017),
         'W2'        => array('platform_model' => 'W2',              'platform_year' => 2017),
         'CF7'       => array('platform_model' => 'Camon 11',        'platform_year' => 2018),
         'CF8'       => array('platform_model' => 'Camon 11 Pro',    'platform_year' => 2018),
         'KA7'       => array('platform_model' => 'Spark 2',         'platform_year' => 2018),
+        'LA6'       => array('platform_model' => 'Pouvoir 1',       'platform_year' => 2018),
         'LA7'       => array('platform_model' => 'Pouvoir 2',       'platform_year' => 2018),
         'LA7 Pro'   => array('platform_model' => 'Pouvoir 2 Pro',   'platform_year' => 2018),
         'AX8'       => array('platform_model' => 'Phantom 8',       'platform_year' => 2018),
@@ -59,6 +60,8 @@ function get_TecnoClientDevice($deviceCode='') {
         'BC2'       => array('platform_model' => 'Pop 4',           'platform_year' => 2020),
         'LC7'       => array('platform_model' => 'Pouvoir 4',       'platform_year' => 2020),
         'LC8'       => array('platform_model' => 'Pouvoir 4 Pro',   'platform_year' => 2020),
+
+        'Phantom6-Plus' => array('platform_model' => 'Phantom 6 Plus',  'platform_year' => 2016),
     );
 
     /* Check for returning list */

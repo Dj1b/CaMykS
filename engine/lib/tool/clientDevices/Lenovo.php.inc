@@ -2,12 +2,11 @@
 /**
  * @brief Lenovo client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Lenovo.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -43,7 +42,12 @@ function get_LenovoClientDevice($deviceCode='') {
         'TB3-850F'              => array('platform_model' => 'Tab 3 8\'',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-8703F'              => array('platform_model' => 'Tab 3 8 Plus',        'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-X304F'              => array('platform_model' => 'Tab 4',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
+        'TB-X104F'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
+        'TB-X104F1'             => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
+        'TB-X104L'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
+        'TB-X104X'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
         'TB-X605F'              => array('platform_model' => 'Tab M10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2019),
+        'TB-X606F'              => array('platform_model' => 'Tab M10 Plus',        'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2020),
 
         /* Lenovo phones */
         'A369i'     => array('platform_model' => 'A369i',                   'platform_year' => 2013),
