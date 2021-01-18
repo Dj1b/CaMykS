@@ -2,12 +2,11 @@
 /**
  * @brief SocialNetworksSharingPanel Input configuration object
  * @details Plugin / Input Library
- * @file plugin/input/SocialNetworksSharingPanel/lib/SocialNetworksSharingPanelConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jan 2018
- * @date Modification: Jul 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -47,8 +46,21 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
         $this->add_newItem('follow_insertion', 'int', 0);    // 0 : manual / 1 : automatic
         $this->add_newItem('follow_styleSource', 'string', 'plugin');     // plugin / theme
         $this->add_newItem('follow_location', 'string', 'fixed-left'); // left / right
-
         $this->add_newItem('follow_pictureFormat', 'string', 'png');
+
+        /* facebook integration params */
+        $this->add_newItem('integrate_facebook_href', 'string', '');
+        $this->add_newItem('integrate_facebook_width', 'integer', 340);
+        $this->add_newItem('integrate_facebook_height', 'integer', 500);
+        $this->add_newItem('integrate_facebook_tabTimeline', 'boolean', true);
+        $this->add_newItem('integrate_facebook_tabEvents', 'boolean', false);
+        $this->add_newItem('integrate_facebook_tabMessages', 'boolean', false);
+        $this->add_newItem('integrate_facebook_hideCover', 'boolean', false);
+        $this->add_newItem('integrate_facebook_showFacePile', 'boolean', true);
+        $this->add_newItem('integrate_facebook_hideCTA', 'boolean', false);
+        $this->add_newItem('integrate_facebook_smallHeader', 'boolean', false);
+        $this->add_newItem('integrate_facebook_adaptWidth', 'boolean', true);
+        $this->add_newItem('integrate_facebook_lazy', 'boolean', false);
 
         /* set up variables */
         $this->sharingValues = false;
