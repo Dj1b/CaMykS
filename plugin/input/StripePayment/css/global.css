@@ -192,6 +192,22 @@ pre {
   }
 }
 
+@media (max-width: 640px) {
+    .sr-root {
+        padding: 24px 0;
+    }
+
+    .sr-main {
+        padding: 25px 8px;
+        border-radius: none;
+        box-shadow: none;
+    }
+
+    .CardField-number:after {
+        content:'<br />';
+    }
+}
+
 /* todo: spinner/processing state, errors, animations */
 
 .spinner,
