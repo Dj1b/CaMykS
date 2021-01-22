@@ -4,10 +4,10 @@
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jun 2018
- * @date Modification: Sep 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -152,7 +152,7 @@ final class Admin_SystemNotifications extends Module {
         $this->config->get();
 
         /* load mode */
-        $this->mode = (isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main');
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
 
         switch ($this->mode) {
             case 'edit_config':
@@ -577,6 +577,11 @@ final class Admin_SystemNotifications extends Module {
         /* load all sites data if master mode */
         if ($this->config->vars['module_mode'] == 1) {
 
+            /* load current website modules data */
+            $modules = array();
+            foreach ($camyks->modules as $module)
+                $modules = array_merge($modules, $module->get_adminInternalNotifications());
+
             /* initialise follow up list with current website */
             $this->followUpList = array(
                 array(
@@ -622,7 +627,6 @@ final class Admin_SystemNotifications extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink());
     }
-
 
     /* Request mode methods */
 
