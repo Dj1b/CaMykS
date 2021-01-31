@@ -4,10 +4,10 @@
  * <br /> Interface to Limonetik payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Oct 2020
- * @date Modification: Dec 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -171,9 +171,7 @@ final class LimonetikPayment extends Input {
      * @return void
      */
     public function load_paymentConfirmation() {
-        /*
-        $this->confirmationData = $_REQUEST;
-        */
+
     }
 
     /**
@@ -181,18 +179,7 @@ final class LimonetikPayment extends Input {
      * @return boolean result
      */
     public function is_paymentConfirmed() {
-        /*
-        if ($this->confirmationData === null)
-            $this->load_paymentConfirmation();
-
-        if (!isset($this->confirmationData['vads_trans_status']))
-            return false;
-
-        if ($this->confirmationData['vads_trans_status'] === 'AUTHORISED')
-            return true;
-
         return false;
-        */
     }
 
     /**
@@ -200,18 +187,7 @@ final class LimonetikPayment extends Input {
      * @return boolean result
      */
     public function is_paymentCancelled() {
-        /*
-        if ($this->confirmationData === null)
-            $this->load_paymentConfirmation();
-
-        if (!isset($this->confirmationData['vads_trans_status']))
-            return false;
-
-        if ($this->confirmationData['vads_trans_status'] === 'ABANDONED')
-            return true;
-
         return false;
-        */
     }
 
     /**
@@ -219,13 +195,7 @@ final class LimonetikPayment extends Input {
      * @return array
      */
     public function get_paymentConfirmationData() {
-        /*
-        $data = array();
-        $data['uniqueId'] = isset($this->confirmationData['vads_trans_id']) ? $this->confirmationData['vads_trans_id'] : '';
-        $data['transaction'] = isset($this->confirmationData['vads_trans_uuid']) ? $this->confirmationData['vads_trans_uuid'] : '';
-        $data['response'] = isset($this->confirmationData['vads_trans_status']) ? $this->confirmationData['vads_trans_status'] : '';
-        return $data;
-        */
+        return array('uniqueId' => '');
     }
 
     /**
@@ -300,66 +270,12 @@ final class LimonetikPayment extends Input {
         return false;
     }
 
-
-
-
-
-
-        /* Backup Limonetik answer in session *
-        $camyks->set_sessionValue('LimonetikAnswer', array(
-            "RequestId"         => $response['RequestId'],
-            "PaymentOrderId"    => $response['PaymentOrderId'],
-        ));
-
-
-Created                 The retailer has created the payment order. The retailer must redirect the user to the payment page URL provided in Limonetik's response (PaymentPageUrl).
-Payment_In_Progress     The customer is currently entering the necessary payment identifiers. The retailer must wait for payment to be completed, i.e. when the user is redirected to the ReturnUrl, AbortedUrl or ErrorUrl pages, AND/OR when notification is received from ServerNotificationUrl. If the user no longer responds, Limonetik gives the payment order Aborted status after a maximum lead time of 120 minutes. Note that you must call the PaymentOrder/Detail web service if the ReturnUrl was entered manually in order to check the payment result securely.
-Aborted                 The customer has clicked on Cancel or closed the browser.
-Refused                 One of the payment methods involved in the transaction has refused the payment.
-Error                   A processing error has occurred.
-Authorized              The customer has confirmed the payment and all payment methods have authorized the payment.
-                        The payment order status will not change until the entire order has been charged/cancelled.
-Authorizing             The customer has confirmed the payment but one of the payment methods involved requires more time to confirm authorisation. The retailer must wait for the status to change.
-Cancelled               The retailer has cancelled the entire order.
-Charged                 The entire order amount has been charged, or part of the order amount charged and the remainder cancelled.
-Refunded                The entire order amount has been charged, or part of the order amount charged and the remainder cancelled. The entire amount charged has then been refunded.
-
-
-
-{
-  "PaymentOrder": {
-    "Id": 99972422011,
-    "MerchantId": "sandbox-merchantorpsp-fr",
-    "PaymentPageId": "creditcard",
-    "Amount": 100.0,
-    "Currency": "EUR",
-    "Status": "Authorized",
-    "CreateDate": "2018-02-01T12:15:05.947Z",
-    "PaymentPageUrl": "https://payment.limonetikqualif.com/checkout?PaymentOrderid=99972422011",
-  },
-  "ReturnCode": 1000,
-  "ReturnMessage": "Success",
-  "RequestId": "40843aa8-dfd0-4a09-8f0e-8879f57ec058"
-}
-        ob_start();
-        var_dump($_REQUEST);
-
-        $camyks->log('Dev', 'LimonetikResponse', ob_get_clean());
-
-        $this->_transactionId = isset($_REQUEST['vads_trans_uuid'])?$_REQUEST['vads_trans_uuid']:'';
-        if (isset($_REQUEST['vads_trans_status']) and $_REQUEST['vads_trans_status'] === 'AUTHORISED')
-            return true;
-        return false;
-        */
-
     /**
      * Return transaction ID.
      * @return string
      */
     public function get_transactionId() {
-        /*
-        return $this->_transactionId;
-        */
+
     }
 
     /* Limonetik related methods */
@@ -388,7 +304,7 @@ Refunded                The entire order amount has been charged, or part of the
                                    "Authorization: Basic ".$this->config->vars['APIKey']."\r\n.".
                                    "Accept: application/json\r\n",
                 'ignore_errors' => true,
-                'timeout'       =>  10,
+                'timeout'       => 10,
             ),
         );
         if ($method === 'GET')
