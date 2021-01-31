@@ -3,12 +3,11 @@
  * @brief Plugin object
  * <br />Parent object for Module, Input, Template, Theme
  * @details Engine / Object Library
- * @file engine/lib/object/Plugin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.8.1
  * @date Creation: Jun 2005
- * @date Modification: Jun 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -364,7 +363,7 @@ abstract class Plugin {
      */
     protected function add_meta($name, $content, $method='name') {
         global $camyks;
-         $camyks->HTMLPage->add_meta ($name, $content, $method);
+         $camyks->HTMLPage->add_meta($name, $content, $method);
     }
 
     /***************** JS & CSS METHODS ******************/

@@ -4,7 +4,7 @@
  * @details Plugin / Module Library
  * @file plugin/module/Admin_User/lib/AdminUser.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Sep 2005
  * @date Modification: Jan 2021
  * @copyright 2005 - 2021 CaMykS Team
@@ -298,7 +298,7 @@ final class AdminUser {
         $this->login = $_REQUEST[$prefix.'login'];
         $this->firstname = $_REQUEST[$prefix.'firstname'];
         $this->lastname = $_REQUEST[$prefix.'lastname'];
-        $this->email =    $_REQUEST[$prefix.'email'];
+        $this->email = $_REQUEST[$prefix.'email'];
         $this->address = $_REQUEST[$prefix.'address'];
 
         /* get is_new value */
