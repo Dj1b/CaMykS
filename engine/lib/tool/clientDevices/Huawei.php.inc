@@ -3,7 +3,7 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.85
+ * @version 1.0.86
  * @date Creation: Apr 2018
  * @date Modification: Jan 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -89,6 +89,7 @@ function get_HuaweiClientDevices() {
         'MAR-LX2'   => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX2J'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'MAR-LX3A'  => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
+        'MAR-LX3Am' => array('platform_model' => 'P30 Lite',        'platform_year' => 2019),
         'VOG-L04'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'VOG-L09'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
         'VOG-L29'   => array('platform_model' => 'P30 Pro',         'platform_year' => 2019),
@@ -104,6 +105,7 @@ function get_HuaweiClientDevices() {
         'STK-LX1'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'STK-LX3'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'JNY-LX1'   => array('platform_model' => 'P40 Lite',        'platform_year' => 2020),
+        'ART-L29'   => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'ART-L29N'  => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'CDY-NX9A'  => array('platform_model' => 'P40 Lite 5G',     'platform_year' => 2020),
 
@@ -138,6 +140,7 @@ function get_HuaweiClientDevices() {
         'EVR-N29'   => array('platform_model' => 'Mate 20 X 5G',    'platform_year' => 2019),
         'NEO-L29'   => array('platform_model' => 'Mate RS',         'platform_year' => 2018),
         'LIO-L29'   => array('platform_model' => 'Mate 30 Pro',     'platform_year' => 2019),
+        'LIO-AN00'  => array('platform_model' => 'Mate 30 Pro',     'platform_year' => 2019),
 
         /* Huawei Honor series */
         'Che2-L11'  => array('platform_model' => 'Honor 4X',        'platform_year' => 2014),

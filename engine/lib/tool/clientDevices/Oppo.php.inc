@@ -3,7 +3,7 @@
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.35
+ * @version 1.0.36
  * @date Creation: Nov 2018
  * @date Modification: Jan 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -30,6 +30,7 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1609'   => array('platform_model' => 'F3',              'platform_year' => 2017),
         'CPH1613'   => array('platform_model' => 'F3 Plus',         'platform_year' => 2017),
         'CPH1715'   => array('platform_model' => 'A77',             'platform_year' => 2017),
+        'CPH1725'   => array('platform_model' => 'F5 Youth',        'platform_year' => 2017),
         'CPH1727'   => array('platform_model' => 'F5',              'platform_year' => 2017),
         'CPH1729'   => array('platform_model' => 'A83',             'platform_year' => 2017),
         'CPH1837'   => array('platform_model' => 'A3',              'platform_year' => 2018),
@@ -60,6 +61,7 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH2021'   => array('platform_model' => 'A91',             'platform_year' => 2020),
         'CPH2025'   => array('platform_model' => 'X2 Pro',          'platform_year' => 2020),
         'CPH2059'   => array('platform_model' => 'A92',             'platform_year' => 2020),
+        'CPH2065'   => array('platform_model' => 'Reno 4 Z',        'platform_year' => 2020),
         'CPH2067'   => array('platform_model' => 'A72',             'platform_year' => 2020),
     );
 

@@ -3,7 +3,7 @@
  * @brief Lenovo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.30
  * @date Creation: Apr 2018
  * @date Modification: Jan 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -46,6 +46,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'TB-X104F1'             => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
         'TB-X104L'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
         'TB-X104X'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
+        'TB-X505F'              => array('platform_model' => 'Tab M10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2019),
         'TB-X605F'              => array('platform_model' => 'Tab M10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2019),
         'TB-X606F'              => array('platform_model' => 'Tab M10 Plus',        'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2020),
 
@@ -86,8 +87,10 @@ function get_LenovoClientDevice($deviceCode='') {
         'Z1'        => array('platform_model' => 'Zuk Z1',                  'platform_year' => 2015),
         'Z2131'     => array('platform_model' => 'Zuk Z2',                  'platform_year' => 2016),
         'Z2151'     => array('platform_model' => 'Zuk Edge',                'platform_year' => 2017),
+        'K520'      => array('platform_model' => 'S5',                      'platform_year' => 2019),
 
         'Z2 Plus'   => array('platform_year' => 2017),
+
     );
 
     /* Check for returning list */

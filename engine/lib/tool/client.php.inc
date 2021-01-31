@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.129
+ * @version 1.0.130
  * @date Creation: Jun 2007
  * @date Modification: Jan 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -486,6 +486,13 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_SpiceMobilityClientDevice($model));
     }
 
+    /* check Sumvier devices - before Oukitel */
+    elseif (preg_match('/; (K41)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Sumvier.php.inc');
+        $model = trim($matches[1]);
+        $infos = array_merge($infos, get_SumvierClientDevice($model));
+    }
+
     /* check Outikel mobiles */
     elseif (preg_match('/; (K[0-9]{1,4})([A-zA-Z]*)?( Build|\))/', $ua, $matches)) {
         include_once('clientDevices/Oukitel.php.inc');
@@ -709,7 +716,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Tecno devices */
-    elseif (preg_match('/ Tecno[ |-|_]?([^;\-\)_]*)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; Tecno[ |\-|_]?([A-Za-z0-9 ]+)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Tecno.php.inc');
         $device = trim($matches[1]);
         $infos = array_merge($infos, get_TecnoClientDevice($device));
@@ -811,7 +818,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Vestel devices */
-    elseif (preg_match('/ (Venus_V3_5570) /', $ua, $matches)) {
+    elseif (preg_match('/; (Venus.*)( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Vestel.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_VestelClientDevice($model));
@@ -903,7 +910,7 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Umi.php.inc');
         $model = trim(preg_replace('/_|-/', ' ', $matches[1]));
         $infos = array_merge($infos, get_UmiClientDevice($model));
-    } elseif (preg_match('/ (IRON|Rome|Hammer|eMax|Touch|Super)([ |_])?(Pro|X|S|Mini|4G)?( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; Android [0-9\.]+; (IRON|Rome|Hammer|eMax|Touch|Super)([ |_])?(Pro|X|S|Mini|4G)?( Build|\))[^$]/Ui', $ua, $matches)) {
         include_once('clientDevices/Umi.php.inc');
         $model = trim($matches[1].' '.$matches[3]);
         $infos = array_merge($infos, get_UmiClientDevice($model));
@@ -1392,7 +1399,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Chuwi devices */
-    elseif (preg_match('/; (Hi10 pro)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (Hi[0-9]+ ?(pro|Air))( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Chuwi.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_ChuwiClientDevice($device));
@@ -1609,7 +1616,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Teclast devices */
-    elseif (preg_match('/; (TLA002)( Build|\))/U', $ua, $matches)) {
+    elseif (preg_match('/; (TLA002|M40_EEA)( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Teclast.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_TeclastClientDevice($device));
@@ -1711,14 +1718,11 @@ function client_getUAInfos($ua=false) {
         $infos = array_merge($infos, get_MobicelClientDevice($device));
     }
 
-    /* check Phh-Treble generic rom flashed device devices */
-    elseif (preg_match('/ Phh-Treble(.*)( Build|\))/Ui', $ua, $matches)) {
-        $infos = array_merge($infos, array(
-            'platform_company'  => 'Flashed mobile with Phh-Treble generic ROM.',
-            'platform_model'    => '',
-            'platform_type'     => 'handheld',
-            'platform_format'   => 'handheld',
-        ));
+    /* check known Unknown devices */
+    elseif (preg_match('/; (Phh-Treble|Unspecified Device).*( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Unknown.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_UnknownClientDevice($device));
     }
 
     /*** check operating system ***/
@@ -3045,6 +3049,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#(Gecko|Safari/537.36)/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_]+)\-[0-9]$#', $ua))
         return $fake;
 
+    /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 lQHGDnYu-22 Firefox/80.0 */
+    if (preg_match('#Gecko/20100101 ([a-zA-Z]{8}\-[0-9]{2}) Firefox/([0-9\.]{4,})$#', $ua))
+        return $fake;
+
     /* default result */
     return false;
 }
@@ -3121,13 +3129,13 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '92',                    // current is 84.0.2 , nightly is +6
+                'MaxVersion'    => '93',                    // current is 85 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '93',                    // current is 87
+                'MaxVersion'    => '94',                    // current is 88
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
