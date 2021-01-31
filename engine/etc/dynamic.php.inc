@@ -3,16 +3,15 @@
  * @brief CaMykS dynamic configuration
  * @brief Automatically loaded by CaMykS object.
  * @details Engine / Configuration file
- * @file engine/etc/dynamic.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2005
- * @date Modification: Apr 2018
- * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Jan 2021
+ * @copyright 2005 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
+
 /**
  * @var array $this->_conf
  * @brief CaMykS Configuration
@@ -30,10 +29,10 @@
  */
 $this->_conf = array(
     'server_encoding'   => 'utf8',
-    'database_driver'   => '', 
-    'database_host'     => '', 
-    'database_login'    => '', 
-    'database_password' => '', 
+    'database_driver'   => '',
+    'database_host'     => '',
+    'database_login'    => '',
+    'database_password' => '',
     'ModuleActionDelay' => 4,
     'TimeZone'          => 'Europe/Paris',
     'UserAgent'         => 'Mozilla/5.0 (compatible; CaMykSRequest/1.0; +http://www.camyks.net/request_bot.html)',
@@ -41,5 +40,5 @@ $this->_conf = array(
 
 /* load locale configuration */
 if (file_exists($this->camyks_path.'/engine/etc/dynamic.local.php.inc'))
-  require($this->camyks_path.'/engine/etc/dynamic.local.php.inc');
+  require $this->camyks_path.'/engine/etc/dynamic.local.php.inc';
 ?>
