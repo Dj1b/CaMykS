@@ -4,10 +4,10 @@
  * @brief Automatically loaded by CaMykS object.
  * @details Engine / Configuration file
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Sep 2005
- * @date Modification: Dec 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -22,7 +22,7 @@ $this->website = 'https://www.camyks.net';
  * @var string $this->version
  * @brief CaMykS full version
  */
-$this->version = '1.0-20210101';
+$this->version = '1.0-20210201';
 
 /**
  * @var string $this->mversion
@@ -34,13 +34,13 @@ $this->mversion = '1.0';
  * @var string $this->nversion
  * @brief CaMykS minor version
  */
-$this->nversion = '20210101';
+$this->nversion = '20210201';
 
 /**
  * @var integer $this->last_modification_date
  * @brief CaMykS last modification date
  */
-$this->last_modification_date = mktime(0, 0, 0, 1, 1, 2021);
+$this->last_modification_date = mktime(0, 0, 0, 2, 1, 2021);
 
 /**
  * @var string $this->engine_folder
