@@ -2,12 +2,11 @@
 /**
  * @brief Ulefone client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Ulefone.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Mar 2019
- * @date Modification: Sep 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -27,6 +26,7 @@ function get_UlefoneClientDevice($deviceCode='') {
         'armor x5'  => array('platform_model' => 'Armor X5',    'platform_year' => 2019),
         'armor_x6'  => array('platform_model' => 'Armor X6',    'platform_year' => 2019),
         'armor 7'   => array('platform_model' => 'Armor 7',     'platform_year' => 2020),
+        'armor 7e'  => array('platform_model' => 'Armor 7E',    'platform_year' => 2020),
     );
 
     /* Check for returning list */

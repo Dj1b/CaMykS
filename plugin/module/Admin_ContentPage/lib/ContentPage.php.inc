@@ -2,12 +2,11 @@
 /**
  * @brief Admin_ContentPage Module ContentPage library
  * @details Plugin / Module Library
- * @file plugin/module/Admin_ContentPage/lib/ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5.1
+ * @version 1.1.5.2
  * @date Creation: Jun 2005
- * @date Modification: Jun 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -379,16 +378,16 @@ final class ContentPage {
         /* check empty name */
         if ($this->name == '') {
             if ($this->id > 0) {
-            $this->name = $this->type.$this->id;
+                $this->name = $this->type.$this->id;
             } else {
-            $sql = 'select max(id) as m from admin_contentpage';
-            if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__))
-                if ($data = $camyks->db_conn->get_queryDataLine())
-                    $this->name = $this->type.($data['m']+1);
+                $sql = 'select max(id) as m from admin_contentpage';
+                if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__))
+                    if ($data = $camyks->db_conn->get_queryDataLine())
+                        $this->name = $this->type.($data['m']+1);
+                    else
+                        $this->name = $this->type;
                 else
                     $this->name = $this->type;
-            else
-                $this->name = $this->type;
             }
         } else if (!preg_match ('([_a-zA-Z\-])', $this->name)) {
             /* check if name contain at least one alphabetic char */
@@ -476,7 +475,7 @@ final class ContentPage {
      * @return boolean success
      */
     private function get_fromDatabase($page=null) {
-        if (isset ($page)) {
+        if (isset($page)) {
             if (is_numeric($page))
                 return $this->get_objectFromDatabase(' and admin_contentpage.id='.(int)$page);
             else if (is_string($page))
@@ -506,7 +505,7 @@ final class ContentPage {
      * @param string $query some query modification
      * @return boolean success
      */
-    private function get_objectFromDatabase ($query='') {
+    private function get_objectFromDatabase($query='') {
         global $camyks;
         $sql = 'select *';
         $sql .= ' from admin_contentpage, admin_contentpagelocale';
@@ -534,7 +533,6 @@ final class ContentPage {
         }
         return false;
     }
-
 
     /**
      * Load all object version from database, set the latest version to the object.
@@ -1332,7 +1330,6 @@ final class ContentPage {
     public function get_siteLink($params=array(), $lg='') {
         global $camyks;
 
-
         /* add name */
         $link = $this->name;
 
@@ -1394,7 +1391,7 @@ final class ContentPage {
                 $this->modules[$index]->display_admin();
                 break;
             case CAMYKS_MODE_SITE :
-                if ($camyks->benchMode!==false) $camyks->benchMode->start('Display module '.$index);
+                if ($camyks->benchMode !== false) $camyks->benchMode->start('Display module '.$index);
                     $this->modules[$index]->display_site($index);
                 break;
         }

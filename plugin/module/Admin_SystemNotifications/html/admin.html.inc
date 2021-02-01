@@ -3,10 +3,10 @@
  * @brief Admin_SystemNotifications Module admin main layout
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jul 2017
- * @date Modification: Sep 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
@@ -68,68 +68,68 @@ global $camyks;
                 </td>
             </tr>
 
-            <?php else : ?>
+        <?php else : ?>
 
-                <?php foreach ($followUp['modules'] as $module) : ?>
+            <?php foreach ($followUp['modules'] as $module) : ?>
+
+                <tr>
+                    <td colspan="3" class="eTableHeader" style="padding-left:<?= (max(10, $this->config->vars['module_mode']*20)); ?>px;">
+                        <?= $module['title']; ?>
+                    </td>
+                </tr>
+
+                <?php $alt = 0; ?>
+                <?php foreach ($module['items'] as $item) : ?>
 
                     <tr>
-                        <td colspan="3" class="eTableHeader" style="padding-left:<?= (max(10, $this->config->vars['module_mode']*20)); ?>px;">
-                            <?= $module['title']; ?>
+                        <td class="eTableLine<?= $alt; ?>" style="padding-left:<?= ((1+$this->config->vars['module_mode'])*20); ?>px;">
+                            <?= $item['title']; ?>
+                        </td>
+                        <td class="eTableLine<?= $alt; ?>" style="text-align:right; width:40px;">
+                            <?= $item['cnt']; ?>
+                        </td>
+                        <td class="eTableLine<?= $alt; ?>" style="width:20px; font-size:0;">
+                        <?php if ($item['priority'] == 0) : ?>
+                            <img src="<?= $this->get_fileURL('img/priority/low.png'); ?>" alt="<?= $this->get_translation('itempriority_low'); ?>" title="<?= $this->get_translation('itempriority_low'); ?>" />
+                        <?php elseif ($item['priority'] == 1) : ?>
+                            <img src="<?= $this->get_fileURL('img/priority/medium.png'); ?>" alt="<?= $this->get_translation('itempriority_medium'); ?>" title="<?= $this->get_translation('itempriority_medium'); ?>" />
+                        <?php elseif ($item['priority'] == 2) : ?>
+                            <img src="<?= $this->get_fileURL('img/priority/high.png'); ?>" alt="<?= $this->get_translation('itempriority_high'); ?>" title="<?= $this->get_translation('itempriority_high'); ?>" />
+                        <?php endif; ?>
                         </td>
                     </tr>
 
-                    <?php $alt = 0; ?>
-                    <?php foreach ($module['items'] as $item) : ?>
-
-                        <tr>
-                            <td class="eTableLine<?= $alt; ?>" style="padding-left:<?= ((1+$this->config->vars['module_mode'])*20); ?>px;">
-                                <?= $item['title']; ?>
-                            </td>
-                            <td class="eTableLine<?= $alt; ?>" style="text-align:right; width:40px;">
-                                <?= $item['cnt']; ?>
-                            </td>
-                            <td class="eTableLine<?= $alt; ?>" style="width:20px; font-size:0;">
-                            <?php if ($item['priority'] == 0) : ?>
-                                <img src="<?= $this->get_fileURL('img/priority/low.png'); ?>" alt="<?= $this->get_translation('itempriority_low'); ?>" title="<?= $this->get_translation('itempriority_low'); ?>" />
-                            <?php elseif ($item['priority'] == 1) : ?>
-                                <img src="<?= $this->get_fileURL('img/priority/medium.png'); ?>" alt="<?= $this->get_translation('itempriority_medium'); ?>" title="<?= $this->get_translation('itempriority_medium'); ?>" />
-                            <?php elseif ($item['priority'] == 2) : ?>
-                                <img src="<?= $this->get_fileURL('img/priority/high.png'); ?>" alt="<?= $this->get_translation('itempriority_high'); ?>" title="<?= $this->get_translation('itempriority_high'); ?>" />
-                            <?php endif; ?>
-                            </td>
-                        </tr>
-
-                        <?php $alt = abs($alt-1); ?>
-                    <?php endforeach; ?>
-
-                    <tr>
-                        <td colspan="3">
-                            &nbsp;
-                        </td>
-                    </tr>
-
+                    <?php $alt = abs($alt-1); ?>
                 <?php endforeach; ?>
-            <?php endif; ?>
 
-            <?php if ($this->config->vars['module_mode'] == 1) : ?>
-                    </table>
-                </div>
-            <?php else : ?>
+                <tr>
+                    <td colspan="3">
+                        &nbsp;
+                    </td>
+                </tr>
+
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        <?php if ($this->config->vars['module_mode'] == 1) : ?>
                 </table>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </div>
+            </div>
+        <?php else : ?>
+            </table>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
 
-    <div id="itemConfiguration" style="display:<?= $this->tabBuilder->get_tabDisplay('Configuration')?>;" class="adminContentPanel">
-        <?php $this->load_file('html/configuration/view.html.inc');?>
-    </div>
+<div id="itemConfiguration" style="display:<?= $this->tabBuilder->get_tabDisplay('Configuration')?>;" class="adminContentPanel">
+    <?php $this->load_file('html/configuration/view.html.inc');?>
+</div>
 
-    <?php if ($this->check_right(1) == true and $this->config->vars['module_mode'] == 1) : ?>
-        <div id="itemWebsites" style="display:<?= $this->tabBuilder->get_tabDisplay('Websites')?>;" class="adminContentPanel">
-            <?= $this->websiteList->display('head'); ?>
-            <?= $this->websiteList->display('list'); ?>
-        </div>
-    <?php endif; ?>
+<?php if ($this->check_right(1) == true and $this->config->vars['module_mode'] == 1) : ?>
+    <div id="itemWebsites" style="display:<?= $this->tabBuilder->get_tabDisplay('Websites')?>;" class="adminContentPanel">
+        <?= $this->websiteList->display('head'); ?>
+        <?= $this->websiteList->display('list'); ?>
+    </div>
+<?php endif; ?>
 
 <?php if ($this->help != null) : ?>
     <div id="itemhelp" style="display:<?= $this->tabBuilder->get_tabDisplay('help')?>;" class="adminContentPanel">

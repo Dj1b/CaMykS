@@ -1,168 +1,156 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Library
- * Creation Date    : Nov 2010
- * Last Modif Date  : Nov 2010
- *
- * Admin_GenericContactFormManagerSubject library for Admin_GenericContactFormManager module
+/**
+ * @brief Admin_GenericContactFormManager Module, subject library.
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1.1
+ * @date Creation: Nov 2010
+ * @date Modification: Jan 2021
+ * @copyright 2010 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Admin_GenericContactFormManagerSubject extends ModuleLibrary {
-  /*
-   * constructor
-   * @param integer $id
-   * @param Module $module
-   */
-  function Admin_GenericContactFormManagerSubject( $id, &$module ) {
-    parent::ModuleLibrary ( $id, $module );
+/**
+ * Admin_GenericContactFormManagerSubject class.
+ */
+final class Admin_GenericContactFormManagerSubject extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-    /* main items */
-    $this->add_newItem('status', 'db', 'int', 'tinyint unsigned', '', 0);
-    $this->add_newItem('title', 'db', 'text', 'varchar', 48, '', true);
-    
-    /* generic initialisation */
-    $this->init_library();
-  }
+        /* main items */
+        $this->add_newItem('status', 'db', 'int', 'tinyint unsigned', '', 0);
+        $this->add_newItem('title', 'db', 'text', 'varchar', 48, '', true);
 
-  /* overwrite methods */
+        /* Perform generic initialisation */
+        $this->init_library();
+    }
 
-  /*
-   * check object data
-   * @return boolean success
-   * @access private
-   */
-  function check_data () {
-    global $camyks;
-    return true;
-  }
-  
-  /*
-   * build SQL condition
-   * @param array $params
-   * @return string
-   * @access public
-   */
-  function build_SQLCondition( $params ) {
-    $query = array();
+    /* Override methods */
 
-    /* check status */
-    if ( isset($params['status']) and $params['status']!=-1)
-      $query[] = 'status = '.$params['status'];
-   
-    return implode(' AND ', $query);
-  }
+    /**
+     * Build SQL condition.
+     * @param array $params
+     * @return string
+     */
+    public function build_SQLCondition($params) {
+        $query = array();
 
-  /* specific methods */
+        /* check status */
+        if (isset($params['status']) and $params['status']!=-1)
+            $query[] = 'status = '.$params['status'];
 
-  /*
-   * return objects status list
-   * @param boolean $full
-   * @return array
-   * @access private
-   */
-  function get_multiStatusList($full=false) {
-    $list = array();
-    if ($full)
-      $list[-1] = $this->get_translation('subjectsstatus_all');
-    $list[0] = $this->get_translation('subjectsstatus_disabled');
-    $list[1] = $this->get_translation('subjectsstatus_enabled');
-    return $list;
-  }
+        return implode(' AND ', $query);
+    }
 
-  /*
-   * return object status list
-   * @return array
-   * @access private
-   */
-  function get_statusList() {
-    return array(0 => $this->get_translation('subjectstatus_disabled'),
-		 1 => $this->get_translation('subjectstatus_enabled'));
-  } 
+    /* Specific data methods */
 
-  /*
-   * return object status value
-   * @param mixed $status
-   * @return string
-   */
-  function get_statusValue($status=false) {
-    $list = $this->get_statusList();
-    if ($status === false)
-      $status = $this->vars['status'];
-    return $list[$status];
-  }
+    /**
+     * Return objects status list.
+     * @param boolean $full
+     * @return array
+     */
+    public function get_multiStatusList($full=false) {
+        $list = array();
+        if ($full)
+            $list[-1] = $this->get_translation('subjectsstatus_all');
+        $list[0] = $this->get_translation('subjectsstatus_disabled');
+        $list[1] = $this->get_translation('subjectsstatus_enabled');
+        return $list;
+    }
 
-  /*
-   * return object status icon list
-   * @return array
-   * @access private
-   */
-  function get_statusIconList() {
-    $theme = &$this->_libParent->theme;
-    return array(0 =>'<img src="'.$theme->get_pictURL('empty', 12, 'std').'" alt="" border="0" />',
-		 1 =>'<img src="'.$theme->get_pictURL('valid', 12, 'std').'" alt="" border="0" />');
-  } 
+    /**
+     * Return object status list.
+     * @return array
+     */
+    public function get_statusList() {
+        return array(
+            0 => $this->get_translation('subjectstatus_disabled'),
+            1 => $this->get_translation('subjectstatus_enabled'),
+        );
+    }
 
-  /*
-   * return object status icon
-   * @return array
-   * @access private
-   */
-  function get_statusIcon($status=false) {
-    $icons = $this->get_statusIconList();
-    if ($status === false)
-      return $icons[$this->vars['status']];
-    return $icons[$status];
-  }
+    /**
+     * Return object status value.
+     * @param mixed $status
+     * @return string
+     */
+    public function get_statusValue($status=false) {
+        $list = $this->get_statusList();
+        if ($status === false)
+            $status = $this->vars['status'];
+        return $list[$status];
+    }
 
-  /*
-   * return subject list with given params
-   * @params array $params
-   * @return array
-   * @access private
-   */
-  function get_list($params=array()) {
-    global $camyks;
-    $p = array('status'=>-1, 'limit'=>-1, 'count'=>-1, 'order'=>'id', 'orderway'=>'');
-    $params = array_merge($p, $params);
-    $w = $this->build_whereStatement($params);
-    return $this->get_objectList($camyks->current_language, $w, $params['limit'], $params['count'], $params['order'], $params['orderway']);
-  } 
-  
-  /*
-   * return subject count with given params
-   * @params array $params
-   * @return array
-   * @access private
-   */
-  function count($params=array()) {
-    global $camyks;
-    $p = array('status'=>-1);
-    $params = array_merge($p, $params);
-    return $this->get_objectCount($this->build_whereStatement($params));
-  }
-  
-  /*
-   * build where statement from params
-   * @param array $params
-   * @return string
-   * @access private
-   */
-  function build_whereStatement($params=array()) {
-    $w = array();
+    /**
+     * Return object status icon list.
+     * @return array
+     */
+    public function get_statusIconList() {
+        $theme = &$this->_libParent->theme;
+        return array(
+            0 => '<img src="'.$theme->get_pictURL('empty', 12, 'std').'" alt="" />',
+            1 => '<img src="'.$theme->get_pictURL('valid', 12, 'std').'" alt="" />');
+    }
 
-    /* check status */
-    if ( is_string($params['status']) and $params['status'] != '')
-      $w[] = 'status '.$params['status'];
-    elseif($params['status'] != -1 )
-      $w[] = 'status = '.$params['status'];
-    
-    /* return result */
-    return implode(' and ', $w);
-  }
+    /**
+     * Return object status icon.
+     * @return array
+     */
+    public function get_statusIcon($status=false) {
+        $icons = $this->get_statusIconList();
+        if ($status === false)
+            return $icons[$this->vars['status']];
+        return $icons[$status];
+    }
+
+    /**
+     * Return subject list with given params.
+     * @param array $params
+     * @return array
+     */
+    public function get_list($params=array()) {
+        global $camyks;
+        $p = array('status'=>-1, 'limit'=>-1, 'count'=>-1, 'order'=>'id', 'orderway'=>'');
+        $params = array_merge($p, $params);
+        $w = $this->build_whereStatement($params);
+        return $this->get_objectList($camyks->current_language, $w, $params['limit'], $params['count'], $params['order'], $params['orderway']);
+    }
+
+    /**
+     * Return subject count with given params.
+     * @param array $params
+     * @return array
+     */
+    public function count($params=array()) {
+        global $camyks;
+        $p = array('status'=>-1);
+        $params = array_merge($p, $params);
+        return $this->get_objectCount($this->build_whereStatement($params));
+    }
+
+    /**
+     * Build where statement from params
+     * @param array $params
+     * @return string
+     */
+    private function build_whereStatement($params=array()) {
+        $w = array();
+
+        /* check status */
+        if (is_string($params['status']) and $params['status'] != '')
+            $w[] = 'status '.addslashes($params['status']);
+        elseif($params['status'] != -1)
+            $w[] = 'status = '.$params['status'];
+
+        /* Return result */
+        return implode(' and ', $w);
+    }
 }
 ?>

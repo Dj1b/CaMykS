@@ -2,12 +2,11 @@
 /**
  * @brief Apple client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Apple.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.3
  * @date Creation: Jul 2018
- * @date Modification: Jul 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -21,37 +20,45 @@
 function get_AppleClientDevice($deviceCode='') {
     $deviceList = array(
         /* iPhones */
-        'iPhone1.1'     => array('platform_model' => 'iPhone',          'platform_year' => 2007),
-        'iPhone1.2'     => array('platform_model' => 'iPhone 3G',       'platform_year' => 2008),
-        'iPhone2.1'     => array('platform_model' => 'iPhone 3GS',      'platform_year' => 2009),
-        'iPhone3.1'     => array('platform_model' => 'iPhone 4',        'platform_year' => 2010),
-        'iPhone3.2'     => array('platform_model' => 'iPhone 4',        'platform_year' => 2010),
-        'iPhone3.3'     => array('platform_model' => 'iPhone 4',        'platform_year' => 2010),
-        'iPhone4.1'     => array('platform_model' => 'iPhone 4S',       'platform_year' => 2011),
-        'iPhone5.1'     => array('platform_model' => 'iPhone 5',        'platform_year' => 2012),
-        'iPhone5.2'     => array('platform_model' => 'iPhone 5',        'platform_year' => 2012),
-        'iPhone5.3'     => array('platform_model' => 'iPhone 5C',       'platform_year' => 2013),
-        'iPhone6.1'     => array('platform_model' => 'iPhone 5S',       'platform_year' => 2013),
-        'iPhone6.2'     => array('platform_model' => 'iPhone 5S',       'platform_year' => 2013),
-        'iPhone7.1'     => array('platform_model' => 'iPhone 6 Plus',   'platform_year' => 2014),
-        'iPhone7.2'     => array('platform_model' => 'iPhone 6',        'platform_year' => 2014),
-        'iPhone8.1'     => array('platform_model' => 'iPhone 6S ',      'platform_year' => 2015),
-        'iPhone8.2'     => array('platform_model' => 'iPhone 6S Plus',  'platform_year' => 2015),
-        'iPhone8.4'     => array('platform_model' => 'iPhone SE',       'platform_year' => 2016),
-        'iPhone9.1'     => array('platform_model' => 'iPhone 7',        'platform_year' => 2016),
-        'iPhone9.3'     => array('platform_model' => 'iPhone 7',        'platform_year' => 2016),
-        'iPhone9.2'     => array('platform_model' => 'iPhone 7 Plus',   'platform_year' => 2016),
-        'iPhone9.4'     => array('platform_model' => 'iPhone 7 Plus',   'platform_year' => 2016),
-        'iPhone10.1'    => array('platform_model' => 'iPhone 8',        'platform_year' => 2017),
-        'iPhone10.4'    => array('platform_model' => 'iPhone 8',        'platform_year' => 2017),
-        'iPhone10.2'    => array('platform_model' => 'iPhone 8 Plus',   'platform_year' => 2017),
-        'iPhone10.5'    => array('platform_model' => 'iPhone 8 Plus',   'platform_year' => 2017),
-        'iPhone10.3'    => array('platform_model' => 'iPhone X',        'platform_year' => 2017),
-        'iPhone10.6'    => array('platform_model' => 'iPhone X',        'platform_year' => 2017),
-        'iPhone11.2'    => array('platform_model' => 'iPhone XS',       'platform_year' => 2018),
-        'iPhone11.4'    => array('platform_model' => 'iPhone XS Max',   'platform_year' => 2018),
-        'iPhone11.6'    => array('platform_model' => 'iPhone XS Max',   'platform_year' => 2018),
-        'iPhone11.8'    => array('platform_model' => 'iPhone XR',       'platform_year' => 2018),
+        'iPhone1.1'     => array('platform_model' => 'iPhone',              'platform_year' => 2007),
+        'iPhone1.2'     => array('platform_model' => 'iPhone 3G',           'platform_year' => 2008),
+        'iPhone2.1'     => array('platform_model' => 'iPhone 3GS',          'platform_year' => 2009),
+        'iPhone3.1'     => array('platform_model' => 'iPhone 4',            'platform_year' => 2010),
+        'iPhone3.2'     => array('platform_model' => 'iPhone 4',            'platform_year' => 2010),
+        'iPhone3.3'     => array('platform_model' => 'iPhone 4',            'platform_year' => 2010),
+        'iPhone4.1'     => array('platform_model' => 'iPhone 4S',           'platform_year' => 2011),
+        'iPhone5.1'     => array('platform_model' => 'iPhone 5',            'platform_year' => 2012),
+        'iPhone5.2'     => array('platform_model' => 'iPhone 5',            'platform_year' => 2012),
+        'iPhone5.3'     => array('platform_model' => 'iPhone 5C',           'platform_year' => 2013),
+        'iPhone6.1'     => array('platform_model' => 'iPhone 5S',           'platform_year' => 2013),
+        'iPhone6.2'     => array('platform_model' => 'iPhone 5S',           'platform_year' => 2013),
+        'iPhone7.1'     => array('platform_model' => 'iPhone 6 Plus',       'platform_year' => 2014),
+        'iPhone7.2'     => array('platform_model' => 'iPhone 6',            'platform_year' => 2014),
+        'iPhone8.1'     => array('platform_model' => 'iPhone 6S ',          'platform_year' => 2015),
+        'iPhone8.2'     => array('platform_model' => 'iPhone 6S Plus',      'platform_year' => 2015),
+        'iPhone8.4'     => array('platform_model' => 'iPhone SE',           'platform_year' => 2016),
+        'iPhone9.1'     => array('platform_model' => 'iPhone 7',            'platform_year' => 2016),
+        'iPhone9.3'     => array('platform_model' => 'iPhone 7',            'platform_year' => 2016),
+        'iPhone9.2'     => array('platform_model' => 'iPhone 7 Plus',       'platform_year' => 2016),
+        'iPhone9.4'     => array('platform_model' => 'iPhone 7 Plus',       'platform_year' => 2016),
+        'iPhone10.1'    => array('platform_model' => 'iPhone 8',            'platform_year' => 2017),
+        'iPhone10.4'    => array('platform_model' => 'iPhone 8',            'platform_year' => 2017),
+        'iPhone10.2'    => array('platform_model' => 'iPhone 8 Plus',       'platform_year' => 2017),
+        'iPhone10.5'    => array('platform_model' => 'iPhone 8 Plus',       'platform_year' => 2017),
+        'iPhone10.3'    => array('platform_model' => 'iPhone X',            'platform_year' => 2017),
+        'iPhone10.6'    => array('platform_model' => 'iPhone X',            'platform_year' => 2017),
+        'iPhone11.2'    => array('platform_model' => 'iPhone XS',           'platform_year' => 2018),
+        'iPhone11.4'    => array('platform_model' => 'iPhone XS Max',       'platform_year' => 2018),
+        'iPhone11.6'    => array('platform_model' => 'iPhone XS Max',       'platform_year' => 2018),
+        'iPhone11.8'    => array('platform_model' => 'iPhone XR',           'platform_year' => 2018),
+        'iPhone12,1'    => array('platform_model' => 'iPhone 11',           'platform_year' => 2019),
+        'iPhone12,3'    => array('platform_model' => 'iPhone 11 Pro',       'platform_year' => 2019),
+        'iPhone12,5'    => array('platform_model' => 'iPhone 11 Pro Max',   'platform_year' => 2019),
+        'iPhone12,8'    => array('platform_model' => 'iPhone SE',           'platform_year' => 2019),
+        'iPhone13,1'    => array('platform_model' => 'iPhone 12 Mini',      'platform_year' => 2020),
+        'iPhone13,2'    => array('platform_model' => 'iPhone 12',           'platform_year' => 2020),
+        'iPhone13,3'    => array('platform_model' => 'iPhone 12 Pro',       'platform_year' => 2020),
+        'iPhone13,4'    => array('platform_model' => 'iPhone 12 Pro Max',   'platform_year' => 2020),
 
         /* iPads */
         'iPad1.1'       => array('platform_model' => 'iPad',                'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2010),
@@ -69,6 +76,8 @@ function get_AppleClientDevice($deviceCode='') {
         'iPad6.12'      => array('platform_model' => 'iPad 5',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2017),
         'iPad7.5'       => array('platform_model' => 'iPad 6',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2018),
         'iPad7.6'       => array('platform_model' => 'iPad 6',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2018),
+        'iPad7,11'      => array('platform_model' => 'iPad 7',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2019),
+        'iPad7,12'      => array('platform_model' => 'iPad 7',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2019),
 
         /* iPads Pro */
         'iPad6.3'       => array('platform_model' => 'iPad Pro (9.7\')',    'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),

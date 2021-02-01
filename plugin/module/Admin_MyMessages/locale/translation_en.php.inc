@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CamykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Jun 2007
- * Last Modif Date	: Jun 2007
- *
- * Admin_MyMessages english dictionnary
+/**
+ * @brief Admin_MyMessages Module english dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2007
+ * @date Modification: Jan 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_mymessages_title'] = 'Private messages';
 $this->trads['mod_admin_mymessages_desc'] = '';

@@ -3,10 +3,10 @@
  * @brief Admin_GenericGuestBookManager module
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Sep 2010
- * @date Modification: Feb 2020
- * @copyright 2010 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2010 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -16,11 +16,22 @@
  */
 final class Admin_GenericGuestBookManager extends Module {
     /**
-     * Internal variable
+     * @var Object $msgItem
+     * @brief Message object.
      */
     public $msgItem;
+    
+    /**
+     * @var array $msgList
+     * @brief Message list.
+     */
     public $msgList;
-    public $config;
+    
+    /**
+     * var Object $config
+     * @brief Plugin configuration.
+     */
+    protected $config;
 
     /**
      * Class constructor.
@@ -59,7 +70,7 @@ final class Admin_GenericGuestBookManager extends Module {
     /* Override Module methods */
 
     /**
-     * Install module
+     * Install module.
      * @return boolean success
      */
     public function install() {
@@ -67,7 +78,7 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * unintall module
+     * Uninstall module.
      * @return boolean success
      */
     public function uninstall() {
@@ -75,7 +86,7 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * check module installation
+     * Check module installation.
      * @return boolean result
      */
     public function is_installed() {
@@ -83,7 +94,7 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * get module rights
+     * Define module permission.
      * @return void
      */
     public function get_rights() {
@@ -106,16 +117,16 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * update control panel description
+     * Update control panel description.
      * @return void
      */
     public function get_adminControlPanelAction( ) {
         global $camyks;
 
-        /* count messages by status */
+        /* Count messages by status */
         $n = $this->msgItem->get_objectCount('status=2');
 
-        /* update module description for admin control panel */
+        /* Update module description for admin control panel */
         if ($n == 1)
             $camyks->trads['mod_admin_genericguestbookmanager_desc'] = $this->get_translation('desc1');
         elseif ($n > 1)
@@ -123,17 +134,17 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * Return notified items for module
+     * Return notified items for module.
      * @return Array
      */
     public function get_adminInternalNotifications() {
 
-        /* load reports count */
+        /* Load reports count */
         $cnt = $this->msgItem->get_objectCount('status=2');
         if ($cnt == 0)
             return array();
 
-        /* initialise result */
+        /* Initialise result */
         $result = array($this->name => array(
             'title' => $this->title,
             'items' => array(
@@ -145,7 +156,7 @@ final class Admin_GenericGuestBookManager extends Module {
             )
         ));
 
-        /* send result */
+        /* Send result */
         return $result;
     }
 
@@ -156,23 +167,23 @@ final class Admin_GenericGuestBookManager extends Module {
     public function init_admin() {
         global $camyks;
 
-        /* check read rights */
+        /* Check read permission */
         if ($this->check_right(0) === false)
             return $this->init_admin_accessDenied();
 
-        /* check dependencies */
+        /* Check dependencies */
         if (!isset($camyks->inputs['AdminItemListViewer']))
             return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
         if (!isset($camyks->inputs['TabBuilder']))
             return $this->init_admin_missingPlugin('Input', 'TabBuilder');
 
-        /* get informations */
-        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
-
-        /* load config */
+        /* Load configuration */
         $this->config->get();
 
-        /* check action to execute */
+        /* Load action to execute */
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
+
+        /* Execute action */
         switch ($this->mode) {
             case 'view_msg':
                 /* mode == view_msg */
@@ -208,7 +219,7 @@ final class Admin_GenericGuestBookManager extends Module {
         parent::init_admin();
     }
 
-    /* specific admin mode methods */
+    /* Specific admin mode methods */
 
     /**
      * Initialise module object in admin/main mode
@@ -220,20 +231,20 @@ final class Admin_GenericGuestBookManager extends Module {
         /* get data */
         $this->adminTitle = $this->title;
 
-        /* load list parameters*/
+        /* Load list parameters*/
         $this->load_library('Admin_GenericGuestBookManagerMessageListParams');
 
-        /* initialise object list input */
+        /* Initialise object list input */
         $this->msgList = &$camyks->inputs['AdminItemListViewer'];
         /* add parameters */
         $this->msgList->set_params($this->msgListParams);
-        /* initialise input */
+        /* Initialise input */
         $this->msgList->initialise();
 
-        /* load tabs */
+        /* Load tabs */
         $this->tabBuilder = &$camyks->inputs['TabBuilder'];
 
-        /* check for config panel */
+        /* Check for config panel */
         if ($this->check_right(2) !== false) {
             $this->tabBuilder->add_tab(array(
                 'name'  => 'Config',
@@ -247,7 +258,7 @@ final class Admin_GenericGuestBookManager extends Module {
             'title' => $this->get_translation('messages'),
         ));
 
-        /* initialise tabs */
+        /* Initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Messages'));
 
         /* get buttons */
@@ -264,16 +275,16 @@ final class Admin_GenericGuestBookManager extends Module {
     private function init_admin_viewMsg(){
         global $camyks;
 
-        /* check item id */
+        /* Check item id */
         if (!isset($_REQUEST['msg_id']))
             return $this->init_admin_main();
 
-        /* load message */
+        /* Load message */
         $this->msgItem->id = (int)$_REQUEST['msg_id'];
         $this->msgItem->get();
         $this->msgItem->get_fromItems();
 
-        /* load interface title */
+        /* Load interface title */
         $this->adminTitle = $this->get_translation('title_msgid', $this->msgItem->id);
 
         /* build buttons list */
@@ -282,7 +293,7 @@ final class Admin_GenericGuestBookManager extends Module {
             'title' => $camyks->get_translation('back'),
         ));
 
-        /* update layout */
+        /* Update layout */
         $this->set_selectedLayout('admin_view_msg.html.inc');
     }
 
@@ -293,7 +304,7 @@ final class Admin_GenericGuestBookManager extends Module {
     private function init_admin_editMsg() {
         global $camyks;
 
-        /* check rights */
+        /* Check rights */
         if ($this->check_right(1) === false)
             return $this->init_admin_actionNotAllowed();
 
@@ -311,7 +322,7 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->editform->set_object($this->msgItem);
         $this->editform->add_hidden('msg_id', $this->msgItem->id);
 
-        /* load interface title */
+        /* Load interface title */
         if ($this->msgItem->id == 0 )
             $this->adminTitle = $this->get_translation('title_newmsg');
         else
@@ -329,7 +340,7 @@ final class Admin_GenericGuestBookManager extends Module {
             ),
         );
 
-        /* update layout */
+        /* Update layout */
         $this->set_selectedLayout('admin_edit_msg.html.inc');
     }
 
@@ -340,14 +351,14 @@ final class Admin_GenericGuestBookManager extends Module {
     private function init_admin_saveMsg() {
         global $camyks;
 
-        /* check rights */
+        /* Check rights */
         if ($this->check_right(1) === false)
             return $this->init_admin_actionNotAllowed();
 
         /* disable admin menu */
         $this->disable_adminEngineMenus();
 
-        /* check item id */
+        /* Check item id */
         if (!isset($_REQUEST['msg_id']))
             return $this->init_admin_main();
 
@@ -360,7 +371,7 @@ final class Admin_GenericGuestBookManager extends Module {
             $this->text = $this->get_translation('message_notsaved');
         }
 
-        /* update layout */
+        /* Update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink());
     }
@@ -372,14 +383,14 @@ final class Admin_GenericGuestBookManager extends Module {
     private function init_admin_deleteMsg() {
         global $camyks;
 
-        /* check rights */
+        /* Check rights */
         if ($this->check_right(1) === false)
             return $this->init_admin_actionNotAllowed();
 
         /* disable admin menu */
         $this->disable_adminEngineMenus();
 
-        /* check item id */
+        /* Check item id */
         if (!isset($_REQUEST['msg_id']))
             return $this->init_admin_main();
 
@@ -391,7 +402,7 @@ final class Admin_GenericGuestBookManager extends Module {
             $this->text = $this->get_translation('message_notdeleted');
         }
 
-        /* update layout */
+        /* Update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink());
     }
@@ -403,14 +414,14 @@ final class Admin_GenericGuestBookManager extends Module {
     private function init_admin_editConfig() {
         global $camyks;
 
-        /* check user rights */
+        /* Check user rights */
         if ($this->check_right(2) === false)
             return $this->init_admin_actionNotAllowed();
 
-        /* load config */
+        /* Load config */
         $this->config->get();
 
-        /* load external data */
+        /* Load external data */
         $this->userList = $camyks->modules['Admin_User']->get_activeUserList(true);
 
         /* get configuration form */
@@ -439,7 +450,7 @@ final class Admin_GenericGuestBookManager extends Module {
             )
         );
 
-        /* update layout */
+        /* Update layout */
         $this->selected_layout = 'admin_edit_config.html.inc';
     }
 
@@ -450,21 +461,21 @@ final class Admin_GenericGuestBookManager extends Module {
     private function init_admin_saveConfig() {
         global $camyks;
 
-        /* check user rights */
+        /* Check user rights */
         if ($this->check_right(2) === false)
             return $this->init_admin_actionNotAllowed();
 
         /* disable admin menu */
         $this->disable_adminEngineMenus();
 
-        /* save config */
+        /* Save config */
         $this->config->get_fromHeader();
         if ( $this->config->save())
             $this->text = $this->get_translation('config_saved');
         else
             $this->text = $this->get_translation('config_notsaved');
 
-        /* update layout */
+        /* Update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect(4, $this->get_adminLink());
     }
@@ -549,22 +560,22 @@ final class Admin_GenericGuestBookManager extends Module {
     private function send_notifications() {
         global $camyks;
 
-        /* check for notifications status */
+        /* Check for notifications status */
         if ($this->get_configValue('notification_status') == 0)
             return true;
 
-        /* load sender & recipients */
+        /* Load sender & recipients */
         $sender = $this->get_configValue('notification_sender');
         $recipients = $this->get_configValue('notification_recipients');
 
-        /* check sender & recipients */
+        /* Check sender & recipients */
         if ($sender == '' or count($recipients) == 0)
             return true;
 
-        /* load content */
+        /* Load content */
         $subject = string_html2Text($this->get_translation('notification_emailsubject'), 'ISO-8859-1');
 
-        /* send email */
+        /* Send email */
         foreach ($recipients as $rec) {
             $this->admin = new AdminUser($rec);
             $this->admin->get();
@@ -585,7 +596,7 @@ final class Admin_GenericGuestBookManager extends Module {
     private function get_notificationContent() {
         global $camyks;
 
-        /* load CSS */
+        /* Load CSS */
         $css = $camyks->themes[$camyks->get_confValue('site_default_theme')]->get_filePath('email.css');
 
         /* build html page */
@@ -601,24 +612,24 @@ final class Admin_GenericGuestBookManager extends Module {
         return $c;
     }
 
-    /* statistics related methods */
+    /* Statistics related methods */
 
     /**
-     * update statistics
+     * Update statistics
      * @return boolean success
      */
     private function update_statistics() {
         global $camyks;
 
-        /* check for statistics status */
+        /* Check for statistics status */
         if ($this->get_configValue('statistic_status') == 0)
           return true;
 
-        /* update statistics */
+        /* Update statistics */
         return $camyks->update_statistic('guestbook_msg', $this->name, 'dated', '', '', '');
     }
 
-    /* specific tool methods */
+    /* Specific tool methods */
 
     /**
      * Return config value.
@@ -646,7 +657,7 @@ final class Admin_GenericGuestBookManager extends Module {
     public function initialise_configDisplay() {
         $this->isConfig = true;
 
-        /* load config */
+        /* Load config */
         $this->config->get();
     }
 
@@ -668,13 +679,13 @@ final class Admin_GenericGuestBookManager extends Module {
 
         $this->isConfig = true;
 
-        /* load config */
+        /* Load config */
         $this->config->get();
 
-        /* load external data */
+        /* Load external data */
         $this->userList = $camyks->modules['Admin_User']->get_activeUserList(true);
 
-        /* update form */
+        /* Update form */
         $this->configform = &$form;
         $this->configform->set_object($this->config);
         $this->configform->add_hidden('notification_recipients_count_', count($this->userList));

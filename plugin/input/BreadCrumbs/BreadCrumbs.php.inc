@@ -5,10 +5,10 @@
  * @details Plugin / Input Engine
  * @file plugin/input/BreadCrumbs/BreadCrumbs.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2008
- * @date Modification: Apr 2018
- * @copyright 2008 - 2018 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2008 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -84,9 +84,9 @@ final class BreadCrumbs extends Input {
         while (isset($this->pages[$currentPage])) {
             $page = &$this->pages[$currentPage];
             if ($page->active == 1) {
-                $p = array('title'=> $page->shorttitle!=''?$page->shorttitle:($page->title!=''?$page->title:$page->name), 'url'=>$page->get_siteLink());
+                $p = array('title' => $page->get_shortTitleDisplay('html'), 'url'=>$page->get_siteLink());
             } elseif ($page->id !=0 and ($page->shorttitle != '' or $page->title != '')) {
-                $p = array('title'=> $page->shorttitle!=''?$page->shorttitle:$page->title, 'url'=>false);
+                $p = array('title' => $page->get_shortTitleDisplay('html'), 'url'=>false);
             } else {
                 break;
             }

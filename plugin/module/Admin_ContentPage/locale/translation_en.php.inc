@@ -2,12 +2,11 @@
 /**
  * @brief Admin_ContentPage Module english dictionnary
  * @details Plugin / Module Dictionnary
- * @file plugin/module/Admin_ContentPage/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Sep 2009
- * @date Modification: Feb 2019
- * @copyright 2009 - 2019 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2009 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -16,6 +15,7 @@ $this->trads['mod_admin_contentpage_desc'] = 'Manager website pages';
 
 /* global */
 $this->trads['mod_admin_contentpage_pagetitle'] = 'Page';
+$this->trads['mod_admin_contentpage_page'] = 'Page';
 $this->trads['mod_admin_contentpage_pages'] = 'Pages';
 
 /* rights */

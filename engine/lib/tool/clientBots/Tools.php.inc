@@ -2,12 +2,11 @@
 /**
  * @brief Tools as client bots specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientBots/Tools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.30
  * @date Creation: May 2018
- * @date Modification: Sep 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -1340,6 +1339,16 @@ function _client_getKnownTools() {
         'tool_url'          => 'https://tools.ietf.org/html/draft-foudil-securitytxt',
         'engine_title'      => 'security.txt',
         'engine_url'        => 'https://securitytxt.org/',
+    );
+
+    /* SiteSucker */
+    $knownTools['sitesucker'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'SiteSucker',
+        'engine_url'        => 'https://ricks-apps.com/index.html',
     );
 
     /* return list */

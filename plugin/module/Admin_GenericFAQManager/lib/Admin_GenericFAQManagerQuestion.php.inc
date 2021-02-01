@@ -3,10 +3,10 @@
  * @brief Admin_GenericFAQManager Module question library.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Feb 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,9 +45,18 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
      * @return boolean success
      */
     public function check_data() {
-        /* Add next position to new object */
-        if ($this->id == 0)
+        /* Check sortPosition value */
+        if ($this->id == 0) {
             $this->_libItems['sortPosition']->value = $this->get_newPosition();
+        } else {
+            $o = $this->get_newObject($this->id);
+            $o->get();
+            $o->get_fromItems();
+            if ($o->vars['family'] == $this->_libItems['family']->value)
+                $this->_libItems['sortPosition']->value = $o->vars['sortPosition'];
+            else
+                $this->_libItems['sortPosition']->value = $this->get_newPosition();
+        }
 
         /* Return success */
         return true;
@@ -125,11 +134,11 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
 
         /* check status */
         if ($params['status'] != -1)
-                $w[] = 'status = '.$params['status'];
+            $w[] = 'status = '.$params['status'];
 
         /* check family */
         if ($params['family'] != -1)
-                $w[] = 'family = '.$params['family'];
+            $w[] = 'family = '.$params['family'];
 
         /* return result */
         return implode(' and ', $w);

@@ -1,16 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Scripts
- * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
- * 
- * Admin_GenericMediaLibraryManager picture saving script
+/**
+ * @brief Admin_GenericMediaLibraryManager module picture saving script
+ * @details Plugin / Module Scripts
+ * @author CaMykS Team
+ * @version 1.0.1
+ * @date Creation: Jun 2015
+ * @date Modification: Jan 2019
+ * @copyright 2015 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
 function PictureSaving(name) {
   this.name = name;
   this.params = {};
@@ -30,7 +28,7 @@ function PictureSaving(name) {
     else
       this.params[param] = value;
   };
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -44,9 +42,9 @@ function PictureSaving(name) {
       return this.params[param]
     return false;
   };
-  
+
   /*
-   * set locale value 
+   * set locale value
    * @param string name
    * @param string value
    * @return void
@@ -55,9 +53,9 @@ function PictureSaving(name) {
   this.set_locale = function(name, value) {
     this.locales[name.toLowerCase()] = value;
   };
-  
+
   /*
-   * get locale value 
+   * get locale value
    * @param string name
    * @return void
    * @access public
@@ -67,8 +65,8 @@ function PictureSaving(name) {
       return this.locales[name.toLowerCase()];
     return name;
   };
-  
-  /* 
+
+  /*
    * initialise object
    * @return void
    * @access public
@@ -76,32 +74,32 @@ function PictureSaving(name) {
   this.initialise = function() {
   	/* check navigator type */
   	this.set_param('navType',  navigator.appName.indexOf("Microsoft")==-1? 'real':'msie');
-  	
+
   	/* save form object */
   	this.set_param('adminMessage', document.getElementById('adminMessage'));
-  	
+
   	/* init ajax request engine */
     this.loader = new CAjaxRequest(this.name+'.loader');
     this.loader._initialise(null, 'POST', this.name+'._receiveRequestResult', 'xml', this.name+'._receiveRequestError');
-    
+
   	/* initialise request queue */
   	this.requestQueue = new Array();
 
     /* send main picture saving request */
     this._executeRequest(this.get_param('requestBaseURL')+'&mode=optimisePictureImage&picture_id='+this.get_param('pictureId'));
   };
-  
+
   /*
-   * quit 
+   * quit
    * @return void
    * @access public
    */
   this.quit = function() {
     document.location.href = this.get_param('backURL');
   }
-  
+
   /* request methods */
-  
+
   /*
    * execute request
    * @param string url
@@ -124,18 +122,18 @@ function PictureSaving(name) {
    * @return void
    * @access private
    */
-  this._receiveRequestResult = function(result) {    
+  this._receiveRequestResult = function(result) {
  	/* decompile result */
 	result = xml_serializeObject(result);
-	
+
 	/* check result : if result is undefined, what to do ? */
     if ( result == null )
       return;
-    
+
 	/* get errors or messages */
     if ( result['status'] == 'failure' )
       alert(result['message']);
-   
+
     /* check action result */
     switch (result['action']) {
       case 'optimisePictureImage':
@@ -149,14 +147,14 @@ function PictureSaving(name) {
         setTimeout(this.name+'.quit();', this.get_param('quitDelay')*1000);
         break;
     }
-				
+
 	/* try to reduce request queue */
     if ( this.requestQueue.length > 0 ) {
       request =  this.requestQueue.shift();
       this._executeRequest(request[0], request[1], true);
     }
   };
-	
+
   /*
    * receive request error
    * @param xml result

@@ -2,12 +2,11 @@
 /**
  * @brief SocialNetworksSharingPanel Input french dictionnary
  * @details Plugin / Input Dictionnary
- * @file plugin/input/SocialNetworksSharingPanel/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.2
  * @date Creation: Feb 2012
- * @date Modification: Jul 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -55,4 +54,21 @@ $this->trads['input_socialnetworkssharingpanel_followlocation_fixedleft'] = 'Fix
 $this->trads['input_socialnetworkssharingpanel_followlocation_fixedright'] = 'Fix&eacute; &agrave; droite';
 
 $this->trads['input_socialnetworkssharingpanel_formtitle_follownetworks'] = 'Vos pages &agrave; suivre';
+
+$this->trads['input_socialnetworkssharingpanel_tabintegrate'] = 'Int&eacute;grer';
+$this->trads['input_socialnetworkssharingpanel_formtitle_facebook'] = 'Facebook';
+
+$this->trads['input_socialnetworkssharingpanel_formitem_facebookaccount'] = 'Compte : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_width'] = 'Largeur : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_height'] = 'Hauteur : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_tabs'] = 'Onglets : ';
+$this->trads['input_socialnetworkssharingpanel_formvalue_timeline'] = 'Timeline';
+$this->trads['input_socialnetworkssharingpanel_formvalue_events'] = 'Events';
+$this->trads['input_socialnetworkssharingpanel_formvalue_messages'] = 'Messages';
+$this->trads['input_socialnetworkssharingpanel_formitem_hidecover'] = 'Cacher la photo : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_showfacepile'] = 'Afficher les photos des likers : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_hidecta'] = 'Cacher le bouton d\'appel &agrave; action : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_smallheader'] = 'En-t&ecirc;te r&eacute;duite : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_adaptwidth'] = 'Adaptation automatique de la largeur : ';
+$this->trads['input_socialnetworkssharingpanel_formitem_lazy'] = 'Mode "lazy" activ&eacute : ';
 ?>

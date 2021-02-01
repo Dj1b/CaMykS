@@ -5,8 +5,8 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.0
  * @date Creation: Nov 2020
- * @date Modification: Nov 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -19,8 +19,9 @@
  */
 function get_TeclastClientDevice($deviceCode='') {
     $deviceList = array(
-        /* Teclast mobiles */
+        /* Teclast tablets */
         'TLA002'  => array('platform_model' => 'M30', 'platform_year' => 2019, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'M40_EEA' => array('platform_model' => 'M40', 'platform_year' => 2020, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
     );
 
     /* Check for returning list */

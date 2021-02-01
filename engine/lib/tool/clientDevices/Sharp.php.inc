@@ -2,12 +2,11 @@
 /**
  * @brief Sharp client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Sharp.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: May 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -23,6 +22,7 @@ function get_SharpClientDevice($deviceCode='') {
         'SH-02H'    => array('platform_model' => 'Aquos Compact',   'platform_year' => 2015),
         'FS8002'    => array('platform_model' => 'Z2',              'platform_year' => 2016),
         'SHV39'     => array('platform_model' => 'Aquos R',         'platform_year' => 2017),
+        'SHV40'     => array('platform_model' => 'Aquos Sense',     'platform_year' => 2017),
         'FS8032'    => array('platform_model' => 'Aquos S3',        'platform_year' => 2018),
         'SH-D01'    => array('platform_model' => 'Aquos D10',       'platform_year' => 2018),
     );

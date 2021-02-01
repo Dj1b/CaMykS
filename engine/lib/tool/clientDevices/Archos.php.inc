@@ -3,10 +3,10 @@
  * @brief Archos client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Apr 2018
- * @date Modification: Nov 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -43,6 +43,7 @@ function get_ArchosClientDevice($deviceCode='') {
         '101b Xenon v2'             => array('platform_model' => '101b Xenon',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2015),
         '101c Xenon'                => array('platform_model' => '101c Xenon',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2017),
         '70 Oxygen'                 => array('platform_model' => '70 Oxygen',               'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2016),
+        '70b Copper'                => array('platform_model' => '70b Copper',              'platform_type' => 'tablet',   'platform_format' => 'tablet',   'platform_year' => 2017),
 
         /* Archos phones */
         'A40TI'                     => array('platform_model' => '40 Titanium',             'platform_year' => 2013),

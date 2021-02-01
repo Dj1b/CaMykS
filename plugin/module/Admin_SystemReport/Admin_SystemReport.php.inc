@@ -1,14 +1,13 @@
 <?php
 /**
  * @brief Admin_SystemReport Module
- * <br /> Monitor and log reports.
+ * <br /> Monitors and logs reports.
  * @details Plugin, Module Engine
- * @file plugin/module/Admin_SystemReport/Admin_SystemReport.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: May 2007
- * @date Modification: Dec 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -28,7 +27,6 @@ final class Admin_SystemReport extends Module {
      * @brief Record list.
      */
     public $reportList = array();
-
 
     /**
      * Class constructor.
@@ -237,7 +235,7 @@ final class Admin_SystemReport extends Module {
     /* Specific admin mode methods */
 
     /**
-     * Initialise module object in admin/display mode
+     * Initialise module object in admin/display mode.
      * @return void
      */
     private function init_admin_main() {
@@ -268,7 +266,7 @@ final class Admin_SystemReport extends Module {
     }
 
     /**
-     * Initialise module object in admin/readreport mode
+     * Initialise module object in admin/readreport mode.
      * @return void
      */
     private function init_admin_readReport() {
@@ -417,7 +415,7 @@ final class Admin_SystemReport extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /* specific tool methods */
+    /* Specific tool methods */
 
     /**
      * Create and save a new report.
@@ -477,7 +475,7 @@ final class Admin_SystemReport extends Module {
     }
 
     /**
-     * Return report type list
+     * Return report type list.
      * @param boolean $more
      * @return array
      */

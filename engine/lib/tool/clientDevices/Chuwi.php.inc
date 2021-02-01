@@ -2,12 +2,11 @@
 /**
  * @brief Chuwi client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Chuwi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Sep 2019
- * @date Modification: Sep 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -22,6 +21,8 @@ function get_ChuwiClientDevice($deviceCode='') {
     $deviceList = array(
         /* Chuwi tablets */
         'Hi10 pro'  => array('platform_model' => 'Hi10 Pro',    'platform_year' => 2016, 'platform_type' => 'tablet', 'platform_format' => 'tablet'),
+        'Hi9Air'    => array('platform_model' => 'Hi9 Air',     'platform_year' => 2019, 'platform_type' => 'tablet', 'platform_format' => 'tablet'),
+
     );
 
     /* Check for returning list */

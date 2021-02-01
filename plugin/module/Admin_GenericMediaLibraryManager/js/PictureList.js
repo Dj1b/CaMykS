@@ -1,16 +1,14 @@
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version	: 1.0
- * Object Type      : Plugin / Module Scripts
- * Creation Date	: Jun 2015
- * Last Modif Date	: Jun 2015
- * 
- * Admin_GenericMediaLibraryManager picture list script
+/**
+ * @brief Admin_GenericMediaLibraryManager module picture list script
+ * @details Plugin / Module Scripts
+ * @author CaMykS Team
+ * @version 1.0.1
+ * @date Creation: Jun 2015
+ * @date Modification: Jan 2019
+ * @copyright 2015 - 2019 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
- 
 function PictureList(name) {
   this.name = name;
   this.params = {};
@@ -30,7 +28,7 @@ function PictureList(name) {
     else
       this.params[param] = value;
   };
-   
+
   /*
    * return param value from name
    * @param mixed param
@@ -45,9 +43,9 @@ function PictureList(name) {
       return this.params[param];
     return false;
   };
-  
+
   /*
-   * set locale value 
+   * set locale value
    * @param string name
    * @param string value
    * @return void
@@ -56,9 +54,9 @@ function PictureList(name) {
   this.set_locale = function(name, value) {
     this.locales[name.toLowerCase()] = value;
   };
-  
+
   /*
-   * get locale value 
+   * get locale value
    * @param string name
    * @return void
    * @access public
@@ -68,18 +66,18 @@ function PictureList(name) {
       return this.locales[name.toLowerCase()];
     return name;
   };
-  
-  /* 
+
+  /*
    * initialise object
    * @return void
    * @access public
    */
   this.initialise = function() {
-  	
+
 	/* finalise initialisation */
     this.loaded = true;
   };
-  
+
   /*
    * display picture preview
    * @return void
@@ -88,12 +86,12 @@ function PictureList(name) {
   this.display_picturePreview = function(pId) {
     container = document.getElementById('picturePreview');
     container.innerHTML = '';
-    
+
     img = document.createElement('img');
     img.src = this.get_param('picturesURL', pId);
     img.alt = '';
     img.style.maxWidth = this.get_param('previewMaxWidth')+'px';
-    
+
     container.appendChild(img);
   };
 }

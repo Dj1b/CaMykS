@@ -5,10 +5,10 @@
  * @details Plugin, Module Engine
  * @file plugin/module/Admin_ContentPage/Admin_ContentPage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.3
+ * @version 1.1.3.1
  * @date Creation: Jun 2005
- * @date Modification: May 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo other page type (folder, ...)
@@ -999,7 +999,6 @@ final class Admin_ContentPage extends Module {
      * @return string
      */
     public function get_sitePageLink($page='', $lg='', $params=array()) {
-
         /* no page, no link */
         if ($page == '')
             return '';
@@ -1025,7 +1024,6 @@ final class Admin_ContentPage extends Module {
      * @return string
      */
     public function get_siteKeyPageLink($key='', $lg='', $params=array()) {
-
         /* no page, no link */
         if ($key == '')
             return '';

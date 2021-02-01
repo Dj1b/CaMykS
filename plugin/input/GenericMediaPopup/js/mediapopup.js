@@ -3,10 +3,10 @@
  * @details Plugin / Input Javascripts
  * @file plugin/input/GenericMediaPopup/js/mediapopup.js
  * @author CaMykS Team
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2011
- * @date Modification: Dec 2019
- * @copyright 2011 - 2019 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2011 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -163,7 +163,7 @@ function MediaPopup(name) {
         fileExt = file.split('.').pop().toLowerCase();
         if (fileExt == 'flv' && swfobject) { // display FLV movie
 
-                /* update height with controller height */
+            /* update height with controller height */
             height += this.get_param('flvControlerHeight');
 
             /* update container div size */
@@ -184,7 +184,7 @@ function MediaPopup(name) {
                 /* display popup div */
              this.show_popup('flash', width, height);
 
-     } else if (fileExt == 'swf' && swfobject) {
+        } else if (fileExt == 'swf' && swfobject) {
 
             /* update container div size */
             contentBox.style.width = width+'px';
@@ -197,23 +197,23 @@ function MediaPopup(name) {
 
             swfobject.embedSWF(file, "MediaPopupContentBox", width, height, "9.0.0", false);
 
-                /* display popup div */
-             this.show_popup('flash', width, height);
+            /* display popup div */
+            this.show_popup('flash', width, height);
 
-     } else if (file.match(/https?:\/\/(www\.)?youtu\.be\//) != null) { // display youtube video
-             /* update container div size */
+        } else if (file.match(/https?:\/\/(www\.)?youtu\.be\//) != null) { // display youtube video
+            /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
 
             /* add youtube iframe */
             contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
-                    + ' src="https://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
-                    + ' frameborder="0" allowfullscreen></iframe>';
+                + ' src="https://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
+                + ' frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 
             /* display popup div */
-             this.show_popup('youtube', width, height);
+            this.show_popup('youtube', width, height);
 
-     } else if (file.indexOf('http://www.dailymotion.com/video/') == 0 || file.indexOf('http://dai.ly/') == 0) { // display dailymotion video
+        } else if (file.indexOf('http://www.dailymotion.com/video/') == 0 || file.indexOf('http://dai.ly/') == 0) { // display dailymotion video
              /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
@@ -224,64 +224,62 @@ function MediaPopup(name) {
 
             /* add dailymotion iframe */
             contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
-                    + ' src="https://www.dailymotion.com/embed/video/'+video+'"></iframe>';
+                + ' src="https://www.dailymotion.com/embed/video/'+video+'"></iframe>';
 
             /* display popup div */
              this.show_popup('youtube', width, height);
 
-     } else if (fileExt == 'html' || fileExt == 'htm'
-             || file.indexOf('url:') == 0)    {    // display HTML file
+        } else if (fileExt == 'html' || fileExt == 'htm' || file.indexOf('url:') == 0)    {    // display HTML file
 
-                if (file.indexOf('url:') == 0) {
-                        file = file.substring(4);
-                }
+            if (file.indexOf('url:') == 0) {
+                file = file.substring(4);
+            }
 
-
-                /* update container div size */
+            /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
 
-             /* add html frame to popup */
-             if (this.get_param('navType') == 'real') {
-                 html = document.createElement('object').cloneNode(true);
-                 html.setAttribute('data', file);
-                 html.setAttribute('type', 'text/html');
-                 html.style.width = width+'px';
-                 html.style.height = height+'px';
-                } else {
-                    html = document.createElement('iframe').cloneNode(true);
-                 html.setAttribute('src', file);
-                 html.setAttribute('frameBorder', 0);
-                 html.setAttribute('width', width);
-                 html.setAttribute('height', height);
-                }
-                contentBox.appendChild(html);
+            /* add html frame to popup */
+            if (this.get_param('navType') == 'real') {
+                html = document.createElement('object').cloneNode(true);
+                html.setAttribute('data', file);
+                html.setAttribute('type', 'text/html');
+                html.style.width = width+'px';
+                html.style.height = height+'px';
+            } else {
+                html = document.createElement('iframe').cloneNode(true);
+                html.setAttribute('src', file);
+                html.setAttribute('frameBorder', 0);
+                html.setAttribute('width', width);
+                html.setAttribute('height', height);
+            }
+            contentBox.appendChild(html);
 
-             /* display popup div */
-             this.show_popup('html', width, height);
-     } else if (file.substring(0, 8) == 'content:')    {    // display HTML content
+            /* display popup div */
+            this.show_popup('html', width, height);
+        } else if (file.substring(0, 8) == 'content:')    {    // display HTML content
 
-                /* update container div size */
+            /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
             contentBox.style.maxWidth = '100%';
 
-                contentBox.innerHTML = file.substring(8);
+            contentBox.innerHTML = file.substring(8);
 
-             /* display popup div */
-             this.show_popup('html', width, height);
-     } else if (fileExt == 'mp4' || fileExt == 'm4v') {
+            /* display popup div */
+            this.show_popup('html', width, height);
+        } else if (fileExt == 'mp4' || fileExt == 'm4v') {
 
-         /* update container div size */
+            /* update container div size */
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
 
             /* add video tag */
             contentBox.innerHTML = '<video controls="" width="'+width+'" height="'+height+'" preload="" src="'+file+'">&nbsp;</video>';
 
-         /* display popup div */
-         this.show_popup('video', width, height);
-     } else { // display Image
+            /* display popup div */
+            this.show_popup('video', width, height);
+        } else { // display Image
 
                 /* load image */
                 var mainImage = new Image();

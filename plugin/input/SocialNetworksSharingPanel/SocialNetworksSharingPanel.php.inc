@@ -4,10 +4,10 @@
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Nov 2009
- * @date Modification: Jun 2020
- * @copyright 2009 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2009 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -86,6 +86,7 @@ final class SocialNetworksSharingPanel extends Input {
         switch ($mode) {
             case 'share': return $this->initialise_sharePanel($params);
             case 'follow': return $this->initialise_followPanel($params);
+            case 'integrate': return $this->initialise_integratePanel($params);
         }
     }
 
@@ -101,6 +102,7 @@ final class SocialNetworksSharingPanel extends Input {
         switch ($mode) {
             case 'share': $this->display_sharePanel($params); break;
             case 'follow' : $this->display_followPanel($params); break;
+            case 'integrate' : $this->display_integratePanel($params); break;
         }
 
         /* generic display */
@@ -179,7 +181,7 @@ final class SocialNetworksSharingPanel extends Input {
             'iconsFolder'       => '',
         );
 
-        /* merge params */
+        /* Merge params */
         $this->iparams = array_merge($this->iparams, $params);
 
         /* clean title & description */
@@ -217,18 +219,49 @@ final class SocialNetworksSharingPanel extends Input {
     }
 
     /**
-     * Initialise input in follow mode
+     * Initialise input in follow mode.
      * @param array $params
      * @return void
      */
     private function initialise_followPanel($params) {
 
-        /* merge params */
+        /* Merge params */
         $this->params = array_merge($this->config->vars, array('iconsFolder'=>''), $params);
 
         /* check for styles loading */
         if ($this->params['follow_insertion'] == 1 and $this->params['follow_styleSource'] == 'plugin') {
             $this->add_styleFile('css/styles.css');
+        }
+    }
+
+    /**
+     * Initialise input in follow mode
+     * @param array $params
+     * @return void
+     */
+    private function initialise_integratePanel($params) {
+        global $camyks, $languages;
+
+        /* Merge params */
+        $this->params = array_merge($this->config->vars, array('network'=>''), $params);
+
+        /* Load specific scripts */
+        if ($this->params['network'] == 'facebook') {
+            $l = $languages[$camyks->current_language]['locale'][''][0];
+
+            /*
+            $this->add_JSExternFile('https://connect.facebook.net/'.$l.'/sdk.js');
+            $this->add_JSExternFile('https://connect.facebook.net/'.$l.'/fbevents.js');
+            */
+            $this->add_JSScript('
+                (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id; js.async = true;
+                js.src = "//connect.facebook.net/'.$l.'/sdk.js#xfbml=1&version=v2.5";
+                fjs.parentNode.insertBefore(js, fjs);
+                }(document, \'script\', \'facebook-jssdk\'));
+                ');
         }
     }
 
@@ -241,14 +274,14 @@ final class SocialNetworksSharingPanel extends Input {
      */
     private function display_sharePanel($params=array()) {
 
-        /* update index */
+        /* Update index */
         $this->currentIndex++;
 
-        /* merge new params */
+        /* Merge new params */
         $this->dparams = array_merge($this->iparams, $params);
         $this->count_displayedNetworks();
 
-        /* update selected layout */
+        /* Update selected layout */
         $this->set_selectedLayout('input.html.inc');
     }
 
@@ -258,11 +291,28 @@ final class SocialNetworksSharingPanel extends Input {
      * @return void
      */
     private function display_followPanel($params=array()) {
-        /* merge params */
+        /* Merge params */
         $this->params = array_merge($this->params, $params);
 
-        /* update selected layout */
+        /* Update selected layout */
         $this->set_selectedLayout('input_follow.html.inc');
+    }
+
+    /**
+     * Display input in integrate mode.
+     * @param array $params
+     * @return void
+     */
+    private function display_integratePanel($params=array()) {
+        /* Merge params */
+        $this->params = array_merge($this->params, $params);
+
+        /* Update selected layout */
+        if ($this->params['network'] == '')
+            $this->set_selectedLayout('null');
+        else
+            $this->set_selectedLayout('Integrate/'.$this->params['network'].'.html.inc');
+
     }
 
     /* specific tool methods */
@@ -585,6 +635,10 @@ final class SocialNetworksSharingPanel extends Input {
                 'name'  => 'Follow',
                 'title' => $this->get_translation('tabfollow'),
             ),
+            array(
+                'name'  => 'Integrate',
+                'title' => $this->get_translation('tabintegrate'),
+            ),
         ));
 
         /* initialise tabs */
@@ -607,7 +661,7 @@ final class SocialNetworksSharingPanel extends Input {
     public function initialise_configEdition($form) {
         global $camyks;
 
-        /* update form */
+        /* Update form */
         $this->form = &$form;
         $this->form->set_object($this->config);
 
@@ -627,6 +681,10 @@ final class SocialNetworksSharingPanel extends Input {
             array(
                 'name'  => 'Follow',
                 'title' => $this->get_translation('tabfollow'),
+            ),
+            array(
+                'name'  => 'Integrate',
+                'title' => $this->get_translation('tabintegrate'),
             ),
         ));
 

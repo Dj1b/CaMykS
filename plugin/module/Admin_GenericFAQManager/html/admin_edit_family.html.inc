@@ -3,21 +3,21 @@
  * @brief Admin_GenericFAQManager Module admin edit family layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Feb 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
 $flags = array();
-if (count($camyks->get_confValue('editing_languages')) > 1)
-    foreach ($camyks->get_confValue('editing_languages') as $l)
-        $flags[$l] = '<img src="'.language_getIcon($l, false).'" alt="" border="0" style="float:right;" />';
+if (count($lgs = $camyks->get_confValue('editing_languages')) > 1)
+    foreach ($lgs as $l)
+        $flags[$l] = '<img src="'.language_getIcon($l, false).'" alt="" style="float:right;" />';
 else
-    foreach ($camyks->get_confValue('editing_languages') as $l)
+    foreach ($lgs as $l)
         $flags[$l] = '';
 ?>
 <?= $this->theme->get_boxHeader(array('class'=>'adminEditorModule')); ?>
@@ -37,7 +37,7 @@ else
             </td>
         </tr>
 
-        <?php foreach ($camyks->get_confValue('editing_languages') as $l) : ?>
+        <?php foreach ($lgs as $l) : ?>
         <tr>
             <td class="eTableLine0 eContent2">
                 <?= $flags[$l]; ?>

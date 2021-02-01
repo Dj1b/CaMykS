@@ -3,10 +3,10 @@
  * @brief Admin_GenericFAQManager Module.
  * @details Plugin / Module engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Feb 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -274,8 +274,8 @@ final class Admin_GenericFAQManager extends Module {
 
         /* get form */
         $this->editform = new HTMLForm('edit_question', $this->get_adminlink(array('mode'=>'save_question')), 'POST');
-        $this->editform->add_hidden('question_id', $this->questionItem->id);
         $this->editform->set_object($this->questionItem);
+        $this->editform->add_hidden('question_id', $this->questionItem->id);
 
         /* get editor input */
         $this->input = $camyks->get_input('TinyMCEv3');
@@ -446,8 +446,9 @@ final class Admin_GenericFAQManager extends Module {
 
         /* Load form */
         $this->editform = new HTMLForm('edit_family', $this->get_adminlink(array('mode'=>'save_family')), 'POST');
-        $this->editform->add_hidden('family_id', $this->familyItem->id);
         $this->editform->set_object($this->familyItem);
+        $this->editform->add_hidden('family_id', $this->familyItem->id);
+        $this->editform->add_hidden('sortPosition');
 
         /* Build title */
         $this->adminTitle = $this->title;

@@ -1,42 +1,52 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Library
- * Create Date		: Nov 2006
- * Last Modif Date	: Sep 2007
- *      
- * Admin_LanguageCheckerEngine library for Admin_LanguageChecker module
+/**
+ * @brief Admin_LanguageChecker Module, engine library.
+ * @details Plugin, Module Engine
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Nov 2006
+ * @date Modification: Jan 2021
+ * @copyright 2006 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Admin_LanguageCheckerEngine {
-  /* variables */
-  var $hasfile;
-  var $trads;
+/**
+ * Admin_LanguageCheckerEngine class.
+ */
+final class Admin_LanguageCheckerEngine {
+    /**
+     * var boolean $hasfile
+     * @brief Has language file.
+     */
+    public $hasfile;
 
-  /*
-   * constructor
-   * @param string $type
-   * @param string $item
-   * @param string $locale
-   */
-  function Admin_LanguageCheckerEngine ($folder, $locale) {
-    global $camyks;
-    
-    /* build file full path */
-    $file = $folder.'/translation_'.$locale.$camyks->file_extension;
+    /**
+     * var array $trads
+     * @brief Locale list.
+     */
+    public $trads;
 
-    /* load trad */
-    $this->trads = array();
-    if (file_exists ($file)) {
-      $this->hasfile = true;
-      require ($file);
-    } else {
-      $this->hasfile = false;
+    /**
+     * Class constructor.
+     * @param string $folder
+     * @param string $locale
+     * @return void
+     */
+    public function __construct($folder, $locale) {
+        global $camyks;
+
+        /* Build file full path */
+        $file = $folder.'/translation_'.$locale.$camyks->file_extension;
+
+        /* Load locales */
+        $this->trads = array();
+        if (file_exists($file)) {
+            $this->hasfile = true;
+            require ($file);
+        } else {
+            $this->hasfile = false;
+        }
     }
-  }
 }
 ?>

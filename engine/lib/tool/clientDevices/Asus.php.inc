@@ -3,10 +3,10 @@
  * @brief Asus client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: Apr 2018
- * @date Modification: Nov 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -98,6 +98,7 @@ function get_AsusClientDevice($deviceCode='') {
         'X00RD'     => array('platform_model' => 'Zenfone Live L1',         'platform_year' => 2018),
         'Z01RD'     => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
         'I01WD'     => array('platform_model' => 'Zenfone 6',               'platform_year' => 2019),
+        'I002D'     => array('platform_model' => 'Zenfone 7',               'platform_year' => 2020),
 
         /* Asus phones - ROG Phone series */
         'Z01QD'     => array('platform_model' => 'ROG Phone',               'platform_year' => 2018),

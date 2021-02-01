@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author	    : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0a
- * Object Version   : 1.0
- * Object Type	    : Plugin / Module Dictionnary
- * Creation Date    : Jul 2010
- * Last Modif Date  : Jul 2010
- *
- * Admin_GenericDirectoryManager french dictionnary
-*/
+/**
+ * @brief Admin_GenericDirectoryManager Module french dictionnary
+ * @details Plugin / Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2010
+ * @date Modification: Jan 2021
+ * @copyright 2010 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_admin_genericdirectorymanager_title'] = 'Annuaire';
 $this->trads['mod_admin_genericdirectorymanager_desc'] = 'Gestion des contacts';
 

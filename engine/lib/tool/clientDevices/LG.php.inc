@@ -3,10 +3,10 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.40
  * @date Creation: Apr 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -64,6 +64,7 @@ function get_LGClientDevice($deviceCode='') {
         'H870'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H870D'     => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H870DS'    => array('platform_model' => 'G6',              'platform_year' => 2017),
+        'H872'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H873'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H918'      => array('platform_model' => 'V20',             'platform_year' => 2018),
         'H930'      => array('platform_model' => 'V30',             'platform_year' => 2017),
@@ -86,6 +87,7 @@ function get_LGClientDevice($deviceCode='') {
         'M327'      => array('platform_model' => 'X Charge',        'platform_year' => 2017),
         'M400'      => array('platform_model' => 'Stylus 3',        'platform_year' => 2017),
         'M470'      => array('platform_model' => 'Stylo 3 Plus',    'platform_year' => 2017),
+        'MS210'     => array('platform_model' => 'Aristo',          'platform_year' => 2017),
         'P715'      => array('platform_model' => 'Optimus L7 II',   'platform_year' => 2013),
         'P875'      => array('platform_model' => 'Optimus F5',      'platform_year' => 2013),
         'P920'      => array('platform_model' => 'Optimus 3D',      'platform_year' => 2011),
@@ -97,13 +99,16 @@ function get_LGClientDevice($deviceCode='') {
         'TP260'     => array('platform_model' => 'K20 Plus',        'platform_year' => 2019),
         'Q720'      => array('platform_model' => 'Stylo 5',         'platform_year' => 2019),
         'V405'      => array('platform_model' => 'V40',             'platform_year' => 2018),
+        'V409N'     => array('platform_model' => 'V40',             'platform_year' => 2020),
         'V600'      => array('platform_model' => 'ThinQ 5G',        'platform_year' => 2020),
+        'VS985'     => array('platform_model' => 'G3',              'platform_year' => 2014),
         'VS986'     => array('platform_model' => 'G4',              'platform_year' => 2015),
         'VS987'     => array('platform_model' => 'G5',              'platform_year' => 2016),
         'X210'      => array('platform_model' => 'K7',              'platform_year' => 2016),
         'X410'      => array('platform_model' => 'K30',             'platform_year' => 2018),
         'X410.F'    => array('platform_model' => 'K11+',            'platform_year' => 2018),
         'X420'      => array('platform_model' => 'K40',             'platform_year' => 2019),
+        'X520'      => array('platform_model' => 'K50',             'platform_year' => 2019),
         'X525'      => array('platform_model' => 'Q60',             'platform_year' => 2019),
     );
 

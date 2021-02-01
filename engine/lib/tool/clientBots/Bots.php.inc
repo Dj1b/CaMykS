@@ -3,10 +3,10 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.75
+ * @version 1.0.76
  * @date Creation: May 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -4981,6 +4981,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Hive',
         'engine_url'        => 'https://thehive.ai',
+    );
+
+    /* PR-CY.RU bot */
+    $knownBots['pr-cy.ru'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'PR•CY',
+        'engine_url'        => 'https://a.pr-cy.ru',
+    );
+
+    /* WhizeBot */
+    $knownBots['whizebot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'WhizeBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Whize',
+        'engine_url'        => 'https://whize.co',
+    );
+
+    /* MTRobot */
+    $knownBots['mtrobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Metrics Tools Analytics Crawler',
+        'bot_url'           => 'https://metrics-tools.de/robot.html',
+        'engine_title'      => 'Metrics Tools',
+        'engine_url'        => 'https://metrics-tools.de/',
     );
 
     /* Return bot list */

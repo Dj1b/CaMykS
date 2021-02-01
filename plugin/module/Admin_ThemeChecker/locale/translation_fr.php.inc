@@ -1,21 +1,19 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Jul 2007
- * Last Modif Date	: Jul 2007
- *
- * Admin_ThemeChecker french dictionnary
+/**
+ * @brief Admin_ThemeChecker Input french dictionnary
+ * @details Plugin / Input Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2007
+ * @date Modification: Jan 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_themechecker_title'] = 'V&eacute;rificateur de th&egrave;me';
 $this->trads['mod_admin_themechecker_desc'] = 'Permet de v&eacute;rifier les th&egrave;mes';
 
 /* tabs titles */
-$this->trads['mod_admin_themechecker_tabproperties'] = 'Propri&eacute;t&eacute;s';
 $this->trads['mod_admin_themechecker_tabitems'] = 'El&eacute;ments graphiques';
 $this->trads['mod_admin_themechecker_tabpicts'] = 'Pictos';
 $this->trads['mod_admin_themechecker_tabdemo'] = 'Exemples';

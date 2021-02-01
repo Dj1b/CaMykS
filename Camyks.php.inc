@@ -3,10 +3,10 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.1
+ * @version 1.0.21.2
  * @date Creation: Jun 2005
- * @date Modification: Dec 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jan 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -2108,7 +2108,7 @@ final class Camyks {
      * @return string
      */
     public function get_siteCurrentLink($lg='', $params=null) {
-        return $this->get_siteLink($this->contentPage->id, $this->contentPage->name, $lg, $params!=null ? $params : $this->contentPage->params);
+        return $this->get_siteLink($this->contentPage->id, $this->contentPage->name, $lg, !is_null($params) ? $params : $this->contentPage->params);
     }
 
     /**
@@ -2144,7 +2144,7 @@ final class Camyks {
      * @param string $params
      * @return array
      */
-    function get_siteLinkDecodeParams($params) {
+    public function get_siteLinkDecodeParams($params) {
         $p = array();
         $params = explode('_', $params);
         for ($i=1; $i<count($params); $i+=2) {
@@ -2160,7 +2160,7 @@ final class Camyks {
      * @return void
      */
     private function get_pageContent() {
-        if ($this->benchMode!==false) $this->benchMode->start('CaMykS page loading');
+        if ($this->benchMode !== false) $this->benchMode->start('CaMykS page loading');
 
         switch ($this->mode) {
             case CAMYKS_MODE_SITE:
@@ -2432,7 +2432,7 @@ final class Camyks {
      * @param array $params
      * @return string
      */
-    public function get_siteLinkByName ($name, $lg='', $params=array()) {
+    public function get_siteLinkByName($name, $lg='', $params=array()) {
         $page = ContentPage::static_get_pageBasicInfoByName($name);
         return $this->get_rootBaseURL().$this->get_siteLink($page->id, $page->name, $lg, $params);
     }
