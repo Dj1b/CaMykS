@@ -3,7 +3,7 @@
  * @brief SocialNetworksSharingPanel Input english dictionnary
  * @details Plugin / Input Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Feb 2012
  * @date Modification: Feb 2021
  * @copyright 2012 - 2021 CaMykS Team
@@ -45,7 +45,7 @@ $this->trads['input_socialnetworkssharingpanel_formitem_insertion'] = 'Insertion
 $this->trads['input_socialnetworkssharingpanel_formitem_stylesource'] = 'Styles source: ';
 $this->trads['input_socialnetworkssharingpanel_formitem_location'] = 'Location: ';
 
-$this->trads['input_socialnetworkssharingpanel_followinsertion_manual'] = 'Manuel';
+$this->trads['input_socialnetworkssharingpanel_followinsertion_manual'] = 'Manual';
 $this->trads['input_socialnetworkssharingpanel_followinsertion_automatic'] = 'Automatic';
 
 $this->trads['input_socialnetworkssharingpanel_followstylesource_plugin'] = 'Plugin';
