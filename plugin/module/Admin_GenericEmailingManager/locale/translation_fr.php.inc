@@ -2,12 +2,11 @@
 /**
  * @brief Admin_GenericEmailingManager Module french dictionnary.
  * @details Plugin, Module Dictionnary
- * @file plugin/module/Admin_GenericEmailingManager/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -234,5 +233,4 @@ $this->trads['mod_admin_genericemailingmanager_contactstobeimported'] = '%s cont
 $this->trads['mod_admin_genericemailingmanager_status'] = 'Etat';
 $this->trads['mod_admin_genericemailingmanager_group'] = 'Groupe';
 $this->trads['mod_admin_genericemailingmanager_denomination'] = 'D&eacute;nomination';
-
 ?>
