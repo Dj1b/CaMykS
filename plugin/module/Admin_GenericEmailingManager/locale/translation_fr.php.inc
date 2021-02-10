@@ -87,7 +87,6 @@ $this->trads['mod_admin_genericemailingmanager_formitem_backpage'] = 'Page de re
 $this->trads['mod_admin_genericemailingmanager_properties'] = 'Propri&eacute;t&eacute;s';
 $this->trads['mod_admin_genericemailingmanager_select_sitepage'] = 'S&eacute;lectionner une page du site';
 
-
 /* admin edit generic content */
 $this->trads['mod_admin_genericemailingmanager_tabproperties'] = 'Propri&eacute;t&eacute;s';
 

@@ -2,17 +2,16 @@
 /**
  * @brief Admin_User Module english dictionnary.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_User/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2012
- * @date Modification: Mar 2019
- * @copyright 2012 - 2019 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_user_title'] = 'Users';
-$this->trads['mod_admin_user_desc'] = 'Manager administrators';
+$this->trads['mod_admin_user_desc'] = 'Manage administrators';
 
 /* users status list */
 $this->trads['mod_admin_user_users_all'] = 'All';

@@ -232,5 +232,4 @@ $this->trads['mod_admin_genericemailingmanager_contactstobeimported'] = '%s cont
 $this->trads['mod_admin_genericemailingmanager_status'] = 'Status';
 $this->trads['mod_admin_genericemailingmanager_group'] = 'Group';
 $this->trads['mod_admin_genericemailingmanager_denomination'] = 'Denomination';
-
 ?>

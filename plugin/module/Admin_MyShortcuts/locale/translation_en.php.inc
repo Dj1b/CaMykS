@@ -2,17 +2,16 @@
 /**
  * @brief Admin_MyShortcuts Module english dictionnary.
  * @details Plugin / Module Dictionnary
- * @file plugin/module/Admin_MyShortcuts/locale/translation_en.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2008
- * @date Modification: Jan 2019
- * @copyright 2008 - 2019 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2008 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_myshortcuts_title'] = 'My shortcuts';
-$this->trads['mod_admin_myshortcuts_desc'] = 'Edit my shortcuts';
+$this->trads['mod_admin_myshortcuts_desc'] = 'Edit your shortcuts';
 
 /* admin menu */
 $this->trads['mod_admin_myshortcuts_menutitle'] = 'Shortcuts';
@@ -33,7 +32,7 @@ $this->trads['mod_admin_myshortcuts_openshortcut'] = 'Open this shortcut';
 $this->trads['mod_admin_myshortcuts_deleteshortcut'] = 'Delete this shortcut';
 
 /* admin edit shortcut */
-$this->trads['mod_admin_myshortcuts_formitem_url'] = 'URL : ';
+$this->trads['mod_admin_myshortcuts_formitem_url'] = 'URL: ';
 
 /* admin error */
 $this->trads['mod_admin_myshortcuts_accessdenied'] = 'Access denied. You can only edit your own shortcuts.';
