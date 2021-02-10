@@ -3,10 +3,10 @@
  * @brief Admin_Group Module group library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2007
- * @date Modification: Dec 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @remark Contains 2 default groups : all / none
@@ -78,7 +78,7 @@ final class AdminGroup {
      * @param Object $parent
      * @return void
      */
-    public function AdminGroup($name = '', $parent = null) {
+    public function __construct($name = '', $parent = null) {
         $this->name = $name;
         $this->is_new = ($name == '' ? 1 : 0);
         $this->_libParent = &$parent;
