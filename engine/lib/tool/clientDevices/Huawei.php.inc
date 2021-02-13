@@ -3,9 +3,9 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.86
+ * @version 1.0.87
  * @date Creation: Apr 2018
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -104,6 +104,7 @@ function get_HuaweiClientDevices() {
         'STK-L21'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'STK-LX1'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
         'STK-LX3'   => array('platform_model' => 'P Smart Z',       'platform_year' => 2019),
+        'ANA-NX9'   => array('platform_model' => 'P40',             'platform_year' => 2020),
         'JNY-LX1'   => array('platform_model' => 'P40 Lite',        'platform_year' => 2020),
         'ART-L29'   => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'ART-L29N'  => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),

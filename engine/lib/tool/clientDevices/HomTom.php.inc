@@ -2,12 +2,11 @@
 /**
  * @brief HomTom client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/HomTom.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2018
- * @date Modification: Jun 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -40,6 +39,8 @@ function get_HomTomClientDevice($deviceCode='') {
         'HT37Pro'   => array('platform_model' => 'HT37 Pro',    'platform_year' => 2017),
         'HT50'      => array('platform_model' => 'HT50',        'platform_year' => 2017),
         'HT70'      => array('platform_model' => 'HT70',        'platform_year' => 2018),
+
+        'Z11'       => array('platform_model' => 'Zoji Z11',    'platform_year' => 2020),
     );
 
     /* Check for returning list */
