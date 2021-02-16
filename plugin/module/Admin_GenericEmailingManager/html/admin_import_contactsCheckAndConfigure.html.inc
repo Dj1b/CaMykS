@@ -2,12 +2,11 @@
 /**
  * @brief Admin_GenericEmailingManager Module import contacts - check and configure step layout
  * @details Plugin, Module Layout
- * @file plugin/module/Admin_GenericEmailingManager/html/admin_import_contactsCheckAndConfigure.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.8
  * @date Creation: Jan 2013
- * @date Modification: Dec 2018
- * @copyright 2013 - 2018 CaMykS Team
+ * @date Modification: Feb 2011
+ * @copyright 2013 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -25,7 +24,7 @@ $maxCol = 6;
 <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 <tr>
     <td class="eTableLine0 eContent2" colspan="2">
-        <?= $this->get_translation('xlinesfound', $this->xlsFile->rowcount()); ?>
+        <?= $this->get_translation('xlinesfound', count($this->data)); ?>
     </td>
 </tr>
 <tr>
@@ -48,7 +47,7 @@ $maxCol = 6;
     </td>
     <?php for ($j = 1; $j < $maxCol + 1; $j++) : ?>
     <td class="eTableLine<?= $alt?> eContent1">
-        <?= $this->xlsFile->value($i, $j); ?>
+        <?= $this->data[$i][$j]; ?>
     </td>
     <?php endfor; ?>
     <?php $alt = abs($alt-1); ?>
@@ -92,13 +91,13 @@ $maxCol = 6;
     </td>
 </tr>
 <?php $alt = 0; ?>
-<?php for ($i=1; $i< $this->xlsFile->colcount() + 1; $i ++) : ?>
+<?php for ($i=1; $i< count($this->data[0]); $i ++) : ?>
 <tr>
     <td class="eTableLine<?= $alt?> eContent2">
         <?= $i; ?>
     </td>
     <td class="eTableLine<?= $alt?> eContent3">
-        <?=string_getShortenedSentence($this->xlsFile->value(1, $i), 16); ?>
+        <?= string_getShortenedSentence($this->data[1][$i], 16); ?>
     </td>
     <td class="eTableLine<?= $alt?> eContent1">
         <?= $this->importform->display_selectInput(array('name'=>'col'.$i.'_field', 'class'=>'sinputs', 'values'=>$this->importContactFieldList, 'onchange'=>'icc.show_fieldParameters('.$i.');')); ?>

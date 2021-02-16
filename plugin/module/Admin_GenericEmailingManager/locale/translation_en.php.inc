@@ -3,7 +3,7 @@
  * @brief Admin_GenericEmailingManager Module english dictionnary.
  * @details Plugin, Module Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.8
  * @date Creation: Feb 2021
  * @date Modification: Feb 2021
  * @copyright 2021 CaMykS Team
@@ -93,7 +93,8 @@ $this->trads['mod_admin_genericemailingmanager_tabproperties'] = 'Properties';
 /* admin view emailing : menu */
 $this->trads['mod_admin_genericemailingmanager_menutitle'] = 'E-Mailing';
 $this->trads['mod_admin_genericemailingmanager_contactsexport'] = 'Export contacts (.xls)';
-$this->trads['mod_admin_genericemailingmanager_contactsimport'] = 'Import contacts (.xls)';
+$this->trads['mod_admin_genericemailingmanager_contactsexportxlsx'] = 'Export contacts (.xlsx)';
+$this->trads['mod_admin_genericemailingmanager_contactsimport'] = 'Import contacts (.xlsx)';
 $this->trads['mod_admin_genericemailingmanager_resultsexport'] = 'Export r&eacute;sultats (.xls)';
 
 /* admin edit/view emailing */
@@ -227,6 +228,11 @@ $this->trads['mod_admin_genericemailingmanager_import_contact_failure'] = 'An er
 $this->trads['mod_admin_genericemailingmanager_finalise_importation'] = 'Importation finalisation started.';
 $this->trads['mod_admin_genericemailingmanager_finalise_importation_done'] = 'Importation finalisation done.';
 $this->trads['mod_admin_genericemailingmanager_contactstobeimported'] = '%s contacts will be imported.';
+
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotfindfile'] = 'No file found.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotfindxlsreader'] = 'XLSX reader not found.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotopenfile'] = 'Can\'t open file or file is not a XLSX file.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_filehasnodata'] = 'File has no data.';
 
 /* request contact export */
 $this->trads['mod_admin_genericemailingmanager_status'] = 'Status';

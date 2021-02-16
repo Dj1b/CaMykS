@@ -3,7 +3,7 @@
  * @brief Admin_GenericEmailingManager Module french dictionnary.
  * @details Plugin, Module Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.8
  * @date Creation: Dec 2012
  * @date Modification: Feb 2021
  * @copyright 2012 - 2021 CaMykS Team
@@ -93,7 +93,8 @@ $this->trads['mod_admin_genericemailingmanager_tabproperties'] = 'Propri&eacute;
 /* admin view emailing : menu */
 $this->trads['mod_admin_genericemailingmanager_menutitle'] = 'E-Mailing';
 $this->trads['mod_admin_genericemailingmanager_contactsexport'] = 'Export des contacts (.xls)';
-$this->trads['mod_admin_genericemailingmanager_contactsimport'] = 'Import des contacts (.xls)';
+$this->trads['mod_admin_genericemailingmanager_contactsexportxlsx'] = 'Export des contacts (.xlsx)';
+$this->trads['mod_admin_genericemailingmanager_contactsimport'] = 'Import des contacts (.xlsx)';
 $this->trads['mod_admin_genericemailingmanager_resultsexport'] = 'Export des r&eacute;sultats (.xls)';
 
 /* admin edit/view emailing */
@@ -227,6 +228,11 @@ $this->trads['mod_admin_genericemailingmanager_import_contact_failure'] = 'Une e
 $this->trads['mod_admin_genericemailingmanager_finalise_importation'] = 'Finalisation de l\'importation en cours.';
 $this->trads['mod_admin_genericemailingmanager_finalise_importation_done'] = 'Finalisation de l\'importation termin&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contactstobeimported'] = '%s contacts vont &ecirc;tre import&eacute;s.';
+
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotfindfile'] = 'Aucun fichier trouv&eacute.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotfindxlsreader'] = 'Lecteur XLSX introuvable.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotopenfile'] = 'Impossible d\'ouvrir le fichier ou le fichier n\'est pas un fichier XLSX.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_filehasnodata'] = 'Le fichier ne contient aucune donn&eacute;e.';
 
 /* request contact export */
 $this->trads['mod_admin_genericemailingmanager_status'] = 'Etat';
