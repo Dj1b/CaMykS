@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.131
+ * @version 1.0.132
  * @date Creation: Jun 2007
  * @date Modification: Feb 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -1276,7 +1276,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* check Ulefone devices */
-    elseif (preg_match('/ (s10_pro|Armor[ |_].*)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/ (s10_pro|Note 8P|Armor[ |_].*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Ulefone.php.inc');
         $device = strtolower($matches[1]);
         $infos = array_merge($infos, get_UlefoneClientDevice($device));
@@ -1680,6 +1680,20 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Umidigi.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_UmidigiClientDevice($model));
+    }
+
+    /* check Gigaset devices */
+    elseif (preg_match('/; Gigaset (.*)?( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Gigaset.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_GigasetClientDevice($model));
+    }
+
+    /* check Teeno devices */
+    elseif (preg_match('/; (Vmobile .*)?( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Teeno.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_TeenoClientDevice($model));
     }
 
     /* check Wiko */
@@ -3080,6 +3094,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#Gecko/20100101 ([a-zA-Z]{8}\-[0-9]{2}) Firefox/([0-9\.]{4,})$#', $ua))
         return $fake;
 
+    /* Fake UA - Advertising through UA */
+    if (preg_match('#scaninfo@expanseinc.com$#', $ua))
+        return $fake;
+
     /* default result */
     return false;
 }
@@ -3156,7 +3174,7 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '93',                    // current is 85 , nightly is +6
+                'MaxVersion'    => '94',                    // current is 86 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
