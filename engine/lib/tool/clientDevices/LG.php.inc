@@ -3,9 +3,9 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.40
+ * @version 1.0.41
  * @date Creation: Apr 2018
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,6 +64,7 @@ function get_LGClientDevice($deviceCode='') {
         'H870'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H870D'     => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H870DS'    => array('platform_model' => 'G6',              'platform_year' => 2017),
+        'H871'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H872'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H873'      => array('platform_model' => 'G6',              'platform_year' => 2017),
         'H918'      => array('platform_model' => 'V20',             'platform_year' => 2018),

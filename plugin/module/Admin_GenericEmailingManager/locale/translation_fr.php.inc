@@ -2,12 +2,11 @@
 /**
  * @brief Admin_GenericEmailingManager Module french dictionnary.
  * @details Plugin, Module Dictionnary
- * @file plugin/module/Admin_GenericEmailingManager/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.8
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -88,14 +87,14 @@ $this->trads['mod_admin_genericemailingmanager_formitem_backpage'] = 'Page de re
 $this->trads['mod_admin_genericemailingmanager_properties'] = 'Propri&eacute;t&eacute;s';
 $this->trads['mod_admin_genericemailingmanager_select_sitepage'] = 'S&eacute;lectionner une page du site';
 
-
 /* admin edit generic content */
 $this->trads['mod_admin_genericemailingmanager_tabproperties'] = 'Propri&eacute;t&eacute;s';
 
 /* admin view emailing : menu */
 $this->trads['mod_admin_genericemailingmanager_menutitle'] = 'E-Mailing';
 $this->trads['mod_admin_genericemailingmanager_contactsexport'] = 'Export des contacts (.xls)';
-$this->trads['mod_admin_genericemailingmanager_contactsimport'] = 'Import des contacts (.xls)';
+$this->trads['mod_admin_genericemailingmanager_contactsexportxlsx'] = 'Export des contacts (.xlsx)';
+$this->trads['mod_admin_genericemailingmanager_contactsimport'] = 'Import des contacts (.xlsx)';
 $this->trads['mod_admin_genericemailingmanager_resultsexport'] = 'Export des r&eacute;sultats (.xls)';
 
 /* admin edit/view emailing */
@@ -230,9 +229,13 @@ $this->trads['mod_admin_genericemailingmanager_finalise_importation'] = 'Finalis
 $this->trads['mod_admin_genericemailingmanager_finalise_importation_done'] = 'Finalisation de l\'importation termin&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contactstobeimported'] = '%s contacts vont &ecirc;tre import&eacute;s.';
 
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotfindfile'] = 'Aucun fichier trouv&eacute.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotfindxlsreader'] = 'Lecteur XLSX introuvable.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_cannotopenfile'] = 'Impossible d\'ouvrir le fichier ou le fichier n\'est pas un fichier XLSX.';
+$this->trads['mod_admin_genericemailingmanager_importation_error_filehasnodata'] = 'Le fichier ne contient aucune donn&eacute;e.';
+
 /* request contact export */
 $this->trads['mod_admin_genericemailingmanager_status'] = 'Etat';
 $this->trads['mod_admin_genericemailingmanager_group'] = 'Groupe';
 $this->trads['mod_admin_genericemailingmanager_denomination'] = 'D&eacute;nomination';
-
 ?>

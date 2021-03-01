@@ -3,15 +3,15 @@
  * @brief Admin_Group Module english dictionnary.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Feb 2013
- * @date Modification: Dec 2020
- * @copyright 2013 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2013 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_group_title'] = 'Groups';
-$this->trads['mod_admin_group_desc'] = 'Group management';
+$this->trads['mod_admin_group_desc'] = 'Manage user groups';
 
 /* default groups */
 $this->trads['mod_admin_group_allgroupname'] = 'All';

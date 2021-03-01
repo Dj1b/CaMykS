@@ -3,9 +3,9 @@
  * @brief Nokia client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: Jun 2018
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -55,6 +55,7 @@ function get_NokiaClientDevice($deviceCode='') {
         '5.1 Plus'              => array('platform_model' => '5.1 Plus',            'platform_year' => 2018),
         '5.3'                   => array('platform_model' => '5.3',                 'platform_year' => 2020),
         '6.1'                   => array('platform_model' => '6.1',                 'platform_year' => 2018),
+        '6.2'                   => array('platform_model' => '6.2',                 'platform_year' => 2019),
         '7 plus'                => array('platform_model' => '7 Plus',              'platform_year' => 2018),
         '7.1'                   => array('platform_model' => '7.1',                 'platform_year' => 2018),
         '7.2'                   => array('platform_model' => '7.2',                 'platform_year' => 2019),

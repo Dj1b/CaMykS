@@ -4,12 +4,14 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.1
+ * @version 1.0.8
  * @date Creation: Dec 2012
- * @date Modification: Nov 2020
- * @copyright 2012 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * @note Requires XLSXReader from https://github.com/gneustaetter/XLSXReader to import xlsx data
+ * @note Requires PHP_XLSXWriter from https://github.com/Dj1b/PHP_XLSXWriter to export xlsx data
  */
 
 /**
@@ -203,13 +205,23 @@ final class Admin_GenericEmailingManager extends Module {
                 'url'   => 'javascript:window.open(\'request.php?module='.$this->name.'&mode=export_emailingResults&emailing='.$_REQUEST['emailing_id'].'\');void(0);'
             );
         } elseif ($this->mode == 'main' and $this->check_right(1)) {
-            $items[] = array(
-                'name'  => 'contactsimport',
-                'title' => $this->get_translation('contactsimport'),
-                'icon'  => $this->get_fileURL('img/xls.gif'),
-                'menu'  => 'emailingmanager',
-                'url'   => $this->get_adminLink(array('mode'=>'import_contactsPrepare'))
-            );
+
+            /* Hide errors from external libraries */
+            $errorDisplay = ini_get('display_errors');
+            ini_set('display_errors', 0);
+
+            /* Load XLSX reader library */
+            include_once 'XLSXReader/XLSXReader.php';
+            if (class_exists('XLSXReader')) {
+                $items[] = array(
+                    'name'  => 'contactsimport',
+                    'title' => $this->get_translation('contactsimport'),
+                    'icon'  => $this->get_fileURL('img/xls.gif'),
+                    'menu'  => 'emailingmanager',
+                    'url'   => $this->get_adminLink(array('mode'=>'import_contactsPrepare'))
+                );
+            }
+
             $items[] = array(
                 'name'  => 'contactsexport',
                 'title' => $this->get_translation('contactsexport'),
@@ -217,6 +229,22 @@ final class Admin_GenericEmailingManager extends Module {
                 'menu'  => 'emailingmanager',
                 'url'   => 'javascript:window.open(\'request.php?module='.$this->name.'&mode=export_contactList\');void(0);'
             );
+
+            /* Load XLSX writer Library */
+            include_once 'PHP_XLSXWriter/xlsxwriter.class.php';
+
+            if (class_exists('XLSXWriter') and method_exists('XLSXWriter', 'writeToStdOutAsAttachment')) {
+                $items[] = array(
+                    'name'  => 'contactsexportxlsx',
+                    'title' => $this->get_translation('contactsexportxlsx'),
+                    'icon'  => $this->get_fileURL('img/xls.gif'),
+                    'menu'  => 'emailingmanager',
+                    'url'   => 'javascript:window.open(\'request.php?module='.$this->name.'&mode=export_contactListXLSX\');void(0);'
+                );
+            }
+
+            /* Put back original display_errors value */
+            ini_set('display_errors', $errorDisplay);
         }
 
         /* Load extensions */
@@ -403,6 +431,10 @@ final class Admin_GenericEmailingManager extends Module {
                 /* mode == export_contactList */
                 $this->execute_request_exportContactList();
                 break;
+            case 'export_contactListXLSX':
+                /* mode == export_contactListXLSX */
+                $this->execute_request_exportContactListXLSX();
+                break;
             case 'send_emailingInitialise':
                 /* mode == send_emailingInitialise */
                 $this->execute_request_sendEmailingInitialise();
@@ -429,7 +461,7 @@ final class Admin_GenericEmailingManager extends Module {
                 break;
             case 'email_action':
                 /* mode == email_action */
-                $params = explode('-', isset($_REQUEST['params'])?$_REQUEST['params']:'');
+                $params = explode('-', isset($_REQUEST['params']) ? $_REQUEST['params'] : '');
                 $action = array_shift($params);
                 switch ($action) {
                     case 'check':
@@ -1161,7 +1193,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->emailItem->get_fromItems();
         $emailing = $this->emailItem->vars['emailing'];
 
-        /* Mark object as invalid */
+        /* Mar k object as invalid */
         if ($this->emailItem->mark_asInvalid()) {
             /* update contact status */
             $this->mark_contactAsInvalid($this->emailItem->vars['contact'], $this->emailItem->vars['source']);
@@ -1226,26 +1258,64 @@ final class Admin_GenericEmailingManager extends Module {
         $this->uploadResult = false;
 
         /* Load file */
-        if (isset($_FILES['file']) and $_FILES['file']['name'] != '') {
-            folder_completePath($this->get_varFilePath().'Importations');
-
-            /* get file extension */
-            if (preg_match('/.*\.([^\.]*)/', $_FILES['file']['name'], $ext))
-                $ext = '.'.$ext[1];
-            else
-                $ext = '';
-
-            $file = strftime('%F-%H-%M-%S'.$ext);
-            $path = $this->get_varFilePath().'Importations/'.$file;
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
-                /* Load library */
-                require_once 'Spreadsheet/Excel/Reader.php';
-
-                /* Load file */
-                $this->xlsFile = new Spreadsheet_Excel_Reader($path);
-            }
+        if (!isset($_FILES['file']) or $_FILES['file']['name'] === '') {
+            $this->text = $this->get_translation('importation_error_cannotfindfile');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return;
         }
 
+        /* Prepare importation folder */
+        folder_completePath($this->get_varFilePath().'Importations');
+
+        /* Load file extension */
+        if (preg_match('/.*\.([^\.]*)/', $_FILES['file']['name'], $ext))
+            $ext = '.'.$ext[1];
+        else
+            $ext = '';
+
+        /* Move uploaded file into var files */
+        $file = strftime('%F-%H-%M-%S'.$ext);
+        $path = $this->get_varFilePath().'Importations/'.$file;
+        if (!move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+            $this->text = $this->get_translation('importation_error_cannotfindfile');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return;
+        }
+
+        /* Load library */
+        include_once 'XLSXReader/XLSXReader.php';
+
+        if (!class_exists('XLSXReader')) {
+            $this->text = $this->get_translation('importation_error_cannotfindxlsreader');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return;
+        }
+
+        /* Load file */
+        $this->xlsFile = new XLSXReader($path);
+
+        /* Check file */
+        $sheets = $this->xlsFile->getSheetNames();
+        if (count($sheets) == 0) {
+            $this->text = $this->get_translation('importation_error_cannotopenfile');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return;
+        }
+
+        /* Check data */
+        $this->data = $this->xlsFile->getSheetData($sheets[1]);
+        if (count($this->data) == 0) {
+            $this->text = $this->get_translation('importation_error_filehasnodata');
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return;
+        }
+
+        /* Prepare fields */
         $this->importContactFieldList = array(
             'none'          => $this->get_translation('none'),
             'status'        => $this->get_translation('status'),
@@ -1259,8 +1329,8 @@ final class Admin_GenericEmailingManager extends Module {
         /* Build import contact form */
         $this->importform = new HTMLForm('import_contact', $this->get_adminlink(array('mode'=>'import_contactsExecute')), 'POST');
         $this->importform->add_hidden('import_file', $file);
-        $this->importform->add_hidden('colcount', $this->xlsFile->colcount());
-        $this->importform->add_hidden('rowcount', $this->xlsFile->rowcount());
+        $this->importform->add_hidden('colcount', count($this->data[0]));
+        $this->importform->add_hidden('rowcount', count($this->data));
 
         /* Build scripts */
         $this->add_JSFile('importcontactconfigure.js');
@@ -1311,7 +1381,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->config->vars['row_count'] = $data['rowcount'];
         $this->config->vars['col_count'] = $data['colcount'];
         $this->config->vars['cols_params'] = array();
-        for($i=1; $i<$data['colcount']+1; $i++) {
+        for($i=1; $i<$data['colcount']; $i++) {
             $this->config->vars['cols_params']['col'.$i.'_field'] = $data['col'.$i.'_field'];
             if ($data['col'.$i.'_field'] == 'status') {
                 $this->config->vars['cols_params']['col'.$i.'_status'] = array();
@@ -1544,7 +1614,7 @@ final class Admin_GenericEmailingManager extends Module {
     }
 
     /**
-     * Execute module object in request / export contact list mode.
+     * Execute module object in request / export contact list as XLS mode.
      * @return void
      */
     private function execute_request_exportContactList() {
@@ -1611,6 +1681,74 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Send workbook */
         $workbook->close();
+    }
+
+    /**
+     * Execute module object in request / export contact list as XLSX mode.
+     * @return void
+     */
+    private function execute_request_exportContactListXLSX() {
+        global $camyks;
+
+        /* Load CaMykS context */
+        $camyks->get_adminInit();
+
+        /* Check admin user */
+        if ($camyks->check_adminUser() == false)
+            return $camyks->init_kill();
+
+        /* Load XLSX Library */
+        error_reporting(E_ALL & ~E_NOTICE);
+        include_once("PHP_XLSXWriter/xlsxwriter.class.php");
+
+        if (!class_exists('XLSXWriter') or !method_exists('XLSXWriter', 'writeToStdOutAsAttachment')) {
+            die();
+        }
+
+        /* Create Writer */
+        $writer = new XLSXWriter();
+
+        /* Build head styles */
+        $headStyles = array('font-style'=>'bold');
+
+        /* Load data */
+        $contactCount = $this->contactItem->count();
+        $status = $this->contactItem->get_statusList();
+        $groups = $this->get_contactGroupList();
+
+        /* Add title lines */
+        $writer->writeSheetRow($this->get_translation('contacts'), array(
+            string_html2text($this->get_translation('status'), 'utf8'),
+            string_html2text($camyks->get_translation('lastname'), 'utf8'),
+            string_html2text($camyks->get_translation('firstname'), 'utf8'),
+            string_html2text($camyks->get_translation('email'), 'utf8'),
+            string_html2text($this->get_translation('group'), 'utf8')),
+            $headStyles);
+
+        /* Load insert data block by block */
+        $l = 1; // file line
+        $blockLength = 1000; // contacts block length to optimise memory usage
+        $blockCurrent = 0; // current block to run, to be updated in loop
+
+        while ($blockCurrent*$blockLength < $contactCount) {
+            $contacts = $this->contactItem->get_objectList(false, '' , $blockCurrent*$blockLength, $blockLength, 'lastname', 'asc');
+
+            foreach ($contacts as $id => $contact) {
+                $c = 0;
+
+                /* add details cells */
+                $writer->writeSheetRow($this->get_translation('contacts'), array(
+                    string_html2text($status[$contact->vars['status']], 'utf8'),
+                    $contact->vars['lastname'],
+                    $contact->vars['firstname'],
+                    $contact->vars['email'],
+                    isset($groups[$contact->vars['group']]) ? $groups[$contact->vars['group']] : ''));
+            }
+            $blockCurrent++;
+        }
+
+        /* Build and send file */
+        $writer->writeToStdOutAsAttachment('Export-'.strftime('%Y-%m-%d').'.xlsx');
     }
 
     /**
@@ -1989,8 +2127,14 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Load XLS file */
         $path = $this->get_varFilePath().'Importations/'.$this->config->vars['import_file'];
-        require_once 'Spreadsheet/Excel/Reader.php';
-        $this->xlsFile = new Spreadsheet_Excel_Reader($path);
+
+        /* Load library */
+        require_once 'XLSXReader/XLSXReader.php';
+
+        /* Load file */
+        $this->xlsFile = new XLSXReader($path);
+        $sheets = $this->xlsFile->getSheetNames();
+        $this->data = $this->xlsFile->getSheetData($sheets[1]);
 
         /* Build line to read */
         $line = $this->config->vars['first_line'] + $current;
@@ -2000,14 +2144,14 @@ final class Admin_GenericEmailingManager extends Module {
         $this->contactItem->initialise();
         $this->contactItem->_libItems['status']->value = 1;
 
-        for ($i=1; $i<$this->config->vars['col_count']+1; $i++) {
+        for ($i=1; $i < $this->config->vars['col_count']; $i++) {
             if ($this->config->vars['cols_params']['col'.$i.'_field'] === 'none')
                 continue;
             if ($this->config->vars['cols_params']['col'.$i.'_field'] == 'status') {
-                 if (isset($this->config->vars['cols_params']['col'.$i.'_status']) and $this->config->vars['cols_params']['col'.$i.'_status'][$this->xlsFile->value($line, $i)] >= 0)
-                    $this->contactItem->_libItems['status']->value = $this->config->vars['cols_params']['col'.$i.'_status'][$this->xlsFile->value($line, $i)];
+                 if (isset($this->config->vars['cols_params']['col'.$i.'_status']) and $this->config->vars['cols_params']['col'.$i.'_status'][$this->data[$line][$i]] >= 0)
+                    $this->contactItem->_libItems['status']->value = $this->config->vars['cols_params']['col'.$i.'_status'][$this->data[$line][$i]];
             } else {
-                 $this->contactItem->_libItems[$this->config->vars['cols_params']['col'.$i.'_field']]->value = $this->xlsFile->value($line, $i);
+                 $this->contactItem->_libItems[$this->config->vars['cols_params']['col'.$i.'_field']]->value = $this->data[$line][$i];
             }
         }
         $this->contactItem->get_fromItems();

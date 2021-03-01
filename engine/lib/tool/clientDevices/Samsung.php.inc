@@ -3,9 +3,9 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.96
+ * @version 1.0.98
  * @date Creation: Apr 2018
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -197,6 +197,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G965W'  => array('platform_model' => 'Galaxy S9+',                      'platform_year' => 2018),
         'SM-G9700'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G970F'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
+        'SM-G970U'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G970W'  => array('platform_model' => 'Galaxy S10E',                     'platform_year' => 2019),
         'SM-G9730'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
         'SM-G973F'  => array('platform_model' => 'Galaxy S10',                      'platform_year' => 2019),
@@ -205,11 +206,13 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G9750'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975F'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975U'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
+        'SM-G975U1' => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975W'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G977N'  => array('platform_model' => 'Galaxy S10 5G',                   'platform_year' => 2019),
         'SM-G980F'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
         'SM-G9810'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
         'SM-G981B'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
+        'SM-G981W'  => array('platform_model' => 'Galaxy S20 5G',                   'platform_year' => 2020),
         'SM-G985F'  => array('platform_model' => 'Galaxy S20+',                     'platform_year' => 2020),
         'SM-G986B'  => array('platform_model' => 'Galaxy S20+',                     'platform_year' => 2020),
         'SM-G9860'  => array('platform_model' => 'Galaxy S20+ 5G',                  'platform_year' => 2020),
@@ -219,6 +222,8 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G988U'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G780F'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
         'SM-G781B'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
+        'SM-G991B'  => array('platform_model' => 'Galaxy S21',                      'platform_year' => 2021),
+        'SM-G996B'  => array('platform_model' => 'Galaxy S21+ 5G',                  'platform_year' => 2021),
         'SM-G998B'  => array('platform_model' => 'Galaxy S21 Ultra',                'platform_year' => 2021),
 
         /* Samsung Galaxy A series */
@@ -260,6 +265,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A105F'  => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A105FN' => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A105G'  => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
+        'SM-A105M'  => array('platform_model' => 'Galaxy A10',                      'platform_year' => 2019),
         'SM-A102U'  => array('platform_model' => 'Galaxy A10e',                     'platform_year' => 2019),
         'SM-A102W'  => array('platform_model' => 'Galaxy A10e',                     'platform_year' => 2019),
         'SM-A107F'  => array('platform_model' => 'Galaxy A10S',                     'platform_year' => 2019),
@@ -268,6 +274,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A205FN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205G'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205GN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
+        'SM-A205U'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205W'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A202F'  => array('platform_model' => 'Galaxy A20e',                     'platform_year' => 2019),
         'SM-A207F'  => array('platform_model' => 'Galaxy A20s',                     'platform_year' => 2019),
@@ -278,6 +285,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A305G'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A305GT' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A307FN' => array('platform_model' => 'Galaxy A30s',                     'platform_year' => 2019),
+        'SM-A315F'  => array('platform_model' => 'Galaxy A31',                      'platform_year' => 2020),
         'SM-A315G'  => array('platform_model' => 'Galaxy A31',                      'platform_year' => 2020),
         'SM-A405FN' => array('platform_model' => 'Galaxy A40',                      'platform_year' => 2019),
         'SM-A3050'  => array('platform_model' => 'Galaxy A40s',                     'platform_year' => 2019),
@@ -292,6 +300,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A507FN' => array('platform_model' => 'Galaxy A50s',                     'platform_year' => 2019),
         'SM-A515F'  => array('platform_model' => 'Galaxy A51',                      'platform_year' => 2019),
         'SM-A515W'  => array('platform_model' => 'Galaxy A51',                      'platform_year' => 2019),
+        'SM-A516B'  => array('platform_model' => 'Galaxy A51 5G',                   'platform_year' => 2020),
         'SM-A7050'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A705MN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
@@ -363,6 +372,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J510F'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510FN' => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510G'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
+        'SM-J510H'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510M'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-J510Y'  => array('platform_model' => 'Galaxy J5',                       'platform_year' => 2016),
         'SM-G570F'  => array('platform_model' => 'Galaxy J5 Prime',                 'platform_year' => 2016),
@@ -424,6 +434,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N9002'  => array('platform_model' => 'Galaxy Note 3 (Dual-SIM)',        'platform_year' => 2013),
         'SM-N9005'  => array('platform_model' => 'Galaxy Note 3 (4G)',              'platform_year' => 2013),
         'SM-N7505'  => array('platform_model' => 'Galaxy Note 3 Neo',               'platform_year' => 2014),
+        'SM-N750L'  => array('platform_model' => 'Galaxy Note 3 (LTE-A)',           'platform_year' => 2014),
         'SM-N9100'  => array('platform_model' => 'Galaxy Note 4 Duos',              'platform_year' => 2014),
         'SM-N910A'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
         'SM-N910C'  => array('platform_model' => 'Galaxy Note 4',                   'platform_year' => 2014),
@@ -462,8 +473,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-N770F'  => array('platform_model' => 'Galaxy Note 10 Lite',             'platform_year' => 2020),
         'SM-N980F'  => array('platform_model' => 'Galaxy Note 20 (Dual-Sim)',       'platform_year' => 2020),
         'SM-N981B'  => array('platform_model' => 'Galaxy Note 20 5G',               'platform_year' => 2020),
-        'SM-N9860'  => array('platform_model' => 'Galaxy Note 20 Ultra',            'platform_year' => 2020),
-        'SM-N986B'  => array('platform_model' => 'Galaxy Note 20 Ultra',            'platform_year' => 2020),
+        'SM-N985F'  => array('platform_model' => 'Galaxy Note 20 Ultra',            'platform_year' => 2020),
+        'SM-N9860'  => array('platform_model' => 'Galaxy Note 20 Ultra 5G',         'platform_year' => 2020),
+        'SM-N986B'  => array('platform_model' => 'Galaxy Note 20 Ultra 5G',         'platform_year' => 2020),
+        'SM-N986W'  => array('platform_model' => 'Galaxy Note 20 Ultra 5G',         'platform_year' => 2020),
 
         /* Samsung Galaxy Fold series */
         'SM-F700F'  => array('platform_model' => 'Galaxy Fold',                     'platform_year' => 2019),

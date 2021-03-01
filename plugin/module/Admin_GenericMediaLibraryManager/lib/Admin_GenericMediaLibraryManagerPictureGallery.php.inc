@@ -3,9 +3,9 @@
  * @brief Admin_GenericMediaLibraryManager Module picture gallery library
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jun 2015
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2015 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -260,7 +260,7 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
      * @param array $params
      * @return boolean success
      */
-    private function load_pictures($params=array()) {
+    public function load_pictures($params=array()) {
         /* Build default params list */
         $dParams = array('gallery'=>$this->id);
 

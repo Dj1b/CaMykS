@@ -3,10 +3,10 @@
  * @brief ModuleLibrary abastract class for module libraries.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Mar 2007
- * @date Modification: Sep 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details  Use to manage localised (or not) content from database, files or text objects
@@ -1290,12 +1290,19 @@ abstract class ModuleLibrary {
         $ids = array();
 
         /* build sql query */
-        $sql = 'select id';
+        $sql = 'select m.id';
         $sql .= ' from '.$this->_libSQLTable.' as m';
         if ($where != '' and $language !== false and $language != '')
             $sql .= ', '.$this->_libSQLLocaleTable.' as l';
-        if ($where != '')
-            $sql .= ' where '.$where;
+        if ($where != '') {
+            $sql .= ' where ('.$where.')';
+            if ($language != false)
+                $sql .= ' and m.id = l.objectid';
+        }
+
+        /* add sorting condition */
+        if ($orderBy != '')
+            $sql .= ' order by '.$orderBy.' '.$orderWay;
 
         /* execute sql query */
         if ($this->execute_DBQuery($sql, __LINE__)) {
@@ -1303,10 +1310,6 @@ abstract class ModuleLibrary {
             while ($data = $this->get_DBQueryDataLine())
                 $ids[] = $data['id'];
         }
-
-        /* add sorting condition */
-        if ($orderBy != '')
-            $sql .= ' order by '.$orderBy.' '.$orderWay;
 
         /* return result */
         return $ids;
@@ -1558,7 +1561,7 @@ abstract class ModuleLibrary {
      * @param string $sens
      * @return array
      */
-    private function get_localisedObjectList ($language=null, $where='', $limit=-1, $count=-1, $order='id', $sens='') {
+    private function get_localisedObjectList($language=null, $where='', $limit=-1, $count=-1, $order='id', $sens='') {
         global $camyks;
         $items = array();
 
@@ -1602,7 +1605,7 @@ abstract class ModuleLibrary {
      * @param boolean $structured
      * @return array
      */
-    public function get_uniqueItemList ($element='name', $where='', $structured=false) {
+    public function get_uniqueItemList($element='name', $where='', $structured=false) {
         global $camyks;
 
         /* initialise items list */

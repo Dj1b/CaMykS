@@ -1,17 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b1
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date    : Jun 2010
- * Last Modif Date  : Jun 2010
- *
- * Admin_GooglePoIMapManager french dictionnary
+/**
+ * @brief Admin_GooglePoIMapManager Module french dictionary
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2010
+ * @date Modification: Feb 2021
+ * @copyright 2010 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_googlepoimapmanager_title'] = 'Points d\'int&eacute;r&ecirc;t';
 $this->trads['mod_admin_googlepoimapmanager_desc'] = 'Disposition sur une carte Google Map';
 
@@ -127,5 +125,4 @@ $this->trads['mod_admin_googlepoimapmanager_icon_notsaved'] = 'Une erreur est su
 /* admin delete icon */
 $this->trads['mod_admin_googlepoimapmanager_icon_deleted'] = 'Ic&ocirc;ne supprim&eacute;s.';
 $this->trads['mod_admin_googlepoimapmanager_icon_notdeleted'] = 'Une erreur est survenue lors de la suppression de cette ic&ocirc;ne.';
-
 ?>

@@ -3,9 +3,9 @@
  * @brief Realme (Oppo subsidiary) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Apr 2020
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,21 +20,23 @@
 function get_RealmeClientDevice($deviceCode='') {
     $deviceList = array(
         /* Realme mobiles */
-        'RMX1811'   => array('platform_model' => 'C1',      'platform_year' => 2018),
-        'RMX1825'   => array('platform_model' => '3',       'platform_year' => 2019),
-        'RMX1911'   => array('platform_model' => '5',       'platform_year' => 2019),
-        'RMX1921'   => array('platform_model' => 'XT',      'platform_year' => 2019),
-        'RMX1931'   => array('platform_model' => 'X2 Pro',  'platform_year' => 2019),
-        'RMX1971'   => array('platform_model' => '5 Pro',   'platform_year' => 2019),
-        'RMX1991'   => array('platform_model' => 'X2',      'platform_year' => 2019),
-        'RMX1992'   => array('platform_model' => 'X2',      'platform_year' => 2019),
-        'RMX1993'   => array('platform_model' => 'X2',      'platform_year' => 2019),
-        'RMX2001'   => array('platform_model' => '6',       'platform_year' => 2020),
-        'RMX2027'   => array('platform_model' => 'C3',      'platform_year' => 2020),
-        'RMX2030'   => array('platform_model' => '5i',      'platform_year' => 2020),
-        'RMX2061'   => array('platform_model' => '6 Pro',   'platform_year' => 2020),
-        'RMX2075'   => array('platform_model' => 'X50 Pro', 'platform_year' => 2020),
-        'RMX2185'   => array('platform_model' => 'C11',     'platform_year' => 2020),
+        'RMX1811'   => array('platform_model' => 'C1',              'platform_year' => 2018),
+        'RMX1825'   => array('platform_model' => '3',               'platform_year' => 2019),
+        'RMX1911'   => array('platform_model' => '5',               'platform_year' => 2019),
+        'RMX1921'   => array('platform_model' => 'XT',              'platform_year' => 2019),
+        'RMX1931'   => array('platform_model' => 'X2 Pro',          'platform_year' => 2019),
+        'RMX1971'   => array('platform_model' => '5 Pro',           'platform_year' => 2019),
+        'RMX1991'   => array('platform_model' => 'X2',              'platform_year' => 2019),
+        'RMX1992'   => array('platform_model' => 'X2',              'platform_year' => 2019),
+        'RMX1993'   => array('platform_model' => 'X2',              'platform_year' => 2019),
+        'RMX2001'   => array('platform_model' => '6',               'platform_year' => 2020),
+        'RMX2027'   => array('platform_model' => 'C3',              'platform_year' => 2020),
+        'RMX2030'   => array('platform_model' => '5i',              'platform_year' => 2020),
+        'RMX2061'   => array('platform_model' => '6 Pro',           'platform_year' => 2020),
+        'RMX2075'   => array('platform_model' => 'X50 Pro',         'platform_year' => 2020),
+        'RMX2086'   => array('platform_model' => 'X3 SuperZoom',    'platform_year' => 2020),
+        'RMX2170'   => array('platform_model' => '7 Pro',           'platform_year' => 2021),
+        'RMX2185'   => array('platform_model' => 'C11',             'platform_year' => 2020),
     );
 
     /* Check for returning list */

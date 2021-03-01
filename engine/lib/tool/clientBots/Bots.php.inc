@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.76
+ * @version 1.0.78
  * @date Creation: May 2018
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5011,6 +5011,36 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://metrics-tools.de/robot.html',
         'engine_title'      => 'Metrics Tools',
         'engine_url'        => 'https://metrics-tools.de/',
+    );
+
+    /* HyScore */
+    $knownBots['hyscore'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'HyScore Crawler',
+        'bot_url'           => 'https://hyscore.io/crawler/',
+        'engine_title'      => 'HyScore',
+        'engine_url'        => 'https://hyscore.io/',
+    );
+
+    /* DropboxPreviewBot */
+    $knownBots['dropboxpreviewbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DropboxPreviewBot',
+        'bot_url'           => '',
+        'engine_title'      => 'Dropbox',
+        'engine_url'        => 'https://www.dropbox.com',
+    );
+
+    /* NetSystemsResearch */
+    $knownBots['netsystemsresearch'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'NetSystemsResearch',
+        'bot_url'           => '',
+        'engine_title'      => 'Net Systems Research',
+        'engine_url'        => 'http://www.netsystemsresearch.com',
     );
 
     /* Return bot list */

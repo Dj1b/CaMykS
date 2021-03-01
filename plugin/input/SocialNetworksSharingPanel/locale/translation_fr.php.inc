@@ -3,9 +3,9 @@
  * @brief SocialNetworksSharingPanel Input french dictionnary
  * @details Plugin / Input Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Feb 2012
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,7 +18,7 @@ $this->trads['input_socialnetworkssharingpanel_emailbody'] = 'Bonjour, _ln_  _ln
 /* site */
 $this->trads['input_socialnetworkssharingpanel_followuson'] = 'Suivez nous sur %s';
 
-/* configuration */
+/* configuration : share tab */
 $this->trads['input_socialnetworkssharingpanel_tabshare'] = 'Partager';
 $this->trads['input_socialnetworkssharingpanel_formitem_pictureformat'] = 'Format des ic&ocirc;nes : ';
 $this->trads['input_socialnetworkssharingpanel_formtitle_networks'] = 'R&eacute;seaux sociaux';
@@ -28,6 +28,7 @@ $this->trads['input_socialnetworkssharingpanel_formitem_layout'] = 'Disposition 
 $this->trads['input_socialnetworkssharingpanel_formitem_size'] = 'Taille : ';
 $this->trads['input_socialnetworkssharingpanel_formitem_action'] = 'Action : ';
 
+/* configuration : follow tab */
 $this->trads['input_socialnetworkssharingpanel_tabfollow'] = 'Suivre';
 $this->trads['input_socialnetworkssharingpanel_formdesc_follow'] = 'Indiquer ici les URLs de vos comptes sur les diff&eacute;rents r&eacute;seaux sociaux.';
 $this->trads['input_socialnetworkssharingpanel_nosocialnetwork'] = 'Aucun';
@@ -55,6 +56,7 @@ $this->trads['input_socialnetworkssharingpanel_followlocation_fixedright'] = 'Fi
 
 $this->trads['input_socialnetworkssharingpanel_formtitle_follownetworks'] = 'Vos pages &agrave; suivre';
 
+/* configuration : integrate tab */
 $this->trads['input_socialnetworkssharingpanel_tabintegrate'] = 'Int&eacute;grer';
 $this->trads['input_socialnetworkssharingpanel_formtitle_facebook'] = 'Facebook';
 

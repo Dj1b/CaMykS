@@ -4,9 +4,9 @@
  * <br /> Manages media libraries.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jun 2015
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2015 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -655,7 +655,7 @@ final class Admin_GenericMediaLibraryManager extends Module {
 
         /* Build form */
         $this->editform = new HTMLForm('edit_picture', $this->get_adminlink(array('mode'=>'save_picture')), 'POST');
-        $this->editform->allow_files(true, $this->config->get_configValue('picture_maxFileSize')*1024*1024);
+        $this->editform->allow_files(true, $this->config->get_value('picture_maxFileSize')*1024*1024);
         $this->editform->set_object($this->pictureItem);
         $this->editform->add_hidden('picture_id', $this->pictureItem->id);
         $this->editform->add_hidden('gallery', $this->pictureItem->vars['gallery']);

@@ -3,10 +3,10 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.20
+ * @version 1.0.21
  * @date Creation: Feb 2019
- * @date Modification: Dec 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -39,11 +39,13 @@ function get_InfinixClientDevice($deviceCode='') {
         'X608'          => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
         'X623'          => array('platform_model' => 'Hot 6X',      'platform_year' => 2018),
         'X650'          => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
+        'X650C'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X650D'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X680B'         => array('platform_model' => 'Hot 9 Play',  'platform_year' => 2020),
 
         /* Smart serie */
         'X5515'         => array('platform_model' => 'Smart 2',     'platform_year' => 2018),
+        'X609'          => array('platform_model' => 'Smart 2 HD',  'platform_year' => 2018),
         'X653C'         => array('platform_model' => 'Smart 4',     'platform_year' => 2019),
 
         /* Zero serie */

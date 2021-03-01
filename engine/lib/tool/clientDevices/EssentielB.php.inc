@@ -3,10 +3,10 @@
  * @brief Essentiel B (Boulanger) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2020
- * @date Modification: Oct 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +25,7 @@ function get_EssentielBClientDevice($deviceCode='') {
         /* Essentiel B mobiles */
         'HEYOU5'    => array('platform_model' => 'HEYou 5',     'platform_year' => 2017),
         'HEYOU50'   => array('platform_model' => 'HEYou 50',    'platform_year' => 2019),
+        'HEYOU60'   => array('platform_model' => 'HEYou 60',    'platform_year' => 2020),
     );
 
     /* Check for returning list */

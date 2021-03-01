@@ -3,10 +3,10 @@
  * @brief ZTE client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: May 2018
- * @date Modification: Oct 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -28,6 +28,7 @@ function get_ZTEClientDevice($deviceCode='') {
         'BLADE V0820'   => array('platform_model' => 'Blade V8 Lite',   'platform_year' => 2017),
         'NX595J'        => array('platform_model' => 'Nubia Z17s',      'platform_year' => 2017),
         'BA520'         => array('platform_model' => 'Blade A520',      'platform_year' => 2017),
+        'Z831'          => array('platform_model' => 'Maven 2',         'platform_year' => 2017),
         'BLADE V9'      => array('platform_model' => 'Blade V9',        'platform_year' => 2018),
         'Z559DL'        => array('platform_model' => 'Blade T2',        'platform_year' => 2018),
 

@@ -1,12 +1,11 @@
 /**
  * @brief TinyMCEv3 Input simple configuration scripts
  * @details Plugin / Input Javascripts
- * @file plugin/input/TinyMCEv3/js/configs/simple.js
  * @author CaMykS Team
  * @version 1.0
  * @date Creation: Jul 2008
- * @date Modification: Jul 2018
- * @copyright 2008 - 2018 CaMykS Team
+ * @date Modification: Feb 2021
+ * @copyright 2008 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +18,7 @@ tinyMCE.init({
 
     /* buttons lists */
     theme_advanced_buttons1 : "newdocument,cleanup,|,undo,redo,|,justifyleft,justifycenter,justifyright,justifyfull",
-    theme_advanced_buttons1_add : ",|,formatselect,styleselect",
+    theme_advanced_buttons1_add : ",|,formatselect,styleselect,removeformat",
     theme_advanced_buttons2 : "bold,italic,underline,strikethrough,|,image,link,camyksemaillink,unlink,|,charmap",
     theme_advanced_buttons3 : "",
 

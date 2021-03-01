@@ -3,15 +3,15 @@
  * @brief Admin_ContentPage Module english dictionnary
  * @details Plugin / Module Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Sep 2009
- * @date Modification: Jan 2021
+ * @date Modification: Feb 2021
  * @copyright 2009 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_admin_contentpage_title'] = 'Page Manager';
-$this->trads['mod_admin_contentpage_desc'] = 'Manager website pages';
+$this->trads['mod_admin_contentpage_desc'] = 'Manage website pages';
 
 /* global */
 $this->trads['mod_admin_contentpage_pagetitle'] = 'Page';
@@ -121,7 +121,7 @@ $this->trads['mod_admin_contentpage_formitem_linkfollowup'] = 'Links following: 
 $this->trads['mod_admin_contentpage_formtitle_admindata'] = 'Admin information';
 $this->trads['mod_admin_contentpage_formitem_owner'] = 'Owner: ';
 $this->trads['mod_admin_contentpage_formitem_editorgroup'] = 'Editing group: ';
-$this->trads['mod_admin_contentpage_formitem_validatorgroup'] = 'Validating group : ';
+$this->trads['mod_admin_contentpage_formitem_validatorgroup'] = 'Validating group: ';
 $this->trads['mod_admin_contentpage_formitem_creation_date'] = 'Creation date: ';
 $this->trads['mod_admin_contentpage_formitem_modification_date'] = 'Modification date: ';
 $this->trads['mod_admin_contentpage_formitem_wfstatus'] = 'State: ';
