@@ -3,10 +3,10 @@
  * @brief LimonetikPayment Input configuration object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Oct 2020
- * @date Modification: Oct 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,6 +32,10 @@ final class LimonetikPaymentConfig extends PluginConfig {
         $this->add_newItem('MerchantId', 'string', '');
         $this->add_newItem('EnableCreditCard', 'integer', 1);
         $this->add_newItem('EnableConecs', 'integer', 0);
+        $this->add_newItem('EnablePassRestaurant', 'integer', 0);
+        $this->add_newItem('EnableUpChequeDejeuner', 'integer', 0);
+        $this->add_newItem('EnableApetiz', 'integer', 0);
+        $this->add_newItem('EnableSwile', 'integer', 0);
 
         /* Generic initialisation */
         parent::init_config();
@@ -61,13 +65,25 @@ final class LimonetikPaymentConfig extends PluginConfig {
 
     /**
      * Return payment page id.
+     * @param string $payment
      * @return string
      */
     public function get_paymentPageId($payment=null) {
+        /* Payments with auto select if no payment was provided */
         if ($payment == 'CreditCard' or (is_null($payment) and $this->get_value('EnableCreditCard') == true))
             return 'creditcard';
         if ($payment == 'Conecs' or (is_null($payment) and $this->get_value('EnableConecs') == true))
             return 'conecs';
+
+        /* Payments without auto select */
+        if ($payment == 'PassRestaurant')
+            return 'passrestaurant';
+        if ($payment == 'UpChequeDejeuner')
+            return 'upchequedejeuner';
+        if ($payment == 'Apetiz')
+            return 'apetiz';
+        if ($payment == 'Swile')
+            return 'swile';
         return '';
     }
 }
