@@ -4,9 +4,9 @@
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jun 2018
- * @date Modification: Jan 2021
+ * @date Modification: Mar 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -277,22 +277,24 @@ final class Admin_SystemNotifications extends Module {
             $this->adminList = $this->get_adminUserList(array('addAll'=>true));
         }
 
+        /* initialise follow up list with current website */
+        $this->followUpList = array(
+            array(
+                'name'      => $camyks->get_confValue('site_title'),
+                'title'     => $camyks->get_confValue('site_title'),
+                'url'       => $camyks->get_confValue('url'),
+                'modules'   => $modules,
+                'error'     => '',
+                'self'      => true,
+            ),
+        );
+
         /* load all sites data if master mode */
         if ($this->config->vars['module_mode'] == 1) {
 
             if ($this->config->vars['running_lastCheck'] + $this->config->vars['module_checkDelay']*60 < time()) {
 
-                /* initialise follow up list with current website */
-                $this->followUpList = array(
-                    array(
-                        'name'      => $camyks->get_confValue('site_title'),
-                        'title'     => $camyks->get_confValue('site_title'),
-                        'url'       => $camyks->get_confValue('url'),
-                        'modules'   => $modules,
-                        'error'     => '',
-                        'self'      => true,
-                    ),
-                );
+
 
                 /* load full website list */
                 $wsList = $this->get_websiteList(array('status'=>1));
