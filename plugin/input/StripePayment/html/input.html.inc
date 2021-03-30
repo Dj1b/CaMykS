@@ -3,10 +3,10 @@
  * @brief StripePayment Input main layout
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2020
- * @date Modification: May 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -33,3 +33,26 @@
         </div>
       </div>
     </div>
+
+    <?php if ($this->config->get_value('runningMode') === 'test' and $this->config->get_value('test_displayTestCard') == 1) : ?>
+    <div style="text-align:center;">
+        <div class="eTitle3">
+            <?= $this->get_translation('testmode_title'); ?>
+        </div>
+        <div class="eContent2">
+            <?= $this->get_translation('testmode_desc'); ?>
+        </div>
+        <div class="eContent1">
+            &nbsp;
+        </div>
+        <div class="eContent1">
+            <?= $this->get_translation('testmode_fakecardnumbers'); ?>
+        </div>
+        <div class="eContent1">
+            <?= $this->get_translation('testmode_fakecarddate'); ?>
+        </div>
+        <div class="eContent1">
+            <?= $this->get_translation('testmode_fakecardccv'); ?>
+        </div>
+    </div>
+    <?php endif; ?>

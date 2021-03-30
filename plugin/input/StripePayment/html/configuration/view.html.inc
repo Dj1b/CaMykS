@@ -3,10 +3,10 @@
  * @brief StripePayment Input configuration view layout
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2020
- * @date Modification: May 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -24,7 +24,7 @@ global $camyks;
     </tr>
 
     <tr>
-        <td class="eTableLine0 eContent2" style="width:160px;">
+        <td class="eTableLine0 eContent2" style="width:200px;">
             <?= $this->get_translation('formitem_runningmode'); ?>
         </td>
         <td class="eTableLine0 eContent1">
@@ -59,6 +59,15 @@ global $camyks;
         </td>
         <td class="eTableLine1 eContent1">
             <?= $this->config->vars['testAPIKey_private']; ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="eTableLine0 eContent2">
+            <?= $this->get_translation('formitem_displaytestcard'); ?>
+        </td>
+        <td class="eTableLine0 eContent1">
+            <?= $camyks->get_translation($this->config->get_value('test_displayTestCard') ? 'yes' : 'no'); ?>
         </td>
     </tr>
 
