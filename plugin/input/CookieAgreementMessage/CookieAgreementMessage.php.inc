@@ -4,7 +4,7 @@
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: May 2017
  * @date Modification: Mar 2021
  * @copyright 2017 - 2021 CaMykS Team
@@ -207,7 +207,7 @@ final class CookieAgreementMessage extends Input {
 
     /**
      * Return cookie status for service.
-     * @params string $service
+     * @param string $service
      * @return integer
      */
     protected function get_serviceStatus($service) {
