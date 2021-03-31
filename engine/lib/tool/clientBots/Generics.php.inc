@@ -3,9 +3,9 @@
  * @brief Generic libraries as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: May 2018
- * @date Modification: Feb 2021
+ * @date Modification: Mar 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -878,6 +878,16 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'http.rb',
         'tool_url'          => 'https://github.com/httprb/http',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* curb */
+    $knownGenerics['curb'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'curb',
+        'tool_url'          => 'https://github.com/taf2/curb',
         'engine_title'      => '',
         'engine_url'        => '',
     );

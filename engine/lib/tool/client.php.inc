@@ -3,9 +3,9 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.132
+ * @version 1.0.133
  * @date Creation: Jun 2007
- * @date Modification: Feb 2021
+ * @date Modification: Mar 2021
  * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1756,6 +1756,13 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Smartak.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_SmartakClientDevice($device));
+    }
+
+    /* check Edenwood devices */
+    elseif (preg_match('/; (W55HD)( Build|\))/U', $ua, $matches)) {
+        include_once('clientDevices/Edenwood.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_EdenwoodClientDevice($device));
     }
 
     /* check known Unknown devices */
