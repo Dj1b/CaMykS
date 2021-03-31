@@ -3,12 +3,11 @@
  * @brief GoogleAnalytics Input
  * <br /> Adds Google Analytics snippet on page
  * @details Plugin / Input Engine
- * @file plugin/input/GoogleAnalytics/GoogleAnalytics.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Sep 2018
- * @date Modification: Sep 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -22,6 +21,12 @@ final class GoogleAnalytics extends Input {
      * @brief Input configuration.
      */
     protected $config;
+
+    /**
+     * var boolean isConfigLoaded
+     * @brief Stores if the configuration is loaded
+     */
+    protected $isConfigLoaded = false;
 
     /**
      * var boolean $status
@@ -60,6 +65,7 @@ final class GoogleAnalytics extends Input {
 
         /* register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('CookieAgreementMessage');
 
         /* automatically insert it in the page */
         $this->register_asCaMykSEventHandler('onPageLoad');
@@ -153,9 +159,17 @@ final class GoogleAnalytics extends Input {
      * @return void
      */
     private function load_configuration() {
+        /* Check configuration is already loaded */
+        if ($this->isConfigLoaded)
+            return;
+
+        /* Load configuration */
         $this->load_library('GoogleAnalyticsConfig');
         $this->config = new GoogleAnalyticsConfig('config', $this);
         $this->config->get();
+
+        /* Save configuration is loaded */
+        $this->isConfigLoaded = true;
     }
 
     /**
@@ -253,6 +267,46 @@ final class GoogleAnalytics extends Input {
         $this->load_configuration();
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+
+    /* CookieAgreementMessage extension methods */
+
+    /**
+     * Return plugin information related to cookies.
+     * @return void
+     */
+    public function get_cookieInformationData() {
+        /* Load configuration */
+        $this->load_configuration();
+
+        /* Return plugin information */
+        if ($this->config->get_value('trackingId') !== '')
+            return array(
+                'GoogleAnalytics' => array(
+                    'title' => $this->get_translation('cookie_title'),
+                    'purpose' => $this->get_translation('cookie_purpose'),
+                    'usage' => '',
+                    'duration' => '',
+                    'aboutURL' => 'https://policies.google.com/privacy',
+                    'isMandatory' => false,
+                ),
+            );
+
+        /* Return default value */
+        return array();
+    }
+
+    /**
+     * Check if plugin is cookie accepted.
+     * @return boolean
+     */
+    private function is_cookieAccepted() {
+        global $camyks;
+
+        $input = $camyks->get_input('CookieAgreementMessage');
+        if ($input === false)
+            return true;
+        return $input->check_serviceIsAccepted('GoogleAnalytics');
     }
 }
 ?>
