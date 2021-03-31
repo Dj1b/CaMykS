@@ -1,40 +1,78 @@
 /**
  * @brief CookieAgreementMessage Input default CSS styles
  * @details Plugin / Input CSS styles
- * @file plugin/input/CookieAgreementMessage/css/styles.css
  * @author CaMykS Team
- * @version 1.0.1
+ * @version 1.1.0
  * @date Creation: May 2017
- * @date Modification: Feb 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-.cookieAgreementMessage {background:black; padding:4px; position:fixed; opacity:0.7;}
-.cookieAgreementMessage .message {color:white;}
-.cookieAgreementMessage .acceptButton {display:inline-block; color:black; background:#FEEB3D; padding:4px 8px; margin:0 4px;}
-.cookieAgreementMessage .aboutButton {display:inline-block; color:black; background:#C7C9C7; padding:4px 8px; margin:0 4px;}
+.cookieAgreementMessage {background:black; padding:16px 32px 20px; position:fixed; opacity:0.95; transition:all 0.3s ease; max-width:100%; max-height:100%; overflow: hidden auto; box-sizing: border-box; border-radius:8px; box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.75);}
+.cookieAgreementMessage * {text-decoration:none; box-sizing: border-box;}
+.cookieAgreementMessage img {font-size:0;}
+.cookieAgreementMessage .opener {display:none; width:30px; height:30px; cursor:pointer; position:relative; top:-15px; left:-15px; margin: 0 5px 5px 0;}
+.cookieAgreementMessage .closer {width:50px; height:50px; cursor:pointer; margin:0 0 12px; border:solid 1px white; padding:12px; border-radius:24px; float:right; position:relative; left:16px;}
+.cookieAgreementMessage .message {color:white; padding:8px;}
+.cookieAgreementMessage .acceptButton {display:inline-block; color:white !important; background:#434343; padding:8px 16px; margin:0 4px 10px; border-radius:6px; min-width:160px; font-weight:bold;}
+.cookieAgreementMessage .aboutButton {display:inline-block; color:black !important; background:white; padding:8px 16px; margin:0 4px 10px; border-radius:6px; min-width:160px; font-weight:bold;}
+.cookieAgreementMessage .aboutButton.hidden {visibility:hidden;}
 .cookieAgreementMessage .acceptButton:hover, .cookieAgreementMessage .aboutButton:hover {text-decoration:none;, opacity:0.8;}
 
-.cookieAgreementMessage.top {width:100%; text-align:center;}
-.cookieAgreementMessage.top .message {display:inline-block;}
-.cookieAgreementMessage.top .buttons {display:inline-block;}
+.cookieAgreementMessage.minimised {padding:32px; max-width:40px; max-height:40px; overflow:hidden;}
+.cookieAgreementMessage.minimised .opener {display:block;}
 
-.cookieAgreementMessage.top-left {width:400px; text-align:center; top:10px; left:10px;}
+.cookieAgreementMessage.top {width:100%; text-align:center; padding:20px 0 0 0 ;}
+.cookieAgreementMessage.top .message {display:inline-block; max-width:1000px; margin:0 auto;}
+.cookieAgreementMessage.top .services {max-width:1000px; margin:0 auto;}
+.cookieAgreementMessage.top .buttons {display:inline-block;max-width:1000px; margin:0 auto;}
+
+.cookieAgreementMessage.top-left {width:750px; text-align:center; top:10px; left:10px;}
 .cookieAgreementMessage.top-left .buttons {padding:8px 0;}
-.cookieAgreementMessage.top-right {width:400px; text-align:center; top:10px; right:10px;}
+.cookieAgreementMessage.top-right {width:750px; text-align:center; top:10px; right:10px;}
 .cookieAgreementMessage.top-right .buttons {padding:8px 0;}
 
-.cookieAgreementMessage.bottom {width:100%; text-align:center; bottom:0;}
-.cookieAgreementMessage.bottom .message {display:inline-block;}
-.cookieAgreementMessage.bottom .buttons {display:inline-block;}
+.cookieAgreementMessage.bottom {width:100%; text-align:center; bottom:0; padding:0 0 0 20px;}
+.cookieAgreementMessage.bottom .message {display:inline-block; max-width:1000px; margin:0 auto;}
+.cookieAgreementMessage.bottom .services {max-width:1000px; margin:0 auto;}
+.cookieAgreementMessage.bottom .buttons {display:inline-block; max-width:1000px; margin:0 auto;}
 
-.cookieAgreementMessage.bottom-left {width:400px; text-align:center; bottom:10px; left:10px;}
+.cookieAgreementMessage.bottom-left {width:750px; text-align:center; bottom:10px; left:10px;}
 .cookieAgreementMessage.bottom-left .buttons {padding:8px 0;}
-.cookieAgreementMessage.bottom-right {width:400px; text-align:center; bottom:10px; right:10px;}
+.cookieAgreementMessage.bottom-right {width:750px; text-align:center; bottom:10px; right:10px;}
 .cookieAgreementMessage.bottom-right .buttons {padding:8px 0;}
+
+.cookieAgreementMessage.centered {width:750px; text-align:center; position: fixed; bottom: 50%; left: 50%; transform: translate(-50%, 50%);}
+.cookieAgreementMessage.centered .buttons {padding:8px 0;}
+.cookieAgreementMessage.centered.minimised {bottom:10px; left:10px; transform: translate(0%, 0%);}
+
+.cookieAgreementMessage .services {max-height:0; transition:max-height 0.3s ease-out; overflow:hidden; text-align:left; margin:12px 0 0 ;}
+.cookieAgreementMessage .services.opened {max-height:500px; overflow-y:auto;}
+.cookieAgreementMessage .services .title {font-weight:bold; font-size:+2em; color:white;}
+.cookieAgreementMessage .services .service {padding:20px 8px; border-top:solid 1px #888; font-size:0; display:flex;}
+.cookieAgreementMessage .services .service .details {flex:2;}
+.cookieAgreementMessage .services .service .details .title {font-size:+1.5em;}
+.cookieAgreementMessage .services .service .details .link {color:white !important; text-decoration:underline;}
+.cookieAgreementMessage .services .service .actions {min-width:95px; max-width:95px;}
+.cookieAgreementMessage .services .service .actions .mandatory {float:right; color:#2d867a; padding:4px 8px; font-weight:bold;}
+.cookieAgreementMessage .services .service .actions .accept, .cookieAgreementMessage .service .refuse {display:block; margin-left:8px; float:right; width:39px; height:39px; background-color:#888; background-position:50% 50%; background-repeat:no-repeat; border:solid 2px #888; border-radius:21px;}
+.cookieAgreementMessage .services .service .actions .accept {background-image:url(../img/accept.png);}
+.cookieAgreementMessage .services .service .actions .accept:hover {border:solid 2px #006e64;}
+.cookieAgreementMessage .services .service .actions .accept.selected {border:solid 2px #006e64; background-color:#006e64;}
+.cookieAgreementMessage .services .service .actions .refuse {background-image:url(../img/refuse.png);}
+.cookieAgreementMessage .services .service .actions .refuse:hover {border:solid 2px #961414;}
+.cookieAgreementMessage .services .service .actions .refuse.selected {border:solid 2px #961414; background-color:#961414;}
 
 /* mobile adaptation */
 @media (max-width: 400px) {
     .cookieAgreementMessage {max-width:100%; left:0; right:0;}
+}
+
+@media (max-width: 750px) {
+    .cookieAgreementMessage {padding:16px 16px 6px;}
+    .cookieAgreementMessage.minimised {padding:32px;}
+    .cookieAgreementMessage .message {padding:8px 0;}
+    .cookieAgreementMessage .services .title {font-size:+1.5em;}
+    .cookieAgreementMessage .services .service .details .title {font-size:+1.25em;}
 }

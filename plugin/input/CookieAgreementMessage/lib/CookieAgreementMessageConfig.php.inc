@@ -2,19 +2,17 @@
 /**
  * @brief CookieAgreementMessage Input configuration object
  * @details Plugin / Input Library
- * @file plugin/input/CookieAgreementMessage/lib/CookieAgreementMessageConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.1.0
  * @date Creation: Feb 2018
- * @date Modification: Apr 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * ContentAnchorMenuConfig PluginConfig class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class CookieAgreementMessageConfig extends PluginConfig {
     /**
@@ -26,21 +24,21 @@ final class CookieAgreementMessageConfig extends PluginConfig {
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
 
-        $this->add_newItem('insertion', 'int', 0);              // 0 : manual / 1 : automatic
+        $this->add_newItem('insertion', 'int', 0);                  // 0 : manual / 1 : automatic
         $this->add_newItem('message', 'array', array());
-        $this->add_newItem('styleSource', 'string', 'plugin');  // plugin / theme
-        $this->add_newItem('aboutCookie', 'string', '');        // empty / URL / true: send to default cookie page
-        $this->add_newItem('remindTTL', 'int', 365);            // days to remind agreement
-        $this->add_newItem('location', 'string', 'top');        // top / top-left / top-right / bottom / bottom-left / bottom-right
+        $this->add_newItem('styleSource', 'string', 'plugin');      // plugin / theme
+        $this->add_newItem('aboutCookie', 'string', '');            // empty / URL / true: send to default cookie page
+        $this->add_newItem('remindTTL', 'int', 180);                // days to remind agreement, default value is half a year
+        $this->add_newItem('location', 'string', 'bottom-left');    // top / top-left / top-right / bottom / bottom-left / bottom-right / centered
 
         /* generic initialisation */
         parent::init_config();
     }
 
-    /* overwrite pluginConfig methods */
+    /* Override PluginConfig methods */
 
     /**
-     * Get object items values from header.
+     * Load object items values from header.
      * @return void
      */
     public function get_fromHeader() {
@@ -50,7 +48,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         /* load message for each available languages */
         $this->vars['message'] = array();
         foreach ($camyks->get_confValue('editing_languages') as $language) {
-            $this->vars['message'][$language] = isset($_REQUEST['message_'.$language])?$_REQUEST['message_'.$language]:'';
+            $this->vars['message'][$language] = isset($_REQUEST['message_'.$language]) ? $_REQUEST['message_'.$language] : '';
         }
     }
 
@@ -108,6 +106,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
             'bottom'        => $this->get_translation('location_bottom'),
             'bottom-left'   => $this->get_translation('location_bottomleft'),
             'bottom-right'  => $this->get_translation('location_bottomright'),
+            'centered'      => $this->get_translation('location_centered'),
         );
     }
 
