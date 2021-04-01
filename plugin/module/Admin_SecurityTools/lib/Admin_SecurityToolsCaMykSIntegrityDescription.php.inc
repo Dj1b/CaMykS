@@ -1,20 +1,20 @@
 <?php
 /**
  * @brief CaMykS integrity file
- * @date Creation: 2021-03-01
+ * @date Creation: 2021-04-01
  */
 
 $this->integrityCheckResult = array (
-  'date' => 'Mon, 01 Mar 2021 11:29:00 +0100',
+  'date' => 'Thu, 01 Apr 2021 10:39:20 +0200',
   'gitLastCommit' => NULL,
   'files' => 
   array (
     'Camyks.php.inc' => 
     array (
-      'checksum' => 'a1ea3c63aac15c6a753b34a4c8d32730264c2a5fbe5ba80470a49d672cf7df76',
+      'checksum' => 'acc9ceb492f723c21372fa1cc02ba8ad93056b8c6df7e64fbdb41f75188829c0',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.21.2',
+      'version' => '1.0.21.3',
     ),
     'docker/start-apache2.sh' => 
     array (
@@ -228,31 +228,31 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/CookieAgreementMessage/CookieAgreementMessage.php.inc' => 
     array (
-      'checksum' => 'fabb9283e5690385938e51dee8c2b1240c597128ecb98b5e3af1905a2cac162b',
+      'checksum' => '83b48bbe45c5f8425d02ef9b611a7a9308f466efb2e7811d06a161f3fb4d44e5',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1.1',
+      'version' => '1.1.0.1',
     ),
     'plugin/input/CookieAgreementMessage/locale/translation_en.php.inc' => 
     array (
-      'checksum' => 'd11bb696c5ffaefa3073e292821a2d5e4f1ec912bc608eb5acc90c3bc7c3804a',
+      'checksum' => '91b26a52ef6a0dc8cfa669fd7a88aadcff8e77c362c2f701976e1183dc60d0fe',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.1.0',
     ),
     'plugin/input/CookieAgreementMessage/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => '3c562f1d53cf010275e426b3aa0009675f326c6ad6e0b5f32d02d74171f34fc1',
+      'checksum' => 'd3d2f3694cfb3056551762509f26aac3dd7eb1c3f0fb0bc46f2e3833b98d2c6a',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.1.0',
     ),
     'plugin/input/CookieAgreementMessage/css/styles.css' => 
     array (
-      'checksum' => '7e49772e9cc1fb3461fbc6405180538f5538359465a4b8a22a70c0a72f398265',
+      'checksum' => '06a60a0e5dc994d1a40da88542c5175e2efc6b4d0b7c51d94e34892809809517',
       'mime' => 'text/plain',
       'normalised' => 0,
-      'version' => '1.0.1',
+      'version' => '1.1.0',
     ),
     'plugin/input/CookieAgreementMessage/js/CookieAgreementMessageConfig.js' => 
     array (
@@ -263,10 +263,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/CookieAgreementMessage/js/CookieAgreementMessage.js' => 
     array (
-      'checksum' => '6121adaf7a1c42e2c57aea58e79ab61c42ca5384f182a5924f735e04ad2e5106',
+      'checksum' => 'f334432d663a23b167c4ee6483d057c899495122ed205d0cc732c7fea2cf5aba',
       'mime' => 'text/plain',
       'normalised' => 0,
-      'version' => '1.0',
+      'version' => '1.1.0',
     ),
     'plugin/input/CookieAgreementMessage/html/configuration/edit.html.inc' => 
     array (
@@ -284,45 +284,73 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/CookieAgreementMessage/html/input.html.inc' => 
     array (
-      'checksum' => '07eaff74a52b3bb561734d707cc54e1110a8fec63ac181a7555c53cc761eb62d',
+      'checksum' => '16a0417e4d41d9dd0781b7b94775827017c667a1f80e5cee9c04e296b49260a0',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.1.0',
+    ),
+    'plugin/input/CookieAgreementMessage/img/refuse.png' => 
+    array (
+      'checksum' => '925b65be0623a97d2a7aea6bb588001819f45615ee4bc6fbdfe59b37b5ad6137',
+      'mime' => 'image/png',
+      'normalised' => 0,
+      'version' => '',
+    ),
+    'plugin/input/CookieAgreementMessage/img/accept.png' => 
+    array (
+      'checksum' => '6c13f2bb6eb9abe95152724f0f936001cb83ac67c708a88307892f13ad23d40b',
+      'mime' => 'image/png',
+      'normalised' => 0,
+      'version' => '',
+    ),
+    'plugin/input/CookieAgreementMessage/img/black/open.png' => 
+    array (
+      'checksum' => 'ce55728aa576cfbfbd0db2557829422724dd8079a6b7ee5a0f96a0c4dc98c583',
+      'mime' => 'image/png',
+      'normalised' => 0,
+      'version' => '',
+    ),
+    'plugin/input/CookieAgreementMessage/img/black/close.png' => 
+    array (
+      'checksum' => '2edad1a49cd0b513989a51f118c56f9a0850245c001a3cba068f636585f117b2',
+      'mime' => 'image/png',
+      'normalised' => 0,
+      'version' => '',
     ),
     'plugin/input/CookieAgreementMessage/lib/CookieAgreementMessageConfig.php.inc' => 
     array (
-      'checksum' => 'd7522ade8348cdd6c5327a8e2abca7c5272d11cc2837229ecc0ed55ec5e17fae',
+      'checksum' => '099fddd30146a06091bb7193d645298c6fba71b1e360a37e9bf2f03eee639f62',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.1.0',
     ),
     'plugin/input/LimonetikPayment/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => '956234c5b295e28309b993caf87ffb795bb26459c74b1e93510769f978df79b0',
+      'checksum' => 'e5ca9c8268248a543e355ab3e272a4cd40b6c2561357ef48794975c71b39536c',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1',
+      'version' => '1.0.2',
     ),
     'plugin/input/LimonetikPayment/LimonetikPayment.php.inc' => 
     array (
-      'checksum' => '39d48830114501c6a751eb78ee8c016a26d5abab6a91a61ecc7a75f7a39575c7',
+      'checksum' => '9f10f0aa2c050cb5e59e46600eab26a3ebfe5a1524c50395bd14dd1991594983',
+      'mime' => 'text/x-php',
+      'normalised' => 1,
+      'version' => '1.0.2',
+    ),
+    'plugin/input/LimonetikPayment/html/configuration/edit.html.inc' => 
+    array (
+      'checksum' => '04be7e203a34fd5094065321e802458b492981e6e3db0c64d4949a88bad3759c',
       'mime' => 'text/x-php',
       'normalised' => 1,
       'version' => '1.0.1',
     ),
-    'plugin/input/LimonetikPayment/html/configuration/edit.html.inc' => 
-    array (
-      'checksum' => '207c7748227c84b11e2fc45a0509e7bde93c60a6e6e4ec8ca47beb6c453e7286',
-      'mime' => 'text/x-php',
-      'normalised' => 1,
-      'version' => '1.0.0',
-    ),
     'plugin/input/LimonetikPayment/html/configuration/view.html.inc' => 
     array (
-      'checksum' => 'bc478a65e7f819a4ccd35ab34adf5f5057c5e6272637b20494b3f8f07ce680d2',
+      'checksum' => 'ed6a962fb2ca582dd36f569d34e640be0e1ff603b2c6d07cdfde321769610894',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/LimonetikPayment/html/input.html.inc' => 
     array (
@@ -340,10 +368,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/LimonetikPayment/lib/LimonetikPaymentConfig.php.inc' => 
     array (
-      'checksum' => '483396500685658d5ae1284bce0e5675209f057b529fa4b8f2a55e7f313ba0ba',
+      'checksum' => 'bb2b4de66a32e9cadae77f0204b3703cb909b69f80ebcda0d52e64b76f95fd0d',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/PerpetualCalendar/css/perpetualcalendar.css' => 
     array (
@@ -4085,17 +4113,17 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/StripePayment/locale/translation_en.php.inc' => 
     array (
-      'checksum' => '1f1a562911f0fdc49f1af9873c9053b4bc3d515e9c6f6bb27abab0f6fd24b315',
+      'checksum' => 'af2b21c185f0d5e4a3c6583b13dcf4670c23a2df27c3c010081403c7f05eef5d',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/StripePayment/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => 'd4f157ee0d93f356e84afb2d5c3c19946c9ab15ea3109e154a0dbbe977c20b8b',
+      'checksum' => '0d7368fe4bd10b2c280a64494a55cfdda02117a43615f1097eaea853387f353e',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/StripePayment/StripePayment.php.inc' => 
     array (
@@ -5695,31 +5723,31 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/StripePayment/html/configuration/edit.html.inc' => 
     array (
-      'checksum' => '415c96b3d252ca0dc267a62bd54bdac1aa0af213d938c0f506ad868d5f844185',
+      'checksum' => '0367ae21cba7de5e7499574b831c9b74b629f00407fdc72aa1595261fcc1847a',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1.1',
+      'version' => '1.0.2',
     ),
     'plugin/input/StripePayment/html/configuration/view.html.inc' => 
     array (
-      'checksum' => '304a0e76d793ecde9dd33555b8b91df8b2183565851feb115e5121bb7ee8be28',
+      'checksum' => '5e8b1ab167676fa4dade62bd4aa3697c3a200243b3282441bd28890b38916994',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/StripePayment/html/input.html.inc' => 
     array (
-      'checksum' => '89cb0895dd86ab938262f461a8f016a5530de8a891241cf4037a78c9324c1e09',
+      'checksum' => 'b60ad987613cbfc235327bc73e1ceb8021df25f7c2646ab44d6dd84503ad627a',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/StripePayment/lib/StripePaymentConfig.php.inc' => 
     array (
-      'checksum' => '66666bc89554fa2742d2c754caa162e1e5a558e595f9d87bd1d9266b03013a20',
+      'checksum' => 'f295ddd03f4fd9f69d2f08f4be814349426d3a562eca57fb2ad19fa48b6247c7',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/AdminItemListViewer/js/AdminItemListViewer.js' => 
     array (
@@ -5954,17 +5982,17 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/GenericMediaPopup/locale/translation_en.php.inc' => 
     array (
-      'checksum' => 'ec658605f0f63db083df7a61468e990884f13efc519f87b94a0e61fe22a11df4',
+      'checksum' => '9a02b8e4baeda1f3e929f395590882a354b55c50ca453b5a31eaaf0fab7da0c1',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/GenericMediaPopup/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => 'b4d8fa8633e2c8224ef6afd014e9e056b6e64eeb283f584fd7e676c647ba3d11',
+      'checksum' => '123ca7efdc3f73848cf10b9ec1b75b4b2214a1f24141d0d180ac450f850de2f0',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/GenericMediaPopup/css/mediapopup.css' => 
     array (
@@ -5982,10 +6010,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/GenericMediaPopup/js/mediapopup.js' => 
     array (
-      'checksum' => '6808b282d16e379ade53de0d398eb2f6ba81a8e798ef2e36b29a017e0ae85436',
+      'checksum' => 'b9762a52898052936dc718fce427f041c594cb5397ae3ab8e7ef1bd94a6ddaaf',
       'mime' => 'text/plain',
       'normalised' => 0,
-      'version' => '1.0.3',
+      'version' => '1.0.4',
     ),
     'plugin/input/GenericMediaPopup/js/tinymce_plugin/link.htm' => 
     array (
@@ -6115,10 +6143,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/GenericMediaPopup/GenericMediaPopup.php.inc' => 
     array (
-      'checksum' => 'adc55987e9aadb3e625e06723bdb54e1683605dc1828f50820a9555404887344',
+      'checksum' => '291659947129bca648169249b2151b026bd66070342fc1ad82002ef6cbadd30c',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1',
+      'version' => '1.0.2',
     ),
     'plugin/input/MoneticoPaiement/locale/translation_en.php.inc' => 
     array (
@@ -6185,24 +6213,24 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/ReCaptcha/ReCaptcha.php.inc' => 
     array (
-      'checksum' => '154db45d6df7ed44bdc113a43bc4a8065fad7b39b36d9c7bf623232071dbc969',
+      'checksum' => 'adc5ac5a50a97da1cf5cd74f9ef49be4924b24c00c8e93f8de9092f77c5212c3',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/ReCaptcha/locale/translation_en.php.inc' => 
     array (
-      'checksum' => 'ecc05a525312ab6030c8b03a7a421d4f377a27c71bf93739f68fc303927fc867',
+      'checksum' => 'bf2715c67c013e0ff055054478c10e8946fb7ebe0e88b9196b12a183780ce351',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1',
+      'version' => '1.0.2',
     ),
     'plugin/input/ReCaptcha/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => 'c740e9fa65c9585e9671b3d49e3c692e5750c82a00591f4467eceab49b9b20d4',
+      'checksum' => '2466eb8b41302c0d05398713b345c2a484c14daee4d2142caa72e482e772fa47',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1',
+      'version' => '1.0.2',
     ),
     'plugin/input/ReCaptcha/html/configuration/edit.html.inc' => 
     array (
@@ -6221,6 +6249,13 @@ $this->integrityCheckResult = array (
     'plugin/input/ReCaptcha/html/input_captcha.html.inc' => 
     array (
       'checksum' => '063d726a4da7fbf12edac6a73637f70acda1a160cd6188bd1a0020534cedcade',
+      'mime' => 'text/x-php',
+      'normalised' => 1,
+      'version' => '1.0',
+    ),
+    'plugin/input/ReCaptcha/html/input_unavailable.html.inc' => 
+    array (
+      'checksum' => '7f8ea374a84ece1fd6502c19986221bc3f9c314e64d00dfe0329296706ef0bf4',
       'mime' => 'text/x-php',
       'normalised' => 1,
       'version' => '1.0',
@@ -6717,17 +6752,17 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/GoogleAnalytics/locale/translation_en.php.inc' => 
     array (
-      'checksum' => '510a27090a48c0e3325ce6d8729432047d993b87c0375d6324ccb0a970c416c7',
+      'checksum' => '606d806f5da77b526625005123b8fd6666db60173fef5866c01ec5a8524c46eb',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/GoogleAnalytics/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => 'a792ac45134c62f19797521526ee1bd96e56a344bfcee70b7307526825f9d7fd',
+      'checksum' => 'c386f93be7a7f07f2461c2d06dfa80395c451605426f2f368a2e805adef42415',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/GoogleAnalytics/html/configuration/edit.html.inc' => 
     array (
@@ -6752,10 +6787,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/GoogleAnalytics/GoogleAnalytics.php.inc' => 
     array (
-      'checksum' => '3b0cb4e1587da6eec83d17b6f6a570a68565c442aed73114ce2220a5e87ea598',
+      'checksum' => '83abb758a7c0510ebb8ff358eb76f9a24379dd6a5cf3b456fdbf38884d44e7dd',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/GoogleAnalytics/lib/GoogleAnalyticsConfig.php.inc' => 
     array (
@@ -9601,24 +9636,24 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/CrispChat/CrispChat.php.inc' => 
     array (
-      'checksum' => '1c7f079a933d5f123d9680b468cc0e9d917a90ea59f70d140ca065903cbe855a',
+      'checksum' => 'b1631c5c4eea3cc805b88a2b2168e39ea73670720b60baac57b471cf72f5b5c1',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/CrispChat/locale/translation_en.php.inc' => 
     array (
-      'checksum' => '5a76e61470aa813a1a10bc1a8d69d3d7b212692b0dc4856403b578ea6cbeb69c',
+      'checksum' => '70ee3979a34279c97be2e7df708d481c413d95396960337815829ed84341697a',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/CrispChat/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => 'd35021aa9a0bc3ee78678a4f756ce240d20c77a0f93f8b381b534c8e8f6603e7',
+      'checksum' => '1936728cfbcb0003987846c27ace0bbb95b0ed3cf65e19d44ba7efe79bf99819',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0',
+      'version' => '1.0.1',
     ),
     'plugin/input/CrispChat/html/configuration/edit.html.inc' => 
     array (
@@ -9629,7 +9664,7 @@ $this->integrityCheckResult = array (
     ),
     'plugin/input/CrispChat/html/configuration/view.html.inc' => 
     array (
-      'checksum' => '34cbd23e04d47474f9d01a9f321091fe4d37449c47494e5b8f6d61942af21aa5',
+      'checksum' => 'db1442dd8007352beb96bd7ea64e0b7f218dc1f6fad5a2f22c2f050db6b15f24',
       'mime' => 'text/x-php',
       'normalised' => 1,
       'version' => '1.0',
@@ -12443,17 +12478,17 @@ $this->integrityCheckResult = array (
     ),
     'plugin/module/Admin_GenericEmailingManager/locale/translation_en.php.inc' => 
     array (
-      'checksum' => '8afe62ca16be21881daa4c735bf9b911ba0c94c93567abdf5c38c6928c1d8425',
+      'checksum' => 'c255f020aba061595fba6f49ede2dc99879b50cd0d485906711e31712738748b',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.8',
+      'version' => '1.0.8.1',
     ),
     'plugin/module/Admin_GenericEmailingManager/locale/translation_fr.php.inc' => 
     array (
-      'checksum' => 'd7c52f7bc3c8a8a846f4ff65466a1f02ccbdacfaed2b2509340006e32345be28',
+      'checksum' => '71bbd500b5ecb9b3c296179915b3e7e7a01b4ff2c41206571e6e125addc98565',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.8',
+      'version' => '1.0.8.1',
     ),
     'plugin/module/Admin_GenericEmailingManager/locale/data/translation_en.php.inc' => 
     array (
@@ -14116,7 +14151,7 @@ $this->integrityCheckResult = array (
     ),
     'plugin/module/Admin_SystemNotifications/html/admin.html.inc' => 
     array (
-      'checksum' => '2e6defa53f342866f08daf7ec3b62fad80b589d33174023e69f630904300eb49',
+      'checksum' => '16577ca85adfbbac92818d17d3a3c65b8df516e5c892fe162f850949e1e64566',
       'mime' => 'text/x-php',
       'normalised' => 1,
       'version' => '1.0.2.1',
@@ -14193,10 +14228,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/module/Admin_SystemNotifications/Admin_SystemNotifications.php.inc' => 
     array (
-      'checksum' => '1c7fbb70dc9aaac4f350bd9b4ac6e7a04044a91bbe8707dbc811c123a560a674',
+      'checksum' => '6f884cc048f2d0765e0c159c1c594f15fc70894daf325b07076e79d2dfb6a5e6',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.2.1',
+      'version' => '1.0.2.2',
     ),
     'plugin/module/Admin_GooglePoIMapManager/locale/translation_fr.php.inc' => 
     array (
@@ -17936,6 +17971,13 @@ $this->integrityCheckResult = array (
       'normalised' => 0,
       'version' => '',
     ),
+    'documents/changelogs/Release-20210301.md' => 
+    array (
+      'checksum' => 'ba5f1a91358c88877acdbcaee761fa9bfdfdf75226b943296ae5a9e6bab4891c',
+      'mime' => 'text/plain',
+      'normalised' => 0,
+      'version' => '',
+    ),
     'documents/changelogs/Release-20190201.md' => 
     array (
       'checksum' => 'fff6fe4fe0e6291e75d310c10c3b0d80efeff2e367961df3fd69e80a4e402bb5',
@@ -18372,10 +18414,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/etc/static.php.inc' => 
     array (
-      'checksum' => '04701484659f76eb71828b9c5a50a01ea8296036ab2d9e721d5695cc79391863',
+      'checksum' => '04b23840a812d9d5b6d5ea942c555a7c6c4c30dd2320ed41d6de4bf8585bdb45',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.28',
+      'version' => '1.0.29',
     ),
     'engine/etc/neededPlugins.php.inc' => 
     array (
@@ -18916,6 +18958,13 @@ $this->integrityCheckResult = array (
       'normalised' => 1,
       'version' => '1.0.0',
     ),
+    'engine/lib/tool/clientDevices/Edenwood.php.inc' => 
+    array (
+      'checksum' => '2302a504cecdbe1e2d78d456b6476fef792eecd2de30727b440ccaea898731bc',
+      'mime' => 'text/x-php',
+      'normalised' => 1,
+      'version' => '1.0.0',
+    ),
     'engine/lib/tool/clientDevices/Meiigoo.php.inc' => 
     array (
       'checksum' => '46e0cec36b79c991210eb2ab3b625a0dd7cfa277d37071dbe013cc9f5cb124cc',
@@ -19107,10 +19156,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/tool/clientDevices/Apple.php.inc' => 
     array (
-      'checksum' => 'db59bdce5cfa9aa6d2b260daafd1b53eac9b7aaefc1e63567627cad6c87b22b9',
+      'checksum' => '7b66508f38260e7ef7e76c596bb8d3d847b004b25014c442124bc2f5e7d4a111',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.3',
+      'version' => '1.0.4',
     ),
     'engine/lib/tool/clientDevices/Dexp.php.inc' => 
     array (
@@ -19261,10 +19310,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/tool/clientDevices/Infinix.php.inc' => 
     array (
-      'checksum' => '64dcf5c65bc267ed9ee016b26564c2cb810411143afa42cb3cb4f3dae65fba01',
+      'checksum' => '97b5f15049148a5ba132741fd6fc9f111298fb5d74ee05bd7be57632b087e443',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.21',
+      'version' => '1.0.22',
     ),
     'engine/lib/tool/clientDevices/BlackBerry.php.inc' => 
     array (
@@ -19793,10 +19842,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/tool/clientBots/Generics.php.inc' => 
     array (
-      'checksum' => 'd63f6363f3273d0b986d5a7bc9dbcdbc838e0ce1eabd8df5f3ce280d7d798dcb',
+      'checksum' => 'f6c407f561255b501ba213c16f0596b7c2c5fdf68bdbd8ea66b37a8d3c6b74b1',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.26',
+      'version' => '1.0.27',
     ),
     'engine/lib/tool/clientBots/Hacks.php.inc' => 
     array (
@@ -19947,10 +19996,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/tool/client.php.inc' => 
     array (
-      'checksum' => '22190fb404075971ed9f5a3ecfb2e326d1b0554b8f82408bef09f2dfcc5aacb5',
+      'checksum' => 'f38ddf196b43a5301aee68a0b929d0e0647013dc7b422097d9753d780e7972ed',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.132',
+      'version' => '1.0.133',
     ),
     'engine/lib/tool/units.php.inc' => 
     array (
