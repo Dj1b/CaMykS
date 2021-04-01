@@ -4,9 +4,9 @@
  * <br /> Interface to Limonetik payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2020
- * @date Modification: Jan 2021
+ * @date Modification: Mar 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -151,8 +151,10 @@ final class LimonetikPayment extends Input {
         );
 
         /* Execute request to Limonetik server */
-        if (($response = $this->execute_limonetikRequest('PaymentOrder/Create', $data)) === false)
+        if (($response = $this->execute_limonetikRequest('PaymentOrder/Create', $data)) === false) {
+            $camyks->log_internalerror($this, $this->_lastErrorMsg, $this->_lastErrorDetails, __FILE__, __LINE__);
             return $this->display_error();
+        }
 
         /* Backup Limonetik answer in session */
         $camyks->set_sessionValue('LimonetikAnswer', array(
@@ -275,7 +277,7 @@ final class LimonetikPayment extends Input {
      * @return string
      */
     public function get_transactionId() {
-
+        return $this->_transactionId;
     }
 
     /* Limonetik related methods */
@@ -341,7 +343,7 @@ final class LimonetikPayment extends Input {
 
         /* Check request answer */
         if ((int)$response['ReturnCode'] != 1000) {
-            $this->set_lastError(2, 'Error from Limonetik server.', $response['ReturnCode'].'('.$response['ReturnCode'].')');
+            $this->set_lastError(2, 'Error from Limonetik server.', $action.': ('.$response['ReturnCode'].') '.$response['ReturnMessage']);
             return false;
         }
 
@@ -379,7 +381,7 @@ final class LimonetikPayment extends Input {
     public function get_lastErrorMessage() {
         if ($this->_lastErrorMsg == '')
             return '';
-        return $this->_lastErrorMsg;
+        return $this->_lastErrorMsg.' - '.$this->_lastErrorDetails;
     }
 
     /**

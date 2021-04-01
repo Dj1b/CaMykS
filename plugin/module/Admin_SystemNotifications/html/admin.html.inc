@@ -17,6 +17,8 @@ global $camyks;
 <?= $this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams); ?>
 <?= $this->theme->get_boxContent2Header(); ?>
 
+
+
 <div id="itemFollowUp" style="display:<?= $this->tabBuilder->get_tabDisplay('FollowUp')?>;" class="adminContentPanel">
 
     <?php if ($this->config->vars['module_mode'] == 1) : ?>

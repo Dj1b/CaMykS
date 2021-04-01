@@ -3,12 +3,11 @@
  * @brief GenericMediaPopup Input
  * <br /> Inline popup creator automatically managing content to display.
  * @details Plugin / Input Engine
- * @file plugin/input/GenericMediaPopup/GenericMediaPopup.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2011
- * @date Modification: Dec 2019
- * @copyright 2011 - 2019 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2011 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details Supported format :
@@ -70,7 +69,7 @@ final class GenericMediaPopup extends Input {
      * @param string $path_type
      * @return void
      */
-    function __construct($path_type) {
+    public function __construct($path_type) {
         global $camyks;
         parent::__construct('GenericMediaPopup', $path_type);
 
@@ -91,6 +90,7 @@ final class GenericMediaPopup extends Input {
 
         /* register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('CookieAgreementMessage');
 
         /* plugin variables */
         $this->loaded = false;
@@ -153,7 +153,7 @@ final class GenericMediaPopup extends Input {
         /* add scripts */
         $name = $this->params['objectName'];
 
-        $this->add_JSFile('mediapopup.js');
+        $this->add_JSFile('mediapopup.js?v=1.0.4');
         $this->add_JSScript('var '.$name.' = new MediaPopup("'.$name.'");');
         if ( $this->params['enableFlash'] == 1 ) {
             $this->add_JSFile('swfobject.js');
@@ -183,6 +183,7 @@ final class GenericMediaPopup extends Input {
             $this->add_JSScript($name.'.set_param("diaporamaButtonsShift", '.$this->params['diaporamaButtonsShift'].');');
         }
         $this->add_JSScript($name.'.set_param("baseURL", "'.$camyks->get_confValue('url').'");');
+        $this->add_JSScript($name.'.set_param("allowVideos", '.$this->is_cookieAccepted().');');
         $cnt = 0;
         foreach ($this->diaporamaPictures as $picture)
             $this->add_JSScript($name.'.set_param("diaporama", '.$cnt++.', {picture:"'.$picture['url'].'", title:"'.$picture['title'].'"});');
@@ -274,6 +275,42 @@ final class GenericMediaPopup extends Input {
     public function save_configuration() {
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+    /* CookieAgreementMessage extension methods */
+
+    /**
+     * Return plugin information related to cookies.
+     * @return void
+     */
+    public function get_cookieInformationData() {
+
+        /* Return plugin information */
+        return array(
+            'GenericMediaPopup' => array(
+                'title' => $this->get_translation('cookie_title'),
+                'purpose' => $this->get_translation('cookie_purpose'),
+                'usage' => '',
+                'duration' => '',
+                'aboutURL' => '',
+                'isMandatory' => false,
+            ),
+        );
+
+        /* Return default value */
+        return array();
+    }
+
+    /**
+     * Check if plugin is cookie accepted.
+     * @return boolean
+     */
+    private function is_cookieAccepted() {
+        global $camyks;
+
+        $input = $camyks->get_input('CookieAgreementMessage');
+        if ($input === false)
+            return true;
+        return $input->check_serviceIsAccepted('GenericMediaPopup');
     }
 }
 ?>

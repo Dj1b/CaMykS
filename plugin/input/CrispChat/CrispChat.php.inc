@@ -4,10 +4,10 @@
  * <br /> Adds Crisp.chat snippet on page
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jul 2020
- * @date Modification: Jul 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -21,6 +21,12 @@ final class CrispChat extends Input {
      * @brief Input configuration.
      */
     protected $config;
+
+    /**
+     * var boolean isConfigLoaded
+     * @brief Stores if the configuration is loaded
+     */
+    protected $isConfigLoaded = false;
 
     /**
      * Class constructor.
@@ -41,6 +47,7 @@ final class CrispChat extends Input {
 
         /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('CookieAgreementMessage');
 
         /* Automatically insert it in the page */
         $this->register_asCaMykSEventHandler('onPageLoad');
@@ -63,7 +70,7 @@ final class CrispChat extends Input {
         parent::initialise();
 
         /* Add JS scripts to page */
-        if ($this->get_configValue('websiteId') != '')
+        if ($this->get_configValue('websiteId') !== '' and $this->is_cookieAccepted())
             $this->add_JSScript('window.$crisp=[];window.CRISP_WEBSITE_ID="'.$this->get_configValue('websiteId').'";(function(){ d=document;s=d.createElement("script"); s.src="https://client.crisp.chat/l.js"; s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();');
     }
 
@@ -74,9 +81,17 @@ final class CrispChat extends Input {
      * @return void
      */
     private function load_configuration() {
+        /* Check configuration is already loaded */
+        if ($this->isConfigLoaded)
+            return;
+
+        /* Load configuration */
         $this->load_library('CrispChatConfig');
         $this->config = new CrispChatConfig('config', $this);
         $this->config->get();
+
+        /* Save configuration is loaded */
+        $this->isConfigLoaded = true;
     }
 
     /**
@@ -147,6 +162,46 @@ final class CrispChat extends Input {
         $this->load_configuration();
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+
+    /* CookieAgreementMessage extension methods */
+
+    /**
+     * Return plugin information related to cookies.
+     * @return void
+     */
+    public function get_cookieInformationData() {
+        /* Load configuration */
+        $this->load_configuration();
+
+        /* Return plugin information */
+        if ($this->get_configValue('websiteId') !== '')
+            return array(
+                'CrispChat' => array(
+                    'title' => $this->get_translation('cookie_title'),
+                    'purpose' => $this->get_translation('cookie_purpose'),
+                    'usage' => '',
+                    'duration' => '',
+                    'aboutURL' => '',
+                    'isMandatory' => false,
+                ),
+            );
+
+        /* Return default value */
+        return array();
+    }
+
+    /**
+     * Check if plugin is cookie accepted.
+     * @return boolean
+     */
+    private function is_cookieAccepted() {
+        global $camyks;
+
+        $input = $camyks->get_input('CookieAgreementMessage');
+        if ($input === false)
+            return true;
+        return $input->check_serviceIsAccepted('CrispChat');
     }
 }
 ?>

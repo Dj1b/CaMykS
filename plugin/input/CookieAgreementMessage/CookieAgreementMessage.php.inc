@@ -3,19 +3,17 @@
  * @brief CookieAgreementMessage Input
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
- * @file plugin/input/CookieAgreementMessage/CookieAgreementMessage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.1.0.1
  * @date Creation: May 2017
- * @date Modification: Feb 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * CookieAgreementMessage Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class CookieAgreementMessage extends Input {
     /**
@@ -23,6 +21,24 @@ final class CookieAgreementMessage extends Input {
      * @brief Input configuration.
      */
     protected $config;
+
+    /**
+     * var array $serviceInformation
+     * @brief Store services information from extenstions.
+     */
+    protected $serviceInformation;
+
+    /**
+     * var array $cookieData
+     * @brief Store data from cookie
+     */
+    protected $cookieData;
+
+    /**
+     * var boolean $isDataLoaded
+     * @brief Store data have been loaded.
+     */
+    private $isDataLoaded = false;
 
     /**
      * var array $params
@@ -46,69 +62,80 @@ final class CookieAgreementMessage extends Input {
         global $camyks;
         parent::__construct('CookieAgreementMessage', $path_type);
 
-        /* set plugin version */
+        /* Override plugin variables */
         $this->version = '1.0';
-
-        /* set plugin package */
         $this->plugin_package = 'Default';
 
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load configuration library */
+        /* Load configuration library */
         $this->load_library('CookieAgreementMessageConfig');
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
 
-        /* load config */
+        /* Load configuration */
         $this->config = new CookieAgreementMessageConfig('config', $this);
         $this->config->get();
 
-        /* check for automatique adding */
+        /* Check for automatic insertion */
         if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['insertion'] == 1) {
             $this->register_asCaMykSEventHandler('onPageLoad');
             $this->register_asCaMykSEventHandler('onBodyClose');
         }
     }
 
-    /* overwrite input methods */
+    /* Override input methods */
 
     /**
      * Initialise input.
      * @param array $params
      * @return void
      */
-    function initialise($params=array()) {
+    public function initialise($params=array()) {
         global $camyks;
+
+        /* Load data */
+        $this->load_data();
 
         /* check params */
         $this->check_params($params);
 
         /* check if cookie message has to be displayed */
-        if ($camyks->get_sessionValue('cookieAccepted', 0) == 1) {
-            $this->params['status'] = 'disabled';
-            return;
-        } elseif ($this->params['remindTTL'] > 0 and cookie_get('cookieAccepted') == 1) {
-            $this->params['status'] = 'disabled';
-            return;
+        if ($this->params['remindTTL'] > 0 and !is_null($this->cookieData)) {
+            $this->params['status'] = 'minimised';
         }
 
-        /* add styles */
+        /* check all services have been accepted */
+        foreach ($this->serviceInformation as $name => $service) {
+            if (!isset($this->cookieData[$name])) {
+                $this->params['status'] = "enabled";
+                break;
+            }
+        }
+
+        /* Add styles */
         if ($this->params['styleSource'] == 'plugin') {
             $this->add_styleFile('css/styles.css');
         }
 
-        /* add scripts */
+        /* Add scripts */
         $this->add_JSFile('CookieAgreementMessage.js');
         $this->add_JSEngineFile('tool/cookie.js');
         $this->add_JSLoadScript('CookieAgreementMessage.set_param("cookieTTL", '.$this->params['remindTTL'].');');
+        foreach ($this->serviceInformation as $name => $service) {
+            if ($service['isMandatory'] == 1)
+                $value = 2;
+            else
+                $value = $this->get_serviceStatus($name);
+            $this->add_JSLoadScript('CookieAgreementMessage.services["'.$name.'"] = '.$value.';');
+        }
+        $this->add_JSLoadScript('CookieAgreementMessage.set_locale("unavailable_title", "'.string_HTML2Text($this->get_translation('message_unavailable_title')).'");');
+        $this->add_JSLoadScript('CookieAgreementMessage.set_locale("unavailable_content", "'.string_HTML2Text($this->get_translation('message_unavailable_content')).'");');
         $this->add_JSLoadScript('CookieAgreementMessage.initialise();');
-
-        /* remove cookie for other pages of the same session */
-        $camyks->set_sessionValue('cookieAccepted', 1);
 
         /* Input generic initialization */
         parent::initialise();
@@ -119,7 +146,7 @@ final class CookieAgreementMessage extends Input {
      * @return void
      */
     public function display() {
-        if ($this->params['status'] == 'enabled')
+        if ($this->params['status'] !== 'disabled')
             parent::display();
     }
 
@@ -140,7 +167,102 @@ final class CookieAgreementMessage extends Input {
         return '';
     }
 
-    /* specific tool methods */
+    /* Specific public methods */
+
+    /**
+     * Check service is cookie accepted.
+     * @param string $service
+     * @return boolean
+     */
+    public function check_serviceIsAccepted($service) {
+        $this->load_data();
+
+        /* Check service exists */
+        if (!isset($this->serviceInformation[$service]))
+            return true;
+
+        /* Check service status */
+        if (!isset($this->cookieData[$service]) or $this->cookieData[$service] === 0)
+            return false;
+        return true;
+    }
+
+    /**
+     * Return services list with details.
+     * @return array
+     */
+    public function get_servicesList() {
+        return $this->serviceInformation;
+    }
+
+    /**
+     * Return cookie management panel, open link.
+     * @return array
+     */
+    public function get_cookieManagementPanelOpenLink() {
+        return 'javascript:CookieAgreementMessage.expand_panel();';
+    }
+
+    /* Specific tool methods */
+
+    /**
+     * Return cookie status for service.
+     * @param string $service
+     * @return integer
+     */
+    protected function get_serviceStatus($service) {
+        return isset($this->cookieData[$service]) ? $this->cookieData[$service] : -1;
+    }
+
+    /**
+     * Load cookie data and information.
+     * @return void
+     */
+    private function load_data() {
+        global $camyks;
+
+        /* Check plugin data is already loaded */
+        if ($this->isDataLoaded)
+            return;
+
+        /* Load cookie data */
+        $this->cookieData = cookie_get('cookieAccepted');
+        if (!is_null($this->cookieData)) {
+            /* Read JSON */
+            $data = json_decode($this->cookieData, true);
+            if (json_last_error() !== JSON_ERROR_NONE or !is_array($data)) {
+                /* $this->add_error(json_last_error(), json_last_error_msg(), __FILE__, __LINE__); */
+                $this->cookieData = null;
+            } else
+                $this->cookieData = $data;
+        }
+
+        /* Initialise service array */
+        $this->serviceInformation = array();
+
+        /* Adds CMS internal cookie */
+        $internal = array(
+            'title'         => $this->get_translation('navigationcookie_title'),
+            'purpose'       => $this->get_translation('navigationcookie_purpose'),
+            'usage'         => $this->get_translation('navigationcookie_usage'),
+            'duration'      => $this->get_translation('navigationcookie_duration', ((float)ini_get('session.gc_maxlifetime')) / 60),
+            'aboutURL'      => '',
+            'isMandatory'   => true,
+        );
+        if (($u = $camyks->get_siteKeypageLink('LegalMentions')) != '')
+            $internal['aboutURL'] = $u.'#LM-Cookies';
+        $this->serviceInformation['Navigation'] = $internal;
+
+        /* Load extensions */
+        $this->extensions = $this->get_registeredExtensions();
+
+        /* Load data from extensions */
+        foreach ($this->extensions as $extension)
+            $this->serviceInformation = array_merge($this->serviceInformation, $extension->get_cookieInformationData());
+
+        /* Save plugin data is loaded */
+        $this->isDataLoaded = true;
+    }
 
     /**
      * Check parameters from current parameters and configuration.

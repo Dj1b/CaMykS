@@ -3,9 +3,9 @@
  * @brief Admin_GenericEmailingManager Module french dictionnary.
  * @details Plugin, Module Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.8.1
  * @date Creation: Dec 2012
- * @date Modification: Feb 2021
+ * @date Modification: Mar 2021
  * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -222,8 +222,8 @@ $this->trads['mod_admin_genericemailingmanager_none'] = 'Aucun';
 
 $this->trads['mod_admin_genericemailingmanager_initialise_importation'] = 'Initialisation de l\'importation en cours.';
 $this->trads['mod_admin_genericemailingmanager_initialise_importation_done'] = 'Initialisation l\'importation termin&eacute;e.';
-$this->trads['mod_admin_genericemailingmanager_import_contact'] = 'Importation en cours.';
-$this->trads['mod_admin_genericemailingmanager_import_contact_done'] = 'Importation de %s termin&eacute;e.';
+$this->trads['mod_admin_genericemailingmanager_import_contact'] = 'Importation d\'un contact en cours.';
+$this->trads['mod_admin_genericemailingmanager_import_contact_done'] = 'Importation du contact %s termin&eacute;e.';
 $this->trads['mod_admin_genericemailingmanager_import_contact_failure'] = 'Une erreur est survenue lors de l\'importation de %s : ';
 $this->trads['mod_admin_genericemailingmanager_finalise_importation'] = 'Finalisation de l\'importation en cours.';
 $this->trads['mod_admin_genericemailingmanager_finalise_importation_done'] = 'Finalisation de l\'importation termin&eacute;.';

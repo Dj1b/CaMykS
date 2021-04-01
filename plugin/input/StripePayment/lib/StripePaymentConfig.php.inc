@@ -3,10 +3,10 @@
  * @brief StripePayment Input configuration object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: May 2020
- * @date Modification: May 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,10 +26,12 @@ final class StripePaymentConfig extends PluginConfig {
 
         /* Running items */
         $this->add_newItem('runningMode', 'string', '');
+        $this->add_newItem('displayTestCard', 'boolean', 0);
 
         /* Keys items */
         $this->add_newItem('testAPIKey_public', 'string', '');
         $this->add_newItem('testAPIKey_private', 'string', '');
+        $this->add_newItem('test_displayTestCard', 'boolean', 0);
         $this->add_newItem('productionAPIKey_public', 'string', '');
         $this->add_newItem('productionAPIKey_private', 'string', '');
 

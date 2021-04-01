@@ -3,9 +3,9 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.2
+ * @version 1.0.21.3
  * @date Creation: Jun 2005
- * @date Modification: Jan 2021
+ * @date Modification: Mar 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -528,7 +528,7 @@ final class Camyks {
      */
     private function get_camyksPathes() {
         /* check camyks installation mode */
-        if (preg_match('/^camyks/', $this->get_confValue('engine_path')))
+        if (preg_match('/^camyks/i', $this->get_confValue('engine_path')))
             $this->_installationMode = 'dedicated';
         else
             $this->_installationMode = 'shared';
@@ -537,10 +537,10 @@ final class Camyks {
         $this->camyks_plugin_path = $this->camyks_path.'/'.$this->plugin_folder;
 
         /* set camyks plugin full url */
-        if ($this->_installationMode=='shared')
+        if ($this->_installationMode == 'shared')
             $this->camyks_plugin_url = 'c'.$this->plugin_folder;
         else
-            $this->camyks_plugin_url = 'camyks/'.$this->plugin_folder;
+            $this->camyks_plugin_url = $this->get_confValue('engine_path').'/'.$this->plugin_folder;
 
         /* set camyks lib full path */
         $this->camyks_engine_path = $this->camyks_path.'/'.$this->engine_folder;
@@ -640,7 +640,7 @@ final class Camyks {
         if ($this->_installationMode == 'shared')
             $this->site_data_url = 'cdata';
         else
-            $this->site_data_url = 'camyks/engine/data';
+            $this->site_data_url = $this->get_confValue('engine_path').'/engine/data';
         /* set site engine path */
         $this->site_engine_url = 'assets';
 

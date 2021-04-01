@@ -3,12 +3,11 @@
  * @brief ReCaptcha Input
  * <br /> Display and check Google's ReCaptcha captcha.
  * @details Plugin / Input Engine
- * @file plugin/input/ReCaptcha/ReCaptcha.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Feb 2016
- * @date Modification: Jul 2018
- * @copyright 2016 - 2018 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2016 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -23,6 +22,12 @@ final class ReCaptcha extends Input {
      * @brief Plugin's last error.
      */
     private $_lastError;
+
+    /**
+     * var boolean isConfigLoaded
+     * @brief Stores if the configuration is loaded
+     */
+    protected $isConfigLoaded = false;
 
     /**
      * Class constructor.
@@ -41,8 +46,9 @@ final class ReCaptcha extends Input {
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
+        $this->register_asExtension('CookieAgreementMessage');
     }
 
     /* overwrite input methods */
@@ -66,6 +72,10 @@ final class ReCaptcha extends Input {
         /* define params */
         $this->params = array_merge($this->config->vars, $dParams, $params);
 
+        /* check cookie are accepted */
+        if (!$this->is_cookieAccepted())
+            return;
+
         /* add script */
         if ($this->params['publicKey'] != false and $this->params['publicKey'] != '' and $this->params['mode'] != 'verify')
             $this->add_JSExternFile('https://www.google.com/recaptcha/api.js');
@@ -83,11 +93,16 @@ final class ReCaptcha extends Input {
      * @return void
      */
     public function display($layout='captcha') {
-        if ($layout == null) $layout = 'captcha';
-        if ($layout != 'captcha')
-            return;
-        $this->set_selectedLayout('input_'.$layout.'.html.inc');
-        if ($this->params['publicKey'] != false)
+        /* check cookie are accepted */
+        if (!$this->is_cookieAccepted()) {
+            $this->set_selectedLayout('input_unavailable.html.inc');
+        } else {
+            if ($layout == null) $layout = 'captcha';
+            if ($layout != 'captcha')
+                return;
+            $this->set_selectedLayout('input_'.$layout.'.html.inc');
+        }
+        if ($this->params['publicKey'] !== false)
             parent::display();
     }
 
@@ -98,9 +113,17 @@ final class ReCaptcha extends Input {
      * @return void
      */
     private function load_configuration() {
+        /* Check configuration is already loaded */
+        if ($this->isConfigLoaded)
+            return;
+
+        /* Load configuration */
         $this->load_library('ReCaptchaConfig');
         $this->config = new ReCaptchaConfig('config', $this);
         $this->config->get();
+
+        /* Save configuration is loaded */
+        $this->isConfigLoaded = true;
     }
 
     /**
@@ -200,6 +223,46 @@ final class ReCaptcha extends Input {
         $this->load_configuration();
         $this->config->get_fromHeader();
         return $this->config->save();
+    }
+
+    /* CookieAgreementMessage extension methods */
+
+    /**
+     * Return plugin information related to cookies.
+     * @return void
+     */
+    public function get_cookieInformationData() {
+        /* Load configuration */
+        $this->load_configuration();
+
+        /* Return plugin information */
+        if ($this->config->get_value('publicKey', '') !== '')
+            return array(
+                'ReCaptcha' => array(
+                    'title'         => $this->get_translation('cookie_title'),
+                    'purpose'       => $this->get_translation('cookie_purpose'),
+                    'usage'         => '',
+                    'duration'      => '',
+                    'aboutURL'      => 'https://policies.google.com/privacy',
+                    'isMandatory'   => false,
+                ),
+            );
+
+        /* Return default value */
+        return array();
+    }
+
+    /**
+     * Check if plugin is cookie accepted.
+     * @return boolean
+     */
+    private function is_cookieAccepted() {
+        global $camyks;
+
+        $input = $camyks->get_input('CookieAgreementMessage');
+        if ($input === false)
+            return true;
+        return $input->check_serviceIsAccepted('ReCaptcha');
     }
 }
 ?>

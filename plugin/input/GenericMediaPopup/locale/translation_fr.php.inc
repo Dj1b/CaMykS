@@ -2,12 +2,11 @@
 /**
  * @brief GenericMediaPopup Input french dictionnary
  * @details Plugin / Input Dictionnary
- * @file plugin/input/GenericMediaPopup/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Mar 2018
- * @date Modification: Apr 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Mar 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -29,14 +28,18 @@ $this->trads['input_genericmediapopup_formitem_clickbkgdtoclose'] = 'Clic sur le
 $this->trads['input_genericmediapopup_formitem_enableclosebutton'] = 'Afficher le bouton fermer : ';
 $this->trads['input_genericmediapopup_formitem_enablekeyboard'] = 'Activer le clavier : ';
 $this->trads['input_genericmediapopup_formitem_maxwidth'] = 'Largeur maximale : ';
- 
+
 $this->trads['input_genericmediapopup_formtitle_diaporama'] = 'Diaporama';
 $this->trads['input_genericmediapopup_formitem_enablediaporama'] = 'Autoriser les diaporamas : ';
 $this->trads['input_genericmediapopup_formitem_diaporamabuttonsshift'] = 'D&eacute;calage des boutons : ';
- 
+
 $this->trads['input_genericmediapopup_formtitle_flashplayer'] = 'Flash Player';
 $this->trads['input_genericmediapopup_formitem_enableflash'] = 'Activer Flash : ';
 $this->trads['input_genericmediapopup_formitem_flvcontrolercolor'] = 'Couleur du contr&ocirc;leur : ';
 $this->trads['input_genericmediapopup_formitem_flvcontroleralpha'] = 'Transparence du contr&ocirc;leur : ';
 $this->trads['input_genericmediapopup_formitem_flvcontrolerheight'] = 'Hauteur du contr&ocirc;leur : ';
+
+/* cookie management */
+$this->trads['input_genericmediapopup_cookie_title'] = 'Popup Média';
+$this->trads['input_genericmediapopup_cookie_purpose'] = 'Afficher des vid&eacute;os depuis Yoube ou Dailymotion.';
 ?>

@@ -1,11 +1,10 @@
 /**
  * @brief GenericMediaPopup Input scripts
  * @details Plugin / Input Javascripts
- * @file plugin/input/GenericMediaPopup/js/mediapopup.js
  * @author CaMykS Team
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Oct 2011
- * @date Modification: Jan 2021
+ * @date Modification: Mar 2021
  * @copyright 2011 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -205,10 +204,16 @@ function MediaPopup(name) {
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
 
-            /* add youtube iframe */
-            contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
-                + ' src="https://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
-                + ' frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            if (this.get_param('allowVideos') === 1) {
+                /* add youtube iframe */
+                contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
+                    + ' src="https://www.youtube.com/embed/'+file.substring(file.lastIndexOf('/'))+'"'
+                    + ' frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            } else if (CookieAgreementMessage !== undefined) {
+                contentBox.innerHTML = '<div> &nbsp; <br /> </div>';
+                contentBox.innerHTML += '<div class="eTitle4">'+CookieAgreementMessage.get_unavailabilityMessageTitle()+'</div>';
+                contentBox.innerHTML += '<div class="eContent1" style="width:350px; max-width:100%; margin:0 auto;">'+CookieAgreementMessage.get_unavailabilityMessageContent('Media Popup')+'</div>';
+            }
 
             /* display popup div */
             this.show_popup('youtube', width, height);
@@ -218,16 +223,22 @@ function MediaPopup(name) {
             contentBox.style.width = width+'px';
             contentBox.style.height = height+'px';
 
-            video = file.substring(file.lastIndexOf('/'));
-            if (video.indexOf('_') > 0)
-                video = video.substring(0, video.indexOf('_'));
+            if (this.get_param('allowVideos') === 1) {
+                video = file.substring(file.lastIndexOf('/'));
+                if (video.indexOf('_') > 0)
+                    video = video.substring(0, video.indexOf('_'));
 
-            /* add dailymotion iframe */
-            contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
-                + ' src="https://www.dailymotion.com/embed/video/'+video+'"></iframe>';
+                /* add dailymotion iframe */
+                contentBox.innerHTML = '<iframe width="'+width+'" height="'+height+'"'
+                    + ' src="https://www.dailymotion.com/embed/video/'+video+'"></iframe>';
+            } else if (CookieAgreementMessage !== undefined) {
+                contentBox.innerHTML = '<div> &nbsp; <br /> </div>';
+                contentBox.innerHTML += '<div class="eTitle4">'+CookieAgreementMessage.get_unavailabilityMessageTitle()+'</div>';
+                contentBox.innerHTML += '<div class="eContent1" style="width:350px; max-width:100%; margin:0 auto;">'+CookieAgreementMessage.get_unavailabilityMessageContent('Media Popup')+'</div>';
+            }
 
             /* display popup div */
-             this.show_popup('youtube', width, height);
+            this.show_popup('youtube', width, height);
 
         } else if (fileExt == 'html' || fileExt == 'htm' || file.indexOf('url:') == 0)    {    // display HTML file
 

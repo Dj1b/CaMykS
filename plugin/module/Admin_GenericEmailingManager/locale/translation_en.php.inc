@@ -3,9 +3,9 @@
  * @brief Admin_GenericEmailingManager Module english dictionnary.
  * @details Plugin, Module Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.8.1
  * @date Creation: Feb 2021
- * @date Modification: Feb 2021
+ * @date Modification: Mar 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -222,8 +222,8 @@ $this->trads['mod_admin_genericemailingmanager_none'] = 'None';
 
 $this->trads['mod_admin_genericemailingmanager_initialise_importation'] = 'Importation initialisation started.';
 $this->trads['mod_admin_genericemailingmanager_initialise_importation_done'] = 'Importation initialisation done.';
-$this->trads['mod_admin_genericemailingmanager_import_contact'] = 'Importation started.';
-$this->trads['mod_admin_genericemailingmanager_import_contact_done'] = 'Importation done.';
+$this->trads['mod_admin_genericemailingmanager_import_contact'] = 'Importation of a new contact started.';
+$this->trads['mod_admin_genericemailingmanager_import_contact_done'] = 'Importation of contact %s done.';
 $this->trads['mod_admin_genericemailingmanager_import_contact_failure'] = 'An error has occured while importing data from %s: ';
 $this->trads['mod_admin_genericemailingmanager_finalise_importation'] = 'Importation finalisation started.';
 $this->trads['mod_admin_genericemailingmanager_finalise_importation_done'] = 'Importation finalisation done.';
