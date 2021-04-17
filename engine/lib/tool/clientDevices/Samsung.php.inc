@@ -3,9 +3,9 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.98
+ * @version 1.0.99
  * @date Creation: Apr 2018
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -209,6 +209,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G975U1' => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G975W'  => array('platform_model' => 'Galaxy S10+',                     'platform_year' => 2019),
         'SM-G977N'  => array('platform_model' => 'Galaxy S10 5G',                   'platform_year' => 2019),
+        'SM-G770F'  => array('platform_model' => 'Galaxy S10 Lite',                 'platform_year' => 2019),
         'SM-G980F'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
         'SM-G9810'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
         'SM-G981B'  => array('platform_model' => 'Galaxy S20',                      'platform_year' => 2020),
@@ -219,6 +220,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G986U'  => array('platform_model' => 'Galaxy S20+ 5G',                  'platform_year' => 2020),
         'SM-G9880'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G988B'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
+        'SM-G988N'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G988U'  => array('platform_model' => 'Galaxy S20 Ultra',                'platform_year' => 2020),
         'SM-G780F'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
         'SM-G781B'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
@@ -227,6 +229,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G998B'  => array('platform_model' => 'Galaxy S21 Ultra',                'platform_year' => 2021),
 
         /* Samsung Galaxy A series */
+        'SM-A015M'  => array('platform_model' => 'Galaxy A01',                       'platform_year' => 2020),
         'SM-A260F'  => array('platform_model' => 'Galaxy A2 Core',                  'platform_year' => 2019),
         'SM-A260G'  => array('platform_model' => 'Galaxy A2 Core',                  'platform_year' => 2019),
         'SM-A300F'  => array('platform_model' => 'Galaxy A3',                       'platform_year' => 2014),

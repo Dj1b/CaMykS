@@ -3,10 +3,10 @@
  * @brief Logicom client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Apr 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -39,6 +39,7 @@ function get_LogicomClientDevice($deviceCode='') {
         'Le_Spark'      => array('platform_model' => 'Le Spark',        'platform_year' => 2019),
         'Le_Prime'      => array('platform_model' => 'Le Prime',        'platform_year' => 2019),
         'LeMoov2'       => array('platform_model' => 'Le Moov 2',       'platform_year' => 2019),
+        'Le Fit FR'     => array('platform_model' => 'Le Fit FR',       'platform_year' => 2019),
     );
 
     /* Check for returning list */

@@ -3,9 +3,9 @@
  * @brief Essentiel B (Boulanger) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2020
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,8 @@
 function get_EssentielBClientDevice($deviceCode='') {
     $deviceList = array(
         /* Essentiel B tablets */
-        'Smart_TAB_1003s' => array('platform_model' => 'Smart TAB 1003S', 'platform_year' => 2014, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'Smart_TAB_1003s'   => array('platform_model' => 'Smart Tab 1003S', 'platform_year' => 2014, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'SmartTab1005'      => array('platform_model' => 'Smart Tab 1005', 'platform_year' => 2017, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
 
         /* Essentiel B mobiles */
         'HEYOU5'    => array('platform_model' => 'HEYou 5',     'platform_year' => 2017),

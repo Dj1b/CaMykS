@@ -2,12 +2,11 @@
 /**
  * @brief Umidigi client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Umidigi.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: May 2019
- * @date Modification: Apr 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -32,6 +31,7 @@ function get_UmidigiClientDevice($deviceCode='') {
         'S3 Pro'    => array('platform_model' => 'S3 Pro',      'platform_year' => 2019),
         'Power'     => array('platform_model' => 'Power',       'platform_year' => 2019),
         'X'         => array('platform_model' => 'X',           'platform_year' => 2019),
+        'BISON'     => array('platform_model' => 'Bison',       'platform_year' => 2020),
     );
 
     /* Check for returning list */
