@@ -3,9 +3,9 @@
  * @brief LimonetikPayment Input french dictionnary
  * @details Plugin / Input Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2020
- * @date Modification: Mar 2021
+ * @date Modification: Apr 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -19,7 +19,8 @@ $this->trads['input_limonetikpayment_mode_live'] = 'Production';
 $this->trads['input_limonetikpayment_formtitle_operation'] = 'Fonctionnement';
 $this->trads['input_limonetikpayment_formitem_mode'] = 'Mode : ';
 $this->trads['input_limonetikpayment_formtitle_authenticating'] = 'Authentification';
-$this->trads['input_limonetikpayment_formitem_apikey'] = 'Cl&eacute; API : ';
+$this->trads['input_limonetikpayment_formitem_testapikey'] = 'Cl&eacute; API - Test : ';
+$this->trads['input_limonetikpayment_formitem_apikey'] = 'Cl&eacute; API - Production : ';
 $this->trads['input_limonetikpayment_formitem_merchandid'] = 'ID marchand : ';
 $this->trads['input_limonetikpayment_formitem_payments'] = 'Paiements disponibles : ';
 

@@ -3,9 +3,9 @@
  * @brief LimonetikPayment Input configuration object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2020
- * @date Modification: Mar 2021
+ * @date Modification: Apr 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,6 +29,7 @@ final class LimonetikPaymentConfig extends PluginConfig {
 
         /* Limonetik configuration */
         $this->add_newItem('APIKey', 'string', '');
+        $this->add_newItem('APIKey-Test', 'string', '');
         $this->add_newItem('MerchantId', 'string', '');
         $this->add_newItem('EnableCreditCard', 'integer', 1);
         $this->add_newItem('EnableConecs', 'integer', 0);

@@ -3,9 +3,9 @@
  * @brief LimonetikPayment Input configuration view layout
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2020
- * @date Modification: Mar 2021
+ * @date Modification: Apr 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -49,18 +49,27 @@ $form = new HTMLForm();
 
     <tr>
         <td class="eTableLine0 eContent2">
-            <?= $this->get_translation('formitem_apikey'); ?>
+            <?= $this->get_translation('formitem_testapikey'); ?>
         </td>
         <td class="eTableLine0 eContent1" colspan="3">
-            <?= $this->config->vars['APIKey']; ?>
+            <?= $this->config->vars['APIKey-Test']; ?>
         </td>
     </tr>
 
     <tr>
         <td class="eTableLine1 eContent2">
-            <?= $this->get_translation('formitem_merchandid'); ?>
+            <?= $this->get_translation('formitem_apikey'); ?>
         </td>
         <td class="eTableLine1 eContent1" colspan="3">
+            <?= $this->config->vars['APIKey']; ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="eTableLine0 eContent2">
+            <?= $this->get_translation('formitem_merchandid'); ?>
+        </td>
+        <td class="eTableLine0 eContent1" colspan="3">
             <?= $this->config->vars['MerchantId']; ?>
         </td>
     </tr>

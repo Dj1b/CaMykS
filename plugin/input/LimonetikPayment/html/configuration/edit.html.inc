@@ -3,9 +3,9 @@
  * @brief LimonetikPayment Input configuration edit layout
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2020
- * @date Modification: Mar 2021
+ * @date Modification: Apr 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -46,18 +46,27 @@ global $camyks;
 
     <tr>
         <td class="eTableLine0 eContent2">
-            <?= $this->get_translation('formitem_apikey'); ?>
+            <?= $this->get_translation('formitem_testapikey'); ?>
         </td>
         <td class="eTableLine0 eContent1" colspan="3">
-            <?= $this->form->display_textInput(array('name'=>'APIKey', 'class'=>'linputs', 'maxlength'=>255)); ?>
+            <?= $this->form->display_textInput(array('name'=>'APIKey-Test', 'class'=>'linputs', 'maxlength'=>255)); ?>
         </td>
     </tr>
 
     <tr>
         <td class="eTableLine1 eContent2">
-            <?= $this->get_translation('formitem_merchandid'); ?>
+            <?= $this->get_translation('formitem_apikey'); ?>
         </td>
         <td class="eTableLine1 eContent1" colspan="3">
+            <?= $this->form->display_textInput(array('name'=>'APIKey', 'class'=>'linputs', 'maxlength'=>255)); ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="eTableLine0 eContent2">
+            <?= $this->get_translation('formitem_merchandid'); ?>
+        </td>
+        <td class="eTableLine0 eContent1" colspan="3">
             <?= $this->form->display_textInput(array('name'=>'MerchantId', 'class'=>'linputs', 'maxlength'=>255)); ?>
         </td>
     </tr>
