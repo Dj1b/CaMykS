@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module site limitations, french sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jan 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,7 +18,7 @@
 </h2>
 
 <p class="eContent1">
-    Le site utilise la technologie JavaScript. Le <span class="eContent2">Site</span> internet ne pourra &ecirc;tre tenu responsable de dommages mat&eacute;riels li&eacute;s &agrave; l'utilisation du site. De plus, l'<span class="eContent2">Utilisateur</span> du site s'engage &agrave; acc&eacute;der au site en utilisant un mat&eacute;riel r&eacute;cent, ne contenant pas de virus et avec un navigateur de derni&egrave;re g&eacute;n&eacute;ration mis-&agrave;-jour. Le <span class="eContent2">Site</span> est h&eacute;berg&eacute; chez un prestataire sur le territoire de l'Union Europ&eacute;enne conform&eacute;ment aux dispositions du R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD : n&deg; 2016-679).
+    Le <span class="eContent2">Site</span> internet utilise la technologie JavaScript. Le <span class="eContent2">Site</span> ne pourra &ecirc;tre tenu responsable de dommages mat&eacute;riels li&eacute;s &agrave; l'utilisation du site. De plus, l'<span class="eContent2">Utilisateur</span> du site s'engage &agrave; acc&eacute;der au <span class="eContent2">Site</span> en utilisant un mat&eacute;riel r&eacute;cent, ne contenant pas de virus et avec un navigateur de derni&egrave;re g&eacute;n&eacute;ration mis-&agrave;-jour. Le <span class="eContent2">Site</span> est h&eacute;berg&eacute; chez un prestataire sur le territoire de l'Union Europ&eacute;enne conform&eacute;ment aux dispositions du R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD : n&deg; 2016-679).
 </p>
 
 <p class="eContent1">

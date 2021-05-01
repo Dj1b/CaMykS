@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module site responsability, french sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jan 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,7 +18,7 @@
 </h2>
 
 <p class="eContent1">
-    <?= ucfirst($this->contentItem->get_editorFullName()); ?> agit en tant qu'&eacute;diteur du site. <?= ucfirst($this->contentItem->get_editorFullName()); ?> est responsable de la qualit&eacute; et de la v&eacute;racit&eacute; du <span class="eContent2">Contenu</span> qu'il publie.
+    <?= ucfirst($this->contentItem->get_editorFullName()); ?> agit en tant qu'&eacute;diteur du <span class="eContent2">Utilisateur</span>, lors de l'acc&egrave;s au <span class="eContent2">Site</span>. <?= ucfirst($this->contentItem->get_editorFullName()); ?> est responsable de la qualit&eacute; et de la v&eacute;racit&eacute; du <span class="eContent2">Contenu</span> qu'il publie.
 </p>
 
 <p class="eContent1">

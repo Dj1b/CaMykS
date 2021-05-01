@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module site data, french sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jan 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,7 +27,9 @@
 
 <p class="eContent1">
     Pour les <span class="eContent2">Donn&eacute;es Personnelles</span> collect&eacute;es dans le cadre de l'utilisation et de la navigation sur le <span class="eContent2">Site</span>, le responsable du traitement des <span class="eContent2">Donn&eacute;es Personnelles</span> est <?= $this->contentItem->get_editorFullName(); ?>.
+</p>
 
+<p class="eContent1">
 <?= $this->contentItem->vars['owner_name']; ?> est repr&eacute;sent&eacute; par <a href="<?= mail_encode($this->contentItem->vars['owner_manageremail']); ?>" class="eLink1"><?= $this->contentItem->vars['owner_managername']; ?></a><?php if (!$this->contentItem->is_individual()) : ?>, son repr&eacute;sentant l&eacute;gal<?php endif; ?>.
 </p>
 
@@ -40,7 +42,7 @@
 </h3>
 
 <p class="eContent1">
-    <?= $this->contentItem->get_editorFullName(); ?> est susceptible de traiter tout ou partie des donn&eacute;es :
+    <?= ucfirst($this->contentItem->get_editorFullName()); ?> est susceptible de traiter tout ou partie des donn&eacute;es :
 </p>
 
 <ul>
@@ -75,7 +77,7 @@
                     </li>
                     <?php endif; ?>
                     <li>
-                        <b>Dur&eacute;e de conservation des donn&eacute;es : </b>
+                        <b>Dur&eacute;e de conservation des donn&eacute;es</b> :
                         <?php if ($data['duration'] != '') : ?>
                             <?= $data['duration']; ?>
                         <?php else : ?>
@@ -100,7 +102,7 @@
 
 <ul>
     <li class="eContent1">
-        droit d'acc&egrave;s (article 15 RGPD) et de rectification (article 16 RGPD), de mise &agrave; jour, de compl&eacute;tude des donn&eacute;es des <span class="eContent2">Utilisateurs</span>, droit de verrouillage ou d'effacement des donn&eacute;es des <span class="eContent2">Utilisateurs</span> &agrave; caract&egrave;re personnel (article 17 du RGPD), lorsqu'elles sont inexactes, incompl&egrave;tes, &eacute;quivoques, p&eacute;rim&eacute;es, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite,
+        droit d'acc&egrave;s (article 15 RGPD) et de rectification (article 16 RGPD), de mise &agrave; jour, de compl&eacute;tude des <span class="eContent2">Donn&eacute;es Personnelles</span> des <span class="eContent2">Utilisateurs</span>, droit de verrouillage ou d'effacement des donn&eacute;es des <span class="eContent2">Utilisateurs</span> &agrave; caract&egrave;re personnel (article 17 du RGPD), lorsqu'elles sont inexactes, incompl&egrave;tes, &eacute;quivoques, p&eacute;rim&eacute;es, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite,
     </li>
 
     <li class="eContent1">
@@ -124,7 +126,7 @@
     </li>
 
     <li class="eContent1">
-        d&egrave;s que <?= $this->contentItem->get_editorFullName(); ?> a connaissance du d&eacute;c&egrave;s d'un <span class="eContent2">Utilisateur</span> et &agrave; d&eacute;faut d'instructions de sa part, <?= $this->contentItem->get_editorFullName(); ?> s'engage &agrave; d&eacute;truire ses donn&eacute;es, sauf si leur conservation s'av&egrave;re n&eacute;cessaire &agrave; des fins probatoires ou pour r&eacute;pondre &agrave; une obligation l&eacute;gale.
+        d&egrave;s que <?= $this->contentItem->get_editorFullName(); ?> a connaissance du d&eacute;c&egrave;s d'un <span class="eContent2">Utilisateur</span> et &agrave; d&eacute;faut d'instructions de sa part, <?= $this->contentItem->get_editorFullName(); ?> s'engage &agrave; d&eacute;truire ses <span class="eContent2">Donn&eacute;es Personnelles</span>, sauf si leur conservation s'av&egrave;re n&eacute;cessaire &agrave; des fins probatoires ou pour r&eacute;pondre &agrave; une obligation l&eacute;gale.
     </li>
 </ul>
 
@@ -152,7 +154,7 @@ Dans ce cas, l'<span class="eContent2">Utilisateur</span> doit indiquer les <spa
 </h3>
 
 <p class="eContent1">
-    <?= ucfirst($this->contentItem->get_editorFullName()); ?> s'interdit de traiter, h&eacute;berger ou transf&eacute;rer les informations collect&eacute;es sur ses <span class="eContent2">Clients</span> vers un pays situ&eacute; en dehors de l'Union europ&eacute;enne ou reconnu comme &laquo; non ad&eacute;quat &raquo; par la Commission europ&eacute;enne sans en informer pr&eacute;alablement le client. Pour autant, <?= $this->contentItem->get_editorFullName(); ?> reste libre du choix de ses sous-traitants techniques et commerciaux &agrave; la condition qu'il pr&eacute;sentent les garanties suffisantes au regard des exigences du R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD : n&deg; 2016-679).
+    <?= ucfirst($this->contentItem->get_editorFullName()); ?> s'interdit de traiter, h&eacute;berger ou transf&eacute;rer les informations collect&eacute;es sur ses <span class="eContent2">Clients</span> vers un pays situ&eacute; en dehors de l'Union europ&eacute;enne ou reconnu comme &laquo; non ad&eacute;quat &raquo; par la Commission europ&eacute;enne sans en informer pr&eacute;alablement le <span class="eContent2">Client</span>. Pour autant, <?= $this->contentItem->get_editorFullName(); ?> reste libre du choix de ses sous-traitants techniques et commerciaux &agrave; la condition qu'il pr&eacute;sentent les garanties suffisantes au regard des exigences du R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD : n&deg; 2016-679).
 </p>
 
 <p class="eContent1">
