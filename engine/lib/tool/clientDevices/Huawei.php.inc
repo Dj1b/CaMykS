@@ -3,7 +3,7 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.88
+ * @version 1.0.89
  * @date Creation: Apr 2018
  * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -37,6 +37,7 @@ function get_HuaweiClientDevices() {
         'BAH-W09'               => array('platform_model' => 'MediaPad M3 Lite 10',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-AL09'              => array('platform_model' => 'MediaPad M5 10.8',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'CMR-W09'               => array('platform_model' => 'MediaPad M5 10.8',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'SHT-AL09'              => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'AGS2-W09'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
@@ -189,6 +190,9 @@ function get_HuaweiClientDevices() {
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL10'  => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL20'  => array('platform_model' => 'Honor 9I',        'platform_year' => 2018),
+        'HLK-AL10'  => array('platform_model' => 'Honor 9X Pro',    'platform_year' => 2019),
+        'HLK-L41'   => array('platform_model' => 'Honor 9X Pro',    'platform_year' => 2019),
+        'HLK-L42'   => array('platform_model' => 'Honor 9X Pro',    'platform_year' => 2019),
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'HRY-AL00a' => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
         'HRY-LX1'   => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),

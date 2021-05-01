@@ -3,7 +3,7 @@
  * @brief Tools as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.32
  * @date Creation: May 2018
  * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -1369,6 +1369,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'VLC',
         'engine_url'        => 'https://www.videolan.org',
+    );
+
+    /* AngleSharp */
+    $knownTools['anglesharp'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'AngleSharp',
+        'engine_url'        => 'https://anglesharp.github.io',
     );
 
     /* return list */

@@ -3,9 +3,9 @@
  * @brief Doogee client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: Sep 2018
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,6 +38,7 @@ function get_DoogeeClientDevice($deviceCode='') {
         'S58Pro'        => array('platform_model' => 'S58 Pro',     'platform_year' => 2020),
         'S88Pro'        => array('platform_model' => 'S88 Pro',     'platform_year' => 2020),
         'X95'           => array('platform_model' => 'X95',         'platform_year' => 2020),
+        'X95Pro'        => array('platform_model' => 'X95 Pro',     'platform_year' => 2020),
     );
 
     /* Check for returning list */

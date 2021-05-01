@@ -3,7 +3,7 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.79
+ * @version 1.0.80
  * @date Creation: May 2018
  * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -5121,6 +5121,26 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Google Sites',
         'engine_url'        => 'https://sites.google.com/site',
+    );
+
+    /* neevabot */
+    $knownBots['neevabot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'neevabot',
+        'bot_url'           => 'https://neeva.com/neevabot)',
+        'engine_title'      => 'Neeva',
+        'engine_url'        => 'https://neeva.com/',
+    );
+
+    /* Bytespider */
+    $knownBots['bytespider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Bytespider',
+        'bot_url'           => '',
+        'engine_title'      => 'ByteDance',
+        'engine_url'        => 'https://zhanzhang.toutiao.com/',
     );
 
     /* Return bot list */

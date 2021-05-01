@@ -3,7 +3,7 @@
  * @brief Google client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.16
+ * @version 1.0.17
  * @date Creation: Aug 2018
  * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -22,6 +22,7 @@ function get_GoogleClientDevice($deviceCode='') {
         /* Google tablets */
         'Nexus 10'      => array('platform_year' => 2012, 'platform_type' => 'tablet', 'platform_format' => 'tablet',),
         'Nexus 7'       => array('platform_year' => 2013, 'platform_type' => 'tablet', 'platform_format' => 'tablet',),
+        'Nexus 9'       => array('platform_year' => 2014, 'platform_type' => 'tablet', 'platform_format' => 'tablet',),
 
         /* Google mobiles */
         'Nexus'         => array('platform_year' => 2010),

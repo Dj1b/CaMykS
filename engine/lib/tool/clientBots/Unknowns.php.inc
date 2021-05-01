@@ -3,7 +3,7 @@
  * @brief Unknown bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.31
  * @date Creation: Jan 2019
  * @date Modification: Apr 2021
  * @copyright 2019 - 2021 CaMykS Team
@@ -443,16 +443,6 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'ABCrawler2019 (Unknown bot)',
-        'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
-    /* Bytespider */
-    $unknownBots['bytespider'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'Bytespider (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
