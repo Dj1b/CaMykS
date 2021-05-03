@@ -2,12 +2,11 @@
 /**
  * @brief Hacks client bots specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientBots/Hacks.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: May 2018
- * @date Modification: Jul 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -119,6 +118,12 @@ function _client_getKnownHacks() {
 
     /* unknown hack */
     $knownHacks['ua.tools.random'] = array(
+        'platform_type' => 'hack',
+        'hack_info'     => 'Unknown hack',
+    );
+
+    /* unknown hack */
+    $knownHacks['idbte4m code87'] = array(
         'platform_type' => 'hack',
         'hack_info'     => 'Unknown hack',
     );

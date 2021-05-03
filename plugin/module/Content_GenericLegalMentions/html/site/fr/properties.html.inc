@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module site properties, french sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jan 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -47,7 +47,7 @@ En vertu de l'article 6 de la loi n&deg; 2004-575 du 21 juin 2004 pour la confia
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('owner_fax')) : ?>
-    T&eacute;l&eacute;phone : <?= $this->contentItem->vars['owner_fax']; ?> <br />
+    Fax : <?= $this->contentItem->vars['owner_fax']; ?> <br />
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('owner_email')) : ?>
@@ -105,7 +105,7 @@ Le responsable publication est une personne physique ou une personne morale.
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('creator_fax')) : ?>
-    T&eacute;l&eacute;phone : <?= $this->contentItem->vars['creator_fax']; ?> <br />
+    Fax: <?= $this->contentItem->vars['creator_fax']; ?> <br />
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('creator_email')) : ?>
@@ -161,7 +161,7 @@ Le responsable publication est une personne physique ou une personne morale.
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('host_fax')) : ?>
-    T&eacute;l&eacute;phone : <?= $this->contentItem->vars['host_fax']; ?> <br />
+    Fax: <?= $this->contentItem->vars['host_fax']; ?> <br />
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('host_email')) : ?>

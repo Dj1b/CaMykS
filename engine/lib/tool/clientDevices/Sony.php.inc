@@ -3,9 +3,9 @@
  * @brief Sony client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.55
+ * @version 1.0.56
  * @date Creation: Apr 2018
- * @date Modification: Jan 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -109,6 +109,7 @@ function get_SonyClientDevice($deviceCode='') {
         'H4213'     => array('platform_model' => 'Xperia XA2 Ultra',        'platform_year' => 2018),
         'H4233'     => array('platform_model' => 'Xperia XA2 Ultra',        'platform_year' => 2018),
         'H4413'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
+        'H4493'     => array('platform_model' => 'Xperia XA2 Plus',         'platform_year' => 2018),
         'H8166'     => array('platform_model' => 'Xperia XZ2 Premium',      'platform_year' => 2018),
         'H8216'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),
         'H8266'     => array('platform_model' => 'Xperia XZ2',              'platform_year' => 2018),

@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.78
+ * @version 1.0.80
  * @date Creation: May 2018
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -822,6 +822,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'YandexNews',
+        'bot_url'           => 'http://yandex.com/bots',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'http://www.yandex.ru',
+    );
+
+    /* YandexFavicons */
+    $knownBots['yandexfavicons'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'YandexFavicons',
         'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
@@ -5041,6 +5051,96 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Net Systems Research',
         'engine_url'        => 'http://www.netsystemsresearch.com',
+    );
+
+    /* Adsbot */
+    $knownBots['adsbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Adsbot',
+        'bot_url'           => 'https://seostar.co/robot/',
+        'engine_title'      => 'Seostar',
+        'engine_url'        => 'https://seostar.co/',
+    );
+
+    /* Seolyt */
+    $knownBots['seolyt'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Seolyt',
+        'engine_url'        => 'https://seolyt.com',
+    );
+
+    /* Expanse */
+    $knownBots['expanse'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Palo Alto Networks',
+        'engine_url'        => 'https://paloaltonetworks.com',
+    );
+
+    /* DNSResearchBot */
+    $knownBots['dnsresearchbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DNSResearchBot',
+        'bot_url'           => '+http://195.37.190.77',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* CensysInspect */
+    $knownBots['censysinspect'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'CensysInspect',
+        'bot_url'           => 'https://about.censys.io/',
+        'engine_title'      => 'Censys',
+        'engine_url'        => 'https://censys.io',
+    );
+
+    /* HTTP Banner Detection  */
+    $knownBots['http banner detection'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'HTTP Banner Detection',
+        'bot_url'           => 'https://security.ipip.net',
+        'engine_title'      => 'IPIP',
+        'engine_url'        => 'https://www.ipip.net',
+    );
+
+    /* Google-Sites */
+    $knownBots['google-sites-'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Google Sites',
+        'engine_url'        => 'https://sites.google.com/site',
+    );
+
+    /* neevabot */
+    $knownBots['neevabot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'neevabot',
+        'bot_url'           => 'https://neeva.com/neevabot)',
+        'engine_title'      => 'Neeva',
+        'engine_url'        => 'https://neeva.com/',
+    );
+
+    /* Bytespider */
+    $knownBots['bytespider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Bytespider',
+        'bot_url'           => '',
+        'engine_title'      => 'ByteDance',
+        'engine_url'        => 'https://zhanzhang.toutiao.com/',
     );
 
     /* Return bot list */

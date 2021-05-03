@@ -3,9 +3,9 @@
  * @brief Unknown bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.31
  * @date Creation: Jan 2019
- * @date Modification: Jan 2021
+ * @date Modification: Apr 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -448,16 +448,6 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
-    /* Bytespider */
-    $unknownBots['bytespider'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'Bytespider (Unknown bot)',
-        'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
     /* 8LEGS */
     $unknownBots['8legs'] = array(
         'platform_type'     => 'bot',
@@ -738,16 +728,6 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
-    /* Adsbot */
-    $unknownBots['adsbot'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'Adsbot (Unknown bot)',
-        'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
     /* NiueBot */
     $unknownBots['niuebot'] = array(
         'platform_type'     => 'bot',
@@ -813,6 +793,56 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Crawler Test (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* TprAdsTxtCrawler */
+    $unknownBots['tpradstxtcrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TprAdsTxtCrawler (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* l9tcpid */
+    $unknownBots['l9tcpid'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'l9tcpid (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* l9explore */
+    $unknownBots['l9explore'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'l9explore (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* root@user-agent.ipmap.io */
+    $unknownBots['root@user-agent.ipmap.io'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'root@user-agent.ipmap.io (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* TkBot */
+    $unknownBots['tkbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TkBot (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

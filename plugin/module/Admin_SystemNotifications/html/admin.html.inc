@@ -3,9 +3,9 @@
  * @brief Admin_SystemNotifications Module admin main layout
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jul 2017
- * @date Modification: Jan 2021
+ * @date Modification: Apr 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -26,7 +26,9 @@ global $camyks;
             <?= $this->theme->get_button(array('title'=>$this->get_translation('check_now'), 'url'=>$this->get_adminLink(array('mode'=>'check_websites')))); ?>
         </div>
         <div class="eContent2" style="padding:6px 10px;">
-            <?= $this->get_translation('lastcheckdate', date_displayLongDateHour($this->config->vars['running_lastCheck'])); ?>
+            <?php if ($this->config->vars['running_lastCheck'] > 0) : ?>
+                <?= $this->get_translation('lastcheckdate', date_displayLongDateHour($this->config->vars['running_lastCheck'])); ?>
+            <?php endif; ?>
         </div>
     <?php endif; ?>
 

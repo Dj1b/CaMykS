@@ -3,9 +3,9 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.23
  * @date Creation: Feb 2019
- * @date Modification: Mar 2021
+ * @date Modification: Apr 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,6 +24,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'NOTE 3 Pro'    => array('platform_model' => 'Note 3 Pro',  'platform_year' => 2016),
         'X571'          => array('platform_model' => 'Note 4 Pro',  'platform_year' => 2017),
         'X572'          => array('platform_model' => 'Note 4',      'platform_year' => 2017),
+        'X692'          => array('platform_model' => 'Note 8',      'platform_year' => 2020),
 
         /* Hot serie */
         'HOT 4'         => array('platform_model' => 'Hot 4',       'platform_year' => 2016),
@@ -42,6 +43,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X650B'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X650C'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X650D'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
+        'X680'          => array('platform_model' => 'Hot 9',       'platform_year' => 2020),
         'X680B'         => array('platform_model' => 'Hot 9 Play',  'platform_year' => 2020),
 
         /* Smart serie */
@@ -50,6 +52,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X653C'         => array('platform_model' => 'Smart 4',     'platform_year' => 2019),
 
         /* Zero serie */
+        'Zero 3'        => array('platform_year' => 2015),
         'Zero 4 Plus'   => array('platform_year' => 2017),
 
         /* S serie */

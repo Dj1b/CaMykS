@@ -3,10 +3,10 @@
  * @brief Oukitel client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Jan 2019
- * @date Modification: Nov 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -26,6 +26,7 @@ function get_OukitelClientDevice($deviceCode='') {
         'K6'            => array('platform_model' => 'K6',          'platform_year' => 2017),
         'K7'            => array('platform_model' => 'K7',          'platform_year' => 2018),
         'WP1'           => array('platform_model' => 'WP1',         'platform_year' => 2018),
+        'WP2'           => array('platform_model' => 'WP2',         'platform_year' => 2018),
         'K12'           => array('platform_model' => 'K12',         'platform_year' => 2019),
         'C15 Pro'       => array('platform_model' => 'C15 Pro',     'platform_year' => 2019),
         'C17 Pro'       => array('platform_model' => 'C17 Pro',     'platform_year' => 2019),

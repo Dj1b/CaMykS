@@ -4,9 +4,9 @@
  * <br /> Interface to Limonetik payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2020
- * @date Modification: Mar 2021
+ * @date Modification: Apr 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -298,12 +298,18 @@ final class LimonetikPayment extends Input {
         $limonetikURL = self::LIMONETIKAPIURLS[$this->config->vars['runningMode']];
         $limonetikURL = $limonetikURL.'/Rest/'.self::LIMONETIKAPIVERSION.'/'.$action;
 
+        /* Load API key from mode */
+        if ($this->config->vars['runningMode'] === 'live')
+            $key = $this->config->vars['APIKey'];
+        else
+            $key = $this->config->vars['APIKey-Test'];
+
         /* Execute request to Limonetik server */
         $options = array(
             'http' => array(
                 'method'        => $method,
                 'header'        => "Content-type: application/json\r\n".
-                                   "Authorization: Basic ".$this->config->vars['APIKey']."\r\n.".
+                                   "Authorization: Basic ".$key."\r\n.".
                                    "Accept: application/json\r\n",
                 'ignore_errors' => true,
                 'timeout'       => 10,

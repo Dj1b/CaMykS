@@ -3,10 +3,10 @@
  * @brief Crosscall client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: May 2018
- * @date Modification: Oct 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -32,6 +32,7 @@ function get_CrosscallClientDevice($deviceCode='') {
         'odyssey-s1'        => array('platform_model' => 'Odyssey S1',      'platform_year' => 2016),
         'core-x3'           => array('platform_model' => 'Core-X3',         'platform_year' => 2018),
         'core-x4'           => array('platform_model' => 'Core-X4',         'platform_year' => 2020),
+        'core-m4'           => array('platform_model' => 'Core-M4',         'platform_year' => 2020),
     );
 
     /* Check for returning list */

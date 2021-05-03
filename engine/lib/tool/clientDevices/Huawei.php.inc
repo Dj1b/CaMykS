@@ -3,9 +3,9 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.87
+ * @version 1.0.89
  * @date Creation: Apr 2018
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -37,6 +37,7 @@ function get_HuaweiClientDevices() {
         'BAH-W09'               => array('platform_model' => 'MediaPad M3 Lite 10',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2017),
         'CMR-AL09'              => array('platform_model' => 'MediaPad M5 10.8',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'CMR-W09'               => array('platform_model' => 'MediaPad M5 10.8',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'SHT-AL09'              => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'SHT-W09'               => array('platform_model' => 'MediaPad M5 8.4',         'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'AGS2-W09'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
@@ -109,6 +110,7 @@ function get_HuaweiClientDevices() {
         'ART-L29'   => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'ART-L29N'  => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'CDY-NX9A'  => array('platform_model' => 'P40 Lite 5G',     'platform_year' => 2020),
+        'PPA-LX2'   => array('platform_model' => 'P Smart 2021',    'platform_year' => 2020),
 
         /* Huawei Mate series */
         'CRR-L09'   => array('platform_model' => 'Mate S',          'platform_year' => 2015),
@@ -188,10 +190,14 @@ function get_HuaweiClientDevices() {
         'LLD-L31'   => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL10'  => array('platform_model' => 'Honor 9 Lite',    'platform_year' => 2017),
         'LLD-AL20'  => array('platform_model' => 'Honor 9I',        'platform_year' => 2018),
+        'HLK-AL10'  => array('platform_model' => 'Honor 9X Pro',    'platform_year' => 2019),
+        'HLK-L41'   => array('platform_model' => 'Honor 9X Pro',    'platform_year' => 2019),
+        'HLK-L42'   => array('platform_model' => 'Honor 9X Pro',    'platform_year' => 2019),
         'COL-L29'   => array('platform_model' => 'Honor 10',        'platform_year' => 2018),
         'HRY-AL00a' => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
         'HRY-LX1'   => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
         'HRY-LX1MEB'=> array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2018),
+        'HRY-LX2'   => array('platform_model' => 'Honor 10 Lite',   'platform_year' => 2019),
         'DNN-LX9'   => array('platform_model' => 'Honor 10X Lite',  'platform_year' => 2018),
         'COR-L29'   => array('platform_model' => 'Honor Play',      'platform_year' => 2018),
         'BKL-L09'   => array('platform_model' => 'Honor View 10',   'platform_year' => 2018),
@@ -251,6 +257,7 @@ function get_HuaweiClientDevices() {
         'MRD-LX1'   => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'MRD-LX1F'  => array('platform_model' => 'Y6',              'platform_year' => 2019),
         'MRD-LX1N'  => array('platform_model' => 'Y6',              'platform_year' => 2019),
+        'MED-LX9N'  => array('platform_model' => 'Y6P',             'platform_year' => 2020),
         'TRT-LX1'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX2'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
         'TRT-LX3'   => array('platform_model' => 'Y7',              'platform_year' => 2017),
@@ -262,6 +269,7 @@ function get_HuaweiClientDevices() {
         'JKM-LX1'   => array('platform_model' => 'Y9',              'platform_year' => 2018),
         'JKM-LX2'   => array('platform_model' => 'Y9',              'platform_year' => 2018),
         'STK-L22'   => array('platform_model' => 'Y9 Prime',        'platform_year' => 2019),
+        'FRL-L22'   => array('platform_model' => 'Y9a',             'platform_year' => 2019),
 
         /* Huawei Nova series */
         'CAN-L01'   => array('platform_model' => 'Nova',            'platform_year' => 2016),

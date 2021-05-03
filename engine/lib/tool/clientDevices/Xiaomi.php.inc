@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.50
+ * @version 1.0.51
  * @date Creation: May 2018
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -78,12 +78,14 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 10'                 => array('platform_model' => 'Mi 10',               'platform_year' => 2020),
 
         'm2002j9g'              => array('platform_model' => 'Mi 10 Lite',          'platform_year' => 2020),
+        'm2007j17g'             => array('platform_model' => 'Mi 10T Lite',         'platform_year' => 2020),
         'm2007j1sc'             => array('platform_model' => 'Mi 10 Ultra 5G',      'platform_year' => 2020),
         'm2007j3sg'             => array('platform_model' => 'Mi 10T Pro 5G',       'platform_year' => 2020),
         'm2007j3sy'             => array('platform_model' => 'Mi 10T 5G',           'platform_year' => 2020),
 
         /* Phones, Redmi series */
         '2014811'               => array('platform_model' => 'Redmi 2',             'platform_year' => 2014),
+        'hm note 1w'            => array('platform_model' => 'Redmi Note',          'platform_year' => 2014),
         'redmi note 2'          => array('platform_model' => 'Redmi Note 2',        'platform_year' => 2015),
         'redmi note 2 prime'    => array('platform_model' => 'Redmi Note 2 Prime',  'platform_year' => 2015),
         'redmi note 3'          => array('platform_model' => 'Redmi Note 3',        'platform_year' => 2015),

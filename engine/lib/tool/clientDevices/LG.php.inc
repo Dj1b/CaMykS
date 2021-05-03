@@ -3,9 +3,9 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.42
  * @date Creation: Apr 2018
- * @date Modification: Feb 2021
+ * @date Modification: Apr 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,10 +20,11 @@
 function get_LGClientDevice($deviceCode='') {
     $deviceList = array(
         /* LG Tablets */
-        'V500'  => array('platform_model' => 'G Pad 8.3',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2013),
-        'V400'  => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
-        'V410'  => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
-        'LK430' => array('platform_model' => 'G Pad 7.0',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
+        'V500'      => array('platform_model' => 'G Pad 8.3', 'platform_year' => 2013, 'platform_type' => 'tablet', 'platform_format'  => 'tablet'),
+        'V400'      => array('platform_model' => 'G Pad 7.0', 'platform_year' => 2014, 'platform_type' => 'tablet', 'platform_format'  => 'tablet'),
+        'V410'      => array('platform_model' => 'G Pad 7.0', 'platform_year' => 2014, 'platform_type' => 'tablet', 'platform_format'  => 'tablet'),
+        'LK430'     => array('platform_model' => 'G Pad 7.0', 'platform_year' => 2014, 'platform_type' => 'tablet', 'platform_format'  => 'tablet'),
+        'VK810 4G'  => array('platform_model' => 'G Pad 8.3', 'platform_year' => 2014, 'platform_type' => 'tablet', 'platform_format'  => 'tablet'),
 
         /* LG mobiles */
         'D160'      => array('platform_model' => 'L40',             'platform_year' => 2014),

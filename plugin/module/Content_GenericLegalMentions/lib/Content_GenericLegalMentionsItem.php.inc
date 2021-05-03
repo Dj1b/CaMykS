@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module content library.
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jan 2020
- * @date Modification: Jan 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -157,12 +157,26 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
     }
 
     /**
-     * Return owner type title.
+     * Return owner full type list.
+     * @return array
+     */
+    public function get_ownerFullTypeList() {
+        return array(
+            0 => $this->get_translation('ownertype_thecompany'),
+            1 => $this->get_translation('ownertype_theassociation'),
+            2 => $this->get_translation('ownertype_thepublicestablishment'),
+        );
+    }
+
+    /**
+     * Return owner full type title.
      * @return string
      */
-    public function get_ownerTitleTitle() {
-        $l = $this->get_ownerTitleList();
-        return $l[$this->vars['owner_type']];
+    public function get_ownerFullTypeTitle() {
+        $l = $this->get_ownerFullTypeList();
+        if (isset($l[$this->vars['owner_type']]))
+            return $l[$this->vars['owner_type']];
+        return '';
     }
 
     /**

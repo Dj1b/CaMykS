@@ -2,12 +2,11 @@
 /**
  * @brief HTTP specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/http.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jul 2017
- * @date Modification: Nov 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -106,18 +105,19 @@ function http_getResponseCodeList() {
  * \e string url <br />
  * \e string engine - \b php / \b curl <br />
  * \e string method - \b GET / \b POST <br />
- * \e array values <br />
+ * \e mixed values <br />
  * \e boolean SSL_VerifyPeer <br />
  * \e string user_agent <br />
  * \e string referer <br />
  * \e integer timeout <br />
+ * \e mixed headers <br />
  * @endparblock
  * @return string
  */
 function http_getContents($params=array()) {
     global $camyks;
 
-    /* build params list */
+    /* Build params list */
     $defaultParams = array(
         'url'               => '',
         'engine'            => 'php', // php | curl
@@ -127,14 +127,15 @@ function http_getContents($params=array()) {
         'user_agent'        => $camyks->get_confValue('UserAgent'),
         'referer'           => '',
         'timeout'           => 60,
+        'headers'           => array('Content-type' => 'application/x-www-form-urlencoded'),
     );
     $params = array_merge($defaultParams, $params);
 
-    /* check curl engine */
-    if ($params['engine'] == 'curl' and !function_exists('curl_init'))
+    /* Check cURL engine */
+    if ($params['engine'] == 'curl' and !extension_loaded('curl'))
         $params['engine'] = 'php';
 
-    /* get context using the indicated engine */
+    /* Check engine to use */
     if ($params['engine'] == 'curl')
         return http_getContentsUsingCURL($params);
     return http_getContentsUsingPHP($params);
@@ -146,17 +147,19 @@ function http_getContents($params=array()) {
  * @parblock - Available parameters are <br />
  * \e string url <br />
  * \e string method - \b GET / \b POST <br />
- * \e array values <br />
+ * \e mixed values <br />
+ * \e boolean SSLVerifyPeer <br />
  * \e string user_agent <br />
  * \e string referer <br />
  * \e integer timeout <br />
+ * \e mixed headers <br />
  * @endparblock
  * @return false on failure, string on success
  */
 function http_getContentsUsingPHP($params=array()) {
     global $camyks;
 
-    /* build params list */
+    /* Build params list */
     $defaultParams = array(
         'url'           => '',
         'method'        => 'GET', // GET | POST
@@ -165,13 +168,23 @@ function http_getContentsUsingPHP($params=array()) {
         'user_agent'    => $camyks->get_confValue('UserAgent'),
         'referer'       => '',
         'timeout'       => 60,
+        'headers'       => array('Content-type' => 'application/x-www-form-urlencoded'),
     );
     $params = array_merge($defaultParams, $params);
 
-    /* build context */
+    /* Build header */
+    if (is_string($params['headers']))
+        $header = $params['headers'];
+    elseif (is_array($params['headers'])) {
+        $header = '';
+        foreach ($params['headers'] as $name => $value)
+            $header = $name.":".$value."\r\n";
+    }
+
+    /* Build context */
     $opts = array(
         'http' => array(
-            'header'        => 'Content-type: application/x-www-form-urlencoded',
+            'header'        => $header,
             'method'        => $params['method'],
             'user_agent'    => $params['user_agent'],
             'referer'       => $params['referer'],
@@ -179,7 +192,7 @@ function http_getContentsUsingPHP($params=array()) {
         ),
     );
 
-    /* check SSL peer verification */
+    /* Check SSL peer verification */
     if ($params['SSL_VerifyPeer']) {
         $opts['ssl'] = array(
             'verify_peer'       => false,
@@ -187,14 +200,17 @@ function http_getContentsUsingPHP($params=array()) {
         );
     }
 
-    /* add fields values to context */
-    if (count($params['values']) > 0) {
+    /* Add values to context */
+    if (is_array($params['values']) and count($params['values']) > 0) {
         $data = http_build_query($params['values']);
         $opts['http']['content'] = $data;
-    }
+    } elseif (is_string($params['values']) and $params['values'] !== '')
+        $opts['http']['content'] = $params['values'];
 
-    /* get contents */
+    /* Create context */
     $context  = stream_context_create($opts);
+
+    /* Execute request */
     return @file_get_contents($params['url'], false, $context);
 }
 
@@ -204,18 +220,19 @@ function http_getContentsUsingPHP($params=array()) {
  * @parblock - Available parameters are <br />
  * \e string url <br />
  * \e string method - \b GET / \b POST <br />
- * \e array values <br />
+ * \e mixed values <br />
  * \e boolean SSL_VerifyPeer <br />
  * \e string user_agent <br />
  * \e string referer <br />
  * \e integer timeout <br />
+ * \e mixed headers <br />
  * @endparblock
  * @return false on failure, string on success
  */
 function http_getContentsUsingCURL($params=array()) {
     global $camyks;
 
-    /* build params list */
+    /* Build params list */
     $defaultParams = array(
         'url'               => '',
         'method'            => 'GET', // GET | POST
@@ -224,10 +241,20 @@ function http_getContentsUsingCURL($params=array()) {
         'user_agent'        => $camyks->get_confValue('UserAgent'),
         'referer'           => '',
         'timeout'           => 60,
+        'headers'           => array('Content-type' => 'application/x-www-form-urlencoded'),
     );
     $params = array_merge($defaultParams, $params);
 
-    /* build request */
+    /* Build header */
+    $header = array();
+    if (is_string($params['headers']))
+        $header[] = array($params['headers']);
+    elseif (is_array($params['headers'])) {
+        foreach ($params['headers'] as $name => $value)
+            $header[] = $name.":".$value;
+    }
+
+    /* Build request */
     $request = curl_init();
     curl_setopt($request, CURLOPT_URL, $params['url']);
     curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
@@ -243,8 +270,10 @@ function http_getContentsUsingCURL($params=array()) {
         curl_setopt($request, CURLOPT_AUTOREFERER, true);
     elseif ($params['referer'] != '')
         curl_setopt($request, CURLOPT_REFERER, $params['referer']);
+    if (count($header) > 0)
+        curl_setopt($request, CURLOPT_HTTPHEADER, $header);
 
-    /* execute request */
+    /* Execute request */
     return @curl_exec($request);
 }
 ?>

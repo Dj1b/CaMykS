@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module site cookies, french sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jan 2020
- * @date Modification: Feb 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,12 +42,39 @@
 </p>
 
 <p class="eContent1">
-Enfin, en cliquant sur les ic&ocirc;nes d&eacute;di&eacute;es aux r&eacute;seaux sociaux, tels que Twitter, Facebook, Linkedin ou autre, figurant sur le <span class="eContent2">Site</span> de <?= $this->contentItem->get_editorFullName(); ?> ou dans son application mobile et si l'<span class="eContent2">Utilisateur</span> a accept&eacute; le d&eacute;p&ocirc;t de cookies en poursuivant sa navigation sur le <span class="eContent2">Site</span> Internet ou l'application mobile de <?= $this->contentItem->get_editorFullName(); ?>, les dits r&eacute;seaux sociaux peuvent &eacute;galement d&eacute;poser des cookies sur vos terminaux (ordinateur, tablette, t&eacute;l&eacute;phone portable, t&eacute;l&eacute;vision connect&eacute;e, ...).
+Ces cookies ne sont d&eacute;pos&eacute;s sur vos terminaux qu'&agrave; condition que vous y consentiez, en continuant votre navigation sur le <span class="eContent2">Site</span> Internet ou l'application mobile de <?= $this->contentItem->get_editorFullName(); ?>. &Agrave; tout moment, l'<span class="eContent2">Utilisateur</span> peut n&eacute;anmoins revenir sur son consentement &agrave; ce que le <span class="eContent2">Site</span> d&eacute;pose ce type de cookies.
 </p>
 
+<?php if ($this->cookieAgreementInput !== false) : ?>
 <p class="eContent1">
-Ces types de cookies ne sont d&eacute;pos&eacute;s sur vos terminaux qu'&agrave; condition que vous y consentiez, en continuant votre navigation sur le <span class="eContent2">Site</span> Internet ou l'application mobile de <?= $this->contentItem->get_editorFullName(); ?>. &Agrave; tout moment, l'<span class="eContent2">Utilisateur</span> peut n&eacute;anmoins revenir sur son consentement &agrave; ce que le <span class="eContent2">Site</span> d&eacute;pose ce type de cookies.
+Voici la liste des services pr&eacute;sents sur le <span class="eContent2">Site</span>, et faisant usage de cookies :
 </p>
+<ul>
+    <?php foreach($this->cookieAgreementInput->get_servicesList() as $service) : ?>
+        <li class="eContent1">
+            <span class="eContent2"><?= $service['title']; ?></span>
+            <br /><?= $service['purpose']; ?>
+            <?php if ($service['usage'] !== '') : ?>
+                <br />Usage : <?= $service['usage']; ?>
+            <?php endif; ?>
+            <?php if ($service['duration'] !== '') : ?>
+                <br />Dur&eacute;e de vie : <?= $service['duration']; ?>
+            <?php endif; ?>
+            <?php if ($service['aboutURL'] != '') : ?>
+                <br /><a href="<?= $service['aboutURL']; ?>" class="link" target="_blank" rel="noopener,noreferer,nofollow">En savoir plus</a>
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+<p class="eContent1" style="text-align:center;">
+    <?= $this->theme->get_button(array(
+        'title' => 'Ouvrir le panneau de gestion des cookies',
+        'url'   => $this->cookieAgreementInput->get_cookieManagementPanelOpenLink(),
+    )); ?>
+</p>
+
+<?php endif; ?>
 
 <p class="eContent1">
     &nbsp;

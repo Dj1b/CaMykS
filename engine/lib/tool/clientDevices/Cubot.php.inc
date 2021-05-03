@@ -2,12 +2,11 @@
 /**
  * @brief Cubot client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Cubot.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Mar 2019
- * @date Modification: Sep 2020
- * @copyright 2019 - 2020 CaMykS Team
+ * @date Modification: Sep 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -62,6 +61,7 @@ function get_CubotClientDevice($deviceCode=false) {
         'MAX 2'         => array('platform_model' => 'Max 2',       'platform_year' => 2019),
         'NOTE PLUS'     => array('platform_model' => 'Note Plus',   'platform_year' => 2017),
         'NOTE S'        => array('platform_model' => 'Note S',      'platform_year' => 2016),
+        'POWER'         => array('platform_model' => 'Power',       'platform_year' => 2018),
     );
 
     /* Check for returning list */

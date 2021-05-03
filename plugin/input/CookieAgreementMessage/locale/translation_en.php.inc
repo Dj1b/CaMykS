@@ -3,7 +3,7 @@
  * @brief CookieAgreementMessage Input english dictionnary
  * @details Plugin / Input Dictionnary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: May 2017
  * @date Modification: Mar 2021
  * @copyright 2017 - 2021 CaMykS Team
@@ -44,7 +44,7 @@ $this->trads['input_cookieagreementmessage_config_customlink'] = 'Personnalised'
 $this->trads['input_cookieagreementmessage_config_automaticmessage'] = 'Automatic';
 
 /* popup message contents */
-$this->trads['input_cookieagreementmessage_defaultmessage'] = 'This site uses cookies to ensure its proper functioning. It also uses cookies from third party services to provide advanced functionality. At any time, you can choose which cookies you wish to activate and or decide to withdraw your consent.';
+$this->trads['input_cookieagreementmessage_defaultmessage'] = 'This site uses cookies to ensure its proper functioning. It also uses cookies from third party services to provide advanced functionality. At any time, you can choose which services you wish to activate or decide to withdraw your consent.';
 $this->trads['input_cookieagreementmessage_minimise_panel'] = 'Close panel';
 $this->trads['input_cookieagreementmessage_open_panel'] = 'Open cookie management panel';
 $this->trads['input_cookieagreementmessage_manage_cookies'] = 'Customise accepted services';
@@ -53,6 +53,7 @@ $this->trads['input_cookieagreementmessage_about'] = 'Read more';
 $this->trads['input_cookieagreementmessage_acceptall'] = 'Accept all';
 $this->trads['input_cookieagreementmessage_refuseall'] = 'Refuse all';
 $this->trads['input_cookieagreementmessage_personalise'] = 'Manage';
+$this->trads['input_cookieagreementmessage_refresh_page'] = 'Reload page';
 $this->trads['input_cookieagreementmessage_accept'] = 'Accept';
 $this->trads['input_cookieagreementmessage_refuse'] = 'Refuse';
 $this->trads['input_cookieagreementmessage_ismandatory'] = 'Mandatory';

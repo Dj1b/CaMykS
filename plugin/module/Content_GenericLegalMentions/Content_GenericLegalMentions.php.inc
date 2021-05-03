@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions Module
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jan 2020
- * @date Modification: Jan 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Apr 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -124,7 +124,7 @@ final class Content_GenericLegalMentions extends Module {
         $this->contentItem->id = $this->id;
 
         /* Load action to execute */
-        $this->mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
 
         /* Execute action */
         switch ($this->mode) {
@@ -179,6 +179,9 @@ final class Content_GenericLegalMentions extends Module {
         /* Load data from extensions */
         foreach ($this->extensions as $extension)
             $this->extraData[$extension->name] = $extension->get_legalMentionsData();
+
+        /* Load cookie manager */
+        $this->cookieAgreementInput = $camyks->get_input('CookieAgreementMessage');
 
         /* Load Javascript */
         $this->add_JSEngineFile('tool/mail.js');
