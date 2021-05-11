@@ -3,10 +3,10 @@
  * @brief MySQLi Database connection object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Sep 2014
- * @date Modification: Sep 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: May 2021
+ * @copyright 2014 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -399,7 +399,9 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return string
      */
     public function get_queryError($resName='defaultRes') {
-        return $this->connection->error;
+        if ($this->is_connectionActive())
+            return $this->connection->error;
+        return '';
     }
 
     /**
@@ -408,7 +410,9 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return integer
      */
     public function get_queryAffectedRows($resName='defaultRes') {
-        return $this->connection->affected_rows;
+        if ($this->is_connectionActive())
+            return $this->connection->affected_rows;
+        return 0;
     }
 
     /**
