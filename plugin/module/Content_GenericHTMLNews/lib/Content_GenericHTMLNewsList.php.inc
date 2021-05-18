@@ -1,52 +1,59 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author               : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version       : 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Lib
- * Create Date          : Dec 2007
- * Last Modif Date      : Dec 2007
- *
- * Content_GenericHTMLNewsList object for Content_GenericHTMLNews module
-*/
+/**
+ * @brief Content_GenericHTMLNews Module news list library.
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Mar 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-class Content_GenericHTMLNewsList extends ModuleLibrary {
-  /* 
-   * constructor
-   * @param integer $id
-   * @param Module $module
-   */
-  function Content_GenericHTMLNewsList ( $id, &$module ) {
-    parent::ModuleLibrary( $id, $module );
-    /* content */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
-    $this->add_newItem('count_list', 'db', 'int', 'tinyint unsigned', '', 5);
-    $this->add_newItem('layout_list', 'db', 'text', 'varchar', 32, '' );
-    $this->add_newItem('layout_item', 'db', 'text', 'varchar', 32, '' );
-    $this->add_newItem('enablerss', 'db', 'int', 'tinyint unsigned', '', 1 );
-    /* generic ModuleLibrary initialisation */
-    $this->init_library();
-  }
+/**
+ * Content_GenericHTMLNewsList class.
+ */
+final class Content_GenericHTMLNewsList extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-  /* overwrite ModuleLibrary methods */
+        /* Content attributes */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
+        $this->add_newItem('count_list', 'db', 'int', 'tinyint unsigned', '', 5);
+        $this->add_newItem('layout_list', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('layout_item', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('enablerss', 'db', 'int', 'tinyint unsigned', '', 1);
 
-  /*
-   * check object data values
-   * @return boolean result
-   * @access private
-   */
-  function check_data( ) {
-    global $camyks;
-    /* check name */
-    $this->_libItems['name']->check_value('symbolic', 'newslist');
-    
-    /* check item displayed value */
-    if ( !( $this->_libItems['count_list']->value > 0 ) ){
-      $this->_libItems['count_list']->initialise();
+        /* Generic ModuleLibrary initialisation */
+        $this->init_library();
     }
-    return true;
-  }
+
+    /* Override ModuleLibrary methods */
+
+    /**
+     * Check object data values.
+     * @return boolean result
+     */
+    public function check_data() {
+        global $camyks;
+
+        /* Check name */
+        $this->_libItems['name']->check_value('symbolic', 'newslist');
+
+        /* Check item displayed value */
+        if (!($this->_libItems['count_list']->value > 0)){
+            $this->_libItems['count_list']->initialise();
+        }
+
+        /* Return success */
+        return true;
+    }
 }
 ?>
