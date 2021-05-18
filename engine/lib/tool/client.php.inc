@@ -3,9 +3,9 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.135
+ * @version 1.0.136
  * @date Creation: Jun 2007
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -341,10 +341,10 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/^LG(?:E|)(?: |_|\-|\/)([^ _\-\/]+)/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
-    } elseif (preg_match('/L[G|M]-?([A-Z]{1,2}[0-9]{3}\.?[A-Z]{0,})/', $ua, $matches) or preg_match('/LG([A-Z]{1,2}[0-9]*[A-Z]{0,})/', $ua, $matches)) {
+    } elseif (preg_match('/; L[G|M]-?([A-Z]{1,2}[0-9]{3}\.?[A-Z]{0,})/', $ua, $matches) or preg_match('/; LG([A-Z]{1,2}[0-9]*[A-Z]{0,})/', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
-    } elseif (preg_match('/ (VS[0-9]{3})( 4G)?( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (VS[0-9]{3})( 4G)?( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/LG.php.inc');
         $infos = array_merge($infos, get_LGClientDevice($matches[1]));
     } elseif (preg_match('/; (VK810 4G)( Build|\))/Ui', $ua, $matches)) {
@@ -625,7 +625,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Doogee devices, to be inserted before Xiaomi/Wiko/Acer/Umidigi */
-    elseif (preg_match('/; (MIX(|Lite|2| 3)|N20(Pro)?|S90|S60Lite|S[58]8Pro|S55_Lite|X[37]0|X[0-9]0L|X95|X95Pro|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (MIX(|Lite|2| 3)|N20(Pro)?|S90|S60Lite|S[58]8Pro|S40Pro|S55_Lite|X[37]0|X[0-9]0L|X95|X95Pro|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -1282,7 +1282,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Ulefone devices */
-    elseif (preg_match('/ (s10_pro|Note 8P|Armor[ |_].*)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/ (s10_pro|S11|Note 8P|Armor[ |_].*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Ulefone.php.inc');
         $device = strtolower($matches[1]);
         $infos = array_merge($infos, get_UlefoneClientDevice($device));
@@ -1696,7 +1696,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Teeno devices */
-    elseif (preg_match('/; (Vmobile .*)?( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (Vmobile .*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Teeno.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_TeenoClientDevice($model));
@@ -1807,6 +1807,20 @@ function client_getUAInfos($ua=false) {
         include_once('clientDevices/Verizon.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_VerizonClientDevice($device));
+    }
+
+    /* Check Moqi devices */
+    elseif (preg_match('/; (I7S)( Build|\))/U', $ua, $matches)) {
+        include_once('clientDevices/Moqi.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_MoqiClientDevice($device));
+    }
+
+    /* Check Gome devices */
+    elseif (preg_match('/; GOME_([A-Za-z0-9_]+)( Build|\))/U', $ua, $matches)) {
+        include_once('clientDevices/Gome.php.inc');
+        $device = $matches[1];
+        $infos = array_merge($infos, get_GomeClientDevice($device));
     }
 
     /* Check known Unknown devices */
@@ -2060,7 +2074,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check unsmartly written browser, non case sensitive */
-    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave|360SE|liloiosapp|KAKAOTALK|Spotify)(?:\/| |\-| \/ )?([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave|360SE|liloiosapp|KAKAOTALK|Spotify|Ghostery)(?:\/| |\-| \/ |\:)?([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LinkedInApp'=>'LinkedIn App', '360SE'=>'360Safe', 'liloiosapp'=>'Lilo', 'KAKAOTALK'=>'KakaoTalk');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],
@@ -2965,6 +2979,8 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
     if (preg_match('#^"Mozilla/5.0([^"]*)"$#i', $ua))
         return $fake;
+    if (preg_match('#^"Mozilla/5.0$#i', $ua))
+        return $fake;
 
     /* fake requests from Lituania */
     if (preg_match('#^Dalvik/2.1.0 \(Linux; U; Android 5.1.1; D5503 Build/14.6.A.1.236\)$#i', $ua))
@@ -3151,6 +3167,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#(Gecko|Safari/537.36)/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_]+)\-[0-9]$#', $ua))
         return $fake;
 
+    /* Fake UA      : Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0 ukymizvpxq6 */
+    if (preg_match('#ukymizvpxq6$#', $ua))
+        return $fake;
+
     /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 lQHGDnYu-22 Firefox/80.0 */
     if (preg_match('#Gecko/20100101 ([a-zA-Z]{8}\-[0-9]{2}) Firefox/([0-9\.]{4,})$#', $ua))
         return $fake;
@@ -3205,7 +3225,7 @@ function _client_loadSoftwareProperties() {
             'Mac OS X'          => array(
                 'MaxVersion'    => '10.12.6',               // final is 10.12.6
                 'FakeVersions'  => array(),
-                'HasNoVersion'  => false,
+                'HasNoVersion'  => true,
                 'CheckMethod'   => '',
             ),
             'macOS'          => array(
@@ -3412,6 +3432,10 @@ function _client_isAmpeDevice($ua='') {
  * @private
  */
 function _client_checkFirefoxIsFake($infos, $ua) {
+    /* Check firefox version altered by a toolbar */
+    if (preg_match('#; rv:([0-9]+)([a-z0-9\.]+); WUID=(.*)\) Gecko/([a-z0-9\.]+) Firefox/([0-9]+)([a-z0-9\.]+)$#', $ua))
+        return false;
+
     /* Check badly written rv "; rv:x.xx;" instead of "; rv:x.xx)" */
     if (preg_match('#; rv:([0-9]+)([a-z0-9\.]+);#', $ua))
         return true;
@@ -3426,7 +3450,7 @@ function _client_checkFirefoxIsFake($infos, $ua) {
 
     /* Check rv value and Firefox value */
     if ((int)$matches[1] != (int)$matches[4])
-        return true;
+        return false;
 
     /* Check Gecko value */
     if ((int)$matches[1] != (int)$matches[3] and $matches[3] != '20100101')

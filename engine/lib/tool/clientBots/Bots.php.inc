@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.80
+ * @version 1.0.81
  * @date Creation: May 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5128,7 +5128,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'neevabot',
-        'bot_url'           => 'https://neeva.com/neevabot)',
+        'bot_url'           => 'https://neeva.com/neevabot',
         'engine_title'      => 'Neeva',
         'engine_url'        => 'https://neeva.com/',
     );
@@ -5141,6 +5141,36 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'ByteDance',
         'engine_url'        => 'https://zhanzhang.toutiao.com/',
+    );
+
+    /* Amazonbot */
+    $knownBots['amazonbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Amazonbot',
+        'bot_url'           => 'https://developer.amazon.com/support/amazonbot',
+        'engine_title'      => 'Amazon',
+        'engine_url'        => 'https://www.amazon.com/',
+    );
+
+    /* Turnitin bot */
+    $knownBots['turnitin'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TurnitinBot',
+        'bot_url'           => 'https://turnitin.com/robot/crawlerinfo.html',
+        'engine_title'      => 'Turnitin',
+        'engine_url'        => 'https://turnitin.com/',
+    );
+
+    /* Project-Resonance */
+    $knownBots['project-resonance'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Project Resonance',
+        'engine_url'        => 'https://project-resonance.com/',
     );
 
     /* Return bot list */

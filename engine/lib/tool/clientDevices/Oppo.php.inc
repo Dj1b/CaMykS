@@ -3,9 +3,9 @@
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.38
+ * @version 1.0.39
  * @date Creation: Nov 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -66,6 +66,8 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH2067'   => array('platform_model' => 'A72',             'platform_year' => 2020),
         'CPH2091'   => array('platform_model' => 'Reno 4 5G',       'platform_year' => 2020),
         'CPH2135'   => array('platform_model' => 'A53s',            'platform_year' => 2020),
+        'CPH2185'   => array('platform_model' => 'A15',             'platform_year' => 2020),
+        'CPH2207'   => array('platform_model' => 'Find X3 Neo',     'platform_year' => 2021),
     );
 
     /* Check for returning list */
