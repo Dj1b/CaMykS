@@ -1,48 +1,57 @@
 <?php
-/*
- * CaMyks Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Library
- * Create Date		: Mar 2007
- * Last Modif Date	: Mar 2007
- *
- * Content_GenericNewsList object for Content_GenericNews module
-*/
+/**
+ * @brief Content_GenericNews Module news list library.
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Mar 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-class Content_GenericNewsList extends ModuleLibrary {
-  /* Constructor */
-  function Content_GenericNewsList ( $id = 0, &$module ) {
-    parent::ModuleLibrary( $id, $module );
-    /* content */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
-    $this->add_newItem('count_list', 'db', 'int', 'tinyint unsigned', '', 10);
-    $this->add_newItem('layout_list', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('layout_item', 'db', 'text', 'varchar', 32, '');
-    /* generic init */
-    $this->init_library();
-  }
- 
-  /* overwrite ModuleLibrary methods */
+/**
+ * Content_GenericNewsItem class.
+ */
+final class Content_GenericNewsList extends ModuleLibrary {
+    /**
+     * Class constructor
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id = 0, &$module) {
+        parent::__construct($id, $module);
 
-  /*
-   * check object data values
-   * @return boolean result
-   * @access private
-   */
-  function check_data( ) {
-    global $camyks;
+        /* Content attributes */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
+        $this->add_newItem('count_list', 'db', 'int', 'tinyint unsigned', '', 10);
+        $this->add_newItem('layout_list', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('layout_item', 'db', 'text', 'varchar', 32, '');
 
-    /* check name */
-    $this->_libItems['name']->check_value('symbolic', 'newslist');
-
-    /* check item displayed value */
-    if ( !( $this->_libItems['count_list']->value > 0 ) ){
-      $this->_libItems['count_list']->initialise();
+        /* Initialise library */
+        $this->init_library();
     }
-    return true;
-  }
+
+    /* Overide ModuleLibrary methods */
+
+    /**
+     * Check object data values
+     * @return boolean result
+     */
+    public function check_data() {
+        global $camyks;
+
+        /* Check name */
+        $this->_libItems['name']->check_value('symbolic', 'newslist');
+
+        /* Check item displayed value */
+        if (!($this->_libItems['count_list']->value > 0))
+            $this->_libItems['count_list']->initialise();
+
+        /* Return success */
+        return true;
+    }
 }
 ?>
