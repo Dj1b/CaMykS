@@ -1,30 +1,35 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Config
- * Create Date		: Jul 2008
- * Last Modif Date	: Jul 2008
- *
- * Admin_SiteReport Config Object 
+/**
+ * @brief Admin_SiteReport Module, configuration library.
+ * @details Plugin, Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2008
+ * @date Modification: May 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Admin_SiteReportConfig extends ModuleConfig {
-  /*
-   * constructor
-   * @param string $name
-   * @param Module $parent
-   */
-  function Admin_SiteReportConfig ( $name, &$parent ) {
-    parent::ModuleConfig( $name, $parent );
-    /* object items */
-    $this->add_newItem('file_allowed', 'boolean', false);
-    $this->add_newItem('file_maxsize', 'int', 128 );
-    /* generic initialisation */
-    parent::init_config();
-  }
+/**
+ * Admin_SiteReportConfig class.
+ */
+final class Admin_SiteReportConfig extends PluginConfig {
+    /**
+     * Class constructor.
+     * @param string $name
+     * @param Module $parent
+     * @return void
+     */
+    public function __construct($name, &$parent) {
+        parent::__construct($name, $parent);
+
+        /* File configuration attributes */
+        $this->add_newItem('file_allowed', 'boolean', false);
+        $this->add_newItem('file_maxsize', 'int', 128);
+
+        /* Generic initialisation */
+        parent::init_config();
+    }
 }
 ?>
