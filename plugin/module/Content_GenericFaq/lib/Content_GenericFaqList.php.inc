@@ -1,48 +1,54 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Library
- * Create Date		: Apr 2007
- * Last Modif Date	: Apr 2007
- *
- * Content_GenericFaqList object for Content_GenericFaq module
+/**
+ * @brief Content_GenericFaq module, faq list library.
+ * @details Plugin / Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 Ideogram Design
  */
 
-class Content_GenericFaqList extends ModuleLibrary {
-  /* constructor */
-  function Content_GenericFaqList ( $id = 0, &$module ) {
-    parent::ModuleLibrary( $id, $module);
-    /* content */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
-    $this->add_newItem('count_list', 'db', 'int', 'tinyint unsigned', '', 10 );
-    $this->add_newItem('layout_list', 'db', 'text', 'varchar', 16, '');
-    
-    /* generic init */
-    $this->init_library();
-  }
-  
-  /* overwrite ModuleLibrary methods */  
+/**
+ * Content_GenericFaqList class.
+ */
+final class Content_GenericFaqList extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-  /*
-   * check object data value
-   * @return boolean result
-   * @access private
-   */
-  function check_data( ) {
-    global $camyks;
+        /* Content attributes */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
+        $this->add_newItem('count_list', 'db', 'int', 'tinyint unsigned', '', 10 );
+        $this->add_newItem('layout_list', 'db', 'text', 'varchar', 16, '');
 
-    /* check name */
-    $this->_libItems['name']->check_value('symbolic', 'faq');
-    
-    /* check item displayed value */
-    if ( !( $this->_libItems['count_list']->value > 0 ) ){
-      $this->_libItems['count_list']->initialise();
+        /* Generic initialisation */
+        $this->init_library();
     }
-    return true;
-  }
+
+    /* Override ModuleLibrary methods */
+
+    /**
+     * Check object data value.
+     * @return boolean result
+     */
+    public function check_data() {
+        global $camyks;
+
+        /* Check name */
+        $this->_libItems['name']->check_value('symbolic', 'faq');
+
+        /* Check item displayed value */
+        if (!($this->_libItems['count_list']->value > 0))
+            $this->_libItems['count_list']->initialise();
+
+        /* Return is correct */
+        return true;
+    }
 }
 ?>
