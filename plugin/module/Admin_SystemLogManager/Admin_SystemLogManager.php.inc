@@ -3,12 +3,11 @@
  * @brief Admin_SystemLogManager Module
  * <br /> Store and display logs.
  * @details Plugin / Input Engine
- * @file plugin/module/Admin_SystemLogManager/Admin_SystemLogManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2018
- * @date Modification: Jun 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: May 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -300,6 +299,7 @@ final class Admin_SystemLogManager extends Module {
         $camyks->set_sessionValue('logManagerSelection', $selection);
 
         header('Location:'.$camyks->get_rootBaseURL('absolute').$this->get_adminLink());
+        die();
     }
 
     /**
@@ -333,11 +333,7 @@ final class Admin_SystemLogManager extends Module {
         $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
 
         /* build form */
-        $this->editform = new HTMLForm(
-            'edit_config',
-            $this->get_adminlink(array('mode'=>'save_config')),
-            'POST'
-        );
+        $this->editform = new HTMLForm('edit_config', $this->get_adminlink(array('mode'=>'save_config')), 'POST');
         $this->editform->set_object($this->config);
 
         /* build interface title */
