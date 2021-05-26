@@ -4,9 +4,9 @@
  * <br /> Interface to Limonetik payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Oct 2020
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -104,10 +104,10 @@ final class LimonetikPayment extends Input {
     public function initialise($params=array()) {
         global $camyks;
 
-        /* load plugin configuration */
+        /* Load plugin configuration */
         $this->load_configuration();
 
-        /* define params */
+        /* Define params */
         $this->params = $params;
 
         /* Input generic initialization */
@@ -160,13 +160,14 @@ final class LimonetikPayment extends Input {
         $camyks->set_sessionValue('LimonetikAnswer', array(
             'RequestId'         => $response['RequestId'],
             'PaymentOrderId'    => $response['PaymentOrderId'],
+            'PaymentMethod'     => $data['PaymentOrder']['PaymentPageId'],
         ));
 
         /* Redirect user to Limonetik server */
         header('Location:'.$response['PaymentPageUrl']);
     }
 
-    /* data query methods */
+    /* Data query methods */
 
     /**
      * Load confirmation data Payzen instant notification.
@@ -278,6 +279,22 @@ final class LimonetikPayment extends Input {
      */
     public function get_transactionId() {
         return $this->_transactionId;
+    }
+
+    /**
+     * Return transaction payment method.
+     * @return string
+     */
+    public function get_transactionPaymentMethod() {
+        global $camyks;
+
+        /* Load payment data */
+        $paymentData = $camyks->get_sessionValue('LimonetikAnswer');
+
+        /* Return payment method */
+        if (isset($paymentData['PaymentMethod']))
+            return $paymentData['PaymentMethod'];
+        return '';
     }
 
     /* Limonetik related methods */
@@ -420,10 +437,10 @@ final class LimonetikPayment extends Input {
         if (!is_null($this->config))
             return;
 
-        /* load configuration library */
+        /* Load configuration library */
         $this->load_library('LimonetikPaymentConfig');
 
-        /* load config */
+        /* Load config */
         $this->config = new LimonetikPaymentConfig('config', $this);
         $this->config->get();
     }
