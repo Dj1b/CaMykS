@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Jul 2007
- * Last Modif Date	: Oct 2008
- *
- * Content_GenericMenu french dictionnary
-*/
+/**
+ * @brief Content_GenericMenu module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_content_genericmenu_title'] = 'Menu';
 $this->trads['mod_content_genericmenu_desc'] = 'Affiche un menu bas&eacute; sur la structure des pages du site';
 
