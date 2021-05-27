@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Oct 2008
- * Last Modif Date	: Oct 2008
- *
- * Content_GenericPageList english dictionnary 
-*/
+/**
+ * @brief Content_GenericPageList module, english dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Oct 2008
+ * @date Modification: May 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_content_genericpagelist_title'] = 'Page list';
 $this->trads['mod_content_genericpagelist_desc'] = 'Display website page list';
 
