@@ -1,12 +1,14 @@
 <?php
 /**
- * @brief Content_GenericFaq module, french dictionnary.
- * @details Plugin / Module Dictionnary
+ * @brief Content_GenericFaq module, french dictionary.
+ * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2007
  * @date Modification: May 2021
- * @copyright 2007 - 2021 Ideogram Design
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_content_genericfaq_title'] = 'Foire aux questions';
 $this->trads['mod_content_genericfaq_desc'] = 'Affiche des FaQs';

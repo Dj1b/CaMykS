@@ -3,7 +3,7 @@
  * @brief Admin_SiteReport Module, item library.
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2007
  * @date Modification: May 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -24,7 +24,7 @@ final class Admin_SiteReportItem extends ModuleLibrary {
     /**
      * Class constructor.
      * @param integer $id
-     * @param Module &module
+     * @param Module $module
      * @return void
      */
     public function __construct($id, &$module) {

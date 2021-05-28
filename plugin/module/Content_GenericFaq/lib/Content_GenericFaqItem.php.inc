@@ -3,10 +3,12 @@
  * @brief Content_GenericFaq module, faq item library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2007
  * @date Modification: May 2021
- * @copyright 2007 - 2021 Ideogram Design
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
@@ -174,13 +176,13 @@ final class Content_GenericFaqItem extends ModuleLibrary {
      * @param string $language
      * @return integer
      */
-    public function get_listcount($listid, $status=-1, $lg='') {
+    public function get_listcount($listid, $status=-1, $language='') {
         global $camyks;
         $where = 'listid='.$listid;
         if ($status > -1)
             $where .= ' and status='.$status;
-        if ($lg != '')
-            $where .= ' and language="'.$lg.'"';
+        if ($language != '')
+            $where .= ' and language="'.$language.'"';
         return $this->get_objectCount($where);
     }
 }

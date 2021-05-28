@@ -3,7 +3,7 @@
  * @brief Content_GenericHTMLNews Module
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Dec 2007
  * @date Modification: May 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -14,7 +14,8 @@
 /**
  * Content_GenericHTMLNews class.
  */
-final class Content_GenericHTMLNews extends Module {/**
+final class Content_GenericHTMLNews extends Module {
+    /**
      * var array $layouts_list
      * @brief List of available layouts to display lists.
      */

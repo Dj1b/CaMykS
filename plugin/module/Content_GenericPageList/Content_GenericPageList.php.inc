@@ -3,10 +3,10 @@
  * @brief Content_GenericPageList module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2007
  * @date Modification: May 2021
- * @copyright 2007 - 2021 Ideogram Design
+ * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -260,7 +260,7 @@ final class Content_GenericPageList extends Module {
 
         /* Update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
-        $this->set_redirect($this->get_adminLink(array('mode'=>'modify_item', 'id'=>$this->plitem->id));
+        $this->set_redirect($this->get_adminLink(array('mode'=>'modify_item', 'id'=>$this->plitem->id)));
     }
 }
 ?>
