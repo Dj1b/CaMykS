@@ -3,7 +3,7 @@
  * @brief Tools as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: May 2018
  * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -1419,6 +1419,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'l9explore',
         'engine_url'        => 'https://github.com/LeakIX/l9explore',
+    );
+
+    /* Statically-Screenshot */
+    $knownTools['statically-screenshot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Statically-Screenshot',
+        'engine_url'        => 'https://statically.io/screenshot/',
     );
 
     /* return list */

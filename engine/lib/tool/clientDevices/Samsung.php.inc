@@ -3,7 +3,7 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.101
+ * @version 1.0.102
  * @date Creation: Apr 2018
  * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -229,6 +229,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G780F'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
         'SM-G781B'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
         'SM-G991B'  => array('platform_model' => 'Galaxy S21',                      'platform_year' => 2021),
+        'SM-G991W'  => array('platform_model' => 'Galaxy S21',                      'platform_year' => 2021),
         'SM-G996B'  => array('platform_model' => 'Galaxy S21+ 5G',                  'platform_year' => 2021),
         'SM-G998B'  => array('platform_model' => 'Galaxy S21 Ultra',                'platform_year' => 2021),
 
@@ -287,6 +288,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A202F'  => array('platform_model' => 'Galaxy A20e',                     'platform_year' => 2019),
         'SM-A207F'  => array('platform_model' => 'Galaxy A20s',                     'platform_year' => 2019),
         'SM-A207M'  => array('platform_model' => 'Galaxy A20s',                     'platform_year' => 2019),
+        'SM-A215W'  => array('platform_model' => 'Galaxy A21',                      'platform_year' => 2020),
         'SM-A217F'  => array('platform_model' => 'Galaxy A21s',                     'platform_year' => 2019),
         'SM-A305F'  => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
         'SM-A305FN' => array('platform_model' => 'Galaxy A30',                      'platform_year' => 2019),
@@ -419,6 +421,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-M105G'  => array('platform_model' => 'Galaxy M10',                      'platform_year' => 2019),
         'SM-M205F'  => array('platform_model' => 'Galaxy M20',                      'platform_year' => 2019),
         'SM-M307F'  => array('platform_model' => 'Galaxy M30s',                     'platform_year' => 2019),
+        'SM-M307FN' => array('platform_model' => 'Galaxy M30s',                     'platform_year' => 2019),
         'SM-M315F'  => array('platform_model' => 'Galaxy M31',                      'platform_year' => 2020),
 
         /* Samsung Galaxy Note series */

@@ -3,7 +3,7 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.81
+ * @version 1.0.82
  * @date Creation: May 2018
  * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -2092,9 +2092,9 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'LinkpadBot',
-        'bot_url'           => '',
+        'bot_url'           => 'https://linkpad.org/robot/',
         'engine_title'      => 'Linkpad',
-        'engine_url'        => 'http://www.linkpad.ru',
+        'engine_url'        => 'http://www.linkpad.org',
     );
 
     /* MixBot */
@@ -2981,8 +2981,8 @@ function _client_getKnownBots() {
     $knownBots['semanticbot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'semanticbot',
-        'bot_url'           => 'info@semanticaudience.com',
+        'bot_title'         => 'Semanticbot',
+        'bot_url'           => 'http://sempi.tech/bot.html',
         'engine_title'      => '',
         'engine_url'        => '',
     );
@@ -4937,10 +4937,10 @@ function _client_getKnownBots() {
     $knownBots['ioncrawl'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => '',
-        'bot_url'           => '',
-        'engine_title'      => 'IonCrawl',
-        'engine_url'        => 'http://www.ioncrawl.com/',
+        'bot_title'         => 'IonCrawl',
+        'bot_url'           => 'https://www.ionos.de/terms-gtc/faq-crawler-en/',
+        'engine_title'      => 'Ionos',
+        'engine_url'        => 'https://www.ionos.de/',
     );
 
     /* BublupBot */
@@ -5171,6 +5171,46 @@ function _client_getKnownBots() {
         'bot_url'           => '',
         'engine_title'      => 'Project Resonance',
         'engine_url'        => 'https://project-resonance.com/',
+    );
+
+    /* Semjibot */
+    $knownBots['semjibot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Semjibot',
+        'bot_url'           => '',
+        'engine_title'      => 'Semji',
+        'engine_url'        => 'https://semji.com/',
+    );
+
+    /* dMASSLinkSafetyBot */
+    $knownBots['dmasslinksafetybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'dMASSLinkSafetyBot',
+        'bot_url'           => '',
+        'engine_title'      => 'dmass',
+        'engine_url'        => 'https://www.dmass.net',
+    );
+
+    /* TombaPublicWebCrawler */
+    $knownBots['tombapublicwebcrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TombaPublicWebCrawler',
+        'bot_url'           => '',
+        'engine_title'      => 'TombaScaper',
+        'engine_url'        => 'https://tombascraper.com',
+    );
+
+    /* OpenindexSpider */
+    $knownBots['openindexspider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'OpenindexSpider',
+        'bot_url'           => 'https://www.openindex.io/saas/about-our-spider/',
+        'engine_title'      => 'Opencii',
+        'engine_url'        => 'https://www.opencii.nl',
     );
 
     /* Return bot list */

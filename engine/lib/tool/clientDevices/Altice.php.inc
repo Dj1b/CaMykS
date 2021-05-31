@@ -2,12 +2,11 @@
 /**
  * @brief Altice client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Altice.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jul 2019
- * @date Modification: Sep 2020
- * @copyright 2019 CaMykS Team
+ * @date Modification: May 2021
+ * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -25,6 +24,7 @@ function get_AlticeClientDevice($deviceCode='') {
         'sx41'          => array('platform_model' => 'SX41',            'platform_year' => 2017),
         'staraddict6'   => array('platform_model' => 'StarAddict 6',    'platform_year' => 2017),
         'starnaute4'    => array('platform_model' => 'StarNaute 4',     'platform_year' => 2017),
+        's43'           => array('platform_model' => 'S43',             'platform_year' => 2020),
 
     );
 

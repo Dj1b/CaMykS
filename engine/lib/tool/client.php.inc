@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.136
+ * @version 1.0.137
  * @date Creation: Jun 2007
  * @date Modification: May 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -668,7 +668,11 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Altice devices - before Wiko */
-    elseif (preg_match('/; Star(xtrem|trail|addict|naute)([0-9 ]*)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; ALTICE_(.*)( Build|\))/Ui', $ua, $matches)) {
+        include_once('clientDevices/Altice.php.inc');
+        $model = $matches[1];
+        $infos = array_merge($infos, get_AlticeClientDevice($model));
+    } elseif (preg_match('/; Star(xtrem|trail|addict|naute)([0-9 ]*)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Altice.php.inc');
         $model = 'Star'.$matches[1].trim($matches[2]);
         $infos = array_merge($infos, get_AlticeClientDevice($model));
@@ -943,7 +947,7 @@ function client_getUAInfos($ua=false) {
     elseif (preg_match('/ (Pocophone|Poco) ([A-Za-z0-9 ]{1,})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Pocophone.php.inc');
         $infos = array_merge($infos, get_PocophoneClientDevice($matches[2]));
-    } elseif (preg_match('/; (M20(07|10)J[0-9]{2}CG)( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (M20(07|10)J[0-9]{2}C[GI])( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Pocophone.php.inc');
         $infos = array_merge($infos, get_PocophoneClientDevice($matches[1]));
     }
@@ -955,7 +959,7 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/; (Redmi )(.*)( Build|\)| MIUI)/Ui', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].$matches[2]));
-    } elseif (preg_match('/; (M200[0-9][CJ][0-9]{1,2}[A-Z]{0,3})( Build|\)| MIUI)/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (M2[01](0[0-9][CJ]|[01]1K)[0-9]{1,2}[A-Z]{0,3})( Build|\)| MIUI)/Ui', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1]));
     } elseif (preg_match('/(SKR|DLT)(|-)?(H0)( Build|\)| MIUI)/Ui', $ua, $matches)) {
@@ -1634,7 +1638,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Teclast devices */
-    elseif (preg_match('/; (TLA002|M40_EEA)( Build|\))/U', $ua, $matches)) {
+    elseif (preg_match('/; (TLA002|(M40|P20HD)_EEA)( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Teclast.php.inc');
         $device = $matches[1];
         $infos = array_merge($infos, get_TeclastClientDevice($device));
@@ -2151,8 +2155,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Chrome/Safari/Firefox/Explorer compatible browsers, to be tested before usual browsers */
-    elseif (preg_match('/[ |\/](YaBrowser|Camino|OPR|IceDragon|Dragon|Comodo_Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|QwantBrowser Firefox|QwantMobile|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|Edg|EdgiOS|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori|HistoryHound|TO-Browser|K-Ninja|Kapiko|Kazehakase|eM Client|Mb2345Browser|LieBaoFast|Whale|ADG|Light|jp.co.yahoo.ipn.appli|HeyTapBrowser|HuaweiBrowser|OneNote|115Browser|Paparazzi!|rekonq|TaoBrowser|kioclient|DuckDuckGo|Xvast|Bunjalloo|Supermedium|SEMC-Browser|Surf|WebClip|Snapchat|Fluid|Ionic|1Password|PHX|AOL|Quark|Reeder|Polypane|AlohaBrowser|XWEB|RDDocuments|Minimo)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
-        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Comodo_Dragon'=>'Dragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'QwantBrowser'=>'Qwant', 'QwantBrowser Firefox'=>'Qwant', 'QwantMobile' => 'Qwant', 'Blazer'=> 'Palm Blazer', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'Edg' => 'Edge', 'EdgiOS'=>'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch', 'chromeframe'=>'Internet Explorer/Chrome Frame', 'UR'=>'UR Browser', 'QtWebEngine'=>'QtWebEngine based browser', 'handyCafeCln'=>'HandyCafe', 'TO-Browser'=>'t-online.de Browser', 'K-Ninja'=>'K-Ninja Samourai', 'Mb2345Browser'=>'2345 Browser', 'ADG'=>'AOL Desktop', 'jp.co.yahoo.ipn.appli'=>'Yahoo Japan App', 'HeyTapBrowser'=>'HeyTap Browser', 'HuaweiBrowser'=>'Huawei Browser', 'rekonq'=>'Rekonq', 'kioclient'=>'KIO Client', 'PHX'=>'Phoenix', 'AOL'=>'AOL Exporer', 'AlohaBrowser'=>'Aloha Browser', 'XWEB'=>'XWeb', 'RDDocuments'=>'Readdle Documents');
+    elseif (preg_match('/[ |\/](YaBrowser|Camino|OPR|IceDragon|Dragon|Comodo_Dragon|CriOS|Adventurer|Sleipnir|BoBrowser|Dolfin|ChromePlus|Phoenix|Shiretoko|NS8|MiuiBrowser|SamsungBrowser\/CrossApp|SamsungBrowser|Vivaldi|Qt|Iceweasel|Puffin|Firebird|FBAV|FBSV|app-ipad-CoteMaison|QQBrowser|PaleMoon|Arora|Edge|Cheshire|Getter|Dooble|amaya|Roccat|QupZilla|MMS|Iron|ACHEETAHI|OPiOS|Beonex|LibertyBrowser|LinkedIn|SeaMonkey|Cyberfox|Focus|Fennec|K-Meleon|CoolNovo|QuickLook|GSA|Electron|NG|FxiOS|FocusiOS|Lotus-Notes|Chimera|Epiphany|Iridium|HeadlessChrome|QwantiOS|QwantBrowser|QwantBrowser Firefox|QwantMobile|Blazer|TenFourFox|Silk|SailfishBrowser|coc_coc_browser|MZBrowser|2345Explorer|Kinza|WebPositive|Avast|VivoBrowser|Slimjet|Cornowser|baiduboxapp|Mint Browser|EdgA|Edg|EdgiOS|AVG|Station|OPT|Waterfox|OppoBrowser|chromeframe|UR|QtWebEngine|handyCafeCln|Thunderbird|MxBrowser|mCent|PureBrowser|Valve Steam GameOverlay|Midori|HistoryHound|TO-Browser|K-Ninja|Kapiko|Kazehakase|eM Client|Mb2345Browser|LieBaoFast|Whale|ADG|Light|jp.co.yahoo.ipn.appli|HeyTapBrowser|HuaweiBrowser|OneNote|115Browser|Paparazzi!|rekonq|TaoBrowser|kioclient|DuckDuckGo|Xvast|Bunjalloo|Supermedium|SEMC-Browser|Surf|WebClip|Snapchat|Fluid|Ionic|1Password|PHX|AOL|Quark|Reeder|Polypane|AlohaBrowser|XWEB|RDDocuments|Minimo|Falkon|BingSapphire|BonEcho|GranParadiso|PCNBrowser)\/([a-z0-9\._]*)?/i', $ua, $matches)) {
+        $rep = array('OPR'=>'Opera', 'CriOS'=>'Chrome', 'Comodo_Dragon'=>'Dragon', 'NS8'=>'Netscape', 'Firebird'=>'Thunderbird', 'FBAV'=>'Facebook App', 'FBSV'=>'Facebook App', 'app-ipad-CoteMaison'=>'C&ocirc;t&eacute; Maison App', 'amaya'=>'Amaya', 'MMS'=>'Opera Neon', 'ACHEETAHI'=>'CM Browser', 'OPiOS'=>'Opera mini', 'Focus'=>'Firefox Focus', 'GSA'=>'Google Search App', 'NG'=>'Browser NG', 'FxiOS'=>'Firefox', 'FocusiOS'=>'Firefox Focus', 'Lotus-Notes'=>'Lotus Notes', 'QwantiOS'=>'Qwant', 'QwantBrowser'=>'Qwant', 'QwantBrowser Firefox'=>'Qwant', 'QwantMobile' => 'Qwant', 'Blazer'=> 'Palm Blazer', 'SailfishBrowser' => 'Sailfish Browser', 'coc_coc_browser'=>'C&ocirc;c c&ocirc;c', 'MZBrowser' => 'Meizu Browser', 'Avast' => 'Avast Browser', 'VivoBrowser' => 'Vivo Browser', 'baiduboxapp' => 'Baidu Search App', 'EdgA' => 'Edge', 'Edg' => 'Edge', 'EdgiOS'=>'Edge', 'AVG'=>'AVG Secure Browser', 'OPT'=>'Opera Touch', 'chromeframe'=>'Internet Explorer/Chrome Frame', 'UR'=>'UR Browser', 'QtWebEngine'=>'QtWebEngine based browser', 'handyCafeCln'=>'HandyCafe', 'TO-Browser'=>'t-online.de Browser', 'K-Ninja'=>'K-Ninja Samourai', 'Mb2345Browser'=>'2345 Browser', 'ADG'=>'AOL Desktop', 'jp.co.yahoo.ipn.appli'=>'Yahoo Japan App', 'HeyTapBrowser'=>'HeyTap Browser', 'HuaweiBrowser'=>'Huawei Browser', 'rekonq'=>'Rekonq', 'kioclient'=>'KIO Client', 'PHX'=>'Phoenix', 'AOL'=>'AOL Exporer', 'AlohaBrowser'=>'Aloha Browser', 'XWEB'=>'XWeb', 'RDDocuments'=>'Readdle Documents', 'BingSapphire'=>'Bing Search App', 'BonEcho'=>'Firefox', 'GranParadiso'=>'FireFox');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],
             'browser_version'   => isset($matches[2]) ? $matches[2] : '',
@@ -2185,7 +2189,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check gen computer browsers */
-    elseif (preg_match('/(Chromium|Netscape|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront|WhatsApp|Dalvik|Snapchat|ManicTime)(?:\/| )?([a-z0-9\._]*)/i', $ua, $matches)) {
+    elseif (preg_match('/(Chromium|Netscape|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront|WhatsApp|Dalvik|Snapchat|ManicTime|Flock)(?:\/| )?([a-z0-9\._]*)/i', $ua, $matches)) {
         $rep = array('VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser', 'NetFront' => 'Access NetFront');
         $infos = array_merge(array(
             'platform_type'     => 'computer',
@@ -3163,6 +3167,8 @@ function client_getFakeInfosFromUserAgent($ua='') {
 
     /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko/q9LVT10o-7 */
     /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36/iYA9HebN-7 */
+    /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36/9eeyPJns-18 */
+    /* Fake UA      : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36/GXSim7tn-45 */
     /* Not Fake UA  : Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36/9nlzYpuG-21 */
     if (preg_match('#(Gecko|Safari/537.36)/(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])([a-zA-Z0-9_]+)\-[0-9]$#', $ua))
         return $fake;
@@ -3261,7 +3267,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '96',                    // current is 90
+                'MaxVersion'    => '97',                    // current is 91
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3273,7 +3279,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '81',                    // current is 75
+                'MaxVersion'    => '82',                    // current is 76
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
@@ -3450,7 +3456,7 @@ function _client_checkFirefoxIsFake($infos, $ua) {
 
     /* Check rv value and Firefox value */
     if ((int)$matches[1] != (int)$matches[4])
-        return false;
+        return true;
 
     /* Check Gecko value */
     if ((int)$matches[1] != (int)$matches[3] and $matches[3] != '20100101')

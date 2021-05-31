@@ -3,9 +3,9 @@
  * @brief Sony client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.56
+ * @version 1.0.57
  * @date Creation: Apr 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -88,6 +88,7 @@ function get_SonyClientDevice($deviceCode='') {
         'G3221'     => array('platform_model' => 'Xperia XA1 Ultra',        'platform_year' => 2017),
         'G3311'     => array('platform_model' => 'Xperia L1',               'platform_year' => 2017),
         'G3312'     => array('platform_model' => 'Xperia L1',               'platform_year' => 2017),
+        'G3313'     => array('platform_model' => 'Xperia L1',               'platform_year' => 2017),
         'G3412'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
         'G3416'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),
         'G3421'     => array('platform_model' => 'Xperia XA1 Plus',         'platform_year' => 2017),

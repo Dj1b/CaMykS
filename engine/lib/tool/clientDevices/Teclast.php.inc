@@ -3,9 +3,9 @@
  * @brief Teclast client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Nov 2020
- * @date Modification: Jan 2021
+ * @date Modification: May 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,8 +20,9 @@
 function get_TeclastClientDevice($deviceCode='') {
     $deviceList = array(
         /* Teclast tablets */
-        'TLA002'  => array('platform_model' => 'M30', 'platform_year' => 2019, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
-        'M40_EEA' => array('platform_model' => 'M40', 'platform_year' => 2020, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'TLA002'    => array('platform_model' => 'M30',     'platform_year' => 2019, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'M40_EEA'   => array('platform_model' => 'M40',     'platform_year' => 2020, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
+        'P20HD_EEA' => array('platform_model' => 'P20HD',   'platform_year' => 2020, 'platform_type' => 'tablet',    'platform_format' => 'tablet'),
     );
 
     /* Check for returning list */

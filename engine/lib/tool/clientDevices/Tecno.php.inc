@@ -3,7 +3,7 @@
  * @brief Tecno client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.30
+ * @version 1.0.31
  * @date Creation: Oct 2018
  * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
@@ -55,6 +55,7 @@ function get_TecnoClientDevice($deviceCode='') {
         'KC8'       => array('platform_model' => 'Spark 4',         'platform_year' => 2019),
         'LC6a'      => array('platform_model' => 'Pouvoir 3 Air',   'platform_year' => 2019),
         'LB7'       => array('platform_model' => 'Pouvoir 3',       'platform_year' => 2019),
+        'CC6'       => array('platform_model' => 'Camon 12 Air',    'platform_year' => 2019),
         'CC7'       => array('platform_model' => 'Camon 12',        'platform_year' => 2019),
         'CC9'       => array('platform_model' => 'Camon 12 Pro',    'platform_year' => 2019),
         'CD8j'      => array('platform_model' => 'Camon 15',        'platform_year' => 2019),

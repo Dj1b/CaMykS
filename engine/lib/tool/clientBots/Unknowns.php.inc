@@ -3,7 +3,7 @@
  * @brief Unknown bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Jan 2019
  * @date Modification: May 2021
  * @copyright 2019 - 2021 CaMykS Team
@@ -833,6 +833,26 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'TkBot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* for legitimate research purposes only */
+    $unknownBots['for legitimate research purposes only'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '(Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* slithyweb */
+    $unknownBots['slithyweb'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'slithyweb (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',
