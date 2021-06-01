@@ -3,9 +3,9 @@
  * @brief Archos client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Apr 2018
- * @date Modification: Jan 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -113,6 +113,7 @@ function get_ArchosClientDevice($deviceCode='') {
         'Sense 47 X'                => array('platform_model' => 'Sense 47X',               'platform_year' => 2017),
         'Sense 50 DC'               => array('platform_model' => 'Sense 50DC',              'platform_year' => 2017),
         'Sense 50 X'                => array('platform_model' => 'Sense 50X',               'platform_year' => 2017),
+        'Sense 50X'                 => array('platform_model' => 'Sense 50X',               'platform_year' => 2017),
         'Sense 55 S'                => array('platform_model' => 'Sense 50S',               'platform_year' => 2017),
         'Sense 55 DC'               => array('platform_model' => 'Sense 55DC',              'platform_year' => 2017),
         'Core 50'                   => array('platform_model' => 'Core 50',                 'platform_year' => 2017),

@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Jul 2007
- * Last Modif Date	: Oct 2008
- *
- * Content_GenericGallery french dictionnary
-*/
+/**
+ * @brief Content_GenericGallery Module french dictionary.
+ * @details Plugin, Module dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_content_genericgallery_title'] = 'Galerie d\'image';
 $this->trads['mod_content_genericgallery_desc'] = 'Affiche une galerie d\'image';
 

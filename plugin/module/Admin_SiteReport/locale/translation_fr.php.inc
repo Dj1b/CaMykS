@@ -1,26 +1,24 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Apr 2007
- * Last Modif Date	: Jul 2008
- *
- * Admin_SiteReport french dictionnary
+/**
+ * @brief Admin_SiteReport Module french dictionnary.
+ * @details Plugin / Module layout
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_sitereport_title'] = 'Rapports de visiteurs';
 $this->trads['mod_admin_sitereport_desc'] = '--';
 $this->trads['mod_admin_sitereport_desc_'] = '%s rapport(s) non lu(s)';
 
-/* rights */
+/* Permissions */
 $this->trads['mod_admin_sitereport_answer'] = 'Droit de r&eacute;ponse';
 $this->trads['mod_admin_sitereport_configure'] = 'Configuration';
 
-/* list mode */
+/* List mode */
 $this->trads['mod_admin_sitereport_tablist'] = 'Rapports';
 $this->trads['mod_admin_sitereport_tabconfigure'] = 'Configuration';
 $this->trads['mod_admin_sitereport_tabtypes'] = 'Types';
@@ -51,15 +49,15 @@ $this->trads['mod_admin_sitereport_admin_viewtype'] = 'Voir le type';
 $this->trads['mod_admin_sitereport_admin_deletetype'] = 'Supprimer le type';
 $this->trads['mod_admin_sitereport_admin_edittype'] = 'Editer le type';
 
-/* config panel */
+/* Config panel */
 $this->trads['mod_admin_sitereport_config_fileallowed'] = 'Fichiers attach&eacute;s autoris&eacute;s :';
 $this->trads['mod_admin_sitereport_config_filemaxsize'] = 'Taille maximale autoris&eacute;e : ';
 
-/* edit type mode */
+/* Edit type mode */
 $this->trads['mod_admin_sitereport_localetitle'] = 'Titre ( %s )';
 $this->trads['mod_admin_sitereport_validtype'] = 'Valider le type';
 
-/* view item mode */
+/* View item mode */
 $this->trads['mod_admin_sitereport_tabrequest'] = 'Rapport';
 $this->trads['mod_admin_sitereport_tabanswer'] = 'R&eacute;ponse';
 $this->trads['mod_admin_sitereport_requestid'] = 'Rapport ID : ';
@@ -83,7 +81,7 @@ $this->trads['mod_admin_sitereport_answeradmin'] = 'R&eacute;pondu par';
 $this->trads['mod_admin_sitereport_answerdate'] = 'Le ';
 $this->trads['mod_admin_sitereport_answertarget'] = 'R&eacute;pondre &agrave;';
 
-/* message */
+/* Message */
 $this->trads['mod_admin_sitereport_message_typesaved'] = 'Le type est en cours d\'enregistrement...';
 $this->trads['mod_admin_sitereport_message_typenotsaved'] = 'Une erreur est survenue lors de l\'enregistrement du type.';
 $this->trads['mod_admin_sitereport_message_typedeleted'] = 'Le type est en cours de suppression...';
@@ -93,7 +91,7 @@ $this->trads['mod_admin_sitereport_message_confignotsaved'] = 'Une erreur est su
 $this->trads['mod_admin_sitereport_message_attachedfiledeleted'] = 'Le fichier attach&eacute; est en cours de suppression...';
 $this->trads['mod_admin_sitereport_message_attachedfilenotdeleted'] = 'Une erreur est survenue lors de la suppression du fichier attach&eacute;.';
 
-/* message JS */
+/* Message JS */
 $this->trads['mod_admin_sitereport_message_js_deletereport'] = 'Etes vous s&ucirc;r de vouloir supprimer ce rapport ?';
 $this->trads['mod_admin_sitereport_message_js_deletetype'] = 'Etes vous s&ucirc;r de vouloir supprimer ce type ?';
 $this->trads['mod_admin_sitereport_message_js_deletefile'] = 'Etes vous s&ucirc;r de vouloir supprimer le fichier attach&eacute;?';

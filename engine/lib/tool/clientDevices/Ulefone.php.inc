@@ -3,9 +3,9 @@
  * @brief Ulefone client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Mar 2019
- * @date Modification: Feb 2021
+ * @date Modification: May 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -19,15 +19,22 @@
  */
 function get_UlefoneClientDevice($deviceCode='') {
     $deviceList = array(
-        's10_pro'   => array('platform_model' => 'S10 Pro',     'platform_year' => 2018),
-        'armor_x'   => array('platform_model' => 'Armor X',     'platform_year' => 2018),
-        'armor_6'   => array('platform_model' => 'Armor 6',     'platform_year' => 2019),
-        'armor_6s'  => array('platform_model' => 'Armor 6S',    'platform_year' => 2019),
-        'armor x5'  => array('platform_model' => 'Armor X5',    'platform_year' => 2019),
-        'armor_x6'  => array('platform_model' => 'Armor X6',    'platform_year' => 2019),
-        'armor 7'   => array('platform_model' => 'Armor 7',     'platform_year' => 2020),
-        'armor 7e'  => array('platform_model' => 'Armor 7E',    'platform_year' => 2020),
-        'note 8p'   => array('platform_model' => 'Note 8P',     'platform_year' => 2020),
+        /* S series */
+        's10_pro'       => array('platform_model' => 'S10 Pro',         'platform_year' => 2018),
+        's11'           => array('platform_model' => 'S11',             'platform_year' => 2019),
+
+        /* Armor series */
+        'armor_x'       => array('platform_model' => 'Armor X',         'platform_year' => 2018),
+        'armor_6'       => array('platform_model' => 'Armor 6',         'platform_year' => 2019),
+        'armor_6s'      => array('platform_model' => 'Armor 6S',        'platform_year' => 2019),
+        'armor x5'      => array('platform_model' => 'Armor X5',        'platform_year' => 2019),
+        'armor_x6'      => array('platform_model' => 'Armor X6',        'platform_year' => 2019),
+        'armor 7'       => array('platform_model' => 'Armor 7',         'platform_year' => 2020),
+        'armor 7e'      => array('platform_model' => 'Armor 7E',        'platform_year' => 2020),
+        'armor x7 pro'  => array('platform_model' => 'Armor X7 Pro',    'platform_year' => 2020),
+
+        /* Note series */
+        'note 8p'       => array('platform_model' => 'Note 8P',         'platform_year' => 2020),
     );
 
     /* Check for returning list */

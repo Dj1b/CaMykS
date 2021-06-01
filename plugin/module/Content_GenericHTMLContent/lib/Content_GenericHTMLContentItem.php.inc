@@ -1,56 +1,55 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Library
- * Creation Date    : May 2008
- * Last Modif Date  : Mar 2018
- *
- * Content_GenericHTMLContentItem library for Content_GenericHTMLContent module 
-*/
+/**
+ * @brief Content_GenericHTMLContent module, item library.
+ * @details Plugin / Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: May 2008
+ * @date Modification: May 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
+/**
+ * Content_GenericHTMLContentItem class.
+ */
 final class Content_GenericHTMLContentItem extends ModuleLibrary {
-  /*
-   * constructor
-   * @param integer $d
-   * @param Module $module
-   * @return void
-   * @access public
-   */
-  public function __construct($id, &$module) {
-    parent::__construct($id, $module);
-    /* content */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('content', 'text', 'content','', '', '',  true);
-  }
-  
-  /* overwrite ModuleLibrary  methods */
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
+        /* Content attribute */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('content', 'text', 'content','', '', '',    true);
+    }
 
-  /*
-   * check content data
-   * @return boolean result
-   * @access public
-   */
-  public function check_data() {
-    /* check symbolic name value */
-    $this->_libItems['name']->check_value('symbolic_name', 'content');
-    return true;
-  }
+    /* Override ModuleLibrary methods */
 
-  /* specific methods */
+    /**
+     * Check content data.
+     * @return boolean result
+     */
+    public function check_data() {
+        /* Check symbolic name value */
+        $this->_libItems['name']->check_value('symbolic_name', 'content');
+        return true;
+    }
 
-  /*
-   * write content
-   * @return void
-   * @access public
-   */
-  public function write_content() {
-    if (file_exists($this->vars['content']))
-      include ($this->vars['content']);
-  }
+    /* Specific methods */
+
+    /**
+     * Write content
+     * @return void
+     */
+    public function write_content() {
+        if (file_exists($this->vars['content']))
+            include ($this->vars['content']);
+    }
 }
 ?>

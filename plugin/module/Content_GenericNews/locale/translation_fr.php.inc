@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMyks Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Mar 2007
- * Last Modif Date	: Mar 2007
- *
- * Content_GenericNews french dictionnary
+/**
+ * @brief Content_GenericNews Module french dictionnary.
+ * @details Plugin, Module Dictionnary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Mar 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_content_genericnews_title'] = 'News';
 $this->trads['mod_content_genericnews_desc'] = 'Affiche des actualit&eacute;s au format texte.';

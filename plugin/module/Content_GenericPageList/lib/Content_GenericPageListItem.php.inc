@@ -1,71 +1,80 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Engine
- * Create Date		: Nov 2007
- * Last Modif Date	: Nov 2007
- *
- * Content_GenericPageListItem object for Content_GenericPageList module
+/**
+ * @brief Content_GenericPageList module, page list item library.
+ * @details Plugin / Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1.1
+ * @date Creation: Nov 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Content_GenericPageListItem extends ModuleLibrary {
-  /*
-   * constructor
-   * @param integer $id
-   * @param Module $module
-   */
-  function Content_GenericPageListItem ( $id, &$module ) {
-    parent::ModuleLibrary( $id, $module );
-    /* content description */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('root', 'db', 'int', 'bigint unsigned', '', 0);
-    $this->add_newItem('title', 'db', 'text', 'varchar', 64, '', true );
-    $this->add_newItem('listorder', 'db', 'text', 'varchar', 16, '');
-    /* unused, added just in case... */
-    $this->add_newItem('maxdisplayed', 'db', 'int', 'int unsigned', '', 0);
-    /* generic initialisation */
-    $this->init_library();
-  }
+/**
+ * Content_GenericPageListItem class.
+ */
+final class Content_GenericPageListItem extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-  /* overwrite ModuleLibrary methods */
+        /* Content attributes  */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('root', 'db', 'int', 'bigint unsigned', '', 0);
+        $this->add_newItem('title', 'db', 'text', 'varchar', 64, '', true);
+        $this->add_newItem('listorder', 'db', 'text', 'varchar', 16, '');
 
-  /*
-   * check object data
-   * @return boolean result
-   * @access private
-   */
-  function check_data () {
-    /* check symbolic name value */
-    $this->_libItems['name']->check_value('symbolic_name', 'pagelist');
-    return true;
-  }
+        /* unused, added just in case... */
+        $this->add_newItem('maxdisplayed', 'db', 'int', 'int unsigned', '', 0);
 
-  /* specific methods */
+        /* Generic initialisation */
+        $this->init_library();
+    }
 
-  /*
-   * return layout list
-   * @return array
-   * @access public
-   */
-  function get_layoutList() {
-    return array('bordered'=>$this->get_translation('layout_bordered'),
-		 'borderedalt'=>$this->get_translation('layout_borderedalt'),
-		 'noborder'=>$this->get_translation('layout_noborder'));
-  }
+    /* Override ModuleLibrary methods */
 
-  /*
-   * return list order list
-   * @return array
-   * @access public
-   */
-  function get_listOrderList() {
-    return array('normal'=>$this->get_translation('order_normal'),
-		 'reverse'=>$this->get_translation('order_reverse'));
-  }
+    /**
+     * Check object data.
+     * @return boolean result
+     */
+    public function check_data() {
+        /* Check symbolic name value */
+        $this->_libItems['name']->check_value('symbolic_name', 'pagelist');
+
+        /* Return success */
+        return true;
+    }
+
+    /* Specific methods */
+
+    /**
+     * Return layout list.
+     * @return array
+     */
+    public function get_layoutList() {
+        return array(
+            'bordered'=>$this->get_translation('layout_bordered'),
+            'borderedalt'=>$this->get_translation('layout_borderedalt'),
+            'noborder'=>$this->get_translation('layout_noborder'),
+        );
+    }
+
+    /**
+     * Return list order list.
+     * @return array
+     */
+    public function get_listOrderList() {
+        return array(
+            'normal'    => $this->get_translation('order_normal'),
+            'reverse'   => $this->get_translation('order_reverse'),
+        );
+    }
 }
 ?>

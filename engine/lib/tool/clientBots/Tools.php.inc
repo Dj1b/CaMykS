@@ -3,9 +3,9 @@
  * @brief Tools as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.34
  * @date Creation: May 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1379,6 +1379,56 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'AngleSharp',
         'engine_url'        => 'https://anglesharp.github.io',
+    );
+
+    /* Fuzz Faster U Fool */
+    $knownTools['fuzz faster u fool'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Fuzz Faster U Fool',
+        'engine_url'        => 'https://github.com/ffuf/ffuf',
+    );
+
+    /* masscan */
+    $knownTools['masscan'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'masscan',
+        'engine_url'        => 'https://github.com/robertdavidgraham/masscan',
+    );
+
+    /* l9tcpid */
+    $knownTools['l9tcpid'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'l9tcpid',
+        'engine_url'        => 'https://github.com/LeakIX/l9explore',
+    );
+
+    /* l9explore */
+    $knownTools['l9explore'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'l9explore',
+        'engine_url'        => 'https://github.com/LeakIX/l9explore',
+    );
+
+    /* Statically-Screenshot */
+    $knownTools['statically-screenshot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Statically-Screenshot',
+        'engine_url'        => 'https://statically.io/screenshot/',
     );
 
     /* return list */

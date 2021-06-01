@@ -3,9 +3,9 @@
  * @brief Lenovo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.32
  * @date Creation: Apr 2018
- * @date Modification: Feb 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -30,6 +30,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'A7600-F'               => array('platform_model' => 'A10-70',              'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2014),
         'PB1-770P'              => array('platform_model' => 'PHAB Plus',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'Tab2A710F'             => array('platform_model' => 'Tab 2 A7',            'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
+        'TAB 2 A7-30HC'         => array('platform_model' => 'Tab 2 A7',            'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'TAB 2 A10-70F'         => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'TAB 2 A10-70L'         => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'TAB 2 A10-70LC'        => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),

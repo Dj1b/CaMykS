@@ -3,9 +3,9 @@
  * @brief Generic libraries as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.28
+ * @version 1.0.29
  * @date Creation: May 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -898,6 +898,26 @@ function _client_getKnownGenericsL2() {
         'platform_format'   => 'desktop',
         'tool_title'        => 'httpx',
         'tool_url'          => 'github.com/projectdiscovery/httpx',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* popsicle */
+    $knownGenerics['popsicle'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'popsicle',
+        'tool_url'          => 'https://github.com/blakeembrey/popsicle',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* SSLyze */
+    $knownGenerics['sslyze'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'SSLyze',
+        'tool_url'          => 'https://github.com/nabla-c0d3/sslyze',
         'engine_title'      => '',
         'engine_url'        => '',
     );

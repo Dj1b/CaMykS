@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.51
+ * @version 1.0.52
  * @date Creation: May 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -82,6 +82,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'm2007j1sc'             => array('platform_model' => 'Mi 10 Ultra 5G',      'platform_year' => 2020),
         'm2007j3sg'             => array('platform_model' => 'Mi 10T Pro 5G',       'platform_year' => 2020),
         'm2007j3sy'             => array('platform_model' => 'Mi 10T 5G',           'platform_year' => 2020),
+        'm2011k2g'              => array('platform_model' => 'Mi 11 5G',            'platform_year' => 2020),
 
         /* Phones, Redmi series */
         '2014811'               => array('platform_model' => 'Redmi 2',             'platform_year' => 2014),
@@ -130,11 +131,13 @@ function get_XiaomiClientDevice($deviceCode='') {
 
         'dandelion'             => array('platform_model' => 'Redmi 9A',            'platform_year' => 2020),
 
+        'm2003j15sc'            => array('platform_model' => 'Redmi Note 9',        'platform_year' => 2020),
         'm2004j19c'             => array('platform_model' => 'Redmi 9',             'platform_year' => 2020),
         'm2006c3lg'             => array('platform_model' => 'Redmi 9A',            'platform_year' => 2020),
         'm2006c3mg'             => array('platform_model' => 'Redmi 9C',            'platform_year' => 2020),
         'm2006c3mng'            => array('platform_model' => 'Redmi 9C',            'platform_year' => 2020),
-        'm2003j15sc'            => array('platform_model' => 'Redmi Note 9',        'platform_year' => 2020),
+        'm2006j10c'             => array('platform_model' => 'Redmi K30 Ultra',     'platform_year' => 2020),
+        'm2101k6g'              => array('platform_model' => 'Redmi Note 10 Pro',   'platform_year' => 2021),
 
         /* Phones, Shark series */
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),

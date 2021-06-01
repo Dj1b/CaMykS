@@ -3,9 +3,9 @@
  * @brief ModuleLibrary abastract class for module libraries.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.4
  * @date Creation: Mar 2007
- * @date Modification: Feb 2021
+ * @date Modification: May 2021
  * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -630,28 +630,11 @@ abstract class ModuleLibrary {
         $sql .= ' from '.$this->_libSQLTable.' as m';
 
         /* add where conditions to sql query  */
-        if (trim($where) != '') {
+        if (trim($where) != '')
             $sql .= ' where '. $this->check_SQLCondition($where);
-        }
 
-        /* check order to sql query */
-        if (is_string($order)) {
-            $order = array($order=>$sens);
-        }
-
-        if (is_array($order)) {
-            /* add multi order to sql query */
-            $osql = array();
-            foreach($order as $o => $s) {
-                if ($o == 'special') {
-                    $osql[] = $s;
-                } elseif (($o == 'id' or in_array($o, $this->_libItemTypes['db'])) and in_array(strtolower($s), array ('', 'asc', 'desc'))) {
-                    $osql[] = $o.' '.$s;
-                }
-        }
-        if (count($osql) > 0)
-            $sql .= ' order by '.implode(', ', $osql);
-        }
+        /* add order statement to sql query */
+        $sql .= ' '.$this->build_SQLOrderByStatement($order, $sens);
 
         /* add limit to sql query */
         if ($limit >=0 and $count > 0) {
@@ -917,31 +900,11 @@ abstract class ModuleLibrary {
         $sql .= ' and l.language="'.$language.'"';
 
         /* add where conditions to sql query  */
-        if ($where != '') {
+        if ($where != '')
             $sql .= ' and('. $this->check_SQLCondition($where).')';
-        }
 
-        /* add order to sql query */
-        if (is_string($order)) {
-            $order = array($order=>$sens);
-        }
-
-        if (is_array($order)) {
-            /* add multi order to sql query */
-            $osql = array();
-            foreach($order as $o => $s) {
-                if ($o == 'special') {
-                    $osql[] = $s;
-                } elseif (in_array(strtolower($s), array ('', 'asc', 'desc'))) {
-                    if ($o=='id' or in_array($o, $this->_libItemTypes['db']))
-                        $osql[] = 'm.'.$o.' '.$s;
-                    elseif (in_array($o, $this->_libItemTypes['dbl']))
-                        $osql[] = 'l.'.$o.' '.$s;
-                }
-            }
-            if (count($osql) > 0)
-                $sql .= ' order by '.implode(', ', $osql);
-        }
+        /* add order statement to sql query */
+        $sql .= ' '.$this->build_SQLOrderByStatement($order, $sens);
 
         /* add limit to sql query */
         if ($limit >=0 and $count > 0) {
@@ -1244,6 +1207,42 @@ abstract class ModuleLibrary {
         return preg_replace('#\bid\b#', 'm.id', $where);
     }
 
+    /**
+     * Build order by statement for SQL query.
+     * @param mixed $order
+     * @param string $way
+     * @return string
+     */
+    protected function build_SQLOrderByStatement($order, $way='') {
+        /* Build order as an array */
+        if (is_string($order))
+            $order = array($order => $way);
+
+        /* Check is array */
+        if (!is_array($order) or count($order) == 0)
+            return '';
+
+        /* Build order list */
+        $osql = array();
+        foreach($order as $o => $s) {
+            if ($o == 'special') {
+                $osql[] = $s;
+            } elseif (in_array(strtolower($s), array ('', 'asc', 'desc'))) {
+                if ($o == 'id' or in_array($o, $this->_libItemTypes['db']))
+                    $osql[] = 'm.'.$o.' '.$s;
+                elseif (in_array($o, $this->_libItemTypes['dbl']))
+                    $osql[] = 'l.'.$o.' '.$s;
+            }
+        }
+
+        /* Return result if present */
+        if (count($osql) > 0)
+            return 'order by '.implode(', ', $osql);
+
+        /* Return default result */
+        return '';
+    }
+
     /******************** LIST & COUNT METHODS **********************/
 
     /**
@@ -1300,9 +1299,9 @@ abstract class ModuleLibrary {
                 $sql .= ' and m.id = l.objectid';
         }
 
-        /* add sorting condition */
+        /* add order statement to sql query */
         if ($orderBy != '')
-            $sql .= ' order by '.$orderBy.' '.$orderWay;
+            $sql .= ' '.$this->build_SQLOrderByStatement($orderBy, $orderWay);
 
         /* execute sql query */
         if ($this->execute_DBQuery($sql, __LINE__)) {
@@ -1339,16 +1338,15 @@ abstract class ModuleLibrary {
         if (in_array($element, $this->_libItemTypes['db'])) {
             /* build sql query */
             $sql = 'select id, '.$element;
-            $sql .= ' from '.$this->_libSQLTable;
+            $sql .= ' from '.$this->_libSQLTable.' as m';
 
             /* add where conditions to sql query  */
-            if ($where != '') {
+            if ($where != '')
                 $sql .= ' where '. $where;
-            }
 
-            /* add sorting condition */
+            /* add order statement to sql query */
             if ($orderBy != '')
-                $sql .= ' order by '.$orderBy.' '.$orderWay;
+                $sql .= ' '.$this->build_SQLOrderByStatement($orderBy, $orderWay);
 
             /* execute sql query */
             if ($this->execute_DBQuery($sql, __LINE__)) {
@@ -1376,11 +1374,9 @@ abstract class ModuleLibrary {
                 $sql .= ' and '.$this->check_SQLCondition($where, true);
             }
 
-            /* add sorting condition */
-            if ($orderBy != '') {
-                if ($orderBy == 'id') $orderBy = 'm.id';
-                    $sql .= ' order by '.$orderBy.' '.$orderWay;
-            }
+            /* add order statement to sql query */
+            if ($orderBy != '')
+                $sql .= ' '.$this->build_SQLOrderByStatement($orderBy, $orderWay);
 
             /* execute sql query */
             if ($this->execute_DBQuery($sql, __LINE__)) {
@@ -1630,8 +1626,8 @@ abstract class ModuleLibrary {
             /* add group condition */
             $sql .= ' group by '.$element;
 
-            /* add sorting condition */
-            $sql .= ' order by '.$element;
+            /* add order statement to sql query */
+            $sql .= ' '.$this->build_SQLOrderByStatement($element);
 
             /* execute sql query */
             if ($this->execute_DBQuery($sql, __LINE__)) {
@@ -1660,8 +1656,8 @@ abstract class ModuleLibrary {
             /* add group condition */
             $sql .= ' group by '.$element;
 
-            /* add sorting condition */
-            $sql .= ' order by '.$element;
+            /* add order statement to sql query */
+            $sql .= ' '.$this->build_SQLOrderByStatement($element);
 
             /* execute sql query */
             if ($this->execute_DBQuery($sql, __LINE__)) {

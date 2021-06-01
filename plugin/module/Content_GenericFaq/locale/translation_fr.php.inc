@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Apr 2007
- * Last Modif Date	: Apr 2007
- *
- * Content_GenericFaq french dictionnary
+/**
+ * @brief Content_GenericFaq module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1.1
+ * @date Creation: Apr 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_content_genericfaq_title'] = 'Foire aux questions';
 $this->trads['mod_content_genericfaq_desc'] = 'Affiche des FaQs';
@@ -39,7 +38,7 @@ $this->trads['mod_content_genericfaq_title_localizedtext'] = 'Format texte local
 $this->trads['mod_content_genericfaq_title_localizedimage'] = 'Format image localis&eacute;e';
 $this->trads['mod_content_genericfaq_title_title'] = 'Titre';
 
-/* admin : edit list / list faq */ 
+/* admin : edit list / list faq */
 $this->trads['mod_content_genericfaq_newitem'] = '+ Cr&eacute;er une nouvelle question';
 $this->trads['mod_content_genericfaq_status'] = 'Etat';
 $this->trads['mod_content_genericfaq_faqtitle'] = 'Question';

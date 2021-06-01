@@ -1,34 +1,33 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Nov 2007
- * Last Modif Date	: Nov 2007
- *
- * Content_GenericPageList Module site layout : bordered
-*/
+/**
+ * @brief Content_GenericPageList module, site, with border layout.
+ * @details Plugin / Module Layout
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Nov 2007
+ * @date Modification: May 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 global $camyks;
 ?>
-<?=$this->theme->get_boxHeader('width:100%;');?>
-<?php if ( $this->plitem->vars['title'] != '' ) : ?>
-<?=$this->theme->get_boxTitleBar( $this->plitem->vars['title'] ); ?>
+<?= $this->theme->get_boxHeader('width:100%;'); ?>
+<?php if ($this->plitem->vars['title'] != '') : ?>
+    <?= $this->theme->get_boxTitleBar($this->plitem->vars['title']); ?>
 <?php endif; ?>
-<?=$this->theme->get_boxContent1Header('padding:20px;'); ?>
+<?= $this->theme->get_boxContent1Header('padding:20px;'); ?>
 <table cellspacing="0">
-<?php foreach ( $this->plitem->vars['pages'] as $p ) : ?>
-<?php $page = $this->pages[$p]; ?>
-<tr>
-<td style="padding:4px 0px;">
-<a class="link1" href="<?=$page->get_siteLink()?>">
-<?=$page->title?>
-</a>
-</td>
-</tr>
-<?php endforeach; ?>
+    <?php foreach ($this->plitem->vars['pages'] as $p) : ?>
+        <?php $page = $this->pages[$p]; ?>
+        <tr>
+            <td style="padding:4px 0px;">
+                <a class="eLink1" href="<?= $page->get_siteLink(); ?>">
+                    <?= $page->title; ?>
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
 </table>
-<?=$this->theme->get_boxContent1Footer();?>
-<?=$this->theme->get_boxFooter();?>
+<?= $this->theme->get_boxContent1Footer(); ?>
+<?= $this->theme->get_boxFooter(); ?>

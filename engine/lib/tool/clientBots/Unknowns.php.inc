@@ -3,9 +3,9 @@
  * @brief Unknown bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.31
+ * @version 1.0.33
  * @date Creation: Jan 2019
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -528,6 +528,16 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
+    /* Orbbot */
+    $unknownBots['orbbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Orbbot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
     /* bbot */
     $unknownBots['bbot'] = array(
         'platform_type'     => 'bot',
@@ -808,26 +818,6 @@ function _client_getKnownUnknowns() {
         'engine_url'        => '',
     );
 
-    /* l9tcpid */
-    $unknownBots['l9tcpid'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'l9tcpid (Unknown bot)',
-        'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
-    /* l9explore */
-    $unknownBots['l9explore'] = array(
-        'platform_type'     => 'bot',
-        'platform_format'   => 'desktop',
-        'bot_title'         => 'l9explore (Unknown bot)',
-        'bot_url'           => '',
-        'engine_title'      => '',
-        'engine_url'        => '',
-    );
-
     /* root@user-agent.ipmap.io */
     $unknownBots['root@user-agent.ipmap.io'] = array(
         'platform_type'     => 'bot',
@@ -843,6 +833,26 @@ function _client_getKnownUnknowns() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'TkBot (Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* for legitimate research purposes only */
+    $unknownBots['for legitimate research purposes only'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '(Unknown bot)',
+        'bot_url'           => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* slithyweb */
+    $unknownBots['slithyweb'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'slithyweb (Unknown bot)',
         'bot_url'           => '',
         'engine_title'      => '',
         'engine_url'        => '',

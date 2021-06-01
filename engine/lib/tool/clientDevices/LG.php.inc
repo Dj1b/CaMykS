@@ -3,9 +3,9 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.42
+ * @version 1.0.43
  * @date Creation: Apr 2018
- * @date Modification: Apr 2021
+ * @date Modification: May 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -84,6 +84,7 @@ function get_LGClientDevice($deviceCode='') {
         'K580'      => array('platform_model' => 'X Cam',           'platform_year' => 2016),
         'M700'      => array('platform_model' => 'Q6 Alpha',        'platform_year' => 2017),
         'MP450'     => array('platform_model' => 'Stylo 3 Plus',    'platform_year' => 2017),
+        'M150'      => array('platform_model' => 'Phoenix 3',       'platform_year' => 2017),
         'M160'      => array('platform_model' => 'K4',              'platform_year' => 2017),
         'M250'      => array('platform_model' => 'K10',             'platform_year' => 2017),
         'M327'      => array('platform_model' => 'X Charge',        'platform_year' => 2017),
