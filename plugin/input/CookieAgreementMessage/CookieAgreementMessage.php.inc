@@ -4,9 +4,9 @@
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.2
+ * @version 1.1.0.3
  * @date Creation: May 2017
- * @date Modification: Mar 2021
+ * @date Modification: Jun 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -123,7 +123,7 @@ final class CookieAgreementMessage extends Input {
         }
 
         /* Add scripts */
-        $this->add_JSFile('CookieAgreementMessage.js?v=1.1.0');
+        $this->add_JSFile('CookieAgreementMessage.js?v=1.1.0.1');
         $this->add_JSEngineFile('tool/cookie.js');
         $this->add_JSLoadScript('CookieAgreementMessage.set_param("cookieTTL", '.$this->params['remindTTL'].');');
         foreach ($this->serviceInformation as $name => $service) {

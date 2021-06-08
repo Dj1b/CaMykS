@@ -2,9 +2,9 @@
  * @brief CookieAgreementMessage Input scripts
  * @details Plugin / Input Javascripts
  * @author CaMykS Team
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: May 2017
- * @date Modification: Mar 2021
+ * @date Modification: Jun 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -135,6 +135,15 @@ var CookieAgreementMessage = {
         this.enable_refreshButton();
         if (!document.getElementById('CookieAgreementMessageServices').classList.contains('opened'))
             this.refresh_page();
+    },
+
+    /**
+     * Close panel and continue without accepting.
+     * @return void
+     */
+    continue_withoutAccepting: function() {
+        this.update_dataCookie();
+        this.minimise_panel();
     },
 
     /**

@@ -3,9 +3,9 @@
  * @brief CookieAgreementMessage Input layout
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: May 2017
- * @date Modification: Mar 2021
+ * @date Modification: Jun 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,7 +18,7 @@ global $camyks;
         <img src="<?= $this->get_fileURL('img/black/open.png'); ?>" alt="<?= $this->get_translation('open_panel'); ?>" title="<?= $this->get_translation('open_panel'); ?>" />
     </div>
 
-    <div class="closer" onclick="CookieAgreementMessage.minimise_panel();">
+    <div class="closer" onclick="CookieAgreementMessage.continue_withoutAccepting();">
         <img src="<?= $this->get_fileURL('img/black/close.png'); ?>" alt="<?= $this->get_translation('minimise_panel'); ?>" title="<?= $this->get_translation('minimise_panel'); ?>" />
     </div>
 
