@@ -2,12 +2,11 @@
 /**
  * @brief Tool_Login Module main layout
  * @details Plugin / Module Layout
- * @file plugin/module/Tool_Login/html/admin.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Sep 2005
- * @date Modification: May 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -24,7 +23,7 @@ global $camyks;
 
     <?php if ($this->text != '') : ?>
         <div class="error">
-            <?= $this->text?>
+            <?= $this->text; ?>
         </div>
     <?php endif; ?>
     <div style="text-align:center; padding:8px 0;">
@@ -49,12 +48,6 @@ global $camyks;
             <?= $this->theme->get_button($button); ?>
         <?php endforeach; ?>
     </div>
-    <div>
-      &nbsp; <br /> &nbsp;
-    </div>
-    <?php foreach ($this->extensions as $extension) : ?>
-        <?php $extension->display_oauthLogin(); ?>
-    <?php endforeach; ?>
 </div>
 <?php
 /**
