@@ -3,9 +3,9 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.23
+ * @version 1.0.24
  * @date Creation: Feb 2019
- * @date Modification: Apr 2021
+ * @date Modification: Jun 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -58,6 +58,7 @@ function get_InfinixClientDevice($deviceCode='') {
         /* S serie */
         'X626'          => array('platform_model' => 'S4',          'platform_year' => 2019),
         'X626B'         => array('platform_model' => 'S4',          'platform_year' => 2019),
+        'X652B'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
         'X652C'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
 
     );

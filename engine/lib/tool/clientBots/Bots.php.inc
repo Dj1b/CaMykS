@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.82
+ * @version 1.0.83
  * @date Creation: May 2018
- * @date Modification: May 2021
+ * @date Modification: Jun 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -233,6 +233,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Google-Adwords-Instant',
+        'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* GoogleSites */
+    $knownBots['googlesites'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'GoogleSites',
         'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
@@ -835,6 +845,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'http://www.yandex.ru',
+    );
+
+    /* YandexPagechecker */
+    $knownBots['yandexpagechecker'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'YandexPagechecker',
+        'bot_url'           => 'http://yandex.com/bots',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'https://yandex.com/',
     );
 
     /* feedoo bot */
@@ -3957,7 +3977,7 @@ function _client_getKnownBots() {
     $knownBots['trendictionbot'] = array(
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
-        'bot_title'         => 'trendictionbot0',
+        'bot_title'         => 'trendictionbot',
         'bot_url'           => 'http://www.trendiction.de/bot',
         'engine_title'      => 'trendiction.de',
         'engine_url'        => 'http://www.trendiction.de',
@@ -5211,6 +5231,46 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://www.openindex.io/saas/about-our-spider/',
         'engine_title'      => 'Opencii',
         'engine_url'        => 'https://www.opencii.nl',
+    );
+
+    /* Symfony */
+    $knownBots['symfony'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Symfony',
+        'engine_url'        => 'https://symfony.com',
+    );
+
+    /* react.org */
+    $knownBots['react.org'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'React',
+        'engine_url'        => 'https://www.react.org',
+    );
+
+    /* intelx.io_bot */
+    $knownBots['intelx.io_bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'intelx.io_bot',
+        'bot_url'           => '',
+        'engine_title'      => 'Intelligence X',
+        'engine_url'        => 'https://intelx.io',
+    );
+
+    /* Nicecrawler */
+    $knownBots['nicecrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Nice Crawler',
+        'bot_url'           => 'http://www.nicecrawler.com/',
+        'engine_title'      => '',
+        'engine_url'        => '',
     );
 
     /* Return bot list */

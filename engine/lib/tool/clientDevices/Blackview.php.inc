@@ -3,9 +3,9 @@
  * @brief Blackview client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Jul 2018
- * @date Modification: May 2021
+ * @date Modification: Jun 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,6 +32,7 @@ function get_BlackviewClientDevice($deviceCode='') {
         'BV5500Pro'     => array('platform_model' => 'BV5500 Pro',      'platform_year' => 2019),
         'BV5900'        => array('platform_model' => 'BV5900',          'platform_year' => 2019),
         'BV9500Plus'    => array('platform_model' => 'BV9500 Plus',     'platform_year' => 2019),
+        'BV9700Pro'     => array('platform_model' => 'BV9700 Pro',      'platform_year' => 2019),
         'BV9800'        => array('platform_model' => 'BV9800',          'platform_year' => 2019),
         'BV9800Pro'     => array('platform_model' => 'BV9800 Pro',      'platform_year' => 2019),
         'BV4900Pro'     => array('platform_model' => 'BV4900 Pro',      'platform_year' => 2020),

@@ -3,9 +3,9 @@
  * @brief Hacks client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: May 2018
- * @date Modification: Apr 2021
+ * @date Modification: Jun 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -48,6 +48,12 @@ function _client_getKnownHacks() {
     $knownHacks['() { :;};'] = array(
         'platform_type' => 'hack',
         'hack_info'     => 'Bash Exploit',
+    );
+
+    /* Bash Exploit */
+    $knownHacks['/usr/bin'] = array(
+        'platform_type' => 'hack',
+        'hack_info'     => 'Unknown hack',
     );
 
     /* Drupal Fckeditor exploit */
