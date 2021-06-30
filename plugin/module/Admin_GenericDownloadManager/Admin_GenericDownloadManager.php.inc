@@ -276,7 +276,6 @@ final class Admin_GenericDownloadManager extends Module {
         $camyks->throwFatalError($this->error);
     }
 
-
     /* Specific admin mode methods */
 
     /**
