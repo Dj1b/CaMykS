@@ -3,9 +3,9 @@
  * @brief Admin_User Module user library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.0
+ * @version 1.2.1
  * @date Creation: Sep 2005
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -310,6 +310,22 @@ final class AdminUser {
         /* build sql query */
         $sql = "update `admin_user`";
         $sql .= " set `twoFactorData`='".addslashes($data)."'";
+        $sql .= " where login='".$this->login."'";
+
+        /* return result of sql query execution */
+        return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
+    }
+
+    /**
+     * Reset 2FA data.
+     * @return boolean success
+     */
+    public function reset_2FAData($data='') {
+        global $camyks;
+
+        /* build sql query */
+        $sql = "update `admin_user`";
+        $sql .= " set `twoFactorData`=''";
         $sql .= " where login='".$this->login."'";
 
         /* return result of sql query execution */
