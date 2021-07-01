@@ -2,12 +2,11 @@
 /**
  * @brief Admin_MyAccount Module read account information layout.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_MyAccount/html/admin_read.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2005
- * @date Modification: Jan 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jul 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +18,7 @@ global $camyks;
 <div class="adminContentPanel">
     <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
         <tr>
-            <td class="eTableLine0 eContent2" style="width:150px;">
+            <td class="eTableLine0 eContent2" style="width:175px;">
                 <?= $camyks->get_translation('formitem_login'); ?>
             </td>
             <td class="eTableLine0 eContent1">
@@ -57,7 +56,19 @@ global $camyks;
                 <?= $camyks->get_translation('formitem_address'); ?>
             </td>
             <td class="eTableLine0 eContent1">
-                <?=nl2br($this->myAccount->address); ?>
+                <?= nl2br($this->myAccount->address); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_2faauthentication'); ?>
+            </td>
+            <td class="eTableLine1 eContent1">
+                <?php if ($camyks->modules['Admin_User']->get_configValue('authentication_2factorInput') === '') : ?>
+                    <?= $this->get_translation('2fastatus_unavailable'); ?>
+                <?php else : ?>
+                    <?= $this->get_translation('2fastatus_'.($this->myAccount->twoFactorData === '' ? 'notconfigured' : 'configured')); ?>
+                <?php endif; ?>
             </td>
         </tr>
     </table>
