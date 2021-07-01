@@ -2,12 +2,11 @@
 /**
  * @brief Klipad client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Klipad.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2020
- * @date Modification: Sep 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -23,6 +22,7 @@ function get_KlipadClientDevice($deviceCode='') {
         /* Klipad mobiles */
         'V356'      => array('platform_model' => 'V356', 'platform_year' => 2018),
         'KL600'     => array('platform_model' => 'KL600', 'platform_year' => 2018),
+        'KL601'     => array('platform_model' => 'KL601', 'platform_year' => 2018),
     );
 
     /* Check for returning list */

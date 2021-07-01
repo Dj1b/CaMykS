@@ -3,12 +3,11 @@
  * @brief Admin_User Module
  * <br /> Manage administration users.
  * @details Plugin, Module Engine
- * @file plugin/module/Admin_User/Admin_User.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1
+ * @version 1.2.0
  * @date Creation: Jun 2005
- * @date Modification: Mar 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,6 +41,18 @@ final class Admin_User extends Module {
     public $layout_cellwidth = '180px';
 
     /**
+     * var Object $config
+     * @brief Input configuration.
+     */
+    protected $config;
+
+    /**
+     * var boolean isConfigLoaded
+     * @brief Stores if the configuration is loaded
+     */
+    protected $isConfigLoaded = false;
+
+    /**
      * Class constructor.
      * @param string $path_type
      * @return void
@@ -51,7 +62,7 @@ final class Admin_User extends Module {
 
         /* Override Plugin variables */
         $this->plugin_package = 'System';
-        $this->version = '1.1';
+        $this->version = '1.2';
 
         /* Override Module variables */
         $this->type = 'admin';
@@ -62,8 +73,12 @@ final class Admin_User extends Module {
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
+        /* Register plugin as extension */
+        $this->register_asExtension('Admin_Site');
+
         /* Load plugin libray */
         $this->load_library('AdminUser');
+        $this->load_library('Admin_UserConfig');
 
         /* Initialise plugin libraries */
         $this->user = new AdminUser('');
@@ -97,6 +112,9 @@ final class Admin_User extends Module {
         if (version_compare($version, '1.1', '<'))
             if (!$this->update_toVersion1_1()) return false;
 
+        if (version_compare($version, '1.2', '<'))
+            if (!$this->update_toVersion1_2()) return false;
+
         parent::update($version, $more);
     }
 
@@ -112,9 +130,9 @@ final class Admin_User extends Module {
             return $this->init_admin_accessDenied();
 
         /* Load module mode */
-        $this->mode = (isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'list');
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'list';
 
-        /* Execute action*/
+        /* Execute action */
         switch ($this->mode) {
             case 'view':
                 /* mode == view */
@@ -190,7 +208,7 @@ final class Admin_User extends Module {
 
         /* Load user profile to modify */
         if ($this->user->login == '') {
-            $this->user->login = isset ($_REQUEST['user']) ? $_REQUEST['user'] : '';
+            $this->user->login = isset($_REQUEST['user']) ? $_REQUEST['user'] : '';
             $this->user->get();
         } else {
             $this->user->initialise();
@@ -277,7 +295,7 @@ final class Admin_User extends Module {
         global $camyks;
 
         /* get user profile to view */
-        $this->user = new AdminUser ((isset ($_REQUEST['user']) ? $_REQUEST['user'] : ''));
+        $this->user = new AdminUser(isset($_REQUEST['user']) ? $_REQUEST['user'] : '');
         $this->user->get();
 
         /* get help */
@@ -415,6 +433,56 @@ final class Admin_User extends Module {
         return $list;
     }
 
+    /* Extension related methods */
+
+    /**
+     * Return plugin extension title list.
+     * @return array
+     */
+    public function get_registeredExtensionTitleList() {
+        /* Load extension list */
+        $extensions = $this->get_registeredExtensions();
+
+        /* Build array */
+        $list = array();
+        foreach ($extensions as $extension) {
+            $list[$extension->name] = $extension->title;
+        }
+
+        /* Return list */
+        return $list;
+    }
+
+    /* Configuration methods */
+
+    /**
+     * Load configuration.
+     * @return void
+     */
+    private function load_configuration() {
+        /* Check configuration is already loaded */
+        if ($this->isConfigLoaded)
+            return;
+
+        /* Load configuration */
+        $this->load_library('Admin_UserConfig');
+        $this->config = new Admin_UserConfig('config', $this);
+        $this->config->get();
+
+        /* Save configuration is loaded */
+        $this->isConfigLoaded = true;
+    }
+
+    /**
+     * Return configuration value.
+     * @param string $name
+     * @return mixed
+     */
+    public function get_configValue($name='') {
+        $this->load_configuration();
+        return $this->config->get_value($name);
+    }
+
     /* Update methods */
 
     /**
@@ -422,7 +490,66 @@ final class Admin_User extends Module {
      * @return boolean success
      */
     private function update_toVersion1_1() {
-        return ($this->user->update_toVersion1_1());
+        return $this->user->update_toVersion1_1();
+    }
+
+    /**
+     * Apply version 1.2 update.
+     * @return boolean success
+     */
+    private function update_toVersion1_2() {
+        return $this->user->update_toVersion1_2();
+    }
+
+    /* Admin_Site extension configuration methods */
+
+    /**
+     * Initialise object in Admin_Site / view configuration mode.
+     * @return void
+     */
+    public function initialise_configDisplay() {
+        /* load plugin configuration */
+        $this->load_configuration();
+    }
+
+    /**
+     * Display object in Admin_Site / view configuration mode.
+     * @return void
+     */
+    public function display_configDisplay() {
+        $this->load_file('html/configuration/view.html.inc');
+    }
+
+    /**
+     * Initialise object in Admin_Site / edit configuration mode.
+     * @param Object $form
+     * @return void
+     */
+    public function initialise_configEdition($form) {
+        /* Load plugin configuration */
+        $this->load_configuration();
+
+        /* Update form */
+        $this->form = &$form;
+        $this->form->set_object($this->config);
+    }
+
+    /**
+     * Display object in Admin_Site / edit configuration mode.
+     * @return void
+     */
+    public function display_configEdition() {
+        $this->load_file('html/configuration/edit.html.inc');
+    }
+
+    /**
+     * Execute object in Admin_Site / save configuration mode.
+     * @return void
+     */
+    public function save_configuration() {
+        $this->load_configuration();
+        $this->config->get_fromHeader();
+        return $this->config->save();
     }
 }
 ?>

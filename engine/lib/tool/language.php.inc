@@ -2,12 +2,11 @@
 /**
  * @brief Language specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/language.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Oct 2018
- * @copyright 2015 - 2018 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2015 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -122,6 +121,16 @@ function language_getTitle($lg) {
     }
 }
 
+/**
+ * Load language locales.
+ * @param string $language
+ * @return void
+ */
+function language_loadLocales($language=null) {
+    global $camyks;
+    $camyks->add_generic_translation('language', $language);
+}
+
 /****************** ICONS *********************/
 
 /**
@@ -159,13 +168,76 @@ function language_getLocale($short_name, $encodage='') {
     return '';
 }
 
+/************************ SCRIPT *****************************/
+
+/**
+ * Return language script list.
+ * @return array
+ */
+function language_getScriptList() {
+    return array(
+       'Arabic', 'Armenian', 'Avestan', 'Balinese', 'Bamum',
+       'Batak', 'Bengali', 'Bopomofo', 'Brahmi', 'Braille',
+       'Buginese', 'Buhid', 'Canadian_Aboriginal', 'Carian', 'Chakma',
+       'Cham', 'Cherokee', 'Common', 'Coptic', 'Cuneiform',
+       'Cypriot', 'Cyrillic', 'Deseret', 'Devanagari', 'Egyptian_Hieroglyphs',
+       'Ethiopic', 'Georgian', 'Glagolitic', 'Gothic', 'Greek',
+       'Gujarati', 'Gurmukhi', 'Han', 'Hangul', 'Hanunoo',
+       'Hebrew', 'Hiragana', 'Imperial_Aramaic', 'Inherited', 'Inscriptional_Pahlavi',
+       'Inscriptional_Parthian', 'Javanese', 'Kaithi', 'Kannada', 'Katakana',
+       'Kayah_Li', 'Kharoshthi', 'Khmer', 'Lao', 'Latin',
+       'Lepcha', 'Limbu', 'Linear_B', 'Lisu', 'Lycian',
+       'Lydian', 'Malayalam', 'Mandaic', 'Meetei_Mayek', 'Meroitic_Cursive',
+       'Meroitic_Hieroglyphs', 'Miao', 'Mongolian', 'Myanmar', 'New_Tai_Lue',
+       'Nko', 'Ogham', 'Old_Italic', 'Old_Persian', 'Old_South_Arabian',
+       'Old_Turkic', 'Ol_Chiki', 'Oriya', 'Osmanya', 'Phags_Pa',
+       'Phoenician', 'Rejang', 'Runic', 'Samaritan', 'Saurashtra',
+       'Sharada', 'Shavian', 'Sinhala', 'Sora_Sompeng', 'Sundanese',
+       'Syloti_Nagri', 'Syriac', 'Tagalog', 'Tagbanwa', 'Tai_Le',
+       'Tai_Tham', 'Tai_Viet', 'Takri', 'Tamil', 'Telugu',
+       'Thaana', 'Thai', 'Tibetan', 'Tifinagh', 'Ugaritic',
+       'Vai', 'Yi',
+    );
+}
+
+/**
+ * Return language script title list.
+ * @return array
+ */
+function language_getScriptTitleList() {
+    global $camyks;
+
+    /* Load languages locales */
+    language_loadLocales();
+
+    /* Initialise result list */
+    $list = array();
+
+    /* Load all script titles */
+    foreach (language_getScriptList() as $script)
+        $list[$script] = $camyks->get_translation('languagescript_'.strtolower($script));
+
+    /* Return result list */
+    return $list;
+}
+
+/**
+ * Return language script title.
+ * @param string $script
+ * @return string
+ */
+function language_getScriptTitle($script) {
+    global $camyks;
+    return $camyks->get_translation('languagescript_'.strtolower($script));
+}
+
 /************************ OTHERS *****************************/
 
 /**
  * Return file size unit.
  * @return char
  */
-function language_getFileUnit () {
+function language_getFileUnit() {
     global $camyks;
     switch ($camyks->current_language) {
         case 'fr':

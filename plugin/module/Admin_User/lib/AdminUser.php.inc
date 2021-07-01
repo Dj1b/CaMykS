@@ -2,11 +2,10 @@
 /**
  * @brief Admin_User Module user library.
  * @details Plugin / Module Library
- * @file plugin/module/Admin_User/lib/AdminUser.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.2.0
  * @date Creation: Sep 2005
- * @date Modification: Jan 2021
+ * @date Modification: Jun 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,6 +39,7 @@ final class AdminUser {
     public $lastname;
     public $address;
     public $rights;
+    public $twoFactorData;
 
     /* other vars */
     public $rights_;
@@ -92,6 +92,7 @@ final class AdminUser {
         $this->lastname = '';
         $this->address = '';
         $this->rights = $this->initialise_rights();
+        $this->twoFactorData = '';
         $this->is_new = 1;
         return true;
     }
@@ -161,6 +162,7 @@ final class AdminUser {
         $sql .= ', `webmaster`';
         $sql .= ', `address`';
         $sql .= ', `rights`';
+        $sql .= ', `twoFactorData`';
         $sql .= ') VALUES (';
         $sql .= '"'.$this->login.'"';
         $sql .= ', "'.password_encode($this->pwd, 'sha512', $this->login).'"';
@@ -171,6 +173,7 @@ final class AdminUser {
         $sql .= ', '.$this->webmaster;
         $sql .= ', "'.$this->address.'"';
         $sql .= ', "'.$this->rights_.'"';
+        $sql .= ', "'.$this->twoFactorData.'"';
         $sql .= ')';
 
         /* return result of sql query execution */
@@ -241,6 +244,7 @@ final class AdminUser {
             array('name'=>'webmaster', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>0),
             array('name'=>'address', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
             array('name'=>'rights', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
+            array('name'=>'twoFactorData', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>160, 'default'=>''),
         );
 
         if ($camyks->db_conn->create_table('admin_user', $fields, $camyks->get_mysqlencodingvalue(), false, array('login'))) {
@@ -252,10 +256,12 @@ final class AdminUser {
             $this->webmaster = 1;
             $this->active = 1;
             $this->email = $params['email'];
+            $this->twoFactorData = '';
             /* other vars */
             $this->change_pwd = 1;
             $this->is_new = 1;
             $this->rights_ = '';
+
             /* save user */
             return $this->save();
         }
@@ -286,7 +292,28 @@ final class AdminUser {
             }
         }
         return $this->_libIsInstalled;
+    }
 
+    /**
+     * Update 2FA data.
+     * @param string $data.
+     * @return boolean success
+     */
+    public function update_2FAData($data='') {
+        global $camyks;
+
+        if (!is_string($data))
+            return false;
+        if (strlen($data) > 160)
+            return false;
+
+        /* build sql query */
+        $sql = "update `admin_user`";
+        $sql .= " set `twoFactorData`='".addslashes($data)."'";
+        $sql .= " where login='".$this->login."'";
+
+        /* return result of sql query execution */
+        return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
 
     /**
@@ -335,14 +362,15 @@ final class AdminUser {
      * @return void
      */
     public function get_fromArray($data) {
-        $this->active = isset($data['active'])?$data['active']:0;
-        $this->webmaster = isset($data['webmaster'])?$data['webmaster']:0;
-        $this->email = isset($data['email'])?$data['email']:'';
+        $this->active = isset($data['active']) ? $data['active'] : 0;
+        $this->webmaster = isset($data['webmaster']) ? $data['webmaster'] : 0;
+        $this->email = isset($data['email']) ? $data['email'] : '';
         $this->firstname = isset($data['firstname'])?stripslashes($data['firstname']):'';
         $this->lastname = isset($data['lastname'])?stripslashes($data['lastname']):'';
         $this->address = isset($data['address'])?stripslashes($data['address']):'';
-        $this->rights_ = isset($data['rights'])?$data['rights']:'';
+        $this->rights_ = isset($data['rights']) ? $data['rights'] : '';
         $this->rights = data_decode_properties($this->rights_, ':');
+        $this->twoFactorData = isset($data['twoFactorData']) ? $data['twoFactorData'] : '';
         $this->is_new = 0;
     }
 
@@ -541,14 +569,14 @@ final class AdminUser {
      * @param array $rights
      * @return void
      */
-    private function encode_rights ($module, $rights) {
-        if (!is_array($rights)) {
+    private function encode_rights($module, $rights) {
+        if (!is_array($rights))
             return;
-        }
+
         $total = 0;
-        foreach ($rights as $idx=>$r) {
+        foreach ($rights as $idx => $r)
             $total += ($r ? pow(2, $idx) : 0);
-        }
+
         $this->rights[$module] = $total;
     }
 
@@ -703,6 +731,16 @@ final class AdminUser {
     public function update_toVersion1_1() {
         global $camyks;
         $sql = 'alter table admin_user change pwd pwd varchar(140) default "";';
+        return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
+    }
+
+    /**
+     * Execute version 1.2 update.
+     * @return boolean success
+     */
+    public function update_toVersion1_2() {
+        global $camyks;
+        $sql = 'alter table admin_user add column twoFactorData varchar(160) default "";';
         return ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
 }

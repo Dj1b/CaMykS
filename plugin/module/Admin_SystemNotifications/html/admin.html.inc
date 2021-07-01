@@ -3,9 +3,9 @@
  * @brief Admin_SystemNotifications Module admin main layout
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.2.3
  * @date Creation: Jul 2017
- * @date Modification: Apr 2021
+ * @date Modification: Jun 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -40,7 +40,7 @@ global $camyks;
                 <table cellspacing="2" cellpadding="0" border="0" style="width:100%; border: solid 1px white;">
 
                     <tr>
-                        <td colspan="3" class="eTableSubHeader" title="<?= $followUp['title']; ?>">
+                        <td colspan="3" class="eTableSubHeader" title="<?= $followUp['name']; ?>">
                             <?php if (!isset($followUp['self']) or $followUp['self'] == false) : ?>
                             <a href="<?= $this->get_adminLink(array('mode'=>'check_website', 'website_id'=>$id)); ?>" class="img">
                                 <?= $this->theme->get_pictHTMLTag(array('pict'=>'notify', 'addMouseover'=>true, 'alt'=>$this->get_translation(''), 'title'=>$this->get_translation('check_notifications'), 'style'=>'float:right;')); ?>

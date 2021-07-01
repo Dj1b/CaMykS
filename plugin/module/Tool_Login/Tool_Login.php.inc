@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Tool_Login Module
+ * @brief Tool_Login Module.
  * <br /> System module to log in/out admin section.
  * @details Plugin / Module Engine
- * @file plugin/module/Tool_Login/Tool_Login.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1
+ * @version 1.1.1
  * @date Creation: Jun 2005
- * @date Modification: Jun 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -84,10 +83,19 @@ final class Tool_Login extends Module {
      * @return void
      */
     public function init_admin() {
-        $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'login';
+        global $camyks;
+
+        /* Load mode */
+        $mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'login';
+
+        /* Execute initialisation following mode */
         switch($mode) {
             case 'logout': return $this->init_admin_logout();
-            case 'login': default: return $this->init_admin_login();
+            case 'confirm2FA': return $this->init_admin_confirm2FA();
+            case 'login': default:
+                if (!is_null($camyks->get_sessionValue('require2FA', null)))
+                    return $this->init_admin_display2FA();
+                return $this->init_admin_login();
         }
     }
 
@@ -100,52 +108,125 @@ final class Tool_Login extends Module {
     private function init_admin_login() {
         global $camyks;
 
-        /* init values */
+        /* Initialise values */
         $this->text = '';
 
-        /* check if a user is loging */
+        /* Check if a user is loging in */
         if (isset($_REQUEST['login'])) {
             $this->login = (isset($_REQUEST['login']) ? $_REQUEST['login'] : '');
             $this->pwd = (isset($_REQUEST['pwd']) ? $_REQUEST['pwd'] : '');
 
-            $user = new AdminUser($this->login);
-            if ($user->can_login($this->pwd)) {
-                $camyks->set_sessionValue('admin_user', $this->login);
-                $camyks->set_sessionValue('admin_time', time());
+            $this->user = new AdminUser($this->login);
 
-                 /* add stat */
-                 if (!$camyks->log('AdminLogin', 'Login', 'Success ('.$this->login.')'))
-                    $camyks->update_statistic('adminlogin', $this->name, 'single', $this->login, client_getIp(), '', array('checkIPFilter'=>0, 'checkAdmin'=>0));
-                $this->selected_layout = 'null';
-                header('Location:'.$camyks->get_adminLink());
-                die();
+            /* Check password */
+            if ($this->user->can_login($this->pwd)) {
+
+                /* Check for 2FA authentication */
+                if (($plugin = $camyks->modules['Admin_User']->get_configValue('authentication_2factorInput')) !== '') {
+                    if ($camyks->get_input($plugin) !== false and $this->user->get() and $this->user->twoFactorData !== '') {
+                        $camyks->set_sessionValue('require2FA', $this->user->login);
+                        header('Location:'.$camyks->get_adminLink());
+                        die();
+                    }
+                }
+
+                /* Log user in */
+                $this->log_userIn();
+
             } else {
-                /* add stat */
+                /* Add stat */
                 if (!$camyks->log('AdminLogin', 'Login', 'Failure ('.$this->login.')'))
                     $camyks->update_statistic('adminloginfailed', $this->name, 'single', $this->login, client_getIp(), '', array('checkIPFilter'=>0));
-                /* */
+                /* Add message */
                 $this->text = $this->get_translation('loginfailed');
             }
         }
 
-        /* get languages */
+        /* Load languages */
         $this->adminLanguages = array();
         foreach ($camyks->get_confValue('admin_languages') as $l)
             $this->adminLanguages[$l] = language_getTitle($l);
 
-        /* build form */
+        /* Build form */
         $this->form = new HTMLForm('login', $camyks->get_adminLink(), 'POST');
 
-        /* build button list */
+        /* Build button list */
         $this->buttons = array(
             array(
                 'title' => $this->get_translation('access'),
                 'url'   => $this->form->get_HTMLSubmitLink(),
             )
         );
+    }
 
-        /* load extension plugins */
-        $this->load_extensions();
+    /**
+     * Initialise module object in admin / display2FA mode.
+     * @return void
+     */
+    private function init_admin_display2FA() {
+        global $camyks;
+
+        /* Load 2FA plugin */
+        if (!$this->load_2FAPlugin()) {
+            header('Location:'.$camyks->get_adminLink());
+            die();
+        }
+
+        /* Load user for 2FA authentication */
+        if (!$this->load_userFor2FAAuthentication()) {
+            header('Location:'.$camyks->get_adminLink());
+            die();
+        }
+
+        /* Build HTML form */
+        $this->form = new HTMLForm('Confirm2FA', $this->get_adminLink(array('mode'=>'confirm2FA')), 'POST');
+
+        /* Execute 2FA plugin in for user login confirmation */
+        $this->plugin->prepare_userLogin(array(
+            'form'  => $this->form,
+        ));
+
+        /* Build button list */
+        $this->buttons = array(
+            array(
+                'title' => $camyks->get_translation('valid'),
+                'url'  => $this->form->get_HTMLSubmitLink(),
+            ),
+        );
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_2FA.html.inc');
+    }
+
+    /**
+     * Initialise module object in admin / confirm2FA mode.
+     * @return void
+     */
+    private function init_admin_confirm2FA() {
+        global $camyks;
+
+        /* Load 2FA plugin */
+        if (!$this->load_2FAPlugin()) {
+            header('Location:'.$camyks->get_adminLink());
+            die();
+        }
+
+        /* Load user for 2FA authentication */
+        if (!$this->load_userFor2FAAuthentication()) {
+            header('Location:'.$camyks->get_adminLink());
+            die();
+        }
+
+        /* Perform 2FA check */
+        if ($this->plugin->confirm_userLogin(array('secret'=>$this->user->twoFactorData))) {
+            $this->log_userIn();
+            return;
+        }
+        $camyks->set_sessionValue('require2FAMessage', $this->plugin->get_lastError());
+
+        /* 2FA check failed */
+        header('Location:'.$camyks->get_adminLink());
+        die();
     }
 
     /**
@@ -172,14 +253,79 @@ final class Tool_Login extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
     }
 
-    /* specific tool methods */
+    /* Specific tool methods */
 
     /**
-     * Load registered extension plugins.
+     * Log user in .
      * @return void
      */
-    private function load_extensions() {
-        $this->extensions = $this->get_registeredExtensions();
+    private function log_userIn() {
+        global $camyks;
+
+        /* Add user to session */
+        $camyks->set_sessionValue('admin_user', $this->user->login);
+        $camyks->set_sessionValue('admin_time', time());
+
+        /* Add stat */
+        if (!$camyks->log('AdminLogin', 'Login', 'Success ('.$this->user->login.')'))
+            $camyks->update_statistic('adminlogin', $this->name, 'single', $this->user->login, client_getIp(), '', array('checkIPFilter'=>0, 'checkAdmin'=>0));
+        header('Location:'.$camyks->get_adminLink());
+        die();
+    }
+
+    /**
+     * Load pending user for 2FA authentication.
+     * @return boolean success
+     */
+    private function load_userFor2FAAuthentication() {
+        global $camyks;
+
+        /* Check pending account */
+        if (($login = $camyks->get_sessionValue('require2FA', '')) === '')
+            return false;
+
+        /* Load user */
+        $this->user = new AdminUser($login);
+        if (!$this->user->get())
+            return false;
+
+        /* Check user two factor data */
+        if ($this->user->twoFactorData === '')
+            return false;
+
+        /* Return success */
+        return true;
+    }
+
+    /**
+     * Load 2FA plugin.
+     * @return boolean success
+     */
+    private function load_2FAPlugin() {
+        global $camyks;
+
+         /* Load account manager */
+        $this->accountManager = $camyks->get_module('Admin_User');
+
+        /* Load plugin name to use */
+        $this->plugin = $this->accountManager->get_configValue('authentication_2factorInput');
+
+        /* Check plugin is defined */
+        if ($this->plugin === '')
+            return false;
+
+        /* Load plugin object */
+        $this->plugin = $camyks->get_input($this->plugin);
+
+        /* Check plugin */
+        if ($this->plugin === false)
+            return false;
+
+        /* Initialise plugin */
+        $this->plugin->initialise();
+
+        /* Return success */
+        return true;
     }
 }
 ?>

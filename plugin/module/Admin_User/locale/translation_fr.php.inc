@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_User Module french dictionnary.
+ * @brief Admin_User Module french dictionary.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_User/locale/translation_fr.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Mar 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -50,4 +49,13 @@ $this->trads['mod_admin_user_erroremptypwd'] = 'Le mot de passe ne doit pas &eci
 $this->trads['mod_admin_user_errorshortpwd'] = 'Le mot de passe doit &ecirc;tre compos&eacute; d\'au moins 3 caract&egrave;res.';
 $this->trads['mod_admin_user_errorconfpwd'] = 'Le mot de passe ne se confirme pas.';
 
+/* Configuration */
+$this->trads['mod_admin_user_formtitle_authentication'] = 'Autentification';
+$this->trads['mod_admin_user_formitem_2factorinput'] = 'Plugin 2FA : ';
+$this->trads['mod_admin_user_formitem_2factorstatus'] = 'Utilisation 2FA : ';
+
+/* Configuration values */
+$this->trads['mod_admin_user_config_authentication_no2fa'] = 'Aucun';
+$this->trads['mod_admin_user_config_authentication_optionnal'] = 'Optionnel';
+$this->trads['mod_admin_user_config_authentication_mandatory'] = 'Obligatoire';
 ?>

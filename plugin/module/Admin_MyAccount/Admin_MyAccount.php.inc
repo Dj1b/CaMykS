@@ -3,12 +3,11 @@
  * @brief Admin_MyAccount Module.
  * <br /> Allows logged admin user to read or edit its own information.
  * @details Plugin / Module Engine
- * @file plugin/module/Admin_MyAccount/Admin_MyAccount.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Jan 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jun 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,9 +18,15 @@
 final class Admin_MyAccount extends Module {
     /**
      * var Object $myAccount
-     * @brief Configuration object.
+     * @brief Link to current admin user account object.
      */
     protected $myAccount;
+
+    /**
+     * var Object $accountManager
+     * @brief Link to admin user management module.
+     */
+    protected $accountManager;
 
     /**
      * Class constructor.
@@ -72,28 +77,41 @@ final class Admin_MyAccount extends Module {
     public function init_admin() {
         global $camyks;
 
-        /* get informations */
-        $this->myAccount = &$camyks->adminUser;
-        $this->mode = (isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : '');
+        /* Check user permissions */
+        if ($this->check_right(0) === false)
+            return $this->init_admin_accessDenied();
 
-        /* if user has no rights for this module, make redirection to home */
-        if ($this->check_right(0) === false) {
-            return $this->init_admin_accessDenied() ;
-        } else if ($this->check_right(1) === false) {
-            $this->init_admin_view();
-        } else {
-            switch ($this->mode) {
-                case 'save':
-                    /* mode == save */
-                    $this->init_admin_save();
-                    break;
-                case 'modify':
-                default:
-                    /* mode == modify */
-                    $this->init_admin_modify();
-                    break;
-            }
+        /* Load informations */
+        $this->myAccount = &$camyks->adminUser;
+        $this->mode = (isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'view');
+
+        /* Execute mode */
+        switch ($this->mode) {
+            case 'save':
+                /* mode == save */
+                $this->init_admin_save();
+                break;
+            case 'modify':
+            case 'edit':
+                /* mode == edit */
+                $this->init_admin_edit();
+                break;
+            case 'save_2fa':
+                /* mode == save_2fa */
+                $this->init_admin_save_2fa();
+                break;
+            case 'edit_2fa':
+                /* mode == edit_2fa */
+                $this->init_admin_edit_2fa();
+                break;
+            case 'view':
+            default:
+                /* mode == view */
+                $this->init_admin_view();
+                break;
         }
+
+        /* Perform generic init */
         parent::init_admin();
     }
 
@@ -106,11 +124,30 @@ final class Admin_MyAccount extends Module {
     private function init_admin_view() {
         global $camyks;
 
+        /* Load account manager */
+        $this->accountManager = $camyks->get_module('Admin_User');
+
         /* Build button list */
         $this->buttons = array(array(
             'title' => $camyks->get_translation('back'),
             'link'  => $camyks->get_adminLink(),
         ));
+
+        /* Check for edit button */
+        if ($this->check_right(1)) {
+            $this->buttons[] = array(
+                'title' => $camyks->get_translation('edit'),
+                'link'  => $this->get_adminLink(array('mode'=>'edit')),
+            );
+        }
+
+        /* Check for 2FA buttons */
+        if ($this->accountManager->get_configValue('authentication_2factorInput') !== '') {
+            $this->buttons[] = array(
+                'title' => $this->get_translation('configure_2fa'),
+                'link'  => $this->get_adminLink(array('mode'=>'edit_2fa')),
+            );
+        }
 
         /* Update layout */
         $this->set_selectedLayout('admin_read.html.inc');
@@ -120,15 +157,19 @@ final class Admin_MyAccount extends Module {
      * Initialise module object in admin/modify mode.
      * @return void
      */
-    private function init_admin_modify() {
+    private function init_admin_edit() {
         global $camyks;
+
+        /* Check user permissions */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_view();
 
         /* Build form */
         $this->form = new HTMLForm('myAccount', $this->get_adminLink(array('mode'=>'save')), 'POST');
         $this->form->add_hidden('myaccount_login', $this->myAccount->login);
         $this->form->add_hidden('myaccount_fullupdate', '0');
 
-        /* update focus */
+        /* Update focus */
         $this->add_JSLoadScript('document.'.$this->form->name.'.myaccount_lastname.focus();');
 
         /* Set password layout javascript */
@@ -160,6 +201,10 @@ final class Admin_MyAccount extends Module {
     private function init_admin_save() {
         global $camyks;
 
+        /* Check user permissions */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_view();
+
         /* Load account data */
         $this->myAccount->get_fromHeader('myaccount_');
         $this->myAccount->is_new = false;
@@ -174,10 +219,140 @@ final class Admin_MyAccount extends Module {
 
             /* Update layout */
             $this->set_selectedLayout('admin_message.html.inc', 'camyks');
-            $this->set_redirect($this->get_adminLink(array('mode'=> 'modify')));
+            $this->set_redirect($this->get_adminLink());
         } else {
-            $this->init_admin_modify();
+            $this->init_admin_edit();
         }
+    }
+
+    /**
+     * Initialise module object in admin/edit_2fa mode.
+     * @return void
+     */
+    private function init_admin_edit_2fa() {
+        global $camyks;
+
+        /* Load 2FA plugin */
+        if (!$this->load_2FAPlugin())
+            return;
+
+        /* Build HTML form */
+        $this->form = new HTMLForm('Configure2FA', $this->get_adminLink(array('mode'=>'save_2fa')), 'POST');
+
+        /* Execute 2FA plugin in for user configuration */
+        $theme = $camyks->get_confValue('site_default_theme');
+        $theme = &$camyks->get_theme($theme);
+        $icon = $theme->get_mainIcon();
+        if ($icon !== '')
+            $icon = $camyks->get_rootBaseUrl('absolute').$icon;
+
+        $this->plugin->prepare_userConfiguration(array(
+            'form'          => $this->form,
+            'currentValue'  => $this->myAccount->twoFactorData,
+            'accountName'   => $this->myAccount->login,
+            'accountIssuer' => $camyks->get_confValue('site_title'),
+            'accountImage'  => $icon,
+        ));
+
+        /* Build button list */
+        $this->buttons = array(
+            array(
+                'title' => $camyks->get_translation('back'),
+                'link'  => $this->get_adminLink(),
+            ),
+            array(
+                'title' => $camyks->get_translation('confirm'),
+                'link'  => $this->form->get_HTMLSubmitLink(),
+            )
+        );
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_edit2FA.html.inc');
+    }
+
+    /**
+     * Initialise module object in admin/save_2fa mode.
+     * @return void
+     */
+    private function init_admin_save_2fa() {
+        global $camyks;
+
+        /* Load 2FA plugin */
+        if (!$this->load_2FAPlugin())
+            return;
+
+        /* Execute 2FA plugin in for user configuration */
+        $newData = $this->plugin->confirm_userConfiguration(array(
+            'currentValue' => $this->myAccount->twoFactorData,
+        ));
+
+        /* Check for confirmation */
+        if ($newData == false) {
+            $this->text = $this->get_translation('error_2faconfigurationnotconfirmed');
+            if (($e = $this->plugin->get_lastError()) !== false)
+                $this->text .= '<br />'.$e;
+            $this->set_redirect($this->get_adminLink(array('mode'=>'edit_2fa')));
+        } else {
+            if ($this->myAccount->update_2FAData($newData)) {
+                $this->text = $this->get_translation('error_2faconfigurationupdated');
+                $this->set_redirect($this->get_adminLink());
+            } else {
+                $this->text = $this->get_translation('error_2faconfigurationnotupdated');
+                if (($e = $this->myAccount->get_lastError()) !== false)
+                    $this->text .= '<br />'.$e;
+                $this->set_redirect($this->get_adminLink(array('mode'=>'edit_2fa')));
+            }
+        }
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+    }
+
+    /* 2FA tool methods */
+
+    /**
+     * Load 2FA plugin.
+     * @return boolean success
+     */
+    private function load_2FAPlugin() {
+        global $camyks;
+
+         /* Load account manager */
+        $this->accountManager = $camyks->get_module('Admin_User');
+
+        /* Load plugin name to use */
+        $this->plugin = $this->accountManager->get_configValue('authentication_2factorInput');
+
+        /* Check plugin is defined */
+        if ($this->plugin === '') {
+            /* Define text message */
+            $this->text = $this->get_translation('error_no2faplugindefined');
+
+            /* Update layout */
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return false;
+        }
+
+        /* Load plugin object */
+        $this->plugin = $camyks->get_input($this->plugin);
+
+        /* Check plugin */
+        if ($this->plugin === false) {
+            /* Define text message */
+            $this->text = $this->get_translation('error_2fapluginnomoreavailable');
+
+            /* Update layout */
+            $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+            $this->set_redirect($this->get_adminLink());
+            return false;
+        }
+
+        /* Initialise plugin */
+        $this->plugin->initialise();
+
+        /* Return success */
+        return true;
     }
 }
 ?>

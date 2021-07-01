@@ -3,9 +3,9 @@
  * @brief Amazon client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.5
  * @date Creation: Oct 2018
- * @date Modification: Apr 2021
+ * @date Modification: Jun 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,6 +38,8 @@ function get_AmazonClientDevice($deviceCode='') {
         'KFSOWI'    => array('platform_model'    => 'Fire HD 7 (3rd Gen)',              'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2013),
         'KFJWI'     => array('platform_model'    => 'Fire HD 8.9',                      'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2012),
         'KFTT'      => array('platform_model'    => 'Fire HD 7',                        'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2012),
+        'KFTRWI'    => array('platform_model'    => 'Fire HD 10',                       'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2021),
+        'KFTRPWI'   => array('platform_model'    => 'Fire HD 10 Plus',                  'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2021),
 
         /* Amazon tablets - (Kindle) Fire HDX series */
         'KFSAWI'    => array('platform_model'    => 'Fire HDX 8.9 (4th Gen)',           'platform_type' => 'tablet',    'platform_format'   => 'tablet',    'platform_year' => 2014),

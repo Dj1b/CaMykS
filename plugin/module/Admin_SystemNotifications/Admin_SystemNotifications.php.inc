@@ -4,9 +4,9 @@
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.2.3
  * @date Creation: Jun 2018
- * @date Modification: Mar 2021
+ * @date Modification: Jun 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -279,7 +279,7 @@ final class Admin_SystemNotifications extends Module {
 
         /* initialise follow up list with current website */
         $this->followUpList = array(
-            array(
+            'self' => array(
                 'name'      => $camyks->get_confValue('site_title'),
                 'title'     => $camyks->get_confValue('site_title'),
                 'url'       => $camyks->get_confValue('url'),
@@ -293,9 +293,6 @@ final class Admin_SystemNotifications extends Module {
         if ($this->config->vars['module_mode'] == 1) {
 
             if ($this->config->vars['running_lastCheck'] + $this->config->vars['module_checkDelay']*60 < time()) {
-
-
-
                 /* load full website list */
                 $wsList = $this->get_websiteList(array('status'=>1));
 
@@ -306,7 +303,7 @@ final class Admin_SystemNotifications extends Module {
 
                     /* check request result */
                     if ($result === false) {
-                        $this->followUpList[$website->id] = array('name' => $website->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
+                        $this->followUpList[$website->id] = array('name'=>$website->vars['name'], 'error' => $this->get_translation('requesterror_connectionfailed'));
                     } else {
                         $result = json_decode($result, true);
                         if (isset($result['data']))
@@ -667,8 +664,8 @@ final class Admin_SystemNotifications extends Module {
 
         /* check authentication with credentials */
         if ($this->config->vars['access_authentication'] == 1) {
-            $login = isset($_REQUEST['login'])?$_REQUEST['login']:'';
-            $password = isset($_REQUEST['password'])?$_REQUEST['password']:'';
+            $login = isset($_REQUEST['login']) ? $_REQUEST['login'] : '';
+            $password = isset($_REQUEST['password']) ? $_REQUEST['password'] : '';
 
             if ($this->config->vars['access_authLogin'] != '' and $login != $this->config->vars['access_authLogin']) {
                 $answer->set_asFailure();

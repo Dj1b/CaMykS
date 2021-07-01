@@ -3,9 +3,9 @@
  * @brief Tools as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: May 2018
- * @date Modification: May 2021
+ * @date Modification: Jun 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1429,6 +1429,26 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Statically-Screenshot',
         'engine_url'        => 'https://statically.io/screenshot/',
+    );
+
+    /* Statically-Screenshot */
+    $knownTools['statically-screenshot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'Statically-Screenshot',
+        'engine_url'        => 'https://statically.io/screenshot/',
+    );
+
+    /* SiteCheckerBotCrawler */
+    $knownTools['sitecheckerbotcrawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'SiteCheckerBotCrawler',
+        'tool_url'          => '',
+        'engine_title'      => 'Sitechecker',
+        'engine_url'        => 'https://sitechecker.pro',
     );
 
     /* return list */

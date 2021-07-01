@@ -3,9 +3,9 @@
  * @brief Realme (Oppo subsidiary) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2020
- * @date Modification: Apr 2021
+ * @date Modification: Jun 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,6 +22,7 @@ function get_RealmeClientDevice($deviceCode='') {
         /* Realme mobiles */
         'RMX1811'   => array('platform_model' => 'C1',              'platform_year' => 2018),
         'RMX1825'   => array('platform_model' => '3',               'platform_year' => 2019),
+        'RMX1901'   => array('platform_model' => 'X',               'platform_year' => 2019),
         'RMX1911'   => array('platform_model' => '5',               'platform_year' => 2019),
         'RMX1921'   => array('platform_model' => 'XT',              'platform_year' => 2019),
         'RMX1931'   => array('platform_model' => 'X2 Pro',          'platform_year' => 2019),
@@ -40,6 +41,8 @@ function get_RealmeClientDevice($deviceCode='') {
         'RMX2155'   => array('platform_model' => '7',               'platform_year' => 2021),
         'RMX2170'   => array('platform_model' => '7 Pro',           'platform_year' => 2021),
         'RMX2185'   => array('platform_model' => 'C11',             'platform_year' => 2020),
+        'RMX2189'   => array('platform_model' => 'C12',             'platform_year' => 2021),
+        'RMX2202'   => array('platform_model' => 'GT 5G',           'platform_year' => 2021),
     );
 
     /* Check for returning list */
