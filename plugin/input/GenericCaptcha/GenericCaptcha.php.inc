@@ -4,9 +4,9 @@
  * <br /> CaMykS generic captcha.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 22021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,11 +32,6 @@ final class GenericCaptcha extends Input {
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
-
-        /* Register plugin as Admin_Site extension
-        $this->register_asExtension('Admin_Site');
-        $this->register_asExtension('CookieAgreementMessage');
-        */
     }
 
     /* Override input methods */
@@ -62,10 +57,8 @@ final class GenericCaptcha extends Input {
         if ($this->params['mode'] == 'display') {
             if (is_object($this->params['form']) and get_class($this->params['form']) === 'HTMLForm') {
                 /* Adds scripts */
-                $this->add_JSFile('GenericCaptcha.js?v=1.0.0.1');
-                $this->add_JSLoadScript('GenericCaptcha.set_param("form", "'.$this->params['form']->name.'");');
-                $this->add_JSLoadScript('GenericCaptcha.set_param("controlInput", "'.$this->params['controlInputName'].'");');
-                $this->add_JSLoadScript('GenericCaptcha.initialise();');
+                $this->add_JSFile('GenericCaptcha.js?v=1.0.1');
+                $this->add_JSLoadScript('GenericCaptcha.initialise("'.$this->params['form']->name.'", "'.$this->params['controlInputName'].'");');
             }
         }
 

@@ -2,16 +2,18 @@
  * @brief GenericCaptcha Input scripts
  * @details Plugin / Input Javascripts
  * @author CaMykS Team
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 var GenericCaptcha = {
     name: 'GenericCaptcha',
-    params: {},
+    params: {
+        'controlInput':{},
+    },
 
     /**
      * add parameter
@@ -41,39 +43,48 @@ var GenericCaptcha = {
 
     /**
      * Initialise object
+     * @param string form
+     * @param string controlInputName
      * @return void
      */
-    initialise: function() {
+    initialise: function(form, controlInputName) {
+        /* Check form exists */
+        if (!document.getElementById(form))
+            return;
+
         /* Load form as object */
-        this.set_param('form', document.getElementById(this.get_param('form')));
+        form = document.getElementById(form);
 
         /* Add hidden input in form */
         controlInput = document.createElement('input');
         controlInput.setAttribute('type', 'hidden');
-        controlInput.setAttribute('name', this.get_param('controlInput'));
+        controlInput.setAttribute('name', controlInputName);
         controlInput.setAttribute('value', 0);
-        this.get_param('form').appendChild(controlInput);
+        form.appendChild(controlInput);
+
+        /* Save controlInput for form */
+        this.set_param('controlInput', form.name, controlInputName);
 
         /* Add oninput event on each textarea in the form */
-        textareas = this.get_param('form').getElementsByTagName('textarea');
+        textareas = form.getElementsByTagName('textarea');
         for (i in textareas) {
             if (textareas[i].nodeName == 'TEXTAREA')
-                textareas[i].setAttribute('oninput', this.name+'.update_actionCount();'+ (textareas[i].getAttribute('oninput') !== null ? textareas[i].getAttribute('oninput') : ''));
+                textareas[i].setAttribute('oninput', this.name+'.update_actionCount(this);'+ (textareas[i].getAttribute('oninput') !== null ? textareas[i].getAttribute('oninput') : ''));
         }
 
         /* Add oninput event on each input in the form */
-        inputs = this.get_param('form').getElementsByTagName('input');
+        inputs = form.getElementsByTagName('input');
         for (i in inputs)
             if (inputs[i].type == 'text')
-                inputs[i].setAttribute('oninput', this.name + '.update_actionCount();'+ (inputs[i].getAttribute('oninput') !== null ? inputs[i].getAttribute('oninput') : ''));
+                inputs[i].setAttribute('oninput', this.name + '.update_actionCount(this);'+ (inputs[i].getAttribute('oninput') !== null ? inputs[i].getAttribute('oninput') : ''));
     },
 
     /**
      * Updates action count.
+     * @param Object input
      * @return void
      */
-    update_actionCount: function() {
-        if (this.get_param('form')[this.get_param('controlInput')])
-            this.get_param('form')[this.get_param('controlInput')].value ++;
+    update_actionCount: function(input) {
+        input.form[this.get_param('controlInput', input.form.name)].value ++;
     },
 }
