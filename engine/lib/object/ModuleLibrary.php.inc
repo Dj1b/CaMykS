@@ -3,7 +3,7 @@
  * @brief ModuleLibrary abastract class for module libraries.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: Mar 2007
  * @date Modification: May 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -1364,15 +1364,14 @@ abstract class ModuleLibrary {
                 $language = $camyks->current_language;
 
             /* build sql query */
-            $sql = 'select objectid, language, '.$element;
+            $sql = 'select `objectid`, `language`, `'.$element.'`';
             $sql .= ' from '.$this->_libSQLTable.' as m, '.$this->_libSQLLocaleTable.' as l';
-            $sql .= ' where language="'.$language.'"';
+            $sql .= ' where l.language="'.$language.'"';
             $sql .= ' and m.id = l.objectid';
 
             /* add where conditions to sql query  */
-            if ($where != '') {
+            if ($where != '')
                 $sql .= ' and '.$this->check_SQLCondition($where, true);
-            }
 
             /* add order statement to sql query */
             if ($orderBy != '')
