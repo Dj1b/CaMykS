@@ -1,21 +1,20 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version	: 1.0a
- * Object Version	: 1.0
- * Object Type	        : Plugin / Module Layout
- * Create Date	       	: Jun 2007
- * Last Modif Date	: Jun 2007
- * 
- * Content_GenericRandomText Module Site Layout : site
+/**
+ * @brief Content_GenericRandomText module, site boxed layout.
+ * @details Plugin / Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2007
+ * @date Modification: Jul 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 ?>
-<?=$this->theme->get_boxHeader()?>
-<?=$this->theme->get_boxContent2Header()?>
+<?= $this->theme->get_boxHeader(); ?>
+<?= $this->theme->get_boxContent2Header(); ?>
 <div style="padding:8px 2px;">
-<?=$this->text?>
+<?= $this->text; ?>
 </div>
-<?=$this->theme->get_boxContent2Footer()?>
-<?=$this->theme->get_boxFooter()?>
+<?= $this->theme->get_boxContent2Footer(); ?>
+<?= $this->theme->get_boxFooter(); ?>
