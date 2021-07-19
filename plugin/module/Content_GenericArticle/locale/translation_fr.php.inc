@@ -1,18 +1,17 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Sep 2007
- * Last Modif Date	: Oct 2008
- *
- * Content_GenericArticle french dictionnary 
+/**
+ * @brief Content_GenericArticle module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2007
+ * @date Modification: Jul 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-$this->trads['mod_content_genericarticle_title'] = 'Article';
-$this->trads['mod_content_genericarticle_desc'] = 'Affiche un article pr&eacute;formatt&eacute;';
+$this->trads['mod_content_genericarticle_title'] = 'Articles';
+$this->trads['mod_content_genericarticle_desc'] = 'Affiche un article';
 
 /* admin tabs */
 $this->trads['mod_content_genericarticle_tabgeneral'] = 'Propri&eacute;t&eacute;s';

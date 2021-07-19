@@ -1,70 +1,77 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Library
- * Create Date		: Sep 2007
- * Last Modif Date	: Sep 2007
- *
- * Content_GenericArticleItem object for Content_GenericArticle module
+/**
+ * @brief Content_GenericArticle module, article item library.
+ * @details Plugin / Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Sep 2007
+ * @date Modification: Jul 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-class Content_GenericArticleItem extends ModuleLibrary {
-  
-  /*
-   * constructor
-   * @param integer $id
-   * @param Module $module
-   */
-  function Content_GenericArticleItem ( $id, &$module ) {
-    parent::ModuleLibrary( $id, $module );
-    /* content description */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('date_', 'db', 'date', 'bigint unsigned', '', 0);
-    $this->add_newItem('author', 'db', 'text', 'varchar', 32, '');
-    /* database localised content */
-    $this->add_newItem('title', 'db', 'text', 'varchar', 128, '', true);
-    $this->add_newItem('subtitle', 'db', 'text', 'varchar', 255, '', true);
-    $this->add_newItem('header', 'db', 'text', 'text', '', '', true);
-    $this->add_newItem('note', 'db', 'text', 'text', '', '', true);
-    /* text file localised content */
-    $this->add_newItem('content', 'text', 'content','', '', '',  true);
-    
-    /* generic initialisation */
-    $this->init_library();
-  }
+/**
+ * Content_GenericArticleItem class.
+ */
+final class Content_GenericArticleItem extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-  /* overwrite ModuleLibrary methods */
+        /* Content description */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('date_', 'db', 'date', 'bigint unsigned', '', 0);
+        $this->add_newItem('author', 'db', 'text', 'varchar', 32, '');
 
-  /*
-   * check object data
-   * @return boolean result
-   * @access private
-   */
-  function check_data () {
-    /* check symbolic name value */
-    $this->_libItems['name']->check_value('symbolic_name', 'article');
-    return true;
-  }
+        /* Database localised content */
+        $this->add_newItem('title', 'db', 'text', 'varchar', 128, '', true);
+        $this->add_newItem('subtitle', 'db', 'text', 'varchar', 255, '', true);
+        $this->add_newItem('header', 'db', 'text', 'text', '', '', true);
+        $this->add_newItem('note', 'db', 'text', 'text', '', '', true);
 
-  /*
-   * initialise object
-   * @return boolean success
-   * @access private
-   */
-  function initialise () {
-    global $camyks;
-    /* generic initialise */
-    parent::initialise();
+        /* Text file localised content */
+        $this->add_newItem('content', 'text', 'content','', '', '',    true);
 
-    /* update author value with current admin user login */
-    $this->_libItems['author']->value = $camyks->adminUser->login;
+        /* Generic initialisation */
+        $this->init_library();
+    }
 
-    return true;
-  }
+    /* Override ModuleLibrary methods */
+
+    /**
+     * Check object data.
+     * @return boolean result
+     */
+    public function check_data() {
+        /* Check symbolic name value */
+        $this->_libItems['name']->check_value('symbolic_name', 'article');
+
+        /* Return success */
+        return true;
+    }
+
+    /**
+     * Initialise object
+     * @return boolean success
+     */
+    public function initialise() {
+        global $camyks;
+
+        /* Do generic initialisation */
+        parent::initialise();
+
+        /* Update author value with current admin user login */
+        $this->_libItems['author']->value = $camyks->adminUser->login;
+
+        /* Return success */
+        return true;
+    }
 }
 ?>
