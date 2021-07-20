@@ -1,47 +1,50 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Library
- * Create Date		: Jul 2008
- * Last Modif Date	: Jul 2008
- *
- * Content_GenericSiteMapItem object for Content_GenericSiteMap module
+/**
+ * @brief Content_GenericSiteMap module, content library.
+ * @details Plugin / Module Engine
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2008
+ * @date Modification: Jul 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-class Content_GenericSiteMapItem extends ModuleLibrary {
-  /*
-   * constructor
-   * @param integer $id
-   * @param Module $module
-   */
-  function Content_GenericSiteMapItem ( $id, &$module ) {
-    parent::ModuleLibrary( $id, $module );
-    /* content description */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('columns', 'db', 'int', 'tinyint unsigned', '', 2);
-    /* generic initialisation */
-    $this->init_library();
-  }
-  
-  /* overwrite ModuleLibrary methods */
+final class Content_GenericSiteMapItem extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-  /*
-   * check object values
-   * @return boolean result
-   * @access private
-   */
-  function check_data () {
-    /* check symbolic name value */
-    $this->_libItems['name']->check_value('symbolic_name', 'sitemap');
+        /* Content attributes */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('columns', 'db', 'int', 'tinyint unsigned', '', 2);
 
-    /* check columns value */
-    if ( !$this->_libItems['columns']->value>0 )
-      $this->_libItems['columns']->value = 1;
-    return true;
-  }
+        /* Generic initialisation */
+        $this->init_library();
+    }
+
+    /* Override ModuleLibrary methods */
+
+    /**
+     * Check object values.
+     * @return boolean result
+     */
+    public function check_data() {
+        /* Check symbolic name value */
+        $this->_libItems['name']->check_value('symbolic_name', 'sitemap');
+
+        /* Check columns value */
+        if (!($this->_libItems['columns']->value > 0))
+            $this->_libItems['columns']->value = 1;
+
+        /* Return success */
+        return true;
+    }
 }
 ?>
