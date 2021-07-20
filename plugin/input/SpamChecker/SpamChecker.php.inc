@@ -4,9 +4,9 @@
  * <br /> Contact form or comment spam checker.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -52,17 +52,22 @@ final class SpamChecker extends Input {
      */
     public function execute($params=array()) {
         /* Load parameters */
-        $defaultParams = array('output' => 'result', 'object' =>'', 'objectId' => '', 'data' => array(
-            'fullName'  => '',
-            'firstName' => '',
-            'lastName'  => '',
-            'email'     => '',
-            'company'   => '',
-            'phone'     => '',
-            'content'   => '', // array | string
-            'ipAddress' => '',
-            'hostname'  => '',
-        ));
+        $defaultParams = array(
+            'output' => 'result',
+            'object' =>'',
+            'objectId' => '',
+            'data' => array(
+                'fullName'  => '',
+                'firstName' => '',
+                'lastName'  => '',
+                'email'     => '',
+                'company'   => '',
+                'phone'     => '',
+                'content'   => '', // array | string
+                'ipAddress' => '',
+                'hostname'  => '',
+            ),
+        );
         $params = array_recursiveMerge($defaultParams, $params);
 
         /* Load configuration */
@@ -104,7 +109,7 @@ final class SpamChecker extends Input {
             }
 
             if ($firstName !== '' and $lastName !== '') {
-                if (preg_match('/^'.string_escape4Regex($firstName).'[A-Za-z]{2}$/', $lastName) or preg_match('/^'.string_escape4Regex($lastName).'[A-Za-z]{2}$/', $firstName)) {
+                if ($firstName == $lastName and preg_match('/^'.string_escape4Regex($firstName).'[A-Za-z]{2}$/', $lastName) or preg_match('/^'.string_escape4Regex($lastName).'[A-Za-z]{2}$/', $firstName)) {
                     $scores['score'] += $this->get_configValue('checkSimilarNamesScore');
                     $scores['data'][] = 'Similar names: '.$this->get_configValue('checkSimilarNamesScore');
                 }
@@ -334,6 +339,7 @@ final class SpamChecker extends Input {
 
     /**
      * Check parameters.
+     * @param array $params
      * @return array
      */
     private function check_params($params) {
