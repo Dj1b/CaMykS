@@ -1,15 +1,14 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by     : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Dictionnary
- * Creation Date    : Jun 2010
- * Last Modif Date  : Jun 2010
- *
- * Content_GooglePoIMapViewer french dictionnary
+/**
+ * @brief Content_GooglePoIMapViewer module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2010
+ * @date Modification: Jul 2021
+ * @copyright 2010- 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 $this->trads['mod_content_googlepoimapviewer_title'] = 'Affichage des points d\'int&eacute;r&ecirc;t';
 $this->trads['mod_content_googlepoimapviewer_desc'] = '';
