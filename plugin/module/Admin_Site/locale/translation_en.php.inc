@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_Site Module english dictionnary.
- * @details Plugin / Module layout
+ * @brief Admin_Site Module english dictionary.
+ * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Feb 2013
- * @date Modification: Dec 2020
- * @copyright 2013 - 2020 CaMykS Team
+ * @date Modification: Jul 2021
+ * @copyright 2013 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -128,6 +128,7 @@ $this->trads['mod_admin_site_formitem_maxupload'] = 'Maximum upload size: ';
 $this->trads['mod_admin_site_formitem_filesmaxupload'] = 'Files: ';
 $this->trads['mod_admin_site_formitem_memorylimit'] = 'Memory limit: ';
 $this->trads['mod_admin_site_formitem_sessionexpiration'] = 'Session timeout: ';
+$this->trads['mod_admin_site_formitem_temporaryfolder'] = 'Temporary folder: ';
 $this->trads['mod_admin_site_formitem_opcache'] = 'Opcode cache: ';
 $this->trads['mod_admin_site_action_resetopcache'] = 'Reset Opcode cache';
 
