@@ -1,17 +1,15 @@
 <?php
 /**
- * @brief Admin_SecurityTools Module french dictionnary
- * @details Plugin / Module Dictionnary
- * @file plugin/module/Admin_SecurityTools/locale/translation_fr.php.inc
+ * @brief Admin_SecurityTools Module french dictionary
+ * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: Oct 2007
- * @date Modification: Sep 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jul 2021
+ * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_admin_securitytools_title'] = 'Outils S&eacute;curit&eacute;';
 $this->trads['mod_admin_securitytools_desc'] = 'Filtres, Sauvegarde, ... ';
 
@@ -110,10 +108,9 @@ $this->trads['mod_admin_securitytools_error_nonvalidipaddress'] = 'L\'adresse IP
 $this->trads['mod_admin_securitytools_urlfilter_rulenew'] = 'Nouvelle r&egrave;gle';
 $this->trads['mod_admin_securitytools_urlfilter_ruleid'] = 'R&egrave;gle n&deg;%s';
 $this->trads['mod_admin_securitytools_formitem_pattern'] = 'Masque : ';
-$this->trads['mod_admin_securitytools_ipfilter_permission'] = 'Permission : ';
 
 /* edit ua filter configuration */
-$this->trads['mod_admin_securitytools_uafilter_configuration'] = 'Configuration du filter Agent Utilisateur';
+$this->trads['mod_admin_securitytools_uafilter_configuration'] = 'Configuration du filtre Agent Utilisateur';
 $this->trads['mod_admin_securitytools_formitem_blockhacks'] = 'Bloquer les hacks : ';
 $this->trads['mod_admin_securitytools_formitem_blockfakes'] = 'Bloquer les fausses visites : ';
 
@@ -141,7 +138,7 @@ $this->trads['mod_admin_securitytools_backup_modifyconfig'] = 'Modifier la confi
 $this->trads['mod_admin_securitytools_backup_download'] = 'T&eacute;l&eacute;charger cette sauvegarde';
 $this->trads['mod_admin_securitytools_backup_delete'] = 'Supprimer cette sauvegarde';
 $this->trads['mod_admin_securitytools_backup_size'] = 'Taille';
-$this->trads['mod_admin_securitytools_backup_deletebackup'] = 'Etes vous sur de vouloir supprimer cette sauvegarde?';
+$this->trads['mod_admin_securitytools_backup_deletebackup'] = 'Etes vous sur de vouloir supprimer cette sauvegarde ?';
 $this->trads['mod_admin_securitytools_backup_newbackup'] = 'Cr&eacute;er une sauvegarde';
 $this->trads['mod_admin_securitytools_backup_createbackup'] = 'Cr&eacute;er la sauvegarde';
 $this->trads['mod_admin_securitytools_backup_temp'] = 'Dossier temporaire : ';
