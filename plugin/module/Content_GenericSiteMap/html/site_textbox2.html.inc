@@ -3,7 +3,7 @@
  * @brief Content_GenericSiteMap module, site text box 2 layout.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2008
  * @date Modification: Jul 2021
  * @copyright 2008 - 2021 CaMykS Team

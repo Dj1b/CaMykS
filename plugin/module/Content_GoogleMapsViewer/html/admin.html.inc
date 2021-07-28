@@ -3,7 +3,7 @@
  * @brief Content_GoogleMapsViewer module, admin layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2008
  * @date Modification: Jul 2021
  * @copyright 2008 - 2021 CaMykS Team
@@ -15,7 +15,7 @@ global $camyks;
 $target = $this->theme->get_pictUrl('target', 12, 'std');
 $target_ = $this->theme->get_pictUrl('target', 12, 'ovr');
 ?>
-<?= $this->theme->get_boxHeader(rray('class'=>'adminEditorModule')); ?>
+<?= $this->theme->get_boxHeader(array('class'=>'adminEditorModule')); ?>
 <?= $this->theme->get_boxTitleBar($this->title .' : '.$this->mapItem->vars['name'].' ['.$this->mapItem->id . ']'); ?>
 <?= $this->theme->get_boxTabsBar($this->tabs, $this->tabObject.'.mouseclick', $this->tabObject.'.mouseover', $this->tabObject.'.mouseout', 'properties'); ?>
 <?= $this->theme->get_boxContent2Header(); ?>

@@ -3,7 +3,7 @@
  * @brief Content_GoogleMapsViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2008
  * @date Modification: Jul 2021
  * @copyright 2008 - 2021 CaMykS Team
@@ -115,7 +115,8 @@ final class Content_GoogleMapsViewer extends Module {
                 $this->init_admin_edit();
                 break;
         }
-        /* generic module init */
+
+        /* Generic admin initialisation */
         parent::init_admin();
     }
 
@@ -157,7 +158,7 @@ final class Content_GoogleMapsViewer extends Module {
         $this->mapItem = &$this->mapList[$mindex];
 
         /* Update layout */
-        $this->set_selectedLayout('site_'.($this->check_layout($this->mapItem->vars['layout'])?$this->mapItem->vars['layout']:'classic').'.html.inc');
+        $this->set_selectedLayout('site_'.($this->check_layout($this->mapItem->vars['layout']) ? $this->mapItem->vars['layout'] : 'classic').'.html.inc');
 
         /* Generic site display */
         parent::display_site();

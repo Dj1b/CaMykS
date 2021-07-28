@@ -3,7 +3,7 @@
  * @brief Content_GenericSiteMap module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2008
  * @date Modification: Jul 2021
  * @copyright 2008 - 2021 CaMykS Team
@@ -21,10 +21,23 @@ final class Content_GenericSiteMap extends Module {
      */
     protected $smItem;
 
-    /* site variables */
-    var $sitemap;
-    var $pagecount;
-    var $pagelimit;
+    /**
+     * var string $sitemap
+     * @brief Site map as HTML.
+     */
+    protected $sitemap = '';
+
+    /**
+     * var integer $pagecount
+     * @brief Page count.
+     */
+    protected $pagecount = 0;
+
+    /**
+     * var integer $pagelimit
+     * @brief Page limit.
+     */
+    protected $pagelimit = 0;
 
     /**
      * Class constructor.

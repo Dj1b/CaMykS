@@ -3,7 +3,7 @@
  * @brief Content_GenericRandomText module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2007
  * @date Modification: Jul 2021
  * @copyright 2007 - 2021 CaMykS Team
@@ -204,7 +204,7 @@ final class Content_GenericRandomText extends Module {
         if ($this->glist->save()) {
             $this->text = $camyks->get_translation('savedone');
             /* Update page information with object id for new content */
-            if ($id == 0 and $this->page_id > 0)
+            if ($this->glist->id == 0 and $this->page_id > 0)
                 $this->add_moduleContentToPage($this->page_id, $this->module_index, $this->glist->id);
         } else {
             $this->text = $camyks->get_translation('savefailed');
