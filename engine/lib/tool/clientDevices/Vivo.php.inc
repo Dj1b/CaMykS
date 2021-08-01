@@ -3,9 +3,9 @@
  * @brief Vivo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: May 2018
- * @date Modification: May 2021
+ * @date Modification: Jul 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -111,6 +111,8 @@ function get_VivoClientDevice($deviceCode='') {
         'V1930A'        => array('platform_model' => 'Y3',          'platform_year' => 2019),
         'V1930T'        => array('platform_model' => 'Y3',          'platform_year' => 2019),
         'V2027'         => array('platform_model' => 'Y20',         'platform_year' => 2020),
+
+        'NEX'           => array('platform_model' => 'Nex',         'platform_year' => 2018),
     );
 
     /* Check for returning list */

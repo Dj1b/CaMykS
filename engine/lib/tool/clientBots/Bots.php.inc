@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.83
+ * @version 1.0.84
  * @date Creation: May 2018
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -852,6 +852,16 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'YandexPagechecker',
+        'bot_url'           => 'http://yandex.com/bots',
+        'engine_title'      => 'Yandex',
+        'engine_url'        => 'https://yandex.com/',
+    );
+
+    /* YandexImageResizer */
+    $knownBots['yandeximageresizer'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'YandexImageResizer',
         'bot_url'           => 'http://yandex.com/bots',
         'engine_title'      => 'Yandex',
         'engine_url'        => 'https://yandex.com/',
@@ -2012,7 +2022,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'RogerBot',
-        'bot_url'           => '',
+        'bot_url'           => 'https://moz.com/help/guides/moz-procedures/what-is-rogerbot',
         'engine_title'      => 'Moz',
         'engine_url'        => 'https://moz.com',
     );
@@ -5271,6 +5281,56 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://www.nicecrawler.com/',
         'engine_title'      => '',
         'engine_url'        => '',
+    );
+
+    /* Snap URL Preview Service */
+    $knownBots['snap url preview service'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Snap URL Preview Service',
+        'bot_url'           => 'https://developer.snapchat.com/robots',
+        'engine_title'      => 'Snapchat',
+        'engine_url'        => 'https://www.snapchat.com/',
+    );
+
+    /* Crawling at Home Project */
+    $knownBots['crawling at home project'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Crawling at Home Project',
+        'engine_url'        => 'http://cah.io.community',
+    );
+
+    /* Hypestat */
+    $knownBots['hypestat'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'hypestat',
+        'engine_url'        => 'https://hypestat.com/bot',
+    );
+
+    /* Crawlson */
+    $knownBots['crawlson'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'Crawlson',
+        'engine_url'        => 'https://www.crawlson.com/search',
+    );
+
+    /* DataForSeoBot */
+    $knownBots['dataforseobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DataForSeoBot',
+        'bot_url'           => 'https://dataforseo.com/dataforseo-bot',
+        'engine_title'      => 'DataForSeo',
+        'engine_url'        => 'https://dataforseo.com/',
     );
 
     /* Return bot list */
