@@ -4,9 +4,9 @@
  * <br /> Manage administration users.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.0
+ * @version 1.2.1
  * @date Creation: Jun 2005
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -149,6 +149,10 @@ final class Admin_User extends Module {
             case 'delete':
                 /* mode == delete */
                 $this->init_admin_delete();
+                break;
+            case 'reset_2fa':
+                /* mode == reset_2fa */
+                $this->init_admin_reset_2fa();
                 break;
             case 'list':
             default:
@@ -296,7 +300,8 @@ final class Admin_User extends Module {
 
         /* get user profile to view */
         $this->user = new AdminUser(isset($_REQUEST['user']) ? $_REQUEST['user'] : '');
-        $this->user->get();
+        if (!$this->user->get())
+            return $this->init_admin_list();
 
         /* get help */
         $this->get_help();
@@ -332,6 +337,10 @@ final class Admin_User extends Module {
             ));
 
         $this->tabBuilder->initialise(array('default'=>'Properties'));
+
+        /* Add scripts */
+        $this->add_JSScript('var reset2FAMessage = "'.string_HTML2Text($this->get_translation('reset_2fawarning')).'";');
+        $this->add_JSScript('var reset2FAUrl = "'.$this->get_adminJSLink(array('mode'=>'reset_2fa', 'user'=>$this->user->login)).'"');
 
         /* Build buttons */
         $this->buttons = array(array(
@@ -382,6 +391,32 @@ final class Admin_User extends Module {
         } else {
             $this->init_admin_edit();
         }
+    }
+
+    /**
+     * Initialise module object in admin/reset_2fa mode
+     * @return void
+     */
+    private function init_admin_reset_2fa() {
+        global $camyks;
+
+        /* Check edit permission */
+        if ($this->check_right(1) === false)
+            return $this->init_admin_actionNotAllowed();
+
+        /* Disable admin menus */
+        $this->disable_adminEngineMenus();
+
+        /* Load user */
+        $this->user = new AdminUser(isset($_REQUEST['user']) ? $_REQUEST['user'] : '');
+        if ($this->user->get() and $this->user->webmaster == 0 and $this->user->reset_2FAData())
+            $this->text = $this->get_translation('2faconfigurationreset');
+        else
+            $this->text = $this->get_translation('2faconfigurationnotreset');
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('mode'=>'view', 'user'=> $this->user->login)));
     }
 
     /* Specific tool methods */

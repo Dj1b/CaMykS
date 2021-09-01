@@ -5,9 +5,9 @@
  * <br /> Highly based on PHPGangsta / GoogleAuthenticator library (https://github.com/PHPGangsta/GoogleAuthenticator)
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -222,6 +222,17 @@ final class CodeAuthenticator extends Input {
 
         /* Return confirmed secret */
         return $settings['currentSecret'];
+    }
+
+    /**
+     * Reset 2FA configuration data for user.
+     * @return string
+     */
+    public function reset_userConfigurationData() {
+        global $camyks;
+
+        /* Delete current settings */
+        $camyks->set_sessionValue('CodeAuthenticatorSettings', array());
     }
 
     /* User 2FA login */

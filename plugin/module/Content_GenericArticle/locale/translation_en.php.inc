@@ -1,23 +1,23 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author		: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version	: 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Jun 2008
- * Last Modif Date	: Oct 2008
- *
- * Content_GenericArticle english dictionnary 
+/**
+ * @brief Content_GenericArticle module, english dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jun 2008
+ * @date Modification: Jul 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-$this->trads['mod_content_genericarticle_title'] = 'Article';
-$this->trads['mod_content_genericarticle_desc'] = 'Display pre-defined article';
+$this->trads['mod_content_genericarticle_title'] = 'Articles';
+$this->trads['mod_content_genericarticle_desc'] = 'Display an article';
 
 /* admin tabs */
 $this->trads['mod_content_genericarticle_tabgeneral'] = 'Properties';
 
 /* layouts */
+$this->trads['mod_content_genericarticle_layout'] = 'Layout';
 $this->trads['mod_content_genericarticle_layout_classic'] = 'Classic';
 $this->trads['mod_content_genericarticle_layout_classicbox'] = 'Classic in a box';
 $this->trads['mod_content_genericarticle_layout_notebox'] = 'In a box, note highlighted';

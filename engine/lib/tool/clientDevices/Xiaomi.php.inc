@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.53
+ * @version 1.0.54
  * @date Creation: May 2018
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -78,6 +78,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi 10'                 => array('platform_model' => 'Mi 10',               'platform_year' => 2020),
         'mi 10t lite'           => array('platform_model' => 'Mi 10T Lite',         'platform_year' => 2020),
 
+        'm2002j9e'              => array('platform_model' => 'Mi 10 Youth Edition', 'platform_year' => 2020),
         'm2002j9g'              => array('platform_model' => 'Mi 10 Lite',          'platform_year' => 2020),
         'm2007j17g'             => array('platform_model' => 'Mi 10T Lite',         'platform_year' => 2020),
         'm2007j1sc'             => array('platform_model' => 'Mi 10 Ultra 5G',      'platform_year' => 2020),
@@ -138,13 +139,18 @@ function get_XiaomiClientDevice($deviceCode='') {
         'm2006c3lg'             => array('platform_model' => 'Redmi 9A',            'platform_year' => 2020),
         'm2006c3mg'             => array('platform_model' => 'Redmi 9C',            'platform_year' => 2020),
         'm2006c3mng'            => array('platform_model' => 'Redmi 9C',            'platform_year' => 2020),
+        'm2010j19sy'            => array('platform_model' => 'Redmi 9T',            'platform_year' => 2021),
         'm2006j10c'             => array('platform_model' => 'Redmi K30 Ultra',     'platform_year' => 2020),
+        'm2007j22g'             => array('platform_model' => 'Redmi Note 9T',       'platform_year' => 2021),
+        'm2010j19sy'            => array('platform_model' => 'Redmi 9T',            'platform_year' => 2021),
+        'm2103k19g'             => array('platform_model' => 'Redmi Note 10',       'platform_year' => 2021),
         'm2101k7ag'             => array('platform_model' => 'Redmi Note 10 Pro',   'platform_year' => 2021),
         'm2101k6g'              => array('platform_model' => 'Redmi Note 10 Pro',   'platform_year' => 2021),
         'm2012k11c'             => array('platform_model' => 'Redmi K40 Pro',       'platform_year' => 2021),
 
         /* Phones, Shark series */
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),
+        'skw h0'                => array('platform_model' => 'Black Shark 2',       'platform_year' => 2019),
         'dlt h0'                => array('platform_model' => 'Black Shark 2 Pro',   'platform_year' => 2019),
         'prs h0'                => array('platform_model' => 'Black Shark 4',       'platform_year' => 2021),
     );

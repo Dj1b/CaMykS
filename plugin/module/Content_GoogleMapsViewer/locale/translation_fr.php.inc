@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author               : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version       : 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date          : Jul 2008
- * Last Modif Date      : Jul 2008
- *
- * Content_GoogleMapsViewer french dictionnary
-*/
+/**
+ * @brief Content_GoogleMapsViewer module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2008
+ * @date Modification: Jul 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_content_googlemapsviewer_title'] = 'Affichage d\'une carte Google Maps';
 $this->trads['mod_content_googlemapsviewer_desc'] = '';
 
@@ -65,5 +64,4 @@ $this->trads['mod_content_googlemapsviewer_savefailed'] = 'Une erreur est surven
 
 /* site */
 $this->trads['mod_content_googlemapsviewer_site_viewlargermap'] = 'Agrandir le plan';
-
 ?>

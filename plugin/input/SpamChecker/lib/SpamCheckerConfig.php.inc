@@ -3,9 +3,9 @@
  * @brief SpamChecker Input configuration object
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,14 +64,14 @@ final class SpamCheckerConfig extends PluginConfig {
         $this->add_newItem('checkLanguageScriptEnabled', 'boolean', 0);
         $this->add_newItem('checkLanguageScriptRules', 'array', array()); /* array(rule => string, score => int) */
 
-        /* Span origin rules */
+        /* Spam origin rules */
         $this->add_newItem('checkCountryEnabled', 'boolean', 0);
         $this->add_newItem('checkCountryRules', 'array', array()); /* array(rule => string, score => int) */
 
         $this->add_newItem('checkHostnameEnabled', 'boolean', 0);
         $this->add_newItem('checkHostnameRules', 'array', array()); /* array(rule => string, score => int) */
 
-        /* generic initialisation */
+        /* Generic initialisation */
         parent::init_config();
     }
 

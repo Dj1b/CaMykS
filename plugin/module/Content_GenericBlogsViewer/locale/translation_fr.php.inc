@@ -1,16 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by		: camyks.net
- * Author               : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version       : 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date          : Apr 2008
- * Last Modif Date      : Jan 2010
- *
- * Content_GenericBlogsViewer french dictionnary
-*/
+/**
+ * @brief Content_GenericBlogsViewer module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2008
+ * @date Modification: Jul 2021
+ * @copyright 2008 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 $this->trads['mod_content_genericblogsviewer_title'] = 'Affichage des blogs';
 $this->trads['mod_content_genericblogsviewer_desc'] = '';
 

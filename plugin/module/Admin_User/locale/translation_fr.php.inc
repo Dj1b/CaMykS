@@ -3,9 +3,9 @@
  * @brief Admin_User Module french dictionary.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,6 +17,10 @@ $this->trads['mod_admin_user_desc'] = 'Gestion des utilisateurs';
 $this->trads['mod_admin_user_users_all'] = 'Tous';
 $this->trads['mod_admin_user_users_disabled'] = 'D&eacute;sactiv&eacute;s';
 $this->trads['mod_admin_user_users_enabled'] = 'Activ&eacute;s';
+
+/* 2FA status */
+$this->trads['mod_admin_user_2fastatus_configured'] = 'Configur&eacute;e';
+$this->trads['mod_admin_user_2fastatus_notconfigured'] = 'Non configur&eacute;e';
 
 /* admin list */
 $this->trads['mod_admin_user_formitem_search'] = 'Rechercher : ';
@@ -35,8 +39,16 @@ $this->trads['mod_admin_user_personalinfos'] = 'Informations Personnelles';
 $this->trads['mod_admin_user_rights'] = 'Droits';
 $this->trads['mod_admin_user_user'] = 'Utilisateur';
 
+/* View user */
+$this->trads['mod_admin_user_formitem_2faauthentication'] = 'Authentification 2 facteurs : ';
+$this->trads['mod_admin_user_reset_2fawarning'] = 'Etes-vous s&ucirc;r de vouloir r&eacute;nitialiser l\'authentification 2 facteurs de cet administrateur ?';
+
 /* message */
 $this->trads['mod_admin_user_usermodificationnotallowed'] = 'Vous n\'&ecirc;tes pas autoris&eacute; &agrave; modifier cet utilisateur.';
+
+/* Reset 2FA */
+$this->trads['mod_admin_user_2faconfigurationreset'] = 'Authentification 2 facteurs r&eacute;initialis&eacute;e.';
+$this->trads['mod_admin_user_2faconfigurationnotreset'] = 'Une erreur est survenue lors de la r&eacute;initialisation de l\'authentification 2 facteurs.';
 
 /* errors */
 $this->trads['mod_admin_user_erroremptylogin'] = 'L\'identifiant ne doit pas &ecirc;tre vide.';

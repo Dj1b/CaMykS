@@ -3,9 +3,9 @@
  * @brief Ulefone client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Mar 2019
- * @date Modification: May 2021
+ * @date Modification: Jul 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -34,6 +34,7 @@ function get_UlefoneClientDevice($deviceCode='') {
         'armor x7 pro'  => array('platform_model' => 'Armor X7 Pro',    'platform_year' => 2020),
 
         /* Note series */
+        'note 7'        => array('platform_model' => 'Note 7',          'platform_year' => 2019),
         'note 8p'       => array('platform_model' => 'Note 8P',         'platform_year' => 2020),
     );
 

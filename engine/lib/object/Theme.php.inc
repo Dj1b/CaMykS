@@ -2,12 +2,11 @@
 /**
  * @brief Theme plugin object
  * @details Engine / Object Library
- * @file engine/lib/object/Theme.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: Jun 2005
- * @date Modification: May 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jul 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -141,7 +140,7 @@ abstract class Theme extends Plugin {
         } else {
             /* add icons */
             foreach ($this->touchIcons as $icon) {
-                $camyks->HTMLPage->add_link($icon['name'], $this->get_fileURL('img/touchIcons/'.$icon['url']), array('sizes'=>$icon['sizes']));
+                $camyks->HTMLPage->add_link($icon['name'], $camyks->get_rootBaseURL('absolute_schemeless').$this->get_fileURL('img/touchIcons/'.$icon['url']), array('sizes'=>$icon['sizes']));
                 if (isset($icon['default']) and $icon['default'] == 1) {
                     if ($camyks->modules['Admin_ContentPage']->get_configValue('site_ogmeta') == 1)
                         $camyks->HTMLPage->add_meta('og:image', $this->get_fileURL('img/touchIcons/'.$icon['url']), 'property');

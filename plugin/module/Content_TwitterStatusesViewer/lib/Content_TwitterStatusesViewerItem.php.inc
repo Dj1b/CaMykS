@@ -1,63 +1,63 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	    : camyks.net
- * Author           : CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   : 1.0b
- * Object Version   : 1.0
- * Object Type      : Plugin / Module Lib
- * Creation Date    : Jul 2010
- * Last Modif Date  : Jul 2010
- *
- * Content_TwitterStatusesViewerItem object for Content_TwitterStatusesViewer module
-*/
+/**
+ * @brief Content_TwitterStatusesViewer module, content library.
+ * @details Plugin / Module Library
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Jul 2010
+ * @date Modification: Jul 2021
+ * @copyright 2010 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-class Content_TwitterStatusesViewerItem extends ModuleLibrary {
-  /*
-   * Constructor
-   * @param integer $id
-   * @param Module $module
-   */
-  function Content_TwitterStatusesViewerItem ( $id, &$module ) {
-    parent::ModuleLibrary( $id, $module );
-    /* content */
-    $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
-    $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
-    $this->add_newItem('account', 'db', 'text', 'varchar', 64, '');
-    $this->add_newItem('tweetcount', 'db', 'int', 'tinyint unsigned', '', 4);
-    $this->add_newItem('style', 'db', 'int', 'tinyint unsigned', '', 0);
-    $this->add_newItem('datedisplay', 'db', 'int', 'tinyint unsigned', '', 0);
+/**
+ * Content_TwitterStatusesViewerItem class.
+ */
+final class Content_TwitterStatusesViewerItem extends ModuleLibrary {
+    /**
+     * Class constructor.
+     * @param integer $id
+     * @param Module $module
+     * @return void
+     */
+    public function __construct($id, &$module) {
+        parent::__construct($id, $module);
 
-    /* generic init */
-    $this->init_library();
-  }
- 
-  /* overwrite ModuleLibrary methods */
+        /* Content attributes */
+        $this->add_newItem('name', 'db', 'text', 'varchar', 16, '');
+        $this->add_newItem('layout', 'db', 'text', 'varchar', 32, '');
+        $this->add_newItem('account', 'db', 'text', 'varchar', 64, '');
+        $this->add_newItem('tweetcount', 'db', 'int', 'tinyint unsigned', '', 4);
+        $this->add_newItem('style', 'db', 'int', 'tinyint unsigned', '', 0);
+        $this->add_newItem('datedisplay', 'db', 'int', 'tinyint unsigned', '', 0);
 
-  /*
-   * check object data
-   * @return boolean result
-   * @access private
-   */
-  function check_data( ) {
-    global $camyks;
-    /* check name */
-    $this->_libItems['name']->check_value('symbolic', 'twitter_statuses');
+        /* Generic initialisation */
+        $this->init_library();
+    }
 
-    /* return result */
-    return true;
-  }
+    /* Override ModuleLibrary methods */
 
-  /* specific methods */
+    /**
+     * Check object data.
+     * @return boolean result
+     */
+    public function check_data() {
+        /* Check name */
+        $this->_libItems['name']->check_value('symbolic', 'twitter_statuses');
 
-  /* 
-   * return account last statuses
-   * @return array
-   * @access private
-   */
-  function load_statuses() {
-    return file_get_contents('http://twitter.com/statuses/user_timeline/'.$this->vars['account'].'.xml?count='.$this->vars['tweetcount']);
-    //return file_get_contents('http://devel.skymac.org/xml.xml');
-  }
+        /* Return result */
+        return true;
+    }
+
+    /* Specific methods */
+
+    /**
+     * Return account last statuses.
+     * @return array
+     */
+    public function load_statuses() {
+        return file_get_contents('http://twitter.com/statuses/user_timeline/'.$this->vars['account'].'.xml?count='.$this->vars['tweetcount']);
+    }
 }
 ?>

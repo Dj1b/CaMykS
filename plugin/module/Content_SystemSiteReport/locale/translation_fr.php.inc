@@ -1,17 +1,15 @@
 <?php
-/*
- * CaMykS Engine
- * Developed by	       	: camyks.net
- * Author	       	: CaMykS Team <camyks.contact@gmail.com>
- * CaMykS Version   	: 1.0a
- * Object Version       : 1.0
- * Object Type          : Plugin / Module Dictionnary
- * Create Date		: Apr 2007
- * Last Modif Date	: Dec 2007
- *
- * Content_SystemSiteReport french dictionnary
+/**
+ * @brief Content_SystemSiteReport module, french dictionary.
+ * @details Plugin / Module Dictionary
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.1
+ * @date Creation: Apr 2007
+ * @date Modification: Jul 2021
+ * @copyright 2007 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
-
 $this->trads['mod_content_systemsitereport_title'] = 'Formulaire de rapport';
 $this->trads['mod_content_systemsitereport_desc'] = 'Affiche un formulaire de rapport';
 
@@ -48,5 +46,4 @@ $this->trads['mod_content_systemsitereport_requestanswer'] = 'Votre email : ';
 /* site validation */
 $this->trads['mod_content_systemsitereport_backtohome'] = 'Retour &agrave; l\'accueil';
 $this->trads['mod_content_systemsitereport_requestsent'] = 'Votre requ&egrave;te a &eacute;t&eacute; envoy&eacute; aux administrateurs du site. Si vous avez renseign&eacute; le champs "Votre email", vous recevrez un r&eacute;ponse dans les plus brefs d&eacute;lais.';
-
 ?>

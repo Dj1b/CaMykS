@@ -4,9 +4,9 @@
  * <br /> Allows logged admin user to read or edit its own information.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Jun 2005
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -103,6 +103,10 @@ final class Admin_MyAccount extends Module {
             case 'edit_2fa':
                 /* mode == edit_2fa */
                 $this->init_admin_edit_2fa();
+                break;
+            case 'reset_2fa':
+                /* mode == reset_2fa */
+                $this->init_admin_reset_2fa();
                 break;
             case 'view':
             default:
@@ -254,6 +258,11 @@ final class Admin_MyAccount extends Module {
             'accountImage'  => $icon,
         ));
 
+        /* Update interface title */
+        $this->adminTitle = $this->title;
+        $this->adminTitle .= $camyks->get_translation('formitem_separator');
+        $this->adminTitle .= $this->get_translation('2faauthentication');
+
         /* Build button list */
         $this->buttons = array(
             array(
@@ -263,8 +272,16 @@ final class Admin_MyAccount extends Module {
             array(
                 'title' => $camyks->get_translation('confirm'),
                 'link'  => $this->form->get_HTMLSubmitLink(),
-            )
+            ),
         );
+
+        /* Check for reset button */
+        if ($this->myAccount->twoFactorData !== '') {
+            $this->buttons[] = array(
+                'title' => $this->get_translation('reset_2fa'),
+                'link'  => $this->get_adminLink(array('mode'=>'reset_2fa')),
+            );
+        }
 
         /* Update layout */
         $this->set_selectedLayout('admin_edit2FA.html.inc');
@@ -288,16 +305,16 @@ final class Admin_MyAccount extends Module {
 
         /* Check for confirmation */
         if ($newData == false) {
-            $this->text = $this->get_translation('error_2faconfigurationnotconfirmed');
+            $this->text = $this->get_translation('2faconfigurationnotconfirmed');
             if (($e = $this->plugin->get_lastError()) !== false)
                 $this->text .= '<br />'.$e;
             $this->set_redirect($this->get_adminLink(array('mode'=>'edit_2fa')));
         } else {
             if ($this->myAccount->update_2FAData($newData)) {
-                $this->text = $this->get_translation('error_2faconfigurationupdated');
+                $this->text = $this->get_translation('2faconfigurationupdated');
                 $this->set_redirect($this->get_adminLink());
             } else {
-                $this->text = $this->get_translation('error_2faconfigurationnotupdated');
+                $this->text = $this->get_translation('2faconfigurationnotupdated');
                 if (($e = $this->myAccount->get_lastError()) !== false)
                     $this->text .= '<br />'.$e;
                 $this->set_redirect($this->get_adminLink(array('mode'=>'edit_2fa')));
@@ -305,6 +322,29 @@ final class Admin_MyAccount extends Module {
         }
 
         /* Update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+    }
+
+    /**
+     * Initialise module object in admin/reset_2fa mode.
+     * @return void
+     */
+    private function init_admin_reset_2fa() {
+        global $camyks;
+
+        /* Load 2FA plugin */
+        if (!$this->load_2FAPlugin())
+            return;
+
+        /* Reset data */
+        if ($this->myAccount->reset_2FAData()) {
+            $this->plugin->reset_userConfigurationData();
+            $this->text = $this->get_translation('2faconfigurationreset');
+        } else
+            $this->text = $this->get_translation('2faconfigurationnotreset');
+
+        /* Update layout */
+        $this->set_redirect($this->get_adminLink(array('mode'=>'edit_2fa')));
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
     }
 

@@ -3,10 +3,10 @@
  * @brief Admin_Site Module admin view site configuration layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Jan 2005
- * @date Modification: Dec 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jul 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -694,17 +694,25 @@ global $camyks;
                 <?= ((float)ini_get('session.gc_maxlifetime')) / 60; ?> <?= unit_getTitle('minutes'); ?>
             </td>
         </tr>
-        <?php if (function_exists('opcache_get_status')) : ?>
         <tr>
             <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_temporaryfolder'); ?>
+            </td>
+            <td class="eTableLine1 eContent1" colspan="2">
+                <?= folder_getTemporaryFolder(); ?>
+            </td>
+        </tr>
+        <?php if (function_exists('opcache_get_status')) : ?>
+        <tr>
+            <td class="eTableLine0 eContent2">
                 <?= $this->get_translation('formitem_opcache'); ?>
             </td>
             <?php if (($v = opcache_get_status()) === false or $v['opcache_enabled'] === false) : ?>
-                <td class="eTableLine1 eContent1" colspan="2">
+                <td class="eTableLine0 eContent1" colspan="2">
                     <?= $this->get_translation('opcache_disabled'); ?>
                 </td>
             <?php else : ?>
-                <td class="eTableLine1 eContent1">
+                <td class="eTableLine0 eContent1">
                     <?= $this->get_translation('opcache_enabled'); ?>
                 </td>
                 <td class="eTableLine0 eContent1" rowspan="2" style="width:230px; text-align:center; vertical-align:top;">

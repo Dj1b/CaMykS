@@ -3,9 +3,9 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.91
+ * @version 1.0.92
  * @date Creation: Apr 2018
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -42,6 +42,7 @@ function get_HuaweiClientDevices() {
         'BAH2-W19'              => array('platform_model' => 'MediaPad M5 Lite',        'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'AGS2-W09'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'AGS2-L03'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
+        'AGS2-L09'              => array('platform_model' => 'MediaPad T5',             'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2018),
         'MRX-ALO9'              => array('platform_model' => 'MediaPad Pro',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'MRX-AL19'              => array('platform_model' => 'MediaPad Pro',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
         'MRX-W09'               => array('platform_model' => 'MediaPad Pro',            'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2019),
@@ -115,6 +116,7 @@ function get_HuaweiClientDevices() {
         'ART-L29'   => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'ART-L29N'  => array('platform_model' => 'P40 Lite E',      'platform_year' => 2020),
         'CDY-NX9A'  => array('platform_model' => 'P40 Lite 5G',     'platform_year' => 2020),
+        'ELS-NX9'   => array('platform_model' => 'P40 Pro',         'platform_year' => 2020),
         'ELS-AN10'  => array('platform_model' => 'P40 Pro+',        'platform_year' => 2020),
         'PPA-LX2'   => array('platform_model' => 'P Smart 2021',    'platform_year' => 2020),
 
@@ -188,6 +190,7 @@ function get_HuaweiClientDevices() {
         'KNT-AL10'  => array('platform_model' => 'Honor V8',        'platform_year' => 2016),
         'KNT-TL10'  => array('platform_model' => 'Honor V8',        'platform_year' => 2016),
         'KNT-UL10'  => array('platform_model' => 'Honor V8',        'platform_year' => 2016),
+        'BKL-AL20'  => array('platform_model' => 'Honor V10',       'platform_year' => 2017),
         'STF-AL00'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-AL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),
         'STF-TL10'  => array('platform_model' => 'Honor 9',         'platform_year' => 2017),

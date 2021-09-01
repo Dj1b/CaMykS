@@ -3,9 +3,9 @@
  * @brief Tools as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.35
+ * @version 1.0.36
  * @date Creation: May 2018
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1389,6 +1389,16 @@ function _client_getKnownTools() {
         'tool_url'          => '',
         'engine_title'      => 'Fuzz Faster U Fool',
         'engine_url'        => 'https://github.com/ffuf/ffuf',
+    );
+
+    /* masscan-ng */
+    $knownTools['masscan-ng'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => '',
+        'tool_url'          => '',
+        'engine_title'      => 'masscan-ng',
+        'engine_url'        => 'https://github.com/bi-zone/masscan-ng',
     );
 
     /* masscan */

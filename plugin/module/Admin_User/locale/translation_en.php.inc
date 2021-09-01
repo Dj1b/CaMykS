@@ -3,9 +3,9 @@
  * @brief Admin_User Module english dictionnary.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Nov 2012
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,6 +17,10 @@ $this->trads['mod_admin_user_desc'] = 'Manage administrators';
 $this->trads['mod_admin_user_users_all'] = 'All';
 $this->trads['mod_admin_user_users_disabled'] = 'Disabled';
 $this->trads['mod_admin_user_users_enabled'] = 'Enabled';
+
+/* 2FA status */
+$this->trads['mod_admin_user_2fastatus_configured'] = 'Configured';
+$this->trads['mod_admin_user_2fastatus_notconfigured'] = 'Non configured';
 
 /* admin list */
 $this->trads['mod_admin_user_formitem_search'] = 'Search: ';
@@ -35,8 +39,16 @@ $this->trads['mod_admin_user_personalinfos'] = 'Personal information';
 $this->trads['mod_admin_user_rights'] = 'Permissions';
 $this->trads['mod_admin_user_user'] = 'User';
 
+/* View user */
+$this->trads['mod_admin_user_formitem_2faauthentication'] = '2-factor authentication: ';
+$this->trads['mod_admin_user_reset_2fawarning'] = 'Are you sure to want to reset the 2-factor authentication for this administrator ?';
+
 /* message */
 $this->trads['mod_admin_user_usermodificationnotallowed'] = 'You are not allowed to modify this user account.';
+
+/* Reset 2FA */
+$this->trads['mod_admin_user_2faconfigurationreset'] = '2-factor authentication reset.';
+$this->trads['mod_admin_user_2faconfigurationnotreset'] = 'An error has occured while reseting the 2-factor authentication.';
 
 /* errors */
 $this->trads['mod_admin_user_erroremptylogin'] = 'Login can\'t be empty.';

@@ -3,9 +3,9 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Feb 2019
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -39,6 +39,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X606D'         => array('platform_model' => 'Hot 6',       'platform_year' => 2018),
         'X608'          => array('platform_model' => 'Hot 6 Pro',   'platform_year' => 2018),
         'X623'          => array('platform_model' => 'Hot 6X',      'platform_year' => 2018),
+        'X624B'         => array('platform_model' => 'Hot 7',       'platform_year' => 2019),
         'X650'          => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X650B'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
         'X650C'         => array('platform_model' => 'Hot 8',       'platform_year' => 2019),
@@ -49,6 +50,7 @@ function get_InfinixClientDevice($deviceCode='') {
         /* Smart serie */
         'X5515'         => array('platform_model' => 'Smart 2',     'platform_year' => 2018),
         'X609'          => array('platform_model' => 'Smart 2 HD',  'platform_year' => 2018),
+        'X653'          => array('platform_model' => 'Smart 4',     'platform_year' => 2019),
         'X653C'         => array('platform_model' => 'Smart 4',     'platform_year' => 2019),
 
         /* Zero serie */
@@ -60,6 +62,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X626B'         => array('platform_model' => 'S4',          'platform_year' => 2019),
         'X652B'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
         'X652C'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
+        'X660C'         => array('platform_model' => 'S5 Pro',      'platform_year' => 2020),
 
     );
 

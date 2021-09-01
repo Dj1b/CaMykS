@@ -3,9 +3,9 @@
  * @brief Realme (Oppo subsidiary) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Apr 2020
- * @date Modification: Jun 2021
+ * @date Modification: Jul 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,6 +22,7 @@ function get_RealmeClientDevice($deviceCode='') {
         /* Realme mobiles */
         'RMX1811'   => array('platform_model' => 'C1',              'platform_year' => 2018),
         'RMX1825'   => array('platform_model' => '3',               'platform_year' => 2019),
+        'RMX1851'   => array('platform_model' => '3 Pro',           'platform_year' => 2019),
         'RMX1901'   => array('platform_model' => 'X',               'platform_year' => 2019),
         'RMX1911'   => array('platform_model' => '5',               'platform_year' => 2019),
         'RMX1921'   => array('platform_model' => 'XT',              'platform_year' => 2019),
