@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_SecurityTools Module IPFilter library.
+ * @brief Admin_SecurityTools Module, IPFilter library.
  * @details Plugin / Module Library
- * @file plugin/module/Admin_SecurityTools/lib/Admin_SecurityIPFilterRule.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2007
- * @date Modification: Nov 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Sep 2021
+ * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -24,14 +23,15 @@ final class Admin_SecurityIPFilterRule extends ModuleLibrary {
      */
     public function __construct($id, &$parent) {
         parent::__construct($id, $parent);
-        /* library items */
+
+        /* Content attributes */
         $this->add_newItem('ipaddress', 'db', 'text', 'varchar', 16, '');
         $this->add_newItem('active', 'db', 'int', 'tinyint unsigned', '', 0);
         $this->add_newItem('permission', 'db', 'int', 'tinyint unsigned', '', 1);
         $this->add_newItem('sitemode', 'db', 'int', 'tinyint unsigned', '', 0);
         $this->add_newItem('comment', 'db', 'text', 'varchar', 255, '');
 
-        /* generic library initialisation */
+        /* Generic library initialisation */
         parent::init_library();
     }
 
@@ -48,6 +48,20 @@ final class Admin_SecurityIPFilterRule extends ModuleLibrary {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Build sql condition for lists.
+     * @param array $params
+     * @return string
+     */
+    public function build_SQLCondition($params) {
+        $search = array();
+
+        if (isset($params['status']) and $params['status']!='' and $params['status'] > -1)
+            $search[] = 'active='.$params['status'];
+
+        return implode(' and ', $search);
     }
 
     /* Specific properties definition method */
