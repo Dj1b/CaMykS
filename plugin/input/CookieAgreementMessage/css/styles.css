@@ -2,9 +2,9 @@
  * @brief CookieAgreementMessage Input default CSS styles
  * @details Plugin / Input CSS styles
  * @author CaMykS Team
- * @version 1.1.0.1
+ * @version 1.1.0.2
  * @date Creation: May 2017
- * @date Modification: Mar 2021
+ * @date Modification: Oct 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -67,6 +67,8 @@
 /* mobile adaptation */
 @media (max-width: 400px) {
     .cookieAgreementMessage {max-width:100%; left:0; right:0;}
+    .cookieAgreementMessage.minimised {left:auto;}
+    .cookieAgreementMessage.minimised.bottom-left, .cookieAgreementMessage.minimised.top-left {left:0; right:auto;}
 }
 
 @media (max-width: 750px) {
