@@ -1381,7 +1381,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->config->vars['row_count'] = $data['rowcount'];
         $this->config->vars['col_count'] = $data['colcount'];
         $this->config->vars['cols_params'] = array();
-        for($i=1; $i<$data['colcount']; $i++) {
+        for($i=0; $i<$data['colcount']; $i++) {
             $this->config->vars['cols_params']['col'.$i.'_field'] = $data['col'.$i.'_field'];
             if ($data['col'.$i.'_field'] == 'status') {
                 $this->config->vars['cols_params']['col'.$i.'_status'] = array();
@@ -1401,7 +1401,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->add_JSLoadScript('ice.initialise();');
 
         $this->add_JSScript('ice.set_param("startAt", -1);');
-        $this->add_JSScript('ice.set_param("contactCount", '.($data['rowcount']-$data['loadfromline']+1).');');
+        $this->add_JSScript('ice.set_param("contactCount", '.($data['rowcount']-$data['loadfromline']).');');
 
         /* Add locales */
         //$this->add_JSScript('ice.set_locale("continue_sending", "'.string_html2text($this->get_translation('continue_sending')).'");');
@@ -2144,7 +2144,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->contactItem->initialise();
         $this->contactItem->_libItems['status']->value = 1;
 
-        for ($i=1; $i < $this->config->vars['col_count']; $i++) {
+        for ($i=0; $i < $this->config->vars['col_count']; $i++) {
             if ($this->config->vars['cols_params']['col'.$i.'_field'] === 'none')
                 continue;
             if ($this->config->vars['cols_params']['col'.$i.'_field'] == 'status') {
