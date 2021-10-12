@@ -2,12 +2,11 @@
 /**
  * @brief Image manipulating object
  * @details Engine / Object Library
- * @file engine/lib/object/CImage.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Nov 2011
- * @date Modification: Oct 2018
- * @copyright 2011 - 2018 CaMykS Team
+ * @date Modification: Oct 2021
+ * @copyright 2011 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Finalise crop calculation in _gd_rotate method.
@@ -356,8 +355,9 @@ final class CImage {
                 $type = $this->type;
 
         /* check file extension */
-        if (!(strtolower(substr($filename, -4, 4)) == '.'.$type))
-            $filename .= '.'.$type;
+        $file = pathinfo($filename);
+        if ($file['extension'] !== $type)
+            $filename = ($file['dirname'] === '' ? '' : $file['dirname'].'/').$file['filename'].'.'.$type;
 
         /* complete file path */
         folder_completePath(dirname($filename));
