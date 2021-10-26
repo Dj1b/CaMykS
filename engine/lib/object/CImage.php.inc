@@ -3,7 +3,7 @@
  * @brief Image manipulating object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Nov 2011
  * @date Modification: Oct 2021
  * @copyright 2011 - 2021 CaMykS Team
@@ -356,7 +356,7 @@ final class CImage {
 
         /* check file extension */
         $file = pathinfo($filename);
-        if ($file['extension'] !== $type)
+        if (!isset($file['extension']) or $file['extension'] !== $type)
             $filename = ($file['dirname'] === '' ? '' : $file['dirname'].'/').$file['filename'].'.'.$type;
 
         /* complete file path */
