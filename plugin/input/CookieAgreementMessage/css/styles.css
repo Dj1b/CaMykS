@@ -2,7 +2,7 @@
  * @brief CookieAgreementMessage Input default CSS styles
  * @details Plugin / Input CSS styles
  * @author CaMykS Team
- * @version 1.1.0.2
+ * @version 1.1.0.3
  * @date Creation: May 2017
  * @date Modification: Oct 2021
  * @copyright 2017 - 2021 CaMykS Team
@@ -18,7 +18,7 @@
 .cookieAgreementMessage .acceptButton {display:inline-block; color:white !important; background:#434343; padding:8px 16px; margin:0 4px 10px; border-radius:6px; min-width:160px; font-weight:bold;}
 .cookieAgreementMessage .aboutButton {display:inline-block; color:black !important; background:white; padding:8px 16px; margin:0 4px 10px; border-radius:6px; min-width:160px; font-weight:bold;}
 .cookieAgreementMessage .aboutButton.hidden {visibility:hidden;}
-.cookieAgreementMessage .acceptButton:hover, .cookieAgreementMessage .aboutButton:hover {text-decoration:none;, opacity:0.8;}
+.cookieAgreementMessage .acceptButton:hover, .cookieAgreementMessage .aboutButton:hover {text-decoration:none; opacity:0.8;}
 
 .cookieAgreementMessage.minimised {padding:32px; max-width:40px; max-height:40px; overflow:hidden;}
 .cookieAgreementMessage.minimised .opener {display:block;}
