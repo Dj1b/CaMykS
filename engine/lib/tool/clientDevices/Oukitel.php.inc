@@ -3,9 +3,9 @@
  * @brief Oukitel client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Jan 2019
- * @date Modification: Apr 2021
+ * @date Modification: Sep 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,6 +22,7 @@ function get_OukitelClientDevice($deviceCode='') {
         'K6000 Plus'    => array('platform_model' => 'K6000 Plus',  'platform_year' => 2016),
         'K6000 Pro'     => array('platform_model' => 'K6000 Pro',   'platform_year' => 2016),
         'K8000'         => array('platform_model' => 'K8000',       'platform_year' => 2016),
+        'U20 Plus'      => array('platform_model' => 'U20 Plus',    'platform_year' => 2016),
         'K10000 Max'    => array('platform_model' => 'K10000 Max',  'platform_year' => 2017),
         'K6'            => array('platform_model' => 'K6',          'platform_year' => 2017),
         'K7'            => array('platform_model' => 'K7',          'platform_year' => 2018),

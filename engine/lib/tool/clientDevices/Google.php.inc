@@ -3,9 +3,9 @@
  * @brief Google client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.17
+ * @version 1.0.18
  * @date Creation: Aug 2018
- * @date Modification: Apr 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,6 +32,7 @@ function get_GoogleClientDevice($deviceCode='') {
         'Nexus 5'       => array('platform_year' => 2013),
         'Nexus 5X'      => array('platform_year' => 2015),
         'Nexus 6P'      => array('platform_year' => 2015),
+        'Pixel 1'       => array('platform_year' => 2016),
         'Pixel'         => array('platform_year' => 2016),
         'Pixel XL'      => array('platform_year' => 2016),
         'Pixel 2'       => array('platform_year' => 2017),

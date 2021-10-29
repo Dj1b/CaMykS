@@ -3,9 +3,9 @@
  * @brief Tecno client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Oct 2018
- * @date Modification: Jul 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -56,20 +56,25 @@ function get_TecnoClientDevice($deviceCode='') {
         'LC6a'      => array('platform_model' => 'Pouvoir 3 Air',   'platform_year' => 2019),
         'LB7'       => array('platform_model' => 'Pouvoir 3',       'platform_year' => 2019),
         'LB8a'      => array('platform_model' => 'Pouvoir 3 Plus',  'platform_year' => 2019),
+        'CA8'       => array('platform_model' => 'Camon X Pro',     'platform_year' => 2019),
         'CC6'       => array('platform_model' => 'Camon 12 Air',    'platform_year' => 2019),
         'CC7'       => array('platform_model' => 'Camon 12',        'platform_year' => 2019),
         'CC9'       => array('platform_model' => 'Camon 12 Pro',    'platform_year' => 2019),
         'CD8j'      => array('platform_model' => 'Camon 15',        'platform_year' => 2019),
         'BA2'       => array('platform_model' => 'Pop 2 Plus',      'platform_year' => 2019),
+        'KF6i'      => array('platform_model' => 'Spark 7',         'platform_year' => 2019),
         'CD6'       => array('platform_model' => 'Camon 15 Air',    'platform_year' => 2020),
+        'CD6j'      => array('platform_model' => 'Camon 16S',       'platform_year' => 2020),
         'CD7'       => array('platform_model' => 'Camon 15',        'platform_year' => 2020),
         'KD6'       => array('platform_model' => 'Spark 5 Air',     'platform_year' => 2020),
         'KD7'       => array('platform_model' => 'Spark 5',         'platform_year' => 2020),
         'KD7h'      => array('platform_model' => 'Spark 5',         'platform_year' => 2020),
+        'B1f'       => array('platform_model' => 'Pop 2F',          'platform_year' => 2020),
         'BC2'       => array('platform_model' => 'Pop 4',           'platform_year' => 2020),
         'KE5'       => array('platform_model' => 'Spark Go',        'platform_year' => 2020),
         'LC7'       => array('platform_model' => 'Pouvoir 4',       'platform_year' => 2020),
         'LC8'       => array('platform_model' => 'Pouvoir 4 Pro',   'platform_year' => 2020),
+        'CG6j'      => array('platform_model' => 'Camon 17',        'platform_year' => 2021),
 
         'Phantom6-Plus' => array('platform_model' => 'Phantom 6 Plus',  'platform_year' => 2016),
     );

@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module import contacts - check and configure step layout
+ * @brief Admin_GenericEmailingManager Module, import contacts - check and configure step layout.
  * @details Plugin, Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.8.1
  * @date Creation: Jan 2013
- * @date Modification: Feb 2011
+ * @date Modification: Oct 2021
  * @copyright 2013 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -13,9 +13,9 @@
 global $camyks;
 
 $maxLine = 5;
-$maxCol = 6;
+$maxCol = count($this->data[0]);
 ?>
-<?= $this->theme->get_boxHeader('width:600px;margin:0 auto;'); ?>
+<?= $this->theme->get_boxHeader(array('class'=>'adminEditorModule')); ?>
 <?= $this->theme->get_boxTitleBar($this->adminTitle); ?>
 <?= $this->theme->get_boxContent2Header(); ?>
 <?= $this->importform->display_header(); ?>
@@ -45,9 +45,9 @@ $maxCol = 6;
     <td class="eTableHeader">
         <?= $i; ?>
     </td>
-    <?php for ($j = 1; $j < $maxCol + 1; $j++) : ?>
-    <td class="eTableLine<?= $alt?> eContent1">
-        <?= $this->data[$i][$j]; ?>
+    <?php for ($j = 0; $j < $maxCol; $j++) : ?>
+    <td class="eTableLine<?= $alt; ?> eContent1">
+        <?= isset($this->data[$i][$j]) ? $this->data[$i][$j] : ''; ?>
     </td>
     <?php endfor; ?>
     <?php $alt = abs($alt-1); ?>
@@ -91,7 +91,7 @@ $maxCol = 6;
     </td>
 </tr>
 <?php $alt = 0; ?>
-<?php for ($i=1; $i< count($this->data[0]); $i ++) : ?>
+<?php for ($i=0; $i< count($this->data[0]); $i ++) : ?>
 <tr>
     <td class="eTableLine<?= $alt?> eContent2">
         <?= $i; ?>

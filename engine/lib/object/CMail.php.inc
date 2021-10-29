@@ -2,13 +2,12 @@
 /**
  * @brief E-mail generic object
  * @details Engine / Object Library
- * @file engine/lib/object/CMail.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2012
- * @date Modification: Jul 2018
- * @copyright 2012 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Oct 2021
+ * @copyright 2012 - 2021 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -43,7 +42,7 @@ final class CMail {
      * Initialise object.
      * @return void
      */
-    public function initialise() { 
+    public function initialise() {
         $this->params = array(
             /* initialise headers */
             'MIME-Version' => '1.0',
@@ -61,7 +60,7 @@ final class CMail {
             'TextBody' => '',
             'Attachments' => array(),
             'EmbeddedImages' => array(),
-       );
+        );
         $this->error = '';
     }
 
@@ -254,7 +253,7 @@ final class CMail {
         return $this->add_attachments($files);
     }
 
-    /* 
+    /**
      * Add an embed image.
      * @param string $img
      * @return void
@@ -263,7 +262,7 @@ final class CMail {
         $this->params['EmbeddedImages'][] = $img;
     }
 
-    /* 
+    /**
      * Alias to add_embeddedImage.
      * @see add_embeddedImage()
      * @param string $img
@@ -303,19 +302,19 @@ final class CMail {
 
         switch ($camyks->get_confValue('email_defaultLibrary')) {
             /* use PHPMailer */
-            case 'PHPMailer' : 
+            case 'PHPMailer' :
                 $success = $this->_send_PHPMailerMail();
                 break;
             /* use PEAR/Mail */
-            case 'PEAR/Mail' : 
-            default : 
+            case 'PEAR/Mail' :
+            default :
                 $success = $this->_send_PEARMimeMail();
         }
-        
+
         /* directly return result if logs are not available */
         if ($camyks->are_logsAvailable() === false)
           return $success;
-        
+
         /* prepare recipients */
         $recipients = $this->get_contactListAsString('To', '(');
 
@@ -339,7 +338,7 @@ final class CMail {
     public function get_lastError() {
         return $this->error;
     }
-    
+
     /**
      * Return contact list as string
      * @param string $list
@@ -355,11 +354,11 @@ final class CMail {
             '{' => '}',
             '[' => ']',
         );
-        
+
         /* check list */
         if (!in_array($list, array('To', 'Cc', 'Bcc', 'ReplyTo')))
             return '';
-        
+
         /* build contact list */
         $contacts = array();
         foreach ($this->params[$list] as $contact) {
@@ -371,13 +370,13 @@ final class CMail {
             else
                 $contacts[] = $contact['email'];
         }
-        
+
         /* check contacts count */
         if (count($contacts) == 0)
             return '';
-        
+
         /* return compiled result */
-        return implode($separator, $contacts);        
+        return implode($separator, $contacts);
     }
 
     /* private sending methods */

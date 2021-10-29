@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Content_GenericLegalMentions Module site properties, english sub layout.
+ * @brief Content_GenericLegalMentions module, english version of site properties sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Apr 2021
- * @date Modification: Apr 2021
+ * @date Modification: Oct 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -165,11 +165,11 @@ The publication manager is a natural person or a legal entity.
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('host_email')) : ?>
-    <a href="<?= mail_encode($this->contentItem->has_content('host_email')); ?>" class="eLink1"> E-mail contact </a> <br />
+    <a href="<?= mail_encode($this->contentItem->vars['host_email']); ?>" class="eLink1">E-mail contact</a> <br />
 <?php endif; ?>
 
 <?php if ($this->contentItem->has_content('host_website')) : ?>
-    <a href="<?= url_getAsComplete($this->contentItem->has_content('host_website')); ?>" class="eLink1" target="_blank"> url_getAsSmart($this->contentItem->has_content('host_website')); </a> <br />
+    <a href="<?= url_getAsComplete($this->contentItem->vars['host_website']); ?>" class="eLink1" target="_blank"><?= url_getAsSmart($this->contentItem->vars['host_website']); ?></a> <br />
 <?php endif; ?>
 
 <?php endif; ?>

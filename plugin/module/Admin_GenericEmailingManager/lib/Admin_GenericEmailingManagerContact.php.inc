@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module contact library
+ * @brief Admin_GenericEmailingManager Module, contact library.
  * @details Plugin, Module Library
- * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerContact.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Oct 2021
+ * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -66,8 +65,10 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
      */
     public function check_data() {
 
-        /* trim email value */
+        /* Trim values */
         $this->_libItems['email']->value = trim($this->_libItems['email']->value);
+        $this->_libItems['lastname']->value = trim($this->_libItems['lastname']->value);
+        $this->_libItems['firstname']->value = trim($this->_libItems['firstname']->value);
 
         /* Check email value */
         $this->_libItems['email']->value = preg_replace('/"\'/', '', $this->_libItems['email']->value);

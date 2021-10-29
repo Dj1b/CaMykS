@@ -2,12 +2,11 @@
 /**
  * @brief Acer client devices specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/clientDevices/Acer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: Apr 2018
- * @date Modification: Dec 2020
- * @copyright 2018 - 2020 CaMykS Team
+ * @date Modification: Sep 2021
+ * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -24,6 +23,7 @@ function get_AcerClientDevice($deviceCode='') {
         'Chromebook R13'    => array('platform_model' => 'Chromebook R13',  'platform_type' => 'computer',  'platform_format' => 'desktop', 'platform_year' => 2016),
 
         /* Acer tablets */
+        'A210'          => array('platform_model' => 'Iconia Tab A210',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2012),
         'A500'          => array('platform_model' => 'Iconia Tab A500',     'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2012),
         'A1-810'        => array('platform_model' => 'Iconia A1-810',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2013),
         'A1-830'        => array('platform_model' => 'Iconia A1-830',       'platform_type' => 'tablet',    'platform_format' => 'tablet',  'platform_year' => 2014),

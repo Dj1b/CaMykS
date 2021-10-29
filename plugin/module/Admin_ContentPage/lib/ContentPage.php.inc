@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Admin_ContentPage Module ContentPage library
+ * @brief Admin_ContentPage module, ContentPage library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5.2
+ * @version 1.1.5.3
  * @date Creation: Jun 2005
- * @date Modification: Jan 2021
+ * @date Modification: Oct 2021
  * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -748,7 +748,7 @@ final class ContentPage {
             $sql .= '), ';
         }
 
-        $sql = substr($sql, 0, strlen($sql)-2);
+        $sql = substr($sql, 0, strlen($sql)-2).';';
         return $camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__);
     }
 
@@ -805,7 +805,7 @@ final class ContentPage {
             array('name'=>'metas', 'type'=>'text', 'desc1'=>'text', 'desc2'=>'', 'default'=>''),
             array('name'=>'robotIndex', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>1),
             array('name'=>'robotFollow', 'type'=>'int', 'desc1'=>'tinyint unsigned', 'desc2'=>'', 'default'=>1),
-       );
+        );
         for ($i=0; $i< $this->maxmodules; $i++) {
             $fields[] = array('name'=>'m'.$i.'_name', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');
             $fields[] = array('name'=>'m'.$i.'_content', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>255, 'default'=>'');

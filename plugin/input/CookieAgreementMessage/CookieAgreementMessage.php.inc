@@ -4,9 +4,9 @@
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.3
+ * @version 1.1.0.5
  * @date Creation: May 2017
- * @date Modification: Jun 2021
+ * @date Modification: Oct 2021
  * @copyright 2017 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -101,15 +101,15 @@ final class CookieAgreementMessage extends Input {
         /* Load data */
         $this->load_data();
 
-        /* check params */
+        /* Check params */
         $this->check_params($params);
 
-        /* check if cookie message has to be displayed */
+        /* Check if cookie message has to be displayed */
         if ($this->params['remindTTL'] > 0 and !is_null($this->cookieData)) {
             $this->params['status'] = 'minimised';
         }
 
-        /* check all services have been accepted */
+        /* Check all services have been accepted */
         foreach ($this->serviceInformation as $name => $service) {
             if (!isset($this->cookieData[$name])) {
                 $this->params['status'] = "enabled";
@@ -119,7 +119,7 @@ final class CookieAgreementMessage extends Input {
 
         /* Add styles */
         if ($this->params['styleSource'] == 'plugin') {
-            $this->add_styleFile('css/styles.css?v=1.1.0.1');
+            $this->add_styleFile('css/styles.css?v=1.1.0.3');
         }
 
         /* Add scripts */
@@ -275,7 +275,7 @@ final class CookieAgreementMessage extends Input {
         /* build internal params list */
         $this->params = array_merge($this->params, $this->config->vars);
 
-        /* check for single language message */
+        /* Check for single language message */
         if (is_array($this->params['message'])) {
             if (isset($this->params['message'][$camyks->current_language]))
                 $this->params['message'] = $this->params['message'][$camyks->current_language];
@@ -293,7 +293,7 @@ final class CookieAgreementMessage extends Input {
         /* merge params */
         $this->params = array_merge($this->params, $params);
 
-        /* check params */
+        /* Check params */
         if ($this->params['message'] == '') $this->params['message'] = $this->get_translation('defaultmessage');
 
         if ($this->params['aboutCookie'] === true or $this->params['aboutCookie'] === 'true') {

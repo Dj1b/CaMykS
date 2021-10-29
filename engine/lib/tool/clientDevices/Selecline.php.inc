@@ -1,10 +1,10 @@
 <?php
 /**
- * @brief Unknown client devices specific methods
+ * @brief Selecline (Auchan subsidiary) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
- * @date Creation: Jan 2021
+ * @version 1.0.0
+ * @date Creation: Oct 2021
  * @date Modification: Oct 2021
  * @copyright 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
@@ -13,15 +13,13 @@
  */
 
 /**
- * Return Unknown client device information from a known list.
+ * Return Selecline client device information from a known list.
  * @param mixed $deviceCode
  * @return array
  */
-function get_UnknownClientDevice($deviceCode='') {
+function get_SeleclineClientDevice($deviceCode='') {
     $deviceList = array(
-        'Phh-Treble'            => array('platform_model' => 'Flashed mobile with Phh-Treble generic ROM'),
-        'Unspecified Device'    => array('platform_model' => 'Unspecified Device'),
-        'K'                     => array('platform_model' => 'Unspecified Device'),
+        'ST19101' => array('platform_model' => 'ST19101', 'platform_year' => ''),
     );
 
     /* Check for returning list */
@@ -30,11 +28,11 @@ function get_UnknownClientDevice($deviceCode='') {
 
     /* Initialise result. */
     $result = array(
-        'platform_company'  => '(Unknown)',
-        'platform_country'  => '',
+        'platform_company'  => 'Selecline',
+        'platform_country'  => 'fr',
         'platform_model'    => $deviceCode,
-        'platform_type'     => 'handheld',
-        'platform_format'   => 'handheld',
+        'platform_type'     => 'tablet',
+        'platform_format'   => 'tablet',
     );
 
     /* Check if device is a known device. */
