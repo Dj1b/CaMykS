@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.54
+ * @version 1.0.55
  * @date Creation: May 2018
- * @date Modification: Jul 2021
+ * @date Modification: Oct 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -64,6 +64,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi max 3'              => array('platform_model' => 'Mi Max 3',            'platform_year' => 2018),
         'mi mix 2s'             => array('platform_model' => 'Mi Mix 2S',           'platform_year' => 2018),
         'mi 8 lite'             => array('platform_model' => 'Mi 8 Lite',           'platform_year' => 2018),
+        'mi 8 pro'              => array('platform_model' => 'Mi 8 Pro',            'platform_year' => 2018),
         'mi a3'                 => array('platform_model' => 'Mi A3',               'platform_year' => 2019),
         'mi mix 3'              => array('platform_model' => 'Mi Mix 3',            'platform_year' => 2019),
         'mi mix 3 5g'           => array('platform_model' => 'Mi Mix 3 5G',         'platform_year' => 2019),
@@ -86,6 +87,9 @@ function get_XiaomiClientDevice($deviceCode='') {
         'm2007j3sy'             => array('platform_model' => 'Mi 10T 5G',           'platform_year' => 2020),
         'm2011k2g'              => array('platform_model' => 'Mi 11 5G',            'platform_year' => 2020),
         'm2012k11g'             => array('platform_model' => 'Mi 11i',              'platform_year' => 2021),
+        'm2101k9g'              => array('platform_model' => 'Mi 11 Lite 5G',       'platform_year' => 2021),
+        'm2101k9ag'             => array('platform_model' => 'Mi 11 Lite 5G',       'platform_year' => 2021),
+        'm2102k1c'              => array('platform_model' => 'Mi 11 Pro',           'platform_year' => 2021),
 
         /* Phones, Redmi series */
         '2014811'               => array('platform_model' => 'Redmi 2',             'platform_year' => 2014),
@@ -124,6 +128,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'redmi 8'               => array('platform_model' => 'Redmi 8',             'platform_year' => 2019),
         'redmi 8a'              => array('platform_model' => 'Redmi 8A',            'platform_year' => 2019),
         'redmi k20'             => array('platform_model' => 'Redmi K20',           'platform_year' => 2019),
+        'redmi k20 pro'         => array('platform_model' => 'Redmi K20 Pro',       'platform_year' => 2019),
         'redmi note 7'          => array('platform_model' => 'Redmi Note 7',        'platform_year' => 2019),
         'redmi note 7 pro'      => array('platform_model' => 'Redmi Note 7 Pro',    'platform_year' => 2019),
         'redmi note 8'          => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2019),
@@ -142,11 +147,14 @@ function get_XiaomiClientDevice($deviceCode='') {
         'm2010j19sy'            => array('platform_model' => 'Redmi 9T',            'platform_year' => 2021),
         'm2006j10c'             => array('platform_model' => 'Redmi K30 Ultra',     'platform_year' => 2020),
         'm2007j22g'             => array('platform_model' => 'Redmi Note 9T',       'platform_year' => 2021),
+        'm2010j19sg'            => array('platform_model' => 'Redmi 9T',            'platform_year' => 2021),
         'm2010j19sy'            => array('platform_model' => 'Redmi 9T',            'platform_year' => 2021),
         'm2103k19g'             => array('platform_model' => 'Redmi Note 10',       'platform_year' => 2021),
         'm2101k7ag'             => array('platform_model' => 'Redmi Note 10 Pro',   'platform_year' => 2021),
         'm2101k6g'              => array('platform_model' => 'Redmi Note 10 Pro',   'platform_year' => 2021),
         'm2012k11c'             => array('platform_model' => 'Redmi K40 Pro',       'platform_year' => 2021),
+        'm1908c3jgg'            => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2021),
+        'm2101k7bny'            => array('platform_model' => 'Redmi Note 10S',      'platform_year' => 2021),
 
         /* Phones, Shark series */
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),

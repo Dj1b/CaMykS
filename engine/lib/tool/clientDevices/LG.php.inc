@@ -3,9 +3,9 @@
  * @brief LG client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: Apr 2018
- * @date Modification: May 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -53,6 +53,7 @@ function get_LGClientDevice($deviceCode='') {
         'F800L'     => array('platform_model' => 'V20',             'platform_year' => 2016),
         'G810'      => array('platform_model' => 'G8s ThinQ',       'platform_year' => 2019),
         'G850'      => array('platform_model' => 'G9X ThinQ',       'platform_year' => 2019),
+        'G900'      => array('platform_model' => 'Velvet',          'platform_year' => 2020),
         'H320'      => array('platform_model' => 'Leon',            'platform_year' => 2015),
         'H340'      => array('platform_model' => 'Leon',            'platform_year' => 2015),
         'H631'      => array('platform_model' => 'G Stylo',         'platform_year' => 2015),

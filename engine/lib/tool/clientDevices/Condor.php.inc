@@ -3,9 +3,9 @@
  * @brief Condor client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Apr 2018
- * @date Modification: Apr 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_CondorClientDevice($deviceCode='') {
         'TGW710G'           => array('platform_model' => 'Tab TGW-710G',    'platform_type' => 'tablet',   'platform_format' => 'tablet',  'platform_year' => 2016),
 
         /* Condor phone */
+        'PGN404'            => array('platform_model' => 'C7 Mini     ',    'platform_year' => 2014),
         'PGN518'            => array('platform_model' => 'Plume P6 Pro',    'platform_year' => 2015),
         'PGN521'            => array('platform_model' => 'Griffe G4 Plus',  'platform_year' => 2015),
         'PHQ520'            => array('platform_model' => 'Griffe G5',       'platform_year' => 2016),

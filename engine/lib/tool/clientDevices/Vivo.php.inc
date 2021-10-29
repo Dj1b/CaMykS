@@ -3,9 +3,9 @@
  * @brief Vivo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.14
+ * @version 1.0.15
  * @date Creation: May 2018
- * @date Modification: Jul 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -22,11 +22,12 @@ function get_VivoClientDevice($deviceCode='') {
         '1601'          => array('platform_model' => 'V5',          'platform_year' => 2016),
         '1603'          => array('platform_model' => 'Y55L',        'platform_year' => 2016),
         '1606'          => array('platform_model' => 'V5 Plus',     'platform_year' => 2016),
-        '1613'          => array('platform_model' => 'Y25',         'platform_year' => 2017),
-        '1609'          => array('platform_model' => 'Y66',         'platform_year' => 2017),
         '1016'          => array('platform_model' => 'Y55S',        'platform_year' => 2017),
-        '1610'          => array('platform_model' => 'Y55S',        'platform_year' => 2017),
         '1017'          => array('platform_model' => 'V7 Plus',     'platform_year' => 2017),
+        '1609'          => array('platform_model' => 'Y66',         'platform_year' => 2017),
+        '1613'          => array('platform_model' => 'Y25',         'platform_year' => 2017),
+        '1610'          => array('platform_model' => 'Y55S',        'platform_year' => 2017),
+        '1713'          => array('platform_model' => 'V5S',         'platform_year' => 2017),
         '1716'          => array('platform_model' => 'V7 Plus',     'platform_year' => 2017),
         '1718'          => array('platform_model' => 'V7',          'platform_year' => 2017),
         '1714'          => array('platform_model' => 'Y69',         'platform_year' => 2018),
@@ -110,7 +111,9 @@ function get_VivoClientDevice($deviceCode='') {
         'V1928T'        => array('platform_model' => 'U3x',         'platform_year' => 2019),
         'V1930A'        => array('platform_model' => 'Y3',          'platform_year' => 2019),
         'V1930T'        => array('platform_model' => 'Y3',          'platform_year' => 2019),
+        'V2023'         => array('platform_model' => 'Y70',         'platform_year' => 2020),
         'V2027'         => array('platform_model' => 'Y20',         'platform_year' => 2020),
+        'V2049A'        => array('platform_model' => 'iQOO 7',      'platform_year' => 2021),
 
         'NEX'           => array('platform_model' => 'Nex',         'platform_year' => 2018),
     );

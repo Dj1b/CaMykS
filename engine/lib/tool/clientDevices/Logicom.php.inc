@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Logicom client devices specific methods
+ * @brief Logicom client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.13
+ * @version 1.0.14
  * @date Creation: Apr 2018
- * @date Modification: Apr 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,6 +23,7 @@ function get_LogicomClientDevice($deviceCode='') {
         'TAB1043'       => array('platform_model' => 'Tab 1043',        'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2016),
         'M bot Tab 103' => array('platform_model' => 'M bot Tab 103',   'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2017),
         'La Tab Stand'  => array('platform_model' => 'La Tab Stand',    'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2019),
+        'La Tab 127 HD' => array('platform_model' => 'La Tab 127 HD',   'platform_type' => 'tablet', 'platform_format' => 'tablet', 'platform_year' => 2021),
 
         /* Logicom mobiles */
         '501'           => array('platform_model' => 'L-Element 501',   'platform_year' => 2014),

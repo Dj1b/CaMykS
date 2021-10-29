@@ -3,9 +3,9 @@
  * @brief OnePlus client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21
+ * @version 1.0.22
  * @date Creation: Apr 2018
- * @date Modification: Jul 2021
+ * @date Modification: Oct 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -19,7 +19,6 @@
 function get_OnePlusClientDevices() {
     return array(
         'A0001'     => array('platform_model' => 'One',         'platform_year' => 2014),
-        '2'         => array('platform_model' => '2',           'platform_year' => 2015),
         'A2001'     => array('platform_model' => '2',           'platform_year' => 2015),
         'A2003'     => array('platform_model' => '2',           'platform_year' => 2015),
         'A2005'     => array('platform_model' => '2',           'platform_year' => 2015),
@@ -64,6 +63,9 @@ function get_OnePlusClientDevices() {
         'LE2120'    => array('platform_model' => '9 Pro',       'platform_year' => 2021),
         'LE2123'    => array('platform_model' => '9 Pro',       'platform_year' => 2021),
         'LE2125'    => array('platform_model' => '9 Pro',       'platform_year' => 2021),
+
+        '2'         => array('platform_model' => '2',           'platform_year' => 2015),
+        '7 Pro'     => array('platform_model' => '7 Pro',       'platform_year' => 2019),
     );
 }
 

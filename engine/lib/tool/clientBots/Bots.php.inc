@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.84
+ * @version 1.0.85
  * @date Creation: May 2018
- * @date Modification: Jul 2021
+ * @date Modification: Sep 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5331,6 +5331,66 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://dataforseo.com/dataforseo-bot',
         'engine_title'      => 'DataForSeo',
         'engine_url'        => 'https://dataforseo.com/',
+    );
+
+    /* webprosbot */
+    $knownBots['webprosbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'webprosbot',
+        'bot_url'           => '',
+        'engine_title'      => 'WebPros',
+        'engine_url'        => 'https://webpros.com/',
+    );
+
+    /* webgains-bot */
+    $knownBots['webgains-bot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'webgains-bot',
+        'bot_url'           => '',
+        'engine_title'      => 'WebGains',
+        'engine_url'        => 'https://www.webgains.com/public/en/',
+    );
+
+    /* netvibes */
+    $knownBots['netvibes'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => '',
+        'bot_url'           => '',
+        'engine_title'      => 'NetVibes',
+        'engine_url'        => 'https://www.netvibes.com/',
+    );
+
+    /* CISPA Web Analyzer */
+    $knownBots['cispa web analyzer'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'CISPA Web Analyzer',
+        'bot_url'           => 'https://notify.cispa.de',
+        'engine_title'      => 'CISPA',
+        'engine_url'        => 'https://cispa.de/',
+    );
+
+    /* ias-or */
+    $knownBots['ias-or'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ias-or',
+        'bot_url'           => 'https://www.admantx.com/service-fetcher.html',
+        'engine_title'      => 'Admantx',
+        'engine_url'        => 'https://www.admantx.com/',
+    );
+
+    /* Linespider */
+    $knownBots['linespider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Linespider',
+        'bot_url'           => 'https://lin.ee/4dwXkTH',
+        'engine_title'      => 'Line',
+        'engine_url'        => 'https://line.me/',
     );
 
     /* Return bot list */

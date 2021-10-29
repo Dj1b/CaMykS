@@ -3,9 +3,9 @@
  * @brief Lenovo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: Apr 2018
- * @date Modification: Jun 2021
+ * @date Modification: Oct 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -35,6 +35,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'TAB 2 A10-70L'         => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'TAB 2 A10-70LC'        => array('platform_model' => 'Tab 2 A10',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'TB2-X30F'              => array('platform_model' => 'Tab 2',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
+        'YT3-850M'              => array('platform_model' => 'Yoga Tab 3 8\'',      'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'YT3-X90F'              => array('platform_model' => 'Yoga Tab 3 Pro 10',   'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2015),
         'YB1-X90F'              => array('platform_model' => 'Yoga Book',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
         'YT3-X50F'              => array('platform_model' => 'Yoga Tab 3',          'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2016),
