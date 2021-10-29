@@ -3,7 +3,7 @@
  * @brief Unknown bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.35
+ * @version 1.0.35.1
  * @date Creation: Jan 2019
  * @date Modification: Oct 2021
  * @copyright 2019 - 2021 CaMykS Team
@@ -937,6 +937,7 @@ function _client_getKnownUnknowns() {
         'engine_title'      => '',
         'engine_url'        => '',
     );
+    */
 
     /* clark-crawler */
     $unknownBots['clark-crawler'] = array(
