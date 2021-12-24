@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.55
+ * @version 1.0.56
  * @date Creation: May 2018
- * @date Modification: Oct 2021
+ * @date Modification: Nov 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -77,6 +77,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'mi note 10 pro'        => array('platform_model' => 'Mi Note 10 Pro',      'platform_year' => 2019),
         'mi note 10 lite'       => array('platform_model' => 'Mi Note 10 Lite',     'platform_year' => 2020),
         'mi 10'                 => array('platform_model' => 'Mi 10',               'platform_year' => 2020),
+        'mi 10 pro'             => array('platform_model' => 'Mi 10 Pro',           'platform_year' => 2020),
         'mi 10t lite'           => array('platform_model' => 'Mi 10T Lite',         'platform_year' => 2020),
 
         'm2002j9e'              => array('platform_model' => 'Mi 10 Youth Edition', 'platform_year' => 2020),

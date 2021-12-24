@@ -3,9 +3,9 @@
  * @brief Pocophone (Xiaomi subsidiary) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Feb 2020
- * @date Modification: Sep 2021
+ * @date Modification: Nov 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,6 +25,7 @@ function get_PocophoneClientDevices() {
         'm2007j20ci'    => array('platform_model' => 'X3',      'platform_year' => 2020),
         'm2010j19cg'    => array('platform_model' => 'M3',      'platform_year' => 2020),
         'm2012k11ag'    => array('platform_model' => 'F3',      'platform_year' => 2021),
+        'm2103k19pg'    => array('platform_model' => 'M3 Pro',  'platform_year' => 2021),
         'm2102j20sg'    => array('platform_model' => 'X3 Pro',  'platform_year' => 2021),
         'x3 pro'        => array('platform_model' => 'X3 Pro',  'platform_year' => 2021),
     );

@@ -3,9 +3,9 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.105
+ * @version 1.0.106
  * @date Creation: Apr 2018
- * @date Modification: Oct 2021
+ * @date Modification: Nov 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -299,6 +299,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A107M'  => array('platform_model' => 'Galaxy A10S',                     'platform_year' => 2019),
         'SM-A115F'  => array('platform_model' => 'Galaxy A11',                      'platform_year' => 2020),
         'SM-A125F'  => array('platform_model' => 'Galaxy A12',                      'platform_year' => 2020),
+        'SM-A127F'  => array('platform_model' => 'Galaxy A12',                      'platform_year' => 2020),
         'SM-A205F'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205FN' => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
         'SM-A205G'  => array('platform_model' => 'Galaxy A20',                      'platform_year' => 2019),
@@ -338,6 +339,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A516B'  => array('platform_model' => 'Galaxy A51 5G',                   'platform_year' => 2020),
         'SM-A526B'  => array('platform_model' => 'Galaxy A52 5G',                   'platform_year' => 2020),
         'SM-A525F'  => array('platform_model' => 'Galaxy A52',                      'platform_year' => 2021),
+        'SM-A528B'  => array('platform_model' => 'Galaxy A52s 5G',                  'platform_year' => 2021),
         'SM-A7050'  => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
         'SM-A6060'  => array('platform_model' => 'Galaxy A60',                      'platform_year' => 2019),
         'SM-A705FN' => array('platform_model' => 'Galaxy A70',                      'platform_year' => 2019),
@@ -381,9 +383,10 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-J200M'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2015),
         'SM-G532G'  => array('platform_model' => 'Galaxy J2 Prime',                 'platform_year' => 2016),
         'SM-G532M'  => array('platform_model' => 'Galaxy J2 Prime',                 'platform_year' => 2016),
-        'SM-J260F'  => array('platform_model' => 'Galaxy J2 Core',                  'platform_year' => 2018),
         'SM-J250F'  => array('platform_model' => 'Galaxy J2 Pro',                   'platform_year' => 2018),
         'SM-J250Y'  => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2018),
+        'SM-J260F'  => array('platform_model' => 'Galaxy J2 Core',                  'platform_year' => 2018),
+        'SM-J260FU' => array('platform_model' => 'Galaxy J2 Core',                  'platform_year' => 2020),
         'SM-J260T1' => array('platform_model' => 'Galaxy J2',                       'platform_year' => 2018),
         'SM-J310'   => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
         'SM-J3119'  => array('platform_model' => 'Galaxy J3',                       'platform_year' => 2016),
@@ -535,6 +538,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-F900F'  => array('platform_model' => 'Galaxy Fold',                     'platform_year' => 2019),
         'SM-F916B'  => array('platform_model' => 'Galaxy Z Fold2',                  'platform_year' => 2020),
         'SM-F916U1' => array('platform_model' => 'Galaxy Z Fold2 5G',               'platform_year' => 2020),
+        'SM-F926B'  => array('platform_model' => 'Galaxy Z Fold 3',                 'platform_year' => 2021),
         'SM-F711B'  => array('platform_model' => 'Galaxy Z Flip 3',                 'platform_year' => 2021),
 
         /* Samsung Galaxy other series */

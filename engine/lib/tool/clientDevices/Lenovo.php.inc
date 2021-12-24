@@ -3,9 +3,9 @@
  * @brief Lenovo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.34
+ * @version 1.0.35
  * @date Creation: Apr 2018
- * @date Modification: Oct 2021
+ * @date Modification: Nov 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -45,6 +45,7 @@ function get_LenovoClientDevice($deviceCode='') {
         'TB3-850F'              => array('platform_model' => 'Tab 3 8\'',           'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-8703F'              => array('platform_model' => 'Tab 3 8 Plus',        'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
         'TB-X304F'              => array('platform_model' => 'Tab 4',               'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2017),
+        'TB-7104F'              => array('platform_model' => 'Tab E7',              'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
         'TB-X104F'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
         'TB-X104F1'             => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),
         'TB-X104L'              => array('platform_model' => 'Tab E10',             'platform_type' => 'tablet', 'platform_format'  => 'tablet',    'platform_year' => 2018),

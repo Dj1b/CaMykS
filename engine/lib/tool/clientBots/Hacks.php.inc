@@ -3,9 +3,9 @@
  * @brief Hacks client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: May 2018
- * @date Modification: Jun 2021
+ * @date Modification: Dec 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -119,7 +119,13 @@ function _client_getKnownHacks() {
     /* Nuclei vulnerability hack */
     $knownHacks['nuclei (@'] = array(
         'platform_type' => 'hack',
-        'hack_info'     => 'Unknown hack',
+        'hack_info'     => 'Nuclei vulnerability hack',
+    );
+
+    /* Log4j exploit */
+    $knownHacks['ldap://'] = array(
+        'platform_type' => 'hack',
+        'hack_info'     => 'Log4j Exploit',
     );
 
     /* unknown hack */
