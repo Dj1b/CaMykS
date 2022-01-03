@@ -3,9 +3,9 @@
  * @brief Infinix client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.26
+ * @version 1.0.27
  * @date Creation: Feb 2019
- * @date Modification: Oct 2021
+ * @date Modification: Nov 2021
  * @copyright 2019 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -54,6 +54,7 @@ function get_InfinixClientDevice($deviceCode='') {
         'X609'          => array('platform_model' => 'Smart 2 HD',  'platform_year' => 2018),
         'X653'          => array('platform_model' => 'Smart 4',     'platform_year' => 2019),
         'X653C'         => array('platform_model' => 'Smart 4',     'platform_year' => 2019),
+        'X657C'         => array('platform_model' => 'Smart 5',     'platform_year' => 2020),
 
         /* Zero serie */
         'Zero 3'        => array('platform_year' => 2015),
@@ -62,6 +63,7 @@ function get_InfinixClientDevice($deviceCode='') {
         /* S serie */
         'X626'          => array('platform_model' => 'S4',          'platform_year' => 2019),
         'X626B'         => array('platform_model' => 'S4',          'platform_year' => 2019),
+        'X652A'         => array('platform_model' => 'S5',          'platform_year' => 2019),
         'X652B'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
         'X652C'         => array('platform_model' => 'S5 Lite',     'platform_year' => 2019),
         'X660C'         => array('platform_model' => 'S5 Pro',      'platform_year' => 2020),

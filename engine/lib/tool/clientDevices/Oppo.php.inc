@@ -3,9 +3,9 @@
  * @brief Oppo client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.43
+ * @version 1.0.44
  * @date Creation: Nov 2018
- * @date Modification: Oct 2021
+ * @date Modification: Dec 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -61,8 +61,10 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH1951'   => array('platform_model' => 'Reno 2 Z',                'platform_year' => 2019),
         'CPH1969'   => array('platform_model' => 'F11 Pro',                 'platform_year' => 2019),
         'CPH1979'   => array('platform_model' => 'Reno Z',                  'platform_year' => 2019),
+        'CPH1989'   => array('platform_model' => 'Reno 2F',                 'platform_year' => 2019),
         'CPH2005'   => array('platform_model' => 'Find X2 Lite',            'platform_year' => 2020),
         'CPH2009'   => array('platform_model' => 'Find X2 Pro',             'platform_year' => 2020),
+        'PDEM30'    => array('platform_model' => 'Find X2 Pro',             'platform_year' => 2020),
         'CPH2015'   => array('platform_model' => 'A31',                     'platform_year' => 2020),
         'CPH2021'   => array('platform_model' => 'A91',                     'platform_year' => 2020),
         'CPH2025'   => array('platform_model' => 'X2 Pro',                  'platform_year' => 2020),
@@ -79,6 +81,7 @@ function get_OppoClientDevice($deviceCode='') {
         'CPH2195'   => array('platform_model' => 'A54 5G',                  'platform_year' => 2021),
         'CPH2207'   => array('platform_model' => 'Find X3 Neo',             'platform_year' => 2021),
         'CPH2211'   => array('platform_model' => 'A94 5G',                  'platform_year' => 2021),
+        'CPH2251'   => array('platform_model' => 'Reno 6 5G',               'platform_year' => 2021),
     );
 
     /* Check for returning list */

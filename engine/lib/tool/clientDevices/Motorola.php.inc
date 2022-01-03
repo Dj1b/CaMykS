@@ -3,9 +3,9 @@
  * @brief Motorola client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.32
+ * @version 1.0.33
  * @date Creation: Apr 2018
- * @date Modification: Sep 2021
+ * @date Modification: Nov 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,6 +31,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'XT1254'            => array('platform_model' => 'Droid Turbo',         'platform_year' => 2014),
         'XT1526'            => array('platform_model' => 'Moto E (2nd Gen)',    'platform_year' => 2015),
         'XT1580'            => array('platform_model' => 'Moto X Force',        'platform_year' => 2015),
+        'XT1585'            => array('platform_model' => 'Droid Turbo 2',       'platform_year' => 2015),
         'XT1635'            => array('platform_model' => 'Moto Z1 Play',        'platform_year' => 2016),
         'XT1650'            => array('platform_model' => 'Moto Z',              'platform_year' => 2016),
         'XT1700'            => array('platform_model' => 'Moto E3',             'platform_year' => 2016),

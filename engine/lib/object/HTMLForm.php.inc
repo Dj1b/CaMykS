@@ -3,10 +3,10 @@
  * @brief HTML form object library
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.8.1
+ * @version 1.1.8.2
  * @date Creation: Jun 2005
- * @date Modification: Dec 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Nov 2021
+ * @copyright 2005 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -1096,11 +1096,11 @@ class HTMLForm {
         $html = '<input type="number"';
         $html .= ' value="'.(int)$params['default'].'"';
         $html .= $this->build_inputGenericAttributes($params);
-        if ($params['min'] > 0)
+        if (is_int($params['min']))
             $html .= ' min="'.$params['min'].'"';
-        if ($params['max'] > 0)
+        if (is_int($params['max']))
             $html .= ' max="'.$params['max'].'"';
-        if ($params['step'] > 0)
+        if (is_int($params['step']))
             $html .= ' step="'.$params['step'].'"';
         $html .= ' />';
         return $html;

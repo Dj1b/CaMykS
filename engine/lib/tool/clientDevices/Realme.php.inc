@@ -3,9 +3,9 @@
  * @brief Realme (Oppo subsidiary) client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.12
  * @date Creation: Apr 2020
- * @date Modification: Sep 2021
+ * @date Modification: Nov 2021
  * @copyright 2020 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -43,8 +43,10 @@ function get_RealmeClientDevice($deviceCode='') {
         'RMX2170'   => array('platform_model' => '7 Pro',           'platform_year' => 2021),
         'RMX2185'   => array('platform_model' => 'C11',             'platform_year' => 2020),
         'RMX2189'   => array('platform_model' => 'C12',             'platform_year' => 2021),
+        'RMX2193'   => array('platform_model' => 'Narzo 20',        'platform_year' => 2021),
         'RMX2202'   => array('platform_model' => 'GT 5G',           'platform_year' => 2021),
         'RMX3085'   => array('platform_model' => '8',               'platform_year' => 2021),
+        'RMX3241'   => array('platform_model' => '8 5G',            'platform_year' => 2021),
     );
 
     /* Check for returning list */

@@ -3,9 +3,9 @@
  * @brief Huawei client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.93
+ * @version 1.0.94
  * @date Creation: Apr 2018
- * @date Modification: Oct 2021
+ * @date Modification: Nov 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -317,6 +317,7 @@ function get_HuaweiClientDevices() {
         'VCE-AL00'  => array('platform_model' => 'Nova 4',          'platform_year' => 2018),
         'YAL-L21'   => array('platform_model' => 'Nova 5T',         'platform_year' => 2019),
         'SEA-AL10'  => array('platform_model' => 'Nova 5 Pro',      'platform_year' => 2019),
+        'JEF-AN20'  => array('platform_model' => 'Nova 7 5G',       'platform_year' => 2020),
         'CDY-AN00'  => array('platform_model' => 'Nova 7 SE',       'platform_year' => 2020),
 
         /* Huawei G series */
@@ -327,6 +328,13 @@ function get_HuaweiClientDevices() {
 
         /* Huawei Enjoy models */
         'NCE-AL00'  => array('platform_model' => 'Enjoy 6',         'platform_year' => 2016),
+        'DIG-AL00'  => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
+        'DIG-L01'   => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
+        'DIG-L03'   => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
+        'DIG-L21'   => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
+        'DIG-L23'   => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
+        'DIG-L21HN' => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
+        'DIG-TL10'  => array('platform_model' => 'Enjoy 6s',        'platform_year' => 2017),
         'FLA-AL20'  => array('platform_model' => 'Enjoy 8 Plus',    'platform_year' => 2018),
         'DUB-AL00'  => array('platform_model' => 'Enjoy 9',         'platform_year' => 2018),
     );

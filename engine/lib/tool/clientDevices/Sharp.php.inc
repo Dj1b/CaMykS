@@ -3,9 +3,9 @@
  * @brief Sharp client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: May 2018
- * @date Modification: Sep 2021
+ * @date Modification: Nov 2021
  * @copyright 2018 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,6 +27,7 @@ function get_SharpClientDevice($deviceCode='') {
         'SHV40'     => array('platform_model' => 'Aquos Sense',     'platform_year' => 2017),
         'FS8032'    => array('platform_model' => 'Aquos S3',        'platform_year' => 2018),
         'SH-D01'    => array('platform_model' => 'Aquos D10',       'platform_year' => 2018),
+        'S3-SH'     => array('platform_model' => 'Android One S3',  'platform_year' => 2018),
     );
 
     /* Check for returning list */

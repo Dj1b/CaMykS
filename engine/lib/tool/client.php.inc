@@ -3,9 +3,9 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.140
+ * @version 1.0.141
  * @date Creation: Jun 2007
- * @date Modification: Oct 2021
+ * @date Modification: Dec 2021
  * @copyright 2007 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -640,7 +640,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Doogee devices, to be inserted before Xiaomi/Wiko/Acer/Umidigi */
-    elseif (preg_match('/; (MIX(|Lite|2| 3)|N20(Pro)?|S90|S60Lite|S[58]8Pro|S40Pro|S55_Lite|X[37]0|X[0-9]0L|X95|X95Pro|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/; (MIX(|Lite|2| 3)|N20(Pro)?|S90|S60Lite|S59|S[58]8Pro|S40Pro|S55_Lite|X[37]0|X[0-9]0L|X95|X95Pro|X5max_PRO)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Doogee.php.inc');
         $model = $matches[1];
         $infos = array_merge($infos, get_DoogeeClientDevice($model));
@@ -1086,7 +1086,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Oppo devices */
-    elseif (preg_match('/ (1201|A37f|A37fw|A1601|F1f|PA[FD]M00|CPH[0-9]{4})( Build|\))/U', $ua, $matches)) {
+    elseif (preg_match('/ (1201|A37f|A37fw|A1601|F1f|PA[FD]M00|PDEM30|CPH[0-9]{4})( Build|\))/U', $ua, $matches)) {
         include_once('clientDevices/Oppo.php.inc');
         $infos = array_merge($infos, get_OppoClientDevice($matches[1]));
     } elseif (preg_match('/OPPO ([^.]+) Build/', $ua, $matches)) {
@@ -1133,7 +1133,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check Sharp devices */
-    elseif (preg_match('/(SH\-[0-9]{2}[A-Z]|SH\-[A-Z][0-9]{2}|SH[A-Z][0-9]{2}|FS[0-9]{4})( Build|\))/Ui', $ua, $matches)) {
+    elseif (preg_match('/(SH\-[0-9]{2}[A-Z]|SH\-[A-Z][0-9]{2}|SH[A-Z][0-9]{2}|FS[0-9]{4}|S3\-SH)( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Sharp.php.inc');
         $infos = array_merge($infos, get_SharpClientDevice($matches[1]));
     }
@@ -2257,8 +2257,8 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check gen computer browsers */
-    elseif (preg_match('/(Chromium|Netscape|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront|WhatsApp|Dalvik|Snapchat|ManicTime|Flock)(?:\/| )?([a-z0-9\._]*)/i', $ua, $matches)) {
-        $rep = array('VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser', 'NetFront' => 'Access NetFront');
+    elseif (preg_match('/(Chromium|Netscape|Minefield|Fennec|Firefox|Galeon|iCab|Konqueror|IEMobile|Shiira|NetNewsWire|Symphony|Lynx|Crazy Browser|UCBrowser|GoBrowser|Cobra|ELinks|HotJava|Tor Browser|Dillo|FortiMail|VSE|MultiZilla|UCWEB|Otter|Netbox|AvantGo|NetFront|WhatsApp|Dalvik|Snapchat|ManicTime|Flock|SkypeUrlPreview Preview)(?:\/| )?([a-z0-9\._]*)/i', $ua, $matches)) {
+        $rep = array('VSE'=>'VSE Link Tester', 'UCWEB' => 'UC Browser', 'NetFront' => 'Access NetFront', 'SkypeUrlPreview Preview' => 'Skype URL Preview');
         $infos = array_merge(array(
             'platform_type'     => 'computer',
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],
@@ -3063,6 +3063,8 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
     if (preg_match('#^"Mozilla/5.0$#i', $ua))
         return $fake;
+     if (preg_match('#"$#i', $ua))
+        return $fake;
 
     /* fake requests from Lituania */
     if (preg_match('#^Dalvik/2.1.0 \(Linux; U; Android 5.1.1; D5503 Build/14.6.A.1.236\)$#i', $ua))
@@ -3308,6 +3310,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#^ALittle Client$#', $ua))
         return $fake;
 
+    /* Badly written ua */
+    if (preg_match('#^MMozilla/5\.0 #', $ua))
+        return $fake;
+
     /* default result */
     return false;
 }
@@ -3384,13 +3390,13 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '101',                    // current is 93 , nightly is +6
+                'MaxVersion'    => '102',                    // current is 94 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '100',                    // current is 94
+                'MaxVersion'    => '102',                    // current is 96
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3402,7 +3408,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '86',                    // current is 80
+                'MaxVersion'    => '87',                    // current is 81
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
@@ -3531,7 +3537,7 @@ function _client_isPocophoneDevice($ua='') {
     if (preg_match('/; (Pocophone|Poco) ([A-Za-z0-9 ]{1,})( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Pocophone.php.inc');
         return $matches[2];
-    } elseif (preg_match('/; (M2[0-1](02|04|07|10|12)[JK][0-9]{2}[ACPS][GI])( Build|\))/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (M2[0-1](02|03|04|07|10|12)[JK][0-9]{2}[ACPS][GI])( Build|\))/Ui', $ua, $matches)) {
         include_once('clientDevices/Pocophone.php.inc');
         if (is_PocophoneKnownDevice(strtolower($matches[1])))
           return $matches[1];
