@@ -3,10 +3,10 @@
  * @details Plugin / Theme CSS styles
  * @file plugin/theme/IndigoFlatStyle/css/style.css
  * @author CaMykS Team
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Oct 2014
- * @date Modification: Nov 2019
- * @copyright 2014 - 2019 CaMykS Team
+ * @date Modification: Jan 2022
+ * @copyright 2014 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,12 +26,13 @@ label {font-family:inherit; font-size:inherit; font-weight:inherit; font-style:i
 img {border:0;}
 table { border-spacing: 0; border-collapse: collapse;}
 blockquote { margin:8px 20px; }
-input, textarea, select, div.inputs, div.linputs, div.sinputs, div.vsinputs, div.vlinputs { padding:0; background: white; color:#808080; font-weight:bold; font-size:11px; border:solid 1px #e2e2e2; border-radius: 3px;}
+input, textarea, select, div.inputs, div.linputs, div.sinputs, div.vsinputs, div.vlinputs {padding:0; background: white; color:#808080; font-weight:bold; font-size:11px; border:solid 1px #e2e2e2; border-radius: 3px;}
 /* select { background: transparent; -webkit-appearance: none; height: 20px; border:0; line-height: 1px; color:#808080; font-weight:bold; } */
-input, textarea, option { padding:2px 4px; font-weight:bold; color:#808080; font-size:11px; transition:box-shadow 0.5s;}
+input, textarea, option {padding:2px 4px; font-weight:bold; color:#808080; font-size:11px; transition:box-shadow 0.5s;}
 input:focus, textarea:focus, select:focus {box-shadow: 0 0 4px 2px rgba(91, 141, 205, 0.5);}
 textarea{resize: none;}
 option.separator {color:#ababab; padding:0 4px; font-size:1px; height:4px; border-bottom:dotted 1px #ababab; margin-bottom:4px;}
+option:disabled {color:#b0b0b0;}
 .inputs{width:200px;} select.inputs{width:210px;} div.inputs{display:inline-block; width:210px; width:208px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden; }
 .linputs {width:400px;} select.linputs{width:410px;} div.linputs{display:inline-block; width:410px; width:408px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden;}
 .sinputs{width:100px;} select.sinputs{width:110px;} div.sinputs{display:inline-block; width:110px; width:100px; background:url(../img/form/selectArrowMedium.gif) 100% 0 no-repeat white; overflow:hidden;}
