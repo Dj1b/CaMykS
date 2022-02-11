@@ -3,7 +3,7 @@
  * @brief HTTP specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.4.2
  * @date Creation: Jul 2017
  * @date Modification: Feb 2022
  * @copyright 2017 - 2022 CaMykS Team
@@ -200,7 +200,7 @@ function http_getContentsUsingPHP($params=array()) {
     );
 
     /* Check SSL peer verification */
-    if ($params['SSL_VerifyPeer']) {
+    if ($params['SSL_VerifyPeer'] === false) {
         $opts['ssl'] = array(
             'verify_peer'       => false,
             'verify_peer_name'  => false,
@@ -253,7 +253,7 @@ function http_getContentsUsingCURL($params=array()) {
         'url'               => '',
         'method'            => 'GET', // GET | POST
         'values'            => array(), // fields
-        'SSL_VerifyPeer'    => true, // curl
+        'SSL_VerifyPeer'    => true,
         'user_agent'        => $camyks->get_confValue('UserAgent'),
         'referer'           => '',
         'timeout'           => 60,
