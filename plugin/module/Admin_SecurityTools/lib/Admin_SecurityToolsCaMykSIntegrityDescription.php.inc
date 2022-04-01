@@ -1,12 +1,12 @@
 <?php
 /**
  * @brief CaMykS integrity file
- * @date Creation: 2022-01-03
+ * @date Creation: 2022-04-01
  */
 
 $this->integrityCheckResult = array (
-  'date' => 'Mon, 03 Jan 2022 12:52:34 +0100',
-  'gitLastCommit' => '1aecabe2434c7c5e63c740111a2f33c7b498df10
+  'date' => 'Fri, 01 Apr 2022 11:44:00 +0200',
+  'gitLastCommit' => '55c5cd499b9636bb4346b6453cf15dc4c1de73cd
 ',
   'files' => 
   array (
@@ -370,6 +370,13 @@ $this->integrityCheckResult = array (
     'documents/changelogs/Release-20211101.md' => 
     array (
       'checksum' => 'f025db863520602508d6f3006b2f55a4d6f4a7d7c258d5639c79941a11c3f5ae',
+      'mime' => 'text/plain',
+      'normalised' => 0,
+      'version' => '',
+    ),
+    'documents/changelogs/Release-20220101.md' => 
+    array (
+      'checksum' => '33a78f24594f9a93cd8f65ef3898597ed14270ff89157142c50499afac74a998',
       'mime' => 'text/plain',
       'normalised' => 0,
       'version' => '',
@@ -2313,6 +2320,13 @@ $this->integrityCheckResult = array (
       'normalised' => 0,
       'version' => '1.0',
     ),
+    'engine/data/js/object/WebSocketConnector.js' => 
+    array (
+      'checksum' => '068c374ba40ed0b4b9182047cbf663dc3d033dd197795d19b8d5859ac2c1e36d',
+      'mime' => 'text/plain',
+      'normalised' => 0,
+      'version' => '1.0',
+    ),
     'engine/data/js/tool/adminengine.js' => 
     array (
       'checksum' => '9ffdff579c8e63949f062fac1cb81e6b3854ef27455d6d3041492eab9fa52346',
@@ -2413,10 +2427,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/etc/static.php.inc' => 
     array (
-      'checksum' => '07d6745575ed11cea234fca3ddd3c5960f660e9d3e148d9c108a505925b8d83d',
+      'checksum' => 'e112b23396d8b1db902895c4202bc6651cedade6549d46e16da8e0f04d9da1d2',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.35',
+      'version' => '1.0.36',
     ),
     'engine/lib/object/CBench.php.inc' => 
     array (
@@ -2448,10 +2462,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/object/CPDF.php.inc' => 
     array (
-      'checksum' => '7a41a37d8adda4a08e6421a6fc3e8ea6c79b2df65a00ebd8560ef6b95c808116',
+      'checksum' => 'd451e5c1d1b92449f028e8be0570f0091c98511167acabf3489e2c45e62f4700',
       'mime' => 'text/x-c++',
       'normalised' => 1,
-      'version' => '1.0.3',
+      'version' => '1.0.3.1',
     ),
     'engine/lib/object/CRequestAnswer.php.inc' => 
     array (
@@ -2462,10 +2476,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/object/CrontabEditor.php.inc' => 
     array (
-      'checksum' => '2c052bc59035aa7e503c20d337eb237d27d6011d13877be105b9143f28d01c6c',
+      'checksum' => 'c72d61810e2e025d5b14f8d02a08e082bc968aee7fb8cfc7f2c86bafd8778f44',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.0',
+      'version' => '1.0.0.1',
     ),
     'engine/lib/object/Cryptographer.php.inc' => 
     array (
@@ -3946,10 +3960,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/tool/file.php.inc' => 
     array (
-      'checksum' => 'fb831460d0c748402e3346fdc6f0075eb5cec0bdfb506262bb92cd7ab190852f',
+      'checksum' => '10507d1adcddb1cd6801c26db52d77fcc900e276fb281a44b6f5189fc05241b5',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.7',
+      'version' => '1.0.7.',
     ),
     'engine/lib/tool/finance.php.inc' => 
     array (
@@ -3981,10 +3995,10 @@ $this->integrityCheckResult = array (
     ),
     'engine/lib/tool/http.php.inc' => 
     array (
-      'checksum' => '6711b505f1c59f66a91fac1e232a454f0bfb33095c14efd7ed3ac7702edd0534',
+      'checksum' => 'c1e8d3c2cea1cd9973ca369c79e14d3bd1f8c91979c55b0462b63e57cab22283',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.4',
+      'version' => '1.0.4.2',
     ),
     'engine/lib/tool/input.php.inc' => 
     array (
@@ -17582,10 +17596,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/module/Admin_User/lib/AdminUser.php.inc' => 
     array (
-      'checksum' => '35c7d7b5fdb0c0c314911794869240150c8c3d4d684f29c423a16fa4445686fc',
+      'checksum' => '6d3083d2f0ee6fe959fa187cbe9f52f11101da68aea24b494c7cfa43a306f392',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.2.1',
+      'version' => '1.2.2',
     ),
     'plugin/module/Admin_User/locale/translation_en.php.inc' => 
     array (
@@ -18597,10 +18611,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/module/Content_GenericNews/lib/Content_GenericNewsList.php.inc' => 
     array (
-      'checksum' => 'f8925ce89e248513b2980bfdf1ab9d021f8683996fdaba3b3c2c9063e89d00c0',
+      'checksum' => '47250d590777aea830cf1d05b4d4dbdff20ba335bd34a49c3b6fc9f3402fab16',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1',
+      'version' => '1.0.1.1',
     ),
     'plugin/module/Content_GenericNews/locale/translation_fr.php.inc' => 
     array (
@@ -19241,10 +19255,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/module/Content_SystemSiteReport/lib/SystemSiteReportForm.php.inc' => 
     array (
-      'checksum' => '1b76cf4f44c1258853119309f236cb5248e9674c0c85c16602e767e631311d1a',
+      'checksum' => 'dfe1fdbfd2c8b7e0bad21c9da55e8f658dc06d116861568cfe5b7a64d9e597b4',
       'mime' => 'text/x-php',
       'normalised' => 1,
-      'version' => '1.0.1',
+      'version' => '1.0.1.1',
     ),
     'plugin/module/Content_SystemSiteReport/locale/translation_fr.php.inc' => 
     array (
@@ -20620,10 +20634,10 @@ $this->integrityCheckResult = array (
     ),
     'plugin/theme/IndigoFlatStyle/css/style.css' => 
     array (
-      'checksum' => '3d5b1485435eb13e12e8f76edfc12e4476eaf93403d75405fb69c6a37dd94ac1',
+      'checksum' => '7f77c7f016a5a4ae5581664cf04af67b29432ca92ebe1c28351cf9d6bcf5061a',
       'mime' => 'text/plain',
       'normalised' => 0,
-      'version' => '1.0.5',
+      'version' => '1.0.7',
     ),
     'plugin/theme/IndigoFlatStyle/img/admin/bkgd.gif' => 
     array (
