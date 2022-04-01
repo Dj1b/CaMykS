@@ -2,12 +2,11 @@
 /**
  * @brief File specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/file.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.7.
  * @date Creation: Jun 2005
- * @date Modification: Dec 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Feb 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo complete file type, extension, and mime list
@@ -672,32 +671,37 @@ function file_search($pattern='*', $rootPath='./', $globFlags=0) {
 function file_md5($file, $contextParams=array()) {
     global $camyks;
 
-    /* check default md5_file method */
-    if (($v = @md5_file($file)) !== false)
-        return $v;
+    /* Check for no context */
+    if (count($contextParams) == 0) {
+        /* Check default md5_file method */
+        if (($v = @md5_file($file)) !== false)
+            return $v;
 
-    /* check if function exists */
-    if (!function_exists('error_get_last'))
-        return false;
+        /* Check if function exists */
+        if (!function_exists('error_get_last'))
+            return false;
 
-    /* get error from md5_file method */
-    $error = error_get_last();
+        /* Get error from md5_file method */
+        $error = error_get_last();
 
-    /* check operation failed error */
-    if (preg_match('/operation failed/', $error['message']))
-        return false;
+        /* Check operation failed error */
+        if (preg_match('/operation failed/', $error['message']))
+            return false;
 
-    /* check HTTP 404 error : file not found */
-    if (preg_match('/HTTP\/1.(0|1) 404/', $error['message']))
-        return false;
+        /* Check HTTP 404 error : file not found */
+        if (preg_match('/HTTP\/1.(0|1) 404/', $error['message']))
+            return false;
 
-    /* check HTTP 403 error : forbidden or HTTP 400 error : bad request */
-    if (preg_match('/HTTP\/1.(0|1) 403/', $error['message']) or preg_match('/HTTP\/1.(0|1) 400/', $error['message'])) {
-        if (($v = http_getContents(array_merge($contextParams, array('url'=> $file)))) !== false)
-            return md5($v);
+        /* Check HTTP 403 error : forbidden or HTTP 400 error : bad request */
+        if (!preg_match('/HTTP\/1.(0|1) 403/', $error['message']) and !preg_match('/HTTP\/1.(0|1) 400/', $error['message']))
+            return false;
     }
 
-    /* send default result */
+    /* Do md5 request with context */
+    if (($v = http_getContents(array_merge($contextParams, array('url'=> $file)))) !== false)
+        return md5($v);
+
+    /* Send default result */
     return false;
 }
 

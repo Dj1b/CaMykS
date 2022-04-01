@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Content_GenericNews Module news list library.
+ * @brief Content_GenericNews module, news list library.
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2007
- * @date Modification: May 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Feb 2022
+ * @copyright 2007 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -21,7 +21,7 @@ final class Content_GenericNewsList extends ModuleLibrary {
      * @param Module $module
      * @return void
      */
-    public function __construct($id = 0, &$module) {
+    public function __construct($id, &$module) {
         parent::__construct($id, $module);
 
         /* Content attributes */

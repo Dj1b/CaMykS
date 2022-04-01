@@ -2,12 +2,11 @@
 /**
  * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
- * @file engine/lib/object/CPDF.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: May 2010
- * @date Modification: Sep 2019
- * @copyright 2010 - 2019 CaMykS Team
+ * @date Modification: Jan 2022
+ * @copyright 2010 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -487,7 +486,7 @@ class CPDF extends FPDF {
     private function _write_htmlAddLink($URL, $txt) {
         $this->set_textColor(array(0,0,255));
         $this->_write_htmlSetStyle('U', true);
-        $this->Write(5, $txt, $URL);
+        $this->Write(5, $this->decode_HTMLText($txt), $URL);
         $this->_write_htmlSetStyle('U', false);
         $this->set_textColor('');
     }

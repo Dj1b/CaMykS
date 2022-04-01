@@ -3,10 +3,10 @@
  * @brief Admin_User Module user library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.1
+ * @version 1.2.2
  * @date Creation: Sep 2005
- * @date Modification: Jul 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Jan 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @remark Permissions are defined as an int constructed like :<br />
@@ -120,16 +120,16 @@ final class AdminUser {
     private function get_fromDatabase() {
         global $camyks;
 
-        /* check login */
+        /* Check login */
         if ($this->login=='')
             return false;
 
-        /* build sql query */
+        /* Build sql query */
         $sql = "select *";
         $sql .= " from admin_user";
         $sql .= " where login='".$this->login."'";
 
-        /* execute sql query */
+        /* Execute sql query */
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
 
             /* get data from database */
@@ -151,7 +151,7 @@ final class AdminUser {
     private function create_toDatabase() {
         global $camyks;
         $this->is_new = 0;
-        /* build sql query */
+        /* Build sql query */
         $sql = 'INSERT INTO `admin_user` (';
         $sql .= '`login`';
         $sql .= ', `pwd`';
@@ -187,7 +187,7 @@ final class AdminUser {
     private function update_toDatabase() {
         global $camyks;
 
-        /* build sql query */
+        /* Build sql query */
         $sql = "UPDATE `admin_user`";
         $sql .= " SET `email`='".$this->email. "'";
         if ($this->change_pwd == 1) {
@@ -224,7 +224,7 @@ final class AdminUser {
         /* initialise params */
         $params = array('login' => 'admin', 'password' => 'admin', 'email' => 'admin@example.com');
 
-        /* check session params */
+        /* Check session params */
         $sData = $camyks->get_sessionValue('InstallerConfig', array());
         if (isset($sData['webmaster_login']) and trim($sData['webmaster_login']) != '')
             $params['login'] = preg_replace('/["\']/', '', $sData['webmaster_login']);
@@ -233,7 +233,7 @@ final class AdminUser {
         if (isset($sData['webmaster_email']) and trim($sData['webmaster_email']) != '')
             $params['email'] = $sData['webmaster_email'];
 
-        /* create table */
+        /* Create table */
         $fields = array(
             array('name'=>'login', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>ADMINUSER_LOGIN_MAX_LENGTH, 'default'=>''),
             array('name'=>'pwd', 'type'=>'text', 'desc1'=>'varchar', 'desc2'=>140, 'default'=>''),
@@ -276,15 +276,15 @@ final class AdminUser {
         global $camyks;
         if (!isset($this->_libIsInstalled)) {
 
-            /* check with plugin manager */
+            /* Check with plugin manager */
             if (isset($camyks->modules['Admin_PluginManager'])) {
                 $this->_libIsInstalled = $camyks->modules['Admin_PluginManager']->check_tableExists('admin_user');
             } else {
 
-                /* build sql query */
+                /* Build sql query */
                 $sql = 'show tables like "admin_user"';
 
-                /* execute sql query */
+                /* Execute sql query */
                 if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
                     /* get data from database */
                     $this->_libIsInstalled = ($camyks->db_conn->get_queryDataLine()!==false);
@@ -307,7 +307,7 @@ final class AdminUser {
         if (strlen($data) > 160)
             return false;
 
-        /* build sql query */
+        /* Build sql query */
         $sql = "update `admin_user`";
         $sql .= " set `twoFactorData`='".addslashes($data)."'";
         $sql .= " where login='".$this->login."'";
@@ -323,7 +323,7 @@ final class AdminUser {
     public function reset_2FAData($data='') {
         global $camyks;
 
-        /* build sql query */
+        /* Build sql query */
         $sql = "update `admin_user`";
         $sql .= " set `twoFactorData`=''";
         $sql .= " where login='".$this->login."'";
@@ -347,7 +347,7 @@ final class AdminUser {
         /* get is_new value */
         $this->is_new = (isset ($_REQUEST[$prefix.'is_new']) ? $_REQUEST[$prefix.'is_new'] : 1);
 
-        /* check for password modification */
+        /* Check for password modification */
         $this->change_pwd = (isset ($_REQUEST[$prefix.'change_pwd']) ? $_REQUEST[$prefix.'change_pwd'] : 0);
         if ($this->change_pwd == 1) {
             $this->pwd = $_REQUEST[$prefix.'pwd'];
@@ -400,26 +400,26 @@ final class AdminUser {
         global $camyks;
 
         if ($this->is_new == 1) {
-            /* check empty login */
+            /* Check empty login */
             if ($this->login == '') {
                 $this->_libError = $this->get_translation('erroremptylogin');
                 return false;
             }
 
-            /* check login first and last char validity */
+            /* Check login first and last char validity */
             if ($this->login != trim($this->login)) {
                 $this->_libError = $this->get_translation('errorbadlogin');
                 $this->login = trim($this->login);
                 return false;
             }
 
-            /* check login length */
+            /* Check login length */
             if (strlen($this->login) < 3) {
                 $this->_libError = $this->get_translation('errorshortlogin');
                 return false;
             }
 
-            /* check login chars validity */
+            /* Check login chars validity */
             $l = string_parseSpecialChars($this->login, array('pattern'=>'/[^_a-zA-Z0-9]/'));
             if ($this->login != $l) {
                 $this->_libError = $this->get_translation('errorbadlogin');
@@ -427,7 +427,7 @@ final class AdminUser {
                 return false;
             }
 
-            /* check existing login */
+            /* Check existing login */
             if ($this->exists_login($this->login)) {
                 $this->_libError = $this->get_translation('errorexistinglogin');
                 return false;
@@ -435,30 +435,30 @@ final class AdminUser {
         }
 
         $this->email = trim($this->email);
-        /* check empty mail */
+        /* Check empty mail */
         if ($this->email == '') {
             $this->_libError = $this->get_translation('erroremptymail');
             return false;
         }
 
-        /* check email validity */
+        /* Check email validity */
         if (email_isValidEmail($this->email) == false){
             $this->_libError = $this->get_translation('errorbadmail');
             return false;
         }
 
         if ($this->change_pwd == 1) {
-            /* check empty password */
+            /* Check empty password */
             if ($this->pwd == '') {
                 $this->_libError = $this->get_translation('erroremptypwd');
                 return false;
             }
-            /* check password length */
+            /* Check password length */
             if (strlen($this->pwd) < 3) {
                 $this->_libError = $this->get_translation('errorshortpwd');
                 return false;
             }
-            /* check password & confirmation */
+            /* Check password & confirmation */
             if ($this->pwd != $this->pwd_conf) {
                 $this->_libError = $this->get_translation('errorconfpwd');
                 return false;
@@ -485,17 +485,18 @@ final class AdminUser {
     public function exists_login($login) {
         global $camyks;
 
-        /* check database connexion and by pass it for check while installing website */
+        /* Check database connexion and by pass it for check while installing website */
         if (!$camyks->db_conn->is_active())
             return false;
 
-        /* build sql query */
+        /* Build sql query */
         $sql = 'select login';
         $sql .= ' from admin_user';
         $sql .= ' where login="'.$login.'"';
-        /* execute sql query */
+
+        /* Execute sql query */
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
-            /* get value from database */
+            /* Load value from database */
             if ($camyks->db_conn->get_queryDataLine()) {
                 return true;
             }
@@ -511,14 +512,18 @@ final class AdminUser {
     public function can_login($pwd) {
         global $camyks;
 
-        /* build sql query */
+        /* Build sql query */
         $sql = 'select login, pwd from admin_user';
-        $sql .= ' where binary login="'.$this->login .'"';
+        $sql .= ' where login="'.$this->login .'"';
         $sql .= ' and active="1"';
 
-        /* execute sql query */
+        /* Execute sql query */
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
             if ($data = $camyks->db_conn->get_queryDataLine()) {
+                /* Check case sensitive login */
+                if ($data['login'] !== $this->login)
+                    return false;
+
                 /* Check password */
                 if (strlen($data['pwd']) == '32')
                     return password_check($pwd, $data['pwd']);
@@ -640,7 +645,7 @@ final class AdminUser {
         global $camyks;
         $list = array();
 
-        /* build sql query */
+        /* Build sql query */
         $sql = 'select login, firstname, lastname, email, active, rights';
         $sql .= ' from admin_user';
         if ($where != '') {
@@ -648,7 +653,7 @@ final class AdminUser {
         }
         $sql .= ' order by login;';
 
-        /* execute sql query */
+        /* Execute sql query */
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
             /* get informations from sql query */
             while ($data = $camyks->db_conn->get_queryDataLine()) {
@@ -712,13 +717,13 @@ final class AdminUser {
         global $camyks;
         $list = array();
 
-        /* build sql query */
+        /* Build sql query */
         $sql = 'select login ';
         $sql .= ' from admin_user';
         $sql .= ' order by login';
-        /* execute sql query */
+        /* Execute sql query */
         if ($camyks->db_conn->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__)) {
-            /* get informations from sql query */
+            /* Load informations from sql query */
             while ($data = $camyks->db_conn->get_queryDataLine()) {
                 $list[] = new AdminUser($data['login']);
             }

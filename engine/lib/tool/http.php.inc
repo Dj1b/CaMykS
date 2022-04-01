@@ -3,10 +3,10 @@
  * @brief HTTP specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.2
  * @date Creation: Jul 2017
- * @date Modification: Apr 2021
- * @copyright 2017 - 2021 CaMykS Team
+ * @date Modification: Feb 2022
+ * @copyright 2017 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -111,6 +111,7 @@ function http_getResponseCodeList() {
  * \e string referer <br />
  * \e integer timeout <br />
  * \e mixed headers <br />
+ * \e array ssl <br />
  * @endparblock
  * @return string
  */
@@ -128,6 +129,7 @@ function http_getContents($params=array()) {
         'referer'           => '',
         'timeout'           => 60,
         'headers'           => array('Content-type' => 'application/x-www-form-urlencoded'),
+        'ssl'               => array(),
     );
     $params = array_merge($defaultParams, $params);
 
@@ -153,6 +155,7 @@ function http_getContents($params=array()) {
  * \e string referer <br />
  * \e integer timeout <br />
  * \e mixed headers <br />
+ * \e array ssl <br />
  * @endparblock
  * @return false on failure, string on success
  */
@@ -169,8 +172,13 @@ function http_getContentsUsingPHP($params=array()) {
         'referer'       => '',
         'timeout'       => 60,
         'headers'       => array('Content-type' => 'application/x-www-form-urlencoded'),
+        'ssl'           => array(),
     );
     $params = array_merge($defaultParams, $params);
+
+    /* Move referer to headers */
+    if ($params['referer'] !== '')
+        $params['headers']['Referer'] = $params['referer'];
 
     /* Build header */
     if (is_string($params['headers']))
@@ -187,17 +195,24 @@ function http_getContentsUsingPHP($params=array()) {
             'header'        => $header,
             'method'        => $params['method'],
             'user_agent'    => $params['user_agent'],
-            'referer'       => $params['referer'],
             'timeout'       => $params['timeout'],
         ),
     );
 
     /* Check SSL peer verification */
-    if ($params['SSL_VerifyPeer']) {
+    if ($params['SSL_VerifyPeer'] === false) {
         $opts['ssl'] = array(
             'verify_peer'       => false,
             'verify_peer_name'  => false,
         );
+    }
+
+    /* Check other SSL parameters */
+    if (count($params['ssl']) > 0) {
+        if (isset($opts['ssl']))
+            $opts['ssl'] = array_merge($opts['ssl'], $params['ssl']);
+        else
+            $opts['ssl'] = $params['ssl'];
     }
 
     /* Add values to context */
@@ -226,6 +241,7 @@ function http_getContentsUsingPHP($params=array()) {
  * \e string referer <br />
  * \e integer timeout <br />
  * \e mixed headers <br />
+ * \e array ssl <br />
  * @endparblock
  * @return false on failure, string on success
  */
@@ -237,11 +253,12 @@ function http_getContentsUsingCURL($params=array()) {
         'url'               => '',
         'method'            => 'GET', // GET | POST
         'values'            => array(), // fields
-        'SSL_VerifyPeer'    => true, // curl
+        'SSL_VerifyPeer'    => true,
         'user_agent'        => $camyks->get_confValue('UserAgent'),
         'referer'           => '',
         'timeout'           => 60,
         'headers'           => array('Content-type' => 'application/x-www-form-urlencoded'),
+        'ssl'               => array(),
     );
     $params = array_merge($defaultParams, $params);
 
@@ -262,6 +279,8 @@ function http_getContentsUsingCURL($params=array()) {
     curl_setopt($request, CURLOPT_POST, $params['method']=='POST' ? 1 : 0);
     curl_setopt($request, CURLOPT_POSTFIELDS, $params['values']);
     curl_setopt($request, CURLOPT_SSL_VERIFYPEER, $params['SSL_VerifyPeer']);
+    if (isset($params['ssl']['ciphers']))
+        curl_setopt($request, CURLOPT_SSL_CIPHER_LIST, $params['ssl']['ciphers']);
     if ($params['timeout'] > 0)
         curl_setopt($request, CURLOPT_TIMEOUT, $params['timeout']);
     if ($params['user_agent'] != '')
