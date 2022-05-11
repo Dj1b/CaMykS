@@ -4,9 +4,9 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.8.1
  * @date Creation: Dec 2012
- * @date Modification: Feb 2021
+ * @date Modification: May 2022
  * @copyright 2012 - 2021 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -712,7 +712,7 @@ final class Admin_GenericEmailingManager extends Module {
                 if ($src[0] == 'internal') {
                     $l = $this->contactItem->get_fullNameList(array('ids'=>array_keys($contacts)));
                 } elseif (isset($camyks->modules[$src[0]])) {
-                    $l = $camyks->modules[$src[0]]->get_emailingManagerContactTitleFromIds(array_keys($contacts));
+                    $l = $camyks->modules[$src[0]]->get_emailingManagerContactTitleFromIds(array_keys($contacts), isset($src[1]) ? $src[1] : null);
                 } else {
                     $l = array();
                 }
