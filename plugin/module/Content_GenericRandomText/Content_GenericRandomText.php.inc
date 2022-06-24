@@ -3,10 +3,10 @@
  * @brief Content_GenericRandomText module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Mar 2007
- * @date Modification: Jul 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jun 2022
+ * @copyright 2007 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,7 @@ final class Content_GenericRandomText extends Module {
      * var Object $gitem
      * @brief Text object.
      */
-    protected $gitem;
+    public $gitem;
 
     /**
      * var array $glist
@@ -95,7 +95,7 @@ final class Content_GenericRandomText extends Module {
      * Initialise objects when in admin mode.
      * @return void
      */
-    function init_admin() {
+    public function init_admin() {
         /* Generic pre-initialisation */
         parent::preInit_admin();
 
