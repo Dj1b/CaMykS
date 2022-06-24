@@ -3,10 +3,10 @@
  * @brief Generic libraries as client bots specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.29
+ * @version 1.0.29.1
  * @date Creation: May 2018
- * @date Modification: May 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Jun 2022
+ * @copyright 2018 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -644,7 +644,7 @@ function _client_getKnownGenericsL2() {
 
     /* akka-http */
     $knownGenerics['akka-http'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'akka-http',
         'tool_url'          => '',
@@ -654,7 +654,7 @@ function _client_getKnownGenericsL2() {
 
     /* Microsoft URL Control */
     $knownGenerics['microsoft url control'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'Microsoft URL Control',
         'tool_url'          => '',
@@ -664,7 +664,7 @@ function _client_getKnownGenericsL2() {
 
     /* 4D HTTP Client */
     $knownGenerics['4d_http_client'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => '4D HTTP Client',
         'tool_url'          => '',
@@ -674,7 +674,7 @@ function _client_getKnownGenericsL2() {
 
     /* node-fetch */
     $knownGenerics['node-fetch'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'node-fetch',
         'tool_url'          => 'https://github.com/bitinn/node-fetch',
@@ -684,7 +684,7 @@ function _client_getKnownGenericsL2() {
 
     /* check_http (nagios plugin) */
     $knownGenerics['check_http'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'check_http',
         'tool_url'          => 'https://nagios-plugins.org/doc/man/check_http.html',
@@ -694,7 +694,7 @@ function _client_getKnownGenericsL2() {
 
     /* fasthttp */
     $knownGenerics['fasthttp'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'fasthttp',
         'tool_url'          => 'https://github.com/valyala/fasthttp',
@@ -704,7 +704,7 @@ function _client_getKnownGenericsL2() {
 
     /* reqwest */
     $knownGenerics['reqwest'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'reqwest',
         'tool_url'          => 'https://docs.rs/reqwest/',
@@ -714,7 +714,7 @@ function _client_getKnownGenericsL2() {
 
     /* unfurlist */
     $knownGenerics['unfurlist'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'unfurlist',
         'tool_url'          => 'https://github.com/Doist/unfurlist',
