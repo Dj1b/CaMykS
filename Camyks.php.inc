@@ -3,10 +3,10 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.3
+ * @version 1.0.21.4
  * @date Creation: Jun 2005
- * @date Modification: Mar 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Jul 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -670,12 +670,15 @@ final class Camyks {
         /* load current status */
         $isSSL = client_isHTTPS();
 
-        /* define scheme less URL */
-        $schemeLessURL = '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-
         /* be sure that conf URL is properly set */
         if ($isSSL and preg_match('/http:\/\//', $this->get_confValue('url')))
             $this->set_confValue('url', preg_replace('/http:\/\//', 'https://', $this->get_confValue('url')));
+
+        /* define scheme less URL */
+        if (isset($_SERVER['HTTP_HOST']))
+            $schemeLessURL = '://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+        else
+            $schemeLessURL = preg_replace('/^https?/', '', $this->get_confValue('url').$_SERVER['REQUEST_URI']);
 
         /* execute relevent action */
         switch ($value) {
