@@ -4,10 +4,10 @@
  * <br /> Display customisable admin list of objects.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Sep 2008
- * @date Modification: Nov 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Oct 2022
+ * @copyright 2008 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -490,7 +490,7 @@ final class AdminItemListViewer extends Input {
                         else
                             $vars[$index] = isset($object->vars[$v]) ? $object->vars[$v] : '';
                     }
-                    return vsprintf($this->preRenders[$name], $vars);
+                    return vsprintf($this->preRenders[$name], array_map('addslashes', $vars));
                 }
                 break;
             case 'checkbox' :
