@@ -3,9 +3,9 @@
  * @brief Admin_User Module user library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.2
+ * @version 1.2.3
  * @date Creation: Sep 2005
- * @date Modification: Jan 2022
+ * @date Modification: Jun 2022
  * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -60,7 +60,9 @@ final class AdminUser {
      */
     public function __construct($login = '') {
         global $camyks;
-        $this->login = preg_replace('/["\']/', '', $login);
+
+        if (!preg_match('/[^_a-zA-Z0-9\-]/', $login))
+            $this->login = $login;
         $this->is_new = ($this->login == '' ? 1 : 0);
 
         /* update generic library vars */

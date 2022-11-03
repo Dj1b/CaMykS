@@ -4,10 +4,10 @@
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Nov 2009
- * @date Modification: Jan 2021
- * @copyright 2009 - 2021 CaMykS Team
+ * @date Modification: Sep 2022
+ * @copyright 2009 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -452,6 +452,15 @@ final class SocialNetworksSharingPanel extends Input {
             /* add Youtube */
             'youtube' => array(
                 'title'     => 'Youtube',
+                'link'      => '',
+                'clic'      => '',
+                'share'     => 0,
+                'follow'    => 1,
+            ),
+
+            /* add tiktok */
+            'tiktok' => array(
+                'title'     => 'TikTok',
                 'link'      => '',
                 'clic'      => '',
                 'share'     => 0,

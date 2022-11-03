@@ -4,10 +4,10 @@
  * <br /> Manage online payment with Monetico system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Apr 2017
- * @date Modification: Sep 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Sep 2022
+ * @copyright 2017 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -344,7 +344,7 @@ final class MoneticoPaiement extends Input {
     public function load_paymentConfirmation() {
         global $camyks;
 
-        $camyks->log('Dev', 'Monetico Post Data', json_encode($_REQUEST));
+        // $camyks->log('Dev', 'Monetico Post Data', json_encode($_REQUEST));
 
         /* Build Monetico configuration */
         $this->build_config();
@@ -353,16 +353,22 @@ final class MoneticoPaiement extends Input {
         require_once($this->get_filePath('lib/MoneticoPaiement_Ept.inc.php'));
 
         /* Initialise response */
-        $responseData = array();
+        $responseData = array('uniqueId'=>'', 'response'=>'', 'resetUniqueId'=>0);
 
         // Begin Main : Retrieve Variables posted by Monetico Paiement Server
         $MoneticoPaiement_bruteVars = getMethode();
 
         /* Clean vars to keep only Monetico variables */
-        $MoneticoVars = array("TPE", "date", "montant", "reference", "texte-libre", "code-retour", "cvx", "vld", "brand", "numauto", "usage", "typecompte", "ecard", "originecb", "bincb", "hpancb", "ipclient", "originetr", "modepaiement", "authentification", "MAC");
+        $MoneticoVars = array("TPE", "date", "montant", "reference", "texte-libre", "code-retour", "cvx", "vld", "brand", "numauto", "usage", "typecompte", "ecard", "originecb", "bincb", "hpancb", "ipclient", "originetr", "cbmasquee", "modepaiement", "authentification", "MAC");
         foreach ($MoneticoPaiement_bruteVars as $name => $value)
             if (!in_array($name, $MoneticoVars))
                 unset($MoneticoPaiement_bruteVars[$name]);
+
+        /* Check mandatory values */
+        if (!isset($MoneticoPaiement_bruteVars['code-retour']) or !isset($MoneticoPaiement_bruteVars['reference'])) {
+            $this->confirmationData = $responseData;
+            return;
+        }
 
         // TPE init variables
         $oEpt = new MoneticoPaiement_Ept();
@@ -373,29 +379,25 @@ final class MoneticoPaiement extends Input {
         $computed_MAC = $oHmac->computeHmac($MAC_source);
         $congruent_MAC = array_key_exists('MAC', $MoneticoPaiement_bruteVars) && $computed_MAC == strtolower($MoneticoPaiement_bruteVars['MAC']);
 
-        if ($congruent_MAC) {
-            /* Build receipt */
-            $receipt = MONETICOPAIEMENT_PHASE2BACK_MACOK;
+        //$camyks->log('Dev', 'Monetico HMAC', $computed_MAC . ' == '. (isset($MoneticoPaiement_bruteVars['MAC']) ? strtolower($MoneticoPaiement_bruteVars['MAC']) : ''));
 
-            /* Update response */
-            $responseData['response'] = $MoneticoPaiement_bruteVars['code-retour'];
-            $responseData['uniqueId'] = $MoneticoPaiement_bruteVars['reference'];
-
-        } else {
-            /* Build receipt */
-            $receipt = MONETICOPAIEMENT_PHASE2BACK_MACNOTOK.$computed_MAC. "\n$MAC_source";
-
-            /* Update response */
-            $responseData['response'] = 'Error';
-            $responseData['uniqueId'] = '';
+        if (!$congruent_MAC) {
+            $camyks->log_executionerror($this, 'HMAC doesn\'t match.', 'Expected HMAC: '.$MAC_source.'\nComputed HMAC: '.$computed_MAC);
         }
 
-        /* Print response answer from monetico server */
-        $camyks->log('Dev', 'Monetico Result', vsprintf(MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt));
-        printf(MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt);
+        /* Build receipt */
+        $receipt = MONETICOPAIEMENT_PHASE2BACK_MACOK;
 
-        /* return response */
+        /* Update response */
+        $responseData['response'] = $MoneticoPaiement_bruteVars['code-retour'];
+        $responseData['uniqueId'] = $MoneticoPaiement_bruteVars['reference'];
+
+        /* Back up response */
         $this->confirmationData = $responseData;
+
+        /* Print response answer from monetico server */
+        printf(MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt);
+        die();
     }
 
     /**

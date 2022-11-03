@@ -3,10 +3,10 @@
  * @brief Content_GenericQuickMessage module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2007
- * @date Modification: Jul 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2022
+ * @copyright 2007 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,7 @@ final class Content_GenericQuickMessage extends Module {
      * var Object $qmitem
      * @brief Quick message object.
      */
-    protected $qmitem;
+    public $qmitem;
 
     /**
      * var array $qmlist

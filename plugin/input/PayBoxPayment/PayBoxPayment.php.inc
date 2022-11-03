@@ -3,12 +3,11 @@
  * @brief PayBoxPayment Input
  * <br /> Interface to PayBox payment system.
  * @details Plugin / Input Engine
- * @file plugin/input/PayBoxPayment/PayBoxPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Apr 2017
- * @date Modification: May 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Oct 2022
+ * @copyright 2017 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -36,23 +35,6 @@ final class PayBoxPayment extends Input {
     private $_transactionId = '';
 
     /**
-     * var array $transactionParams
-     * @brief Transaction params.
-     */
-    private $transactionParams = array(
-        'reference'             => '',
-        'email'                 => '',
-        'amount'                => 0,
-        'currency'              => 978, // 978: EUR
-        'backURL_OK'            => '',
-        'backURL_Cancel'        => '',
-        'backURL_Refused'       => '',
-        'backURL_Response'      => '',
-        'backData'              => 'Reference:R;Transaction:S;Erreur:E',
-        'date'                  => 0,
-    );
-
-    /**
      * var array $params
      * @brief Input parameters.
      */
@@ -63,6 +45,14 @@ final class PayBoxPayment extends Input {
      * @brief Confirmation data received from Paybox instant notifications.
      */
     private $confirmationData = null;
+
+    /**
+     * var array $currencies
+     * @brief Currency list.
+     */
+    private $currencies = array(
+        'EUR'   => 978,
+    );
 
     /**
      * Class constructor.
@@ -115,15 +105,78 @@ final class PayBoxPayment extends Input {
      * @return boolean result
      */
     public function prepare_forPayment($params=array()) {
-
-        /* update default transaction params */
-        $this->transactionParams['date'] = date('c');
-
         /* merge params */
-        $this->transactionParams = array_merge($this->transactionParams, $params);
+        $this->transactionParams = array_recursiveMerge(array(
+            'amount'            => '',
+            'orderId'           => '',
+            'reference'         => '',
+            'email'             => '',
+            'amount'            => 0,
+            'devise'            => 'EUR',
+            'backURL_OK'        => '',
+            'backURL_Cancel'    => '',
+            'backURL_Refused'   => '',
+            'backURL_Response'  => '',
+            'backURL_Confirm'   => '',
+            'backData'          => 'Reference:R;Transaction:S;Erreur:E',
+            'date'              => date('c'),
+            'billing'           => array(
+                'civility'          => null,
+                'firstName'         => null,
+                'lastName'          => null,
+                'address1'          => null,
+                'address2'          => null,
+                'address3'          => null,
+                'city'              => null,
+                'zipcode'           => null,
+                'country'           => null,
+                'state'             => null,
+                'email'             => null,
+                'phone'             => null,
+                'mobile'            => null,
+            ),
+            'shipping'          => array(
+                'civility'          => null,
+                'firstName'         => null,
+                'lastName'          => null,
+                'address1'          => null,
+                'address2'          => null,
+                'address3'          => null,
+                'city'              => null,
+                'zipcode'           => null,
+                'country'           => null,
+                'state'             => null,
+                'email'             => null,
+                'phone'             => null,
+                'mobile'            => null,
+            ),
+            'client'            => array(
+                'civility'          => null,
+                'firstName'         => null,
+                'lastName'          => null,
+                'address1'          => null,
+                'address2'          => null,
+                'address3'          => null,
+                'city'              => null,
+                'zipcode'           => null,
+                'country'           => null,
+                'state'             => null,
+                'email'             => null,
+                'phone'             => null,
+                'mobile'            => null,
+                'birthCity'         => null,
+                'birthZipcode'      => null,
+                'birthCountry'      => null,
+                'birthDate'         => null,
+            ),
+            'shoppingCart'      => array(
+
+            ),
+        ), $params);
 
         /* fix params */
         $this->transactionParams['amount'] = (int)($this->transactionParams['amount']*100);
+        $this->transactionParams['devise'] = $this->currencies[$this->transactionParams['devise']];
 
         if ($this->params['bankMode'] == 'live') {
             /* production servers */
@@ -181,7 +234,7 @@ final class PayBoxPayment extends Input {
             'PBX_CMD'           => $this->transactionParams['reference'],
             'PBX_PORTEUR'       => $this->transactionParams['email'],
             'PBX_TOTAL'         => $this->transactionParams['amount'],
-            'PBX_DEVISE'        => $this->transactionParams['currency'],
+            'PBX_DEVISE'        => $this->transactionParams['devise'],
             'PBX_EFFECTUE'      => $this->transactionParams['backURL_OK'],
             'PBX_ANNULE'        => $this->transactionParams['backURL_Cancel'],
             'PBX_REFUSE'        => $this->transactionParams['backURL_Refused'],
@@ -190,6 +243,45 @@ final class PayBoxPayment extends Input {
             'PBX_HASH'          => $this->params['hash'],
             'PBX_TIME'          => $this->transactionParams['date'],
         );
+
+        /* build shopping cart data */
+        $shoppingCart = '<?xml version="1.0" encoding="utf-8"?>';
+        if (count($this->transactionParams['shoppingCart']) >= 1) {
+            $shoppingCart .= "<shoppingcart>\n<total>\n<totalQuantity>\n".count($this->transactionParams['shoppingCart'])."</totalQuantity>\n</total>\n</shoppingcart>";
+        } else {
+            $shoppingCart .= "<shoppingcart><total><totalQuantity></totalQuantity></total></shoppingcart>";
+        }
+        $params['PBX_SHOPPINGCART'] = preg_replace('/"/', '\'', $shoppingCart);
+
+        /* build billing data */
+        $billingData = '<?xml version="1.0" encoding="utf-8"?>'
+            ."<Billing>"
+            ."<Address>"
+            ."<FirstName>".(!is_null($this->transactionParams['billing']['firstName']) ? $this->transactionParams['billing']['firstName'] : $this->transactionParams['client']['firstName'])."</FirstName>"
+            ."<LastName>".(!is_null($this->transactionParams['billing']['lastName']) ? $this->transactionParams['billing']['lastName'] : $this->transactionParams['client']['lastName'])."</LastName>"
+            ."<Address1>".(!is_null($this->transactionParams['billing']['address1']) ? $this->transactionParams['billing']['address1'] : $this->transactionParams['client']['address1'])."</Address1>"
+            ."<ZipCode>".(!is_null($this->transactionParams['billing']['zipcode']) ? $this->transactionParams['billing']['zipcode'] : $this->transactionParams['client']['zipcode'])."</ZipCode>"
+            ."<City>".(!is_null($this->transactionParams['billing']['city']) ? $this->transactionParams['billing']['city'] : $this->transactionParams['client']['city'])."</City>"
+            ."<CountryCode>250</CountryCode>"
+            ."</Address>"
+            ."</Billing>";
+        $params['PBX_BILLING'] = preg_replace('/"/', '\'', $billingData);
+
+        /* build shipping data */
+        if (!is_null($this->transactionParams['shipping']['firstName'])) {
+            $shippingData = '<?xml version="1.0" encoding="utf-8"?>'
+                ."<Shipping>"
+                ."<Address>"
+                ."<FirstName>".$this->transactionParams['shipping']['firstName']."</FirstName>"
+                ."<LastName>".$this->transactionParams['shipping']['lastName']."</LastName>"
+                ."<Address1>".$this->transactionParams['shipping']['address1']."</Address1>"
+                ."<ZipCode>".$this->transactionParams['shipping']['zipcode']."</ZipCode>"
+                ."<City>".$this->transactionParams['shipping']['city']."</City>"
+                ."<CountryCode>250</CountryCode>\n"
+                ."</Address>"
+                ."</Shipping>";
+            $params['PBX_SHIPPING'] = preg_replace('/"/', '\'', $shippingData);
+        }
 
         /* build params string */
         $msg = array();
