@@ -2,12 +2,11 @@
 /**
  * @brief Date specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/date.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Oct 2005
- * @date Modification: Jul 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -362,6 +361,28 @@ function date_isTomorrow($date=TODAY) {
  */
 function date_isYesterday($date=TODAY) {
     return mktime(0, 0, 0, date('m', $date), date('d', $date), date('Y', $date)) == date_getYesterdayValue();
+}
+
+/**
+ * Compare times.
+ * @param date $date1
+ * @param date $date2
+ * @return integer
+ */
+function date_compareTimes($date1=TODAY, $date2=TODAY) {
+    if (date('G', $date1) > date('G', $date2))
+        return -1;
+    elseif (date('G', $date1) < date('G', $date2))
+        return 1;
+    if (date('i', $date1) > date('i', $date2))
+        return -1;
+    elseif (date('i', $date1) < date('i', $date2))
+        return 1;
+    if (date('s', $date1) > date('s', $date2))
+        return -1;
+    elseif (date('s', $date1) < date('s', $date2))
+        return 1;
+    return 0;
 }
 
 /******************** USEFULL DATE QUERIES *****************/
