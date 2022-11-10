@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module french dictionnary.
- * @details Plugin, Module Dictionnary
+ * @brief Admin_GenericEmailingManager module, french dictionary.
+ * @details Plugin, Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.1
+ * @version 1.0.9
  * @date Creation: Dec 2012
- * @date Modification: Mar 2021
- * @copyright 2012 - 2021 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2012 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -201,6 +201,7 @@ $this->trads['mod_admin_genericemailingmanager_contact_saved'] = 'Contact enregi
 $this->trads['mod_admin_genericemailingmanager_contact_notsaved'] = 'Une erreur est survenue lors de l\'enregistrement de ce contact.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_alreadyexists'] = 'Un contact utilisant cette adresse e-mail existe d&eacute;j&agrave; dans la base de donn&eacute;es. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_emailinvalid'] = 'L\'adresse e-mail est invalide. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
+$this->trads['mod_admin_genericemailingmanager_contact_saveerror_namesinvalid'] = 'Les noms doivent être renseignés. <br />Le contact n\'a pas &eacute;t&eacute; enregistr&eacute;.';
 
 /* admin delete contact */
 $this->trads['mod_admin_genericemailingmanager_contact_deleted'] = 'Contact supprim&eacute;.';
