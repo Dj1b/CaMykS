@@ -4,10 +4,10 @@
  * <br /> Monitors and logs reports.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.3.2
  * @date Creation: May 2007
- * @date Modification: Jan 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2007 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -428,12 +428,18 @@ final class Admin_SystemReport extends Module {
      * @return boolean success
      */
     public function add_newReport($type, &$object, $desc1='', $desc2='', $file='', $line='') {
-        /* check if object is not this module to kill loop script */
+        /* Check if object is not this module to kill loop script */
         if (strtolower(get_class($object)) == strtolower(get_class($this->reportItem))) {
             return false;
         }
-        $this->reportItem->update_values($type, $object, $desc1, $desc2, $file, $line);
-        return $this->reportItem->save();
+
+        /* Create new report */
+        $reportItem = $this->reportItem->get_newObject();
+        $reportItem->initialise();
+        $reportItem->update_values($type, $object, $desc1, $desc2, $file, $line);
+
+        /* Save report */
+        return $reportItem->save();
     }
 
     /**
@@ -443,7 +449,7 @@ final class Admin_SystemReport extends Module {
     private function get_selecteditems() {
         $list = array();
 
-        $ids = isset($_REQUEST['ids'])?$_REQUEST['ids']:'';
+        $ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : '';
 
         if ($ids == '')
             return $list;
