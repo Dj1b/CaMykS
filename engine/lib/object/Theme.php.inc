@@ -3,10 +3,10 @@
  * @brief Theme plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.4.2
  * @date Creation: Jun 2005
- * @date Modification: Jul 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Feb 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -290,15 +290,10 @@ abstract class Theme extends Plugin {
 
         /* check if part exist */
         if (isset($this->parts[$part])) {
+            if (is_string($data))
+                $data = array(0=>$data);
             return vsprintf($this->parts[$part], $data);
-        /*
-        } else if ($this->name != 'Default') {
-            if (isset ($camyks->themes['camyks']['default'])) {
-                return $camyks->themes['camyks']['default']->get_part($part, $data);
-            }
-        */
         }
-
 
         /* return default value */
         return '';
