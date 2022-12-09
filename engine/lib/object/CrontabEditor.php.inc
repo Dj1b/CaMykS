@@ -4,9 +4,9 @@
  * <br /> Allows websites to add/edit/remove cron jobs from Apache crontab.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Oct 2021
- * @date Modification: Mar 2022
+ * @date Modification: Feb 2022
  * @copyright 2021 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -595,6 +595,8 @@ final class CrontabJob {
 
         /* Rebuild task value / identifier value */
         $details = implode(' ', $details);
+
+        /* Split task and identifier */
         $details = explode('#', $details);
 
         /* Load task */
