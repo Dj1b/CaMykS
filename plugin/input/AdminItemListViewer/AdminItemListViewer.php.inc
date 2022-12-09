@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief AdminItemListViewer Input
+ * @brief AdminItemListViewer Input.
  * <br /> Display customisable admin list of objects.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Sep 2008
- * @date Modification: Oct 2022
+ * @date Modification: Dec 2022
  * @copyright 2008 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -481,7 +481,7 @@ final class AdminItemListViewer extends Input {
             case 'button':
                 /* columntype == button */
                 if (!isset($column['vars']))
-                    return vsprintf($this->preRenders[$name], $object->id);
+                    return vsprintf($this->preRenders[$name], array(0=>$object->id));
                 else {
                     $vars = array();
                     foreach ($column['vars'] as $index => $v) {
@@ -542,10 +542,10 @@ final class AdminItemListViewer extends Input {
                     case 'text':
                         return $camyks->get_translation($object->vars[$name]?'yes':'no');
                     case 'pict':
-                        return vsprintf($this->preRenders[$name], $this->get_icon($object->vars[$name] ? 'valid' : 'empty'));
+                        return vsprintf($this->preRenders[$name], array(0=>$this->get_icon($object->vars[$name] ? 'valid' : 'empty')));
                     case 'checkbox':
                     default:
-                        return vsprintf($this->preRenders[$name], $object->vars[$name] ? ' checked="checked"' : '');
+                        return vsprintf($this->preRenders[$name], array(0=>$object->vars[$name] ? ' checked="checked"' : ''));
                 }
             case 'specialtext' :
                 /* columntype == specialtext */
