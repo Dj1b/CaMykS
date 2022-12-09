@@ -3,10 +3,10 @@
  * @brief HTML form object library
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.8.2
+ * @version 1.1.8.3
  * @date Creation: Jun 2005
- * @date Modification: Nov 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Feb 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -392,7 +392,7 @@ class HTMLForm {
                 if ($params['hasEmptyFirstOption'])
                     $m[0] = '';
                 for ($i=1; $i<=12; $i++)
-                    $m[$i] = ucfirst(strftime ('%B', mktime(0, 0, 0, $i, 1, 1)));
+                    $m[$i] = ucfirst(date_strftime('%B', mktime(0, 0, 0, $i, 1, 1)));
                 $html .= $this->display_selectInput(array(
                     'name'      => $params['name'].'_month',
                     'values'    => $m,
@@ -1005,7 +1005,7 @@ class HTMLForm {
         $params['values'] = array();
 
         for ($i=(0+$params['format']); $i<=(6+$params['format']); $i++) {
-            $params['values'][$i] = strftime('%A', mktime(0, 0, 0, 1, 2+$i, 0));
+            $params['values'][$i] = date_strftime('%A', mktime(0, 0, 0, 1, 2+$i, 0));
         }
 
         /* build display */
@@ -1054,7 +1054,7 @@ class HTMLForm {
 
         /* build input */
         $html = '<input type="text"';
-        $html .= ' value="'.htmlentities($params['default'], ENT_COMPAT, 'UTF-8').'"';
+        $html .= ' value="'.(!is_null($params['default']) ? htmlentities($params['default'], ENT_COMPAT, 'UTF-8') : '').'"';
         $html .= $this->build_inputGenericAttributes($params);
         $html .= ' />';
         return $html;
