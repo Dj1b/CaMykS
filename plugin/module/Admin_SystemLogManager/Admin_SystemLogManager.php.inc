@@ -2,14 +2,14 @@
 /**
  * @brief Admin_SystemLogManager Module
  * <br /> Store and display logs.
- * @details Plugin / Input Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Jun 2018
- * @date Modification: May 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Dec 2022
+ * @copyright 2018 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * Without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
@@ -60,28 +60,26 @@ final class Admin_SystemLogManager extends Module {
     public function __construct($path_type) {
         parent::__construct('Admin_SystemLogManager', $path_type);
 
-        /* set module type */
+        /* Override Plugin variables */
+        $this->version = '1.0';
+        $this->plugin_package = 'System';
+
+        /* Override Module variables */
         $this->type = 'admin';
         $this->admin_type = 'monitoring';
 
-        /* set plugin version */
-        $this->version = '1.0';
-
-        /* set plugin package */
-        $this->plugin_package = 'System';
-
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load plugin libraries */
+        /* Load plugin libraries */
         $this->load_library('Admin_SystemLogManagerConfig');
 
-        /* initialise plugin libraries */
+        /* Initialise plugin libraries */
         $this->config = new Admin_SystemLogManagerConfig('config', $this);
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }
 
@@ -108,26 +106,26 @@ final class Admin_SystemLogManager extends Module {
     }
 
     /*
-     * Initialise module object in admin mode
+     * Initialise module object in admin mode.
      * @return void
      */
     public function init_admin() {
         global $camyks;
 
-        /* check read rights */
+        /* Check read rights */
         if ($this->check_right(0) === false)
             return $this->init_admin_accessDenied();
 
-        /* check dependencies */
+        /* Check dependencies */
         if (!isset($camyks->inputs['TabBuilder']))
             return $this->init_admin_missingPlugin('Input', 'TabBuilder');
         if (!isset($camyks->inputs['AdminItemListViewer']))
             return $this->init_admin_missingPlugin('Input', 'AdminItemListViewer');
 
-        /* load config */
+        /* Load config */
         $this->config->get();
 
-        /* get informations */
+        /* Load mode */
         $this->mode = (isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main');
 
         switch ($this->mode) {
@@ -153,33 +151,32 @@ final class Admin_SystemLogManager extends Module {
     }
 
     /*
-     * execute module object in request mode
+     * Execute module object in request mode
      * @return void
-     * @access private
      */
     public function execute_request() {
         global $camyks;
 
-        /* build error message */
+        /* Build error message */
         $error = array(
             'title'         => $this->get_translation('requesterror_requestfailed'),
             'description'   => $this->get_translation('requesterror_undefinedaction'),
         );
 
-        /* load mode to execute */
+        /* Load mode to execute */
         $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
 
-        /* execute mode */
+        /* Execute mode */
         switch ($mode) {
             case 'downloadLogFile':
                 $this->execute_request_downloadLogFile();
             default :
-                /* throw fatal error */
+                /* Throw fatal error */
                 $camyks->throwFatalError($error);
         }
     }
 
-    /* specific admin mode methods */
+    /* Specific admin mode methods */
 
     /**
      * Initialise module object in admin/main mode
@@ -188,23 +185,23 @@ final class Admin_SystemLogManager extends Module {
     private function init_admin_main() {
         global $camyks;
 
-        /* get help */
+        /* Load help */
         $this->get_help();
 
-        /* load specific CSS */
+        /* Load specific CSS */
         $this->add_styleFile('styles.css');
 
-        /* get language to use with content */
+        /* Load language to use with content */
         $this->language = $this->get_adminEditionLanguage();
 
-        /* build tabs */
+        /* Build tabs */
         $this->tabBuilder = $camyks->get_input('TabBuilder');
         $this->tabBuilder->add_tab(array(
             'name'  => 'Logs',
             'title' => $this->get_translation('logs'),
         ));
 
-        /* check for configuration permission */
+        /* Check for configuration permission */
         if ($this->check_right(1) == true) {
 
             /* add configuration tab */
@@ -213,38 +210,38 @@ final class Admin_SystemLogManager extends Module {
                 'title' => $this->get_translation('configuration'),
             ));
 
-            /* load configuration */
+            /* Load configuration */
             $this->config->get();
 
-            /* load data */
+            /* Load data */
             $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
         }
 
-        /* finalise tabs */
+        /* Finalise tabs */
         if ($this->help != null)
             $this->tabBuilder->add_tab(array(
                 'name'  => 'help',
                 'title' => $camyks->get_translation('help'))
         );
 
-        /* initialise tabs */
+        /* Initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Logs'));
 
-        /* load log list */
+        /* Load log list */
         $this->logList = $this->get_logList();
 
-        /* load selection */
+        /* Load selection */
         $this->selection = $camyks->get_sessionValue('logManagerSelection', array('log'=>'', 'file'=>'', 'filter'=>''));
 
-        /* load selected log */
+        /* Load selected log */
         if (!isset($this->logList[$this->selection['log']]))
             $this->selection['log'] = '';
 
         if ($this->selection['log'] != '') {
-            /* load selected log file list */
+            /* Load selected log file list */
             $this->logFileList = $this->get_logFileList($this->selection['log']);
 
-            /* load selected log file */
+            /* Load selected log file */
             if (!isset($this->logFileList[$this->selection['file']]))
                 $this->selection['file'] = '';
             else {
@@ -261,7 +258,7 @@ final class Admin_SystemLogManager extends Module {
             }
         }
 
-        /* build log selection form */
+        /* Build log selection form */
         $this->logForm = new HTMLForm(
             'log_selection',
             $this->get_adminlink(array('mode'=>'update_selection')),
@@ -269,12 +266,12 @@ final class Admin_SystemLogManager extends Module {
         );
         $this->logForm->add_hidden('file', $this->selection['file']);
 
-        /* load scripts */
+        /* Load scripts */
         $this->add_JSFile('LogViewer.js');
         $this->add_JSLoadScript('LogViewer.set_param("form", "'.$this->logForm->name.'")');
         $this->add_JSLoadScript('LogViewer.initialise();');
 
-        /* get buttons */
+        /* Build interface buttons */
         $this->buttons = array(array(
             'link'  => $camyks->get_adminLink(),
             'title' => $camyks->get_translation('back'),
@@ -309,14 +306,14 @@ final class Admin_SystemLogManager extends Module {
     private function init_admin_edit_config() {
         global $camyks;
 
-        /* check admin write rights */
+        /* Check admin write rights */
         if ($this->check_right(1) === false)
             return $this->init_admin_accessDenied();
 
-        /* get help */
+        /* Load help */
         $this->get_help();
 
-        /* build tabs */
+        /* Build tabs */
         $this->tabBuilder = &$camyks->inputs['TabBuilder'];
         $this->tabBuilder->add_tab(array(
             'name'  => 'Configuration',
@@ -329,19 +326,19 @@ final class Admin_SystemLogManager extends Module {
         ));
         $this->tabBuilder->initialise(array('default'=>'Configuration'));
 
-        /* load data */
+        /* Load data */
         $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
 
-        /* build form */
+        /* Build form */
         $this->editform = new HTMLForm('edit_config', $this->get_adminlink(array('mode'=>'save_config')), 'POST');
         $this->editform->set_object($this->config);
 
-        /* build interface title */
+        /* Build interface title */
         $this->adminTitle = $this->title;
         $this->adminTitle .= $camyks->get_translation('formitem_separator');
         $this->adminTitle .= $camyks->get_translation('configuration');
 
-        /* build interface buttons */
+        /* Build interface buttons */
         $this->buttons = array(
             array(
                 'link'=>$this->get_adminLink(array('openTab'=>'Configuration')),
@@ -353,7 +350,7 @@ final class Admin_SystemLogManager extends Module {
             ),
         );
 
-        /* update layout */
+        /* Update layout */
         $this->selected_layout = 'admin_edit_config.html.inc';
     }
 
@@ -364,14 +361,14 @@ final class Admin_SystemLogManager extends Module {
     private function init_admin_save_config() {
         global $camyks;
 
-        /* check admin write rights */
+        /* Check admin write rights */
         if ($this->check_right(1) === false)
             return $this->init_admin_accessDenied();
 
-        /* disable admin menu */
+        /* Disable admin menu */
         $this->disable_adminEngineMenus();
 
-        /* save config object */
+        /* Save config object */
         $this->config->get_fromHeader();
         if ($this->config->save()) {
             $this->text = $this->get_translation('config_saved');
@@ -379,12 +376,12 @@ final class Admin_SystemLogManager extends Module {
             $this->text = $this->get_translation('config_notsaved');
         }
 
-        /* update layout */
+        /* Update layout */
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Configuration')));
     }
 
-    /* request mode methods */
+    /* Request mode methods */
 
     /**
      * Execute module object in request/downloadLogFile mode.
@@ -393,21 +390,21 @@ final class Admin_SystemLogManager extends Module {
     private function execute_request_downloadLogFile() {
         global $camyks;
 
-        /* initialise CaMykS in site mode */
+        /* Initialise CaMykS in site mode */
         $camyks->get_adminInit();
 
-        /* check admin user */
+        /* Check admin user */
         if ($camyks->check_adminUser() === false)
             return false;
 
-        /* check admin user permissions */
+        /* Check admin user permissions */
         if ($this->check_right(1) === false)
             return false;
 
-        /* load file params from session */
+        /* Load file params from session */
         $this->selection = $camyks->get_sessionValue('logManagerSelection', array('log'=>'', 'file'=>'', 'filter'=>''));
 
-        /* build file path */
+        /* Build file path */
         $file = new FSFile($this->get_varFilePath('logs/'.$this->selection['log'].'/'.$this->selection['file'].'.log.inc'));
         if (!$file->exists)
           return false;
@@ -416,7 +413,7 @@ final class Admin_SystemLogManager extends Module {
         $file->download($this->selection['file'].'.log');
     }
 
-    /* configuration specific methods */
+    /* Configuration specific methods */
 
     /**
      * Return configuration logging period list
@@ -426,7 +423,7 @@ final class Admin_SystemLogManager extends Module {
         return $this->config->get_loggingPeriodList();
     }
 
-    /* log specific methods */
+    /* Log specific methods */
 
     /**
      * Return available log list
@@ -467,23 +464,23 @@ final class Admin_SystemLogManager extends Module {
      * @return string
      */
     private function get_logFilePath($log) {
-        /* load period logging mode */
+        /* Load period logging mode */
         $period = $this->get_configValue('logging_period');
 
-        /* prepare path */
+        /* Prepare path */
         folder_completePath($this->get_varFilePath().'logs/'.$log);
         $path = $this->get_varFilePath('logs/'.$log).'/';
 
-        /* complete path with period mode */
-        if ($period == 0) /* daily */
-            $path .= strftime('%Y-%m-%d');
-        elseif ($period == 1) /* weekly */
-            $path .= strftime('%Y-W%W');
-        elseif ($period == 2) /* monthly */
-            $path .= strftime('%Y-M%m');
+        /* Complete path with period mode */
+        if ($period == 0) /* Daily */
+            $path .= date('Y-m-d');
+        elseif ($period == 1) /* Weekly */
+            $path .= date('Y').'-W'.date('W');
+        elseif ($period == 2) /* Monthly */
+            $path .= date('Y').'-M'.date('m');
         $path .= '.log.inc';
 
-        /* return complete path */
+        /* Return complete path */
         return $path;
     }
 
@@ -494,13 +491,13 @@ final class Admin_SystemLogManager extends Module {
      */
     private function get_logFileTitle($name) {
         if (preg_match('/^([0-9]{4})\-([0-9]{2})\-([0-9]{2})$/', $name, $matches))
-            return date('Y M d', mktime(0, 0, 0, $matches[2], $matches[3], $matches[1]));
+            return date('Y m d', mktime(0, 0, 0, $matches[2], $matches[3], $matches[1]));
         elseif (preg_match('/^([0-9]{4})\-W([0-9]{2})$/', $name, $matches))
             return $matches[1].' Week '.$matches[2];
         elseif (preg_match('/^([0-9]{4})\-M([0-9]{2})$/', $name, $matches))
-            return date('Y M', mktime(0, 0, 0, $matches[2], 1, $matches[1]));
+            return date('Y m', mktime(0, 0, 0, $matches[2], 1, $matches[1]));
 
-        /* by default return file name */
+        /* By default return file name */
         return $name;
     }
 
@@ -514,22 +511,22 @@ final class Admin_SystemLogManager extends Module {
     public function write_log($log, $action, $message='') {
         global $camyks;
 
-        /* check log */
+        /* Check log */
         $log = trim($log);
         if ($log == '' or !preg_match('/^[0-9A-Za-z]*$/', $log))
             return false;
 
-        /* build file path */
+        /* Build file path */
         $file = $this->get_logFilePath($log);
 
-        /* prepare log line */
+        /* Prepare log line */
         $line = client_getIP();
         $line .= ' ['.date('d/M/Y:G:i:s O').']';
         $line .= ' '.($camyks->check_adminUser() ? $camyks->adminUser->login : 'visitor');
         $line .= ' - '.$this->clean_value($action);
         $line .= ' - '.$this->clean_value($message);
 
-        /* write line */
+        /* Write line */
         if (@file_put_contents($file, $line."\n", FILE_APPEND)) {
             $this->prune_oldFiles($log);
             return true;
@@ -543,32 +540,32 @@ final class Admin_SystemLogManager extends Module {
      * @return boolean result
      */
     private function prune_oldFiles($log) {
-        /* do not prune each time */
+        /* Do not prune each time */
         if (rand(0,10) != 1)
             return true;
 
-        /* check configuration value */
+        /* Check configuration value */
         if ($this->get_configValue('logging_lastFilesKept') == 0)
             return true;
 
-        /* load log files */
+        /* Load log files */
         $files = $this->get_logFileList($log);
 
-        /* check if some files have to be deleted */
+        /* Check if some files have to be deleted */
         if (count($files) <= $this->get_configValue('logging_lastFilesKept'))
             return true;
 
-        /* remove files */
+        /* Remove files */
         for ($i = $this->get_configValue('logging_lastFilesKept'); $i < count($files); $i++) {
             $k = array_keys($files);
             @unlink($this->get_varFilePath('logs/'.$log.'/'.$k[$i].'.log.inc'));
         }
 
-        /* return as success */
+        /* Return as success */
         return true;
     }
 
-    /* specific tool methods */
+    /* Specific tool methods */
 
     /**
      * Return given config item value
@@ -599,10 +596,10 @@ final class Admin_SystemLogManager extends Module {
     public function initialise_configDisplay() {
         $this->isConfig = true;
 
-        /* load configuration */
+        /* Load configuration */
         $this->config->get();
 
-        /* load data */
+        /* Load data */
         $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
     }
 
@@ -624,13 +621,13 @@ final class Admin_SystemLogManager extends Module {
 
         $this->isConfig = true;
 
-        /* load configuration */
+        /* Load configuration */
         $this->config->get();
 
-        /* load data */
+        /* Load data */
         $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
 
-        /* update form */
+        /* Update form */
         $this->editform = &$form;
         $this->editform->set_object($this->config);
     }
