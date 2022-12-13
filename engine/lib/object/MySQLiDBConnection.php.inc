@@ -3,10 +3,10 @@
  * @brief MySQLi Database connection object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Sep 2014
- * @date Modification: May 2021
- * @copyright 2014 - 2021 CaMykS Team
+ * @date Modification: Dec 2022
+ * @copyright 2014 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,10 +27,12 @@ final class MySQLiDBConnection extends CDBConnection {
      */
     public function connect_server($host='localhost', $login='', $pwd='', $driver='') {
         /* database server connection */
-        $this->connection = @(new MySQLi($host, $login, $pwd, ''));
-
-        /* check if connection is made successfully */
-        $this->active = ($this->connection->connect_errno === 0);
+        try {
+            $this->connection = @(new MySQLi($host, $login, $pwd, ''));
+            $this->active = true;
+        } catch (Exception $e) {
+            $this->active = false;
+        }
         return $this->active;
     }
 
@@ -88,7 +90,8 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return boolean
      */
     public function database_exists($name) {
-        return $this->connection->select_db($name);
+        $this->execute_query('SHOW DATABASES LIKE "'.$name.'";');
+        return $this->get_queryDataLine();
     }
 
    /**
