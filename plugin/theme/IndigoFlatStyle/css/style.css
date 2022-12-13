@@ -2,9 +2,9 @@
  * @brief IndigoFlatStyle Theme main CSS styles
  * @details Plugin / Theme CSS styles
  * @author CaMykS Team
- * @version 1.0.7.1
+ * @version 1.0.7.2
  * @date Creation: Oct 2014
- * @date Modification: Nov 2022
+ * @date Modification: Dec 2022
  * @copyright 2014 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -27,16 +27,16 @@ table { border-spacing: 0; border-collapse: collapse;}
 blockquote { margin:8px 20px; }
 input, textarea, select, div.inputs, div.linputs, div.sinputs, div.vsinputs, div.vlinputs {padding:0; background: white; color:#808080; font-weight:bold; font-size:11px; border:solid 1px #e2e2e2; border-radius: 3px;}
 /* select { background: transparent; -webkit-appearance: none; height: 20px; border:0; line-height: 1px; color:#808080; font-weight:bold; } */
-select {padding:2px 0;}
+select {padding:2px 4px;}
 input, textarea, option {padding:2px 4px; font-weight:bold; color:#808080; font-size:11px; transition:box-shadow 0.5s;}
 input:focus, textarea:focus, select:focus {box-shadow: 0 0 4px 2px rgba(91, 141, 205, 0.5);}
 textarea{resize: none;}
 option.separator {color:#ababab; padding:0 4px; font-size:1px; height:4px; border-bottom:dotted 1px #ababab; margin-bottom:4px;}
 option:disabled {color:#b0b0b0;}
-.inputs{width:200px;} select.inputs{width:210px;} div.inputs{display:inline-block; width:210px; width:208px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden; }
-.linputs {width:400px;} select.linputs{width:410px;} div.linputs{display:inline-block; width:410px; width:408px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden;}
-.sinputs{width:100px;} select.sinputs{width:110px;} div.sinputs{display:inline-block; width:110px; width:100px; background:url(../img/form/selectArrowMedium.gif) 100% 0 no-repeat white; overflow:hidden;}
-.vsinputs{width:75px;} select.vsinputs{width:85px;} div.vsinputs{display:inline-block; width:85px; width:83px; background:url(../img/form/selectArrow.gif) 100% 0 no-repeat white; overflow:hidden;}
+.inputs {width:200px;} div.inputs{display:inline-block; width:210px; width:208px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden; }
+.linputs {width:400px;} div.linputs{display:inline-block; width:410px; width:408px; background:url(../img/form/selectArrowLarge.gif) 100% 0 no-repeat white; overflow:hidden;}
+.sinputs {width:100px;} div.sinputs{display:inline-block; width:110px; width:100px; background:url(../img/form/selectArrowMedium.gif) 100% 0 no-repeat white; overflow:hidden;}
+.vsinputs {width:75px;} div.vsinputs{display:inline-block; width:85px; width:83px; background:url(../img/form/selectArrow.gif) 100% 0 no-repeat white; overflow:hidden;}
 .vlinputs {width:98%;} div.vlinputs{display:inline-block;}
 form {margin:0;}
 label {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; cursor:default;}
