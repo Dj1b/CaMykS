@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief CookieAgreementMessage Input
+ * @brief CookieAgreementMessage input.
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.5
+ * @version 1.1.0.6
  * @date Creation: May 2017
- * @date Modification: Oct 2021
- * @copyright 2017 - 2021 CaMykS Team
+ * @date Modification: Dec 2022
+ * @copyright 2017 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,7 +26,7 @@ final class CookieAgreementMessage extends Input {
      * var array $serviceInformation
      * @brief Store services information from extenstions.
      */
-    protected $serviceInformation;
+    protected $serviceInformation = array();
 
     /**
      * var array $cookieData
