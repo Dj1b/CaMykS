@@ -3,10 +3,10 @@
  * @brief Admin_GenericEmailingManager Module, contact library.
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.3
  * @date Creation: Dec 2012
- * @date Modification: Oct 2021
- * @copyright 2012 - 2021 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2012 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -466,12 +466,18 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
      */
     public function add_object($params=array()) {
 
-        $dParams = array('status'=>1, 'email'=>'', 'firstname'=>'', 'lastname'=>'', 'group'=>'', 'denomination'=>'');
+        $dParams = array('status'=>1, 'email'=>'', 'firstname'=>'', 'lastname'=>'', 'group'=>'', 'denomination'=>'', 'checkNames'=>false);
         $params = array_merge($dParams, $params);
 
         /* Check email */
         if ($params['email'] == '' or mail_isValidEmail($params['email']) == false) {
             $this->_libError = $this->get_translation('contact_saveerror_emailinvalid');
+            return false;
+        }
+
+        /* Check names */
+        if ($params['checkNames'] and ($params['firstname'] == '' or $params['lastname'] == '')) {
+            $this->_libError = $this->get_translation('contact_saveerror_namesinvalid');
             return false;
         }
 

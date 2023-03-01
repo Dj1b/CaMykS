@@ -4,10 +4,10 @@
  * <br /> Manage online payment with Monetico system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.2
  * @date Creation: Apr 2017
- * @date Modification: Sep 2022
- * @copyright 2017 - 2022 CaMykS Team
+ * @date Modification: Feb 2023
+ * @copyright 2017 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -344,8 +344,6 @@ final class MoneticoPaiement extends Input {
     public function load_paymentConfirmation() {
         global $camyks;
 
-        // $camyks->log('Dev', 'Monetico Post Data', json_encode($_REQUEST));
-
         /* Build Monetico configuration */
         $this->build_config();
 
@@ -355,7 +353,7 @@ final class MoneticoPaiement extends Input {
         /* Initialise response */
         $responseData = array('uniqueId'=>'', 'response'=>'', 'resetUniqueId'=>0);
 
-        // Begin Main : Retrieve Variables posted by Monetico Paiement Server
+        /* Begin Main : Retrieve Variables posted by Monetico Paiement Server */
         $MoneticoPaiement_bruteVars = getMethode();
 
         /* Clean vars to keep only Monetico variables */
@@ -370,20 +368,16 @@ final class MoneticoPaiement extends Input {
             return;
         }
 
-        // TPE init variables
+        /* TPE init variables */
         $oEpt = new MoneticoPaiement_Ept();
         $oHmac = new MoneticoPaiement_Hmac($oEpt);
 
-        // Message Authentication
+        /* Message Authentication*/
         $MAC_source = computeHmacSource($MoneticoPaiement_bruteVars, $oEpt);
         $computed_MAC = $oHmac->computeHmac($MAC_source);
         $congruent_MAC = array_key_exists('MAC', $MoneticoPaiement_bruteVars) && $computed_MAC == strtolower($MoneticoPaiement_bruteVars['MAC']);
-
-        //$camyks->log('Dev', 'Monetico HMAC', $computed_MAC . ' == '. (isset($MoneticoPaiement_bruteVars['MAC']) ? strtolower($MoneticoPaiement_bruteVars['MAC']) : ''));
-
-        if (!$congruent_MAC) {
-            $camyks->log_executionerror($this, 'HMAC doesn\'t match.', 'Expected HMAC: '.$MAC_source.'\nComputed HMAC: '.$computed_MAC);
-        }
+        if (!$congruent_MAC)
+            $camyks->log_executionerror($this, 'HMAC doesn\'t match.', "Expected HMAC: ".$MoneticoPaiement_bruteVars['MAC']."\nComputed HMAC: ".$computed_MAC);
 
         /* Build receipt */
         $receipt = MONETICOPAIEMENT_PHASE2BACK_MACOK;
@@ -397,7 +391,6 @@ final class MoneticoPaiement extends Input {
 
         /* Print response answer from monetico server */
         printf(MONETICOPAIEMENT_PHASE2BACK_RECEIPT, $receipt);
-        die();
     }
 
     /**

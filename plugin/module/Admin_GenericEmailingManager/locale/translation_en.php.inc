@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module english dictionnary.
- * @details Plugin, Module Dictionnary
+ * @brief Admin_GenericEmailingManager module, english dictionary.
+ * @details Plugin, Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.1
+ * @version 1.0.9
  * @date Creation: Feb 2021
- * @date Modification: Mar 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2021 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -201,6 +201,7 @@ $this->trads['mod_admin_genericemailingmanager_contact_saved'] = 'Contact saved.
 $this->trads['mod_admin_genericemailingmanager_contact_notsaved'] = 'An error has occured while saving this contact.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_alreadyexists'] = 'Database already contains a contact with the same email address. <br />Contact has not been saved.';
 $this->trads['mod_admin_genericemailingmanager_contact_saveerror_emailinvalid'] = 'E-mail is invalid. <br />Contact has not been saved.';
+$this->trads['mod_admin_genericemailingmanager_contact_saveerror_namesinvalid'] = 'Names must be filled in. <br />Contact has not been saved.';
 
 /* admin delete contact */
 $this->trads['mod_admin_genericemailingmanager_contact_deleted'] = 'Contact deleted.';

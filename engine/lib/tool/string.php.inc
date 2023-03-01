@@ -2,12 +2,11 @@
 /**
  * @brief String specific methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/string.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.9.1
  * @date Creation: Oct 2007
- * @date Modification: Dec 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Feb 2022
+ * @copyright 2007 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -200,9 +199,9 @@ function string_text2Html($string, $encoding=null) {
     /* decode text */
     switch ($encoding) {
         case 'utf8':
-            return htmlentities($string, null, 'UTF-8');
+            return htmlentities($string, 0, 'UTF-8');
         case 'ISO-8859-1':
-            return htmlentities($string, null, 'ISO-8859-1');
+            return htmlentities($string, 0, 'ISO-8859-1');
         default:
         case '':
     }

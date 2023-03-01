@@ -4,10 +4,10 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.1
+ * @version 1.0.8.2
  * @date Creation: Dec 2012
- * @date Modification: May 2022
- * @copyright 2012 - 2021 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2012 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Requires XLSXReader from https://github.com/gneustaetter/XLSXReader to import xlsx data

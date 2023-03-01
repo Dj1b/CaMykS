@@ -3,9 +3,9 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.4
+ * @version 1.0.21.5
  * @date Creation: Jun 2005
- * @date Modification: Jul 2022
+ * @date Modification: Dec 2022
  * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -697,7 +697,7 @@ final class Camyks {
             case 'auto':
                 if ($isSSL) return;
                 $test = @get_headers('https://'.$_SERVER['HTTP_HOST']);
-                if (preg_match('/200/', $test[0])) {
+                if (is_array($test) and isset($test[0]) and preg_match('/200/', $test[0])) {
                     header("HTTP/1.1 301 Moved Permanently");
                     header('Location:https'.$schemeLessURL);
                     die();
@@ -1255,7 +1255,7 @@ final class Camyks {
     public function get_adminUser() {
         /* load current adminUser */
         if (isset($this->modules['Admin_User'])) {
-            $this->adminUser = new AdminUser($this->get_sessionValue('admin_user'));
+            $this->adminUser = new AdminUser($this->get_sessionValue('admin_user', ''));
             $this->adminUser->get();
         }
     }

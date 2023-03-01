@@ -4,10 +4,10 @@
  * <br /> Adds Google Analytics snippet on page
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Sep 2018
- * @date Modification: Mar 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Feb 2023
+ * @copyright 2018 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -89,6 +89,15 @@ final class GoogleAnalytics extends Input {
         parent::initialise();
 
         $this->add_trackingCode($this->get_configValue('trackingId'), $this->get_configValue('trackingParams'));
+
+        /* Check for Google Tag Manager insertion */
+        if ($this->get_configValue('enableAdminStats') == 0 and $camyks->check_adminUser())
+            return;
+        if ($this->get_configValue('trackingMode') == 1) {
+            $this->add_JSScript("/* Google Tag Manager */");
+            $this->add_JSScript("(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','".$this->get_configValue('trackingId')."');");
+            $this->add_JSScript("/* End Google Tag Manager */");
+        }
     }
 
     /**
@@ -105,6 +114,11 @@ final class GoogleAnalytics extends Input {
         /* check admin visits */
         if ($this->get_configValue('enableAdminStats') == 0 and $camyks->check_adminUser())
             return;
+
+        /* Check method */
+        if ($this->get_configValue('trackingMode') == 1) {
+            $this->set_selectedLayout('input_gtm.html.inc');
+        }
 
         /* display snippet */
         parent::display();
@@ -280,7 +294,7 @@ final class GoogleAnalytics extends Input {
         $this->load_configuration();
 
         /* Return plugin information */
-        if ($this->config->get_value('trackingId') !== '')
+        if ($this->config->get_value('trackingId') !== '' and $this->get_configValue('trackingMode') == 0)
             return array(
                 'GoogleAnalytics' => array(
                     'title' => $this->get_translation('cookie_title'),
@@ -303,6 +317,11 @@ final class GoogleAnalytics extends Input {
     private function is_cookieAccepted() {
         global $camyks;
 
+        /* Check Google Tag Manager auto acceptation */
+        if ($this->get_configValue('trackingMode') == 1)
+            return true;
+
+        /* Check acceptation from CookieAgreementMessage */
         $input = $camyks->get_input('CookieAgreementMessage');
         if ($input === false)
             return true;

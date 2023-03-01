@@ -3,10 +3,10 @@
  * @brief Admin_ContentPage module, ContentPage library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5.3
+ * @version 1.1.5.4
  * @date Creation: Jun 2005
- * @date Modification: Oct 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Nov 2022
+ * @copyright 2005 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -263,7 +263,7 @@ final class ContentPage {
 
         /* check page : prevent from url injection */
         if (preg_match('/[^a-zA-Z0-9_\-]/', $page))
-             $page = 0;
+             $page = null;
 
         /* try to load page */
         if ($page == '' and $this->get_homeFromDatabase())
@@ -287,12 +287,12 @@ final class ContentPage {
                 $this->get_homeFromDatabase();
                 return false;
             case 'home_redirect':
-                header('Location:'.$camyks->get_siteHomepageLink());
+                header('Location:'.$camyks->get_rootBaseURL('absolute').$camyks->get_siteHomepageLink());
                 die();
             case 'page_display':
                 if ($page != $this->get_configValue('page_404ErrorPage')) {
-                    $this->site_get($this->get_configValue('page_404ErrorPage'));
-                    return false;
+                    if ($this->site_get($this->get_configValue('page_404ErrorPage')))
+                        return false;
                 }
                 break;
             case 'page_redirect':
@@ -316,7 +316,7 @@ final class ContentPage {
         }
 
         /* error on fallback page, alternate fallback, redirect to home page */
-        header('Location:'.$camyks->get_siteHomepageLink());
+        header('Location:'.$camyks->get_rootBaseURL('absolute').$camyks->get_siteHomepageLink());
         return false;
     }
 
@@ -475,7 +475,7 @@ final class ContentPage {
      * @return boolean success
      */
     private function get_fromDatabase($page=null) {
-        if (isset($page)) {
+        if (!is_null($page)) {
             if (is_numeric($page))
                 return $this->get_objectFromDatabase(' and admin_contentpage.id='.(int)$page);
             else if (is_string($page))
@@ -1251,7 +1251,7 @@ final class ContentPage {
         /* init modules */
         $m = array();
         $i = 0;
-        for ($i=0; $i< $this->template->modules; $i++) {
+        for ($i=0; $i < $this->template->modules; $i++) {
             $mod_name = $this->modules[$i]['name'];
             /* module & content */
             if ($mod_name == '') {

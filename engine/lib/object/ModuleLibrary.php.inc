@@ -388,10 +388,12 @@ abstract class ModuleLibrary {
      */
     public function get_databaseItems() {
         global $camyks;
+
         /* build sql query */
         $sql = 'select *';
         $sql .= ' from '.$this->_libSQLTable;
         $sql .= ' where id='.$this->id;
+
         /* check workflow version if needed */
         if ($this->_libWFVersion !== false) {
             $sql .= ' and wf_version='.$this->_libWFVersion;
