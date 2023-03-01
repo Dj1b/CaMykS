@@ -4,10 +4,10 @@
  * <br /> Manage online payment with Monetico system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Apr 2017
- * @date Modification: Nov 2022
- * @copyright 2017 - 2022 CaMykS Team
+ * @date Modification: Feb 2023
+ * @copyright 2017 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -377,7 +377,7 @@ final class MoneticoPaiement extends Input {
         $computed_MAC = $oHmac->computeHmac($MAC_source);
         $congruent_MAC = array_key_exists('MAC', $MoneticoPaiement_bruteVars) && $computed_MAC == strtolower($MoneticoPaiement_bruteVars['MAC']);
         if (!$congruent_MAC)
-            $camyks->log_executionerror($this, 'HMAC doesn\'t match.', 'Expected HMAC: '.$MoneticoPaiement_bruteVars['MAC'].'\nComputed HMAC: '.$computed_MAC);
+            $camyks->log_executionerror($this, 'HMAC doesn\'t match.', "Expected HMAC: ".$MoneticoPaiement_bruteVars['MAC']."\nComputed HMAC: ".$computed_MAC);
 
         /* Build receipt */
         $receipt = MONETICOPAIEMENT_PHASE2BACK_MACOK;
