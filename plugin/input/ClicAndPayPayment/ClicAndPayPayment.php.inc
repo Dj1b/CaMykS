@@ -3,12 +3,11 @@
  * @brief ClicAndPayPayment Input
  * <br /> Interface to ClicAndPay payment system.
  * @details Plugin / Input Engine
- * @file plugin/input/ClicAndPayPayment/ClicAndPayPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2019
- * @date Modification: Jul 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Dec 2022
+ * @copyright 2019 - 2022 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -112,6 +111,7 @@ final class ClicAndPayPayment extends Input {
      * @return boolean result
      */
     public function prepare_forPayment($params=array()) {
+        global $camyks;
 
         $defaultParams = array('amount' => 0, 'orderId' => '');
         $params = array_merge($defaultParams, $params);
@@ -124,9 +124,12 @@ final class ClicAndPayPayment extends Input {
         $this->transactionParams['site_id'] = $this->config->vars['site_id'];
         $this->transactionParams['ctx_mode'] = $this->config->vars['ctx_mode'];
 
+        $trial = (int)$camyks->get_sessionValue('ClicAndPayTrials', 0) + 1;
+        $camyks->set_sessionValue('ClicAndPayTrials', $trial);
+
         /* merge params */
         $this->transactionParams['amount'] = $params['amount'];
-        $this->transactionParams['trans_id'] = str_pad($params['orderId'], 6, '0', STR_PAD_LEFT);
+        $this->transactionParams['trans_id'] = $trial.str_pad($params['orderId'], 5, '0', STR_PAD_LEFT);
 
         /* fix params */
         $this->transactionParams['amount'] = (int)($this->transactionParams['amount']*100);
@@ -201,7 +204,7 @@ final class ClicAndPayPayment extends Input {
     public function get_paymentConfirmationData() {
         $data = array();
         $data['idMode'] = 'id';
-        $data['id'] = isset($this->confirmationData['vads_trans_id']) ? $this->confirmationData['vads_trans_id'] : '';
+        $data['id'] = isset($this->confirmationData['vads_trans_id']) ? (int)substr(''.$this->confirmationData['vads_trans_id'], -5) : '';
         $data['transaction'] = isset($this->confirmationData['vads_trans_uuid']) ? $this->confirmationData['vads_trans_uuid'] : '';
         $data['response'] = isset($this->confirmationData['vads_trans_status']) ? $this->confirmationData['vads_trans_status'] : '';
         return $data;
@@ -212,7 +215,7 @@ final class ClicAndPayPayment extends Input {
      * @return array
      */
     public function execute_checkout() {
-        $this->_transactionId = isset($_REQUEST['vads_trans_uuid'])?$_REQUEST['vads_trans_uuid']:'';
+        $this->_transactionId = isset($_REQUEST['vads_trans_uuid']) ? $_REQUEST['vads_trans_uuid'] : '';
         if (isset($_REQUEST['vads_trans_status']) and $_REQUEST['vads_trans_status'] === 'AUTHORISED')
             return true;
         return false;
