@@ -3,7 +3,7 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.144
+ * @version 1.0.145
  * @date Creation: Jun 2007
  * @date Modification: Mar 2023
  * @copyright 2007 - 2023 CaMykS Team
@@ -3603,6 +3603,10 @@ function _client_checkFirefoxIsFake($infos, $ua) {
 
     /* Do not check version previous to 5, rv value and ff version don't match */
     if ((int)$matches[1] < 5 and (int)$matches[4] < 5)
+        return false;
+
+    /* Check modern rv value */
+    if ((int)$matches[1] == 109 and (int)$matches[4] >= 109)
         return false;
 
     /* Check rv value and Firefox value */
