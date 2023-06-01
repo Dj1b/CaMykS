@@ -3,10 +3,10 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.106
+ * @version 1.0.107
  * @date Creation: Apr 2018
- * @date Modification: Nov 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Mar 2023
+ * @copyright 2018 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -235,12 +235,14 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-G780F'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
         'SM-G780G'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
         'SM-G781B'  => array('platform_model' => 'Galaxy S20 Fan Edition',          'platform_year' => 2020),
+        'SM-G990B'  => array('platform_model' => 'Galaxy S21 FE',                   'platform_year' => 2021),
         'SM-G9910'  => array('platform_model' => 'Galaxy S21 5G',                   'platform_year' => 2021),
         'SM-G991B'  => array('platform_model' => 'Galaxy S21',                      'platform_year' => 2021),
         'SM-G991W'  => array('platform_model' => 'Galaxy S21',                      'platform_year' => 2021),
         'SM-G996B'  => array('platform_model' => 'Galaxy S21+ 5G',                  'platform_year' => 2021),
         'SM-G9980'  => array('platform_model' => 'Galaxy S21 Ultra 5G',             'platform_year' => 2021),
         'SM-G998B'  => array('platform_model' => 'Galaxy S21 Ultra',                'platform_year' => 2021),
+        'SM-S901B'  => array('platform_model' => 'Galaxy S22',                      'platform_year' => 2022),
 
         /* Samsung Galaxy A series */
         'SM-A015M'  => array('platform_model' => 'Galaxy A01',                      'platform_year' => 2020),

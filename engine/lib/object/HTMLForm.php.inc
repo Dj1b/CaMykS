@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief HTML form object library
+ * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.8.3
+ * @version 1.1.8.4
  * @date Creation: Jun 2005
- * @date Modification: Feb 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Jan 2023
+ * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -1094,7 +1094,10 @@ class HTMLForm {
 
         /* build input */
         $html = '<input type="number"';
-        $html .= ' value="'.(int)$params['default'].'"';
+        if (isset($this->object) and $this->object->_libItems[$v]->datatype == 'float')
+            $html .= ' value="'.(float)$params['default'].'"';
+        else
+            $html .= ' value="'.(int)$params['default'].'"';
         $html .= $this->build_inputGenericAttributes($params);
         if (is_int($params['min']))
             $html .= ' min="'.$params['min'].'"';

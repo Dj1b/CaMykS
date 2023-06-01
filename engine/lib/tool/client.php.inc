@@ -3,10 +3,10 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.143
+ * @version 1.0.146
  * @date Creation: Jun 2007
- * @date Modification: Oct 2022
- * @copyright 2007 - 2022 CaMykS Team
+ * @date Modification: Jun 2023
+ * @copyright 2007 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -3382,7 +3382,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'Android'           => array(
-                'MaxVersion'    => '16',                    // current is soon 13
+                'MaxVersion'    => '16',                    // current is 13
                 'FakeVersions'  => array('7.8.9'),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3390,25 +3390,25 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '114',                    // current is 106 , nightly is +6
+                'MaxVersion'    => '123',                    // current is 113 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '112',                    // current is 106
+                'MaxVersion'    => '119',                    // current is 113
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '98',                    // current is 92
+                'MaxVersion'    => '105',                    // current is 99
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
             ),
             'Safari'            => array(
-                'MaxVersion'    => '20',                    // current is 16.0
+                'MaxVersion'    => '20',                    // current is 16.5
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3603,6 +3603,10 @@ function _client_checkFirefoxIsFake($infos, $ua) {
 
     /* Do not check version previous to 5, rv value and ff version don't match */
     if ((int)$matches[1] < 5 and (int)$matches[4] < 5)
+        return false;
+
+    /* Check modern rv value */
+    if ((int)$matches[1] == 109 and (int)$matches[4] >= 109)
         return false;
 
     /* Check rv value and Firefox value */

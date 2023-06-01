@@ -1,20 +1,18 @@
 <?php
 /**
- * @brief Temporary item of Module Library Item
+ * @brief Temporary item of Module Library Item.
  * @details Engine / Object Library
- * @file engine/lib/object/MLTemporaryItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: May 2007
- * @date Modification: Apr 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Mar 2023
+ * @copyright 2007 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MLTemporaryItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class MLTemporaryItem extends ModuleLibraryItem {
     /**
@@ -33,6 +31,7 @@ final class MLTemporaryItem extends ModuleLibraryItem {
     public function __construct($name, $type='', $default='') {
         $this->name = $name;
         $this->type = $type;
+        $this->datatype = $type;
         $this->default = $default;
     }
 

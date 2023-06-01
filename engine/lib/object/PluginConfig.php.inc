@@ -3,10 +3,10 @@
  * @brief PluginConfig library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.2
+ * @version 1.0.1
  * @date Creation: Oct 2017
- * @date Modification: Nov 2022
- * @copyright 2017 - 2022 CaMykS Team
+ * @date Modification: Jan 2023
+ * @copyright 2017 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -257,6 +257,35 @@ abstract class PluginConfig {
      */
     public function get_translation($str, $args=null) {
         return $this->_libParent->get_translation($str, $args);
+    }
+
+    /* Session related methods */
+
+    /**
+     * Load object data from session.
+     * @return void
+     */
+    public function load_fromSession() {
+        global $camyks;
+        $this->vars = $camyks->get_sessionValue($this->name, array());
+    }
+
+    /**
+     * Save object data in session.
+     * @return void
+     */
+    public function save_toSession() {
+        global $camyks;
+        $camyks->set_sessionValue($this->name, $this->vars);
+    }
+
+    /**
+     * Delete object from session.
+     * @return void
+     */
+    public function delete_fromSession() {
+        global $camyks;
+        $camyks->set_sessionValue($this->name, array());
     }
 }
 ?>
