@@ -3,9 +3,9 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.145
+ * @version 1.0.146
  * @date Creation: Jun 2007
- * @date Modification: Mar 2023
+ * @date Modification: Jun 2023
  * @copyright 2007 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3390,25 +3390,25 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '119',                    // current is 110 , nightly is +6
+                'MaxVersion'    => '123',                    // current is 113 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '117',                    // current is 111
+                'MaxVersion'    => '119',                    // current is 113
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '102',                    // current is 96
+                'MaxVersion'    => '105',                    // current is 99
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
             ),
             'Safari'            => array(
-                'MaxVersion'    => '20',                    // current is 16.3
+                'MaxVersion'    => '20',                    // current is 16.5
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
