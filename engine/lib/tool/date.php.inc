@@ -3,10 +3,10 @@
  * @brief Date specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: Oct 2005
- * @date Modification: Feb 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Mar 2023
+ * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,7 +32,7 @@ function date_displayLongDayDateHour($date=TODAY) {
         case 'fr':
             return ucwords(date_strftime('%A %e %B %Y, %H:%M', $date));
         case 'en':
-            return date_strftime('%A, %B the %e'.date('S', $date).' %Y, %H:%M', $date);
+            return date_strftime('%A, %B the %e', $date).date('S', $date).date_strftime(' %Y, %H:%M', $date);
         case 'es':
             return ucwords(date_strftime('%A %e', $date)).' de '.ucwords(date_strftime('%B %Y, %H:%M', $date));
         default:
@@ -52,7 +52,7 @@ function date_displayLongDateHour($date=TODAY) {
         case 'fr':
             return ucwords(date_strftime('%e %B %Y', $date)).string_html2text(' &agrave; '). date_strftime('%H:%M', $date);
         case 'en':
-            return date_strftime('%e'.date('S', $date).' %B %Y, %H:%M', $date);
+            return date_strftime('%e', $date).date('S', $date).date_strftime(' %B %Y, %H:%M', $date);
         case 'es':
             return date_strftime('%e', $date).' de '.ucwords(date_strftime('%B %Y, %H:%M', $date));
         default:
@@ -72,7 +72,7 @@ function date_displayLongDayDate($date=TODAY) {
         case 'fr':
             return ucwords(date_strftime('%A %e %B %Y', $date));
         case 'en':
-            return date_strftime('%A, %e'.date('S', $date).' %B %Y', $date);
+            return date_strftime('%A, %e', $date).date('S', $date).date_strftime(' %B %Y', $date);
         case 'es':
             return ucwords(date_strftime('%A %e', $date)).' de '.ucwords(date_strftime('%B %Y', $date));
         default:
@@ -92,7 +92,7 @@ function date_displayLongDate($date=TODAY) {
         case 'fr':
             return ucwords(date_strftime('%e %B %Y', $date));
         case 'en':
-            return date_strftime('%e'.date('S', $date).' %B %Y', $date);
+            return date_strftime('%e', $date).date('S', $date).date_strftime(' %B %Y', $date);
         case 'es':
             return date_strftime('%e', $date).' de '.ucwords(date_strftime('%B %Y', $date));
         default:
