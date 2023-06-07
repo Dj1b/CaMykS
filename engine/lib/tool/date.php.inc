@@ -3,9 +3,9 @@
  * @brief Date specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.1
+ * @version 1.0.5.2
  * @date Creation: Oct 2005
- * @date Modification: Mar 2023
+ * @date Modification: Jun 2023
  * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,7 +32,7 @@ function date_displayLongDayDateHour($date=TODAY) {
         case 'fr':
             return ucwords(date_strftime('%A %e %B %Y, %H:%M', $date));
         case 'en':
-            return date_strftime('%A, %B the %e', $date).date('S', $date).date_strftime(' %Y, %H:%M', $date);
+            return date_strftime('%A, %B', $date).' the '. date_strftime('%e', $date).date('S', $date).date_strftime(' %Y, %H:%M', $date);
         case 'es':
             return ucwords(date_strftime('%A %e', $date)).' de '.ucwords(date_strftime('%B %Y, %H:%M', $date));
         default:
