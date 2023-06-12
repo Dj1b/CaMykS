@@ -3,10 +3,10 @@
  * @brief Admin_GenericDownloadManager Module document library
  * @details Plugin, Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2008
- * @date Modification: Dec 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jun 2023
+ * @copyright 2008 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -97,7 +97,7 @@ final class Admin_GenericDownloadManagerDocument extends ModuleLibrary {
         if ($this->_libParent->config->vars['link_mode'] == 1)
             $params['sid'] = $this->vars['security'];
 
-        return $camyks->get_rootBaseURL('absolute').$this->_libParent->get_requestLink($params);
+        return $camyks->get_rootBaseURL('absolute').$this->_libParent->get_requestJSLink($params);
     }
 
     /**
