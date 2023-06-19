@@ -4,10 +4,10 @@
  * @details Engine / Object Library
  * @file engine/lib/object/PluginConfigItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Oct 2007
- * @date Modification: Feb 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jun 2023
+ * @copyright 2007 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -34,6 +34,24 @@ final class PluginConfigItem {
      * @brief Item default value.
      */
     private $_default;
+
+    /**
+     * @var string $datatype
+     * @brief Item data type, can be \b text / \b etext / \b int / \b float / \b date / \b password / \b list.
+     */
+    public $datatype;
+
+    /**
+     * @var string $datadesc
+     * @brief Item data description (database type compatible with MySQL).
+     */
+    public $datadesc;
+
+    /**
+     * @var string $datadesc2
+     * @brief Secondary information of item data description.
+     */
+    public $datadesc2;
 
     /**
      * Class constructor.
