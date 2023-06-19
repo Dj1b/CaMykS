@@ -3,7 +3,7 @@
  * @brief Date specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.2
+ * @version 1.0.5.3
  * @date Creation: Oct 2005
  * @date Modification: Jun 2023
  * @copyright 2005 - 2023 CaMykS Team
@@ -665,7 +665,7 @@ function date_getChristmasDay($year=null) {
  */
 function date_strftime($format, $date=TODAY) {
     global $camyks, $languages;
-    if (version_compare(PHP_VERSION, '7.0.0', '>=')) {
+    if (version_compare(PHP_VERSION, '7.0.0', '>=') and class_exists('IntlDateFormatter')) {
         $format = preg_replace(array('#%A#', '#%e#', '#%B#', '#%Y#', '#%H#', '#%M#', '#%a#', '#%b#', '#%y#', '#%d#', '#%m#', '#%D#'),
                                array('eeee', 'd', 'MMMM', 'yyyy', 'HH', 'mm', 'eee', 'MMM', 'yy', 'dd', 'MM', 'dd/MM/yyyy'), $format);
         $df = new IntlDateFormatter($camyks->current_language, IntlDateFormatter::FULL, IntlDateFormatter::FULL, $camyks->get_confValue('TimeZone'), IntlDateFormatter::GREGORIAN, $format);
