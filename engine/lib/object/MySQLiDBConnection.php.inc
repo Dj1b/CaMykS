@@ -3,10 +3,10 @@
  * @brief MySQLi Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.1.4
  * @date Creation: Sep 2014
- * @date Modification: Jan 2023
- * @copyright 2014 - 2022 CaMykS Team
+ * @date Modification: Aug 2023
+ * @copyright 2014 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -352,10 +352,11 @@ final class MySQLiDBConnection extends CDBConnection {
     public function execute_query($sql='', $resName='defaultRes') {
         try {
             $this->queryRes[$resName] = @$this->connection->query($sql);
+            return ($this->queryRes[$resName] !== false);
         } catch (Exception $e) {
-            return false;
+
         }
-        return true;
+        return false;
     }
 
     /**
