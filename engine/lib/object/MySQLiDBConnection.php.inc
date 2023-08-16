@@ -3,7 +3,7 @@
  * @brief MySQLi Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.4
+ * @version 1.0.1.5
  * @date Creation: Sep 2014
  * @date Modification: Aug 2023
  * @copyright 2014 - 2023 CaMykS Team
@@ -29,7 +29,7 @@ final class MySQLiDBConnection extends CDBConnection {
         /* database server connection */
         try {
             $this->connection = @(new MySQLi($host, $login, $pwd, ''));
-            $this->active = true;
+            $this->active = ($this->connection->connect_errno === 0);
         } catch (Exception $e) {
             $this->active = false;
         }
