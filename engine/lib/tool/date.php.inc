@@ -3,9 +3,9 @@
  * @brief Date specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.3
+ * @version 1.0.5.4
  * @date Creation: Oct 2005
- * @date Modification: Jun 2023
+ * @date Modification: Aug 2023
  * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -716,8 +716,10 @@ function date_displayShortFormat($date=TODAY, $language=null) {
     switch ($language) {
         case 'fr':
             return date_strftime('%d/%m/%Y - %H:%M', $date);
+        case 'en':
+            return date_strftime('%d/%m/%Y - %H:%M', $date);
         default:
-            return date_strftime('%c', $date);
+            return date_strftime('%d/%m/%Y - %H:%M', $date);
     }
 }
 
