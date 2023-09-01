@@ -3,9 +3,9 @@
  * @brief Date specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.4
+ * @version 1.0.6
  * @date Creation: Oct 2005
- * @date Modification: Aug 2023
+ * @date Modification: Sep 2023
  * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -289,6 +289,100 @@ function date_displayDay($date=TODAY) {
     if ($date <= 7)
         $date = mktime(0, 0, 0, 1, 2+$date, 0);
     return date_strftime('%A', $date);
+}
+
+/**
+ * Display duration.
+ * @param int $duration
+ * @param array $params
+ * @return string
+ */
+function date_displayDuration($duration, $params=array()) {
+    global $camyks;
+
+    /* Merge params */
+    $defaultParams = array('displaySeconds'=>true, 'displayMinutes'=>true, 'displayHours'=>true, 'displayDays'=>true, 'format'=>'long');
+    $params = array_merge($defaultParams, $params);
+
+    /* Prepare values */
+    $second = 1;
+    $minute = $second * 60;
+    $hour = $minute *60;
+    $day = $hour *24;
+
+    /* Load units library */
+    include_once('units.php.inc');
+    units_loadLocales();
+
+    /* Initialise result */
+    $result = array();
+
+    /* Check for days */
+    if ($params['displayDays']) {
+        $days = floor($duration/$day);
+        if ($days > 0 or ($params['displayHours'] === false and $params['displayMinutes'] === false and $params['displaySeconds'] === false)) {
+            if ($params['format'] === 'short')
+                $result[] = $camyks->get_translation('unit_xdays_short', $days);
+            elseif ($days == 0)
+                $result[] = $camyks->get_translation('unit_0day');
+            elseif ($days == 1)
+                $result[] = $camyks->get_translation('unit_1day');
+            else
+                $result[] = $camyks->get_translation('unit_xdays', $days);
+            $duration -= $days*$day;
+        }
+    }
+
+    /* Check for hours */
+    if ($params['displayHours']) {
+        $hours = floor($duration/$hour);
+        if ($hours > 0 or (count($result) == 0 and $params['displayMinutes'] === false and $params['displaySeconds'] === false)) {
+            if ($params['format'] === 'short')
+                $result[] = $camyks->get_translation('unit_xhours_short', $hours);
+            elseif ($hours == 0)
+                $result[] = $camyks->get_translation('unit_0hour');
+            elseif ($hours == 1)
+                $result[] = $camyks->get_translation('unit_1hour');
+            else
+                $result[] = $camyks->get_translation('unit_xhours', $hours);
+            $duration -= $hours*$hour;
+        }
+    }
+
+    /* Check for minutes */
+    if ($params['displayMinutes']) {
+        $minutes = floor($duration/$minute);
+        if ($minutes > 0 or (count($result) == 0 and $params['displaySeconds'] === false)) {
+            if ($params['format'] === 'short')
+                $result[] = $camyks->get_translation('unit_xminutes_short', $minutes);
+            elseif ($minutes == 0)
+                $result[] = $camyks->get_translation('unit_0minute');
+            elseif ($minutes == 1)
+                $result[] = $camyks->get_translation('unit_1minute');
+            else
+                $result[] = $camyks->get_translation('unit_xminutes', $minutes);
+            $duration -= $minutes*$minute;
+        }
+    }
+
+    /* Check for seconds */
+    if ($params['displaySeconds']) {
+        $seconds = floor($duration/$second);
+        if ($seconds > 0 or count($result) == 0) {
+            if ($params['format'] === 'short')
+                $result[] = $camyks->get_translation('unit_xseconds_short', $seconds);
+            elseif ($seconds == 0)
+                $result[] = $camyks->get_translation('unit_0second');
+            elseif ($seconds == 1)
+                $result[] = $camyks->get_translation('unit_1second');
+            else
+                $result[] = $camyks->get_translation('unit_xseconds', $seconds);
+            $duration -= $seconds*$second;
+        }
+    }
+
+    /* Return result */
+    return implode(', ', $result);
 }
 
 /**
