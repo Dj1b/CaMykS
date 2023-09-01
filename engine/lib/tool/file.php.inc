@@ -3,10 +3,10 @@
  * @brief File specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.
+ * @version 1.0.7.1
  * @date Creation: Jun 2005
- * @date Modification: Feb 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Sep 2023
+ * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo complete file type, extension, and mime list
@@ -538,7 +538,7 @@ function file_getImageSize($file) {
  */
 function file_getImageType($file) {
     /* return image type from EXIF */
-    if (($type = @exif_imagetype($file)) !== false) {
+    if (function_exists('exif_imagetype') and ($type = @exif_imagetype($file)) !== false) {
         switch ($type) {
             case 1: return 'gif';
             case 2: return 'jpg';
@@ -560,9 +560,14 @@ function file_getImageType($file) {
  */
 function file_isImage($file) {
     if (file_exists($file)) {
+        /* Check exif is available */
+        if (!function_exists('exif_imagetype'))
+            return false;
+
+        /* Check file has stats */
         $s = stat($file);
         if ($s['size'] > 10)
-        return (exif_imagetype($file) > 0);
+            return (@exif_imagetype($file) > 0);
     }
     return false;
 }
