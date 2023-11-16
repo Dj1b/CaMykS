@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Date specific methods
+ * @brief Date specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Oct 2005
- * @date Modification: Sep 2023
+ * @date Modification: Nov 2023
  * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -289,6 +289,17 @@ function date_displayDay($date=TODAY) {
     if ($date <= 7)
         $date = mktime(0, 0, 0, 1, 2+$date, 0);
     return date_strftime('%A', $date);
+}
+
+/**
+ * Display month.
+ * @param date $date can be a month
+ * @return string
+ */
+function date_displayMonth($date=TODAY) {
+    if ($date > 0 and $date <= 12)
+        $date = mktime(0, 0, 0, $date, 1, 0);
+    return date_strftime('%B', $date);
 }
 
 /**
