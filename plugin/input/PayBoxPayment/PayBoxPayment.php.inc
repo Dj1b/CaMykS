@@ -4,10 +4,10 @@
  * <br /> Interface to PayBox payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: Apr 2017
- * @date Modification: Oct 2022
- * @copyright 2017 - 2022 CaMykS Team
+ * @date Modification: Nov 2023
+ * @copyright 2017 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -247,7 +247,7 @@ final class PayBoxPayment extends Input {
         /* build shopping cart data */
         $shoppingCart = '<?xml version="1.0" encoding="utf-8"?>';
         if (count($this->transactionParams['shoppingCart']) >= 1) {
-            $shoppingCart .= "<shoppingcart>\n<total>\n<totalQuantity>\n".count($this->transactionParams['shoppingCart'])."</totalQuantity>\n</total>\n</shoppingcart>";
+            $shoppingCart .= "<shoppingcart><total><totalQuantity>".count($this->transactionParams['shoppingCart'])."</totalQuantity></total></shoppingcart>";
         } else {
             $shoppingCart .= "<shoppingcart><total><totalQuantity></totalQuantity></total></shoppingcart>";
         }
