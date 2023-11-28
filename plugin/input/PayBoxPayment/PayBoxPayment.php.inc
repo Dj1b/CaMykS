@@ -4,7 +4,7 @@
  * <br /> Interface to PayBox payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.1
+ * @version 1.0.6
  * @date Creation: Apr 2017
  * @date Modification: Nov 2023
  * @copyright 2017 - 2023 CaMykS Team
@@ -262,7 +262,7 @@ final class PayBoxPayment extends Input {
             ."<Address1>".(!is_null($this->transactionParams['billing']['address1']) ? $this->transactionParams['billing']['address1'] : $this->transactionParams['client']['address1'])."</Address1>"
             ."<ZipCode>".(!is_null($this->transactionParams['billing']['zipcode']) ? $this->transactionParams['billing']['zipcode'] : $this->transactionParams['client']['zipcode'])."</ZipCode>"
             ."<City>".(!is_null($this->transactionParams['billing']['city']) ? $this->transactionParams['billing']['city'] : $this->transactionParams['client']['city'])."</City>"
-            ."<CountryCode>250</CountryCode>"
+            ."<CountryCode>".countries_getSingleDataValue(!is_null($this->transactionParams['billing']['country']) ? $this->transactionParams['billing']['country'] : $this->transactionParams['client']['country'], 'NumericCode')."</CountryCode>"
             ."</Address>"
             ."</Billing>";
         $params['PBX_BILLING'] = preg_replace('/"/', '\'', $billingData);
@@ -277,7 +277,7 @@ final class PayBoxPayment extends Input {
                 ."<Address1>".$this->transactionParams['shipping']['address1']."</Address1>"
                 ."<ZipCode>".$this->transactionParams['shipping']['zipcode']."</ZipCode>"
                 ."<City>".$this->transactionParams['shipping']['city']."</City>"
-                ."<CountryCode>250</CountryCode>\n"
+                ."<CountryCode>".countries_getSingleDataValue($this->transactionParams['shipping']['country'], 'NumericCode')."</CountryCode>"
                 ."</Address>"
                 ."</Shipping>";
             $params['PBX_SHIPPING'] = preg_replace('/"/', '\'', $shippingData);
