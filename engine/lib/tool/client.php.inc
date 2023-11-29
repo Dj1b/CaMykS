@@ -3,9 +3,9 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.146
+ * @version 1.0.147
  * @date Creation: Jun 2007
- * @date Modification: Jun 2023
+ * @date Modification: Nov 2023
  * @copyright 2007 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3364,7 +3364,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'macOS'          => array(
-                'MaxVersion'    => '16.0.0',                // current is 13
+                'MaxVersion'    => '17.0.0',                // current is 14
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
@@ -3376,13 +3376,13 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'iOS'               => array(
-                'MaxVersion'    => '19',                    // current is 16.x
+                'MaxVersion'    => '20',                    // current is 17.x
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
             ),
             'Android'           => array(
-                'MaxVersion'    => '16',                    // current is 13
+                'MaxVersion'    => '17',                    // current is 14
                 'FakeVersions'  => array('7.8.9'),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3390,25 +3390,25 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '123',                    // current is 113 , nightly is +6
+                'MaxVersion'    => '128',                    // current is 120 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '119',                    // current is 113
+                'MaxVersion'    => '125',                    // current is 119
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '105',                    // current is 99
+                'MaxVersion'    => '111',                    // current is 105
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
             ),
             'Safari'            => array(
-                'MaxVersion'    => '20',                    // current is 16.5
+                'MaxVersion'    => '22',                    // current is 17.1
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
