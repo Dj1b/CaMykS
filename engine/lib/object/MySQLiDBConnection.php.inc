@@ -3,9 +3,9 @@
  * @brief MySQLi Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.5
+ * @version 1.0.1.6
  * @date Creation: Sep 2014
- * @date Modification: Aug 2023
+ * @date Modification: Nov 2023
  * @copyright 2014 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -354,7 +354,8 @@ final class MySQLiDBConnection extends CDBConnection {
             $this->queryRes[$resName] = @$this->connection->query($sql);
             return ($this->queryRes[$resName] !== false);
         } catch (Exception $e) {
-
+            $this->queryRes[$resName] = null;
+            return false;
         }
         return false;
     }
@@ -385,7 +386,7 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return array
      */
     public function get_queryDataLine($resName='defaultRes') {
-        if (isset($this->queryRes[$resName]))
+        if (!empty($this->queryRes[$resName]))
             return $this->queryRes[$resName]->fetch_assoc();
         return false;
     }
