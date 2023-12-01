@@ -3,10 +3,10 @@
  * @brief MySQLi Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.1.6
  * @date Creation: Sep 2014
- * @date Modification: Jan 2023
- * @copyright 2014 - 2022 CaMykS Team
+ * @date Modification: Nov 2023
+ * @copyright 2014 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -29,7 +29,7 @@ final class MySQLiDBConnection extends CDBConnection {
         /* database server connection */
         try {
             $this->connection = @(new MySQLi($host, $login, $pwd, ''));
-            $this->active = true;
+            $this->active = ($this->connection->connect_errno === 0);
         } catch (Exception $e) {
             $this->active = false;
         }
@@ -352,10 +352,12 @@ final class MySQLiDBConnection extends CDBConnection {
     public function execute_query($sql='', $resName='defaultRes') {
         try {
             $this->queryRes[$resName] = @$this->connection->query($sql);
+            return ($this->queryRes[$resName] !== false);
         } catch (Exception $e) {
+            $this->queryRes[$resName] = null;
             return false;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -384,7 +386,7 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return array
      */
     public function get_queryDataLine($resName='defaultRes') {
-        if (isset($this->queryRes[$resName]))
+        if (!empty($this->queryRes[$resName]))
             return $this->queryRes[$resName]->fetch_assoc();
         return false;
     }

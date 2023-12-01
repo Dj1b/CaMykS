@@ -3,12 +3,11 @@
  * @brief Countries specific methods
  * @brief Country codes defined by ISO 3166-2 list
  * @details Engine / Tool Library
- * @file engine/lib/tool/countries.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Sep 2007
- * @date Modification: Jun 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Nov 2023
+ * @copyright 2007 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -157,13 +156,65 @@ function countries_getCode($lang='', $key=''){
 }
 
 /**
+ * Load countries data.
+ * @return void
+ */
+function countries_loadData() {
+    global $__countriesData;
+    require_once('countries_data.php.inc');
+}
+
+/* Mark: Countries data related methods */
+
+/**
+ * Return countries single data value.
+ * @param string $country
+ * @param string $data
+ * @return mixed
+ */
+function countries_getSingleDataValue($country, $data) {
+    global $__countriesData;
+    countries_loadData();
+
+    if (!isset($__countriesData[$country]))
+        return null;
+    if (!isset($__countriesData[$country][$data]))
+        return null;
+    return $__countriesData[$country][$data];
+}
+
+/**
+ * Return countries data list.
+ * @param string $data
+ * @return array
+ */
+function countries_getDataList($data) {
+    global $__countriesData;
+    countries_loadData();
+
+    /* Initialise list */
+    $list = array();
+
+    /* Check data exists */
+    foreach ($__countriesData as $country => $values) {
+        if (!isset($values[$data]))
+            return $list;
+        break;
+    }
+
+    foreach ($__countriesData as $country => $values) {
+        $list[$country] = $values[$data];
+    }
+
+    return $list;
+}
+
+/**
  * Return country phone prefixes list.
  * @return array
  */
 function countries_getPhonePrefixes() {
-    global $__phonePrefixes;
-    require_once ('countries_phonePrefixes.php.inc');
-    return $__phonePrefixes;
+    return countries_getDataList('PhoneIndex');
 }
 
 /**
@@ -172,10 +223,6 @@ function countries_getPhonePrefixes() {
  * @return string
  */
 function countries_getPhonePrefix($country) {
-    global $__phonePrefixes;
-    require_once ('countries_phonePrefixes.php.inc');
-    if (isset($__phonePrefixes[$country]))
-        return $__phonePrefixes[$country];
-    return '';
+    return countries_getSingleDataValue($country, 'PhoneIndex');
 }
 ?>

@@ -4,10 +4,10 @@
  * <br /> Manages files available to download.
  * @details Plugin, Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: May 2008
- * @date Modification: Dec 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jun 2023
+ * @copyright 2008 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -146,7 +146,7 @@ final class Admin_GenericDownloadManager extends Module {
      */
     public function get_adminStatisticsValueTitles($list, $object=null) {
         /* Check given items */
-        if (count($items) == 0)
+        if (count($list) == 0)
             return array();
 
         /* Get files names */

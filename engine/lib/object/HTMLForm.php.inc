@@ -3,9 +3,9 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.8.4
+ * @version 1.1.8.5
  * @date Creation: Jun 2005
- * @date Modification: Jan 2023
+ * @date Modification: Sep 2023
  * @copyright 2005 - 2023 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1365,7 +1365,7 @@ class HTMLForm {
      */
     public function display_checkboxInput($input, $default=null) {
         /* build param list */
-        $params = array('class'=>'', 'size'=>0, 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
+        $params = array('class'=>'', 'size'=>0, 'value'=>null, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
 
         /* check header params */
         if (is_array($input)) {
@@ -1409,7 +1409,7 @@ class HTMLForm {
         $params['name'] = '';
         $html .= $this->build_inputGenericAttributes($params);
 
-        if ($params['default'] === $params['value'])
+        if ($params['default'] === $params['value'] and !is_null($params['value']))
             $html .= ' checked="checked"';
         elseif ($params['multiValues'] === true and is_array($params['default']) and in_array($params['value'], $params['default']))
             $html .= ' checked="checked"';
@@ -1512,8 +1512,8 @@ class HTMLForm {
         if (isset($this->object)) {
             /* check default value */
             if ($params['default'] == '') {
-                $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
-                $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+                $v = $params['name'].($params['language'] == '' ? '' : '_'.$params['language']);
+                $params['default'] = isset($this->object->vars[$v]) ? $this->object->vars[$v] : '';
             }
         }
 
