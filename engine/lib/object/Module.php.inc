@@ -3,10 +3,10 @@
  * @brief Module plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.2.3
  * @date Creation: Jun 2007
- * @date Modification: Dec 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Mar 2024
+ * @copyright 2007 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -629,6 +629,10 @@ class Module extends Plugin {
     public function get_fileInputButtons($buttons=array(), $delete=true) {
         global $camyks;
 
+        /* Load theme */
+        $theme = isset($this->theme) ? $this->theme : $camyks->theme;
+
+        /* Check buttons */
         if (is_array($buttons))
             $buttons = array_merge(array('view' => true, 'listen' => true, 'delete' => true), $buttons);
         else
@@ -637,20 +641,20 @@ class Module extends Plugin {
         $list = array();
         if ($buttons['view'] === true)
             $list['view'] = array(
-                'std'   => $this->theme->get_pictURL('view', 12, 'std'),
-                'ovr'   => $this->theme->get_pictURL('view', 12, 'ovr'),
+                'std'   => $theme->get_pictURL('view', 12, 'std'),
+                'ovr'   => $theme->get_pictURL('view', 12, 'ovr'),
                 'title' => $camyks->get_translation('display')
             );
         if ($buttons['listen'] === true)
             $list['listen'] = array(
-                'std'   => $this->theme->get_pictURL('right', 12, 'std'),
-                'ovr'   => $this->theme->get_pictURL('right', 12, 'ovr'),
+                'std'   => $theme->get_pictURL('right', 12, 'std'),
+                'ovr'   => $theme->get_pictURL('right', 12, 'ovr'),
                 'title' => $camyks->get_translation('listen')
             );
         if ($buttons['delete'] === true)
             $list['delete'] = array(
-                'std'   => $this->theme->get_pictURL('cross', 12, 'std'),
-                'ovr'   => $this->theme->get_pictURL('cross', 12, 'ovr'),
+                'std'   => $theme->get_pictURL('cross', 12, 'std'),
+                'ovr'   => $theme->get_pictURL('cross', 12, 'ovr'),
                 'title' => $camyks->get_translation('delete')
             );
         return $list;
@@ -665,17 +669,20 @@ class Module extends Plugin {
     public function get_dateInputButtons($update=true, $reset=true) {
         global $camyks;
 
+        /* Load theme */
+        $theme = isset($this->theme) ? $this->theme : $camyks->theme;
+
         $list = array();
         if ($update === true)
             $list['update'] = array(
-                'std'   => $this->theme->get_pictURL('target', 12, 'std'),
-                'ovr'   => $this->theme->get_pictURL('target', 12, 'ovr'),
+                'std'   => $theme->get_pictURL('target', 12, 'std'),
+                'ovr'   => $theme->get_pictURL('target', 12, 'ovr'),
                 'title' => $camyks->get_translation('update')
             );
         if ($reset === true)
             $list['reset'] = array(
-                'std'   => $this->theme->get_pictURL('cross', 12, 'std'),
-                'ovr'   => $this->theme->get_pictURL('cross', 12, 'ovr'),
+                'std'   => $theme->get_pictURL('cross', 12, 'std'),
+                'ovr'   => $theme->get_pictURL('cross', 12, 'ovr'),
                 'title' => $camyks->get_translation('reset')
             );
         return $list;
