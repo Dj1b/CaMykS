@@ -4,10 +4,10 @@
  * <br /> Contact form or comment spam checker.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Jun 2021
- * @date Modification: Jul 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Mar 2024
+ * @copyright 2021 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -197,20 +197,23 @@ final class SpamChecker extends Input {
         /* Check links rules */
         if ($this->get_configValue('checkLinkEnabled')) {
 
+            $hasLink = false;
+
             /* Check for single link content */
             if ($this->get_configValue('checkLinkWithoutContentScore') > 0) {
 
-                $pattern = '#^(https?|www\.)([^\W\.]+)$#';
-
+                $pattern = '#^(https?|www\.)([\w\.]+)$#';
                 if (is_array($params['data']['content'])) {
                     $cnt = 0;
                     foreach ($params['data']['content'] as $content)
                         if (preg_match($pattern, $content)) {
+                            $hasLink = true;
                             $scores['score'] += $this->get_configValue('checkLinkWithoutContentScore');
                             $scores['data'][] = 'Single link content: '.$this->get_configValue('checkLinkWithoutContentScore');
                         }
                 } elseif (is_string($params['data']['content'])) {
                     if (preg_match($pattern, $params['data']['content'])) {
+                        $hasLink = true;
                         $scores['score'] += $this->get_configValue('checkLinkWithoutContentScore');
                         $scores['data'][] = 'Single link content: '.$this->get_configValue('checkLinkWithoutContentScore');
                     }
@@ -218,9 +221,9 @@ final class SpamChecker extends Input {
             }
 
             /* Check for links in content */
-            if ($this->get_configValue('checkLinkScore') > 0) {
+            if (!$hasLink and $this->get_configValue('checkLinkScore') > 0) {
 
-                $pattern = '#(https?|www\.)([^\W\.]+)#';
+                $pattern = '#(https?|www\.)([\w\.]+)#';
                 $cnt = 0;
 
                 if (is_array($params['data']['content'])) {
@@ -316,9 +319,9 @@ final class SpamChecker extends Input {
         }
 
         /* Check result */
-        if ($scores['score'] > $this->get_configValue('isSpamScore'))
+        if ($scores['score'] >= $this->get_configValue('isSpamScore'))
             $scores['result'] = 'isSpam';
-        elseif ($scores['score'] > $this->get_configValue('isProbablySpamScore'))
+        elseif ($scores['score'] >= $this->get_configValue('isProbablySpamScore'))
             $scores['result'] = 'isProbablySpam';
 
         /* Check for result logging */
