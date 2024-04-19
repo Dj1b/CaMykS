@@ -4,10 +4,10 @@
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Nov 2009
- * @date Modification: Sep 2022
- * @copyright 2009 - 2022 CaMykS Team
+ * @date Modification: Apr 2024
+ * @copyright 2009 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -63,6 +63,9 @@ final class SocialNetworksSharingPanel extends Input {
         $this->config = new SocialNetworksSharingPanelConfig('config', $this);
         $this->config->get();
 
+        /* Define default params from configuration */
+        $this->params = $this->config->vars;
+
         /* Check for automatic insertion */
         if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['follow_insertion'] == 1) {
             $this->register_asCaMykSEventHandler('onPageLoad');
@@ -73,7 +76,7 @@ final class SocialNetworksSharingPanel extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Override Input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.
@@ -82,6 +85,7 @@ final class SocialNetworksSharingPanel extends Input {
      * @return void
      */
     public function initialise($params=array(), $mode='share') {
+
         /* check mode to execute */
         switch ($mode) {
             case 'share': return $this->initialise_sharePanel($params);
@@ -109,7 +113,7 @@ final class SocialNetworksSharingPanel extends Input {
         parent::display();
     }
 
-    /* Override Plugin methods */
+    /* Mark: Override Plugin methods */
 
     /**
      * Execute handler on body closing.
@@ -147,7 +151,7 @@ final class SocialNetworksSharingPanel extends Input {
         return '';
     }
 
-    /* Specific initialise mode methods */
+    /* Mark: Specific initialise mode methods */
 
     /**
      * Initialise input in share mode.
@@ -226,7 +230,7 @@ final class SocialNetworksSharingPanel extends Input {
     private function initialise_followPanel($params) {
 
         /* Merge params */
-        $this->params = array_merge($this->config->vars, array('iconsFolder'=>''), $params);
+        $this->params = array_merge($this->params, array('iconsFolder'=>''), $params);
 
         /* check for styles loading */
         if ($this->params['follow_insertion'] == 1 and $this->params['follow_styleSource'] == 'plugin') {
@@ -243,7 +247,7 @@ final class SocialNetworksSharingPanel extends Input {
         global $camyks, $languages;
 
         /* Merge params */
-        $this->params = array_merge($this->config->vars, array('network'=>''), $params);
+        $this->params = array_merge($this->params, array('network'=>''), $params);
 
         /* Load specific scripts */
         if ($this->params['network'] == 'facebook') {
@@ -265,7 +269,7 @@ final class SocialNetworksSharingPanel extends Input {
         }
     }
 
-    /* specific display mode methods */
+    /* Mark: Specific display mode methods */
 
     /**
      * Display input in share mode.
@@ -315,7 +319,25 @@ final class SocialNetworksSharingPanel extends Input {
 
     }
 
-    /* specific tool methods */
+    /* Mark: Public tool methods */
+
+    /**
+     * Check facebook integration is setup.
+     * @return boolean success
+     */
+    public function has_facebookIntegration() {
+        return ($this->get_configValue('integrate_facebook_href') !== '');
+    }
+
+    /**
+     * Return facebook integration width value.
+     * @return integer
+     */
+    public function get_facebookIntegrationWidth() {
+        return $this->get_configValue('integrate_facebook_width');
+    }
+
+    /* Mark: Private tool methods */
 
     /**
      * Return given network href link.
@@ -622,7 +644,7 @@ final class SocialNetworksSharingPanel extends Input {
         return $this->config->get_value($item);
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
