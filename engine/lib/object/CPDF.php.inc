@@ -3,9 +3,9 @@
  * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: May 2010
- * @date Modification: Apr 2024
+ * @date Modification: Jun 2024
  * @copyright 2010 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -49,7 +49,10 @@ class CPDF extends FPDF {
         $this->issetfont = false;
         $this->issetcolor = false;
         $this->olIndex = 1;
-        $this->htmlParams = array('lineHeight'=>5, 'paragraphHeight'=>10, 'defaultTextColor'=>0, 'ulBulletChar'=>chr(149), 'ulBulletColor'=>0);
+        $this->htmlParams = array('lineHeight'=>5, 'paragraphHeight'=>10, 'defaultTextColor'=>0, 'ulBulletChar'=>chr(149), 'ulBulletColor'=>0, 'ulBulletStyle'=>'', 'ulBulletFont'=>'', 'ulBulletSize'=>null);
+
+        /* Backup font value */
+        $this->currentFont = array('font'=>'', 'style'=>null, 'size'=>null);
     }
 
     /**
@@ -183,7 +186,36 @@ class CPDF extends FPDF {
         return '';
     }
 
-    /* specific methods */
+    /**
+     * Define font.
+     * @param string $font
+     * @param string $style
+     * @param integer $size
+     * @param boolean isTemporary
+     * @return void
+     */
+    public function setFont($font='', $style=null, $size=null, $isTemporary=false) {
+        parent::setFont($font, $style, $size);
+        if (!$isTemporary) {
+            if ($font != '')
+                $this->currentFont['font'] = $font;
+            if (!is_null($style))
+                $this->currentFont['style'] = $style;
+            if (!is_null($size))
+                $this->currentFont['size'] = $size;
+        }
+    }
+
+    /* Mark: Specific methods */
+
+    /**
+     * Revert font (after temporary use).
+     * @return void
+     */
+    public function revert_font() {
+        $this->setFont($this->currentFont['font'], $this->currentFont['style'], $this->currentFont['size'], true);
+    }
+
 
     /**
      * Update html params.
@@ -224,7 +256,7 @@ class CPDF extends FPDF {
 
         /* remove line breaks and translate some html chars */
         $html = str_replace("\n",' ',$html);
-        $pattern = array('/&trade;/', '/&copy;/', '/&bull;/', '/&euro;/', '/&(#39|rsquo|lsquo);/', '/&oelig;/', '/&hellip;/', '/&ndash;/');
+        $pattern = array('/&trade;/', '/&copy;/', '/&bull;/', '/&euro;/', '/&(#39|#171|#187|raquo|laquo|rdquo|ldquo|rsquo|lsquo);/', '/&oelig;/', '/&hellip;/', '/&ndash;/');
         $replace = array(chr(153), chr(169), chr(149),'<b>'.chr(128).'</b>', '\'', 'oe', '...', '-' );
         $html = preg_replace($pattern, $replace, $html);
 
@@ -276,9 +308,21 @@ class CPDF extends FPDF {
      * @return string
      */
     public function decode_text($text) {
-        if (string_isUTF8($text))
-            return utf8_decode($text);
-        return $text;
+        if (!string_isUTF8($text))
+            return $text;
+
+        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+            /* Check for latest converting method, using UConverter */
+            if (method_exists('UConverter', 'transcode'))
+                return UConverter::transcode($text, 'ISO-8859-15', 'UTF-8', array('to_subst' => ' '));
+
+            /* Check for MB string converting method */
+            if (function_exists('mb_convert_encoding'))
+                return mb_convert_encoding($text, 'ISO-8859-15');
+        }
+
+        /* Use default, deprecated method */
+        return utf8_decode($text);
     }
 
     /**
@@ -359,7 +403,7 @@ class CPDF extends FPDF {
         }
     }
 
-    /* sub methods */
+    /* Mark: HTML internal methods */
 
     /**
      * Open tag for html writing.
@@ -368,6 +412,8 @@ class CPDF extends FPDF {
      * @return void
      */
     private function _write_htmlOpenTag($tag, $attr) {
+        global $camyks;
+
         switch($tag) {
             case 'STRONG':
                 $this->_write_htmlSetStyle('B', true);
@@ -381,7 +427,18 @@ class CPDF extends FPDF {
                 $this->_write_htmlSetStyle($tag, true);
                 break;
             case 'A':
-                $this->HREF = $attr['HREF'];
+                $url = parse_url($attr['HREF']);
+                /* Check URL is email */
+                if (stripos($attr['HREF'], 'mailto:') === 0)
+                    $this->HREF = $attr['HREF'];
+                /* Check URL has domain */
+                elseif (!isset($url['host']))
+                    $this->HREF = $camyks->get_rootBaseURL('absolute').$attr['HREF'];
+                /* Check URL has scheme */
+                elseif (!isset($url['scheme']))
+                    $this->HREF = 'http://'.$attr['HREF'];
+                else
+                    $this->HREF = $attr['HREF'];
                 break;
             case 'IMG':
                 if (isset($attr['SRC']) && (isset($attr['WIDTH']) || isset($attr['HEIGHT']))) {
@@ -419,8 +476,10 @@ class CPDF extends FPDF {
                     else
                         $this->Ln($this->htmlParams['lineHeight']);
                     $this->set_textColor($this->htmlParams['ulBulletColor']);
+                    $this->setFont($this->htmlParams['ulBulletFont'], $this->htmlParams['ulBulletStyle'], $this->htmlParams['ulBulletSize'], true);
                     $this->Write($this->htmlParams['lineHeight'], $this->htmlParams['ulBulletChar'].' ');
                     $this->set_textColor('');
+                    $this->revert_font();
                 } elseif ($this->OL) {
                     if ($this->isFirstBlock)
                         $this->isFirstBlock = false;
@@ -499,6 +558,8 @@ class CPDF extends FPDF {
         $this->_write_htmlSetStyle('U', false);
         $this->set_textColor('');
     }
+
+    /* Mark: Specific internal methods */
 
     /**
      * Encode entities.
