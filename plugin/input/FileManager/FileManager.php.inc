@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief FileManager Input
+ * @brief FileManager Input.
  * <br /> Displays a file manager and allows users to manage the folder contents
  * <br /> Features :
  * <br /> + 3 modes : manage | selection | requestlink
@@ -30,12 +30,11 @@
  * <br /> . file image thumbnail (for jpg and png)
  * <br /> . rebuild system with ajax
  * @details Plugin / Input Engine
- * @file plugin/input/FileManager/FileManager.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: Jun 2007
- * @date Modification: Mar 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Apr 2024
+ * @copyright 2007 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add missing features and extension management.
@@ -608,7 +607,7 @@ final class FileManager extends Input {
         $this->get_fileTree();
 
         /* add specific style */
-        $this->add_styleFile('filemanager.css');
+        $this->add_styleFile('filemanager.css?v=1.0.0.1');
 
         /* add javascripts */
         $this->add_JSFile('filemanager.js');
