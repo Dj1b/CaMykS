@@ -6,8 +6,8 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.1
  * @date Creation: May 2020
- * @date Modification: Sep 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jul 2024
+ * @copyright 2020 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Stripe version 7.54.0
@@ -189,7 +189,7 @@ final class StripePayment extends Input {
         $this->add_JSScript('var backURL_Response = "'.$params['backURL_Response'].'";');
 
         /* Add Stripe CSS */
-        $this->add_styleFile('global.css');
+        $this->add_styleFile('global.css?v=1.0.1');
         $this->add_styleFile('normalize.css');
     }
 
