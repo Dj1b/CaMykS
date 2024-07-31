@@ -4,10 +4,10 @@
  * <br /> Inline popup creator automatically managing content to display.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Oct 2011
- * @date Modification: Mar 2021
- * @copyright 2011 - 2021 CaMykS Team
+ * @date Modification: Jul 2021
+ * @copyright 2011 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details Supported format :
@@ -153,7 +153,7 @@ final class GenericMediaPopup extends Input {
         /* add scripts */
         $name = $this->params['objectName'];
 
-        $this->add_JSFile('mediapopup.js?v=1.0.4');
+        $this->add_JSFile('mediapopup.js?v=1.0.5');
         $this->add_JSScript('var '.$name.' = new MediaPopup("'.$name.'");');
         if ( $this->params['enableFlash'] == 1 ) {
             $this->add_JSFile('swfobject.js');
