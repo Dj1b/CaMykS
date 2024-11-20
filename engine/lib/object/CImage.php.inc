@@ -1,17 +1,19 @@
 <?php
 /**
- * @brief Image manipulating object
+ * @brief Image manipulating object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.3
  * @date Creation: Nov 2011
- * @date Modification: Oct 2021
- * @copyright 2011 - 2021 CaMykS Team
+ * @date Modification: Apr 2024
+ * @copyright 2011 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Finalise crop calculation in _gd_rotate method.
  * @todo Complete method documentation with params details.
  */
+
+require_once 'CColor.php.inc';
 
 /**
  * CImage class.
@@ -307,6 +309,31 @@ final class CImage {
         switch ($this->engine) {
             case 'gd':
                 return $this->_gd_rotate($params);
+        }
+        return false;
+    }
+
+    /**
+     * Replace a color by another one.
+     * @param string $color1
+     * @param string $color2
+     * @return boolean
+     */
+    public function replace_color($color1, $color2) {
+        if (!$this->is_loaded()) return false;
+
+        $color1 = new CColor($color1);
+        $color2 = new CColor($color2);
+
+
+        /* Check colors */
+        if ($color1->is_identical($color2))
+            return true;
+
+        /* execute action is selected engine */
+        switch ($this->engine) {
+            case 'gd':
+                return $this->_gd_replace_color($color1, $color2);
         }
         return false;
     }
@@ -845,6 +872,57 @@ final class CImage {
         return true;
     }
 
+    /**
+     * Replace a color by another one with GD.
+     * @param Object $color1
+     * @param Object $color2
+     * @return boolean
+     */
+    private function _gd_replace_color($color1, $color2) {
+
+        /* Check for transparency */
+        if ($color1->is_transparent()) {
+            /* Create a new picture at the same size */
+            $newSrc = imagecreatetruecolor($this->width, $this->height);
+
+            /* Apply color as background */
+            $color = $this->_gd_getAllocatedColor($color2);
+            imagefill($newSrc, 0, 0, $color);
+
+            /* Merge pictures */
+            imagecopyresampled($newSrc, $this->resource, 0, 0, 0, 0, $this->width, $this->height, $this->width, $this->height);
+
+            /* Save new picture as current resource */
+            imagedestroy($this->resource);
+            $this->resource = $newSrc;
+
+        } elseif ($color2->is_transparent()) {
+            /* Define color to replace */
+            $color = $this->_gd_getAllocatedColor($color1);
+
+            /* Replace color */
+            imagecolortransparent($this->resource, $color);
+
+        } else {
+
+            /* Define colors */
+            $c2 = $this->_gd_getAllocatedColor($color2);
+
+            /* Replace colors */
+            for ($i = 0; $i < $this->width; $i++) {
+                for ($j = 0; $j < $this->height; $j++) {
+                    $color = new CColor(imagecolorsforindex($this->resource, imagecolorat($this->resource, $i, $j)));
+                    if ($color1->is_identical($color)) {
+                        imagesetpixel($this->resource, $i, $j, $c2);
+                    }
+                }
+            }
+        }
+
+        /* Return success */
+        return true;
+    }
+
     /* GD sub methods */
 
     /**
@@ -854,20 +932,14 @@ final class CImage {
      * @return resource
      */
     private function _gd_getAllocatedColor($color, $resource=false) {
-
-        /* check color */
-        if (preg_match('/#?([0-9A-Fa-f]{6})/', $color, $matches)) {
-            $color = $matches[1];
-            $r = hexdec(substr($color,0,2));
-            $g = hexdec(substr($color,2,2));
-            $b = hexdec(substr($color,4,2));
-        } else {
-            $r = 255; $g = 255; $b = 255;
+        /* Check color value */
+        if (!is_object($color) or get_class($color) !== 'CColor') {
+            $color = new CColor($color);
         }
 
         if ($resource == false)
-            return imagecolorallocate($this->resource, $r, $g, $b);
-        return imagecolorallocate($resource, $r, $g, $b);
+            return imagecolorallocate($this->resource, $color->red, $color->green, $color->blue);
+        return imagecolorallocate($resource, $color->red, $color->green, $color->blue);
     }
 
     /**
@@ -907,6 +979,8 @@ final class CImage {
      * @return void
      */
     private function _gd_add_transparency() {
+        if (!imageistruecolor($this->resource))
+            imagepalettetotruecolor($this->resource);
         imageAlphaBlending($this->resource, true);
         imageSaveAlpha($this->resource, true);
         $this->hasTransparency = true;
