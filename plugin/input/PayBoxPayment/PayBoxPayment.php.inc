@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief PayBoxPayment Input
+ * @brief PayBoxPayment Input.
  * <br /> Interface to PayBox payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Apr 2017
- * @date Modification: Nov 2023
- * @copyright 2017 - 2023 CaMykS Team
+ * @date Modification: Nov 2024
+ * @copyright 2017 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -61,23 +61,21 @@ final class PayBoxPayment extends Input {
      */
     public function __construct($path_type) {
         parent::__construct('PayBoxPayment', $path_type);
-        /* set plugin version */
-        $this->version = '1.0';
 
-        /* set plugin package */
+        /* Override Plugin variables */
+        $this->version = '1.0';
         $this->plugin_package = 'eCommerce';
 
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -97,7 +95,7 @@ final class PayBoxPayment extends Input {
         parent::initialise();
     }
 
-    /* execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -221,7 +219,6 @@ final class PayBoxPayment extends Input {
 
         //Création de l'url cgi paybox
         $serveurOK = 'https://'.$serveurOK.'/cgi/MYchoix_pagepaiement.cgi';
-        // echo $serveurOK;
 
         /* prepare data */
         $baseURL = (client_isHTTPS()?'https://':'http://').$_SERVER['HTTP_HOST'];
@@ -253,6 +250,18 @@ final class PayBoxPayment extends Input {
         }
         $params['PBX_SHOPPINGCART'] = preg_replace('/"/', '\'', $shoppingCart);
 
+        /* Define phone */
+        if (!is_null($this->transactionParams['billing']['mobile']))
+            $phone = $this->transactionParams['billing']['mobile'];
+        elseif (!is_null($this->transactionParams['billing']['phone']))
+            $phone = $this->transactionParams['billing']['phone'];
+        elseif (!is_null($this->transactionParams['client']['mobile']))
+            $phone = $this->transactionParams['client']['mobile'];
+        elseif (!is_null($this->transactionParams['client']['phone']))
+            $phone = $this->transactionParams['client']['phone'];
+        else
+            $phone = '';
+
         /* build billing data */
         $billingData = '<?xml version="1.0" encoding="utf-8"?>'
             ."<Billing>"
@@ -263,12 +272,22 @@ final class PayBoxPayment extends Input {
             ."<ZipCode>".(!is_null($this->transactionParams['billing']['zipcode']) ? $this->transactionParams['billing']['zipcode'] : $this->transactionParams['client']['zipcode'])."</ZipCode>"
             ."<City>".(!is_null($this->transactionParams['billing']['city']) ? $this->transactionParams['billing']['city'] : $this->transactionParams['client']['city'])."</City>"
             ."<CountryCode>".countries_getSingleDataValue(!is_null($this->transactionParams['billing']['country']) ? $this->transactionParams['billing']['country'] : $this->transactionParams['client']['country'], 'NumericCode')."</CountryCode>"
+            ."<CountryCodeMobilePhone>+".countries_getSingleDataValue(!is_null($this->transactionParams['billing']['country']) ? $this->transactionParams['billing']['country'] : $this->transactionParams['client']['country'], 'PhoneIndex')."</CountryCodeMobilePhone>"
+            ."<MobilePhone>".$phone."</MobilePhone>"
             ."</Address>"
             ."</Billing>";
         $params['PBX_BILLING'] = preg_replace('/"/', '\'', $billingData);
 
         /* build shipping data */
         if (!is_null($this->transactionParams['shipping']['firstName'])) {
+
+            if (!is_null($this->transactionParams['shipping']['mobile']))
+                $phone = $this->transactionParams['shipping']['mobile'];
+            elseif (!is_null($this->transactionParams['shipping']['phone']))
+                $phone = $this->transactionParams['shipping']['phone'];
+            else
+                $phone = '';
+
             $shippingData = '<?xml version="1.0" encoding="utf-8"?>'
                 ."<Shipping>"
                 ."<Address>"
@@ -278,6 +297,8 @@ final class PayBoxPayment extends Input {
                 ."<ZipCode>".$this->transactionParams['shipping']['zipcode']."</ZipCode>"
                 ."<City>".$this->transactionParams['shipping']['city']."</City>"
                 ."<CountryCode>".countries_getSingleDataValue($this->transactionParams['shipping']['country'], 'NumericCode')."</CountryCode>"
+                ."<CountryCodeMobilePhone>+".countries_getSingleDataValue($this->transactionParams['shipping']['country'], 'PhoneIndex')."</CountryCodeMobilePhone>"
+                ."<Phone>".$phone."</Phone>"
                 ."</Address>"
                 ."</Shipping>";
             $params['PBX_SHIPPING'] = preg_replace('/"/', '\'', $shippingData);
@@ -310,7 +331,7 @@ final class PayBoxPayment extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /* data query methods */
+    /* Mark: Data query methods */
 
     /**
      * Load confirmation data PayBox instant notification.
@@ -434,7 +455,7 @@ final class PayBoxPayment extends Input {
         return $this->_lastErrorMsg;
     }
 
-    /* tool methods */
+    /* Mark: Tool methods */
 
     /**
      * Load plugin configuration
@@ -449,7 +470,7 @@ final class PayBoxPayment extends Input {
         $this->config->get();
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
