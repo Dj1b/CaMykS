@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Countries italian dictionnary
- * @details Engine / Dictionnary
- * @file engine/locale/countries/translation_it.php.inc
+ * @brief Countries italian dictionary.
+ * @details Engine / Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Dec 2014
  * @date Modification: Apr 2018
  * @copyright 2014 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -242,7 +241,7 @@ $this->trads['country_to'] = 'Tonga';
 $this->trads['country_tr'] = 'Turchia';
 $this->trads['country_tt'] = 'Trinidad e Tobago';
 $this->trads['country_tv'] = 'Tuvalu';
-$this->trads['country_tw'] = 'Taiwan (Repubblica di Cina)';
+$this->trads['country_tw'] = 'Taiwan';
 $this->trads['country_tz'] = 'Tanzania';
 $this->trads['country_ua'] = 'Ucraina';
 $this->trads['country_ug'] = 'Uganda';

@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Countries french dictionnary
- * @details Engine / Dictionnary
- * @file engine/locale/countries/translation_fr.php.inc
+ * @brief Countries french dictionary.
+ * @details Engine / Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2007
- * @date Modification: Apr 2018
- * @copyright 2007 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Dec 2024
+ * @copyright 2007 - 2024 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -242,7 +241,7 @@ $this->trads['country_to'] = 'Tonga';
 $this->trads['country_tr'] = 'Turquie';
 $this->trads['country_tt'] = 'Trinit&eacute;-et-Tobago';
 $this->trads['country_tv'] = 'Tuvalu';
-$this->trads['country_tw'] = 'Ta&iuml;wan (Province de Chine)';
+$this->trads['country_tw'] = 'Ta&iuml;wan';
 $this->trads['country_tz'] = 'Tanzanie (R&eacute;publique Unie de)';
 $this->trads['country_ua'] = 'Ukraine';
 $this->trads['country_ug'] = 'Ouganda';
