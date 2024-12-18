@@ -3,9 +3,9 @@
  * @brief Image manipulating object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Nov 2011
- * @date Modification: Apr 2024
+ * @date Modification: Dec 2024
  * @copyright 2011 - 2024 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -806,6 +806,15 @@ final class CImage {
 
         /* define the new picture  */
         $newSrc = imagecreatetruecolor($width, $height);
+
+        /* Check for transparency */
+        if ($this->type === 'png') {
+            imagesavealpha($newSrc, true);
+            $trans = imagecolorallocatealpha($newSrc, 0, 0, 0, 127);
+            imagefill($newSrc, 0, 0, $trans);
+        }
+
+        /* Copy picture inside newly created picture */
         imagecopy($newSrc, $this->resource, 0, 0, $left, $top, imagesx($newSrc), imagesy($newSrc));
         imagedestroy($this->resource);
         $this->resource = $newSrc;
