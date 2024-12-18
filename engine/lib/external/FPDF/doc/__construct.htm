@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>__construct</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
@@ -10,39 +10,39 @@
 <code>__construct([<b>string</b> orientation [, <b>string</b> unit [, <b>mixed</b> size]]])</code>
 <h2>Description</h2>
 Il s'agit du constructeur de la classe. Il permet de fixer le format des pages, leur
-orientation par défaut ainsi que l'unité de mesure utilisée dans toutes les méthodes (sauf
+orientation par dÃ©faut ainsi que l'unitÃ© de mesure utilisÃ©e dans toutes les mÃ©thodes (sauf
 pour les tailles de police).
-<h2>Paramètres</h2>
+<h2>ParamÃ¨tres</h2>
 <dl class="param">
 <dt><code>orientation</code></dt>
 <dd>
-Orientation des pages par défaut. Les valeurs possibles sont (indépendamment de la casse) :
+Orientation des pages par dÃ©faut. Les valeurs possibles sont (indÃ©pendamment de la casse) :
 <ul>
 <li><code>P</code> ou <code>Portrait</code></li>
 <li><code>L</code> ou <code>Landscape</code></li>
 </ul>
-La valeur par défaut est <code>P</code>.
+La valeur par dÃ©faut est <code>P</code>.
 </dd>
 <dt><code>unit</code></dt>
 <dd>
-Unité de mesure utilisateur. Les valeurs possibles sont :
+UnitÃ© de mesure utilisateur. Les valeurs possibles sont :
 <ul>
 <li><code>pt</code> : point</li>
-<li><code>mm</code> : millimètre</li>
-<li><code>cm</code> : centimètre</li>
+<li><code>mm</code> : millimÃ¨tre</li>
+<li><code>cm</code> : centimÃ¨tre</li>
 <li><code>in</code> : pouce</li>
 </ul>
-Un point est égal à 1/72ème de pouce, c'est-à-dire environ 0,35 millimètre. C'est une unité
-très courante en typographie; les tailles de police sont exprimées dans cette unité.
+Un point est Ã©gal Ã  1/72Ã¨me de pouce, c'est-Ã -dire environ 0,35 millimÃ¨tre. C'est une unitÃ©
+trÃ¨s courante en typographie; les tailles de police sont exprimÃ©es dans cette unitÃ©.
 <br>
-Un pouce vaut 2,54 centimètres.
+Un pouce vaut 2,54 centimÃ¨tres.
 <br>
 <br>
-La valeur par défaut est <code>mm</code>.
+La valeur par dÃ©faut est <code>mm</code>.
 </dd>
 <dt><code>size</code></dt>
 <dd>
-Le format utilisé pour les pages. Il peut s'agir d'une des valeurs ci-dessous (indépendamment
+Le format utilisÃ© pour les pages. Il peut s'agir d'une des valeurs ci-dessous (indÃ©pendamment
 de la casse) :
 <ul>
 <li><code>A3</code></li>
@@ -51,16 +51,16 @@ de la casse) :
 <li><code>Letter</code></li>
 <li><code>Legal</code></li>
 </ul>
-ou bien d'un tableau contenant la largeur et la hauteur (exprimées dans l'unité donnée par
+ou bien d'un tableau contenant la largeur et la hauteur (exprimÃ©es dans l'unitÃ© donnÃ©e par
 <code>unit</code>).<br>
 <br>
-La valeur par défaut est <code>A4</code>.
+La valeur par dÃ©faut est <code>A4</code>.
 </dd>
 </dl>
 <h2>Exemple</h2>
-Exemple avec un format personnalisé de 100x150 mm :
+Exemple avec un format personnalisÃ© de 100x150 mm :
 <div class="doc-source">
-<pre><code>$pdf = new FPDF('P','mm',array(100,150));</code></pre>
+<pre><code>$pdf = new FPDF('P', 'mm', array(100,150));</code></pre>
 </div>
 <hr style="margin-top:1.5em">
 <div style="text-align:center"><a href="index.htm">Index</a></div>

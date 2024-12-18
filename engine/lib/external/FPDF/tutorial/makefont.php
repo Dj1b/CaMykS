@@ -1,6 +1,6 @@
 <?php
-// Génération du fichier de définition de police pour le tutoriel 7
+// Génération des fichiers de police pour le tutoriel 7
 require('../makefont/makefont.php');
 
-MakeFont('calligra.ttf','cp1252');
+MakeFont('CevicheOne-Regular.ttf', 'cp1252');
 ?>

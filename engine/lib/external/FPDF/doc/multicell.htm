@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>MultiCell</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
@@ -9,18 +9,18 @@
 <h1>MultiCell</h1>
 <code>MultiCell(<b>float</b> w, <b>float</b> h, <b>string</b> txt [, <b>mixed</b> border [, <b>string</b> align [, <b>boolean</b> fill]]])</code>
 <h2>Description</h2>
-Cette méthode permet d'imprimer du texte avec des retours à la ligne. Ceux-ci peuvent être
-automatiques (dès que le texte atteint le bord droit de la cellule) ou explicites (via le
-caractère \n). Autant de cellules que nécessaire sont imprimées, les unes en dessous des
+Cette mÃ©thode permet d'imprimer du texte avec des retours Ã  la ligne. Ceux-ci peuvent Ãªtre
+automatiques (dÃ¨s que le texte atteint le bord droit de la cellule) ou explicites (via le
+caractÃ¨re \n). Autant de cellules que nÃ©cessaire sont imprimÃ©es, les unes en dessous des
 autres.
 <br>
-Le texte peut être aligné, centré ou justifié. Le bloc de cellules peut être encadré et le
-fond coloré.
-<h2>Paramètres</h2>
+Le texte peut Ãªtre alignÃ©, centrÃ© ou justifiÃ©. Le bloc de cellules peut Ãªtre encadrÃ© et le
+fond colorÃ©.
+<h2>ParamÃ¨tres</h2>
 <dl class="param">
 <dt><code>w</code></dt>
 <dd>
-Largeur des cellules. Si elle vaut <code>0</code>, elles s'étendent jusqu'à la marge droite de
+Largeur des cellules. Si elle vaut <code>0</code>, elles s'Ã©tendent jusqu'Ã  la marge droite de
 la page.
 </dd>
 <dt><code>h</code></dt>
@@ -29,39 +29,39 @@ Hauteur des cellules.
 </dd>
 <dt><code>txt</code></dt>
 <dd>
-Chaîne à imprimer.
+ChaÃ®ne Ã  imprimer.
 </dd>
 <dt><code>border</code></dt>
 <dd>
-Indique si des bords doivent être tracés autour du bloc de cellules. La valeur peut être soit un
+Indique si des bords doivent Ãªtre tracÃ©s autour du bloc de cellules. La valeur peut Ãªtre soit un
 nombre :
 <ul>
 <li><code>0</code> : aucun bord</li>
 <li><code>1</code> : cadre</li>
 </ul>
-soit une chaîne contenant certains ou tous les caractères suivants (dans un ordre quelconque) :
+soit une chaÃ®ne contenant certains ou tous les caractÃ¨res suivants (dans un ordre quelconque) :
 <ul>
 <li><code>L</code> : gauche</li>
 <li><code>T</code> : haut</li>
 <li><code>R</code> : droit</li>
 <li><code>B</code> : bas</li>
 </ul>
-La valeur par défaut est <code>0</code>.
+La valeur par dÃ©faut est <code>0</code>.
 </dd>
 <dt><code>align</code></dt>
 <dd>
-Contrôle l'alignement du texte. Les valeurs possibles sont :
+ContrÃ´le l'alignement du texte. Les valeurs possibles sont :
 <ul>
-<li><code>L</code> : alignement à gauche</li>
+<li><code>L</code> : alignement Ã  gauche</li>
 <li><code>C</code> : centrage</li>
-<li><code>R</code> : alignement à droite</li>
-<li><code>J</code> : justification (valeur par défaut)</li>
+<li><code>R</code> : alignement Ã  droite</li>
+<li><code>J</code> : justification (valeur par dÃ©faut)</li>
 </ul>
 </dd>
 <dt><code>fill</code></dt>
 <dd>
-Indique si le fond des cellules doit être coloré (<code>true</code>) ou transparent (<code>false</code>).
-Valeur par défaut : <code>false</code>.
+Indique si le fond des cellules doit Ãªtre colorÃ© (<code>true</code>) ou transparent (<code>false</code>).
+Valeur par dÃ©faut : <code>false</code>.
 </dd>
 </dl>
 <h2>Voir</h2>
