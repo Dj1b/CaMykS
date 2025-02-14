@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SpamChecker Input configuration object
+ * @brief SpamChecker input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2021
- * @date Modification: Jul 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Feb 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -41,6 +41,9 @@ final class SpamCheckerConfig extends PluginConfig {
         /* Spam content rules */
         $this->add_newItem('checkSimilarNamesEnabled', 'boolean', false);
         $this->add_newItem('checkSimilarNamesScore', 'integer', 100);
+
+        $this->add_newItem('checkRandomNamesEnabled', 'boolean', false);
+        $this->add_newItem('checkRandomNamesScore', 'integer', 80);
 
         $this->add_newItem('checkHTMLEnabled', 'boolean', false);
         $this->add_newItem('checkHTMLScore', 'integer', 40);

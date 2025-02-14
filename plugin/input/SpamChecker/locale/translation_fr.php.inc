@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SpamChecker Input french dictionary
+ * @brief SpamChecker input, french dictionary.
  * @details Plugin / Input Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Feb 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -31,6 +31,7 @@ $this->trads['input_spamchecker_formitem_score'] = 'Score';
 /* Metadata rules configuration */
 $this->trads['input_spamchecker_formtitle_metadatarules'] = 'R&egrave;gles sur les m&eacute;ta-donn&eacute;es du message';
 $this->trads['input_spamchecker_formitem_checksimilarnames'] = 'Pr&eacute;sence de nom et pr&eacute;nom similaires';
+$this->trads['input_spamchecker_formitem_checkrandomnames'] = 'Pr&eacute;sence de nom et pr&eacute;nom al&eacute;atoirement g&eacute;n&eacute;r&eacute;s';
 $this->trads['input_spamchecker_formitem_checkemail'] = 'L\'adresses e-mail contient';
 $this->trads['input_spamchecker_formitem_checkcompany'] = 'Le nom des soci&eacute;t&eacute;s contient';
 

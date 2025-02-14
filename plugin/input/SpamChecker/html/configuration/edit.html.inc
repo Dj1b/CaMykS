@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SpamChecker Input edit configuration layout
+ * @brief SpamChecker input, edit configuration layout.
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Feb 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -101,6 +101,15 @@ global $camyks;
             </td>
             <td class="eTableLine0">
                 <?= $this->form->display_textInput(array('name'=>'checkSimilarNamesScore', 'class'=>'sinputs')); ?>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="eTableLine0">
+                <?= $this->form->display_checkboxInput(array('name'=>'checkRandomNamesEnabled', 'value'=>true, 'labelClass'=>'eContent2', 'label'=>$this->get_translation('formitem_checkrandomnames'), 'onchange'=>'SpamCheckerConfig.check_linearRuleIsEnabled(\'RandomNames\');')); ?>
+            </td>
+            <td class="eTableLine0">
+                <?= $this->form->display_textInput(array('name'=>'checkRandomNamesScore', 'class'=>'sinputs')); ?>
             </td>
         </tr>
 
