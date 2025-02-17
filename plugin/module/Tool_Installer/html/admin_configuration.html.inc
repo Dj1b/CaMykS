@@ -2,12 +2,11 @@
 /**
  * @brief Tool_Installer Module configuration layout
  * @details Plugin / Module Layout
- * @file plugin/module/Tool_Installer/html/admin_configuration.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2017
- * @date Modification: May 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Feb 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -91,7 +90,7 @@ global $camyks;
                 <td class="eTableLine0">
                     <?php foreach ($this->languages as $l => $title ) : ?>
                         <div style="display:inline-block; width:150px;">
-                            <?= $this->configForm->display_checkboxInput(array('name'=>'admin_languages', 'multiValues'=>true, 'value'=>$l, 'label'=>$title)); ?>
+                            <?= $this->configForm->display_checkboxInput(array('name'=>'admin_languages', 'allowMultiple'=>true, 'value'=>$l, 'label'=>$title)); ?>
                         </div>
                     <?php endforeach; ?>
                 </td>
@@ -111,7 +110,7 @@ global $camyks;
                 <td class="eTableLine0">
                     <?php foreach ($this->languages as $l => $title ) : ?>
                         <div style="display:inline-block; width:150px;">
-                            <?= $this->configForm->display_checkboxInput(array('name'=>'editing_languages', 'multiValues'=>true, 'value'=>$l, 'label'=>$title)); ?>
+                            <?= $this->configForm->display_checkboxInput(array('name'=>'editing_languages', 'allowMultiple'=>true, 'value'=>$l, 'label'=>$title)); ?>
                         </div>
                     <?php endforeach; ?>
                 </td>
@@ -153,7 +152,7 @@ global $camyks;
                 <td class="eTableLine0" style="font-size:0;">
                     <?php foreach ($this->languages as $l => $title ) : ?>
                         <div style="display:inline-block; width:150px;">
-                            <?= $this->configForm->display_checkboxInput(array('name'=>'site_languages', 'multiValues'=>true, 'value'=>$l, 'label'=>$title)); ?>
+                            <?= $this->configForm->display_checkboxInput(array('name'=>'site_languages', 'allowMultiple'=>true, 'value'=>$l, 'label'=>$title)); ?>
                         </div>
                     <?php endforeach; ?>
                 </td>
