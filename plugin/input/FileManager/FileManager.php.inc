@@ -31,10 +31,10 @@
  * <br /> . rebuild system with ajax
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.4.2
  * @date Creation: Jun 2007
- * @date Modification: Apr 2024
- * @copyright 2007 - 2024 CaMykS Team
+ * @date Modification: Mar 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add missing features and extension management.
@@ -866,7 +866,7 @@ final class FileManager extends Input {
                     $file_size = $_FILES['fm_file']['size'][$i];
                     $file_type = $_FILES['fm_file']['type'][$i];
                     $file_error = $_FILES['fm_file']['error'][$i];
-                    if ($file_error == ''){
+                    if ($file_error == 0) {
                         move_uploaded_file($file_tmp, $folder.$file_name);
                     }
                 }
@@ -876,7 +876,7 @@ final class FileManager extends Input {
                 $file_size = $_FILES['fm_file']['size'];
                 $file_type = $_FILES['fm_file']['type'];
                 $file_error = $_FILES['fm_file']['error'];
-                if ($file_error == ''){
+                if ($file_error == 0) {
                     move_uploaded_file($file_tmp, $folder.$file_name);
                 }
             }
