@@ -1,11 +1,11 @@
 /**
- * @brief IndigoFlatStyle Theme main CSS styles
+ * @brief IndigoFlatStyle theme, main CSS styles
  * @details Plugin / Theme CSS styles
  * @author CaMykS Team
- * @version 1.0.7.2
+ * @version 1.0.8
  * @date Creation: Oct 2014
- * @date Modification: Dec 2022
- * @copyright 2014 - 2022 CaMykS Team
+ * @date Modification: Mar 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -46,6 +46,9 @@ input[type="checkbox"] + label {margin:0 20px 0 8px; display:inline-block;}
 input[type="checkbox"]:checked + label {color:#6a798b;}
 input[type="number"] {padding-right:0;}
 
+
+.eTableHeader input[type="radio"]:checked + label {color:white;}
+.eTableHeader input[type="checkbox"]:checked + label {color:white;}
 .eTableSubHeader input[type="radio"]:checked + label {color:white;}
 .eTableSubHeader input[type="checkbox"]:checked + label {color:white;}
 
@@ -61,25 +64,14 @@ sup, sub{font-size:9px; color:inherit;}
 /* icon image for layered menu */
 img.icon{ float:left; margin-right:4px; max-width:80px; }
 
-.unselectable {
-  -webkit-user-select: none; /* Chrome/Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
-  -o-user-select: none;
-  user-select: none;
-  cursor:default;
-}
-
 /* error */
-.error {
-  font-size:12px;
-  font-weight:bold;
-  color:#CC3333 !important;
-  padding:4px;
-}
+.error {font-size:12px; font-weight:bold; color:#CC3333 !important; padding:4px;}
 
-.clearer {
-  height:0;
-  font-size:0;
-  clear:both;
-}
+/* tools */
+.clearer {height:0; font-size:0; clear:both;}
+.unselectable {-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; user-select: none; cursor:default;}
+.lefted {text-align:left;}
+.righted {text-align:right;}
+.centered {text-align:center;}
+
+
