@@ -4,10 +4,10 @@
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Nov 2009
- * @date Modification: Apr 2024
- * @copyright 2009 - 2024 CaMykS Team
+ * @date Modification: Jun 2025
+ * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -381,7 +381,7 @@ final class SocialNetworksSharingPanel extends Input {
 
                 $txtLength = 143 - strlen($link);
                 $title = string_getShortenedSentence(urlencode($this->dparams['title']), $txtLength);
-                return vsprintf($this->networks[$network][$mode], $title.'+'.$link);
+                return vsprintf($this->networks[$network][$mode], array($title.'+'.$link));
             case 'email':
                 return preg_replace(array('/_title_/', '/_link_/', '/_ln_/'), array($this->dparams['title'], $this->dparams['link'], '%0d%0a'), $this->networks[$network][$mode]);
         }
@@ -436,8 +436,8 @@ final class SocialNetworksSharingPanel extends Input {
 
             /* add twitter */
             'twitter' => array(
-                'title'     => 'Twitter',
-                'link'      => 'http://twitter.com/home?status=%1$s',
+                'title'     => 'X',
+                'link'      => 'http://x.com/home?status=%1$s',
                 'clic'      => '',
                 'share'     => 1,
                 'follow'    => 1,
