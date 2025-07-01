@@ -13,6 +13,11 @@ abstract class AbstractService
     protected $client;
 
     /**
+     * @var \Stripe\StripeStreamingClientInterface
+     */
+    protected $streamingClient;
+
+    /**
      * Initializes a new instance of the {@link AbstractService} class.
      *
      * @param \Stripe\StripeClientInterface $client
@@ -20,6 +25,7 @@ abstract class AbstractService
     public function __construct($client)
     {
         $this->client = $client;
+        $this->streamingClient = $client;
     }
 
     /**
@@ -30,6 +36,16 @@ abstract class AbstractService
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Gets the client used by this service to send requests.
+     *
+     * @return \Stripe\StripeStreamingClientInterface
+     */
+    public function getStreamingClient()
+    {
+        return $this->streamingClient;
     }
 
     /**
@@ -45,7 +61,7 @@ abstract class AbstractService
         if (null === $params) {
             return null;
         }
-        \array_walk_recursive($params, function (&$value, $key) {
+        \array_walk_recursive($params, static function (&$value, $key) {
             if (null === $value) {
                 $value = '';
             }
@@ -56,12 +72,22 @@ abstract class AbstractService
 
     protected function request($method, $path, $params, $opts)
     {
-        return $this->getClient()->request($method, $path, static::formatParams($params), $opts);
+        return $this->getClient()->request($method, $path, self::formatParams($params), $opts);
+    }
+
+    protected function requestStream($method, $path, $readBodyChunkCallable, $params, $opts)
+    {
+        return $this->getStreamingClient()->requestStream($method, $path, $readBodyChunkCallable, self::formatParams($params), $opts);
     }
 
     protected function requestCollection($method, $path, $params, $opts)
     {
-        return $this->getClient()->requestCollection($method, $path, static::formatParams($params), $opts);
+        return $this->getClient()->requestCollection($method, $path, self::formatParams($params), $opts);
+    }
+
+    protected function requestSearchResult($method, $path, $params, $opts)
+    {
+        return $this->getClient()->requestSearchResult($method, $path, self::formatParams($params), $opts);
     }
 
     protected function buildPath($basePath, ...$ids)
