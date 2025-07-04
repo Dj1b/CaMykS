@@ -4,7 +4,7 @@
  * <br /> Interface to Stripe payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: May 2020
  * @date Modification: Jul 2025
  * @copyright 2020 - 2025 CaMykS Team
@@ -40,6 +40,24 @@ final class StripePayment extends Input {
      * @brief Input parameters.
      */
     public $params = array();
+
+    /**
+     * @var object $stripeClient
+     * @brief Loaded Stripe object.
+     */
+    private $stripeClient = null;
+
+    /**
+     * @var string $privateAPIKey
+     * @brief Loaded Stripe private API key.
+     */
+    private $privateAPIKey = null;
+
+    /**
+     * @var string $publicAPIKey
+     * @brief Loaded Stripe public API key.
+     */
+    private $publicAPIKey = null;
 
     /**
      * Class constructor.
@@ -121,26 +139,11 @@ final class StripePayment extends Input {
         /* Get back amount */
         $data = $camyks->get_sessionValue('StripePaymentData');
 
-        /* Load Stripe */
-        $this->load_file('stripe-php/init.php');
-
-        /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
-
-        /* Load Stripe object */
-        $stripe = new \Stripe\StripeClient(array(
-            'api_key' => $privateAPIKey,
-            'stripe_version' => $this->stripeVersion,
-        ));
+        /* Load Stripe client */
+        $this->load_StripeClient();
 
         /* Create intent */
-        $intent = $stripe->paymentIntents->create(array(
+        $intent = $this->stripeClient->paymentIntents->create(array(
             'amount'    => $data['amount']*100,
             'currency'  => $data['currency'],
             // Verify your integration in this guide by including this parameter
@@ -149,7 +152,7 @@ final class StripePayment extends Input {
 
         /* Create output */
         $output = array(
-            'publishableKey'    => $publicAPIKey,
+            'publishableKey'    => $this->publicAPIKey,
             'clientSecret'      => $intent->client_secret,
         );
 
@@ -157,6 +160,48 @@ final class StripePayment extends Input {
         header('Content-Type: application/json');
         echo json_encode($output);
     }
+
+    /* Mark: Stripe loading methods */
+
+    /**
+     * Load Stripe client.
+     * @return void
+     */
+    public function load_StripeClient() {
+        /* Check client is already loaded */
+        if (!is_null($this->stripeClient))
+            return;
+
+        /* Load Stripe */
+        $this->load_file('stripe-php/init.php');
+
+        /* Load API keys */
+        $this->load_StripeAPIKeys();
+
+        /* Load Stripe object */
+        $this->stripeClient = new \Stripe\StripeClient(array(
+            'api_key' => $this->privateAPIKey,
+            'stripe_version' => $this->stripeVersion,
+        ));
+    }
+
+    /**
+     * Load Stripe API keys.
+     * @return void
+     */
+    private function load_StripeAPIKeys() {
+        if (!is_null($this->privateAPIKey))
+            return;
+
+        if ($this->get_configValue('runningMode') == 'production') {
+            $this->privateAPIKey = $this->get_configValue('productionAPIKey_private');
+            $this->publicAPIKey = $this->get_configValue('productionAPIKey_public');
+        } else {
+            $this->privateAPIKey = $this->get_configValue('testAPIKey_private');
+            $this->publicAPIKey = $this->get_configValue('testAPIKey_public');
+        }
+    }
+
 
     /* Mark: Payment methods */
 
@@ -285,29 +330,99 @@ final class StripePayment extends Input {
      * @return array
      */
     public function send_customer($customerId, $customerData) {
-        /* Load Stripe */
-        $this->load_file('stripe-php/init.php');
-
-        /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
-
-        /* Load Stripe object */
-        $stripe = new \Stripe\StripeClient(array(
-            'api_key' => $privateAPIKey,
-            'stripe_version' => $this->stripeVersion,
-        ));
+        /* Load Stripe client */
+        $this->load_StripeClient();
 
         /* Create customer on Stripe */
         if (empty($customerId))
-            $result = $stripe->customers->create($customerData);
+            $result = $this->stripeClient->customers->create($customerData);
         else
-            $result = $stripe->customers->update($customerId, $customerData);
+            $result = $this->stripeClient->customers->update($customerId, $customerData);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Send a customer tax id in Stripe account.
+     * @param string $customerId
+     * @param array $taxIdData
+     * @return array
+     */
+    public function send_customerTaxId($customerId, $taxIdData) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load Stripe customer taxId */
+        $taxIds = $this->get_customerTaxIds($customerId);
+
+        /* Check taxId exists */
+        foreach ($taxIds as $taxId) {
+            if ($taxId['type'] != $taxIdData['type'])
+                continue;
+
+            if ($taxId['value'] == $taxIdData['value'])
+                return $taxId;
+            else {
+                $result = $this->delete_customerTaxId($customerId, $taxId['id']);
+                if ($result['deleted'] !== true)
+                    return false;
+            }
+        }
+
+        /* Create taxId */
+        $result = $this->create_customerTaxId($customerId, $taxIdData);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Load customer tax ids from Stripe account.
+     * @param string $customerId
+     * @param array $params
+     * @return array
+     */
+    public function get_customerTaxIds($customerId, $params=array()) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load customer tax ids from Stripe */
+        $result = $this->stripeClient->customers->allTaxIds($customerId, $params);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Delete a customer tax id in Stripe account.
+     * @param string $customerId
+     * @param string $taxIdId
+     * @return array
+     */
+    public function delete_customerTaxId($customerId, $taxIdId) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load customer tax ids from Stripe */
+        $result = $this->stripeClient->customers->deleteTaxId($customerId, $taxIdId);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Create a customer tax id in Stripe account.
+     * @param string $customerId
+     * @param array $taxIdData
+     * @return array
+     */
+    public function create_customerTaxId($customerId, $taxIdData) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Create customer tax id on Stripe */
+        $result = $this->stripeClient->customers->createTaxId($customerId, $taxIdData);
 
         /* Return result */
         return $result;
@@ -319,28 +434,11 @@ final class StripePayment extends Input {
      * @return array
      */
     public function get_paymentLink($sessionData) {
-        global $camyks;
-
-        /* Load Stripe */
-        $this->load_file('stripe-php/init.php');
-
-        /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
-
-        /* Load Stripe object */
-        $stripe = new \Stripe\StripeClient(array(
-            'api_key' => $privateAPIKey,
-            'stripe_version' => $this->stripeVersion,
-        ));
+        /* Load Stripe client */
+        $this->load_StripeClient();
 
         /* Create checkout session on Stripe */
-        $result = $stripe->checkout->paymentLinks->create($sessionData);
+        $result = $this->stripeClient->checkout->paymentLinks->create($sessionData);
 
         /* Return result */
         return $result;
@@ -355,29 +453,14 @@ final class StripePayment extends Input {
     public function send_checkoutSession($sessionId, $sessionData) {
         global $camyks;
 
-        /* Load Stripe */
-        $this->load_file('stripe-php/init.php');
-
-        /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
-
-        /* Load Stripe object */
-        $stripe = new \Stripe\StripeClient(array(
-            'api_key' => $privateAPIKey,
-            'stripe_version' => $this->stripeVersion,
-        ));
+        /* Load Stripe client */
+        $this->load_StripeClient();
 
         /* Create checkout session on Stripe */
         if (empty($sessionId))
-            $result = $stripe->checkout->sessions->create($sessionData);
+            $result = $this->stripeClient->checkout->sessions->create($sessionData);
         else
-            $result = $stripe->checkout->sessions->update($sessionId, $sessionData);
+            $result = $this->stripeClient->checkout->sessions->update($sessionId, $sessionData);
 
         /* Save SessionId */
         $camyks->set_sessionValue('StripeSessionId', $result['id']);
@@ -395,13 +478,7 @@ final class StripePayment extends Input {
         global $camyks;
 
         /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
+        $this->load_StripeAPIKeys();
 
         /* Build default parameters */
         $defaultParams = array('SessionDataURL'=>'', 'CheckoutBox'=>'');
@@ -413,7 +490,7 @@ final class StripePayment extends Input {
         $camyks->HTMLPage->add_JSFile('https://js.stripe.com/basil/stripe.js');
 
         /* Add client side scripts */
-        $camyks->HTMLPage->add_JSLoadScript('stripe = Stripe("'.$publicAPIKey.'");');
+        $camyks->HTMLPage->add_JSLoadScript('stripe = Stripe("'.$this->publicAPIKey.'");');
         $camyks->HTMLPage->add_JSLoadScript('initialise_StripeCheckout();');
 
         $camyks->HTMLPage->add_JSScript('async function initialise_StripeCheckout() {');
@@ -438,23 +515,8 @@ final class StripePayment extends Input {
     public function check_embeddedCheckoutSessionStatus() {
         global $camyks;
 
-        /* Load Stripe */
-        $this->load_file('stripe-php/init.php');
-
-        /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
-
-        /* Load Stripe object */
-        $stripe = new \Stripe\StripeClient(array(
-            'api_key' => $privateAPIKey,
-            'stripe_version' => $this->stripeVersion,
-        ));
+        /* Load Stripe client */
+        $this->load_StripeClient();
 
         /* Load data from stream */
         $jsonStr = file_get_contents('php://input');
@@ -465,7 +527,7 @@ final class StripePayment extends Input {
             return array('status' => 'error');
 
         /* Retreive session */
-        $session = $stripe->checkout->sessions->retrieve($jsonObj->session_id);
+        $session = $this->stripeClient->checkout->sessions->retrieve($jsonObj->session_id);
 
         /* Return session */
         return $session;
