@@ -4,7 +4,7 @@
  * <br /> Interface to Stripe payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: May 2020
  * @date Modification: Jul 2025
  * @copyright 2020 - 2025 CaMykS Team
@@ -321,7 +321,7 @@ final class StripePayment extends Input {
         return $this->_transactionId;
     }
 
-    /* Mark: Interaction with Stripe methods */
+    /* Mark: Stripe customer related methods */
 
     /**
      * Send a customer in Stripe account.
@@ -342,6 +342,8 @@ final class StripePayment extends Input {
         /* Return result */
         return $result;
     }
+
+    /* Mark: Stripe customer tax id related methods */
 
     /**
      * Send a customer tax id in Stripe account.
@@ -428,6 +430,8 @@ final class StripePayment extends Input {
         return $result;
     }
 
+    /* Mark: Stripe payment link related methods */
+
     /**
      * Return stripe payment link from product prices.
      * @param array $sessionData
@@ -443,6 +447,8 @@ final class StripePayment extends Input {
         /* Return result */
         return $result;
     }
+
+    /* Mark: Stripe checkout session related methods */
 
     /**
      * Send a checkout session in Stripe account.
@@ -571,6 +577,28 @@ final class StripePayment extends Input {
         $camyks->HTMLPage->add_JSScript('   }');
         $camyks->HTMLPage->add_JSScript('}');
     }
+
+    /* Mark: Stripe invoice related methods */
+
+    /**
+     * Get invoice list from Stripe.
+     * @param string array
+     * @return void
+     */
+    public function get_invoiceList($params) {
+        global $camyks;
+
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load invoices list */
+        $list = $this->stripeClient->invoices->all($params);
+
+        /* Return list */
+        return $list;
+    }
+
+
 
     /* Mark: Display methods */
 
