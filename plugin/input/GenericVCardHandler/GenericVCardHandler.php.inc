@@ -3,18 +3,17 @@
  * @brief GenericVCardHandler Input
  * <br /> Imports and exports information in vcard formats.
  * @details Plugin / Input Engine
- * @file plugin/input/GenericVCardHandler/GenericVCardHandler.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Nov 2014
- * @date Modification: Jul 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
- * SyntaxColoringEngine Input class.
+ * GenericVCardHandler Input class.
  */
 final class GenericVCardHandler extends Input {
 
@@ -33,22 +32,21 @@ final class GenericVCardHandler extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     function __construct($path_type) {
         parent::__construct('GenericVCardHandler', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -75,7 +73,7 @@ final class GenericVCardHandler extends Input {
         ));
     }
 
-    /* specific action methods */
+    /* Mark: Specific action methods */
 
     /**
      * Export vCard.
@@ -248,7 +246,7 @@ final class GenericVCardHandler extends Input {
         return false;
     }
 
-    /* specific public tool methods */
+    /* Mark: Specific public tool methods */
 
     /**
      * Return vCard available versions.
@@ -341,7 +339,7 @@ final class GenericVCardHandler extends Input {
        );
     }
 
-    /* specific prive tool methods */
+    /* Mark: Specific prive tool methods */
 
     /**
      * return export action params.

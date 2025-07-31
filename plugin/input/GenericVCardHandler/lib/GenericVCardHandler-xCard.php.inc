@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief GenericVCardHandler Input library to manage XCard format
+ * @brief GenericVCardHandler input, XCard format library.
  * @details Plugin / Input Library
- * @file plugin/input/GenericVCardHandler/lib/GenericVCardHandler-xCard.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2014
- * @date Modification: Jul 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,7 +19,6 @@ final class GenericVCardHandler_xCard {
      * Class constructor.
      * @param Object $parent
      * @param array $params
-     * @return void
      */
     public function __construct($parent, $params) {
         $this->parentInput = $parent;

@@ -3,19 +3,17 @@
  * @brief QuickItemList Input
  * <br /> Allows multi selection in a list.
  * @details Plugin / Input Engine
- * @file plugin/input/QuickItemList/QuickItemList.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Mar 2007
- * @date Modification: Jul 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * QuickItemList Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class QuickItemList extends Input {
 
@@ -70,12 +68,11 @@ final class QuickItemList extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('QuickItemList', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
@@ -85,7 +82,7 @@ final class QuickItemList extends Input {
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite Input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.

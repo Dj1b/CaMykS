@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief PayZenPayment Input configuration object
+ * @brief PayZenPayment input, configuration library.
  * @details Plugin / Input Library
- * @file plugin/input/PayZenPayment/lib/PayZenPaymentConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,8 +18,7 @@ final class PayZenPaymentConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -40,7 +38,7 @@ final class PayZenPaymentConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return ctx mode value list.

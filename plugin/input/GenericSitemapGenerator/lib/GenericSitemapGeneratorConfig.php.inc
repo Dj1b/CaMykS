@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief GenericSitemapGenerator Input configuration object
+ * @brief GenericSitemapGenerator input, configuration library.
  * @details Plugin / Input Library
- * @file plugin/input/GenericSitemapGenerator/lib/GenericSitemapGeneratorConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Feb 2019
- * @date Modification: Feb 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -16,12 +15,10 @@
  * GenericSitemapGeneratorConfig PluginConfig class.
  */
 final class GenericSitemapGeneratorConfig extends PluginConfig {
-
     /*
      * Class constructor.
      * @param string $name
      * @param Module $parent
-     * @return void
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -44,7 +41,7 @@ final class GenericSitemapGeneratorConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Load update items values from header.

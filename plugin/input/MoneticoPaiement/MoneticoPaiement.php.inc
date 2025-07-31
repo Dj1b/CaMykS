@@ -4,17 +4,16 @@
  * <br /> Manage online payment with Monetico system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.2.3
  * @date Creation: Apr 2017
- * @date Modification: Feb 2023
- * @copyright 2017 - 2023 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MoneticoPaiement Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class MoneticoPaiement extends Input {
     /**
@@ -67,26 +66,24 @@ final class MoneticoPaiement extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('MoneticoPaiement', $path_type);
-        /* set plugin version */
-        $this->version = '1.0';
 
-        /* set plugin package */
+        /* Override Plugin variables */
+        $this->version = '1.0';
         $this->plugin_package = 'eCommerce';
 
-        /* set plugin author */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -103,7 +100,7 @@ final class MoneticoPaiement extends Input {
         parent::initialise();
     }
 
-    /* Execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -335,7 +332,7 @@ final class MoneticoPaiement extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /* data query methods */
+    /* Mark: Data query methods */
 
     /**
      * Return response data from confirmation request
@@ -376,8 +373,9 @@ final class MoneticoPaiement extends Input {
         $MAC_source = computeHmacSource($MoneticoPaiement_bruteVars, $oEpt);
         $computed_MAC = $oHmac->computeHmac($MAC_source);
         $congruent_MAC = array_key_exists('MAC', $MoneticoPaiement_bruteVars) && $computed_MAC == strtolower($MoneticoPaiement_bruteVars['MAC']);
-        if (!$congruent_MAC)
-            $camyks->log_executionerror($this, 'HMAC doesn\'t match.', "Expected HMAC: ".$MoneticoPaiement_bruteVars['MAC']."\nComputed HMAC: ".$computed_MAC);
+        if (!$congruent_MAC) {
+            //$camyks->log_executionerror($this, 'HMAC doesn\'t match.', "Expected HMAC: ".$MoneticoPaiement_bruteVars['MAC']."\nComputed HMAC: ".$computed_MAC);
+        }
 
         /* Build receipt */
         $receipt = MONETICOPAIEMENT_PHASE2BACK_MACOK;
@@ -472,7 +470,7 @@ final class MoneticoPaiement extends Input {
         return '';
     }
 
-    /* error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -502,7 +500,7 @@ final class MoneticoPaiement extends Input {
         return $this->_lastErrorMsg;
     }
 
-    /* Internal tool methods */
+    /* Mark: Internal tool methods */
 
     /**
      * Build Monetico configuration
@@ -589,7 +587,7 @@ final class MoneticoPaiement extends Input {
         return $phoneNumber;
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

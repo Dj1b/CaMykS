@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief LimonetikPayment Input configuration object
+ * @brief LimonetikPayment input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Oct 2020
- * @date Modification: Apr 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,8 +18,7 @@ final class LimonetikPaymentConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -42,7 +41,7 @@ final class LimonetikPaymentConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Data related methods */
+    /* Mark: Data related methods */
 
     /**
      * Return running mode value list.

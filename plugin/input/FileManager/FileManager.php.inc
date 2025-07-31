@@ -31,9 +31,9 @@
  * <br /> . rebuild system with ajax
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.2
+ * @version 1.0.4.3
  * @date Creation: Jun 2007
- * @date Modification: Mar 2025
+ * @date Modification: Jul 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -167,22 +167,21 @@ final class FileManager extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('FileManager', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0.1';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -268,7 +267,7 @@ final class FileManager extends Input {
         $camyks->HTMLPage->write_HTMLContent();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Update object name.

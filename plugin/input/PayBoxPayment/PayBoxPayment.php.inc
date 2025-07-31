@@ -4,10 +4,10 @@
  * <br /> Interface to PayBox payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.7.1
  * @date Creation: Apr 2017
- * @date Modification: Nov 2024
- * @copyright 2017 - 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -57,7 +57,6 @@ final class PayBoxPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('PayBoxPayment', $path_type);

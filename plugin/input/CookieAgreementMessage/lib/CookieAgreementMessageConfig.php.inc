@@ -1,25 +1,24 @@
 <?php
 /**
- * @brief CookieAgreementMessage Input configuration object
+ * @brief CookieAgreementMessage input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: Feb 2018
- * @date Modification: Mar 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
- * ContentAnchorMenuConfig PluginConfig class.
+ * CookieAgreementMessageConfig PluginConfig class.
  */
 final class CookieAgreementMessageConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -35,7 +34,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Override PluginConfig methods */
+    /* Mark: Override PluginConfig methods */
 
     /**
      * Load object items values from header.
@@ -52,7 +51,7 @@ final class CookieAgreementMessageConfig extends PluginConfig {
         }
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return insertion value list.

@@ -4,10 +4,10 @@
  * <br /> Inline popup creator automatically managing content to display.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Oct 2011
- * @date Modification: Jul 2021
- * @copyright 2011 - 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2011 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details Supported format :
@@ -20,7 +20,6 @@
 
 /**
  * GenericMediaPopup Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class GenericMediaPopup extends Input {
     /**
@@ -67,48 +66,45 @@ final class GenericMediaPopup extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;
         parent::__construct('GenericMediaPopup', $path_type);
 
-        /* set plugin version */
+        /* Override Plugin variables */
         $this->version = '1.0';
-
-        /* set plugin package */
         $this->plugin_package = 'Generic';
 
-        /* set plugin author */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'http://www.camyks.net';
 
-        /* register plugin as TinyMCE extension */
+        /* Register plugin as TinyMCE extension */
         if ($camyks->mode == CAMYKS_MODE_ADMIN)
             $this->register_asExtension('TinyMCEv3');
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
         $this->register_asExtension('CookieAgreementMessage');
 
-        /* plugin variables */
+        /* Plugin variables */
         $this->loaded = false;
         $this->diaporamaPictures = array();
 
-        /* load configuration library */
+        /* Load configuration library */
         $this->load_library('GenericMediaPopupConfig');
 
-        /* load config */
+        /* Load config */
         $this->config = new GenericMediaPopupConfig('config', $this);
         $this->config->get();
 
-        /* check for automatique adding */
+        /* Check for automatique adding */
         if ($camyks->mode == CAMYKS_MODE_SITE and $this->config->vars['insertion'] == 1) {
             $this->register_asCaMykSEventHandler('onPageLoad');
         }
 
-        /* update parameters with picture file URLs */
+        /* Update parameters with picture file URLs */
         $this->params['buttonPictures'] = array(
             'close'     => $this->get_fileURL('img/close.gif'),
             'closeOver' => $this->get_fileURL('img/close_r.gif'),
@@ -119,7 +115,7 @@ final class GenericMediaPopup extends Input {
         );
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input
@@ -195,6 +191,8 @@ final class GenericMediaPopup extends Input {
         $this->loaded = true;
     }
 
+    /* Mark: Override Plugin methods */
+
     /**
      * Execute handler on page loading.
      * @return void
@@ -203,7 +201,7 @@ final class GenericMediaPopup extends Input {
         $this->initialise();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Add picture to diaporama.
@@ -217,7 +215,7 @@ final class GenericMediaPopup extends Input {
             $this->add_JSScript($this->params['objectName'].'.set_param("diaporama", '.(count($this->diaporamaPictures)-1).', {picture:"'.$url.'", title:"'.$title.'"});');
     }
 
-    /* TinyMCE extension methods */
+    /* Mark: TinyMCE extension methods */
 
     /**
      * Return TinyMCE plugin params.
@@ -233,7 +231,7 @@ final class GenericMediaPopup extends Input {
         );
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
@@ -276,7 +274,8 @@ final class GenericMediaPopup extends Input {
         $this->config->get_fromHeader();
         return $this->config->save();
     }
-    /* CookieAgreementMessage extension methods */
+
+    /* Mark: CookieAgreementMessage extension methods */
 
     /**
      * Return plugin information related to cookies.

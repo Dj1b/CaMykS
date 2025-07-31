@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief StripePayment Input configuration object
+ * @brief StripePayment input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2020
- * @date Modification: Mar 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,8 +18,7 @@ final class StripePaymentConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -39,7 +38,7 @@ final class StripePaymentConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return running mode value list.

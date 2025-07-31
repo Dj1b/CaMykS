@@ -4,7 +4,7 @@
  * <br /> Interface to Stripe payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: May 2020
  * @date Modification: Jul 2025
  * @copyright 2020 - 2025 CaMykS Team
@@ -62,7 +62,6 @@ final class StripePayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('StripePayment', $path_type);
@@ -477,7 +476,7 @@ final class StripePayment extends Input {
 
     /**
      * Initialise Stripe checkout session in embedded mode.
-     * @params array $params
+     * @param array $params
      * @return void
      */
     public function create_embeddedCheckoutSession($params=array()) {
@@ -541,7 +540,7 @@ final class StripePayment extends Input {
 
     /**
      * Receive client side result from a Stripe Checkout session in embedded mode.
-     * @param string array
+     * @param array $params
      * @return void
      */
     public function check_embeddedCheckoutSessionResult($params) {
@@ -582,7 +581,7 @@ final class StripePayment extends Input {
 
     /**
      * Get invoice list from Stripe.
-     * @param string array
+     * @param array $params
      * @return void
      */
     public function get_invoiceList($params) {
@@ -597,8 +596,6 @@ final class StripePayment extends Input {
         /* Return list */
         return $list;
     }
-
-
 
     /* Mark: Display methods */
 

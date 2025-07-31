@@ -3,9 +3,9 @@
  * @brief SpamChecker input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jun 2021
- * @date Modification: Feb 2025
+ * @date Modification: Jul 2025
  * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,7 +25,6 @@ final class SpamCheckerConfig extends PluginConfig {
      * Class constructor.
      * @param string $name
      * @param Module $parent
-     * @return void
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -78,7 +77,7 @@ final class SpamCheckerConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Override PluginConfig methods */
+    /* Mark: Override PluginConfig methods */
 
     /**
      * Load object items values from header.
@@ -103,7 +102,7 @@ final class SpamCheckerConfig extends PluginConfig {
         }
     }
 
-    /* Data methods */
+    /* Mark: Data methods */
 
     /**
      * Return log enabling values.

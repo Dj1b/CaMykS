@@ -4,10 +4,10 @@
  * <br /> Display customisable admin list of objects.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.1.4
  * @date Creation: Sep 2008
- * @date Modification: Dec 2022
- * @copyright 2008 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -49,7 +49,6 @@ final class AdminItemListViewer extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('AdminItemListViewer', $path_type);
@@ -64,7 +63,7 @@ final class AdminItemListViewer extends Input {
         $this->author_group = 'camyks.net';
     }
 
-    /* Override Input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.
@@ -100,7 +99,7 @@ final class AdminItemListViewer extends Input {
         parent::display();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Set all params.

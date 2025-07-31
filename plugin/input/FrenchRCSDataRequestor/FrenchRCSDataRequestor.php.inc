@@ -3,9 +3,9 @@
  * @brief FrenchRCSDataRequestor input.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2025
- * @date Modification: Jun 2025
+ * @date Modification: Jul 2025
  * @copyright 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -35,7 +35,6 @@ final class FrenchRCSDataRequestor extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('FrenchRCSDataRequestor', $path_type);
@@ -86,7 +85,7 @@ final class FrenchRCSDataRequestor extends Input {
 
     /**
      * Perform a request.
-     * @param string type
+     * @param string $type
      * @param array $params
      * @return string
      */

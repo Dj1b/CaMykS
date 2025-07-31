@@ -1,21 +1,19 @@
 <?php
 /**
- * @brief ColorPicker Input
+ * @brief ColorPicker input.
  * <br /> Display a color picker.
  * @details Plugin / Input Engine
- * @file plugin/input/ColorPicker/ColorPicker.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Mar 2007
- * @date Modification: Apr 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * ColorPicker Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class ColorPicker extends Input {
     /**
@@ -35,13 +33,13 @@ final class ColorPicker extends Input {
      * @brief Is in modal mode.
      */
     protected $modaldisplay = false;
-    
+
     /**
      * var string $color
      * @brief Current color.
      */
     protected $color;
-    
+
     /**
      * var string $config
      * @brief Color config to display.
@@ -50,25 +48,22 @@ final class ColorPicker extends Input {
 
     /**
      * Class constructor.
-     * @param String $path_type
-     * @return void
+     * @param string $path_type
      */
     public function __construct($path_type) {
         parent::__construct('ColorPicker', $path_type);
-        
-        /* set plugin version */
+
+        /* Override Plugin variables */
         $this->version = '1.0';
-        
-        /* set plugin package */
         $this->plugin_package = 'Default';
-        
-        /* set plugin author */
+
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
-    
-    /* overwrite input methods */
+
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -78,7 +73,7 @@ final class ColorPicker extends Input {
      * @return void
      */
     public function initialise($name='cp', $config='default', $mode='popup') {
-        global $camyks;        
+        global $camyks;
 
         /* get config */
         $this->cp_name = $name;
@@ -113,7 +108,7 @@ final class ColorPicker extends Input {
         /* Input generic initialization */
         parent::initialise();
     }
-    
+
     /**
      * Display Input.
      * @param string $name
@@ -147,11 +142,11 @@ final class ColorPicker extends Input {
         $this->config = isset ($_REQUEST['cp_config']) ? $_REQUEST['cp_config'] : 'default';
         $this->color = isset ($_REQUEST['cp_color']) ? $_REQUEST['cp_color'] : null;
         $this->cp_name = isset ($_REQUEST['cp_name']) ? $_REQUEST['cp_name'] : null;
-        $this->inputname = $this->cp_name; 
+        $this->inputname = $this->cp_name;
         $this->get_config();
-     
+
         /* get theme */
-        $theme = isset($_REQUEST['theme']) ? $_REQUEST['theme'] : $camyks->_conf['admin_default_theme']; 
+        $theme = isset($_REQUEST['theme']) ? $_REQUEST['theme'] : $camyks->_conf['admin_default_theme'];
 
         if (($this->theme = theme_get($theme, 'site')) === false) {
             if (($this->theme = theme_get($theme, 'camyks')) === false) {
@@ -196,7 +191,7 @@ final class ColorPicker extends Input {
         $camyks->HTMLPage->write_HTMLContent();
     }
 
-    /* specific methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Display modal window.

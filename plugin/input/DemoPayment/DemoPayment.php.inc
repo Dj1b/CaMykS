@@ -3,10 +3,10 @@
  * @brief DemoPayment input.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Mar 2024
- * @date Modification: Mar 2024
- * @copyright 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2024 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -30,7 +30,6 @@ final class DemoPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('DemoPayment', $path_type);

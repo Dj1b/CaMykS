@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief SiteMonitoringToolbar Input configuration object
+ * @brief SiteMonitoringToolbar input, configuration library.
  * @details Plugin / Input Library
- * @file plugin/input/SiteMonitoringToolbar/lib/SiteMonitoringToolbarConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Nov 2017
- * @date Modification: Jul 2018
- * @copyright 2017 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,8 +18,7 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -33,7 +31,7 @@ final class SiteMonitoringToolbarConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return access restriction value list.

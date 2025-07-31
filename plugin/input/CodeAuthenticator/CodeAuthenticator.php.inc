@@ -5,10 +5,10 @@
  * <br /> Highly based on PHPGangsta / GoogleAuthenticator library (https://github.com/PHPGangsta/GoogleAuthenticator)
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2021
- * @date Modification: Jul 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -38,7 +38,6 @@ final class CodeAuthenticator extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('CodeAuthenticator', $path_type);
@@ -60,7 +59,7 @@ final class CodeAuthenticator extends Input {
         $this->register_asCaMykSEventHandler('onPageLoad');
     }
 
-    /* Override input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -104,7 +103,17 @@ final class CodeAuthenticator extends Input {
         return false;
     }
 
-    /* Request mode methods */
+    /* Mark: Override Plugin methods  */
+
+    /**
+     * Execute handler on page loading.
+     * @return void
+     */
+    public function execute_onCaMykSPageLoad() {
+        $this->initialise();
+    }
+
+    /* Mark: Request mode sub methods */
 
     /**
      * Write QR Code as picture.
@@ -143,7 +152,7 @@ final class CodeAuthenticator extends Input {
         $qr->makeCode($url, $options);
     }
 
-    /* User 2FA configuration */
+    /* Mark: User 2FA configuration */
 
     /**
      * Prepare 2FA configuration for user.
@@ -235,7 +244,7 @@ final class CodeAuthenticator extends Input {
         $camyks->set_sessionValue('CodeAuthenticatorSettings', array());
     }
 
-    /* User 2FA login */
+    /* Mark: User 2FA login */
 
     /**
      * Prepare 2FA login for user.
@@ -304,7 +313,7 @@ final class CodeAuthenticator extends Input {
         return true;
     }
 
-    /* Configuration methods */
+    /* Mark: Configuration methods */
 
     /**
      * Load configuration.
@@ -333,7 +342,7 @@ final class CodeAuthenticator extends Input {
         return $this->config->get_value($name);
     }
 
-    /* Authenticator related methods */
+    /* Mark: Authenticator related methods */
 
     /**
      * Create new secret.
@@ -533,7 +542,7 @@ final class CodeAuthenticator extends Input {
         return ($result === 0);
     }
 
-    /* Error management methods */
+    /* Mark: Error management methods */
 
     /**
      * Return last error message.
@@ -562,17 +571,7 @@ final class CodeAuthenticator extends Input {
         $this->lastError = $error;
     }
 
-    /* CaMykS page event methods */
-
-    /**
-     * Execute handler on page loading.
-     * @return void
-     */
-    public function execute_onCaMykSPageLoad() {
-        $this->initialise();
-    }
-
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

@@ -4,10 +4,10 @@
  * <br /> Interface to Scellius payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Aug 2021
- * @date Modification: Aug 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -64,7 +64,6 @@ final class ScelliusPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('ScelliusPayment', $path_type);
@@ -82,7 +81,7 @@ final class ScelliusPayment extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Override Input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.
@@ -102,7 +101,7 @@ final class ScelliusPayment extends Input {
         parent::initialise();
     }
 
-    /* Execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -148,7 +147,7 @@ final class ScelliusPayment extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /* data query methods */
+    /* Mark: Data query methods */
 
     /**
      * Load confirmation data Scellius instant notification.
@@ -223,7 +222,7 @@ final class ScelliusPayment extends Input {
         return $this->_transactionId;
     }
 
-    /* display methods */
+    /* Mark: Display methods */
 
     /**
      * Return manual transfer link.
@@ -235,7 +234,7 @@ final class ScelliusPayment extends Input {
         return '';
     }
 
-    /* error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -265,7 +264,7 @@ final class ScelliusPayment extends Input {
         return $this->_lastErrorMsg;
     }
 
-    /* tool methods */
+    /* Mark: Tool methods */
 
     /**
      * Load plugin configuration
@@ -307,7 +306,7 @@ final class ScelliusPayment extends Input {
         return '';
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

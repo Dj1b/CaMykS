@@ -4,10 +4,10 @@
  * <br /> Interface to ClicAndPay payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2019
- * @date Modification: Dec 2022
- * @copyright 2019 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -64,7 +64,6 @@ final class ClicAndPayPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('ClicAndPayPayment', $path_type);
@@ -78,12 +77,11 @@ final class ClicAndPayPayment extends Input {
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -103,7 +101,7 @@ final class ClicAndPayPayment extends Input {
         parent::initialise();
     }
 
-    /* execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -153,7 +151,7 @@ final class ClicAndPayPayment extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /* data query methods */
+    /* dMark: Data query methods */
 
     /**
      * Load confirmation data Payzen instant notification.
@@ -229,7 +227,7 @@ final class ClicAndPayPayment extends Input {
         return $this->_transactionId;
     }
 
-    /* display methods */
+    /* Mark: Display methods */
 
     /**
      * Return manual transfer link.
@@ -241,7 +239,7 @@ final class ClicAndPayPayment extends Input {
         return '';
     }
 
-    /* error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -313,7 +311,7 @@ final class ClicAndPayPayment extends Input {
         return '';
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

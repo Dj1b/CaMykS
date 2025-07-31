@@ -1,6 +1,6 @@
 <?php
 /**
- * @brief SiteMonitoringToolbar Input
+ * @brief SiteMonitoringToolbar input.
  * <br /> Display a monitoring toolbar on website.
  * <br /> Available tools
  * <br /> + CaMykS Main button to open/close toolbar
@@ -46,37 +46,36 @@ final class SiteMonitoringToolbar extends Input {
     private $extensions = null;
 
     /**
-     * Class cconstructor.
+     * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;
         parent::__construct('SiteMonitoringToolbar', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load configuration library */
+        /* Load configuration library */
         $this->load_library('SiteMonitoringToolbarConfig');
 
-        /* register plugin as CaMykS event handler */
+        /* Register plugin as CaMykS event handler */
         if ($camyks->mode == CAMYKS_MODE_SITE) {
             $this->register_asCaMykSEventHandler('onPageLoad');
             $this->register_asCaMykSEventHandler('onTerminate');
         }
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as Admin_Site extension */
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -89,10 +88,10 @@ final class SiteMonitoringToolbar extends Input {
         /* check locale */
         $locale = in_array($camyks->current_language, array('fr', 'en')) ? $camyks->current_language : 'en';
 
-        /* load styles */
+        /* Load styles */
         $this->add_styleFile('SiteMonitoringToolbar.css');
 
-        /* load scripts */
+        /* Load scripts */
         $this->add_JSEngineFile('tool/xml.js');
         $this->add_JSEngineFile('tool/htmlelement.js');
         $this->add_JSEngineFile('object/cajaxrequest.js');
@@ -125,10 +124,10 @@ final class SiteMonitoringToolbar extends Input {
     public function execute_request() {
         global $camyks;
 
-        /* load camyks in site mode */
+        /* Load camyks in site mode */
         $camyks->get_siteInit();
 
-        /* load plugin configuration */
+        /* Load plugin configuration */
         $this->config = new SiteMonitoringToolbarConfig('config', $this);
         $this->config->get();
 
@@ -145,7 +144,7 @@ final class SiteMonitoringToolbar extends Input {
         elseif ($this->config->vars['accessRestriction'] == 1 and $camyks->check_adminUser() === false)
             $camyks->throwFatalError($error);
 
-        /* load mode to execute */
+        /* Load mode to execute */
         $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
 
         /* check file value */
@@ -189,7 +188,7 @@ final class SiteMonitoringToolbar extends Input {
         }
     }
 
-    /* overwrite plugin methods */
+    /* Mark: Override Plugin methods */
 
     /**
      * Execute handler on CaMykS page load.
@@ -198,7 +197,7 @@ final class SiteMonitoringToolbar extends Input {
     public function execute_onCaMykSPageLoad() {
         global $camyks;
 
-        /* load plugin configuration */
+        /* Load plugin configuration */
         $this->config = new SiteMonitoringToolbarConfig('config', $this);
         $this->config->get();
 
@@ -223,7 +222,7 @@ final class SiteMonitoringToolbar extends Input {
         if ($this->loaded == false)
             return;
 
-        /* load extensions */
+        /* Load extensions */
         $this->load_registeredExtensions();
 
         /* check for bench values loading */
@@ -241,7 +240,7 @@ final class SiteMonitoringToolbar extends Input {
         $statItems[] = array('objectName'=>'visits', 'objectId'=>0);
         if (isset($camyks->contentPage) and $camyks->contentPage->id > 0)
             $statItems[] = array('objectName'=>'sitepage', 'objectId'=>$camyks->contentPage->id);
-        /* load registered statistics items from extensions */
+        /* Load registered statistics items from extensions */
         foreach ($this->extensions as &$plugin)
             $statItems += $plugin->get_SMTStatItems();
 
@@ -258,7 +257,7 @@ final class SiteMonitoringToolbar extends Input {
                 /* files */
                 'includedFiles' => count(get_included_files()),
 
-                /* request values */
+                /* Request values */
                 'requestData'   => $_REQUEST,
 
                 /* cookies values */
@@ -273,7 +272,7 @@ final class SiteMonitoringToolbar extends Input {
         $camyks->set_sessionValue('SMTPHPStats', $PHPStats);
     }
 
-    /* request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Execute input in request/loadConfig mode.
@@ -283,17 +282,17 @@ final class SiteMonitoringToolbar extends Input {
         global $camyks;
 
         $config = array(
-                /* plugin configuration */
-                'buttonLocation'        => $this->config->vars['buttonLocation'],
-                'appliedTheme'          => $this->config->vars['appliedTheme'],
+            /* plugin configuration */
+            'buttonLocation'        => $this->config->vars['buttonLocation'],
+            'appliedTheme'          => $this->config->vars['appliedTheme'],
 
-                /* admin specific */
-                'allowConfiguration'    => $camyks->check_adminUser() ? $camyks->adminUser->webmaster : 0,
-                'allowLogout'           => $camyks->check_adminUser(),
+            /* admin specific */
+            'allowConfiguration'    => $camyks->check_adminUser() ? $camyks->adminUser->webmaster : 0,
+            'allowLogout'           => $camyks->check_adminUser(),
 
-                /* live settings */
-                'DBStatsStatus'         => $camyks->get_executionVariable('_cDBQueries') == 'shared' ? 1 : 0,
-                'BenchStatus'           => $camyks->get_executionVariable('_cBench') == 'shared' ? 1 : 0,
+            /* Live settings */
+            'DBStatsStatus'         => $camyks->get_executionVariable('_cDBQueries') == 'shared' ? 1 : 0,
+            'BenchStatus'           => $camyks->get_executionVariable('_cBench') == 'shared' ? 1 : 0,
         );
 
         /* prepare answer */
@@ -440,7 +439,7 @@ final class SiteMonitoringToolbar extends Input {
             $result->send_asJSON();
         }
 
-        /* load values and encode them to JS */
+        /* Load values and encode them to JS */
         $lAR = $this->config->get_accessRestrictionList();
         foreach ($lAR as $index => $value)
             $lAR[$index] = string_html2Text($value);
@@ -513,7 +512,7 @@ final class SiteMonitoringToolbar extends Input {
         $result->send_asJSON();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Load registered extensions.
@@ -523,14 +522,14 @@ final class SiteMonitoringToolbar extends Input {
         $this->extensions = $this->get_registeredExtensions();
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
      * @return void
      */
     public function initialise_configDisplay() {
-        /* load plugin configuration */
+        /* Load plugin configuration */
         $this->config = new SiteMonitoringToolbarConfig('config', $this);
         $this->config->get();
     }
@@ -549,7 +548,7 @@ final class SiteMonitoringToolbar extends Input {
      * @return void
      */
     public function initialise_configEdition($form) {
-        /* load plugin configuration */
+        /* Load plugin configuration */
         $this->config = new SiteMonitoringToolbarConfig('config', $this);
         $this->config->get();
 

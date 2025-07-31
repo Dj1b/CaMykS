@@ -4,10 +4,10 @@
  * <br /> Adds Crisp.chat snippet on page
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2020
- * @date Modification: Mar 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -31,7 +31,6 @@ final class CrispChat extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('CrispChat', $path_type);
@@ -53,7 +52,7 @@ final class CrispChat extends Input {
         $this->register_asCaMykSEventHandler('onPageLoad');
     }
 
-    /* Override input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -74,7 +73,17 @@ final class CrispChat extends Input {
             $this->add_JSScript('window.$crisp=[];window.CRISP_WEBSITE_ID="'.$this->get_configValue('websiteId').'";(function(){ d=document;s=d.createElement("script"); s.src="https://client.crisp.chat/l.js"; s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();');
     }
 
-    /* Specific tool methods */
+    /* Override Plugin methods */
+
+    /**
+     * Execute handler on page loading.
+     * @return void
+     */
+    public function execute_onCaMykSPageLoad() {
+        $this->initialise();
+    }
+
+    /* Mark: Specific tool methods */
 
     /**
      * Load configuration.
@@ -103,17 +112,7 @@ final class CrispChat extends Input {
         return $this->config->get_value($name);
     }
 
-    /* CaMykS page event methods */
-
-    /**
-     * Execute handler on page loading.
-     * @return void
-     */
-    public function execute_onCaMykSPageLoad() {
-        $this->initialise();
-    }
-
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
@@ -164,7 +163,7 @@ final class CrispChat extends Input {
         return $this->config->save();
     }
 
-    /* CookieAgreementMessage extension methods */
+    /* Mark: CookieAgreementMessage extension methods */
 
     /**
      * Return plugin information related to cookies.

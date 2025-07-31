@@ -4,10 +4,10 @@
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.6
+ * @version 1.1.0.7
  * @date Creation: May 2017
- * @date Modification: Dec 2022
- * @copyright 2017 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -56,7 +56,6 @@ final class CookieAgreementMessage extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;
@@ -88,7 +87,7 @@ final class CookieAgreementMessage extends Input {
         }
     }
 
-    /* Override input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -150,6 +149,8 @@ final class CookieAgreementMessage extends Input {
             parent::display();
     }
 
+    /* Mark: Override Plugin methods */
+
     /**
      * Execute handler on page load.
      * @return string
@@ -167,7 +168,7 @@ final class CookieAgreementMessage extends Input {
         return '';
     }
 
-    /* Specific public methods */
+    /* Mark: Specific public methods */
 
     /**
      * Check service is cookie accepted.
@@ -304,7 +305,7 @@ final class CookieAgreementMessage extends Input {
         }
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

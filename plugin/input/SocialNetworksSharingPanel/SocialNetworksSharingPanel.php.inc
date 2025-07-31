@@ -4,9 +4,9 @@
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.6.1
  * @date Creation: Nov 2009
- * @date Modification: Jun 2025
+ * @date Modification: Jul 2025
  * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,7 +38,6 @@ final class SocialNetworksSharingPanel extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;

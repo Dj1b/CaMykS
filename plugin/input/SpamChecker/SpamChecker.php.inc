@@ -4,9 +4,9 @@
  * <br /> Contact form or comment spam checker.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2021
- * @date Modification: Feb 2025
+ * @date Modification: Jul 2025
  * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -25,7 +25,6 @@ final class SpamChecker extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('SpamChecker', $path_type);
@@ -43,7 +42,7 @@ final class SpamChecker extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Execute methods */
+    /* Mark: Execute methods */
 
     /**
      * Execute input and return ip location.
@@ -80,7 +79,7 @@ final class SpamChecker extends Input {
         return $this->check_contentIsSpam($params);
     }
 
-    /* Spam related methods */
+    /* Mark: Spam related methods */
 
     /**
      * Check content is spam.
@@ -393,7 +392,7 @@ final class SpamChecker extends Input {
         return $params;
     }
 
-    /* Configuration related methods */
+    /* CMark: onfiguration related methods */
 
     /**
      * Load configuration.
@@ -414,7 +413,7 @@ final class SpamChecker extends Input {
         return $this->config->get_value($name);
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
