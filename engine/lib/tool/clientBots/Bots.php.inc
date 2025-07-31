@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.86
+ * @version 1.0.87
  * @date Creation: May 2018
- * @date Modification: Apr 2025
+ * @date Modification: Jul 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5403,6 +5403,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'https://openai.com/',
     );
 
+    /* OpenAI ChatGPT */
+    $knownBots['gptbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ChatGPT',
+        'bot_url'           => 'https://openai.com/gptbot',
+        'engine_title'      => 'OpenAI',
+        'engine_url'        => 'https://openai.com/',
+    );
+
     /* OpenAI SearchBot */
     $knownBots['oai-searchbot'] = array(
         'platform_type'     => 'bot',
@@ -5461,6 +5471,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'mailto:ttspider-feedback@tiktok.com',
         'engine_title'      => 'TikTok',
         'engine_url'        => 'https://www.tiktok.com',
+    );
+
+    /* obsrvr.net bot */
+    $knownBots['obsrvr.net'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'obsrvr.net',
+        'bot_url'           => 'https://obsrvr.net/about',
+        'engine_title'      => 'Observer',
+        'engine_url'        => 'https://obsrvr.net/',
     );
 
     /* Return bot list */

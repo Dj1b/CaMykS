@@ -3,9 +3,9 @@
  * @brief Client specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.148
+ * @version 1.0.149
  * @date Creation: Jun 2007
- * @date Modification: Apr 2025
+ * @date Modification: Jul 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -2153,7 +2153,7 @@ function client_getUAInfos($ua=false) {
     }
 
     /* Check unsmartly written browser, non case sensitive */
-    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|Brave|360SE|liloiosapp|KAKAOTALK|Spotify|Ghostery)(?:\/| |\-| \/ |\:)?([a-z0-9\._]*)?/i', $ua, $matches)) {
+    elseif (preg_match('/(Maxthon|Opera|webissimo|NintendoBrowser|Acoo ?Browser|Deepnet Explorer|Avant Browser|BrowseX|OffByOne|KKman|Maemo Browser|BIDUBrowser|UBrowser|Airmail|EmbeddedWB|DX-Browser|Links|Sputnik|Instagram|Microsoft Outlook|Chromeless|Lunascape|JuziBrowser|LinkedInApp|360SE|liloiosapp|KAKAOTALK|Spotify|Ghostery)(?:\/| |\-| \/ |\:)?([a-z0-9\._]*)?/i', $ua, $matches)) {
         $rep = array('BIDUBrowser'=>'Baidu Brower', 'AcooBrowser' => 'Acoo Browser', 'EmbeddedWB'=>'Delphi Embedded Web Browser', 'LinkedInApp'=>'LinkedIn App', '360SE'=>'360Safe', 'liloiosapp'=>'Lilo', 'KAKAOTALK'=>'KakaoTalk');
         $infos = array_merge($infos, array(
             'browser_title'     => isset($rep[$matches[1]]) ? $rep[$matches[1]] : $matches[1],
@@ -2196,12 +2196,21 @@ function client_getUAInfos($ua=false) {
         ));
     }
 
+    /* Check Chrome compatible browser, using Chrome version */
+    elseif (preg_match('/ (Brave) Chrome\/([a-z0-9\.]*) /Ui', $ua, $matches)) {
+        /* $rep = array(); */
+        $infos = array_merge($infos, array(
+            'browser_title'     => /*isset($rep[$matches[1]]) ? $rep[$matches[1]] :*/ $matches[1],
+            'browser_version'   => $matches[2],
+        ));
+    }
+
     /* Check Chrome/Safari/Firefox/Explorer compatible browsers, with specific Version */
     elseif (preg_match('/ Version\/([a-z0-9\._]*)(.*) (Epiphany)/i', $ua, $matches)) {
         $rep = array();
         $infos = array_merge($infos, array(
-            'browser_title'     => isset($rep[$matches[3]])?$rep[$matches[3]]:$matches[3],
-            'browser_version'   => isset($matches[1])?$matches[1]:'',
+            'browser_title'     => isset($rep[$matches[3]]) ? $rep[$matches[3]] : $matches[3],
+            'browser_version'   => isset($matches[1]) ? $matches[1] : '',
         ));
     }
 
@@ -3389,7 +3398,7 @@ function _client_loadSoftwareProperties() {
                 'CheckMethod'   => '',
             ),
             'Android'           => array(
-                'MaxVersion'    => '18',                    // current is 15
+                'MaxVersion'    => '20',                    // current is 16
                 'FakeVersions'  => array('7.8.9'),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
@@ -3397,19 +3406,19 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '145',                    // current is 138 , nightly is +6
+                'MaxVersion'    => '148',                    // current is 140 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '144',                    // current is 137
+                'MaxVersion'    => '145',                    // current is 138
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '125',                    // current is 118
+                'MaxVersion'    => '127',                    // current is 120
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
