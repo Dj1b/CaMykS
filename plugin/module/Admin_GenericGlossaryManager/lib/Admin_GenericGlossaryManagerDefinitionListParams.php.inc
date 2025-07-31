@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericGlossaryManager Module, definition list parameters.
- * @details Plugin, Module Library
+ * @brief Admin_GenericGlossaryManager module, definition list parameters.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2010
- * @date Modification: Feb 2020
- * @copyright 2010 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,26 +15,26 @@ global $camyks;
 $this->definitionStatusList = $this->get_definitionsStatusList(true);
 $this->categoryList = $this->get_categoryTitleList(true);
 
-/* build links */
+/* Build links */
 $this->editDefinitionLink = $this->get_adminLink(array('mode'=>'edit_definition', 'definition_id'=>'%s'));
 $this->deleteDefinitionLink = 'javascript:adminengine_confirmRedirect(deleteDefinitionUrl+%s, deleteDefinitionMessage);';
 $this->add_JSScript('var deleteDefinitionMessage="'.string_html2Text($this->get_translation('deletedefinitionmessage')).'";');
 $this->add_JSScript('var deleteDefinitionUrl="'.$this->get_adminJSLink(array('mode'=>'delete_definition', 'definition_id'=>'')).'";');
 
-/* build main parameters */
+/* Build main parameters */
 $this->definitionListParams = array('name'=>'definitionList', 'useSession'=>true, 'object'=>&$this->definitionItem, 'language'=>$this->language);
 
-/* build head parameters */
+/* Build head parameters */
 $this->definitionListParams['headselectors'] = array(
     'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
     'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->definitionStatusList, 'default'=>'-1'),
     'category'  => array('title'=>$this->get_translation('formitem_category'), 'itemtype'=>'select', 'values'=>$this->categoryList, 'default'=>'-1'),
 );
 
-/* build sort parameters */
+/* Build sort parameters */
 $this->definitionListParams['sort'] = array('allowed'=>false, 'default'=>'word', 'defaultway'=>'');
 
-/* build column parameters */
+/* Build column parameters */
 $this->definitionListParams['listcolumns'] = array(
     'status'    => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
     'word'      => array('title'=>$this->get_translation('word'),'columntype'=>'text'),
@@ -43,7 +43,7 @@ $this->definitionListParams['listcolumns'] = array(
 
 if ($this->check_right(2)==true ) {
     if (count($this->categoryList)>1)
-        $this->definitionListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewdefinition'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editDefinitionLink, 0), 'titlecolumn'=>'word', 'buttoncolumn'=>'edit'));
+        $this->definitionListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewdefinition'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editDefinitionLink, array(0=>0)), 'titlecolumn'=>'word', 'buttoncolumn'=>'edit'));
     $this->definitionListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editDefinitionLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editdefinition'));
     $this->definitionListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteDefinitionLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletedefinition'));
 }

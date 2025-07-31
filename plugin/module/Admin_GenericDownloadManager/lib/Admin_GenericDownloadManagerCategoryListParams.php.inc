@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericDownloadManager Module category list parameters
- * @details Plugin, Module Library
+ * @brief Admin_GenericDownloadManager module, category list parameters.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2009
- * @date Modification: Dec 2020
- * @copyright 2009 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -34,7 +34,7 @@ $this->categoryListParams['headselectors'] = array(
 $this->categoryListParams['sort'] = array('allowed'=>false, 'default'=>'title', 'defaultway'=>'');
 
 /* Build head links */
-$this->categoryListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewcategory'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editCategoryLink, 0), 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
+$this->categoryListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewcategory'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editCategoryLink, array(0=>0)), 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
 
 /* Build column parameters */
 $this->categoryListParams['listcolumns'] = array(

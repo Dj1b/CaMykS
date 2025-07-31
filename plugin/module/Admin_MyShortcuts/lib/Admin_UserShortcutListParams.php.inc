@@ -1,37 +1,36 @@
 <?php
 /**
- * @brief Admin_MyShortcuts Module shortcut list parameters.
- * @details Plugin, Module Library
- * @file plugin/module/Admin_MyShortcuts/lib/Admin_UserShortcutListParams.php.inc
+ * @brief Admin_MyShortcuts module, shortcut list parameters.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Jan 2019
- * @date Modification: Jan 2019
- * @copyright  2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
-/* build links */
+/* Build links */
 $this->openShortcutLink = $this->get_adminLink(array('mode'=>'open_shortcut', 'shortcut_id'=>'%s'));
 $this->editShortcutLink = $this->get_adminLink(array('mode'=>'edit_shortcut', 'shortcut_id'=>'%s'));
 $this->deleteShortcutLink = 'javascript:adminengine_confirmRedirect(deleteShortcutUrl+%s, deleteShortcutMessage);';
 $this->add_JSScript('var deleteShortcutMessage="'.string_html2Text($this->get_translation('deleteshortcutmessage')).'";');
 $this->add_JSScript('var deleteShortcutUrl="'.$this->get_adminJSLink(array('mode'=>'delete_shortcut', 'shortcut_id'=>'')).'";');
 
-/* build main parameters */
+/* Build main parameters */
 $this->shortcutListParams = array('name'=>'shortcutList', 'useSession'=>true, 'object'=>&$this->shortcutItem);
 
-/* build head parameters */
+/* Build head parameters */
 $this->shortcutListParams['headselectors'] = array(
     'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
 );
 
-/* build sort parameters */
+/* Build sort parameters */
 $this->shortcutListParams['sort'] = array('allowed'=>false, 'default'=>'id', 'defaultway'=>'asc');
 
-/* build column parameters */
+/* Build column parameters */
 $this->shortcutListParams['listcolumns'] = array(
     'empty'     => array('title'=>'', 'columntype'=>'specialtext', 'text'=>' ', 'class'=>'eTableIconCell'),
     'name'      => array('title'=>$camyks->get_translation('title'), 'columntype'=>'text'),
