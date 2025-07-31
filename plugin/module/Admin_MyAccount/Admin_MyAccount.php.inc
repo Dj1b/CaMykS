@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_MyAccount Module.
+ * @brief Admin_MyAccount module.
  * <br /> Allows logged admin user to read or edit its own information.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Jun 2005
- * @date Modification: Jul 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -30,8 +30,7 @@ final class Admin_MyAccount extends Module {
 
     /**
      * Class constructor.
-     * @param boolean $path_type
-     * @return void
+     * @param string $path_type
      */
     public function __construct($path_type) {
         parent::__construct('Admin_MyAccount', $path_type);
@@ -50,7 +49,7 @@ final class Admin_MyAccount extends Module {
         $this->author_group = 'camyks.net';
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Build module permissions.
@@ -119,7 +118,7 @@ final class Admin_MyAccount extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/view mode.

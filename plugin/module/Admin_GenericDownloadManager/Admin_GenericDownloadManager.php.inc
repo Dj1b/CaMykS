@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_GenericDownloadManager Module
+ * @brief Admin_GenericDownloadManager module.
  * <br /> Manages files available to download.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: May 2008
- * @date Modification: Jun 2023
- * @copyright 2008 - 2023 CaMykS Team
+ * @date Modification: Jun 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -49,7 +49,6 @@ final class Admin_GenericDownloadManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;
@@ -83,7 +82,7 @@ final class Admin_GenericDownloadManager extends Module {
             $this->register_asExtension('TinyMCEv3');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -276,7 +275,7 @@ final class Admin_GenericDownloadManager extends Module {
         $camyks->throwFatalError($this->error);
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -640,7 +639,7 @@ final class Admin_GenericDownloadManager extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /* Request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Return selected file as download
@@ -725,7 +724,7 @@ final class Admin_GenericDownloadManager extends Module {
         echo xml_serialize2XML($result);
     }
 
-    /* Specific admin tool methods */
+    /* Mark: Specific admin tool methods */
 
     /**
      * Return category status list.

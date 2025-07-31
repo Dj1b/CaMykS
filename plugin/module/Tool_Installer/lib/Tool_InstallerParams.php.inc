@@ -3,9 +3,9 @@
  * @brief Tool_Installer module installation parameters library
  * @details Plugin / Module Library
  * @author JB Lebrun <jb.lebrun@ideogram-design.fr>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Oct 2017
- * @date Modification: Jun 2025
+ * @date Modification: Jul 2025
  * @copyright 2017 - 2025 Ideogram Design
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,7 +31,6 @@ final class Tool_InstallerParams extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);

@@ -3,10 +3,10 @@
  * @brief Content_GoogleMapsViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jul 2008
- * @date Modification: Jul 2021
- * @copyright 2008 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -30,7 +30,6 @@ final class Content_GoogleMapsViewer extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GoogleMapsViewer', $path_type);
@@ -54,7 +53,7 @@ final class Content_GoogleMapsViewer extends Module {
         $this->mapItem = new Content_GoogleMapsViewerItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -164,7 +163,7 @@ final class Content_GoogleMapsViewer extends Module {
         parent::display_site();
     }
 
-    /* Specific mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module in admin / edit mode.
@@ -286,7 +285,7 @@ final class Content_GoogleMapsViewer extends Module {
         $this->set_redirect($this->get_adminLink(array('mode'=>'edit', 'id'=>$this->mapItem->id, 'page_id'=>$this->page_id, 'module_index'=>$this->module_index)));
     }
 
-    /* Specific methods */
+    /* Mark: Layouts related methods */
 
     /**
      * Return layouts list.

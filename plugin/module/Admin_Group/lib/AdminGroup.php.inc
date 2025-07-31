@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_Group Module group library.
+ * @brief Admin_Group module, group library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Mar 2007
- * @date Modification: Feb 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @remark Contains 2 default groups : all / none
@@ -76,7 +76,6 @@ final class AdminGroup {
      * Class constructor.
      * @param string $name
      * @param Object $parent
-     * @return void
      */
     public function __construct($name = '', $parent = null) {
         $this->name = $name;
@@ -84,7 +83,7 @@ final class AdminGroup {
         $this->_libParent = &$parent;
     }
 
-    /* Object i/o methods */
+    /* Mark: Object i/o methods */
 
     /**
      * Load object.

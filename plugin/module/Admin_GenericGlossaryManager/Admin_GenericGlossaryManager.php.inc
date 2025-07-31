@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_GenericGlossaryManager Module
+ * @brief Admin_GenericGlossaryManager module.
  * <br /> Manage a glossary of definitions grouped by categories.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2010
- * @date Modification: Feb 2020
- * @copyright 2010 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -43,7 +43,6 @@ final class Admin_GenericGlossaryManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericGlossaryManager', $path_type);
@@ -70,7 +69,7 @@ final class Admin_GenericGlossaryManager extends Module {
         $this->categoryItem = new Admin_GenericGlossaryManagerCategory(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -177,7 +176,7 @@ final class Admin_GenericGlossaryManager extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -488,7 +487,7 @@ final class Admin_GenericGlossaryManager extends Module {
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Categories')));
     }
 
-    /* Specific admin tool methods */
+    /* Mark: Specific admin tool methods */
 
     /**
      * Return category status list.

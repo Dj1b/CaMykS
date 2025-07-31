@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_SystemReport Module report library
+ * @brief Admin_SystemReport module, report library.
  * @details Plugin / Module Library
- * @file plugin/module/Admin_SystemReport/lib/Admin_SystemReportItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2007
- * @date Modification: Apr 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,10 +18,9 @@ final class Admin_SystemReportItem extends ModuleLibrary {
     /**
      * Class constructor.
      * @param integer $id
-     * @param object $module
-     * @return void
+     * @param Module $module
      */
-    public function __construct($id, &$module) {
+     public function __construct($id, &$module) {
         parent::__construct($id, $module);
 
         /* content items */
@@ -41,10 +39,10 @@ final class Admin_SystemReportItem extends ModuleLibrary {
         $this->add_newitem('answerdate', 'db', 'date', 'bigint unsigned', '', 0);
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
-     * Build sql condition for lists.
+     * Build SQL condition for lists.
      * @param array $params
      * @return string
      */
@@ -58,14 +56,14 @@ final class Admin_SystemReportItem extends ModuleLibrary {
     }
 
     /**
-     * check if object is checked
+     * Check if object is checked
      * @return boolean result
      */
     public function is_marked() {
         return ($this->vars['status'] == 0);
     }
 
-    /* specific methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return status list.

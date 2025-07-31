@@ -1,17 +1,16 @@
 <?php
 /**
- * @brief Admin_SecurityTools Module
+ * @brief Admin_SecurityTools module.
  * <br /> Provides some security tools:
  * <br /> - IP Filter : Done
  * <br /> - BackUp : Done (based on register_shutdown_function method)
  * <br /> - Flood (POST) Control : ?
  * @details Plugin / Module Engine
- * @file plugin/module/Admin_SecurityTools/Admin_SecurityTools.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.2
+ * @version 1.2.2.1
  * @date Creation: Oct 2007
- * @date Modification: Sep 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo - remove cdata & cplugin folders sym links from "complete" backup
@@ -62,7 +61,6 @@ final class Admin_SecurityTools extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;
@@ -102,7 +100,7 @@ final class Admin_SecurityTools extends Module {
         $this->register_asCaMykSEventHandler('onInitialise');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module object.
@@ -302,7 +300,7 @@ final class Admin_SecurityTools extends Module {
         $this->answer->send_asJSON(array('status'=>'failure'));
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /*
      * Initialise module object in admin/main mode
@@ -1017,7 +1015,7 @@ final class Admin_SecurityTools extends Module {
         $this->set_selectedLayout('admin_check_CaMykSIntegrity.html.inc');
     }
 
-    /* Specific request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Execute module object in request mode / add article.
@@ -1043,7 +1041,7 @@ final class Admin_SecurityTools extends Module {
         $this->answer->send_asJSON(array('status'=>'success', 'action'=>'checkIPAddress', 'result'=>$result));
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Check all security tools.
@@ -1081,7 +1079,7 @@ final class Admin_SecurityTools extends Module {
         }
     }
 
-    /* IP Filter rule related methods */
+    /* Mark: IP Filter rule related methods */
 
     /**
      * Return IP Filter rule status list
@@ -1141,7 +1139,7 @@ final class Admin_SecurityTools extends Module {
         $this->ipfilterrules = $this->ipfilterrule->get_objectList();
     }
 
-    /* URL Filter rule related methods */
+    /* Mark: URL Filter rule related methods */
 
     /**
      * Return URL Filter rule status list
@@ -1160,7 +1158,7 @@ final class Admin_SecurityTools extends Module {
         return $this->urlFilterRule->get_multiStatusList($params);
     }
 
-    /* Backup related methods */
+    /* Mark: Backup related methods */
 
     /**
      * Load back up files.
@@ -1218,7 +1216,7 @@ final class Admin_SecurityTools extends Module {
         return $list;
     }
 
-    /* Updates methods */
+    /* Mark: Updates methods */
 
     /**
      * Apply version 1.1 update.

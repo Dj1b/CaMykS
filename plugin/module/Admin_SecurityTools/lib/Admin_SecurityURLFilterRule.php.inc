@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_SecurityTools Module, URL Filter rule library.
+ * @brief Admin_SecurityTools module, URL Filter rule library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jan 2019
- * @date Modification: Sep 2021
- * @copyright 2019 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -16,10 +16,9 @@
  */
 final class Admin_SecurityURLFilterRule extends ModuleLibrary {
     /**
-     * Class Constructor
+     * Class constructor.
      * @param integer $id
      * @param Module $parent
-     * @return void
      */
     public function __construct($id, &$parent) {
         parent::__construct($id, $parent);
@@ -33,8 +32,10 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
         parent::init_library();
     }
 
+    /* Mark: Override ModuleLibrary methods */
+
     /**
-     * Build sql condition for lists.
+     * Build SQL condition for lists.
      * @param array $params
      * @return string
      */
@@ -47,7 +48,7 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Specific properties definition method */
+    /* Mark: Specific properties definition method */
 
     /**
      * Return status list.
@@ -82,7 +83,7 @@ final class Admin_SecurityURLFilterRule extends ModuleLibrary {
         return $list;
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Check URL Filter security.

@@ -3,10 +3,12 @@
  * @brief Content_GenericGlossaryViewer module, content library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2010
- * @date Modification: Jan 2020
- * @copyright 2010 - 2020 Ideogram Design
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
@@ -17,7 +19,6 @@ final class Content_GenericGlossaryViewerItem extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -39,7 +40,7 @@ final class Content_GenericGlossaryViewerItem extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check object data.
@@ -81,7 +82,7 @@ final class Content_GenericGlossaryViewerItem extends ModuleLibrary {
         return true;
     }
 
-    /* Specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Return page mode list.

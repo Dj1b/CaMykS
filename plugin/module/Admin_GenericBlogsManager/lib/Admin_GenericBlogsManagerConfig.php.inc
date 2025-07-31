@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericBlogsManager Module configuration library
- * @details Plugin, Module Library
+ * @brief Admin_GenericBlogsManager module, configuration library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2008
- * @date Modification: Nov 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note News editor mode :
@@ -32,8 +32,7 @@ final class Admin_GenericBlogsManagerConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -53,7 +52,7 @@ final class Admin_GenericBlogsManagerConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Return available news editor modes.

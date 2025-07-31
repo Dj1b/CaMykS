@@ -2,12 +2,12 @@
 /**
  * @brief Admin_PluginManager Module.
  * <br /> Administration module to manage plugins.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1
+ * @version 1.1.1.1
  * @date Creation: Jun 2005
- * @date Modification: Nov 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -79,7 +79,6 @@ final class Admin_PluginManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_PluginManager', $path_type);
@@ -104,7 +103,7 @@ final class Admin_PluginManager extends Module {
         $this->pluginItem = new Admin_PluginManagerItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module object.
@@ -209,7 +208,7 @@ final class Admin_PluginManager extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/activate mode.
@@ -462,7 +461,7 @@ final class Admin_PluginManager extends Module {
         );
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Install plugin.
@@ -627,7 +626,7 @@ final class Admin_PluginManager extends Module {
         return (in_array($tableName, $this->installedTables));
     }
 
-    /* Deprecated methods */
+    /* Mark: Deprecated methods */
 
     /**
      * @deprecated

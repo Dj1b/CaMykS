@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module email library
- * @details Plugin, Module Library
- * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerEmail.php.inc
+ * @brief Admin_GenericEmailingManager module, email library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Dec 2012
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2012 - 2015 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,9 +19,8 @@ final class Admin_GenericEmailingManagerEmail extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
-    function __construct($id, &$module) {
+    public function __construct($id, &$module) {
         parent::__construct($id, $module);
 
         /* content */
@@ -46,7 +44,7 @@ final class Admin_GenericEmailingManagerEmail extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Build SQL condition
@@ -70,7 +68,7 @@ final class Admin_GenericEmailingManagerEmail extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Return emailing statistics summary.

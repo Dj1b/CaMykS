@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_User Module user library.
+ * @brief Admin_User module, user library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.3
+ * @version 1.2.3.1
  * @date Creation: Sep 2005
- * @date Modification: Jun 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @remark Permissions are defined as an int constructed like :<br />
@@ -56,7 +56,6 @@ final class AdminUser {
     /**
      * Class constructor.
      * @param string $login
-     * @return void
      */
     public function __construct($login = '') {
         global $camyks;
@@ -69,7 +68,7 @@ final class AdminUser {
         $this->_libParent = &$camyks->modules['Admin_User'];
     }
 
-    /* Management methods */
+    /* Mark: Management methods */
 
     /**
      * Load adminuser object.
@@ -113,7 +112,7 @@ final class AdminUser {
         return false;
     }
 
-    /* Data I/O methods */
+    /* Mark: Data I/O methods */
 
     /**
      * Load object from database.
@@ -392,7 +391,7 @@ final class AdminUser {
         $this->is_new = 0;
     }
 
-    /* tool methods */
+    /* Mark: Tool methods */
 
     /**
      * Parse and check all data.
@@ -477,7 +476,7 @@ final class AdminUser {
         return true;
     }
 
-    /* Test methods */
+    /* Mark: Test methods */
 
     /**
      * Check if $login login already exists.
@@ -535,7 +534,7 @@ final class AdminUser {
         return false;
     }
 
-    /* Permission tool methods */
+    /* Mark: Permission tool methods */
 
     /**
      * Initialise new rights combining modules defaults rights and current admin user ones.
@@ -635,7 +634,7 @@ final class AdminUser {
         return false;
     }
 
-    /* Data gathering methods */
+    /* Mark: Data gathering methods */
 
     /**
      * Return the user list corresponding to the where sql statement
@@ -733,7 +732,7 @@ final class AdminUser {
         return $list;
     }
 
-    /* Tool methods */
+    /* Mark: Tool methods */
 
     /**
      * Return translation.
@@ -745,7 +744,7 @@ final class AdminUser {
         return $this->_libParent->get_translation($translation, $params);
     }
 
-    /* Update methods */
+    /* Mark: Update methods */
 
     /**
      * Execute version 1.1 update.

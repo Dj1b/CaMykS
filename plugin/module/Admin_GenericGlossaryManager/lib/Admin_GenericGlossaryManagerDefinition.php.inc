@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericGlossaryManager Module, definition library.
- * @details Plugin, Module Library
+ * @brief Admin_GenericGlossaryManager module, definition library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2010
- * @date Modification: Feb 2020
- * @copyright 2010 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_GenericGlossaryManagerDefinition extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -35,7 +34,7 @@ final class Admin_GenericGlossaryManagerDefinition extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary method */
+    /* Mark: Override ModuleLibrary method */
 
     /**
      * Build sql condition for lists.
@@ -51,7 +50,7 @@ final class Admin_GenericGlossaryManagerDefinition extends ModuleLibrary {
         return implode(',', $search);
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return document count by categories.

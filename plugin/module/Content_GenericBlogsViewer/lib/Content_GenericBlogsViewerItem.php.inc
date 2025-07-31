@@ -3,10 +3,10 @@
  * @brief Content_GenericBlogsViewer module, content item.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2008
- * @date Modification: Jul 2021
- * @copyright 2008 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,12 +15,10 @@
  * Content_GenericBlogsViewerItem class.
  */
 final class Content_GenericBlogsViewerItem extends ModuleLibrary {
-
     /**
      * Class constructor.
      * @param integer $id
-     * @param Object $module
-     * @return void
+     * @param Module $module
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -49,7 +47,7 @@ final class Content_GenericBlogsViewerItem extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check object data.
@@ -89,6 +87,8 @@ final class Content_GenericBlogsViewerItem extends ModuleLibrary {
         else
             $this->vars['authors_'] = explode(',', $this->vars['authors']);
     }
+
+    /* Mark: Update methods */
 
     /**
      * Update library to version 1.01.

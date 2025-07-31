@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_Statistics Module configuration library.
- * @details Plugin, Module Library
+ * @brief Admin_Statistics module, configuration library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Oct 2007
- * @date Modification: Sep 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -17,9 +17,8 @@
 final class Admin_StatisticsSettings extends PluginConfig {
     /**
      * Class constructor.
-     * @param sting $name
+     * @param string $name
      * @param Plugin $parent
-     * @return void
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);

@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_LanguageChecker Module, engine library.
- * @details Plugin, Module Engine
+ * @brief Admin_LanguageChecker module, engine library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2006
- * @date Modification: Jan 2021
- * @copyright 2006 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2006 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -31,7 +31,6 @@ final class Admin_LanguageCheckerEngine {
      * Class constructor.
      * @param string $folder
      * @param string $locale
-     * @return void
      */
     public function __construct($folder, $locale) {
         global $camyks;

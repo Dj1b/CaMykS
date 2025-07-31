@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_GenericMediaLibraryManager Module
+ * @brief Admin_GenericMediaLibraryManager module.
  * <br /> Manages media libraries.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Jun 2015
- * @date Modification: Feb 2021
- * @copyright 2015 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2015 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -49,7 +49,6 @@ final class Admin_GenericMediaLibraryManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericMediaLibraryManager', $path_type);
@@ -78,7 +77,7 @@ final class Admin_GenericMediaLibraryManager extends Module {
         $this->pictureItem = new Admin_GenericMediaLibraryManagerPicture(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -237,7 +236,7 @@ final class Admin_GenericMediaLibraryManager extends Module {
         }
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -818,7 +817,7 @@ final class Admin_GenericMediaLibraryManager extends Module {
         $this->set_redirect(0, $this->get_adminLink(array('mode'=>'view_pictureGallery', 'pictureGallery_id'=>$this->pictureItem->vars['gallery'], 'openTab'=>'Pictures')));
     }
 
-    /* Specific request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Execute module object in picture picture optimisation mode.
@@ -866,7 +865,7 @@ final class Admin_GenericMediaLibraryManager extends Module {
         $result->send_asXML(array('action'=>'optimisePictureThumb'));
     }
 
-    /* Specific admin tool methods */
+    /* Mark: Specific admin tool methods */
 
     /**
      * Return given config item value.

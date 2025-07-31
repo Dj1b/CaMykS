@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_LanguageChecker Module
+ * @brief Admin_LanguageChecker module.
  * <br /> Development module to check missing locales.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2006
- * @date Modification: Jan 2021
- * @copyright 2006 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2006 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,7 +27,6 @@ final class Admin_LanguageChecker extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_LanguageChecker', $path_type);
@@ -49,7 +48,7 @@ final class Admin_LanguageChecker extends Module {
         $this->load_library('Admin_LanguageCheckerEngine');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Define module permissions
@@ -92,7 +91,7 @@ final class Admin_LanguageChecker extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/checker mode.

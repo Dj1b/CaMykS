@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module
+ * @brief Admin_GenericEmailingManager module.
  * <br /> Manage contact lists, and send emailings.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.2
+ * @version 1.0.8.3
  * @date Creation: Dec 2012
- * @date Modification: Nov 2022
- * @copyright 2012 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2012 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Requires XLSXReader from https://github.com/gneustaetter/XLSXReader to import xlsx data
@@ -75,7 +75,6 @@ final class Admin_GenericEmailingManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericEmailingManager', $path_type);
@@ -112,7 +111,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->register_asExtension('Content_GenericLegalMentions');
     }
 
-    /* Overrides Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -484,7 +483,7 @@ final class Admin_GenericEmailingManager extends Module {
         }
     }
 
-    /* specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -531,10 +530,10 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Build emailing tabs */
         if ($this->check_right(2)) {
-                $this->load_library('Admin_GenericEmailingManagerEmailingListParams');
-                $this->emailingList = new AdminItemListViewer('camyks');
-                $this->emailingList->set_params($this->emailingListParams);
-                $this->emailingList->initialise();
+            $this->load_library('Admin_GenericEmailingManagerEmailingListParams');
+            $this->emailingList = new AdminItemListViewer('camyks');
+            $this->emailingList->set_params($this->emailingListParams);
+            $this->emailingList->initialise();
         }
 
         /* Build buttons */
@@ -1424,7 +1423,7 @@ final class Admin_GenericEmailingManager extends Module {
         $this->set_selectedLayout('admin_import_contactsExecute.html.inc');
     }
 
-    /* Specific request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Execute module object in request / preview mode.
@@ -1698,7 +1697,7 @@ final class Admin_GenericEmailingManager extends Module {
             return $camyks->init_kill();
 
         /* Load XLSX Library */
-        error_reporting(E_ALL & ~E_NOTICE);
+        //error_reporting(E_ALL & ~E_NOTICE);
         include_once("PHP_XLSXWriter/xlsxwriter.class.php");
 
         if (!class_exists('XLSXWriter') or !method_exists('XLSXWriter', 'writeToStdOutAsAttachment')) {
@@ -2209,7 +2208,7 @@ final class Admin_GenericEmailingManager extends Module {
         die();
     }
 
-    /* Data management & manipulation methods */
+    /* Mark: Data management & manipulation methods */
 
     /**
      * Return emailing status list.
@@ -2361,7 +2360,7 @@ final class Admin_GenericEmailingManager extends Module {
         return $this->contactItem->add_object($params);
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Load extensions list.
@@ -2390,7 +2389,7 @@ final class Admin_GenericEmailingManager extends Module {
             ."RewriteRule ^emailing-([0-9]*).email$ request.php?module=".$this->name."&mode=preview_emailing&emailing_id=$1 [L]");
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site, view configuration mode.
@@ -2459,7 +2458,7 @@ final class Admin_GenericEmailingManager extends Module {
         return $this->config->save();
     }
 
-    /* Content_GenericLegalMentions extension methods */
+    /* Mark: Content_GenericLegalMentions extension methods */
 
     /**
      * Return legal mentions data.
@@ -2483,7 +2482,7 @@ final class Admin_GenericEmailingManager extends Module {
         );
     }
 
-    /* Updates methods */
+    /* Mark: Updates methods */
 
     /**
      * Apply version 1.0.1 update.

@@ -1,12 +1,12 @@
 <?php
 /*
- * @brief Admin_SiteReport Module, type library.
- * @details Plugin, Module Library
+ * @brief Admin_SiteReport module, type library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Apr 2007
- * @date Modification: May 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_SiteReportType extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);

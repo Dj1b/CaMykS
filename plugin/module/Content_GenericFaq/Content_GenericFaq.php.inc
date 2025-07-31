@@ -3,10 +3,10 @@
  * @brief Content_GenericFaq module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Apr 2007
- * @date Modification: May 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -54,7 +54,6 @@ final class Content_GenericFaq extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericFaq', $path_type);
@@ -80,7 +79,7 @@ final class Content_GenericFaq extends Module {
         $this->faqitem = new Content_GenericFaqItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module
@@ -194,7 +193,7 @@ final class Content_GenericFaq extends Module {
         parent::init_site();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin / save_list mode.
@@ -458,7 +457,7 @@ final class Content_GenericFaq extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
     }
 
-    /* Specific site mode methods */
+    /* Mark: Site initialise mode sub methods */
 
     /**
      * Initialise module object in site / list mode.

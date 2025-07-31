@@ -3,10 +3,10 @@
  * @brief Admin_GenericFAQManager Module.
  * @details Plugin / Module engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Feb 2020
- * @date Modification: Jan 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +42,6 @@ final class Admin_GenericFAQManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericFAQManager', $path_type);
@@ -69,7 +68,7 @@ final class Admin_GenericFAQManager extends Module {
         $this->familyItem = new Admin_GenericFAQManagerFamily(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module
@@ -178,7 +177,7 @@ final class Admin_GenericFAQManager extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.

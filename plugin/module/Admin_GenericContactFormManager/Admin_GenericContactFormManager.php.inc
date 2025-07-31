@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_GenericContactFormManager Module
+ * @brief Admin_GenericContactFormManager module.
  * <br /> Manages sent contact form requests.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Nov 2010
- * @date Modification: Jan 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -49,7 +49,6 @@ final class Admin_GenericContactFormManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericContactFormManager', $path_type);
@@ -78,7 +77,7 @@ final class Admin_GenericContactFormManager extends Module {
         $this->config = new Admin_GenericContactFormManagerConfig('config', $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -221,7 +220,7 @@ final class Admin_GenericContactFormManager extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -475,7 +474,7 @@ final class Admin_GenericContactFormManager extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return forms status list.
@@ -586,7 +585,7 @@ final class Admin_GenericContactFormManager extends Module {
         return $this->config->vars[$item];
     }
 
-    /* Specific public methods */
+    /* Mark: Specific public methods */
 
     /**
      * Return form list.

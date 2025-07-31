@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_User Module user library.
+ * @brief Admin_User module, user library.
  * @details Plugin / Module Library
- * @file plugin/module/Admin_User/lib/AdminUser.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Oct 2017
- * @date Modification: Mar 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,7 +19,6 @@ final class Admin_UserListParams extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -32,7 +30,7 @@ final class Admin_UserListParams extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return built where statement.

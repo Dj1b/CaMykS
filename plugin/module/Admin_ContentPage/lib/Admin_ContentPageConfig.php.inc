@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_ContentPage Module configuration library
+ * @brief Admin_ContentPage module, configuration library.
  * @details Plugin / Module Library
  * @file plugin/module/Admin_ContentPage/lib/Admin_ContentPageConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2014
- * @date Modification: Oct 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,8 +19,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -50,7 +49,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* overwrite PluginConfig methods */
+    /* Mark: Override PluginConfig methods */
 
     /**
      * Return object items values from header.
@@ -80,7 +79,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
         }
     }
 
-    /* Public query methods */
+    /* Mark: Public query methods */
 
     /**
      * Return key page from config.
@@ -125,7 +124,7 @@ final class Admin_ContentPageConfig extends PluginConfig {
         return false;
     }
 
-    /* Admin management dedicated methods */
+    /* Mark: Admin management dedicated methods */
 
     /**
      * Return w3c validation status list.

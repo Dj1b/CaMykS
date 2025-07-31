@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Content_GenericLegalMentions Module content library.
- * @details Plugin, Module Library
+ * @brief Content_GenericLegalMentions module, content library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jan 2020
- * @date Modification: Apr 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -87,7 +86,7 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Load object from database.
@@ -141,7 +140,7 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
         return true;
     }
 
-    /* Specific data methods */
+    /* Mark: Specific data methods */
 
     /**
      * Return owner type list.
@@ -203,7 +202,7 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
         return $s.' '.$this->vars['owner_name'];
     }
 
-    /* Specific check methods */
+    /* Mark: Specific check methods */
 
     /**
      * Check if given value is defined.

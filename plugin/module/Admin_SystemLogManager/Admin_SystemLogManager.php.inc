@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_SystemLogManager Module
+ * @brief Admin_SystemLogManager module.
  * <br /> Store and display logs.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.2
+ * @version 1.0.0.3
  * @date Creation: Jun 2018
- * @date Modification: Dec 2022
- * @copyright 2018 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * Without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,7 +18,7 @@
 final class Admin_SystemLogManager extends Module {
     /**
      * var Object $config
-     * @brief Module configuration object.
+     * @brief Module configuration library.
      */
     protected $config;
 
@@ -55,7 +55,6 @@ final class Admin_SystemLogManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_SystemLogManager', $path_type);
@@ -83,7 +82,7 @@ final class Admin_SystemLogManager extends Module {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Return module permissions.
@@ -176,7 +175,7 @@ final class Admin_SystemLogManager extends Module {
         }
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode
@@ -381,7 +380,7 @@ final class Admin_SystemLogManager extends Module {
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Configuration')));
     }
 
-    /* Request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Execute module object in request/downloadLogFile mode.
@@ -413,7 +412,7 @@ final class Admin_SystemLogManager extends Module {
         $file->download($this->selection['file'].'.log');
     }
 
-    /* Configuration specific methods */
+    /* Mark: Configuration specific methods */
 
     /**
      * Return configuration logging period list
@@ -423,7 +422,7 @@ final class Admin_SystemLogManager extends Module {
         return $this->config->get_loggingPeriodList();
     }
 
-    /* Log specific methods */
+    /* Mark: Log specific methods */
 
     /**
      * Return available log list
@@ -565,7 +564,7 @@ final class Admin_SystemLogManager extends Module {
         return true;
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return given config item value
@@ -587,7 +586,7 @@ final class Admin_SystemLogManager extends Module {
         return $value;
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode

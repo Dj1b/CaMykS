@@ -1,7 +1,7 @@
 <?php
 /**
  * @brief Content_GenericNews module, news list library.
- * @details Plugin, Module Library
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.1.1
  * @date Creation: Mar 2007
@@ -19,7 +19,6 @@ final class Content_GenericNewsList extends ModuleLibrary {
      * Class constructor
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -34,7 +33,7 @@ final class Content_GenericNewsList extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Overide ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check object data values

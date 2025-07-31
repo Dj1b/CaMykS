@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_SystemUniqueIDManager Module key library
- * @details Plugin, Module Library
+ * @brief Admin_SystemUniqueIDManager module, key library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jan 2015
- * @date Modification: Jan 2021
- * @copyright 2015 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2015 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_SystemUniqueIDManagerKey extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -35,7 +34,7 @@ final class Admin_SystemUniqueIDManagerKey extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary method */
+    /* Mark: Override ModuleLibrary method */
 
     /**
      * Check object data
@@ -68,7 +67,7 @@ final class Admin_SystemUniqueIDManagerKey extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Specific properties definition method */
+    /* Mark: Specific properties definition method */
 
     /**
      * Return status list.
@@ -108,7 +107,7 @@ final class Admin_SystemUniqueIDManagerKey extends ModuleLibrary {
        );
     }
 
-    /* Specific tool methods */
+    /* mark: Specific tool methods */
 
     /**
      * Load free item from database.

@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericMediaLibraryManager Module picture gallery library
- * @details Plugin, Module Library
+ * @brief Admin_GenericMediaLibraryManager module, picture gallery library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Jun 2015
- * @date Modification: Feb 2021
- * @copyright 2015 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2015 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -25,7 +25,6 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -46,7 +45,7 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Build sql condition for lists.
@@ -76,7 +75,7 @@ final class Admin_GenericMediaLibraryManagerPictureGallery extends ModuleLibrary
         return true;
     }
 
-    /* Specific tool methods */
+    /* mark: Specific tool methods */
 
     /**
      * Return single object status list.

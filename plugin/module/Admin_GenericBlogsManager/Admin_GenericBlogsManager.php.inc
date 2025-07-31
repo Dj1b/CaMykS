@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_GenericBlogsManager Module
+ * @brief Admin_GenericBlogsManager module.
  * <br /> Manages articles with comments and tags.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2008
- * @date Modification: Nov 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -25,7 +25,6 @@ final class Admin_GenericBlogsManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericBlogsManager', $path_type);
@@ -58,7 +57,7 @@ final class Admin_GenericBlogsManager extends Module {
         $this->newsItem = new Admin_GenericBlogNewsItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module object.
@@ -237,7 +236,7 @@ final class Admin_GenericBlogsManager extends Module {
         );
     }
 
-    /* Specific module mode methods */
+    /* Mark: Admib initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode
@@ -981,7 +980,7 @@ final class Admin_GenericBlogsManager extends Module {
         $this->set_redirect($this->get_adminLink(array('mode'=>'viewcomments', 'news_id'=>$this->newsItem->id)));
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Load tinyMCE input.

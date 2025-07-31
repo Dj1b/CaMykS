@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericFAQManager Module family library.
+ * @brief Admin_GenericFAQManager module, family library.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Feb 2020
- * @date Modification: Jan 2021
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_GenericFAQManagerFamily extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -36,7 +35,7 @@ final class Admin_GenericFAQManagerFamily extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary method */
+    /* Mark: Override ModuleLibrary method */
 
     /**
      * Check object data
@@ -74,7 +73,7 @@ final class Admin_GenericFAQManagerFamily extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return single object status list.

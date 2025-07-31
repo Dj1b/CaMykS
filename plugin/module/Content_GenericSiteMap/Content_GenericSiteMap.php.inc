@@ -3,10 +3,10 @@
  * @brief Content_GenericSiteMap module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jul 2008
- * @date Modification: Jul 2021
- * @copyright 2008 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +42,6 @@ final class Content_GenericSiteMap extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericSiteMap', $path_type);
@@ -66,7 +65,7 @@ final class Content_GenericSiteMap extends Module {
         $this->smItem = new Content_GenericSiteMapItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -155,7 +154,7 @@ final class Content_GenericSiteMap extends Module {
         $this->init_site_buildMap();
     }
 
-    /* specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/modify mode.
@@ -225,11 +224,10 @@ final class Content_GenericSiteMap extends Module {
         $this->set_redirect($this->get_adminLink(array('mode'=>'modify', 'id'=>$this->smItem->id, 'page_id'=>$this->page_id, 'module_index'=>$this->module_index)));
     }
 
-    /* Specific site methods */
+    /* Mark: Site initialise mode sub methods */
 
     /**
      * Build site map.
-     * @param void
      * @return void
      */
     private function init_site_buildMap() {
@@ -256,6 +254,8 @@ final class Content_GenericSiteMap extends Module {
         $this->build_ageChildrenMap($this->pages[0]->children, 0);
         $this->sitemap .= '</div><div style="height:2px; font-size:1px; clear:both;">&nbsp;</div></div>';
     }
+
+    /* Mark: Specific tool methods */
 
     /**
      * Recursive page children build.

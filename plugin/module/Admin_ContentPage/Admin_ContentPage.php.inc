@@ -2,13 +2,12 @@
 /**
  * @brief Admin_ContentPage Module.
  * <br /> Administration module to manage website pages.
- * @details Plugin, Module Engine
- * @file plugin/module/Admin_ContentPage/Admin_ContentPage.php.inc
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.3.1
+ * @version 1.1.3.2
  * @date Creation: Jun 2005
- * @date Modification: Jan 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo other page type (folder, ...)
@@ -66,7 +65,6 @@ final class Admin_ContentPage extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;

@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Content_GenericLegalMentions Module
- * @details Plugin, Module Engine
+ * @brief Content_GenericLegalMentions module.
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jan 2020
- * @date Modification: Apr 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +42,6 @@ final class Content_GenericLegalMentions extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericLegalMentions', $path_type);
@@ -66,7 +65,7 @@ final class Content_GenericLegalMentions extends Module {
         $this->contentItem = new Content_GenericLegalMentionsItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -150,7 +149,7 @@ final class Content_GenericLegalMentions extends Module {
      * @param integer $mindex
      * @return void
      */
-   public function init_site($content=1, $params=array(), $mindex=1) {
+    public function init_site($content=1, $params=array(), $mindex=1) {
         global $camyks;
 
         /* Load object */
@@ -190,7 +189,7 @@ final class Content_GenericLegalMentions extends Module {
         parent::init_site();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/edit_item mode
@@ -204,7 +203,7 @@ final class Content_GenericLegalMentions extends Module {
         $this->contentItem->get_fromItems();
 
         /* Load editor input */
-        $this->editor = &$camyks->inputs['TinyMCEv3'];
+        $this->editor = $camyks->get_input('TinyMCEv3');
         $this->editor->initialise();
 
         /* Build tabs */

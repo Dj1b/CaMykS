@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Tool_Installer Module
+ * @brief Tool_Installer module.
  * <br /> System module used to install a website.
  * @details Plugin / Module Engine
- * @file plugin/module/Tool_Installer/Tool_Installer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 2.0.3
+ * @version 2.0.3.1
  * @date Creation: Aug 2007
- * @date Modification: May 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,7 +44,6 @@ final class Tool_Installer extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Tool_Installer', $path_type);
@@ -67,7 +65,7 @@ final class Tool_Installer extends Module {
         $this->params = new Tool_InstallerParams(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Initialise module object in admin mode.
@@ -114,7 +112,7 @@ final class Tool_Installer extends Module {
         }
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin mode initialise sub methods */
 
     /**
      * Initialise module object in admin/welcome mode.
@@ -308,7 +306,7 @@ final class Tool_Installer extends Module {
         $this->set_selectedLayout('admin_summary.html.inc');
     }
 
-    /* Specific tool methods */
+    /* Mar: Specific tool methods */
 
     /**
      * Check CaMykS engine config.

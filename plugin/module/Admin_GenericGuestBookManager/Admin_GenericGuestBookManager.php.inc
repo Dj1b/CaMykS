@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericGuestBookManager module
+ * @brief Admin_GenericGuestBookManager module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Sep 2010
- * @date Modification: Jan 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,13 +20,13 @@ final class Admin_GenericGuestBookManager extends Module {
      * @brief Message object.
      */
     public $msgItem;
-    
+
     /**
      * @var array $msgList
      * @brief Message list.
      */
     public $msgList;
-    
+
     /**
      * var Object $config
      * @brief Plugin configuration.
@@ -36,7 +36,6 @@ final class Admin_GenericGuestBookManager extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GenericGuestBookManager', $path_type);
@@ -67,7 +66,7 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->register_asExtension('Content_GenericLegalMentions');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -219,7 +218,7 @@ final class Admin_GenericGuestBookManager extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode
@@ -480,7 +479,7 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->set_redirect(4, $this->get_adminLink());
     }
 
-    /* message related methods */
+    /* Mark: Message related methods */
 
     /**
      * Return messages status list
@@ -526,7 +525,7 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * save message from site
+     * Save message from site
      * @return boolean success
      */
     public function save_siteMessage() {
@@ -550,11 +549,10 @@ final class Admin_GenericGuestBookManager extends Module {
         return $this->msgItem;
     }
 
-    /* notification related methods */
+    /* Mark: Notification related methods */
 
     /**
      * Send notification emails
-     * @param string $vEmail
      * @return void
      */
     private function send_notifications() {
@@ -612,7 +610,7 @@ final class Admin_GenericGuestBookManager extends Module {
         return $c;
     }
 
-    /* Statistics related methods */
+    /* Mark: Statistics related methods */
 
     /**
      * Update statistics
@@ -629,7 +627,7 @@ final class Admin_GenericGuestBookManager extends Module {
         return $camyks->update_statistic('guestbook_msg', $this->name, 'dated', '', '', '');
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return config value.
@@ -648,7 +646,7 @@ final class Admin_GenericGuestBookManager extends Module {
         $this->add_translation('/data');
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode

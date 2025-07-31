@@ -1,27 +1,24 @@
 <?php
 /**
- * @brief Admin_SecurityTools Module Configuration object
+ * @brief Admin_SecurityTools module, configuration library.
  * @details Plugin / Module Library
- * @file plugin/module/Admin_SecurityTools/lib/Admin_SecurityToolsConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Oct 2007
- * @date Modification: Jan 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * Admin_SecurityToolsConfig PluginConfig class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class Admin_SecurityToolsConfig extends PluginConfig {
     /**
-     * Class Constructor.
+     * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);

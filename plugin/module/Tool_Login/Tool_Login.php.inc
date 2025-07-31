@@ -4,10 +4,10 @@
  * <br /> System module to log in/out admin section.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.2
+ * @version 1.1.2.1
  * @date Creation: Jun 2005
- * @date Modification: Feb 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -43,10 +43,8 @@ final class Tool_Login extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
-        /* get Module generic init */
         parent::__construct('Tool_Login', $path_type);
 
         /* Override Plugin variables */
@@ -62,7 +60,7 @@ final class Tool_Login extends Module {
         $this->author_group = 'camyks.net';
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Return menu item to be registered.
@@ -99,7 +97,7 @@ final class Tool_Login extends Module {
         }
     }
 
-    /* admin mode methods */
+    /* Mark: Admin mode methods */
 
     /**
      * Initialise module object in admin / login mode.

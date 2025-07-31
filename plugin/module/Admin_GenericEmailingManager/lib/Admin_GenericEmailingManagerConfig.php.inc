@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module configuration library
- * @details Plugin, Module Library
- * @file plugin/module/Admin_GenericEmailingManager/lib/Admin_GenericEmailingManagerConfig.php.inc
+ * @brief Admin_GenericEmailingManager module, configuration library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jan 2013
- * @date Modification: Dec 2018
- * @copyright 2012 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2012 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -17,10 +16,9 @@
  */
 final class Admin_GenericEmailingManagerConfig extends PluginConfig {
     /**
-     * Class constructor
+     * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
