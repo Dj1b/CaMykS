@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Push Notification library
+ * @brief Push Notification library.
  * @details Engine / Object Library
  * @file engine/lib/object/PushNotification.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2017
- * @date Modification: Apr 2018
- * @copyright 2017 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -27,7 +27,6 @@
 
 /**
  * PushNotification class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PushNotification {
     /**
@@ -73,7 +72,6 @@ final class PushNotification {
     /**
      * Class constructor.
      * @param array $params
-     * @return void
      */
     public function __construct($params=array()) {
         /* compile params list */

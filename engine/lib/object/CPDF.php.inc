@@ -3,10 +3,10 @@
  * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: May 2010
- * @date Modification: Jun 2024
- * @copyright 2010 - 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -17,7 +17,6 @@ require_once('colors.php.inc');
 
 /**
  * CPDF class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 class CPDF extends FPDF {
 
@@ -26,7 +25,6 @@ class CPDF extends FPDF {
      * @param string $orientation
      * @param string $unit
      * @param mixed $format
-     * @return void
      */
     public function __construct($orientation='P', $unit='mm', $format='A4') {
         global $camyks;
@@ -191,7 +189,7 @@ class CPDF extends FPDF {
      * @param string $font
      * @param string $style
      * @param integer $size
-     * @param boolean isTemporary
+     * @param boolean $isTemporary
      * @return void
      */
     public function setFont($font='', $style=null, $size=null, $isTemporary=false) {

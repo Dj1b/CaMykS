@@ -1,20 +1,18 @@
 <?php
 /**
- * @brief Database item of Module Library Item
+ * @brief Database item of Module Library item.
  * @details Engine / Object Library
- * @file engine/lib/object/MLDatabaseItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Apr 2007
- * @date Modification: Apr 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MLDatabaseItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 class MLDatabaseItem extends ModuleLibraryItem {
     /**
@@ -42,7 +40,6 @@ class MLDatabaseItem extends ModuleLibraryItem {
      * @param string $desc
      * @param mixed $desc2
      * @param mixed $default
-     * @return void
      */
     public function __construct($name, $datatype, $desc, $desc2='', $default=null) {
         $this->name = $name;

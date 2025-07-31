@@ -2,12 +2,11 @@
 /**
  * @brief Encryption library.
  * @details Engine / Object Library
- * @file engine/lib/object/Cryptographer.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2019
- * @date Modification: Oct 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -44,7 +43,6 @@ final class Cryptographer {
     /**
      * Class constructor.
      * @param array $params
-     * @return void
      */
     public function __construct($params=array()) {
         $this->update_params($params);

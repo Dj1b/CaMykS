@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Module Library Item
+ * @brief Module Library Item.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2007
- * @date Modification: May 2023
- * @copyright 2007 - 2023 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Try to set up get_dateFromHeader and parse_PHPTags methods as protected.
@@ -14,7 +14,6 @@
 
 /**
  * ModuleLibraryItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 abstract class ModuleLibraryItem {
     /**

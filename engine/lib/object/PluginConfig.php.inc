@@ -3,17 +3,16 @@
  * @brief PluginConfig library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Oct 2017
- * @date Modification: Feb 2024
- * @copyright 2017 - 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * PluginConfig class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 abstract class PluginConfig {
     /**

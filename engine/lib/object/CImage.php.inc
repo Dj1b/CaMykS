@@ -3,10 +3,10 @@
  * @brief Image manipulating object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.3.2
  * @date Creation: Nov 2011
- * @date Modification: Dec 2024
- * @copyright 2011 - 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2011 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Finalise crop calculation in _gd_rotate method.
@@ -17,7 +17,6 @@ require_once 'CColor.php.inc';
 
 /**
  * CImage class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class CImage {
     /**
@@ -81,9 +80,8 @@ final class CImage {
     private $hasTransparency = false;
 
     /**
-     * Object constructor.
+     * Class constructor.
      * @param string $source
-     * @return boolean success
      */
     public function __construct($source='') {
         $this->check_imageManipulationEngine();

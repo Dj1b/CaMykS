@@ -1,23 +1,20 @@
 <?php
 /**
- * @brief Database localised item of Module Library Item
+ * @brief Database localised item of Module Library item.
  * @details Engine / Object Library
- * @file engine/lib/object/MLDatabaseLocalizedItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Apr 2007
- * @date Modification: Apr 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MLDatabaseLocalizedItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class MLDatabaseLocalizedItem extends MLDatabaseItem {
-    
     /**
      * @var array $value
      * @brief Overwrite MLDatabaseItem value, is now an array of localised values.
@@ -31,12 +28,11 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
      * @param string $desc
      * @param mixed $desc2
      * @param mixed $default
-     * @return void
      */
     public function __construct($name, $datatype, $desc, $desc2='', $default=null) {
         parent::__construct($name, $datatype, $desc, $desc2, $default);
     }
-  
+
     /**
      * Initialise object with default value.
      * @return void
@@ -55,10 +51,10 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
      */
     public function get_fromHeader($prefix='') {
         global $camyks;
-    
+
         /* set header value name */
         $name = $prefix.$this->name;
-    
+
         /* load value */
         switch ($this->datatype) {
             case 'date':
@@ -94,7 +90,7 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
                 break;
         }
     }
-  
+
     /**
      * Load object values from array.
      * @param array $data
@@ -102,13 +98,13 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
      */
     public function get_fromArray($data=array()) {
         global $camyks;
-    
+
         /* check language */
         if (isset ($data['language']))
             $l = $data['language'];
         else
             $l = $camyks->current_language;
-      
+
         /* check if value exists in array */
         if (isset($data[$this->name.'_'.$l]))
             $value = $data[$this->name.'_'.$l];
@@ -118,7 +114,7 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
             $value = $this->default;
             return;
         }
-      
+
         /* set value */
         switch ($this->datatype) {
             case 'etext':
@@ -147,11 +143,11 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
      */
     public function get_databaseValue($language=null) {
         global $camyks;
-    
+
         /* check if value exists in given language */
         if (!isset($this->value[$language]))
             return $this->default;
-    
+
         /* return value case of type */
         switch ($this->datatype) {
             case 'int':
@@ -179,8 +175,8 @@ final class MLDatabaseLocalizedItem extends MLDatabaseItem {
             foreach($this->value as $l => $value) {
                 $v[$this->name.'_'.$l] = $value;
                 $v[$this->name] = $value;
-            } 
-        } else { 
+            }
+        } else {
             foreach($this->value as $l => $value) {
                 $v[$this->name.'_'.$l] = $value;
             }

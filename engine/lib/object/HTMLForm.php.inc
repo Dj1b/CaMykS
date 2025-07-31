@@ -3,10 +3,10 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.9
+ * @version 1.1.9.1
  * @date Creation: Jun 2005
- * @date Modification: Nov 2024
- * @copyright 2005 - 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -24,7 +24,6 @@ define('HTMLFORM_METHOD_GET',   1);
 
 /**
  * HTMLForm class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 class HTMLForm {
     /**
@@ -139,7 +138,6 @@ class HTMLForm {
         'list'          => '',
         'autocomplete'  => '',
         'allowMultiple' => false,
-
         'size'          => 0,
     );
 
@@ -150,7 +148,6 @@ class HTMLForm {
      * @param mixed $method
      * @param string $onSubmit
      * @param string $target
-     * @return void
      */
     public function __construct($name='', $action='./', $method=null, $onSubmit='', $target='') {
         $this->name = $name;
@@ -1699,7 +1696,6 @@ class HTMLForm {
 
 /**
  * HTMLForm_hidden class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class HTMLForm_hidden {
     /**
@@ -1725,7 +1721,6 @@ final class HTMLForm_hidden {
      * @param string $name
      * @param mixed $value
      * @param string $id
-     * @return void
      */
     public function __construct($name, $value, $id='') {
         $this->name = $name;

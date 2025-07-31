@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Module Library Join
+ * @brief Module Library Join.
  * @details Engine / Object Library
- * @file engine/lib/object/ModuleLibraryJoin.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jun 2011
- * @date Modification: Apr 2020
- * @copyright 2011 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2011 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -29,7 +28,6 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
      * Class constructor.
      * @param Module $module
      * @param array $params
-     * @return void
      */
     public function __construct(&$module, $params=array()) {
         parent::__construct(0, $module);
@@ -45,7 +43,7 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Return a new object.
@@ -57,7 +55,7 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
         return $obj;
     }
 
-    /* define ModuleLibraryJoin methods */
+    /* Mark: Define ModuleLibraryJoin methods */
 
     /**
      * Return item1 id list for given item2
@@ -115,7 +113,7 @@ abstract class ModuleLibraryJoin extends ModuleLibrary {
         return $this->_save_itemJoinedList($this->_initParams['item2'], $list, $this->_initParams['item1'], $id);
     }
 
-    /* specific private tool methods */
+    /* Mark: Specific private tool methods */
 
     /**
      * Return item joined list.

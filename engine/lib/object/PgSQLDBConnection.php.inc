@@ -3,10 +3,10 @@
  * @brief Postgre Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2018
- * @date Modification: Sep 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Complete create_database(), dump_database() and get_databaseSummary() methods.
@@ -14,10 +14,9 @@
 
 /**
  * PgSQLDBConnection class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PgSQLDBConnection extends CDBConnection {
-    /* server related methods */
+    /* Mark: Server related methods */
 
     /**
      * Connect to server.
@@ -64,7 +63,7 @@ final class PgSQLDBConnection extends CDBConnection {
         return '';
     }
 
-    /* database related methods */
+    /* Mark: Database related methods */
 
     /**
      * Select database.
@@ -159,7 +158,7 @@ final class PgSQLDBConnection extends CDBConnection {
         return $summary;
     }
 
-    /* table related methods */
+    /* Mark: Table related methods */
 
     /**
      * Return available table list.
@@ -257,7 +256,7 @@ final class PgSQLDBConnection extends CDBConnection {
         return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
 
-    /* query related methods */
+    /* Mark: Query related methods */
 
     /**
      * Execute query.
@@ -380,7 +379,7 @@ final class PgSQLDBConnection extends CDBConnection {
         return true;
     }
 
-    /* data related methods */
+    /* Mark: Data related methods */
 
     /**
      * Return escaped string.
@@ -393,7 +392,7 @@ final class PgSQLDBConnection extends CDBConnection {
         return parent::escape_string($string);
     }
 
-    /* special methods */
+    /* Mark: Special methods */
 
     /**
      * Return specific insert extra from driver.
@@ -433,3 +432,4 @@ final class PgSQLDBConnection extends CDBConnection {
         return $sql;
     }
 }
+?>

@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief HTML page object
+ * @brief HTML page object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.8.1
  * @date Creation: Jun 2005
- * @date Modification: Nov 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Try to set up output page parts as private, as they should be only called by add_HTMLHeader().
@@ -14,7 +14,6 @@
 
 /**
  * HTMLPage class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class HTMLPage {
     /**
@@ -181,7 +180,6 @@ final class HTMLPage {
 
     /**
      * Class constructor.
-     * @return void
      */
     public function __construct(){
         global $camyks;

@@ -3,10 +3,10 @@
  * @brief Interface object with the database driver and connection.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2005
- * @date Modification: Sep 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -57,7 +57,6 @@ final class Database_connection {
      * @param string $login the database login value
      * @param string $pwd the database password for the given login
      * @param string $driver the driver to use as database connection
-     * @return void
      */
     public function __construct($host='localhost', $login='root', $pwd='', $driver='') {
         global $camyks;

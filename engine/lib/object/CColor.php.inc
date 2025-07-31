@@ -3,10 +3,10 @@
  * @brief Color object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Apr 2024
- * @date Modification: Apr 2024
- * @copyright 2024 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2024 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +42,6 @@ final class CColor {
     /**
      * Object constructor.
      * @param mixed $value
-     * @return boolean success
      */
     public function __construct($value=null) {
         $this->set($value);
