@@ -3,10 +3,10 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.5
+ * @version 1.0.21.6
  * @date Creation: Jun 2005
- * @date Modification: Dec 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -518,7 +518,7 @@ final class Camyks {
 
         /* merge engine and site configs */
         foreach ($this->site_conf as $name => $value)
-            if (!isset($this->_conf[$name]) or trim($value) != '')
+            if (!isset($this->_conf[$name]) or !empty($value))
                 $this->_conf[$name] = $value;
     }
 
@@ -1422,19 +1422,19 @@ final class Camyks {
      * @return boolean success
      */
     public function log_event($type, &$object, $desc1='', $desc2='', $file='', $line=0) {
-		/* Check looping in error */
-    	if ($this->errorCheck)
-    		return false;
+        /* Check looping in error */
+        if ($this->errorCheck)
+            return false;
 
-    	/* Enable error check */
-    	$this->errorCheck = true;
+        /* Enable error check */
+        $this->errorCheck = true;
 
         /* add log report */
         if (isset($this->modules['Admin_SystemReport']) and $this->modules['Admin_SystemReport']->is_installed()) {
             $this->modules['Admin_SystemReport']->add_newReport($type, $object, $desc1, $desc2, $file, $line);
 
             /* Disable error check */
-    		$this->errorCheck = false;
+            $this->errorCheck = false;
         }
         /* always return false */
         return false;

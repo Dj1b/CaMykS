@@ -1,43 +1,39 @@
 <?php
 /**
- * @brief PerpetualCalendar Input
+ * @brief PerpetualCalendar input.
  * <br /> Display a calendar, and allow multiple actions on it.
  * @details Plugin / Input Engine
- * @file plugin/input/PerpetualCalendar/PerpetualCalendar.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2010
- * @date Modification: Sep 2019
- * @copyright 2010 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * PerpetualCalendar Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PerpetualCalendar extends Input {
-
     /**
-     * Class constructor?
+     * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('PerpetualCalendar', $path_type);
 
-        /* overwrite Plugin values */
+        /* Override Plugin variables */
         $this->version = '1.0';
         $this->plugin_package = 'Generic';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* Overwrite input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.
@@ -211,7 +207,7 @@ final class PerpetualCalendar extends Input {
         }
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return button url.

@@ -3,10 +3,10 @@
  * @brief Content_TwitterStatusesViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2010
- * @date Modification: Jul 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -24,7 +24,6 @@ final class Content_TwitterStatusesViewer extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_TwitterStatusesViewer', $path_type);
@@ -48,7 +47,7 @@ final class Content_TwitterStatusesViewer extends Module {
         $this->configItem = new Content_TwitterStatusesViewerItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -158,7 +157,7 @@ final class Content_TwitterStatusesViewer extends Module {
         parent::init_site();
     }
 
-    /* Specific mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module in admin / edit mode.
@@ -247,6 +246,8 @@ final class Content_TwitterStatusesViewer extends Module {
         $this->set_redirect($this->get_adminLink(array('mode'=>'edit', 'id'=>$this->configItem->id, 'page_id'=>$this->page_id, 'module_index'=>$this->module_index)));
     }
 
+    /* Mark: Attributes values methods */
+
     /**
      * Return layout list.
      * @return array
@@ -278,7 +279,7 @@ final class Content_TwitterStatusesViewer extends Module {
         );
     }
 
-    /* Site tool methods */
+    /* Mark: Site tool methods */
 
     /**
      * Return updated tweet text.

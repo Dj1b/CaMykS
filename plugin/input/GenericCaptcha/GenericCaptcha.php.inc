@@ -4,10 +4,10 @@
  * <br /> CaMykS generic captcha.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2021
- * @date Modification: Jul 2021
- * @copyright 22021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class GenericCaptcha extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('GenericCaptcha', $path_type);
@@ -34,7 +33,7 @@ final class GenericCaptcha extends Input {
         $this->author_group = 'camyks.net';
     }
 
-    /* Override input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -66,7 +65,7 @@ final class GenericCaptcha extends Input {
         parent::initialise();
     }
 
-    /* Specific methods. */
+    /* Mark: Specific methods. */
 
     /**
      * Verify captcha.

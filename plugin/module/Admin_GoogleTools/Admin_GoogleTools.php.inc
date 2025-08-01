@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GoogleTools Module
- * @details Plugin, Module Engine
+ * @brief Admin_GoogleTools module.
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Sep 2007
- * @date Modification: Jan 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +42,6 @@ final class Admin_GoogleTools extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_GoogleTools', $path_type);
@@ -61,7 +60,7 @@ final class Admin_GoogleTools extends Module {
         $this->authors_group = 'camyks.net';
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Define module permission.
@@ -136,7 +135,7 @@ final class Admin_GoogleTools extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/referred mode.

@@ -3,12 +3,11 @@
  * @brief Admin_MyShortcuts Module.
  * <br /> Allows logged admin user to manage its admin shortcuts.
  * @details Plugin / Module Engine
- * @file plugin/module/Admin_MyShortcuts/Admin_MyShortcuts.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2007
- * @date Modification: Jan 2019
- * @copyright 2007 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,7 +19,6 @@ final class Admin_MyShortcuts extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_MyShortcuts', $path_type);
@@ -48,7 +46,7 @@ final class Admin_MyShortcuts extends Module {
         $this->shortcutList = null;
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -224,7 +222,7 @@ final class Admin_MyShortcuts extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -386,7 +384,7 @@ final class Admin_MyShortcuts extends Module {
         $this->set_redirect(0, $camyks->get_confValue('admin_entry').'?'.$this->shortcutItem->vars['url']);
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Build current admin user shortcut list.

@@ -4,10 +4,10 @@
  * <br /> Display and check Google's ReCaptcha captcha.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Feb 2016
- * @date Modification: Mar 2021
- * @copyright 2016 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2016 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,16 +32,15 @@ final class ReCaptcha extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('ReCaptcha', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
@@ -51,7 +50,7 @@ final class ReCaptcha extends Input {
         $this->register_asExtension('CookieAgreementMessage');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -106,7 +105,7 @@ final class ReCaptcha extends Input {
             parent::display();
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Load configuration.
@@ -174,7 +173,7 @@ final class ReCaptcha extends Input {
         return $this->get_translation($this->_lastError);
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.
@@ -225,7 +224,7 @@ final class ReCaptcha extends Input {
         return $this->config->save();
     }
 
-    /* CookieAgreementMessage extension methods */
+    /* Mark: CookieAgreementMessage extension methods */
 
     /**
      * Return plugin information related to cookies.

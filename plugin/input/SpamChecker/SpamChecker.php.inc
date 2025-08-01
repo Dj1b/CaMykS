@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief SpamChecker Input
+ * @brief SpamChecker input.
  * <br /> Contact form or comment spam checker.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2021
- * @date Modification: Jul 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -25,7 +25,6 @@ final class SpamChecker extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('SpamChecker', $path_type);
@@ -43,7 +42,7 @@ final class SpamChecker extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Execute methods */
+    /* Mark: Execute methods */
 
     /**
      * Execute input and return ip location.
@@ -80,7 +79,7 @@ final class SpamChecker extends Input {
         return $this->check_contentIsSpam($params);
     }
 
-    /* Spam related methods */
+    /* Mark: Spam related methods */
 
     /**
      * Check content is spam.
@@ -93,26 +92,57 @@ final class SpamChecker extends Input {
         /* Initialise score result */
         $scores = array('score' => 0, 'result' => 'isNotSpam', 'data' => array());
 
-        /* Check similar name rule */
-        if ($this->get_configValue('checkSimilarNamesEnabled')) {
+        /* Load names if required */
+        if ($this->get_configValue('checkSimilarNamesEnabled') or $this->get_configValue('checkRandomNamesEnabled')) {
             $firstName = '';
             $lastName = '';
             if ($params['data']['fullName'] !== '') {
                 $name = explode(' ', $params['data']['fullName']);
-                if (count($name) === 2) {
-                    $firstName = trim($name[0]);
-                    $lastName = trim($name[1]);
+                $firstName = trim(array_shift($name));
+                if (count($name) > 0) {
+                    $lastName = implode(' ', $name);
                 }
             } else {
                 $firstName = trim($params['data']['firstName']);
                 $lastName = trim($params['data']['lastName']);
             }
+        }
 
+
+        /* Check similar name rule */
+        if ($this->get_configValue('checkSimilarNamesEnabled')) {
             if ($firstName !== '' and $lastName !== '') {
                 if ($firstName == $lastName and preg_match('/^'.string_escape4Regex($firstName).'[A-Za-z]{2}$/', $lastName) or preg_match('/^'.string_escape4Regex($lastName).'[A-Za-z]{2}$/', $firstName)) {
                     $scores['score'] += $this->get_configValue('checkSimilarNamesScore');
                     $scores['data'][] = 'Similar names: '.$this->get_configValue('checkSimilarNamesScore');
                 }
+            }
+        }
+
+        /* Check random letters name rule */
+        if ($this->get_configValue('checkRandomNamesEnabled')) {
+            $count = 0;
+
+            /* Count caps blocks */
+            if ($firstName != '' and preg_match_all('/([A-Z]+)/', $firstName, $matches)) {
+                $count += max(0, count($matches[0]) - 2);
+            }
+            if ($lastName != '' and preg_match_all('/(^|[^ ][A-Z]+)/', $lastName, $matches)) {
+                $count += max(0, count($matches[0]) - 2);
+            }
+
+            /* Count 4 successive consonants blocks */
+            if ($firstName != '' and preg_match_all('/([^\dAEYUIOaeyuio]{4,})/', $firstName, $matches)) {
+                $count += count($matches[0]);
+            }
+            if ($lastName != '' and preg_match_all('/([^\dAEYUIOaeyuio]{4,})/', $lastName, $matches)) {
+                $count += count($matches[0]);
+            }
+
+            /* Check result */
+            if ($count >= 2) {
+                $scores['score'] += $this->get_configValue('checkRandomNamesScore');
+                $scores['data'][] = 'Random names: '.$this->get_configValue('checkRandomNamesEnabled');
             }
         }
 
@@ -197,20 +227,23 @@ final class SpamChecker extends Input {
         /* Check links rules */
         if ($this->get_configValue('checkLinkEnabled')) {
 
+            $hasLink = false;
+
             /* Check for single link content */
             if ($this->get_configValue('checkLinkWithoutContentScore') > 0) {
 
-                $pattern = '#^(https?|www\.)([^\W\.]+)$#';
-
+                $pattern = '#^(https?|www\.)([\w\.]+)$#';
                 if (is_array($params['data']['content'])) {
                     $cnt = 0;
                     foreach ($params['data']['content'] as $content)
                         if (preg_match($pattern, $content)) {
+                            $hasLink = true;
                             $scores['score'] += $this->get_configValue('checkLinkWithoutContentScore');
                             $scores['data'][] = 'Single link content: '.$this->get_configValue('checkLinkWithoutContentScore');
                         }
                 } elseif (is_string($params['data']['content'])) {
                     if (preg_match($pattern, $params['data']['content'])) {
+                        $hasLink = true;
                         $scores['score'] += $this->get_configValue('checkLinkWithoutContentScore');
                         $scores['data'][] = 'Single link content: '.$this->get_configValue('checkLinkWithoutContentScore');
                     }
@@ -218,9 +251,9 @@ final class SpamChecker extends Input {
             }
 
             /* Check for links in content */
-            if ($this->get_configValue('checkLinkScore') > 0) {
+            if (!$hasLink and $this->get_configValue('checkLinkScore') > 0) {
 
-                $pattern = '#(https?|www\.)([^\W\.]+)#';
+                $pattern = '#(https?|www\.)([\w\.]+)#';
                 $cnt = 0;
 
                 if (is_array($params['data']['content'])) {
@@ -316,9 +349,9 @@ final class SpamChecker extends Input {
         }
 
         /* Check result */
-        if ($scores['score'] > $this->get_configValue('isSpamScore'))
+        if ($scores['score'] >= $this->get_configValue('isSpamScore'))
             $scores['result'] = 'isSpam';
-        elseif ($scores['score'] > $this->get_configValue('isProbablySpamScore'))
+        elseif ($scores['score'] >= $this->get_configValue('isProbablySpamScore'))
             $scores['result'] = 'isProbablySpam';
 
         /* Check for result logging */
@@ -359,7 +392,7 @@ final class SpamChecker extends Input {
         return $params;
     }
 
-    /* Configuration related methods */
+    /* CMark: onfiguration related methods */
 
     /**
      * Load configuration.
@@ -380,7 +413,7 @@ final class SpamChecker extends Input {
         return $this->config->get_value($name);
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

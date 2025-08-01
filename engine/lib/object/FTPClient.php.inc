@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief FTP client object library
+ * @brief FTP client object library.
  * @details Engine / Object Library
- * @file engine/lib/object/FTPClient.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Mar 2018
- * @date Modification: Apr 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -24,7 +23,6 @@ final class FTPClient {
 
     /**
      * Class constructor.
-     * @return void
      */
     public function __construct() {
         $this->connection = null;
@@ -32,7 +30,6 @@ final class FTPClient {
 
     /**
      * Class destructor.
-     * @return void
      */
     public function __destruct() {
         if ($this->connection !== null)

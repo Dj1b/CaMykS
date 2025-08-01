@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_SystemNotifications Module
+ * @brief Admin_SystemNotifications module.
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.3
+ * @version 1.0.2.4
  * @date Creation: Jun 2018
- * @date Modification: Jun 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -37,7 +37,6 @@ final class Admin_SystemNotifications extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_SystemNotifications', $path_type);
@@ -67,7 +66,7 @@ final class Admin_SystemNotifications extends Module {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -218,7 +217,7 @@ final class Admin_SystemNotifications extends Module {
         }
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -627,7 +626,7 @@ final class Admin_SystemNotifications extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /* Request mode methods */
+    /* Mark: Request mode sub methods */
 
     /**
      * Execute module object in request/load notifications mode
@@ -712,7 +711,7 @@ final class Admin_SystemNotifications extends Module {
         return $answer->send_asJSON();
     }
 
-    /* Configuration related methods */
+    /* Mark: Configuration related methods */
 
     /**
      * Return configuration module mode list
@@ -810,7 +809,7 @@ final class Admin_SystemNotifications extends Module {
         return $menu;
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode

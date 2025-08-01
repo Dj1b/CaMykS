@@ -4,10 +4,10 @@
  * <br /> Multi services geolocation tool.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Dec 2020
- * @date Modification: Dec 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -25,7 +25,6 @@ final class IPGeolocator extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('IPGeolocator', $path_type);
@@ -43,7 +42,7 @@ final class IPGeolocator extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Execute methods */
+    /* Mark: Execute methods */
 
     /**
      * Execute input and return ip location.
@@ -114,7 +113,7 @@ final class IPGeolocator extends Input {
         return false;
     }
 
-    /* Configuration related methods */
+    /* Mark: Configuration related methods */
 
     /**
      * Load configuration.
@@ -135,7 +134,7 @@ final class IPGeolocator extends Input {
         return $this->config->get_value($name);
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

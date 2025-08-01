@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericBlogsManager Module comment library
- * @details Plugin, Module Library
+ * @brief Admin_GenericBlogsManager module, comment library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Apr 2008
- * @date Modification: Nov 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,9 +19,8 @@ final class Admin_GenericBlogCommentItem extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
-    public function __construct ($id, &$module) {
+    public function __construct($id, &$module) {
         parent::__construct($id, $module);
         /* Define object attributes */
         $this->add_newItem('newsid', 'db', 'int', 'bigint unsigned', '', 0);
@@ -38,7 +37,7 @@ final class Admin_GenericBlogCommentItem extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check object data before saving
@@ -85,7 +84,7 @@ final class Admin_GenericBlogCommentItem extends ModuleLibrary {
         return true;
     }
 
-    /* Specific data management methods */
+    /* mark: Specific data management methods */
 
     /**
      * Delete all comments from given news.
@@ -105,7 +104,7 @@ final class Admin_GenericBlogCommentItem extends ModuleLibrary {
         return $this->execute_DBQuery($sql, __LINE__);
     }
 
-    /* specific data gathering methods */
+    /* Mark: Specific data gathering methods */
 
     /**
      * Count comments for given news list by status.
@@ -211,7 +210,7 @@ final class Admin_GenericBlogCommentItem extends ModuleLibrary {
         return $list;
     }
 
-    /* Specific tool methods */
+    /* mark: Specific tool methods */
 
     /**
      * Return available status list for this object type.

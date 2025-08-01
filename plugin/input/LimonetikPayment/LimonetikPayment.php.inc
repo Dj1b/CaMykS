@@ -4,10 +4,10 @@
  * <br /> Interface to Limonetik payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: Oct 2020
- * @date Modification: May 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,7 +20,7 @@ final class LimonetikPayment extends Input {
      * const array LIMONETIKAPIURLS
      * @brief Stores Limonetik API URLs
      */
-    private const LIMONETIKAPIURLS = array(
+    private $LIMONETIKAPIURLS = array(
         'test'  => 'https://api.limonetikqualif.com',
         'live'  => 'https://api.limonetik.com',
     );
@@ -28,8 +28,9 @@ final class LimonetikPayment extends Input {
     /**
      * const string LIMONETIKAPIVERSION
      * @brief Stores Limonerik API Version
+     *
      */
-    private const LIMONETIKAPIVERSION = 'V40';
+    private $LIMONETIKAPIVERSION = 'V40';
 
     /**
      * var integer $_lastErrorCode
@@ -76,7 +77,6 @@ final class LimonetikPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('LimonetikPayment', $path_type);
@@ -94,7 +94,7 @@ final class LimonetikPayment extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -114,7 +114,7 @@ final class LimonetikPayment extends Input {
         parent::initialise();
     }
 
-    /* execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -167,7 +167,7 @@ final class LimonetikPayment extends Input {
         header('Location:'.$response['PaymentPageUrl']);
     }
 
-    /* Data query methods */
+    /* Mark: Data query methods */
 
     /**
      * Load confirmation data Payzen instant notification.
@@ -297,7 +297,7 @@ final class LimonetikPayment extends Input {
         return '';
     }
 
-    /* Limonetik related methods */
+    /* Mark: Limonetik related methods */
 
     /**
      * Execute request to Limonetik server.
@@ -312,8 +312,8 @@ final class LimonetikPayment extends Input {
         $this->load_configuration();
 
         /* Define URL to use */
-        $limonetikURL = self::LIMONETIKAPIURLS[$this->config->vars['runningMode']];
-        $limonetikURL = $limonetikURL.'/Rest/'.self::LIMONETIKAPIVERSION.'/'.$action;
+        $limonetikURL = $this->LIMONETIKAPIURLS[$this->config->vars['runningMode']];
+        $limonetikURL = $limonetikURL.'/Rest/'.$this->LIMONETIKAPIVERSION.'/'.$action;
 
         /* Load API key from mode */
         if ($this->config->vars['runningMode'] === 'live')
@@ -374,7 +374,7 @@ final class LimonetikPayment extends Input {
         return $response;
     }
 
-    /* Error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -445,7 +445,7 @@ final class LimonetikPayment extends Input {
         $this->config->get();
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

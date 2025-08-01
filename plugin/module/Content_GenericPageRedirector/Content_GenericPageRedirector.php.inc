@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Content_GenericPageRedirector Module
+ * @brief Content_GenericPageRedirector module.
  * <br /> Redirects visitor on another page.
- * @details Plugin, Module Engine
- * @file plugin/module/Content_GenericPageRedirector/Content_GenericPageRedirector.php.inc
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Sep 2009
- * @date Modification: Jan 2019
- * @copyright 2009 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -50,7 +49,6 @@ final class Content_GenericPageRedirector extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericPageRedirector', $path_type);
@@ -74,7 +72,7 @@ final class Content_GenericPageRedirector extends Module {
         $this->pritem = new Content_GenericPageRedirectorItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -204,7 +202,7 @@ final class Content_GenericPageRedirector extends Module {
         parent::init_site();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/edit_item mode
@@ -297,7 +295,7 @@ final class Content_GenericPageRedirector extends Module {
         $this->set_redirect($this->get_adminLink(array('id'=>$this->pritem->id, 'mode'=>'edit_item')));
     }
 
-    /* specific methods */
+    /* Mark: Attributes values methods */
 
     /**
      * Return redirector method list.

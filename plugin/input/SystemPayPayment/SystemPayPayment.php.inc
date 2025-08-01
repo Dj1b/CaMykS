@@ -3,12 +3,11 @@
  * @brief SystemPayPayment Input
  * <br /> Interface to SystemPay payment system.
  * @details Plugin / Input Engine
- * @file plugin/input/SystemPayPayment/SystemPayPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2020
- * @date Modification: Jul 2020
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -65,7 +64,6 @@ final class SystemPayPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('SystemPayPayment', $path_type);
@@ -84,7 +82,7 @@ final class SystemPayPayment extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -104,7 +102,7 @@ final class SystemPayPayment extends Input {
         parent::initialise();
     }
 
-    /* execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -150,7 +148,7 @@ final class SystemPayPayment extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /* data query methods */
+    /* Mark: Data query methods */
 
     /**
      * Load confirmation data SystemPay instant notification.
@@ -225,7 +223,7 @@ final class SystemPayPayment extends Input {
         return $this->_transactionId;
     }
 
-    /* display methods */
+    /* Mark: Display methods */
 
     /**
      * Return manual transfer link.
@@ -237,7 +235,7 @@ final class SystemPayPayment extends Input {
         return '';
     }
 
-    /* error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -267,7 +265,7 @@ final class SystemPayPayment extends Input {
         return $this->_lastErrorMsg;
     }
 
-    /* tool methods */
+    /* Mark: Tool methods */
 
     /**
      * Load plugin configuration
@@ -309,7 +307,7 @@ final class SystemPayPayment extends Input {
         return '';
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

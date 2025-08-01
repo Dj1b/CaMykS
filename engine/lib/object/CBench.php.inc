@@ -1,22 +1,20 @@
 <?php
 /**
- * @brief Benching library
+ * @brief Benching library.
  * <br /> Is automatically loaded by CaMykS, when loading page with head param "_cBench=<output_mode>"
  * <br /> Developers can add their own steps in CaMykS running bench, or create their own bench.
  * @details Engine / Object Library
- * @file engine/lib/object/CBench.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2014
- * @date Modification: Apr 2018
- * @copyright 2014 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * CBench class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class CBench {
     /**
@@ -44,12 +42,11 @@ final class CBench {
     private $results = array();
 
     /**
-     * object constructor
+     * Object constructor
      * @param array $params
      * @parblock - Available parameters are <br />
      * \e string output - \b none / \b shared / \b session / \b logs / \b html  <br />
      * @endparblock
-     * @return void
      */
     public function __construct($params=array()) {
         /* merge params */

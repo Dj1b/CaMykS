@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_SecurityTools Module, IPFilter library.
+ * @brief Admin_SecurityTools module, IPFilter library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.2
  * @date Creation: Oct 2007
- * @date Modification: Sep 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_SecurityIPFilterRule extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $parent
-     * @return void
      */
     public function __construct($id, &$parent) {
         parent::__construct($id, $parent);
@@ -35,7 +34,7 @@ final class Admin_SecurityIPFilterRule extends ModuleLibrary {
         parent::init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check library data.
@@ -64,7 +63,7 @@ final class Admin_SecurityIPFilterRule extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Specific properties definition method */
+    /* Mark: Specific properties definition method */
 
     /**
      * Return status list.
@@ -156,7 +155,7 @@ final class Admin_SecurityIPFilterRule extends ModuleLibrary {
         );
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Check IP Filter security.

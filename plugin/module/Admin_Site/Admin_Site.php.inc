@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_Site Module
+ * @brief Admin_Site module.
  * <br /> Display website configuration and allows to edit plugin configuration.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: Jun 2005
- * @date Modification: Dec 2020
- * @copyright 2005 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Website configuration edition
@@ -73,7 +73,6 @@ final class Admin_Site extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_Site', $path_type);
@@ -92,7 +91,7 @@ final class Admin_Site extends Module {
         $this->author_group = 'camyks.net';
     }
 
-    /* Ovveride Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Return module permissions.
@@ -164,7 +163,7 @@ final class Admin_Site extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin init mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise object module in admin/viewSiteConfig mode.
@@ -423,7 +422,7 @@ final class Admin_Site extends Module {
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Properties')));
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return configuration default value.

@@ -3,10 +3,12 @@
  * @brief Content_GenericGlossaryViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2010
- * @date Modification: Jan 2020
- * @copyright 2010 - 2020 Ideogram Design
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
@@ -16,7 +18,6 @@ final class Content_GenericGlossaryViewer extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericGlossaryViewer', $path_type);
@@ -40,7 +41,7 @@ final class Content_GenericGlossaryViewer extends Module {
         $this->configItem = new Content_GenericGlossaryViewerItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -261,7 +262,7 @@ final class Content_GenericGlossaryViewer extends Module {
         parent::init_site();
     }
 
-    /* Specific mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module in admin / edit mode.
@@ -290,7 +291,7 @@ final class Content_GenericGlossaryViewer extends Module {
         $this->categoryList = $this->manager->get_categoryTitleList(false, array('status'=>1));
 
         /* get tabs */
-        $this->tabBuilder = &$camyks->inputs['TabBuilder'];
+        $this->tabBuilder = $camyks->get_input('TabBuilder');
 
         /* add definitions tab */
         $this->tabBuilder->add_tab(
@@ -400,6 +401,8 @@ final class Content_GenericGlossaryViewer extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
     }
 
+    /* Mark: Attributes values methods */
+
     /**
      * Return layout list.
      * @return array
@@ -425,7 +428,7 @@ final class Content_GenericGlossaryViewer extends Module {
         return $this->configItem->get_pageModeList($allowPageMode);
     }
 
-    /* Specific tool methods in site mode */
+    /* Mark: Specific tool methods in site mode */
 
     /**
      * Load glossary manager module.
@@ -454,6 +457,8 @@ final class Content_GenericGlossaryViewer extends Module {
     protected function get_configGPCSourceList() {
         return $this->configItem->get_gpcSourceList();
     }
+
+    /* Mark: Specific tool methods */
 
     /**
      * build current page link

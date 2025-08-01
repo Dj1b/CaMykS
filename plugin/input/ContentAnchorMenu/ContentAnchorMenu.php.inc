@@ -3,19 +3,17 @@
  * @brief ContentAnchorMenu Input
  * <br /> Automatic anchor system build from content.
  * @details Plugin / Input Engine
- * @file plugin/input/ContentAnchorMenu/ContentAnchorMenu.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Feb 2010
- * @date Modification: Apr 2018
- * @copyright 2010 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * ContentAnchorMenu Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class ContentAnchorMenu extends Input {
     /**
@@ -30,28 +28,25 @@ final class ContentAnchorMenu extends Input {
         'menuClass' => '',
         'shift'     => 0,
     );
-    
+
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('ContentAnchorMenu', $path_type);
-        
-        /* set plugin version */
+
+        /* Override Plugin variables */
         $this->version = '1.0';
-        
-        /* set plugin package */
         $this->plugin_package = 'Generic';
-        
-        /* set plugin author */
+
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
-    
-    /* overwrite input methods */
+
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -60,7 +55,7 @@ final class ContentAnchorMenu extends Input {
      */
     public function initialise ($params=array()) {
         global $camyks;
-        
+
         $this->params = array_merge($this->params, $params);
         $this->params['name'] = string_parseSpecialChars($this->params['name'], array('pattern'=>'/[^a-zA-Z0-9_]/'));
 

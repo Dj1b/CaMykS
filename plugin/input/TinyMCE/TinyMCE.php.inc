@@ -3,12 +3,11 @@
  * @brief TinyMCE Input
  * <br /> Interfaces TinyMCE version 2 for CaMykS.
  * @details Plugin / Input Engine
- * @file plugin/input/TinyMCE/TinyMCE.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2007
- * @date Modification: Feb 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Feb 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Includes TinyMCE version 2.1.0 (http://tinymce.moxiecode.com/)
@@ -63,22 +62,21 @@ final class TinyMCE extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('TinyMCE', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin variables */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Override input methods */
 
     /**
      * Initialise input.
@@ -140,7 +138,7 @@ final class TinyMCE extends Input {
         parent::display();
     }
 
-    /* specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Define content information.

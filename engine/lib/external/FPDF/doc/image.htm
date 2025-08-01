@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Image</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
@@ -9,38 +9,38 @@
 <h1>Image</h1>
 <code>Image(<b>string</b> file [, <b>float</b> x [, <b>float</b> y [, <b>float</b> w [, <b>float</b> h [, <b>string</b> type [, <b>mixed</b> link]]]]]])</code>
 <h2>Description</h2>
-Place une image. Les dimensions occupées dans la page peuvent être indiquées de plusieurs manières :
+Place une image. Les dimensions occupÃ©es dans la page peuvent Ãªtre indiquÃ©es de plusieurs maniÃ¨res :
 <ul>
-<li>largeur et hauteur explicites (exprimées dans l'unité utilisateur ou en dpi)</li>
-<li>une dimension explicite, l'autre étant calculée automatiquement afin de respecter les
+<li>largeur et hauteur explicites (exprimÃ©es dans l'unitÃ© utilisateur ou en dpi)</li>
+<li>une dimension explicite, l'autre Ã©tant calculÃ©e automatiquement afin de respecter les
 proportions de l'image originale</li>
-<li>aucune dimension explicite, auquel cas l'image est dimensionnée en 96 dpi</li>
+<li>aucune dimension explicite, auquel cas l'image est dimensionnÃ©e en 96 dpi</li>
 </ul>
-Les formats supportés sont le JPEG, le PNG et le GIF. Le GIF nécessite l'extension GD.
+Les formats supportÃ©s sont le JPEG, le PNG et le GIF. Le GIF nÃ©cessite l'extension GD.
 <br>
 <br>
-Pour le JPEG, toutes les variantes sont autorisées :
+Pour le JPEG, toutes les variantes sont autorisÃ©es :
 <ul>
 <li>niveaux de gris</li>
 <li>couleurs vraies (24 bits)</li>
 <li>CMYK (32 bits)</li>
 </ul>
-Pour le PNG, sont autorisées :
+Pour le PNG, sont autorisÃ©es :
 <ul>
 <li>les images en niveaux de gris sur 8 bits au plus (256 teintes)</li>
-<li>les images en couleurs indexées</li>
+<li>les images en couleurs indexÃ©es</li>
 <li>les images en couleurs vraies (24 bits)</li>
 </ul>
-Pour le GIF : en cas de GIF animé, seule la première image est affichée.<br>
+Pour le GIF : en cas de GIF animÃ©, seule la premiÃ¨re image est affichÃ©e.<br>
 <br>
-La transparence est gérée.<br>
+La transparence est gÃ©rÃ©e.<br>
 <br>
-Le format peut être spécifié explicitement ou bien déduit de l'extension du fichier.<br>
+Le format peut Ãªtre spÃ©cifiÃ© explicitement ou bien dÃ©duit de l'extension du fichier.<br>
 <br>
 Il est possible de mettre un lien sur l'image.<br>
 <br>
-Remarque : si une image est utilisée plusieurs fois, une seule copie est intégrée au document.
-<h2>Paramètres</h2>
+Remarque : si une image est utilisÃ©e plusieurs fois, une seule copie est intÃ©grÃ©e au document.
+<h2>ParamÃ¨tres</h2>
 <dl class="param">
 <dt><code>file</code></dt>
 <dd>
@@ -48,50 +48,50 @@ Chemin ou URL de l'image.
 </dd>
 <dt><code>x</code></dt>
 <dd>
-Abscisse du coin supérieur gauche. Si non précisée ou égale à <code>null</code>, l'abscisse courante
-est utilisée.
+Abscisse du coin supÃ©rieur gauche. Si non prÃ©cisÃ©e ou Ã©gale Ã  <code>null</code>, l'abscisse courante
+est utilisÃ©e.
 </dd>
 <dt><code>y</code></dt>
 <dd>
-Ordonnée du coin supérieur gauche. Si non précisée ou égale à <code>null</code>, l'ordonnée courante
-est utilisée ; de plus, un saut de page est d'abord effectué si nécessaire (en cas de saut de page
-automatique) ; puis, après l'appel, l'ordonnée courante est positionnée en bas de l'image.
+OrdonnÃ©e du coin supÃ©rieur gauche. Si non prÃ©cisÃ©e ou Ã©gale Ã  <code>null</code>, l'ordonnÃ©e courante
+est utilisÃ©e ; de plus, un saut de page est d'abord effectuÃ© si nÃ©cessaire (en cas de saut de page
+automatique) ; puis, aprÃ¨s l'appel, l'ordonnÃ©e courante est positionnÃ©e en bas de l'image.
 </dd>
 <dt><code>w</code></dt>
 <dd>
 Largeur de l'image dans la page. Il y a trois cas possibles :
 <ul>
-<li>Si la valeur est positive, elle représente la largeur en unité utilisateur</li>
-<li>Si la valeur est négative, sa valeur absolue représente la résolution horizontale en dpi</li>
-<li>Si elle n'est pas indiquée ou vaut zéro, elle est calculée automatiquement</li>
+<li>Si la valeur est positive, elle reprÃ©sente la largeur en unitÃ© utilisateur</li>
+<li>Si la valeur est nÃ©gative, sa valeur absolue reprÃ©sente la rÃ©solution horizontale en dpi</li>
+<li>Si elle n'est pas indiquÃ©e ou vaut zÃ©ro, elle est calculÃ©e automatiquement</li>
 </ul>
 </dd>
 <dt><code>h</code></dt>
 <dd>
 Hauteur de l'image dans la page. Il y a trois cas possibles :
 <ul>
-<li>Si la valeur est positive, elle représente la hauteur en unité utilisateur</li>
-<li>Si la valeur est négative, sa valeur absolue représente la résolution verticale en dpi</li>
-<li>Si elle n'est pas indiquée ou vaut zéro, elle est calculée automatiquement</li>
+<li>Si la valeur est positive, elle reprÃ©sente la hauteur en unitÃ© utilisateur</li>
+<li>Si la valeur est nÃ©gative, sa valeur absolue reprÃ©sente la rÃ©solution verticale en dpi</li>
+<li>Si elle n'est pas indiquÃ©e ou vaut zÃ©ro, elle est calculÃ©e automatiquement</li>
 </ul>
 </dd>
 <dt><code>type</code></dt>
 <dd>
-Format de l'image. Les valeurs possibles sont (indépendamment de la casse) : <code>JPG</code>,
+Format de l'image. Les valeurs possibles sont (indÃ©pendamment de la casse) : <code>JPG</code>,
 <code>JPEG</code>, <code>PNG</code> et <code>GIF</code>.
-S'il n'est pas précisé, le type est déduit de l'extension du fichier.
+S'il n'est pas prÃ©cisÃ©, le type est dÃ©duit de l'extension du fichier.
 </dd>
 <dt><code>link</code></dt>
 <dd>
-URL ou identifiant retourné par AddLink().
+URL ou identifiant retournÃ© par AddLink().
 </dd>
 </dl>
 <h2>Exemple</h2>
 <div class="doc-source">
-<pre><code>// Insère un logo en haut à gauche à 300 dpi
-$pdf-&gt;Image('logo.png',10,10,-300);
-// Insère une image dynamique à partir d'une URL
-$pdf-&gt;Image('http://chart.googleapis.com/chart?cht=p3&amp;chd=t:60,40&amp;chs=250x100&amp;chl=Hello|World',60,30,90,0,'PNG');</code></pre>
+<pre><code>// InsÃ¨re un logo en haut Ã  gauche Ã  300 dpi
+$pdf-&gt;Image('logo.png', 10, 10, -300);
+// InsÃ¨re une image dynamique Ã  partir d'une URL
+$pdf-&gt;Image('http://chart.googleapis.com/chart?cht=p3&amp;chd=t:60,40&amp;chs=250x100&amp;chl=Hello|World', 60, 30, 90, 0, 'PNG');</code></pre>
 </div>
 <h2>Voir</h2>
 <a href="addlink.htm">AddLink</a>

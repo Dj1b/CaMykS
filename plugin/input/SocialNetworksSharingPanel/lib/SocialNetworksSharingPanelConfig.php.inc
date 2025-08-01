@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SocialNetworksSharingPanel Input configuration object
+ * @brief SocialNetworksSharingPanel input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jan 2018
- * @date Modification: Jan 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -70,7 +70,7 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* generic tool methods */
+    /* Mark: Generic tool methods */
 
     /**
      * Return picture format value list.
@@ -147,7 +147,7 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
         return $this->likeValues[$this->vars['like_'.$network]];
     }
 
-    /* facebook specific methods */
+    /* Mark: Facebook specific methods */
 
     /**
      * Return facebook layout list.
@@ -184,7 +184,7 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
         );
     }
 
-    /* follow related methods */
+    /* Mark: Follow related methods */
 
     /**
      * Return follow insertion value list.

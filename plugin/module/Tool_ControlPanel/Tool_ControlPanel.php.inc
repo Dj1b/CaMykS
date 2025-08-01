@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Tool_ControlPanel Module
+ * @brief Tool_ControlPanel module.
  * <br /> Default admin module, hub to website edition.
  * @details Plugin / Module Engine
- * @file plugin/module/Tool_ControlPanel/Tool_ControlPanel.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2005
- * @date Modification: May 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +41,6 @@ final class Tool_ControlPanel extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Tool_ControlPanel', $path_type);
@@ -60,7 +58,7 @@ final class Tool_ControlPanel extends Module {
         $this->author_group = 'camyks.net';
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Initialise module object in admin mode.

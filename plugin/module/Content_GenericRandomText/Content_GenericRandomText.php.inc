@@ -3,10 +3,10 @@
  * @brief Content_GenericRandomText module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Mar 2007
- * @date Modification: Jun 2022
- * @copyright 2007 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -30,7 +30,6 @@ final class Content_GenericRandomText extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericRandomText', $path_type);
@@ -56,7 +55,7 @@ final class Content_GenericRandomText extends Module {
         $this->glist = new GenericRandomTextList(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -186,7 +185,7 @@ final class Content_GenericRandomText extends Module {
         parent::init_site();
     }
 
-    /* specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/save_list mode.
@@ -368,7 +367,7 @@ final class Content_GenericRandomText extends Module {
         $this->set_redirect($camyks->get_adminLink(array('id'=>$listid, 'page_id'=>$this->page_id, 'module_index'=>$this->module_index)));
     }
 
-    /* Specific tool methods */
+    /* Mark: Layout related methods */
 
     /**
      * Return layout list.

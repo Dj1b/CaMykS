@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Admin_MonitoringUserAgentChecker Module
+ * @brief Admin_MonitoringUserAgentChecker module.
  * <br /> Monitor and check user agent of visitors and bots.
- * @details Plugin, Module Engine
- * @file plugin/module/Admin_MonitoringUserAgentChecker/Admin_MonitoringUserAgentChecker.php.inc
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.1
+ * @version 1.0.5.2
  * @date Creation: Dec 2014
- * @date Modification: Jul 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,7 +31,6 @@ final class Admin_MonitoringUserAgentChecker extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         global $camyks;
@@ -64,7 +62,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         }
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -265,7 +263,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         parent::init_admin();
     }
 
-    /* specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/main mode.
@@ -697,7 +695,7 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->set_redirect($this->get_adminLink());
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Update record with given user agent.

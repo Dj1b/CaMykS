@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Liens et texte en mode flot</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
 <body>
 <h1>Liens et texte en mode flot</h1>
-Ce tutoriel explique comment insérer des liens (internes et externes) et montre un nouveau mode
-d'écriture du texte. Il contient également un interpréteur HTML rudimentaire.
+Ce tutoriel explique comment insÃ©rer des liens (internes et externes) et montre un nouveau mode
+d'Ã©criture du texte. Il contient Ã©galement un interprÃ©teur HTML rudimentaire.
 <div class="source">
 <pre><code>&lt;?php
 <span class="kw">require(</span><span class="str">'fpdf.php'</span><span class="kw">);
@@ -79,7 +79,7 @@ function </span>CloseTag<span class="kw">(</span>$tag<span class="kw">)
 
 function </span>SetStyle<span class="kw">(</span>$tag<span class="kw">, </span>$enable<span class="kw">)
 {
-    </span><span class="cmt">// Modifie le style et sélectionne la police correspondante
+    </span><span class="cmt">// Modifie le style et sÃ©lectionne la police correspondante
     </span>$<span class="kw">this-&gt;</span>$tag <span class="kw">+= (</span>$enable <span class="kw">? </span>1 <span class="kw">: -</span>1<span class="kw">);
     </span>$style <span class="kw">= </span><span class="str">''</span><span class="kw">;
     foreach(array(</span><span class="str">'B'</span><span class="kw">, </span><span class="str">'I'</span><span class="kw">, </span><span class="str">'U'</span><span class="kw">) as </span>$s<span class="kw">)
@@ -101,16 +101,16 @@ function </span>PutLink<span class="kw">(</span>$URL<span class="kw">, </span>$t
 }
 }
 
-</span>$html <span class="kw">= </span><span class="str">'Vous pouvez maintenant imprimer facilement du texte mélangeant différents styles : &lt;b&gt;gras&lt;/b&gt;,
-&lt;i&gt;italique&lt;/i&gt;, &lt;u&gt;souligné&lt;/u&gt;, ou &lt;b&gt;&lt;i&gt;&lt;u&gt;tous à la fois&lt;/u&gt;&lt;/i&gt;&lt;/b&gt; !&lt;br&gt;&lt;br&gt;Vous pouvez aussi
-insérer des liens sous forme textuelle, comme &lt;a href="http://www.fpdf.org"&gt;www.fpdf.org&lt;/a&gt;, ou bien
+</span>$html <span class="kw">= </span><span class="str">'Vous pouvez maintenant imprimer facilement du texte mÃ©langeant diffÃ©rents styles : &lt;b&gt;gras&lt;/b&gt;,
+&lt;i&gt;italique&lt;/i&gt;, &lt;u&gt;soulignÃ©&lt;/u&gt;, ou &lt;b&gt;&lt;i&gt;&lt;u&gt;tous Ã  la fois&lt;/u&gt;&lt;/i&gt;&lt;/b&gt; !&lt;br&gt;&lt;br&gt;Vous pouvez aussi
+insÃ©rer des liens sous forme textuelle, comme &lt;a href="http://www.fpdf.org"&gt;www.fpdf.org&lt;/a&gt;, ou bien
 sous forme d\'image : cliquez sur le logo.'</span><span class="kw">;
 
 </span>$pdf <span class="kw">= new </span>PDF<span class="kw">();
-</span><span class="cmt">// Première page
+</span><span class="cmt">// PremiÃ¨re page
 </span>$pdf<span class="kw">-&gt;</span>AddPage<span class="kw">();
 </span>$pdf<span class="kw">-&gt;</span>SetFont<span class="kw">(</span><span class="str">'Arial'</span><span class="kw">,</span><span class="str">''</span><span class="kw">,</span>20<span class="kw">);
-</span>$pdf<span class="kw">-&gt;</span>Write<span class="kw">(</span>5<span class="kw">,</span><span class="str">'Pour découvrir les nouveautés de ce tutoriel, cliquez '</span><span class="kw">);
+</span>$pdf<span class="kw">-&gt;</span>Write<span class="kw">(</span>5<span class="kw">,</span><span class="str">'Pour dÃ©couvrir les nouveautÃ©s de ce tutoriel, cliquez '</span><span class="kw">);
 </span>$pdf<span class="kw">-&gt;</span>SetFont<span class="kw">(</span><span class="str">''</span><span class="kw">,</span><span class="str">'U'</span><span class="kw">);
 </span>$link <span class="kw">= </span>$pdf<span class="kw">-&gt;</span>AddLink<span class="kw">();
 </span>$pdf<span class="kw">-&gt;</span>Write<span class="kw">(</span>5<span class="kw">,</span><span class="str">'ici'</span><span class="kw">,</span>$link<span class="kw">);
@@ -125,34 +125,34 @@ sous forme d\'image : cliquez sur le logo.'</span><span class="kw">;
 </span>$pdf<span class="kw">-&gt;</span>Output<span class="kw">();
 </span>?&gt;</code></pre>
 </div>
-<p class='demo'><a href='tuto6.php' target='_blank' class='demo'>[Démo]</a></p>
-La nouvelle méthode pour imprimer du texte est <a href='../doc/write.htm'>Write()</a>. Elle est très proche de <a href='../doc/multicell.htm'>MultiCell()</a> ;
-les différences sont les suivantes :
+<p class='demo'><a href='tuto6.php' target='_blank' class='demo'>[ExÃ©cuter]</a></p>
+La nouvelle mÃ©thode pour imprimer du texte est <a href='../doc/write.htm'>Write()</a>. Elle est trÃ¨s proche de <a href='../doc/multicell.htm'>MultiCell()</a> ;
+les diffÃ©rences sont les suivantes :
 <ul>
-<li>La fin de ligne est au niveau de la marge droite et la ligne suivante commence à la marge gauche</li>
-<li>La position courante se déplace juste à la fin du texte</li>
+<li>La fin de ligne est au niveau de la marge droite et la ligne suivante commence Ã  la marge gauche</li>
+<li>La position courante se dÃ©place juste Ã  la fin du texte</li>
 </ul>
-Elle permet donc d'écrire une portion de texte, de modifier la police, puis de reprendre à partir
-de l'endroit où on était resté. Par contre on ne peut plus justifier.
+Elle permet donc d'Ã©crire une portion de texte, de modifier la police, puis de reprendre Ã  partir
+de l'endroit oÃ¹ on Ã©tait restÃ©. Par contre on ne peut plus justifier.
 <br>
 <br>
-La méthode est utilisée sur la première page pour mettre un lien pointant sur la seconde. Le
-début de la phrase est écrit en style normal, puis on passe en souligné pour terminer. Le lien
-est créé grâce à la méthode <a href='../doc/addlink.htm'>AddLink()</a>, qui renvoie l'identifiant du lien. Cet identifiant
-est passé en troisième paramètre à <span style="white-space:nowrap">Write()</span>. Après avoir
-créé la seconde page, on utilise <a href='../doc/setlink.htm'>SetLink()</a> pour faire pointer le lien sur le début de la
+La mÃ©thode est utilisÃ©e sur la premiÃ¨re page pour mettre un lien pointant sur la seconde. Le
+dÃ©but de la phrase est Ã©crit en style normal, puis on passe en soulignÃ© pour terminer. Le lien
+est crÃ©Ã© grÃ¢ce Ã  la mÃ©thode <a href='../doc/addlink.htm'>AddLink()</a>, qui renvoie l'identifiant du lien. Cet identifiant
+est passÃ© en troisiÃ¨me paramÃ¨tre Ã  <span style="white-space:nowrap">Write()</span>. AprÃ¨s avoir
+crÃ©Ã© la seconde page, on utilise <a href='../doc/setlink.htm'>SetLink()</a> pour faire pointer le lien sur le dÃ©but de la
 page courante.
 <br>
 <br>
 On place ensuite une image avec un lien externe dessus. Un lien externe est simplement une URL.
-Elle est transmise en dernier paramètre de <a href='../doc/image.htm'>Image()</a>.
+Elle est transmise en dernier paramÃ¨tre de <a href='../doc/image.htm'>Image()</a>.
 <br>
 <br>
-Enfin, la marge gauche est déplacée après l'image grâce à <a href='../doc/setleftmargin.htm'>SetLeftMargin()</a> et du texte au
-format HTML est imprimé. Un parseur HTML très simple est utilisé pour cela, basé sur les
-expressions régulières. Les balises reconnues sont &lt;b&gt;, &lt;i&gt;, &lt;u&gt;, &lt;a&gt;
-et &lt;br&gt; ; les autres sont ignorées. Le parseur utilise lui aussi la méthode Write(). Le lien externe se pose de la
-même façon que l'interne (troisième paramètre de Write()). A noter que <a href='../doc/cell.htm'>Cell()</a> permet
-également de poser des liens.
+Enfin, la marge gauche est dÃ©placÃ©e aprÃ¨s l'image grÃ¢ce Ã  <a href='../doc/setleftmargin.htm'>SetLeftMargin()</a> et du texte au
+format HTML est imprimÃ©. Un parseur HTML trÃ¨s simple est utilisÃ© pour cela, basÃ© sur les
+expressions rÃ©guliÃ¨res. Les balises reconnues sont &lt;b&gt;, &lt;i&gt;, &lt;u&gt;, &lt;a&gt;
+et &lt;br&gt; ; les autres sont ignorÃ©es. Le parseur utilise lui aussi la mÃ©thode Write(). Le lien externe se pose de la
+mÃªme faÃ§on que l'interne (troisiÃ¨me paramÃ¨tre de Write()). A noter que <a href='../doc/cell.htm'>Cell()</a> permet
+Ã©galement de poser des liens.
 </body>
 </html>

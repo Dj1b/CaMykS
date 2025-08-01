@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_Statistics Module
+ * @brief Admin_Statistics module.
  * <br /> Records and displays website statistics.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: May 2007
- * @date Modification: Sep 2020
- * @copyright 2007 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Available types :
@@ -61,7 +61,6 @@ final class Admin_Statistics extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_Statistics', $path_type);
@@ -96,7 +95,7 @@ final class Admin_Statistics extends Module {
         $this->settings = new Admin_StatisticsSettings('settings', $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -244,7 +243,7 @@ final class Admin_Statistics extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/edit settings mode
@@ -389,7 +388,7 @@ final class Admin_Statistics extends Module {
         /* to do */
     }
 
-    /* Specific public methods */
+    /* Mark: Specific public methods */
 
     /**
      * Update statistic.
@@ -574,7 +573,7 @@ final class Admin_Statistics extends Module {
         return $this->displayedItems[$period];
     }
 
-    /* Specific private methods */
+    /* Mark: Specific private methods */
 
     /**
      * Display statistic.

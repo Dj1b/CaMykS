@@ -3,19 +3,17 @@
  * @brief BreadCrumbs Input
  * <br /> Display current page path on website.
  * @details Plugin / Input Engine
- * @file plugin/input/BreadCrumbs/BreadCrumbs.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2008
- * @date Modification: Jan 2021
- * @copyright 2008 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * BreadCrumbs Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class BreadCrumbs extends Input {
     /**
@@ -39,24 +37,21 @@ final class BreadCrumbs extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('BreadCrumbs', $path_type);
 
-        /* set plugin version */
+        /* Override Plugin variables */
         $this->version = '1.0';
-
-        /* set plugin package */
         $this->plugin_package = 'Default';
 
-        /* set plugin author */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.

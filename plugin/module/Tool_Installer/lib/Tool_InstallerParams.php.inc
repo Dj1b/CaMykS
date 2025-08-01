@@ -2,12 +2,11 @@
 /**
  * @brief Tool_Installer module installation parameters library
  * @details Plugin / Module Library
- * @file plugin/module/Tool_Installer/lib/Tool_InstallerParams.php.inc
  * @author JB Lebrun <jb.lebrun@ideogram-design.fr>
- * @version 1.0.1
+ * @version 1.0.3.1
  * @date Creation: Oct 2017
- * @date Modification: May 2019
- * @copyright 2017 - 2019 Ideogram Design
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 Ideogram Design
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,7 +31,6 @@ final class Tool_InstallerParams extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -227,11 +225,16 @@ final class Tool_InstallerParams extends ModuleLibrary {
     public function get_availableLanguages() {
         global $camyks;
 
+        /* Initialise list */
         $languages = array();
+
+        /* Load languages */
         foreach (language_getAvailableLanguages() as $l => $data) {
             $f = new FSFile($camyks->camyks_engine_path.'/data/img/flag/'.$l.LANG_ICON_EXTENSION);
             $languages[$l] = '<img src="'.$f->get_base64Data().'" alt="'.$data['title'].'" style="margin-right:4px;" />'.$data['title'];
         }
+
+        /* Return list */
         return $languages;
     }
 

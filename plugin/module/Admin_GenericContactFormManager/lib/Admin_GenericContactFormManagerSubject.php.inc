@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericContactFormManager Module, subject library.
- * @details Plugin, Module Library
+ * @brief Admin_GenericContactFormManager module, subject library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Nov 2010
- * @date Modification: Jan 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_GenericContactFormManagerSubject extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -32,7 +31,7 @@ final class Admin_GenericContactFormManagerSubject extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Build SQL condition.
@@ -49,7 +48,7 @@ final class Admin_GenericContactFormManagerSubject extends ModuleLibrary {
         return implode(' AND ', $query);
     }
 
-    /* Specific data methods */
+    /* Mark: Specific data methods */
 
     /**
      * Return objects status list.

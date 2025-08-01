@@ -1,20 +1,18 @@
 <?php
 /**
- * @brief Text item of Module Library Item
+ * @brief Text item of Module Library item.
  * @details Engine / Object Library
- * @file engine/lib/object/MLTextItem.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Apr 2007
- * @date Modification: Apr 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MLTextItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 class MLTextItem extends ModuleLibraryItem {
     /**
@@ -35,7 +33,6 @@ class MLTextItem extends ModuleLibraryItem {
      * @param string $folder
      * @param string $path
      * @param string $default
-     * @return void
      */
     public function __construct($name, $folder, $path, $default='') {
         $this->name = $name;

@@ -3,10 +3,10 @@
  * @brief Content_GenericQuickMessage module, content item library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2007
- * @date Modification: Jul 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,12 +15,10 @@
  * Content_GenericQuickMessageItem class.
  */
 final class Content_GenericQuickMessageItem extends ModuleLibrary {
-
     /**
      * Class constructor.
      * @param integer $id
-     * @param Object $module
-     * @return void
+     * @param Module $module
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -38,7 +36,7 @@ final class Content_GenericQuickMessageItem extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check object data.
@@ -87,7 +85,7 @@ final class Content_GenericQuickMessageItem extends ModuleLibrary {
         return true;
     }
 
-    /* Specific methods */
+    /* mark: Specific methods */
 
     /**
      * Count waiting messages.

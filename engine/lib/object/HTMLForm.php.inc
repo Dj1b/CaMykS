@@ -3,10 +3,10 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.8.5
+ * @version 1.1.9.1
  * @date Creation: Jun 2005
- * @date Modification: Sep 2023
- * @copyright 2005 - 2023 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -24,7 +24,6 @@ define('HTMLFORM_METHOD_GET',   1);
 
 /**
  * HTMLForm class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 class HTMLForm {
     /**
@@ -119,7 +118,7 @@ class HTMLForm {
         'id'            => '',
         'name'          => '',
         'language'      => '',
-        'default'       => '',
+        'default'       => null,
         'class'         => 'inputs',
         'style'         => '',
         'onchange'      => '',
@@ -139,7 +138,6 @@ class HTMLForm {
         'list'          => '',
         'autocomplete'  => '',
         'allowMultiple' => false,
-
         'size'          => 0,
     );
 
@@ -150,7 +148,6 @@ class HTMLForm {
      * @param mixed $method
      * @param string $onSubmit
      * @param string $target
-     * @return void
      */
     public function __construct($name='', $action='./', $method=null, $onSubmit='', $target='') {
         $this->name = $name;
@@ -158,10 +155,10 @@ class HTMLForm {
         $this->onSubmit = $onSubmit;
         $this->target = $target;
 
-        /* set up inputs limit */
+        /* Set up inputs limit */
         $this->inputsLimit = ini_get('max_input_vars');
 
-        /* check for method type */
+        /* Check for method type */
         switch ($method) {
             case HTMLFORM_METHOD_GET :
             case 'GET' :
@@ -264,7 +261,7 @@ class HTMLForm {
      * Return hidden input as text.
      * @return string
      */
-    public function display_hiddens () {
+    public function display_hiddens() {
         $html = '';
         foreach ($this->hiddens as $hidden)
             $html .= $hidden->display()."\n";
@@ -290,10 +287,11 @@ class HTMLForm {
      */
     public function display_dateInput($date=TODAY, $oname='date', $objects=array('day','month','year','hours','minutes'), $buttons=array()) {
         global $camyks;
-        /* build param list */
+
+        /* Build param list */
         $params = array('objects'=>null, 'buttons'=>null, 'hasEmptyFirstOption'=>false, 'dayAsSelect'=>false, 'monthAsText'=>false, 'yearAsSelect'=>false, 'yearRange'=>array('from'=>2000, 'to'=>2050));
 
-        /* check header params */
+        /* Check header params */
         if (is_array($date)) {
             $params = array_merge($this->inputDefaultParams, $params, $date);
         } else {
@@ -308,25 +306,25 @@ class HTMLForm {
                 $params['buttons'] = $buttons;
         }
 
-        /* check object params */
-        if ($params['default'] === '') {
+        /* Check object params */
+        if (is_null($params['default'])) {
             $n = $params['name'];
             if (isset($this->object->vars[$n])) {
                 if ($this->object->vars[$n] > 3600 or $this->object->vars[$n] < 0)
                     $params['default'] = $this->object->vars[$n];
                 elseif ($params['hasEmptyFirstOption'] === true)
-                    $params['default'] = '';
+                    $params['default'] = null;
                 else
                     $params['default'] = 0;
             } elseif ($params['hasEmptyFirstOption'] === true)
-                $params['default'] = '';
+                $params['default'] = null;
             else
                 $params['default'] = TODAY;
         }
         if ($params['objects'] === null)
             $params['objects'] = array('day','month','year','hours','minutes');
 
-        /* check parent params */
+        /* Check parent params */
         if ($params['buttons'] === null) {
             if (isset($this->parent))
                 $params['buttons'] = $this->parent->get_dateInputButtons();
@@ -336,12 +334,12 @@ class HTMLForm {
                 $params['buttons'] = array();
         }
 
-        /* start html rendering */
+        /* Start html rendering */
         $html = '';
 
-        /* add day input */
+        /* Add day input */
         if (in_array('day', $params['objects'])) {
-            $default = $params['default'] === '' ? '' : date('d', $params['default']);
+            $default = is_null($params['default']) ? '' : date('d', $params['default']);
             if ($params['dayAsSelect'] == true) {
                 $d = array();
                 for ($i=1; $i<32; $i++) $d[$i] = $i;
@@ -371,10 +369,10 @@ class HTMLForm {
             $html .= ' ';
         }
 
-        /* add month input */
+        /* Add month input */
         if (in_array('month', $params['objects'])) {
             if ($params['monthAsText'] == true) {
-                $default = $params['default'] === '' ? 0 : date('m', $params['default']);
+                $default = is_null($params['default']) ? 0 : date('m', $params['default']);
                 $html .= $this->display_textInput(array(
                     'name'      => $params['name'].'_month',
                     'maxlength' => 2,
@@ -387,7 +385,7 @@ class HTMLForm {
                     'onblur'    => $params['onblur']
                 ));
             } else {
-                $default = $params['default'] === '' ? 0 : (int)date('n', $params['default']);
+                $default = is_null($params['default']) ? 0 : (int)date('n', $params['default']);
                 $m = array();
                 if ($params['hasEmptyFirstOption'])
                     $m[0] = '';
@@ -407,9 +405,9 @@ class HTMLForm {
             }
         }
 
-        /* add year input */
+        /* Add year input */
         if (in_array('year', $params['objects'])) {
-            $default = $params['default'] === '' ? '' : date('Y', $params['default']);
+            $default = is_null($params['default']) ? '' : date('Y', $params['default']);
             if ($params['yearAsSelect'] == true and $params['yearRange']['from'] > 0 and $params['yearRange']['to'] > 0) {
                 $y = array();
                 for ($i=$params['yearRange']['from']; $i<=$params['yearRange']['to']; $i++)
@@ -440,9 +438,9 @@ class HTMLForm {
             }
         }
 
-        /* add hours input */
+        /* Add hours input */
         if (in_array('hours', $params['objects'])) {
-            $default = $params['default'] === '' ? '' : date('H', $params['default']);
+            $default = is_null($params['default']) ? '' : date('H', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_hours',
                 'maxlength' => 2,
@@ -457,9 +455,9 @@ class HTMLForm {
             $html .= 'h ';
         }
 
-        /* add minutes inputs */
+        /* Add minutes inputs */
         if (in_array('minutes', $params['objects'])) {
-            $default = $params['default'] === '' ? '' : date('i', $params['default']);
+            $default = is_null($params['default']) ? '' : date('i', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_minutes',
                 'maxlength' => 2,
@@ -474,9 +472,9 @@ class HTMLForm {
             $html .= 'm ';
         }
 
-        /* add seconds inputs */
+        /* Add seconds inputs */
         if (in_array('seconds', $params['objects'])) {
-            $default = $params['default'] === '' ? '' : date('s', $params['default']);
+            $default = is_null($params['default']) ? '' : date('s', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_seconds',
                 'maxlength' => 2,
@@ -491,14 +489,14 @@ class HTMLForm {
             $html .= 's ';
         }
 
-        /* add buttons */
+        /* Add buttons */
         if (count($params['buttons']) > 0) {
             $b = 'document.'.$this->name.'.'.$params['name'];
-            /* add "update date" button */
+            /* Add "update date" button */
             if (isset ($params['buttons']['update'])) {
-                /* add space */
+                /* Add space */
                 $html .= '&nbsp;&nbsp;';
-                /* add button link */
+                /* Add button link */
                 $html .= '<a href="javascript:';
                 $html .= 'd = new Date();';
                 /* update day */
@@ -537,11 +535,11 @@ class HTMLForm {
                 $html .= '</a> ';
             }
 
-            /* add "reset date" button */
+            /* Add "reset date" button */
             if (isset ($params['buttons']['reset'])) {
-                /* add space */
+                /* Add space */
                 $html .= '&nbsp;';
-                /* add button link */
+                /* Add button link */
                 $html .= '<a href="javascript:';
                 /* reset day */
                 if (in_array('day', $params['objects']))
@@ -590,16 +588,16 @@ class HTMLForm {
      * @param array $buttons the button descriptions to add
      * @return string
      */
-    public function display_fileInput($file='file', $default='', $buttons=null) {
+    public function display_fileInput($file='file', $default=null, $buttons=null) {
         global $camyks;
 
-        /* build param list */
+        /* Build param list */
         $params = array('class'=>'', 'buttons'=>null, 'accept'=>'');
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit(2);
 
-        /* check header params */
+        /* Check header params */
         if (is_array($file)) {
             $params = array_merge($this->inputDefaultParams, $params, $file);
         } else {
@@ -611,13 +609,13 @@ class HTMLForm {
                 $params['buttons'] = $buttons;
         }
 
-        /* check object params */
-        $n = $params['name'].($params['language']?'_'.$params['language']:'');
-        if ($params['default'] === '' and isset($this->object)) {
-            $params['default'] = isset($this->object->vars[$n])?$this->object->vars[$n]:'';
+        /* Check object params */
+        $n = $params['name'].($params['language'] ? '_'.$params['language'] : '');
+        if (is_null($params['default']) and isset($this->object)) {
+            $params['default'] = (isset($this->object->vars[$n]) and $this->object->vars[$n] !== '') ? $this->object->vars[$n] : null;
         }
 
-        /* check parent params */
+        /* Check parent params */
         if ($params['buttons'] === null) {
             if (isset($this->parent))
                 $params['buttons'] = $this->parent->get_fileInputButtons();
@@ -625,7 +623,7 @@ class HTMLForm {
                 $params['buttons'] = $this->object->_libParent->get_fileInputButtons();
         }
 
-        /* build file input element */
+        /* Build file input element */
         $html = '<input type="file"';
         $html .= $this->build_inputGenericAttributes($params);
         if ($params['accept'] != '')
@@ -635,10 +633,10 @@ class HTMLForm {
         $html .= ' /> ';
         $html .= '<input type="hidden" name="'.$n.'_deletefile" value="0" />';
 
-        /* check for file infos */
+        /* Check for file infos */
         if ($params['default'] === false) {
             /* do not write anything */
-        } elseif ($params['default'] == '') {
+        } elseif (is_null($params['default'])) {
             $html .= $camyks->get_translation('file_nofile');
         } else {
             $file = new FSFile($params['default']);
@@ -648,7 +646,7 @@ class HTMLForm {
 
             foreach ($params['buttons'] as $name => $button) {
                 if ($name == 'view') {
-                    /* check view button */
+                    /* Check view button */
                     if ($file->type == 'image' and isset($button['std'])) {
                         $html .= '&nbsp;<a href="'.$params['default'].'" target="_blank">';
                         $html .= '<img src="'.$button['std'].'" class="fileInputButton"';
@@ -671,7 +669,7 @@ class HTMLForm {
                     }
                 } elseif ($name == 'delete') {
                     if (isset($params['buttons']['delete']['std'])) {
-                        /* add delete button */
+                        /* Add delete button */
                         $html .= '&nbsp;<a href="javascript:';
                         $html .= 'document.'.$this->name.'.'.$n.'_deletefile.value=1;';
                         $html .= 'document.getElementById(\''.$n.'_filedesc\').innerHTML=\''.$camyks->get_translation('file_deleted').'\';';
@@ -708,10 +706,10 @@ class HTMLForm {
      */
     public function display_selectInput($select, $values=null, $default=null) {
         global $camyks;
-        /* build param list */
+        /* Build param list */
         $params = array('values'=>array(), 'hasEmptyFirstOption'=>false, 'blocId'=>'');
 
-        /* check header params */
+        /* Check header params */
         if (is_array($select)) {
             $params = array_merge($this->inputDefaultParams, $params, $select);
         } else {
@@ -723,16 +721,16 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
-        if ($params['default'] === '' and isset($this->object)) {
-            $n = $params['name']. ($params['language']?'_'.$params['language']:'');
-            $params['default'] = isset($this->object->vars[$n])?$this->object->vars[$n]:'';
+        /* Check object params */
+        if (is_null($params['default']) and isset($this->object)) {
+            $n = $params['name'].($params['language'] ? '_'.$params['language'] : '');
+            $params['default'] = isset($this->object->vars[$n]) ? $this->object->vars[$n] : '';
         }
 
-        /* check for first empty item */
+        /* Check for first empty item */
         if ($params['hasEmptyFirstOption'] === true)
             $params['values'] = array(''=>' ') + $params['values'];
         elseif (is_array($params['hasEmptyFirstOption']))
@@ -740,7 +738,7 @@ class HTMLForm {
         elseif ($params['hasEmptyFirstOption'] !== false)
             $params['values'] = array(''=>$params['hasEmptyFirstOption']) + $params['values'];
 
-        /* build select header */
+        /* Build select header */
         $html = '';
         if ($camyks->theme->useEnhancedSelectInputs == true or $params['blocId'] != '') {
             $addBloc = true;
@@ -755,7 +753,7 @@ class HTMLForm {
         $html .= $this->build_inputGenericAttributes($params);
         $html .= '>' . "\n";
 
-        /* add option items */
+        /* Add option items */
         foreach ($params['values'] as $name => $value) {
             if (is_array($value)) {
                 $dAttr = array('value'=>'', 'class'=>'', 'style'=>'', 'disabled'=>'');
@@ -780,7 +778,8 @@ class HTMLForm {
                 $html .= '</option>';
             }
         }
-        /* add select footer */
+
+        /* Add select footer */
         $html .= '</select>';
         if ($addBloc)
             $html .= '</div>';
@@ -795,10 +794,10 @@ class HTMLForm {
      */
     public function display_booleanSelectInput($select, $default=null) {
         global $camyks;
-        /* build param list */
+        /* Build param list */
         $params = array('values'=>array(0 => $camyks->get_translation('no'), 1 => $camyks->get_translation('yes')));
 
-        /* check header params */
+        /* Check header params */
         if (is_array($select)) {
             $params = array_merge($params, $select);
         } else {
@@ -807,7 +806,7 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* build display */
+        /* Build display */
         return $this->display_selectInput($params);
     }
 
@@ -819,10 +818,10 @@ class HTMLForm {
      */
     public function display_countrySelectInput($select=array(), $default=null) {
         global $camyks;
-        /* build param list */
+        /* Build param list */
         $params = array('name'=>'country', 'highlighted'=>array(), 'shortlist'=>array(), 'territories'=>1, 'highlight_separator'=>'', 'hasEmptyFirstOption'=>false);
 
-        /* check header params */
+        /* Check header params */
         if (is_array($select)) {
             $params = array_merge($this->inputDefaultParams, $params, $select);
         } else {
@@ -832,9 +831,9 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check object params */
+        /* Check object params */
         $n = $params['name'].($params['language']?'_'.$params['language']:'');
-        if ($params['default'] == '' and isset($this->object)) {
+        if (is_null($params['default']) and isset($this->object)) {
             $params['default'] = isset($this->object->vars[$n])?$this->object->vars[$n]:'';
         }
 
@@ -844,7 +843,7 @@ class HTMLForm {
             'shortlist'     => $params['shortlist'],
         ));
 
-        /* check for highlighted countries */
+        /* Check for highlighted countries */
         if (is_array($params['highlighted']) and count($params['highlighted'])>0) {
             $hc = array();
             foreach ($params['highlighted'] as $code) {
@@ -861,7 +860,7 @@ class HTMLForm {
         /* update params value */
         $params['values'] = $countries;
 
-        /* build display */
+        /* Build display */
         return $this->display_selectInput($params);
     }
 
@@ -874,10 +873,10 @@ class HTMLForm {
     public function display_phonePrefixSelectInput($select=array(), $default=null) {
         global $camyks;
 
-        /* build param list */
+        /* Build param list */
         $params = array('name'=>'phonePrefix', 'highlighted'=>array(), 'shortList'=>array(), 'territories'=>1, 'highlight_separator'=>'', 'hasEmptyFirstOption'=>false, 'display_country'=>false, 'display_plus'=>false, 'display_zero'=>false, 'value'=>'countryCode', 'class'=>'sinputs');
 
-        /* check header params */
+        /* Check header params */
         if (is_array($select)) {
             $params = array_merge($this->inputDefaultParams, $params, $select);
         } else {
@@ -887,9 +886,9 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check object params */
+        /* Check object params */
         $n = $params['name'].($params['language']?'_'.$params['language']:'');
-        if ($params['default'] == '' and isset($this->object)) {
+        if (is_null($params['default']) and isset($this->object)) {
             $params['default'] = isset($this->object->vars[$n])?$this->object->vars[$n]:'';
         }
 
@@ -903,7 +902,7 @@ class HTMLForm {
 
         $list = array();
 
-        /* check for highlighted countries */
+        /* Check for highlighted countries */
         if (is_array($params['highlighted']) and count($params['highlighted'])>0) {
             $hc = array();
             foreach ($params['highlighted'] as $code) {
@@ -945,7 +944,7 @@ class HTMLForm {
         /* define params for display select input method */
         $params['values'] = $list;
 
-        /* build display */
+        /* Build display */
         return $this->display_selectInput($params);
     }
 
@@ -957,7 +956,7 @@ class HTMLForm {
      */
     public function display_civilitySelectInput($select, $default=null) {
         global $camyks;
-        /* build param list */
+        /* Build param list */
         $params = array('class'=>'vsinput');
         $params['values'] = array();
         $civilities = array('mr', 'mrs', 'ms', 'sir', 'dr', 'pr', 'me');
@@ -966,7 +965,7 @@ class HTMLForm {
                 $params['values'][$c] = $v;
         }
 
-        /* check header params */
+        /* Check header params */
         if (is_array($select)) {
             $params = array_merge($this->inputDefaultParams, $params, $select);
         } else {
@@ -976,7 +975,7 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* build display */
+        /* Build display */
         return $this->display_selectInput($params);
     }
 
@@ -988,10 +987,10 @@ class HTMLForm {
      */
     public function display_weekDaySelectInput($select, $default=null) {
         global $camyks;
-        /* build param list */
+        /* Build param list */
         $params = array('format'=>1);
 
-        /* check header params */
+        /* Check header params */
         if (is_array($select)) {
             $params = array_merge($this->inputDefaultParams, $params, $select);
         } else {
@@ -1001,14 +1000,14 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* setup values */
+        /* Setup values */
         $params['values'] = array();
 
         for ($i=(0+$params['format']); $i<=(6+$params['format']); $i++) {
             $params['values'][$i] = date_strftime('%A', mktime(0, 0, 0, 1, 2+$i, 0));
         }
 
-        /* build display */
+        /* Build display */
         return $this->display_selectInput($params);
     }
 
@@ -1019,7 +1018,7 @@ class HTMLForm {
      * @return string
      */
     public function display_textInput($input, $default=null) {
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $input);
         } else {
@@ -1029,18 +1028,18 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] === '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
 
-        /* check maxlength value */
+        /* Check maxlength value */
         if ($params['maxlength'] == 0)
             if (isset($this->object->_libItems[$params['name']]->datatype)
                     and in_array($this->object->_libItems[$params['name']]->datatype, array('etext', 'text'))
@@ -1052,10 +1051,10 @@ class HTMLForm {
 
 
 
-        /* build input */
+        /* Build input */
         $html = '<input type="text"';
-        $html .= ' value="'.(!is_null($params['default']) ? htmlentities($params['default'], ENT_COMPAT, 'UTF-8') : '').'"';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.(!is_null($params['default']) ? htmlentities($params['default'], ENT_COMPAT, 'UTF-8') : '').'"';
         $html .= ' />';
         return $html;
     }
@@ -1067,10 +1066,10 @@ class HTMLForm {
      * @return string
      */
     public function display_numberInput($input, $default=null) {
-        /* build param list */
+        /* Build param list */
         $params = array('min'=>'', 'max'=>'', 'step'=>'');
 
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $params, $input);
         } else {
@@ -1080,25 +1079,25 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] === '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="number"';
+        $html .= $this->build_inputGenericAttributes($params);
         if (isset($this->object) and $this->object->_libItems[$v]->datatype == 'float')
             $html .= ' value="'.(float)$params['default'].'"';
         else
             $html .= ' value="'.(int)$params['default'].'"';
-        $html .= $this->build_inputGenericAttributes($params);
         if (is_int($params['min']))
             $html .= ' min="'.$params['min'].'"';
         if (is_int($params['max']))
@@ -1116,10 +1115,10 @@ class HTMLForm {
      * @return string
      */
     public function display_emailInput($input, $default=null) {
-        /* build param list */
+        /* Build param list */
         $params = array('multiple'=>false);
 
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $params, $input);
         } else {
@@ -1129,22 +1128,22 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] === '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="email"';
-        $html .= ' value="'.$params['default'].'"';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.$params['default'].'"';
         if ($params['multiple'] === true)
             $html .= ' multiple';
         $html .= ' />';
@@ -1158,7 +1157,7 @@ class HTMLForm {
      * @return string
      */
     public function display_phoneInput($input, $default=null) {
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $input);
         } else {
@@ -1168,22 +1167,22 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] === '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="tel"';
-        $html .= ' value="'.$params['default'].'"';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.$params['default'].'"';
         if ($params['size'] > 0)
             $html .= ' size="'.$params['size'].'"';
         if ($params['readonly'] == 'readonly' or $params['readonly'] == true)
@@ -1205,7 +1204,7 @@ class HTMLForm {
      * @return string
      */
     public function display_URLInput($input, $default=null) {
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $input);
         } else {
@@ -1215,22 +1214,22 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] === '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="url"';
-        $html .= ' value="'.$params['default'].'"';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.$params['default'].'"';
         $html .= ' />';
         return $html;
     }
@@ -1242,7 +1241,7 @@ class HTMLForm {
      * @return string
      */
     public function display_colorInput($input, $default=null) {
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $input);
         } else {
@@ -1252,26 +1251,26 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] === '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
         }
 
-        /* check color value to add leading hashtag */
+        /* Check color value to add leading hashtag */
         if (preg_match('/^[0-9a-f]{3,6}$/i', $params['default']))
             $params['default'] = "#".$params['default'];
 
-        /* build input */
+        /* Build input */
         $html = '<input type="color"';
-        $html .= ' value="'.htmlentities($params['default'], ENT_COMPAT, 'UTF-8').'"';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.htmlentities($params['default'], ENT_COMPAT, 'UTF-8').'"';
         $html .= ' />';
         return $html;
     }
@@ -1283,10 +1282,10 @@ class HTMLForm {
      * @return string
      */
     public function display_textareaInput($input, $default=null) {
-        /* build param list */
+        /* Build param list */
         $params = array('class'=>'vlinputs', 'cols'=>'40', 'rows'=>'4');
 
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $params, $input);
         } else {
@@ -1296,17 +1295,17 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
-        if ($params['default'] == '') {
+        /* Check object params */
+        if (is_null($params['default'])) {
             $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
             if ($this->object != null and isset($this->object->vars[$v]))
                 $params['default'] = $this->object!=null?$this->object->vars[$v]:'';
         }
 
-        /* build input */
+        /* Build input */
         $html = '<textarea';
         $html .= $this->build_inputGenericAttributes($params);
         $html .= ' cols="'.$params['cols'].'"';
@@ -1323,10 +1322,10 @@ class HTMLForm {
      * @return string
      */
     public function display_passwordInput($input) {
-        /* build param list */
+        /* Build param list */
         $params = array('size'=>0,);
 
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $params, $input);
         } else {
@@ -1334,12 +1333,12 @@ class HTMLForm {
             $params['name'] = $input;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check maxlength value */
+            /* Check maxlength value */
             if ($params['maxlength'] == 0)
                 if (isset($this->object->_libItems[$params['name']]->datatype)
                         and in_array($this->object->_libItems[$params['name']]->datatype, array('password', 'etext', 'text'))
@@ -1349,7 +1348,7 @@ class HTMLForm {
                     $params['maxlength'] = 32;
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="password"';
         $html .= $this->build_inputGenericAttributes($params);
         $html .= ' value=""';
@@ -1364,10 +1363,16 @@ class HTMLForm {
      * @return string
      */
     public function display_checkboxInput($input, $default=null) {
-        /* build param list */
-        $params = array('class'=>'', 'size'=>0, 'value'=>null, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'', 'multiValues'=>false);
+        /* Build param list */
+        $params = array('class'=>'', 'size'=>0, 'value'=>null, 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
 
-        /* check header params */
+        /* Parameters update for retro compatibility */
+        if (isset($params['multiValues'])) {
+            $params['allowMultiple'] = $params['multiValues'];
+            unset($params['multiValues']);
+        }
+
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $params, $input);
         } else {
@@ -1377,45 +1382,35 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit();
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] == '') {
-                $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
-                $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+            /* Check default value */
+            if (is_null($params['default'])) {
+                $v = $params['name'].($params['language'] == '' ? '' : '_'.$params['language']);
+                $params['default'] = isset($this->object->vars[$v]) ? $this->object->vars[$v] : '';
             }
         }
 
-        /* check labels and id */
+        /* Check labels and id */
         if ($params['label'] != '' and $params['id'] == '') {
             $params['id'] = '_'.$params['name'].($params['language'] != '' ? '_'.$params['language']:'').'_'.$params['value'];
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="checkbox"';
-        if ($params['language'] == '')
-            $html .= ' name="'.$params['name'];
-        else
-            $html .= ' name="'.$params['name'].'_'.$params['language'];
-        if ($params['multiValues']===true)
-            $html .= '[]';
-        $html .= '"';
-        $html .= ' value="'.$params['value'].'"';
-
-        /* avoid name to be rewritten in generic attributes */
-        $params['name'] = '';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.$params['value'].'"';
 
         if ($params['default'] === $params['value'] and !is_null($params['value']))
             $html .= ' checked="checked"';
-        elseif ($params['multiValues'] === true and is_array($params['default']) and in_array($params['value'], $params['default']))
+        elseif ($params['allowMultiple'] === true and is_array($params['default']) and in_array($params['value'], $params['default']))
             $html .= ' checked="checked"';
         $html .= ' />';
 
-        /* build optional label */
+        /* Build optional label */
         if ($params['label'] != '') {
             $html .= '<label for="'.$params['id'].'"';
             if ($params['labelClass'] != '')
@@ -1425,7 +1420,7 @@ class HTMLForm {
             $html .= '>'.$params['label'].'</label>';
         }
 
-        /* send html code */
+        /* Send html code */
         return $html;
     }
 
@@ -1436,10 +1431,10 @@ class HTMLForm {
      * @return string
      */
     public function display_radioInput($input, $default=null) {
-        /* build param list */
+        /* Build param list */
         $params = array('class'=>'', 'value'=>'', 'label'=>'', 'labelClass'=>'', 'labelStyle'=>'');
 
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $params, $input);
         } else {
@@ -1449,32 +1444,32 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit(1, $params['name']);
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] == '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
         }
 
-        /* check labels and id */
+        /* Check labels and id */
         if ($params['label'] != '' and $params['id'] == '') {
             $params['id'] = '_'.$params['name'].($params['language'] != '' ? '_'.$params['language']:'').'_'.$params['value'];
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="radio"';
-        $html .= ' value="'.$params['value'].'"';
         $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.$params['value'].'"';
         if ($params['default'] === $params['value'])
             $html .= ' checked="checked"';
         $html .= ' />';
 
-        /* build optional label */
+        /* Build optional label */
         if ($params['label'] != '') {
             $html .= '<label for="'.$params['id'].'"';
             if ($params['labelClass'] != '')
@@ -1484,7 +1479,7 @@ class HTMLForm {
             $html .= '>'.$params['label'].'</label>';
         }
 
-        /* send html code */
+        /* Send html code */
         return $html;
     }
 
@@ -1495,7 +1490,7 @@ class HTMLForm {
      * @return string
      */
     public function display_hiddenInput($input, $default=null) {
-        /* check header params */
+        /* Check header params */
         if (is_array($input)) {
             $params = array_merge($this->inputDefaultParams, $input);
         } else {
@@ -1505,25 +1500,25 @@ class HTMLForm {
                 $params['default'] = $default;
         }
 
-        /* check limit */
+        /* Check limit */
         $this->check_inputsLimit(1, $params['name']);
 
-        /* check object params */
+        /* Check object params */
         if (isset($this->object)) {
-            /* check default value */
-            if ($params['default'] == '') {
+            /* Check default value */
+            if (is_null($params['default'])) {
                 $v = $params['name'].($params['language'] == '' ? '' : '_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v]) ? $this->object->vars[$v] : '';
             }
         }
 
-        /* build input */
+        /* Build input */
         $html = '<input type="hidden"';
         $html .= $this->build_inputGenericAttributes($params);
         $html .= ' value="'.$params['default'].'"';
         $html .= ' />';
 
-        /* send html code */
+        /* Send html code */
         return $html;
     }
 
@@ -1535,13 +1530,13 @@ class HTMLForm {
     protected function build_inputGenericAttributes($params) {
         $html = '';
         if ($params['name'] != '') {
-            if ($params['language'] == '')
-                $html .= ' name="'.$params['name'].'"';
-            else
-                $html .= ' name="'.$params['name'].'_'.$params['language'].'"';
+            $name = $params['name'];
+            if ($params['language'] != '')
+                $name .= '_'.$params['language'];
+            if ($params['allowMultiple'] == true)
+                $name .= '[]';
+             $html .= ' name="'.$name.'"';
         }
-        if ($params['allowMultiple'] == true)
-            $params['name'] .= '[]';
         if ($params['id'] != '')
             $html .= ' id="'.$params['id'].'"';
         if ($params['maxlength'] > 0)
@@ -1652,11 +1647,11 @@ class HTMLForm {
     private function check_inputsLimit($items=1, $name=false) {
         global $camyks;
 
-        /* check is limit has already been reached */
+        /* Check is limit has already been reached */
         if ($this->inputsLimitReached)
             return false;
 
-        /* check for unique items */
+        /* Check for unique items */
         if ($name !== false) {
             if (in_array($name, $this->inputsLimitUniques))
                 return true;
@@ -1667,13 +1662,13 @@ class HTMLForm {
         /* update count value */
         $this->inputsCount += $items;
 
-        /* check count value */
+        /* Check count value */
         if ($this->inputsLimit !== false and $this->inputsCount >= $this->inputsLimit) {
             $camyks->log_executionerror($this, 'Max inputs limit reached in form');
             return false;
         }
 
-        /* success */
+        /* Success */
         return true;
     }
 
@@ -1701,7 +1696,6 @@ class HTMLForm {
 
 /**
  * HTMLForm_hidden class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class HTMLForm_hidden {
     /**
@@ -1727,7 +1721,6 @@ final class HTMLForm_hidden {
      * @param string $name
      * @param mixed $value
      * @param string $id
-     * @return void
      */
     public function __construct($name, $value, $id='') {
         $this->name = $name;

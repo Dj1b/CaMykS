@@ -4,10 +4,10 @@
  * <br /> Interface to Stripe payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.4.1
  * @date Creation: May 2020
- * @date Modification: Sep 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Stripe version 7.54.0
@@ -18,27 +18,50 @@
  */
 final class StripePayment extends Input {
     /**
-     * var integer $_lastErrorCode
+     * @var string $stripeVersion
+     * @brief Indicate stripe version
+     */
+    private $stripeVersion = '2025-05-28.basil';
+
+    /**
+     * @var integer $_lastErrorCode
      * @brief Last error code.
      */
     private $_lastErrorCode = 0;
 
     /**
-     * var string $_lastErrorMsg
+     * @var string $_lastErrorMsg
      * @brief Last error message.
      */
     private $_lastErrorMsg = '';
 
     /**
-     * var array $params
+     * @var array $params
      * @brief Input parameters.
      */
     public $params = array();
 
     /**
+     * @var object $stripeClient
+     * @brief Loaded Stripe object.
+     */
+    private $stripeClient = null;
+
+    /**
+     * @var string $privateAPIKey
+     * @brief Loaded Stripe private API key.
+     */
+    private $privateAPIKey = null;
+
+    /**
+     * @var string $publicAPIKey
+     * @brief Loaded Stripe public API key.
+     */
+    private $publicAPIKey = null;
+
+    /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('StripePayment', $path_type);
@@ -56,7 +79,7 @@ final class StripePayment extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* Override input methods */
+    /* Mark: Override input methods */
 
     /**
      * Install input
@@ -93,15 +116,14 @@ final class StripePayment extends Input {
 
         $camyks->get_siteInit();
 
-        $action = isset($_REQUEST['action']);
+        $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 
         switch ($action) {
             case 'create-payment-intent': return $this->execute_request_createPaymentIntent();
         }
-
     }
 
-    /* Request mode methods */
+    /* Mark: Request mode methods */
 
     /**
      * Execute input in create payment intent mode.
@@ -116,25 +138,11 @@ final class StripePayment extends Input {
         /* Get back amount */
         $data = $camyks->get_sessionValue('StripePaymentData');
 
-        /* Load stripe */
-        $this->load_file('stripe-php/init.php');
-
-        /* Load API keys */
-        if ($this->get_configValue('runningMode') == 'production') {
-            $privateAPIKey = $this->get_configValue('productionAPIKey_private');
-            $publicAPIKey = $this->get_configValue('productionAPIKey_public');
-        } else {
-            $privateAPIKey = $this->get_configValue('testAPIKey_private');
-            $publicAPIKey = $this->get_configValue('testAPIKey_public');
-        }
-
-        $stripe = new \Stripe\StripeClient(array(
-            'api_key' => $privateAPIKey,
-            'stripe_version' => '2020-08-27',
-        ));
+        /* Load Stripe client */
+        $this->load_StripeClient();
 
         /* Create intent */
-        $intent = $stripe->paymentIntents->create(array(
+        $intent = $this->stripeClient->paymentIntents->create(array(
             'amount'    => $data['amount']*100,
             'currency'  => $data['currency'],
             // Verify your integration in this guide by including this parameter
@@ -143,7 +151,7 @@ final class StripePayment extends Input {
 
         /* Create output */
         $output = array(
-            'publishableKey'    => $publicAPIKey,
+            'publishableKey'    => $this->publicAPIKey,
             'clientSecret'      => $intent->client_secret,
         );
 
@@ -152,7 +160,49 @@ final class StripePayment extends Input {
         echo json_encode($output);
     }
 
-    /* execution methods */
+    /* Mark: Stripe loading methods */
+
+    /**
+     * Load Stripe client.
+     * @return void
+     */
+    public function load_StripeClient() {
+        /* Check client is already loaded */
+        if (!is_null($this->stripeClient))
+            return;
+
+        /* Load Stripe */
+        $this->load_file('stripe-php/init.php');
+
+        /* Load API keys */
+        $this->load_StripeAPIKeys();
+
+        /* Load Stripe object */
+        $this->stripeClient = new \Stripe\StripeClient(array(
+            'api_key' => $this->privateAPIKey,
+            'stripe_version' => $this->stripeVersion,
+        ));
+    }
+
+    /**
+     * Load Stripe API keys.
+     * @return void
+     */
+    private function load_StripeAPIKeys() {
+        if (!is_null($this->privateAPIKey))
+            return;
+
+        if ($this->get_configValue('runningMode') == 'production') {
+            $this->privateAPIKey = $this->get_configValue('productionAPIKey_private');
+            $this->publicAPIKey = $this->get_configValue('productionAPIKey_public');
+        } else {
+            $this->privateAPIKey = $this->get_configValue('testAPIKey_private');
+            $this->publicAPIKey = $this->get_configValue('testAPIKey_public');
+        }
+    }
+
+
+    /* Mark: Payment methods */
 
     /**
      * Prepare for payment.
@@ -189,11 +239,9 @@ final class StripePayment extends Input {
         $this->add_JSScript('var backURL_Response = "'.$params['backURL_Response'].'";');
 
         /* Add Stripe CSS */
-        $this->add_styleFile('global.css');
+        $this->add_styleFile('global.css?v=1.0.1');
         $this->add_styleFile('normalize.css');
     }
-
-    /* data query methods */
 
     /**
      * Load confirmation data Payzen instant notification.
@@ -258,7 +306,7 @@ final class StripePayment extends Input {
      * @return array
      */
     public function execute_checkout() {
-        $this->_transactionId = isset($_REQUEST['client_secret'])?$_REQUEST['client_secret']:'';
+        $this->_transactionId = isset($_REQUEST['client_secret']) ? $_REQUEST['client_secret'] : '';
         if (isset($_REQUEST['status']) and $_REQUEST['status'] === 'succeeded')
             return true;
         return false;
@@ -272,7 +320,284 @@ final class StripePayment extends Input {
         return $this->_transactionId;
     }
 
-    /* display methods */
+    /* Mark: Stripe customer related methods */
+
+    /**
+     * Send a customer in Stripe account.
+     * @param string $customerId
+     * @param array $customerData
+     * @return array
+     */
+    public function send_customer($customerId, $customerData) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Create customer on Stripe */
+        if (empty($customerId))
+            $result = $this->stripeClient->customers->create($customerData);
+        else
+            $result = $this->stripeClient->customers->update($customerId, $customerData);
+
+        /* Return result */
+        return $result;
+    }
+
+    /* Mark: Stripe customer tax id related methods */
+
+    /**
+     * Send a customer tax id in Stripe account.
+     * @param string $customerId
+     * @param array $taxIdData
+     * @return array
+     */
+    public function send_customerTaxId($customerId, $taxIdData) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load Stripe customer taxId */
+        $taxIds = $this->get_customerTaxIds($customerId);
+
+        /* Check taxId exists */
+        foreach ($taxIds as $taxId) {
+            if ($taxId['type'] != $taxIdData['type'])
+                continue;
+
+            if ($taxId['value'] == $taxIdData['value'])
+                return $taxId;
+            else {
+                $result = $this->delete_customerTaxId($customerId, $taxId['id']);
+                if ($result['deleted'] !== true)
+                    return false;
+            }
+        }
+
+        /* Create taxId */
+        $result = $this->create_customerTaxId($customerId, $taxIdData);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Load customer tax ids from Stripe account.
+     * @param string $customerId
+     * @param array $params
+     * @return array
+     */
+    public function get_customerTaxIds($customerId, $params=array()) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load customer tax ids from Stripe */
+        $result = $this->stripeClient->customers->allTaxIds($customerId, $params);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Delete a customer tax id in Stripe account.
+     * @param string $customerId
+     * @param string $taxIdId
+     * @return array
+     */
+    public function delete_customerTaxId($customerId, $taxIdId) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load customer tax ids from Stripe */
+        $result = $this->stripeClient->customers->deleteTaxId($customerId, $taxIdId);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Create a customer tax id in Stripe account.
+     * @param string $customerId
+     * @param array $taxIdData
+     * @return array
+     */
+    public function create_customerTaxId($customerId, $taxIdData) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Create customer tax id on Stripe */
+        $result = $this->stripeClient->customers->createTaxId($customerId, $taxIdData);
+
+        /* Return result */
+        return $result;
+    }
+
+    /* Mark: Stripe payment link related methods */
+
+    /**
+     * Return stripe payment link from product prices.
+     * @param array $sessionData
+     * @return array
+     */
+    public function get_paymentLink($sessionData) {
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Create checkout session on Stripe */
+        $result = $this->stripeClient->checkout->paymentLinks->create($sessionData);
+
+        /* Return result */
+        return $result;
+    }
+
+    /* Mark: Stripe checkout session related methods */
+
+    /**
+     * Send a checkout session in Stripe account.
+     * @param string $sessionId
+     * @param array $sessionData
+     * @return array
+     */
+    public function send_checkoutSession($sessionId, $sessionData) {
+        global $camyks;
+
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Create checkout session on Stripe */
+        if (empty($sessionId))
+            $result = $this->stripeClient->checkout->sessions->create($sessionData);
+        else
+            $result = $this->stripeClient->checkout->sessions->update($sessionId, $sessionData);
+
+        /* Save SessionId */
+        $camyks->set_sessionValue('StripeSessionId', $result['id']);
+
+        /* Return result */
+        return $result;
+    }
+
+    /**
+     * Initialise Stripe checkout session in embedded mode.
+     * @param array $params
+     * @return void
+     */
+    public function create_embeddedCheckoutSession($params=array()) {
+        global $camyks;
+
+        /* Load API keys */
+        $this->load_StripeAPIKeys();
+
+        /* Build default parameters */
+        $defaultParams = array('SessionDataURL'=>'', 'CheckoutBox'=>'');
+
+        /* Merge params */
+        $params = array_merge($defaultParams, $params);
+
+        /* Load Stripe client side script */
+        $camyks->HTMLPage->add_JSFile('https://js.stripe.com/basil/stripe.js');
+
+        /* Add client side scripts */
+        $camyks->HTMLPage->add_JSLoadScript('stripe = Stripe("'.$this->publicAPIKey.'");');
+        $camyks->HTMLPage->add_JSLoadScript('initialise_StripeCheckout();');
+
+        $camyks->HTMLPage->add_JSScript('async function initialise_StripeCheckout() {');
+        $camyks->HTMLPage->add_JSScript('   const fetchClientSecret = async () => {');
+        $camyks->HTMLPage->add_JSScript('       const response = await fetch("'.$params['SessionDataURL'].'", {');
+        $camyks->HTMLPage->add_JSScript('           method: "POST",');
+        $camyks->HTMLPage->add_JSScript('       });');
+        $camyks->HTMLPage->add_JSScript('       const { clientSecret } = await response.json();');
+        $camyks->HTMLPage->add_JSScript('       return clientSecret;');
+        $camyks->HTMLPage->add_JSScript('   };');
+        $camyks->HTMLPage->add_JSScript('   const checkout = await stripe.initEmbeddedCheckout({');
+        $camyks->HTMLPage->add_JSScript('       fetchClientSecret,');
+        $camyks->HTMLPage->add_JSScript('   });');
+        $camyks->HTMLPage->add_JSScript('   checkout.mount("#'.$params['CheckoutBox'].'");');
+        $camyks->HTMLPage->add_JSScript('}');
+    }
+
+    /**
+     * Check status from a Stripe checkout session in embedded mode.
+     * @return void
+     */
+    public function check_embeddedCheckoutSessionStatus() {
+        global $camyks;
+
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load data from stream */
+        $jsonStr = file_get_contents('php://input');
+        $jsonObj = json_decode($jsonStr);
+
+        /* Check session id */
+        if (!isset($jsonObj->session_id))
+            return array('status' => 'error');
+
+        /* Retreive session */
+        $session = $this->stripeClient->checkout->sessions->retrieve($jsonObj->session_id);
+
+        /* Return session */
+        return $session;
+    }
+
+    /**
+     * Receive client side result from a Stripe Checkout session in embedded mode.
+     * @param array $params
+     * @return void
+     */
+    public function check_embeddedCheckoutSessionResult($params) {
+        global $camyks;
+
+        /* Build default parameters */
+        $defaultParams = array('SessionStatusURL'=>'', 'SessionId'=>'', 'OpenAction'=>'', 'CompleteAction'=>'');
+
+        /* Merge params */
+        $params = array_merge($defaultParams, $params);
+
+        /* Check SessionId */
+        if (empty($params['SessionId']))
+            $params['SessionId'] = $camyks->get_sessionValue('StripeSessionId');
+
+        /* Add client side scripts */
+        $camyks->HTMLPage->add_JSLoadScript('result_StripeCheckout();');
+
+        $camyks->HTMLPage->add_JSScript('async function result_StripeCheckout() {');
+        $camyks->HTMLPage->add_JSScript('   const response = await fetch("'.$params['SessionStatusURL'].'", {');
+        $camyks->HTMLPage->add_JSScript('       headers: {');
+        $camyks->HTMLPage->add_JSScript('           "Accept": "application/json",');
+        $camyks->HTMLPage->add_JSScript('           "Content-Type": "application/json",');
+        $camyks->HTMLPage->add_JSScript('       },');
+        $camyks->HTMLPage->add_JSScript('       method: "POST",');
+        $camyks->HTMLPage->add_JSScript('       body: JSON.stringify({ session_id: "'.$params['SessionId'].'"}),');
+        $camyks->HTMLPage->add_JSScript('   });');
+        $camyks->HTMLPage->add_JSScript('   const session = await response.json();');
+        $camyks->HTMLPage->add_JSScript('   if (session.status == \'open\') {');
+        $camyks->HTMLPage->add_JSScript('       '.$params['OpenAction']);
+        $camyks->HTMLPage->add_JSScript('   } else if (session.status == \'complete\') {');
+        $camyks->HTMLPage->add_JSScript('       '.$params['CompleteAction']);
+        $camyks->HTMLPage->add_JSScript('   }');
+        $camyks->HTMLPage->add_JSScript('}');
+    }
+
+    /* Mark: Stripe invoice related methods */
+
+    /**
+     * Get invoice list from Stripe.
+     * @param array $params
+     * @return void
+     */
+    public function get_invoiceList($params) {
+        global $camyks;
+
+        /* Load Stripe client */
+        $this->load_StripeClient();
+
+        /* Load invoices list */
+        $list = $this->stripeClient->invoices->all($params);
+
+        /* Return list */
+        return $list;
+    }
+
+    /* Mark: Display methods */
 
     /**
      * Return manual transfer link.
@@ -284,7 +609,7 @@ final class StripePayment extends Input {
         return '';
     }
 
-    /* error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -314,7 +639,7 @@ final class StripePayment extends Input {
         return $this->_lastErrorMsg;
     }
 
-    /* Configuration related methods */
+    /* Mark: Configuration related methods */
 
     /**
      * Load plugin configuration
@@ -339,7 +664,7 @@ final class StripePayment extends Input {
         return $this->config->get_value($name, $default);
     }
 
-    /* Specific tool methods */
+    /* Mark: Private tool methods */
 
     /**
      * Install .htaccess rules.
@@ -349,7 +674,7 @@ final class StripePayment extends Input {
         return $this->add_toHtaccess('RewriteRule ^stripe.([a-z0-9\-]*)$ request.php?input='.$this->name.'&action=$1');
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

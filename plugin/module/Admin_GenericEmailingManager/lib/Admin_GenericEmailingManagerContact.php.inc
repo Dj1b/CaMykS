@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericEmailingManager Module, contact library.
- * @details Plugin, Module Library
+ * @brief Admin_GenericEmailingManager module, contact library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Dec 2012
- * @date Modification: Nov 2022
- * @copyright 2012 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2012 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -40,7 +39,7 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Build sql condition for lists.
@@ -84,7 +83,7 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
         return true;
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return object status list.

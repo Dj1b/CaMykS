@@ -3,10 +3,10 @@
  * @brief Content_GenericPetitionViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Sep 2010
- * @date Modification: May 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,7 +18,6 @@ final class Content_GenericPetitionViewer extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Content_GenericPetitionViewer', $path_type);
@@ -42,7 +41,7 @@ final class Content_GenericPetitionViewer extends Module {
         $this->configItem = new Content_GenericPetitionViewerItem(0, $this);
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -206,7 +205,7 @@ final class Content_GenericPetitionViewer extends Module {
         parent::init_site();
     }
 
-    /* Specific mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module in admin / edit mode.
@@ -288,6 +287,8 @@ final class Content_GenericPetitionViewer extends Module {
         $this->set_selectedLayout('admin_message.html.inc', 'camyks');
     }
 
+    /* Mark: Attribute values methods */
+
     /**
      * Return layout list.
      * @return array
@@ -296,7 +297,7 @@ final class Content_GenericPetitionViewer extends Module {
         return array('nobox'=>$this->get_translation('layout_nobox'));
     }
 
-    /* Specific tool methods in site mode */
+    /* Mark: Specific tool methods */
 
     /**
      * Load blog manager module.

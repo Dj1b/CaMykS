@@ -3,12 +3,11 @@
  * @brief GenericSitemapGenerator Input
  * <br />Default sitemap generator.
  * @details Plugin / Input Engine
- * @file plugin/input/GenericSitemapGenerator/GenericSitemapGenerator.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Feb 2019
- * @date Modification: Apr 2019
- * @copyright 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Create other update methods: module reading on demand, and website crawling.
@@ -23,7 +22,6 @@ final class GenericSitemapGenerator extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('GenericSitemapGenerator', $path_type);
@@ -47,7 +45,7 @@ final class GenericSitemapGenerator extends Input {
         $this->register_asCaMykSEventHandler('onInitialise');
     }
 
-    /* Override Input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.
@@ -85,7 +83,7 @@ final class GenericSitemapGenerator extends Input {
         die();
     }
 
-    /* Override Plugin methods */
+    /* Mark: Override Plugin methods */
 
     /**
      * Execute handler on CaMykS initialisation.
@@ -126,7 +124,7 @@ final class GenericSitemapGenerator extends Input {
         $this->write_file($content);
     }
 
-    /* Specific request mode methods */
+    /* Mark: Specific request mode methods */
 
     /**
      * Execute Input object in request / write sitemap mode.
@@ -159,8 +157,7 @@ final class GenericSitemapGenerator extends Input {
         die();
     }
 
-
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Load configuration.
@@ -265,7 +262,7 @@ final class GenericSitemapGenerator extends Input {
         return $content;
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

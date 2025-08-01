@@ -3,19 +3,17 @@
  * @brief GenericPageController Input
  * <br /> Automatically display paging system to navigate inside long lists of elements.
  * @details Plugin / Input Engine
- * @file plugin/input/GenericPageController/GenericPageController.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jan 2010
- * @date Modification: Apr 2019
- * @copyright 2010 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * GenericPageController Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class GenericPageController extends Input {
     /**
@@ -43,14 +41,12 @@ final class GenericPageController extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('GenericPageController', $path_type);
-        /* set plugin version */
-        $this->version = '1.0';
 
-        /* set plugin package */
+        /* Override Plugin variables */
+        $this->version = '1.0';
         $this->plugin_package = 'Generic';
 
         /* set plugin author */
@@ -59,7 +55,7 @@ final class GenericPageController extends Input {
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise input.
@@ -118,7 +114,7 @@ final class GenericPageController extends Input {
             $this->params['hideEmpty'] = 0;
     }
 
-    /* Specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Return page URL

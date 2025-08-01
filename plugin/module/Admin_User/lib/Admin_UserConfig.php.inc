@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_User Module configuration library.
+ * @brief Admin_User module, configuration library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,8 +18,7 @@ final class Admin_UserConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -32,7 +31,7 @@ final class Admin_UserConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Admin management dedicated methods */
+    /* Mark: Admin management dedicated methods */
 
     /**
      * Return available 2 factor input list for authentication.

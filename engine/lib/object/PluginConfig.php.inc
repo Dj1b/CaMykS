@@ -3,17 +3,16 @@
  * @brief PluginConfig library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2.1
  * @date Creation: Oct 2017
- * @date Modification: Jan 2023
- * @copyright 2017 - 2023 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * PluginConfig class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 abstract class PluginConfig {
     /**
@@ -247,7 +246,15 @@ abstract class PluginConfig {
         return $this->_libItems[$param]->check_value($this->vars[$param]);
     }
 
-    /* tool methods */
+    /**
+     * Check if config object is loaded.
+     * @return boolean result
+     */
+    public function is_loaded() {
+        return !is_null($this->vars);
+    }
+
+    /* Mark: Tool methods */
 
     /**
      * Return locale
@@ -259,7 +266,7 @@ abstract class PluginConfig {
         return $this->_libParent->get_translation($str, $args);
     }
 
-    /* Session related methods */
+    /* Mark: Session related methods */
 
     /**
      * Load object data from session.

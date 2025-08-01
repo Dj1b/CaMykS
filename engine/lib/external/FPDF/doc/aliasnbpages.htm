@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AliasNbPages</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
@@ -9,28 +9,28 @@
 <h1>AliasNbPages</h1>
 <code>AliasNbPages([<b>string</b> alias])</code>
 <h2>Description</h2>
-Définit un alias pour le nombre total de pages. Cet alias sera substitué lors de la fermeture
+DÃ©finit un alias pour le nombre total de pages. Cet alias sera substituÃ© lors de la fermeture
 du document.
-<h2>Paramètres</h2>
+<h2>ParamÃ¨tres</h2>
 <dl class="param">
 <dt><code>alias</code></dt>
 <dd>
-L'alias. Valeur par défaut : <code>{nb}</code>.
+L'alias. Valeur par dÃ©faut : <code>{nb}</code>.
 </dd>
 </dl>
 <h2>Exemple</h2>
 <div class="doc-source">
 <pre><code>class PDF extends FPDF
 {
-function Footer()
-{
-    // Positionnement à 1,5 cm du bas
-    $this-&gt;SetY(-15);
-    // Police Arial italique 8
-    $this-&gt;SetFont('Arial','I',8);
-    // Numéro et nombre de pages
-    $this-&gt;Cell(0,10,'Page '.$this-&gt;PageNo().'/{nb}',0,0,'C');
-}
+    function Footer()
+    {
+        // Positionnement Ã  1,5 cm du bas
+        $this-&gt;SetY(-15);
+        // Police Arial italique 8
+        $this-&gt;SetFont('Arial', 'I', 8);
+        // NumÃ©ro et nombre de pages
+        $this-&gt;Cell(0, 10, 'Page '.$this-&gt;PageNo().'/{nb}', 0, 0, 'C');
+    }
 }
 
 $pdf = new PDF();

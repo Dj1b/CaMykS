@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_PluginManager Module plugin information library.
+ * @brief Admin_PluginManager module, plugin information library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Oct 2008
- * @date Modification: Nov 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -37,7 +37,6 @@ final class Admin_PluginManagerItem {
      * Class constructor.
      * @param integer $id
      * @param module $parent
-     * @return void
      */
     public function __construct($id=0, $parent=null) {
         $this->id = $id;

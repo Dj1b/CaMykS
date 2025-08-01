@@ -2,10 +2,7 @@
 
 namespace Stripe\Util;
 
-use ArrayIterator;
-use IteratorAggregate;
-
-class Set implements IteratorAggregate
+class Set implements \IteratorAggregate
 {
     private $_elts;
 
@@ -37,8 +34,12 @@ class Set implements IteratorAggregate
         return \array_keys($this->_elts);
     }
 
+    /**
+     * @return \ArrayIterator
+     */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
-        return new ArrayIterator($this->toArray());
+        return new \ArrayIterator($this->toArray());
     }
 }

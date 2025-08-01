@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AddPage</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
@@ -9,31 +9,31 @@
 <h1>AddPage</h1>
 <code>AddPage([<b>string</b> orientation [, <b>mixed</b> size [, <b>int</b> rotation]]])</code>
 <h2>Description</h2>
-Ajoute une nouvelle page au document. Si une page était en cours, la méthode Footer() est
-appelée pour traiter le pied de page. Puis la page est ajoutée, la position courante
-mise en haut à gauche en fonction des marges gauche et haute, et Header() est appelée
-pour afficher l'en-tête.
+Ajoute une nouvelle page au document. Si une page Ã©tait en cours, la mÃ©thode Footer() est
+appelÃ©e pour traiter le pied de page. Puis la page est ajoutÃ©e, la position courante
+mise en haut Ã  gauche en fonction des marges gauche et haute, et Header() est appelÃ©e
+pour afficher l'en-tÃªte.
 <br>
-La police qui était en cours au moment de l'appel est automatiquement restaurée. Il n'est
-donc pas nécessaire d'appeler à nouveau SetFont() si vous souhaitez continuer avec la même
-police. Même chose pour les couleurs et l'épaisseur du trait.
+La police qui Ã©tait en cours au moment de l'appel est automatiquement restaurÃ©e. Il n'est
+donc pas nÃ©cessaire d'appeler Ã  nouveau SetFont() si vous souhaitez continuer avec la mÃªme
+police. MÃªme chose pour les couleurs et l'Ã©paisseur du trait.
 <br>
-L'origine du système de coordonnées est en haut à gauche et les ordonnées croissantes vont
+L'origine du systÃ¨me de coordonnÃ©es est en haut Ã  gauche et les ordonnÃ©es croissantes vont
 vers le bas.
-<h2>Paramètres</h2>
+<h2>ParamÃ¨tres</h2>
 <dl class="param">
 <dt><code>orientation</code></dt>
 <dd>
-Orientation de la page. Les valeurs possibles sont (indépendamment de la casse) :
+Orientation de la page. Les valeurs possibles sont (indÃ©pendamment de la casse) :
 <ul>
 <li><code>P</code> ou <code>Portrait</code></li>
 <li><code>L</code> ou <code>Landscape</code></li>
 </ul>
-La valeur par défaut est celle indiquée dans le constructeur.
+La valeur par dÃ©faut est celle indiquÃ©e dans le constructeur.
 </dd>
 <dt><code>size</code></dt>
 <dd>
-Format de la page. Il peut s'agir d'une des valeurs ci-dessous (indépendamment de la casse) :
+Format de la page. Il peut s'agir d'une des valeurs ci-dessous (indÃ©pendamment de la casse) :
 <ul>
 <li><code>A3</code></li>
 <li><code>A4</code></li>
@@ -41,14 +41,14 @@ Format de la page. Il peut s'agir d'une des valeurs ci-dessous (indépendamment d
 <li><code>Letter</code></li>
 <li><code>Legal</code></li>
 </ul>
-ou bien d'un tableau contenant la largeur et la hauteur (exprimées en unité utilisateur).<br>
+ou bien d'un tableau contenant la largeur et la hauteur (exprimÃ©es en unitÃ© utilisateur).<br>
 <br>
-La valeur par défaut est celle indiquée dans le constructeur.
+La valeur par dÃ©faut est celle indiquÃ©e dans le constructeur.
 </dd>
 <dt><code>rotation</code></dt>
 <dd>
-Angle de rotation de la page. La valeur doit être un multiple de 90 ; la rotation se fait
-dans le sens horaire. La valeur par défaut est <code>0</code>.
+Angle de rotation de la page. La valeur doit Ãªtre un multiple de 90 ; la rotation se fait
+dans le sens horaire. La valeur par dÃ©faut est <code>0</code>.
 </dd>
 </dl>
 <h2>Voir</h2>

@@ -2,12 +2,11 @@
 /**
  * @brief France related methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/france.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Apr 2017
- * @date Modification: Jul 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -37,7 +36,7 @@ function france_isValidPhoneNumber($number, $params=array()) {
             return false;
 
     } else {
-        /* check locale format */
+        /* check local format */
         $number = preg_replace ('/[^0-9]/', '', $number);
 
         if (strlen($number) != 10)
@@ -281,5 +280,16 @@ function france_getHolidayList($year=null) {
 
     /* Return list */
     return $list;
+}
+
+/**
+ * Return French company international VAT Number from its SIREN.
+ * @param string $siren
+ * @return string
+ */
+function france_getIntlVATFromSiren($siren) {
+    $key = "".($siren % 97 * 3 + 12) % 97;
+    $key = str_pad($key, 2, "0", STR_PAD_LEFT);
+    return 'FR'.$key.$siren;
 }
 ?>

@@ -4,10 +4,10 @@
  * <br /> To be extended by specific database connection objects.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Sep 2014
- * @date Modification: Sep 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -42,7 +42,6 @@ abstract class CDBConnection {
 
     /**
      * Class constructor.
-     * @return void
      */
     public function __construct() {}
 

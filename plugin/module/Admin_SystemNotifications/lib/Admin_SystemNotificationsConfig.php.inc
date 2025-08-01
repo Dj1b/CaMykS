@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_SystemNotifications Module configuration library
+ * @brief Admin_SystemNotifications module, configuration library.
  * @details Plugin / Module Library
- * @file plugin/module/Admin_SystemNotifications/lib/Admin_SystemNotificationsConfig.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2017
- * @date Modification: May 2019
- * @copyright 2017 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Access authentication values <br />
@@ -24,7 +23,6 @@ final class Admin_SystemNotificationsConfig extends ModuleConfig {
      * Class constructor.
      * @param string $name
      * @param Module $parent
-     * @return void
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -47,7 +45,7 @@ final class Admin_SystemNotificationsConfig extends ModuleConfig {
         parent::init_config();
     }
 
-    /* Override Module Config methods */
+    /* Mark: Override Module Config methods */
 
     /**
      * Load object from header.
@@ -66,7 +64,7 @@ final class Admin_SystemNotificationsConfig extends ModuleConfig {
         $this->vars['running_cache'] = $cache;
     }
 
-    /* Specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Return module mode values.

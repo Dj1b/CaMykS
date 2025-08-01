@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_MonitoringUserAgentChecker Module record list parameters
- * @details Plugin, Module Library
- * @file plugin/module/Admin_MonitoringUserAgentChecker/lib/Admin_MonitoringUserAgentCheckerRecordListParams.php.inc
+ * @brief Admin_MonitoringUserAgentChecker module, record list parameters.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.5.1
  * @date Creation: Dec 2014
- * @date Modification: Dec 2019
- * @copyright 2014 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,16 +18,16 @@ $this->viewRecordLink = $this->get_adminLink(array('mode'=>'view_record', 'recor
 $this->recordStatusList = $this->get_recordStatusList();
 $this->recordStatusIconList = $this->get_recordStatusIconList();
 
-/* build links */
+/* Build links */
 $this->editRecordLink = $this->get_adminLink(array('mode'=>'edit_record', 'record_id'=>'%s'));
 $this->deleteRecordLink = 'javascript:adminengine_confirmRedirect(deleteRecordUrl+%s, deleteRecordMessage);';
 $this->add_JSScript('var deleteRecordMessage="'.string_html2Text($this->get_translation('deleterecordmessage')).'";');
 $this->add_JSScript('var deleteRecordUrl="'.$this->get_adminJSLink(array('mode'=>'delete_record', 'record_id'=>'')).'";');
 
-/* build main parameters */
+/* Build main parameters */
 $this->recordListParams = array('name'=>'recordList', 'useSession'=>true, 'object'=>&$this->recordItem, 'language'=>$this->language);
 
-/* build head parameters */
+/* Build head parameters */
 $this->recordListParams['headselectors'] = array(
     'page'          => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
     'status'        => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->recordStatusList, 'default'=>'-1'),
@@ -36,10 +35,10 @@ $this->recordListParams['headselectors'] = array(
     'platform_type' => array('title'=>$this->get_translation('formitem_platform_type'), 'itemtype'=>'select', 'values'=>$this->recordTypeListAll, 'default'=>'-1'),
 );
 
-/* build sort parameters */
+/* Build sort parameters */
 $this->recordListParams['sort'] = array('allowed'=>false, 'default'=>'lvisit', 'defaultway'=>'desc');
 
-/* build column parameters */
+/* Build column parameters */
 $this->recordListParams['listcolumns'] = array(
     'selection'     => array('title'=>'', 'columntype'=>'checkbox'),
     'status'        => array('title'=>' ', 'columntype'=>'list', 'values'=>$this->recordStatusIconList, 'class'=>'eTableIconCell'),
@@ -54,5 +53,4 @@ $this->recordListParams['listcolumns'] = array(
 $this->recordListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewrecord'), 'icon'=>'plus', 'url_value'=>'javascript:adminengine_modalPopupOpen(\'admin_genericuseragentmanager_addpopup\');', 'titlecolumn'=>'user_agent', 'buttoncolumn'=>'edit'));
 $this->recordListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editRecordLink, 'url_title'=>$this->get_translation('editrecord'));
 $this->recordListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteRecordLink, 'url_title'=>$this->get_translation('deleterecord'));
-
 ?>

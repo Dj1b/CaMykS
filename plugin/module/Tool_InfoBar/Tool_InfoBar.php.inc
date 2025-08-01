@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief Tool_InfoBar Module
+ * @brief Tool_InfoBar module.
  * <br /> System module used as header of admin section.
  * @details Plugin / Module Engine
- * @file plugin/module/Tool_InfoBar/Tool_InfoBar.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Oct 2005
- * @date Modification: May 2019
- * @copyright 2005 - 2019 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -33,7 +32,6 @@ final class Tool_InfoBar extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Tool_InfoBar', $path_type);
@@ -51,7 +49,7 @@ final class Tool_InfoBar extends Module {
         $this->authors_group = 'camyks.net';
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Initialise module object in admin mode
@@ -98,7 +96,7 @@ final class Tool_InfoBar extends Module {
         }
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin mode initialise sub methods */
 
     /**
      * Initialise module object in admin user logged mode.
@@ -222,7 +220,7 @@ final class Tool_InfoBar extends Module {
         $this->set_selectedLayout('adminnobody.html.inc');
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Register a menu.

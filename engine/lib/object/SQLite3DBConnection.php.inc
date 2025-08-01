@@ -3,10 +3,10 @@
  * @brief SQLite3 Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Nov 2017
- * @date Modification: Sep 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Complete dump_database() and get_databaseSummary() methods.
@@ -36,7 +36,6 @@ final class SQLite3DBConnection extends CDBConnection {
 
     /**
      * Class constructor.
-     * @return void
      */
     public function __construct() {
         global $camyks;
@@ -47,7 +46,7 @@ final class SQLite3DBConnection extends CDBConnection {
         $this->connection = null;
     }
 
-    /* server related methods */
+    /* Mark: Server related methods */
 
     /**
      * Connect to server.
@@ -85,7 +84,7 @@ final class SQLite3DBConnection extends CDBConnection {
         return $version['versionString'];
     }
 
-    /* database related methods */
+    /* mark: Database related methods */
 
     /**
      * Select database.
@@ -176,7 +175,7 @@ final class SQLite3DBConnection extends CDBConnection {
         return $summary;
     }
 
-    /* table related methods */
+    /* Mark: Table related methods */
 
     /**
      * Return available table list.
@@ -247,7 +246,7 @@ final class SQLite3DBConnection extends CDBConnection {
         return ($this->execute_query($sql) or $camyks->log_sqlerror($this, $sql, __FILE__, __LINE__));
     }
 
-    /* query related methods */
+    /* mark: Query related methods */
 
     /**
      * Eexecute query.
@@ -359,7 +358,7 @@ final class SQLite3DBConnection extends CDBConnection {
         return true;
     }
 
-    /* data related methods */
+    /* Mark Data related methods */
 
     /**
      * Return escaped string.
@@ -395,7 +394,7 @@ final class SQLite3DBConnection extends CDBConnection {
         return '';
     }
 
-    /* private tool methods */
+    /* Mark: Private tool methods */
 
     /**
      * Return full database path.

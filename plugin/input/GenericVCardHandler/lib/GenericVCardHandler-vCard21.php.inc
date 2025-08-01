@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief GenericVCardHandler Input library to manage VCard 2.1 format
+ * @brief GenericVCardHandler input, VCard 2.1 format library.
  * @details Plugin / Input Library
- * @file plugin/input/GenericVCardHandler/lib/GenericVCardHandler-vCard21.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2014
- * @date Modification: Jul 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,14 +19,13 @@ final class GenericVCardHandler_vCard21 {
      * Class constructor.
      * @param Object $parent
      * @param array $params
-     * @return void
      */
     public function __construct($parent, $params) {
         $this->parentInput = $parent;
         $this->params = $params;
     }
 
-    /* specific action methods */
+    /* Mark: Specific action methods */
 
     /**
      * Export vCard

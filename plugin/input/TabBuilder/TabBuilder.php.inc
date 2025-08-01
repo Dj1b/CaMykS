@@ -3,12 +3,11 @@
  * @brief TabBuilder Input
  * <br /> Manages tabs.
  * @details Plugin / Input Engine
- * @file plugin/input/TabBuilder/TabBuilder.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Sep 2008
- * @date Modification: Jul 2018
- * @copyright 2008 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,22 +31,21 @@ final class TabBuilder extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('TabBuilder', $path_type);
 
-        /* overwrite Plugin information */
+        /* Override Plugin information */
         $this->version = '1.0';
         $this->plugin_package = 'Default';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite Input methods */
+    /* Mark: Override Input methods */
 
     /**
      * Initialise object.
@@ -83,7 +81,7 @@ final class TabBuilder extends Input {
         );
     }
 
-    /* specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Add a single tab to tab list.

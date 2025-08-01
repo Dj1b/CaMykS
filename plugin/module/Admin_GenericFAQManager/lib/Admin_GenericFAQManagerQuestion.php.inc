@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericFAQManager Module question library.
+ * @brief Admin_GenericFAQManager module, question library.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Feb 2020
- * @date Modification: Jan 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -38,7 +37,7 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary method */
+    /* Mark: Override ModuleLibrary method */
 
     /**
      * Check object data.
@@ -78,7 +77,7 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Data related methods */
+    /* Mark: Data related methods */
 
     /**
      * Return single object status list
@@ -111,11 +110,11 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
         return $list;
     }
 
-    /* Multi-object methods */
+    /* Mark: Multi-object methods */
 
     /**
      * Return default parameters.
-     * @param array
+     * @return array
      */
     private function get_defaultParams() {
         return array(
@@ -189,6 +188,8 @@ final class Admin_GenericFAQManagerQuestion extends ModuleLibrary {
         $where = $this->build_whereStatement($params);
         return $this->get_nameList('title', $where, $params['language']);
     }
+
+    /* Mark: Position related methods */
 
     /**
      * Return object new position.

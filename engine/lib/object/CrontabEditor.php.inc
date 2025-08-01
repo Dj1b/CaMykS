@@ -4,10 +4,10 @@
  * <br /> Allows websites to add/edit/remove cron jobs from Apache crontab.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.2
+ * @version 1.0.0.3
  * @date Creation: Oct 2021
- * @date Modification: Feb 2022
- * @copyright 2021 - 2022 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -37,7 +37,6 @@ final class CrontabEditor {
 
     /**
      * Class constructor.
-     * @return void
      */
     public function __construct() {
         /* Load current jobs */
@@ -46,7 +45,6 @@ final class CrontabEditor {
 
     /**
      * Class destructor.
-     * @return void
      */
     public function __destruct() {
         /* Save jobs if changed */
@@ -356,7 +354,6 @@ final class CrontabJob {
      * Class constructor.
      * @param mixed $details
      * @param string $identifier
-     * @return void
      */
     public function __construct($details=null, $identifier=null) {
         /* Set up values */

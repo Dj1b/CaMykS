@@ -1,53 +1,64 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>AddFont</title>
 <link type="text/css" rel="stylesheet" href="../fpdf.css">
 </head>
 <body>
 <h1>AddFont</h1>
-<code>AddFont(<b>string</b> family [, <b>string</b> style [, <b>string</b> file]])</code>
+<code>AddFont(<b>string</b> family [, <b>string</b> style [, <b>string</b> file [, <b>string</b> dir]]])</code>
 <h2>Description</h2>
-Importe une police TrueType, OpenType ou Type1 et la rend disponible. Il faut au préalable avoir généré
-un fichier de définition de police avec l'utilitaire MakeFont.
+Importe une police TrueType, OpenType ou Type1 et la rend disponible. Il faut au prÃ©alable avoir gÃ©nÃ©rÃ©
+un fichier de dÃ©finition de police avec l'utilitaire MakeFont.
 <br>
-Le fichier de définition (ainsi que le fichier de police en cas d'incorporation) doit être présent
-dans le répertoire des polices. S'il n'est pas trouvé, l'erreur "Could not include font definition file"
-est renvoyée.
-<h2>Paramètres</h2>
+<br>
+Le fichier de dÃ©finition (ainsi que le fichier de police en cas d'incorporation) doit Ãªtre prÃ©sent dans :
+<ul>
+<li>Le rÃ©pertoire indiquÃ© par le quatriÃ¨me paeamÃ¨tre (si ce paramÃ¨tre est renseignÃ©)</li>
+<li>Le rÃ©pertoire indiquÃ© par la constante <code>FPDF_FONTPATH</code> (si cette constante est dÃ©finie)</li>
+<li>Le rÃ©pertoire <code>font</code> situÃ© dans le rÃ©pertoire de <code>fpdf.php</code></li>
+</ul>
+Si le fichier n'est pas trouvÃ©, l'erreur "Could not include font definition file" est gÃ©nÃ©rÃ©e.
+<h2>ParamÃ¨tres</h2>
 <dl class="param">
 <dt><code>family</code></dt>
 <dd>
-Famille de la police. Le nom peut être choisi arbitrairement. S'il est celui d'une famille
-standard, la police correspondante sera masquée.
+Famille de la police. Le nom peut Ãªtre choisi arbitrairement. S'il s'agit de celui d'une famille
+standard, la police correspondante sera masquÃ©e.
 </dd>
 <dt><code>style</code></dt>
 <dd>
-Style de la police. Les valeurs possibles sont (indépendamment de la casse) :
+Style de la police. Les valeurs possibles sont (indÃ©pendamment de la casse) :
 <ul>
-<li>chaîne vide : normal</li>
+<li>chaÃ®ne vide : normal</li>
 <li><code>B</code> : gras</li>
 <li><code>I</code> : italique</li>
 <li><code>BI</code> ou <code>IB</code> : gras italique</li>
 </ul>
-La valeur par défaut est le style normal.
+La valeur par dÃ©faut est le style normal.
 </dd>
 <dt><code>file</code></dt>
 <dd>
-Le fichier de définition de police.
+Le fichier de dÃ©finition de police.
 <br>
-Par défaut, le nom est construit à partir du nom de la famille et du style, en minuscules et
+Par dÃ©faut, le nom est construit Ã  partir du nom de la famille et du style, en minuscules et
 sans espace.
+</dd>
+<dt><code>dir</code></dt>
+<dd>
+Le rÃ©pertoire dans lequel se trouve le fichier de dÃ©finition.
+<br>
+Si non renseignÃ©, le rÃ©pertoire par dÃ©faut est utilisÃ©.
 </dd>
 </dl>
 <h2>Exemple</h2>
 <div class="doc-source">
-<pre><code>$pdf-&gt;AddFont('Comic','I');</code></pre>
+<pre><code>$pdf-&gt;AddFont('Comic', 'I');</code></pre>
 </div>
-est équivalent à :
+est Ã©quivalent Ã  :
 <div class="doc-source">
-<pre><code>$pdf-&gt;AddFont('Comic','I','comici.php');</code></pre>
+<pre><code>$pdf-&gt;AddFont('Comic', 'I', 'comici.php');</code></pre>
 </div>
 <h2>Voir</h2>
 <a href="setfont.htm">SetFont</a>

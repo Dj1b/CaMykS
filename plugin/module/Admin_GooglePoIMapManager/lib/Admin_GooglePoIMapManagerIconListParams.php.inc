@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GooglePoIMapManager Module icon list parameters.
- * @details Plugin, Module Library
+ * @brief Admin_GooglePoIMapManager module, icon list parameters.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2010
- * @date Modification: Feb 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -33,7 +33,7 @@ $this->iconListParams['listcolumns'] = array(
 );
 
 if ($this->check_right(2)) {
-    $this->iconListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewicon'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editIconLink, 0), 'titlecolumn'=>'name', 'buttoncolumn'=>'edit'));
+    $this->iconListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewicon'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editIconLink, array(0=>0)), 'titlecolumn'=>'name', 'buttoncolumn'=>'edit'));
     $this->iconListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editIconLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editicon'));
     $this->iconListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteIconLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deleteicon'), 'condition'=>'is_deletable');
 }

@@ -3,32 +3,28 @@
  * @brief PageChooser Input
  * <br /> Open a request popup window with Admin_ContentPage in request mode.
  * @details Plugin / Input Engine
- * @file plugin/input/PageChooser/PageChooser.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2007
- * @date Modification: Apr 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * PageChooser Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class PageChooser extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
-    function __construct($path_type) {
+    public function __construct($path_type) {
         parent::__construct('PageChooser', $path_type);
-        /* set plugin version */
-        $this->version = '1.0';
 
-        /* set plugin package */
+        /* Override Plugin variables */
+        $this->version = '1.0';
         $this->plugin_package = 'Default';
 
         /* set plugin author */
@@ -37,7 +33,7 @@ final class PageChooser extends Input {
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -60,7 +56,7 @@ final class PageChooser extends Input {
         parent::initialise();
     }
 
-    /* specific methods */
+    /* Mark: Specific methods */
 
     /**
      * Return input object link.

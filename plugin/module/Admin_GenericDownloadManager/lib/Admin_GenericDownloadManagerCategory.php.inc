@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GenericDownloadManager Module category library
- * @details Plugin, Module Library
+ * @brief Admin_GenericDownloadManager module, category library.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2008
- * @date Modification: Dec 2020
- * @copyright 2008 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,7 +19,6 @@ final class Admin_GenericDownloadManagerCategory extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
@@ -35,7 +34,7 @@ final class Admin_GenericDownloadManagerCategory extends ModuleLibrary {
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Build SQL condition for lists
@@ -48,7 +47,7 @@ final class Admin_GenericDownloadManagerCategory extends ModuleLibrary {
         return '';
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Is category deletable

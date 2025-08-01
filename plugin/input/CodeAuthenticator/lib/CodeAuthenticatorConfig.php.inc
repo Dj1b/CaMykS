@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief CodeAuthenticator Input, configuration object library.
+ * @brief CodeAuthenticator input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2021
- * @date Modification: Jun 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2021 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -18,8 +18,7 @@ final class CodeAuthenticatorConfig extends PluginConfig {
     /**
      * Class constructor.
      * @param string $name
-     * @param Module $parent
-     * @return void
+     * @param Plugin $parent
      */
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
@@ -34,7 +33,7 @@ final class CodeAuthenticatorConfig extends PluginConfig {
         parent::init_config();
     }
 
-    /* Tool methods */
+    /* Mark: Tool methods */
 
     /**
      * Return available secret length list.

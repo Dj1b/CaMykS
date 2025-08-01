@@ -1,19 +1,18 @@
 <?php
 /**
- * @brief File item of Module Library Item
+ * @brief File item of Module Library item.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jul 2007
- * @date Modification: Sep 2023
- * @copyright 2007 - 2023 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MLFileItem class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 class MLFileItem extends ModuleLibraryItem {
     /**
@@ -64,7 +63,6 @@ class MLFileItem extends ModuleLibraryItem {
      * @param string $folder
      * @param string $path
      * @param string $url
-     * @return void
      */
     public function __construct($name, $folder, $path, $url) {
         $this->name = $name;

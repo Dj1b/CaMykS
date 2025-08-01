@@ -3,19 +3,17 @@
  * @brief MultiSelectionList Input
  * <br /> Allows multi selection in a list.
  * @details Plugin / Input Engine
- * @file plugin/input/MultiSelectionList/MultiSelectionList.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Apr 2011
- * @date Modification: Apr 2018
- * @copyright 2011 - 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2011 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /**
  * MultiSelectionList Input class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 final class MultiSelectionList extends Input {
     /**
@@ -39,21 +37,21 @@ final class MultiSelectionList extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('MultiSelectionList', $path_type);
-        /* set plugin version */
+
+        /* Override Plugin variables */
         $this->version = '1.0';
-        /* set plugin package */
         $this->plugin_package = 'Default';
-        /* set plugin author */
+
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.

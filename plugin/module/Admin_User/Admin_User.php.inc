@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief Admin_User Module
+ * @brief Admin_User module.
  * <br /> Manage administration users.
- * @details Plugin, Module Engine
+ * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.1
+ * @version 1.2.1.1
  * @date Creation: Jun 2005
- * @date Modification: Jul 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -55,7 +55,6 @@ final class Admin_User extends Module {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('Admin_User', $path_type);
@@ -84,7 +83,7 @@ final class Admin_User extends Module {
         $this->user = new AdminUser('');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -163,7 +162,7 @@ final class Admin_User extends Module {
         parent::init_admin();
     }
 
-    /* Specific admin mode methods */
+    /* Mark: Admin initialise mode sub methods */
 
     /**
      * Initialise module object in admin/list mode
@@ -419,7 +418,7 @@ final class Admin_User extends Module {
         $this->set_redirect($this->get_adminLink(array('mode'=>'view', 'user'=> $this->user->login)));
     }
 
-    /* Specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return structured array with name and email.

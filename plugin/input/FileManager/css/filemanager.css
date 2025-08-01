@@ -1,12 +1,11 @@
 /**
  * @brief FileManager Input main CSS styles
  * @details Plugin / Input CSS styles
- * @file plugin/input/FileManager/css/filemanager.css
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2007
- * @date Modification: Jul 2018
- * @copyright 2007 - 2018 CaMykS Team
+ * @date Modification: Apr 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -43,7 +42,7 @@
 }
 
 .filemanagerColumnItemName{
-  width:110px; overflow:hidden; padding:2px 0 0 18px; color:inherit; height:16px;
+  width:130px; overflow:hidden; padding:2px 0 0 18px; color:inherit; height:16px; text-wrap:nowrap;
 }
 
 .filemanagerListLine{

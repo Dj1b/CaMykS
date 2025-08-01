@@ -3,10 +3,10 @@
  * @brief Language specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.5
  * @date Creation: Jun 2005
- * @date Modification: Jun 2021
- * @copyright 2015 - 2021 CaMykS Team
+ * @date Modification: Jun 2025
+ * @copyright 2015 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,17 +15,19 @@ global $languages;
 /**
  * @def LANG_ICON_PATH
  */
-define("LANG_ICON_PATH",        "");
+define("LANG_ICON_PATH",            "");
 
 /**
  * @def LANG_ICON_EXTENSION
  */
-define("LANG_ICON_EXTENSION",   ".gif");
+define("LANG_ICON_EXTENSION",       ".gif");
+define("LANG_ICON_EXTENSION_64",    ".png");
+
 
 /**
  * @def LANG_ICON_DEFAULT
  */
-define("LANG_ICON_DEFAULT",     "default");
+define("LANG_ICON_DEFAULT",         "default");
 
 /**
  * @var array $languages
@@ -137,15 +139,21 @@ function language_loadLocales($language=null) {
  * Return html flag url.
  * @param string $short
  * @param boolean $full
+ * @param string $size
  * @return string
  */
-function language_getIcon($short, $full=true) {
+function language_getIcon($short, $full=true, $size='') {
     global $camyks;
 
-    $flag = $camyks->get_dataFileURL('img/flag/'.$short.LANG_ICON_EXTENSION);
+    /* Load extension */
+    $ext = $size == 64 ? LANG_ICON_EXTENSION_64 : LANG_ICON_EXTENSION;
 
+    /* Build flag path */
+    $flag = $camyks->get_dataFileURL('img/flag'.$size.'/'.$short.$ext);
+
+    /* Check for full HTML tag */
     if ($full)
-        return '<img src="'.$flag.'" alt="'.$short.'" style="border:0" />';
+        return '<img src="'.$flag.'" alt="'.$short.'" />';
     return $flag;
 }
 

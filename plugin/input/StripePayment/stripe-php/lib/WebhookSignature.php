@@ -18,9 +18,9 @@ abstract class WebhookSignature
      * @param int $tolerance maximum difference allowed between the header's
      *  timestamp and the current time
      *
-     * @throws Exception\SignatureVerificationException if the verification fails
-     *
      * @return bool
+     *
+     * @throws Exception\SignatureVerificationException if the verification fails
      */
     public static function verifyHeader($payload, $header, $secret, $tolerance = null)
     {
@@ -93,7 +93,7 @@ abstract class WebhookSignature
                     return -1;
                 }
 
-                return (int) ($itemParts[1]);
+                return (int) $itemParts[1];
             }
         }
 
@@ -116,7 +116,7 @@ abstract class WebhookSignature
         foreach ($items as $item) {
             $itemParts = \explode('=', $item, 2);
             if (\trim($itemParts[0]) === $scheme) {
-                \array_push($signatures, $itemParts[1]);
+                $signatures[] = $itemParts[1];
             }
         }
 

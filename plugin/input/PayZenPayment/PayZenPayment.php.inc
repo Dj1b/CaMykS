@@ -3,12 +3,11 @@
  * @brief PayZenPayment Input
  * <br /> Interface to PayZen payment system.
  * @details Plugin / Input Engine
- * @file plugin/input/PayZenPayment/PayZenPayment.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Dec 2018
- * @date Modification: Dec 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -65,7 +64,6 @@ final class PayZenPayment extends Input {
     /**
      * Class constructor.
      * @param string $path_type
-     * @return void
      */
     public function __construct($path_type) {
         parent::__construct('PayZenPayment', $path_type);
@@ -83,7 +81,7 @@ final class PayZenPayment extends Input {
         $this->register_asExtension('Admin_Site');
     }
 
-    /* overwrite input methods */
+    /* Mark: Override input methods */
 
     /**
      * Initialise input.
@@ -103,7 +101,7 @@ final class PayZenPayment extends Input {
         parent::initialise();
     }
 
-    /* execution methods */
+    /* Mark: Execution methods */
 
     /**
      * Prepare for payment.
@@ -149,7 +147,7 @@ final class PayZenPayment extends Input {
         $this->add_JSLoadScript('setTimeout("'.$this->paymentForm->get_JSSubmitLink().'", 4000);');
     }
 
-    /* data query methods */
+    /* Mark: Data query methods */
 
     /**
      * Load confirmation data Payzen instant notification.
@@ -224,7 +222,7 @@ final class PayZenPayment extends Input {
         return $this->_transactionId;
     }
 
-    /* display methods */
+    /* Mark: Display methods */
 
     /**
      * Return manual transfer link.
@@ -236,7 +234,7 @@ final class PayZenPayment extends Input {
         return '';
     }
 
-    /* error handling methods */
+    /* Mark: Error handling methods */
 
     /**
      * Define last error.
@@ -266,7 +264,7 @@ final class PayZenPayment extends Input {
         return $this->_lastErrorMsg;
     }
 
-    /* tool methods */
+    /* Tool methods */
 
     /**
      * Load plugin configuration
@@ -308,7 +306,7 @@ final class PayZenPayment extends Input {
         return '';
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site / view configuration mode.

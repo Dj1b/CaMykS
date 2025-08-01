@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_GooglePoIMapManager Module category list parameters.
- * @details Plugin, Module Library
+ * @brief Admin_GooglePoIMapManager module, category list parameters.
+ * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2010
- * @date Modification: Feb 2021
- * @copyright 2010 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -34,7 +34,7 @@ $this->catListParams['listcolumns'] = array(
 );
 
 if ($this->check_right(2)) {
-    $this->catListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewcategory'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editCategoryLink, 0), 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
+    $this->catListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewcategory'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editCategoryLink, array(0=>0)), 'titlecolumn'=>'title', 'buttoncolumn'=>'edit'));
     $this->catListParams['listcolumns']['edit'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editCategoryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editcategory'));
     $this->catListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteCategoryLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletecategory'), 'condition'=>'is_deletable');
 }

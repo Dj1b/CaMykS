@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Temporary item of Module Library Item.
+ * @brief Temporary item of Module Library item.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: May 2007
- * @date Modification: Mar 2023
- * @copyright 2007 - 2023 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,7 +26,6 @@ final class MLTemporaryItem extends ModuleLibraryItem {
      * @param string $name
      * @param string $type
      * @param mixed $default
-     * @return void
      */
     public function __construct($name, $type='', $default='') {
         $this->name = $name;

@@ -3,10 +3,10 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.85
+ * @version 1.0.87
  * @date Creation: May 2018
- * @date Modification: Sep 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -5168,7 +5168,7 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Bytespider',
-        'bot_url'           => '',
+        'bot_url'           => 'mailto:spider-feedback@bytedance.com',
         'engine_title'      => 'ByteDance',
         'engine_url'        => 'https://zhanzhang.toutiao.com/',
     );
@@ -5391,6 +5391,96 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://lin.ee/4dwXkTH',
         'engine_title'      => 'Line',
         'engine_url'        => 'https://line.me/',
+    );
+
+    /* OpenAI ChatGPT */
+    $knownBots['chatgpt-user'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ChatGPT',
+        'bot_url'           => 'https://openai.com/bot',
+        'engine_title'      => 'OpenAI',
+        'engine_url'        => 'https://openai.com/',
+    );
+
+    /* OpenAI ChatGPT */
+    $knownBots['gptbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ChatGPT',
+        'bot_url'           => 'https://openai.com/gptbot',
+        'engine_title'      => 'OpenAI',
+        'engine_url'        => 'https://openai.com/',
+    );
+
+    /* OpenAI SearchBot */
+    $knownBots['oai-searchbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'OAI SearchBot',
+        'bot_url'           => 'https://openai.com/searchbot',
+        'engine_title'      => 'OpenAI',
+        'engine_url'        => 'https://openai.com/',
+    );
+
+    /* ClaudeBot */
+    $knownBots['claudebot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ClaudeBot',
+        'bot_url'           => 'mailto:claudebot@anthropic.com',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* PerplexityBot */
+    $knownBots['perplexitybot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'PerplexityBot',
+        'bot_url'           => 'https://perplexity.ai/perplexitybot',
+        'engine_title'      => 'Sonar by Perplexity',
+        'engine_url'        => 'https://perplexity.ai/',
+    );
+
+    /* Perplexity-User */
+    $knownBots['perplexity-user'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Perplexity-User',
+        'bot_url'           => 'https://perplexity.ai/perplexity-user',
+        'engine_title'      => 'Sonar by Perplexity',
+        'engine_url'        => 'https://perplexity.ai/',
+    );
+
+    /* meta-externalagent */
+    $knownBots['meta-externalagent'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'meta-externalagent',
+        'bot_url'           => 'https://developers.facebook.com/docs/sharing/webmasters/crawler',
+        'engine_title'      => 'Meta',
+        'engine_url'        => 'https://www.meta.com',
+    );
+
+    /* TikTokSpider */
+    $knownBots['tiktokspider'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TikTokSpider',
+        'bot_url'           => 'mailto:ttspider-feedback@tiktok.com',
+        'engine_title'      => 'TikTok',
+        'engine_url'        => 'https://www.tiktok.com',
+    );
+
+    /* obsrvr.net bot */
+    $knownBots['obsrvr.net'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'obsrvr.net',
+        'bot_url'           => 'https://obsrvr.net/about',
+        'engine_title'      => 'Observer',
+        'engine_url'        => 'https://obsrvr.net/',
     );
 
     /* Return bot list */

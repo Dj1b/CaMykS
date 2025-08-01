@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_SystemNotifications Module website library
+ * @brief Admin_SystemNotifications module, website library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jul 2017
- * @date Modification: Sep 2020
- * @copyright 2017 - 2020 CaMykS Team
+ * @date Modification: Jul 2025
+ * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -19,12 +19,11 @@ final class Admin_SystemNotificationsWebsite extends ModuleLibrary {
      * Class constructor.
      * @param integer $id
      * @param Module $module
-     * @return void
      */
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
 
-        /* admin items */
+        /* Admin items */
         $this->add_newItem('status', 'db', 'int', 'tinyint unsigned', '', 1);
         $this->add_newItem('cdate', 'db', 'date', 'bigint unsigned', '', time());
         $this->add_newItem('name', 'db', 'text', 'varchar', 32, '');
@@ -33,11 +32,11 @@ final class Admin_SystemNotificationsWebsite extends ModuleLibrary {
         $this->add_newItem('login', 'db', 'text', 'varchar', 16, '');
         $this->add_newItem('password', 'db', 'text', 'varchar', 32, '');
 
-        /* generic initialisation */
+        /* Generic initialisation */
         $this->init_library();
     }
 
-    /* Override ModuleLibrary methods */
+    /* Mark: Override ModuleLibrary methods */
 
     /**
      * Check object data.
@@ -67,7 +66,7 @@ final class Admin_SystemNotificationsWebsite extends ModuleLibrary {
         return implode(' and ', $search);
     }
 
-    /* Specific properties definition method */
+    /* Mark: Specific properties definition method */
 
     /**
      * Return status list.
@@ -94,7 +93,7 @@ final class Admin_SystemNotificationsWebsite extends ModuleLibrary {
         return $list;
     }
 
-    /* specific tool methods */
+    /* Mark: Specific tool methods */
 
     /**
      * Return config value.
@@ -105,7 +104,7 @@ final class Admin_SystemNotificationsWebsite extends ModuleLibrary {
         return $this->_libParent->get_configValue($param);
     }
 
-    /* Multi object handling methods */
+    /* Mark: Multi object handling methods */
 
     /**
      * Return object list.

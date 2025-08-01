@@ -3,10 +3,10 @@
  * @brief File specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.1
+ * @version 1.0.7.2
  * @date Creation: Jun 2005
- * @date Modification: Sep 2023
- * @copyright 2005 - 2023 CaMykS Team
+ * @date Modification: Jun 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo complete file type, extension, and mime list
@@ -30,7 +30,7 @@ function file_write($file_path, $content, $deleteCache=false) {
         return false;
 
     /* write file */
-    if (@file_put_contents($file_path, $content, LOCK_EX) !== false) {
+    if (@file_put_contents($file_path, $content) !== false) {
         /* remove cache from OPCache */
         if ($deleteCache and function_exists('opcache_invalidate')) opcache_invalidate($file_path);
 
@@ -64,7 +64,7 @@ function file_getPHPFileHeader($desc="", $version="none") {
  * @return string
  */
 function file_getPHPFileFooter() {
-    return "?".">";
+    return "\n?".">";
 }
 
 /**
