@@ -3,10 +3,10 @@
  * @brief String specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9.1
+ * @version 1.0.9.2
  * @date Creation: Oct 2007
- * @date Modification: Feb 2022
- * @copyright 2007 - 2022 CaMykS Team
+ * @date Modification: Sep 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -719,7 +719,48 @@ function string_escape4Regex($string='') {
   return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,)/', '\\\$1', $string);
 }
 
-/* deprecated methods */
+/* Mark : String convertion methods */
+
+/**
+ * Convert string.
+ * @param string $string
+ * @param string $from
+ * @param string $to
+ * @return $text
+ */
+function string_convert($string, $from, $to) {
+    if (function_exists('mb_convert_encoding'))
+        return mb_convert_encoding($string, $to, $from);
+    if (function_exists('iconv'))
+        return iconv($string, $from, $to);
+    if (class_exists('UConverter'))
+        return UConverter::transcode($string, $to, $from, ['to_subst' => '?']);
+    return $string;
+}
+
+/**
+ * Encode string to UTF-8 (utf8_encode replacement).
+ * @param string $string
+ * @return $text
+ */
+function string_utf8_encode($string='') {
+    if (version_compare(PHP_VERSION, '8.0.0', '<'))
+        return utf8_encode($string);
+    return string_convert($string, 'ISO-8859-1', 'UTF-8');
+}
+
+/**
+ * Decode string to UTF-8 (utf8_decode replacement).
+ * @param string $string
+ * @return $text
+ */
+function string_utf8_decode($string='') {
+    if (version_compare(PHP_VERSION, '8.0.0', '<'))
+        return utf8_encode($string);
+    return string_convert($string, 'UTF-8', 'ISO-8859-1');
+}
+
+/* Mark: Deprecated methods */
 
 /**
  * Return string without non-letter chars.
