@@ -3,10 +3,10 @@
  * @brief Module plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.3
+ * @version 1.0.2.4
  * @date Creation: Jun 2007
- * @date Modification: Mar 2024
- * @copyright 2007 - 2024 CaMykS Team
+ * @date Modification: Sep 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -21,6 +21,11 @@ class Module extends Plugin {
      * @brief Module type, can be \b admin or \b content.
      */
     public $type;
+    /**
+     * @var string $admin_type
+     * @brief Module admin sub type.
+     */
+    public $admin_type;
 
     /**
      * @var string $title
@@ -87,6 +92,42 @@ class Module extends Plugin {
      * @brief Module admin message.
      */
     protected $text = '';
+
+    /**
+     * @var string $mode
+     * @brief Module admin mode.
+     */
+    protected $mode = '';
+
+    /**
+     * @var TabBuilder $tabBuilder
+     * @brief Link to tabBuilder input.
+     */
+    protected $tabBuilder;
+
+    /**
+     * @var string $language
+     * @brief Language used to display data.
+     */
+    protected $language;
+
+    /**
+     * @var HTMLForm $form
+     * @brief Admin edit object form in admin mode.
+     */
+    protected $form;
+
+    /**
+     * @var string $adminTitle
+     * @brief Interface title in admin mode.
+     */
+    protected $adminTitle;
+
+    /**
+     * @var array $buttons
+     * @brief Module admin interface button list.
+     */
+    protected $buttons;
 
     /**
      * Class constructor

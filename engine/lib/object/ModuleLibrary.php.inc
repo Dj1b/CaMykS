@@ -3,10 +3,10 @@
  * @brief ModuleLibrary abastract class for module libraries.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.4.2
  * @date Creation: Mar 2007
- * @date Modification: May 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Sep 2025
+ * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @details  Use to manage localised (or not) content from database, files or text objects
@@ -87,6 +87,12 @@ abstract class ModuleLibrary {
      * @brief Is library installed.
      */
     public $_libIsInstalled = null;
+
+    /**
+     * @var int $_libWFVersion
+     * @brief Library workflow version.
+     */
+    public $_libWFVersion;
 
     /**
      * @var integer $id

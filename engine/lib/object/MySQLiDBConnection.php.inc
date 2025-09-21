@@ -3,10 +3,10 @@
  * @brief MySQLi Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.6
+ * @version 1.0.1.7
  * @date Creation: Sep 2014
- * @date Modification: Nov 2023
- * @copyright 2014 - 2023 CaMykS Team
+ * @date Modification: Sep 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -67,7 +67,6 @@ final class MySQLiDBConnection extends CDBConnection {
      * @return boolean
      */
     public function select_database($name) {
-        $this->name = $name;
         if (!$this->is_connectionActive())
             return false;
         $this->dbName = $name;
