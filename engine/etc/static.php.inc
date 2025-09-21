@@ -4,9 +4,9 @@
  * @brief Automatically loaded by CaMykS object.
  * @details Engine / Configuration file
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.41
+ * @version 1.0.41.1
  * @date Creation: Sep 2005
- * @date Modification: Aug 2025
+ * @date Modification: Sep 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -82,7 +82,7 @@ $this->file_extension = '.php.inc';
  * @var string $this->folder_name
  * @brief CaMykS parent folder name
  */
-$this->folder_name = 'camyks';
+$this->folder_name = 'CaMykS';
 
 /**
  * @var string $this->default_language
