@@ -3,9 +3,9 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Jun 2012
- * @date Modification: Jul 2025
+ * @date Modification: Sep 2025
  * @copyright 2012 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14,6 +14,7 @@
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\OAuth;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use Greew\OAuth2\Client\Provider\Azure;
 
 /**
@@ -538,7 +539,6 @@ final class CMail {
         /* check PHPMailer class availability */
         if (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
             $this->error = 'PHPMailer library not found.';
-            die();
             return false;
         }
 
@@ -548,46 +548,43 @@ final class CMail {
         /* check config */
         if ($camyks->get_confValue('PEARMailDriver') == 'smtp') {
             $mail->isSMTP();
-            $mail->SMTPDebug = \PHPMailer\PHPMailer\SMTP::DEBUG_SERVER;
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
             if (is_array($camyks->get_confValue('PEARMailConfig'))) {
+                /* Load e-mail sending configuration */
                 $config = $camyks->get_confValue('PEARMailConfig');
+
+                /* Configure SMTP */
                 if (isset($config['host'])) $mail->Host = $config['host'];
                 if (isset($config['port'])) $mail->Port = $config['port'];
                 if (isset($config['secure'])) $mail->SMTPSecure = $config['secure'];
                 if (isset($config['auth'])) $mail->SMTPAuth = $config['auth'];
-                if ($config['authType'] == 'XOAUTH2' and $config['authProvider'] == 'Azure') {
 
+                if ($config['authType'] == 'XOAUTH2' and $config['authProvider'] == 'Azure') {
+                    $mail->AuthType = 'XOAUTH2';
+
+                    /* Configure XOAUTH2 through Azure authentication */
                     include_once 'Guzzle/autoloader.php';
                     include_once 'League/OAuth2/autoloader.php';
                     include_once 'Greew/OAuth2/autoloader.php';
 
-                    echo (var_dump(array(
-                           'clientId'       => $config['authProviderClientId'],
-                           'tenantId'       => $config['authProviderTenantId'],
-                           'clientSecret'   => $config['authProviderClientSecret'],
-                        )));
-
-
-                    echo (var_dump(array(
+                    $provider = new Azure(array(
                         'clientId'      => $config['authProviderClientId'],
-                        'refreshToken'  => $config['authProviderRefreshToken'],
                         'clientSecret'  => $config['authProviderClientSecret'],
-                        'userName'      => $config['authProviderEmail'],
-                    )));
+                        'tenantId'      => $config['authProviderTenantId'],
+                    ));
+
+
 
                     $mail->setOAuth(new OAuth(array(
-                        'provider' => new Azure(array(
-                           'clientId'       => $config['authProviderClientId'],
-                           'tenantId'       => $config['authProviderTenantId'],
-                           'clientSecret'   => $config['authProviderClientSecret'],
-                        )),
+                        'provider'      => $provider,
                         'clientId'      => $config['authProviderClientId'],
-                        'refreshToken'  => $config['authProviderRefreshToken'],
                         'clientSecret'  => $config['authProviderClientSecret'],
+                        'refreshToken'  => $config['authProviderRefreshToken'],
                         'userName'      => $config['authProviderEmail'],
                     )));
                 } else {
+                    /* Configure username / password authentication */
                     if (isset($config['username'])) $mail->Username = $config['username'];
                     if (isset($config['password'])) $mail->Password = $config['password'];
                 }
