@@ -4,9 +4,9 @@
  * <br /> Administration module to manage plugins.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1.1
+ * @version 1.1.1.2
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
+ * @date Modification: Sep 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,7 @@ final class Admin_PluginManager extends Module {
      * var string $list
      * @brief Running mode while being executed in CaMykS admin mode.
      */
-    private $mode = 'list';
+    protected $mode = 'list';
 
     /**
      * var array $modules

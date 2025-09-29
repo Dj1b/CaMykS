@@ -4,9 +4,9 @@
  * <br /> Display website configuration and allows to edit plugin configuration.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.1
+ * @version 1.0.5.2
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
+ * @date Modification: Sep 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -57,12 +57,6 @@ final class Admin_Site extends Module {
         'admin_itemsbypage', /* items displayed in generic admin lists */
         'admin_maxfilesize', /* max file size in admin forms */
     );
-
-    /**
-     * var string $mode
-     * @brief Admin mode to run.
-     */
-    private $mode;
 
     /**
      * var array $dbSummary

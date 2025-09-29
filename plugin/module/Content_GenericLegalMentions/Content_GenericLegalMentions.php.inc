@@ -3,9 +3,9 @@
  * @brief Content_GenericLegalMentions module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jan 2020
- * @date Modification: Jul 2025
+ * @date Modification: Sep 2025
  * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,12 +20,6 @@ final class Content_GenericLegalMentions extends Module {
      * @brief Page redirector object.
      */
     protected $contentItem;
-
-    /**
-     * var string $mode
-     * @brief Admin mode to run.
-     */
-    private $mode;
 
     /**
      * var integer $page_id
