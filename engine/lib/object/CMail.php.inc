@@ -3,9 +3,9 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jun 2012
- * @date Modification: Sep 2025
+ * @date Modification: Oct 2025
  * @copyright 2012 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -548,7 +548,7 @@ final class CMail {
         /* check config */
         if ($camyks->get_confValue('PEARMailDriver') == 'smtp') {
             $mail->isSMTP();
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
             if (is_array($camyks->get_confValue('PEARMailConfig'))) {
                 /* Load e-mail sending configuration */
