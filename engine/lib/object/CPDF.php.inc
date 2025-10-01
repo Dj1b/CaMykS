@@ -3,9 +3,9 @@
  * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.1
+ * @version 1.0.5.2
  * @date Creation: May 2010
- * @date Modification: Jul 2025
+ * @date Modification: Sep 2025
  * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -330,8 +330,8 @@ class CPDF extends FPDF {
      */
     public function decode_HTMLText($text='') {
         /* replace special chars */
-        $patterns = array('/&euro;/', '/&quot;/', '/&rsquo;/', '/&oelig;/');
-        $replacem = array(chr(128), '"', '\'', chr(156));
+        $patterns = array('/&euro;/', '/&quot;/', '/&rsquo;/', '/&oelig;/', '/&bull;/', '/&mdash;/');
+        $replacem = array(chr(128), '"', '\'', chr(156), '-', '-');
 
         $text = preg_replace($patterns, $replacem, $text);
 
