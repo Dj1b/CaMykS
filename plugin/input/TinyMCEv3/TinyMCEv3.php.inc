@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief TinyMCEv3 Input
+ * @brief TinyMCEv3 input.
  * <br /> Interfaces TinyMCE version 3 for CaMykS.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jul 2008
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,52 +18,82 @@
  */
 final class TinyMCEv3 extends Input {
     /**
-     * var string $contentType
+     * @var string $contentType
      * @brief Content type (text or file).
      */
     protected $contentType = 'text';
 
     /**
-     * var string $contentValue
+     * @var string $contentValue
      * @brief Content value.
      */
     protected $contentValue = '';
 
     /**
-     * var string $contentLg
+     * @var string $contentLg
      * @brief Content language.
      */
     protected $contentLg = '';
 
     /**
-     * var string $configType
+     * @var string $configType
      * @brief Editor configuration.
      */
     protected $configType = 'default';
 
     /**
-     * var string $configValue
+     * @var string $configValue
      * @brief Editor specific configuration.
      */
     protected $configValue = '';
 
     /**
-     * var string $ta_name
+     * @var string $ta_name
      * @brief Editor's name.
      */
     protected $ta_name = 'tinymceta';
 
     /**
-     * var string $ta_sizex
+     * @var string $ta_sizex
      * @brief Editor's horizontal size.
      */
     protected $ta_sizex = '100%';
 
     /**
-     * var string $ta_sizey
+     * @var string $ta_sizey
      * @brief Editor's vertical size.
      */
     protected $ta_sizey = '300px';
+
+    /**
+     * @var array $admin_configs
+     * @brief List of editor configurations for admin side usage.
+     */
+    protected $admin_configs;
+
+    /**
+     * @var array $client_configs
+     * @brief List of editor configurations for client side usage.
+     */
+    protected $client_configs;
+
+    /**
+     * @var array $specific_configs
+     * @brief List of editor configurations for specific usage.
+     */
+    protected $specific_configs;
+
+    /**
+     * @var array $builtin_configs
+     * @brief List of editor built-in configurations.
+     */
+    protected $builtin_configs;
+
+    /**
+     * @var array $configs
+     * @brief List of all editor configurations.
+     */
+    protected $configs;
 
     /**
      * Class constructor.

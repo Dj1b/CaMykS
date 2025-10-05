@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SocialNetworksSharingPanel Input.
+ * @brief SocialNetworksSharingPanel input.
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6.1
+ * @version 1.0.6.2
  * @date Creation: Nov 2009
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,22 +18,34 @@
 final class SocialNetworksSharingPanel extends Input {
 
     /**
-     * var array $iparams
+     * @var array $iparams
      * @brief Plugin's internal parameters list.
      */
     protected $iparams = array();
 
     /**
-     * var array $dparams
+     * @var array $dparams
      * @brief Plugin's display parameters list.
      */
     protected $dparams;
 
     /**
-     * var integer $currentIndex
+     * @var integer $currentIndex
      * @brief Network list current index.
      */
-    var $currentIndex;
+    protected $currentIndex;
+
+    /**
+     * @var Object $config
+     * @brief Plugin configuration.
+     */
+    protected $config;
+
+    /**
+     * @var array $networks
+     * @brief List of managed networks.
+     */
+    public $networks;
 
     /**
      * Class constructor.

@@ -3,9 +3,9 @@
  * @brief GenericSitemapGenerator input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Feb 2019
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,7 +15,13 @@
  * GenericSitemapGeneratorConfig PluginConfig class.
  */
 final class GenericSitemapGeneratorConfig extends PluginConfig {
-    /*
+    /**
+     * @var array $update_items
+     * @brief List of update items.
+     */
+    public $update_items;
+
+    /**
      * Class constructor.
      * @param string $name
      * @param Module $parent

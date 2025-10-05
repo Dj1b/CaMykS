@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SmartGallery Input
+ * @brief SmartGallery input.
  * <br /> Display an image gallery.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Jul 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,12 +16,17 @@
  * SmartGallery Input class.
  */
 final class SmartGallery extends Input {
-
     /**
      * @var string $name
      * @brief Instance name.
      */
     public $name;
+
+    /**
+     * @var array $themes
+     * @brief List of available themes.
+     */
+    protected $themes;
 
     /**
      * @var string $theme
@@ -34,6 +39,12 @@ final class SmartGallery extends Input {
      * @brief Item list.
      */
     public $items = array();
+
+    /**
+     * @var array $slidingMethods
+     * @brief List of sliding methods.
+     */
+    protected $slidingMethods;
 
      /**
      * @var boolean $sliding

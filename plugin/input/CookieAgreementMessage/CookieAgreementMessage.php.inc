@@ -4,9 +4,9 @@
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.7
+ * @version 1.1.0.8
  * @date Creation: May 2017
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2017 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -39,6 +39,12 @@ final class CookieAgreementMessage extends Input {
      * @brief Store data have been loaded.
      */
     private $isDataLoaded = false;
+
+    /**
+     * var array $extensions
+     * @brief List of registered extenstions.
+     */
+    private $extensions;
 
     /**
      * var array $params

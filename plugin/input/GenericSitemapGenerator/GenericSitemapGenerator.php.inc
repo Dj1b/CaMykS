@@ -1,10 +1,10 @@
 <?php
 /**
- * @brief GenericSitemapGenerator Input
+ * @brief GenericSitemapGenerator input.
  * <br />Default sitemap generator.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Feb 2019
  * @date Modification: Jul 2025
  * @copyright 2019 - 2025 CaMykS Team
@@ -18,6 +18,11 @@
  * GenericSitemapGenerator Input class.
  */
 final class GenericSitemapGenerator extends Input {
+    /**
+     * @var Object $config
+     * @brief Plugin configuration.
+     */
+    protected $config;
 
     /**
      * Class constructor.

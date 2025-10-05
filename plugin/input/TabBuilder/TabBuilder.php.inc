@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief TabBuilder Input
+ * @brief TabBuilder input.
  * <br /> Manages tabs.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Sep 2008
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -26,7 +26,13 @@ final class TabBuilder extends Input {
      * var array $tabs
      * @brief Tab list.
      */
-    public $tabs = array();
+    protected $tabs = array();
+
+    /**
+     * var array $jsParams
+     * @brief Client side plugin parameters.
+     */
+    protected $jsParams = null;
 
     /**
      * Class constructor.
