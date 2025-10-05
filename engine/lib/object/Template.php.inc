@@ -3,7 +3,7 @@
  * @brief Template plugin object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Jun 2005
  * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
@@ -25,7 +25,7 @@ abstract class Template extends Plugin {
      * @var array $modules
      * @brief List of inserted modules.
      */
-    protected $modules;
+    public $modules;
 
     /**
      * Class constructor.
