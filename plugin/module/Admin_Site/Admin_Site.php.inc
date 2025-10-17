@@ -6,7 +6,7 @@
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0.5.2
  * @date Creation: Jun 2005
- * @date Modification: Sep 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,7 +18,7 @@
  */
 final class Admin_Site extends Module {
     /**
-     * var array $conf_elements
+     * @var array $conf_elements
      * @brief Available configuration elements definition.
      */
     private $conf_elements = array(
@@ -59,10 +59,34 @@ final class Admin_Site extends Module {
     );
 
     /**
-     * var array $dbSummary
+     * @var array $dbSummary
      * @brief Database description summary.
      */
     protected $dbSummary;
+
+    /**
+     * @var array $plugins
+     * @brief List of plugins.
+     */
+    protected $plugins;
+
+    /**
+     * @var Plugin $plugin
+     * @brief Link to a plugin.
+     */
+    protected $plugin;
+
+    /**
+     * @var Module $securityTools
+     * @brief Link to Admin_SecurityTools module.
+     */
+    protected $securityTools;
+
+    /**
+     * @var string $serverCacheFolder
+     * @brief Path to server cache folder.
+     */
+    protected $serverCacheFolder;
 
     /**
      * Class constructor.
