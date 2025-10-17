@@ -3,9 +3,9 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.6
+ * @version 1.0.21.7
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -71,10 +71,88 @@ final class Camyks {
     public $version;
 
     /**
+     * @var string $nversion
+     * @brief CaMykS major version.
+     */
+    public $mversion;
+
+    /**
+     * @var string $nversion
+     * @brief CaMykS minor version.
+     */
+    public $nversion;
+
+    /**
+     * @var string $website
+     * @brief CaMykS website url.
+     */
+    public $website;
+
+    /**
      * @var integer $last_modification_date
      * @brief CaMykS last modification date.
      */
     public $last_modification_date;
+
+    /**
+     * @var array $_conf
+     * @brief Store full CaMykS configuration.
+     */
+    public $_conf;
+
+    /**
+     * @var string $engine_folder
+     * @brief CaMykS engine folder.
+     */
+    protected $engine_folder;
+
+    /**
+     * @var string $plugin_folder
+     * @brief CaMykS plugin folder.
+     */
+    protected $plugin_folder;
+
+    /**
+     * @var string $conf_folder
+     * @brief CaMykS configuration folder.
+     */
+    protected $conf_folder;
+
+    /**
+     * @var string $var_folder
+     * @brief CaMykS var folder.
+     */
+    protected $var_folder;
+
+    /**
+     * @var string $cache_folder
+     * @brief CaMykS cache folder.
+     */
+    protected $cache_folder;
+
+    /**
+     * @var string $file_extension
+     * @brief CaMykS script files extensions.
+     */
+    public $file_extension;
+
+    /**
+     * @var string $folder_name
+     * @brief CaMykS parent folder name.
+     */
+    protected $folder_name;
+
+    /**
+     * @var string $default_language
+     * @brief CaMykS default language.
+     */
+    protected $default_language;
+
+    /**
+     * @var string $_installationMode
+     * @brief Website installation mode.
+     */
+    public $_installationMode;
 
     /**
      * @var string $site_name
@@ -155,6 +233,30 @@ final class Camyks {
     public $site_base_url;
 
     /**
+     * @var string $site_var_path
+     * @brief Current site var path.
+     */
+    public $site_var_path;
+
+    /**
+     * @var string $site_var_url
+     * @brief Current site var url.
+     */
+    public $site_var_url;
+
+    /**
+     * @var string $site_engine_url
+     * @brief Current site engine url.
+     */
+    public $site_engine_url;
+
+    /**
+     * @var array $site_conf
+     * @brief Website configuration.
+     */
+    public $site_conf;
+
+    /**
      * @var string $db_table_prefix
      * @brief Database tables prefix.
      */
@@ -165,12 +267,6 @@ final class Camyks {
      * @brief Main database connection
      */
     public $db_conn;
-
-    /**
-     * @var string $file_extension
-     * @brief Files extension.
-     */
-    public $file_extension;
 
     /**
      * @var array $modules
@@ -291,6 +387,36 @@ final class Camyks {
       * @brief Store visitor or bot information.
       */
     private $visitorInfo = null;
+
+    /**
+     * @var Object $benchMode
+     * @brief Store bench mode value.
+     */
+    public $benchMode = null;
+
+    /**
+     * @var array $neededModules
+     * @brief Store required modules.
+     */
+    public $neededModules = null;
+
+    /**
+     * @var array $neededThemes
+     * @brief Store required themes.
+     */
+    public $neededThemes = null;
+
+    /**
+     * @var array $neededTemplates
+     * @brief Store required templates.
+     */
+    public $neededTemplates = null;
+
+    /**
+     * @var array $neededInputs
+     * @brief Store required inputs.
+     */
+    public $neededInputs = null;
 
     /**
      * CaMykS Constructor.
@@ -923,7 +1049,7 @@ final class Camyks {
     public function decode_value($v) {
         switch ($this->get_confValue('encoding')) {
             case 'utf8':
-                return utf8_decode(stripslashes($v));
+                return string_utf8_decode(stripslashes($v));
                 break;
             default:
                 return stripslashes($v);
@@ -938,7 +1064,7 @@ final class Camyks {
     public function encode_value($v) {
         switch ($this->get_confValue('encoding')) {
             case 'utf8':
-                return addslashes(utf8_encode($v));
+                return addslashes(string_utf8_encode($v));
                 break;
             default:
                 return addslashes($v);
@@ -2405,7 +2531,17 @@ final class Camyks {
         $this->HTMLPage->add_HTMLFooter();
     }
 
-    /* Deprecated methods */
+    /* Mark: Site related methods */
+
+    /**
+     * Return site installation mode.
+     * @return string
+     */
+    public function get_siteInstallationMode() {
+        return $this->_installationMode;
+    }
+
+    /* Mark: Deprecated methods */
 
     /**
      * Return available languages
