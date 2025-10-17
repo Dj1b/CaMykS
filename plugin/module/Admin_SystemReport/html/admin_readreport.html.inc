@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_SystemReport Module admin read report layout.
+ * @brief Admin_SystemReport module, admin read report layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: May 2008
- * @date Modification: Nov 2022
- * @copyright 2008 - 2022 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -131,16 +131,16 @@ global $camyks;
         </td>
     </tr>
 
-    <?php elseif (isset($this->markform) and $this->check_right(1)) : ?>
+    <?php elseif (isset($this->form) and $this->check_right(1)) : ?>
     <tr>
         <td class="eTableLine0 eContent2" style="vertical-align:top;">
             <?= $this->get_translation('formitem_answercomment'); ?>
         </td>
         <td class="eTableLine0 eContent1">
-            <?= $this->markform->display_header(); ?>
-            <?= $this->markform->display_hiddens(); ?>
+            <?= $this->form->display_header(); ?>
+            <?= $this->form->display_hiddens(); ?>
             <textarea name="answercomment" cols="40" rows="8" style="width:100%;"></textarea>
-            <?= $this->markform->display_footer(); ?>
+            <?= $this->form->display_footer(); ?>
         </td>
     </tr>
     <tr>
