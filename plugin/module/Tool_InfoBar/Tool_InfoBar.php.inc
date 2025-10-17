@@ -4,9 +4,9 @@
  * <br /> System module used as header of admin section.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Oct 2005
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,13 +18,13 @@
 final class Tool_InfoBar extends Module {
 
     /**
-     * var array $barMenu
+     * @var array $barMenu
      * @brief Bar menu items.
      */
     protected $barMenu = array();
 
     /**
-     * var boolean $menuDisabled
+     * @var boolean $menuDisabled
      * @brief Is menu disabled.
      */
     protected $menuDisabled = false;
@@ -44,9 +44,9 @@ final class Tool_InfoBar extends Module {
         $this->type = 'tool';
 
         /* Define plugin author */
-        $this->authors_name = 'CaMykS Team';
-        $this->authors_mail = 'camyks.contact@gmail.com';
-        $this->authors_group = 'camyks.net';
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
     }
 
     /* Mark: Override Module methods */
