@@ -4,9 +4,9 @@
  * <br /> Allows logged admin user to manage its admin shortcuts.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: May 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,6 +16,36 @@
  * Admin_MyShortcuts Module class.
  */
 final class Admin_MyShortcuts extends Module {
+    /**
+     * @var Object $shortcutItem
+     * @brief Shortcut object.
+     */
+    public $shortcutItem;
+
+    /**
+     * @var array $shortcutList
+     * @brief Shortcut list.
+     */
+    public $shortcutList = null;
+
+    /**
+     * @var array $shortcutListParams
+     * @brief Shortcut list parameters.
+     */
+    protected $shortcutListParams = null;
+
+    /**
+     * @var HTMLForm $addform
+     * @brief Add shortcut HTML form.
+     */
+    protected $addform;
+
+    /**
+     * @var array $popupbuttons
+     * @brief Button list for add shortcut popup.
+     */
+    protected $popupbuttons;
+
     /**
      * Class constructor.
      * @param string $path_type
@@ -41,9 +71,6 @@ final class Admin_MyShortcuts extends Module {
 
         /* Initialise plugin libraries */
         $this->shortcutItem = new Admin_UserShortcut(0, $this);
-
-        /* Initialise plugin variables */
-        $this->shortcutList = null;
     }
 
     /* Mark: Override Module methods */
@@ -122,9 +149,9 @@ final class Admin_MyShortcuts extends Module {
         );
 
         /* Load user shortcuts list */
-        $this->get_userShortcuts();
+        $shortcutList = $this->get_userShortcuts();
 
-        if (count($this->shortcutList) > 0) {
+        if (count($shortcutList) > 0) {
             /* Inserts separator in menu */
             $menu[] = array(
                 'name'  => 'separator',
@@ -133,7 +160,7 @@ final class Admin_MyShortcuts extends Module {
             );
 
             /* Inserts shortcuts */
-            foreach ($this->shortcutList as $item) {
+            foreach ($shortcutList as $item) {
                 $menu[] = array(
                     'name'  => 'shortcut'.$item->id,
                     'title' => $item->vars['name'],
@@ -233,9 +260,9 @@ final class Admin_MyShortcuts extends Module {
 
         /* Build shortcut list */
         $this->load_library('Admin_UserShortcutListParams');
-        $this->shortcutObjectList = new AdminItemListViewer('camyks');
-        $this->shortcutObjectList->set_params($this->shortcutListParams);
-        $this->shortcutObjectList->initialise();
+        $this->shortcutList = new AdminItemListViewer('camyks');
+        $this->shortcutList->set_params($this->shortcutListParams);
+        $this->shortcutList->initialise();
 
         /* Build buttons */
         $this->buttons = array(array(
@@ -392,13 +419,7 @@ final class Admin_MyShortcuts extends Module {
      */
     private function get_userShortcuts() {
         global $camyks;
-
-        /* Check if list already exists */
-        if ($this->shortcutList !== null)
-            return;
-
-        /* Load list */
-        $this->shortcutList = $this->shortcutItem->get_objectList(false, 'user="'.$camyks->adminUser->login.'"');
+        return $this->shortcutItem->get_objectList(false, 'user="'.$camyks->adminUser->login.'"');
     }
 }
 ?>
