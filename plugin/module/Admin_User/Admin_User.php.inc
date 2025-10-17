@@ -4,9 +4,9 @@
  * <br /> Manage administration users.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.1.1
+ * @version 1.2.1.2
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,40 +17,58 @@
  */
 final class Admin_User extends Module {
     /**
-     * var Object $user
+     * @var Object $user
      * @brief Current user object.
      */
     public $user;
 
     /**
-     * var array $user_list
+     * @var array $user_list
      * @brief User list.
      */
     public $user_list;
 
     /**
-     * var integer $layout_itemsByLine
+     * @var integer $layout_itemsByLine
      * @brief Define layout items by line.
      */
     public $layout_itemsByLine = 3;
 
     /**
-     * var integer $layout_cellwidth
+     * @var integer $layout_cellwidth
      * @brief Define layout cell width.
      */
     public $layout_cellwidth = '180px';
 
     /**
-     * var Object $config
+     * @var Object $config
      * @brief Input configuration.
      */
     protected $config;
 
     /**
-     * var boolean isConfigLoaded
+     * @var boolean isConfigLoaded
      * @brief Stores if the configuration is loaded
      */
     protected $isConfigLoaded = false;
+
+    /**
+     * @var array $params
+     * @brief Parameters list.
+     */
+    protected $params;
+
+    /**
+     * @var Object $listForm
+     * @brief HTML Form to manage the user list.
+     */
+    protected $listForm;
+
+    /**
+     * @var Object $usersStatusList
+     * @brief Users status list.
+     */
+    protected $usersStatusList;
 
     /**
      * Class constructor.
