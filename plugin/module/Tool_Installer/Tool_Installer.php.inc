@@ -4,9 +4,9 @@
  * <br /> System module used to install a website.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 2.0.3.1
+ * @version 2.0.3.2
  * @date Creation: Aug 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,30 +16,89 @@
  * Tool_Installer class.
  */
 final class Tool_Installer extends Module {
-
     /**
-     * var array $summary
+     * @var array $summary
      * @brief Summary data.
      */
     protected $summary;
 
     /**
-     * var boolean $allowInstall
+     * @var boolean $allowInstall
      * @brief Is installation allowed.
      */
     private $allowInstall;
 
     /**
-     * var array $allowInstall
+     * @var array $allowInstall
      * @brief List of symbolic links.
      */
     private $symLinks = array('plugin'=>'cplugin', 'engine/data'=>'cdata');
 
     /**
-     * var array $textColors
+     * @var array $textColors
      * @brief List of colors.
      */
     private $textColors = array('yes' => 'green', 'no' => '#CC3333');
+
+    /**
+     * @var Object $params
+     * @brief Plugin params.
+     */
+    protected $params;
+
+    /**
+     * @var string $welcomePicture
+     * @brief Welcome picture url.
+     */
+    protected $welcomePicture;
+
+    /**
+     * @var Object $configForm
+     * @brief Configuration form.
+     */
+    protected $configForm;
+
+    /**
+     * @var array $driverList
+     * @brief Available database driver list.
+     */
+    protected $driverList;
+
+    /**
+     * @var array $encodingList
+     * @brief Available encoding values.
+     */
+    protected $encodingList;
+
+    /**
+     * @var array $SSLModeList
+     * @brief Available SSL mode list.
+     */
+    protected $SSLModeList;
+
+    /**
+     * @var array $adminThemeList
+     * @brief Available themes for admin mode.
+     */
+    protected $adminThemeList;
+
+    /**
+     * @var array $siteThemeList
+     * @brief Available themes for site mode.
+     */
+    protected $siteThemeList;
+
+    /**
+     * @var array $templateList
+     * @brief Available templates for site mode.
+     */
+    protected $templateList;
+
+    /**
+     * @var array $mobileModeList
+     * @brief Available mobile mode list.
+     */
+    protected $mobileModeList;
 
     /**
      * Class constructor.
