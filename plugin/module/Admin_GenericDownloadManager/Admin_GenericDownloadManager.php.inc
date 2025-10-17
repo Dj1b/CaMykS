@@ -4,9 +4,9 @@
  * <br /> Manages files available to download.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.2.3
  * @date Creation: May 2008
- * @date Modification: Jun 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,7 +32,13 @@ final class Admin_GenericDownloadManager extends Module {
      * var array $documentList
      * @brief Document list.
      */
-    public $documentList = null;
+    public $documentList;
+
+    /**
+     * var array $documentListParams
+     * @brief Document list parameters.
+     */
+    protected $documentListParams;
 
     /**
      * var Object $categoryItem
@@ -44,7 +50,25 @@ final class Admin_GenericDownloadManager extends Module {
      * var array $categoryList
      * @brief Category list.
      */
-    public $categoryList = null;
+    public $categoryList;
+
+    /**
+     * var array $categoryListParams
+     * @brief Category list parameters.
+     */
+    protected $categoryListParams;
+
+    /**
+     * @var array $configLinkModeList
+     * @brief Configuration link mode values.
+     */
+    protected $configLinkModeList;
+
+    /**
+     * @var Object $editform
+     * @brief HTML form to edit objects.
+     */
+    protected $editform;
 
     /**
      * Class constructor.
@@ -292,26 +316,26 @@ final class Admin_GenericDownloadManager extends Module {
 
         /* Build document tab */
         $this->load_library('Admin_GenericDownloadManagerDocumentListParams');
-        $this->listDocument = new AdminItemListViewer('camyks');
-        $this->listDocument->set_params($this->documentListParams);
-        $this->listDocument->initialise();
+        $this->documentList = new AdminItemListViewer('camyks');
+        $this->documentList->set_params($this->documentListParams);
+        $this->documentList->initialise();
 
         /* Build category tab */
-        if ($this->check_right(2) === true) {
+        if ($this->check_right(2)) {
             $this->load_library('Admin_GenericDownloadManagerCategoryListParams');
-            $this->listCategory = new AdminItemListViewer('camyks');
-            $this->listCategory->set_params($this->categoryListParams);
-            $this->listCategory->initialise();
+            $this->categoryList = new AdminItemListViewer('camyks');
+            $this->categoryList->set_params($this->categoryListParams);
+            $this->categoryList->initialise();
 
             /* Load categories id */
-            $categoryIDs = array_keys($this->listCategory->objectList);
+            $categoryIDs = array_keys($this->categoryList->objectList);
             $cnts = $this->documentItem->get_documentCountByCategories($categoryIDs);
-            foreach($this->listCategory->objectList as $id => $category)
-                $this->listCategory->objectList[$id]->vars['docs'] = isset($cnts[$id]) ? $cnts[$id] : 0;
+            foreach($this->categoryList->objectList as $id => $category)
+                $this->categoryList->objectList[$id]->vars['docs'] = isset($cnts[$id]) ? $cnts[$id] : 0;
         }
 
         /* Build config tab */
-        if ($this->check_right(3) === true) {
+        if ($this->check_right(3)) {
             $this->configLinkModeList = $this->get_configLinkModeList();
         }
 
@@ -367,8 +391,8 @@ final class Admin_GenericDownloadManager extends Module {
             return $this->init_admin_actionNotAllowed();
 
         /* Build config form */
-        $this->configform = new HTMLForm('configform', $this->get_adminLink(array('mode' => 'save_config')), 'POST');
-        $this->configform->set_object($this->config);
+        $this->editform = new HTMLForm('editform', $this->get_adminLink(array('mode' => 'save_config')), 'POST');
+        $this->editform->set_object($this->config);
 
         /* Load buttons */
         $this->buttons = array(
@@ -377,7 +401,7 @@ final class Admin_GenericDownloadManager extends Module {
                 'title' => $camyks->get_translation('back'),
             ),
             array(
-                'link'=>$this->configform->get_HTMLSubmitLink(),
+                'link'=>$this->editform->get_HTMLSubmitLink(),
                 'title'=>$camyks->get_translation('valid'),
             ),
         );

@@ -3,9 +3,9 @@
  * @brief Admin_GenericDownloadManager module, admin main layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Apr 2009
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -18,14 +18,14 @@ global $camyks;
 <?= $this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams); ?>
 <?= $this->theme->get_boxContent2Header(); ?>
 <div id="itemdocuments" style="display:<?= $this->tabBuilder->get_tabDisplay('documents'); ?>;" class="adminContentPanel">
-    <?= $this->listDocument->display('head'); ?>
-    <?= $this->listDocument->display('list'); ?>
+    <?= $this->documentList->display('head'); ?>
+    <?= $this->documentList->display('list'); ?>
 </div>
 
 <?php if($this->check_right(2) === true) : ?>
     <div id="itemcategories" style="display:<?= $this->tabBuilder->get_tabDisplay('categories'); ?>;" class="adminContentPanel">
-        <?= $this->listCategory->display('head'); ?>
-        <?= $this->listCategory->display('list'); ?>
+        <?= $this->categoryList->display('head'); ?>
+        <?= $this->categoryList->display('list'); ?>
     </div>
 <?php endif; ?>
 

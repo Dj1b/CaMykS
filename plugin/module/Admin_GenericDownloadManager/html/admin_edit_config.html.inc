@@ -3,9 +3,9 @@
  * @brief Admin_GenericDownloadManager module, admin edit configuration layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Mar 2008
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,8 +17,8 @@ global $camyks;
 <?= $this->theme->get_boxTitleBar($this->adminTitle); ?>
 <?= $this->theme->get_boxContent2Header(); ?>
 
-<?= $this->configform->display_header(); ?>
-<?= $this->configform->display_hiddens(); ?>
+<?= $this->editform->display_header(); ?>
+<?= $this->editform->display_hiddens(); ?>
 <div class="adminContentPanel">
     <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
         <tr>
@@ -27,10 +27,10 @@ global $camyks;
             </td>
             <td class="eTableLine0 eContent1">
                 <?php if (isset($camyks->modules['Admin_Statistics'])) : ?>
-                    <?= $this->configform->display_booleanSelectInput('main_stats'); ?>
+                    <?= $this->editform->display_booleanSelectInput('main_stats'); ?>
                 <?php else : ?>
                     <input type="hidden" name="main_stats" value="0" />
-                        <?= $this->configform->display_booleanSelectInput(array('name'=>'main_stats', 'disabled'=>'disabled', 'default'=>0)); ?>
+                        <?= $this->editform->display_booleanSelectInput(array('name'=>'main_stats', 'disabled'=>'disabled', 'default'=>0)); ?>
                 <?php endif; ?>
             </td>
         </tr>
@@ -40,7 +40,7 @@ global $camyks;
                 <?= $this->get_translation('config_maxfilesize'); ?>
             </td>
             <td class="eTableLine1 eContent1">
-                <?= $this->configform->display_textInput(array('name'=>'file_size', 'maxlength'=>6, 'class'=>'vsinputs')); ?> M<?= language_getFileUnit(); ?>
+                <?= $this->editform->display_textInput(array('name'=>'file_size', 'maxlength'=>6, 'class'=>'vsinputs')); ?> M<?= language_getFileUnit(); ?>
             </td>
         </tr>
 
@@ -49,12 +49,12 @@ global $camyks;
                 <?= $this->get_translation('config_linkmode'); ?>
             </td>
             <td class="eTableLine0 eContent1">
-                <?= $this->configform->display_selectInput(array('name'=>'link_mode', 'values'=>$this->get_configLinkModeList())); ?>
+                <?= $this->editform->display_selectInput(array('name'=>'link_mode', 'values'=>$this->get_configLinkModeList())); ?>
             </td>
         </tr>
     </table>
 </div>
-<?= $this->configform->display_footer(); ?>
+<?= $this->editform->display_footer(); ?>
 
 <?= $this->theme->get_boxContent2Footer(); ?>
 <?= $this->theme->get_boxButtonsBar($this->buttons); ?>
