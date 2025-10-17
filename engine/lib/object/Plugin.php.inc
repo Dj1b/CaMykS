@@ -4,10 +4,10 @@
  * <br />Parent object for Module, Input, Template, Theme
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.1
+ * @version 1.0.8.2
  * @date Creation: Jun 2005
- * @date Modification: Jan 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -28,6 +28,12 @@ abstract class Plugin {
      * @brief Plugin version.
      */
     public $version;
+
+    /**
+     * @var string $_installedVersion
+     * @brief Plugin installed version.
+     */
+    public $_installedVersion;
 
     /**
      * @var boolean $active
