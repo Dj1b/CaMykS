@@ -4,9 +4,9 @@
  * <br /> Manage documents in master website repository.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jun 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,6 +16,12 @@
  * Admin_DocumentManager class.
  */
 final class Admin_DocumentManager extends Module {
+    /**
+     * @var Object $fileManager
+     * @brief Link to file manager input.
+     */
+    protected $fileManager;
+
     /**
      * Class constructor.
      * @param string $path_type
@@ -57,19 +63,18 @@ final class Admin_DocumentManager extends Module {
         ));
 
         /* Load FileManager Input object */
-        if (isset ($camyks->inputs['FileManager'])) {
-            $this->fileManager = &$camyks->inputs['FileManager'];
-            $this->fileManager->set_themeValues($this->theme);
-            $this->fileManager->set_engineValues('manage', $this->get_adminLink(), array(
-                'add'       => $this->check_right(1)?'1':'0',
-                'remove'    => $this->check_right(2)?'1':'0',
-            ));
-            $this->fileManager->initialise();
-        } else {
-            $this->init_admin_missingPlugin('Input', 'FileManager');
-        }
+        $this->fileManager = $camyks->get_input('FileManager');
+        if ($this->fileManager == false)
+            return  $this->init_admin_missingPlugin('Input', 'FileManager');
 
-        /* generic init */
+        $this->fileManager->set_themeValues($this->theme);
+        $this->fileManager->set_engineValues('manage', $this->get_adminLink(), array(
+            'add'       => $this->check_right(1)?'1':'0',
+            'remove'    => $this->check_right(2)?'1':'0',
+        ));
+        $this->fileManager->initialise();
+
+        /* Generic init */
         parent::init_admin();
     }
 
