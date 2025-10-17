@@ -4,9 +4,9 @@
  * <br /> Administration module to manage plugins.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1.2
+ * @version 1.1.1.3
  * @date Creation: Jun 2005
- * @date Modification: Sep 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,64 +17,76 @@
  */
 final class Admin_PluginManager extends Module {
     /**
-     * var string $list
+     * @var string $list
      * @brief Running mode while being executed in CaMykS admin mode.
      */
     protected $mode = 'list';
 
     /**
-     * var array $modules
+     * @var array $modules
      * @brief Loaded modules list.
      */
     protected $modules;
 
     /**
-     * var array $templates
+     * @var array $templates
      * @brief Loaded template list.
      */
     protected $templates;
 
     /**
-     * var array $themes
+     * @var array $themes
      * @brief Loaded theme list.
      */
     protected $themes;
 
     /**
-     * var array $inputs
+     * @var array $inputs
      * @brief Loaded input list.
      */
     protected $inputs;
 
     /**
-     * var array $pluginsinfo
+     * @var array $pluginsinfo
      * @brief Stores plugins status.
      */
     private $pluginsinfo;
 
     /**
-     * var array $installedTables
+     * @var array $installedTables
      * @brief Stores installed tables in database.
      */
     protected $installedTables = null;
 
     /**
-     * var Object $pluginItem
+     * @var Object $pluginItem
      * @brief Single plugin information object.
      */
     protected $pluginItem;
 
     /**
-     * var array $unfound
+     * @var array $unfound
      * @brief List of installed, but not found plugins.
      */
     protected $unfound;
 
     /**
-     * var string $text
+     * @var string $text
      * @brief Admin message text.
      */
     protected $text;
+
+    /**
+     * @var array $themeActionMenu
+     * @brief Interface theme action menu items.
+     */
+    protected $themeActionMenu;
+
+    /**
+     * @var array $templateActionMenu
+     * @brief Interface template action menu items.
+     */
+    protected $templateActionMenu;
 
     /**
      * Class constructor.
