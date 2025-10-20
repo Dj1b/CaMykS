@@ -3,9 +3,9 @@
  * @brief String specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9.2
+ * @version 1.0.9.3
  * @date Creation: Oct 2007
- * @date Modification: Sep 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -160,7 +160,7 @@ function string_html2Text($string, $encoding=null) {
     global $camyks;
 
     /* check encoding */
-    if (!isset($encoding))
+    if (is_null($encoding))
         $encoding = $camyks->get_confValue('encoding');
 
     /* decode HTML */
@@ -193,7 +193,7 @@ function string_text2Html($string, $encoding=null) {
     global $camyks;
 
     /* check encoding */
-    if (!isset($encoding))
+    if (is_null($encoding))
         $encoding = $camyks->get_confValue('encoding');
 
     /* decode text */
@@ -719,7 +719,7 @@ function string_escape4Regex($string='') {
   return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,)/', '\\\$1', $string);
 }
 
-/* Mark : String convertion methods */
+/* Mark: String convertion methods */
 
 /**
  * Convert string.
@@ -734,7 +734,7 @@ function string_convert($string, $from, $to) {
     if (function_exists('iconv'))
         return iconv($string, $from, $to);
     if (class_exists('UConverter'))
-        return UConverter::transcode($string, $to, $from, ['to_subst' => '?']);
+        return UConverter::transcode($string, $to, $from, array('to_subst' => '?'));
     return $string;
 }
 
@@ -756,7 +756,7 @@ function string_utf8_encode($string='') {
  */
 function string_utf8_decode($string='') {
     if (version_compare(PHP_VERSION, '8.0.0', '<'))
-        return utf8_encode($string);
+        return utf8_decode($string);
     return string_convert($string, 'UTF-8', 'ISO-8859-1');
 }
 
