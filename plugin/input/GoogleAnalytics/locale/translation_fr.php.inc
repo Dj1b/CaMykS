@@ -1,18 +1,20 @@
 <?php
 /**
- * @brief GoogleAnalytics Input, french dictionary.
+ * @brief GoogleAnalytics input, french dictionary.
  * @details Plugin / Input Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Sep 2018
- * @date Modification: Feb 2023
- * @copyright 2018 - 2023 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
 /* Configuration */
 $this->trads['input_googleanalytics_formtitle_googleparams'] = 'Param&egrave;tres de Google Analytics';
+$this->trads['input_googleanalytics_formtitle_firstcode'] = 'Premier code de suivi';
+$this->trads['input_googleanalytics_formtitle_secondcode'] = 'Second code de suivi';
 $this->trads['input_googleanalytics_formitem_trackingcode'] = 'Code de suivi : ';
 $this->trads['input_googleanalytics_formitem_trackingmode'] = 'Balise : ';
 $this->trads['input_googleanalytics_formitem_trackingparams'] = 'Param&egrave;tres : ';

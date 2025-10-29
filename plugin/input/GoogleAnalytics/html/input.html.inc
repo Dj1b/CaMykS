@@ -1,8 +1,7 @@
 <?php
 /**
- * @brief GoogleAnalytics Input layout
+ * @brief GoogleAnalytics input, main layout
  * @details Plugin / Input layout
- * @file plugin/input/GoogleAnalytics/html/input.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
  * @version 1.0
  * @date Creation: Sep 2018
@@ -14,7 +13,7 @@
  */
 ?>
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?= $this->get_configValue('trackingId'); ?>"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?= $this->get_configValue($this->trackingId2Display); ?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
