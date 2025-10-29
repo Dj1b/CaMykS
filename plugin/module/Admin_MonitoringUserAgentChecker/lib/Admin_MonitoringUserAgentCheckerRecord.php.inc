@@ -3,9 +3,9 @@
  * @brief Admin_MonitoringUserAgentChecker module, record library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.1
+ * @version 1.0.8
  * @date Creation: Dec 2014
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -244,7 +244,7 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return string_text2Html($this->vars['user_agent']);
     }
 
-    /* single object update methods */
+    /* Mark: Single object update methods */
 
     /**
      * Update record type.
@@ -298,6 +298,8 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
         return $this->update_databaseSpecificItems(array('status'));
     }
 
+    /* Mark: Multi object update methods */
+
     /**
      * Mark records as verified.
      * @param array $ids
@@ -340,6 +342,29 @@ final class Admin_MonitoringUserAgentCheckerRecord extends ModuleLibrary {
 
         /* execute sql query */
         return ($this->execute_DBQuery($sql, __LINE__));
+    }
+
+    /**
+     * Update records type.
+     * @param array $ids
+     * @return boolean success
+     */
+    public function update_types($ids) {
+        /* Check ids count */
+        if (count($ids) == 0)
+            return true;
+
+        foreach ($ids as $id) {
+            $r = $this->get_newObject($id);
+            if (!$r->get())
+                return false;
+            if (!$r->update_type())
+                return false;
+            unset($r);
+        }
+
+        /* Return success */
+        return true;
     }
 
     /**
