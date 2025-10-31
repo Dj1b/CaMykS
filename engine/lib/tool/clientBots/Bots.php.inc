@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.87
+ * @version 1.0.88
  * @date Creation: May 2018
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -244,6 +244,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'GoogleSites',
         'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* GoogleAssociationService */
+    $knownBots['googleassociationservice'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'GoogleAssociationService',
+        'bot_url'           => '',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
     );
@@ -5481,6 +5491,36 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://obsrvr.net/about',
         'engine_title'      => 'Observer',
         'engine_url'        => 'https://obsrvr.net/',
+    );
+
+    /* Ibou bot */
+    $knownBots['iboubot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'IbouBot',
+        'bot_url'           => 'https://ibou.io/iboubot.html',
+        'engine_title'      => 'Ibou',
+        'engine_url'        => 'https://ibou.io/',
+    );
+
+    /* Halo bot */
+    $knownBots['halobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'HaloBot',
+        'bot_url'           => 'mailto:bot@haloscan.com',
+        'engine_title'      => 'HaloScan',
+        'engine_url'        => 'https://www.haloscan.com/',
+    );
+
+    /* Halo bot */
+    $knownBots['ev-crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ev-crawler',
+        'bot_url'           => 'https://headline.com/legal/crawler',
+        'engine_title'      => 'Headline',
+        'engine_url'        => 'https://headline.com/',
     );
 
     /* Return bot list */

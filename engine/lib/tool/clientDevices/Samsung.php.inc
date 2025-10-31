@@ -3,10 +3,10 @@
  * @brief Samsung client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.107
+ * @version 1.0.108
  * @date Creation: Apr 2018
- * @date Modification: Mar 2023
- * @copyright 2018 - 2023 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -278,6 +278,7 @@ function get_SamsungClientDevice($deviceCode='') {
         'SM-A605FN' => array('platform_model' => 'Galaxy A6+',                      'platform_year' => 2018),
         'SM-A7000'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A700F'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
+        'SM-A700FD' => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A700L'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A7100'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2015),
         'SM-A720F'  => array('platform_model' => 'Galaxy A7',                       'platform_year' => 2017),
