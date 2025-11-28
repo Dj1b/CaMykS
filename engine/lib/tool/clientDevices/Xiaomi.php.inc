@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Xiaomi client devices specific methods
+ * @brief Xiaomi client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.56
+ * @version 1.0.57
  * @date Creation: May 2018
- * @date Modification: Nov 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Nov 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -156,6 +156,8 @@ function get_XiaomiClientDevice($deviceCode='') {
         'm2012k11c'             => array('platform_model' => 'Redmi K40 Pro',       'platform_year' => 2021),
         'm1908c3jgg'            => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2021),
         'm2101k7bny'            => array('platform_model' => 'Redmi Note 10S',      'platform_year' => 2021),
+
+        '2201117ty'             => array('platform_model' => 'Redmi Note 11',       'platform_year' => 2022),
 
         /* Phones, Shark series */
         'skr h0'                => array('platform_model' => 'Black Shark',         'platform_year' => 2018),

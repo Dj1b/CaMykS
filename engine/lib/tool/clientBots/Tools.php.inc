@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Tools as client bots specific methods
+ * @brief Tools as client bots specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.37
  * @date Creation: May 2018
- * @date Modification: Jul 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Nov 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -1413,7 +1413,7 @@ function _client_getKnownTools() {
 
     /* l9tcpid */
     $knownTools['l9tcpid'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => '',
         'tool_url'          => '',
@@ -1423,7 +1423,7 @@ function _client_getKnownTools() {
 
     /* l9explore */
     $knownTools['l9explore'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => '',
         'tool_url'          => '',
@@ -1433,7 +1433,7 @@ function _client_getKnownTools() {
 
     /* Statically-Screenshot */
     $knownTools['statically-screenshot'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => '',
         'tool_url'          => '',
@@ -1443,7 +1443,7 @@ function _client_getKnownTools() {
 
     /* Statically-Screenshot */
     $knownTools['statically-screenshot'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => '',
         'tool_url'          => '',
@@ -1453,12 +1453,32 @@ function _client_getKnownTools() {
 
     /* SiteCheckerBotCrawler */
     $knownTools['sitecheckerbotcrawler'] = array(
-        'platform_type'     => 'bot',
+        'platform_type'     => 'tool',
         'platform_format'   => 'desktop',
         'tool_title'        => 'SiteCheckerBotCrawler',
         'tool_url'          => '',
         'engine_title'      => 'Sitechecker',
         'engine_url'        => 'https://sitechecker.pro',
+    );
+
+    /* CMS-Checker */
+    $knownTools['cms-checker'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'CMS-Checker',
+        'tool_url'          => '',
+        'engine_title'      => '',
+        'engine_url'        => '',
+    );
+
+    /* JSScanner */
+    $knownTools['jsscanner'] = array(
+        'platform_type'     => 'tool',
+        'platform_format'   => 'desktop',
+        'tool_title'        => 'JSScanner',
+        'tool_url'          => 'https://github.com/0x240x23elu/JSScanner',
+        'engine_title'      => '',
+        'engine_url'        => '',
     );
 
     /* return list */
