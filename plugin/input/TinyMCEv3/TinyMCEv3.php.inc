@@ -4,9 +4,9 @@
  * <br /> Interfaces TinyMCE version 3 for CaMykS.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.2.3
  * @date Creation: Jul 2008
- * @date Modification: Oct 2025
+ * @date Modification: Dec 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -94,6 +94,18 @@ final class TinyMCEv3 extends Input {
      * @brief List of all editor configurations.
      */
     protected $configs;
+
+    /**
+     * @var Object $filemanager
+     * @brief Link to FileManager input.
+     */
+    protected $filemanager;
+
+    /**
+     * @var Object $pagechooser
+     * @brief Link to PageChooser input.
+     */
+    protected $pagechooser;
 
     /**
      * Class constructor.
