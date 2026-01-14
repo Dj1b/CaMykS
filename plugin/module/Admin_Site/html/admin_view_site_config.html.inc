@@ -3,10 +3,10 @@
  * @brief Admin_Site module, admin view site configuration layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.1
+ * @version 1.0.7.2
  * @date Creation: Jan 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -756,7 +756,7 @@ global $camyks;
                         </a>
                     </td>
                     <td class="eTableLine<?= $alt; ?> eTableIconCell">
-                        <?php if ($this->check_right(2)) : ?>
+                        <?php if ($this->check_right(3)) : ?>
                             <a href="<?= $this->get_adminLink(array('mode'=>'editPluginConfig', 'plugin'=>$name)); ?>" class="img">
                                 <img src="<?= $cnfg; ?>" alt="<?= $this->get_translation('editthispluginconfig'); ?>" title="<?= $this->get_translation('editthispluginconfig'); ?>"
                                     onmouseover="this.src='<?= $cnfg_; ?>';" onmouseout="this.src='<?= $cnfg; ?>';" />
