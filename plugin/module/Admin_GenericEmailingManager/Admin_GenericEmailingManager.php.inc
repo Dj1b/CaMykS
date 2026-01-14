@@ -4,10 +4,10 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.3
+ * @version 1.0.9
  * @date Creation: Dec 2012
- * @date Modification: Jul 2025
- * @copyright 2012 - 2025 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Requires XLSXReader from https://github.com/gneustaetter/XLSXReader to import xlsx data
@@ -1506,14 +1506,27 @@ final class Admin_GenericEmailingManager extends Module {
         if (!$this->emailItem->update_asUnsubscribed($params[0]))
             die('Error');
 
-        /* Load contact id */
-        $this->contactItem->id = $this->emailItem->vars['contact'];
-
+        /* Load configuration */
         $this->config->get();
 
-        /* update contact */
-        if ($this->contactItem->update_asUnsubscribed($_REQUEST['email'])) {
-            header('Location:'.$camyks->get_siteLink($this->config->get_value('unsubscribe_backpage')));
+        $source = explode(':', $this->emailItem->vars['source']);
+        if ($source[0] == 'internal') {
+            /* Load internal contact */
+            $this->contactItem->id = $this->emailItem->vars['contact'];
+
+            /* Update contact */
+            if ($this->contactItem->update_asUnsubscribed($_REQUEST['email'])) {
+                header('Location:'.$camyks->get_siteLink($this->config->get_value('unsubscribe_backpage')));
+            } else {
+                die('Error');
+            }
+        } elseif (isset($camyks->modules[$source[0]])) {
+            /* Ask extension module to unsubsribe contact from the given newsletter */
+            if ($camyks->modules[$source[0]]->mark_emailingManagerContactAsUnsubscribed($this->emailItem->vars['contact'], $source[1])) {
+                header('Location:'.$camyks->get_siteLink($this->config->get_value('unsubscribe_backpage')));
+            } else {
+                die('Error 0');
+            }
         } else {
             die('Error');
         }
@@ -1531,7 +1544,7 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Check email value */
         if (!isset($_REQUEST['emailing']))
-                die('Error : no emailing given');
+            die('Error : no emailing given');
 
         /* Load excel writer library */
         require_once('Spreadsheet/Excel/Writer.php');
