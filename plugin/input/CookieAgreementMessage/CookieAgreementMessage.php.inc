@@ -4,10 +4,10 @@
  * <br /> Automatic cookie agremement message displayed in site mode.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.8
+ * @version 1.1.1
  * @date Creation: May 2017
- * @date Modification: Oct 2025
- * @copyright 2017 - 2025 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -124,7 +124,7 @@ final class CookieAgreementMessage extends Input {
 
         /* Add styles */
         if ($this->params['styleSource'] == 'plugin') {
-            $this->add_styleFile('css/styles.css?v=1.1.0.3');
+            $this->add_styleFile('css/styles.css?v=1.1.1');
         }
 
         /* Add scripts */
