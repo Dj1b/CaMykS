@@ -3,10 +3,10 @@
  * @brief Admin_GenericEmailingManager module, french dictionary.
  * @details Plugin, Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Dec 2012
- * @date Modification: Nov 2022
- * @copyright 2012 - 2022 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -118,6 +118,7 @@ $this->trads['mod_admin_genericemailingmanager_formitem_sendinginterval'] = 'D&e
 
 $this->trads['mod_admin_genericemailingmanager_formtitle_emailcontent'] = 'E-mail';
 $this->trads['mod_admin_genericemailingmanager_formitem_content'] = 'Contenu : ';
+$this->trads['mod_admin_genericemailingmanager_email_insertedcontent'] = 'Contenu ins&eacute;r&eacute;';
 $this->trads['mod_admin_genericemailingmanager_formitem_sendername'] = 'Exp&eacute;diteur - Nom : ';
 $this->trads['mod_admin_genericemailingmanager_formitem_senderemail'] = 'Exp&eacute;diteur - E-mail : ';
 $this->trads['mod_admin_genericemailingmanager_formitem_replytoname'] = 'R&eacute;ponse &agrave; - Nom : ';

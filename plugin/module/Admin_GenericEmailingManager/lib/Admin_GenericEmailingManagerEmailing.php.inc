@@ -3,10 +3,10 @@
  * @brief Admin_GenericEmailingManager module, emailing library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.3
  * @date Creation: Dec 2012
- * @date Modification: Jul 2025
- * @copyright 2012 - 2025 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -23,13 +23,13 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
     public function __construct($id, &$module) {
         parent::__construct($id, $module);
 
-        /* Admin items */
+        /* Admin attributes */
         $this->add_newItem('status', 'db', 'int', 'tinyint unsigned', '', 0);
         $this->add_newItem('cdate', 'db', 'int', 'bigint unsigned', '', time());
         $this->add_newItem('sdate', 'db', 'int', 'bigint unsigned', '', 0);
         $this->add_newItem('edate', 'db', 'int', 'bigint unsigned', '', 0);
 
-        /* Main params */
+        /* Main attributes */
         $this->add_newItem('contact_source', 'db', 'text', 'varchar', 128, '');
         $this->add_newItem('contact_group', 'db', 'text', 'varchar', 64, '');
         $this->add_newItem('email_title', 'db', 'text', 'varchar', 128, '');
@@ -40,10 +40,10 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
         $this->add_newItem('replyto_name', 'db', 'text', 'varchar', 64, '');
         $this->add_newItem('replyto_email', 'db', 'text', 'varchar', 128, '');
 
-        /* Content */
+        /* File attributes */
         $this->add_newItem('email_contentfile', 'file', 'email_contents', '', '', '');
 
-        /* Advanced params */
+        /* Advanced params attributes */
         $this->add_newItem('advanced_envelope_email', 'db', 'text', 'varchar', 128, '');
         $this->add_newItem('advanced_include_listunsub', 'db', 'int', 'tinyint unsigned', '', 0);
         $this->add_newItem('advanced_sending_interval', 'db', 'int', 'float unsigned', '', 0);
@@ -84,68 +84,25 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
             $contentFile = $_FILES['email_contentfile']['tmp_name'];
             if (file_exists($contentFile)) {
 
+                /* Read content from file */
                 $content = file_get_contents($contentFile);
 
-                $patterns = array();
-                $replaces = array();
-
-                /* Initialise image list */
-                $this->config->vars['content_images'] = array();
-
-                /* Get images urls */
-                preg_match_all('/src="([^"]*)"/i', $content, $matches);
-
-                /* Save image list */
-                foreach ($matches[1] as $img) {
-                    if (!preg_match('/http:\/\//', $img) and !in_array(basename($img), $this->config->vars['content_images'])) {
-                        $this->config->vars['content_images'][] = basename($img);
-                        /* prepare path replacement */
-                        $patterns[] = '#src="'.$img.'"#i';
-                        $replaces[] = 'src="{image_path}'.basename($img).'"';
-                    }
-                }
-
-                /* Initialise link list */
-                $this->config->vars['content_links'] = array();
-
-                /* Get links urls */
-                if (preg_match_all('/href="(https?:\/\/[^"]*)"/i', $content, $matches)) {
-
-                    /* Save links urls */
-                    $matches = array_values(array_unique($matches[1]));
-
-                    /* Replace links urls with internal value */
-                    foreach($matches as $index => $link) {
-                        $this->config->vars['content_links'][] = $link;
-                        /* prepare path replacement */
-                        $patterns[] = '#href="'.preg_replace('/\?/', '\?', $link).'"#i';
-                        $replaces[] = 'href="{link_'.$index.'}"';
-                    }
-                }
-
-                /* Get close body tag */
-                if (preg_match_all('/<\/body>/i', $content, $matches)) {
-                    foreach ($matches[0] as $tag) {
-                        /* prepare path replacement */
-                        $patterns[] = '#</body>#i';
-                        $replaces[] = '<img src="{opened_img}" alt="" border="0" width="0" height="0" style="display:none; width:0; height:0;"></body>';
-                    }
-                }
-
-                /* Replace images path and links url with internal value */
-                $content = preg_replace($patterns, $replaces, $content);
-
-                /* Save content */
-                $this->_libItems['email_content']->value = $content;
+                /* Parse content */
+                $data = $this->parse_emailContent($content);
+                $this->config->vars['content_images'] = $data['images'];
+                $this->config->vars['content_links'] = $data['links'];
+                $this->_libItems['email_content']->value = $data['content'];
             }
         } elseif ($this->id > 0) {
-            /* Load previous content */
-            $old = $this->get_newObject($this->id);
-            $old->get();
-            $old->get_fromItems();
+            if ($this->_libItems['email_content']->value == '') {
+                /* Load previous content */
+                $old = $this->get_newObject($this->id);
+                $old->get();
+                $old->get_fromItems();
 
-            /* Copy previous email content */
-            $this->_libItems['email_content']->value = $old->vars['email_content'];
+                /* Copy previous email content */
+                $this->_libItems['email_content']->value = $old->vars['email_content'];
+            }
         }
 
         /* Check image upload */
@@ -208,7 +165,7 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
          }
      }
 
-    /* Mark: Specific methods */
+    /* Mark: Check methods */
 
     /**
      * Return if object is still editable.
@@ -217,6 +174,8 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
     public function is_editable() {
         return ($this->vars['status'] == 0);
     }
+
+    /* Mark: Attribute values methods */
 
     /**
      * Return object status list.
@@ -258,6 +217,8 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
         );
     }
 
+    /* Mark: Display methods */
+
     /**
      * Return group title.
      * @return string
@@ -265,6 +226,69 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
     public function get_groupTitle() {
         $groups = $this->_libParent->get_contactGroupList(true);
         return $groups[$this->vars['contact_group']];
+    }
+
+    /* Mark: Email content related methods */
+
+    /**
+     * Parse email content.
+     * @param string $content
+     * @return array
+     */
+    public function parse_emailContent($content='') {
+        /* Initialise all replacements to do at the end */
+        $patterns = array();
+        $replaces = array();
+
+        /* Initialise links and images lists */
+        $links = array();
+        $images = array();
+
+        /* Get images urls */
+        preg_match_all('/src="([^"]*)"/i', $content, $matches);
+
+        /* Save image list */
+        foreach ($matches[1] as $img) {
+            if (!preg_match('/http?s:\/\//', $img) and !in_array(basename($img), $images)) {
+                $images[] = basename($img);
+                /* prepare path replacement */
+                $patterns[] = '#src="'.$img.'"#i';
+                $replaces[] = 'src="{image_path}'.basename($img).'"';
+            }
+        }
+
+        /* Get links urls */
+        if (preg_match_all('/href="(https?:\/\/[^"]*)"/i', $content, $matches)) {
+
+            /* Save links urls */
+            $matches = array_values(array_unique($matches[1]));
+
+            /* Replace links urls with internal value */
+            foreach($matches as $index => $link) {
+                $links[] = $link;
+                /* prepare path replacement */
+                $patterns[] = '#href="'.preg_replace('/\?/', '\?', $link).'"#i';
+                $replaces[] = 'href="{link_'.$index.'}"';
+            }
+        }
+
+        /* Get close body tag */
+        if (preg_match_all('/<\/body>/i', $content, $matches)) {
+            foreach ($matches[0] as $tag) {
+                /* prepare path replacement */
+                $patterns[] = '#</body>#i';
+                $replaces[] = '<img src="{opened_img}" alt="" border="0" width="0" height="0" style="display:none; width:0; height:0;"></body>';
+            }
+        }
+
+        /* Replace images path and links url with internal value */
+        $content = preg_replace($patterns, $replaces, $content);
+
+        return array(
+            'content'   => $content,
+            'images'    => $images,
+            'links'     => $links,
+        );
     }
 
     /**
@@ -303,11 +327,16 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
      * @return string
      */
     public function get_contentFileDescription() {
-        if ($this->vars['email_contentfile'] == '')
+        if ($this->vars['email_contentfile'] == '') {
+            if ($this->vars['email_content'] != '')
+                return '<span class="eContent3">'.$this->get_translation('email_insertedcontent').'</span>';
             return $this->get_translation('none');
+        }
         $f = new FSFile($this->vars['email_contentfile']);
         return $f->hsize.', '.$f->typedesc;
     }
+
+    /* Mark: Pictures related methods */
 
     /**
      * Return image folder path.
@@ -325,6 +354,8 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
         return $this->_libParent->get_varFileURL('', true).'email_images/emailing'.$this->id;
     }
 
+    /* Mark: Config related methods */
+
     /**
      * Load config.
      * @return boolean success
@@ -334,6 +365,49 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
             return;
         $this->config = new Admin_GenericEmailingManagerEmailingConfig('emailing'.$this->id, $this->_libParent);
         $this->config->get();
+    }
+
+    /* Mark: External methods */
+
+    /**
+     * Import from data.
+     * @param array $params
+     * @return boolean success
+     */
+    public function import_fromData($params) {
+        /* Load emailing config */
+        $this->load_config();
+
+        /* Load data from params */
+        $this->get_fromArray($params, null, true);
+
+        /* Parse content */
+        $data = $this->parse_emailContent($params['email_content']);
+        $this->config->vars['content_images'] = $data['images'];
+        $this->config->vars['content_links'] = $data['links'];
+        $this->_libItems['email_content']->value = $data['content'];
+
+        /* Save content */
+        if (!$this->save())
+            return false;
+
+        /* Create emailing picture folder path */
+        $path = $this->get_imageFolderPath();
+        folder_completePath($path, 0771);
+
+        /* Copy pictures from params into emailing picture folder */
+        foreach ($params['images'] as $name => $originPath) {
+            if (in_array($name, $data['images'])) {
+                /* Check file exists and is identical */
+                if (file_exists($path.'/'.$name) and md5_file($originPath) == md5_file($path.'/'.$name))
+                    continue;
+                /* Copy origin file to newsletter pictures folder */
+                copy ($originPath, $path.'/'.$name);
+            }
+        }
+
+        /* Return success */
+        return true;
     }
 }
 ?>

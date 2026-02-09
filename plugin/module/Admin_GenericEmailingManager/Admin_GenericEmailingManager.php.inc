@@ -4,7 +4,7 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Dec 2012
  * @date Modification: Jan 2026
  * @copyright 2012 - 2026 CaMykS Team
@@ -2258,6 +2258,31 @@ final class Admin_GenericEmailingManager extends Module {
      */
     private function get_emailingStatisticsSummary($emailing) {
         return $this->emailItem->get_statisticsSummary($emailing);
+    }
+
+    /**
+     * Import emailing from data.
+     * @param integer $id
+     * @param array $params
+     * @return integer
+     */
+    public function import_emailing($id=0, $params=array()) {
+        /* Check permission */
+        if (!$this->check_right(3))
+            return 0;
+
+        /* Load emailing or initialise new one */
+        $this->emailingItem->id = $id;
+        if (!$this->emailingItem->get())
+            return 0;
+        $this->emailingItem->get_fromItems();
+
+        /* Import data */
+        if (!$this->emailingItem->import_fromData($params))
+            return 0;
+
+        /* Return emailing id */
+        return $this->emailingItem->id;
     }
 
     /**
