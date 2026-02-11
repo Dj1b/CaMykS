@@ -3,9 +3,9 @@
  * @brief Bots as client bots specific methods.
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.89
+ * @version 1.0.90
  * @date Creation: May 2018
- * @date Modification: Nov 2025
+ * @date Modification: Dec 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1833,6 +1833,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'DuckDuckBot',
         'bot_url'           => 'http://duckduckgo.com/duckduckbot.html',
+        'engine_title'      => 'DuckDuckGo',
+        'engine_url'        => 'http://duckduckgo.com',
+    );
+
+    /* DuckDuckGo */
+    $knownBots['duckassistbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DuckAssistBot',
+        'bot_url'           => 'http://duckduckgo.com/duckassistbot.html',
         'engine_title'      => 'DuckDuckGo',
         'engine_url'        => 'http://duckduckgo.com',
     );
@@ -5571,6 +5581,26 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://linkup.so/bot',
         'engine_title'      => 'Linkup',
         'engine_url'        => 'https://www.linkup.so',
+    );
+
+    /* TerraCotta bot */
+    $knownBots['terracotta'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TerraCotta',
+        'bot_url'           => 'https://github.com/CeramicTeam/CeramicTerracotta',
+        'engine_title'      => 'Ceramic',
+        'engine_url'        => 'https://ceramic.ai',
+    );
+
+    /* Mistral bot */
+    $knownBots['mistralai-user'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MistralAI-User',
+        'bot_url'           => 'https://docs.mistral.ai/robots',
+        'engine_title'      => 'Mistral',
+        'engine_url'        => 'https://mistral.ai',
     );
 
     /* Return bot list */

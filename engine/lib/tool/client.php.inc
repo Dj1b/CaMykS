@@ -3,9 +3,9 @@
  * @brief Client specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.151
+ * @version 1.0.152
  * @date Creation: Jun 2007
- * @date Modification: Nov 2025
+ * @date Modification: Feb 2026
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -989,7 +989,7 @@ function client_getUAInfos($ua=false) {
     } elseif (preg_match('/; (HM NOTE )(.*)( Build|\)| MIUI)/Ui', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1].$matches[2]));
-    } elseif (preg_match('/; (2014811|dandelion|2201117ty)( Build|\)| MIUI)/Ui', $ua, $matches)) {
+    } elseif (preg_match('/; (2014811|dandelion|2201116sg|2201117ty)( Build|\)| MIUI)/Ui', $ua, $matches)) {
         include_once('clientDevices/Xiaomi.php.inc');
         $infos = array_merge($infos, get_XiaomiClientDevice($matches[1]));
     }
@@ -3214,7 +3214,7 @@ function client_getFakeInfosFromUserAgent($ua='') {
         return $fake;
 
     /* Fake visits, sample : Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko RqIwg8izYw6xskukQQDh */
-    if (preg_match('#(.{40,})([0-9a-zA-Z]{16,24})$#', $ua))
+    if (preg_match('#like Gecko (.{40,})([0-9a-zA-Z]{16,24})$#', $ua))
         return $fake;
 
     /* Fake visits, with strange Edge version */
@@ -3378,6 +3378,10 @@ function client_getFakeInfosFromUserAgent($ua='') {
     if (preg_match('#Safari/[0-9]{3,}.[0-9]{2}.[0-9]{2}$#', $ua))
         return $fake;
 
+    /* Bad chrome ua, without version, with a tab, and extra generic text */
+    if (preg_match('#Safari/537.36\tChrome Generic$#', $ua))
+        return $fake;
+
     /* Default result */
     return false;
 }
@@ -3454,19 +3458,19 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '152',                    // current is 144 , nightly is +6
+                'MaxVersion'    => '156',                    // current is 147 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '148',                    // current is 142
+                'MaxVersion'    => '150',                    // current is 144
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '_client_checkChromeIsFake',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '129',                    // current is 123
+                'MaxVersion'    => '133',                    // current is 127
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',

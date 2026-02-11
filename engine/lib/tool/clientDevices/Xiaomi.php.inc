@@ -3,9 +3,9 @@
  * @brief Xiaomi client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.57
+ * @version 1.0.58
  * @date Creation: May 2018
- * @date Modification: Nov 2025
+ * @date Modification: Dec 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -157,6 +157,7 @@ function get_XiaomiClientDevice($deviceCode='') {
         'm1908c3jgg'            => array('platform_model' => 'Redmi Note 8',        'platform_year' => 2021),
         'm2101k7bny'            => array('platform_model' => 'Redmi Note 10S',      'platform_year' => 2021),
 
+        '2201116sg'             => array('platform_model' => 'Redmi Note 11 Pro',   'platform_year' => 2022),
         '2201117ty'             => array('platform_model' => 'Redmi Note 11',       'platform_year' => 2022),
 
         /* Phones, Shark series */

@@ -3,9 +3,9 @@
  * @brief OnePlus client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.24
+ * @version 1.0.25
  * @date Creation: Apr 2018
- * @date Modification: Nov 2025
+ * @date Modification: Dec 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -67,6 +67,7 @@ function get_OnePlusClientDevices() {
 
         '2'         => array('platform_model' => '2',                   'platform_year' => 2015),
         '7 Pro'     => array('platform_model' => '7 Pro',               'platform_year' => 2019),
+        '12'        => array('platform_model' => '12',                  'platform_year' => 2023),
 
         'CPH2381'   => array('platform_model' => 'Nord CE 2 Lite',      'platform_year' => 2022),
         'CPH2381'   => array('platform_model' => 'Nord CE 2 Lite',      'platform_year' => 2022),
