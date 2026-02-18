@@ -3,10 +3,10 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.9.1
+ * @version 1.1.9.2
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Feb 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -671,7 +671,7 @@ class HTMLForm {
                     if (isset($params['buttons']['delete']['std'])) {
                         /* Add delete button */
                         $html .= '&nbsp;<a href="javascript:';
-                        $html .= 'document.'.$this->name.'.'.$n.'_deletefile.value=1;';
+                        $html .= 'document.'.$this->name.'[\''.$n.'_deletefile\'].value=1;';
                         $html .= 'document.getElementById(\''.$n.'_filedesc\').innerHTML=\''.$camyks->get_translation('file_deleted').'\';';
                         $html .= 'void(0);">';
                         $html .= '<img src="'.$params['buttons']['delete']['std'].'"';
