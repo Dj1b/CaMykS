@@ -3,10 +3,10 @@
  * @brief France related methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.5
  * @date Creation: Apr 2017
- * @date Modification: Jul 2025
- * @copyright 2017 - 2025 CaMykS Team
+ * @date Modification: Apr 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -288,6 +288,10 @@ function france_getHolidayList($year=null) {
  * @return string
  */
 function france_getIntlVATFromSiren($siren) {
+    /* Check SIREN */
+    $siren = substr(preg_replace('#([^0-9]*)#', '', $siren), 0, 9);
+
+    /* Compute VAT Number */
     $key = "".($siren % 97 * 3 + 12) % 97;
     $key = str_pad($key, 2, "0", STR_PAD_LEFT);
     return 'FR'.$key.$siren;
