@@ -4,10 +4,10 @@
  * <br /> System module to log in/out admin section.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.2.1
+ * @version 1.1.2.2
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: May 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -17,25 +17,31 @@
  */
 final class Tool_Login extends Module {
     /**
-     * var string $login
+     * @var Object $user
+     * @brief AdminUser object.
+     */
+    protected $login;
+
+    /**
+     * @var string $login
      * @brief Input login value.
      */
     protected $login;
 
     /**
-     * var string $pwd
+     * @var string $pwd
      * @brief Input password value.
      */
     protected $pwd;
 
     /**
-     * var array $languages
+     * @var array $languages
      * @brief Available languages for admin section.
      */
     protected $adminLanguages;
 
     /**
-     * var object $form
+     * @var object $form
      * @brief Used form to log in.
      */
     protected $form;

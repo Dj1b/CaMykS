@@ -3,9 +3,9 @@
  * @brief Content_GenericGallery module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jul 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -26,6 +26,12 @@ final class Content_GenericGallery extends Module {
      * @brief Image list.
      */
     protected $imagelist;
+
+    /**
+     * var integer $maxfilesize
+     * @brief File upload max size, currently 512ko.
+     */
+    protected $maxfilesize = 524288;
 
     /**
      * Class constructor.
@@ -53,9 +59,6 @@ final class Content_GenericGallery extends Module {
         /* Initialise plugin libraries */
         $this->imageitem = new Content_GenericGalleryItem(0, $this);
         $this->imagelist = new Content_GenericGalleryList(0, $this);
-
-        /* Initialise plugin variables */
-        $this->maxfilesize = 512*1024; /* 512 Ko */
     }
 
     /* Mark: Override Module methods */

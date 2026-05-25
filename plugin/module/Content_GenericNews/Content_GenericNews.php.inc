@@ -3,9 +3,9 @@
  * @brief Content_GenericNews module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Mar 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,34 +16,46 @@
  */
 final class Content_GenericNews extends Module {
     /**
-     * var array $layouts_list
+     * @var array $layouts_list
      * @brief List of available layouts to display lists.
      */
     protected $layouts_list = array('box_list_titleonly', 'box_list_complete', 'box_list_completebyday', 'box_list_completebymonth', 'box_list_completebyyear', 'custom');
 
     /**
-     * var array $layouts_item
+     * @var array $layouts_item
      * @brief List of available layouts to display items.
      */
     protected $layouts_item = array('box_item_complete');
 
     /**
-     * var integer $newsbypage
+     * @var integer $newsbypage
      * @brief Stores how many news to display in admin page.
      */
     protected $newsbypage = 16;
 
     /**
-     * var array $status
+     * @var array $status
      * @brief Available statuses for items.
      */
     protected $status = array(0 => 'inedition', 1 => 'inline');
 
     /**
-     * var array $status
-     * @brief Available statuses for items.
+     * @var integer $newspage
+     * @brief Current page index for news list.
      */
     protected $newspage;
+
+    /**
+     * @var Object $newslist
+     * @brief News list object.
+     */
+    protected $newslist;
+
+    /**
+     * @var Object $newsitem
+     * @brief Single news object.
+     */
+    protected $newsitem;
 
     /**
      * Class constructor.
@@ -64,7 +76,7 @@ final class Content_GenericNews extends Module {
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load plugin libraries */
+        /* Load plugin libraries */
         $this->load_library('Content_GenericNewsList');
         $this->load_library('Content_GenericNewsItem');
 

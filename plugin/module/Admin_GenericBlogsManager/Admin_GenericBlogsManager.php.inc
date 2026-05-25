@@ -4,9 +4,9 @@
  * <br /> Manages articles with comments and tags.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Apr 2008
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,7 +17,37 @@
  */
 final class Admin_GenericBlogsManager extends Module {
     /**
-     * var Object $itemsByPage
+     * @var Object $config
+     * @brief Module configuration.
+     */
+    public $config;
+
+    /**
+     * @var Object $linkItem
+     * @brief Link object.
+     */
+    public $linkItem;
+
+    /**
+     * @var Object $tagItem
+     * @brief Tag object.
+     */
+    public $tagItem;
+
+    /**
+     * @var Object $commentItem
+     * @brief Comment object.
+     */
+    public $commentItem;
+
+    /**
+     * @var Object $newsItem
+     * @brief Article object.
+     */
+    public $newsItem;
+
+    /**
+     * @var Object $itemsByPage
      * @brief Define how many items are displayed by page.
      */
     public $itemsByPage = 15;
@@ -38,9 +68,9 @@ final class Admin_GenericBlogsManager extends Module {
         $this->admin_type = 'content';
 
         /* Define plugin author */
-        $this->authors_name = 'CaMykS Team';
-        $this->authors_mail = 'camyks.contact@gmail.com';
-        $this->authors_group = 'camyks.net';
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
 
         /* Load libraries */
         $this->load_library('Admin_GenericBlogsManagerConfig');

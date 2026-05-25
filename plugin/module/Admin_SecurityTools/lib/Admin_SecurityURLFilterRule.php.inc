@@ -3,9 +3,9 @@
  * @brief Admin_SecurityTools module, URL Filter rule library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jan 2019
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2019 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,12 @@
  * Admin_SecurityURLFilterRule ModuleLibrary class.
  */
 final class Admin_SecurityURLFilterRule extends ModuleLibrary {
+    /**
+     * @var array $rules
+     * @brief List of rules.
+     */
+    private $rules;
+
     /**
      * Class constructor.
      * @param integer $id

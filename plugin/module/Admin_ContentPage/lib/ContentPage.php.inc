@@ -3,9 +3,9 @@
  * @brief Admin_ContentPage module, ContentPage library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5.5
+ * @version 1.1.5.6
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,178 +16,214 @@
  */
 final class ContentPage {
     /**
-     * var integer $mode
+     * @var integer $mode
      * @brief Page mode, same as CaMykS modes.
      */
     public $mode;
 
     /**
-     * var integer $id
+     * @var integer $id
      * @brief Page id.
      */
     public $id = 0;
 
     /**
-     * var string $name
+     * @var string $name
      * @brief Page symbolic name.
      */
     public $name = '';
 
     /**
-     * var integer $parent_id
+     * @var integer $parent_id
      * @brief Parent page id.
      */
     public $parent_id;
 
     /**
-     * var integer $position
+     * @var integer $position
      * @brief Sorting position in parent page children list.
      */
     public $position;
 
     /**
-     * var string $type
+     * @var string $type
      * @brief Page type, currently unused.
      */
     public $type = 'page';
 
     /**
-     * var boolean $active
+     * @var boolean $active
      * @brief Page status.
      */
     public $active = 0;
 
     /**
-     * var boolean $secured
+     * @var boolean $secured
      * @brief Page has to be access with https, currently unused.
      */
     public $secured = 0;
 
     /**
-     * var integer $wf_version
+     * @var integer $wf_version
      * @brief Workflow version, currently unused.
      */
     public $wf_version = 1;
 
     /**
-     * var integer $wf_status
+     * @var integer $wf_status
      * @brief Workflow status, currently unused.
      */
     public $wf_status;
 
     /**
-     * var integer $wf_cdate
+     * @var integer $wf_cdate
      * @brief Workflow creation date, currently unused.
      */
     public $wf_cdate;
 
     /**
-     * var integer $wf_mdate
+     * @var integer $wf_mdate
      * @brief Workflow modification date, currently unused.
      */
     public $wf_mdate;
 
     /**
-     * var string $wf_owner
+     * @var string $wf_owner
      * @brief Page owner.
      */
     public $wf_owner;
 
     /**
-     * var string $wf_editor
+     * @var string $wf_editor
      * @brief Page editor group.
      */
     public $wf_editor;
 
     /**
-     * var string $wf_validator
+     * @var string $wf_validator
      * @brief Page validation group, currently unused.
      */
     public $wf_validator;
 
     /**
-     * var string $template
+     * @var string $title
+     * @brief Page title.
+     */
+    public $title = '';
+
+    /**
+     * @var string $shorttitle
+     * @brief Page short title.
+     */
+    public $shorttitle = '';
+
+    /**
+     * @var string $template
      * @brief Page template.
      */
     public $template = '';
 
     /**
-     * var string $theme
+     * @var string $theme
      * @brief Page theme.
      */
     public $theme = '';
 
     /**
-     * var boolean $homepage
+     * @var boolean $homepage
      * @brief Is page the home page.
      */
     public $homepage;
 
     /**
-     * var array $modules
+     * @var array $modules
      * @brief Included modules.
      */
     public $modules = array();
 
     /**
-     * var array $metas
+     * @var array $metas
      * @brief Page metas.
      */
     public $metas = array();
 
     /**
-     * var string $metas_
+     * @var string $metas_
      * @brief Textual version of metas.
      */
     public $metas_ = '';
 
     /**
-     * var array $children
+     * @var array $children
      * @brief Page children.
      */
     public $children = array();
 
     /**
-     * var array $params
+     * @var array $params
      * @brief Page parameters.
      */
     public $params = array();
 
     /**
-     * var array $params
+     * @var array $params
      * @brief Textual version of page parameters.
      */
     public $params_;
 
     /**
-     * var boolean $_libIsInstalled
+     * @var boolean $_libIsInstalled
      * @brief Library installation status.
      */
     public $_libIsInstalled;
 
     /**
-     * var boolean $_libParent
+     * @var boolean $_libParent
      * @brief Parent module.
      */
     public $_libParent;
 
     /**
-     * var string $object_type
+     * @var string $object_type
      * @brief Library object type.
      */
     public $object_type = 'Module Library';
 
     /**
-     * var integer $maxmodules
+     * @var integer $maxmodules
      * @brief Maximum module to be inserted in page.
      */
     public $maxmodules;
 
     /**
-     * var integer $status
+     * @var integer $status
      * @brief HTTP status of the page.
      */
     public $status = 200;
+
+    /**
+     * @var string @robotIndex
+     * @brief Robot index value.
+     */
+    public $robotIndex;
+
+    /**
+     * @var string @robotFollow
+     * @brief Robot follow value.
+     */
+    public $robotFollow;
+
+    /**
+     * @var array @keywords
+     * @brief Localised keywords value.
+     */
+    public $keywords;
+
+    /**
+     * @var array @description
+     * @brief Localised description value.
+     */
+    public $description;
 
     /**
      * Class constructor.

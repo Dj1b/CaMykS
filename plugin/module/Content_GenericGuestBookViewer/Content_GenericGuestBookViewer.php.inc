@@ -3,9 +3,9 @@
  * @brief Content_GenericGuestBookViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Sep 2010
- * @date Modification: May 2025
+ * @date Modification: Oct 2025
  * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,12 @@
  * Content_GenericGuestBookViewer class.
  */
 final class Content_GenericGuestBookViewer extends Module {
+    /**
+     * @var Object $configItem
+     * @brief Content object.
+     */
+    protected $configItem;
+
     /**
      * Class constructor.
      * @param string $path_type

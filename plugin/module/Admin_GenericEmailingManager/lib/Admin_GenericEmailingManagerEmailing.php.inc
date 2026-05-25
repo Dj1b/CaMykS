@@ -3,9 +3,9 @@
  * @brief Admin_GenericEmailingManager module, emailing library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Dec 2012
- * @date Modification: Jan 2026
+ * @date Modification: May 2026
  * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,12 @@
  * Admin_GenericEmailingManagerEmailing class.
  */
 final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
+    /**
+     * @var Object $config
+     * @brief Configuration object.
+     */
+    public $config = null;
+
     /**
      * Class constructor.
      * @param integer $id
@@ -47,8 +53,6 @@ final class Admin_GenericEmailingManagerEmailing extends ModuleLibrary {
         $this->add_newItem('advanced_envelope_email', 'db', 'text', 'varchar', 128, '');
         $this->add_newItem('advanced_include_listunsub', 'db', 'int', 'tinyint unsigned', '', 0);
         $this->add_newItem('advanced_sending_interval', 'db', 'int', 'float unsigned', '', 0);
-
-        $this->config = null;
 
         /* generic initialisation */
         $this->init_library();
