@@ -4,7 +4,7 @@
  * <br /> System module to log in/out admin section.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.2.2
+ * @version 1.1.2.3
  * @date Creation: Jun 2005
  * @date Modification: May 2026
  * @copyright 2005 - 2026 CaMykS Team
@@ -20,7 +20,7 @@ final class Tool_Login extends Module {
      * @var Object $user
      * @brief AdminUser object.
      */
-    protected $login;
+    protected $user;
 
     /**
      * @var string $login
