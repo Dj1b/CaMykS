@@ -3,9 +3,9 @@
  * @brief Module Library Item.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Mar 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -83,12 +83,13 @@ abstract class ModuleLibraryItem {
         } else if ($_REQUEST[$name.'_year'] == 0) {
             return 0;
         } else {
-            return mktime(isset($_REQUEST[$name.'_hours']) ? (int)$_REQUEST[$name.'_hours'] : 1,
+            return mktime(
+                isset($_REQUEST[$name.'_hours']) ? (int)$_REQUEST[$name.'_hours'] : 1,
                 isset($_REQUEST[$name.'_minutes']) ? (int)$_REQUEST[$name.'_minutes'] : 0,
                 isset($_REQUEST[$name.'_seconds']) ? (int)$_REQUEST[$name.'_seconds'] : 0,
                 isset($_REQUEST[$name.'_month']) ? (int)$_REQUEST[$name.'_month'] : 1,
                 isset($_REQUEST[$name.'_day']) ? (int)$_REQUEST[$name.'_day'] : 1,
-                isset($_REQUEST[$name.'_year']) ? (int)$_REQUEST[$name.'_year']:date('Y')
+                isset($_REQUEST[$name.'_year']) ? (int)$_REQUEST[$name.'_year'] : date('Y')
             );
         }
     }
