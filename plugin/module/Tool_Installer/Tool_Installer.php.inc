@@ -4,10 +4,10 @@
  * <br /> System module used to install a website.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 2.0.3.2
+ * @version 2.0.3.3
  * @date Creation: Aug 2007
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,6 +27,12 @@ final class Tool_Installer extends Module {
      * @brief Is installation allowed.
      */
     private $allowInstall;
+
+    /**
+     * @var boolean $isInstalled
+     * @brief Is installed.
+     */
+    private $isInstalled;
 
     /**
      * @var array $allowInstall
