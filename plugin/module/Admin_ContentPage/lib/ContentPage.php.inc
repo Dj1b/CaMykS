@@ -3,10 +3,10 @@
  * @brief Admin_ContentPage module, ContentPage library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5.6
+ * @version 1.1.5.7
  * @date Creation: Jun 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -140,6 +140,12 @@ final class ContentPage {
      * @brief Included modules.
      */
     public $modules = array();
+
+    /**
+     * @var array $locales
+     * @brief Page locales.
+     */
+    public $locales = array();
 
     /**
      * @var array $metas
