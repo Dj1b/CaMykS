@@ -3,10 +3,10 @@
  * @brief Units french dictionary.
  * @details Engine / Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Fab 2019
- * @date Modification: Sep 2023
- * @copyright 2019 - 2023 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2019 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -73,4 +73,24 @@ $this->trads['unit_year(s)'] = 'Ann&eacute;e(s)';
 $this->trads['unit_0year'] = '0 ann&eacute;e';
 $this->trads['unit_1year'] = '1 ann&eacute;e';
 $this->trads['unit_xyears'] = '%s ann&eacute;es';
+
+$this->trads['unit_quarter'] = 'Trimestre';
+$this->trads['unit_quarters'] = 'Trimestres';
+$this->trads['unit_quarter(s)'] = 'Trimestre(s)';
+$this->trads['unit_0quarter'] = '0 trimestre';
+$this->trads['unit_1quarter'] = '1 trimestre';
+$this->trads['unit_xquarters'] = '%s trimestres';
+$this->trads['unit_quarter1'] = '1er trimestre';
+$this->trads['unit_quarter2'] = '2&egrave;me trimestre';
+$this->trads['unit_quarter3'] = '3&egrave;me trimestre';
+$this->trads['unit_quarter4'] = '4&egrave;me trimestre';
+
+$this->trads['unit_semester'] = 'Semestre';
+$this->trads['unit_semesters'] = 'Semestres';
+$this->trads['unit_semester(s)'] = 'Semestre(s)';
+$this->trads['unit_0semester'] = '0 semestre';
+$this->trads['unit_1semester'] = '1 semestre';
+$this->trads['unit_xsemesters'] = '%s semestres';
+$this->trads['unit_semester1'] = '1er semestre';
+$this->trads['unit_semester2'] = '2&egrave;me semestre';
 ?>
