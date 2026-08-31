@@ -3,10 +3,10 @@
  * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.2
+ * @version 1.0.6
  * @date Creation: May 2010
- * @date Modification: Sep 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -377,6 +377,78 @@ class CPDF extends FPDF {
 
         /* try as provided */
         $this->SetTextColor($color);
+        return;
+    }
+
+    /**
+     * Set draw color from any value.
+     * @param mixed $color
+     * @return string
+     */
+    public function set_drawColor($color='') {
+        /* color as hexa string */
+        if (is_string($color)) {
+            if ($color == '')
+                return;
+            if (strlen($color) == 6)
+                return $this->set_drawColor(color_hex2rgb($color));
+            if (strlen($color) == 7)
+                return $this->set_drawColor(color_hex2rgb(substr($color, 1)));
+        }
+
+        /* color as array */
+        if (is_array($color) and count($color) == 3) {
+            if (isset($color['R']) and (isset($color['G']) or isset($color['V'])) or isset($color['B'])) {
+                if (isset($color['G']))
+                    $this->SetDrawColor($color['R'], $color['G'], $color['B']);
+                else
+                    $this->SetDrawColor($color['R'], $color['V'], $color['B']);
+                return;
+            }
+            if (isset($color[0]) and isset($color[1]) and isset($color[2])) {
+                $this->SetDrawColor($color[0], $color[1], $color[2]);
+                return;
+            }
+        }
+
+        /* try as provided */
+        $this->SetDrawColor($color);
+        return;
+    }
+
+    /**
+     * Set fill color from any value.
+     * @param mixed $color
+     * @return string
+     */
+    public function set_fillColor($color='') {
+        /* color as hexa string */
+        if (is_string($color)) {
+            if ($color == '')
+                return;
+            if (strlen($color) == 6)
+                return $this->set_fillColor(color_hex2rgb($color));
+            if (strlen($color) == 7)
+                return $this->set_fillColor(color_hex2rgb(substr($color, 1)));
+        }
+
+        /* color as array */
+        if (is_array($color) and count($color) == 3) {
+            if (isset($color['R']) and (isset($color['G']) or isset($color['V'])) or isset($color['B'])) {
+                if (isset($color['G']))
+                    $this->SetFillColor($color['R'], $color['G'], $color['B']);
+                else
+                    $this->SetFillColor($color['R'], $color['V'], $color['B']);
+                return;
+            }
+            if (isset($color[0]) and isset($color[1]) and isset($color[2])) {
+                $this->SetFillColor($color[0], $color[1], $color[2]);
+                return;
+            }
+        }
+
+        /* try as provided */
+        $this->SetFillColor($color);
         return;
     }
 
