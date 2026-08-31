@@ -2,10 +2,10 @@
  * @brief GenericMediaPopup Input scripts
  * @details Plugin / Input Javascripts
  * @author CaMykS Team
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Oct 2011
- * @date Modification: Jul 2024
- * @copyright 2011 - 2024 CaMykS Team
+ * @date Modification: Aug 2024
+ * @copyright 2011 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -156,6 +156,7 @@ function MediaPopup(name) {
         /* build media box */
         contentBox = document.createElement('div').cloneNode(true);
         contentBox.className = 'mediaContentBox';
+        contentBox.id = 'MediaPopupContentBox';
         this.set_param('contentBox', contentBox);
         popup.appendChild(contentBox);
         this.set_param('currentPopup', popup);
