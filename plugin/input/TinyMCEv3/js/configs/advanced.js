@@ -3,10 +3,10 @@
  * @details Plugin / Input Javascripts
  * @file plugin/input/TinyMCEv3/js/configs/advanced.js
  * @author CaMykS Team
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Jul 2008
- * @date Modification: Jul 2018
- * @copyright 2008 - 2018 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -33,7 +33,7 @@ tinyMCE.init({
     apply_source_formatting : true,
 
     /* blocks list */
-    theme_advanced_blockformats : "p,div,blockquote,address,pre,h1,h2,h3,h4",
+    theme_advanced_blockformats : "p,div,blockquote,address,pre,h1,h2,h3,h4,ul,ol,li",
 
     /* camyks params */
     editor_deselector : "mceNoEditor",
