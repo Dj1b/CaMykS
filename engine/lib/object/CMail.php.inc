@@ -3,10 +3,10 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.3
  * @date Creation: Jun 2012
- * @date Modification: Oct 2025
- * @copyright 2012 - 2025 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -52,7 +52,7 @@ final class CMail {
             'MIME-Version' => '1.0',
             'Content-Type' => '',
             'Return-Path'=>'',
-            'ReplyTo'=>array(),
+            'ReplyTo'=> array(),
             'From' => array(),
             'To' => array(),
             'Cc' => array(),
@@ -308,11 +308,13 @@ final class CMail {
             /* use PHPMailer */
             case 'PHPMailer' :
                 $success = $this->_send_PHPMailerMail();
+                $engine = 'PHPMailer';
                 break;
             /* use PEAR/Mail */
             case 'PEAR/Mail' :
             default :
                 $success = $this->_send_PEARMimeMail();
+                $engine = 'PEAR/Mail';
         }
 
         /* directly return result if logs are not available */
@@ -324,12 +326,12 @@ final class CMail {
 
         /* log success */
         if ($success) {
-            $camyks->log('Emails', 'Send to '.$recipients, 'Success');
+            $camyks->log('Emails', 'Send via '.$engine.' to '.$recipients, 'Success');
             return true;
         }
 
         /* log failure */
-        $camyks->log('Emails', 'Send to '.$recipients, 'Failure: '.$this->get_lastError());
+        $camyks->log('Emails', 'Send via '.$engine.' to '.$recipients, 'Failure: '.$this->get_lastError());
         return false;
     }
 
@@ -406,12 +408,18 @@ final class CMail {
         if (count($this->params['Attachments']) > 0 or count($this->params['EmbeddedImages']) > 0) {
             /* let auto content type */
 
-        } elseif ($this->params['TextBody'] != '' and $this->params['HTMLBody'] != '')
+        } elseif ($this->params['TextBody'] != '' and $this->params['HTMLBody'] != '') {
             $message->setContentType('multipart/alternative');
-        elseif ($this->params['HTMLBody'] != '')
+            $message->set_param('html_charset', $camyks->get_HTMLEncodingValue());
+            $message->set_param('text_charset', $camyks->get_HTMLEncodingValue());
+        } elseif ($this->params['HTMLBody'] != '') {
             $message->setContentType('text/HTML; charset='.$camyks->get_HTMLEncodingValue());
-        elseif ($this->params['TextBody'] != '')
+            $message->set_param('html_charset', $camyks->get_HTMLEncodingValue());
+        } elseif ($this->params['TextBody'] != '') {
             $message->setContentType('text/plain; charset='.$camyks->get_HTMLEncodingValue());
+            $message->set_param('text_charset', $camyks->get_HTMLEncodingValue());
+        }
+
 
         /* build header list */
         $headers = $this->params['Headers'];
@@ -574,8 +582,6 @@ final class CMail {
                         'tenantId'      => $config['authProviderTenantId'],
                     ));
 
-
-
                     $mail->setOAuth(new OAuth(array(
                         'provider'      => $provider,
                         'clientId'      => $config['authProviderClientId'],
@@ -589,6 +595,20 @@ final class CMail {
                     if (isset($config['password'])) $mail->Password = $config['password'];
                 }
             }
+        }
+        /* set charset */
+        $mail->CharSet = $camyks->get_HTMLEncodingValue();
+        if ($camyks->get_HTMLEncodingValue() == 'UTF-8') {
+            if (isset($this->params['From']['name'])) $this->params['From']['name'] = string_utf8_encode($this->params['From']['name']);
+            foreach ($this->params['To'] as &$contact)
+                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['ReplyTo'] as &$contact)
+                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['Cc'] as &$contact)
+                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['Bcc'] as &$contact)
+                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
+            $this->params['Subject'] = string_utf8_encode($this->params['Subject']);
         }
 
         /* add sender */
