@@ -4,10 +4,10 @@
  * <br /> Display social networks sharing and follow links.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6.2
+ * @version 1.0.6.3
  * @date Creation: Nov 2009
- * @date Modification: Oct 2025
- * @copyright 2009 - 2025 CaMykS Team
+ * @date Modification: Aug 2026
+ * @copyright 2009 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -46,6 +46,12 @@ final class SocialNetworksSharingPanel extends Input {
      * @brief List of managed networks.
      */
     public $networks;
+
+    /**
+     * @var Object $theme
+     * @brief Link to used theme.
+     */
+    protected $theme;
 
     /**
      * Class constructor.
