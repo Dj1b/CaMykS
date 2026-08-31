@@ -3,9 +3,9 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.9.2
+ * @version 1.1.9.3
  * @date Creation: Jun 2005
- * @date Modification: Feb 2026
+ * @date Modification: Aug 2026
  * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -339,7 +339,7 @@ class HTMLForm {
 
         /* Add day input */
         if (in_array('day', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('d', $params['default']);
+            $default = empty($params['default']) ? '' : date('d', $params['default']);
             if ($params['dayAsSelect'] == true) {
                 $d = array();
                 for ($i=1; $i<32; $i++) $d[$i] = $i;
@@ -372,7 +372,7 @@ class HTMLForm {
         /* Add month input */
         if (in_array('month', $params['objects'])) {
             if ($params['monthAsText'] == true) {
-                $default = is_null($params['default']) ? 0 : date('m', $params['default']);
+                $default = empty($params['default']) ? 0 : date('m', $params['default']);
                 $html .= $this->display_textInput(array(
                     'name'      => $params['name'].'_month',
                     'maxlength' => 2,
@@ -385,7 +385,7 @@ class HTMLForm {
                     'onblur'    => $params['onblur']
                 ));
             } else {
-                $default = is_null($params['default']) ? 0 : (int)date('n', $params['default']);
+                $default = empty($params['default']) ? 0 : (int)date('n', $params['default']);
                 $m = array();
                 if ($params['hasEmptyFirstOption'])
                     $m[0] = '';
@@ -407,7 +407,7 @@ class HTMLForm {
 
         /* Add year input */
         if (in_array('year', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('Y', $params['default']);
+            $default = empty($params['default']) ? '' : date('Y', $params['default']);
             if ($params['yearAsSelect'] == true and $params['yearRange']['from'] > 0 and $params['yearRange']['to'] > 0) {
                 $y = array();
                 for ($i=$params['yearRange']['from']; $i<=$params['yearRange']['to']; $i++)
@@ -440,7 +440,7 @@ class HTMLForm {
 
         /* Add hours input */
         if (in_array('hours', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('H', $params['default']);
+            $default = empty($params['default']) ? '' : date('H', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_hours',
                 'maxlength' => 2,
@@ -457,7 +457,7 @@ class HTMLForm {
 
         /* Add minutes inputs */
         if (in_array('minutes', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('i', $params['default']);
+            $default = empty($params['default']) ? '' : date('i', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_minutes',
                 'maxlength' => 2,
@@ -474,7 +474,7 @@ class HTMLForm {
 
         /* Add seconds inputs */
         if (in_array('seconds', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('s', $params['default']);
+            $default = empty($params['default']) ? '' : date('s', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_seconds',
                 'maxlength' => 2,
