@@ -3,10 +3,10 @@
  * @brief Admin_GenericDownloadManager module, document library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Mar 2008
- * @date Modification: Jul 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -40,9 +40,6 @@ final class Admin_GenericDownloadManagerDocument extends ModuleLibrary {
         $this->add_newItem('releasedate', 'db', 'date', 'bigint unsigned', '', time());
         $this->add_newItem('file', 'file', 'documents', '', '', '');
 
-        /* Define object temporary attributes */
-        $this->add_newItem('update_security', 'temp', 'int', '', '', 0);
-
         /* Generic initialisation */
         $this->init_library();
     }
@@ -54,18 +51,27 @@ final class Admin_GenericDownloadManagerDocument extends ModuleLibrary {
      * @return boolean result
      */
     public function check_data() {
+        /* Load previous version */
+        if ($this->id > 0) {
+            $o = $this->get_newObject($this->id);
+            $o->get();
+            $o->get_fromItems();
+            $this->_libItems['security']->value = $o->vars['security'];
+        }
+
         /* Check for security code update */
-        if ($this->_libItems['update_security']->value == 1) {
+        if ($this->_libItems['security']->value == '') {
             $v = $this->_libItems['releasedate']->value;
             $v .= $this->_libItems['filetitle']->value;
             $v .= $this->_libItems['category']->value;
             $this->_libItems['security']->value = substr(md5($v), 0, 8);
         }
 
+        /* Check file title */
         if ($this->_libItems['filetitle']->value == '' and $this->_libItems['file']->upload === true) {
             $this->_libItems['filetitle']->value = $this->_libItems['file']->get_uploadedFileName();
         }
-
+        $this->_libItems['filetitle']->value = string_getSymbolicName($this->_libItems['filetitle']->value, array('replacement'=>'-'));
         return true;
     }
 

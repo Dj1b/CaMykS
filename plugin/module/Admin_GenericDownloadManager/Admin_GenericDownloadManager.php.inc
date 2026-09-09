@@ -4,10 +4,10 @@
  * <br /> Manages files available to download.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.3
+ * @version 1.0.2.4
  * @date Creation: May 2008
- * @date Modification: Oct 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -468,8 +468,6 @@ final class Admin_GenericDownloadManager extends Module {
         $this->editform = new HTMLForm('edit_document', $this->get_adminlink(array('mode'=>'save_document')), 'POST');
         $this->editform->allow_files(true, $this->config->vars['file_size']*1024*1024);
         $this->editform->add_hidden('document_id', $this->documentItem->id);
-        if ($this->documentItem->id == 0 or $this->documentItem->vars['security'] == '')
-            $this->editform->add_hidden('update_security', 1);
         $this->editform->set_object($this->documentItem);
 
         /* Build title */
