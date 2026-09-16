@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief GenericMediaPopup Input french dictionnary
- * @details Plugin / Input Dictionnary
+ * @brief GenericMediaPopup input, french dictionary.
+ * @details Plugin / Input Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Mar 2018
- * @date Modification: Mar 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -41,5 +41,5 @@ $this->trads['input_genericmediapopup_formitem_flvcontrolerheight'] = 'Hauteur d
 
 /* cookie management */
 $this->trads['input_genericmediapopup_cookie_title'] = 'Popup Média';
-$this->trads['input_genericmediapopup_cookie_purpose'] = 'Afficher des vid&eacute;os depuis Yoube ou Dailymotion.';
+$this->trads['input_genericmediapopup_cookie_purpose'] = 'Afficher des vid&eacute;os depuis Youtube ou Dailymotion.';
 ?>
