@@ -4,10 +4,10 @@
  * <br /> Store and display logs.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.3
+ * @version 1.0.0.4
  * @date Creation: Jun 2018
- * @date Modification: Jul 2025
- * @copyright 2018 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * Without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -17,40 +17,46 @@
  */
 final class Admin_SystemLogManager extends Module {
     /**
-     * var Object $config
+     * @var Object $config
      * @brief Module configuration library.
      */
     protected $config;
 
     /**
-     * var boolean $isConfig
+     * @var boolean $isConfig
      * @brief Is in configuration mode.
      */
     protected $isConfig = false;
 
     /**
-     * var array $logList
+     * @var array $logList
      * @brief Log list.
      */
     protected $logList = array();
 
     /**
-     * var array $logFileList
+     * @var array $logFileList
      * @brief Log file list.
      */
     protected $logFileList = array();
 
     /**
-     * var array $selection
+     * @var array $selection
      * @brief Selection values.
      */
     protected $selection = array();
 
     /**
-     * var string $currentFileContent
+     * @var string $currentFileContent
      * @brief Selected file content.
      */
     protected $currentFileContent;
+
+    /**
+     * @var Object $form
+     * @brief Form object.
+     */
+    protected $form;
 
     /**
      * Class constructor.
@@ -163,7 +169,7 @@ final class Admin_SystemLogManager extends Module {
         );
 
         /* Load mode to execute */
-        $mode = isset($_REQUEST['mode'])?$_REQUEST['mode']:'';
+        $mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : '';
 
         /* Execute mode */
         switch ($mode) {
@@ -211,17 +217,14 @@ final class Admin_SystemLogManager extends Module {
 
             /* Load configuration */
             $this->config->get();
-
-            /* Load data */
-            $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
         }
 
         /* Finalise tabs */
-        if ($this->help != null)
+        if (!is_null($this->help))
             $this->tabBuilder->add_tab(array(
                 'name'  => 'help',
                 'title' => $camyks->get_translation('help'))
-        );
+            );
 
         /* Initialise tabs */
         $this->tabBuilder->initialise(array('default'=>'Logs'));
@@ -258,16 +261,12 @@ final class Admin_SystemLogManager extends Module {
         }
 
         /* Build log selection form */
-        $this->logForm = new HTMLForm(
-            'log_selection',
-            $this->get_adminlink(array('mode'=>'update_selection')),
-            'POST'
-        );
-        $this->logForm->add_hidden('file', $this->selection['file']);
+        $this->form = new HTMLForm('log_selection', $this->get_adminlink(array('mode'=>'update_selection')), 'POST');
+        $this->form->add_hidden('file', $this->selection['file']);
 
         /* Load scripts */
         $this->add_JSFile('LogViewer.js');
-        $this->add_JSLoadScript('LogViewer.set_param("form", "'.$this->logForm->name.'")');
+        $this->add_JSLoadScript('LogViewer.set_param("form", "'.$this->form->name.'")');
         $this->add_JSLoadScript('LogViewer.initialise();');
 
         /* Build interface buttons */
@@ -285,12 +284,12 @@ final class Admin_SystemLogManager extends Module {
         global $camyks;
 
         $selection = array();
-        $selection['log'] = isset($_REQUEST['log'])?$_REQUEST['log']:'';
+        $selection['log'] = isset($_REQUEST['log']) ? $_REQUEST['log'] : '';
         if ($selection['log'] == '')
             $selection['file'] = '';
         else
-            $selection['file'] = isset($_REQUEST['file'])?$_REQUEST['file']:'';
-        $selection['filter'] = isset($_REQUEST['filter'])?addslashes(trim($_REQUEST['filter'])):'';
+            $selection['file'] = isset($_REQUEST['file']) ? $_REQUEST['file']:'';
+        $selection['filter'] = isset($_REQUEST['filter']) ? addslashes(trim($_REQUEST['filter'])) : '';
 
         $camyks->set_sessionValue('logManagerSelection', $selection);
 
@@ -329,8 +328,8 @@ final class Admin_SystemLogManager extends Module {
         $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
 
         /* Build form */
-        $this->editform = new HTMLForm('edit_config', $this->get_adminlink(array('mode'=>'save_config')), 'POST');
-        $this->editform->set_object($this->config);
+        $this->form = new HTMLForm('edit_config', $this->get_adminlink(array('mode'=>'save_config')), 'POST');
+        $this->form->set_object($this->config);
 
         /* Build interface title */
         $this->adminTitle = $this->title;
@@ -344,7 +343,7 @@ final class Admin_SystemLogManager extends Module {
                 'title'=>$camyks->get_translation('back'),
             ),
             array(
-                'link'=>$this->editform->get_HTMLSubmitLink(),
+                'link'=>$this->form->get_HTMLSubmitLink(),
                 'title'=>$camyks->get_translation('valid'),
             ),
         );
@@ -418,7 +417,7 @@ final class Admin_SystemLogManager extends Module {
      * Return configuration logging period list
      * @return array
      */
-    private function get_configurationLoggingPeriodList() {
+    protected function get_configurationLoggingPeriodList() {
         return $this->config->get_loggingPeriodList();
     }
 
@@ -597,9 +596,6 @@ final class Admin_SystemLogManager extends Module {
 
         /* Load configuration */
         $this->config->get();
-
-        /* Load data */
-        $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
     }
 
     /**
@@ -623,12 +619,9 @@ final class Admin_SystemLogManager extends Module {
         /* Load configuration */
         $this->config->get();
 
-        /* Load data */
-        $this->loggingPeriodList = $this->get_configurationLoggingPeriodList();
-
         /* Update form */
-        $this->editform = &$form;
-        $this->editform->set_object($this->config);
+        $this->form = &$form;
+        $this->form->set_object($this->config);
     }
 
     /**
