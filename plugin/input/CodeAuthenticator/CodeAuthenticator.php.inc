@@ -5,10 +5,10 @@
  * <br /> Highly based on PHPGangsta / GoogleAuthenticator library (https://github.com/PHPGangsta/GoogleAuthenticator)
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jun 2021
- * @date Modification: Jul 2025
- * @copyright 2021 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -34,6 +34,12 @@ final class CodeAuthenticator extends Input {
      * @brief Last error.
      */
     private $lastError = 0;
+
+    /**
+     * @var Object $form
+     * @brief Configuration form object.
+     */
+    protected $form;
 
     /**
      * Class constructor.
