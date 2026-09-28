@@ -3,10 +3,10 @@
  * @brief Client specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.152
+ * @version 1.0.153
  * @date Creation: Jun 2007
- * @date Modification: Feb 2026
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -3458,25 +3458,25 @@ function _client_loadSoftwareProperties() {
         ),
         'browser' => array(
             'Firefox'           => array(
-                'MaxVersion'    => '156',                    // current is 147 , nightly is +6
+                'MaxVersion'    => '164',                    // current is 155 , nightly is +6
                 'FakeVersions'  => array('27.3', '45.62.15', '52.53.90'),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '_client_checkFirefoxIsFake',
             ),
             'Chrome'            => array(
-                'MaxVersion'    => '150',                    // current is 144
+                'MaxVersion'    => '160',                    // current is 154
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '_client_checkChromeIsFake',
             ),
             'Opera'             => array(
-                'MaxVersion'    => '133',                    // current is 127
+                'MaxVersion'    => '140',                    // current is 134
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => false,
                 'CheckMethod'   => '',
             ),
             'Safari'            => array(
-                'MaxVersion'    => '29',                    // current is 26
+                'MaxVersion'    => '30',                    // current is 26
                 'FakeVersions'  => array(),
                 'HasNoVersion'  => true,
                 'CheckMethod'   => '',
