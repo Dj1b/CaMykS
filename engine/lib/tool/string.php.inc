@@ -3,10 +3,10 @@
  * @brief String specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9.3
+ * @version 1.0.10
  * @date Creation: Oct 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -213,16 +213,17 @@ function string_text2Html($string, $encoding=null) {
  * @param string $string
  * @param array $params
  * @parblock - Available parameters are <br />
- * \e string changecase - \b void / \b lower / \b upper <br />
- * \e integer minlength <br />
  * \e string contenttype - \b text / \b html <br />
  * \e string accents - \b replace / \b keep <br />
+ * \e string changecase - \b void / \b lower / \b upper <br />
+ * \e string keptchars - <br />
+ * \e integer minlength <br />
  * @endparblock
  * @return array
  */
 function string_text2Words($string, $params=array()) {
     /* default config */
-    $config = array('contenttype'=>'html', 'accents'=>'replace', 'changecase'=>'', 'minlength'=>0);
+    $config = array('contenttype'=>'html', 'accents'=>'replace', 'changecase'=>'', 'keptchars'=>'', 'minlength'=>0);
 
     /* merge config & params */
     $params = array_merge($config, $params);
@@ -259,7 +260,7 @@ function string_text2Words($string, $params=array()) {
         $length_modifier = '+';
 
     /* split on non-letter chars */
-    $count = preg_match_all('/\b[\w'.$accentChars.']'.$length_modifier.'\b/', $string, $array);
+    $count = preg_match_all('/\b[\w'.$accentChars.string_escape4Regex($params['keptchars']).']'.$length_modifier.'\b/', $string, $array);
     $array = $array[0];
 
     /* check html mode */
@@ -716,7 +717,7 @@ function string_getSimilarBeginning($s1, $s2) {
  * @return string
  */
 function string_escape4Regex($string='') {
-  return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,)/', '\\\$1', $string);
+    return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,|\-)/', '\\\$1', $string);
 }
 
 /* Mark: String convertion methods */
@@ -814,7 +815,7 @@ function string_parseNonLetterChars($string) {
  * @deprecated Method renamed to string_stripPHPTags
  */
 function string_parsePHPTags($value, $replace='') {
-  return string_stripPHPTags($value, $replace='');
+    return string_stripPHPTags($value, $replace='');
 }
 
 ?>
