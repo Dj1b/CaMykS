@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief CaMykS global german dictionnary
- * @details Engine / Global Dictionnary
- * @file engine/locale/translation_de.php.inc
+ * @brief CaMykS locales, german global dictionary.
+ * @details Engine / Global Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Dec 2010
- * @date Modification: Jun 2018
- * @copyright 2010 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Sep 2026
+ * @copyright 2010 - 2026 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -62,6 +61,8 @@ $this->trads['title'] = 'Titel';
 $this->trads['subtitle'] = 'Undertitel';
 $this->trads['active'] = 'Aktiv';
 $this->trads['inactive'] = 'Inaktiv';
+$this->trads['enabled'] = 'Aktiviert';
+$this->trads['disabled'] = 'Deaktiviert';
 $this->trads['name'] = 'Name';
 $this->trads['version'] = 'Version';
 $this->trads['author'] = 'Author';
@@ -81,14 +82,14 @@ $this->trads['date'] = 'Datum';
 $this->trads['today'] = 'Heute';
 $this->trads['yesterday'] = 'Gestern';
 $this->trads['tomorrow'] = 'Morgen';
-$this->trads['dayx'] = '%s'; 
+$this->trads['dayx'] = '%s';
 $this->trads['thisweek'] = 'Diese Woche';
 $this->trads['lastweek'] = 'Letzte Woche';
 $this->trads['thismonth'] = 'Diesen Monat';
 $this->trads['lastmonth'] = 'Letzten Monat';
 $this->trads['thisyear'] = 'Dieses Jahr';
 $this->trads['lastyear'] = 'Letztes Jahr';
-$this->trads['fromxtoy'] = 'Von %s bis %s'; 
+$this->trads['fromxtoy'] = 'Von %s bis %s';
 $this->trads['fromx'] = 'Von %s';
 $this->trads['toy'] = ' bis %s';
 

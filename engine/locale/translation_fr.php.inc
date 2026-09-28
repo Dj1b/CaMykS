@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief CaMykS global french dictionnary
- * @details Engine / Global Dictionnary
- * @file engine/locale/translation_fr.php.inc
+ * @brief CaMykS locales, french global dictionary.
+ * @details Engine / Global Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Jun 2018
- * @copyright 2005 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Sep 2026
+ * @copyright 2005 - 2026 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
@@ -62,6 +61,8 @@ $this->trads['title'] = 'Titre';
 $this->trads['subtitle'] = 'Sous-titre';
 $this->trads['active'] = 'Activ&eacute;';
 $this->trads['inactive'] = 'D&eacute;sactiv&eacute;';
+$this->trads['enabled'] = 'Activ&eacute;';
+$this->trads['disabled'] = 'D&eacute;sactiv&eacute;';
 $this->trads['name'] = 'Nom';
 $this->trads['version'] = 'Version';
 $this->trads['author'] = 'Auteur';
