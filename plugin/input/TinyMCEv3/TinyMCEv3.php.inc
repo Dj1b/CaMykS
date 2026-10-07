@@ -4,10 +4,10 @@
  * <br /> Interfaces TinyMCE version 3 for CaMykS.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.3
+ * @version 1.0.3
  * @date Creation: Jul 2008
- * @date Modification: Dec 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Includes TinyMCE version 3.5.11 (http://tinymce.moxiecode.com/)
@@ -163,7 +163,10 @@ final class TinyMCEv3 extends Input {
                 /* add plugin to plugin list */
                 $camyks_ext_plugins .= ',-'.$pluginParams['name'];
                 /* add plugin buttons to buttons list */
-                $camyks_ext_buttons = array_merge($camyks_ext_buttons, $pluginParams['buttons']);
+                if (count($camyks_ext_buttons) == 0)
+                    $camyks_ext_buttons = array_merge($camyks_ext_buttons, $pluginParams['buttons']);
+                else
+                    $camyks_ext_buttons = array_merge($camyks_ext_buttons, array('|'), $pluginParams['buttons']);
             }
             $this->add_JSPreScript('camyks_ext_plugins=\''.$camyks_ext_plugins.'\';');
             $this->add_JSPreScript('camyks_ext_buttons=\''.implode(',', $camyks_ext_buttons).'\';');
