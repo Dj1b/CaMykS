@@ -1,37 +1,36 @@
 <?php
 /**
- * @brief GenericMediaPopup Input configuration edit layout
- * @details Plugin / Input layout
- * @file plugin/input/GenericMediaPopup/html/configuration/edit.html.inc
+ * @brief GenericMediaPopup input, edit configuration layout.
+ * @details Plugin / Input Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.2
  * @date Creation: Mar 2018
- * @date Modification: Apr 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
  */
 global $camyks;
 ?>
-<?=$camyks->theme->get_boxContent2Header();?>
+<?= $camyks->theme->get_boxContent2Header(); ?>
 <div class="adminContentPanel">
     <table cellspacing="2" cellpadding="0" border="0" style="width:100%;">
         <tr>
             <td class="eTableLine0 eContent2" style="width:170px;">
-                <?=$this->get_translation('formitem_insertion');?>
+                <?= $this->get_translation('formitem_insertion'); ?>
             </td>
             <td class="eTableLine0 eContent1">
-                <?=$this->form->display_selectInput(array('name'=>'insertion', 'values'=>$this->config->get_insertionList())); ?>
+                <?= $this->form->display_selectInput(array('name'=>'insertion', 'values'=>$this->config->get_insertionList())); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine1 eContent2">
-                <?=$this->get_translation('formitem_stylesource');?>
+                <?= $this->get_translation('formitem_stylesource'); ?>
             </td>
             <td class="eTableLine1 eContent1">
-                <?=$this->form->display_selectInput(array('name'=>'styleSource', 'values'=>$this->config->get_styleSourceList())); ?>
+                <?= $this->form->display_selectInput(array('name'=>'styleSource', 'values'=>$this->config->get_styleSourceList())); ?>
             </td>
         </tr>
 
@@ -43,43 +42,52 @@ global $camyks;
 
         <tr>
             <td class="eTableHeader" colspan="2">
-                <?=$this->get_translation('formtitle_controls');?>
+                <?= $this->get_translation('formtitle_controls'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine0 eContent2">
-                <?=$this->get_translation('formitem_clickbkgdtoclose');?>
+                <?= $this->get_translation('formitem_clickbkgdtoclose'); ?>
             </td>
             <td class="eTableLine0">
-                <?=$this->form->display_booleanSelectInput('clickBkgdToClose'); ?>
+                <?= $this->form->display_booleanSelectInput('clickBkgdToClose'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine1 eContent2">
-                <?=$this->get_translation('formitem_enableclosebutton');?>
+                <?= $this->get_translation('formitem_enableclosebutton'); ?>
             </td>
             <td class="eTableLine1">
-                <?=$this->form->display_booleanSelectInput('enableCloseButton'); ?>
+                <?= $this->form->display_booleanSelectInput('enableCloseButton'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine0 eContent2">
-                <?=$this->get_translation('formitem_enablekeyboard');?>
+                <?= $this->get_translation('formitem_enablekeyboard'); ?>
             </td>
             <td class="eTableLine0">
-                <?=$this->form->display_booleanSelectInput('enableKeyboard'); ?>
+                <?= $this->form->display_booleanSelectInput('enableKeyboard'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine1 eContent2">
-                <?=$this->get_translation('formitem_maxwidth');?>
+                <?= $this->get_translation('formitem_maxwidth'); ?>
             </td>
             <td class="eTableLine1">
-                <?=$this->form->display_textInput(array('name'=>'maxWidth', 'class'=>'vsinputs')); ?> px
+                <?= $this->form->display_textInput(array('name'=>'maxWidth', 'class'=>'vsinputs')); ?> px
+            </td>
+        </tr>
+
+        <tr>
+            <td class="eTableLine0 eContent2">
+                <?= $this->get_translation('formitem_buttonformat'); ?>
+            </td>
+            <td class="eTableLine0">
+                <?= $this->form->display_selectInput(array('name'=>'buttonFormat', 'values'=>$this->config->get_buttonFormatList())); ?>
             </td>
         </tr>
 
@@ -91,25 +99,25 @@ global $camyks;
 
         <tr>
             <td class="eTableHeader" colspan="2">
-                <?=$this->get_translation('formtitle_diaporama');?>
+                <?= $this->get_translation('formtitle_diaporama'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine0 eContent2">
-                <?=$this->get_translation('formitem_enablediaporama');?>
+                <?= $this->get_translation('formitem_enablediaporama'); ?>
             </td>
             <td class="eTableLine0">
-                <?=$this->form->display_booleanSelectInput('enableDiaporama'); ?>
+                <?= $this->form->display_booleanSelectInput('enableDiaporama'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine1 eContent2">
-                <?=$this->get_translation('formitem_diaporamabuttonsshift');?>
+                <?= $this->get_translation('formitem_diaporamabuttonsshift'); ?>
             </td>
             <td class="eTableLine1">
-                <?=$this->form->display_textInput(array('name'=>'diaporamaButtonsShift', 'class'=>'vsinputs')); ?> px
+                <?= $this->form->display_textInput(array('name'=>'diaporamaButtonsShift', 'class'=>'vsinputs')); ?> px
             </td>
         </tr>
 
@@ -121,48 +129,48 @@ global $camyks;
 
         <tr>
             <td class="eTableHeader" colspan="2">
-                <?=$this->get_translation('formtitle_flashplayer');?>
+                <?= $this->get_translation('formtitle_flashplayer'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine0 eContent2">
-                <?=$this->get_translation('formitem_enableflash');?>
+                <?= $this->get_translation('formitem_enableflash'); ?>
             </td>
             <td class="eTableLine0">
-                <?=$this->form->display_booleanSelectInput('enableFlash'); ?>
+                <?= $this->form->display_booleanSelectInput('enableFlash'); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine1 eContent2">
-                <?=$this->get_translation('formitem_flvcontrolercolor');?>
+                <?= $this->get_translation('formitem_flvcontrolercolor'); ?>
             </td>
             <td class="eTableLine1">
-              #<?=$this->form->display_textInput(array('name'=>'flvControlerColor', 'class'=>'vsinputs')); ?>
+              #<?= $this->form->display_textInput(array('name'=>'flvControlerColor', 'class'=>'vsinputs')); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine0 eContent2">
-                <?=$this->get_translation('formitem_flvcontroleralpha');?>
+                <?= $this->get_translation('formitem_flvcontroleralpha'); ?>
             </td>
             <td class="eTableLine0">
-                <?=$this->form->display_textInput(array('name'=>'flvControlerAlpha', 'class'=>'vsinputs')); ?>
+                <?= $this->form->display_textInput(array('name'=>'flvControlerAlpha', 'class'=>'vsinputs')); ?>
             </td>
         </tr>
 
         <tr>
             <td class="eTableLine1 eContent2">
-                <?=$this->get_translation('formitem_flvcontrolerheight');?>
+                <?= $this->get_translation('formitem_flvcontrolerheight'); ?>
             </td>
             <td class="eTableLine1">
-                <?=$this->form->display_textInput(array('name'=>'flvControlerHeight', 'class'=>'vsinputs')); ?> px
+                <?= $this->form->display_textInput(array('name'=>'flvControlerHeight', 'class'=>'vsinputs')); ?> px
             </td>
         </tr>
     </table>
 </div>
-<?=$camyks->theme->get_boxContent2Footer();?>
+<?= $camyks->theme->get_boxContent2Footer(); ?>
 <?php
 /**
  * @endcond Exclude

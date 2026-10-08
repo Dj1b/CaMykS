@@ -3,9 +3,9 @@
  * @brief GenericMediaPopup input, french dictionary.
  * @details Plugin / Input Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Mar 2018
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,7 @@ $this->trads['input_genericmediapopup_formitem_clickbkgdtoclose'] = 'Clic sur le
 $this->trads['input_genericmediapopup_formitem_enableclosebutton'] = 'Afficher le bouton fermer : ';
 $this->trads['input_genericmediapopup_formitem_enablekeyboard'] = 'Activer le clavier : ';
 $this->trads['input_genericmediapopup_formitem_maxwidth'] = 'Largeur maximale : ';
+$this->trads['input_genericmediapopup_formitem_buttonformat'] = 'Format des boutons : ';
 
 $this->trads['input_genericmediapopup_formtitle_diaporama'] = 'Diaporama';
 $this->trads['input_genericmediapopup_formitem_enablediaporama'] = 'Autoriser les diaporamas : ';

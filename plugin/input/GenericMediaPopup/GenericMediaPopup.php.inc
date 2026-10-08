@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief GenericMediaPopup Input
+ * @brief GenericMediaPopup input.
  * <br /> Inline popup creator automatically managing content to display.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.2
+ * @version 1.0.4
  * @date Creation: Oct 2011
- * @date Modification: Aug 2026
+ * @date Modification: Oct 2026
  * @copyright 2011 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -105,13 +105,14 @@ final class GenericMediaPopup extends Input {
         }
 
         /* Update parameters with picture file URLs */
+        $ext = $this->config->get_buttonFormatTitle();
         $this->params['buttonPictures'] = array(
-            'close'     => $this->get_fileURL('img/close.gif'),
-            'closeOver' => $this->get_fileURL('img/close_r.gif'),
-            'left'      => $this->get_fileURL('img/left.gif'),
-            'leftOver'  => $this->get_fileURL('img/left_r.gif'),
-            'right'     => $this->get_fileURL('img/right.gif'),
-            'rightOver' => $this->get_fileURL('img/right_r.gif'),
+            'close'     => $this->get_fileURL('img/close.'.$ext),
+            'closeOver' => $this->get_fileURL('img/close_r.'.$ext),
+            'left'      => $this->get_fileURL('img/left.'.$ext),
+            'leftOver'  => $this->get_fileURL('img/left_r.'.$ext),
+            'right'     => $this->get_fileURL('img/right.'.$ext),
+            'rightOver' => $this->get_fileURL('img/right_r.'.$ext),
         );
     }
 
