@@ -3,9 +3,9 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.9.3
+ * @version 1.1.10
  * @date Creation: Jun 2005
- * @date Modification: Aug 2026
+ * @date Modification: Oct 2026
  * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1039,17 +1039,15 @@ class HTMLForm {
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
 
-        /* Check maxlength value */
-        if ($params['maxlength'] == 0)
-            if (isset($this->object->_libItems[$params['name']]->datatype)
+            /* Check maxlength value */
+            if ($params['maxlength'] == 0)
+                if (isset($this->object->_libItems[$params['name']]->datatype)
                     and in_array($this->object->_libItems[$params['name']]->datatype, array('etext', 'text'))
                     and $this->object->_libItems[$params['name']]->datadesc2 > 0)
-                $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
-            else
-                $params['maxlength'] = 32;
+                    $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
+                else
+                    $params['maxlength'] = 32;
         }
-
-
 
         /* Build input */
         $html = '<input type="text"';
@@ -1088,6 +1086,8 @@ class HTMLForm {
             if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+            } else {
+                $v = $params['name'];
             }
         }
 
@@ -1104,6 +1104,46 @@ class HTMLForm {
             $html .= ' max="'.$params['max'].'"';
         if (is_int($params['step']))
             $html .= ' step="'.$params['step'].'"';
+        $html .= ' />';
+        return $html;
+    }
+
+    /**
+     * Build and return search input.
+     * @param mixed $input
+     * @param string $default
+     * @return string
+     */
+    public function display_searchInput($input, $default=null) {
+        /* Check header params */
+        if (is_array($input)) {
+            $params = array_merge($this->inputDefaultParams, $input);
+        } else {
+            $params = $this->inputDefaultParams;
+            $params['name'] = $input;
+            if (isset($default))
+                $params['default'] = $default;
+        }
+
+        /* Check limit */
+        $this->check_inputsLimit();
+
+        /* Check object params */
+        if (isset($this->object)) {
+            /* Check default value */
+            if (is_null($params['default'])) {
+                $v = $params['name'].($params['language'] == '' ? '' : '_'.$params['language']);
+                $params['default'] = isset($this->object->vars[$v]) ? $this->object->vars[$v] : '';
+            }
+        }
+
+        /* Define maxlength value */
+        $params['maxlength'] = 64;
+
+        /* Build input */
+        $html = '<input type="search"';
+        $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.(!is_null($params['default']) ? htmlentities($params['default'], ENT_COMPAT, 'UTF-8') : '').'"';
         $html .= ' />';
         return $html;
     }
