@@ -3,9 +3,9 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Jun 2012
- * @date Modification: Aug 2026
+ * @date Modification: Oct 2026
  * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -600,14 +600,14 @@ final class CMail {
         $mail->CharSet = $camyks->get_HTMLEncodingValue();
         if ($camyks->get_HTMLEncodingValue() == 'UTF-8') {
             if (isset($this->params['From']['name'])) $this->params['From']['name'] = string_utf8_encode($this->params['From']['name']);
-            foreach ($this->params['To'] as &$contact)
-                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
-            foreach ($this->params['ReplyTo'] as &$contact)
-                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
-            foreach ($this->params['Cc'] as &$contact)
-                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
-            foreach ($this->params['Bcc'] as &$contact)
-                if (isset($contact['name'])) $contact['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['To'] as $index => $contact)
+                if (isset($contact['name'])) $this->params['To'][$index]['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['ReplyTo'] as $index => $contact)
+                if (isset($contact['name'])) $this->params['ReplyTo'][$index]['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['Cc'] as $index => $contact)
+                if (isset($contact['name'])) $this->params['Cc'][$index]['name'] = string_utf8_encode($contact['name']);
+            foreach ($this->params['Bcc'] as $index => $contact)
+                if (isset($contact['name'])) $this->params['Bcc'][$index]['name'] = string_utf8_encode($contact['name']);
             $this->params['Subject'] = string_utf8_encode($this->params['Subject']);
         }
 
