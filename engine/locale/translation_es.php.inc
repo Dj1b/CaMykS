@@ -1,14 +1,13 @@
 <?php
 /**
- * @brief CaMykS global spanish dictionnary
- * @details Engine / Global Dictionnary
- * @file engine/locale/translation_es.php.inc
+ * @brief CaMykS locales, spanish global dictionary.
+ * @details Engine / Global Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Oct 2014
- * @date Modification: Jun 2018
- * @copyright 2014 - 2018 CaMykS Team
- * @note This program is distributed as is - WITHOUT ANY WARRANTY; 
+ * @date Modification: Sep 2026
+ * @copyright 2014 - 2026 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning Currently uncomplete, completed with english locales.
  */
@@ -60,6 +59,8 @@ $this->trads['title'] = 'Title';
 $this->trads['subtitle'] = 'Subtitle';
 $this->trads['active'] = 'Active';
 $this->trads['inactive'] = 'Inactive';
+$this->trads['enabled'] = 'Enabled;';
+$this->trads['disabled'] = 'Disabled';
 $this->trads['name'] = 'Nombre';
 $this->trads['version'] = 'Version';
 $this->trads['author'] = 'Author';
@@ -78,14 +79,14 @@ $this->trads['date'] = 'Date';
 $this->trads['today'] = 'Today';
 $this->trads['yesterday'] = 'Yesterday';
 $this->trads['tomorrow'] = 'Tomorrow';
-$this->trads['dayx'] = '%s'; 
+$this->trads['dayx'] = '%s';
 $this->trads['thisweek'] = 'This week';
 $this->trads['lastweek'] = 'The last week';
 $this->trads['thismonth'] = 'This month';
 $this->trads['lastmonth'] = 'The last month';
 $this->trads['thisyear'] = 'This year';
 $this->trads['lastyear'] = 'The last year';
-$this->trads['fromxtoy'] = 'From %s to %s'; 
+$this->trads['fromxtoy'] = 'From %s to %s';
 $this->trads['fromx'] = 'From %s';
 $this->trads['toy'] = ' to %s';
 

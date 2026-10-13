@@ -3,9 +3,9 @@
  * @brief Temporary item of Module Library item.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.2
+ * @version 1.0.0.3
  * @date Creation: May 2007
- * @date Modification: Jul 2025
+ * @date Modification: Sep 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,6 +20,12 @@ final class MLTemporaryItem extends ModuleLibraryItem {
      * @brief Item type.
      */
     public $type;
+
+    /**
+     * @var string $datatype
+     * @brief Item data type.
+     */
+    public $datatype;
 
     /**
      * Class constructor.

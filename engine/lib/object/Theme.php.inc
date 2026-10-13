@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Theme plugin object
+ * @brief Theme plugin object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.2
+ * @version 1.0.4.3
  * @date Creation: Jun 2005
- * @date Modification: Feb 2022
- * @copyright 2005 - 2022 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -63,7 +63,6 @@ $global_theme_media_types = array(
 
 /**
  * Theme class.
- * @author CaMykS Team <camyks.contact@gmail.com>
  */
 abstract class Theme extends Plugin {
     /**
@@ -106,19 +105,24 @@ abstract class Theme extends Plugin {
      * @var boolean $isAdminResponsive
      * @brief Set isAdminResponsive to default value.
      */
-    private $isAdminResponsive = false;
+    protected $isAdminResponsive = false;
+
+    /**
+     * @var string $title
+     * @brief Theme title.
+     */
+    public $title;
 
     /**
      * Class constructor.
      * @param string $name
      * @param string $path_type
-     * @return void
      */
     public function __construct($name, $path_type) {
         parent::__construct($name, 'theme', $path_type);
     }
 
-    /*
+    /**
      * Alias to constructor.
      * @param string $name
      * @param string $path_type

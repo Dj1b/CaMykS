@@ -3,9 +3,9 @@
  * @brief Admin_PluginManager module, plugin information library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.1.0.1
  * @date Creation: Oct 2008
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -32,6 +32,36 @@ final class Admin_PluginManagerItem {
      * @brief Is library installed.
      */
     private $_libIsInstalled = null;
+
+    /**
+     * @var string $pluginvalue
+     * @brief Object plugin name.
+     */
+    public $pluginvalue;
+
+    /**
+     * @var string $typevalue
+     * @brief Object plugin type.
+     */
+    public $typevalue;
+
+    /**
+     * @var string $locationvalue
+     * @brief Object plugin location.
+     */
+    public $locationvalue;
+
+    /**
+     * @var string $activevalue
+     * @brief Object plugin status.
+     */
+    public $activevalue;
+
+    /**
+     * @var string $versionvalue
+     * @brief Object plugin version.
+     */
+    public $versionvalue;
 
     /**
      * Class constructor.

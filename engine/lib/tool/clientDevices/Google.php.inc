@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Google client devices specific methods
+ * @brief Google client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.19
+ * @version 1.0.20
  * @date Creation: Aug 2018
- * @date Modification: Jul 2025
+ * @date Modification: Nov 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -47,6 +47,8 @@ function get_GoogleClientDevice($deviceCode='') {
         'Pixel 4a (5G)' => array('platform_year' => 2020),
         'Pixel 5'       => array('platform_year' => 2020),
         'Pixel 6'       => array('platform_year' => 2021),
+        'Pixel 6a'      => array('platform_year' => 2022),
+        'Pixel 8 Pro'   => array('platform_year' => 2023),
     );
 
     /* Check for returning list */

@@ -3,10 +3,10 @@
  * @brief String specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9.1
+ * @version 1.0.10
  * @date Creation: Oct 2007
- * @date Modification: Feb 2022
- * @copyright 2007 - 2022 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -160,7 +160,7 @@ function string_html2Text($string, $encoding=null) {
     global $camyks;
 
     /* check encoding */
-    if (!isset($encoding))
+    if (is_null($encoding))
         $encoding = $camyks->get_confValue('encoding');
 
     /* decode HTML */
@@ -193,7 +193,7 @@ function string_text2Html($string, $encoding=null) {
     global $camyks;
 
     /* check encoding */
-    if (!isset($encoding))
+    if (is_null($encoding))
         $encoding = $camyks->get_confValue('encoding');
 
     /* decode text */
@@ -213,16 +213,17 @@ function string_text2Html($string, $encoding=null) {
  * @param string $string
  * @param array $params
  * @parblock - Available parameters are <br />
- * \e string changecase - \b void / \b lower / \b upper <br />
- * \e integer minlength <br />
  * \e string contenttype - \b text / \b html <br />
  * \e string accents - \b replace / \b keep <br />
+ * \e string changecase - \b void / \b lower / \b upper <br />
+ * \e string keptchars - <br />
+ * \e integer minlength <br />
  * @endparblock
  * @return array
  */
 function string_text2Words($string, $params=array()) {
     /* default config */
-    $config = array('contenttype'=>'html', 'accents'=>'replace', 'changecase'=>'', 'minlength'=>0);
+    $config = array('contenttype'=>'html', 'accents'=>'replace', 'changecase'=>'', 'keptchars'=>'', 'minlength'=>0);
 
     /* merge config & params */
     $params = array_merge($config, $params);
@@ -259,7 +260,7 @@ function string_text2Words($string, $params=array()) {
         $length_modifier = '+';
 
     /* split on non-letter chars */
-    $count = preg_match_all('/\b[\w'.$accentChars.']'.$length_modifier.'\b/', $string, $array);
+    $count = preg_match_all('/\b[\w'.$accentChars.string_escape4Regex($params['keptchars']).']'.$length_modifier.'\b/', $string, $array);
     $array = $array[0];
 
     /* check html mode */
@@ -716,10 +717,51 @@ function string_getSimilarBeginning($s1, $s2) {
  * @return string
  */
 function string_escape4Regex($string='') {
-  return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,)/', '\\\$1', $string);
+    return preg_replace('/(\/|\(|\)|\.|\?|\$|\^|\[|\]|\*|\+|\{|\}|\,|\-)/', '\\\$1', $string);
 }
 
-/* deprecated methods */
+/* Mark: String convertion methods */
+
+/**
+ * Convert string.
+ * @param string $string
+ * @param string $from
+ * @param string $to
+ * @return $text
+ */
+function string_convert($string, $from, $to) {
+    if (function_exists('mb_convert_encoding'))
+        return mb_convert_encoding($string, $to, $from);
+    if (function_exists('iconv'))
+        return iconv($string, $from, $to);
+    if (class_exists('UConverter'))
+        return UConverter::transcode($string, $to, $from, array('to_subst' => '?'));
+    return $string;
+}
+
+/**
+ * Encode string to UTF-8 (utf8_encode replacement).
+ * @param string $string
+ * @return $text
+ */
+function string_utf8_encode($string='') {
+    if (version_compare(PHP_VERSION, '8.0.0', '<'))
+        return utf8_encode($string);
+    return string_convert($string, 'ISO-8859-1', 'UTF-8');
+}
+
+/**
+ * Decode string to UTF-8 (utf8_decode replacement).
+ * @param string $string
+ * @return $text
+ */
+function string_utf8_decode($string='') {
+    if (version_compare(PHP_VERSION, '8.0.0', '<'))
+        return utf8_decode($string);
+    return string_convert($string, 'UTF-8', 'ISO-8859-1');
+}
+
+/* Mark: Deprecated methods */
 
 /**
  * Return string without non-letter chars.
@@ -773,7 +815,7 @@ function string_parseNonLetterChars($string) {
  * @deprecated Method renamed to string_stripPHPTags
  */
 function string_parsePHPTags($value, $replace='') {
-  return string_stripPHPTags($value, $replace='');
+    return string_stripPHPTags($value, $replace='');
 }
 
 ?>

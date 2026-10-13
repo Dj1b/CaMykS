@@ -3,10 +3,10 @@
  * @brief Admin_GenericEmailingManager module, english dictionary.
  * @details Plugin, Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.9
+ * @version 1.0.10
  * @date Creation: Feb 2021
- * @date Modification: Nov 2022
- * @copyright 2021 - 2022 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -118,6 +118,7 @@ $this->trads['mod_admin_genericemailingmanager_formitem_sendinginterval'] = 'Del
 
 $this->trads['mod_admin_genericemailingmanager_formtitle_emailcontent'] = 'E-mail';
 $this->trads['mod_admin_genericemailingmanager_formitem_content'] = 'Content: ';
+$this->trads['mod_admin_genericemailingmanager_email_insertedcontent'] = 'Inserted content';
 $this->trads['mod_admin_genericemailingmanager_formitem_sendername'] = 'Sender - Name: ';
 $this->trads['mod_admin_genericemailingmanager_formitem_senderemail'] = 'Sender - E-mail: ';
 $this->trads['mod_admin_genericemailingmanager_formitem_replytoname'] = 'Reply-to - Name: ';

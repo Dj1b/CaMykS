@@ -3,9 +3,9 @@
  * @brief Content_GenericHTMLNews module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Dec 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,34 +16,46 @@
  */
 final class Content_GenericHTMLNews extends Module {
     /**
-     * var array $layouts_list
+     * @var array $layouts_list
      * @brief List of available layouts to display lists.
      */
     protected $layouts_list = array('list_box_complete', 'list_box_summary', 'list_box_title', 'list_free_complete', 'list_free_summary', 'list_free_title', 'list_custom');
 
     /**
-     * var array $layouts_item
+     * @var array $layouts_item
      * @brief List of available layouts to display items.
      */
     protected $layouts_item = array('box_item_complete', 'item_free_complete', 'item_custom');
 
     /**
-     * var integer $newsbypage
+     * @var integer $newsbypage
      * @brief Stores how many news to display in admin page.
      */
     protected $newsbypage = 16;
 
     /**
-     * var array $status
+     * @var array $status
      * @brief Available statuses for items.
      */
     protected $status = array(0 => 'inedition', 1 => 'inline');
 
     /**
-     * var array $status
+     * @var array $status
      * @brief Available statuses for items.
      */
     protected $newspage;
+
+    /**
+     * @var Object $newslist
+     * @brief News list object.
+     */
+    protected $newslist;
+
+    /**
+     * @var Object $newsitem
+     * @brief Single news object.
+     */
+    protected $newsitem;
 
     /**
      * Class constructor.

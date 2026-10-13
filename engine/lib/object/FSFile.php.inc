@@ -3,9 +3,9 @@
  * @brief File system file object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jun 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -68,6 +68,12 @@ final class FSFile {
      * @brief File extension.
      */
     public $ext;
+
+    /**
+     * @var array $inode
+     * @brief File inode value.
+     */
+    public $inode;
 
     /**
      * @var integer $atime

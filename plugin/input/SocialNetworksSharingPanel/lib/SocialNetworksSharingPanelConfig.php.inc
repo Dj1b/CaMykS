@@ -3,9 +3,9 @@
  * @brief SocialNetworksSharingPanel input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jan 2018
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,17 @@
  * SocialNetworksSharingPanelConfig PluginConfig class.
  */
 final class SocialNetworksSharingPanelConfig extends PluginConfig {
+    /**
+     * @var array $sharingValues
+     * @brief List of networks available for sharing data.
+     */
+    public $sharingValues = false;
+
+    /**
+     * @var array $likeValues
+     * @brief List of networks available for liking data.
+     */
+    public $likeValues = false;
 
     /**
      * Class constructor.
@@ -61,10 +72,6 @@ final class SocialNetworksSharingPanelConfig extends PluginConfig {
         $this->add_newItem('integrate_facebook_smallHeader', 'boolean', false);
         $this->add_newItem('integrate_facebook_adaptWidth', 'boolean', true);
         $this->add_newItem('integrate_facebook_lazy', 'boolean', false);
-
-        /* set up variables */
-        $this->sharingValues = false;
-        $this->likeValues = false;
 
         /* generic initialisation */
         parent::init_config();

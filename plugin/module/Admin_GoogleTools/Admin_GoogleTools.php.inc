@@ -3,9 +3,9 @@
  * @brief Admin_GoogleTools module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Sep 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -16,25 +16,25 @@
  */
 final class Admin_GoogleTools extends Module {
     /**
-     * var array $referredpages
+     * @var array $referredpages
      * @brief List of refered pages.
      */
     protected $referredpages;
 
     /**
-     * var integer $maxreferredpages
+     * @var integer $maxreferredpages
      * @brief Default max referred pages loaded.
      */
     private $maxreferredpages = 100;
 
     /**
-     * var array $linkedpages
+     * @var array $linkedpages
      * @brief List of linked pages.
      */
     protected $linkedpages;
 
     /**
-     * var integer $maxlinkedpages
+     * @var integer $maxlinkedpages
      * @brief Default mex linked pages loaded
      */
     private $maxlinkedpages = 100;
@@ -55,9 +55,9 @@ final class Admin_GoogleTools extends Module {
         $this->admin_type = 'monitoring';
 
         /* Define plugin author */
-        $this->authors_name = 'CaMykS Team';
-        $this->authors_mail = 'camyks.contact@gmail.com';
-        $this->authors_group = 'camyks.net';
+        $this->author_name = 'CaMykS Team';
+        $this->author_mail = 'camyks.contact@gmail.com';
+        $this->author_group = 'camyks.net';
     }
 
     /* Mark: Override Module methods */
@@ -66,7 +66,7 @@ final class Admin_GoogleTools extends Module {
      * Define module permission.
      * @return void
      */
-    function get_rights() {
+    public function get_rights() {
         global $camyks;
         $this->rights[0] = array(
             'name'      => 'read',

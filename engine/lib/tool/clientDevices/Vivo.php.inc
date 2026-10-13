@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Vivo client devices specific methods
+ * @brief Vivo client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.15
+ * @version 1.0.16
  * @date Creation: May 2018
- * @date Modification: Sep 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Nov 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -113,6 +113,7 @@ function get_VivoClientDevice($deviceCode='') {
         'V1930T'        => array('platform_model' => 'Y3',          'platform_year' => 2019),
         'V2023'         => array('platform_model' => 'Y70',         'platform_year' => 2020),
         'V2027'         => array('platform_model' => 'Y20',         'platform_year' => 2020),
+        'V2134'         => array('platform_model' => 'Y15A',        'platform_year' => 2021),
         'V2049A'        => array('platform_model' => 'iQOO 7',      'platform_year' => 2021),
 
         'NEX'           => array('platform_model' => 'Nex',         'platform_year' => 2018),

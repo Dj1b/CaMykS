@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief AdminItemListViewer Input.
+ * @brief AdminItemListViewer input.
  * <br /> Display customisable admin list of objects.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.4
+ * @version 1.0.1.5
  * @date Creation: Sep 2008
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2008 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,7 +17,25 @@
  */
 final class AdminItemListViewer extends Input {
     /**
-     * var boolean $valide
+     * @var HTMLForm $selectorForm
+     * @brief HTML form used for selection in list head.
+     */
+    protected $selectorForm;
+
+    /**
+     * @var int $objectCount
+     * @brief Total object count in list.
+     */
+    public $objectCount;
+
+    /**
+     * @var array $objectCount
+     * @brief Object list.
+     */
+    public $objectList;
+
+    /**
+     * @var boolean $valide
      * @brief Indicate if given parameters are valid.
      */
     private $valide = true;
@@ -29,19 +47,19 @@ final class AdminItemListViewer extends Input {
     public $selectionValues = array();
 
     /**
-     * var array $selectionValues
+     * @var array $selectionValues
      * @brief Store current selection values.
      */
     public $sortValues = array('column'=>'id', 'way'=>'');
 
     /**
-     * var array $preRenders
+     * @var array $preRenders
      * @brief Store pre rendered columns.
      */
     protected $preRenders = array();
 
     /**
-     * var array $icons
+     * @var array $icons
      * @brief Cache of button icon urls.
      */
     protected $icons = array();

@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_MonitoringUserAgentChecker Module french dictionnary
- * @details Plugin / Module Dictionnary
- * @file plugin/module/Admin_MonitoringUserAgentChecker/locale/translation_fr.php.inc
+ * @brief Admin_MonitoringUserAgentChecker module, french dictionary.
+ * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5
+ * @version 1.0.6
  * @date Creation: Dec 2014
- * @date Modification: Jun 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -50,6 +49,8 @@ $this->trads['mod_admin_monitoringuseragentchecker_markitemsasverified'] = 'Marq
 $this->trads['mod_admin_monitoringuseragentchecker_validaterecordsmessage'] = 'Etes-vous s&ucirc;r de vouloir marquer ces agents utilisateurs comme v&eacute;rifi&eacute;s ?';
 $this->trads['mod_admin_monitoringuseragentchecker_markitemsasinspected'] = 'Surveiller les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s';
 $this->trads['mod_admin_monitoringuseragentchecker_inspectrecordsmessage'] = 'Etes-vous s&ucirc;r de vouloir surveiller ces agents utilisateurs ?';
+$this->trads['mod_admin_monitoringuseragentchecker_updateitemstype'] = 'Mettre &agrave; jour les &eacute;l&eacute;ments s&eacute;lectionn&eacute;s';
+$this->trads['mod_admin_monitoringuseragentchecker_confirmupdatetype_message'] = 'Etes-vous s&ucirc;r de vouloir mettre &agrave; jour la d&eacute;finition de ces agents utilisateurs ?';
 
 /* filters */
 $this->trads['mod_admin_monitoringuseragentchecker_tabrecords'] = 'Agents utilisateurs';

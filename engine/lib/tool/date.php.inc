@@ -3,10 +3,10 @@
  * @brief Date specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7
+ * @version 1.0.8
  * @date Creation: Oct 2005
- * @date Modification: Nov 2023
- * @copyright 2005 - 2023 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -267,17 +267,40 @@ function date_displayNumericDate($date=TODAY) {
 }
 
 /**
+ * Display numeric representation of month and day.
+ * @param date $date
+ * @return string
+ */
+function date_displayNumericMonthDay($date=TODAY) {
+    global $camyks;
+    $l = $camyks->current_language;
+    switch ($l) {
+        case 'fr':
+            return date_strftime('%d/%m', $date);
+        case 'en':
+            return date_strftime('%m/%d', $date);
+        default:
+            return date_strftime('%d/%m', $date);
+    }
+}
+
+/**
+ * Display numeric representation of year and month.
+ * @param date $date
+ * @return string
+ */
+function date_displayNumericYearMonth($date=TODAY) {
+    return date_strftime('%m/%y', $date);
+}
+
+/**
  * Display time.
  * @param date $date
  * @return string
  */
 function date_displayTime($date=TODAY) {
     global $camyks;
-    $l = $camyks->current_language;
-    switch ($l) {
-        default:
-            return date_strftime('%H:%M', $date);
-    }
+    return date_strftime('%H:%M', $date);
 }
 
 /**
@@ -300,6 +323,15 @@ function date_displayMonth($date=TODAY) {
     if ($date > 0 and $date <= 12)
         $date = mktime(0, 0, 0, $date, 1, 0);
     return date_strftime('%B', $date);
+}
+
+/**
+ * Display year.
+ * @param date $date
+ * @return string
+ */
+function date_displayYear($date=TODAY) {
+    return date_strftime('%Y', $date);
 }
 
 /**
@@ -842,24 +874,6 @@ function date_displayQuickFormat($date=TODAY, $language=null) {
             return date_strftime('%d ', $date).ucfirst(date_strftime('%b. ', $date)).date_strftime('%y - %H:%M', $date);
         default:
             return date_strftime('%d %b. %y - %H:%M', $date);
-    }
-}
-
-/**
- * Return date year display.
- * @param date $date
- * @param string $language
- * @return string
- * @deprecated
- */
-function date_displayYear($date=TODAY, $language=null) {
-    $language = date_getLanguage($language);
-    switch ($language) {
-        case 'fr':
-        case 'en':
-            return date_strftime('%Y', $date);
-        default:
-            return date_strftime('%Y', $date);
     }
 }
 

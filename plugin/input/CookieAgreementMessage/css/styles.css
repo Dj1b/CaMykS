@@ -2,10 +2,10 @@
  * @brief CookieAgreementMessage Input default CSS styles
  * @details Plugin / Input CSS styles
  * @author CaMykS Team
- * @version 1.1.0.3
+ * @version 1.1.1
  * @date Creation: May 2017
- * @date Modification: Oct 2021
- * @copyright 2017 - 2021 CaMykS Team
+ * @date Modification: Jan 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -77,4 +77,9 @@
     .cookieAgreementMessage .message {padding:8px 0;}
     .cookieAgreementMessage .services .title {font-size:+1.5em;}
     .cookieAgreementMessage .services .service .details .title {font-size:+1.25em;}
+}
+
+/* print mode */
+@media print {
+    .cookieAgreementMessage {display:none;}
 }

@@ -1,13 +1,13 @@
 <?php
 /**
- * @brief GenericSitemapGenerator Input
+ * @brief GenericSitemapGenerator input.
  * <br />Default sitemap generator.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.3
  * @date Creation: Feb 2019
- * @date Modification: Jul 2025
- * @copyright 2019 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2019 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Create other update methods: module reading on demand, and website crawling.
@@ -18,6 +18,17 @@
  * GenericSitemapGenerator Input class.
  */
 final class GenericSitemapGenerator extends Input {
+    /**
+     * @var Object $config
+     * @brief Plugin configuration.
+     */
+    protected $config;
+
+    /**
+     * @var Object $form
+     * @brief Configuration form object.
+     */
+    protected $form;
 
     /**
      * Class constructor.

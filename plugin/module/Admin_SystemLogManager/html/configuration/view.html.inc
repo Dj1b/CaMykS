@@ -1,17 +1,19 @@
 <?php
 /**
- * @brief Admin_SystemLogManager Input configuration view layout
- * @details Plugin / Input layout
+ * @brief Admin_SystemLogManager module, view configuration layout.
+ * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Jun 2018
- * @date Modification: Jan 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
  */
 global $camyks;
+
+$loggingPeriodList = $this->get_configurationLoggingPeriodList();
 ?>
 
 <?php if (isset($this->isConfig) and $this->isConfig) : ?>
@@ -27,7 +29,7 @@ global $camyks;
             <?= $this->get_translation('formitem_rotate'); ?>
         </td>
         <td class="eTableLine0 eContent1">
-            <?= $this->loggingPeriodList[$this->config->get_value('logging_period')]; ?>
+            <?= $loggingPeriodList[$this->config->get_value('logging_period')]; ?>
         </td>
     </tr>
 

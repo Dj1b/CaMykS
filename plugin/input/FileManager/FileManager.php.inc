@@ -31,9 +31,9 @@
  * <br /> . rebuild system with ajax
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.3
+ * @version 1.0.4.4
  * @date Creation: Jun 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -45,124 +45,184 @@
  */
 final class FileManager extends Input {
     /**
-     * var string $winSize
+     * @var string $winSize
      * @brief Size of the manager view.
      */
     public $winSize = '100%';
 
     /**
-     * var string $objname
+     * @var string $objname
      * @brief Manager object name.
      */
     public $objname = 'fm';
 
     /**
-     * var array $modes
+     * @var array $modes
      * @brief Available mode list.
      */
     private $modes = array('manage', 'selection', 'requestlink');
 
     /**
-     * var array $views
+     * @var array $views
      * @brief Available view list.
      */
     private $views = array('columns', /* 'list', 'bigicons', 'smallicons', 'slideshow' */);
 
     /**
-     * var array $views
+     * @var array $views
      * @brief Applied theme to the view.
      */
     public $theme;
 
     /**
-     * var string $folder_path
+     * @var string $folder_path
      * @brief Path to folder to manage.
      */
     public $folder_path;
 
     /**
-     * var string $folder_url
+     * @var string $folder_url
      * @brief URL to folder to manage.
      */
     public $folder_url;
 
     /**
-     * var string $folder_title
+     * @var string $folder_title
      * @brief Title of folder to manage.
      */
     public $folder_title;
 
     /**
-     * var string $engine_mode
+     * @var boolean $folder_default
+     * @brief Is folder default.
+     */
+    public $folder_default;
+
+    /**
+     * @var string $engine_mode
      * @brief Selected mode for current view.
      */
     public $engine_mode;
 
     /**
-     * var string $engine_url
+     * @var string $engine_url
      * @brief Url of current view.
      */
     public $engine_url;
 
     /**
-     * var string $engine_rights
+     * @var string $engine_rights
      * @brief User rights for current view.
      */
     public $engine_rights;
 
     /**
-     * var string $engine_action
+     * @var string $engine_action
      * @brief Action to execute in current view.
      */
     public $engine_action;
 
     /**
-     * var string $browser_maxfilesize
+     * @var string $browser_maxfilesize
      * @brief Upload max file size.
      */
     public $browser_maxfilesize;
 
     /**
-     * var string $browser_maxlevel
+     * @var string $browser_maxlevel
      * @brief Browser max level.
      */
     public $browser_maxlevel;
 
     /**
-     * var string $browser_view
+     * @var string $browser_view
      * @brief Browser current view.
      */
     public $browser_view;
 
     /**
-     * var string $browser_filter
+     * @var string $browser_filter
      * @brief Browser current filter.
      */
     public $browser_filter;
 
     /**
-     * var string $browser_path
+     * @var string $browser_path
      * @brief Browser current path.
      */
-    public $browser_path;
+    public $browser_path = '';
 
     /**
-     * var string $browser_openpath
+     * @var string $browser_openpath
      * @brief Browser current open path.
      */
     public $browser_openpath;
 
     /**
-     * var array $browser_files
+     * @var array $browser_files
      * @brief Browser files.
      */
     public $browser_files;
 
     /**
-     * var string $selection_callback_function
+     * @var string $selection_callback_function
      * @brief Callback function for selection mode.
      */
     public $selection_callback_function;
+
+    /**
+     * @var Object $form
+     * @brief HTML form used to perform actions.
+     */
+    protected $form;
+
+    /**
+     * @var array $actions
+     * @briefs List of available actions.
+     */
+    protected $actions = array();
+
+    /**
+     * @var array $folderbuttons
+     * @briefs List of available buttons in new folder popup.
+     */
+    protected $folderbuttons = array();
+
+    /**
+     * @var array $filebuttons
+     * @briefs List of available buttons in file upload popup.
+     */
+    protected $filebuttons = array();
+
+    /**
+     * @var array $trashbuttons
+     * @briefs List of available buttons in file delete popup.
+     */
+    protected $trashbuttons = array();
+
+    /**
+     * @var array $renamebuttons
+     * @briefs List of available buttons in file rename popup.
+     */
+    protected $renamebuttons = array();
+
+    /**
+     * @var array $viewButtons
+     * @briefs List of available buttons in file view popup.
+     */
+    protected $viewButtons = array();
+
+    /**
+     * @var array $actionButtons
+     * @briefs List of available buttons in file action popup.
+     */
+    protected $actionButtons = array();
+
+    /**
+     * @var integer $cols
+     * @briefs Columns to be displayed in file manager.
+     */
+    protected $cols = 0;
 
     /**
      * Class constructor.
@@ -512,7 +572,7 @@ final class FileManager extends Input {
      * Plugin initialisation in link mode.
      * @return void
      */
-    private function initialise_link_mode () {
+    private function initialise_link_mode() {
         global $camyks;
         /* get popup link */
         $link = $camyks->get_confValue('url').'/request.php?input=FileManager';
@@ -598,7 +658,7 @@ final class FileManager extends Input {
                 $this->initialise_download_execute();
                 break;
             case 'reload':
-        default:
+            default:
                 break;
         }
 
@@ -684,11 +744,11 @@ final class FileManager extends Input {
         foreach ($this->views as $v) {
             if ($v == $this->browser_view) {
                 $this->viewButtons[$v] = array(
-                    'title' => '<img src="'.$this->get_fileURL('img/view/'.$v.'.gif').'" alt="'.$this->get_translation('view_'.$v).'" title="'.$this->get_translation('view_'.$v).'" border="0" />',
+                    'title' => '<img src="'.$this->get_fileURL('img/view/'.$v.'.gif').'" alt="'.$this->get_translation('view_'.$v).'" title="'.$this->get_translation('view_'.$v).'" />',
                 );
             } else {
                 $this->viewButtons[$v] = array(
-                    'title' => '<img src="'.$this->get_fileURL('img/view/'.$v.'.gif').'" alt="'.$this->get_translation('view_'.$v).'" title="'.$this->get_translation('view_'.$v).'" border="0" />',
+                    'title' => '<img src="'.$this->get_fileURL('img/view/'.$v.'.gif').'" alt="'.$this->get_translation('view_'.$v).'" title="'.$this->get_translation('view_'.$v).'" />',
                     'url'   => 'javascript:filemanager_action_change_view(\''.$v.'\')',
                 );
             }
@@ -698,7 +758,7 @@ final class FileManager extends Input {
         $this->actionButtons = array();
         foreach ($this->actions as $a) {
             $this->actionButtons[$a] = array(
-                'title' => '<img src="'.$this->get_fileURL('img/action/'.$a.'.gif').'" alt="'.$this->get_translation('action_'.$a).'" title="'.$this->get_translation('action_'.$a).'" border="0" />',
+                'title' => '<img src="'.$this->get_fileURL('img/action/'.$a.'.gif').'" alt="'.$this->get_translation('action_'.$a).'" title="'.$this->get_translation('action_'.$a).'" />',
                 'url'   => 'javascript:filemanager_action_'.$a.'();',
             );
         }
@@ -721,7 +781,7 @@ final class FileManager extends Input {
     private function initialise_selection_mode() {
         global $camyks;
         /* initialise manage mode */
-        $this->initialise_manage_mode ();
+        $this->initialise_manage_mode();
         /* complete initialisation */
         $this->add_JSScript('folderurl="'.$this->folder_url.'"');
         $this->add_JSScript('callback_function="'.$this->selection_callback_function.'";');
@@ -1196,7 +1256,7 @@ final class FileManager extends Input {
                 $this->html .= '<a href="javascript:filemanager_listOpenObject(\''.$file['full'].'\');">';
                 $this->html .= '<img src="'.$this->get_fileURL('img/arrow_closed.gif').'" ';
                 $this->html .= ' id="arrow'.$file['full'].'"';
-                $this->html .= ' alt="" border="0" align="right">';
+                $this->html .= ' alt="" align="right">';
                 $this->html .= '</a>';
                 $this->html .= '</td>';
 

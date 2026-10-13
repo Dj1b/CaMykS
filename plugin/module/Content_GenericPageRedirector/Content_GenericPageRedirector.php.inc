@@ -4,9 +4,9 @@
  * <br /> Redirects visitor on another page.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Sep 2009
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2009 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,31 +17,25 @@
  */
 final class Content_GenericPageRedirector extends Module {
     /**
-     * var Object $pritem
+     * @var Object $pritem
      * @brief Page redirector object.
      */
     protected $pritem;
 
     /**
-     * var string $mode
-     * @brief Admin mode to run.
-     */
-    private $mode;
-
-    /**
-     * var integer $page_id
+     * @var integer $page_id
      * @brief Parent page id.
      */
     protected $page_id;
 
     /**
-     * var integer $module_index
+     * @var integer $module_index
      * @brief Parent page, module index.
      */
     protected $module_index;
 
     /**
-     * var array $layouts
+     * @var array $layouts
      * @brief Available layout list.
      */
     private $layouts;

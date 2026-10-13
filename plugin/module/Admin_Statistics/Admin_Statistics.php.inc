@@ -4,9 +4,9 @@
  * <br /> Records and displays website statistics.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: May 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -23,40 +23,160 @@
  */
 final class Admin_Statistics extends Module {
     /**
-     * var Object $statobject
+     * @var Object $statconfig
+     * @brief Statistic configuration.
+     */
+    public $statconfig;
+
+    /**
+     * @var Object $statobject
      * @brief Statistic object.
      */
     public $statobject;
 
     /**
-     * var Object $statdata
+     * @var Object $statdata
      * @brief Statistic data object.
      */
     public $statdata;
 
     /**
-     * var Object $registered_stats
+     * @var Object $settings
+     * @brief Module configuration.
+     */
+    protected $settings;
+
+    /**
+     * @var Object $registered_stats
      * @brief Already registered statistics.
      */
     protected $registered_stats = null;
 
     /**
-     * var Object $stattypes
+     * @var Object $stattypes
      * @brief Statistic type list.
      */
     private $stattypes = array('single', 'mixed', 'dated', 'detail', 'total');
 
     /**
-     * var array $statslist
+     * @var array $statslist
      * @brief Statistic object list.
      */
     protected $statslist;
 
     /**
-     * var array $displayedItems
+     * @var array $displayedItems
      * @brief Stores how many day/month/year to display.
      */
     protected $displayedItems = array('day'=>16, 'month'=>16, 'year'=>8);
+
+    /**
+     * @var Object $config
+     * @brief Configuration object.
+     */
+    protected $config;
+
+    /**
+     * @var array $optionsButtons
+     * @brief Option buttons.
+     */
+    protected $optionsButtons;
+
+    /**
+     * @var string $statsdesc
+     * @brief Statistic description.
+     */
+    protected $statsdesc;
+
+    /**
+     * @var array $maintitles
+     * @brief Main titles.
+     */
+    protected $maintitles;
+
+    /**
+     * @var Object $colorPicker
+     * @brief Link to color picker input.
+     */
+    protected $colorPicker;
+
+    /**
+     * @var string $colorPickerValue
+     * @brief Color picker value.
+     */
+    protected $colorPickerValue;
+
+    /**
+     * @var array $c_config
+     * @brief Compiled configuration.
+     */
+    protected $c_config;
+
+    /**
+     * @var array $statsmaintotal
+     * @brief Compiled total statistics.
+     */
+    protected $statsmaintotal;
+
+    /**
+     * @var array $statsmainbyday
+     * @brief Compiled statistics by day.
+     */
+    protected $statsmainbyday;
+
+    /**
+     * @var array $statsmainbymonth
+     * @brief Compiled statistics by month.
+     */
+    protected $statsmainbymonth;
+
+    /**
+     * @var array $statsmainbyyear
+     * @brief Compiled statistics by year.
+     */
+    protected $statsmainbyyear;
+
+    /**
+     * @var string $statsdetaildesc
+     * @brief Statistic detail description.
+     */
+    protected $statsdetaildesc;
+
+    /**
+     * @var integer $statsdetailtotal
+     * @brief Statistic detail total.
+     */
+    protected $statsdetailtotal;
+
+    /**
+     * @var array $statsdetaillist
+     * @brief Statistic detail list.
+     */
+    protected $statsdetaillist;
+
+    /**
+     * @var integer $statsdetailmax
+     * @brief Statistic detail max.
+     */
+    protected $statsdetailmax;
+
+    /**
+     * @var array $detailtitles
+     * @brief Statistic detail titles.
+     */
+    protected $detailtitles;
+
+    /**
+     * @var string $object
+     * @brief Configuration object.
+     */
+    protected $object;
+
+    /**
+     * @var array $statusList
+     * @brief Status list.
+     */
+    protected $statusList;
 
     /**
      * Class constructor.

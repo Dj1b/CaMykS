@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief Bots as client bots specific methods
+ * @brief Bots as client bots specific methods.
  * @details Engine / Bot Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.87
+ * @version 1.0.90
  * @date Creation: May 2018
- * @date Modification: Jul 2025
+ * @date Modification: Dec 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -198,6 +198,16 @@ function _client_getKnownBots() {
         'engine_url'        => 'http://www.google.com',
     );
 
+    /* Google bot : GoogleOther */
+    $knownBots['googleother'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'GoogleOther',
+        'bot_url'           => 'http://www.google.com/bot.html',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
     /* Google Media Partners */
     $knownBots['mediapartners-google'] = array(
         'platform_type'     => 'bot',
@@ -244,6 +254,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'GoogleSites',
         'bot_url'           => 'https://support.google.com/webmasters/answer/1061943',
+        'engine_title'      => 'Google',
+        'engine_url'        => 'http://www.google.com',
+    );
+
+    /* GoogleAssociationService */
+    $knownBots['googleassociationservice'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'GoogleAssociationService',
+        'bot_url'           => '',
         'engine_title'      => 'Google',
         'engine_url'        => 'http://www.google.com',
     );
@@ -364,6 +384,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'FaceBot',
         'bot_url'           => '',
+        'engine_title'      => 'Facebook',
+        'engine_url'        => 'http://www.facebook.com/',
+    );
+
+    /* Facebook bot : facebot */
+    $knownBots['meta-webindexer'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'Meta-Webindexer',
+        'bot_url'           => 'https://developers.facebook.com/docs/sharing/webmasters/crawler',
         'engine_title'      => 'Facebook',
         'engine_url'        => 'http://www.facebook.com/',
     );
@@ -1482,9 +1512,9 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'SeznamBot',
-        'bot_url'           => 'http://fulltext.sblog.cz',
+        'bot_url'           => 'https://o-seznam.cz/napoveda/vyhledavani/en/seznambot-crawler/',
         'engine_title'      => 'Seznam',
-        'engine_url'        => 'https://www.seznam.cz',
+        'engine_url'        => 'https://o-seznam.cz',
     );
 
     /* SeznamBot screenshot generator */
@@ -1492,9 +1522,9 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'Seznam screenshot-generator',
-        'bot_url'           => 'http://fulltext.sblog.cz',
+        'bot_url'           => 'https://o-seznam.cz/napoveda/vyhledavani/en/seznambot-crawler/',
         'engine_title'      => 'Seznam',
-        'engine_url'        => 'https://www.seznam.cz',
+        'engine_url'        => 'https://o-seznam.cz',
     );
 
     /* 360Spider */
@@ -1732,9 +1762,9 @@ function _client_getKnownBots() {
         'platform_type'     => 'bot',
         'platform_format'   => 'desktop',
         'bot_title'         => 'BLEXBot',
-        'bot_url'           => '',
-        'engine_title'      => 'webmeup',
-        'engine_url'        => 'http://webmeup-crawler.com/',
+        'bot_url'           => 'https://help.seranking.com/en/blex-crawler',
+        'engine_title'      => 'SE Ranking',
+        'engine_url'        => 'https://seranking.com/',
     );
 
     /* Qwantify */
@@ -1803,6 +1833,16 @@ function _client_getKnownBots() {
         'platform_format'   => 'desktop',
         'bot_title'         => 'DuckDuckBot',
         'bot_url'           => 'http://duckduckgo.com/duckduckbot.html',
+        'engine_title'      => 'DuckDuckGo',
+        'engine_url'        => 'http://duckduckgo.com',
+    );
+
+    /* DuckDuckGo */
+    $knownBots['duckassistbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'DuckAssistBot',
+        'bot_url'           => 'http://duckduckgo.com/duckassistbot.html',
         'engine_title'      => 'DuckDuckGo',
         'engine_url'        => 'http://duckduckgo.com',
     );
@@ -2255,6 +2295,16 @@ function _client_getKnownBots() {
         'bot_url'           => 'http://www.seograph.net/bot.html',
         'engine_title'      => 'SEO Graph',
         'engine_url'        => 'http://www.seograph.net',
+    );
+
+    /* ZenixOpsBot - before psbot */
+    $knownBots['zenixopsbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ZenixOpsBot',
+        'bot_url'           => '',
+        'engine_title'      => 'ZenixOps',
+        'engine_url'        => 'hhttps://zenixops.com',
     );
 
     /* psbot */
@@ -5481,6 +5531,76 @@ function _client_getKnownBots() {
         'bot_url'           => 'https://obsrvr.net/about',
         'engine_title'      => 'Observer',
         'engine_url'        => 'https://obsrvr.net/',
+    );
+
+    /* Ibou bot */
+    $knownBots['iboubot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'IbouBot',
+        'bot_url'           => 'https://ibou.io/iboubot.html',
+        'engine_title'      => 'Ibou',
+        'engine_url'        => 'https://ibou.io/',
+    );
+
+    /* Halo bot */
+    $knownBots['halobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'HaloBot',
+        'bot_url'           => 'mailto:bot@haloscan.com',
+        'engine_title'      => 'HaloScan',
+        'engine_url'        => 'https://www.haloscan.com/',
+    );
+
+    /* EV crawler bot */
+    $knownBots['ev-crawler'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'ev-crawler',
+        'bot_url'           => 'https://headline.com/legal/crawler',
+        'engine_title'      => 'Headline',
+        'engine_url'        => 'https://headline.com/',
+    );
+
+    /* AwarioBot bot */
+    $knownBots['awariobot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'AwarioBot',
+        'bot_url'           => 'https://awario.com/bots.html',
+        'engine_title'      => 'Awario',
+        'engine_url'        => 'https://awario.com/',
+    );
+
+    /* LinkupBot bot */
+    $knownBots['linkupbot'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'LinkupBot',
+        'bot_url'           => 'https://linkup.so/bot',
+        'engine_title'      => 'Linkup',
+        'engine_url'        => 'https://www.linkup.so',
+    );
+
+    /* TerraCotta bot */
+    $knownBots['terracotta'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'TerraCotta',
+        'bot_url'           => 'https://github.com/CeramicTeam/CeramicTerracotta',
+        'engine_title'      => 'Ceramic',
+        'engine_url'        => 'https://ceramic.ai',
+    );
+
+    /* Mistral bot */
+    $knownBots['mistralai-user'] = array(
+        'platform_type'     => 'bot',
+        'platform_format'   => 'desktop',
+        'bot_title'         => 'MistralAI-User',
+        'bot_url'           => 'https://docs.mistral.ai/robots',
+        'engine_title'      => 'Mistral',
+        'engine_url'        => 'https://mistral.ai',
     );
 
     /* Return bot list */

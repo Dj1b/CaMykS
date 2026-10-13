@@ -3,9 +3,9 @@
  * @brief Admin_SecurityTools module, IPFilter library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.2
+ * @version 1.0.3.3
  * @date Creation: Oct 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,12 @@
  * Admin_SecurityIPFilterRule ModuleLibrary class.
  */
 final class Admin_SecurityIPFilterRule extends ModuleLibrary {
+    /**
+     * @var array $rules
+     * @brief List of rules.
+     */
+    private $rules;
+
     /**
      * Class constructor.
      * @param integer $id

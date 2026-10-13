@@ -7,9 +7,9 @@
  * <br /> - Flood (POST) Control : ?
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.2.1
+ * @version 1.2.2.2
  * @date Creation: Oct 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -24,31 +24,37 @@
  */
 final class Admin_SecurityTools extends Module {
     /**
-     * var Object $config
+     * @var Object $config
      * @brief Configuration object.
      */
     protected $config;
 
     /**
-     * var Object $ipfilterrule
+     * @var Object $ipfilterrule
      * @brief IP filter rule object.
      */
     protected $ipfilterrule;
 
     /**
-     * var Object urlFilterRule
+     * @var Object urlFilterRule
      * @brief URL filter rule object.
      */
     protected $urlFilterRule;
 
     /**
-     * var Object backupfile
+     * @var Object uaFilterConfig
+     * @brief User agent filter rule object.
+     */
+    protected $uaFilterConfig;
+
+    /**
+     * @var Object backupfile
      * @brief Backup file object.
      */
     protected $backupfile;
 
     /**
-     * var array tools
+     * @var array tools
      * @brief Security tools list.
      */
     protected $tools = array(

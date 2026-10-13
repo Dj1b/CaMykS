@@ -4,10 +4,10 @@
  * <br /> Contact form or comment spam checker.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jun 2021
- * @date Modification: Jul 2025
- * @copyright 2021 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -17,10 +17,16 @@
  */
 final class SpamChecker extends Input {
     /**
-     * var Object $config
+     * @var Object $config
      * @brief Input configuration.
      */
     protected $config;
+
+    /**
+     * @var Object $form
+     * @brief Configuration form object.
+     */
+    protected $form;
 
     /**
      * Class constructor.
@@ -451,9 +457,6 @@ final class SpamChecker extends Input {
         /* Update form */
         $this->form = &$form;
         $this->form->set_object($this->config);
-
-        /* Load data */
-        $this->scriptList = language_getScriptTitleList();
 
         /* Adds scripts */
         $this->add_JSFile('SpamCheckerConfig.js');

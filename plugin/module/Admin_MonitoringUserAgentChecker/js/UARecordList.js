@@ -1,12 +1,11 @@
 /**
- * @brief Admin_MonitoringUserAgentChecker module record list scripts
+ * @brief Admin_MonitoringUserAgentChecker module, record list scripts.
  * @details Plugin / Module Scripts
- * @file plugin/module/Admin_MonitoringUserAgentChecker/js/UARecordList.js
  * @author CaMykS Team
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Nov 2018
- * @date Modification: Jan 2019
- * @copyright 2018 - 2019 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -107,6 +106,23 @@ var UARecordList = {
 
         ids = recordList.get_checkedBoxes('selection');
         this.get_param('form').mode.value = 'mark_recordsAsInspected';
+        this.get_param('form').ids.value = ids.join(',');
+        this.get_param('form').submit();
+    },
+
+    /**
+     * Open link to update records type.
+     * @return void
+     */
+    update_recordsType: function() {
+        if (!this.loaded)
+            return false;
+
+        if (!confirm(this.get_locale('confirmupdatetype_message')))
+            return;
+
+        ids = recordList.get_checkedBoxes('selection');
+        this.get_param('form').mode.value = 'update_recordsType';
         this.get_param('form').ids.value = ids.join(',');
         this.get_param('form').submit();
     },

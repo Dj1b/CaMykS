@@ -19,6 +19,11 @@
  */
 function get_SonyClientDevice($deviceCode='') {
     $deviceList = array(
+
+        /* Sony TV set */
+        'BRAVIA 4K VH2'         => array('platform_model' => 'Bravia 4K VH2',               'platform_year' => 2024,    'platform_type' => 'tvset',  'platform_format' => 'desktop'),
+
+
         /* Sony PlayStation */
         'PlayStation Portable'  => array('platform_model' => 'PlayStation Portable (PSP)',  'platform_year' => 2004),
         'PlayStation Vita'      => array('platform_model' => 'PlayStation Vita',            'platform_year' => 2011),

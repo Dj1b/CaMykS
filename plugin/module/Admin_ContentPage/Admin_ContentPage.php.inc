@@ -4,9 +4,9 @@
  * <br /> Administration module to manage website pages.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.3.2
+ * @version 1.1.3.3
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,46 +21,58 @@
  */
 final class Admin_ContentPage extends Module {
     /**
-     * var Object $page
+     * @var Object $page
      * @brief Current page is use.
      */
     public $page;
 
     /**
-     * var string $mode
-     * @brief Current admin mode.
+     * @var array $pages
+     * @brief List of page objects.
      */
-    public $mode;
+    public $pages = null;
 
     /**
-     * var array $available_modes
+     * @var array $available_modes
      * @brief List of all available modes
      */
     private $available_modes = array('finder','modify', 'save', 'delete', 'moveup', 'movedown', 'move', 'edit_config', 'save_config');
 
     /**
-     * var integer $page_id
+     * @var integer $page_id
      * @brief Current page id
      */
     public $page_id;
 
     /**
-     * var string $htmlcols
+     * @var string $htmlcols
      * @brief HTML code for page tree
      */
     protected $htmlcols;
 
     /**
-     * var array $opened
+     * @var array $opened
      * @brief Opened page path
      */
     protected $opened;
 
     /**
-     * var Object $config
+     * @var Object $config
      * @brief Module configuration
      */
     public $config;
+
+    /**
+     * @var boolean $isConfig
+     * @brief Indicate if configuration edition is in Admin_Site.
+     */
+    protected $isConfig = false;
+
+    /**
+     * @var integer $siteHomePage
+     * @brief Id of the website home page object.
+     **/
+    public $siteHomePage = null;
 
     /**
      * Class constructor.
@@ -70,37 +82,36 @@ final class Admin_ContentPage extends Module {
         global $camyks;
         parent::__construct('Admin_ContentPage', $path_type);
 
-        /* overwrite Module values */
+        /* Override Module values */
         $this->type = 'admin';
         $this->admin_type = 'content';
 
-        /* overwrite Plugin values */
+        /* Override Plugin values */
         $this->version = '1.1';
         $this->plugin_package = 'System';
 
-        /* author information */
+        /* Define author information */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* specific module values */
-        $this->titles = array();
+        /* Load libraries */
         $this->load_library('ContentPage');
         $this->load_library('Admin_ContentPageConfig');
-        $this->page = new ContentPage($camyks->mode, 0);
-        $this->pages = null;
-        $this->siteHomePage = null;
 
-        /* load configuration */
+        /* Initialise libraries */
+        $this->page = new ContentPage($camyks->mode, 0);
+
+        /* Load configuration */
         $this->config = new Admin_ContentPageConfig('config', $this);
         $this->config->get();
 
-        /* register plugin as Admin_Site extension */
+        /* Register plugin as extension */
         $this->register_asExtension('Admin_Site');
         $this->register_asExtension('GenericSitemapGenerator');
     }
 
-    /* Override Module methods */
+    /* Mark: Override Module methods */
 
     /**
      * Install module.
@@ -225,14 +236,14 @@ final class Admin_ContentPage extends Module {
      * @return array
      */
     public function get_adminEngineSpecificMenus() {
-        /* return menu in finder mode and when admin is allowed */
+        /* Return menu in finder mode and when admin is allowed */
         if ($this->mode == 'finder' and $this->check_right(5)===true) {
             return array(array(
                 'name'  => 'pagesmanager',
                 'title' => $this->get_translation('title'),
            ));
         }
-        /* return empty menu in other modes */
+        /* Return empty menu in other modes */
         return array();
     }
 
@@ -242,7 +253,7 @@ final class Admin_ContentPage extends Module {
      */
     public function get_adminEngineSpecificMenuItems() {
         global $camyks;
-        /* return menu items in finder mode and when admin is allowed */
+        /* Return menu items in finder mode and when admin is allowed */
         if ($this->mode == 'finder' and $this->check_right(5)===true) {
             $items = array();
             $items[] = array(
@@ -260,7 +271,7 @@ final class Admin_ContentPage extends Module {
                )
            );
 
-            /* load models */
+            /* Load models */
             $models = $this->page->get_modelsList();
             if (count($models) > 0) {
                 $items[] = array(
@@ -280,7 +291,7 @@ final class Admin_ContentPage extends Module {
             }
             return $items;
         }
-        /* return empty menu in other modes */
+        /* Return empty menu in other modes */
         return array();
     }
 
@@ -299,7 +310,7 @@ final class Admin_ContentPage extends Module {
         if (!isset($camyks->inputs['TabBuilder']))
             return $this->init_admin_missingPlugin('Input', 'TabBuilder');
 
-        /* load specific css file */
+        /* Load specific css file */
         $this->add_styleFile('contentpage.css');
 
         /* get mode to display from header params */
@@ -416,7 +427,7 @@ final class Admin_ContentPage extends Module {
         $this->add_JSScript('var pc_mode="'.$this->request_mode.'";');
         $this->add_JSScript('var pc_callback="'.$this->request_callback.'";');
 
-        /* load theme */
+        /* Load theme */
         $this->theme->initialise_adminMode();
 
         $this->selected_layout = 'request.html.inc';
@@ -429,7 +440,7 @@ final class Admin_ContentPage extends Module {
         $camyks->HTMLPage->write_HTMLContent();
     }
 
-    /* specific mode methods */
+    /* Mark: Initialise admin mode sub methods */
 
     /**
      * Initialise module object in admin/finder mode.
@@ -447,7 +458,7 @@ final class Admin_ContentPage extends Module {
             'title' => $this->get_translation('pages'),
         ));
 
-        /* load configuration data */
+        /* Load configuration data */
         if ($this->check_right(8)) {
             $this->W3CValidatorStatus = $this->config->get_w3cValidatorList();
             $this->OGMetaStatus = $this->config->get_ogMetaStatusList();
@@ -917,10 +928,9 @@ final class Admin_ContentPage extends Module {
 
         $this->tabBuilder->initialise(array('default'=>'Configuration'));
 
-        /* load config form */
+        /* Load config form */
         $this->editform = new HTMLForm('edit_config', $this->get_adminlink(array('mode'=>'save_config')), 'POST');
         $this->initialise_configEdition($this->editform);
-        $this->isConfig = false;
 
         /* build title */
         $this->adminTitle = $this->title;
@@ -970,6 +980,8 @@ final class Admin_ContentPage extends Module {
         $this->set_redirect($this->get_adminLink(array('openTab'=>'Configuration')));
     }
 
+    /* Mark: Tool methods */
+
     /**
      * Return all pages in admin mode.
      * @return void
@@ -1005,7 +1017,7 @@ final class Admin_ContentPage extends Module {
         if (isset($this->pages[$page]))
             return $this->pages[$page]->get_siteLink($params, $lg);
 
-        /* load page as single one */
+        /* Load page as single one */
         $p = new ContentPage(CAMYKS_MODE_SITE, 0);
         if ($p->get($page))
             return $p->get_siteLink($params, $lg);
@@ -1026,12 +1038,12 @@ final class Admin_ContentPage extends Module {
         if ($key == '')
             return '';
 
-        /* load page from key */
+        /* Load page from key */
         $page = $this->get_keyPage($key);
         if ($page == false)
             return '';
 
-        /* return site page link */
+        /* Return site page link */
         return $this->get_sitePageLink($page, $lg, $params);
     }
 
@@ -1045,7 +1057,7 @@ final class Admin_ContentPage extends Module {
         if ($this->siteHomePage > 0)
             return $this->pages[$this->siteHomePage]->get_siteLink();
 
-        /* load home page from db */
+        /* Load home page from db */
         $p = new ContentPage(CAMYKS_MODE_SITE, 0);
         if ($p->get_homeFromDatabase()) {
             return $p->get_siteLink();
@@ -1482,7 +1494,7 @@ final class Admin_ContentPage extends Module {
         $this->add_JSScript('movePageFailedMessage="'.string_html2Text($this->get_translation('movepagefailedmessage')).'";');
     }
 
-    /* Updates methods */
+    /* Mark: Updates methods */
 
     /**
      * Apply version 1.1 update.
@@ -1492,7 +1504,7 @@ final class Admin_ContentPage extends Module {
         return ($this->page->update_toVersion1_1());
     }
 
-    /* Admin_Site extension configuration methods */
+    /* Mark: Admin_Site extension configuration methods */
 
     /**
      * Initialise object in Admin_Site, view configuration mode.
@@ -1501,7 +1513,7 @@ final class Admin_ContentPage extends Module {
     public function initialise_configDisplay() {
         $this->isConfig = true;
 
-        /* load pages */
+        /* Load pages */
         $this->get_adminPages();
     }
 
@@ -1523,7 +1535,7 @@ final class Admin_ContentPage extends Module {
 
         $this->isConfig = true;
 
-        /* load data */
+        /* Load data */
         $this->W3CValidatorStatus = $this->config->get_w3cValidatorList();
         $this->OGMetaStatus = $this->config->get_ogMetaStatusList();
         $this->HrefLangStatus = $this->config->get_hrefLangStatusList();
@@ -1535,7 +1547,7 @@ final class Admin_ContentPage extends Module {
         $this->editform->add_hidden('keyPageCnt', count($this->config->get_value('keyPages')));
         $this->editform->add_hidden('navAddCnt', count($this->config->get_value('navigation_additional')));
 
-        /* load pages */
+        /* Load pages */
         $this->get_adminPages();
 
         /* add scripts */
@@ -1569,7 +1581,7 @@ final class Admin_ContentPage extends Module {
         return $this->config->save();
     }
 
-    /* GenericSitemapGenerator extension methods */
+    /* Mark: GenericSitemapGenerator extension methods */
 
     /**
      * Return links for site map.

@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief GoogleAnalytics Input, configuration object.
+ * @brief GoogleAnalytics input, configuration object.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Sep 2018
- * @date Modification: Feb 2023
- * @copyright 2018 - 2023 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -24,12 +24,17 @@ final class GoogleAnalyticsConfig extends PluginConfig {
     public function __construct($name, &$parent) {
         parent::__construct($name, $parent);
 
-        /* google params */
+        /* Google params */
         $this->add_newItem('trackingId', 'string', '');
         $this->add_newItem('trackingMode', 'integer', 0);
         $this->add_newItem('trackingParams', 'string', '');
 
-        /* internal params */
+        /* Second Google params */
+        $this->add_newItem('tracking2Id', 'string', '');
+        $this->add_newItem('tracking2Mode', 'integer', 0);
+        $this->add_newItem('tracking2Params', 'string', '');
+
+        /* Internal params */
         $this->add_newItem('enableAdminStats', 'boolean', false);
 
         /* generic initialisation */
@@ -51,11 +56,14 @@ final class GoogleAnalyticsConfig extends PluginConfig {
 
     /**
      * Return tracking mode title.
+     * @param string $code
      * @return string
      */
-    public function get_trackingModeTitle() {
+    public function get_trackingModeTitle($code='') {
         $l = $this->get_trackingModeList();
-        return $l[$this->vars['trackingMode']];
+        if (isset($l[$this->vars['tracking'.$code.'Mode']]))
+            return $l[$this->vars['tracking'.$code.'Mode']];
+        return $l[0];
     }
 }
 ?>

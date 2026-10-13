@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Admin_Statistics Module admin dated tab sublayout
+ * @brief Admin_Statistics module, admin dated tab sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Sep 2020
- * @date Modification: Dec 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2020 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -70,7 +70,7 @@ $main_bar_height = 60;
                         <?php for ($i = $this->displayedItems['day']-1; $i >= 0; $i--) : ?>
                             <?php $mydate = mktime(0, 0, 0, date('m'), date('d')-$i, date('Y')); ?>
                             <td class="adminStatisticsByDateTxt">
-                                <?= strftime('%d/%m', $mydate); ?>
+                                <?= date_displayNumericMonthDay($mydate); ?>
                             </td>
                         <?php endfor; ?>
                         <td class="adminStatisticsByDateTxt">
@@ -116,7 +116,7 @@ $main_bar_height = 60;
                         <?php for ($i = $this->displayedItems['month']-1; $i >= 0; $i--) : ?>
                             <?php $mydate = mktime(0, 0, 0, date('m')-$i, 1, date('Y')); ?>
                             <td class="adminStatisticsByDateTxt">
-                                <?= strftime('%m/%y', $mydate); ?>
+                                <?= date_displayNumericYearMonth($mydate); ?>
                             </td>
                         <?php endfor; ?>
                         <td class="adminStatisticsByDateTxt">
@@ -144,7 +144,7 @@ $main_bar_height = 60;
                         <?php for ($i = $this->displayedItems['year']-1; $i >= 0; $i--) : ?>
                             <?php $mydate = mktime(0, 0, 0, 1, 1, date('Y')-$i); ?>
                             <?php $myvalue = isset($this->statsmainbyyear['values'][$mydate])? $this->statsmainbyyear['values'][$mydate]:0; ?>
-                            <td class="adminStatisticsByDateBox" style="height:<?= $main_bar_height+20?>px;">
+                            <td class="adminStatisticsByDateBox" style="height:<?= $main_bar_height+20; ?>px;">
                                 <?= $this->get_optimisedValue($myvalue); ?>
                                 <div class="adminStatisticsByDateBox2" style="height:<?= $this->statsmainbyyear['max'] == 0 ? 0 : (int)($main_bar_height*$myvalue/$this->statsmainbyyear['max']); ?>px;background:#<?= $this->config->vars['coloralternate'.$alt]; ?>;"></div>
                             </td>
@@ -161,7 +161,7 @@ $main_bar_height = 60;
                         <?php for ($i = $this->displayedItems['year']-1; $i >= 0; $i--) : ?>
                             <?php $mydate = mktime(0, 0, 0, 1, 1, date('Y')-$i); ?>
                             <td class="adminStatisticsByDateTxt">
-                                <?= strftime('%Y', $mydate); ?>
+                                <?= date_displayYear($mydate); ?>
                             </td>
                         <?php endfor; ?>
                         <td class="adminStatisticsByDateTxt">

@@ -3,10 +3,10 @@
  * @brief HTTP specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.2
+ * @version 1.0.5
  * @date Creation: Jul 2017
- * @date Modification: Feb 2022
- * @copyright 2017 - 2022 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -246,7 +246,7 @@ function http_getContentsUsingPHP($params=array()) {
  * @return false on failure, string on success
  */
 function http_getContentsUsingCURL($params=array()) {
-    global $camyks;
+    global $camyks, $curlRequest;
 
     /* Build params list */
     $defaultParams = array(
@@ -272,27 +272,86 @@ function http_getContentsUsingCURL($params=array()) {
     }
 
     /* Build request */
-    $request = curl_init();
-    curl_setopt($request, CURLOPT_URL, $params['url']);
-    curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($request, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($request, CURLOPT_POST, $params['method']=='POST' ? 1 : 0);
-    curl_setopt($request, CURLOPT_POSTFIELDS, $params['values']);
-    curl_setopt($request, CURLOPT_SSL_VERIFYPEER, $params['SSL_VerifyPeer']);
+    $curlRequest = curl_init();
+    curl_setopt($curlRequest, CURLOPT_URL, $params['url']);
+    curl_setopt($curlRequest, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curlRequest, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($curlRequest, CURLOPT_POST, $params['method']=='POST' ? 1 : 0);
+    curl_setopt($curlRequest, CURLOPT_POSTFIELDS, $params['values']);
+    curl_setopt($curlRequest, CURLOPT_SSL_VERIFYPEER, $params['SSL_VerifyPeer']);
     if (isset($params['ssl']['ciphers']))
-        curl_setopt($request, CURLOPT_SSL_CIPHER_LIST, $params['ssl']['ciphers']);
+        curl_setopt($curlRequest, CURLOPT_SSL_CIPHER_LIST, $params['ssl']['ciphers']);
     if ($params['timeout'] > 0)
-        curl_setopt($request, CURLOPT_TIMEOUT, $params['timeout']);
+        curl_setopt($curlRequest, CURLOPT_TIMEOUT, $params['timeout']);
     if ($params['user_agent'] != '')
-        curl_setopt($request, CURLOPT_USERAGENT, $params['user_agent']);
+        curl_setopt($curlRequest, CURLOPT_USERAGENT, $params['user_agent']);
     if ($params['referer'] === true)
-        curl_setopt($request, CURLOPT_AUTOREFERER, true);
+        curl_setopt($curlRequest, CURLOPT_AUTOREFERER, true);
     elseif ($params['referer'] != '')
-        curl_setopt($request, CURLOPT_REFERER, $params['referer']);
+        curl_setopt($curlRequest, CURLOPT_REFERER, $params['referer']);
     if (count($header) > 0)
-        curl_setopt($request, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curlRequest, CURLOPT_HTTPHEADER, $header);
 
     /* Execute request */
-    return @curl_exec($request);
+    return @curl_exec($curlRequest);
+}
+
+/**
+ * Return status from last content request.
+ * @param array $params
+ * @parblock - Available parameters are <br />
+ * \e string engine - \b php / \b curl <br />
+ * @endparblock
+ * @return mixed
+ */
+function http_getStatusFromLastContentRequest($params=array()) {
+    /* Build params list */
+    $defaultParams = array(
+        'engine'            => 'php', // php | curl
+    );
+    $params = array_merge($defaultParams, $params);
+
+    /* Check cURL engine */
+    if ($params['engine'] == 'curl' and !extension_loaded('curl'))
+        $params['engine'] = 'php';
+
+    /* Check engine to use */
+    if ($params['engine'] == 'curl')
+        return http_getStatusFromLastContentRequestUsingCURL($params);
+    return http_getStatusFromLastContentRequestUsingPHP($params);
+}
+
+/**
+ * Return status from last PHP content request.
+ * @return mixed
+ */
+function http_getStatusFromLastContentRequestUsingPHP() {
+    /* Load headers */
+    if (function_exists('http_get_last_response_headers'))
+        $headers = http_get_last_response_headers();
+    elseif (isset($http_response_header))
+        $headers = $http_response_header;
+    else
+        return false;
+
+    /* Search status list, should be the first one */
+    foreach ($headers as $header) {
+        if (preg_match('{HTTP\/\S*\s(\d{3})}', $header, $matches))
+            return (int)$matches[1];
+    }
+
+    /* Return failure */
+    return false;
+}
+
+/**
+ * Return status from last CURL content request.
+ * @return mixed
+ */
+function http_getStatusFromLastContentRequestUsingCURL() {
+    global $curlRequest;
+    if (!isset($curlRequest))
+        return false;
+    return curl_getinfo($curlRequest, CURLINFO_HTTP_CODE);
 }
 ?>

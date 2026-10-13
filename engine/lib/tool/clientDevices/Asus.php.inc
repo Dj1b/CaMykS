@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Asus client devices specific methods
+ * @brief Asus client devices specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.36
+ * @version 1.0.37
  * @date Creation: Apr 2018
- * @date Modification: Oct 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Nov 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -52,6 +52,7 @@ function get_AsusClientDevice($deviceCode='') {
         'X00AD'         => array('platform_model' => 'ZenFone Go',              'platform_year' => 2016),
         'ZC520TL'       => array('platform_model' => 'ZenFone 3 Max',           'platform_year' => 2016),
         'ZC550KL'       => array('platform_model' => 'ZenFone Max',             'platform_year' => 2016),
+        'Z010D'         => array('platform_model' => 'ZenFone Max',             'platform_year' => 2016),
         'ZE520KL'       => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'ZE552KL'       => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
         'Z012D'         => array('platform_model' => 'ZenFone 3',               'platform_year' => 2016),
@@ -92,23 +93,35 @@ function get_AsusClientDevice($deviceCode='') {
         'ZS620KL'       => array('platform_model' => 'ZenFone 5Z',              'platform_year' => 2017),
         'ZE553KL'       => array('platform_model' => 'ZenFone Zoom S',          'platform_year' => 2017),
         'X018D'         => array('platform_model' => 'Zenfone Max Plus M1',     'platform_year' => 2017),
+        'X018DC'        => array('platform_model' => 'Zenfone Max Plus M1',     'platform_year' => 2017),
         'X00PD'         => array('platform_model' => 'Zenfone Max M1',          'platform_year' => 2018),
         'X01AD'         => array('platform_model' => 'Zenfone Max M2',          'platform_year' => 2018),
         'X00TD'         => array('platform_model' => 'Zenfone Max Pro M1',      'platform_year' => 2018),
+        'X00TDB'        => array('platform_model' => 'Zenfone Max Pro M1',      'platform_year' => 2018),
         'X01BDA'        => array('platform_model' => 'Zenfone Max Pro M2',      'platform_year' => 2018),
         'X00QD'         => array('platform_model' => 'Zenfone 5',               'platform_year' => 2018),
+        'X00QDA'        => array('platform_model' => 'Zenfone 5',               'platform_year' => 2018),
         'X00RD'         => array('platform_model' => 'Zenfone Live L1',         'platform_year' => 2018),
         'Z01RD'         => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
         'I01WD'         => array('platform_model' => 'Zenfone 6',               'platform_year' => 2019),
         'I002D'         => array('platform_model' => 'Zenfone 7',               'platform_year' => 2020),
+        'I006D'         => array('platform_model' => 'Zenfone 8',               'platform_year' => 2021),
+        'I004D'         => array('platform_model' => 'Zenfone 8 Flip',          'platform_year' => 2021),
+        'AI2202'        => array('platform_model' => 'Zenfone 9',               'platform_year' => 2022),
 
         'Zenfone 5Z'    => array('platform_model' => 'Zenfone 5Z',              'platform_year' => 2018),
 
         /* Asus phones - ROG Phone series */
         'Z01QD'         => array('platform_model' => 'ROG Phone',               'platform_year' => 2018),
+        'I001D'         => array('platform_model' => 'ROG Phone II',            'platform_year' => 2019),
         'I001DC'        => array('platform_model' => 'ROG Phone II',            'platform_year' => 2019),
+        'I001DE'        => array('platform_model' => 'ROG Phone II',            'platform_year' => 2019),
         'I003D'         => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
         'I003DD'        => array('platform_model' => 'ROG Phone 3',             'platform_year' => 2020),
+        'I005DA'        => array('platform_model' => 'ROG Phone 5',             'platform_year' => 2021),
+        'AI2201_C'      => array('platform_model' => 'ROG Phone 6',             'platform_year' => 2022),
+        'AI2201_D'      => array('platform_model' => 'ROG Phone 6',             'platform_year' => 2022),
+        'AI2203_D'      => array('platform_model' => 'ROG Phone 6D',            'platform_year' => 2022),
     );
 
     /* Check for returning list */

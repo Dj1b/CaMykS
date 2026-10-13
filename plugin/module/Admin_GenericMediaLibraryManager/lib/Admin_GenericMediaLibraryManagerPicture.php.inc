@@ -3,9 +3,9 @@
  * @brief Admin_GenericMediaLibraryManager module, picture library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Jun 2015
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2015 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,24 @@
  * Admin_GenericMediaLibraryManagerPicture class.
  */
 final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
+    /**
+     * @var boolean $foldersUpdated
+     * @brief Flag for updated folder.
+     */
+    public $foldersUpdated = false;
+
+    /**
+     * @var boolean $autoDisabled
+     * @brief Flag for auto disabled.
+     */
+    public $autoDisabled = false;
+
+    /**
+     * @var boolean $isNew
+     * @brief Flag for new items.
+     */
+    public $isNew = false;
+
     /**
      * Class constructor.
      * @param integer $id
@@ -36,10 +54,7 @@ final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
         $this->add_newItem('thumb', 'file', 'thumbs', '', '', '');
 
         /* Define pictures & thumbs folders */
-        $this->foldersUpdated = false;
-        $this->autoDisabled = false;
         $this->update_imageFolders();
-        $this->isNew = false;
 
         /* Perform generic initialisation */
         $this->init_library();
@@ -81,7 +96,7 @@ final class Admin_GenericMediaLibraryManagerPicture extends ModuleLibrary {
      * @return boolean success
      */
     public function save() {
-         /* Check data validity */
+        /* Check data validity */
         if ($this->check_data()) {
             return $this->save_databaseItems()
                 and $this->save_databaseLocalisedItems()

@@ -3,10 +3,10 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.9.1
+ * @version 1.1.10
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add methods params details in method header
@@ -339,7 +339,7 @@ class HTMLForm {
 
         /* Add day input */
         if (in_array('day', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('d', $params['default']);
+            $default = empty($params['default']) ? '' : date('d', $params['default']);
             if ($params['dayAsSelect'] == true) {
                 $d = array();
                 for ($i=1; $i<32; $i++) $d[$i] = $i;
@@ -372,7 +372,7 @@ class HTMLForm {
         /* Add month input */
         if (in_array('month', $params['objects'])) {
             if ($params['monthAsText'] == true) {
-                $default = is_null($params['default']) ? 0 : date('m', $params['default']);
+                $default = empty($params['default']) ? 0 : date('m', $params['default']);
                 $html .= $this->display_textInput(array(
                     'name'      => $params['name'].'_month',
                     'maxlength' => 2,
@@ -385,7 +385,7 @@ class HTMLForm {
                     'onblur'    => $params['onblur']
                 ));
             } else {
-                $default = is_null($params['default']) ? 0 : (int)date('n', $params['default']);
+                $default = empty($params['default']) ? 0 : (int)date('n', $params['default']);
                 $m = array();
                 if ($params['hasEmptyFirstOption'])
                     $m[0] = '';
@@ -407,7 +407,7 @@ class HTMLForm {
 
         /* Add year input */
         if (in_array('year', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('Y', $params['default']);
+            $default = empty($params['default']) ? '' : date('Y', $params['default']);
             if ($params['yearAsSelect'] == true and $params['yearRange']['from'] > 0 and $params['yearRange']['to'] > 0) {
                 $y = array();
                 for ($i=$params['yearRange']['from']; $i<=$params['yearRange']['to']; $i++)
@@ -440,7 +440,7 @@ class HTMLForm {
 
         /* Add hours input */
         if (in_array('hours', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('H', $params['default']);
+            $default = empty($params['default']) ? '' : date('H', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_hours',
                 'maxlength' => 2,
@@ -457,7 +457,7 @@ class HTMLForm {
 
         /* Add minutes inputs */
         if (in_array('minutes', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('i', $params['default']);
+            $default = empty($params['default']) ? '' : date('i', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_minutes',
                 'maxlength' => 2,
@@ -474,7 +474,7 @@ class HTMLForm {
 
         /* Add seconds inputs */
         if (in_array('seconds', $params['objects'])) {
-            $default = is_null($params['default']) ? '' : date('s', $params['default']);
+            $default = empty($params['default']) ? '' : date('s', $params['default']);
             $html .= $this->display_textInput(array(
                 'name'      => $params['name'].'_seconds',
                 'maxlength' => 2,
@@ -671,7 +671,7 @@ class HTMLForm {
                     if (isset($params['buttons']['delete']['std'])) {
                         /* Add delete button */
                         $html .= '&nbsp;<a href="javascript:';
-                        $html .= 'document.'.$this->name.'.'.$n.'_deletefile.value=1;';
+                        $html .= 'document.'.$this->name.'[\''.$n.'_deletefile\'].value=1;';
                         $html .= 'document.getElementById(\''.$n.'_filedesc\').innerHTML=\''.$camyks->get_translation('file_deleted').'\';';
                         $html .= 'void(0);">';
                         $html .= '<img src="'.$params['buttons']['delete']['std'].'"';
@@ -1039,17 +1039,15 @@ class HTMLForm {
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
             }
 
-        /* Check maxlength value */
-        if ($params['maxlength'] == 0)
-            if (isset($this->object->_libItems[$params['name']]->datatype)
+            /* Check maxlength value */
+            if ($params['maxlength'] == 0)
+                if (isset($this->object->_libItems[$params['name']]->datatype)
                     and in_array($this->object->_libItems[$params['name']]->datatype, array('etext', 'text'))
                     and $this->object->_libItems[$params['name']]->datadesc2 > 0)
-                $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
-            else
-                $params['maxlength'] = 32;
+                    $params['maxlength'] = $this->object->_libItems[$params['name']]->datadesc2;
+                else
+                    $params['maxlength'] = 32;
         }
-
-
 
         /* Build input */
         $html = '<input type="text"';
@@ -1088,6 +1086,8 @@ class HTMLForm {
             if (is_null($params['default'])) {
                 $v = $params['name'].($params['language']==''?'':'_'.$params['language']);
                 $params['default'] = isset($this->object->vars[$v])?$this->object->vars[$v]:'';
+            } else {
+                $v = $params['name'];
             }
         }
 
@@ -1104,6 +1104,46 @@ class HTMLForm {
             $html .= ' max="'.$params['max'].'"';
         if (is_int($params['step']))
             $html .= ' step="'.$params['step'].'"';
+        $html .= ' />';
+        return $html;
+    }
+
+    /**
+     * Build and return search input.
+     * @param mixed $input
+     * @param string $default
+     * @return string
+     */
+    public function display_searchInput($input, $default=null) {
+        /* Check header params */
+        if (is_array($input)) {
+            $params = array_merge($this->inputDefaultParams, $input);
+        } else {
+            $params = $this->inputDefaultParams;
+            $params['name'] = $input;
+            if (isset($default))
+                $params['default'] = $default;
+        }
+
+        /* Check limit */
+        $this->check_inputsLimit();
+
+        /* Check object params */
+        if (isset($this->object)) {
+            /* Check default value */
+            if (is_null($params['default'])) {
+                $v = $params['name'].($params['language'] == '' ? '' : '_'.$params['language']);
+                $params['default'] = isset($this->object->vars[$v]) ? $this->object->vars[$v] : '';
+            }
+        }
+
+        /* Define maxlength value */
+        $params['maxlength'] = 64;
+
+        /* Build input */
+        $html = '<input type="search"';
+        $html .= $this->build_inputGenericAttributes($params);
+        $html .= ' value="'.(!is_null($params['default']) ? htmlentities($params['default'], ENT_COMPAT, 'UTF-8') : '').'"';
         $html .= ' />';
         return $html;
     }

@@ -4,9 +4,9 @@
  * <br /> Monitor and check user agent of visitors and bots.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.5.2
+ * @version 1.0.6
  * @date Creation: Dec 2014
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2014 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -135,6 +135,13 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         if ($this->mode == 'main') {
             return array(
                 array(
+                    'name'  => 'updatetype',
+                    'title' => $this->get_translation('updateitemstype'),
+                    'icon'  => $this->theme->get_pictURL('target', 12, 'std'),
+                    'menu'  => 'useragentchecker',
+                    'url'   => 'javascript:UARecordList.update_recordsType();',
+                ),
+                array(
                     'name'  => 'markselected',
                     'title' => $this->get_translation('markitemsasverified'),
                     'icon'  => $this->theme->get_pictURL('valid', 12, 'std'),
@@ -253,6 +260,10 @@ final class Admin_MonitoringUserAgentChecker extends Module {
                 /* mode == mark_recordsAsInspected */
                 $this->init_admin_mark_recordsAsInspected();
                 break;
+            case 'update_recordsType':
+                /* mode == update_recordsType */
+                $this->init_admin_update_recordsType();
+                break;
             case 'main':
             default:
                 /* mode == main */
@@ -309,10 +320,11 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         $this->selectionForm->add_hidden('ids', '');
 
         /* add scripts */
-        $this->add_JSFIle('UARecordList.js');
+        $this->add_JSFIle('UARecordList.js?v=1.0.2');
         $this->add_JSLoadScript('UARecordList.set_param("form", "'.$this->selectionForm->name.'");');
         $this->add_JSLoadScript('UARecordList.set_locale("confirmvalidate_message", "'.string_html2Text($this->get_translation('validaterecordsmessage')).'");');
         $this->add_JSLoadScript('UARecordList.set_locale("confirminspect_message", "'.string_html2Text($this->get_translation('inspectrecordsmessage')).'");');
+        $this->add_JSLoadScript('UARecordList.set_locale("confirmupdatetype_message", "'.string_html2Text($this->get_translation('confirmupdatetype_message')).'");');
         $this->add_JSLoadScript('UARecordList.initialise();');
 
         /* get buttons */
@@ -686,6 +698,28 @@ final class Admin_MonitoringUserAgentChecker extends Module {
         /* load and update record */
         $list = $this->get_selectedItems();
         if ($this->recordItem->mark_recordsAsInspected($list))
+            $this->text = $this->get_translation('records_updated');
+        else
+            $this->text = $this->get_translation('records_notupdated');
+
+        /* update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink());
+    }
+
+    /**
+     * Initialise module object in admin/update_records mode.
+     * @return void
+     */
+    private function init_admin_update_recordsType() {
+        global $camyks;
+
+        /* disable admin menu */
+        $this->disable_adminEngineMenus();
+
+        /* load and update records */
+        $list = $this->get_selectedItems();
+        if ($this->recordItem->update_types($list))
             $this->text = $this->get_translation('records_updated');
         else
             $this->text = $this->get_translation('records_notupdated');

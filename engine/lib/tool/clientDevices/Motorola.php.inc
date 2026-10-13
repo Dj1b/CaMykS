@@ -3,10 +3,10 @@
  * @brief Motorola client devices specific methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.33
+ * @version 1.0.34
  * @date Creation: Apr 2018
- * @date Modification: Nov 2021
- * @copyright 2018 - 2021 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -77,6 +77,7 @@ function get_MotorolaClientDevice($deviceCode='') {
         'e(7) plus'         => array('platform_model' => 'Moto E7 Plus',        'platform_year' => 2020),
         'g(9) power'        => array('platform_model' => 'Moto G9 Power',       'platform_year' => 2020),
         'g(9) play'         => array('platform_model' => 'Moto G9 Play',        'platform_year' => 2020),
+        'e20'               => array('platform_model' => 'Moto E20',            'platform_year' => 2021),
     );
 
     /* Check for returning list */

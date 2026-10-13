@@ -3,10 +3,10 @@
  * @brief SpamChecker input, view configuration layout.
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2021
- * @date Modification: Feb 2025
- * @copyright 2021 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */

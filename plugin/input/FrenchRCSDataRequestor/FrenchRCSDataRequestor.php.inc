@@ -3,10 +3,10 @@
  * @brief FrenchRCSDataRequestor input.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Jun 2025
- * @date Modification: Jul 2025
- * @copyright 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2025 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note API Documentation page: https://recherche-entreprises.api.gouv.fr/docs/
@@ -103,6 +103,8 @@ final class FrenchRCSDataRequestor extends Input {
      * @return string
      */
     private function request_textSearch($params) {
+        global $camyks;
+
         /* Merge parameters */
         $defaultParams = array(
             'q' => '',
@@ -198,6 +200,10 @@ final class FrenchRCSDataRequestor extends Input {
         /* Check response headers */
         if ($http_response_header[0] == 'HTTP/1.1 200 OK')
             return $this->build_resultResponse($result);
+        elseif ($http_response_header[0] == 'HTTP/1.1 429 Too Many Requests') {
+            $camyks->log('Errors', $this->name, 'Too Many Requests - Retry after '.$http_response_header[2]);
+        } else
+            $camyks->log('Errors', $this->name, $http_response_header[0]);
 
         /* Return result */
         return $this->build_errorResponse(3);

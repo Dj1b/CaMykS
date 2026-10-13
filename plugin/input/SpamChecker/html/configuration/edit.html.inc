@@ -3,14 +3,17 @@
  * @brief SpamChecker input, edit configuration layout.
  * @details Plugin / Input layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: Jun 2021
- * @date Modification: Feb 2025
- * @copyright 2021 - 2025 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
+
+/* Load data */
+$scriptList = language_getScriptTitleList();
 ?>
 <?= $camyks->theme->get_boxContent2Header(); ?>
 <div class="adminContentPanel">
@@ -251,7 +254,7 @@ global $camyks;
                         <?php foreach ($this->get_configValue('checkLanguageScriptRules') as $rule) : ?>
                         <div style="display:flex; margin:4px 0 4px 40px;">
                             <div style="flex:1;">
-                                <?= $this->form->display_selectInput(array('name'=>'checkLanguageScriptRulesValues[]', 'default'=>$rule['rule'], 'values'=>$this->scriptList, 'class'=>'linputs', 'hasEmptyFirstOption'=>$this->get_translation('nolanguagescript'), 'onchange'=>'SpamCheckerConfig.check_blockRuleSelectChange(\'LanguageScript\', this);')); ?>
+                                <?= $this->form->display_selectInput(array('name'=>'checkLanguageScriptRulesValues[]', 'default'=>$rule['rule'], 'values'=>$scriptList, 'class'=>'linputs', 'hasEmptyFirstOption'=>$this->get_translation('nolanguagescript'), 'onchange'=>'SpamCheckerConfig.check_blockRuleSelectChange(\'LanguageScript\', this);')); ?>
                             </div>
                             <div style="min-width:215px;">
                                 <?= $this->form->display_textInput(array('name'=>'checkLanguageScriptRulesScores[]', 'default'=>$rule['score'], 'class'=>'sinputs')); ?>
@@ -261,7 +264,7 @@ global $camyks;
                     <?php endif; ?>
                     <div style="display:flex; margin:4px 0 4px 40px;">
                         <div style="flex:1;">
-                                <?= $this->form->display_selectInput(array('name'=>'checkLanguageScriptRulesValues[]', 'default'=>'', 'values'=>$this->scriptList, 'class'=>'linputs', 'hasEmptyFirstOption'=>$this->get_translation('nolanguagescript'), 'onchange'=>'SpamCheckerConfig.check_blockRuleSelectChange(\'LanguageScript\', this);')); ?>
+                                <?= $this->form->display_selectInput(array('name'=>'checkLanguageScriptRulesValues[]', 'default'=>'', 'values'=>$scriptList, 'class'=>'linputs', 'hasEmptyFirstOption'=>$this->get_translation('nolanguagescript'), 'onchange'=>'SpamCheckerConfig.check_blockRuleSelectChange(\'LanguageScript\', this);')); ?>
                         </div>
                         <div style="min-width:215px;">
                             <?= $this->form->display_textInput(array('name'=>'checkLanguageScriptRulesScores[]', 'default'=>0, 'class'=>'sinputs')); ?>

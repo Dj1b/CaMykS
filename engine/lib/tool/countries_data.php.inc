@@ -3,10 +3,10 @@
  * @brief Countries data.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Nov 2023
- * @date Modification: Nov 2023
- * @copyright 2023 CaMykS Team
+ * @date Modification: Oct 2025
+ * @copyright 2023 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -22,6 +22,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "and",
         "NumericCode"           : "020",
         "PhoneIndex"            : "376",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Andorra"
         ],
@@ -38,6 +39,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "are",
         "NumericCode"           : "784",
         "PhoneIndex"            : "971",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Dubai"
         ],
@@ -55,6 +57,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "afg",
         "NumericCode"           : "004",
         "PhoneIndex"            : "93",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Kabul"
         ],
@@ -71,6 +74,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "atg",
         "NumericCode"           : "028",
         "PhoneIndex"            : "1-268",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Antigua",
             "America/St_Johns"
@@ -88,6 +92,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "aia",
         "NumericCode"           : "660",
         "PhoneIndex"            : "1-264",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Anguilla"
         ],
@@ -104,6 +109,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "alb",
         "NumericCode"           : "008",
         "PhoneIndex"            : "355",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Tirane"
         ],
@@ -120,6 +126,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "arm",
         "NumericCode"           : "051",
         "PhoneIndex"            : "374",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Yerevan"
         ],
@@ -136,6 +143,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ago",
         "NumericCode"           : "024",
         "PhoneIndex"            : "244",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Luanda"
         ],
@@ -155,6 +163,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ata",
         "NumericCode"           : "010",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Antarctica/Rothera",
             "Antarctica/Palmer",
@@ -181,6 +190,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "arg",
         "NumericCode"           : "032",
         "PhoneIndex"            : "54",
+        "PhoneLength"           : "11",
         "Timezones"             : [
             "America/Argentina/Buenos_Aires",
             "America/Argentina/Catamarca",
@@ -209,6 +219,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "asm",
         "NumericCode"           : "016",
         "PhoneIndex"            : "1-684",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Pago_Pago"
         ],
@@ -225,6 +236,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "aut",
         "NumericCode"           : "040",
         "PhoneIndex"            : "43",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Vienna"
         ],
@@ -241,6 +253,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "aus",
         "NumericCode"           : "036",
         "PhoneIndex"            : "61",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Australia/Adelaide",
             "Australia/Brisbane",
@@ -268,6 +281,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "abw",
         "NumericCode"           : "533",
         "PhoneIndex"            : "297",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Aruba"
         ],
@@ -284,6 +298,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ala",
         "NumericCode"           : "248",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Mariehamn"
         ],
@@ -300,6 +315,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "aze",
         "NumericCode"           : "031",
         "PhoneIndex"            : "994",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Baku"
         ],
@@ -318,6 +334,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bih",
         "NumericCode"           : "070",
         "PhoneIndex"            : "387",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Sarajevo"
         ],
@@ -334,6 +351,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "brb",
         "NumericCode"           : "052",
         "PhoneIndex"            : "12463",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Barbados"
         ],
@@ -350,6 +368,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bgd",
         "NumericCode"           : "050",
         "PhoneIndex"            : "880",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Dhaka"
         ],
@@ -368,6 +387,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bel",
         "NumericCode"           : "056",
         "PhoneIndex"            : "32",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "Europe/Brussels"
         ],
@@ -384,6 +404,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bfa",
         "NumericCode"           : "854",
         "PhoneIndex"            : "226",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Ouagadougou"
         ],
@@ -400,6 +421,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bgr",
         "NumericCode"           : "100",
         "PhoneIndex"            : "359",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Sofia"
         ],
@@ -416,6 +438,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bhr",
         "NumericCode"           : "048",
         "PhoneIndex"            : "973",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Bahrain"
         ],
@@ -432,6 +455,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bdi",
         "NumericCode"           : "108",
         "PhoneIndex"            : "257",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Bujumbura"
         ],
@@ -448,6 +472,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ben",
         "NumericCode"           : "204",
         "PhoneIndex"            : "229",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Porto-Novo"
         ],
@@ -464,6 +489,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "blm",
         "NumericCode"           : "652",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/St_Barthelemy"
         ],
@@ -480,6 +506,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bmu",
         "NumericCode"           : "060",
         "PhoneIndex"            : "14413",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/Bermuda"
         ],
@@ -496,6 +523,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "brn",
         "NumericCode"           : "096",
         "PhoneIndex"            : "673",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Brunei"
         ],
@@ -515,6 +543,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bol",
         "NumericCode"           : "068",
         "PhoneIndex"            : "591",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/La_Paz"
         ],
@@ -531,6 +560,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bes",
         "NumericCode"           : "535",
         "PhoneIndex"            : "599",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Kralendijk"
         ],
@@ -547,6 +577,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bra",
         "NumericCode"           : "076",
         "PhoneIndex"            : "55",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "America/Araguaina",
             "America/Bahia",
@@ -578,6 +609,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bhs",
         "NumericCode"           : "044",
         "PhoneIndex"            : "1-242",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Nassau"
         ],
@@ -594,6 +626,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "btn",
         "NumericCode"           : "064",
         "PhoneIndex"            : "975",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Thimphu"
         ],
@@ -610,6 +643,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bvt",
         "NumericCode"           : "074",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Oslo"
         ],
@@ -627,6 +661,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "bwa",
         "NumericCode"           : "072",
         "PhoneIndex"            : "267",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Gaborone"
         ],
@@ -644,6 +679,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "blr",
         "NumericCode"           : "112",
         "PhoneIndex"            : "375",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Minsk"
         ],
@@ -660,6 +696,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "blz",
         "NumericCode"           : "084",
         "PhoneIndex"            : "501",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Belize"
         ],
@@ -677,6 +714,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "can",
         "NumericCode"           : "124",
         "PhoneIndex"            : "1",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "America/Atikokan",
             "America/Blanc-Sablon",
@@ -719,6 +757,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cck",
         "NumericCode"           : "166",
         "PhoneIndex"            : "672",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Cocos"
         ],
@@ -735,6 +774,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cod",
         "NumericCode"           : "180",
         "PhoneIndex"            : "243",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Kinshasa",
             "Africa/Lubumbashi"
@@ -753,6 +793,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "caf",
         "NumericCode"           : "140",
         "PhoneIndex"            : "236",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Bangui"
         ],
@@ -769,6 +810,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cog",
         "NumericCode"           : "178",
         "PhoneIndex"            : "242",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Brazzaville"
         ],
@@ -788,6 +830,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "che",
         "NumericCode"           : "756",
         "PhoneIndex"            : "41",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Europe/Zurich"
         ],
@@ -804,6 +847,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "civ",
         "NumericCode"           : "380",
         "PhoneIndex"            : "225",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Abidjan"
         ],
@@ -821,6 +865,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cok",
         "NumericCode"           : "184",
         "PhoneIndex"            : "682",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Rarotonga"
         ],
@@ -840,6 +885,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "chl",
         "NumericCode"           : "152",
         "PhoneIndex"            : "56",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Punta_Arenas",
             "America/Santiago",
@@ -859,6 +905,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cmr",
         "NumericCode"           : "120",
         "PhoneIndex"            : "237",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Douala"
         ],
@@ -875,6 +922,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "chn",
         "NumericCode"           : "156",
         "PhoneIndex"            : "86",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "Asia/Shanghai",
             "Asia/Urumqi"
@@ -892,6 +940,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "col",
         "NumericCode"           : "170",
         "PhoneIndex"            : "57",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Bogota"
         ],
@@ -908,6 +957,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cri",
         "NumericCode"           : "188",
         "PhoneIndex"            : "506",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "America/Costa_Rica"
         ],
@@ -924,6 +974,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cub",
         "NumericCode"           : "192",
         "PhoneIndex"            : "53",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Havana"
         ],
@@ -940,6 +991,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cpv",
         "NumericCode"           : "132",
         "PhoneIndex"            : "238",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/Cape_Verde"
         ],
@@ -957,6 +1009,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cuw",
         "NumericCode"           : "531",
         "PhoneIndex"            : "599",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Curacao"
         ],
@@ -973,6 +1026,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cxr",
         "NumericCode"           : "162",
         "PhoneIndex"            : "672",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Christmas"
         ],
@@ -990,6 +1044,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cyp",
         "NumericCode"           : "196",
         "PhoneIndex"            : "357",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Famagusta",
             "Asia/Nicosia"
@@ -1007,6 +1062,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cze",
         "NumericCode"           : "203",
         "PhoneIndex"            : "420",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Prague"
         ],
@@ -1023,6 +1079,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "deu",
         "NumericCode"           : "276",
         "PhoneIndex"            : "49",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Berlin",
             "Europe/Busingen"
@@ -1043,6 +1100,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "dji",
         "NumericCode"           : "262",
         "PhoneIndex"            : "253",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "Africa/Djibouti"
         ],
@@ -1059,6 +1117,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "dnk",
         "NumericCode"           : "208",
         "PhoneIndex"            : "45",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "Europe/Copenhagen"
         ],
@@ -1075,6 +1134,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "dma",
         "NumericCode"           : "212",
         "PhoneIndex"            : "17673",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Dominica"
         ],
@@ -1091,6 +1151,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "dom",
         "NumericCode"           : "214",
         "PhoneIndex"            : "13",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Santo_Domingo"
          ],
@@ -1107,6 +1168,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "dza",
         "NumericCode"           : "012",
         "PhoneIndex"            : "213",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Algiers"
         ],
@@ -1123,6 +1185,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ecu",
         "NumericCode"           : "218",
         "PhoneIndex"            : "593",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Guayaquil",
             "Pacific/Galapagos"
@@ -1140,6 +1203,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "est",
         "NumericCode"           : "233",
         "PhoneIndex"            : "372",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Tallinn"
         ],
@@ -1156,6 +1220,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "egy",
         "NumericCode"           : "818",
         "PhoneIndex"            : "20",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Cairo"
         ],
@@ -1174,6 +1239,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "esh",
         "NumericCode"           : "732",
         "PhoneIndex"            : "212",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/El_Aaiun"
         ],
@@ -1192,6 +1258,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "eri",
         "NumericCode"           : "232",
         "PhoneIndex"            : "291",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Asmara"
         ],
@@ -1212,6 +1279,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "esp",
         "NumericCode"           : "724",
         "PhoneIndex"            : "34",
+        "PhoneLength"           : "9",
         "Timezones"             : [
             "Atlantic/Canary",
             "Africa/Ceuta",
@@ -1231,6 +1299,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "eth",
         "NumericCode"           : "231",
         "PhoneIndex"            : "251",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Addis_Ababa"
         ],
@@ -1249,6 +1318,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "fin",
         "NumericCode"           : "246",
         "PhoneIndex"            : "358",
+        "PhoneLength"           : "7,12",
         "Timezones"             : [
             "Europe/Helsinki"
         ],
@@ -1265,6 +1335,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "fji",
         "NumericCode"           : "242",
         "PhoneIndex"            : "679",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Fiji"
         ],
@@ -1281,6 +1352,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "flk",
         "NumericCode"           : "238",
         "PhoneIndex"            : "500",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/Stanley"
         ],
@@ -1297,6 +1369,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "fsm",
         "NumericCode"           : "583",
         "PhoneIndex"            : "691",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Chuuk",
             "Pacific/Kosrae",
@@ -1316,6 +1389,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "fro",
         "NumericCode"           : "234",
         "PhoneIndex"            : "298",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/Faroe"
         ],
@@ -1335,6 +1409,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "fra",
         "NumericCode"           : "250",
         "PhoneIndex"            : "33",
+        "PhoneLength"           : "9",
         "Timezones"             : [
             "Europe/Paris"
         ],
@@ -1351,6 +1426,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gab",
         "NumericCode"           : "266",
         "PhoneIndex"            : "241",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Libreville"
         ],
@@ -1371,6 +1447,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gbr",
         "NumericCode"           : "826",
         "PhoneIndex"            : "44",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Europe/London"
         ],
@@ -1387,6 +1464,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "grd",
         "NumericCode"           : "308",
         "PhoneIndex"            : "1-473",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Grenada"
         ],
@@ -1403,6 +1481,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "geo",
         "NumericCode"           : "268",
         "PhoneIndex"            : "995",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Tbilisi"
         ],
@@ -1419,6 +1498,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "guf",
         "NumericCode"           : "254",
         "PhoneIndex"            : "594",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Cayenne"
         ],
@@ -1435,6 +1515,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ggy",
         "NumericCode"           : "831",
         "PhoneIndex"            : "44-1481",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Guernsey"
         ],
@@ -1451,6 +1532,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gha",
         "NumericCode"           : "288",
         "PhoneIndex"            : "233",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Accra"
         ],
@@ -1467,6 +1549,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gib",
         "NumericCode"           : "292",
         "PhoneIndex"            : "350",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Gibraltar"
         ],
@@ -1484,6 +1567,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "grl",
         "NumericCode"           : "304",
         "PhoneIndex"            : "299",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Danmarkshavn",
             "America/Nuuk",
@@ -1503,6 +1587,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gmb",
         "NumericCode"           : "270",
         "PhoneIndex"            : "220",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Banjul"
         ],
@@ -1519,6 +1604,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gin",
         "NumericCode"           : "324",
         "PhoneIndex"            : "224",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Conakry"
         ],
@@ -1535,6 +1621,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "glp",
         "NumericCode"           : "312",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Guadeloupe"
         ],
@@ -1553,6 +1640,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gnq",
         "NumericCode"           : "226",
         "PhoneIndex"            : "240",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Malabo"
         ],
@@ -1569,6 +1657,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "grc",
         "NumericCode"           : "300",
         "PhoneIndex"            : "30",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Europe/Athens"
         ],
@@ -1585,6 +1674,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sgs",
         "NumericCode"           : "239",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/South_Georgia"
         ],
@@ -1601,6 +1691,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gtm",
         "NumericCode"           : "320",
         "PhoneIndex"            : "502",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "America/Guatemala"
         ],
@@ -1618,6 +1709,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gum",
         "NumericCode"           : "316",
         "PhoneIndex"            : "1-671",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Guam"
         ],
@@ -1634,6 +1726,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "gnb",
         "NumericCode"           : "624",
         "PhoneIndex"            : "245",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Bissau"
         ],
@@ -1650,6 +1743,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "guy",
         "NumericCode"           : "328",
         "PhoneIndex"            : "592",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Guyana"
         ],
@@ -1667,6 +1761,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "hkg",
         "NumericCode"           : "344",
         "PhoneIndex"            : "852",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "Asia/Hong_Kong"
         ],
@@ -1683,6 +1778,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "hmd",
         "NumericCode"           : "334",
         "PhoneIndex"            : "672",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Kerguelen"
         ],
@@ -1699,6 +1795,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "hnd",
         "NumericCode"           : "340",
         "PhoneIndex"            : "504",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "America/Tegucigalpa"
         ],
@@ -1715,6 +1812,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "hrv",
         "NumericCode"           : "191",
         "PhoneIndex"            : "385",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Zagreb"
         ],
@@ -1732,6 +1830,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "hti",
         "NumericCode"           : "332",
         "PhoneIndex"            : "509",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Port-au-Prince"
         ],
@@ -1748,6 +1847,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "hun",
         "NumericCode"           : "348",
         "PhoneIndex"            : "36",
+        "PhoneLength"           : "8,9",
         "Timezones"             : [
             "Europe/Budapest"
         ],
@@ -1764,6 +1864,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "idn",
         "NumericCode"           : "360",
         "PhoneIndex"            : "62",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Jakarta",
             "Asia/Jayapura",
@@ -1784,6 +1885,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "irl",
         "NumericCode"           : "372",
         "PhoneIndex"            : "353",
+        "PhoneLength"           : "9,10",
         "Timezones"             : [
             "Europe/Dublin"
         ],
@@ -1800,6 +1902,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "isr",
         "NumericCode"           : "376",
         "PhoneIndex"            : "972",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Jerusalem"
         ],
@@ -1816,6 +1919,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "imn",
         "NumericCode"           : "833",
         "PhoneIndex"            : "44-1624",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Isle_of_Man"
         ],
@@ -1833,6 +1937,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ind",
         "NumericCode"           : "356",
         "PhoneIndex"            : "91",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Asia/Kolkata"
         ],
@@ -1849,6 +1954,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "iot",
         "NumericCode"           : "086",
         "PhoneIndex"            : "246",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Chagos"
         ],
@@ -1869,6 +1975,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "irq",
         "NumericCode"           : "368",
         "PhoneIndex"            : "964",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Baghdad"
         ],
@@ -1885,6 +1992,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "irn",
         "NumericCode"           : "364",
         "PhoneIndex"            : "98",
+        "PhoneLength"           : "11",
         "Timezones"             : [
             "Asia/Tehran"
         ],
@@ -1901,6 +2009,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "isl",
         "NumericCode"           : "352",
         "PhoneIndex"            : "354",
+        "PhoneLength"           : "7",
         "Timezones"             : [
             "Atlantic/Reykjavik"
         ],
@@ -1917,6 +2026,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ita",
         "NumericCode"           : "380",
         "PhoneIndex"            : "39",
+        "PhoneLength"           : "6,11",
         "Timezones"             : [
             "Europe/Rome"
         ],
@@ -1933,6 +2043,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "jey",
         "NumericCode"           : "832",
         "PhoneIndex"            : "44-1534",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Jersey"
         ],
@@ -1949,6 +2060,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "jam",
         "NumericCode"           : "388",
         "PhoneIndex"            : "1-876",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Jamaica"
         ],
@@ -1965,6 +2077,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "jor",
         "NumericCode"           : "400",
         "PhoneIndex"            : "962",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Amman"
         ],
@@ -1981,6 +2094,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "jpn",
         "NumericCode"           : "392",
         "PhoneIndex"            : "81",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "Asia/Tokyo"
         ],
@@ -1998,6 +2112,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ken",
         "NumericCode"           : "404",
         "PhoneIndex"            : "254",
+        "PhoneLength"           : "9",
         "Timezones"             : [
             "Africa/Nairobi"
         ],
@@ -2015,6 +2130,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "kgz",
         "NumericCode"           : "417",
         "PhoneIndex"            : "996",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Bishkek"
         ],
@@ -2031,6 +2147,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "khm",
         "NumericCode"           : "116",
         "PhoneIndex"            : "855",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Phnom_Penh"
         ],
@@ -2047,6 +2164,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "kir",
         "NumericCode"           : "296",
         "PhoneIndex"            : "686",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Enderbury",
             "Pacific/Kiritimati",
@@ -2067,6 +2185,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "com",
         "NumericCode"           : "174",
         "PhoneIndex"            : "269",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Comoro"
         ],
@@ -2083,6 +2202,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "kna",
         "NumericCode"           : "659",
         "PhoneIndex"            : "1-869",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/St_Kitts"
         ],
@@ -2099,6 +2219,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "prk",
         "NumericCode"           : "408",
         "PhoneIndex"            : "850",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Pyongyang"
         ],
@@ -2116,6 +2237,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "kor",
         "NumericCode"           : "410",
         "PhoneIndex"            : "82",
+        "PhoneLength"           : "7,11",
         "Timezones"             : [
             "Asia/Seoul"
         ],
@@ -2132,6 +2254,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "kwt",
         "NumericCode"           : "414",
         "PhoneIndex"            : "965",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Kuwait"
         ],
@@ -2148,6 +2271,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "cym",
         "NumericCode"           : "136",
         "PhoneIndex"            : "1-345",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Cayman"
         ],
@@ -2165,6 +2289,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "kaz",
         "NumericCode"           : "398",
         "PhoneIndex"            : "7",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Almaty",
             "Asia/Aqtau",
@@ -2186,6 +2311,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lao",
         "NumericCode"           : "418",
         "PhoneIndex"            : "856",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Vientiane"
         ],
@@ -2203,6 +2329,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lbn",
         "NumericCode"           : "422",
         "PhoneIndex"            : "961",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Beirut"
         ],
@@ -2219,6 +2346,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lca",
         "NumericCode"           : "662",
         "PhoneIndex"            : "1-758",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/St_Lucia"
         ],
@@ -2235,6 +2363,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lie",
         "NumericCode"           : "438",
         "PhoneIndex"            : "423",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Vaduz"
         ],
@@ -2252,6 +2381,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lka",
         "NumericCode"           : "144",
         "PhoneIndex"            : "94",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Colombo"
         ],
@@ -2268,6 +2398,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lbr",
         "NumericCode"           : "430",
         "PhoneIndex"            : "231",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Monrovia"
         ],
@@ -2285,6 +2416,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lso",
         "NumericCode"           : "426",
         "PhoneIndex"            : "266",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Maseru"
         ],
@@ -2301,6 +2433,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ltu",
         "NumericCode"           : "440",
         "PhoneIndex"            : "370",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Vilnius"
         ],
@@ -2319,6 +2452,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lux",
         "NumericCode"           : "442",
         "PhoneIndex"            : "352",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Luxembourg"
         ],
@@ -2335,6 +2469,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lva",
         "NumericCode"           : "428",
         "PhoneIndex"            : "371",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Riga"
         ],
@@ -2351,6 +2486,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "lby",
         "NumericCode"           : "438",
         "PhoneIndex"            : "218",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Tripoli"
         ],
@@ -2369,6 +2505,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mar",
         "NumericCode"           : "504",
         "PhoneIndex"            : "212",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Africa/Casablanca"
         ],
@@ -2385,6 +2522,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mco",
         "NumericCode"           : "492",
         "PhoneIndex"            : "377",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Monaco"
         ],
@@ -2403,6 +2541,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mda",
         "NumericCode"           : "498",
         "PhoneIndex"            : "373",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Chisinau"
         ],
@@ -2423,6 +2562,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mne",
         "NumericCode"           : "499",
         "PhoneIndex"            : "382",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Podgorica"
         ],
@@ -2439,6 +2579,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "maf",
         "NumericCode"           : "663",
         "PhoneIndex"            : "590",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Marigot"
         ],
@@ -2456,6 +2597,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mdg",
         "NumericCode"           : "450",
         "PhoneIndex"            : "261",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Antananarivo"
         ],
@@ -2473,6 +2615,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mhl",
         "NumericCode"           : "584",
         "PhoneIndex"            : "692",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Kwajalein",
             "Pacific/Majuro"
@@ -2490,6 +2633,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mkd",
         "NumericCode"           : "807",
         "PhoneIndex"            : "389",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Skopje"
         ],
@@ -2506,6 +2650,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mli",
         "NumericCode"           : "466",
         "PhoneIndex"            : "223",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Bamako"
         ],
@@ -2522,6 +2667,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mmr",
         "NumericCode"           : "104",
         "PhoneIndex"            : "95",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Yangon"
         ],
@@ -2538,6 +2684,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mng",
         "NumericCode"           : "496",
         "PhoneIndex"            : "976",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Choibalsan",
             "Asia/Hovd",
@@ -2557,6 +2704,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mac",
         "NumericCode"           : "446",
         "PhoneIndex"            : "853",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Macau"
         ],
@@ -2574,6 +2722,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mnp",
         "NumericCode"           : "580",
         "PhoneIndex"            : "1-670",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Saipan"
         ],
@@ -2590,6 +2739,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mtq",
         "NumericCode"           : "474",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Martinique"
         ],
@@ -2607,6 +2757,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mrt",
         "NumericCode"           : "478",
         "PhoneIndex"            : "222",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Nouakchott"
         ],
@@ -2623,6 +2774,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "msr",
         "NumericCode"           : "500",
         "PhoneIndex"            : "1-664",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Montserrat"
         ],
@@ -2640,6 +2792,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mlt",
         "NumericCode"           : "470",
         "PhoneIndex"            : "356",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Malta"
         ],
@@ -2658,6 +2811,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mus",
         "NumericCode"           : "480",
         "PhoneIndex"            : "230",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Mauritius"
         ],
@@ -2674,6 +2828,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mdv",
         "NumericCode"           : "462",
         "PhoneIndex"            : "960",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Maldives"
         ],
@@ -2691,6 +2846,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mwi",
         "NumericCode"           : "454",
         "PhoneIndex"            : "265",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Blantyre"
         ],
@@ -2707,6 +2863,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mex",
         "NumericCode"           : "484",
         "PhoneIndex"            : "52",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "America/Bahia_Banderas",
             "America/Cancun",
@@ -2733,6 +2890,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "mys",
         "NumericCode"           : "458",
         "PhoneIndex"            : "60",
+        "PhoneLength"           : "9,10",
         "Timezones"             : [
             "Asia/Kuala_Lumpur",
             "Asia/Kuching"
@@ -2750,6 +2908,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "moz",
         "NumericCode"           : "508",
         "PhoneIndex"            : "258",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Maputo"
         ],
@@ -2768,6 +2927,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nam",
         "NumericCode"           : "516",
         "PhoneIndex"            : "264",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Windhoek"
         ],
@@ -2784,6 +2944,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ncl",
         "NumericCode"           : "540",
         "PhoneIndex"            : "687",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Noumea"
         ],
@@ -2800,6 +2961,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ner",
         "NumericCode"           : "562",
         "PhoneIndex"            : "227",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Niamey"
         ],
@@ -2817,6 +2979,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nfk",
         "NumericCode"           : "574",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Norfolk"
         ],
@@ -2833,6 +2996,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nga",
         "NumericCode"           : "566",
         "PhoneIndex"            : "234",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Lagos"
         ],
@@ -2849,6 +3013,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nic",
         "NumericCode"           : "558",
         "PhoneIndex"            : "505",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Managua"
         ],
@@ -2865,6 +3030,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nld",
         "NumericCode"           : "528",
         "PhoneIndex"            : "31",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "Europe/Amsterdam"
         ],
@@ -2884,6 +3050,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nor",
         "NumericCode"           : "578",
         "PhoneIndex"            : "47",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "Arctic/Longyearbyen",
             "Europe/Oslo"
@@ -2901,6 +3068,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "npl",
         "NumericCode"           : "524",
         "PhoneIndex"            : "977",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Kathmandu"
         ],
@@ -2918,6 +3086,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nru",
         "NumericCode"           : "520",
         "PhoneIndex"            : "674",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Nauru"
         ],
@@ -2935,6 +3104,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "niu",
         "NumericCode"           : "570",
         "PhoneIndex"            : "683",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Niue"
         ],
@@ -2952,6 +3122,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "nzl",
         "NumericCode"           : "554",
         "PhoneIndex"            : "64",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "Pacific/Auckland",
             "Pacific/Chatham"
@@ -2969,6 +3140,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "omn",
         "NumericCode"           : "512",
         "PhoneIndex"            : "968",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Muscat"
         ],
@@ -2985,6 +3157,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pan",
         "NumericCode"           : "591",
         "PhoneIndex"            : "507",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Panama"
         ],
@@ -3001,6 +3174,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "per",
         "NumericCode"           : "604",
         "PhoneIndex"            : "51",
+        "PhoneLength"           : "9",
         "Timezones"             : [
             "America/Lima"
         ],
@@ -3017,6 +3191,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pyf",
         "NumericCode"           : "258",
         "PhoneIndex"            : "689",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Gambier",
             "Pacific/Marquesas",
@@ -3037,6 +3212,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "png",
         "NumericCode"           : "598",
         "PhoneIndex"            : "675",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Bougainville",
             "Pacific/Port_Moresby"
@@ -3055,6 +3231,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "phl",
         "NumericCode"           : "608",
         "PhoneIndex"            : "63",
+        "PhoneLength"           : "11",
         "Timezones"             : [
             "Asia/Manila"
         ],
@@ -3072,6 +3249,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pak",
         "NumericCode"           : "586",
         "PhoneIndex"            : "92",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "Asia/Karachi"
         ],
@@ -3088,6 +3266,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pol",
         "NumericCode"           : "616",
         "PhoneIndex"            : "48",
+        "PhoneLength"           : "9",
         "Timezones"             : [
             "Europe/Warsaw"
         ],
@@ -3104,6 +3283,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "spm",
         "NumericCode"           : "666",
         "PhoneIndex"            : "508",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Miquelon"
         ],
@@ -3121,6 +3301,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pcn",
         "NumericCode"           : "612",
         "PhoneIndex"            : "64",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Pitcairn"
         ],
@@ -3138,6 +3319,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pri",
         "NumericCode"           : "630",
         "PhoneIndex"            : "1-787",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Puerto_Rico"
         ],
@@ -3155,6 +3337,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pse",
         "NumericCode"           : "275",
         "PhoneIndex"            : "970",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Gaza",
             "Asia/Hebron"
@@ -3172,6 +3355,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "prt",
         "NumericCode"           : "620",
         "PhoneIndex"            : "351",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/Azores",
             "Atlantic/Madeira",
@@ -3194,6 +3378,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "plw",
         "NumericCode"           : "585",
         "PhoneIndex"            : "680",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Palau"
         ],
@@ -3211,6 +3396,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "pry",
         "NumericCode"           : "600",
         "PhoneIndex"            : "595",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Asuncion"
         ],
@@ -3227,6 +3413,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "qat",
         "NumericCode"           : "634",
         "PhoneIndex"            : "974",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Qatar"
         ],
@@ -3243,6 +3430,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "reu",
         "NumericCode"           : "638",
         "PhoneIndex"            : "262",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Reunion"
         ],
@@ -3259,6 +3447,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "rou",
         "NumericCode"           : "642",
         "PhoneIndex"            : "40",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Europe/Bucharest"
         ],
@@ -3275,6 +3464,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "srb",
         "NumericCode"           : "688",
         "PhoneIndex"            : "381",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Belgrade"
         ],
@@ -3291,6 +3481,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "rus",
         "NumericCode"           : "643",
         "PhoneIndex"            : "7",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Asia/Anadyr",
             "Asia/Barnaul",
@@ -3334,6 +3525,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "rwa",
         "NumericCode"           : "646",
         "PhoneIndex"            : "250",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Kigali"
         ],
@@ -3350,6 +3542,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sau",
         "NumericCode"           : "682",
         "PhoneIndex"            : "966",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Riyadh"
         ],
@@ -3366,6 +3559,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "slb",
         "NumericCode"           : "090",
         "PhoneIndex"            : "677",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Guadalcanal"
         ],
@@ -3384,6 +3578,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "syc",
         "NumericCode"           : "690",
         "PhoneIndex"            : "248",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Mahe"
         ],
@@ -3401,6 +3596,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sdn",
         "NumericCode"           : "729",
         "PhoneIndex"            : "249",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Khartoum"
         ],
@@ -3417,6 +3613,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "swe",
         "NumericCode"           : "752",
         "PhoneIndex"            : "46",
+        "PhoneLength"           : "8,10",
         "Timezones"             : [
             "Europe/Stockholm"
         ],
@@ -3436,6 +3633,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sgp",
         "NumericCode"           : "702",
         "PhoneIndex"            : "65",
+        "PhoneLength"           : "11",
         "Timezones"             : [
             "Asia/Singapore"
         ],
@@ -3452,6 +3650,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "shn",
         "NumericCode"           : "654",
         "PhoneIndex"            : "290",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Atlantic/St_Helena"
         ],
@@ -3468,6 +3667,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "svn",
         "NumericCode"           : "705",
         "PhoneIndex"            : "386",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Ljubljana"
         ],
@@ -3484,6 +3684,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sjm",
         "NumericCode"           : "744",
         "PhoneIndex"            : "47",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Arctic/Longyearbyen"
         ],
@@ -3500,6 +3701,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "svk",
         "NumericCode"           : "703",
         "PhoneIndex"            : "421",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Bratislava"
         ],
@@ -3516,6 +3718,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sle",
         "NumericCode"           : "694",
         "PhoneIndex"            : "232",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Africa/Freetown"
         ],
@@ -3532,6 +3735,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "smr",
         "NumericCode"           : "674",
         "PhoneIndex"            : "590",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/San_Marino"
         ],
@@ -3548,6 +3752,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sen",
         "NumericCode"           : "686",
         "PhoneIndex"            : "221",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Dakar"
         ],
@@ -3565,6 +3770,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "som",
         "NumericCode"           : "706",
         "PhoneIndex"            : "252",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Mogadishu"
         ],
@@ -3581,6 +3787,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sur",
         "NumericCode"           : "740",
         "PhoneIndex"            : "597",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Paramaribo"
         ],
@@ -3597,6 +3804,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ssd",
         "NumericCode"           : "728",
         "PhoneIndex"            : "211",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Juba"
         ],
@@ -3613,6 +3821,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "stp",
         "NumericCode"           : "678",
         "PhoneIndex"            : "239",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Sao_Tome"
         ],
@@ -3629,6 +3838,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "slv",
         "NumericCode"           : "222",
         "PhoneIndex"            : "503",
+        "PhoneLength"           : "8",
         "Timezones"             : [
             "America/El_Salvador"
         ],
@@ -3646,6 +3856,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "sxm",
         "NumericCode"           : "534",
         "PhoneIndex"            : "1-721",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Lower_Princes"
         ],
@@ -3662,6 +3873,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "syr",
         "NumericCode"           : "760",
         "PhoneIndex"            : "963",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Damascus"
         ],
@@ -3679,6 +3891,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "swz",
         "NumericCode"           : "748",
         "PhoneIndex"            : "268",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Mbabane"
         ],
@@ -3695,6 +3908,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tca",
         "NumericCode"           : "796",
         "PhoneIndex"            : "1-649",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Grand_Turk"
         ],
@@ -3712,6 +3926,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tcd",
         "NumericCode"           : "148",
         "PhoneIndex"            : "235",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Ndjamena"
         ],
@@ -3728,6 +3943,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "atf",
         "NumericCode"           : "260",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Kerguelen"
         ],
@@ -3744,6 +3960,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tgo",
         "NumericCode"           : "768",
         "PhoneIndex"            : "228",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Lome"
         ],
@@ -3760,6 +3977,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tha",
         "NumericCode"           : "764",
         "PhoneIndex"            : "66",
+        "PhoneLength"           : "8,10",
         "Timezones"             : [
             "Asia/Bangkok"
         ],
@@ -3777,6 +3995,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tjk",
         "NumericCode"           : "762",
         "PhoneIndex"            : "992",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Dushanbe"
         ],
@@ -3795,6 +4014,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tkl",
         "NumericCode"           : "772",
         "PhoneIndex"            : "690",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Fakaofo"
         ],
@@ -3812,6 +4032,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tls",
         "NumericCode"           : "626",
         "PhoneIndex"            : "670",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Dili"
         ],
@@ -3828,6 +4049,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tkm",
         "NumericCode"           : "795",
         "PhoneIndex"            : "993",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Ashgabat"
         ],
@@ -3845,6 +4067,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tun",
         "NumericCode"           : "788",
         "PhoneIndex"            : "216",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Tunis"
         ],
@@ -3861,6 +4084,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ton",
         "NumericCode"           : "776",
         "PhoneIndex"            : "676",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Tongatapu"
         ],
@@ -3877,6 +4101,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tur",
         "NumericCode"           : "792",
         "PhoneIndex"            : "90",
+        "PhoneLength"           : "11",
         "Timezones"             : [
             "Europe/Istanbul"
         ],
@@ -3893,6 +4118,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tto",
         "NumericCode"           : "780",
         "PhoneIndex"            : "1-868",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Port_of_Spain"
         ],
@@ -3909,6 +4135,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tuv",
         "NumericCode"           : "798",
         "PhoneIndex"            : "688",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Funafuti"
         ],
@@ -3925,6 +4152,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "twn",
         "NumericCode"           : "158",
         "PhoneIndex"            : "886",
+        "PhoneLength"           : "9,10",
         "Timezones"             : [
             "Asia/Taipei"
         ],
@@ -3942,6 +4170,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "tza",
         "NumericCode"           : "834",
         "PhoneIndex"            : "255",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Dar_es_Salaam"
         ],
@@ -3958,6 +4187,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ukr",
         "NumericCode"           : "804",
         "PhoneIndex"            : "380",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Europe/Kiev",
             "Europe/Simferopol",
@@ -3978,6 +4208,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "uga",
         "NumericCode"           : "800",
         "PhoneIndex"            : "256",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Kampala"
         ],
@@ -3994,6 +4225,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "umi",
         "NumericCode"           : "581",
         "PhoneIndex"            : "",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Midway",
             "Pacific/Wake"
@@ -4011,6 +4243,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "usa",
         "NumericCode"           : "840",
         "PhoneIndex"            : "1",
+        "PhoneLength"           : "10,11",
         "Timezones"             : [
             "America/Adak",
             "America/Anchorage",
@@ -4055,6 +4288,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ury",
         "NumericCode"           : "858",
         "PhoneIndex"            : "598",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Montevideo"
         ],
@@ -4072,6 +4306,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "uzb",
         "NumericCode"           : "860",
         "PhoneIndex"            : "998",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Samarkand",
             "Asia/Tashkent"
@@ -4089,6 +4324,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "vat",
         "NumericCode"           : "336",
         "PhoneIndex"            : "379",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Europe/Vatican"
         ],
@@ -4105,6 +4341,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "vct",
         "NumericCode"           : "670",
         "PhoneIndex"            : "1-784",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/St_Vincent"
         ],
@@ -4121,6 +4358,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "ven",
         "NumericCode"           : "862",
         "PhoneIndex"            : "58",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Caracas"
         ],
@@ -4137,6 +4375,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "vgb",
         "NumericCode"           : "092",
         "PhoneIndex"            : "1-284",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/Tortola"
         ],
@@ -4153,6 +4392,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "vir",
         "NumericCode"           : "850",
         "PhoneIndex"            : "1-340",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "America/St_Thomas"
         ],
@@ -4169,6 +4409,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "vnm",
         "NumericCode"           : "704",
         "PhoneIndex"            : "84",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Ho_Chi_Minh"
         ],
@@ -4185,6 +4426,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "vut",
         "NumericCode"           : "548",
         "PhoneIndex"            : "678",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Efate"
         ],
@@ -4201,6 +4443,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "wlf",
         "NumericCode"           : "876",
         "PhoneIndex"            : "681",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Wallis"
         ],
@@ -4218,6 +4461,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "wsn",
         "NumericCode"           : "882",
         "PhoneIndex"            : "685",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Pacific/Apia"
         ],
@@ -4234,6 +4478,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "yem",
         "NumericCode"           : "887",
         "PhoneIndex"            : "967",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Asia/Aden"
         ],
@@ -4250,6 +4495,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "myt",
         "NumericCode"           : "175",
         "PhoneIndex"            : "262",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Indian/Mayotte"
         ],
@@ -4271,6 +4517,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "zaf",
         "NumericCode"           : "710",
         "PhoneIndex"            : "27",
+        "PhoneLength"           : "10",
         "Timezones"             : [
             "Africa/Johannesburg"
         ],
@@ -4287,6 +4534,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "zmb",
         "NumericCode"           : "894",
         "PhoneIndex"            : "260",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Lusaka"
         ],
@@ -4305,6 +4553,7 @@ $__countriesData = json_decode('{
         "3LettersCode"          : "zwe",
         "NumericCode"           : "716",
         "PhoneIndex"            : "263",
+        "PhoneLength"           : "",
         "Timezones"             : [
             "Africa/Harare"
         ],

@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief Admin_SystemLogManager Module admin layout to edit configuration
+ * @brief Admin_SystemLogManager module, edit configuration admin layout.
  * @details Plugin / Module layout
- * @file plugin/module/Admin_SystemLogManager/html/admin_edit_config.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.0.1
  * @date Creation: Jun 2018
- * @date Modification: Jun 2018
- * @copyright 2018 CaMykS Team
+ * @date Modification: Sep 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -19,26 +18,25 @@ global $camyks;
 <?= $this->theme->get_boxTabsBar($this->tabBuilder->tabs, $this->tabBuilder->jsParams); ?>
 <?= $this->theme->get_boxContent2Header(); ?>
 
-<?=$this->editform->display_header();?>
-<?=$this->editform->display_hiddens();?>
+<?= $this->form->display_header(); ?>
+<?= $this->form->display_hiddens(); ?>
 
-<div id="itemConfiguration" style="display:<?=$this->tabBuilder->get_tabDisplay('Configuration');?>" class="adminContentPanel">
-<?php $this->load_file('html/configuration/edit.html.inc');?>
+<div id="itemConfiguration" style="display:<?=$this->tabBuilder->get_tabDisplay('Configuration'); ?>" class="adminContentPanel">
+    <?php $this->load_file('html/Configuration/Edit.html.inc'); ?>
 </div>
-
-<?php if ( $this->help != null ) : ?>
-<div id="itemhelp" style="display:<?=$this->tabBuilder->get_tabDisplay('help')?>;" class="adminContentPanel">
-<?php $this->display_help(); ?>
-</div>
+<?php if (!is_null($this->help)) : ?>
+    <div id="itemhelp" style="display:<?=$this->tabBuilder->get_tabDisplay('help'); ?>;" class="adminContentPanel">
+        <?php $this->display_help(); ?>
+    </div>
 <?php endif; ?>
 
-<?= $this->editform->display_footer();?>
+<?= $this->form->display_footer(); ?>
 
 <?= $this->theme->get_boxContent2Footer(); ?>
 <?= $this->theme->get_boxButtonsBar($this->buttons); ?>
 <?= $this->theme->get_boxFooter(); ?>
 
-<?php 
+<?php
 /**
  * @endcond Exclude
  */

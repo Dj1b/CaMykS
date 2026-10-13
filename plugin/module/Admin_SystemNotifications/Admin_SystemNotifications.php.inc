@@ -4,9 +4,9 @@
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.4
+ * @version 1.0.2.5
  * @date Creation: Jun 2018
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,19 +17,25 @@
  */
 final class Admin_SystemNotifications extends Module {
     /**
-     * var object $websiteItem
+     * @var Object $config
+     * @brief Module configuration.
+     */
+    protected $config;
+
+    /**
+     * @var object $websiteItem
      * @brief Website object.
      */
     protected $websiteItem;
 
     /**
-     * var array $websiteList
+     * @var array $websiteList
      * @brief Website list.
      */
     protected $websiteList = null;
 
     /**
-     * var boolean $isConfig
+     * @var boolean $isConfig
      * @brief Is module is configuration mode.
      */
     protected $isConfig = false;

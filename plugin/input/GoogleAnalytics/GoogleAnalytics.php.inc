@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief GoogleAnalytics Input
- * <br /> Adds Google Analytics snippet on page
+ * @brief GoogleAnalytics input.
+ * <br /> Adds Google Analytics snippet on website pages.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.3
  * @date Creation: Sep 2018
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2018 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,34 +17,40 @@
  */
 final class GoogleAnalytics extends Input {
     /**
-     * var Object $config
+     * @var Object $config
      * @brief Input configuration.
      */
     protected $config;
 
     /**
-     * var boolean isConfigLoaded
+     * @var boolean isConfigLoaded
      * @brief Stores if the configuration is loaded
      */
     protected $isConfigLoaded = false;
 
     /**
-     * var boolean $status
+     * @var boolean $status
      * @brief Snippet insertion status
      */
     private $status = 'enabled';
 
     /**
-     * var boolean $isLive
+     * @var boolean $isLive
      * @brief Snippet code is already written.
      */
     private $isLive = false;
 
     /**
-     * var array $extraData
+     * @var array $extraData
      * @brief Store additional code to insert in snipper.
      */
     protected $extraData = array();
+
+    /**
+     * @var string $trackingId2Display
+     * @brief Tracking id to display in Google Tag Manager layout.
+     */
+    protected $trackingId2Display = '';
 
     /**
      * Class constructor.
@@ -87,14 +93,21 @@ final class GoogleAnalytics extends Input {
         /* Input generic initialization */
         parent::initialise();
 
-        $this->add_trackingCode($this->get_configValue('trackingId'), $this->get_configValue('trackingParams'));
-
         /* Check for Google Tag Manager insertion */
         if ($this->get_configValue('enableAdminStats') == 0 and $camyks->check_adminUser())
             return;
+
+        $this->add_trackingCode($this->get_configValue('trackingId'), $this->get_configValue('trackingParams'));
         if ($this->get_configValue('trackingMode') == 1) {
             $this->add_JSScript("/* Google Tag Manager */");
             $this->add_JSScript("(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','".$this->get_configValue('trackingId')."');");
+            $this->add_JSScript("/* End Google Tag Manager */");
+        }
+
+        $this->add_trackingCode($this->get_configValue('tracking2Id'), $this->get_configValue('tracking2Params'));
+        if ($this->get_configValue('tracking2Mode') == 1) {
+            $this->add_JSScript("/* Google Tag Manager */");
+            $this->add_JSScript("(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':\nnew Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],\nj=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=\n'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);\n})(window,document,'script','dataLayer','".$this->get_configValue('tracking2Id')."');");
             $this->add_JSScript("/* End Google Tag Manager */");
         }
     }
@@ -106,21 +119,37 @@ final class GoogleAnalytics extends Input {
     public function display() {
         global $camyks;
 
-        /* check status */
+        /* Check status */
         if ($this->status == 'disabled')
             return;
 
-        /* check admin visits */
+        /* Check admin visits */
         if ($this->get_configValue('enableAdminStats') == 0 and $camyks->check_adminUser())
             return;
 
         /* Check method */
-        if ($this->get_configValue('trackingMode') == 1) {
-            $this->set_selectedLayout('input_gtm.html.inc');
+        if ($this->get_configValue('trackingId') !== '') {
+            $this->trackingId2Display = 'trackingId';
+            if ($this->get_configValue('trackingMode') == 1)
+                $this->set_selectedLayout('input_gtm.html.inc');
+            else
+                $this->set_selectedLayout('input.html.inc');
+
+            /* Display snippet */
+            parent::display();
         }
 
-        /* display snippet */
-        parent::display();
+        /* Check method */
+        if ($this->get_configValue('tracking2Id') !== '') {
+            $this->trackingId2Display = 'tracking2Id';
+            if ($this->get_configValue('tracking2Mode') == 1)
+                $this->set_selectedLayout('input_gtm.html.inc');
+            else
+                $this->set_selectedLayout('input.html.inc');
+
+            /* Display snippet */
+            parent::display();
+        }
 
         /* mark snippet as live */
         $this->isLive = true;
@@ -154,7 +183,7 @@ final class GoogleAnalytics extends Input {
      * @return void
      */
     public function add_extraData($type='', $value='', $params=null) {
-        /* check parameters */
+        /* Check parameters */
         $type = trim($type); if ($type == '') return;
         $value = trim($value); if ($value == '') return;
 
@@ -247,7 +276,7 @@ final class GoogleAnalytics extends Input {
      * @return void
      */
     public function display_configDisplay() {
-        $this->load_file('html/configuration/view.html.inc');
+        $this->load_file('html/Configuration/View.html.inc');
     }
 
     /**
@@ -269,7 +298,7 @@ final class GoogleAnalytics extends Input {
      * @return void
      */
     public function display_configEdition() {
-        $this->load_file('html/configuration/edit.html.inc');
+        $this->load_file('html/Configuration/Edit.html.inc');
     }
 
     /**
@@ -293,17 +322,19 @@ final class GoogleAnalytics extends Input {
         $this->load_configuration();
 
         /* Return plugin information */
-        if ($this->config->get_value('trackingId') !== '' and $this->get_configValue('trackingMode') == 0)
+        if (($this->config->get_value('trackingId') !== '' and $this->get_configValue('trackingMode') == 0)
+            or ($this->config->get_value('tracking2Id') !== '' and $this->get_configValue('tracking2Mode') == 0)) {
             return array(
                 'GoogleAnalytics' => array(
-                    'title' => $this->get_translation('cookie_title'),
-                    'purpose' => $this->get_translation('cookie_purpose'),
-                    'usage' => '',
-                    'duration' => '',
-                    'aboutURL' => 'https://policies.google.com/privacy',
-                    'isMandatory' => false,
+                    'title'         => $this->get_translation('cookie_title'),
+                    'purpose'       => $this->get_translation('cookie_purpose'),
+                    'usage'         => '',
+                    'duration'      => '',
+                    'aboutURL'      => 'https://policies.google.com/privacy',
+                    'isMandatory'   => false,
                 ),
             );
+        }
 
         /* Return default value */
         return array();
@@ -317,7 +348,7 @@ final class GoogleAnalytics extends Input {
         global $camyks;
 
         /* Check Google Tag Manager auto acceptation */
-        if ($this->get_configValue('trackingMode') == 1)
+        if ($this->get_configValue('trackingMode') == 1 or $this->get_configValue('tracking2Mode') == 1)
             return true;
 
         /* Check acceptation from CookieAgreementMessage */

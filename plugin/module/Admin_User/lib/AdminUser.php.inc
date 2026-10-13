@@ -3,9 +3,9 @@
  * @brief Admin_User module, user library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.3.1
+ * @version 1.2.3.2
  * @date Creation: Sep 2005
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2005 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -52,6 +52,12 @@ final class AdminUser {
     public $_libParent;
     public $_libError = '';
     public $_libDesc = 'Module: Admin_User Lib: AdminUser';
+
+    /**
+     * @var boolean $_libIsInstalled
+     * @brief Is library installed
+     */
+    protected $_libIsInstalled;
 
     /**
      * Class constructor.
@@ -125,7 +131,7 @@ final class AdminUser {
         if ($this->login=='')
             return false;
 
-        /* Build sql query */
+        /* Build SQL query */
         $sql = "select *";
         $sql .= " from admin_user";
         $sql .= " where login='".$this->login."'";

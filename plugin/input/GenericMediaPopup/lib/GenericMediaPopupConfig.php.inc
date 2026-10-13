@@ -3,10 +3,10 @@
  * @brief GenericMediaPopup input, configuration library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Mar 2018
- * @date Modification: Jul 2025
- * @copyright 2018 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -31,6 +31,7 @@ final class GenericMediaPopupConfig extends PluginConfig {
         $this->add_newItem('enableCloseButton', 'int', 1);
         $this->add_newItem('enableKeyboard', 'int', 1);
         $this->add_newItem('maxWidth', 'int', 0);
+        $this->add_newItem('buttonFormat', 'string', 'gif');     // gif / png / jpg
 
         /* diaporama controls */
         $this->add_newItem('enableDiaporama', 'int', 1);
@@ -86,6 +87,27 @@ final class GenericMediaPopupConfig extends PluginConfig {
     public function get_styleSourceTitle() {
         $l = $this->get_styleSourceList();
         return $l[$this->vars['styleSource']];
+    }
+
+    /**
+     * Return button format value list.
+     * @return array
+     */
+    public function get_buttonFormatList() {
+        return array(
+            'gif'   => 'GIF',
+            'png'   => 'PNG',
+            'jpg'   => 'JPG',
+        );
+    }
+
+    /**
+     * Return style source value title.
+     * @return string
+     */
+    public function get_buttonFormatTitle() {
+        $l = $this->get_buttonFormatList();
+        return $l[$this->vars['buttonFormat']];
     }
 }
 ?>

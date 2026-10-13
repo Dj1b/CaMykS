@@ -4,9 +4,9 @@
  * <br /> Monitors and logs reports.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.3
+ * @version 1.0.3.4
  * @date Creation: May 2007
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2007 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,16 +17,22 @@
  */
 final class Admin_SystemReport extends Module {
     /**
-     * var Object $reportItem
+     * @var Object $reportItem
      * @brief Record object.
      */
     public $reportItem;
 
     /**
-     * var array $reportList
+     * @var array $reportList
      * @brief Record list.
      */
     public $reportList = array();
+
+    /**
+     * @var array $reportListParams
+     * @brief Record list parameters.
+     */
+    public $reportListParams = array();
 
     /**
      * Class constructor.
@@ -247,13 +253,13 @@ final class Admin_SystemReport extends Module {
         $this->reportList->initialise();
 
         /* Build multi selection form */
-        $this->itemform = new HTMLForm('admin_systemreport_selection', $this->get_adminLink(), 'POST');
-        $this->itemform->add_hidden('mode', 'display');
-        $this->itemform->add_hidden('ids', '');
+        $this->form = new HTMLForm('admin_systemreport_selection', $this->get_adminLink(), 'POST');
+        $this->form->add_hidden('mode', 'display');
+        $this->form->add_hidden('ids', '');
 
         /* Add delete log javascripts */
         $this->add_JSFile('admin_systemreport.js');
-        $this->add_JSScript('admin_systemreport_selectionform="'.$this->itemform->name.'";');
+        $this->add_JSScript('admin_systemreport_selectionform="'.$this->form->name.'";');
         $this->add_JSScript('admin_systemreport_deletelogsmessage="'.string_html2Text($this->get_translation('deletelogsmessage')).'";');
         $this->add_JSScript('admin_systemreport_marklogsmessage="'.string_html2Text($this->get_translation('marklogsmessage')).'";');
 
@@ -291,13 +297,13 @@ final class Admin_SystemReport extends Module {
             if ($this->reportItem->vars['status'] == 0) {
 
                 /* Build list form */
-                $this->markform = new HTMLForm('admin_systemreport_markform', $this->get_adminLink(array('mode'=>'markasreadsingle')), 'POST');
-                $this->markform->add_hidden('report', $this->reportItem->id);
+                $this->form = new HTMLForm('admin_systemreport_markform', $this->get_adminLink(array('mode'=>'markasreadsingle')), 'POST');
+                $this->form->add_hidden('report', $this->reportItem->id);
 
                 /* Adds button to interface */
                 $this->buttons[] = array(
                     'title' => $this->get_translation('markasread'),
-                    'link'  => $this->markform->get_HTMLSubmitLink(),
+                    'link'  => $this->form->get_HTMLSubmitLink(),
                 );
             }
         }

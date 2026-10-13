@@ -4,9 +4,9 @@
  * <br /> Automatically display paging system to navigate inside long lists of elements.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Jan 2010
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -17,7 +17,7 @@
  */
 final class GenericPageController extends Input {
     /**
-     * var array $params
+     * @var array $params
      * @brief Input parameters.
      */
     public $params = array(
@@ -39,6 +39,12 @@ final class GenericPageController extends Input {
     );
 
     /**
+     * @var Object $params
+     * @brief Link to theme.
+     */
+    protected $theme;
+
+    /**
      * Class constructor.
      * @param string $path_type
      */
@@ -49,7 +55,7 @@ final class GenericPageController extends Input {
         $this->version = '1.0';
         $this->plugin_package = 'Generic';
 
-        /* set plugin author */
+        /* Define plugin author */
         $this->author_name = 'CaMykS Team';
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
@@ -71,9 +77,9 @@ final class GenericPageController extends Input {
         /* load theme if requiered */
         if ($this->params['buttonSource'] == 'theme' or $this->params['styleSource'] == 'theme') {
             if ($this->params['theme'] != '' and isset($camyks->themes[$this->params['theme']]))
-                $this->theme = &$camyks->themes[$this->params['theme']];
+                $this->theme = $camyks->get_theme($this->params['theme']);
             else
-                $this->theme = &$camyks->themes[$camyks->get_confValue('site_default_theme')];
+                $this->theme = $camyks->get_theme($camyks->get_confValue('site_default_theme'));
         }
 
         /* insert style file if requiered */

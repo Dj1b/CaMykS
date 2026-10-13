@@ -3,9 +3,9 @@
  * @brief Content_GenericGlossaryViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: May 2010
- * @date Modification: Jul 2025
+ * @date Modification: Oct 2025
  * @copyright 2010 - 2025 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -15,6 +15,12 @@
  * Content_GenericGlossaryViewer class.
  */
 final class Content_GenericGlossaryViewer extends Module {
+    /**
+     * @var Object $configItem
+     * @brief Content object.
+     */
+    protected $configItem;
+
     /**
      * Class constructor.
      * @param string $path_type
@@ -34,7 +40,7 @@ final class Content_GenericGlossaryViewer extends Module {
         $this->author_mail = 'camyks.contact@gmail.com';
         $this->author_group = 'camyks.net';
 
-        /* load plugin libraries */
+        /* Load plugin libraries */
         $this->load_library('Content_GenericGlossaryViewerItem');
 
         /* Initialise plugin libraries */
@@ -121,7 +127,7 @@ final class Content_GenericGlossaryViewer extends Module {
         /* save params */
         $this->params = $params;
 
-        /* load manager */
+        /* Load manager */
         $this->load_glossaryManager();
 
         /* get news list to display */
@@ -167,7 +173,7 @@ final class Content_GenericGlossaryViewer extends Module {
                 if ($p['pageCurrent'] >= $p['pageCount'])
                     $p['pageCurrent'] = 0;
 
-                /* load generic page controller */
+                /* Load generic page controller */
                 $this->pageController = &$camyks->inputs['GenericPageController'];
                 $this->pageController->initialise($p);
 
@@ -252,7 +258,7 @@ final class Content_GenericGlossaryViewer extends Module {
                 break;
         }
 
-        /* load word list */
+        /* Load word list */
         $this->wordList = $this->manager->get_wordList($qParams);
 
         /* Update layout */
@@ -278,7 +284,7 @@ final class Content_GenericGlossaryViewer extends Module {
         $this->configItem->get();
         $this->configItem->get_fromItems();
 
-        /* load manager */
+        /* Load manager */
         $this->load_glossaryManager();
 
         /* check for Inputs */
@@ -287,7 +293,7 @@ final class Content_GenericGlossaryViewer extends Module {
         /* get edition languages */
         $this->elgs = $camyks->get_confValue('editing_languages');
 
-        /* load data */
+        /* Load data */
         $this->categoryList = $this->manager->get_categoryTitleList(false, array('status'=>1));
 
         /* get tabs */
@@ -340,7 +346,7 @@ final class Content_GenericGlossaryViewer extends Module {
         $this->form->add_hidden('module_index', $this->module_index);
         $this->form->add_hidden('category_cnt', count($this->categoryList));
 
-        /* load client-side scripts */
+        /* Load client-side scripts */
         $this->add_JSEngineFile('object/ctransition.js');
         $this->add_JSFile('genericglossaryviewer.js');
         $this->add_JSScript('var formName = "'.$this->form->name.'";');
