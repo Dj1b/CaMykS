@@ -3,7 +3,7 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.10
+ * @version 1.1.10.1
  * @date Creation: Jun 2005
  * @date Modification: Oct 2026
  * @copyright 2005 - 2026 CaMykS Team
@@ -1094,15 +1094,15 @@ class HTMLForm {
         /* Build input */
         $html = '<input type="number"';
         $html .= $this->build_inputGenericAttributes($params);
-        if (isset($this->object) and $this->object->_libItems[$v]->datatype == 'float')
-            $html .= ' value="'.(float)$params['default'].'"';
-        else
+        if (isset($this->object) and $this->object->_libItems[$v]->datatype == 'int')
             $html .= ' value="'.(int)$params['default'].'"';
-        if (is_int($params['min']))
+        else
+            $html .= ' value="'.(float)$params['default'].'"';
+        if (is_numeric($params['min']))
             $html .= ' min="'.$params['min'].'"';
-        if (is_int($params['max']))
+        if (is_numeric($params['max']))
             $html .= ' max="'.$params['max'].'"';
-        if (is_int($params['step']))
+        if (is_numeric($params['step']))
             $html .= ' step="'.$params['step'].'"';
         $html .= ' />';
         return $html;
