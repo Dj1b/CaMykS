@@ -1,0 +1,314 @@
+/**
+ * @brief ExternalCustomerReviews input, default CSS styles.
+ * @details Plugin / Input CSS styles
+ * @author CaMykS Team <camyks.contact@gmail.com>
+ * @version 1.0.0
+ * @date Creation: Oct 2026
+ * @date Modification: Oct 2026
+ * @copyright 2026 CaMykS Team
+ * @note This program is distributed as is - WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+.externalCustomerReviews {
+    --ecr-accent: #4285f4;
+    --ecr-star-color: #fbbc04;
+    --ecr-star-empty: #dadce0;
+    --ecr-bg: #ffffff;
+    --ecr-card-bg: #ffffff;
+    --ecr-border: #e4e7eb;
+    --ecr-text: #1f2933;
+    --ecr-muted: #616e7c;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 16px 0;
+    color: var(--ecr-text);
+    font-family: inherit;
+}
+
+.externalCustomerReviews *,
+.externalCustomerReviews *::before,
+.externalCustomerReviews *::after {
+    box-sizing: border-box;
+}
+
+/* Source brand accent colors */
+.externalCustomerReviews.source-google { --ecr-accent: #4285f4; --ecr-star-color: #fbbc04; }
+.externalCustomerReviews.source-tripadvisor { --ecr-accent: #00aa6c; --ecr-star-color: #00aa6c; }
+.externalCustomerReviews.source-trustpilot { --ecr-accent: #00b67a; --ecr-star-color: #00b67a; }
+.externalCustomerReviews.source-yelp { --ecr-accent: #d32323; --ecr-star-color: #d32323; }
+.externalCustomerReviews.source-avisverifies { --ecr-accent: #f58220; --ecr-star-color: #f58220; }
+.externalCustomerReviews.source-facebook { --ecr-accent: #1877f2; --ecr-star-color: #1877f2; }
+
+/* Summary header */
+.externalCustomerReviews .ecr-summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    background: var(--ecr-bg);
+    border: 1px solid var(--ecr-border);
+    border-top: 4px solid var(--ecr-accent);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.externalCustomerReviews.layout-badge {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+}
+
+.externalCustomerReviews.layout-badge .ecr-summary {
+    margin-bottom: 0;
+    padding: 14px 20px;
+}
+
+.externalCustomerReviews .ecr-source-badge {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.externalCustomerReviews .ecr-source-name {
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    background: var(--ecr-accent);
+    border-radius: 999px;
+}
+
+.externalCustomerReviews .ecr-place-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ecr-text);
+}
+
+.externalCustomerReviews .ecr-rating-overview {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 0;
+}
+
+.externalCustomerReviews .ecr-rating-score {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--ecr-text);
+}
+
+.externalCustomerReviews .ecr-rating-max {
+    font-size: 0.95rem;
+    color: var(--ecr-muted);
+    margin-right: 4px;
+}
+
+.externalCustomerReviews .ecr-total-reviews {
+    font-size: 0.88rem;
+    color: var(--ecr-muted);
+}
+
+.externalCustomerReviews .ecr-button {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ffffff !important;
+    background: var(--ecr-accent);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.externalCustomerReviews .ecr-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+/* Stars */
+.externalCustomerReviews .ecr-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.externalCustomerReviews .ecr-star {
+    color: var(--ecr-star-empty);
+}
+
+.externalCustomerReviews .ecr-star.ecr-star-full {
+    color: var(--ecr-star-color);
+}
+
+.externalCustomerReviews .ecr-star.ecr-star-half {
+    color: var(--ecr-star-color);
+    opacity: 0.65;
+}
+
+/* Reviews container: Grid vs List */
+.externalCustomerReviews.layout-grid .ecr-reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.externalCustomerReviews.layout-list .ecr-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Review card */
+.externalCustomerReviews .ecr-review-card {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 20px;
+    background: var(--ecr-card-bg);
+    border: 1px solid var(--ecr-border);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.externalCustomerReviews .ecr-review-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.externalCustomerReviews .ecr-review-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.externalCustomerReviews .ecr-author-avatar {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--ecr-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.externalCustomerReviews .ecr-author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.externalCustomerReviews .ecr-avatar-initials {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.externalCustomerReviews .ecr-author-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.externalCustomerReviews .ecr-author-name {
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: var(--ecr-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.externalCustomerReviews .ecr-author-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.externalCustomerReviews .ecr-author-name a:hover {
+    text-decoration: underline;
+}
+
+.externalCustomerReviews .ecr-review-date {
+    font-size: 0.8rem;
+    color: var(--ecr-muted);
+    margin-top: 2px;
+}
+
+.externalCustomerReviews .ecr-review-rating {
+    flex-shrink: 0;
+}
+
+.externalCustomerReviews .ecr-review-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--ecr-text);
+}
+
+.externalCustomerReviews .ecr-review-text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--ecr-text);
+    flex: 1;
+    word-break: break-word;
+}
+
+.externalCustomerReviews .ecr-review-footer {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--ecr-border);
+}
+
+.externalCustomerReviews .ecr-review-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ecr-accent);
+    text-decoration: none;
+}
+
+.externalCustomerReviews .ecr-review-link:hover {
+    text-decoration: underline;
+}
+
+.externalCustomerReviews .ecr-no-reviews {
+    padding: 20px;
+    text-align: center;
+    color: var(--ecr-muted);
+    background: var(--ecr-card-bg);
+    border: 1px dashed var(--ecr-border);
+    border-radius: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .externalCustomerReviews .ecr-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .externalCustomerReviews .ecr-summary-actions,
+    .externalCustomerReviews .ecr-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .externalCustomerReviews.layout-grid .ecr-reviews {
+        grid-template-columns: 1fr;
+    }
+}
