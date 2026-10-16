@@ -3,7 +3,7 @@
  * @brief Admin_GenericSearchEngineManager module, indexed word library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: Sep 2026
  * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
@@ -205,6 +205,7 @@ final class Admin_GenericSearchEngineManagerIndexedWord extends ModuleLibrary {
             return $results;
 
         /* Load variant weight configuration */
+        setlocale(LC_NUMERIC, 'C');
         $variantWeight = (float)$this->get_configValue('Searching_VariantWeight', 0.75);
 
         /* Build search words with variants */
