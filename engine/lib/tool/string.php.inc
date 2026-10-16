@@ -1,11 +1,11 @@
 <?php
 /**
- * @brief String specific methods
+ * @brief String specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.10.1
  * @date Creation: Oct 2007
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -231,19 +231,15 @@ function string_text2Words($string, $params=array()) {
     /* remove html tags */
     $string = string_stripTags($string, ' ');
 
-    /* update case */
-    if ($params['changecase'] == 'lower')
-        $string = strtolower($string);
-    else if ($params['changecase'] == 'upper')
-        $string = strtoupper($string);
-
-    /* check text mode */
-    if ($params['contenttype'] == 'text')
-        $string = string_text2Html($string);
-
-    /* check html mode */
-    if ($params['contenttype'] == 'html' and $params['accents'] != 'replace')
+    /* normalise html and text encoding */
+    if ($params['accents'] == 'replace') {
         $string = string_html2Text($string);
+        $string = string_text2Html($string);
+    } elseif ($params['contenttype'] == 'text') {
+        $string = string_text2Html($string);
+    } elseif ($params['contenttype'] == 'html') {
+        $string = string_html2Text($string);
+    }
 
     /* parse accents */
     if ($params['accents'] == 'replace') {
@@ -253,8 +249,14 @@ function string_text2Words($string, $params=array()) {
         $accentChars = string_getAccentuedChars(array('listmode'=>'string', 'charmode'=>'text'));
     }
 
+    /* update case */
+    if ($params['changecase'] == 'lower')
+        $string = strtolower($string);
+    else if ($params['changecase'] == 'upper')
+        $string = strtoupper($string);
+
     /* set min length word regexp modifier */
-    if ($params['minlength']>2)
+    if ($params['minlength'] > 1)
         $length_modifier = '{'.$params['minlength'].',}';
     else
         $length_modifier = '+';
@@ -301,7 +303,7 @@ function string_replaceEntityChars($string, $params=array()) {
         /* add html number entities for capitalised letters */
         '/&#19[2-7];/', '/&#199;/', '/&#20[0-3];/', '/&#20[4-7];/', '/&#209;/', '/&#21[0-46];/', '/&#2(?:1[7-9]|20);/', '/&#221;/',
         /* add html number entities for small letters */
-        '/&#22[4-9];/', '/&#231;/', '/&#23[2-5];/', '/&#20[6-9];/', '/&#241;/', '/&#24[2-68];/', '/&#2(?:49|5[0-2]);/', '/&#25[35];/',
+        '/&#22[4-9];/', '/&#231;/', '/&#23[2-5];/', '/&#23[6-9];/', '/&#241;/', '/&#24[2-68];/', '/&#2(?:49|5[0-2]);/', '/&#25[35];/',
         /* add html number entities for special letters */
         '/&(?:#198|AElig);/', '/&(?:#223|szlig);/', '/&(?:#230|aelig);/', '/&(?:#338|oelig);/', '/&(?:#339|OElig);/', '/&#352;/', '/&#353;/', '/&#376;/',
         /* add html number entities for special chars */
