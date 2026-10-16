@@ -3,9 +3,9 @@
  * @brief Admin_GenericSearchEngineManager module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  * @date Creation: Sep 2026
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -71,7 +71,7 @@ final class Admin_GenericSearchEngineManager extends Module {
         parent::__construct('Admin_GenericSearchEngineManager', $path_type);
 
         /* Override Plugin variables */
-        $this->version = '1.0';
+        $this->version = '1.1';
         $this->plugin_package = 'Generic';
 
         /* Override Module variables */
@@ -133,6 +133,21 @@ final class Admin_GenericSearchEngineManager extends Module {
     }
 
     /**
+     * Update module.
+     * @param string $version
+     * @param string $more
+     * @return boolean success
+     */
+    public function update($version, $more='') {
+        global $camyks;
+
+        if (version_compare($version, '1.1', '<'))
+            if (!$this->update_toVersion1_1()) return false;
+
+        return parent::update($version, $more);
+    }
+
+    /**
      * Define module permissions
      * @return void
      */
@@ -164,16 +179,12 @@ final class Admin_GenericSearchEngineManager extends Module {
         $this->config->get();
 
         /* Load mode to execute */
-        $this->mode = isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
+        $this->mode = isset($_REQUEST['mode']) ? $_REQUEST['mode'] : 'main';
 
         switch ($this->mode) {
-            case 'edit_config':
-                /* mode == edit_config */
-                $this->init_admin_editConfig();
-                break;
-            case 'save_config':
-                /* mode == save_config */
-                $this->init_admin_saveConfig();
+            case 'request_indexation':
+                /* mode == request_indexation */
+                $this->init_admin_request_indexation();
                 break;
             default:
                 /* mode == main */
@@ -239,8 +250,13 @@ final class Admin_GenericSearchEngineManager extends Module {
         $this->tabBuilder->initialise(array('default'=>'IndexedContent'));
 
         /* Load statistics data */
+        $modules = $this->objectItem->get_moduleStatistics();
+        foreach ($this->get_extensions() as $name => $extension) {
+            if (!isset($modules[$name]))
+                $modules[$name] = array('module'=>$name, 'types'=>0, 'objects'=>0);
+        }
         $this->statisticData = array(
-            'modules' => $this->objectItem->get_moduleStatistics(),
+            'modules' => $modules,
         );
 
         /* Build search form */
@@ -249,7 +265,8 @@ final class Admin_GenericSearchEngineManager extends Module {
 
         /* Check for search results */
         if (isset($_REQUEST['search'])) {
-            $this->perform_search(array('search'=>$_REQUEST['search']));
+            $searchModule = isset($_REQUEST['search_module']) ? $_REQUEST['search_module'] : '';
+            $this->perform_search(array('search'=>$_REQUEST['search'], 'modules'=>$searchModule));
         }
 
         /* Build interface buttons */
@@ -259,6 +276,30 @@ final class Admin_GenericSearchEngineManager extends Module {
                 'title' => $camyks->get_translation('back'),
             ),
         );
+    }
+
+    /**
+     * Initialise module object in admin/request_indexation mode.
+     * @return void
+     */
+    private function init_admin_request_indexation() {
+        /* Disable admin menus */
+        $this->disable_adminEngineMenus();
+
+        /* Load target parameters */
+        $module = isset($_REQUEST['target_module']) ? $_REQUEST['target_module'] : '';
+        $moduleObjectType = isset($_REQUEST['target_type']) ? $_REQUEST['target_type'] : '';
+        $moduleObjectId = isset($_REQUEST['target_id']) ? (int)$_REQUEST['target_id'] : 0;
+
+        /* Request content indexation */
+        if ($this->request_extensionContentIndexation($module, $moduleObjectType, $moduleObjectId))
+            $this->text = $this->get_translation('content_reindexed');
+        else
+            $this->text = $this->get_translation('content_notreindexed');
+
+        /* Update layout */
+        $this->set_selectedLayout('admin_message.html.inc', 'camyks');
+        $this->set_redirect($this->get_adminLink(array('openTab'=>'IndexedContent')));
     }
 
     /* Mark: Request initialise mode methods */
@@ -295,11 +336,11 @@ final class Admin_GenericSearchEngineManager extends Module {
         $theme = $camyks->get_theme($camyks->get_confValue('site_default_theme'));
         if ($theme !== false) {
             if (($u = $theme->get_fileURL('img/touchIcons/icon-64x64.png')) !== '')
-                  echo '<Image height="64" width="64" type="image/png">'.$baseURL.$v.'</Image>'."\n";
+                  echo '<Image height="64" width="64" type="image/png">'.$baseURL.$u.'</Image>'."\n";
             elseif (($u = $theme->get_fileURL('img/touchIcons/icon-16x16.png')) !== '')
-                  echo '<Image height="16" width="16" type="image/png">'.$baseURL.$v.'</Image>'."\n";
+                  echo '<Image height="16" width="16" type="image/png">'.$baseURL.$u.'</Image>'."\n";
             elseif (($u = $theme->get_fileURL('img/touchIcons/icon-192x192.png')) !== '')
-                  echo '<Image height="192" width="192" type="image/png">'.$baseURL.$v.'</Image>'."\n";
+                  echo '<Image height="192" width="192" type="image/png">'.$baseURL.$u.'</Image>'."\n";
         }
 
         if (($p = $camyks->get_siteKeypageLink($this->get_configValue('OpenSearchXML_URLPage'))) != '')
@@ -308,7 +349,7 @@ final class Admin_GenericSearchEngineManager extends Module {
             echo ' <Url type="text/html" template="'.$baseURL.$camyks->get_siteLink($this->get_configValue('OpenSearchXML_URLPage')).'?'.$this->get_configValue('OpenSearchXML_URLParam').'={searchTerms}" />'."\n";
 
         if ($this->get_configValue('OpenSearchXML_Example') != '')
-            echo '<Query role="example" searchTerms="'.$this->get_configValue('OpenSearchXML_Tags').'" />'."\n";
+            echo '<Query role="example" searchTerms="'.$this->get_configValue('OpenSearchXML_Example').'" />'."\n";
         echo '</OpenSearchDescription>';
 
         /* Avoid any other action */
@@ -325,9 +366,11 @@ final class Admin_GenericSearchEngineManager extends Module {
      * @param array $contents
      * @param string $linkType
      * @param array $linkURLs
+     * @param mixed $publicationDate
+     * @param integer $expirationDate
      * @return boolean sucess
      */
-    public function index_objectData($module, $moduleObjectType, $moduleObjectId, $contents, $linkType, $linkURLs) {
+    public function index_objectData($module, $moduleObjectType, $moduleObjectId, $contents, $linkType, $linkURLs, $publicationDate=0, $expirationDate=0) {
         /* Load configuration */
         $this->config->get();
 
@@ -348,7 +391,7 @@ final class Admin_GenericSearchEngineManager extends Module {
             return false;
 
         /* Update parent object */
-        return $this->objectItem->set_asUpdated($linkType, $linkURLs);
+        return $this->objectItem->set_asUpdated($linkType, $linkURLs, $publicationDate, $expirationDate);
     }
 
     /**
@@ -374,6 +417,81 @@ final class Admin_GenericSearchEngineManager extends Module {
         return $this->objectItem->delete();
     }
 
+    /**
+     * Unindex all indexed data.
+     * @return boolean success
+     */
+    public function unindex_allData() {
+        return ($this->wordItem->reset() and $this->objectItem->reset());
+    }
+
+    /**
+     * Unindex module data.
+     * @param string $module
+     * @param string $moduleObjectType
+     * @return boolean success
+     */
+    public function unindex_moduleData($module, $moduleObjectType='') {
+        /* Check module */
+        if ($module == '')
+            return false;
+
+        /* Load indexed object ids */
+        $objectIds = $this->objectItem->get_idList(array('module'=>$module, 'moduleObjectType'=>$moduleObjectType));
+        if (count($objectIds) === 0)
+            return true;
+
+        /* Delete indexed words and objects */
+        if (!$this->wordItem->delete_objectsIndexedContent($objectIds))
+            return false;
+        return $this->objectItem->delete_objects($objectIds);
+    }
+
+    /**
+     * Request content indexation from registered extensions or specific module.
+     * @param string $module
+     * @param string $moduleObjectType
+     * @param integer $moduleObjectId
+     * @return boolean success
+     */
+    public function request_extensionContentIndexation($module='', $moduleObjectType='', $moduleObjectId=0) {
+        global $camyks;
+
+        /* Load configuration */
+        $this->config->get();
+
+        /* Case 1: Request full indexation from all registered extensions */
+        if ($module == '') {
+            if (!$this->unindex_allData())
+                return false;
+
+            $success = true;
+            $extensions = $this->get_extensions();
+            foreach ($extensions as $plugin) {
+                if (method_exists($plugin, 'index_searchEngineContent'))
+                    $success = ($plugin->index_searchEngineContent() and $success);
+            }
+            return $success;
+        }
+
+        /* Load target module */
+        $m = $camyks->get_module($module);
+        if ($m === false or !method_exists($m, 'index_searchEngineContent'))
+            return false;
+
+        /* Case 2 & 3: Request indexation for a whole module or a specific object type of a module */
+        if ((int)$moduleObjectId === 0) {
+            if (!$this->unindex_moduleData($module, $moduleObjectType))
+                return false;
+            return $m->index_searchEngineContent($moduleObjectType);
+        }
+
+        /* Case 4: Request indexation for a specific object of a module */
+        if ($moduleObjectType == '')
+            return false;
+        return $m->index_searchEngineContent($moduleObjectType, (int)$moduleObjectId);
+    }
+
     /* Mark: Searching methods */
 
     /**
@@ -385,7 +503,39 @@ final class Admin_GenericSearchEngineManager extends Module {
         global $camyks;
 
         /* Load query */
-        $query = array_merge(array('search'=>'', 'language'=>$camyks->current_language, 'weights'=>array('L1'=>$this->get_configValue('Indexing_N1Weight'), 'L2'=>$this->get_configValue('Indexing_N2Weight'), 'L3'=>$this->get_configValue('Indexing_N3Weight'))), $query);
+        $query = array_merge(array('search'=>'', 'modules'=>array(), 'moduleObjectTypes'=>array(), 'checkDates'=>true, 'date'=>null, 'language'=>$camyks->current_language, 'weights'=>array('L1'=>$this->get_configValue('Searching_N1Weight'), 'L2'=>$this->get_configValue('Searching_N2Weight'), 'L3'=>$this->get_configValue('Searching_N3Weight'))), $query);
+
+        /* Normalise modules parameter */
+        if (isset($query['module']) and empty($query['modules']))
+            $query['modules'] = $query['module'];
+        unset($query['module']);
+        if (is_string($query['modules']))
+            $query['modules'] = ($query['modules'] != '') ? array($query['modules']) : array();
+        elseif (!is_array($query['modules']))
+            $query['modules'] = array();
+        $modules = array();
+        foreach ($query['modules'] as $module) {
+            $module = trim((string)$module);
+            if ($module != '')
+                $modules[] = $module;
+        }
+        $query['modules'] = array_values(array_unique($modules));
+
+        /* Normalise moduleObjectTypes parameter */
+        if (isset($query['moduleObjectType']) and empty($query['moduleObjectTypes']))
+            $query['moduleObjectTypes'] = $query['moduleObjectType'];
+        unset($query['moduleObjectType']);
+        if (is_string($query['moduleObjectTypes']))
+            $query['moduleObjectTypes'] = ($query['moduleObjectTypes'] != '') ? array($query['moduleObjectTypes']) : array();
+        elseif (!is_array($query['moduleObjectTypes']))
+            $query['moduleObjectTypes'] = array();
+        $types = array();
+        foreach ($query['moduleObjectTypes'] as $type) {
+            $type = trim((string)$type);
+            if ($type != '')
+                $types[] = $type;
+        }
+        $query['moduleObjectTypes'] = array_values(array_unique($types));
 
         /* Check query */
         $query['search'] = trim($query['search']);
@@ -394,7 +544,7 @@ final class Admin_GenericSearchEngineManager extends Module {
 
         /* Check saved query */
         if ($camyks->get_sessionValue('searchQuery') == $query)
-            return false;
+            return true;
 
         /* Save query */
         $camyks->set_sessionValue('searchQuery', $query);
@@ -430,7 +580,7 @@ final class Admin_GenericSearchEngineManager extends Module {
      */
     public function get_searchQuery() {
         global $camyks;
-        return $camyks->get_sessionValue('searchQuery', array());
+        return $camyks->get_sessionValue('searchQuery', array('search'=>'', 'modules'=>array(), 'moduleObjectTypes'=>array(), 'checkDates'=>true, 'date'=>null));
     }
 
     /**
@@ -511,6 +661,14 @@ final class Admin_GenericSearchEngineManager extends Module {
         return $this->get_registeredExtensions();
     }
 
+    /**
+     * Return indexed object SQL table name.
+     * @return string
+     */
+    public function get_objectSQLTable() {
+        return $this->objectItem->_libSQLTable;
+    }
+
     /* Mark: Configuration methods */
 
     /**
@@ -586,6 +744,16 @@ final class Admin_GenericSearchEngineManager extends Module {
         if ($previousStatus == 0)
             return $this->add_toHtaccess('RewriteRule ^OpenSearch.xml$ '.$this->get_requestJSLink(array('mode'=>'getOpenSearchXML')).' [L,NS]');
         return $this->add_toHtaccess('');
+    }
+
+    /* Mark: Update methods */
+
+    /**
+     * Update to version 1.1.
+     * @return boolean success
+     */
+    private function update_toVersion1_1() {
+        return $this->objectItem->update_toVersion1_1();
     }
 }
 ?>

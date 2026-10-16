@@ -3,9 +3,9 @@
  * @brief Admin_GenericSearchEngineManager module, configuration library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  * @date Creation: Sep 2026
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -31,9 +31,12 @@ final class Admin_GenericSearchEngineManagerConfiguration extends PluginConfig {
         $this->add_newItem('Indexing_WordKeptChars', 'string', '');
         $this->add_newItem('Indexing_N1MaxWords', 'int', 25);
         $this->add_newItem('Indexing_N2MaxWords', 'int', 100);
-        $this->add_newItem('Indexing_N1Weight', 'int', 5);
-        $this->add_newItem('Indexing_N2Weight', 'int', 2);
-        $this->add_newItem('Indexing_N3Weight', 'int', 1);
+
+        /* Searching configuration attributes */
+        $this->add_newItem('Searching_N1Weight', 'int', 5);
+        $this->add_newItem('Searching_N2Weight', 'int', 2);
+        $this->add_newItem('Searching_N3Weight', 'int', 1);
+        $this->add_newItem('Searching_VariantWeight', 'float', 0.75);
 
         /* Results configuration attributes */
         $this->add_newItem('Results_MaximumCount', 'int', 1000);
@@ -85,6 +88,32 @@ final class Admin_GenericSearchEngineManagerConfiguration extends PluginConfig {
         return true;
     }
 
+    /* Mark: Attribute data methods */
+
+    /**
+     * Return status value list.
+     * @return array
+     */
+    public function get_statusList() {
+        global $camyks;
+        return array(
+            0 => $camyks->get_translation('disabled'),
+            1 => $camyks->get_translation('enabled'),
+        );
+    }
+
+    /**
+     * Return status value for given attribute.
+     * @return array
+     */
+    public function get_statusTitle($attribute) {
+        if (!isset($this->vars[$attribute]))
+            return '';
+        $list = $this->get_statusList();
+        if (isset($list[$this->vars[$attribute]]))
+            return $list[$this->vars[$attribute]];
+        return '';
+    }
 
     /* Mark: OpenSearch.xml related methods */
 

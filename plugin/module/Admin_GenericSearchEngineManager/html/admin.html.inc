@@ -3,9 +3,9 @@
  * @brief Admin_GenericSearchEngineManager module, admin main layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  * @date Creation: Sep 2026
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -28,6 +28,9 @@ global $camyks;
             <td class="eTableHeader">
                 <?= $this->get_translation('formtitle_objects'); ?>
             </td>
+            <td class="eTableHeader" style="width:12px;">
+                &nbsp;
+            </td>
         </tr>
         <?php $alt = 0; ?>
         <?php foreach ($this->statisticData['modules'] as $name => $data) : ?>
@@ -42,19 +45,41 @@ global $camyks;
                 <td class="eTableLine<?= $alt; ?>">
                     <?= $data['objects']; ?>
                 </td>
+                <td class="eTableLine<?= $alt; ?>">
+                    <?php if (method_exists($camyks->modules[$name], 'index_searchEngineContent')) : ?>
+                        <a href="<?= $this->get_adminLink(array('mode'=>'request_indexation', 'target_module'=>$name)); ?>">
+                            <img src="<?= $this->theme->get_pictURL('target', 12, 'std'); ?>" alt="<?= $this->get_translation('reindex_module'); ?>" title="<?= $this->get_translation('reindex_module'); ?>" border="0" onmouseover="this.src='<?= $this->theme->get_pictURL('target', 12, 'ovr'); ?>';" onmouseout="this.src='<?= $this->theme->get_pictURL('target', 12, 'std'); ?>';" />
+                        </a>
+                    <?php else : ?>
+                        &nbsp;
+                    <?php endif; ?>
+                </td>
             </tr>
             <?php $alt = abs($alt-1); ?>
         <?php endforeach; ?>
     </table>
+    <div>
+        &nbsp;
+    </div>
+    <div>
+        <?= $this->theme->get_button(array('title'=>$this->get_translation('reindex_all'), 'url'=>$this->get_adminLink(array('mode'=>'request_indexation')))); ?>
+    </div>
 </div>
 <div id="itemSearch" style="display:<?= $this->tabBuilder->get_tabDisplay('Search'); ?>;" class="adminContentPanel">
     <?= $this->searchForm->display_header(); ?>
     <?= $this->searchForm->display_hiddens(); ?>
+    <?php $query = $this->get_searchQuery(); ?>
+    <?php $moduleList = array(''=>$this->get_translation('search_allmodules')); ?>
+    <?php foreach ($this->statisticData['modules'] as $name => $data) : ?>
+        <?php if (isset($camyks->modules[$name])) $moduleList[$name] = $camyks->modules[$name]->title; ?>
+    <?php endforeach; ?>
     <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
         <tr>
             <td class="eTableLine0">
-                <?php $query = $this->get_searchQuery(); ?>
                 <?= $this->searchForm->display_searchInput(array('name'=>'search', 'default'=>$query['search'])); ?>
+            </td>
+            <td class="eTableLine0">
+                <?= $this->searchForm->display_selectInput(array('name'=>'search_module', 'values'=>$moduleList, 'default'=>(!empty($query['modules']) ? $query['modules'][0] : ''))); ?>
             </td>
             <td class="eTableLine0">
                 <?= $this->theme->get_button($this->get_translation('search_execute'), $this->searchForm->get_HTMLSubmitLink()); ?>

@@ -3,9 +3,9 @@
  * @brief Admin_GenericSearchEngineManager module, admin view configuration layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  * @date Creation: Sep 2026
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -84,6 +84,11 @@ else
             </td>
         </tr>
         <tr>
+            <td class="eTableHeader" colspan="4">
+                <?= $this->get_translation('formtitle_searching'); ?>
+            </td>
+        </tr>
+        <tr>
             <td class="eTableSubHeader" colspan="4">
                 <?= $this->get_translation('formtitle_weights'); ?>
             </td>
@@ -109,6 +114,12 @@ else
             </td>
             <td class="eTableLine0 eContent1">
                 <?= $this->config->vars['Indexing_N3Weight']; ?>
+            </td>
+            <td class="eTableLine0 eContent2">
+                <?= $this->get_translation('formitem_variantweight'); ?>
+            </td>
+            <td class="eTableLine0 eContent1">
+                <?= $this->config->vars['Searching_VariantWeight']; ?>
             </td>
         </tr>
         <tr>

@@ -3,9 +3,9 @@
  * @brief Admin_GenericSearchEngineManager module, french dictionary.
  * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  * @date Creation: Sep 2026
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -21,9 +21,14 @@ $this->trads['mod_admin_genericsearchenginemanager_none'] = 'Aucun';
 $this->trads['mod_admin_genericsearchenginemanager_tabindexedcontent'] = 'Contenu index&eacute;';
 $this->trads['mod_admin_genericsearchenginemanager_formtitle_types'] = 'Types d\'objets';
 $this->trads['mod_admin_genericsearchenginemanager_formtitle_objects'] = 'Objets';
+$this->trads['mod_admin_genericsearchenginemanager_reindex_all'] = 'Tout r&eacute;-indexer';
+$this->trads['mod_admin_genericsearchenginemanager_reindex_module'] = 'R&eacute;-indexer ce module';
+$this->trads['mod_admin_genericsearchenginemanager_content_reindexed'] = 'Le contenu a &eacute;t&eacute; r&eacute;-index&eacute;.';
+$this->trads['mod_admin_genericsearchenginemanager_content_notreindexed'] = 'Une erreur s\'est produite durant la r&eacute;-indexation du contenu.';
 
 /* Mark: Admin main - search tab */
 $this->trads['mod_admin_genericsearchenginemanager_tabsearch'] = 'Recherche';
+$this->trads['mod_admin_genericsearchenginemanager_search_allmodules'] = 'Tous les modules';
 $this->trads['mod_admin_genericsearchenginemanager_search_execute'] = 'Rechercher';
 $this->trads['mod_admin_genericsearchenginemanager_search_0result'] = 'Aucun r&eacute;sultat pour cette recherche';
 $this->trads['mod_admin_genericsearchenginemanager_search_1result'] = '1 r&eacute;sultat pour cette recherche';
@@ -39,6 +44,8 @@ $this->trads['mod_admin_genericsearchenginemanager_formtitle_weights'] = 'Pond&e
 $this->trads['mod_admin_genericsearchenginemanager_formitem_n1'] = 'Niveau 1 : ';
 $this->trads['mod_admin_genericsearchenginemanager_formitem_n2'] = 'Niveau 2 : ';
 $this->trads['mod_admin_genericsearchenginemanager_formitem_n3'] = 'Niveau 3 : ';
+$this->trads['mod_admin_genericsearchenginemanager_formtitle_searching'] = 'Recherche';
+$this->trads['mod_admin_genericsearchenginemanager_formitem_variantweight'] = 'Variantes : ';
 $this->trads['mod_admin_genericsearchenginemanager_formtitle_results'] = 'R&eacute;sultats';
 $this->trads['mod_admin_genericsearchenginemanager_formitem_maximumcount'] = 'Maximum retourn&eacute;s : ';
 $this->trads['mod_admin_genericsearchenginemanager_formitem_countperpage'] = 'Nombre par page : ';

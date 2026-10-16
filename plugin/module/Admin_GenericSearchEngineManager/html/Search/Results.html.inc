@@ -3,9 +3,9 @@
  * @brief Admin_GenericSearchEngineManager module, admin search result sub layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.1.0
  * @date Creation: Sep 2026
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -20,7 +20,7 @@ $count = $this->get_searchResultCount();
 ?>
 <div class="eTitle2">
     <?php if ($count == 0) : ?>
-        <?= $this->get_translation('search_noresult'); ?>
+        <?= $this->get_translation('search_0result'); ?>
     <?php elseif ($count == 1) : ?>
         <?= $this->get_translation('search_1result'); ?>
     <?php else : ?>
