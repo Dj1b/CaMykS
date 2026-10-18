@@ -4,9 +4,9 @@
  * <br />Default sitemap generator.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.3
+ * @version 1.0.2.4
  * @date Creation: Feb 2019
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2019 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -29,6 +29,12 @@ final class GenericSitemapGenerator extends Input {
      * @brief Configuration form object.
      */
     protected $form;
+
+    /**
+     * @var Object $answer
+     * @brief CRequestAnswer object.
+     */
+    protected $answer;
 
     /**
      * Class constructor.
