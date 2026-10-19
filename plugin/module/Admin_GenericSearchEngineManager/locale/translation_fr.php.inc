@@ -3,7 +3,7 @@
  * @brief Admin_GenericSearchEngineManager module, french dictionary.
  * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: Sep 2026
  * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
@@ -62,6 +62,8 @@ $this->trads['mod_admin_genericsearchenginemanager_formitem_param'] = 'Nom du pa
 $this->trads['mod_admin_genericsearchenginemanager_formitem_example'] = 'Exemple : ';
 
 /* Mark: Statistics */
+$this->trads['mod_admin_genericsearchenginemanager_stat_searchengine'] = 'Recherches';
+$this->trads['mod_admin_genericsearchenginemanager_stat_searchengine_main'] = ' recherches effectu&eacute;es';
 $this->trads['mod_admin_genericsearchenginemanager_stat_isearches'] = 'Recherches';
 $this->trads['mod_admin_genericsearchenginemanager_stat_searchresult'] = 'Recherche : "%2$s"; r&eacute;sultats : %1$s';
 

@@ -3,7 +3,7 @@
  * @brief Admin_GenericSearchEngineManager module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0
+ * @version 1.1.0.1
  * @date Creation: Sep 2026
  * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
@@ -568,7 +568,7 @@ final class Admin_GenericSearchEngineManager extends Module {
 
         /* Check for stats */
         if ($this->get_configValue('Logging_StatQueries'))
-            $camyks->update_statistic('Search Engine', $this->name, 'mixed', $query['search'], '', '', array('IPFilter'=>1, 'checkAdmin'=>1, 'checkBot'=>0));
+            $camyks->update_statistic('SearchEngine', $this->name, 'mixed', $query['search'].' ('.count($results).')', '', '', array('IPFilter'=>1, 'checkAdmin'=>1, 'checkBot'=>0));
 
         /* Return success */
         return true;
