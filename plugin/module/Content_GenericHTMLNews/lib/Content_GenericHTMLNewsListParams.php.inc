@@ -3,10 +3,10 @@
  * @brief Content_GenericHTMLNews Module news list parameters.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Apr 2009
- * @date Modification: Jul 2025
- * @copyright 2009 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2009 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -23,6 +23,9 @@ $this->newsListParams = array('name'=>'newsList', 'useSession'=>true, 'object'=>
 
 /* Build head parameters */
 $this->newsListParams['headselectors'] = array('page'=> array('title'=>$this->get_translation('itempage'), 'itemtype'=>'page'));
+
+/* Build hidden parameters */
+$this->newsListParams['headhiddens'] = array('list'=>$this->newslist->id);
 
 /* Build sort parameters */
 $this->newsListParams['sort'] = array('allowed'=>true, 'default'=>'ndate', 'defaultway'=>'desc');

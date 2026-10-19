@@ -3,10 +3,10 @@
  * @brief Content_GenericHTMLNews module, news item library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Mar 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -63,7 +63,7 @@ final class Content_GenericHTMLNewsItem extends ModuleLibrary {
      * @return string
      */
     public function build_SQLCondition($params) {
-        return 'listid='.$this->_libParent->newslist->id;
+        return 'listid='.$params['list'];
     }
 
     /* mark: Specific methods */
