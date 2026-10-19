@@ -3,7 +3,7 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.3.2
  * @date Creation: Jun 2012
  * @date Modification: Oct 2026
  * @copyright 2012 - 2026 CaMykS Team
@@ -410,16 +410,15 @@ final class CMail {
 
         } elseif ($this->params['TextBody'] != '' and $this->params['HTMLBody'] != '') {
             $message->setContentType('multipart/alternative');
-            $message->set_param('html_charset', $camyks->get_HTMLEncodingValue());
-            $message->set_param('text_charset', $camyks->get_HTMLEncodingValue());
+            $message->setParam('html_charset', $camyks->get_HTMLEncodingValue());
+            $message->setParam('text_charset', $camyks->get_HTMLEncodingValue());
         } elseif ($this->params['HTMLBody'] != '') {
             $message->setContentType('text/HTML; charset='.$camyks->get_HTMLEncodingValue());
-            $message->set_param('html_charset', $camyks->get_HTMLEncodingValue());
+            $message->setParam('html_charset', $camyks->get_HTMLEncodingValue());
         } elseif ($this->params['TextBody'] != '') {
             $message->setContentType('text/plain; charset='.$camyks->get_HTMLEncodingValue());
-            $message->set_param('text_charset', $camyks->get_HTMLEncodingValue());
+            $message->setParam('text_charset', $camyks->get_HTMLEncodingValue());
         }
-
 
         /* build header list */
         $headers = $this->params['Headers'];
