@@ -224,14 +224,14 @@ function HtmlEncode ($data)
     $result = "";
     for ($i=0; $i<strlen($data); $i++)
     {
-        if (strchr($SAFE_OUT_CHARS, $data{$i})) {
-            $result .= $data{$i};
+        if (strchr($SAFE_OUT_CHARS, $data[$i])) {
+            $result .= $data[$i];
         }
         else if (($var = bin2hex(substr($data,$i,1))) <= "7F"){
             $result .= "&#x" . $var . ";";
         }
         else
-            $result .= $data{$i};
+            $result .= $data[$i];
 
     }
     return $result;
