@@ -3,10 +3,10 @@
  * @brief HTML page object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.1
+ * @version 1.0.9
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Try to set up output page parts as private, as they should be only called by add_HTMLHeader().
@@ -862,7 +862,7 @@ final class HTMLPage {
         if ($camyks->mode == CAMYKS_MODE_SITE and $camyks->get_confValue('cache_server_side') == 'enabled') {
             $allfiles = array();
             foreach ($this->style_files as $media => $files) {
-                if (count($files) <= 1)
+                if (!is_array($files) or count($files) <= 1)
                     continue;
 
                 $str = '';

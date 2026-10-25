@@ -4,10 +4,10 @@
  * <br />Parent object for Module, Input, Template, Theme
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8.2
+ * @version 1.0.9
  * @date Creation: Jun 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -52,6 +52,12 @@ abstract class Plugin {
      * @brief Plugin type.
      */
     public $plugin_type;
+
+    /**
+     * @var array $languages
+     * @brief Plugin available locale languages.
+     */
+    public $languages = array();
 
     /**
      * @var string $object_type
@@ -643,7 +649,7 @@ abstract class Plugin {
      * @return void
      */
     protected function add_dependency($plugin, $type, $version='1.0', $mandatory=false) {
-        $this->plugin_dependency[] = array(
+        $this->plugin_dependencies[] = array(
             'plugin'    => $plugin,
             'type'      => $type,
             'version'   => $version,

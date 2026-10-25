@@ -3,7 +3,7 @@
  * @brief String specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10.1
+ * @version 1.0.11
  * @date Creation: Oct 2007
  * @date Modification: Oct 2026
  * @copyright 2007 - 2026 CaMykS Team
@@ -170,11 +170,11 @@ function string_html2Text($string, $encoding=null) {
     switch ($encoding) {
         case 'utf8':
             if ($camyks->get_confValue('server_encoding') != 'utf8')
-                return utf8_encode($string);
+                return string_utf8_encode($string);
             break;
         case 'ISO-8859-1':
             if (string_isUTF8($string))
-                return utf8_decode($string);
+                return string_utf8_decode($string);
             break;
         default:
         case '':
@@ -676,7 +676,7 @@ function string_formatIntlPhoneNumber($number, $prefix='') {
  */
 function string_toLower($string='') {
     if (string_isUTF8($string))
-        return utf8_encode(mb_strtolower(utf8_decode($string)));
+        return mb_strtolower($string, 'UTF-8');
     return strtolower($string);
 }
 
@@ -687,7 +687,7 @@ function string_toLower($string='') {
  */
 function string_toUpper($string='') {
     if (string_isUTF8($string))
-        return utf8_encode(mb_strtoupper(utf8_decode($string)));
+        return mb_strtoupper($string, 'UTF-8');
     return strtoupper($string);
 }
 
@@ -747,7 +747,7 @@ function string_convert($string, $from, $to) {
  * @return $text
  */
 function string_utf8_encode($string='') {
-    if (version_compare(PHP_VERSION, '8.0.0', '<'))
+    if (version_compare(PHP_VERSION, '7.0.0', '<'))
         return utf8_encode($string);
     return string_convert($string, 'ISO-8859-1', 'UTF-8');
 }
@@ -758,7 +758,7 @@ function string_utf8_encode($string='') {
  * @return $text
  */
 function string_utf8_decode($string='') {
-    if (version_compare(PHP_VERSION, '8.0.0', '<'))
+    if (version_compare(PHP_VERSION, '7.0.0', '<'))
         return utf8_decode($string);
     return string_convert($string, 'UTF-8', 'ISO-8859-1');
 }

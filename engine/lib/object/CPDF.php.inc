@@ -3,9 +3,9 @@
  * @brief PDF creator object extending FDPF library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: May 2010
- * @date Modification: Aug 2026
+ * @date Modification: Oct 2026
  * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14,11 +14,86 @@
 
 require_once('FPDF/fpdf.php');
 require_once('colors.php.inc');
+require_once('string.php.inc');
 
 /**
  * CPDF class.
  */
 class CPDF extends FPDF {
+    /**
+     * @var string $unit
+     */
+    public $unit;
+
+    /**
+     * @var string $serverEncoding
+     */
+    public $serverEncoding;
+
+    /**
+     * @var integer $B
+     */
+    public $B = 0;
+
+    /**
+     * @var integer $I
+     */
+    public $I = 0;
+
+    /**
+     * @var integer $U
+     */
+    public $U = 0;
+
+    /**
+     * @var integer $OL
+     */
+    public $OL = 0;
+
+    /**
+     * @var integer $UL
+     */
+    public $UL = 0;
+
+    /**
+     * @var string $HREF
+     */
+    public $HREF = '';
+
+    /**
+     * @var array $fontlist
+     */
+    public $fontlist = array();
+
+    /**
+     * @var boolean $issetfont
+     */
+    public $issetfont = false;
+
+    /**
+     * @var boolean $issetcolor
+     */
+    public $issetcolor = false;
+
+    /**
+     * @var integer $olIndex
+     */
+    public $olIndex = 1;
+
+    /**
+     * @var array $htmlParams
+     */
+    public $htmlParams = array();
+
+    /**
+     * @var array $currentFont
+     */
+    public $currentFont = array();
+
+    /**
+     * @var boolean $isFirstBlock
+     */
+    public $isFirstBlock = true;
 
     /**
      * Class constructor.
@@ -319,8 +394,8 @@ class CPDF extends FPDF {
                 return mb_convert_encoding($text, 'ISO-8859-15');
         }
 
-        /* Use default, deprecated method */
-        return utf8_decode($text);
+        /* Use default method */
+        return string_utf8_decode($text);
     }
 
     /**

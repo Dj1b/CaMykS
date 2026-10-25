@@ -3,10 +3,10 @@
  * @brief Postgre Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Apr 2018
- * @date Modification: Jul 2025
- * @copyright 2014 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Complete create_database(), dump_database() and get_databaseSummary() methods.
@@ -16,6 +16,23 @@
  * PgSQLDBConnection class.
  */
 final class PgSQLDBConnection extends CDBConnection {
+    /**
+     * @var string $host
+     * @brief Host name.
+     */
+    protected $host = '';
+
+    /**
+     * @var string $login
+     * @brief Login name.
+     */
+    protected $login = '';
+
+    /**
+     * @var string $pwd
+     * @brief Password.
+     */
+    protected $pwd = '';
     /* Mark: Server related methods */
 
     /**

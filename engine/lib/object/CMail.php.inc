@@ -3,7 +3,7 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.2
+ * @version 1.0.4
  * @date Creation: Jun 2012
  * @date Modification: Oct 2026
  * @copyright 2012 - 2026 CaMykS Team
@@ -697,7 +697,7 @@ final class CMail {
      */
     private function _check_stringEncoding($string) {
         if (string_isUTF8($string))
-            return utf8_decode($string);
+            return string_utf8_decode($string);
         return $string;
     }
 }

@@ -2,12 +2,11 @@
 /**
  * @brief Array related methods
  * @details Engine / Tool Library
- * @file engine/lib/tool/array.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2
+ * @version 1.2.1
  * @date Creation: Jan 2010
- * @date Modification: Oct 2019
- * @copyright 2010 - 2019 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -29,7 +28,7 @@ function array_dropValue($array=array(), $value=null, $keepKeys=true) {
         return $array;
 
     /* get parsed array */
-    $parsed = preg_grep("/{$value}/i", $array, PREG_GREP_INVERT);
+    $parsed = preg_grep('/'.preg_quote($value, '/').'/i', $array, PREG_GREP_INVERT);
 
     /* return result */
     if ($keepKeys)

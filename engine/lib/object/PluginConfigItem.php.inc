@@ -3,10 +3,10 @@
  * @brief Configuration item for PluginConfig library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Oct 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -113,7 +113,7 @@ final class PluginConfigItem {
         case 'date':
             $name = $this->_name;
             if (isset ($_REQUEST[$name])) {
-                return $_REQUEST[$name] == -1 ? $this->default : $_REQUEST[$name];
+                return $_REQUEST[$name] == -1 ? $this->_default : $_REQUEST[$name];
             } else if (!isset ($_REQUEST[$name.'_year'])) {
                 return $this->_default;
             } else if ($_REQUEST[$name.'_year'] == 0) {
@@ -125,7 +125,7 @@ final class PluginConfigItem {
                     isset($_REQUEST[$name.'_seconds']) ? $_REQUEST[$name.'_seconds'] : 0,
                     isset($_REQUEST[$name.'_month']) ? $_REQUEST[$name.'_month'] : 1,
                     isset($_REQUEST[$name.'_day']) ? $_REQUEST[$name.'_day'] : 1,
-                    isset($_REQUEST[$name.'_year']) ? $_REQUEST[$name.'_year']:date('Y')
+                    isset($_REQUEST[$name.'_year']) ? $_REQUEST[$name.'_year'] : date('Y')
                 );
             }
         case 'string':
@@ -134,7 +134,7 @@ final class PluginConfigItem {
         case 'float':
         case 'boolean':
             default:
-                return isset($_REQUEST[$this->_name])?$this->update_type($_REQUEST[$this->_name]):$this->_default;
+                return isset($_REQUEST[$this->_name]) ? $this->update_type($_REQUEST[$this->_name]) : $this->_default;
         }
     }
 

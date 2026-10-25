@@ -3,10 +3,10 @@
  * @brief Module plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.4
+ * @version 1.0.3
  * @date Creation: Jun 2007
- * @date Modification: Sep 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -88,6 +88,24 @@ class Module extends Plugin {
     public $is_editable = true;
 
     /**
+     * @var integer $id
+     * @brief Content item identifier.
+     */
+    public $id = 0;
+
+    /**
+     * @var integer $page_id
+     * @brief Page identifier.
+     */
+    protected $page_id = 0;
+
+    /**
+     * @var integer $module_index
+     * @brief Content module index in page.
+     */
+    protected $module_index = -1;
+
+    /**
      * @var string $text
      * @brief Module admin message.
      */
@@ -128,6 +146,36 @@ class Module extends Plugin {
      * @brief Module admin interface button list.
      */
     protected $buttons;
+
+    /**
+     * @var string $tabObject
+     * @brief Javascript tab builder object name.
+     */
+    protected $tabObject = '';
+
+    /**
+     * @var array $tabs
+     * @brief Module admin tabs list.
+     */
+    protected $tabs = array();
+
+    /**
+     * @var HTMLForm $editform
+     * @brief Module admin edit form.
+     */
+    protected $editform = null;
+
+    /**
+     * @var string $openTab
+     * @brief Default open tab in admin mode.
+     */
+    protected $openTab = '';
+
+    /**
+     * @var mixed $editor
+     * @brief Text/WYSIWYG editor input or instance.
+     */
+    protected $editor = null;
 
     /**
      * Class constructor

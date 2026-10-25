@@ -3,10 +3,10 @@
  * @brief PDO Database connection object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Sep 2014
- * @date Modification: Sep 2020
- * @copyright 2014 - 2020 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,6 +15,11 @@
  * PDODBConnection class.
  */
 final class PDODBConnection extends CDBConnection {
+    /**
+     * @var array $queryError
+     * @brief Last query error info.
+     */
+    protected $queryError = array();
     /* server related methods */
 
     /**

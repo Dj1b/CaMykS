@@ -3,10 +3,10 @@
  * @brief Date specific methods.
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.8
+ * @version 1.0.9
  * @date Creation: Oct 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -803,12 +803,25 @@ function date_getChristmasDay($year=null) {
 function date_strftime($format, $date=TODAY) {
     global $camyks, $languages;
     if (version_compare(PHP_VERSION, '7.0.0', '>=') and class_exists('IntlDateFormatter')) {
+        $lang = (isset($camyks) and is_object($camyks) and isset($camyks->current_language)) ? $camyks->current_language : 'fr';
+        $tz = (isset($camyks) and is_object($camyks) and method_exists($camyks, 'get_confValue')) ? $camyks->get_confValue('TimeZone') : date_default_timezone_get();
         $format = preg_replace(array('#%A#', '#%e#', '#%B#', '#%Y#', '#%H#', '#%M#', '#%a#', '#%b#', '#%y#', '#%d#', '#%m#', '#%D#'),
                                array('eeee', 'd', 'MMMM', 'yyyy', 'HH', 'mm', 'eee', 'MMM', 'yy', 'dd', 'MM', 'dd/MM/yyyy'), $format);
-        $df = new IntlDateFormatter($camyks->current_language, IntlDateFormatter::FULL, IntlDateFormatter::FULL, $camyks->get_confValue('TimeZone'), IntlDateFormatter::GREGORIAN, $format);
-        return $df->format($date);
+        $df = new IntlDateFormatter($lang, IntlDateFormatter::FULL, IntlDateFormatter::FULL, $tz, IntlDateFormatter::GREGORIAN, $format);
+        if ($df) {
+            $res = $df->format($date);
+            if ($res !== false)
+                return $res;
+        }
     }
-    return strftime($format, $date);
+    if (version_compare(PHP_VERSION, '8.1.0', '<'))
+        return strftime($format, $date);
+
+    $trans = array(
+        '%Y'=>'Y', '%y'=>'y', '%m'=>'m', '%d'=>'d', '%e'=>'j',
+        '%H'=>'H', '%M'=>'i', '%S'=>'s', '%w'=>'w', '%u'=>'N',
+    );
+    return date(strtr($format, $trans), $date);
 }
 
 /************ DEPRECATED *******************/

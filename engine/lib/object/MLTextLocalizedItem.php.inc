@@ -3,10 +3,10 @@
  * @brief Text localised item of Module Library item.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Jul 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -81,9 +81,9 @@ final class MLTextLocalizedItem extends MLTextItem {
 
             /* write files */
             foreach ($camyks->get_confValue('editing_languages') as $l ) {
-                $this->filepath = $this->path.'/'.$this->folder.'/'.$this->name.$_libObjId.'_'.$l.'.html.inc';
-                if (file_exists($this->filepath) or $this->value[$l] != '') {
-                    if (!file_write($this->filepath, $header.$this->value[$l]))
+                $filepath = $this->path.'/'.$this->folder.'/'.$this->name.$_libObjId.'_'.$l.'.html.inc';
+                if (file_exists($filepath) or $this->value[$l] != '') {
+                    if (!file_write($filepath, $header.$this->value[$l]))
                         $ok = false;
                 }
             }

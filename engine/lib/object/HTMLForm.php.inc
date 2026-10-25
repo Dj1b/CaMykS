@@ -3,7 +3,7 @@
  * @brief HTML form object library.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.10.1
+ * @version 1.1.11
  * @date Creation: Jun 2005
  * @date Modification: Oct 2026
  * @copyright 2005 - 2026 CaMykS Team
@@ -490,7 +490,7 @@ class HTMLForm {
         }
 
         /* Add buttons */
-        if (count($params['buttons']) > 0) {
+        if (is_array($params['buttons']) and count($params['buttons']) > 0) {
             $b = 'document.'.$this->name.'.'.$params['name'];
             /* Add "update date" button */
             if (isset ($params['buttons']['update'])) {
@@ -917,7 +917,7 @@ class HTMLForm {
         }
 
         foreach ($prefixes as $code => $value) {
-            if ($code == '' or count($params['shortList']) == 0 or in_array($code, $params['shortList'])) {
+            if ($code == '' or !is_array($params['shortList']) or count($params['shortList']) == 0 or in_array($code, $params['shortList'])) {
                 if ($code != '') {
                     $v = '';
                     if ($params['display_country']) {
