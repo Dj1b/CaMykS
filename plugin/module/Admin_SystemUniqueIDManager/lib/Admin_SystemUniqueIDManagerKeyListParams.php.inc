@@ -3,20 +3,20 @@
  * @brief Admin_SystemUniqueIDManager module, key list parameters.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jan 2015
- * @date Modification: Jul 2025
- * @copyright 2015 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2015 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
 /* Build lists */
-$this->keysStatusList = $this->get_keysStatusList(true);
+$keysStatusList = $this->get_keysStatusList(true);
 
 /* Build links */
-$this->deleteKeyLink = 'javascript:adminengine_confirmRedirect(deleteKeyUrl+%s, deleteKeyMessage);';
+$deleteKeyLink = 'javascript:adminengine_confirmRedirect(deleteKeyUrl+%s, deleteKeyMessage);';
 $this->add_JSScript('var deleteKeyMessage="'.string_html2Text($this->get_translation('deletekeymessage')).'";');
 $this->add_JSScript('var deleteKeyUrl="'.$this->get_adminJSLink(array('mode'=>'delete_key', 'key_id'=>'')).'";');
 
@@ -26,7 +26,7 @@ $this->keyListParams = array('name'=>'uniqueIDList', 'useSession'=>true, 'object
 /* Build head parameters */
 $this->keyListParams['headselectors'] = array(
     'page'      => array('title'=>$camyks->get_translation('formitem_page'), 'itemtype'=>'page'),
-    'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$this->keysStatusList, 'default'=>'-1'),
+    'status'    => array('title'=>$camyks->get_translation('formitem_status'), 'itemtype'=>'select', 'values'=>$keysStatusList, 'default'=>'-1'),
 );
 
 /* Build sort parameters */
@@ -47,5 +47,5 @@ $this->keyListParams['listcolumns'] = array(
 
 /* Build object action parameters */
 if ($this->check_right(1))
-    $this->keyListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteKeyLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletekey'));
+    $this->keyListParams['listcolumns']['delete'] = array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$deleteKeyLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletekey'));
 ?>

@@ -4,10 +4,10 @@
  * <br /> Manages sent contact form requests.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Nov 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,6 +45,42 @@ final class Admin_GenericContactFormManager extends Module {
      * @brief Plugin configuration.
      */
     protected $config;
+
+    /**
+     * @var array $formListParams
+     * @brief Form list parameters.
+     */
+    protected $formListParams = array();
+
+    /**
+     * @var array $userList
+     * @brief User list.
+     */
+    protected $userList = array();
+
+    /**
+     * @var HTMLForm $configform
+     * @brief Configuration form.
+     */
+    protected $configform;
+
+    /**
+     * @var mixed $admin
+     * @brief Admin user for email notification.
+     */
+    protected $admin;
+
+    /**
+     * @var mixed $msgList
+     * @brief Form items list.
+     */
+    protected $msgList;
+
+    /**
+     * @var mixed $msgItem
+     * @brief Form item.
+     */
+    protected $msgItem;
 
     /**
      * Class constructor.
@@ -236,6 +272,7 @@ final class Admin_GenericContactFormManager extends Module {
         $this->formList = &$camyks->inputs['AdminItemListViewer'];
         $this->formList->set_params($this->formListParams);
         $this->formList->initialise();
+        $this->msgList = &$this->formList;
 
         /* Check for config panel */
         if ($this->check_right(2) !== false) {

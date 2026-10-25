@@ -4,10 +4,10 @@
  * <br /> Manages messages sent between admin users.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jun 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,6 +27,48 @@ final class Admin_MyMessages extends Module {
     * @brief Maximum amount of message stored in database.
     */
     public $maxmessages = 20;
+
+    /**
+     * @var mixed $ouser
+     * @brief Other user object/data.
+     */
+    protected $ouser;
+
+    /**
+     * @var string $view
+     * @brief View mode.
+     */
+    protected $view;
+
+    /**
+     * @var mixed $receivedbox
+     * @brief Received box input/list.
+     */
+    protected $receivedbox;
+
+    /**
+     * @var mixed $sentbox
+     * @brief Sent box input/list.
+     */
+    protected $sentbox;
+
+    /**
+     * @var HTMLForm $writeform
+     * @brief Write message form.
+     */
+    protected $writeform;
+
+    /**
+     * @var HTMLForm $rboxform
+     * @brief Received box form.
+     */
+    protected $rboxform;
+
+    /**
+     * @var HTMLForm $sboxform
+     * @brief Sent box form.
+     */
+    protected $sboxform;
 
     /**
      * Class constructor.

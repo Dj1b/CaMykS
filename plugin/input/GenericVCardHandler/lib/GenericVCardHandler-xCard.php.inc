@@ -3,10 +3,10 @@
  * @brief GenericVCardHandler input, XCard format library.
  * @details Plugin / Input Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Dec 2014
- * @date Modification: Jul 2025
- * @copyright 2014 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,6 +15,18 @@
  * GenericVCardHandler_xCard class.
  */
 final class GenericVCardHandler_xCard {
+    /**
+     * @var GenericVCardHandler $parentInput
+     * @brief Parent input object.
+     */
+    protected $parentInput = null;
+
+    /**
+     * @var array $params
+     * @brief Handler parameters.
+     */
+    protected $params = array();
+
     /**
      * Class constructor.
      * @param Object $parent

@@ -3,9 +3,9 @@
  * @brief Content_GenericLegalMentions module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.2
  * @date Creation: Jan 2020
- * @date Modification: May 2026
+ * @date Modification: Oct 2026
  * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -38,6 +38,12 @@ final class Content_GenericLegalMentions extends Module {
      * @brief List of extension plugins
      */
     protected $extensions;
+
+    /**
+     * @var TabBuilder $ownerTabs
+     * @brief Tab builder for owner tabs.
+     */
+    protected $ownerTabs;
 
     /**
      * @var array $extraData

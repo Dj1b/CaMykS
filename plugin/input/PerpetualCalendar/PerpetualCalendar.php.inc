@@ -4,10 +4,10 @@
  * <br /> Display a calendar, and allow multiple actions on it.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Apr 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -16,6 +16,24 @@
  * PerpetualCalendar Input class.
  */
 final class PerpetualCalendar extends Input {
+    /**
+     * @var integer $calendarFirstDay
+     * @brief First day timestamp.
+     */
+    protected $calendarFirstDay;
+
+    /**
+     * @var integer $calendarLastDay
+     * @brief Last day timestamp.
+     */
+    protected $calendarLastDay;
+
+    /**
+     * @var array $displayedItems
+     * @brief Displayed items cache.
+     */
+    protected $displayedItems = array();
+
     /**
      * Class constructor.
      * @param string $path_type
@@ -158,26 +176,26 @@ final class PerpetualCalendar extends Input {
         }
 
         /* add scripts locales */
-        $this->add_JSScript($this->params['name'].'.set_locale("monday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 5, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("tuesday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 6, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("wednesday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 7, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("thursday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 8, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("friday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 9, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("saturday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 10, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("sunday", "'.ucfirst(strftime('%A', mktime(0, 0, 0, 4, 11, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("monday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 5, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("tuesday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 6, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("wednesday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 7, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("thursday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 8, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("friday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 9, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("saturday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 10, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("sunday", "'.ucfirst(date_strftime('%A', mktime(0, 0, 0, 4, 11, 2010))).'");');
 
-        $this->add_JSScript($this->params['name'].'.set_locale("january", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 1, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("february", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 2, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("march", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 3, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("april", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 4, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("may", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 5, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("june", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 6, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("july", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 7, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("august", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 8, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("september", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 9, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("october", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 10, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("november", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 11, 1, 2010))).'");');
-        $this->add_JSScript($this->params['name'].'.set_locale("december", "'.ucfirst(strftime('%B', mktime(0, 0, 0, 12, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("january", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 1, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("february", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 2, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("march", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 3, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("april", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 4, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("may", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 5, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("june", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 6, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("july", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 7, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("august", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 8, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("september", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 9, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("october", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 10, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("november", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 11, 1, 2010))).'");');
+        $this->add_JSScript($this->params['name'].'.set_locale("december", "'.ucfirst(date_strftime('%B', mktime(0, 0, 0, 12, 1, 2010))).'");');
 
         $this->displayedItems = array();
 

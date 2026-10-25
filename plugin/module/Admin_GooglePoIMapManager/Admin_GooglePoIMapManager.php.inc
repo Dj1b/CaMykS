@@ -4,10 +4,10 @@
  * <br /> Manages points of interest for a Google Map.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jun 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -57,6 +57,42 @@ final class Admin_GooglePoIMapManager extends Module {
      * @brief Plugin configuration.
      */
     protected $config;
+
+    /**
+     * @var array $pointListParams
+     * @brief Point list parameters.
+     */
+    protected $pointListParams = array();
+
+    /**
+     * @var array $catListParams
+     * @brief Category list parameters.
+     */
+    protected $catListParams = array();
+
+    /**
+     * @var array $iconListParams
+     * @brief Icon list parameters.
+     */
+    protected $iconListParams = array();
+
+    /**
+     * @var string $elg
+     * @brief Editing language.
+     */
+    protected $elg;
+
+    /**
+     * @var Input $input
+     * @brief Rich text editor input.
+     */
+    protected $input;
+
+    /**
+     * @var HTMLForm $configform
+     * @brief Configuration form.
+     */
+    protected $configform;
 
     /**
      * Class constructor.

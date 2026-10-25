@@ -3,10 +3,10 @@
  * @brief Content_GenericFaq module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Apr 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -50,6 +50,60 @@ final class Content_GenericFaq extends Module {
      * @brief Faq item.
      */
     public $faqitem;
+
+    /**
+     * @var array $faqitems
+     * @brief Faq items list.
+     */
+    protected $faqitems = array();
+
+    /**
+     * @var integer $faqcount
+     * @brief Faq items count.
+     */
+    protected $faqcount;
+
+    /**
+     * @var string $linkedit
+     * @brief Edit link URL.
+     */
+    protected $linkedit;
+
+    /**
+     * @var string $linknew
+     * @brief New item link URL.
+     */
+    protected $linknew;
+
+    /**
+     * @var string $linkup
+     * @brief Move up link URL.
+     */
+    protected $linkup;
+
+    /**
+     * @var string $linkdown
+     * @brief Move down link URL.
+     */
+    protected $linkdown;
+
+    /**
+     * @var string $linkdelete
+     * @brief Delete item link URL.
+     */
+    protected $linkdelete;
+
+    /**
+     * @var string $nextfaqs
+     * @brief Next faqs page link.
+     */
+    protected $nextfaqs;
+
+    /**
+     * @var string $prevfaqs
+     * @brief Previous faqs page link.
+     */
+    protected $prevfaqs;
 
     /**
      * Class constructor.

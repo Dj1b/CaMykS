@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief PerpetualCalendar Input layout
+ * @brief PerpetualCalendar input, main layout.
  * @details Plugin / Input layout
- * @file plugin/input/PerpetualCalendar/html/input.html.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Apr 2010
- * @date Modification: Jul 2018
- * @copyright 2010 - 2018 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @cond Exclude
@@ -21,10 +20,10 @@ $difDay = 24*60*60;
 if ($this->params['enableHighlight']==1) {
     $over = 'this.className=\'cell%sOver\';';
     $out = 'this.className=\'cell%s\';';
- } else {
+} else {
     $over = '';
     $out = '';
- }
+}
 ?>
 <table cellspacing="<?= $this->params['styleCellspacing']; ?>" cellpadding="0" class="perpetualCalendar">
     <tbody id="<?= $this->params['name']?>Object">
@@ -33,7 +32,7 @@ if ($this->params['enableHighlight']==1) {
                 <?= $this->get_buttonDisplay('left', $this->params['prevMonthLink']); ?>
             </td>
 
-            <td colspan="5" class="cellDate" id="<?= $this->params['name']?>Date"><?=ucfirst(strftime('%B %Y', $this->calendarFirstDay)); ?></td>
+            <td colspan="5" class="cellDate" id="<?= $this->params['name']?>Date"><?=ucfirst(date_strftime('%B %Y', $this->calendarFirstDay)); ?></td>
 
             <td class="cellLink">
                 <?= $this->get_buttonDisplay('right', $this->params['nextMonthLink']); ?>
@@ -42,7 +41,7 @@ if ($this->params['enableHighlight']==1) {
 
         <tr>
             <?php for($i=0; $i<7; $i++) : ?>
-                <td class="cellDay"><?=strtoupper(substr(strftime('%a', $refDay+($i*$difDay)),0 , 1)); ?></td>
+                <td class="cellDay"><?=strtoupper(substr(date_strftime('%a', $refDay+($i*$difDay)), 0, 1)); ?></td>
             <?php endfor; ?>
         </tr>
 

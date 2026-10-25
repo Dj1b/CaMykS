@@ -4,10 +4,10 @@
  * <br /> Manages media libraries.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.2
  * @date Creation: Jun 2015
- * @date Modification: Jul 2025
- * @copyright 2015 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2015 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,6 +45,54 @@ final class Admin_GenericMediaLibraryManager extends Module {
      * @brief Plugin configuration.
      */
     protected $config;
+
+    /**
+     * @var array $pictureGalleryListParams
+     * @brief Picture gallery list parameters.
+     */
+    protected $pictureGalleryListParams = array();
+
+    /**
+     * @var array $configResizeModeList
+     * @brief Resize modes list.
+     */
+    protected $configResizeModeList = array();
+
+    /**
+     * @var array $configFileTypeList
+     * @brief File types list.
+     */
+    protected $configFileTypeList = array();
+
+    /**
+     * @var HTMLForm $configform
+     * @brief Configuration form.
+     */
+    protected $configform;
+
+    /**
+     * @var array $pictureListParams
+     * @brief Picture list parameters.
+     */
+    protected $pictureListParams = array();
+
+    /**
+     * @var array $pictureGalleryStatusList
+     * @brief Picture gallery status list.
+     */
+    protected $pictureGalleryStatusList = array();
+
+    /**
+     * @var integer $previewWidth
+     * @brief Preview width in pixels.
+     */
+    protected $previewWidth = 200;
+
+    /**
+     * @var Input $input
+     * @brief Form/Editor input.
+     */
+    protected $input;
 
     /**
      * Class constructor.

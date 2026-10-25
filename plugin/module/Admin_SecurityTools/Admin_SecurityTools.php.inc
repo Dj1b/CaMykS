@@ -7,10 +7,10 @@
  * <br /> - Flood (POST) Control : ?
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.2.2.2
+ * @version 1.2.3
  * @date Creation: Oct 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo - remove cdata & cplugin folders sym links from "complete" backup
@@ -63,6 +63,72 @@ final class Admin_SecurityTools extends Module {
         'uafilter'  => array('configure' => true),
         'backup'    => array('configure' => true),
     );
+
+    /**
+     * @var mixed $answer
+     * @brief AJAX/Action answer.
+     */
+    protected $answer;
+
+    /**
+     * @var mixed $ipFilterRuleList
+     * @brief IP filter rules list component.
+     */
+    protected $ipFilterRuleList;
+
+    /**
+     * @var array $ipFilterRuleListParams
+     * @brief IP filter rules list parameters.
+     */
+    protected $ipFilterRuleListParams = array();
+
+    /**
+     * @var mixed $urlFilterRuleList
+     * @brief URL filter rules list component.
+     */
+    protected $urlFilterRuleList;
+
+    /**
+     * @var array $urlFilterRuleListParams
+     * @brief URL filter rules list parameters.
+     */
+    protected $urlFilterRuleListParams = array();
+
+    /**
+     * @var array $backup_methods
+     * @brief Backup methods list.
+     */
+    protected $backup_methods = array();
+
+    /**
+     * @var array $backup_compressions
+     * @brief Backup compression methods list.
+     */
+    protected $backup_compressions = array();
+
+    /**
+     * @var array $backup_types
+     * @brief Backup types list.
+     */
+    protected $backup_types = array();
+
+    /**
+     * @var mixed $integrityCheckResult
+     * @brief CaMykS integrity check result.
+     */
+    protected $integrityCheckResult;
+
+    /**
+     * @var array $ipfilterrules
+     * @brief IP filter rules data.
+     */
+    protected $ipfilterrules = array();
+
+    /**
+     * @var array $backupfiles
+     * @brief Backup files list.
+     */
+    protected $backupfiles = array();
 
     /**
      * Class constructor.

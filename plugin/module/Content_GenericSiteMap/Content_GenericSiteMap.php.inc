@@ -3,10 +3,10 @@
  * @brief Content_GenericSiteMap module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Jul 2008
- * @date Modification: Jul 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -38,6 +38,24 @@ final class Content_GenericSiteMap extends Module {
      * @brief Page limit.
      */
     protected $pagelimit = 0;
+
+    /**
+     * @var array $layouts
+     * @brief Layouts list.
+     */
+    protected $layouts = array();
+
+    /**
+     * @var array $pages
+     * @brief Pages list.
+     */
+    protected $pages = array();
+
+    /**
+     * @var float|integer $col_width
+     * @brief Column width percentage.
+     */
+    protected $col_width;
 
     /**
      * Class constructor.
@@ -251,7 +269,7 @@ final class Content_GenericSiteMap extends Module {
         $this->pagelimit = ceil(count($this->pages)/(2*max(1,$this->smItem->vars['columns'])));
 
         $this->sitemap = '<div><div style="float:left;width:'.$this->col_width.'%;">';
-        $this->build_ageChildrenMap($this->pages[0]->children, 0);
+        $this->build_pageChildrenMap($this->pages[0]->children, 0);
         $this->sitemap .= '</div><div style="height:2px; font-size:1px; clear:both;">&nbsp;</div></div>';
     }
 
@@ -298,7 +316,7 @@ final class Content_GenericSiteMap extends Module {
 
             /* display children */
             if (count($page->children) > 0)
-                $this->buildPageChildrenMap($page->children,$level+1);
+                $this->build_pageChildrenMap($page->children,$level+1);
         }
     }
 }

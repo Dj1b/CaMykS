@@ -1,13 +1,12 @@
 <?php
 /**
- * @brief GenericVCardHandler Input library to manage hCard format
+ * @brief GenericVCardHandler input, hCard format library.
  * @details Plugin / Input Library
- * @file plugin/input/GenericVCardHandler/lib/GenericVCardHandler-hCard.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0
+ * @version 1.0.1
  * @date Creation: Dec 2014
- * @date Modification: Jul 2018
- * @copyright 2014 - 2018 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -17,12 +16,24 @@
  */
 final class GenericVCardHandler_hCard {
     /**
+     * @var GenericVCardHandler $parentInput
+     * @brief Parent input object.
+     */
+    protected $parentInput = null;
+
+    /**
+     * @var array $params
+     * @brief Handler parameters.
+     */
+    protected $params = array();
+
+    /**
      * Class constructor.
      * @param Object $parent
      * @param array $params
      * @return void
      */
-    public function __constrcut($parent, $params) {
+    public function __construct($parent, $params) {
         $this->parentInput = $parent;
         $this->params = $params;
     }

@@ -3,10 +3,10 @@
  * @brief Content_GenericMenu module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Jul 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,6 +26,42 @@ final class Content_GenericMenu extends Module {
      * @brief List of layouts.
      */
     protected $layouts = array();
+
+    /**
+     * @var integer $menuid
+     * @brief Menu ID.
+     */
+    protected $menuid;
+
+    /**
+     * @var array $contents
+     * @brief Cached contents list.
+     */
+    protected $contents = null;
+
+    /**
+     * @var array $pages
+     * @brief Pages list.
+     */
+    protected $pages = array();
+
+    /**
+     * @var integer $mindex
+     * @brief Module index.
+     */
+    protected $mindex;
+
+    /**
+     * @var mixed $layeredMenu
+     * @brief Layered menu input or helper.
+     */
+    protected $layeredMenu;
+
+    /**
+     * @var mixed $root
+     * @brief Root menu item/node.
+     */
+    protected $root;
 
     /**
      * Class constructor.
@@ -143,15 +179,19 @@ final class Content_GenericMenu extends Module {
     public function init_site($content=1, $params=array(), $mindex=null) {
         global $camyks;
 
-        if (!isset($this->contents)) {
+        if (!isset($this->contents) or is_null($this->contents) or empty($this->pages)) {
             /* get site pages */
-            $this->pages = $camyks->modules['Admin_ContentPage']->get_sitePages();
+            if (isset($camyks->modules['Admin_ContentPage'])) {
+                $this->pages = $camyks->modules['Admin_ContentPage']->get_sitePages();
+            }
 
             /* update styles */
             $this->add_styleFile('genericmenu.css');
 
             /* get contents list */
-            $this->contents = array();
+            if (!is_array($this->contents)) {
+                $this->contents = array();
+            }
         }
 
         /* Load item */
@@ -160,9 +200,10 @@ final class Content_GenericMenu extends Module {
         $this->contents[$mindex]->get_fromItems();
 
         /* Check if "root" page exits */
-        if (isset ($this->pages[$this->contents[$mindex]->vars['root']])) {
+        $rootId = isset($this->contents[$mindex]->vars['root']) ? $this->contents[$mindex]->vars['root'] : 0;
+        if (isset($this->pages[$rootId])) {
             /* Load root page */
-            $this->contents[$mindex]->vars['rootpage'] = &$this->pages[$this->contents[$mindex]->vars['root']];
+            $this->contents[$mindex]->vars['rootpage'] = &$this->pages[$rootId];
 
             /* Specific layout initialisation */
             switch ($this->contents[$mindex]->vars['layout']) {
@@ -180,6 +221,9 @@ final class Content_GenericMenu extends Module {
                 default:
 
             }
+        } else if (isset($this->pages[0])) {
+            /* Fallback to site root */
+            $this->contents[$mindex]->vars['rootpage'] = &$this->pages[0];
         }
         parent::init_site();
     }
@@ -193,8 +237,14 @@ final class Content_GenericMenu extends Module {
 
         /* Load selected content */
         $this->mindex = $mindex;
-        $this->layeredMenu = &$this->contents[$mindex]->vars['layeredMenu'];
-        $this->root = &$this->contents[$mindex]->vars['rootpage'];
+        $this->layeredMenu = isset($this->contents[$mindex]->vars['layeredMenu']) ? $this->contents[$mindex]->vars['layeredMenu'] : null;
+        if (isset($this->contents[$mindex]->vars['rootpage']) and is_object($this->contents[$mindex]->vars['rootpage'])) {
+            $this->root = &$this->contents[$mindex]->vars['rootpage'];
+        } else if (isset($this->pages[0]) and is_object($this->pages[0])) {
+            $this->root = &$this->pages[0];
+        } else {
+            $this->root = null;
+        }
 
         /* Update layout */
         $this->set_selectedLayout('site_'.$this->contents[$mindex]->vars['layout'].'.html.inc');

@@ -3,10 +3,10 @@
  * @brief Content_GooglePoIMapViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jun 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,66 @@ final class Content_GooglePoIMapViewer extends Module {
      * @brief Content object.
      */
     protected $contentItem;
+
+    /**
+     * @var mixed $pointItem
+     * @brief Point of interest item object.
+     */
+    protected $pointItem;
+
+    /**
+     * @var Module $mapManager
+     * @brief PoI map manager module.
+     */
+    protected $mapManager;
+
+    /**
+     * @var array $categoryList
+     * @brief Category list.
+     */
+    protected $categoryList = array();
+
+    /**
+     * @var array $pointList
+     * @brief Points of interest list.
+     */
+    protected $pointList = array();
+
+    /**
+     * @var array $iconList
+     * @brief Icons list.
+     */
+    protected $iconList = array();
+
+    /**
+     * @var boolean $has_selector
+     * @brief Has category/country selector.
+     */
+    protected $has_selector = false;
+
+    /**
+     * @var mixed $selCategory
+     * @brief Selected category.
+     */
+    protected $selCategory;
+
+    /**
+     * @var mixed $selCountry
+     * @brief Selected country.
+     */
+    protected $selCountry;
+
+    /**
+     * @var array $countryList
+     * @brief Country list.
+     */
+    protected $countryList = array();
+
+    /**
+     * @var array $elgs
+     * @brief Editing languages list.
+     */
+    protected $elgs = array();
 
     /**
      * Class constructor.

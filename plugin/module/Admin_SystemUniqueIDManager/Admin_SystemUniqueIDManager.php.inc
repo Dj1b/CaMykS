@@ -4,10 +4,10 @@
  * <br /> Provides unique ids on requests.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Jan 2015
- * @date Modification: Jul 2025
- * @copyright 2015 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2015 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -33,6 +33,30 @@ final class Admin_SystemUniqueIDManager extends Module {
      * @brief Plugin configuration.
      */
     protected $config;
+
+    /**
+     * @var array $keyListParams
+     * @brief Key list parameters.
+     */
+    protected $keyListParams = array();
+
+    /**
+     * @var array $generatingMethodList
+     * @brief Generating methods list.
+     */
+    protected $generatingMethodList = array();
+
+    /**
+     * @var integer $totalGeneratedKeys
+     * @brief Total count of generated keys.
+     */
+    protected $totalGeneratedKeys;
+
+    /**
+     * @var integer $freeGeneratedKeys
+     * @brief Free count of generated keys.
+     */
+    protected $freeGeneratedKeys;
 
     /**
      * Class constructor.

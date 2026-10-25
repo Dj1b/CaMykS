@@ -4,10 +4,10 @@
  * <br /> Display an image gallery.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.2
+ * @version 1.0.1
  * @date Creation: Jul 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -51,6 +51,86 @@ final class SmartGallery extends Input {
      * @brief Is sliding enabled.
      */
     public $sliding = false;
+
+    /**
+     * @var string $objectName
+     */
+    protected $objectName = '';
+
+    /**
+     * @var string $imageURL
+     */
+    protected $imageURL = '';
+
+    /**
+     * @var string $thumbURL
+     */
+    protected $thumbURL = '';
+
+    /**
+     * @var boolean $image
+     */
+    protected $image = false;
+
+    /**
+     * @var integer $imageWidth
+     */
+    protected $imageWidth = 0;
+
+    /**
+     * @var integer $imageHeight
+     */
+    protected $imageHeight = 0;
+
+    /**
+     * @var integer $imageTitle
+     */
+    protected $imageTitle = 0;
+
+    /**
+     * @var integer $imageDesc
+     */
+    protected $imageDesc = 0;
+
+    /**
+     * @var boolean $thumb
+     */
+    protected $thumb = false;
+
+    /**
+     * @var integer $thumbWidth
+     */
+    protected $thumbWidth = 0;
+
+    /**
+     * @var integer $thumbHeight
+     */
+    protected $thumbHeight = 0;
+
+    /**
+     * @var integer $thumbCount
+     */
+    protected $thumbCount = 0;
+
+    /**
+     * @var string $slidingMethod
+     */
+    protected $slidingMethod = '';
+
+    /**
+     * @var float $slidingAccel
+     */
+    protected $slidingAccel = 0;
+
+    /**
+     * @var integer $slidingSpeed
+     */
+    protected $slidingSpeed = 0;
+
+    /**
+     * @var integer $slidingInterval
+     */
+    protected $slidingInterval = 0;
 
     /**
      * Class constructor.

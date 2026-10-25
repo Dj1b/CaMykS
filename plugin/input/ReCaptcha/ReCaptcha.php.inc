@@ -4,10 +4,10 @@
  * <br /> Display and check Google's ReCaptcha captcha.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Feb 2016
- * @date Modification: Jul 2025
- * @copyright 2016 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2016 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -28,6 +28,12 @@ final class ReCaptcha extends Input {
      * @brief Stores if the configuration is loaded
      */
     protected $isConfigLoaded = false;
+
+    /**
+     * @var ReCaptchaConfig $config
+     * @brief Input configuration.
+     */
+    protected $config = null;
 
     /**
      * Class constructor.

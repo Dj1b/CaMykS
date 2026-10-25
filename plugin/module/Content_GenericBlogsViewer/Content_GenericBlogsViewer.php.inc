@@ -3,10 +3,10 @@
  * @brief Content_GenericBlogsViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Apr 2008
- * @date Modification: Oct 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,126 @@ final class Content_GenericBlogsViewer extends Module {
      * @brief Content object.
      */
     protected $configItem;
+
+    /**
+     * @var array $params
+     * @brief Parameters.
+     */
+    protected $params = array();
+
+    /**
+     * @var Module $manager
+     * @brief Blog manager module.
+     */
+    protected $manager;
+
+    /**
+     * @var array $authorList
+     * @brief Author list.
+     */
+    protected $authorList = array();
+
+    /**
+     * @var mixed $networkInput
+     * @brief Network sharing input.
+     */
+    protected $networkInput;
+
+    /**
+     * @var boolean $rssAvailable
+     * @brief RSS feed availability.
+     */
+    protected $rssAvailable;
+
+    /**
+     * @var boolean $gpcAvailable
+     * @brief Generic Page Comments availability.
+     */
+    protected $gpcAvailable;
+
+    /**
+     * @var boolean $snspAvailable
+     * @brief Social Networks Sharing Panel availability.
+     */
+    protected $snspAvailable;
+
+    /**
+     * @var integer $blogItemCount
+     * @brief Total count of blog items.
+     */
+    protected $blogItemCount;
+
+    /**
+     * @var mixed $pageController
+     * @brief Page controller helper/input.
+     */
+    protected $pageController;
+
+    /**
+     * @var array $blogItems
+     * @brief Blog items list.
+     */
+    protected $blogItems = array();
+
+    /**
+     * @var mixed $blogItem
+     * @brief Current blog item.
+     */
+    protected $blogItem;
+
+    /**
+     * @var string $com_mode
+     * @brief Comment mode.
+     */
+    protected $com_mode;
+
+    /**
+     * @var string $com_error
+     * @brief Comment error message.
+     */
+    protected $com_error;
+
+    /**
+     * @var mixed $commentItem
+     * @brief Current comment item.
+     */
+    protected $commentItem;
+
+    /**
+     * @var array $panel_authors
+     * @brief Panel authors list.
+     */
+    protected $panel_authors;
+
+    /**
+     * @var array $panel_tags
+     * @brief Panel tags list.
+     */
+    protected $panel_tags;
+
+    /**
+     * @var array $panel_links
+     * @brief Panel links list.
+     */
+    protected $panel_links;
+
+    /**
+     * @var HTMLForm $com_form
+     * @brief Comment form.
+     */
+    protected $com_form;
+
+    /**
+     * @var string $blogPrevPage
+     * @brief Previous page link.
+     */
+    protected $blogPrevPage;
+
+    /**
+     * @var string $blogNextPage
+     * @brief Next page link.
+     */
+    protected $blogNextPage;
 
     /**
      * Class constructor.

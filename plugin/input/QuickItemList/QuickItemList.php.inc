@@ -4,10 +4,10 @@
  * <br /> Allows multi selection in a list.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Mar 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -52,6 +52,12 @@ final class QuickItemList extends Input {
      * @brief HTML form name.
      */
     protected $form;
+
+    /**
+     * @var string $formName
+     * @brief Form name.
+     */
+    protected $formName = '';
 
     /**
      * var string $formItemName

@@ -3,7 +3,7 @@
  * @brief Content_GenericHTMLNews Module news list parameters.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.2
  * @date Creation: Apr 2009
  * @date Modification: Oct 2026
  * @copyright 2009 - 2026 CaMykS Team
@@ -13,8 +13,9 @@
 global $camyks;
 
 /* Build links */
-$this->editNewsLink = $this->get_adminLink(array('mode'=>'edit_item', 'news_id'=>'%s'));
-$this->deleteNewsLink = 'javascript:adminengine_confirmRedirect(deleteNewsUrl+%s, deleteNewsMessage);';
+$newNewsLink = $this->get_adminLink(array('mode'=>'edit_item', 'news_id'=>0));
+$editNewsLink = $this->get_adminLink(array('mode'=>'edit_item', 'news_id'=>'%s'));
+$deleteNewsLink = 'javascript:adminengine_confirmRedirect(deleteNewsUrl+%s, deleteNewsMessage);';
 $this->add_JSScript('var deleteNewsMessage="'.string_html2Text($this->get_translation('deletenewsmessage')).'";');
 $this->add_JSScript('var deleteNewsUrl="'.$this->get_adminJSLink(array('mode'=>'delete_item', 'news_id'=>'')).'";');
 
@@ -31,7 +32,7 @@ $this->newsListParams['headhiddens'] = array('list'=>$this->newslist->id);
 $this->newsListParams['sort'] = array('allowed'=>true, 'default'=>'ndate', 'defaultway'=>'desc');
 
 /* Build column parameters */
-$this->newsListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewnews'), 'icon'=>'plus', 'url_value'=>vsprintf($this->editNewsLink, array(0=>0)), 'titlecolumn'=>'language', 'buttoncolumn'=>'edit'));
+$this->newsListParams['listlinks'] = array('new'=>array('title'=>$this->get_translation('addnewnews'), 'icon'=>'plus', 'url_value'=>$newNewsLink, 'titlecolumn'=>'language', 'buttoncolumn'=>'edit'));
 
 $this->newsListParams['listcolumns'] = array(
     'status'    => array('title'=>' ', 'columntype'=>'boolean', 'mode'=>'pict', 'style'=>'width:12px;'),
@@ -39,7 +40,7 @@ $this->newsListParams['listcolumns'] = array(
     'author'    => array('title'=>$camyks->get_translation('author'), 'columntype'=>'text'),
     'ndate'     => array('title'=>$camyks->get_translation('date'), 'columntype'=>'date', 'mode'=>'shortwithhour', 'style'=>'width:140px;'),
     'title'     => array('title'=>$camyks->get_translation('title'),'columntype'=>'text'),
-    'edit'      => array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$this->editNewsLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editnews')),
-    'delete'    => array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$this->deleteNewsLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletenews')),
+    'edit'      => array('title'=>' ', 'columntype'=>'button', 'icon'=>'edit', 'url_value'=>$editNewsLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('editnews')),
+    'delete'    => array('title'=>' ', 'columntype'=>'button', 'icon'=>'cross', 'url_value'=>$deleteNewsLink, 'style'=>'width:12px;', 'url_title'=>$this->get_translation('deletenews')),
 );
 ?>

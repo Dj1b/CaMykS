@@ -4,10 +4,10 @@
  * <br /> Administration module to manage website pages.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.3.3
+ * @version 1.1.4
  * @date Creation: Jun 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo other page type (folder, ...)
@@ -73,6 +73,168 @@ final class Admin_ContentPage extends Module {
      * @brief Id of the website home page object.
      **/
     public $siteHomePage = null;
+
+    /**
+     * @var boolean $allowedition
+     * @brief Page edition permission.
+     */
+    protected $allowedition;
+
+    /**
+     * @var string $request_mode
+     * @brief AJAX request mode.
+     */
+    protected $request_mode;
+
+    /**
+     * @var string $request_callback
+     * @brief AJAX request callback.
+     */
+    protected $request_callback;
+
+    /**
+     * @var boolean $W3CValidatorStatus
+     * @brief W3C validator module status.
+     */
+    protected $W3CValidatorStatus;
+
+    /**
+     * @var boolean $OGMetaStatus
+     * @brief OpenGraph meta module status.
+     */
+    protected $OGMetaStatus;
+
+    /**
+     * @var array $Error404FallBacks
+     * @brief 404 error fallback options.
+     */
+    protected $Error404FallBacks = array();
+
+    /**
+     * @var array $admin_groups
+     * @brief Admin groups list.
+     */
+    protected $admin_groups = array();
+
+    /**
+     * @var mixed $wfEditor
+     * @brief Current workflow editor.
+     */
+    protected $wfEditor;
+
+    /**
+     * @var array $wfEditors
+     * @brief Workflow editors list.
+     */
+    protected $wfEditors = array();
+
+    /**
+     * @var array $meta_methods
+     * @brief Metadata methods list.
+     */
+    protected $meta_methods = array();
+
+    /**
+     * @var array $meta_languages
+     * @brief Metadata languages list.
+     */
+    protected $meta_languages = array();
+
+    /**
+     * @var array $modules
+     * @brief Available modules list.
+     */
+    protected $modules = array();
+
+    /**
+     * @var array $contents
+     * @brief Page contents list.
+     */
+    protected $contents = array();
+
+    /**
+     * @var boolean $allow_theme_change
+     * @brief Permission to change theme.
+     */
+    protected $allow_theme_change = false;
+
+    /**
+     * @var boolean $allow_content_edition
+     * @brief Permission to edit content.
+     */
+    protected $allow_content_edition = false;
+
+    /**
+     * @var boolean $allow_rights_edition
+     * @brief Permission to edit rights.
+     */
+    protected $allow_rights_edition = false;
+
+    /**
+     * @var array $models
+     * @brief Page models list.
+     */
+    protected $models = array();
+
+    /**
+     * @var array $modelTitleList
+     * @brief Model titles list.
+     */
+    protected $modelTitleList = array();
+
+    /**
+     * @var array $themeTitleList
+     * @brief Theme titles list.
+     */
+    protected $themeTitleList = array();
+
+    /**
+     * @var array $mthemeTitleList
+     * @brief Mobile theme titles list.
+     */
+    protected $mthemeTitleList = array();
+
+    /**
+     * @var array $templateTitleList
+     * @brief Template titles list.
+     */
+    protected $templateTitleList = array();
+
+    /**
+     * @var array $moduleTitleList
+     * @brief Module titles list.
+     */
+    protected $moduleTitleList = array();
+
+    /**
+     * @var mixed $pageActionsMenu
+     * @brief Page actions contextual menu.
+     */
+    protected $pageActionsMenu;
+
+    /**
+     * @var mixed $columnActionsMenu
+     * @brief Column actions contextual menu.
+     */
+    protected $columnActionsMenu;
+
+    /**
+     * @var mixed $modelActionsMenu
+     * @brief Model actions contextual menu.
+     */
+    protected $modelActionsMenu;
+
+    /**
+     * @var boolean $HrefLangStatus
+     * @brief HrefLang status.
+     */
+    protected $HrefLangStatus;
+
+    /**
+     * @var mixed $pc
+     * @brief PageChooser input instance.
+     */
+    protected $pc;
 
     /**
      * Class constructor.

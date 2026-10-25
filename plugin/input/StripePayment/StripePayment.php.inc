@@ -4,10 +4,10 @@
  * <br /> Interface to Stripe payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.1
+ * @version 1.0.5
  * @date Creation: May 2020
- * @date Modification: Jul 2025
- * @copyright 2020 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Stripe version 7.54.0
@@ -58,6 +58,30 @@ final class StripePayment extends Input {
      * @brief Loaded Stripe public API key.
      */
     private $publicAPIKey = null;
+
+    /**
+     * @var string $_transactionId
+     * @brief Transaction id.
+     */
+    protected $_transactionId = '';
+
+    /**
+     * @var StripePaymentConfig $config
+     * @brief Input configuration.
+     */
+    protected $config = null;
+
+    /**
+     * @var HTMLForm $paymentForm
+     * @brief Payment form object.
+     */
+    protected $paymentForm = null;
+
+    /**
+     * @var array $confirmationData
+     * @brief Confirmation data.
+     */
+    protected $confirmationData = null;
 
     /**
      * Class constructor.

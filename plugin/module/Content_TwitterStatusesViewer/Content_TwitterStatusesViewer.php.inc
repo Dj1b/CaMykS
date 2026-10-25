@@ -3,10 +3,10 @@
  * @brief Content_TwitterStatusesViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jul 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,24 @@ final class Content_TwitterStatusesViewer extends Module {
      * @brief Content object.
      */
     protected $configItem;
+
+    /**
+     * @var array $params
+     * @brief Parameters.
+     */
+    protected $params = array();
+
+    /**
+     * @var array $tweets
+     * @brief Tweets list.
+     */
+    protected $tweets = array();
+
+    /**
+     * @var array $userData
+     * @brief Twitter user data.
+     */
+    protected $userData = array();
 
     /**
      * Class constructor.

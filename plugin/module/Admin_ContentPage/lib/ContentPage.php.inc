@@ -3,9 +3,9 @@
  * @brief Admin_ContentPage module, ContentPage library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.5.7
+ * @version 1.1.6
  * @date Creation: Jun 2005
- * @date Modification: Aug 2026
+ * @date Modification: Oct 2026
  * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -230,6 +230,42 @@ final class ContentPage {
      * @brief Localised description value.
      */
     public $description;
+
+    /**
+     * @var integer $wf_state
+     * @brief Workflow state.
+     */
+    public $wf_state;
+
+    /**
+     * @var array $versions
+     * @brief Page versions.
+     */
+    public $versions = array();
+
+    /**
+     * @var boolean $allow_content_edition
+     * @brief Permission to edit content.
+     */
+    public $allow_content_edition = false;
+
+    /**
+     * @var boolean $allow_rights_edition
+     * @brief Permission to edit rights.
+     */
+    public $allow_rights_edition = false;
+
+    /**
+     * @var integer $_level
+     * @brief Page hierarchy level.
+     */
+    public $_level;
+
+    /**
+     * @var string $_path
+     * @brief Page tree path.
+     */
+    public $_path;
 
     /**
      * Class constructor.

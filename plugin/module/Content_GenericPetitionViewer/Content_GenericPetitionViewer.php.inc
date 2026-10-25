@@ -3,10 +3,10 @@
  * @brief Content_GenericPetitionViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Sep 2010
- * @date Modification: Oct 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,72 @@ final class Content_GenericPetitionViewer extends Module {
      * @brief Content object.
      */
     protected $configItem;
+
+    /**
+     * @var array $params
+     * @brief Parameters.
+     */
+    protected $params = array();
+
+    /**
+     * @var mixed $signItem
+     * @brief Signature item object.
+     */
+    protected $signItem;
+
+    /**
+     * @var Module $manager
+     * @brief Petition manager module.
+     */
+    protected $manager;
+
+    /**
+     * @var string $saveMode
+     * @brief Save mode.
+     */
+    protected $saveMode;
+
+    /**
+     * @var string $saveError
+     * @brief Save error message.
+     */
+    protected $saveError;
+
+    /**
+     * @var mixed $petitionItem
+     * @brief Petition item object.
+     */
+    protected $petitionItem;
+
+    /**
+     * @var mixed $pageController
+     * @brief Page controller input.
+     */
+    protected $pageController;
+
+    /**
+     * @var array $signList
+     * @brief Signatures list.
+     */
+    protected $signList = array();
+
+    /**
+     * @var HTMLForm $signform
+     * @brief Signature form.
+     */
+    protected $signform;
+
+    /**
+     * @var array $elgs
+     * @brief Editing languages.
+     */
+    protected $elgs = array();
+
+    /**
+     * @var array $petitionList
+     * @brief Petitions list.
+     */
+    protected $petitionList = array();
 
     /**
      * Class constructor.

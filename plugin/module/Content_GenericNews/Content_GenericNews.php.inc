@@ -3,10 +3,10 @@
  * @brief Content_GenericNews module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Mar 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -56,6 +56,54 @@ final class Content_GenericNews extends Module {
      * @brief Single news object.
      */
     protected $newsitem;
+
+    /**
+     * @var array $newsitems
+     * @brief News items list.
+     */
+    protected $newsitems = array();
+
+    /**
+     * @var integer $newscount
+     * @brief News count.
+     */
+    protected $newscount;
+
+    /**
+     * @var string $linknext
+     * @brief Next page link.
+     */
+    protected $linknext;
+
+    /**
+     * @var string $linkprevious
+     * @brief Previous page link.
+     */
+    protected $linkprevious;
+
+    /**
+     * @var string $linkedit
+     * @brief Edit item link.
+     */
+    protected $linkedit;
+
+    /**
+     * @var string $linknew
+     * @brief New item link.
+     */
+    protected $linknew;
+
+    /**
+     * @var string $nextnews
+     * @brief Next news link.
+     */
+    protected $nextnews;
+
+    /**
+     * @var string $prevnews
+     * @brief Previous news link.
+     */
+    protected $prevnews;
 
     /**
      * Class constructor.

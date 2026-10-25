@@ -4,9 +4,9 @@
  * <br /> Manages files available to download.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.4
+ * @version 1.0.3
  * @date Creation: May 2008
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -63,6 +63,12 @@ final class Admin_GenericDownloadManager extends Module {
      * @brief Configuration link mode values.
      */
     protected $configLinkModeList;
+
+    /**
+     * @var array $error
+     * @brief Error details.
+     */
+    protected $error;
 
     /**
      * @var Object $editform

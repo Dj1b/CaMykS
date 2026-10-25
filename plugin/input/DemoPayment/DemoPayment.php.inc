@@ -3,10 +3,10 @@
  * @brief DemoPayment input.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.1
  * @date Creation: Mar 2024
- * @date Modification: Jul 2025
- * @copyright 2024 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2024 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,6 +26,12 @@ final class DemoPayment extends Input {
      * @brief Last error description.
      */
     private $_lastErrorMsg = '';
+
+    /**
+     * @var HTMLForm $siteForm
+     * @brief Form object.
+     */
+    protected $siteForm = null;
 
     /**
      * Class constructor.
@@ -137,7 +143,7 @@ final class DemoPayment extends Input {
      * @return void
      */
     public function get_transactionId() {
-        return 'demo-'.strftime('%d%m%Y');
+        return 'demo-'.date('dmY');
     }
 
     /**

@@ -4,10 +4,10 @@
  * <br /> System module used as header of admin section.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Oct 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -28,6 +28,12 @@ final class Tool_InfoBar extends Module {
      * @brief Is menu disabled.
      */
     protected $menuDisabled = false;
+
+    /**
+     * @var array $languageMenu
+     * @brief Language menu.
+     */
+    protected $languageMenu;
 
     /**
      * Class constructor.

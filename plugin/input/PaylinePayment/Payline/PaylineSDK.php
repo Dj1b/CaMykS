@@ -358,7 +358,7 @@ class PaylineSDK
 
     protected $lastSoapCallData = array();
 
-    // protected $logLevel = \Monolog\Logger::INFO;
+    protected $logLevel;
 
     /**
      * PaylineSDK class constructor

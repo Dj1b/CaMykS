@@ -31,10 +31,10 @@
  * <br /> . rebuild system with ajax
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4.4
+ * @version 1.0.5
  * @date Creation: Jun 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Add missing features and extension management.
@@ -181,6 +181,24 @@ final class FileManager extends Input {
      * @briefs List of available actions.
      */
     protected $actions = array();
+
+    /**
+     * @var array $selectionButtons
+     * @brief Selection buttons list.
+     */
+    protected $selectionButtons = array();
+
+    /**
+     * @var string $html
+     * @brief Rendered HTML buffer.
+     */
+    protected $html = '';
+
+    /**
+     * @var integer $alt
+     * @brief Alternating line index.
+     */
+    protected $alt = 0;
 
     /**
      * @var array $folderbuttons

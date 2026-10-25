@@ -3,10 +3,10 @@
  * @brief Content_GenericHTMLNews module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.2
  * @date Creation: Dec 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -56,6 +56,60 @@ final class Content_GenericHTMLNews extends Module {
      * @brief Single news object.
      */
     protected $newsitem;
+
+    /**
+     * @var mixed $listObject
+     * @brief Admin list object.
+     */
+    protected $listObject;
+
+    /**
+     * @var array $newsListParams
+     * @brief News list parameters.
+     */
+    protected $newsListParams = array();
+
+    /**
+     * @var boolean $rssAvailable
+     * @brief RSS feed availability.
+     */
+    protected $rssAvailable;
+
+    /**
+     * @var Input $input
+     * @brief Rich text editor input.
+     */
+    protected $input;
+
+    /**
+     * @var array $newsitems
+     * @brief News items list.
+     */
+    protected $newsitems = array();
+
+    /**
+     * @var integer $newscount
+     * @brief Total count of news.
+     */
+    protected $newscount;
+
+    /**
+     * @var string $nextnews
+     * @brief Next news link.
+     */
+    protected $nextnews;
+
+    /**
+     * @var string $prevnews
+     * @brief Previous news link.
+     */
+    protected $prevnews;
+
+    /**
+     * @var mixed $networkInput
+     * @brief Network sharing input.
+     */
+    protected $networkInput;
 
     /**
      * Class constructor.

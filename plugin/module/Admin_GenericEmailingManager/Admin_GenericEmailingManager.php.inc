@@ -4,9 +4,9 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.10
+ * @version 1.0.11
  * @date Creation: Dec 2012
- * @date Modification: Jan 2026
+ * @date Modification: Oct 2026
  * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -71,6 +71,120 @@ final class Admin_GenericEmailingManager extends Module {
      * @brief List of plugin extensions.
      */
     protected $extensions = null;
+
+    /**
+     * @var array $contactListParams
+     * @brief Contact list parameters.
+     */
+    protected $contactListParams = array();
+
+    /**
+     * @var array $emailingListParams
+     * @brief Emailing list parameters.
+     */
+    protected $emailingListParams = array();
+
+    /**
+     * @var mixed $pc
+     * @brief PageChooser input instance.
+     */
+    protected $pc;
+
+    /**
+     * @var array $emailingStatusList
+     * @brief Emailing status list.
+     */
+    protected $emailingStatusList = array();
+
+    /**
+     * @var array $contactSourceList
+     * @brief Contact source list.
+     */
+    protected $contactSourceList = array();
+
+    /**
+     * @var integer $contactCount
+     * @brief Total count of contacts.
+     */
+    protected $contactCount;
+
+    /**
+     * @var array $contactNameList
+     * @brief Contact names list.
+     */
+    protected $contactNameList = array();
+
+    /**
+     * @var array $emailingStatisticsSummary
+     * @brief Emailing statistics summary.
+     */
+    protected $emailingStatisticsSummary = array();
+
+    /**
+     * @var array $emailListParams
+     * @brief Email list parameters.
+     */
+    protected $emailListParams = array();
+
+    /**
+     * @var array $contactGroupList
+     * @brief Contact groups list.
+     */
+    protected $contactGroupList = array();
+
+    /**
+     * @var array $statusList
+     * @brief Status list.
+     */
+    protected $statusList = array();
+
+    /**
+     * @var HTMLForm $importform
+     * @brief Import form.
+     */
+    protected $importform;
+
+    /**
+     * @var mixed $uploadResult
+     * @brief File upload result.
+     */
+    protected $uploadResult;
+
+    /**
+     * @var mixed $xlsFile
+     * @brief Uploaded XLS file.
+     */
+    protected $xlsFile;
+
+    /**
+     * @var mixed $data
+     * @brief Imported data.
+     */
+    protected $data;
+
+    /**
+     * @var array $importContactFieldList
+     * @brief Import contact fields list.
+     */
+    protected $importContactFieldList = array();
+
+    /**
+     * @var array $emailingStatusIconList
+     * @brief Emailing status icons list.
+     */
+    protected $emailingStatusIconList = array();
+
+    /**
+     * @var array $contactStatusIconList
+     * @brief Contact status icons list.
+     */
+    protected $contactStatusIconList = array();
+
+    /**
+     * @var boolean $isConfig
+     * @brief Config mode status.
+     */
+    protected $isConfig = false;
 
     /**
      * Class constructor.
@@ -1274,7 +1388,7 @@ final class Admin_GenericEmailingManager extends Module {
             $ext = '';
 
         /* Move uploaded file into var files */
-        $file = strftime('%F-%H-%M-%S'.$ext);
+        $file = date('Y-m-d-H-i-s').$ext;
         $path = $this->get_varFilePath().'Importations/'.$file;
         if (!move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
             $this->text = $this->get_translation('importation_error_cannotfindfile');
@@ -1590,7 +1704,7 @@ final class Admin_GenericEmailingManager extends Module {
         $workbook = new Spreadsheet_Excel_Writer();
 
         /* Sending HTTP headers */
-        $workbook->send('Export_'.strftime('%Y-%m-%d').'.xls');
+        $workbook->send('Export_'.date('Y-m-d').'.xls');
 
         /* Creating a worksheet */
         $worksheet =& $workbook->addWorksheet('E-Mailing');
@@ -1603,17 +1717,17 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Add title line */
         $c = 0;
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('contact'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('sending'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('opening'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('firstclick'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('clicks'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('contact'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('sending'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('opening'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('firstclick'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('clicks'))), $header);
 
         $l = 1;
         foreach ($emails as $email) {
             $c = 0;
             /* Add details in cells */
-            $worksheet->write($l, $c++, utf8_decode($email->vars['title']));
+            $worksheet->write($l, $c++, string_utf8_decode($email->vars['title']));
             $worksheet->write($l, $c++, $email->get_sentDateValue());
             $worksheet->write($l, $c++, $email->get_openedDateValue());
             $worksheet->write($l, $c++, $email->get_firstClickDateValue());
@@ -1651,7 +1765,7 @@ final class Admin_GenericEmailingManager extends Module {
         $workbook = new Spreadsheet_Excel_Writer();
 
         /* Sending HTTP headers */
-        $workbook->send('Export-'.strftime('%Y-%m-%d').'.xls');
+        $workbook->send('Export-'.date('Y-m-d').'.xls');
 
         /* Creating a worksheet */
         $worksheet =& $workbook->addWorksheet('Contacts');
@@ -1664,11 +1778,11 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Add title line */
         $c = 0;
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('status'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('lastname'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('firstname'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('email'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('group'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('status'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('lastname'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('firstname'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('email'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('group'))), $header);
 
         /* Load insert data block by block */
         $l = 1; // file line
@@ -1681,11 +1795,11 @@ final class Admin_GenericEmailingManager extends Module {
             foreach ($contacts as $id => $contact) {
                 $c = 0;
                 /* add details cells */
-                $worksheet->write($l, $c++, utf8_decode(string_html2text($status[$contact->vars['status']])));
-                $worksheet->write($l, $c++, utf8_decode($contact->vars['lastname']));
-                $worksheet->write($l, $c++, utf8_decode($contact->vars['firstname']));
+                $worksheet->write($l, $c++, string_utf8_decode(string_html2text($status[$contact->vars['status']])));
+                $worksheet->write($l, $c++, string_utf8_decode($contact->vars['lastname']));
+                $worksheet->write($l, $c++, string_utf8_decode($contact->vars['firstname']));
                 $worksheet->write($l, $c++, $contact->vars['email']);
-                $worksheet->write($l, $c++, isset($groups[$contact->vars['group']]) ? utf8_decode($groups[$contact->vars['group']]) : '');
+                $worksheet->write($l, $c++, isset($groups[$contact->vars['group']]) ? string_utf8_decode($groups[$contact->vars['group']]) : '');
                 $l++;
             }
             $blockCurrent++;
@@ -1760,7 +1874,7 @@ final class Admin_GenericEmailingManager extends Module {
         }
 
         /* Build and send file */
-        $writer->writeToStdOutAsAttachment('Export-'.strftime('%Y-%m-%d').'.xlsx');
+        $writer->writeToStdOutAsAttachment('Export-'.date('Y-m-d').'.xlsx');
     }
 
     /**
@@ -1896,7 +2010,7 @@ final class Admin_GenericEmailingManager extends Module {
         }
 
         /* Set mail content */
-        $mail->set_subject(utf8_decode($this->emailingItem->vars['email_title']));
+        $mail->set_subject(string_utf8_decode($this->emailingItem->vars['email_title']));
         $mail->set_textBody('');
 
         $params = $this->contactItem->get_itemsAsMailParams();

@@ -4,10 +4,10 @@
  * <br /> Check parts managed by themes.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jul 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -16,6 +16,66 @@
  * Admin_ThemeChecker class.
  */
 final class Admin_ThemeChecker extends Module {
+    /**
+     * @var mixed $seltheme
+     * @brief Selected theme object.
+     */
+    protected $seltheme;
+
+    /**
+     * @var array $infos
+     * @brief Theme infos.
+     */
+    protected $infos = array();
+
+    /**
+     * @var array $files
+     * @brief Theme files list.
+     */
+    protected $files = array();
+
+    /**
+     * @var array $parts
+     * @brief Theme parts list.
+     */
+    protected $parts = array();
+
+    /**
+     * @var array $eparts
+     * @brief Theme extra parts list.
+     */
+    protected $eparts = array();
+
+    /**
+     * @var array $picts
+     * @brief Theme pictures list.
+     */
+    protected $picts = array();
+
+    /**
+     * @var integer $maxpos
+     * @brief Maximum position.
+     */
+    protected $maxpos = 0;
+
+    /**
+     * @var mixed $demo_tabs
+     * @brief Demo tabs component.
+     */
+    protected $demo_tabs;
+
+    /**
+     * @var array $demo_buttons
+     * @brief Demo buttons list.
+     */
+    protected $demo_buttons = array();
+
+    /**
+     * @var mixed $demo_layeredmenu
+     * @brief Demo layered menu component.
+     */
+    protected $demo_layeredmenu;
+
     /**
      * Class constructor.
      * @param string $path_type

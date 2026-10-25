@@ -3,10 +3,10 @@
  * @brief Admin_GenericBlogsManager module, news library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Apr 2008
- * @date Modification: Jul 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -15,6 +15,24 @@
  * Admin_GenericBlogNewsItem class.
  */
 final class Admin_GenericBlogNewsItem extends ModuleLibrary {
+    /**
+     * @var array $oldTags
+     * @brief Old tags list.
+     */
+    protected $oldTags = array();
+
+    /**
+     * @var array $newTags
+     * @brief New tags list.
+     */
+    protected $newTags = array();
+
+    /**
+     * @var array $tagList
+     * @brief Tags list.
+     */
+    protected $tagList = array();
+
     /**
      * Class constructor.
      * @param integer $id

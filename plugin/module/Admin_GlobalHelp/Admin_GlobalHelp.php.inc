@@ -4,10 +4,10 @@
  * <br /> Displays help for all plugins.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Fev 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,6 +45,12 @@ final class Admin_GlobalHelp extends Module {
      * @brief Help files location to display.
     */
     protected $location;
+
+    /**
+     * var string $help_path
+     * @brief Help files path.
+     */
+    protected $help_path;
 
     /**
      * Class constructor.

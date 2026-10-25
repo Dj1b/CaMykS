@@ -3,10 +3,10 @@
  * @brief Content_GoogleMapsViewer module, admin layout.
  * @details Plugin / Module Layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jul 2008
- * @date Modification: Jul 2021
- * @copyright 2008 - 2021 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -245,7 +245,7 @@ $target_ = $this->theme->get_pictUrl('target', 12, 'ovr');
             <tr>
                 <td class="eTableLine1">
                     <?php if ($this->webEditor === false) : ?>
-                        <textarea name="description_<?= $l; ?>" cols="40" rows="12" style="width:100%"><?= $this->mapitem->vars['description_'.$l]; ?></textarea?>
+                        <textarea name="description_<?= $l; ?>" cols="40" rows="12" style="width:100%"><?= $this->mapItem->vars['description_'.$l]; ?></textarea>
                     <?php else : ?>
                         <?php $this->webEditor->set_textareaInfos('description_'.$l, '100%', '400px'); ?>
                         <?php $this->webEditor->set_contentInfos('text', $this->mapItem->vars['description_'.$l]); ?>

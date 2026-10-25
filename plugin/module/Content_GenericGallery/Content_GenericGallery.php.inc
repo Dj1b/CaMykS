@@ -3,10 +3,10 @@
  * @brief Content_GenericGallery module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Jul 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,6 +32,48 @@ final class Content_GenericGallery extends Module {
      * @brief File upload max size, currently 512ko.
      */
     protected $maxfilesize = 524288;
+
+    /**
+     * @var integer $imageid
+     * @brief Image ID.
+     */
+    protected $imageid;
+
+    /**
+     * @var mixed $gallery
+     * @brief SmartGallery input instance.
+     */
+    protected $gallery;
+
+    /**
+     * @var array $layouts
+     * @brief Layouts list.
+     */
+    protected $layouts = array();
+
+    /**
+     * @var array $themes
+     * @brief Themes list.
+     */
+    protected $themes = array();
+
+    /**
+     * @var array $slidingMethods
+     * @brief Sliding methods list.
+     */
+    protected $slidingMethods = array();
+
+    /**
+     * @var string $editlink
+     * @brief Edit image link.
+     */
+    protected $editlink;
+
+    /**
+     * @var string $dellink
+     * @brief Delete image link.
+     */
+    protected $dellink;
 
     /**
      * Class constructor.

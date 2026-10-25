@@ -3,10 +3,10 @@
  * @brief Admin_GenericGuestBookManager module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Sep 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,6 +32,36 @@ final class Admin_GenericGuestBookManager extends Module {
      * @brief Plugin configuration.
      */
     protected $config;
+
+    /**
+     * @var array $msgListParams
+     * @brief Message list parameters.
+     */
+    protected $msgListParams = array();
+
+    /**
+     * @var array $userList
+     * @brief User list.
+     */
+    protected $userList = array();
+
+    /**
+     * @var HTMLForm $configform
+     * @brief Configuration form.
+     */
+    protected $configform;
+
+    /**
+     * @var mixed $admin
+     * @brief Admin user for email notification.
+     */
+    protected $admin;
+
+    /**
+     * @var boolean $isConfig
+     * @brief Config mode status.
+     */
+    protected $isConfig = false;
 
     /**
      * Class constructor.

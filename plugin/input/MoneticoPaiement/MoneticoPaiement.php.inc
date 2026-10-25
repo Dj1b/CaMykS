@@ -4,10 +4,10 @@
  * <br /> Manage online payment with Monetico system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.3
+ * @version 1.0.3
  * @date Creation: Apr 2017
- * @date Modification: Jul 2025
- * @copyright 2017 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -62,6 +62,30 @@ final class MoneticoPaiement extends Input {
      * @brief Transaction identifier.
      */
     private $_transactionId = '';
+
+    /**
+     * @var MoneticoPaiementConfig $config
+     * @brief Input configuration.
+     */
+    protected $config = null;
+
+    /**
+     * @var array $transactionParams
+     * @brief Transaction parameters.
+     */
+    protected $transactionParams = array();
+
+    /**
+     * @var HTMLForm $paymentForm
+     * @brief Payment form object.
+     */
+    protected $paymentForm = null;
+
+    /**
+     * @var array $confirmationData
+     * @brief Confirmation data.
+     */
+    protected $confirmationData = null;
 
     /**
      * Class constructor.

@@ -4,10 +4,10 @@
  * <br /> Redirects visitor on another page.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Sep 2009
- * @date Modification: Oct 2025
- * @copyright 2009 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2009 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -39,6 +39,12 @@ final class Content_GenericPageRedirector extends Module {
      * @brief Available layout list.
      */
     private $layouts;
+
+    /**
+     * @var mixed $pc
+     * @brief PageChooser input instance.
+     */
+    protected $pc;
 
     /**
      * Class constructor.

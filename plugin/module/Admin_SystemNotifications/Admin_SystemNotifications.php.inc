@@ -4,10 +4,10 @@
  * <br /> Gather and display notifications from websites you manage.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.5
+ * @version 1.0.3
  * @date Creation: Jun 2018
- * @date Modification: Oct 2025
- * @copyright 2018 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -39,6 +39,48 @@ final class Admin_SystemNotifications extends Module {
      * @brief Is module is configuration mode.
      */
     protected $isConfig = false;
+
+    /**
+     * @var array $websiteListParams
+     * @brief Website list parameters.
+     */
+    protected $websiteListParams = array();
+
+    /**
+     * @var array $moduleModeList
+     * @brief Module mode list.
+     */
+    protected $moduleModeList = array();
+
+    /**
+     * @var array $accessStatusList
+     * @brief Access status list.
+     */
+    protected $accessStatusList = array();
+
+    /**
+     * @var array $accessAuthenticationList
+     * @brief Access authentication list.
+     */
+    protected $accessAuthenticationList = array();
+
+    /**
+     * @var array $adminList
+     * @brief Admin list.
+     */
+    protected $adminList = array();
+
+    /**
+     * @var array $followUpList
+     * @brief Follow up list.
+     */
+    protected $followUpList = array();
+
+    /**
+     * @var HTMLForm $editForm
+     * @brief Edit form.
+     */
+    protected $editForm;
 
     /**
      * Class constructor.

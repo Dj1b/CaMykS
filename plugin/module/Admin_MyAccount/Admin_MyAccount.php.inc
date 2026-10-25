@@ -4,10 +4,10 @@
  * <br /> Allows logged admin user to read or edit its own information.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.4
  * @date Creation: Jun 2005
- * @date Modification: Jul 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,6 +27,12 @@ final class Admin_MyAccount extends Module {
      * @brief Link to admin user management module.
      */
     protected $accountManager;
+
+    /**
+     * var mixed $plugin
+     * @brief 2FA plugin.
+     */
+    protected $plugin;
 
     /**
      * Class constructor.

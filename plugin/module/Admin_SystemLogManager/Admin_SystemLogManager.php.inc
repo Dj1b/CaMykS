@@ -4,9 +4,9 @@
  * <br /> Store and display logs.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.4
+ * @version 1.0.1
  * @date Creation: Jun 2018
- * @date Modification: Sep 2026
+ * @date Modification: Oct 2026
  * @copyright 2018 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * Without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -51,6 +51,12 @@ final class Admin_SystemLogManager extends Module {
      * @brief Selected file content.
      */
     protected $currentFileContent;
+
+    /**
+     * @var array $loggingPeriodList
+     * @brief Logging period list.
+     */
+    protected $loggingPeriodList = array();
 
     /**
      * @var Object $form

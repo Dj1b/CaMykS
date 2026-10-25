@@ -4,10 +4,10 @@
  * <br /> Interface to PayBox payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.1
+ * @version 1.0.8
  * @date Creation: Apr 2017
- * @date Modification: Jul 2025
- * @copyright 2017 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -45,6 +45,24 @@ final class PayBoxPayment extends Input {
      * @brief Confirmation data received from Paybox instant notifications.
      */
     private $confirmationData = null;
+
+    /**
+     * @var PayBoxPaymentConfig $config
+     * @brief Input configuration.
+     */
+    protected $config = null;
+
+    /**
+     * @var array $transactionParams
+     * @brief Transaction parameters.
+     */
+    protected $transactionParams = array();
+
+    /**
+     * @var HTMLForm $paymentForm
+     * @brief Payment form object.
+     */
+    protected $paymentForm = null;
 
     /**
      * var array $currencies
@@ -213,10 +231,10 @@ final class PayBoxPayment extends Input {
 
         if (!$serveurOK) {
             /* to replace */
-            die("Erreur : Aucun serveur n'a été trouvé");
+            die("Erreur : Aucun serveur n'a Ã©tÃ© trouvÃ©");
         }
 
-        //Création de l'url cgi paybox
+        //CrÃ©ation de l'url cgi paybox
         $serveurOK = 'https://'.$serveurOK.'/cgi/MYchoix_pagepaiement.cgi';
 
         /* prepare data */
@@ -309,13 +327,13 @@ final class PayBoxPayment extends Input {
             $msg[] = $key.'='.$value;
         $msg = implode('&', $msg);
 
-        // Si la clé est en ASCII, On la transforme en binaire
+        // Si la clÃ© est en ASCII, On la transforme en binaire
         $binKey = pack("H*", $bankKey);
 
-        // On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et //
-        // la clé binaire
-        // On envoi via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas)
-        // Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne //
+        // On calcule lÂ’empreinte (Ã  renseigner dans le paramÃ¨tre PBX_HMAC) grÃ¢ce Ã  la fonction hash_hmac et //
+        // la clÃ© binaire
+        // On envoi via la variable PBX_HASH l'algorithme de hachage qui a Ã©tÃ© utilisÃ© (SHA512 dans ce cas)
+        // Pour afficher la liste des algorithmes disponibles sur votre environnement, dÃ©commentez la ligne //
         // suivante
         //print_r(hash_algos());
         $hmac = strtoupper(hash_hmac('sha512', $msg, $binKey));

@@ -3,10 +3,10 @@
  * @brief Admin_SiteReport module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Apr 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -62,6 +62,42 @@ final class Admin_SiteReport extends Module {
      * @brief Admin list type parameter.
      */
     protected $listtype;
+
+    /**
+     * @var array $pages
+     * @brief Pages list.
+     */
+    protected $pages = array();
+
+    /**
+     * @var string $viewReportLink
+     * @brief View report link URL.
+     */
+    protected $viewReportLink;
+
+    /**
+     * @var string $viewTypeLink
+     * @brief View type link URL.
+     */
+    protected $viewTypeLink;
+
+    /**
+     * @var string $editTypeLink
+     * @brief Edit type link URL.
+     */
+    protected $editTypeLink;
+
+    /**
+     * @var HTMLForm $configform
+     * @brief Configuration form.
+     */
+    protected $configform;
+
+    /**
+     * @var string $downloadFileLink
+     * @brief Download file link URL.
+     */
+    protected $downloadFileLink;
 
     /**
      * var array $listpage

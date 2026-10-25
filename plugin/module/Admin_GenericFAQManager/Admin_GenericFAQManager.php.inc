@@ -3,10 +3,10 @@
  * @brief Admin_GenericFAQManager Module.
  * @details Plugin / Module engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Feb 2020
- * @date Modification: Jul 2025
- * @copyright 2020 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -38,6 +38,24 @@ final class Admin_GenericFAQManager extends Module {
      * @brief Link to family list.
      */
     protected $familyList = null;
+
+    /**
+     * @var array $questionListParams
+     * @brief Question list parameters.
+     */
+    protected $questionListParams = array();
+
+    /**
+     * @var array $familyListParams
+     * @brief Family list parameters.
+     */
+    protected $familyListParams = array();
+
+    /**
+     * @var Input $input
+     * @brief Rich text editor input.
+     */
+    protected $input;
 
     /**
      * Class constructor.

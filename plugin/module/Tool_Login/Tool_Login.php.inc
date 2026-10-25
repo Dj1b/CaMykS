@@ -4,9 +4,9 @@
  * <br /> System module to log in/out admin section.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.2.3
+ * @version 1.1.3
  * @date Creation: Jun 2005
- * @date Modification: May 2026
+ * @date Modification: Oct 2026
  * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -45,6 +45,18 @@ final class Tool_Login extends Module {
      * @brief Used form to log in.
      */
     protected $form;
+
+    /**
+     * @var Module $accountManager
+     * @brief Admin user management module.
+     */
+    protected $accountManager;
+
+    /**
+     * @var mixed $plugin
+     * @brief 2FA plugin.
+     */
+    protected $plugin;
 
     /**
      * Class constructor.

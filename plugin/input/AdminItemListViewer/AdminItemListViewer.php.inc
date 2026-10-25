@@ -4,10 +4,10 @@
  * <br /> Display customisable admin list of objects.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.5
+ * @version 1.0.1.6
  * @date Creation: Sep 2008
- * @date Modification: Oct 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -596,7 +596,7 @@ final class AdminItemListViewer extends Input {
      * @return string
      */
     protected function get_icon($icon, $mode='std') {
-        if (!isset($this->icon[$icon.'_'.$mode]))
+        if (!isset($this->icons[$icon.'_'.$mode]))
             $this->icons[$icon.'_'.$mode] = $this->params['theme']->get_pictURL($icon, 12, $mode);
         return $this->icons[$icon.'_'.$mode];
     }

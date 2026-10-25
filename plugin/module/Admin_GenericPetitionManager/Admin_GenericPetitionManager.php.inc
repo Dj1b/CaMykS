@@ -4,10 +4,10 @@
  * <br /> Manages petitions.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Sep 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -39,6 +39,30 @@ final class Admin_GenericPetitionManager extends Module {
      * @brief Signature list.
      */
     public $signatureList = null;
+
+    /**
+     * @var array $petitionListParams
+     * @brief Petition list parameters.
+     */
+    protected $petitionListParams = array();
+
+    /**
+     * @var array $lgs
+     * @brief Editing languages list.
+     */
+    protected $lgs = array();
+
+    /**
+     * @var mixed $signList
+     * @brief Signatures list component/helper.
+     */
+    protected $signList;
+
+    /**
+     * @var array $signatureListParams
+     * @brief Signature list parameters.
+     */
+    protected $signatureListParams = array();
 
     /**
      * Class constructor.
@@ -631,7 +655,7 @@ final class Admin_GenericPetitionManager extends Module {
         $workbook = new Spreadsheet_Excel_Writer();
 
         /* Sending HTTP headers */
-        $workbook->send($this->petitionItem->vars['title'].'-'.strftime('%Y-%m-%d').'.xls');
+        $workbook->send($this->petitionItem->vars['title'].'-'.date('Y-m-d').'.xls');
 
         /* Creating a worksheet */
         $worksheet =& $workbook->addWorksheet($this->get_translation('export_signatures'));
@@ -652,16 +676,16 @@ final class Admin_GenericPetitionManager extends Module {
         /* Add header line */
         $c = 0;
         $worksheet->write(0, $c++, '#', $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('export_signdate'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('civility'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('firstname'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('lastname'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('email'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('address'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('zipcode'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('city'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($camyks->get_translation('country'))), $header);
-        $worksheet->write(0, $c++, utf8_decode(string_html2text($this->get_translation('export_birthdate'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('export_signdate'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('civility'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('firstname'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('lastname'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('email'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('address'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('zipcode'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('city'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($camyks->get_translation('country'))), $header);
+        $worksheet->write(0, $c++, string_utf8_decode(string_html2text($this->get_translation('export_birthdate'))), $header);
 
         /* Add sign data */
         $cnt = 0;
@@ -673,12 +697,12 @@ final class Admin_GenericPetitionManager extends Module {
                 $worksheet->write($l, $c++, ++$cnt);
                 $worksheet->write($l, $c++, number_format(($data['signdate'] + $tdiff) / $sday, 6,'.', ''), $ldate);
                 $worksheet->write($l, $c++, $data['title']);
-                $worksheet->write($l, $c++, utf8_decode($data['firstname']));
-                $worksheet->write($l, $c++, utf8_decode($data['lastname']));
+                $worksheet->write($l, $c++, string_utf8_decode($data['firstname']));
+                $worksheet->write($l, $c++, string_utf8_decode($data['lastname']));
                 $worksheet->write($l, $c++, $data['email']);
-                $worksheet->write($l, $c++, utf8_decode($data['address']));
+                $worksheet->write($l, $c++, string_utf8_decode($data['address']));
                 $worksheet->write($l, $c++, ' '.$data['zipcode']);
-                $worksheet->write($l, $c++, utf8_decode($data['city']));
+                $worksheet->write($l, $c++, string_utf8_decode($data['city']));
                 $worksheet->write($l, $c++, ($data['country']!=''?countries_getTranslation($data['country']):''));
                 $worksheet->write($l, $c++, number_format(($data['birthdate'] + $tdiff) / $sday, 6,'.', ''), $sdate);
                 $l++;

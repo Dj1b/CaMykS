@@ -4,10 +4,10 @@
  * <br /> Manages a directory of contacts, by category.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jul 2010
- * @date Modification: Jul 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -39,6 +39,36 @@ final class Admin_GenericDirectoryManager extends Module {
      * @brief Category list.
      */
     public $categoryList = null;
+
+    /**
+     * @var mixed $listContact
+     * @brief Contacts list component/helper.
+     */
+    protected $listContact;
+
+    /**
+     * @var array $contactListParams
+     * @brief Contact list parameters.
+     */
+    protected $contactListParams = array();
+
+    /**
+     * @var mixed $listCategory
+     * @brief Categories list component/helper.
+     */
+    protected $listCategory;
+
+    /**
+     * @var array $categoryListParams
+     * @brief Category list parameters.
+     */
+    protected $categoryListParams = array();
+
+    /**
+     * @var array $lgs
+     * @brief Editing languages list.
+     */
+    protected $lgs = array();
 
     /**
      * Class constructor.

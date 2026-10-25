@@ -4,10 +4,10 @@
  * <br /> Interface to SystemPay payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Jun 2020
- * @date Modification: Jul 2025
- * @copyright 2020 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -60,6 +60,18 @@ final class SystemPayPayment extends Input {
      * @brief Confirmation data received from SystemPay instant notifications.
      */
     private $confirmationData = null;
+
+    /**
+     * @var SystemPayPaymentConfig $config
+     * @brief Input configuration.
+     */
+    protected $config = null;
+
+    /**
+     * @var HTMLForm $paymentForm
+     * @brief Payment form object.
+     */
+    protected $paymentForm = null;
 
     /**
      * Class constructor.

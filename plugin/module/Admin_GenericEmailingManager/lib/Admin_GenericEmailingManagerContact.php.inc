@@ -3,10 +3,10 @@
  * @brief Admin_GenericEmailingManager module, contact library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.4
  * @date Creation: Dec 2012
- * @date Modification: Jul 2025
- * @copyright 2012 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -183,8 +183,8 @@ final class Admin_GenericEmailingManagerContact extends ModuleLibrary {
             array(
                 'recipient_id'=>$this->id,
                 'recipient_fullname'=>$this->get_fullName(),
-                'recipient_firstname'=>utf8_decode($this->vars['firstname']),
-                'recipient_lastname'=>utf8_decode($this->vars['lastname']),
+                'recipient_firstname'=>string_utf8_decode($this->vars['firstname']),
+                'recipient_lastname'=>string_utf8_decode($this->vars['lastname']),
                 'recipient_email'=>$this->vars['email'],
             ),
             $this->vars['extra']

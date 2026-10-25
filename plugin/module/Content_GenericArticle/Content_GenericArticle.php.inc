@@ -3,10 +3,10 @@
  * @brief Content_GenericArticle module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Sep 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,6 +26,30 @@ final class Content_GenericArticle extends Module {
      * @brief List of client side layouts.
      */
     protected $layouts = array();
+
+    /**
+     * @var integer $articleid
+     * @brief Article ID.
+     */
+    protected $articleid;
+
+    /**
+     * @var array $articleAuthor
+     * @brief Article author data.
+     */
+    protected $articleAuthor;
+
+    /**
+     * @var array $adminList
+     * @brief Admin user list.
+     */
+    protected $adminList = array();
+
+    /**
+     * @var Input $input
+     * @brief Rich text editor input.
+     */
+    protected $input;
 
     /**
      * Class constructor.

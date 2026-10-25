@@ -3,10 +3,10 @@
  * @brief Content_GenericRandomText module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.3
+ * @version 1.0.2
  * @date Creation: Mar 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -26,6 +26,24 @@ final class Content_GenericRandomText extends Module {
      * @brief Text list.
      */
     protected $glist;
+
+    /**
+     * @var string $edittextlink
+     * @brief Edit text link.
+     */
+    protected $edittextlink;
+
+    /**
+     * @var string $deleteTextLink
+     * @brief Delete text link.
+     */
+    protected $deleteTextLink;
+
+    /**
+     * @var array $layoutlist
+     * @brief Layouts list.
+     */
+    protected $layoutlist = array();
 
     /**
      * Class constructor.

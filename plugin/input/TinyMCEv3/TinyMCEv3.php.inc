@@ -4,7 +4,7 @@
  * <br /> Interfaces TinyMCE version 3 for CaMykS.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.4
  * @date Creation: Jul 2008
  * @date Modification: Oct 2026
  * @copyright 2008 - 2026 CaMykS Team
@@ -106,6 +106,12 @@ final class TinyMCEv3 extends Input {
      * @brief Link to PageChooser input.
      */
     protected $pagechooser;
+
+    /**
+     * @var array $configMore
+     * @brief Additional configuration options.
+     */
+    protected $configMore = array();
 
     /**
      * Class constructor.

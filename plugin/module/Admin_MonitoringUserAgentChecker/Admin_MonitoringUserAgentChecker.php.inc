@@ -4,10 +4,10 @@
  * <br /> Monitor and check user agent of visitors and bots.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Dec 2014
- * @date Modification: Oct 2025
- * @copyright 2014 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -27,6 +27,42 @@ final class Admin_MonitoringUserAgentChecker extends Module {
      * @brief Record list.
      */
     public $recordList = null;
+
+    /**
+     * @var array $recordListParams
+     * @brief Record list parameters.
+     */
+    protected $recordListParams = array();
+
+    /**
+     * @var HTMLForm $selectionForm
+     * @brief Selection form.
+     */
+    protected $selectionForm;
+
+    /**
+     * @var HTMLForm $addform
+     * @brief Add form.
+     */
+    protected $addform;
+
+    /**
+     * @var array $popupbuttons
+     * @brief Popup buttons list.
+     */
+    protected $popupbuttons = array();
+
+    /**
+     * @var array $uaInfos
+     * @brief User agent info details.
+     */
+    protected $uaInfos = array();
+
+    /**
+     * @var array $recordPlatformFormats
+     * @brief Platform formats list.
+     */
+    protected $recordPlatformFormats = array();
 
     /**
      * Class constructor.

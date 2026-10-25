@@ -3,10 +3,10 @@
  * @brief Content_GenericQuickMessage module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Nov 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -32,6 +32,84 @@ final class Content_GenericQuickMessage extends Module {
      * @brief Indicates how many messages are visible in admin page.
      */
     protected $itemsbypage = 20;
+
+    /**
+     * @var integer $listid
+     * @brief List ID.
+     */
+    protected $listid;
+
+    /**
+     * @var mixed $content
+     * @brief Current content item.
+     */
+    protected $content;
+
+    /**
+     * @var array $contents
+     * @brief Cached contents list.
+     */
+    protected $contents = array();
+
+    /**
+     * @var array $forms
+     * @brief Forms list.
+     */
+    protected $forms = array();
+
+    /**
+     * @var mixed $account
+     * @brief User/Account data.
+     */
+    protected $account;
+
+    /**
+     * @var integer $mindex
+     * @brief Module index.
+     */
+    protected $mindex;
+
+    /**
+     * @var HTMLForm $listform
+     * @brief List form.
+     */
+    protected $listform;
+
+    /**
+     * @var integer $listpage
+     * @brief List page index.
+     */
+    protected $listpage;
+
+    /**
+     * @var mixed $liststatus
+     * @brief List status filter.
+     */
+    protected $liststatus;
+
+    /**
+     * @var integer $qmcount
+     * @brief Quick messages count.
+     */
+    protected $qmcount;
+
+    /**
+     * @var array $pages
+     * @brief Pages list.
+     */
+    protected $pages = array();
+
+    /**
+     * @var array $qmitems
+     * @brief Quick message items list.
+     */
+    protected $qmitems = array();
+
+    /**
+     * @var string $editItemLink
+     * @brief Edit item link.
+     */
+    protected $editItemLink;
 
     /**
      * Class constructor.

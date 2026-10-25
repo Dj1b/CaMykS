@@ -4,9 +4,9 @@
  * <br /> Interface to Yavin platform payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: May 2026
- * @date Modification: May 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -57,6 +57,12 @@ final class YavinPayment extends Input {
      * @brief Yavin payment redirect URL.
      */
     protected $redirectURL = '';
+
+    /**
+     * @var HTMLForm $paymentForm
+     * @brief Payment form object.
+     */
+    protected $paymentForm = null;
 
     /**
      * Class constructor.

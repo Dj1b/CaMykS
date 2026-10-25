@@ -3,10 +3,10 @@
  * @brief Content_GenericPageList module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Nov 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,24 @@ final class Content_GenericPageList extends Module {
      * @brief Page list item.
      */
     protected $plitem;
+
+    /**
+     * @var integer $plid
+     * @brief Page list ID.
+     */
+    protected $plid;
+
+    /**
+     * @var array $contents
+     * @brief Cached contents list.
+     */
+    protected $contents = null;
+
+    /**
+     * @var array $pages
+     * @brief Pages list.
+     */
+    protected $pages = array();
 
     /**
      * Class constructor.

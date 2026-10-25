@@ -4,10 +4,10 @@
  * <br /> Interfaces TinyMCE version 2 for CaMykS.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Mar 2007
- * @date Modification: Feb 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Includes TinyMCE version 2.1.0 (http://tinymce.moxiecode.com/)
@@ -58,6 +58,18 @@ final class TinyMCE extends Input {
      * @brief Editor's vertical size.
      */
     protected $ta_sizey = '300px';
+
+    /**
+     * @var FileManager $filemanager
+     * @brief FileManager input link.
+     */
+    protected $filemanager = null;
+
+    /**
+     * @var PageChooser $pagechooser
+     * @brief PageChooser input link.
+     */
+    protected $pagechooser = null;
 
     /**
      * Class constructor.

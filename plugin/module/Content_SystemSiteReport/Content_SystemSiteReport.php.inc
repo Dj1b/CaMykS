@@ -3,10 +3,10 @@
  * @brief Content_SystemSiteReport module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.1.1
+ * @version 1.1.2
  * @date Creation: Apr 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -38,6 +38,30 @@ final class Content_SystemSiteReport extends Module {
      * @brief Available title modes list.
      */
     protected $title_modes = array(0=>'title_none', 1=>'title_text', 2=>'title_image', 3=>'title_localizedtext', 4=>'title_localizedimage');
+
+    /**
+     * @var mixed $config
+     * @brief Module config.
+     */
+    protected $config;
+
+    /**
+     * @var Input $input
+     * @brief Form editor input.
+     */
+    protected $input;
+
+    /**
+     * @var integer $file_allowed
+     * @brief File upload allowed status.
+     */
+    protected $file_allowed;
+
+    /**
+     * @var integer $file_maxsize
+     * @brief File upload max size.
+     */
+    protected $file_maxsize;
 
     /**
      * var array $rtypelist
@@ -133,9 +157,9 @@ final class Content_SystemSiteReport extends Module {
 
         /* Check dependancy */
         if (!isset($camyks->modules['Admin_SiteReport']))
-            return $this->init_adminMissingPlugin('Module', 'Admin_SiteReport');
+            return $this->init_admin_missingPlugin('Module', 'Admin_SiteReport');
         if (!isset($camyks->inputs['TinyMCE']))
-            return $this->init_adminMissingPlugin('Input', 'TinyMCE');
+            return $this->init_admin_missingPlugin('Input', 'TinyMCE');
 
         /* Load mode to execute */
         $this->mode = isset ($_REQUEST['mode']) ? $_REQUEST['mode'] : 'modify';

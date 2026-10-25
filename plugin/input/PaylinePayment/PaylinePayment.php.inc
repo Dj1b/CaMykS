@@ -4,9 +4,9 @@
  * <br /> Interface to Payline platform payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Apr 2026
- * @date Modification: Apr 2026
+ * @date Modification: Oct 2026
  * @copyright 2026 CaMykS Team
  */
 
@@ -67,6 +67,18 @@ final class PaylinePayment extends Input {
      * @brief Payline SDK version.
      */
     private $paylineSDKVersion = 34;
+
+    /**
+     * @var PaylinePaymentConfig $config
+     * @brief Input configuration.
+     */
+    protected $config = null;
+
+    /**
+     * @var HTMLForm $paymentForm
+     * @brief Payment form object.
+     */
+    protected $paymentForm = null;
 
 
     /**

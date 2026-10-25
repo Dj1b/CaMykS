@@ -4,10 +4,10 @@
  * <br /> Manages articles with comments and tags.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Apr 2008
- * @date Modification: Oct 2025
- * @copyright 2008 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2008 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -51,6 +51,126 @@ final class Admin_GenericBlogsManager extends Module {
      * @brief Define how many items are displayed by page.
      */
     public $itemsByPage = 15;
+
+    /**
+     * @var string $editorMode
+     * @brief Editor mode.
+     */
+    protected $editorMode;
+
+    /**
+     * @var array $links
+     * @brief Links list.
+     */
+    protected $links = array();
+
+    /**
+     * @var integer $adminLinkCount
+     * @brief Admin links count.
+     */
+    protected $adminLinkCount;
+
+    /**
+     * @var string $editLinkLink
+     * @brief Edit link URL.
+     */
+    protected $editLinkLink;
+
+    /**
+     * @var array $tagList
+     * @brief Tags list.
+     */
+    protected $tagList = array();
+
+    /**
+     * @var mixed $tagEditor
+     * @brief Tag editor input.
+     */
+    protected $tagEditor;
+
+    /**
+     * @var HTMLForm $newsListForm
+     * @brief News list form.
+     */
+    protected $newsListForm;
+
+    /**
+     * @var integer $newsListPage
+     * @brief News list page index.
+     */
+    protected $newsListPage;
+
+    /**
+     * @var mixed $newsListUnread
+     * @brief Unread news filter.
+     */
+    protected $newsListUnread;
+
+    /**
+     * @var array $unreadCommentIds
+     * @brief Unread comment IDs list.
+     */
+    protected $unreadCommentIds = array();
+
+    /**
+     * @var integer $newsCount
+     * @brief Total count of news.
+     */
+    protected $newsCount;
+
+    /**
+     * @var array $newsPages
+     * @brief News pages list.
+     */
+    protected $newsPages = array();
+
+    /**
+     * @var array $newsList
+     * @brief News list.
+     */
+    protected $newsList = array();
+
+    /**
+     * @var string $editNewsLink
+     * @brief Edit news link URL.
+     */
+    protected $editNewsLink;
+
+    /**
+     * @var string $viewCommentsLink
+     * @brief View comments link URL.
+     */
+    protected $viewCommentsLink;
+
+    /**
+     * @var HTMLForm $configForm
+     * @brief Config form.
+     */
+    protected $configForm;
+
+    /**
+     * @var boolean $savingAllowed
+     * @brief Saving permission status.
+     */
+    protected $savingAllowed = true;
+
+    /**
+     * @var array $commentStatusList
+     * @brief Comment status list.
+     */
+    protected $commentStatusList = array();
+
+    /**
+     * @var string $editCommentLink
+     * @brief Edit comment link URL.
+     */
+    protected $editCommentLink;
+
+    /**
+     * @var mixed $webEditor
+     * @brief Web editor input.
+     */
+    protected $webEditor;
 
     /**
      * Class constructor.
@@ -330,7 +450,7 @@ final class Admin_GenericBlogsManager extends Module {
             $this->editLinkLink = $camyks->get_adminLink($this->name, array('mode'=>'editlink', 'link_id'=>''));
 
             /* Delete link javascript */
-            $this->add_JSScript('var deleteLinkMessage="'.utf8_encode(html_entity_decode($this->get_translation('links_deletemessage'))).'";');
+            $this->add_JSScript('var deleteLinkMessage="'.string_utf8_encode(html_entity_decode($this->get_translation('links_deletemessage'))).'";');
             $this->add_JSScript('var deleteLinkLink="'.$camyks->get_adminJSLink($this->name, array('mode'=>'deletelink', 'link_id'=>'')).'";');
         }
 
@@ -347,7 +467,7 @@ final class Admin_GenericBlogsManager extends Module {
             $this->tagEditor->add_hidden('tag', '');
 
             /* Delete tag link */
-            $this->add_JSScript('var deleteTagMessage="'.utf8_encode(html_entity_decode($this->get_translation('tags_deletemessage'))).'";');
+            $this->add_JSScript('var deleteTagMessage="'.string_utf8_encode(html_entity_decode($this->get_translation('tags_deletemessage'))).'";');
             $this->add_JSScript('var deleteTagLink="'.$camyks->get_adminJSLink($this->name, array('mode'=>'deletetag', 'tag'=>'')).'";');
 
             /* Edit tag scripts */
@@ -398,7 +518,7 @@ final class Admin_GenericBlogsManager extends Module {
         $this->viewCommentsLink = $camyks->get_adminLink($this->name, array('mode'=>'viewcomments', 'news_id'=>''));
 
         /* Delete news javascript */
-        $this->add_JSScript('var deleteNewsMessage="'.utf8_encode(html_entity_decode($this->get_translation('news_deletemessage'))).'";');
+        $this->add_JSScript('var deleteNewsMessage="'.string_utf8_encode(html_entity_decode($this->get_translation('news_deletemessage'))).'";');
         $this->add_JSScript('var deleteNewsLink="'.$camyks->get_adminJSLink($this->name, array('mode'=>'deletenews', 'news_id'=>'')).'";');
 
         /* Build buttons */
@@ -812,7 +932,7 @@ final class Admin_GenericBlogsManager extends Module {
         $this->add_JSScript('var updateCommentStatusLink="'.$this->get_adminJSLink(array('mode'=>'updatecommentstatus', 'comment_id'=>'')).'";');
 
         /* Delete comment javascripts */
-        $this->add_JSScript('var deleteCommentMessage="'.utf8_encode(html_entity_decode($this->get_translation('comment_deletemessage'))).'";');
+        $this->add_JSScript('var deleteCommentMessage="'.string_utf8_encode(html_entity_decode($this->get_translation('comment_deletemessage'))).'";');
         $this->add_JSScript('var deleteCommentLink="'.$this->get_adminJSLink(array('mode'=>'deletecomment','comment_id'=>'')).'";');
 
         /* Add javascript file */

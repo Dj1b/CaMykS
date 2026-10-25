@@ -3,10 +3,10 @@
  * @brief Content_GenericGuestBookViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: Sep 2010
- * @date Modification: Oct 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,48 @@ final class Content_GenericGuestBookViewer extends Module {
      * @brief Content object.
      */
     protected $configItem;
+
+    /**
+     * @var mixed $msgItem
+     * @brief Message item object.
+     */
+    protected $msgItem;
+
+    /**
+     * @var Module $manager
+     * @brief GuestBook manager module.
+     */
+    protected $manager;
+
+    /**
+     * @var array $lgs
+     * @brief Editing languages list.
+     */
+    protected $lgs = array();
+
+    /**
+     * @var integer $msgCount
+     * @brief Total count of messages.
+     */
+    protected $msgCount;
+
+    /**
+     * @var mixed $pageController
+     * @brief Page controller input.
+     */
+    protected $pageController;
+
+    /**
+     * @var array $msgList
+     * @brief Messages list.
+     */
+    protected $msgList = array();
+
+    /**
+     * @var HTMLForm $msgform
+     * @brief Message submission form.
+     */
+    protected $msgform;
 
     /**
      * Class constructor.
@@ -135,7 +177,7 @@ final class Content_GenericGuestBookViewer extends Module {
         /* Load manager */
         $this->load_guestBookManager();
         $this->msgItem = $this->manager->get_messageObject();
-        $this->mdgItem->isLoaded = false;
+        $this->msgItem->isLoaded = false;
 
         /* Load config */
         $this->configItem->id = $content;
@@ -299,7 +341,7 @@ final class Content_GenericGuestBookViewer extends Module {
      */
     private function init_site_add_message() {
         /* Load message data */
-        if ($this->msgitem->isLoaded == false)
+        if ($this->msgItem->isLoaded == false)
             $this->msgItem->initialise();
 
         /* Check for form display */

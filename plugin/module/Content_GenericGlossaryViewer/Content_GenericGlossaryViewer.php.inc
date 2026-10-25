@@ -3,10 +3,10 @@
  * @brief Content_GenericGlossaryViewer module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.2
  * @date Creation: May 2010
- * @date Modification: Oct 2025
- * @copyright 2010 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -20,6 +20,54 @@ final class Content_GenericGlossaryViewer extends Module {
      * @brief Content object.
      */
     protected $configItem;
+
+    /**
+     * @var array $params
+     * @brief Parameters.
+     */
+    protected $params = array();
+
+    /**
+     * @var array $categoryList
+     * @brief Category list.
+     */
+    protected $categoryList = array();
+
+    /**
+     * @var Module $manager
+     * @brief Manager module.
+     */
+    protected $manager;
+
+    /**
+     * @var mixed $pageController
+     * @brief Page controller input.
+     */
+    protected $pageController;
+
+    /**
+     * @var array $pages
+     * @brief Pages list.
+     */
+    protected $pages = array();
+
+    /**
+     * @var array $wordList
+     * @brief Word list.
+     */
+    protected $wordList = array();
+
+    /**
+     * @var boolean $gpcAvailable
+     * @brief Generic Page Comments availability.
+     */
+    protected $gpcAvailable;
+
+    /**
+     * @var array $elgs
+     * @brief Editing languages.
+     */
+    protected $elgs = array();
 
     /**
      * Class constructor.

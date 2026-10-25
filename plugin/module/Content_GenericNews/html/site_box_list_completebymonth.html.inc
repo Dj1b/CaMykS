@@ -3,10 +3,10 @@
  * @brief Content_GenericNews Module site display list, complete by month layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Mar 2007
- * @date Modification: May 2021
- * @copyright 2007 - 2021 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -22,7 +22,7 @@ $lastdate = 0;
         <?php if ($lastdate == 0 or mktime(0,0,0, date('m', $lastdate), 1, date('Y', $lastdate)) > mktime (0,0,0, date('m', $n->vars['ndate']), 1, date('Y', $n->vars['ndate']))) : ?>
             <tr>
                 <td class="eTitle2">
-                    <?= ucfirst(strftime('%B %Y', $n->vars['ndate'])); ?>
+                    <?= ucfirst(date_strftime('%B %Y', $n->vars['ndate'])); ?>
                 </td>
             </tr>
         <?php endif; ?>
