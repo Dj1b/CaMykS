@@ -4,7 +4,7 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11
+ * @version 1.0.11.1
  * @date Creation: Dec 2012
  * @date Modification: Oct 2026
  * @copyright 2012 - 2026 CaMykS Team
@@ -1550,6 +1550,10 @@ final class Admin_GenericEmailingManager extends Module {
         /* Load CaMykS context */
         $camyks->get_adminInit();
 
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
         if ($params !== null)
             $eId = $params[0];
         elseif (isset($_REQUEST['emailing_id']))
@@ -1656,6 +1660,10 @@ final class Admin_GenericEmailingManager extends Module {
         /* Load CaMykS context */
         $camyks->get_adminInit();
 
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
         /* Check email value */
         if (!isset($_REQUEST['emailing']))
             die('Error : no emailing given');
@@ -1750,6 +1758,10 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
+        /* Check admin user */
         if ($camyks->check_adminUser() == false)
             return $camyks->init_kill();
 
@@ -1820,6 +1832,10 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
+        /* Check admin user */
         if ($camyks->check_adminUser() == false)
             return $camyks->init_kill();
 
@@ -1887,6 +1903,10 @@ final class Admin_GenericEmailingManager extends Module {
         /* Load CaMykS context */
         $camyks->get_adminInit();
 
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
         /* Initialise result */
         $result = array('result'=>'failure', 'step'=>1);
 
@@ -1947,6 +1967,10 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Load CaMykS context */
         $camyks->get_adminInit();
+
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
 
         /* Initialise result */
         $result = array('result'=>'failure', 'step'=>2);
@@ -2080,6 +2104,10 @@ final class Admin_GenericEmailingManager extends Module {
         /* Load CaMykS context */
         $camyks->get_adminInit();
 
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
         /* init result */
         $result = array('result'=>'failure', 'step'=>3);
 
@@ -2210,6 +2238,10 @@ final class Admin_GenericEmailingManager extends Module {
         /* Load CaMykS context */
         $camyks->get_adminInit();
 
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
+
         /* Initialise result */
         $result = array('result'=>'failure', 'step'=>1);
 
@@ -2237,6 +2269,10 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Load site context */
         $camyks->get_adminInit();
+
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
 
         /* init result */
         $result = array('result'=>'failure', 'step'=>2);
@@ -2314,6 +2350,10 @@ final class Admin_GenericEmailingManager extends Module {
 
         /* Load CaMykS context */
         $camyks->get_adminInit();
+
+        /* Check admin user */
+        if (!$camyks->check_user())
+            die();
 
         /* Initialise result */
         $result = array('result'=>'failure', 'step'=>3);
