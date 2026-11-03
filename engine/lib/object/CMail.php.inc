@@ -3,7 +3,7 @@
  * @brief E-mail generic object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.4
+ * @version 1.0.4.1
  * @date Creation: Jun 2012
  * @date Modification: Oct 2026
  * @copyright 2012 - 2026 CaMykS Team
@@ -512,7 +512,7 @@ final class CMail {
             if ($contact['email'] != '') $recipients[] = $contact['email'];
         foreach ($this->params['Bcc'] as $contact)
             if ($contact['email'] != '') $recipients[] = $contact['email'];
-            $recipients = implode(', ', $recipients);
+        $recipients = implode(', ', $recipients);
 
         /* send email with configured driver & settings */
         if ($camyks->get_confValue('PEARMailDriver') !== '') {
@@ -567,7 +567,7 @@ final class CMail {
                 if (isset($config['secure'])) $mail->SMTPSecure = $config['secure'];
                 if (isset($config['auth'])) $mail->SMTPAuth = $config['auth'];
 
-                if ($config['authType'] == 'XOAUTH2' and $config['authProvider'] == 'Azure') {
+                if (isset($config['authType']) and $config['authType'] == 'XOAUTH2' and $config['authProvider'] == 'Azure') {
                     $mail->AuthType = 'XOAUTH2';
 
                     /* Configure XOAUTH2 through Azure authentication */
@@ -595,6 +595,7 @@ final class CMail {
                 }
             }
         }
+
         /* set charset */
         $mail->CharSet = $camyks->get_HTMLEncodingValue();
         if ($camyks->get_HTMLEncodingValue() == 'UTF-8') {
