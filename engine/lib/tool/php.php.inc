@@ -3,10 +3,10 @@
  * @brief PHP related methods
  * @details Engine / Tool Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.1
  * @date Creation: Sep 2020
- * @date Modification: Sep 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @warning This library is not loaded with CaMykS initialisation.
@@ -28,7 +28,6 @@ function php_displayErrorReportingLevelAsString($errorLevel=null, $separator=', 
         E_USER_DEPRECATED   => 'E_USER_DEPRECATED',
         E_DEPRECATED        => 'E_DEPRECATED',
         E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
-        E_STRICT            => 'E_STRICT',
         E_USER_NOTICE       => 'E_USER_NOTICE',
         E_USER_WARNING      => 'E_USER_WARNING',
         E_USER_ERROR        => 'E_USER_ERROR',
