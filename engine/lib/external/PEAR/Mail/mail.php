@@ -38,7 +38,7 @@
  *
  * @category    Mail
  * @package     Mail
- * @author      Chuck Hagenbuch <chuck@horde.org> 
+ * @author      Chuck Hagenbuch <chuck@horde.org>
  * @copyright   2010-2017 Chuck Hagenbuch
  * @license     http://opensource.org/licenses/BSD-3-Clause New BSD License
  * @version     CVS: $Id$
@@ -140,20 +140,20 @@ class Mail_mail extends Mail {
         // To: header based on the contents of $recipients.
         unset($headers['To']);
 
-        // Flatten the headers out.
+        /* Flatten the headers out.
         $headerElements = $this->prepareHeaders($headers);
         if (is_a($headerElements, 'PEAR_Error')) {
             return $headerElements;
         }
         list(, $text_headers) = $headerElements;
+        */
 
         // We only use mail()'s optional fifth parameter if the additional
         // parameters have been provided and we're not running in safe mode.
         if (empty($this->_params) || ini_get('safe_mode')) {
-            $result = mail($recipients, $subject, $body, $text_headers);
+            $result = mail($recipients, $subject, $body, $headers);
         } else {
-            $result = mail($recipients, $subject, $body, $text_headers,
-                           $this->_params);
+            $result = mail($recipients, $subject, $body, $headers, $this->_params);
         }
 
         // If the mail() function returned failure, we need to create a

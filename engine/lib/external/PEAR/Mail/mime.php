@@ -24,8 +24,8 @@
  * - Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
- * - Neither the name of the authors, nor the names of its contributors 
- *   may be used to endorse or promote products derived from this 
+ * - Neither the name of the authors, nor the names of its contributors
+ *   may be used to endorse or promote products derived from this
  *   software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
@@ -981,9 +981,9 @@ class Mail_mime
      */
     protected function buildAlternativeParts($parent_part, $mixed_params = null)
     {
-        $html               = strlen($this->htmlbody) > 0;
-        $calendar           = strlen($this->calbody) > 0;
-        $has_text           = strlen($this->txtbody) > 0;
+        $html               = (!is_null($this->htmlbody) and !empty($this->htmlbody) and strlen($this->htmlbody) > 0);
+        $calendar           = (!is_null($this->calbody) and !empty($this->calbody) and strlen($this->calbody) > 0);
+        $has_text           = (!is_null($this->htmlbody) and !empty($this->txtbody) and strlen($this->txtbody) > 0);
         $alternatives_count = $html + $calendar + $has_text;
 
         if ($alternatives_count > 1) {
@@ -1351,9 +1351,9 @@ class Mail_mime
     {
         $attachments      = count($this->parts) > 0;
         $html_images      = count($this->html_images) > 0;
-        $html             = strlen($this->htmlbody) > 0;
-        $calendar         = strlen($this->calbody) > 0;
-        $has_text         = strlen($this->txtbody) > 0;
+        $html             = (!is_null($this->htmlbody) and !empty($this->htmlbody) and strlen($this->htmlbody) > 0);
+        $calendar         = (!is_null($this->calbody) and !empty($this->calbody) and strlen($this->calbody) > 0);
+        $has_text         = (!is_null($this->htmlbody) and !empty($this->txtbody) and strlen($this->txtbody) > 0);
         $has_alternatives = ($html + $calendar + $has_text) > 1;
         $headers          = array();
 
