@@ -3,7 +3,7 @@
  * @brief Content_GenericHTMLNews module, news item library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.2
+ * @version 1.0.1.3
  * @date Creation: Mar 2007
  * @date Modification: Oct 2026
  * @copyright 2007 - 2026 CaMykS Team
@@ -110,7 +110,7 @@ final class Content_GenericHTMLNewsItem extends ModuleLibrary {
         $sql .= ' where listid='.$listid;
         $sql .= ' and language="'.$camyks->current_language.'"';
         $sql .= ' and status=1';
-        $sql .= ' and ndate<'.mktime();
+        $sql .= ' and ndate<'.time();
         $sql .= ' and admin_user.login = '.$this->_libSQLTable.'.author';
         $sql .= ' order by ndate DESC';
         if ($bypage > 0 and $page > -1)
@@ -163,7 +163,7 @@ final class Content_GenericHTMLNewsItem extends ModuleLibrary {
             $where .= ' and language="'.$lg.'"';
         }
         if ($dated) {
-            $where .= ' and ndate<'.mktime();
+            $where .= ' and ndate<'.time();
         }
         return $this->get_objectCount($where);
     }
