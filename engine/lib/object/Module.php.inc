@@ -3,7 +3,7 @@
  * @brief Module plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3
+ * @version 1.0.3.1
  * @date Creation: Jun 2007
  * @date Modification: Oct 2026
  * @copyright 2007 - 2026 CaMykS Team
@@ -694,8 +694,9 @@ class Module extends Plugin {
                 return false;
             case 'content':
                 /* check admin user right for the current page */
-                if (isset($camyks->modules['Admin_ContentPage']) and $camyks->modules['Admin_ContentPage']->check_right(2)) {
-                    $page = $camyks->modules['Admin_ContentPage']->page;
+                $module = $camyks->get_module('Admin_ContentPage');
+                if ($module !== false and $module->check_right(1)) {
+                    $page = $module->get_newPage();
                     $page->id = $info;
                     $page->get();
                     return $page->check_rights();
