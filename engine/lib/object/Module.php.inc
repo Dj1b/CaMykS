@@ -3,9 +3,9 @@
  * @brief Module plugin object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.1
+ * @version 1.0.3.2
  * @date Creation: Jun 2007
- * @date Modification: Oct 2026
+ * @date Modification: Nov 2026
  * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -777,6 +777,25 @@ class Module extends Plugin {
             );
         return $list;
     }
+
+    /* Mark: Content module methods */
+
+    /**
+     * Return page id value.
+     * @return integer
+     */
+    public function get_pageId() {
+        return $this->page_id;
+    }
+
+    /**
+     * Return module index value.
+     * @return integer
+     */
+    public function get_moduleIndex() {
+        return $this->module_index;
+    }
+
 
     /*************** PAGE MANAGER RELATED METHODS *****/
 
