@@ -3,10 +3,10 @@
  * @brief Admin_Statistics module, data library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: May 2007
- * @date Modification: Jul 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -135,7 +135,7 @@ final class Admin_StatisticData extends ModuleLibrary {
         $params = array_merge($dParams, $params);
 
         /* Check scale value */
-        if (!in_array($params['scale'], array('day', 'month', 'year', 'total')))
+        if (!in_array($params['scale'], array('day', 'month', 'year', 'total', 'top')))
             $params['scale'] = 'day';
 
         /* Build where statement */
@@ -181,6 +181,7 @@ final class Admin_StatisticData extends ModuleLibrary {
             case 'month': return $this->get_statisticsByMonthValue($s);
             case 'year': return $this->get_statisticsByYearValue($s);
             case 'total': return $this->get_statisticsTotalValue($s);
+            case 'top': return $this->get_statisticsTopValues($statId, $params);
         }
         return array();
     }
@@ -287,6 +288,80 @@ final class Admin_StatisticData extends ModuleLibrary {
             while ($data = $this->get_DBQueryDataLine()) {
                 $stats[$data['main']] = $data['cnt'];
             }
+        return $stats;
+    }
+
+    /**
+     * Return top statistic values.
+     * @param integer $statId
+     * @param array $params
+     * @return array
+     */
+    public function get_statisticsTopValues($statId, $params=array()) {
+        /* Define default params */
+        $dParams = array(
+            'limit'     => 10,
+            'field'     => 'main',
+            'date_from' => -1,
+            'date_to'   => -1,
+            'duration'  => -1,
+            'scale'     => 'day',
+        );
+
+        /* Merge params */
+        $params = array_merge($dParams, $params);
+
+        /* Build where statement */
+        $s = array('statid = '.$statId);
+
+        /* Check dates */
+        if ($params['date_from'] > -1) {
+            $s[] = 'statdate >= '.$params['date_from'];
+            if ($params['date_to'] > -1)
+                $s[] = 'statdate < '.$params['date_to'];
+            elseif ($params['duration'] > -1) {
+                switch ($params['scale']) {
+                    case 'day':   $v = mktime(0, 0, 0, 1, $params['duration'], 1970); break;
+                    case 'month': $v = mktime(0, 0, 0, $params['duration'], 1, 1970); break;
+                    case 'year':  $v = mktime(0, 0, 0, 1, 1, 1970 + $params['duration']); break;
+                    default:      $v = 0;
+                }
+                $s[] = 'statdate < '.($params['date_from']+$v);
+            }
+        } elseif ($params['duration'] > -1) {
+            switch ($params['scale']) {
+                case 'day':   $v = mktime(0, 0, 0, 1, $params['duration'], 1970); break;
+                case 'month': $v = mktime(0, 0, 0, $params['duration'], 1, 1970); break;
+                case 'year':  $v = mktime(0, 0, 0, 1, 1, 1970 + $params['duration']); break;
+                default:      $v = 0;
+            }
+            $s[] = 'statdate >= '.(time()-$v);
+        }
+
+        /* Compile where statement */
+        $where = implode(' and ', $s);
+
+        /* Check field */
+        if (!in_array($params['field'], array('main', 'data1', 'data2')))
+            $params['field'] = 'main';
+
+        if ($params['field'] == 'main')
+            return $this->get_mixedStatisticList($where, $params['limit']);
+
+        $stats = array();
+        $sql = 'select '.$params['field'].', sum(statcount) as cnt from '.$this->_libSQLTable;
+        if ($where != '')
+            $sql .= ' where '.$where;
+        $sql .= ' group by '.$params['field'];
+        $sql .= ' order by cnt desc';
+        if ($params['limit'] > 0)
+            $sql .= ' limit '.$params['limit'];
+
+        if ($this->execute_DBQuery($sql, __LINE__)) {
+            while ($data = $this->get_DBQueryDataLine()) {
+                $stats[$data[$params['field']]] = $data['cnt'];
+            }
+        }
         return $stats;
     }
 

@@ -4,10 +4,10 @@
  * <br /> Records and displays website statistics.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.2
+ * @version 1.0.3
  * @date Creation: May 2007
- * @date Modification: Oct 2025
- * @copyright 2007 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2007 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @note Available types :
@@ -610,6 +610,25 @@ final class Admin_Statistics extends Module {
 
         /* Load and return stat data */
         return $this->statdata->get_statistics($statId, $params);
+    }
+
+    /**
+     * Return top statistic values.
+     * @param string $plugin
+     * @param string $statName
+     * @param array $params
+     * @return array
+     */
+    public function get_statisticsTopValues($plugin, $statName, $params=array()) {
+        global $camyks;
+
+        /* Load stat id */
+        $statId = $this->statobject->get_idFromPluginAndName($plugin, $statName);
+        if ($statId === false)
+            return array();
+
+        /* Load and return stat data */
+        return $this->statdata->get_statisticsTopValues($statId, $params);
     }
 
     /**
