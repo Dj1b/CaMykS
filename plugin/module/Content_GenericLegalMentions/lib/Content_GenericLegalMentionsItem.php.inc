@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions module, content library.
  * @details Plugin / Module Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.1.2
  * @date Creation: Jan 2020
- * @date Modification: Jul 2025
- * @copyright 2020 - 2025 CaMykS Team
+ * @date Modification: Oct 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -99,8 +99,8 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
         if (!parent::get($language))
             return false;
 
-        if (isset($this->_libParent->page_id))
-            $this->_libItems['defaultPage']->value = (int)($camyks->modules['Admin_ContentPage']->get_keyPage('LegalMentions') === $this->_libParent->page_id);
+        if ($this->_libParent->get_pageId() > 0)
+            $this->_libItems['defaultPage']->value = (int)($camyks->modules['Admin_ContentPage']->get_keyPage('LegalMentions') === $this->_libParent->get_pageId());
 
         return true;
     }
@@ -118,7 +118,7 @@ final class Content_GenericLegalMentionsItem extends ModuleLibrary {
 
         /* Define page as default legal mentions page */
         if ($this->_libItems['defaultPage']->value === 1) {
-            $camyks->modules['Admin_ContentPage']->set_keyPage('LegalMentions', $this->_libParent->page_id);
+            $camyks->modules['Admin_ContentPage']->set_keyPage('LegalMentions', $this->_libParent->get_pageId());
         }
 
         /* Return success */
