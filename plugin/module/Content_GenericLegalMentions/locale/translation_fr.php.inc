@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Content_GenericLegalMentions Module french dictionnary.
- * @details Plugin, Module Dictionnary
+ * @brief Content_GenericLegalMentions module, french dictionary.
+ * @details Plugin, Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Jan 2020
- * @date Modification: Jan 2020
- * @copyright 2020 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */

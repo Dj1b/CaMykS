@@ -3,10 +3,10 @@
  * @brief Content_GenericLegalMentions module, english version of site properties sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0.1
+ * @version 1.0.0.2
  * @date Creation: Apr 2021
- * @date Modification: Oct 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */

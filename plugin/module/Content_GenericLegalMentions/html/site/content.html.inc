@@ -1,19 +1,19 @@
 <?php
 /**
- * @brief Content_GenericLegalMentions Module site content sub layout.
+ * @brief Content_GenericLegalMentions module, site content sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jan 2020
- * @date Modification: Apr 2021
- * @copyright 2020 - 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2020 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 global $camyks;
 
 /* Check language to display */
-$language = in_array($camyks->current_language, array('fr', 'en')) ? $camyks->current_language : 'en';
+$language = in_array($camyks->current_language, array('fr', 'en', 'es', 'de', 'it')) ? $camyks->current_language : 'en';
 
 /* Display properties part */
 $this->load_file('html/site/'.$language.'/properties.html.inc');

@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief Content_GenericLegalMentions Module site services, english sub layout.
+ * @brief Content_GenericLegalMentions module, site services, english sub layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.0
+ * @version 1.0.0.1
  * @date Creation: Apr 2021
- * @date Modification: Apr 2021
- * @copyright 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2021 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
