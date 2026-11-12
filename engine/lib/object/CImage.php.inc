@@ -3,10 +3,10 @@
  * @brief Image manipulating object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.3.2
+ * @version 1.0.3.3
  * @date Creation: Nov 2011
- * @date Modification: Jul 2025
- * @copyright 2011 - 2025 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2011 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Finalise crop calculation in _gd_rotate method.
@@ -623,7 +623,7 @@ final class CImage {
         }
 
         /* crop */
-        imagecopy($newSrc, $this->resource, $dest_x, $dest_y, $src_x, $src_y, $src_w, $src_h);
+        imagecopy($newSrc, $this->resource, (int)$dest_x, (int)$dest_y, (int)$src_x, (int)$src_y, (int)$src_w, (int)$src_h);
         imagedestroy($this->resource);
         $this->resource = $newSrc;
         $this->width = $width;
