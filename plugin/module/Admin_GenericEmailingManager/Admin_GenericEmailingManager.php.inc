@@ -4,9 +4,9 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11.1
+ * @version 1.0.11.2
  * @date Creation: Dec 2012
- * @date Modification: Oct 2026
+ * @date Modification: Nov 2026
  * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1551,7 +1551,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         if ($params !== null)
@@ -1661,7 +1661,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Check email value */
@@ -1758,7 +1758,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Check admin user */
@@ -1832,7 +1832,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Check admin user */
@@ -1904,7 +1904,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Initialise result */
@@ -1969,7 +1969,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Initialise result */
@@ -2105,7 +2105,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* init result */
@@ -2239,7 +2239,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Initialise result */
@@ -2271,7 +2271,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* init result */
@@ -2352,7 +2352,7 @@ final class Admin_GenericEmailingManager extends Module {
         $camyks->get_adminInit();
 
         /* Check admin user */
-        if (!$camyks->check_user())
+        if (!$camyks->check_adminUser())
             die();
 
         /* Initialise result */
