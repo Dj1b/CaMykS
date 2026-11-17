@@ -3,9 +3,9 @@
  * @brief Admin_GenericGuestBookManager module.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.2.1
  * @date Creation: Sep 2010
- * @date Modification: Oct 2026
+ * @date Modification: Nov 2026
  * @copyright 2010 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -669,10 +669,10 @@ final class Admin_GenericGuestBookManager extends Module {
     }
 
     /**
-     * Load additional dictionnary.
+     * Load additional dictionary.
      * @return void
-    */
-    public function load_additionalDictionnary() {
+     */
+    public function load_additionalDictionary() {
         $this->add_translation('/data');
     }
 
@@ -743,8 +743,8 @@ final class Admin_GenericGuestBookManager extends Module {
      * @return array
      */
     public function get_legalMentionsData() {
-        /* Load dictionnary */
-        $this->load_additionalDictionnary();
+        /* Load dictionary */
+        $this->load_additionalDictionary();
 
         /* Return values */
         return array(
