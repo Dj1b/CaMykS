@@ -4,7 +4,7 @@
  * <br /> Manage contact lists, and send emailings.
  * @details Plugin / Module Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.11.2
+ * @version 1.0.11.3
  * @date Creation: Dec 2012
  * @date Modification: Nov 2026
  * @copyright 2012 - 2026 CaMykS Team
@@ -2565,10 +2565,10 @@ final class Admin_GenericEmailingManager extends Module {
     }
 
     /**
-     * Load additional dictionnary.
+     * Load additional dictionary.
      * @return void
      */
-    public function load_additionalDictionnary() {
+    public function load_additionalDictionary() {
         $this->add_translation('/data');
     }
 
@@ -2657,9 +2657,8 @@ final class Admin_GenericEmailingManager extends Module {
      * @return array
      */
     public function get_legalMentionsData() {
-
-        /* Load dictionnary */
-        $this->load_additionalDictionnary();
+        /* Load dictionary */
+        $this->load_additionalDictionary();
 
         /* Return values */
         return array(
