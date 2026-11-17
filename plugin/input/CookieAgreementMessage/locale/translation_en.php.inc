@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief CookieAgreementMessage Input english dictionnary
- * @details Plugin / Input Dictionnary
+ * @brief CookieAgreementMessage input, english dictionary.
+ * @details Plugin / Input Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.1.0.1
+ * @version 1.1.0.2
  * @date Creation: May 2017
- * @date Modification: Mar 2021
- * @copyright 2017 - 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2017 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
