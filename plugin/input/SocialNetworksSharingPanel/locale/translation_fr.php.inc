@@ -1,12 +1,12 @@
 <?php
 /**
- * @brief SocialNetworksSharingPanel Input french dictionnary
- * @details Plugin / Input Dictionnary
+ * @brief SocialNetworksSharingPanel input, french dictionary.
+ * @details Plugin / Input Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.2.2
  * @date Creation: Feb 2012
- * @date Modification: Feb 2021
- * @copyright 2012 - 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2012 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
