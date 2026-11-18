@@ -4,10 +4,10 @@
  * <br /> To be extended by specific database connection objects.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2.1
+ * @version 1.0.3
  * @date Creation: Sep 2014
- * @date Modification: Jul 2025
- * @copyright 2014 - 2025 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -99,9 +99,19 @@ abstract class CDBConnection {
     /**
      * Select database.
      * @param string $name
+     * @param string $charset
      * @return boolean
      */
-    abstract public function select_database($name);
+    abstract public function select_database($name, $charset='');
+
+    /**
+     * Set connection charset.
+     * @param string $charset
+     * @return boolean
+     */
+    public function set_charset($charset='') {
+        return true;
+    }
 
     /**
      * Create a database.

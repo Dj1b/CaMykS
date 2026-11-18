@@ -3,10 +3,10 @@
  * @brief Admin_Site Module french dictionary.
  * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Jan 2005
- * @date Modification: Jul 2021
- * @copyright 2005 - 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -77,6 +77,9 @@ $this->trads['mod_admin_site_formitem_databasedriver'] = 'Driver : ';
 $this->trads['mod_admin_site_formitem_databasehost'] = 'Serveur h&ocirc;te : ';
 $this->trads['mod_admin_site_formitem_databasename'] = 'Nom de la base : ';
 $this->trads['mod_admin_site_formitem_databaselogin'] = 'Identifiant : ';
+$this->trads['mod_admin_site_formitem_databasecharset'] = 'Encodage de la base : ';
+$this->trads['mod_admin_site_formitem_connectioncharset'] = 'Encodage de la connexion : ';
+$this->trads['mod_admin_site_database_charset_undefined'] = 'Ind&eacute;termin&eacute;';
 $this->trads['mod_admin_site_formitem_databasesize'] = 'Taille de la base : ';
 $this->trads['mod_admin_site_formitem_tables'] = 'Tables : ';
 $this->trads['mod_admin_site_formitem_lines'] = 'Lignes : ';

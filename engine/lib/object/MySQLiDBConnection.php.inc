@@ -3,10 +3,10 @@
  * @brief MySQLi Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.7
+ * @version 1.0.2
  * @date Creation: Sep 2014
- * @date Modification: Sep 2025
- * @copyright 2014 - 2025 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -64,13 +64,30 @@ final class MySQLiDBConnection extends CDBConnection {
     /**
      * Select database.
      * @param string $name the database name
+     * @param string $charset
      * @return boolean
      */
-    public function select_database($name) {
+    public function select_database($name, $charset='') {
         if (!$this->is_connectionActive())
             return false;
         $this->dbName = $name;
-        return $this->connection->select_db($name);
+        if ($this->connection->select_db($name)) {
+            if ($charset !== '')
+                $this->set_charset($charset);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Set connection charset.
+     * @param string $charset
+     * @return boolean
+     */
+    public function set_charset($charset='') {
+        if (!$this->is_connectionActive() or $charset === '')
+            return false;
+        return $this->connection->set_charset($charset);
     }
 
     /**
@@ -185,10 +202,12 @@ final class MySQLiDBConnection extends CDBConnection {
         global $camyks;
 
         $summary = array(
-            'version'       => $this->get_serverVersion(),
-            'size'          => $this->get_databaseSize(),
-            'tables'        => array(),
-            'tablesStatus'  => array(
+            'version'           => $this->get_serverVersion(),
+            'size'              => $this->get_databaseSize(),
+            'charset'           => '',
+            'connectionCharset' => '',
+            'tables'            => array(),
+            'tablesStatus'      => array(
                 'status'    => array('OK'=>0, 'NotOK'=>0),
                 'error'     => array(),
                 'info'      => array(),
@@ -199,6 +218,15 @@ final class MySQLiDBConnection extends CDBConnection {
             'lineCount'     => 0,
             'connections'   => '',
         );
+
+        /* get charsets */
+        if ($this->is_connectionActive()) {
+            $summary['connectionCharset'] = $this->connection->character_set_name();
+            $sql = 'SELECT @@character_set_database as c;';
+            if ($this->execute_query($sql) and ($data = $this->get_queryDataLine())) {
+                $summary['charset'] = $data['c'];
+            }
+        }
 
         /* build tables list */
         $sql = 'show table status';

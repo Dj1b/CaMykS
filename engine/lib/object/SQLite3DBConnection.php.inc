@@ -3,10 +3,10 @@
  * @brief SQLite3 Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1.1
+ * @version 1.0.2
  * @date Creation: Nov 2017
- * @date Modification: Jul 2025
- * @copyright 2014 - 2025 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * @todo Complete dump_database() and get_databaseSummary() methods.
@@ -89,9 +89,10 @@ final class SQLite3DBConnection extends CDBConnection {
     /**
      * Select database.
      * @param string $name the database name
+     * @param string $charset
      * @return boolean
      */
-    public function select_database($name) {
+    public function select_database($name, $charset='') {
         $this->dbName = $this->get_fullDatabaseName($name);
 
         try {
@@ -103,6 +104,15 @@ final class SQLite3DBConnection extends CDBConnection {
         }
 
         /* return connection test : to do */
+        return true;
+    }
+
+    /**
+     * Set connection charset.
+     * @param string $charset
+     * @return boolean
+     */
+    public function set_charset($charset='') {
         return true;
     }
 
@@ -164,9 +174,21 @@ final class SQLite3DBConnection extends CDBConnection {
 
         /* initialise summary */
         $summary = array(
-            'version'       => $this->get_serverVersion(),
-            'size'          => $this->get_databaseSize(),
+            'version'           => $this->get_serverVersion(),
+            'size'              => $this->get_databaseSize(),
+            'charset'           => '',
+            'connectionCharset' => '',
         );
+
+        /* get charsets */
+        if ($this->is_connectionActive() and $this->connection) {
+            $sql = 'PRAGMA encoding;';
+            if ($this->execute_query($sql) and ($data = $this->get_queryDataLine())) {
+                $enc = isset($data['encoding']) ? $data['encoding'] : '';
+                $summary['charset'] = $enc;
+                $summary['connectionCharset'] = $enc;
+            }
+        }
 
         /* completes summary */
         /* TO DO */

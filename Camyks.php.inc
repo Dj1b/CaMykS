@@ -3,10 +3,10 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.21.7
+ * @version 1.0.22
  * @date Creation: Jun 2005
- * @date Modification: Oct 2025
- * @copyright 2005 - 2025 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -1092,11 +1092,23 @@ final class Camyks {
     public function get_mysqlEncodingValue() {
         switch ($this->get_confValue('encoding')) {
             case 'utf8':
-                return 'utf8';
+            case '':
+                return 'utf8mb4';
                 break;
             default:
-                return 'utf8';
+                return $this->get_confValue('encoding');
         }
+    }
+
+    /**
+     * Return database connection encoding value.
+     * @return string
+     */
+    public function get_databaseEncodingValue() {
+        $charset = $this->get_confValue('database_charset', '');
+        if ($charset !== '')
+            return $charset;
+        return $this->get_mysqlEncodingValue();
     }
 
     /******************** PLUGINS ***********************/
@@ -1669,7 +1681,7 @@ final class Camyks {
                 $this->get_confValue('database_driver', '')
             );
             if ($this->db_conn->is_active()) {
-                if ($this->db_conn->select($this->get_confValue('database_name'))) {
+                if ($this->db_conn->select($this->get_confValue('database_name'), $this->get_databaseEncodingValue())) {
                     return true;
                 } else {
                     /* error : database not found on database server */

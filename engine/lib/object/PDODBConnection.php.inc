@@ -3,9 +3,9 @@
  * @brief PDO Database connection object
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Sep 2014
- * @date Modification: Oct 2026
+ * @date Modification: Nov 2026
  * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -70,13 +70,34 @@ final class PDODBConnection extends CDBConnection {
     /**
      * Select database.
      * @param string $name the database name
+     * @param string $charset
      * @return boolean
      */
-    public function select_database($name) {
+    public function select_database($name, $charset='') {
         if (!$this->is_connectionActive())
             return false;
         $this->dbName = $name;
-        return $this->execute_query('use '.$name);
+        if ($this->execute_query('use '.$name)) {
+            if ($charset !== '')
+                $this->set_charset($charset);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Set connection charset.
+     * @param string $charset
+     * @return boolean
+     */
+    public function set_charset($charset='') {
+        if (!$this->is_connectionActive() or $charset === '')
+            return false;
+        try {
+            return $this->connection->exec('SET NAMES '.$charset) !== false;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -190,10 +211,12 @@ final class PDODBConnection extends CDBConnection {
         global $camyks;
 
         $summary = array(
-            'version'       => $this->get_serverVersion(),
-            'size'          => $this->get_databaseSize(),
-            'tables'        => array(),
-            'tablesStatus'  => array(
+            'version'           => $this->get_serverVersion(),
+            'size'              => $this->get_databaseSize(),
+            'charset'           => '',
+            'connectionCharset' => '',
+            'tables'            => array(),
+            'tablesStatus'      => array(
                 'status'    => array('OK'=>0, 'NotOK'=>0),
                 'error'     => array(),
                 'info'      => array(),
@@ -204,6 +227,15 @@ final class PDODBConnection extends CDBConnection {
             'lineCount'     => 0,
             'connections'   => '',
         );
+
+        /* get charsets */
+        if ($this->is_connectionActive()) {
+            $sql = 'SELECT @@character_set_connection as cc, @@character_set_database as cd;';
+            if ($this->execute_query($sql) and ($data = $this->get_queryDataLine())) {
+                $summary['connectionCharset'] = isset($data['cc']) ? $data['cc'] : '';
+                $summary['charset'] = isset($data['cd']) ? $data['cd'] : '';
+            }
+        }
 
         /* build tables list */
         $sql = 'show table status';

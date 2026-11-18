@@ -3,9 +3,9 @@
  * @brief Postgre Database connection object.
  * @details Engine / Object Library
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.2
+ * @version 1.0.3
  * @date Creation: Apr 2018
- * @date Modification: Oct 2026
+ * @date Modification: Nov 2026
  * @copyright 2014 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -85,12 +85,22 @@ final class PgSQLDBConnection extends CDBConnection {
     /**
      * Select database.
      * @param string $name the database name
+     * @param string $charset
      * @return boolean
      */
-    public function select_database($name) {
+    public function select_database($name, $charset='') {
         /* check connection is already active */
-        if ($this->connection !== false)
-          return $this->active;
+        if ($this->connection !== false) {
+            if ($charset !== '')
+                $this->set_charset($charset);
+            return $this->active;
+        }
+
+        /* prepare client encoding */
+        $encoding = 'UTF8';
+        if ($charset !== '') {
+            $encoding = (strtolower($charset) === 'utf8mb4' ? 'UTF8' : $charset);
+        }
 
         /* build connection params */
         $connParams = "";
@@ -98,7 +108,7 @@ final class PgSQLDBConnection extends CDBConnection {
         if ($name != '') $connParams .= " dbname=".$name;
         if ($this->login != '') $connParams .= " user=".$this->login;
         if ($this->pwd != '') $connParams .= " password=".$this->pwd;
-        $connParams .= " options='--client_encoding=UTF8'";
+        $connParams .= " options='--client_encoding=".$encoding."'";
 
         /* database server connection */
         $this->connection = @pg_pconnect($connParams);
@@ -110,6 +120,19 @@ final class PgSQLDBConnection extends CDBConnection {
         /* check if connection is made successfully */
         $this->active = $this->connection !== false;
         return $this->active;
+    }
+
+    /**
+     * Set connection charset.
+     * @param string $charset
+     * @return boolean
+     */
+    public function set_charset($charset='') {
+        if (!$this->is_connectionActive() or !$this->connection or $charset === '')
+            return false;
+        if (strtolower($charset) === 'utf8mb4')
+            $charset = 'UTF8';
+        return pg_set_client_encoding($this->connection, $charset) === 0;
     }
 
     /**
@@ -164,9 +187,20 @@ final class PgSQLDBConnection extends CDBConnection {
 
         /* initialise summary */
         $summary = array(
-            'version'       => $this->get_serverVersion(),
-            'size'          => $this->get_databaseSize(),
+            'version'           => $this->get_serverVersion(),
+            'size'              => $this->get_databaseSize(),
+            'charset'           => '',
+            'connectionCharset' => '',
         );
+
+        /* get charsets */
+        if ($this->is_connectionActive() and $this->connection) {
+            $summary['connectionCharset'] = pg_client_encoding($this->connection);
+            $sql = "SELECT pg_encoding_to_char(encoding) as c FROM pg_database WHERE datname = '".$this->dbName."';";
+            if ($this->execute_query($sql) and ($data = $this->get_queryDataLine())) {
+                $summary['charset'] = $data['c'];
+            }
+        }
 
         /* completes summary */
         /* TO DO */

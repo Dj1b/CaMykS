@@ -3,9 +3,9 @@
  * @brief Admin_Site module, admin view site configuration layout.
  * @details Plugin / Module layout
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.7.2
+ * @version 1.0.8
  * @date Creation: Jan 2005
- * @date Modification: Jan 2026
+ * @date Modification: Nov 2026
  * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -246,6 +246,22 @@ global $camyks;
             </td>
             <td class="eTableLine1 eContent1">
                 <?= $camyks->get_confValue('database_name'); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine0 eContent2">
+                <?= $this->get_translation('formitem_databasecharset'); ?>
+            </td>
+            <td class="eTableLine0 eContent1">
+                <?= (!empty($this->dbSummary['charset']) ? $this->dbSummary['charset'] : $this->get_translation('database_charset_undefined')); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="eTableLine1 eContent2">
+                <?= $this->get_translation('formitem_connectioncharset'); ?>
+            </td>
+            <td class="eTableLine1 eContent1">
+                <?= (!empty($this->dbSummary['connectionCharset']) ? $this->dbSummary['connectionCharset'] : $this->get_translation('database_charset_undefined')); ?>
             </td>
         </tr>
         <tr>

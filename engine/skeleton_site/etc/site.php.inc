@@ -2,12 +2,11 @@
 /**
  * @brief Website configuration file
  * @details Skeleton site / Site Configuration
- * @file engine/skeleton_site/etc/site.php.inc
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.2
  * @date Creation: Jun 2005
- * @date Modification: Sep 2018
- * @copyright 2005 - 2018 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2005 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -52,6 +51,7 @@ $conf['database_name'] = '';
 $conf['database_host'] = '';
 $conf['database_login'] = '';
 $conf['database_pwd'] = '';
+$conf['database_charset'] = '';
 /* site admin ssl : default | auto | forced | none */
 $conf['admin_ssl'] = 'default';
 /* site admin default language : fr, en */

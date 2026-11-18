@@ -3,10 +3,10 @@
  * @brief Admin_Site Module english dictionary.
  * @details Plugin / Module Dictionary
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.6
+ * @version 1.0.7
  * @date Creation: Feb 2013
- * @date Modification: Jul 2021
- * @copyright 2013 - 2021 CaMykS Team
+ * @date Modification: Nov 2026
+ * @copyright 2013 - 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
@@ -77,6 +77,9 @@ $this->trads['mod_admin_site_formitem_databasedriver'] = 'Driver : ';
 $this->trads['mod_admin_site_formitem_databasehost'] = 'Host: ';
 $this->trads['mod_admin_site_formitem_databasename'] = 'Name : ';
 $this->trads['mod_admin_site_formitem_databaselogin'] = 'Login : ';
+$this->trads['mod_admin_site_formitem_databasecharset'] = 'Database charset: ';
+$this->trads['mod_admin_site_formitem_connectioncharset'] = 'Connection charset: ';
+$this->trads['mod_admin_site_database_charset_undefined'] = 'Undefined';
 $this->trads['mod_admin_site_formitem_databasesize'] = 'Database size: ';
 $this->trads['mod_admin_site_formitem_tables'] = 'Tables: ';
 $this->trads['mod_admin_site_formitem_lines'] = 'Lines: ';
