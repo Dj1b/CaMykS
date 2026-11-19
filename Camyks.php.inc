@@ -3,7 +3,7 @@
  * @brief CaMykS CMS master class.
  * @details Engine / Main Object
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.22
+ * @version 1.0.22.1
  * @date Creation: Jun 2005
  * @date Modification: Nov 2026
  * @copyright 2005 - 2026 CaMykS Team
@@ -1093,8 +1093,7 @@ final class Camyks {
         switch ($this->get_confValue('encoding')) {
             case 'utf8':
             case '':
-                return 'utf8mb4';
-                break;
+                return 'utf8';
             default:
                 return $this->get_confValue('encoding');
         }
