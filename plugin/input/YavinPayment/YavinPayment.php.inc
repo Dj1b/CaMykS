@@ -4,9 +4,9 @@
  * <br /> Interface to Yavin platform payment system.
  * @details Plugin / Input Engine
  * @author CaMykS Team <camyks.contact@gmail.com>
- * @version 1.0.1
+ * @version 1.0.1.1
  * @date Creation: May 2026
- * @date Modification: Oct 2026
+ * @date Modification: Nov 2026
  * @copyright 2026 CaMykS Team
  * @note This program is distributed as is - WITHOUT ANY WARRANTY;
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -179,9 +179,9 @@ final class YavinPayment extends Input {
             $i = array(
                 'eligible_titre_restaurant' => true,
                 'name' => $item['articleTitle'],
-                'quantity' => $item['quantity'],
+                'quantity' => (int)$item['quantity'],
                 'total_amount' => (int)($item['quantity']*$item['price']*100),
-                'unit_price' => $item['price']*100,
+                'unit_price' => (int)($item['price']*100),
                 //'items' => array(),
             );
 
